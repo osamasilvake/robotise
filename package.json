@@ -1,5 +1,5 @@
 {
-	"name": "roc",
+	"name": "roc-main",
 	"version": "1.0.0",
 	"description": "A ROC app",
 	"author": "Imran Khan",
@@ -11,14 +11,14 @@
 		"release": "standard-version"
 	},
 	"devDependencies": {
-		"prettier": "2.2.1",
-		"husky": ">=4",
-		"lint-staged": ">=10",
-		"commitizen": "^4.2.3",
-		"standard-version": "^9.1.0",
-		"cz-conventional-changelog": "^3.2.0",
 		"@commitlint/cli": "^11.0.0",
-		"@commitlint/config-conventional": "^11.0.0"
+		"@commitlint/config-conventional": "^11.0.0",
+		"commitizen": "^4.2.3",
+		"cz-conventional-changelog": "^3.3.0",
+		"husky": "^4.3.8",
+		"lint-staged": ">=10",
+		"prettier": "2.2.1",
+		"standard-version": "^9.1.0"
 	},
 	"husky": {
 		"hooks": {

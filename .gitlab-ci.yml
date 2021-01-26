@@ -17,6 +17,10 @@ variables:
   HELM_RELEASE_NAME_STAGING: 'dev-$CI_PROJECT_NAME'
   HELM_RELEASE_NAME_PROD: 'prod-$CI_PROJECT_NAME'
 
+# client: roc-app
+before_script:
+  - cd client/
+
 stages:
   # - Audit
   - Install

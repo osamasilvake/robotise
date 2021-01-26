@@ -1,0 +1,11 @@
+pretty-check:
+  stage: Code Quality
+  image: node:13-alpine
+  dependencies:
+    - npm-install
+  script:
+    - npm run pretty-check
+  only:
+    - merge_requests
+    - master
+    - production

@@ -1,0 +1,9 @@
+npm-audit:
+  stage: Audit
+  image: node:13-alpine
+  script:
+    - npm audit
+  only:
+    - merge_requests
+    - master
+    - production

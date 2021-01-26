@@ -1,0 +1,23 @@
+build-image:
+  stage: Build Image
+  before_script:
+    - mkdir images
+  script:
+    - |
+      docker build \
+      --tag release \
+      --build-arg APP_ENV=prod \
+      --build-arg REACT_APP_API_BASE_URL \
+      --build-arg REACT_APP_API_VERSION \
+      --build-arg REACT_APP_AUTH_BASE_URL \
+      --build-arg REACT_APP_AUTH_REALM \
+      --file Production.Dockerfile .
+    - docker save release > images/release.tar
+  artifacts:
+    paths:
+      - images
+    expire_in: 30 minutes
+  environment:
+    name: production
+  only:
+    - production

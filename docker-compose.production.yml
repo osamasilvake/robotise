@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  client:
+    image: release:latest
+    container_name: roc-app-client
+    build:
+      context: .
+      dockerfile: Production.Dockerfile
+      args: 
+        - APP_ENV=prod
+        - REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
+        - REACT_APP_API_VERSION=$REACT_APP_API_VERSION
+        - REACT_APP_AUTH_BASE_URL=$REACT_APP_AUTH_BASE_URL
+    ports:
+      - "3000:3000"
+    networks:
+      - roc-app-net
+
+networks:
+  roc-app-net:

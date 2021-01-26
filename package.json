@@ -1,0 +1,15 @@
+{
+    "name": "roc",
+    "version": "1.0.0",
+    "description": "A ROC app",
+    "main": "commitlint.config.js",
+    "scripts": {
+        "pretty:check": "prettier --check 'client/**/*.{js,ts,json}'",
+        "pretty:apply": "prettier --write 'client/**/*.{js,ts,json}'"
+    },
+    "author": "Imran Khan",
+    "license": "ISC",
+    "devDependencies": {
+        "prettier": "2.2.1"
+    }
+}

@@ -1,0 +1,11 @@
+test:
+  stage: Test
+  image: node:13-alpine
+  dependencies:
+    - npm-install
+  script:
+    - CI=true npm test
+  only:
+    - merge_requests
+    - master
+    - production

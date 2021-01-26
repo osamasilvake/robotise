@@ -1,0 +1,11 @@
+lint:
+  stage: Code Quality
+  image: node:13-alpine
+  dependencies:
+    - npm-install
+  script:
+    - npm run lint
+  only:
+    - merge_requests
+    - master
+    - production

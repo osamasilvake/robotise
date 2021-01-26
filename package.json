@@ -1,15 +1,39 @@
 {
-    "name": "roc",
-    "version": "1.0.0",
-    "description": "A ROC app",
-    "main": "commitlint.config.js",
-    "scripts": {
-        "pretty:check": "prettier --check 'client/**/*.{js,ts,json}'",
-        "pretty:apply": "prettier --write 'client/**/*.{js,ts,json}'"
-    },
-    "author": "Imran Khan",
-    "license": "ISC",
-    "devDependencies": {
-        "prettier": "2.2.1"
-    }
+	"name": "roc",
+	"version": "1.0.0",
+	"description": "A ROC app",
+	"author": "Imran Khan",
+	"private": true,
+	"scripts": {
+		"pretty:check": "prettier --check 'client/**/*.{js,ts,json}'",
+		"pretty:apply": "prettier --write 'client/**/*.{js,ts,json}'",
+		"commit": "git-cz",
+		"release": "standard-version"
+	},
+	"devDependencies": {
+		"prettier": "2.2.1",
+		"husky": ">=4",
+		"lint-staged": ">=10",
+		"commitizen": "^4.2.3",
+		"standard-version": "^9.1.0",
+		"cz-conventional-changelog": "^3.2.0",
+		"@commitlint/cli": "^11.0.0",
+		"@commitlint/config-conventional": "^11.0.0"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"lint-staged": {
+		"*.{ts,json}": "prettier --write",
+		"*.ts": "eslint --fix",
+		"*.scss": "stylelint --fix"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
 }

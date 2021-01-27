@@ -1,8 +1,5 @@
 # Node Image
-FROM node:alpine
-
-# Go inside client directory
-RUN cd client/
+FROM node:15
 
 # A directory within the virtualized Docker environment
 WORKDIR /app/client

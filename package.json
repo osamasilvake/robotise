@@ -10,6 +10,7 @@
 		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
 		"lint:scss": "npx stylelint 'client/src/**/*.scss'",
 		"all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
+		"docker:dev": "docker-compose --file docker-compose.dev.yml up",
 		"commit": "git-cz",
 		"release": "standard-version"
 	},

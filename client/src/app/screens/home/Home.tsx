@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 const Home: FC = () => {
 	return (
 		<div className="rc-home">
-			<h1>Home</h1>
+			<h1>Dashboard</h1>
 		</div>
 	);
 };

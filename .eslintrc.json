@@ -1,7 +1,7 @@
 {
 	"root": true, // make sure eslint picks up the config at the root of the directory
 	"parser": "@typescript-eslint/parser",
-	"plugins": ["@typescript-eslint", "simple-import-sort"],
+	"plugins": ["@typescript-eslint", "simple-import-sort", "cypress"],
 	"parserOptions": {
 		"ecmaVersion": 2020, // use the latest ecmascript standard
 		"sourceType": "module", // allows using import/export statements
@@ -11,7 +11,7 @@
 	},
 	"settings": {
 		"react": {
-			"version": "999.999.999" // automatically detect the react version
+			"version": "latest" // automatically detect the react version
 		}
 	},
 	"env": {
@@ -28,6 +28,7 @@
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended", // react hooks
 		"plugin:jsx-a11y/recommended", // automatically surface any accessibility issues as they pop up
+		"plugin:cypress/recommended",
 		"plugin:prettier/recommended" // make this the last element so prettier config overrides other formatting rules
 	],
 	"rules": {
@@ -39,6 +40,7 @@
 			}
 		], // Use our .prettierrc file as source
 		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"react/prop-types": "off",
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error"

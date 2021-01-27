@@ -32,3 +32,13 @@ git push origin <feature-branch>
 ```
 git push --follow-tags origin master
 ```
+
+
+## Libraries and Frameworks
+
+#### External 
+- [X] [Create React App](https://github.com/facebook/create-react-app)
+- [X] [Redux Toolkit](https://redux-toolkit.js.org/)
+- [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
+- [X] [TypeScript](https://www.typescriptlang.org/)
+- [X] [Material-UI](https://material-ui.com/)

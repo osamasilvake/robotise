@@ -17,7 +17,9 @@
 	"env": {
 		"browser": true, // enables browser globals like window and document
 		"amd": true, // enables require() and define() as global variables as per the amd spec.
-		"node": true // enables Node.js global variables and Node.js scoping.
+		"node": true, // enables Node.js global variables and Node.js scoping.
+		"jest": true, // enables unit-testing
+		"cypress/globals": true // enables cypress-testing
 	},
 	"extends": [
 		"eslint:recommended",

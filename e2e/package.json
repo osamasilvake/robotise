@@ -1,0 +1,14 @@
+{
+	"name": "e2e",
+	"version": "1.0.0",
+	"description": "e2e tests for the client application",
+	"author": "Robotise",
+	"private": true,
+	"scripts": {
+		"test:run": "cypress run",
+		"test:open": "cypress open"
+	},
+	"devDependencies": {
+		"cypress": "^6.3.0"
+	}
+}

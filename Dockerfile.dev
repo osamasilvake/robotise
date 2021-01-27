@@ -1,0 +1,20 @@
+# Node Image
+FROM node:alpine
+
+# Go inside client directory
+RUN cd client/
+
+# A directory within the virtualized Docker environment
+WORKDIR /app/client
+
+# Copies package.json to Docker environment
+COPY ./client/package.json /app/client
+
+# Install all node packages
+RUN yarn install --silent
+
+# Copies everything over to Docker environment
+COPY ./client /app/client
+
+# Runs the application
+CMD [ "yarn", "start" ]

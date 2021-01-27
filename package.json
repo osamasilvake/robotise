@@ -2,7 +2,7 @@
 	"name": "roc-main",
 	"version": "1.0.0",
 	"description": "A ROC app",
-	"author": "Imran Khan",
+	"author": "Robotise",
 	"private": true,
 	"scripts": {
 		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
@@ -29,7 +29,9 @@
 		"husky": "^4.3.8",
 		"lint-staged": ">=10",
 		"prettier": "^2.2.1",
-		"standard-version": "^9.1.0"
+		"standard-version": "^9.1.0",
+		"stylelint": "^13.9.0",
+		"stylelint-order": "^4.1.0"
 	},
 	"husky": {
 		"hooks": {

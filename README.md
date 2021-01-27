@@ -1,27 +1,12 @@
 ## Roc [Todo]
 Link to Wiki Documentation
 
-## Tools Configuration
-
-#### Prettier & Linting
-Prettier and Eslint
-
-#### Pre-commit & Commitlint
-- `pre-commit`: Husky and lint-staged
-- `commit-msg`: commitlint checks if your commit messages meet the conventional commit format.
-
-#### Automate Versioning
-commitizen and standard-version
-
-#### Continuous integration (CI) & continuous delivery (CD)
-Husky and lint-staged
-
 
 ## Releasing
 A summary of development workflow with standard-version involving multiple git branches.
 
 <p align="center">
-  <img src="src/assets/extra/development-workflow.png" width="600" />
+  <img src="development-workflow.png" width="600" />
 </p>
 
 #### 1. **[feature-branch]** Stage modified files using:

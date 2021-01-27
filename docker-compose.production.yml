@@ -6,7 +6,7 @@ services:
     container_name: roc-app-client
     build:
       context: .
-      dockerfile: Production.Dockerfile
+      dockerfile: Dockerfile.prod
       args: 
         - APP_ENV=prod
         - REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL

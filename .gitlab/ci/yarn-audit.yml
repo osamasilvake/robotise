@@ -1,8 +1,8 @@
-npm-audit:
+yarn-audit:
   stage: Audit
-  image: node:13-alpine
+  image: node:15
   script:
-    - npm audit
+    - yarn audit
   only:
     - merge_requests
     - master

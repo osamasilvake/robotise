@@ -1,8 +1,8 @@
-npm-install:
+yarn-install:
   stage: Install
-  image: node:13-alpine
+  image: node:15
   script:
-    - npm install
+    - yarn install
   artifacts:
     paths:
       - node_modules

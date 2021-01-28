@@ -3,10 +3,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"start": "REACT_APP_ENV=development react-scripts start",
-		"build": "sh -ac './src/environment/ .env.${REACT_APP_ENV}; react-scripts build'",
-		"build:development": "REACT_APP_ENV=development npm run build",
-		"build:production": "REACT_APP_ENV=production npm run build",
+		"start": "react-scripts start",
+		"build": "react-scripts build",
 		"eject": "react-scripts eject"
 	},
 	"dependencies": {

@@ -1,17 +1,16 @@
-version: '3'
+version: '3.8'
 
 services:
   cypress:
-    image: "cypress/included:4.4.1"
-    container_name: roc-app-e2e
+    image: "cypress/included:6.3.0"
+    container_name: e2e-cypress
     environment:
       - CYPRESS_baseUrl=http://localhost:3000
-      - CYPRESS_user_email=$CYPRESS_user_email
-      - CYPRESS_user_password=$CYPRESS_user_password
     working_dir: /e2e
     entrypoint: "cypress run"
-    depends_on: 
-      - client
     volumes:
-      - ./e2e:/e2e
-    network_mode: 'host'
+      - ./e2e/cypress:/app/cypress
+      - ./e2e/cypress.json:/app/cypress.json
+    build: ./e2e
+    depends_on: 
+      - client_dev

@@ -1,10 +1,10 @@
 pretty-check:
   stage: Code Quality
-  image: node:13-alpine
+  image: node:15
   dependencies:
-    - npm-install
+    - yarn-install
   script:
-    - npm run pretty-check
+    - yarn pretty-check
   only:
     - merge_requests
     - master

@@ -11,9 +11,9 @@ services:
     ports:
       - "5500:5500"
 
-  client:
+  client_dev:
     stdin_open: true
-    container_name: roc-app
+    container_name: roc-app-dev
     build:
       context: .
       dockerfile: Dockerfile.dev

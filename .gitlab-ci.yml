@@ -31,10 +31,10 @@ stages:
   - Deploy
 
 include:
-  # - local: .gitlab/ci/npm-audit.yml
-  - local: .gitlab/ci/npm-install.yml
-  - local: .gitlab/ci/lint.yml
+  # - local: .gitlab/ci/yarn-audit.yml
+  - local: .gitlab/ci/yarn-install.yml
   - local: .gitlab/ci/pretty-check.yml
+  - local: .gitlab/ci/lint.yml
   - local: .gitlab/ci/test.yml
 
   - local: .gitlab/ci/development/build-image.yml

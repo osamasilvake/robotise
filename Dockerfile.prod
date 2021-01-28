@@ -4,16 +4,18 @@ FROM node:15
 # A directory within the virtualized Docker environment
 WORKDIR /app/client
 
-# Copies package.json to Docker environment
-COPY ./client/package.json /app/client
-
-# Install all node packages
-RUN yarn install --silent \
-  && rm -rf node_modules/ \
-  && rm -rf src/
-
 # Copies everything over to Docker environment
 COPY ./client /app/client
 
-# Builds the application
-CMD [ "yarn", "build" ]
+# Install all node_modules
+# Build app
+# Delete node_modules
+# Install serve globally
+RUN yarn install --silent \
+  && yarn build \
+  && rm -rf node_modules/ \
+  && rm -rf src/ \
+  && yarn global add serve
+
+# Serve the application
+CMD [ "serve", "-s", "build" ]

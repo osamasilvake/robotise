@@ -1,10 +1,10 @@
 test:
   stage: Test
-  image: node:13-alpine
+  image: node:15
   dependencies:
-    - npm-install
+    - yarn-install
   script:
-    - CI=true npm test
+    - CI=true yarn test
   only:
     - merge_requests
     - master

@@ -1,10 +1,10 @@
 lint:
   stage: Code Quality
-  image: node:13-alpine
+  image: node:15
   dependencies:
-    - npm-install
+    - yarn-install
   script:
-    - npm run lint
+    - yarn lint
   only:
     - merge_requests
     - master

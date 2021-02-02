@@ -20,10 +20,10 @@ cypress:
   script:
     - yarn test:ci
   artifacts:
-    expire_in: 30 minutes
-    when: always
+    name: "cypress"
     paths:
       - cypress/videos
+    expire_in: 1 hour
   only:
     - merge_requests
     - master

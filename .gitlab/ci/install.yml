@@ -19,15 +19,12 @@ e2e:
   before_script:
     - cd e2e/
   script:
-    - npm install
-    - $(npm bin)/cypress cache path # show where the cypress test runner binaries are cached
-    - $(npm bin)/cypress cache list # show all installed versions of cypress binary
-    - $(npm bin)/cypress verify # verify cypress
+    - yarn install
   artifacts:
     name: "e2e"
     paths:
       - node_modules
-    expire_in: 10 minutes
+    expire_in: 15 minutes
   only:
     - merge_requests
     - master
@@ -41,7 +38,7 @@ root:
     name: "root"
     paths:
       - node_modules
-    expire_in: 30 minutes
+    expire_in: 15 minutes
   only:
     - merge_requests
     - master

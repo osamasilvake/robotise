@@ -3,6 +3,7 @@ audit:
   before_script:
     - ls
     - cd client/
+    - ls
   script:
     - yarn audit
   only:

@@ -3,7 +3,7 @@ quality:
   dependencies:
     - install
   script:
-    - yarn pretty-check
+    - yarn pretty:check
   only:
     - merge_requests
     - master

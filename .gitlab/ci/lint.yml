@@ -1,4 +1,4 @@
-lint-es:
+eslint:
   stage: Lint
   dependencies:
     - install-root
@@ -9,7 +9,7 @@ lint-es:
     - master
     - production
 
-lint-scss:
+stylelint:
   stage: Lint
   dependencies:
     - install-root

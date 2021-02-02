@@ -1,4 +1,4 @@
-test-unit:
+unit:
   stage: Test
   dependencies:
     - install-client
@@ -11,14 +11,14 @@ test-unit:
     - master
     - production
 
-test-e2e:
+e2e:
   stage: Test
   dependencies:
     - install-e2e
   before_script:
     - cd e2e/
   script:
-    - yarn test:run
+    - yarn test:ci
   artifacts:
     expire_in: 30 minutes
     when: always

@@ -1,7 +1,7 @@
 {
 	"name": "roc-app",
 	"version": "1.0.0",
-	"description": "A ROC app",
+	"description": "ROC app root",
 	"author": "Robotise",
 	"private": true,
 	"scripts": {

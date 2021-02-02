@@ -12,6 +12,7 @@ cache:
   paths:
     - .npm
     - cache/Cypress
+    - node_modules
 
 # Define Stages
 stages:

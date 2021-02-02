@@ -6,9 +6,11 @@
 	"private": true,
 	"scripts": {
 		"test:run": "cypress run",
-		"test:open": "cypress open"
+		"test:open": "cypress open",
+		"test:ci": "start-server-and-test 'BROWSER=none npm run start' http://localhost:3000 'test:run'"
 	},
 	"devDependencies": {
-		"cypress": "^6.4.0"
+		"cypress": "^6.4.0",
+		"start-server-and-test": "^1.11.4"
 	}
 }

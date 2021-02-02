@@ -1,5 +1,3 @@
-// react
-// app
 import './styles.scss';
 
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';

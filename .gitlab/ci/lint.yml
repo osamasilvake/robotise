@@ -1,10 +1,20 @@
-lint:
-  stage: Code Quality
-  image: node:15
+lint-es:
+  stage: Quality
   dependencies:
-    - yarn-install
+    - install
   script:
-    - yarn lint
+    - yarn lint:es
+  only:
+    - merge_requests
+    - master
+    - production
+
+lint-scss:
+  stage: Quality
+  dependencies:
+    - install
+  script:
+    - yarn lint:scss
   only:
     - merge_requests
     - master

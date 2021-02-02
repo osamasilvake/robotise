@@ -1,10 +1,29 @@
-test:
+test-unit:
   stage: Test
-  image: node:15
   dependencies:
-    - yarn-install
+    - install
+  before_script:
+    - cd client/
   script:
     - CI=true yarn test
+  only:
+    - merge_requests
+    - master
+    - production
+
+test-e2e:
+  stage: Test
+  dependencies:
+    - install
+  before_script:
+    - cd e2e/
+  script:
+    - yarn test:run
+  artifacts:
+    expire_in: 30 minutes
+    when: always
+    paths:
+      - cypress/videos
   only:
     - merge_requests
     - master

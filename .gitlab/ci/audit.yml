@@ -1,6 +1,7 @@
-yarn-audit:
+audit:
   stage: Audit
-  image: node:15
+  before_script:
+    - cd client/
   script:
     - yarn audit
   only:

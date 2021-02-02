@@ -1,8 +1,7 @@
-pretty-check:
+quality:
   stage: Code Quality
-  image: node:15
   dependencies:
-    - yarn-install
+    - install
   script:
     - yarn pretty-check
   only:

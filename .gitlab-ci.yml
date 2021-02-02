@@ -1,50 +1,43 @@
-image: docker:19-git
+# Image
+image: cypress/base:latest
 
-services:
-  - docker:19-dind
-
+# Variables
 variables:
-  DOCKER_DRIVER: overlay2 # to use git 19
-  DOCKER_TLS_CERTDIR: "" # to use git 19
-  GCP_PROJECT: roc-cloud
-  GCP_CONTAINER_REGISTRY_HOSTNAME: 'eu.gcr.io'
-  GKE_CLUSTER_NAME: roc-vega
-  GKE_CLUSTER_ZONE: europe-west1-c
-  HELM_REPO_DOMAIN: chartmuseum.robotise.eu
-  HELM_REPO_NAME: chartmuseumrobotise
-  HELM_CHART_NAME: $CI_PROJECT_NAME
-  HELM_RELEASE_NAME_DEV: 'exp-last-mr-$CI_PROJECT_NAME'
-  HELM_RELEASE_NAME_STAGING: 'dev-$CI_PROJECT_NAME'
-  HELM_RELEASE_NAME_PROD: 'prod-$CI_PROJECT_NAME'
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
-# client: roc-app
-before_script:
-  - cd client/
+# Cache
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
 
+# Define Stages
 stages:
-  # - Audit
+  - Audit
   - Install
-  - Code Quality
+  - Quality
   - Test
-  - Build Image
-  - Publish Image
-  - Deploy
+  # - Build Image
+  # - Publish Image
+  # - Deploy
 
 include:
-  # - local: .gitlab/ci/yarn-audit.yml
-  - local: .gitlab/ci/yarn-install.yml
-  - local: .gitlab/ci/pretty-check.yml
+  - local: .gitlab/ci/audit.yml
+  - local: .gitlab/ci/install.yml
+  - local: .gitlab/ci/quality.yml
   - local: .gitlab/ci/lint.yml
   - local: .gitlab/ci/test.yml
 
-  - local: .gitlab/ci/development/build-image.yml
-  - local: .gitlab/ci/development/publish-image.yml
-  - local: .gitlab/ci/development/deploy.yml
+  # - local: .gitlab/ci/development/build-image.yml
+  # - local: .gitlab/ci/development/publish-image.yml
+  # - local: .gitlab/ci/development/deploy.yml
 
-  - local: .gitlab/ci/staging/build-image.yml
-  - local: .gitlab/ci/staging/publish-image.yml
-  - local: .gitlab/ci/staging/deploy.yml
+  # - local: .gitlab/ci/staging/build-image.yml
+  # - local: .gitlab/ci/staging/publish-image.yml
+  # - local: .gitlab/ci/staging/deploy.yml
 
-  - local: .gitlab/ci/production/build-image.yml
-  - local: .gitlab/ci/production/publish-image.yml
-  - local: .gitlab/ci/production/deploy.yml
+  # - local: .gitlab/ci/production/build-image.yml
+  # - local: .gitlab/ci/production/publish-image.yml
+  # - local: .gitlab/ci/production/deploy.yml

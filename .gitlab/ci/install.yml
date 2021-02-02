@@ -1,0 +1,18 @@
+install:
+  stage: Install
+  before_script:
+    - cd client/
+  script:
+    - npm install
+    - echo "Successful!"
+    - $(npm bin)/cypress cache path # show where the cypress test runner binaries are cached
+    - $(npm bin)/cypress cache list # show all installed versions of cypress binary
+    - $(npm bin)/cypress verify # verify cypress
+  artifacts:
+    paths:
+      - node_modules
+    expire_in: 30 minutes
+  only:
+    - merge_requests
+    - master
+    - production

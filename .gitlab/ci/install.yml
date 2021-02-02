@@ -1,4 +1,4 @@
-install-root:
+root:
   stage: Install
   script:
     - yarn install
@@ -11,8 +11,10 @@ install-root:
     - master
     - production
 
-install-client:
+client:
   stage: Install
+  before_script:
+    - cd client/
   script:
     - yarn install
   artifacts:
@@ -24,7 +26,7 @@ install-client:
     - master
     - production
 
-install-e2e:
+e2e:
   stage: Install
   before_script:
     - cd e2e/

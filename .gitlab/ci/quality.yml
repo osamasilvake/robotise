@@ -1,7 +1,7 @@
 quality:
   stage: Quality
   dependencies:
-    - install-root
+    - root
   script:
     - yarn pretty:check
   only:

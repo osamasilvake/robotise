@@ -1,7 +1,7 @@
-unit:
+jest:
   stage: Test
   dependencies:
-    - install-client
+    - client
   before_script:
     - cd client/
   script:
@@ -11,10 +11,10 @@ unit:
     - master
     - production
 
-e2e:
+cypress:
   stage: Test
   dependencies:
-    - install-e2e
+    - e2e
   before_script:
     - cd e2e/
   script:

@@ -5,6 +5,7 @@ client:
   script:
     - yarn install
   artifacts:
+    name: "client"
     paths:
       - node_modules
     expire_in: 15 minutes
@@ -23,6 +24,7 @@ e2e:
     - $(npm bin)/cypress cache list # show all installed versions of cypress binary
     - $(npm bin)/cypress verify # verify cypress
   artifacts:
+    name: "e2e"
     paths:
       - node_modules
     expire_in: 10 minutes
@@ -36,6 +38,7 @@ root:
   script:
     - yarn install
   artifacts:
+    name: "root"
     paths:
       - node_modules
     expire_in: 30 minutes

@@ -1,10 +1,22 @@
-install:
+install-root:
+  stage: Install
+  script:
+    - yarn install
+  artifacts:
+    paths:
+      - node_modules
+    expire_in: 30 minutes
+  only:
+    - merge_requests
+    - master
+    - production
+
+install-e2e:
   stage: Install
   before_script:
     - cd e2e/
   script:
     - npm install
-    - echo "Successful!"
     - $(npm bin)/cypress cache path # show where the cypress test runner binaries are cached
     - $(npm bin)/cypress cache list # show all installed versions of cypress binary
     - $(npm bin)/cypress verify # verify cypress

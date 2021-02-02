@@ -1,7 +1,7 @@
 eslint:
   stage: Lint
   dependencies:
-    - install-root
+    - root
   script:
     - yarn lint:es
   only:
@@ -12,7 +12,7 @@ eslint:
 stylelint:
   stage: Lint
   dependencies:
-    - install-root
+    - root
   script:
     - yarn lint:scss
   only:

@@ -1,5 +1,5 @@
 quality:
-  stage: Code Quality
+  stage: Quality
   dependencies:
     - install
   script:

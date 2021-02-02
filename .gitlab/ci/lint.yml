@@ -1,5 +1,5 @@
 lint-es:
-  stage: Quality
+  stage: Lint
   dependencies:
     - install
   script:
@@ -10,7 +10,7 @@ lint-es:
     - production
 
 lint-scss:
-  stage: Quality
+  stage: Lint
   dependencies:
     - install
   script:

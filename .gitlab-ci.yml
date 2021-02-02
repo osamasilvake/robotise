@@ -18,6 +18,7 @@ stages:
   - Audit
   - Install
   - Quality
+  - Lint
   - Test
   # - Build Image
   # - Publish Image

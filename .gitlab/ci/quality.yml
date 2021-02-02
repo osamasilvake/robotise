@@ -1,7 +1,5 @@
 prettier:
   stage: Quality
-  dependencies:
-    - root
   script:
     - yarn pretty:check
   only:

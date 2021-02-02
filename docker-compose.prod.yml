@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   client_prod:
-    container_name: roc-app-prod
+    container_name: roc-prod
     build:
       context: .
       dockerfile: Dockerfile.prod

@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  mock:
-    container_name: mock-server
+  server_mock:
+    container_name: roc-mock
     build:
       context: ./../microservice-json-mock-server
       dockerfile: Dockerfile.development
@@ -13,7 +13,7 @@ services:
 
   client_dev:
     stdin_open: true
-    container_name: roc-app-dev
+    container_name: roc-dev
     build:
       context: .
       dockerfile: Dockerfile.dev

@@ -1,7 +1,7 @@
 test-unit:
   stage: Test
   dependencies:
-    - install
+    - install-client
   before_script:
     - cd client/
   script:
@@ -14,7 +14,7 @@ test-unit:
 test-e2e:
   stage: Test
   dependencies:
-    - install
+    - install-e2e
   before_script:
     - cd e2e/
   script:

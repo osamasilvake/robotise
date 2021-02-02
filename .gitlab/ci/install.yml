@@ -11,6 +11,19 @@ install-root:
     - master
     - production
 
+install-client:
+  stage: Install
+  script:
+    - yarn install
+  artifacts:
+    paths:
+      - node_modules
+    expire_in: 30 minutes
+  only:
+    - merge_requests
+    - master
+    - production
+
 install-e2e:
   stage: Install
   before_script:

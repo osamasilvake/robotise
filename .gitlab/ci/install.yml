@@ -1,16 +1,3 @@
-root:
-  stage: Install
-  script:
-    - yarn install
-  artifacts:
-    paths:
-      - node_modules
-    expire_in: 30 minutes
-  only:
-    - merge_requests
-    - master
-    - production
-
 client:
   stage: Install
   before_script:
@@ -25,6 +12,20 @@ client:
     - merge_requests
     - master
     - production
+root:
+  stage: Install
+  script:
+    - yarn install
+  artifacts:
+    paths:
+      - node_modules
+    expire_in: 30 minutes
+  only:
+    - merge_requests
+    - master
+    - production
+
+
 
 e2e:
   stage: Install

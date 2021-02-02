@@ -29,7 +29,9 @@ client:
 e2e:
   stage: Install
   before_script:
+    - ls
     - cd e2e/
+    - ls
   script:
     - npm install
     - $(npm bin)/cypress cache path # show where the cypress test runner binaries are cached

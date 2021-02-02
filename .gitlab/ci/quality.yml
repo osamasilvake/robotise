@@ -1,4 +1,4 @@
-quality:
+prettier:
   stage: Quality
   dependencies:
     - root

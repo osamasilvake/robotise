@@ -1,7 +1,7 @@
 install:
   stage: Install
   before_script:
-    - cd client/
+    - cd e2e/
   script:
     - npm install
     - echo "Successful!"

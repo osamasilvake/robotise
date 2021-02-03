@@ -1,7 +1,5 @@
 audit:
   stage: Audit
-  before_script:
-    - cd client/
   script:
     - yarn audit
 

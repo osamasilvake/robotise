@@ -1,6 +1,4 @@
 # npm & yarn
-/yarn.lock
-e2e/yarn.lock
 package-lock.json
 
 # dependencies

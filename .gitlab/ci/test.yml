@@ -13,12 +13,12 @@ jest:
 
 cypress:
   stage: Test
+  image: cypress/base:10
   dependencies:
     - e2e
   before_script:
-    - cd e2e/
   script:
-    - yarn test:run
+    - $(yarn bin)/cypress run
   artifacts:
     name: "cypress"
     paths:

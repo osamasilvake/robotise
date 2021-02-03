@@ -18,7 +18,6 @@ cypress:
   before_script:
     - cd e2e/
   script:
-    - npm ci
     - yarn test:run
   artifacts:
     name: "cypress"

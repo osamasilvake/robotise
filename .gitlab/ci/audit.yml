@@ -4,6 +4,13 @@ audit:
     - cd client/
   script:
     - yarn audit
+
+    - cd client/
+    - yarn audit
+    - cd ..
+
+    - cd e2e/
+    - yarn audit
   only:
     - merge_requests
     - master

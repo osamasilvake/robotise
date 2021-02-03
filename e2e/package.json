@@ -7,7 +7,7 @@
 	"scripts": {
 		"test:run": "cypress run",
 		"test:open": "cypress open",
-		"test:ci": "start-server-and-test 'BROWSER=none npm run start' http://localhost:3000 'test:run'"
+		"test:ci": "start-server-and-test 'BROWSER=none npm run start' http://localhost:4200 'test:run'"
 	},
 	"devDependencies": {
 		"cypress": "^6.4.0",

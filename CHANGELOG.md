@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.1...v1.0.2) (2021-02-04)
+
+
+### Bug Fixes
+
+* Add missing release commands ([76d694c](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/76d694cdabf4be930bdf5237761191751bdbfcf5))
+* Remove unnecessary packages ([d20b9bb](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d20b9bb784fa2aecad6dcdefd8648f93a4214ec3))
+
+
+### Others
+
+* Update readme ([2ba971b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/2ba971b9d5360dcbfdc2454148a183cc7aae1fdc))
+
 ### 1.0.1 (2021-02-04)
 
 

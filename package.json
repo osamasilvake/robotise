@@ -12,7 +12,6 @@
 		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
 		"docker:dev": "docker-compose --file docker-compose.dev.yml up --build",
 		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
-		"commit": "git-cz",
 		"release": "standard-version"
 	},
 	"devDependencies": {
@@ -20,8 +19,6 @@
 		"@commitlint/config-conventional": "^11.0.0",
 		"@typescript-eslint/eslint-plugin": "^4.14.2",
 		"@typescript-eslint/parser": "^4.14.2",
-		"commitizen": "^4.2.3",
-		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^7.19.0",
 		"eslint-config-prettier": "^7.2.0",
 		"eslint-plugin-jsx-a11y": "^6.4.1",
@@ -44,13 +41,8 @@
 		}
 	},
 	"lint-staged": {
-		"*.{js,jsx,ts,tsx,json}": "prettier --write",
-		"*.{js,jsx,ts,tsx}": "eslint --fix",
-		"*.scss": "stylelint --fix"
-	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
+		"*.{js,jsx,ts,tsx,json}": "prettier --check",
+		"*.{js,jsx,ts,tsx}": "eslint",
+		"*.scss": "stylelint"
 	}
 }

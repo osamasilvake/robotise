@@ -21,7 +21,7 @@
 		"type-case": [2, "always", ["lowerCase"]],
 		"type-empty": [2, "never"],
 
-		"subject-case": [2, "never"],
+		"subject-case": [2, "always", ["sentence-case"]],
 		"subject-empty": [2, "never"],
 
 		"subject-max-length": [2, "always", 80],

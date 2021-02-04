@@ -5,10 +5,6 @@
 ## Releasing
 A summary of development workflow with standard-version involving multiple git branches.
 
-<div align="center">
-  <img src="development-workflow.png" width="600" />
-</div>
-
 * Run `yarn audit` in the _root_ and _client_ (fix and commit)
   
 * Stage modified files: `git add .`
@@ -21,15 +17,15 @@ A summary of development workflow with standard-version involving multiple git b
 
 * `git pull`
 
-* Release command: `npm run release:[major|minor|patch]
+* Release command: `yarn release:[major|minor|patch]`
 
-* `git push --follow-tags origin master`
+* Create Tag: `git push --follow-tags origin master`
 
-* `git checkout -b release-[YOUR_VERSION]`
+* Create Release Branch: `git checkout -b release-[YOUR_VERSION]`
 
-* `git push -u origin release-[YOUR_VERSION]`
+* Push Release Branch: `git push -u origin release-[YOUR_VERSION]`
 
-* Move to feature branch and continue with the new _features_ and _bugs_
+* Move to _feature branch_ and continue with the new _features_ and _bugs_.
 
 
 ## Libraries and Frameworks

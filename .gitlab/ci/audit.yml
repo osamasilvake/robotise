@@ -1,4 +1,4 @@
-audit:
+root:
   stage: Audit
   script:
     - yarn audit

@@ -5,25 +5,7 @@ jest:
   before_script:
     - cd client/
   script:
-    - CI=true yarn test
-  only:
-    - merge_requests
-    - master
-    - production
-
-cypress:
-  stage: Test
-  image: cypress/base:10
-  dependencies:
-    - e2e
-  before_script:
-  script:
-    - $(yarn bin)/cypress run
-  artifacts:
-    name: "cypress"
-    paths:
-      - cypress/videos
-    expire_in: 1 hour
+    - yarn test
   only:
     - merge_requests
     - master

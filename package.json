@@ -10,7 +10,7 @@
 		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
 		"lint:scss": "npx stylelint 'client/src/**/*.scss'",
 		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
-		"docker:dev": "docker-compose --file docker-compose.dev.yml up",
+		"docker:dev": "docker-compose --file docker-compose.dev.yml up --build",
 		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
 		"commit": "git-cz",
 		"release": "standard-version"

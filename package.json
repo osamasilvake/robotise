@@ -12,7 +12,10 @@
 		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
 		"docker:dev": "docker-compose --file docker-compose.dev.yml up --build",
 		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
-		"release": "standard-version"
+		"release": "standard-version",
+		"release:major": "npm run release -- --release-as major",
+		"release:minor": "npm run release -- --release-as minor",
+		"release:patch": "npm run release -- --release-as patch"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",

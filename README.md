@@ -5,9 +5,9 @@
 ## Releasing
 A summary of development workflow with standard-version involving multiple git branches.
 
-<p align="center">
+<div align="center">
   <img src="development-workflow.png" width="600" />
-</p>
+</div>
 
 * Stage modified files: `git add .`
   

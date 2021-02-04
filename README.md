@@ -1,42 +1,40 @@
 ## Roc [Todo]
-Link to Wiki Documentation
+[Link to Wiki Documentation](https://gitlab.robotise.eu/robotise/roc/frontend/roc/-/wikis/home)
 
 
 ## Releasing
 A summary of development workflow with standard-version involving multiple git branches.
 
-<p align="center">
+<div align="center">
   <img src="development-workflow.png" width="600" />
-</p>
+</div>
 
-#### 1. **[feature-branch]** Stage modified files using:
-```
-git add .
-```
+* Stage modified files: `git add .`
+  
+* Run `yarn audit` in the _root_ and _client_ (fix and commit)
 
-#### 2. **[feature-branch]** Commit the files using git-cz package:
-```
-npm run commit
-```
+* Commit the files using git-cz package: `yarn commit`
 
-#### 3. **[feature-branch]** Now that all files have been committed, they are ready to be pushed to the remote:
-```
-git push origin <feature-branch>
-```
+* Push to remote: `git push origin <feature-branch>`
 
-#### 4. **[Bitbucket]** Create a Pull Request to master branch.
+* Create a `merge request` from Gitlab to have all changes on the `master` branch
 
-#### 5. **[master]** After it is merged, the following steps are done within the master branch:
-- Run the command npm run release (which will bump versions based on commit types, add commit descriptions to CHANGELOG.md, and create git tags according to the current version).
-- Push changes and git tags to master branch using:
-```
-git push --follow-tags origin master
-```
+* `git checkout master`
+
+* `git pull`
+
+* Run the command npm run release (which will bump versions based on commit types, add commit descriptions to CHANGELOG.md, and create git tags according to the current version). `git push --follow-tags origin master`
+
+* `git checkout -b release-[YOUR_VERSION]`
+
+* `git push -u origin release-[YOUR_VERSION]`
 
 
 ## Libraries and Frameworks
 
-#### External 
+#### Root 
+
+#### Client 
 - [X] [Create React App](https://github.com/facebook/create-react-app)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)

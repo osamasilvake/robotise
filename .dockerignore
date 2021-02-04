@@ -10,6 +10,7 @@
 .gitlab-ci.yml
 .prettierignore
 .prettierrc
+
 dist
 build
 tmp

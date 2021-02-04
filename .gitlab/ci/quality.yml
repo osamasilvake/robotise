@@ -1,11 +1,9 @@
-jest:
-  stage: Test
+prettier:
+  stage: Quality
   dependencies:
-    - client
-  before_script:
-    - cd client/
+    - root
   script:
-    - yarn test
+    - yarn pretty:check
   only:
     - merge_requests
     - master

@@ -1,0 +1,46 @@
+{
+	"root": true, // make sure eslint picks up the config at the root of the directory
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint", "simple-import-sort"],
+	"parserOptions": {
+		"ecmaVersion": 2020, // use the latest ecmascript standard
+		"sourceType": "module", // allows using import/export statements
+		"ecmaFeatures": {
+			"jsx": true // enable JSX since we are using React
+		}
+	},
+	"settings": {
+		"react": {
+			"version": "latest" // automatically detect the react version
+		}
+	},
+	"env": {
+		"browser": true, // enables browser globals like window and document
+		"amd": true, // enables require() and define() as global variables as per the amd spec.
+		"node": true, // enables Node.js global variables and Node.js scoping.
+		"jest": true // enables unit-testing
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier/@typescript-eslint",
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended", // react hooks
+		"plugin:jsx-a11y/recommended", // automatically surface any accessibility issues as they pop up
+		"plugin:prettier/recommended" // make this the last element so prettier config overrides other formatting rules
+	],
+	"rules": {
+		"prettier/prettier": [
+			"error",
+			{},
+			{
+				"usePrettierrc": true
+			}
+		], // Use our .prettierrc file as source
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"react/prop-types": "off",
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error"
+	}
+}

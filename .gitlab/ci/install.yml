@@ -1,0 +1,29 @@
+root:
+  stage: Install
+  script:
+    - yarn install
+  artifacts:
+    name: "root"
+    paths:
+      - node_modules
+    expire_in: 15 minutes
+  only:
+    - merge_requests
+    - master
+    - production
+    
+client:
+  stage: Install
+  before_script:
+    - cd client/
+  script:
+    - yarn install
+  artifacts:
+    name: "client"
+    paths:
+      - client/node_modules
+    expire_in: 15 minutes
+  only:
+    - merge_requests
+    - master
+    - production

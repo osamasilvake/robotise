@@ -1,0 +1,11 @@
+audit:
+  stage: Audit
+  script:
+    - yarn audit
+
+    - cd client/
+    - yarn audit
+  only:
+    - merge_requests
+    - master
+    - production

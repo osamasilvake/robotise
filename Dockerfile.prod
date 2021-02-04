@@ -1,0 +1,21 @@
+# Node Image
+FROM node:15
+
+# A directory within the virtualized Docker environment
+WORKDIR /app/client
+
+# Copies everything over to Docker environment
+COPY ./client /app/client
+
+# Install all node_modules
+# Build app
+# Delete node_modules
+# Install serve globally
+RUN yarn install --silent \
+  && yarn build \
+  && rm -rf node_modules/ \
+  && rm -rf src/ \
+  && yarn global add serve
+
+# Serve the application
+CMD [ "serve", "-s", "build" ]

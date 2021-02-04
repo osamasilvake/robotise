@@ -1,15 +1,56 @@
 {
-    "name": "roc",
-    "version": "1.0.0",
-    "description": "A ROC app",
-    "main": "commitlint.config.js",
-    "scripts": {
-        "pretty:check": "prettier --check 'client/**/*.{js,ts,json}'",
-        "pretty:apply": "prettier --write 'client/**/*.{js,ts,json}'"
-    },
-    "author": "Imran Khan",
-    "license": "ISC",
-    "devDependencies": {
-        "prettier": "2.2.1"
-    }
+	"name": "roc-app",
+	"version": "1.0.0",
+	"description": "ROC app root",
+	"author": "Robotise",
+	"private": true,
+	"scripts": {
+		"pretty:check": "prettier --check './**/*.{js,jsx,ts,tsx,json}'",
+		"pretty:apply": "prettier --write './**/*.{js,jsx,ts,tsx,json}'",
+		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
+		"lint:scss": "npx stylelint 'client/src/**/*.scss'",
+		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
+		"docker:dev": "docker-compose --file docker-compose.dev.yml up --build",
+		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
+		"commit": "git-cz",
+		"release": "standard-version"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^11.0.0",
+		"@commitlint/config-conventional": "^11.0.0",
+		"@typescript-eslint/eslint-plugin": "^4.14.2",
+		"@typescript-eslint/parser": "^4.14.2",
+		"commitizen": "^4.2.3",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^7.19.0",
+		"eslint-config-prettier": "^7.2.0",
+		"eslint-plugin-jsx-a11y": "^6.4.1",
+		"eslint-plugin-prettier": "^3.3.1",
+		"eslint-plugin-react": "^7.22.0",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"husky": "^4.3.8",
+		"lint-staged": ">=10",
+		"prettier": "^2.2.1",
+		"standard-version": "^9.1.0",
+		"stylelint": "^13.9.0",
+		"stylelint-order": "^4.1.0",
+		"typescript": "^4.1.3"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,json}": "prettier --write",
+		"*.{js,jsx,ts,tsx}": "eslint --fix",
+		"*.scss": "stylelint --fix"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
 }

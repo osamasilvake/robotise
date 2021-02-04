@@ -1,9 +1,0 @@
-{
-  "baseUrl": "http://localhost:3000",
-  "browser": "chrome",
-  "viewportWidth": 1400,
-  "viewportHeight": 1000,
-  "pluginsFile": false,
-  "screenshotOnRunFailure": false,
-  "video": false
-}

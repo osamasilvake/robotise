@@ -1,46 +1,32 @@
-image: docker:19-git
+# Image
+image: node:15
 
-services:
-  - docker:19-dind
-
-variables:
-  DOCKER_DRIVER: overlay2 # to use git 19
-  DOCKER_TLS_CERTDIR: "" # to use git 19
-  GCP_PROJECT: roc-cloud
-  GCP_CONTAINER_REGISTRY_HOSTNAME: 'eu.gcr.io'
-  GKE_CLUSTER_NAME: roc-vega
-  GKE_CLUSTER_ZONE: europe-west1-c
-  HELM_REPO_DOMAIN: chartmuseum.robotise.eu
-  HELM_REPO_NAME: chartmuseumrobotise
-  HELM_CHART_NAME: $CI_PROJECT_NAME
-  HELM_RELEASE_NAME_DEV: 'exp-last-mr-$CI_PROJECT_NAME'
-  HELM_RELEASE_NAME_STAGING: 'dev-$CI_PROJECT_NAME'
-  HELM_RELEASE_NAME_PROD: 'prod-$CI_PROJECT_NAME'
-
+# Define Stages
 stages:
-  # - Audit
+  - Audit
   - Install
-  - Code Quality
+  - Quality
+  - Lint
   - Test
-  - Build Image
-  - Publish Image
-  - Deploy
+  # - Build Image
+  # - Publish Image
+  # - Deploy
 
 include:
-  # - local: .gitlab/ci/npm-audit.yml
-  - local: .gitlab/ci/npm-install.yml
+  - local: .gitlab/ci/audit.yml
+  - local: .gitlab/ci/install.yml
+  - local: .gitlab/ci/quality.yml
   - local: .gitlab/ci/lint.yml
-  - local: .gitlab/ci/pretty-check.yml
   - local: .gitlab/ci/test.yml
 
-  - local: .gitlab/ci/development/build-image.yml
-  - local: .gitlab/ci/development/publish-image.yml
-  - local: .gitlab/ci/development/deploy.yml
+  # - local: .gitlab/ci/development/build-image.yml
+  # - local: .gitlab/ci/development/publish-image.yml
+  # - local: .gitlab/ci/development/deploy.yml
 
-  - local: .gitlab/ci/staging/build-image.yml
-  - local: .gitlab/ci/staging/publish-image.yml
-  - local: .gitlab/ci/staging/deploy.yml
+  # - local: .gitlab/ci/staging/build-image.yml
+  # - local: .gitlab/ci/staging/publish-image.yml
+  # - local: .gitlab/ci/staging/deploy.yml
 
-  - local: .gitlab/ci/production/build-image.yml
-  - local: .gitlab/ci/production/publish-image.yml
-  - local: .gitlab/ci/production/deploy.yml
+  # - local: .gitlab/ci/production/build-image.yml
+  # - local: .gitlab/ci/production/publish-image.yml
+  # - local: .gitlab/ci/production/deploy.yml

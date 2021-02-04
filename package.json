@@ -12,8 +12,6 @@
 		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
 		"docker:dev": "docker-compose --file docker-compose.dev.yml up",
 		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
-		"cy:dev": "docker-compose -f docker-compose.dev.yml -f docker-compose.cypress.yml up",
-		"cy:prod": "docker-compose -f docker-compose.prod.yml -f docker-compose.cypress.yml up",
 		"commit": "git-cz",
 		"release": "standard-version"
 	},
@@ -26,7 +24,6 @@
 		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^7.19.0",
 		"eslint-config-prettier": "^7.2.0",
-		"eslint-plugin-cypress": "^2.11.2",
 		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"eslint-plugin-prettier": "^3.3.1",
 		"eslint-plugin-react": "^7.22.0",

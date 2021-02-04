@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This bash script is used to check and update 
-# all the dependencies of root, e2e, and client directories.
+# all the dependencies of root and client directories.
 
 RED='\033[0;31m'        # Red
 GREEN='\033[0;32m'      # Green
@@ -18,8 +18,7 @@ while true; do
     echo -e "00: To check all dependencies current state."
     echo -e "01: To update & install all dependencies."
     echo -e "02: To update & install root dependencies."
-    echo -e "03: To update & install e2e dependencies."
-    echo -e "04: To update & install client dependencies."
+    echo -e "03: To update & install client dependencies."
 
     echo -e "${BLUE}"
     read -p "Do you wish to update all the dependencies?: " option
@@ -32,15 +31,6 @@ while true; do
             echo -e "----"
             echo -e "${GREY}"
             ncu
-
-            cd e2e
-            echo -e "${GREEN}"
-            echo -e "---"
-            echo -e "e2e"
-            echo -e "---"
-            echo -e "${GREY}"
-            ncu
-            cd ..
 
             cd client
             echo -e "${GREEN}"
@@ -62,16 +52,6 @@ while true; do
             echo -e "${GREY}"
             ncu -u
             yarn install
-
-            cd e2e
-            echo -e "${GREEN}"
-            echo -e "---"
-            echo -e "e2e"
-            echo -e "---"
-            echo -e "${GREY}"
-            ncu -u
-            yarn install
-            cd ..
 
             cd client
             echo -e "${GREEN}"
@@ -97,18 +77,6 @@ while true; do
             echo -e
             break;;
         "03")
-            cd e2e
-            echo -e "${GREEN}"
-            echo -e "---"
-            echo -e "e2e"
-            echo -e "---"
-            echo -e "${GREY}"
-            ncu -u
-            yarn install
-
-            echo -e
-            break;;
-        "04")
             cd client
             echo -e "${GREEN}"
             echo -e "------"
@@ -121,6 +89,6 @@ while true; do
             echo -e
             break;;
         *)
-            echo -e "\n${RED}Please choose a correct option: 00, 01, 02, 03, 04!";;
+            echo -e "\n${RED}Please choose a correct option: 00, 01, 02, 03!";;
     esac
 done

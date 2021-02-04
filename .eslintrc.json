@@ -1,7 +1,7 @@
 {
 	"root": true, // make sure eslint picks up the config at the root of the directory
 	"parser": "@typescript-eslint/parser",
-	"plugins": ["@typescript-eslint", "simple-import-sort", "cypress"],
+	"plugins": ["@typescript-eslint", "simple-import-sort"],
 	"parserOptions": {
 		"ecmaVersion": 2020, // use the latest ecmascript standard
 		"sourceType": "module", // allows using import/export statements
@@ -18,8 +18,7 @@
 		"browser": true, // enables browser globals like window and document
 		"amd": true, // enables require() and define() as global variables as per the amd spec.
 		"node": true, // enables Node.js global variables and Node.js scoping.
-		"jest": true, // enables unit-testing
-		"cypress/globals": true // enables cypress-testing
+		"jest": true // enables unit-testing
 	},
 	"extends": [
 		"eslint:recommended",
@@ -28,7 +27,6 @@
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended", // react hooks
 		"plugin:jsx-a11y/recommended", // automatically surface any accessibility issues as they pop up
-		"plugin:cypress/recommended",
 		"plugin:prettier/recommended" // make this the last element so prettier config overrides other formatting rules
 	],
 	"rules": {

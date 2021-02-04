@@ -9,10 +9,6 @@ build/
 
 # testing
 coverage/
-e2e/.env
-e2e/cypress.env.json
-e2e/cypress/screenshots
-e2e/cypress/videos
 
 # cache
 .eslintcache

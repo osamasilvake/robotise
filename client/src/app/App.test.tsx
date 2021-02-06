@@ -5,5 +5,5 @@ import App from './App';
 
 test('renders <App /> without crash', () => {
 	const { getByRole } = render(<App />);
-	expect(getByRole('progressbar')).toBeTruthy();
+	expect(getByRole('progressbard')).toBeTruthy();
 });

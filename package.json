@@ -41,7 +41,7 @@
 		"hooks": {
 			"pre-commit": "lint-staged",
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-			"pre-push": "cd client && yarn test"
+			"pre-push": "cd client && yarn test:ci"
 		}
 	},
 	"lint-staged": {

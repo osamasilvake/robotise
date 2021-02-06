@@ -1,5 +1,6 @@
 # npm & yarn
 package-lock.json
+yarn-error.log
 
 # dependencies
 node_modules/

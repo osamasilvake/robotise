@@ -7,11 +7,8 @@ WORKDIR /app/client
 # Copies package.json to Docker environment
 COPY ./client/package.json /app/client
 
-# Install all node packages
-RUN yarn install --silent
+# Install all node packages and remove the cache
+RUN yarn && yarn cache clean
 
 # Copies everything over to Docker environment
 COPY ./client /app/client
-
-# Runs the application
-CMD [ "yarn", "start" ]

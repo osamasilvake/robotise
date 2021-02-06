@@ -1,5 +1,5 @@
 {
-	"name": "roc-app",
+	"name": "root",
 	"version": "1.0.2",
 	"description": "ROC app root",
 	"author": "Robotise",
@@ -10,12 +10,12 @@
 		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
 		"lint:scss": "npx stylelint 'client/src/**/*.scss'",
 		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
-		"docker:dev": "docker-compose --file docker-compose.dev.yml up --build",
+		"docker:dev": "docker-compose --file docker-compose.dev.yml up",
 		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
 		"release": "standard-version",
-		"release:major": "npm run release -- --release-as major",
-		"release:minor": "npm run release -- --release-as minor",
-		"release:patch": "npm run release -- --release-as patch"
+		"release:major": "yarn release -- --release-as major",
+		"release:minor": "yarn release -- --release-as minor",
+		"release:patch": "yarn release -- --release-as patch"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
@@ -46,6 +46,7 @@
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx,json}": "prettier --check",
 		"*.{js,jsx,ts,tsx}": "eslint",
-		"*.scss": "stylelint"
+		"*.scss": "stylelint",
+		"*.test.{js,jsx,ts,tsx}": "cd client/ && yarn test"
 	}
 }

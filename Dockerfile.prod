@@ -7,11 +7,11 @@ WORKDIR /app/client
 # Copies everything over to Docker environment
 COPY ./client /app/client
 
-# Install all node_modules
+# Install all node_modules and remove the cache
 # Build app
 # Delete node_modules
 # Install serve globally
-RUN yarn install --silent \
+RUN yarn && yarn cache clean \
   && yarn build \
   && rm -rf node_modules/ \
   && rm -rf src/ \

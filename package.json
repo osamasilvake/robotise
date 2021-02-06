@@ -47,6 +47,6 @@
 		"*.{js,jsx,ts,tsx,json}": "prettier --check",
 		"*.{js,jsx,ts,tsx}": "eslint",
 		"*.scss": "stylelint",
-		"*.test.{js,jsx,ts,tsx}": "cd client/ && yarn test"
+		"**/*.{js,jsx,ts,tsx}": "cd client/ && yarn test"
 	}
 }

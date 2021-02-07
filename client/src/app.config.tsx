@@ -12,3 +12,8 @@ export const AppServices = {
 		}
 	}
 };
+
+// local storage
+export const localStorageItems = {
+	JWTAccessTokken: 'jwt_access_token'
+};

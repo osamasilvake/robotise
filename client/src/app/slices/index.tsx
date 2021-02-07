@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
-import auth, { AuthInterface } from './auth';
+import { AuthInterface } from './auth/Auth.interface';
+import auth from './auth/Auth.slice';
 
 // combine reducers
 const rootReducer = combineReducers({

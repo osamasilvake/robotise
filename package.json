@@ -7,9 +7,11 @@
 	"scripts": {
 		"pretty:check": "prettier --check './**/*.{js,jsx,ts,tsx,json}'",
 		"pretty:apply": "prettier --write './**/*.{js,jsx,ts,tsx,json}'",
-		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
+		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet",
+		"lint:es:fix": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet",
 		"lint:scss": "npx stylelint 'client/src/**/*.scss'",
-		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es",
+		"test:jest": "cd client && yarn test:ci",
+		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es && yarn test:jest",
 		"docker:dev": "docker-compose --file docker-compose.dev.yml up",
 		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
 		"release": "standard-version",
@@ -41,12 +43,12 @@
 		"hooks": {
 			"pre-commit": "lint-staged",
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-			"pre-push": "cd client && yarn test:ci"
+			"pre-push": "yarn test:jest"
 		}
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx,json}": "yarn pretty:check",
-		"*.{js,jsx,ts,tsx}": "npx eslint",
+		"*.{js,jsx,ts,tsx}": "yarn lint:es",
 		"*.scss": "yarn lint:scss"
 	}
 }

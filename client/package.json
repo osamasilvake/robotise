@@ -24,6 +24,7 @@
 		"@types/react-router-dom": "^5.1.7",
 		"@types/redux-logger": "^3.0.8",
 		"date-fns": "^2.16.1",
+		"jwt-decode": "^3.1.2",
 		"moment": "^2.29.1",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",

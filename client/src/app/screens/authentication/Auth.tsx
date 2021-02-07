@@ -1,39 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../components/loader/Loader';
+import { authSelector, validateLogin } from '../../slices/auth/Auth.slice';
 import Login from './login/Login';
 
 const Auth: FC = (props) => {
-	const [authState, setAuthState] = useState({
-		status: 0,
-		msg: 'init',
-		err: null
-	});
+	const dispatch = useDispatch();
+	const { response, errors } = useSelector(authSelector);
 
 	useEffect(() => {
-		onLoad();
-	}, []);
-
-	async function onLoad() {
-		try {
-			setTimeout(() => {
-				setAuthState({
-					status: 1,
-					msg: 'success',
-					err: null
-				});
-			}, 9000);
-
-			// await Auth.currentSession();
-		} catch (e) {
-			setAuthState({
-				status: 2,
-				msg: 'failed',
-				err: e
-			});
-		}
-	}
+		dispatch(validateLogin());
+	}, [dispatch]);
 
 	/**
 	 * authentication state
@@ -41,17 +20,16 @@ const Auth: FC = (props) => {
 	 * 1-success: dashboard
 	 * 2-error: login
 	 */
-	const view = () => {
-		switch (authState.status) {
-			case 0:
-				return <Loader />;
-			case 1:
-				return props.children;
-			default:
-				return <Login />;
+	const authValidation = () => {
+		if (response && response.uuid) {
+			return props.children;
+		} else if (errors && errors.status) {
+			return <Login />;
+		} else {
+			return <Loader />;
 		}
 	};
 
-	return <>{view()}</>;
+	return <>{authValidation()}</>;
 };
 export default Auth;

@@ -6,7 +6,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import React, { FC, useState } from 'react';
 
 const SimpleSnackbar: FC = () => {
-	// hook
 	const [open, setOpen] = useState(false);
 
 	/**

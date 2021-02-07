@@ -2,7 +2,6 @@ import { Box } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import React, { FC } from 'react';
 
-// menu interface
 interface MenuInterface {
 	anchorEl: any;
 	close: any;
@@ -11,7 +10,6 @@ interface MenuInterface {
 }
 
 const SimpleMenu: FC<MenuInterface> = (props) => {
-	// props
 	const { children, anchorEl, close, menuId } = props;
 
 	return (

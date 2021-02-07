@@ -1,7 +1,7 @@
 {
 	"name": "root",
 	"version": "1.0.2",
-	"description": "ROC app root",
+	"description": "ROC root",
 	"author": "Robotise",
 	"private": true,
 	"scripts": {

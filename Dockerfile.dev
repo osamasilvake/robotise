@@ -12,3 +12,6 @@ RUN yarn && yarn cache clean
 
 # Copies everything over to Docker environment
 COPY ./client /app/client
+
+# Runs the application
+CMD [ "yarn", "start" ]

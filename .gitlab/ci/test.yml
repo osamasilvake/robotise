@@ -5,7 +5,7 @@ jest:
   before_script:
     - cd client/
   script:
-    - yarn test
+    - yarn test:ci
   only:
     - merge_requests
     - master

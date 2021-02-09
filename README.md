@@ -1,4 +1,4 @@
-## Roc [Todo]
+## Roc
 [Link to Wiki Documentation](https://gitlab.robotise.eu/robotise/roc/frontend/roc/-/wikis/home)
 
 
@@ -30,39 +30,41 @@ A summary of development workflow with standard-version involving multiple git b
 
 ## Libraries and Frameworks
 
-#### Root
+### Root
+#### Quality `*.{js,jsx,ts,tsx,json}`
+- [X] [prettier](https://prettier.io/)
+
+#### Lint
 ##### Eslint
-- [X] [eslint](https://github.com/facebook/create-react-app)
+- [X] [eslint](https://github.com/eslint/eslint)
 - [X] [TypeScript](https://www.typescriptlang.org/)
-- [X] [@typescript-eslint/parser](https://github.com/facebook/create-react-app)
-- [X] [@typescript-eslint/eslint-plugin](https://github.com/facebook/create-react-app)
-- [X] [eslint-plugin-react](https://github.com/facebook/create-react-app)
-- [X] [eslint-plugin-react-hooks](https://github.com/facebook/create-react-app)
-- [X] [eslint-config-prettier](https://github.com/facebook/create-react-app)
-- [X] [eslint-plugin-prettier](https://github.com/facebook/create-react-app)
-- [X] [eslint-plugin-jsx-a11y](https://github.com/facebook/create-react-app)
-- [X] [eslint-plugin-simple-import-sort](https://github.com/facebook/create-react-app)
+- [X] [@typescript-eslint/parser](https://github.com/eslint/typescript-eslint-parser)
+- [X] [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint)
+- [X] [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)
+- [X] [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks)
+- [X] [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)
+- [X] [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)
+- [X] [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
+- [X] [eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)
 
-##### Quality
-- [X] [prettier](https://github.com/facebook/create-react-app)
+##### Stylelint
+- [X] [stylelint](https://stylelint.io/)
+- [X] [stylelint-order](https://github.com/hudochenkov/stylelint-order)
 
-##### Lint
-- [X] [stylelint](https://github.com/facebook/create-react-app)
-- [X] [stylelint-order](https://github.com/facebook/create-react-app)
+#### Precommit Hook & Linting of Staged Files
+- [X] [husky](https://github.com/typicode/husky)
+- [X] [lint-staged](https://github.com/okonet/lint-staged)
 
-##### Precommit Hook
-- [X] [husky](https://github.com/facebook/create-react-app)
-- [X] [lint-staged](https://github.com/facebook/create-react-app)
-
-##### Commit Format and Release
-- [X] [@commitlint/cli](https://github.com/facebook/create-react-app)
-- [X] [@commitlint/config-conventional](https://github.com/facebook/create-react-app)
+#### Commit Format and Release
+- [X] [@commitlint/cli](https://github.com/conventional-changelog/commitlint)
+- [X] [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint)
 - [X] [standard-version](https://github.com/facebook/create-react-app)
 
-#### Client 
-- [X] [Create React App](https://github.com/facebook/create-react-app)
+### Client 
+- [X] [Create React App](https://github.com/conventional-changelog/standard-version)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [Material-UI](https://material-ui.com/)
+- [X] [JWT Decode](https://jwt.io/)

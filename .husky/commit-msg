@@ -1,0 +1,4 @@
+#!/bin/sh
+# .husky/commit-msg
+
+yarn commitlint --edit $1

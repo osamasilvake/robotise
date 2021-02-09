@@ -10,7 +10,7 @@ import App from './app/App';
 import rootReducer from './app/slices';
 
 // configure store
-const store = configureStore({
+export const store = configureStore({
 	reducer: rootReducer,
 	middleware: [...getDefaultMiddleware(), ReduxLogger]
 });

@@ -1,4 +1,9 @@
 const appRoutes = {
-	HOME: '/'
+	AUTH: {
+		LOGIN: '/login'
+	},
+	PACKAGES: {
+		DASHBOARD: '/'
+	}
 };
 export default appRoutes;

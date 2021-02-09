@@ -1,0 +1,4 @@
+#!/bin/sh
+# .husky/pre-push
+
+yarn test:jest

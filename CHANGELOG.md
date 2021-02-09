@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.2...v1.0.3) (2021-02-09)
+
+
+### Features
+
+* Setup authentication ([4978499](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/4978499e3dd786a05f06e32b52277d080933d705))
+
+
+### Bug Fixes
+
+* Migrate husky v4 to v5 ([b683f1d](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b683f1d8f3641d52b35faaa3c1630152028ca8bd))
+* Migrate husky v4 to v5 ([a9924e3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a9924e3bef62fe72ca23840cbc979d38443924c0))
+* Update dependencies ([7e0eb25](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7e0eb2566aa7f3b574403b008087dab264fcbfe0))
+* Update dependencies ([83b0591](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/83b0591d7db24eec3ed5a0576a60d4cde00d6e9d))
+
+
+### Tests
+
+* Test purpose ([f63866b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f63866b6a4f49634538b33b369fac7f75d1f6c72))
+* Test purpose ([c10b29e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/c10b29e691511c03bbad911b600b9eb3c7e4836f))
+* Test purpose ([9c14a05](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9c14a057e1dafcd9e63bf82e030a61c8e934d837))
+* Test purpose ([311614e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/311614e5b9af11348fc47c75eef5a26c405541ca))
+* Test purpose ([24cd7f3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/24cd7f3e3f3f354c9170c1c8981fc5e66f16862b))
+* Test purpose ([e05e511](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e05e511e54a739b8082da8abc79a09b5afa9c2fa))
+* Test purpose ([e46d3d0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e46d3d09cd1c681d20416d227eb394a7c2b9fb6a))
+* Test purpose ([773e122](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/773e122e4a8b255907c400229f3b44d48abced92))
+* Test purpose ([d54698a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d54698af45cd4f7416819389a65a8f599746b072))
+* Test purpose ([36f6c7c](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/36f6c7cfe842c9d183bb177ea4c1693f7c43771d))
+* Test purpose ([4bc1ff4](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/4bc1ff497bf18ee375c8dfe9161f593726ffed67))
+* Test purpose ([f34078e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f34078e5ac78e699f6aa40e4c5492d7c2f550044))
+* Test purpose ([ebe70c5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ebe70c51ad43451e1d64c74cc8d0db35094ab0a1))
+* Test purpose ([5cc6e9e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/5cc6e9e002f8e3c05aa28122e05d76a667bb31be))
+* Test purpose ([639d860](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/639d860eec473858fe395cb34127cc652ccd821c))
+
+
+### Code Refactoring
+
+* Code ([414a0fc](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/414a0fc0e597831053e03a4d13050dee025a9f05))
+
+
+### Others
+
+* Fix project setup ([98a3939](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/98a39398dadcc0eeb4eaed79ec9d23015891db04))
+* Update husky hooks ([9efaa0f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9efaa0f316d8f6afa8c949d5427372c8bee79eb9))
+
 ### [1.0.2](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.1...v1.0.2) (2021-02-04)
 
 

@@ -3,7 +3,8 @@ const appRoutes = {
 		LOGIN: '/login'
 	},
 	PACKAGES: {
-		DASHBOARD: '/'
+		DASHBOARD: '/',
+		SITES: '/sites'
 	}
 };
 export default appRoutes;

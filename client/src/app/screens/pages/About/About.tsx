@@ -1,18 +1,18 @@
-import './Error404.scss';
+import './About.scss';
 
 import { Typography } from '@material-ui/core';
 import React, { FC } from 'react';
 
-const Error404: FC = () => {
+const About: FC = () => {
 	return (
-		<section className="cd-vh-center rc-e404">
+		<section className="cd-vh-center rc-about">
 			<Typography variant="h1" component="h2" gutterBottom>
-				404
+				About
 			</Typography>
 			<Typography variant="body1" gutterBottom>
-				Page not found
+				About Page
 			</Typography>
 		</section>
 	);
 };
-export default Error404;
+export default About;

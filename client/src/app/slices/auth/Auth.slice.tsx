@@ -7,7 +7,7 @@ import { AuthInterface } from './Auth.interface';
 
 // initial state
 export const initialState: AuthInterface = {
-	loading: false,
+	loading: true,
 	response: null,
 	errors: null
 };

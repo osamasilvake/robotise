@@ -1,5 +1,5 @@
 // react
-import React, { FormEvent, useEffect, useState } from 'react';
+import { FocusEvent, FormEvent, useEffect, useState } from 'react';
 
 /**
  * custom hook: useForm
@@ -27,7 +27,7 @@ const useForm = (valuesInitialState: any, formValidation: any, submitCallBack: a
 	 * handle change
 	 * @param event
 	 */
-	const handleChange = (event: React.FocusEvent<HTMLInputElement>) => {
+	const handleChange = (event: FocusEvent<HTMLInputElement>) => {
 		// payload
 		const { name, value } = event.target;
 

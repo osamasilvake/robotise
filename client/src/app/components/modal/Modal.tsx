@@ -1,12 +1,12 @@
 import Dialog from '@material-ui/core/Dialog';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
-import React, { FC } from 'react';
+import React, { FC, forwardRef, ReactElement, Ref } from 'react';
 
 // transition
-const Transition = React.forwardRef(function Transition(
-	props: TransitionProps & { children?: React.ReactElement<any, any> },
-	ref: React.Ref<unknown>
+const Transition = forwardRef(function Transition(
+	props: TransitionProps & { children?: ReactElement<any, any> },
+	ref: Ref<unknown>
 ) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });

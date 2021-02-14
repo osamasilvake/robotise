@@ -1,18 +1,33 @@
-import React, { useEffect } from 'react';
-import { FC } from 'react';
+import React, { FC, ReactNode, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
 
+import ENV from '../../../environment';
 import Loader from '../../components/loader/Loader';
+import GlobalLayout from '../../layouts/GlobalLayout';
+import { RouteTypeEnum } from '../../routes/Routes.enum';
+import { LayoutPageProperties, RouteProperties } from '../../routes/Routes.interfaces';
+import { isPrivate, isSession } from '../../routes/types';
 import { authSelector, validateLogin } from '../../slices/auth/Auth.slice';
-import Login from './login/Login';
+import Error403 from '../pages/403/Error403';
 
-const Auth: FC = (props) => {
+interface AuthProperties<T = ReactNode> {
+	appRoute: RouteProperties;
+	Template: FC<LayoutPageProperties>;
+	route: RouteComponentProps<T>;
+	type: RouteTypeEnum;
+}
+
+const Auth: FC<AuthProperties> = ({ appRoute, Template, route, type }: AuthProperties) => {
 	const dispatch = useDispatch();
-	const { response, errors } = useSelector(authSelector);
+	const { loading, response, errors } = useSelector(authSelector);
 
 	useEffect(() => {
 		dispatch(validateLogin());
 	}, [dispatch]);
+
+	const user = response && response.uuid;
+	const error = errors && errors.status;
 
 	/**
 	 * authentication state
@@ -20,16 +35,17 @@ const Auth: FC = (props) => {
 	 * 1-success: dashboard
 	 * 2-error: login
 	 */
-	const authValidation = () => {
-		if (response && response.uuid) {
-			return props.children;
-		} else if (errors && errors.status) {
-			return <Login />;
-		} else {
-			return <Loader />;
-		}
-	};
 
-	return <>{authValidation()}</>;
+	console.log(loading);
+	if (loading) {
+		return <Loader />;
+	} else if (isPrivate(type) && error && !user) {
+		return <GlobalLayout Component={Error403} route={route} />;
+	} else if (isSession(type) && user) {
+		return <Redirect to={ENV().ROUTING.PACKAGES.DASHBOARD} />;
+	} else {
+		const Layout = appRoute.template ? appRoute.template : Template;
+		return <Layout Component={appRoute.component} route={route} />;
+	}
 };
 export default Auth;

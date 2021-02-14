@@ -76,5 +76,5 @@ export const validateLogin = () => async (dispatch: Dispatch) => {
 				})
 			);
 		}
-	}, 6000);
+	}, 1000);
 };

@@ -8,3 +8,14 @@ prettier:
     - merge_requests
     - master
     - production
+
+eslint:
+  stage: Quality
+  dependencies:
+    - root
+  script:
+    - yarn lint:es
+  only:
+    - merge_requests
+    - master
+    - production

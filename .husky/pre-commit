@@ -3,4 +3,3 @@
 
 yarn pretty:check
 yarn lint:es
-yarn lint:scss

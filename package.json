@@ -9,9 +9,8 @@
 		"pretty:apply": "prettier --write './**/*.{js,jsx,ts,tsx,json}'",
 		"lint:es": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet",
 		"lint:es:fix": "npx eslint 'client/src/**/*.{js,jsx,ts,tsx}' --quiet",
-		"lint:scss": "npx stylelint 'client/src/**/*.scss'",
 		"test:jest": "cd client && yarn test:ci",
-		"scan:all": "yarn pretty:apply && yarn lint:scss && yarn lint:es && yarn test:jest",
+		"scan:all": "yarn pretty:apply && yarn lint:es && yarn test:jest",
 		"docker:dev": "docker-compose --file docker-compose.dev.yml up",
 		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build",
 		"release": "standard-version",
@@ -35,8 +34,6 @@
 		"lint-staged": ">=10",
 		"prettier": "^2.2.1",
 		"standard-version": "^9.1.0",
-		"stylelint": "^13.10.0",
-		"stylelint-order": "^4.1.0",
 		"typescript": "^4.1.5"
 	}
 }

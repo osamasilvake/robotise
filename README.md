@@ -47,10 +47,6 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
 - [X] [eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)
 
-##### Stylelint
-- [X] [stylelint](https://stylelint.io/)
-- [X] [stylelint-order](https://github.com/hudochenkov/stylelint-order)
-
 #### Precommit Hook & Linting of Staged Files
 - [X] [husky](https://github.com/typicode/husky)
 - [X] [lint-staged](https://github.com/okonet/lint-staged)
@@ -68,4 +64,4 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [Material-UI](https://material-ui.com/)
 - [X] [JWT Decode](https://jwt.io/)
-- [X] [CLSX](https://github.com/lukeed/clsx/)
+- [X] [clsx](https://github.com/lukeed/clsx/)

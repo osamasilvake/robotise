@@ -1,6 +1,16 @@
 // app
 import ENV from './environment';
 
+// variables
+export const AppVariables = {
+	colors: {
+		c1: '#000000',
+		c2: '#ffffff',
+		c3: '#262933',
+		c4: '#64b0e5'
+	}
+};
+
 // general
 export const AppOptions = {
 	author: 'Robotise AG',

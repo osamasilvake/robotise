@@ -4,6 +4,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import React, { FC, Suspense, useMemo } from 'react';
 
+import { AppVariables } from '../app.config';
 import Routes from './Routes';
 
 const App: FC = () => {
@@ -14,7 +15,7 @@ const App: FC = () => {
 				palette: {
 					type: prefersDarkMode ? 'dark' : 'light',
 					background: {
-						default: prefersDarkMode ? 'var(--c3)' : 'var(--c2)'
+						default: prefersDarkMode ? AppVariables.colors.c3 : AppVariables.colors.c2
 					}
 				},
 				overrides: {

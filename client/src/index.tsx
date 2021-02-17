@@ -1,5 +1,3 @@
-import './styles.scss';
-
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import React from 'react';
 import ReactDOM from 'react-dom';

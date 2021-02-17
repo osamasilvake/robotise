@@ -1,28 +1,28 @@
-import { Box } from '@material-ui/core';
+import { Fade } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
-import React, { FC } from 'react';
+import React, { FC, ReactEventHandler } from 'react';
 
 interface MenuInterface {
-	anchorEl: any;
-	close: any;
+	anchorEl: HTMLElement;
+	close: ReactEventHandler;
 	menuId?: string;
 	menuClass?: string;
 }
 
 const SimpleMenu: FC<MenuInterface> = (props) => {
-	const { children, anchorEl, close, menuId } = props;
+	const { children, anchorEl, close, menuId, menuClass } = props;
 
 	return (
-		<Box>
-			<Menu
-				id={menuId}
-				anchorEl={anchorEl}
-				keepMounted
-				open={Boolean(anchorEl)}
-				onClose={close}>
-				{children}
-			</Menu>
-		</Box>
+		<Menu
+			id={menuId}
+			className={menuClass}
+			anchorEl={anchorEl}
+			keepMounted
+			open={Boolean(anchorEl)}
+			onClose={close}
+			TransitionComponent={Fade}>
+			{children}
+		</Menu>
 	);
 };
 export default SimpleMenu;

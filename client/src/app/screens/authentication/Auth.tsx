@@ -4,21 +4,19 @@ import { Redirect, RouteComponentProps } from 'react-router-dom';
 
 import ENV from '../../../environment';
 import Loader from '../../components/loader/Loader';
-import GlobalLayout from '../../layouts/GlobalLayout';
 import { RouteTypeEnum } from '../../routes/Routes.enum';
 import { LayoutPageProperties, RouteProperties } from '../../routes/Routes.interfaces';
 import { isPrivate, isSession } from '../../routes/types';
 import { authSelector, validateLogin } from '../../slices/auth/Auth.slice';
-import Error403 from '../pages/403/Error403';
 
 interface AuthProperties<T = ReactNode> {
 	appRoute: RouteProperties;
-	Template: FC<LayoutPageProperties>;
+	template: FC<LayoutPageProperties>;
 	route: RouteComponentProps<T>;
 	type: RouteTypeEnum;
 }
 
-const Auth: FC<AuthProperties> = ({ appRoute, Template, route, type }: AuthProperties) => {
+const Auth: FC<AuthProperties> = ({ appRoute, template, route, type }: AuthProperties) => {
 	const dispatch = useDispatch();
 	const { loading, response, errors } = useSelector(authSelector);
 
@@ -31,20 +29,19 @@ const Auth: FC<AuthProperties> = ({ appRoute, Template, route, type }: AuthPrope
 
 	/**
 	 * authentication state
-	 * 0-init: loading
-	 * 1-success: dashboard
-	 * 2-error: login
+	 * init: loading
+	 * success: dashboard
+	 * error: login
 	 */
 
-	console.log(loading);
 	if (loading) {
 		return <Loader />;
 	} else if (isPrivate(type) && error && !user) {
-		return <GlobalLayout Component={Error403} route={route} />;
+		return <Redirect to={ENV().ROUTING.AUTH.LOGIN} />;
 	} else if (isSession(type) && user) {
 		return <Redirect to={ENV().ROUTING.PACKAGES.DASHBOARD} />;
 	} else {
-		const Layout = appRoute.template ? appRoute.template : Template;
+		const Layout = appRoute.template ? appRoute.template : template;
 		return <Layout Component={appRoute.component} route={route} />;
 	}
 };

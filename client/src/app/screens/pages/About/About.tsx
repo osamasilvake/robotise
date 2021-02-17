@@ -1,18 +1,18 @@
-import './About.scss';
-
 import { Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
+import clsx from 'clsx';
 import React, { FC } from 'react';
 
+import { useStyles } from '../../../utilities/styles/helpers/Center.style';
+
 const About: FC = () => {
+	const classes = useStyles();
+
 	return (
-		<section className="cd-vh-center rc-about">
-			<Typography variant="h1" component="h2" gutterBottom>
-				About
-			</Typography>
-			<Typography variant="body1" gutterBottom>
-				About Page
-			</Typography>
-		</section>
+		<Box component="section" className={clsx('rc-about', classes.vhCenter)}>
+			<Typography variant="h1">About</Typography>
+			<Typography variant="body1">About Page</Typography>
+		</Box>
 	);
 };
 export default About;

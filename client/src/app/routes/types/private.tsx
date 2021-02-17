@@ -1,6 +1,9 @@
-import Dashboard from '../../screens/packages/dashboard/Dashboard';
-import Sites from '../../screens/packages/sites/Sites';
+import { lazy } from 'react';
+
+import siteRoutes from '../../screens/packages/sites/Sites.routes';
 import { RouteProperties } from '../Routes.interfaces';
+
+const Dashboard = lazy(() => import('../../screens/packages/dashboard/Dashboard'));
 
 const routes: RouteProperties[] = [
 	{
@@ -8,10 +11,6 @@ const routes: RouteProperties[] = [
 		exact: true,
 		path: '/'
 	},
-	{
-		component: Sites,
-		exact: true,
-		path: '/sites'
-	}
+	...siteRoutes
 ];
 export default routes;

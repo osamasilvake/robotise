@@ -1,11 +1,17 @@
-import { Box } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
+import { Box, Button, IconButton, Snackbar } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React, { FC, useState } from 'react';
 
-const SimpleSnackbar: FC = () => {
+import { AppOptions } from '../../../app.config';
+
+interface SnackbarInterface {
+	snackbarClass?: string;
+	message?: string;
+}
+
+const SimpleSnackbar: FC<SnackbarInterface> = (props) => {
+	const { snackbarClass, message } = props;
+
 	const [open, setOpen] = useState(false);
 
 	/**
@@ -23,27 +29,25 @@ const SimpleSnackbar: FC = () => {
 	};
 
 	return (
-		<Box>
+		<Box className={snackbarClass}>
 			<Button onClick={handleOpen}>Open simple snackbar</Button>
 			<Snackbar
 				anchorOrigin={{
 					vertical: 'bottom',
 					horizontal: 'left'
 				}}
+				autoHideDuration={AppOptions.snackbar.timeout}
 				open={open}
-				autoHideDuration={6000}
 				onClose={handleClose}
-				message="Note archived"
+				message={message}
 				action={
-					<>
-						<IconButton
-							size="small"
-							aria-label="close"
-							color="inherit"
-							onClick={handleClose}>
-							<CloseIcon fontSize="small" />
-						</IconButton>
-					</>
+					<IconButton
+						size="small"
+						aria-label="close"
+						color="inherit"
+						onClick={handleClose}>
+						<CloseIcon fontSize="small" />
+					</IconButton>
 				}
 			/>
 		</Box>

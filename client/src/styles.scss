@@ -1,2 +1,13 @@
-// app
-@import './assets/scss/main.scss';
+:root {
+	--c1: #000000;
+	--c2: #ffffff;
+	--c3: #262933;
+	--c4: #64b0e5;
+
+	--o1: #00000017;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}

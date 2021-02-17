@@ -1,5 +1,8 @@
-import About from '../../screens/pages/About/About';
+import { lazy } from 'react';
+
 import { RouteProperties } from '../Routes.interfaces';
+
+const About = lazy(() => import('../../screens/pages/About/About'));
 
 const routes: RouteProperties[] = [
 	{

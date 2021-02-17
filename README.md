@@ -68,3 +68,4 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [Material-UI](https://material-ui.com/)
 - [X] [JWT Decode](https://jwt.io/)
+- [X] [CLSX](https://github.com/lukeed/clsx/)

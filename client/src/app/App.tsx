@@ -12,7 +12,17 @@ const App: FC = () => {
 		() =>
 			createMuiTheme({
 				palette: {
-					type: prefersDarkMode ? 'dark' : 'light'
+					type: prefersDarkMode ? 'dark' : 'light',
+					background: {
+						default: prefersDarkMode ? 'var(--c3)' : 'var(--c2)'
+					}
+				},
+				overrides: {
+					MuiAvatar: {
+						img: {
+							objectFit: 'contain'
+						}
+					}
 				}
 			}),
 		[prefersDarkMode]

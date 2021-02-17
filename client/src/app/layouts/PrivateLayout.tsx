@@ -1,3 +1,4 @@
+import { Box, Container } from '@material-ui/core';
 import React, { FC } from 'react';
 
 import Header from '../frame/header/Header';
@@ -6,13 +7,15 @@ import { LayoutPageProperties } from '../routes/Routes.interfaces';
 
 const PrivateLayout: FC<LayoutPageProperties> = ({ Component, route }: LayoutPageProperties) => {
 	return (
-		<div className="rc-public-layout">
+		<Box className="rc-public-layout">
 			<Sidebar />
 			<Header />
-			<div className="rc-content">
-				<Component route={route} />
-			</div>
-		</div>
+			<Container fixed>
+				<Box className="rc-content">
+					<Component route={route} />
+				</Box>
+			</Container>
+		</Box>
 	);
 };
 export default PrivateLayout;

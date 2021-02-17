@@ -1,5 +1,5 @@
-// Button Style 1
-const ButtonStyle1 = {
+// Button 1
+const Button1 = {
 	backgroundColor: 'var(--c5)',
 	border: 'none',
 	borderRadius: 2,
@@ -8,8 +8,8 @@ const ButtonStyle1 = {
 	padding: '2px 12px'
 };
 
-// Button Style 2
-const ButtonStyle2 = {
+// Button 2
+const Button2 = {
 	backgroundColor: 'var(--c4)',
 	border: '1px solid var(--c4)',
 	borderRadius: 2,
@@ -18,4 +18,4 @@ const ButtonStyle2 = {
 	padding: '2px 12px'
 };
 
-export { ButtonStyle1, ButtonStyle2 };
+export { Button1, Button2 };

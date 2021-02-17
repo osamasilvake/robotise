@@ -3,13 +3,16 @@ import { FocusEvent, FormEvent, useEffect, useState } from 'react';
 
 /**
  * custom hook: useForm
- * handle change events of TextField and DatePicker and perform validation on the form
+ * handle change events of input fields and perform validation on the form
  * @param valuesInitialState
  * @param formValidation
  * @param submitCallBack
- * @returns {*}
  */
-const useForm = (valuesInitialState: any, formValidation: any, submitCallBack: any) => {
+const useForm = <T,>(
+	valuesInitialState: T,
+	formValidation: (arg: T) => T,
+	submitCallBack: () => T
+) => {
 	const errorInitialState = {};
 
 	// hooks: values, errors, loader
@@ -32,7 +35,7 @@ const useForm = (valuesInitialState: any, formValidation: any, submitCallBack: a
 		const { name, value } = event.target;
 
 		// set values
-		setValues((prevState: any) => ({
+		setValues((prevState: T) => ({
 			...prevState,
 			[name]: value
 		}));

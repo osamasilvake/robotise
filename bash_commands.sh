@@ -19,6 +19,7 @@ while true; do
     echo -e "01: To update & install all dependencies."
     echo -e "02: To update & install root dependencies."
     echo -e "03: To update & install client dependencies."
+    echo -e "04: To restart the docker containers."
 
     echo -e "${BLUE}"
     read -p "Do you wish to update all the dependencies?: " option
@@ -51,6 +52,7 @@ while true; do
             echo -e "----"
             echo -e "${GREY}"
             ncu -u
+            rm -R node_modules
             yarn install
 
             cd client
@@ -60,6 +62,7 @@ while true; do
             echo -e "------"
             echo -e "${GREY}"
             ncu -u
+            rm -R node_modules
             yarn install
             cd ..
             
@@ -72,6 +75,7 @@ while true; do
             echo -e "----"
             echo -e "${GREY}"
             ncu -u
+            rm -R node_modules
             yarn install
 
             echo -e
@@ -84,11 +88,19 @@ while true; do
             echo -e "------"
             echo -e "${GREY}"
             ncu -u
+            rm -R node_modules
             yarn install
+            cd ..
+
+            echo -e
+            break;;
+        "04")
+            docker stop roc-client
+            yarn docker:dev
 
             echo -e
             break;;
         *)
-            echo -e "\n${RED}Please choose a correct option: 00, 01, 02, 03!";;
+            echo -e "\n${RED}Please choose a correct option: 00, 01, 02, 03, 04!";;
     esac
 done

@@ -1,5 +1,8 @@
-import Login from '../../screens/authentication/login/Login';
+import { lazy } from 'react';
+
 import { RouteProperties } from '../Routes.interfaces';
+
+const Login = lazy(() => import('../../screens/authentication/login/Login'));
 
 const routes: RouteProperties[] = [
 	{

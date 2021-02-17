@@ -1,20 +1,10 @@
 import Dialog from '@material-ui/core/Dialog';
-import Slide from '@material-ui/core/Slide';
-import { TransitionProps } from '@material-ui/core/transitions/transition';
-import React, { FC, forwardRef, ReactElement, Ref } from 'react';
-
-// transition
-const Transition = forwardRef(function Transition(
-	props: TransitionProps & { children?: ReactElement<any, any> },
-	ref: Ref<unknown>
-) {
-	return <Slide direction="up" ref={ref} {...props} />;
-});
+import React, { FC, ReactEventHandler } from 'react';
 
 // modal interface
 interface ModalInterface {
 	show: boolean;
-	close: any;
+	close: ReactEventHandler;
 	modalClass?: string;
 }
 
@@ -23,12 +13,7 @@ const Modal: FC<ModalInterface> = (props) => {
 	const { children, show, close, modalClass } = props;
 
 	return (
-		<Dialog
-			className={modalClass}
-			open={show}
-			onClose={() => close(false)}
-			keepMounted
-			TransitionComponent={Transition}>
+		<Dialog className={modalClass} open={show} onClose={close} keepMounted>
 			{children}
 		</Dialog>
 	);

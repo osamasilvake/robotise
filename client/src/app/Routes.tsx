@@ -11,7 +11,7 @@ const Routes = () => {
 		<BrowserRouter>
 			<Switch>
 				{routesTemplates.map((routesTemplate) => {
-					const { routes: appRoutes, template: Template, type } = routesTemplate;
+					const { routes: appRoutes, template, type } = routesTemplate;
 					return appRoutes.map((appRoute) => (
 						<Route
 							exact={appRoute.exact}
@@ -20,7 +20,7 @@ const Routes = () => {
 							render={(route) => (
 								<Auth
 									appRoute={appRoute}
-									Template={Template}
+									template={template}
 									route={route}
 									type={type}
 								/>

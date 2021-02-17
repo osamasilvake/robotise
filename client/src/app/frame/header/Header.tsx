@@ -1,5 +1,3 @@
-import './Header.scss';
-
 import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import React, { FC } from 'react';

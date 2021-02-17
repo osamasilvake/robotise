@@ -1,14 +1,5 @@
-import { lazy } from 'react';
-
+import pagesRoutes from '../../screens/pages/index.routes';
 import { RouteProperties } from '../Routes.interfaces';
 
-const About = lazy(() => import('../../screens/pages/About/About'));
-
-const routes: RouteProperties[] = [
-	{
-		component: About,
-		exact: true,
-		path: '/about'
-	}
-];
+const routes: RouteProperties[] = [...pagesRoutes];
 export default routes;

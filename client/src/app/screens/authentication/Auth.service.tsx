@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 
-import { localStorageItems } from '../../../app.config';
+import { AppLocalStorageItems } from '../../../app.config';
 import { AuthUserRoleEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthUserDetailInterface } from './Auth.interface';
 
@@ -11,9 +11,9 @@ class AuthService {
 	 */
 	setAccessToken = (accessToken?: string) => {
 		if (accessToken) {
-			localStorage.setItem(localStorageItems.JWTAccessTokken, accessToken);
+			localStorage.setItem(AppLocalStorageItems.JWTAccessTokken, accessToken);
 		} else {
-			localStorage.removeItem(localStorageItems.JWTAccessTokken);
+			localStorage.removeItem(AppLocalStorageItems.JWTAccessTokken);
 		}
 	};
 
@@ -21,7 +21,7 @@ class AuthService {
 	 * get access token
 	 */
 	getAccessToken = () => {
-		return localStorage.getItem(localStorageItems.JWTAccessTokken);
+		return localStorage.getItem(AppLocalStorageItems.JWTAccessTokken);
 	};
 
 	/**

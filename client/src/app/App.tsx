@@ -16,6 +16,9 @@ const App: FC = () => {
 					type: prefersDarkMode ? 'dark' : 'light',
 					background: {
 						default: prefersDarkMode ? AppVariables.colors.c3 : AppVariables.colors.c2
+					},
+					primary: {
+						main: '#ddd'
 					}
 				},
 				overrides: {

@@ -13,7 +13,13 @@ export const AppVariables = {
 
 // general
 export const AppOptions = {
-	author: 'Robotise AG',
+	company: {
+		name: 'Robotise AG',
+		link: 'https://robotise.eu/de/'
+	},
+	fontFamily: {
+		Roboto: 'Roboto'
+	},
 	snackbar: {
 		timeout: 6000,
 		direction: {
@@ -33,12 +39,18 @@ export const AppServices = {
 };
 
 // local storage
-export const localStorageItems = {
+export const AppLocalStorageItems = {
 	JWTAccessTokken: 'jwt_access_token'
 };
 
 // images
-export const imageURLs = {
-	logoIcon: 'assets/svg/logos/robotise-icon.svg',
-	logoName: 'assets/svg/logos/robotise-name.svg'
+export const AppImageURLs = {
+	logo: {
+		icon: '/assets/svg/logos/robotise-icon.svg',
+		name: '/assets/svg/logos/robotise-name.svg'
+	},
+	robotise: {
+		path: '/assets/images/robotise/',
+		format: '.jpg'
+	}
 };

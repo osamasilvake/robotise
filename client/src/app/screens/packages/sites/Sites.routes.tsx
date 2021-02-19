@@ -8,7 +8,7 @@ const siteRoutes: RouteProperties[] = [
 	{
 		component: Sites,
 		exact: true,
-		path: '/about'
+		path: '/sites'
 	}
 ];
 export default siteRoutes;

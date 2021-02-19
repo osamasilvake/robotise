@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 
-import { AppOptions, imageURLs } from '../../../app.config';
+import { AppImageURLs, AppOptions } from '../../../app.config';
 import { centerStyles } from '../../utilities/styles/helpers/Center.styles';
 import { loaderStyles } from './Loader.styles';
 
@@ -17,8 +17,8 @@ const Loader: FC = () => {
 			<Box component="div" className="logo" marginBottom="15px">
 				<Avatar
 					className={loader.avatar}
-					alt={AppOptions.author}
-					src={imageURLs.logoIcon}
+					alt={AppOptions.company.name}
+					src={AppImageURLs.logo.icon}
 				/>
 			</Box>
 			<Box component="div" className={loader.spinner}>

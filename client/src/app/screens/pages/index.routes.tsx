@@ -8,7 +8,7 @@ const pagesRoutes: RouteProperties[] = [
 	{
 		component: About,
 		exact: true,
-		path: '/'
+		path: '/about'
 	}
 ];
 export default pagesRoutes;

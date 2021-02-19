@@ -2,7 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { AuthUserDetailInterface } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
-import { RootState } from '..';
+import { RootState } from '../Slices.interface';
 import { AuthInterface } from './Auth.interface';
 
 // initial state

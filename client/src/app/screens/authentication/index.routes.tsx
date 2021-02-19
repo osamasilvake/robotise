@@ -8,7 +8,7 @@ const authenticationRoutes: RouteProperties[] = [
 	{
 		component: Login,
 		exact: true,
-		path: '/'
+		path: '/login'
 	}
 ];
 export default authenticationRoutes;

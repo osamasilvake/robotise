@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core';
 
 import { AppImageURLs, AppOptions } from '../../../../app.config';
-import { pxToRem } from '../../../utilities/methods/pxToRem';
-import { getRandomInt } from '../../../utilities/methods/randomNum';
+import { pxToRem } from '../../../utilities/methods/PixelsToRem';
+import { randomNum } from '../../../utilities/methods/RandomNum';
 
 export const loginStyles = makeStyles((theme) => ({
 	root: {
@@ -10,25 +10,26 @@ export const loginStyles = makeStyles((theme) => ({
 	},
 	image: {
 		backgroundImage: `url(${
-			AppImageURLs.robotise.path + getRandomInt(1, 3) + AppImageURLs.robotise.format
+			AppImageURLs.robotise.path + randomNum(1, 3) + AppImageURLs.robotise.format
 		})`,
+		backgroundPosition: 'center',
+		backgroundPositionX: '30%',
 		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover',
-		backgroundPosition: 'center'
+		backgroundSize: 'cover'
 	},
 	content: {
 		backgroundColor: theme.palette.background.default
 	},
 	paper: {
-		margin: theme.spacing(8, 4),
+		alignItems: 'center',
 		display: 'flex',
 		flexDirection: 'column',
-		alignItems: 'center'
+		margin: theme.spacing(8, 4)
 	},
 	large: {
 		borderRadius: 0,
 		margin: '20px 0',
-		width: theme.spacing(19)
+		width: theme.spacing(20)
 	},
 	form: {
 		marginTop: theme.spacing(1)

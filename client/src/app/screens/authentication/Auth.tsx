@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import ENV from '../../../environment';
 import Loader from '../../components/loader/Loader';
 import { isPrivate, isSession } from '../../routes/types';
-import { authSelector, validateLogin } from '../../slices/auth/Auth.slice';
+import { authSelector, AuthValidateLogin } from '../../slices/auth/Auth.slice';
 import { AuthProperties } from './Auth.interface';
 
 const Auth: FC<AuthProperties> = ({ appRoute, template, route, type }: AuthProperties) => {
@@ -13,7 +13,7 @@ const Auth: FC<AuthProperties> = ({ appRoute, template, route, type }: AuthPrope
 	const { loading, response, errors } = useSelector(authSelector);
 
 	useEffect(() => {
-		dispatch(validateLogin());
+		dispatch(AuthValidateLogin());
 	}, [dispatch]);
 
 	const user = response && response.uuid;

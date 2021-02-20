@@ -35,7 +35,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { authLoading, authSuccess, authFailure } = dataSlice.actions;
+export const { authLoading, authSuccess, authFailure, resetState } = dataSlice.actions;
 
 // selector
 export const authSelector = (state: RootState) => state['auth'];
@@ -46,8 +46,8 @@ export default dataSlice.reducer;
 /**
  * validate authentication
  */
-export const validateLogin = () => async (dispatch: Dispatch) => {
-	// dispatch: start fetch process
+export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
+	// dispatch: loader
 	dispatch(authLoading());
 
 	setTimeout(() => {
@@ -76,5 +76,23 @@ export const validateLogin = () => async (dispatch: Dispatch) => {
 				})
 			);
 		}
+	}, 1000);
+};
+
+/**
+ * logout
+ */
+export const AuthLogout = () => async (dispatch: Dispatch) => {
+	// dispatch: loader
+	dispatch(authLoading());
+
+	setTimeout(() => {
+		const accessToken = AuthService.getAccessToken();
+		if (accessToken) {
+			AuthService.logout();
+		}
+
+		// dispatch: reset
+		dispatch(resetState());
 	}, 1000);
 };

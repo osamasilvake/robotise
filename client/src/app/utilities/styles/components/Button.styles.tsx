@@ -1,5 +1,5 @@
 import { AppVariables } from '../../../../app.config';
-import { pxToRem } from '../../methods/pxToRem';
+import { pxToRem } from '../../methods/PixelsToRem';
 
 // Button 1
 const Button1 = {

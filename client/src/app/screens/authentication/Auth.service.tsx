@@ -25,6 +25,13 @@ class AuthService {
 	};
 
 	/**
+	 * remove access token
+	 */
+	removeAccessToken = () => {
+		localStorage.removeItem(AppLocalStorageItems.JWTAccessTokken);
+	};
+
+	/**
 	 * validate auth token
 	 * @param accessToken
 	 */
@@ -50,6 +57,13 @@ class AuthService {
 			exp: decoded.exp,
 			uuid: decoded.user_id
 		};
+	};
+
+	/**
+	 * logout user
+	 */
+	logout = () => {
+		this.removeAccessToken();
 	};
 }
 const instance = new AuthService();

@@ -4,23 +4,16 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import React, { FC, Suspense, useMemo } from 'react';
 
-import { AppVariables } from '../app.config';
+import Meta from './frame/meta/Meta';
 import Routes from './Routes';
+import { Dark, Light } from './Theme';
 
 const App: FC = () => {
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 	const theme = useMemo(
 		() =>
 			createMuiTheme({
-				palette: {
-					type: prefersDarkMode ? 'dark' : 'light',
-					background: {
-						default: prefersDarkMode ? AppVariables.colors.c3 : AppVariables.colors.c2
-					},
-					primary: {
-						main: '#ddd'
-					}
-				},
+				palette: prefersDarkMode ? Dark : Light,
 				overrides: {
 					MuiAvatar: {
 						img: {
@@ -36,6 +29,12 @@ const App: FC = () => {
 		<MuiThemeProvider theme={theme}>
 			{/* UI baseline */}
 			<CssBaseline />
+
+			{/* Meta */}
+			<Meta>
+				<title>ROC | Robotise AG</title>
+				<meta name="description" content="A ROC application for managing Robots" />
+			</Meta>
 
 			<Suspense fallback={<LinearProgress />}>
 				<Routes />

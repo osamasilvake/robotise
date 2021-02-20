@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React, { FC } from 'react';
 
 import { AppImageURLs, AppOptions } from '../../../app.config';
-import { centerStyles } from '../../utilities/styles/helpers/Center.styles';
+import { centerStyles } from '../../utilities/styles/helpers/AlignmentCenter.styles';
 import { loaderStyles } from './Loader.styles';
 
 const Loader: FC = () => {

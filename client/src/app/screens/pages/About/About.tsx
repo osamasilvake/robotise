@@ -3,7 +3,7 @@ import { Box } from '@material-ui/core';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 
-import { centerStyles } from '../../../utilities/styles/helpers/Center.styles';
+import { centerStyles } from '../../../utilities/styles/helpers/AlignmentCenter.styles';
 
 const About: FC = () => {
 	const center = centerStyles();

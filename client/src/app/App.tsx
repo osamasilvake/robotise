@@ -6,24 +6,11 @@ import React, { FC, Suspense, useMemo } from 'react';
 
 import Meta from './frame/meta/Meta';
 import Routes from './Routes';
-import { Dark, Light } from './Theme';
+import { ThemeSettings } from './Theme';
 
 const App: FC = () => {
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-	const theme = useMemo(
-		() =>
-			createMuiTheme({
-				palette: prefersDarkMode ? Dark : Light,
-				overrides: {
-					MuiAvatar: {
-						img: {
-							objectFit: 'contain'
-						}
-					}
-				}
-			}),
-		[prefersDarkMode]
-	);
+	const theme = useMemo(() => createMuiTheme(ThemeSettings(prefersDarkMode)), [prefersDarkMode]);
 
 	return (
 		<MuiThemeProvider theme={theme}>
@@ -31,11 +18,9 @@ const App: FC = () => {
 			<CssBaseline />
 
 			{/* Meta */}
-			<Meta>
-				<title>ROC | Robotise AG</title>
-				<meta name="description" content="A ROC application for managing Robots" />
-			</Meta>
+			<Meta description="An application to manage and monitor Robots on different Sites." />
 
+			{/* Routes */}
 			<Suspense fallback={<LinearProgress />}>
 				<Routes />
 			</Suspense>

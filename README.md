@@ -63,6 +63,7 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [Material-UI](https://material-ui.com/)
+- [X] [Axios](https://github.com/axios/axios/)
 - [X] [JWT Decode](https://jwt.io/)
 - [X] [clsx](https://github.com/lukeed/clsx/)
 - [X] [React Helmet](https://github.com/nfl/react-helmet/)

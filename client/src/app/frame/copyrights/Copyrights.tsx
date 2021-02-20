@@ -2,7 +2,6 @@ import { Link, Typography } from '@material-ui/core';
 import React, { FC } from 'react';
 
 const Copyright: FC = () => {
-	console.log(process.env);
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
 			<Link color="inherit" href={process.env.REACT_APP_URL} target="_blank">

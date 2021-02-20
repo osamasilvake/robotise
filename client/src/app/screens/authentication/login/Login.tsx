@@ -63,14 +63,15 @@ const Login: FC = () => {
 							inputProps={{ className: classes.input }}
 						/>
 						<FormControlLabel
-							control={<Checkbox value="remember" />}
+							control={<Checkbox value="remember" color="primary" />}
 							label="Remember me"
 						/>
 						<Button
-							type="submit"
-							fullWidth
+							color="primary"
 							variant="contained"
-							className={classes.submit}>
+							type="submit"
+							className={classes.submit}
+							fullWidth>
 							{t('AUTH.LOGIN.SIGN_IN')}
 						</Button>
 						<Box mt={5}>

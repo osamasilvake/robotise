@@ -8,10 +8,7 @@ import Meta from '../../../frame/meta/Meta';
 const Home: FC = () => {
 	return (
 		<>
-			<Meta>
-				<title>Dashboard</title>
-				<meta name="description" content="Doashboard Description" />
-			</Meta>
+			<Meta title="Dashboard" description="Doashboard Description" />
 			<Box component="section" className="rc-dashboard">
 				<h1>Dashboard</h1>
 				<Button color="primary">Hello</Button>

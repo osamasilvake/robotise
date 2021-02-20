@@ -13,10 +13,6 @@ export const AppVariables = {
 
 // general
 export const AppOptions = {
-	company: {
-		name: 'Robotise AG',
-		link: 'https://robotise.eu/de/'
-	},
 	fontFamily: {
 		Roboto: 'Roboto'
 	},

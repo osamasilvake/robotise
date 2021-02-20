@@ -17,7 +17,7 @@ const Loader: FC = () => {
 			<Box component="div" className="logo" marginBottom="15px">
 				<Avatar
 					className={loader.avatar}
-					alt={AppOptions.company.name}
+					alt={process.env.REACT_APP_AUTHOR}
 					src={AppImageURLs.logo.icon}
 				/>
 			</Box>

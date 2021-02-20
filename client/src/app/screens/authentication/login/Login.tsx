@@ -1,13 +1,15 @@
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import {
+	Avatar,
+	Box,
+	Button,
+	Checkbox,
+	FormControlLabel,
+	Grid,
+	Paper,
+	TextField
+} from '@material-ui/core';
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { AppImageURLs, AppOptions } from '../../../../app.config';
 import Copyright from '../../../frame/copyrights/Copyrights';
@@ -15,6 +17,7 @@ import { loginStyles } from './Login.styles';
 
 const Login: FC = () => {
 	const classes = loginStyles();
+	const { t } = useTranslation('GLOBAL');
 
 	return (
 		<Grid container component="section" className={classes.root}>
@@ -31,7 +34,7 @@ const Login: FC = () => {
 				<div className={classes.paper}>
 					<Avatar
 						className={classes.large}
-						alt={AppOptions.company.name}
+						alt={process.env.REACT_APP_AUTHOR}
 						src={AppImageURLs.logo.name}
 					/>
 					<form className={classes.form} noValidate>
@@ -68,7 +71,7 @@ const Login: FC = () => {
 							fullWidth
 							variant="contained"
 							className={classes.submit}>
-							Sign In
+							{t('AUTH.LOGIN.SIGN_IN')}
 						</Button>
 						<Box mt={5}>
 							<Copyright />

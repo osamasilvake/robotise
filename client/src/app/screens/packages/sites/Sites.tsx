@@ -8,10 +8,7 @@ import Meta from '../../../frame/meta/Meta';
 const Sites: FC = () => {
 	return (
 		<>
-			<Meta>
-				<title>Sites</title>
-				<meta name="description" content="Sites Description" />
-			</Meta>
+			<Meta title="Sites" description="Sites Description" />
 			<Box component="section" className="rc-sites">
 				<h1>Sites</h1>
 				<Link to={ENV().ROUTING.PACKAGES.DASHBOARD}>Go To Dashboard</Link>

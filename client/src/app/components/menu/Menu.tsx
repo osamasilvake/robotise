@@ -1,5 +1,4 @@
-import { Fade } from '@material-ui/core';
-import Menu from '@material-ui/core/Menu';
+import { Fade, Menu } from '@material-ui/core';
 import React, { FC, ReactEventHandler } from 'react';
 
 interface MenuInterface {

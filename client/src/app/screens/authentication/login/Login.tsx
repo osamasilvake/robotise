@@ -11,13 +11,18 @@ import {
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AppImageURLs, AppOptions } from '../../../../app.config';
+import AppConfig from '../../../../app.config';
 import Copyright from '../../../frame/copyrights/Copyrights';
+import { ApiEnv } from '../../../services';
 import { loginStyles } from './Login.styles';
 
 const Login: FC = () => {
 	const classes = loginStyles();
 	const { t } = useTranslation('GLOBAL');
+
+	const onsubmit = () => {
+		console.log('hello');
+	};
 
 	return (
 		<Grid container component="section" className={classes.root}>
@@ -31,13 +36,13 @@ const Login: FC = () => {
 				elevation={6}
 				square
 				className={classes.content}>
-				<div className={classes.paper}>
+				<Box className={classes.paper}>
 					<Avatar
 						className={classes.large}
-						alt={process.env.REACT_APP_AUTHOR}
-						src={AppImageURLs.logo.name}
+						alt={ApiEnv.author}
+						src={AppConfig.AppImageURLs.logo.name}
 					/>
-					<form className={classes.form} noValidate>
+					<form className={classes.form} onSubmit={onsubmit}>
 						<TextField
 							required
 							type="text"
@@ -78,7 +83,7 @@ const Login: FC = () => {
 							<Copyright />
 						</Box>
 					</form>
-				</div>
+				</Box>
 			</Grid>
 		</Grid>
 	);

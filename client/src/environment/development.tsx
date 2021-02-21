@@ -1,4 +1,3 @@
-// app
 import appRoutes from './app-routes';
 
 const development = {

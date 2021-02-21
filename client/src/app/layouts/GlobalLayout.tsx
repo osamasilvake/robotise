@@ -1,9 +1,9 @@
 import { Box } from '@material-ui/core';
 import React, { FC } from 'react';
 
-import { LayoutPageProperties } from '../routes/Routes.interfaces';
+import { LayoutPageInterface } from '../routes/Routes.interfaces';
 
-const GlobalLayout: FC<LayoutPageProperties> = ({ Component, route }: LayoutPageProperties) => {
+const GlobalLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
 	return (
 		<Box className="rc-global-layout">
 			<Box className="rc-content">

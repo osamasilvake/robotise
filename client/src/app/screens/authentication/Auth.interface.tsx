@@ -2,14 +2,14 @@ import { FC, ReactNode } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { RouteTypeEnum } from '../../routes/Routes.enum';
-import { LayoutPageProperties, RouteProperties } from '../../routes/Routes.interfaces';
+import { LayoutPageInterface, RouteInterface } from '../../routes/Routes.interfaces';
 
 /**
  * Auth properties
  */
-export interface AuthProperties<T = ReactNode> {
-	appRoute: RouteProperties;
-	template: FC<LayoutPageProperties>;
+export interface AuthInterface<T = ReactNode> {
+	appRoute: RouteInterface;
+	template: FC<LayoutPageInterface>;
 	route: RouteComponentProps<T>;
 	type: RouteTypeEnum;
 }
@@ -26,7 +26,15 @@ export interface AuthJWTInterface {
 }
 
 /**
- * user payload
+ * user request payload
+ */
+export interface AuthLoginInterface {
+	email: string;
+	password: string;
+}
+
+/**
+ * user response payload
  */
 export interface AuthUserDetailInterface {
 	data: AuthUserDataInterface;

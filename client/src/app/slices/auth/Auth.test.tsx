@@ -11,7 +11,7 @@ describe('Authentication', () => {
 	});
 
 	afterEach(() => {
-		AuthService.setAccessToken();
+		AuthService.removeAccessToken();
 	});
 
 	test('Set and validate access_token', () => {
@@ -20,16 +20,16 @@ describe('Authentication', () => {
 
 	test('Access token must be valid', () => {
 		AuthService.setAccessToken(accessToken);
-		expect(AuthService.isAuthTokenValid(accessToken)).toBeTruthy();
+		expect(AuthService.authTokenValid(accessToken)).toBeTruthy();
 	});
 
 	test('Access token payload must have exp date', () => {
-		const response = AuthService.getUserDetail(accessToken);
+		const response = AuthService.authUserDetail(accessToken);
 		expect(Boolean(response['exp'])).toBe(true);
 	});
 
 	test('Access token payload must have role as ADMIN', () => {
-		const response = AuthService.getUserDetail(accessToken);
+		const response = AuthService.authUserDetail(accessToken);
 		expect(response['role']).toBe(AuthUserRoleEnum.ADMIN);
 	});
 });

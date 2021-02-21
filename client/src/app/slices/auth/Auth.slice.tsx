@@ -2,7 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { AuthUserDetailInterface } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
-import { RootState } from '../Slices.interface';
+import { RootStateInterface } from '../Slices.interface';
 import { AuthInterface } from './Auth.interface';
 
 // initial state
@@ -38,7 +38,7 @@ const dataSlice = createSlice({
 export const { authLoading, authSuccess, authFailure, resetState } = dataSlice.actions;
 
 // selector
-export const authSelector = (state: RootState) => state['auth'];
+export const authSelector = (state: RootStateInterface) => state['auth'];
 
 // reducer
 export default dataSlice.reducer;
@@ -53,8 +53,8 @@ export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
 	setTimeout(() => {
 		const accessToken = AuthService.getAccessToken();
 		if (accessToken) {
-			if (AuthService.isAuthTokenValid(accessToken)) {
-				const userInfo: AuthUserDetailInterface = AuthService.getUserDetail(accessToken);
+			if (AuthService.authTokenValid(accessToken)) {
+				const userInfo: AuthUserDetailInterface = AuthService.authUserDetail(accessToken);
 
 				// dispatch: response
 				dispatch(authSuccess(userInfo));
@@ -89,7 +89,7 @@ export const AuthLogout = () => async (dispatch: Dispatch) => {
 	setTimeout(() => {
 		const accessToken = AuthService.getAccessToken();
 		if (accessToken) {
-			AuthService.logout();
+			AuthService.authLogout();
 		}
 
 		// dispatch: reset

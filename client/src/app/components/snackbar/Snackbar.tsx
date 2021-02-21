@@ -2,7 +2,7 @@ import { Box, Button, IconButton, Snackbar } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React, { FC, useState } from 'react';
 
-import { AppOptions } from '../../../app.config';
+import AppConfig from '../../../app.config';
 
 interface SnackbarInterface {
 	snackbarClass?: string;
@@ -36,7 +36,7 @@ const SimpleSnackbar: FC<SnackbarInterface> = (props) => {
 					vertical: 'bottom',
 					horizontal: 'left'
 				}}
-				autoHideDuration={AppOptions.snackbar.timeout}
+				autoHideDuration={AppConfig.AppOptions.snackbar.timeout}
 				open={open}
 				onClose={handleClose}
 				message={message}

@@ -1,5 +1,5 @@
 import authenticationRoutes from '../../screens/authentication/index.routes';
-import { RouteProperties } from '../Routes.interfaces';
+import { RouteInterface } from '../Routes.interfaces';
 
-const routes: RouteProperties[] = [...authenticationRoutes];
+const routes: RouteInterface[] = [...authenticationRoutes];
 export default routes;

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-import { AppVariables } from '../../../app.config';
+import AppConfig from '../../../app.config';
 
 export const loaderStyles = makeStyles((theme) => ({
 	avatar: {
@@ -8,6 +8,6 @@ export const loaderStyles = makeStyles((theme) => ({
 		height: theme.spacing(18)
 	},
 	spinner: {
-		color: AppVariables.colors.c4
+		color: AppConfig.AppVariables.colors.c4
 	}
 }));

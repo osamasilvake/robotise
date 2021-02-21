@@ -1,12 +1,9 @@
-// app
+import { ApiEnv } from '../app/services';
 import development from './development';
 import production from './production';
 
-/**
- * validate build environment
- */
 const ENV = () => {
-	switch (process.env.REACT_APP_ENV) {
+	switch (ApiEnv.env) {
 		case 'production':
 			return production;
 		default:

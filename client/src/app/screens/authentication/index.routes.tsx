@@ -1,10 +1,10 @@
 import { lazy } from 'react';
 
-import { RouteProperties } from '../../routes/Routes.interfaces';
+import { RouteInterface } from '../../routes/Routes.interfaces';
 
 const Login = lazy(() => import('./login/Login'));
 
-const authenticationRoutes: RouteProperties[] = [
+const authenticationRoutes: RouteInterface[] = [
 	{
 		component: Login,
 		exact: true,

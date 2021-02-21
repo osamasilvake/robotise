@@ -1,5 +1,5 @@
 import packagesRoutes from '../../screens/packages/index.routes';
-import { RouteProperties } from '../Routes.interfaces';
+import { RouteInterface } from '../Routes.interfaces';
 
-const routes: RouteProperties[] = [...packagesRoutes];
+const routes: RouteInterface[] = [...packagesRoutes];
 export default routes;

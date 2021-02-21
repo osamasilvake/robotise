@@ -1,4 +1,4 @@
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const Home: FC = () => {
 		<>
 			<Meta title="Dashboard" description="Doashboard Description" />
 			<Box component="section" className="rc-dashboard">
-				<h1>Dashboard</h1>
+				<Typography variant="h1">Dashboard</Typography>
 				<Button color="primary">Hello</Button>
 				<Button color="secondary">Hello</Button>
 				<Link to={ENV().ROUTING.PACKAGES.SITES}>Go To Sites</Link>

@@ -1,9 +1,8 @@
-import { Typography } from '@material-ui/core';
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 
-import { centerStyles } from '../../../utilities/styles/helpers/AlignmentCenter.styles';
+import { centerStyles } from '../../../utilities/styles/AlignmentCenter.styles';
 
 const About: FC = () => {
 	const center = centerStyles();

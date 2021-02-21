@@ -1,10 +1,10 @@
 import { lazy } from 'react';
 
-import { RouteProperties } from '../../../routes/Routes.interfaces';
+import { RouteInterface } from '../../../routes/Routes.interfaces';
 
 const Sites = lazy(() => import('./Sites'));
 
-const siteRoutes: RouteProperties[] = [
+const siteRoutes: RouteInterface[] = [
 	{
 		component: Sites,
 		exact: true,

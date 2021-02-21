@@ -1,41 +1,38 @@
 import jwtDecode from 'jwt-decode';
 
-import { AppLocalStorageItems } from '../../../app.config';
+import AppConfig from '../../../app.config';
+import { Api, ApiClient, ApiEnv } from '../../services';
 import { AuthUserRoleEnum } from './Auth.enum';
-import { AuthJWTInterface, AuthUserDetailInterface } from './Auth.interface';
+import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
 
-class AuthService {
+class AuthService extends Api {
 	/**
-	 * set access token
-	 * @param accessToken
+	 * login user
+	 * @param payload
 	 */
-	setAccessToken = (accessToken?: string) => {
-		if (accessToken) {
-			localStorage.setItem(AppLocalStorageItems.JWTAccessTokken, accessToken);
-		} else {
-			localStorage.removeItem(AppLocalStorageItems.JWTAccessTokken);
-		}
-	};
+	authLogin = (payload: AuthLoginInterface) => {
+		// request
+		const request = {
+			username: payload.email,
+			password: payload.password,
+			grant_type: 'password',
+			client_id: 'roc-ops-app'
+		};
 
-	/**
-	 * get access token
-	 */
-	getAccessToken = () => {
-		return localStorage.getItem(AppLocalStorageItems.JWTAccessTokken);
-	};
-
-	/**
-	 * remove access token
-	 */
-	removeAccessToken = () => {
-		localStorage.removeItem(AppLocalStorageItems.JWTAccessTokken);
+		return ApiClient.post(
+			`${this.getUrl()}/auth/${ApiEnv.realm}/login`,
+			JSON.stringify(request),
+			{
+				headers: AppConfig.AppRequestHeaders.post
+			}
+		);
 	};
 
 	/**
 	 * validate auth token
 	 * @param accessToken
 	 */
-	isAuthTokenValid = (accessToken: string) => {
+	authTokenValid = (accessToken: string) => {
 		const decoded: AuthJWTInterface = jwtDecode(accessToken);
 		const now = Date.now();
 		const exp = decoded.exp * 1000;
@@ -44,9 +41,9 @@ class AuthService {
 
 	/**
 	 * get user info from decoded token
-	 * @param decodedToken
+	 * @param accessToken
 	 */
-	getUserDetail = (accessToken: string): AuthUserDetailInterface => {
+	authUserDetail = (accessToken: string): AuthUserDetailInterface => {
 		const decoded: AuthJWTInterface = jwtDecode(accessToken);
 		return {
 			data: {
@@ -62,8 +59,30 @@ class AuthService {
 	/**
 	 * logout user
 	 */
-	logout = () => {
+	authLogout = () => {
 		this.removeAccessToken();
+	};
+
+	/**
+	 * set access token
+	 * @param accessToken
+	 */
+	setAccessToken = (accessToken: string) => {
+		localStorage.setItem(AppConfig.AppLocalStorageItems.JWTAccessTokken, accessToken);
+	};
+
+	/**
+	 * get access token
+	 */
+	getAccessToken = () => {
+		return localStorage.getItem(AppConfig.AppLocalStorageItems.JWTAccessTokken);
+	};
+
+	/**
+	 * remove access token
+	 */
+	removeAccessToken = () => {
+		localStorage.removeItem(AppConfig.AppLocalStorageItems.JWTAccessTokken);
 	};
 }
 const instance = new AuthService();

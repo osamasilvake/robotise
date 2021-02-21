@@ -1,4 +1,4 @@
-import Dialog from '@material-ui/core/Dialog';
+import { Dialog } from '@material-ui/core';
 import React, { FC, ReactEventHandler } from 'react';
 
 // modal interface

@@ -6,9 +6,9 @@ import ENV from '../../../environment';
 import Loader from '../../components/loader/Loader';
 import { isPrivate, isSession } from '../../routes/types';
 import { authSelector, AuthValidateLogin } from '../../slices/auth/Auth.slice';
-import { AuthProperties } from './Auth.interface';
+import { AuthInterface } from './Auth.interface';
 
-const Auth: FC<AuthProperties> = ({ appRoute, template, route, type }: AuthProperties) => {
+const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
 	const dispatch = useDispatch();
 	const { loading, response, errors } = useSelector(authSelector);
 

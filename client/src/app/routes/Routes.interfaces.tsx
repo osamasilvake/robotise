@@ -3,24 +3,24 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { RouteTypeEnum } from './Routes.enum';
 
-export interface RouteProperties {
+export interface RouteInterface {
 	exact?: boolean;
 	path: string;
-	component: FC<PageProperties>;
-	template?: FC<LayoutPageProperties>;
+	component: FC<PageInterface>;
+	template?: FC<LayoutPageInterface>;
 }
 
-export interface RouteTemplateProperties {
-	routes: RouteProperties[];
-	template: FC<LayoutPageProperties>;
+export interface RouteTemplateInterface {
+	routes: RouteInterface[];
+	template: FC<LayoutPageInterface>;
 	type: RouteTypeEnum;
 }
 
-export interface LayoutPageProperties {
-	Component: FC<PageProperties>;
+export interface LayoutPageInterface {
+	Component: FC<PageInterface>;
 	route: RouteComponentProps<ReactNode>;
 }
 
-export interface PageProperties<T = ReactNode> {
+export interface PageInterface<T = ReactNode> {
 	route: RouteComponentProps<T>;
 }

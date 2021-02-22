@@ -2,8 +2,7 @@ import { Avatar, Box, CircularProgress } from '@material-ui/core';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 
-import AppConfig from '../../../app.config';
-import { ApiEnv } from '../../services';
+import { ApiEnv, AppConfig } from '../../services';
 import { centerStyles } from '../../utilities/styles/AlignmentCenter.styles';
 import { loaderStyles } from './Loader.styles';
 

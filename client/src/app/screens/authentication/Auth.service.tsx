@@ -1,11 +1,11 @@
 import jwtDecode from 'jwt-decode';
+import moment from 'moment';
 
-import AppConfig from '../../../app.config';
-import { Api, ApiClient, ApiEnv } from '../../services';
+import { ApiBase, ApiClient, AppConfig } from '../../services';
 import { AuthUserRoleEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
 
-class AuthService extends Api {
+class AuthService extends ApiBase {
 	/**
 	 * login user
 	 * @param payload
@@ -19,13 +19,9 @@ class AuthService extends Api {
 			client_id: 'roc-ops-app'
 		};
 
-		return ApiClient.post(
-			`${this.getUrl()}/auth/${ApiEnv.realm}/login`,
-			JSON.stringify(request),
-			{
-				headers: AppConfig.AppRequestHeaders.post
-			}
-		);
+		return ApiClient.post(AppConfig.AppServices.AUTH.SIGN_IN, JSON.stringify(request), {
+			headers: AppConfig.AppRequestHeaders.post
+		});
 	};
 
 	/**
@@ -34,7 +30,7 @@ class AuthService extends Api {
 	 */
 	authTokenValid = (accessToken: string) => {
 		const decoded: AuthJWTInterface = jwtDecode(accessToken);
-		const now = Date.now();
+		const now = moment().valueOf();
 		const exp = decoded.exp * 1000;
 		return now < exp;
 	};

@@ -11,9 +11,8 @@ import {
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import AppConfig from '../../../../app.config';
 import Copyright from '../../../frame/copyrights/Copyrights';
-import { ApiEnv } from '../../../services';
+import { ApiEnv, AppConfig } from '../../../services';
 import { loginStyles } from './Login.styles';
 
 const Login: FC = () => {

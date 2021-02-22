@@ -2,7 +2,7 @@ import { Box, Button, IconButton, Snackbar } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React, { FC, useState } from 'react';
 
-import AppConfig from '../../../app.config';
+import { AppConfig } from '../../services';
 
 interface SnackbarInterface {
 	snackbarClass?: string;

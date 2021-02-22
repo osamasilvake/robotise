@@ -1,7 +1,6 @@
-import { Api } from './app/services';
-import ENV from './environment';
+import { ApiBase, ApiEnv } from '.';
 
-class AppConfig extends Api {
+class AppConfig extends ApiBase {
 	/**
 	 * variables
 	 */
@@ -40,9 +39,7 @@ class AppConfig extends Api {
 	get AppServices() {
 		return {
 			AUTH: {
-				SIGN_IN: {
-					URL: `${ENV().REST_API}/login`
-				}
+				SIGN_IN: `${this.getUrl()}/auth/${ApiEnv.realm}/login`
 			}
 		};
 	}

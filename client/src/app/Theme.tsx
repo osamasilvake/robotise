@@ -1,7 +1,7 @@
 import { ThemeOptions } from '@material-ui/core';
 import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 
-import AppConfig from '../app.config';
+import { AppConfig } from './services';
 import { pxToRem } from './utilities/methods/PixelsToRem';
 
 export const ThemeSettings = (prefersDarkMode: boolean): ThemeOptions => ({

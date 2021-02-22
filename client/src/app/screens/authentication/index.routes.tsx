@@ -4,11 +4,11 @@ import { RouteInterface } from '../../routes/Routes.interfaces';
 
 const Login = lazy(() => import('./login/Login'));
 
-const authenticationRoutes: RouteInterface[] = [
+const authRoutes: RouteInterface[] = [
 	{
 		component: Login,
 		exact: true,
 		path: '/login'
 	}
 ];
-export default authenticationRoutes;
+export default authRoutes;

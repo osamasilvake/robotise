@@ -67,3 +67,4 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [JWT Decode](https://jwt.io/)
 - [X] [clsx](https://github.com/lukeed/clsx/)
 - [X] [React Helmet](https://github.com/nfl/react-helmet/)
+- [X] [Moment](https://momentjs.com/)

@@ -31,7 +31,6 @@ const Login: FC = () => {
 	const { t } = useTranslation('GLOBAL');
 
 	const loginClasses = loginStyles();
-
 	const dispatch = useDispatch();
 
 	const [showPassword, setShowPassword] = useState(false);
@@ -49,10 +48,11 @@ const Login: FC = () => {
 	 * handle submit event
 	 */
 	const formSubmit = async () => {
+		// dummy
+		await new Promise((resolve) => setTimeout(resolve, 4000));
+
 		// dispatch
 		dispatch(AuthLogin(values));
-
-		console.log('form : ', values);
 	};
 
 	return (

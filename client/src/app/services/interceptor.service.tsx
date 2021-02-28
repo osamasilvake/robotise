@@ -11,7 +11,6 @@ class InterceptorService {
 			(err) => {
 				return new Promise((_resolve, reject) => {
 					// un-authorized access
-					console.log(err);
 					const status = err.response.status;
 					const isRetryRequest = err.config.__isRetryRequest;
 					if (status === 401 && !isRetryRequest) {

@@ -1,5 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import moment from 'moment';
+import qs from 'querystring';
 
 import { ClientService, ConfigService } from '../../services';
 import { AuthUserRoleEnum } from './Auth.enum';
@@ -19,7 +20,7 @@ class AuthService {
 			client_id: 'roc-ops-app'
 		};
 
-		return ClientService.post(ConfigService.AppServices.AUTH.SIGN_IN, JSON.stringify(request), {
+		return ClientService.post(ConfigService.AppServices.AUTH.SIGN_IN, qs.stringify(request), {
 			headers: ConfigService.AppRequestHeaders.post
 		});
 	};

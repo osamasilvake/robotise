@@ -68,3 +68,4 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [clsx](https://github.com/lukeed/clsx/)
 - [X] [React Helmet](https://github.com/nfl/react-helmet/)
 - [X] [Moment](https://momentjs.com/)
+- [X] [qs](https://github.com/ljharb/qs/)

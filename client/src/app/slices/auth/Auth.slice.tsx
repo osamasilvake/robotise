@@ -87,15 +87,13 @@ export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
  * @param payload
  */
 export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispatch) => {
-	console.log(payload);
-
 	AuthService.authLogin(payload)
 		.then((res) => {
-			console.log(res);
-			dispatch(authSuccess(res));
+			AuthService.setAccessToken(res.access_token);
+			const user = AuthService.authUserDetail(res.access_token);
+			dispatch(authSuccess(user));
 		})
 		.catch((err) => {
-			console.log(err);
 			dispatch(authFailure(err));
 		});
 };

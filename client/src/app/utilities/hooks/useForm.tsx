@@ -20,8 +20,6 @@ export const useForm = <UseFormEntity,>(
 	const [errors, setErrors] = useState(initState);
 	const [loader, setLoader] = useState(false);
 
-	console.log(values, errors);
-
 	/**
 	 * handle change
 	 * @param event

@@ -1,33 +1,70 @@
 {
 	"COMMON": {
-		"CREATE": "well you ask me",
+		"CREATE": "CREATE",
 		"EDIT": "EDIT",
 		"UPDATE": "UPDATE",
 		"DELETE": "DELETE",
 		"SAVE": "SAVE"
 	},
+	"META": {
+		"GENERAL": {
+			"TITLE": "",
+			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
+		},
+		"SITES": {
+			"TITLE": "Sites",
+			"DESCRIPTION": "Sites Description"
+		},
+		"ROBOTS": {
+			"TITLE": "Robots",
+			"DESCRIPTION": "Robots Description"
+		},
+		"PRODUCTS": {
+			"TITLE": "Products",
+			"DESCRIPTION": "Products Description"
+		},
+		"ORDER_REPORTS": {
+			"TITLE": "Order Reports",
+			"DESCRIPTION": "Order Report Description"
+		},
+		"ALERT_CONFIG": {
+			"TITLE": "Alert Config",
+			"DESCRIPTION": "Alert Config Description"
+		}
+	},
 	"GLOBAL": {
 		"EMAIL": "Enter your email Address",
 		"AUTH": {
 			"LOGIN": {
-				"EMAIL": "Enter your email Address",
-				"SIGN_IN": "Sign In"
+				"EMAIL": {
+					"LABEL": "Email Address",
+					"PLACEHOLDER": "Enter your email Address",
+					"VALIDATIONS": {
+						"REQUIRED": "Please enter the required email address!",
+						"INVALID": "Please enter the correct Email format!"
+					}
+				},
+				"PASSWORD": {
+					"LABEL": "Password",
+					"PLACEHOLDER": "Enter your password",
+					"VALIDATIONS": {
+						"REQUIRED": "Please enter the required password!"
+					}
+				},
+				"REMEMBER_ME": {
+					"LABEL": "Remember Me"
+				},
+				"SIGN_IN": {
+					"LABEL": "Sign In"
+				}
 			}
 		},
 		"PAGES": {
-			"403": {
-				"TITLE": "403",
-				"DESCRIPTION": "You don't have access to visit this page!"
-			},
 			"404": {
 				"TITLE": "404",
 				"DESCRIPTION": "Page not found!"
 			}
 		}
 	},
-	"PRIVATE": {
-		"DASHBOARD": {
-			"HELLO": "Welcome to Dashboard"
-		}
-	}
+	"PRIVATE": {}
 }

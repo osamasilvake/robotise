@@ -1,15 +1,9 @@
 import { Dialog } from '@material-ui/core';
-import React, { FC, ReactEventHandler } from 'react';
+import React, { FC } from 'react';
 
-// modal interface
-interface ModalInterface {
-	show: boolean;
-	close: ReactEventHandler;
-	modalClass?: string;
-}
+import { ModalInterface } from './Modal.interface';
 
 const Modal: FC<ModalInterface> = (props) => {
-	// props
 	const { children, show, close, modalClass } = props;
 
 	return (

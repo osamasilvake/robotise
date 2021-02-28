@@ -1,12 +1,15 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { AuthUserDetailInterface } from '../../screens/authentication/Auth.interface';
+import {
+	AuthLoginInterface,
+	AuthUserDetailInterface
+} from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
 import { RootStateInterface } from '../Slices.interface';
-import { AuthInterface } from './Auth.interface';
+import { AuthSliceInterface } from './Auth.interface';
 
 // initial state
-export const initialState: AuthInterface = {
+export const initialState: AuthSliceInterface = {
 	loading: true,
 	response: null,
 	errors: null
@@ -77,6 +80,24 @@ export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
 			);
 		}
 	}, 1000);
+};
+
+/**
+ * login
+ * @param payload
+ */
+export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispatch) => {
+	console.log(payload);
+
+	AuthService.authLogin(payload)
+		.then((res) => {
+			console.log(res);
+			dispatch(authSuccess(res));
+		})
+		.catch((err) => {
+			console.log(err);
+			dispatch(authFailure(err));
+		});
 };
 
 /**

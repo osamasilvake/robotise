@@ -1,12 +1,7 @@
 import { Fade, Menu } from '@material-ui/core';
-import React, { FC, ReactEventHandler } from 'react';
+import React, { FC } from 'react';
 
-interface MenuInterface {
-	anchorEl: HTMLElement;
-	close: ReactEventHandler;
-	menuId?: string;
-	menuClass?: string;
-}
+import { MenuInterface } from './Menu.interface';
 
 const SimpleMenu: FC<MenuInterface> = (props) => {
 	const { children, anchorEl, close, menuId, menuClass } = props;

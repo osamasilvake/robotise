@@ -1,6 +1,8 @@
-import { ApiBase, ApiEnv } from '.';
+import { SnackbarOrigin } from '@material-ui/core/Snackbar';
 
-class AppConfig extends ApiBase {
+import EnvService from './env.service';
+
+class ConfigService extends EnvService {
 	/**
 	 * variables
 	 */
@@ -19,16 +21,18 @@ class AppConfig extends ApiBase {
 	 * general
 	 */
 	get AppOptions() {
+		const direction: SnackbarOrigin = {
+			vertical: 'bottom',
+			horizontal: 'left'
+		};
+
 		return {
 			fontFamily: {
 				Roboto: 'Roboto'
 			},
 			snackbar: {
 				timeout: 6000,
-				direction: {
-					vertical: 'bottom',
-					horizontal: 'left'
-				}
+				direction
 			}
 		};
 	}
@@ -39,7 +43,7 @@ class AppConfig extends ApiBase {
 	get AppServices() {
 		return {
 			AUTH: {
-				SIGN_IN: `${this.getUrl()}/auth/${ApiEnv.realm}/login`
+				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`
 			}
 		};
 	}
@@ -98,5 +102,5 @@ class AppConfig extends ApiBase {
 		};
 	}
 }
-const instance = new AppConfig();
+const instance = new ConfigService();
 export default instance;

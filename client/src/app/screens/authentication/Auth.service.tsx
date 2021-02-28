@@ -1,11 +1,11 @@
 import jwtDecode from 'jwt-decode';
 import moment from 'moment';
 
-import { ApiBase, ApiClient, AppConfig } from '../../services';
+import { ClientService, ConfigService } from '../../services';
 import { AuthUserRoleEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
 
-class AuthService extends ApiBase {
+class AuthService {
 	/**
 	 * login user
 	 * @param payload
@@ -19,8 +19,8 @@ class AuthService extends ApiBase {
 			client_id: 'roc-ops-app'
 		};
 
-		return ApiClient.post(AppConfig.AppServices.AUTH.SIGN_IN, JSON.stringify(request), {
-			headers: AppConfig.AppRequestHeaders.post
+		return ClientService.post(ConfigService.AppServices.AUTH.SIGN_IN, JSON.stringify(request), {
+			headers: ConfigService.AppRequestHeaders.post
 		});
 	};
 
@@ -64,21 +64,21 @@ class AuthService extends ApiBase {
 	 * @param accessToken
 	 */
 	setAccessToken = (accessToken: string) => {
-		localStorage.setItem(AppConfig.AppLocalStorageItems.JWTAccessTokken, accessToken);
+		localStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessTokken, accessToken);
 	};
 
 	/**
 	 * get access token
 	 */
 	getAccessToken = () => {
-		return localStorage.getItem(AppConfig.AppLocalStorageItems.JWTAccessTokken);
+		return localStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessTokken);
 	};
 
 	/**
 	 * remove access token
 	 */
 	removeAccessToken = () => {
-		localStorage.removeItem(AppConfig.AppLocalStorageItems.JWTAccessTokken);
+		localStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessTokken);
 	};
 }
 const instance = new AuthService();

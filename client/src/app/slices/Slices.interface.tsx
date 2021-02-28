@@ -1,5 +1,5 @@
-import { AuthInterface } from './auth/Auth.interface';
+import { AuthSliceInterface } from './auth/Auth.interface';
 
 export interface RootStateInterface {
-	auth: AuthInterface;
+	auth: AuthSliceInterface;
 }

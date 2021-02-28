@@ -1,31 +1,63 @@
+import { InputAdornment } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import {
 	Avatar,
 	Box,
 	Button,
 	Checkbox,
+	CircularProgress,
+	FormControl,
 	FormControlLabel,
+	FormHelperText,
 	Grid,
 	Paper,
 	TextField
 } from '@material-ui/core';
-import React, { FC } from 'react';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import Copyright from '../../../frame/copyrights/Copyrights';
-import { ApiEnv, AppConfig } from '../../../services';
+import { ConfigService } from '../../../services';
+import { AuthLogin } from '../../../slices/auth/Auth.slice';
+import { useForm } from '../../../utilities/hooks/UseForm';
+import { allPropertiesEmpty } from '../../../utilities/methods/validateObjProperties';
+import { AuthLoginInterface } from '../Auth.interface';
 import { loginStyles } from './Login.styles';
+import { LoginFormValidation } from './Login.validation';
 
 const Login: FC = () => {
-	const classes = loginStyles();
 	const { t } = useTranslation('GLOBAL');
 
-	const onsubmit = () => {
-		console.log('hello');
+	const loginClasses = loginStyles();
+
+	const dispatch = useDispatch();
+
+	const [showPassword, setShowPassword] = useState(false);
+	const { handleChange, handleSubmit, values, errors, loader } = useForm<AuthLoginInterface>(
+		{
+			email: '',
+			password: '',
+			rememberMe: false
+		},
+		LoginFormValidation,
+		() => formSubmit()
+	);
+
+	/**
+	 * handle submit event
+	 */
+	const formSubmit = async () => {
+		// dispatch
+		dispatch(AuthLogin(values));
+
+		console.log('form : ', values);
 	};
 
 	return (
-		<Grid container component="section" className={classes.root}>
-			<Grid item xs={false} sm={6} md={7} className={classes.image} />
+		<Grid container component="section" className={loginClasses.root}>
+			<Grid item xs={false} sm={6} md={7} className={loginClasses.image} />
 			<Grid
 				item
 				xs={12}
@@ -34,50 +66,87 @@ const Login: FC = () => {
 				component={Paper}
 				elevation={6}
 				square
-				className={classes.content}>
-				<Box className={classes.paper}>
+				className={loginClasses.content}>
+				<Box className={loginClasses.paper}>
 					<Avatar
-						className={classes.large}
-						alt={ApiEnv.author}
-						src={AppConfig.AppImageURLs.logo.name}
+						className={loginClasses.large}
+						alt={ConfigService.envAuthor}
+						src={ConfigService.AppImageURLs.logo.name}
 					/>
-					<form className={classes.form} onSubmit={onsubmit}>
-						<TextField
-							required
-							type="text"
-							id="email"
-							name="email"
-							variant="outlined"
-							margin="normal"
-							label="Email Address"
-							autoComplete="email"
-							fullWidth
-							inputProps={{ className: classes.input }}
-						/>
-						<TextField
-							required
-							type="password"
-							id="password"
-							name="password"
-							variant="outlined"
-							margin="normal"
-							label="Password"
-							autoComplete="current-password"
-							fullWidth
-							inputProps={{ className: classes.input }}
-						/>
+					<form className={loginClasses.form} onSubmit={handleSubmit}>
+						<FormControl error fullWidth margin="normal">
+							<TextField
+								required
+								variant="outlined"
+								type="text"
+								id="email"
+								name="email"
+								error={!!errors.email}
+								onChange={handleChange}
+								label={t('AUTH.LOGIN.EMAIL.LABEL')}
+								placeholder={t('AUTH.LOGIN.EMAIL.PLACEHOLDER')}
+								inputProps={{
+									className: loginClasses.input,
+									form: {
+										autocomplete: 'off'
+									}
+								}}
+							/>
+							<FormHelperText>{t(errors.email)}</FormHelperText>
+						</FormControl>
+
+						<FormControl error fullWidth margin="normal">
+							<TextField
+								required
+								variant="outlined"
+								type={showPassword ? 'text' : 'password'}
+								id="password"
+								name="password"
+								error={!!errors.password}
+								onChange={handleChange}
+								label={t('AUTH.LOGIN.PASSWORD.LABEL')}
+								placeholder={t('AUTH.LOGIN.PASSWORD.PLACEHOLDER')}
+								InputProps={{
+									classes: {
+										input: loginClasses.input
+									},
+									endAdornment: (
+										<InputAdornment position="end">
+											<IconButton
+												aria-label="toggle password visibility"
+												edge="end"
+												onClick={() => setShowPassword(!showPassword)}>
+												{showPassword ? <Visibility /> : <VisibilityOff />}
+											</IconButton>
+										</InputAdornment>
+									)
+								}}
+							/>
+							<FormHelperText>{t(errors.password)}</FormHelperText>
+						</FormControl>
+
 						<FormControlLabel
-							control={<Checkbox value="remember" color="primary" />}
-							label="Remember me"
+							control={
+								<Checkbox
+									name="rememberMe"
+									onChange={handleChange}
+									color="primary"
+								/>
+							}
+							label={t('AUTH.LOGIN.REMEMBER_ME.LABEL')}
 						/>
+
 						<Button
 							color="primary"
 							variant="contained"
 							type="submit"
-							className={classes.submit}
-							fullWidth>
-							{t('AUTH.LOGIN.SIGN_IN')}
+							className={loginClasses.submit}
+							disabled={loader || !allPropertiesEmpty(errors)}
+							fullWidth
+							endIcon={loader && <CircularProgress size={20} />}>
+							{t('AUTH.LOGIN.SIGN_IN.LABEL')}
 						</Button>
+
 						<Box mt={5}>
 							<Copyright />
 						</Box>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
 
-import { ApiEnv } from '../../services';
+import { ConfigService } from '../../services';
 import { MetaInterface } from './Meta.interface';
 
 const Meta: FC<MetaInterface> = (props) => {
@@ -10,7 +10,7 @@ const Meta: FC<MetaInterface> = (props) => {
 	return (
 		<Helmet>
 			<title>
-				{title || ApiEnv.name} | {ApiEnv.author}
+				{title || ConfigService.envName} | {ConfigService.envAuthor}
 			</title>
 			<meta name="description" content={description} />
 		</Helmet>

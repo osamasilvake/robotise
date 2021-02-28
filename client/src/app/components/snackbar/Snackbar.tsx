@@ -2,12 +2,8 @@ import { Box, Button, IconButton, Snackbar } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import React, { FC, useState } from 'react';
 
-import { AppConfig } from '../../services';
-
-interface SnackbarInterface {
-	snackbarClass?: string;
-	message?: string;
-}
+import { ConfigService } from '../../services';
+import { SnackbarInterface } from './Snackbar.interface';
 
 const SimpleSnackbar: FC<SnackbarInterface> = (props) => {
 	const { snackbarClass, message } = props;
@@ -32,11 +28,8 @@ const SimpleSnackbar: FC<SnackbarInterface> = (props) => {
 		<Box className={snackbarClass}>
 			<Button onClick={handleOpen}>Open simple snackbar</Button>
 			<Snackbar
-				anchorOrigin={{
-					vertical: 'bottom',
-					horizontal: 'left'
-				}}
-				autoHideDuration={AppConfig.AppOptions.snackbar.timeout}
+				anchorOrigin={ConfigService.AppOptions.snackbar.direction}
+				autoHideDuration={ConfigService.AppOptions.snackbar.timeout}
 				open={open}
 				onClose={handleClose}
 				message={message}

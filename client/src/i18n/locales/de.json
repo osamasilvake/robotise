@@ -1,32 +1,6 @@
 {
-	"COMMON": {
-		"CREATE": "CREATE",
-		"EDIT": "EDIT",
-		"UPDATE": "UPDATE",
-		"DELETE": "DELETE",
-		"SAVE": "SAVE"
-	},
-	"GLOBAL": {
-		"EMAIL": "Enter your email Address",
-		"AUTH": {
-			"LOGIN": {
-				"EMAIL": "Enter your email Address"
-			}
-		},
-		"PAGES": {
-			"403": {
-				"TITLE": "403",
-				"DESCRIPTION": "You don't have access to visit this page!"
-			},
-			"404": {
-				"TITLE": "404",
-				"DESCRIPTION": "Page not found!"
-			}
-		}
-	},
-	"PRIVATE": {
-		"DASHBOARD": {
-			"HELLO": "Willkommen Sie to Dashboard"
-		}
-	}
+	"COMMON": {},
+	"META": {},
+	"GLOBAL": {},
+	"PRIVATE": {}
 }

@@ -6,16 +6,22 @@ import {
 	useMediaQuery
 } from '@material-ui/core';
 import React, { FC, Suspense, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Meta from './frame/meta/Meta';
 import Routes from './Routes';
-import { ApiIntercept } from './services';
+import { InterceptorService } from './services';
 import { ThemeSettings } from './Theme';
 
-// intercept
-ApiIntercept.setIntercertors();
+// init axios interceptor
+InterceptorService.setIntercertors();
 
 const App: FC = () => {
+	const { t } = useTranslation('META');
+
+	/**
+	 * theme setting
+	 */
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 	const theme = useMemo(() => createMuiTheme(ThemeSettings(prefersDarkMode)), [prefersDarkMode]);
 
@@ -25,7 +31,7 @@ const App: FC = () => {
 			<CssBaseline />
 
 			{/* Meta */}
-			<Meta description="An application to manage and monitor Robots on different Sites." />
+			<Meta description={t('GENERAL.DESCRIPTION')} />
 
 			{/* Routes */}
 			<Suspense fallback={<LinearProgress />}>

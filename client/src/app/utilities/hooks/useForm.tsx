@@ -1,48 +1,55 @@
 // react
-import { FocusEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FocusEvent, FormEvent, useState } from 'react';
+
+import { UseFormEventTypeEnum } from './UseForm.enum';
+import { UseFormRetInterface } from './UseForm.interface';
 
 /**
  * custom hook: useForm
- * handle change events of input fields and perform validation on the form
- * @param valuesInitialState
+ * handle change events of input fields and perform error validation on the form
+ * @param initState
  * @param formValidation
  * @param submitCallBack
  */
-const useForm = <T,>(
-	valuesInitialState: T,
-	formValidation: (arg: T) => T,
-	submitCallBack: () => T
-) => {
-	const errorInitialState = {};
-
-	// hooks: values, errors, loader
-	const [values, setValues] = useState(valuesInitialState);
-	const [errors, setErrors] = useState(errorInitialState);
+export const useForm = <UseFormEntity,>(
+	initState: UseFormEntity,
+	formValidation: (arg: UseFormEntity) => UseFormEntity,
+	submitCallBack: () => Promise<void>
+): UseFormRetInterface<UseFormEntity> => {
+	const [values, setValues] = useState(initState);
+	const [errors, setErrors] = useState(initState);
 	const [loader, setLoader] = useState(false);
 
-	useEffect(() => {
-		// set errors
-		const validateErrors = formValidation(values);
-		setErrors(validateErrors);
-	}, [values, formValidation, setErrors]);
+	console.log(values, errors);
 
 	/**
 	 * handle change
 	 * @param event
 	 */
-	const handleChange = (event: FocusEvent<HTMLInputElement>) => {
-		// payload
-		const { name, value } = event.target;
+	const handleChange = (event: FocusEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
+		const { name } = event.target;
+		const value =
+			event.target.type === UseFormEventTypeEnum.CHECKBOX
+				? event.target.checked
+				: event.target.value;
 
 		// set values
-		setValues((prevState: T) => ({
-			...prevState,
-			[name]: value
-		}));
+		setValues((prevState) => {
+			const newState = {
+				...prevState,
+				[name]: value
+			};
+
+			// validate only incase of error
+			setErrors(formValidation(newState));
+
+			return newState;
+		});
 	};
 
 	/**
 	 * handle submit
+	 * @param event
 	 */
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		// prevent default
@@ -51,17 +58,12 @@ const useForm = <T,>(
 		// start loader
 		setLoader(true);
 
-		// callback
 		// wait for callback to execute
 		await submitCallBack();
 
 		// stop loader
 		setLoader(false);
-
-		// set errors initial state
-		setErrors(errorInitialState);
 	};
 
-	return [handleChange, handleSubmit, values, errors, loader];
+	return { handleChange, handleSubmit, values, errors, loader };
 };
-export default useForm;

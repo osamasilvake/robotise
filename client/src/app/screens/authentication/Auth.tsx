@@ -21,9 +21,10 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 
 	/**
 	 * authentication state
+	 *
 	 * loading: Loader
 	 * success: Dashboard
-	 * error: Login
+	 * error: 	Login
 	 */
 
 	if (loading) {

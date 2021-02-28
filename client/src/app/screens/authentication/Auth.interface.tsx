@@ -4,9 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { RouteTypeEnum } from '../../routes/Routes.enum';
 import { LayoutPageInterface, RouteInterface } from '../../routes/Routes.interfaces';
 
-/**
- * Auth properties
- */
+// auth properties
 export interface AuthInterface<T = ReactNode> {
 	appRoute: RouteInterface;
 	template: FC<LayoutPageInterface>;
@@ -14,9 +12,7 @@ export interface AuthInterface<T = ReactNode> {
 	type: RouteTypeEnum;
 }
 
-/**
- * JWT access token payload
- */
+// JWT access token payload
 export interface AuthJWTInterface {
 	name: string;
 	email: string;
@@ -25,24 +21,20 @@ export interface AuthJWTInterface {
 	user_id: string;
 }
 
-/**
- * user request payload
- */
+// user request payload
 export interface AuthLoginInterface {
 	email: string;
 	password: string;
+	rememberMe?: boolean;
 }
 
-/**
- * user response payload
- */
+// user response payload
 export interface AuthUserDetailInterface {
 	data: AuthUserDataInterface;
 	role: string;
 	exp: number;
 	uuid: string;
 }
-
 export interface AuthUserDataInterface {
 	displayName?: string;
 	email: string;

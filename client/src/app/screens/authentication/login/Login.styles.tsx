@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-import { AppConfig } from '../../../services';
+import { ConfigService } from '../../../services';
 import { pxToRem } from '../../../utilities/methods/PixelsToRem';
 import { randomNum } from '../../../utilities/methods/RandomNum';
 
@@ -10,9 +10,9 @@ export const loginStyles = makeStyles((theme) => ({
 	},
 	image: {
 		backgroundImage: `url(${
-			AppConfig.AppImageURLs.robotise.path +
+			ConfigService.AppImageURLs.robotise.path +
 			randomNum(1, 8) +
-			AppConfig.AppImageURLs.robotise.format
+			ConfigService.AppImageURLs.robotise.format
 		})`,
 		backgroundPosition: 'center',
 		backgroundPositionX: '30%',
@@ -42,7 +42,7 @@ export const loginStyles = makeStyles((theme) => ({
 
 			'&::first-line': {
 				fontSize: pxToRem(16),
-				fontFamily: AppConfig.AppOptions.fontFamily.Roboto
+				fontFamily: ConfigService.AppOptions.fontFamily.Roboto
 			}
 		}
 	},

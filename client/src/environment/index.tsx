@@ -1,9 +1,9 @@
-import { ApiEnv } from '../app/services';
+import { ConfigService } from '../app/services';
 import development from './development';
 import production from './production';
 
 const ENV = () => {
-	switch (ApiEnv.env) {
+	switch (ConfigService.env) {
 		case 'production':
 			return production;
 		default:

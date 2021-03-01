@@ -13,16 +13,16 @@ const Loader: FC = () => {
 	return (
 		<Box
 			component="section"
-			className={clsx('rc-loader', centerClasses.vhCenter)}
+			className={clsx('rc-loader', centerClasses.centerVH)}
 			textAlign="center">
-			<Box component="div" className="logo" marginBottom="15px">
+			<Box className="logo" marginBottom="15px">
 				<Avatar
-					className={loaderClasses.avatar}
+					className={loaderClasses.loaderAvatar}
 					alt={ConfigService.envAuthor}
 					src={ConfigService.AppImageURLs.logo.icon}
 				/>
 			</Box>
-			<Box component="div" className={loaderClasses.spinner}>
+			<Box className={loaderClasses.loaderSpinner}>
 				<CircularProgress color="inherit" />
 			</Box>
 		</Box>

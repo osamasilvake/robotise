@@ -6,9 +6,9 @@ import {
 	useMediaQuery
 } from '@material-ui/core';
 import React, { FC, Suspense, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import Meta from './frame/meta/Meta';
+import PushMessage from './frame/push-message/PushMessage';
 import Routes from './Routes';
 import { InterceptorService } from './services';
 import { ThemeSettings } from './Theme';
@@ -17,8 +17,6 @@ import { ThemeSettings } from './Theme';
 InterceptorService.setIntercertors();
 
 const App: FC = () => {
-	const { t } = useTranslation('META');
-
 	/**
 	 * theme setting
 	 */
@@ -31,12 +29,15 @@ const App: FC = () => {
 			<CssBaseline />
 
 			{/* Meta */}
-			<Meta description={t('GENERAL.DESCRIPTION')} />
+			<Meta />
 
 			{/* Routes */}
 			<Suspense fallback={<LinearProgress />}>
 				<Routes />
 			</Suspense>
+
+			{/* push message */}
+			<PushMessage />
 		</MuiThemeProvider>
 	);
 };

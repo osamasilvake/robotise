@@ -48,16 +48,13 @@ const Login: FC = () => {
 	 * handle submit event
 	 */
 	const formSubmit = async () => {
-		// dummy
-		await new Promise((resolve) => setTimeout(resolve, 4000));
-
-		// dispatch
+		// dispatch: login
 		dispatch(AuthLogin(values));
 	};
 
 	return (
-		<Grid container component="section" className={loginClasses.root}>
-			<Grid item xs={false} sm={6} md={7} className={loginClasses.image} />
+		<Grid container component="section" className={loginClasses.loginRoot}>
+			<Grid item xs={false} sm={6} md={7} className={loginClasses.loginImage} />
 			<Grid
 				item
 				xs={12}
@@ -66,14 +63,14 @@ const Login: FC = () => {
 				component={Paper}
 				elevation={6}
 				square
-				className={loginClasses.content}>
-				<Box className={loginClasses.paper}>
+				className={loginClasses.loginContent}>
+				<Box className={loginClasses.loginPaper}>
 					<Avatar
-						className={loginClasses.large}
+						className={loginClasses.loginAvatar}
 						alt={ConfigService.envAuthor}
 						src={ConfigService.AppImageURLs.logo.name}
 					/>
-					<form className={loginClasses.form} onSubmit={handleSubmit}>
+					<form className={loginClasses.loginForm} onSubmit={handleSubmit}>
 						<FormControl error fullWidth margin="normal">
 							<TextField
 								required
@@ -83,10 +80,10 @@ const Login: FC = () => {
 								name="email"
 								error={!!errors.email}
 								onChange={handleChange}
-								label={t('AUTH.LOGIN.EMAIL.LABEL')}
-								placeholder={t('AUTH.LOGIN.EMAIL.PLACEHOLDER')}
+								label={t('AUTH.LOGIN.FIELDS.EMAIL.LABEL')}
+								placeholder={t('AUTH.LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								inputProps={{
-									className: loginClasses.input,
+									className: loginClasses.loginInput,
 									form: {
 										autocomplete: 'off'
 									}
@@ -104,11 +101,11 @@ const Login: FC = () => {
 								name="password"
 								error={!!errors.password}
 								onChange={handleChange}
-								label={t('AUTH.LOGIN.PASSWORD.LABEL')}
-								placeholder={t('AUTH.LOGIN.PASSWORD.PLACEHOLDER')}
+								label={t('AUTH.LOGIN.FIELDS.PASSWORD.LABEL')}
+								placeholder={t('AUTH.LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
 								InputProps={{
 									classes: {
-										input: loginClasses.input
+										input: loginClasses.loginInput
 									},
 									endAdornment: (
 										<InputAdornment position="end">
@@ -133,18 +130,18 @@ const Login: FC = () => {
 									color="primary"
 								/>
 							}
-							label={t('AUTH.LOGIN.REMEMBER_ME.LABEL')}
+							label={t('AUTH.LOGIN.FIELDS.REMEMBER_ME.LABEL')}
 						/>
 
 						<Button
 							color="primary"
 							variant="contained"
 							type="submit"
-							className={loginClasses.submit}
+							className={loginClasses.loginSubmit}
 							disabled={loader || !allPropertiesEmpty(errors)}
 							fullWidth
 							endIcon={loader && <CircularProgress size={20} />}>
-							{t('AUTH.LOGIN.SIGN_IN.LABEL')}
+							{t('AUTH.LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
 
 						<Box mt={5}>

@@ -1,14 +1,14 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 
 import { ConfigService } from '../../../services';
 import { pxToRem } from '../../../utilities/methods/PixelsToRem';
 import { randomNum } from '../../../utilities/methods/RandomNum';
 
-export const loginStyles = makeStyles((theme) => ({
-	root: {
+export const loginStyles = makeStyles((theme: Theme) => ({
+	loginRoot: {
 		height: '100vh'
 	},
-	image: {
+	loginImage: {
 		backgroundImage: `url(${
 			ConfigService.AppImageURLs.robotise.path +
 			randomNum(1, 8) +
@@ -19,24 +19,24 @@ export const loginStyles = makeStyles((theme) => ({
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover'
 	},
-	content: {
+	loginContent: {
 		backgroundColor: theme.palette.background.default
 	},
-	paper: {
+	loginPaper: {
 		alignItems: 'center',
 		display: 'flex',
 		flexDirection: 'column',
 		margin: theme.spacing(8, 4)
 	},
-	large: {
+	loginAvatar: {
 		borderRadius: 0,
-		margin: '20px 0',
+		margin: theme.spacing(3, 0),
 		width: theme.spacing(20)
 	},
-	form: {
+	loginForm: {
 		marginTop: theme.spacing(1)
 	},
-	input: {
+	loginInput: {
 		'&:-webkit-autofill': {
 			WebkitBoxShadow: `0 0 0 1000px ${theme.palette.background.default} inset`,
 
@@ -46,7 +46,7 @@ export const loginStyles = makeStyles((theme) => ({
 			}
 		}
 	},
-	submit: {
+	loginSubmit: {
 		margin: theme.spacing(3, 0, 2)
 	}
 }));

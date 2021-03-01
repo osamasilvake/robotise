@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 
+import ENV from '../../../../environment';
 import { RouteInterface } from '../../../routes/Routes.interfaces';
 
 const Sites = lazy(() => import('./Sites'));
@@ -8,7 +9,7 @@ const siteRoutes: RouteInterface[] = [
 	{
 		component: Sites,
 		exact: true,
-		path: '/sites'
+		path: ENV().ROUTING.PACKAGES.SITES.MAIN
 	}
 ];
 export default siteRoutes;

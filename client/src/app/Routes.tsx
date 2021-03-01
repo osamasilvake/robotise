@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import GlobalLayout from './layouts/GlobalLayout';
+import GlobalLayout from './layouts/global/GlobalLayout';
 import routesTemplates from './routes/index';
 import Auth from './screens/authentication/Auth';
 import Error404 from './screens/pages/404/Error404';

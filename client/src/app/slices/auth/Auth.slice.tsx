@@ -5,6 +5,9 @@ import {
 	AuthUserDetailInterface
 } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
+import { PushMessageTypeEnum } from '../general/General.enum';
+import { PushMessageInterface } from '../general/General.interface';
+import { generalPushMessage } from '../general/General.slice';
 import { RootStateInterface } from '../Slices.interface';
 import { AuthSliceInterface } from './Auth.interface';
 
@@ -47,39 +50,43 @@ export const authSelector = (state: RootStateInterface) => state['auth'];
 export default dataSlice.reducer;
 
 /**
- * validate authentication
+ * validate login
  */
 export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
 	// dispatch: loader
 	dispatch(authLoading());
 
-	setTimeout(() => {
-		const accessToken = AuthService.getAccessToken();
-		if (accessToken) {
-			if (AuthService.authTokenValid(accessToken)) {
-				const userInfo: AuthUserDetailInterface = AuthService.authUserDetail(accessToken);
+	const accessToken = AuthService.getAccessToken();
+	if (accessToken) {
+		if (AuthService.authTokenValid(accessToken)) {
+			const userInfo: AuthUserDetailInterface = AuthService.authUserDetail(accessToken);
 
-				// dispatch: response
-				dispatch(authSuccess(userInfo));
-			} else {
-				// dispatch: error
-				dispatch(
-					authFailure({
-						status: 400,
-						msg: 'Token Got Expired!'
-					})
-				);
-			}
+			// dispatch: response
+			dispatch(authSuccess(userInfo));
 		} else {
+			const err: PushMessageInterface = {
+				severity: PushMessageTypeEnum.ERROR,
+				text: 'GLOBAL.AUTH.LOGIN.ERRORS.TOKEN_EXPIRED'
+			};
+
 			// dispatch: error
-			dispatch(
-				authFailure({
-					status: 400,
-					msg: 'No Token Found!'
-				})
-			);
+			dispatch(authFailure(err));
+
+			// dispatch: message
+			dispatch(generalPushMessage(err));
+
+			// remove token
+			AuthService.removeAccessToken();
 		}
-	}, 1000);
+	} else {
+		const err: PushMessageInterface = {
+			severity: PushMessageTypeEnum.ERROR,
+			text: 'GLOBAL.AUTH.LOGIN.ERRORS.TOKEN_EMPTY'
+		};
+
+		// dispatch: error
+		dispatch(authFailure(err));
+	}
 };
 
 /**
@@ -89,11 +96,17 @@ export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
 export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispatch) => {
 	AuthService.authLogin(payload)
 		.then((res) => {
+			// set token
 			AuthService.setAccessToken(res.access_token);
+
+			// decode user detail from access token
 			const user = AuthService.authUserDetail(res.access_token);
+
+			// dispatch: response
 			dispatch(authSuccess(user));
 		})
 		.catch((err) => {
+			// dispatch: error
 			dispatch(authFailure(err));
 		});
 };
@@ -105,13 +118,11 @@ export const AuthLogout = () => async (dispatch: Dispatch) => {
 	// dispatch: loader
 	dispatch(authLoading());
 
-	setTimeout(() => {
-		const accessToken = AuthService.getAccessToken();
-		if (accessToken) {
-			AuthService.authLogout();
-		}
+	const accessToken = AuthService.getAccessToken();
+	if (accessToken) {
+		AuthService.authLogout();
+	}
 
-		// dispatch: reset
-		dispatch(resetState());
-	}, 1000);
+	// dispatch: reset
+	dispatch(resetState());
 };

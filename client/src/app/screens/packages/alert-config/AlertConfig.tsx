@@ -4,18 +4,18 @@ import { useTranslation } from 'react-i18next';
 
 import Meta from '../../../frame/meta/Meta';
 
-const Sites: FC = () => {
+const AlertConfig: FC = () => {
 	const { t } = useTranslation('META');
 
 	return (
 		<>
-			<Meta title={t('SITES.TITLE')} description={t('SITES.DESCRIPTION')} />
-			<Box component="section" className="rc-sites">
+			<Meta title={t('ALERT_CONFIG.TITLE')} description={t('ALERT_CONFIG.DESCRIPTION')} />
+			<Box component="section" className="rc-alert-config">
 				<Typography component="h1" variant="h4">
-					Sites
+					Alert Config
 				</Typography>
 			</Box>
 		</>
 	);
 };
-export default Sites;
+export default AlertConfig;

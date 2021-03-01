@@ -33,6 +33,9 @@ class ConfigService extends EnvService {
 			snackbar: {
 				timeout: 6000,
 				direction
+			},
+			drawer: {
+				width: 260
 			}
 		};
 	}

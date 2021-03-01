@@ -4,18 +4,18 @@ import { useTranslation } from 'react-i18next';
 
 import Meta from '../../../frame/meta/Meta';
 
-const Sites: FC = () => {
+const OrderReports: FC = () => {
 	const { t } = useTranslation('META');
 
 	return (
 		<>
-			<Meta title={t('SITES.TITLE')} description={t('SITES.DESCRIPTION')} />
-			<Box component="section" className="rc-sites">
+			<Meta title={t('ORDER_REPORTS.TITLE')} description={t('ORDER_REPORTS.DESCRIPTION')} />
+			<Box component="section" className="rc-order-reports">
 				<Typography component="h1" variant="h4">
-					Sites
+					Order Reports
 				</Typography>
 			</Box>
 		</>
 	);
 };
-export default Sites;
+export default OrderReports;

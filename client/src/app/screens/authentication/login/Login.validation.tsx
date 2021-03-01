@@ -13,17 +13,17 @@ export const LoginFormValidation = (values: AuthLoginInterface): AuthLoginInterf
 
 	// Email
 	if (!values.email) {
-		errors.email = 'AUTH.LOGIN.EMAIL.VALIDATIONS.REQUIRED';
+		errors.email = 'AUTH.LOGIN.FIELDS.EMAIL.VALIDATIONS.REQUIRED';
 	}
 
 	// Password
 	if (!values.password) {
-		errors.password = 'AUTH.LOGIN.PASSWORD.VALIDATIONS.REQUIRED';
+		errors.password = 'AUTH.LOGIN.FIELDS.PASSWORD.VALIDATIONS.REQUIRED';
 	}
 
 	// Email: format
 	if (values.email && !validateEmail(values.email)) {
-		errors.email = 'AUTH.LOGIN.EMAIL.VALIDATIONS.INVALID';
+		errors.email = 'AUTH.LOGIN.FIELDS.EMAIL.VALIDATIONS.INVALID';
 	}
 
 	return errors;

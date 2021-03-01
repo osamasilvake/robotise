@@ -1,5 +1,5 @@
-import GlobalLayout from '../layouts/GlobalLayout';
-import PrivateLayout from '../layouts/PrivateLayout';
+import GlobalLayout from '../layouts/global/GlobalLayout';
+import PrivateLayout from '../layouts/private/PrivateLayout';
 import { RouteTypeEnum } from './Routes.enum';
 import { RouteTemplateInterface } from './Routes.interfaces';
 import privateRoutes from './types/private';

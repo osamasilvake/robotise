@@ -1,13 +1,13 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { ConfigService } from '../../services';
 
-export const loaderStyles = makeStyles((theme) => ({
-	avatar: {
-		width: theme.spacing(18),
-		height: theme.spacing(18)
+export const loaderStyles = makeStyles((theme: Theme) => ({
+	loaderAvatar: {
+		height: theme.spacing(18),
+		width: theme.spacing(18)
 	},
-	spinner: {
+	loaderSpinner: {
 		color: ConfigService.AppVariables.colors.c4
 	}
 }));

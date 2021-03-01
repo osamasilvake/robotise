@@ -13,11 +13,12 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	const { loading, response, errors } = useSelector(authSelector);
 
 	useEffect(() => {
+		// dispatch: validate login
 		dispatch(AuthValidateLogin());
 	}, [dispatch]);
 
 	const user = response && response.uuid;
-	const error = errors && errors.status;
+	const error = errors && errors.severity;
 
 	/**
 	 * authentication state

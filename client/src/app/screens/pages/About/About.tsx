@@ -8,7 +8,7 @@ const About: FC = () => {
 	const centerClasses = centerStyles();
 
 	return (
-		<Box component="section" className={clsx('rc-about', centerClasses.vhCenter)}>
+		<Box component="section" className={clsx('rc-about', centerClasses.centerVH)}>
 			<Typography variant="h1">About</Typography>
 			<Typography variant="body1">About Page</Typography>
 		</Box>

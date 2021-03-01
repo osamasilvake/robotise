@@ -1,4 +1,5 @@
 import { AuthUserDetailInterface } from '../../screens/authentication/Auth.interface';
+import { PushMessageTypeEnum } from '../general/General.enum';
 
 // auth slice
 export interface AuthSliceInterface {
@@ -9,6 +10,6 @@ export interface AuthSliceInterface {
 
 // error payload
 export interface ErrorInterface {
-	status: string;
-	msg: string;
+	severity: PushMessageTypeEnum;
+	text: string;
 }

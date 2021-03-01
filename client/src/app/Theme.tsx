@@ -1,50 +1,92 @@
 import { ThemeOptions } from '@material-ui/core';
 import { PaletteOptions } from '@material-ui/core/styles/createPalette';
+import { Overrides } from '@material-ui/core/styles/overrides';
 
 import { ConfigService } from './services';
 import { pxToRem } from './utilities/methods/PixelsToRem';
 
-export const ThemeSettings = (prefersDarkMode: boolean): ThemeOptions => ({
-	palette: prefersDarkMode ? Dark : Light,
-	overrides: {
-		MuiAvatar: {
-			img: {
-				objectFit: 'contain'
-			}
-		},
-		MuiButton: {
-			root: {
-				height: pxToRem(44)
-			},
-			containedPrimary: {
-				color: 'white'
-			}
-		}
-	}
-});
+/**
+ * theme settings
+ * @param prefersDarkMode
+ */
+export const ThemeSettings = (prefersDarkMode: boolean): ThemeOptions =>
+	prefersDarkMode ? Dark : Light;
 
-const Light: PaletteOptions = {
-	type: 'light',
-	background: {
-		default: ConfigService.AppVariables.colors.c2
-	},
+// common palette
+const palette: PaletteOptions = {
 	primary: {
-		main: '#60aadc'
+		main: ConfigService.AppVariables.colors.c4
 	},
 	secondary: {
-		main: '#11cb5f'
+		main: ConfigService.AppVariables.colors.c1
 	}
 };
 
-const Dark: PaletteOptions = {
-	type: 'dark',
-	background: {
-		default: ConfigService.AppVariables.colors.c3
+// common overrides
+const overrides: Overrides = {
+	MuiAvatar: {
+		img: {
+			objectFit: 'contain'
+		}
 	},
-	primary: {
-		main: '#60aadc'
+	MuiButton: {
+		root: {
+			height: pxToRem(44)
+		},
+		containedPrimary: {
+			color: 'white'
+		}
+	}
+};
+
+// theme: light
+const Light: ThemeOptions = {
+	palette: {
+		...palette,
+		type: 'light',
+		background: {
+			default: ConfigService.AppVariables.colors.c2
+		}
 	},
-	secondary: {
-		main: '#11cb5f'
+	overrides: {
+		...overrides,
+		MuiAppBar: {
+			colorPrimary: {
+				backgroundColor: ConfigService.AppVariables.colors.c2,
+				color: ConfigService.AppVariables.colors.c3
+			}
+		},
+		MuiDrawer: {
+			paper: {
+				background: ConfigService.AppVariables.colors.c2,
+				color: ConfigService.AppVariables.colors.c3
+			}
+		}
+	}
+};
+
+// theme: dark
+const Dark: ThemeOptions = {
+	palette: {
+		...palette,
+		type: 'dark',
+		background: {
+			default: ConfigService.AppVariables.colors.c3
+		}
+	},
+	overrides: {
+		...overrides,
+		MuiAppBar: {
+			colorPrimary: {
+				backgroundColor: ConfigService.AppVariables.colors.c3,
+				color: ConfigService.AppVariables.colors.c2
+			}
+		},
+		MuiDrawer: {
+			paper: {
+				background: ConfigService.AppVariables.colors.c3,
+				color: ConfigService.AppVariables.colors.c2
+			}
+		}
 	}
 };

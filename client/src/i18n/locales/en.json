@@ -8,7 +8,6 @@
 	},
 	"META": {
 		"GENERAL": {
-			"TITLE": "",
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
 		},
 		"SITES": {
@@ -30,32 +29,43 @@
 		"ALERT_CONFIG": {
 			"TITLE": "Alert Config",
 			"DESCRIPTION": "Alert Config Description"
+		},
+		"CHANGELOGS": {
+			"TITLE": "Changelogs",
+			"DESCRIPTION": "Changelogs Description"
 		}
 	},
 	"GLOBAL": {
-		"EMAIL": "Enter your email Address",
 		"AUTH": {
 			"LOGIN": {
-				"EMAIL": {
-					"LABEL": "Email Address",
-					"PLACEHOLDER": "Enter your email Address",
-					"VALIDATIONS": {
-						"REQUIRED": "Please enter the required email address!",
-						"INVALID": "Please enter the correct Email format!"
+				"FIELDS": {
+					"EMAIL": {
+						"LABEL": "Email Address",
+						"PLACEHOLDER": "Enter your email Address",
+						"VALIDATIONS": {
+							"REQUIRED": "Please enter the required email address!",
+							"INVALID": "Please enter the correct Email format!"
+						}
+					},
+					"PASSWORD": {
+						"LABEL": "Password",
+						"PLACEHOLDER": "Enter your password",
+						"VALIDATIONS": {
+							"REQUIRED": "Please enter the required password!"
+						}
+					},
+					"REMEMBER_ME": {
+						"LABEL": "Remember Me"
 					}
 				},
-				"PASSWORD": {
-					"LABEL": "Password",
-					"PLACEHOLDER": "Enter your password",
-					"VALIDATIONS": {
-						"REQUIRED": "Please enter the required password!"
+				"BUTTONS": {
+					"SIGN_IN": {
+						"LABEL": "Sign In"
 					}
 				},
-				"REMEMBER_ME": {
-					"LABEL": "Remember Me"
-				},
-				"SIGN_IN": {
-					"LABEL": "Sign In"
+				"ERRORS": {
+					"TOKEN_EXPIRED": "Token Got Expired!",
+					"TOKEN_EMPTY": "No Token Found!"
 				}
 			}
 		},
@@ -66,5 +76,14 @@
 			}
 		}
 	},
-	"PRIVATE": {}
+	"PRIVATE": {
+		"ROUTES": {
+			"SITES": "Sites",
+			"ROBOTS": "Robots",
+			"PRODUCTS": "Products",
+			"ORDER_REPORTS": "Order Reports",
+			"ALERT_CONFIG": "Alert Config",
+			"CHANGELOG": "Changelog"
+		}
+	}
 }

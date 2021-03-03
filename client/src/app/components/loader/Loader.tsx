@@ -18,8 +18,8 @@ const Loader: FC = () => {
 			<Box className="logo" marginBottom="15px">
 				<Avatar
 					className={loaderClasses.loaderAvatar}
-					alt={ConfigService.envAuthor}
 					src={ConfigService.AppImageURLs.logo.icon}
+					alt={ConfigService.envAuthor}
 				/>
 			</Box>
 			<Box className={loaderClasses.loaderSpinner}>

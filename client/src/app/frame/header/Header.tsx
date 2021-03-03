@@ -1,58 +1,84 @@
-import { AppBar, Divider, IconButton, Toolbar } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {
+	AppBar,
+	Avatar,
+	Box,
+	Divider,
+	IconButton,
+	Menu,
+	MenuItem,
+	Toolbar
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React, { FC } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { generalOpenDrawer } from '../../slices/general/General.slice';
+import Badge from '../../components/badge/Badge';
+import { ConfigService } from '../../services';
+import { AuthLogout } from '../../slices/auth/Auth.slice';
 import { HeaderInterface } from './Header.interface';
 import { headerStyles } from './Header.styles';
 
 const Header: FC<HeaderInterface> = (props) => {
-	const headerClasses = headerStyles();
 	const { open, setOpen } = props;
+	const headerClasses = headerStyles();
 
 	const dispatch = useDispatch();
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
 	/**
-	 * handle drawer state
-	 * @param value
+	 * handle menu close
 	 */
-	const handleDrawerState = (value: boolean) => {
-		// set open drawer state
-		setOpen(value);
+	const handleMenuClose = () => {
+		setAnchorEl(null);
+	};
 
-		// dispatch: set open drawer state
-		dispatch(generalOpenDrawer(value));
+	/**
+	 * handle logout user
+	 */
+	const handleLogout = () => {
+		// dispatch: logout
+		dispatch(AuthLogout());
 	};
 
 	return (
 		<AppBar
 			position="fixed"
 			elevation={0}
+			color="inherit"
 			className={clsx(headerClasses.appBar, {
 				[headerClasses.appBarShift]: open
 			})}>
 			<Toolbar className={headerClasses.appBarToolbar}>
-				<IconButton
-					color="inherit"
-					aria-label="open drawer"
-					onClick={() => handleDrawerState(true)}
-					edge="start"
-					className={clsx(open && headerClasses.appBarIconHide)}>
-					<MenuIcon />
+				<Box>
+					{!open && (
+						<IconButton onClick={() => setOpen(true)} edge="start">
+							<MenuIcon />
+						</IconButton>
+					)}
+				</Box>
+
+				{/* Menu */}
+				<IconButton onClick={($event) => setAnchorEl($event.currentTarget)}>
+					<Badge>
+						<Avatar
+							src={ConfigService.AppImageURLs.avatar.path}
+							alt={ConfigService.AppImageURLs.avatar.name}
+						/>
+					</Badge>
 				</IconButton>
-				<IconButton
-					color="inherit"
-					aria-label="close drawer"
-					onClick={() => handleDrawerState(false)}
-					edge="start"
-					className={clsx(!open && headerClasses.appBarIconHide)}>
-					<ArrowBackIcon />
-				</IconButton>
+				<Menu
+					id="rc-account-menu"
+					anchorEl={anchorEl}
+					open={Boolean(anchorEl)}
+					onClose={handleMenuClose}>
+					<MenuItem>Profile</MenuItem>
+					<MenuItem>My account</MenuItem>
+					<Divider />
+					<MenuItem onClick={handleLogout}>Logout</MenuItem>
+				</Menu>
 			</Toolbar>
-			<Divider />
 		</AppBar>
 	);
 };

@@ -27,14 +27,39 @@ const overrides: Overrides = {
 	MuiAvatar: {
 		img: {
 			objectFit: 'contain'
+		},
+		square: {
+			borderRadius: 0
 		}
 	},
 	MuiButton: {
 		root: {
 			height: pxToRem(44)
 		},
-		containedPrimary: {
-			color: 'white'
+		contained: {
+			backgroundColor: ConfigService.AppVariables.colors.c4,
+			color: ConfigService.AppVariables.colors.c6,
+			'&:hover': {
+				backgroundColor: ConfigService.AppVariables.colors.c4,
+				opacity: 0.9
+			}
+		}
+	},
+	MuiDrawer: {
+		paperAnchorDockedLeft: {
+			borderRight: 0
+		}
+	},
+	MuiListItem: {
+		root: {
+			'&$button': {
+				'&:hover': {
+					backgroundColor: ConfigService.AppVariables.colors.c4
+				},
+				'&.active': {
+					backgroundColor: ConfigService.AppVariables.colors.c4
+				}
+			}
 		}
 	}
 };
@@ -50,16 +75,41 @@ const Light: ThemeOptions = {
 	},
 	overrides: {
 		...overrides,
+		MuiPaper: {
+			root: {
+				backgroundColor: ConfigService.AppVariables.colors.c6
+			}
+		},
 		MuiAppBar: {
-			colorPrimary: {
-				backgroundColor: ConfigService.AppVariables.colors.c2,
-				color: ConfigService.AppVariables.colors.c3
+			root: {
+				backgroundColor: ConfigService.AppVariables.colors.c6,
+				color: ConfigService.AppVariables.colors.c3,
+				boxShadow: `${pxToRem(1)} ${pxToRem(1)} ${pxToRem(1)} ${
+					ConfigService.AppVariables.colors.c8
+				}`
 			}
 		},
 		MuiDrawer: {
+			...overrides.MuiDrawer,
 			paper: {
-				background: ConfigService.AppVariables.colors.c2,
-				color: ConfigService.AppVariables.colors.c3
+				background: ConfigService.AppVariables.colors.c6,
+				color: ConfigService.AppVariables.colors.c3,
+				boxShadow: `${pxToRem(1)} ${pxToRem(1)} ${pxToRem(1)} ${
+					ConfigService.AppVariables.colors.c8
+				}`
+			}
+		},
+		MuiOutlinedInput: {
+			input: {
+				'&:-webkit-autofill': {
+					WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
+						ConfigService.AppVariables.colors.c6
+					} inset`,
+					'&::first-line': {
+						fontSize: pxToRem(16),
+						fontFamily: ConfigService.AppOptions.fontFamily.Roboto
+					}
+				}
 			}
 		}
 	}
@@ -76,16 +126,41 @@ const Dark: ThemeOptions = {
 	},
 	overrides: {
 		...overrides,
+		MuiPaper: {
+			root: {
+				backgroundColor: ConfigService.AppVariables.colors.c5
+			}
+		},
 		MuiAppBar: {
-			colorPrimary: {
-				backgroundColor: ConfigService.AppVariables.colors.c3,
+			root: {
+				backgroundColor: ConfigService.AppVariables.colors.c5,
+				boxShadow: `${pxToRem(1)} ${pxToRem(1)} ${pxToRem(1)} ${
+					ConfigService.AppVariables.colors.c7
+				}`,
 				color: ConfigService.AppVariables.colors.c2
 			}
 		},
 		MuiDrawer: {
+			...overrides.MuiDrawer,
 			paper: {
-				background: ConfigService.AppVariables.colors.c3,
+				background: ConfigService.AppVariables.colors.c5,
+				boxShadow: `${pxToRem(1)} ${pxToRem(1)} ${pxToRem(1)} ${
+					ConfigService.AppVariables.colors.c7
+				}`,
 				color: ConfigService.AppVariables.colors.c2
+			}
+		},
+		MuiOutlinedInput: {
+			input: {
+				'&:-webkit-autofill': {
+					WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
+						ConfigService.AppVariables.colors.c5
+					} inset`,
+					'&::first-line': {
+						fontSize: pxToRem(16),
+						fontFamily: ConfigService.AppOptions.fontFamily.Roboto
+					}
+				}
 			}
 		}
 	}

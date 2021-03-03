@@ -25,14 +25,16 @@ export const sidebarStyles = makeStyles((theme: Theme) => ({
 		width: theme.spacing(7) + 1
 	},
 	drawerAvatar: {
-		borderRadius: 0,
 		width: theme.spacing(15)
 	},
 	drawerToolbar: {
 		alignItems: 'center',
 		display: 'flex',
-		justifyContent: 'flex-start',
-		padding: theme.spacing(0, 2),
+		justifyContent: 'space-between',
+		paddingLeft: theme.spacing(2),
 		...theme.mixins.toolbar // necessary for content to be below app bar
+	},
+	ListItem: {
+		padding: theme.spacing(0.7, 2)
 	}
 }));

@@ -65,21 +65,21 @@ class AuthService {
 	 * @param accessToken
 	 */
 	setAccessToken = (accessToken: string) => {
-		localStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessTokken, accessToken);
+		localStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
 	};
 
 	/**
 	 * get access token
 	 */
 	getAccessToken = () => {
-		return localStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessTokken);
+		return localStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
 	};
 
 	/**
 	 * remove access token
 	 */
 	removeAccessToken = () => {
-		localStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessTokken);
+		localStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
 	};
 }
 const instance = new AuthService();

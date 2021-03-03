@@ -10,27 +10,26 @@ import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
 	const dispatch = useDispatch();
-	const { loading, response, errors } = useSelector(authSelector);
+	const { loading, response } = useSelector(authSelector);
+
+	const user = !!(response && response.uuid);
 
 	useEffect(() => {
 		// dispatch: validate login
 		dispatch(AuthValidateLogin());
 	}, [dispatch]);
 
-	const user = response && response.uuid;
-	const error = errors && errors.severity;
-
 	/**
 	 * authentication state
 	 *
 	 * loading: Loader
-	 * success: Dashboard
-	 * error: 	Login
+	 * user: 	Dashboard
+	 * !user: 	Login
 	 */
 
 	if (loading) {
 		return <Loader />;
-	} else if (isPrivate(type) && !user && error) {
+	} else if (isPrivate(type) && !user) {
 		return <Redirect to={ENV().ROUTING.AUTH.LOGIN} />;
 	} else if (isSession(type) && user) {
 		return <Redirect to={ENV().ROUTING.PACKAGES.DASHBOARD} />;

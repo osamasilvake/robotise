@@ -10,9 +10,14 @@ class ConfigService extends EnvService {
 		return {
 			colors: {
 				c1: '#000000',
-				c2: '#ffffff',
-				c3: '#262933',
-				c4: '#64b0e5'
+				c2: '#f2f5fa',
+				c3: '#272b37',
+				c4: '#64b0e5',
+				c5: '#2f3443',
+				c6: '#ffffff',
+				c7: '#202227',
+				c8: '#dbdcde',
+				c9: '#44b700'
 			}
 		};
 	}
@@ -56,7 +61,7 @@ class ConfigService extends EnvService {
 	 */
 	get AppLocalStorageItems() {
 		return {
-			JWTAccessTokken: 'jwt_access_token'
+			JWTAccessToken: 'jwt_access_token'
 		};
 	}
 
@@ -72,6 +77,10 @@ class ConfigService extends EnvService {
 			robotise: {
 				path: '/assets/images/robotise/',
 				format: '.jpg'
+			},
+			avatar: {
+				path: '/assets/svg/avatars/avatar.svg',
+				name: 'avatar'
 			}
 		};
 	}

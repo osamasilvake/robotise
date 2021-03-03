@@ -1,7 +1,7 @@
 import ENV from '../../../environment';
 import { sidebarListInterface } from './Sidebar.interface';
 
-export const sidebarList: sidebarListInterface[] = [
+const sidebarPrimaryList: sidebarListInterface[] = [
 	{
 		id: 1,
 		icon: 'domain',
@@ -32,11 +32,16 @@ export const sidebarList: sidebarListInterface[] = [
 		label: 'ROUTES.ALERT_CONFIG',
 		path: ENV().ROUTING.PACKAGES.ALERT_CONFIG.MAIN,
 		newLine: true
-	},
+	}
+];
+
+const sidebarSecondaryList: sidebarListInterface[] = [
 	{
-		id: 6,
+		id: 1,
 		icon: 'list_alt',
 		label: 'ROUTES.CHANGELOG',
 		path: ENV().ROUTING.PACKAGES.CHANGELOG
 	}
 ];
+
+export { sidebarPrimaryList, sidebarSecondaryList };

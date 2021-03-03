@@ -1,12 +1,8 @@
-import {
-	createMuiTheme,
-	CssBaseline,
-	LinearProgress,
-	MuiThemeProvider,
-	useMediaQuery
-} from '@material-ui/core';
+import { createMuiTheme, CssBaseline, MuiThemeProvider, useMediaQuery } from '@material-ui/core';
 import React, { FC, Suspense, useMemo } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 
+import Loader from './components/loader/Loader';
 import Meta from './frame/meta/Meta';
 import PushMessage from './frame/push-message/PushMessage';
 import Routes from './Routes';
@@ -17,9 +13,6 @@ import { ThemeSettings } from './Theme';
 InterceptorService.setIntercertors();
 
 const App: FC = () => {
-	/**
-	 * theme setting
-	 */
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 	const theme = useMemo(() => createMuiTheme(ThemeSettings(prefersDarkMode)), [prefersDarkMode]);
 
@@ -28,16 +21,18 @@ const App: FC = () => {
 			{/* UI baseline */}
 			<CssBaseline />
 
-			{/* Meta */}
-			<Meta />
+			<HelmetProvider>
+				{/* Meta */}
+				<Meta />
 
-			{/* Routes */}
-			<Suspense fallback={<LinearProgress />}>
-				<Routes />
-			</Suspense>
+				{/* Routes */}
+				<Suspense fallback={<Loader />}>
+					<Routes />
+				</Suspense>
 
-			{/* push message */}
-			<PushMessage />
+				{/* push message */}
+				<PushMessage />
+			</HelmetProvider>
 		</MuiThemeProvider>
 	);
 };

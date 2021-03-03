@@ -22,6 +22,7 @@ import Copyright from '../../../frame/copyrights/Copyrights';
 import { ConfigService } from '../../../services';
 import { AuthLogin } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/UseForm';
+import { timeout } from '../../../utilities/methods/Timeout';
 import { allPropertiesEmpty } from '../../../utilities/methods/validateObjProperties';
 import { AuthLoginInterface } from '../Auth.interface';
 import { loginStyles } from './Login.styles';
@@ -48,6 +49,9 @@ const Login: FC = () => {
 	 * handle submit event
 	 */
 	const formSubmit = async () => {
+		// timeout: 800ms
+		await timeout(800);
+
 		// dispatch: login
 		dispatch(AuthLogin(values));
 	};
@@ -55,20 +59,13 @@ const Login: FC = () => {
 	return (
 		<Grid container component="section" className={loginClasses.loginRoot}>
 			<Grid item xs={false} sm={6} md={7} className={loginClasses.loginImage} />
-			<Grid
-				item
-				xs={12}
-				sm={6}
-				md={5}
-				component={Paper}
-				elevation={6}
-				square
-				className={loginClasses.loginContent}>
+			<Grid item xs={12} sm={6} md={5} component={Paper} elevation={6} square>
 				<Box className={loginClasses.loginPaper}>
 					<Avatar
+						variant="square"
 						className={loginClasses.loginAvatar}
-						alt={ConfigService.envAuthor}
 						src={ConfigService.AppImageURLs.logo.name}
+						alt={ConfigService.envAuthor}
 					/>
 					<form className={loginClasses.loginForm} onSubmit={handleSubmit}>
 						<FormControl error fullWidth margin="normal">
@@ -83,7 +80,6 @@ const Login: FC = () => {
 								label={t('AUTH.LOGIN.FIELDS.EMAIL.LABEL')}
 								placeholder={t('AUTH.LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								inputProps={{
-									className: loginClasses.loginInput,
 									form: {
 										autocomplete: 'off'
 									}
@@ -104,13 +100,9 @@ const Login: FC = () => {
 								label={t('AUTH.LOGIN.FIELDS.PASSWORD.LABEL')}
 								placeholder={t('AUTH.LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
 								InputProps={{
-									classes: {
-										input: loginClasses.loginInput
-									},
 									endAdornment: (
 										<InputAdornment position="end">
 											<IconButton
-												aria-label="toggle password visibility"
 												edge="end"
 												onClick={() => setShowPassword(!showPassword)}>
 												{showPassword ? <Visibility /> : <VisibilityOff />}
@@ -134,7 +126,6 @@ const Login: FC = () => {
 						/>
 
 						<Button
-							color="primary"
 							variant="contained"
 							type="submit"
 							className={loginClasses.loginSubmit}

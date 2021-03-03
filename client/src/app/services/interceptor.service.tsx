@@ -11,10 +11,10 @@ class InterceptorService {
 			(err) => {
 				return new Promise((_resolve, reject) => {
 					// un-authorized access
-					const status = err.response.status;
-					const isRetryRequest = err.config.__isRetryRequest;
-					if (status === 401 && !isRetryRequest) {
-						AuthService.removeAccessToken();
+					const status = err.response && err.response.status;
+					if (status === 401) {
+						// clear authentication
+						AuthService.authLogout();
 					}
 
 					// send logs

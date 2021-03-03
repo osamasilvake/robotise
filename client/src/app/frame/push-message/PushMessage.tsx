@@ -1,10 +1,9 @@
-import { IconButton, Snackbar } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import Alert from '@material-ui/lab/Alert';
+import { Snackbar } from '@material-ui/core';
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
+import Alerts from '../../components/alerts/Alerts';
 import { ConfigService } from '../../services';
 import { generalSelector } from '../../slices/general/General.slice';
 
@@ -33,19 +32,9 @@ const PushMessage: FC = () => {
 			autoHideDuration={ConfigService.AppOptions.snackbar.timeout}
 			open={open}
 			onClose={handleClose}>
-			<Alert
-				severity={pushMessage.severity}
-				action={
-					<IconButton
-						size="small"
-						color="inherit"
-						onClick={handleClose}
-						aria-label="close">
-						<CloseIcon fontSize="small" />
-					</IconButton>
-				}>
+			<Alerts severity={pushMessage.severity} handleClose={handleClose}>
 				{t(pushMessage.text)}
-			</Alert>
+			</Alerts>
 		</Snackbar>
 	);
 };

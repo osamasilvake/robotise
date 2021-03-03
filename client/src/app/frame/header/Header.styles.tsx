@@ -20,9 +20,8 @@ export const headerStyles = makeStyles((theme: Theme) => ({
 		width: `calc(100% - ${drawerWidth}px)`
 	},
 	appBarToolbar: {
+		display: 'flex',
+		justifyContent: 'space-between',
 		padding: theme.spacing(0, 2)
-	},
-	appBarIconHide: {
-		display: 'none'
 	}
 }));

@@ -1,29 +1,31 @@
 import {
 	Avatar,
 	Box,
-	Divider,
 	Drawer,
 	Icon,
+	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
-	ListItemText
+	ListItemText,
+	ListSubheader
 } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import ENV from '../../../environment';
 import { ConfigService } from '../../services';
 import { SidebarInterface } from './Sidebar.interface';
-import { sidebarList } from './Sidebar.list';
+import { sidebarPrimaryList, sidebarSecondaryList } from './Sidebar.list';
 import { sidebarStyles } from './Sidebar.styles';
 
 const Sidebar: FC<SidebarInterface> = (props) => {
 	const { t } = useTranslation('PRIVATE');
 
-	const { open } = props;
+	const { open, setOpen } = props;
 	const sidebarClasses = sidebarStyles();
 
 	return (
@@ -39,29 +41,67 @@ const Sidebar: FC<SidebarInterface> = (props) => {
 					[sidebarClasses.drawerClose]: !open
 				})
 			}}>
-			{/* Logo */}
-			<Link className={sidebarClasses.drawerToolbar} to={ENV().ROUTING.PACKAGES.DASHBOARD}>
-				<Avatar
-					className={sidebarClasses.drawerAvatar}
-					alt={ConfigService.envAuthor}
-					src={ConfigService.AppImageURLs.logo.name}
-				/>
-			</Link>
+			<Box className={sidebarClasses.drawerToolbar}>
+				<Link to={ENV().ROUTING.PACKAGES.DASHBOARD}>
+					<Avatar
+						variant="square"
+						className={sidebarClasses.drawerAvatar}
+						src={ConfigService.AppImageURLs.logo.name}
+						alt={ConfigService.envAuthor}
+					/>
+				</Link>
+				<IconButton onClick={() => setOpen(false)}>
+					<ArrowBackIcon />
+				</IconButton>
+			</Box>
 
-			<Divider />
+			<List
+				disablePadding
+				subheader={
+					<ListSubheader component="div">{(open && 'Pages') || 'List'}</ListSubheader>
+				}>
+				{sidebarPrimaryList.map((item) => (
+					<ListItem
+						key={item.id}
+						button
+						component={NavLink}
+						to={item.path}
+						exact
+						className={sidebarClasses.ListItem}>
+						{/* Icon */}
+						<ListItemIcon>
+							<Icon>{item.icon}</Icon>
+						</ListItemIcon>
 
-			{/* List */}
-			<List>
-				{sidebarList.map((item) => (
-					<Box key={item.id}>
-						<ListItem button component={Link} to={item.path}>
-							<ListItemIcon>
-								<Icon>{item.icon}</Icon>
-							</ListItemIcon>
-							<ListItemText primary={t(item.label)} />
-						</ListItem>
-						{!!item.newLine && <Divider />}
-					</Box>
+						{/* Text */}
+						<ListItemText primary={t(item.label)} />
+					</ListItem>
+				))}
+			</List>
+
+			<List
+				disablePadding
+				subheader={
+					<ListSubheader component="div">
+						{(open && 'Information') || 'Info'}
+					</ListSubheader>
+				}>
+				{sidebarSecondaryList.map((item) => (
+					<ListItem
+						key={item.id}
+						button
+						exact
+						component={NavLink}
+						to={item.path}
+						className={sidebarClasses.ListItem}>
+						{/* Icon */}
+						<ListItemIcon>
+							<Icon>{item.icon}</Icon>
+						</ListItemIcon>
+
+						{/* Text */}
+						<ListItemText primary={t(item.label)} />
+					</ListItem>
 				))}
 			</List>
 		</Drawer>

@@ -75,12 +75,12 @@ export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
 			// dispatch: message
 			dispatch(generalPushMessage(err));
 
-			// remove token
-			AuthService.removeAccessToken();
+			// clear authentication
+			AuthService.authLogout();
 		}
 	} else {
 		const err: PushMessageInterface = {
-			severity: PushMessageTypeEnum.ERROR,
+			severity: PushMessageTypeEnum.WARNING,
 			text: 'GLOBAL.AUTH.LOGIN.ERRORS.TOKEN_EMPTY'
 		};
 
@@ -118,11 +118,9 @@ export const AuthLogout = () => async (dispatch: Dispatch) => {
 	// dispatch: loader
 	dispatch(authLoading());
 
-	const accessToken = AuthService.getAccessToken();
-	if (accessToken) {
-		AuthService.authLogout();
-	}
+	// clear authentication
+	AuthService.authLogout();
 
-	// dispatch: reset
-	dispatch(resetState());
+	// dispatch: failure
+	dispatch(authFailure(null));
 };

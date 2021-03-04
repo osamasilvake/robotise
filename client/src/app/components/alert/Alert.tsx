@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 
 import { AlertInterface } from './Alert.interface';
 
-const AppAlert: FC<AlertInterface> = (props) => {
+const AlertCustom: FC<AlertInterface> = (props) => {
 	const { handleClose, severity, children } = props;
 
 	return (
@@ -21,4 +21,4 @@ const AppAlert: FC<AlertInterface> = (props) => {
 		</Alert>
 	);
 };
-export default AppAlert;
+export default AlertCustom;

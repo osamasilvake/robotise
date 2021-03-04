@@ -1,7 +1,8 @@
-import { PushMessageTypeEnum } from './General.enum';
+import { PushMessageTypeEnum, ThemeColorsEnum } from './General.enum';
 
 export interface GeneralSliceInterface {
 	openDrawer: boolean;
+	themeColor: ThemeColorsEnum;
 	pushMessage: PushMessageInterface;
 }
 

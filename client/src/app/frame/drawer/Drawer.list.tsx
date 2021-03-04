@@ -28,7 +28,7 @@ const drawerInformationList: DrawerListInterface[] = [
 	},
 	{
 		id: 2,
-		icon: 'list_alt',
+		icon: 'assignment',
 		label: 'INFORMATION.CHANGELOGS',
 		path: ENV().ROUTING.SCREENS.INFORMATION.CHANGELOGS
 	}

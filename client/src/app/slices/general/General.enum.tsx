@@ -4,3 +4,8 @@ export enum PushMessageTypeEnum {
 	SUCCESS = 'success',
 	ERROR = 'error'
 }
+
+export enum ThemeColorsEnum {
+	LIGHT = 'LIGHT',
+	DARK = 'DARK'
+}

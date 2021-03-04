@@ -70,6 +70,10 @@
 	},
 	"PRIVATE": {
 		"BUSINESS": {
+			"TITLE": {
+				"MAIN": "Business",
+				"SHORT": "Bu.."
+			},
 			"SITES": {
 				"LABEL": "Sites",
 				"HINT": "products"
@@ -80,6 +84,10 @@
 			}
 		},
 		"INFORMATION": {
+			"TITLE": {
+				"MAIN": "Information",
+				"SHORT": "Info"
+			},
 			"ALERT_CONFIG": "Alert Config",
 			"CHANGELOGS": "Changelogs"
 		}

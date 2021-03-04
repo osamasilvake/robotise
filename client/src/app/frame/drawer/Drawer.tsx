@@ -19,7 +19,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import ENV from '../../../environment';
 import { ConfigService } from '../../services';
-import { generalOpenDrawer, generalSelector } from '../../slices/general/General.slice';
+import { generalSelector, GenernalSetDrawerState } from '../../slices/general/General.slice';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
 import { drawerStyles } from './Drawer.styles';
 
@@ -31,12 +31,9 @@ const DrawerCustom: FC = () => {
 	const { openDrawer } = useSelector(generalSelector);
 
 	/**
-	 * handle close drawer
+	 * dispatch: set open drawer
 	 */
-	const handleDrawerClose = () => {
-		// dispatch: set open drawer
-		dispatch(generalOpenDrawer(false));
-	};
+	const handleDrawerClose = () => dispatch(GenernalSetDrawerState(false));
 
 	return (
 		<Drawer
@@ -69,7 +66,11 @@ const DrawerCustom: FC = () => {
 			{/* List */}
 			<List
 				disablePadding
-				subheader={<ListSubheader>{(openDrawer && 'Business') || 'Bu..'}</ListSubheader>}>
+				subheader={
+					<ListSubheader>
+						{(openDrawer && t('BUSINESS.TITLE.MAIN')) || t('BUSINESS.TITLE.SHORT')}
+					</ListSubheader>
+				}>
 				{drawerBusinessList.map((item) => (
 					<ListItem
 						key={item.id}
@@ -91,7 +92,10 @@ const DrawerCustom: FC = () => {
 			<List
 				disablePadding
 				subheader={
-					<ListSubheader>{(openDrawer && 'Information') || 'Info'}</ListSubheader>
+					<ListSubheader>
+						{(openDrawer && t('INFORMATION.TITLE.MAIN')) ||
+							t('INFORMATION.TITLE.SHORT')}
+					</ListSubheader>
 				}>
 				{drawerInformationList.map((item) => (
 					<ListItem

@@ -2,10 +2,10 @@ import jwtDecode from 'jwt-decode';
 import moment from 'moment';
 import qs from 'querystring';
 
-import { ClientService, ConfigService } from '../../services';
+import { ClientService, ConfigService, StorageService } from '../../services';
+import { StorageTypeEnum } from '../../services/services.enum';
 import { AuthUserRoleEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
-import { StorageTypeEnum } from './login/Login.enum';
 
 class AuthService {
 	/**
@@ -67,10 +67,14 @@ class AuthService {
 	 * @param StorageType
 	 */
 	setAccessToken = (accessToken: string, StorageType: StorageTypeEnum) => {
-		if (StorageType === StorageTypeEnum.LOCAL) {
-			localStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
+		if (StorageType === StorageTypeEnum.PERSISTANT) {
+			StorageService.put(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
 		} else {
-			sessionStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
+			StorageService.put(
+				ConfigService.AppSessionStorageItems.JWTAccessToken,
+				accessToken,
+				StorageTypeEnum.SESSION
+			);
 		}
 	};
 
@@ -79,8 +83,11 @@ class AuthService {
 	 */
 	getAccessToken = () => {
 		return (
-			localStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessToken) ||
-			sessionStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessToken)
+			StorageService.get(ConfigService.AppLocalStorageItems.JWTAccessToken) ||
+			StorageService.get(
+				ConfigService.AppSessionStorageItems.JWTAccessToken,
+				StorageTypeEnum.SESSION
+			)
 		);
 	};
 
@@ -89,8 +96,11 @@ class AuthService {
 	 */
 	removeAccessToken = () => {
 		if (this.getAccessToken()) {
-			localStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
-			sessionStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
+			StorageService.remove(ConfigService.AppLocalStorageItems.JWTAccessToken);
+			StorageService.remove(
+				ConfigService.AppSessionStorageItems.JWTAccessToken,
+				StorageTypeEnum.SESSION
+			);
 		}
 	};
 }

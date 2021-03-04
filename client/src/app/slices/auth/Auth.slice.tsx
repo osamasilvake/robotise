@@ -5,7 +5,7 @@ import {
 	AuthUserDetailInterface
 } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
-import { StorageTypeEnum } from '../../screens/authentication/login/Login.enum';
+import { StorageTypeEnum } from '../../services/services.enum';
 import { PushMessageTypeEnum } from '../general/General.enum';
 import { PushMessageInterface } from '../general/General.interface';
 import { generalPushMessage } from '../general/General.slice';
@@ -100,7 +100,7 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 			// set token
 			AuthService.setAccessToken(
 				res.access_token,
-				payload.rememberMe ? StorageTypeEnum.LOCAL : StorageTypeEnum.SESSION
+				payload.rememberMe ? StorageTypeEnum.PERSISTANT : StorageTypeEnum.SESSION
 			);
 
 			// decode user detail from access token

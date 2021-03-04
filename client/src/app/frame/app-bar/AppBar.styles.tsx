@@ -24,6 +24,16 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 		justifyContent: 'space-between',
 		padding: theme.spacing(0, 2)
 	},
+	appBarOptions: {
+		alignItems: 'center',
+		display: 'flex',
+		flexGrow: 1,
+		justifyContent: 'flex-end',
+		textAlign: 'right'
+	},
+	appBarColorThemeLight: {
+		fill: ConfigService.AppVariables.colors.c10
+	},
 	appBarAccountButtonBox: {
 		margin: theme.spacing(0, 1, 0, 0),
 		textAlign: 'right'

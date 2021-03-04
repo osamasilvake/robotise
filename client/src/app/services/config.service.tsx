@@ -17,7 +17,8 @@ class ConfigService extends EnvService {
 				c6: '#ffffff',
 				c7: '#202227',
 				c8: '#dbdcde',
-				c9: '#44b700'
+				c9: '#44b700',
+				c10: '#f2db4f'
 			}
 		};
 	}
@@ -61,7 +62,18 @@ class ConfigService extends EnvService {
 	 */
 	get AppLocalStorageItems() {
 		return {
-			JWTAccessToken: 'jwt_access_token'
+			JWTAccessToken: 'robot_jwt_access_token',
+			ThemeColor: 'robo_theme_color',
+			DrawerState: 'robo_drawer_state'
+		};
+	}
+
+	/**
+	 * session storage
+	 */
+	get AppSessionStorageItems() {
+		return {
+			JWTAccessToken: 'robot_jwt_access_token'
 		};
 	}
 

@@ -7,10 +7,9 @@ import { pxToRem } from './utilities/methods/PixelsToRem';
 
 /**
  * theme settings
- * @param prefersDarkMode
+ * @param isDarkMode
  */
-export const ThemeSettings = (prefersDarkMode: boolean): ThemeOptions =>
-	prefersDarkMode ? Dark : Light;
+export const ThemeSettings = (isDarkMode: boolean): ThemeOptions => (isDarkMode ? Dark : Light);
 
 // common palette
 const palette: PaletteOptions = {

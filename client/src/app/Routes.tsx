@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import GlobalLayout from './layouts/global/GlobalLayout';
 import routesTemplates from './routes/index';
-import Error404 from './screens/pages/404/Error404';
 import Auth from './screens/authentication/Auth';
+import Error404 from './screens/pages/404/Error404';
 
 const Routes = () => {
 	return (

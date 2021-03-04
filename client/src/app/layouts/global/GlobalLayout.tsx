@@ -6,6 +6,7 @@ import { LayoutPageInterface } from '../../routes/Routes.interfaces';
 const GlobalLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
 	return (
 		<Box className="rc-global-layout">
+			{/* Content */}
 			<Box component="main">
 				<Component route={route} />
 			</Box>

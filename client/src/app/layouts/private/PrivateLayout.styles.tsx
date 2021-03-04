@@ -1,25 +1,25 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
+import { ConfigService } from '../../services';
+
+const drawerWidth = ConfigService.AppOptions.drawer.width;
 export const privateLayoutStyles = makeStyles((theme: Theme) => ({
-	privateLayoutRoot: {
-		display: 'flex'
-	},
 	privateLayoutContent: {
-		flexGrow: 1,
-		padding: theme.spacing(3)
+		marginTop: theme.spacing(8),
+		padding: theme.spacing(1.5) + 3
 	},
-	privateLayoutContentShift: {
-		marginLeft: 0,
+	privateLayoutContentOpen: {
+		marginLeft: drawerWidth,
 		transition: theme.transitions.create('margin', {
-			easing: theme.transitions.easing.easeOut,
+			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen
 		})
 	},
-	privateLayoutToolbar: {
-		alignItems: 'center',
-		display: 'flex',
-		justifyContent: 'flex-start',
-		padding: theme.spacing(0, 2),
-		...theme.mixins.toolbar // necessary for content to be below app bar
+	privateLayoutContentClose: {
+		marginLeft: theme.spacing(7) + 1,
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen
+		})
 	}
 }));

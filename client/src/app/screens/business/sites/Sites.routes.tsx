@@ -9,7 +9,7 @@ const siteRoutes: RouteInterface[] = [
 	{
 		component: Sites,
 		exact: true,
-		path: ENV().ROUTING.PACKAGES.SITES.MAIN
+		path: ENV().ROUTING.SCREENS.BUSINESS.SITES.MAIN
 	}
 ];
 export default siteRoutes;

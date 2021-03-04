@@ -3,9 +3,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import { Alert } from '@material-ui/lab';
 import React, { FC } from 'react';
 
-import { AlertsInterface } from './Alerts.interface';
+import { AlertInterface } from './Alert.interface';
 
-const Alerts: FC<AlertsInterface> = (props) => {
+const AppAlert: FC<AlertInterface> = (props) => {
 	const { handleClose, severity, children } = props;
 
 	return (
@@ -21,4 +21,4 @@ const Alerts: FC<AlertsInterface> = (props) => {
 		</Alert>
 	);
 };
-export default Alerts;
+export default AppAlert;

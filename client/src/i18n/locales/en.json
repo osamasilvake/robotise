@@ -18,14 +18,6 @@
 			"TITLE": "Robots",
 			"DESCRIPTION": "Robots Description"
 		},
-		"PRODUCTS": {
-			"TITLE": "Products",
-			"DESCRIPTION": "Products Description"
-		},
-		"ORDER_REPORTS": {
-			"TITLE": "Order Reports",
-			"DESCRIPTION": "Order Report Description"
-		},
 		"ALERT_CONFIG": {
 			"TITLE": "Alert Config",
 			"DESCRIPTION": "Alert Config Description"
@@ -77,13 +69,19 @@
 		}
 	},
 	"PRIVATE": {
-		"ROUTES": {
-			"SITES": "Sites",
-			"ROBOTS": "Robots",
-			"PRODUCTS": "Products",
-			"ORDER_REPORTS": "Order Reports",
+		"BUSINESS": {
+			"SITES": {
+				"LABEL": "Sites",
+				"HINT": "products"
+			},
+			"ROBOTS": {
+				"LABEL": "Robots",
+				"HINT": "inventory, order reports"
+			}
+		},
+		"INFORMATION": {
 			"ALERT_CONFIG": "Alert Config",
-			"CHANGELOG": "Changelog"
+			"CHANGELOGS": "Changelogs"
 		}
 	}
 }

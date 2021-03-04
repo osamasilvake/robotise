@@ -5,6 +5,7 @@ import qs from 'querystring';
 import { ClientService, ConfigService } from '../../services';
 import { AuthUserRoleEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
+import { StorageTypeEnum } from './login/Login.enum';
 
 class AuthService {
 	/**
@@ -63,23 +64,34 @@ class AuthService {
 	/**
 	 * set access token
 	 * @param accessToken
+	 * @param StorageType
 	 */
-	setAccessToken = (accessToken: string) => {
-		localStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
+	setAccessToken = (accessToken: string, StorageType: StorageTypeEnum) => {
+		if (StorageType === StorageTypeEnum.LOCAL) {
+			localStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
+		} else {
+			sessionStorage.setItem(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
+		}
 	};
 
 	/**
 	 * get access token
 	 */
 	getAccessToken = () => {
-		return localStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
+		return (
+			localStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessToken) ||
+			sessionStorage.getItem(ConfigService.AppLocalStorageItems.JWTAccessToken)
+		);
 	};
 
 	/**
 	 * remove access token
 	 */
 	removeAccessToken = () => {
-		localStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
+		if (this.getAccessToken()) {
+			localStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
+			sessionStorage.removeItem(ConfigService.AppLocalStorageItems.JWTAccessToken);
+		}
 	};
 }
 const instance = new AuthService();

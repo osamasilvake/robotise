@@ -1,5 +1,3 @@
-import { InputAdornment } from '@material-ui/core';
-import { IconButton } from '@material-ui/core';
 import {
 	Avatar,
 	Box,
@@ -10,6 +8,8 @@ import {
 	FormControlLabel,
 	FormHelperText,
 	Grid,
+	IconButton,
+	InputAdornment,
 	Paper,
 	TextField
 } from '@material-ui/core';
@@ -22,8 +22,7 @@ import Copyright from '../../../frame/copyrights/Copyrights';
 import { ConfigService } from '../../../services';
 import { AuthLogin } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/UseForm';
-import { timeout } from '../../../utilities/methods/Timeout';
-import { allPropertiesEmpty } from '../../../utilities/methods/validateObjProperties';
+import { allPropertiesEmpty } from '../../../utilities/methods/ValidateObjProperties';
 import { AuthLoginInterface } from '../Auth.interface';
 import { loginStyles } from './Login.styles';
 import { LoginFormValidation } from './Login.validation';
@@ -49,17 +48,14 @@ const Login: FC = () => {
 	 * handle submit event
 	 */
 	const formSubmit = async () => {
-		// timeout: 800ms
-		await timeout(800);
-
 		// dispatch: login
 		dispatch(AuthLogin(values));
 	};
 
 	return (
 		<Grid container component="section" className={loginClasses.loginRoot}>
-			<Grid item xs={false} sm={6} md={7} className={loginClasses.loginImage} />
-			<Grid item xs={12} sm={6} md={5} component={Paper} elevation={6} square>
+			<Grid item xs={false} sm={6} md={8} className={loginClasses.loginImage} />
+			<Grid item xs={12} sm={6} md={4} component={Paper} elevation={6} square>
 				<Box className={loginClasses.loginPaper}>
 					<Avatar
 						variant="square"

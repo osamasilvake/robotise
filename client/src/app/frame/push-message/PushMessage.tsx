@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import Alerts from '../../components/alerts/Alerts';
+import Alert from '../../components/alert/Alert';
 import { ConfigService } from '../../services';
 import { generalSelector } from '../../slices/general/General.slice';
 
@@ -32,9 +32,9 @@ const PushMessage: FC = () => {
 			autoHideDuration={ConfigService.AppOptions.snackbar.timeout}
 			open={open}
 			onClose={handleClose}>
-			<Alerts severity={pushMessage.severity} handleClose={handleClose}>
+			<Alert severity={pushMessage.severity} handleClose={handleClose}>
 				{t(pushMessage.text)}
-			</Alerts>
+			</Alert>
 		</Snackbar>
 	);
 };

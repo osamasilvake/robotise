@@ -1,6 +1,6 @@
-// react
 import { ChangeEvent, FocusEvent, FormEvent, useState } from 'react';
 
+import { timeout } from '../methods/Timeout';
 import { UseFormEventTypeEnum } from './UseForm.enum';
 import { UseFormRetInterface } from './UseForm.interface';
 
@@ -38,7 +38,7 @@ export const useForm = <UseFormEntity,>(
 				[name]: value
 			};
 
-			// validate only incase of error
+			// TODO: validate only incase of error
 			setErrors(formValidation(newState));
 
 			return newState;
@@ -56,8 +56,14 @@ export const useForm = <UseFormEntity,>(
 		// start loader
 		setLoader(true);
 
+		// timeout: 1000ms
+		await timeout(1000);
+
 		// wait for callback to execute
 		await submitCallBack();
+
+		// timeout: 1000ms
+		await timeout(1000);
 
 		// stop loader
 		setLoader(false);

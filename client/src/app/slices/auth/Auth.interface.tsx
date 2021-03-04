@@ -4,7 +4,7 @@ import { PushMessageTypeEnum } from '../general/General.enum';
 // auth slice
 export interface AuthSliceInterface {
 	loading: boolean;
-	response: AuthUserDetailInterface | null;
+	user: AuthUserDetailInterface | null;
 	errors: ErrorInterface | null;
 }
 

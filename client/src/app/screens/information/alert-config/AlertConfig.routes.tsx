@@ -9,7 +9,7 @@ const alertConfigRoutes: RouteInterface[] = [
 	{
 		component: AlertConfig,
 		exact: true,
-		path: ENV().ROUTING.PACKAGES.ALERT_CONFIG.MAIN
+		path: ENV().ROUTING.SCREENS.INFORMATION.ALERT_CONFIG.MAIN
 	}
 ];
 export default alertConfigRoutes;

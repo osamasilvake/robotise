@@ -45,9 +45,9 @@ const overrides: Overrides = {
 			}
 		}
 	},
-	MuiDrawer: {
-		paperAnchorDockedLeft: {
-			borderRight: 0
+	MuiIconButton: {
+		root: {
+			borderRadius: pxToRem(2)
 		}
 	},
 	MuiListItem: {
@@ -60,6 +60,11 @@ const overrides: Overrides = {
 					backgroundColor: ConfigService.AppVariables.colors.c4
 				}
 			}
+		}
+	},
+	MuiDrawer: {
+		paperAnchorDockedLeft: {
+			borderRight: 0
 		}
 	}
 };

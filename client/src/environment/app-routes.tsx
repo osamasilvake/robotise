@@ -2,24 +2,32 @@ const appRoutes = {
 	AUTH: {
 		LOGIN: '/login'
 	},
-	PACKAGES: {
-		DASHBOARD: '/',
-		SITES: {
-			MAIN: '/sites'
+	SCREENS: {
+		BUSINESS: {
+			DASHBOARD: '/',
+			SITES: {
+				MAIN: '/sites',
+				PRODUCTS: {
+					MAIN: '/products'
+				}
+			},
+			ROBOTS: {
+				MAIN: '/robots',
+				ORDER_REPORTS: {
+					MAIN: '/order-reports'
+				}
+			}
 		},
-		ROBOTS: {
-			MAIN: '/robots'
+		INFORMATION: {
+			ALERT_CONFIG: {
+				MAIN: '/alert-config'
+			},
+			CHANGELOGS: '/changelogs',
+			ABOUT: '/about-us'
 		},
-		PRODUCTS: {
-			MAIN: '/products'
-		},
-		ORDER_REPORTS: {
-			MAIN: '/order-reports'
-		},
-		ALERT_CONFIG: {
-			MAIN: '/alert-config'
-		},
-		CHANGELOG: '/changelog'
+		PAGES: {
+			E404: '/e-404'
+		}
 	}
 };
 export default appRoutes;

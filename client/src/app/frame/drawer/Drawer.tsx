@@ -1,0 +1,114 @@
+import {
+	Avatar,
+	Box,
+	Drawer,
+	Icon,
+	IconButton,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	ListSubheader
+} from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import clsx from 'clsx';
+import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+
+import ENV from '../../../environment';
+import { ConfigService } from '../../services';
+import { generalOpenDrawer, generalSelector } from '../../slices/general/General.slice';
+import { drawerBusinessList, drawerInformationList } from './Drawer.list';
+import { drawerStyles } from './Drawer.styles';
+
+const DrawerCustom: FC = () => {
+	const { t } = useTranslation('PRIVATE');
+	const drawerClasses = drawerStyles();
+
+	const dispatch = useDispatch();
+	const { openDrawer } = useSelector(generalSelector);
+
+	/**
+	 * handle close drawer
+	 */
+	const handleDrawerClose = () => {
+		// dispatch: set open drawer
+		dispatch(generalOpenDrawer(false));
+	};
+
+	return (
+		<Drawer
+			variant="permanent"
+			className={clsx(drawerClasses.drawer, {
+				[drawerClasses.drawerOpen]: openDrawer,
+				[drawerClasses.drawerClose]: !openDrawer
+			})}
+			classes={{
+				paper: clsx({
+					[drawerClasses.drawerOpen]: openDrawer,
+					[drawerClasses.drawerClose]: !openDrawer
+				})
+			}}>
+			{/* Avatar & Icon */}
+			<Box className={drawerClasses.drawerToolbar}>
+				<Link to={ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD}>
+					<Avatar
+						variant="square"
+						className={drawerClasses.drawerAvatar}
+						src={ConfigService.AppImageURLs.logo.name}
+						alt={ConfigService.envAuthor}
+					/>
+				</Link>
+				<IconButton onClick={handleDrawerClose}>
+					<ArrowBackIcon />
+				</IconButton>
+			</Box>
+
+			{/* List */}
+			<List
+				disablePadding
+				subheader={<ListSubheader>{(openDrawer && 'Business') || 'Bu..'}</ListSubheader>}>
+				{drawerBusinessList.map((item) => (
+					<ListItem
+						key={item.id}
+						button
+						component={NavLink}
+						to={item.path}
+						exact
+						className={drawerClasses.drawerListItemWithSubtitle}>
+						<ListItemIcon>
+							<Icon>{item.icon}</Icon>
+						</ListItemIcon>
+						<ListItemText
+							primary={t(item.label)}
+							secondary={item.hint && t(item.hint)}
+						/>
+					</ListItem>
+				))}
+			</List>
+			<List
+				disablePadding
+				subheader={
+					<ListSubheader>{(openDrawer && 'Information') || 'Info'}</ListSubheader>
+				}>
+				{drawerInformationList.map((item) => (
+					<ListItem
+						key={item.id}
+						button
+						exact
+						component={NavLink}
+						to={item.path}
+						className={drawerClasses.drawerListItem}>
+						<ListItemIcon>
+							<Icon>{item.icon}</Icon>
+						</ListItemIcon>
+						<ListItemText primary={t(item.label)} />
+					</ListItem>
+				))}
+			</List>
+		</Drawer>
+	);
+};
+export default DrawerCustom;

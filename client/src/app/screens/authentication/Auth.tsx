@@ -10,9 +10,9 @@ import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
 	const dispatch = useDispatch();
-	const { loading, response } = useSelector(authSelector);
+	const { loading, user } = useSelector(authSelector);
 
-	const user = !!(response && response.uuid);
+	const isUser = !!(user && user.uuid);
 
 	useEffect(() => {
 		// dispatch: validate login
@@ -29,10 +29,10 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 
 	if (loading) {
 		return <Loader />;
-	} else if (isPrivate(type) && !user) {
+	} else if (isPrivate(type) && !isUser) {
 		return <Redirect to={ENV().ROUTING.AUTH.LOGIN} />;
-	} else if (isSession(type) && user) {
-		return <Redirect to={ENV().ROUTING.PACKAGES.DASHBOARD} />;
+	} else if (isSession(type) && isUser) {
+		return <Redirect to={ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD} />;
 	} else {
 		const Layout = appRoute.template ? appRoute.template : template;
 		return <Layout Component={appRoute.component} route={route} />;

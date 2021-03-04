@@ -2,9 +2,8 @@ import { Badge } from '@material-ui/core';
 import React, { FC } from 'react';
 
 import { badgeStyles } from './Badge.styles';
-import { BadgeInterface } from './Menu.interface';
 
-const AppBadge: FC<BadgeInterface> = (props) => {
+const AppBadge: FC = (props) => {
 	const { children } = props;
 	const badgeClasses = badgeStyles();
 

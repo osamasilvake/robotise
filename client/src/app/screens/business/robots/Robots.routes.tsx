@@ -9,7 +9,7 @@ const robotRoutes: RouteInterface[] = [
 	{
 		component: Robots,
 		exact: true,
-		path: ENV().ROUTING.PACKAGES.ROBOTS.MAIN
+		path: ENV().ROUTING.SCREENS.BUSINESS.ROBOTS.MAIN
 	}
 ];
 export default robotRoutes;

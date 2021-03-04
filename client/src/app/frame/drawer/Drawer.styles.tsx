@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { ConfigService } from '../../services';
 
 const drawerWidth = ConfigService.AppOptions.drawer.width;
-export const sidebarStyles = makeStyles((theme: Theme) => ({
+export const drawerStyles = makeStyles((theme: Theme) => ({
 	drawer: {
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
@@ -31,10 +31,13 @@ export const sidebarStyles = makeStyles((theme: Theme) => ({
 		alignItems: 'center',
 		display: 'flex',
 		justifyContent: 'space-between',
-		paddingLeft: theme.spacing(2),
-		...theme.mixins.toolbar // necessary for content to be below app bar
+		minHeight: theme.spacing(8),
+		paddingLeft: theme.spacing(2)
 	},
-	ListItem: {
-		padding: theme.spacing(0.7, 2)
+	drawerListItemWithSubtitle: {
+		padding: theme.spacing(0, 2)
+	},
+	drawerListItem: {
+		padding: theme.spacing(1, 2)
 	}
 }));

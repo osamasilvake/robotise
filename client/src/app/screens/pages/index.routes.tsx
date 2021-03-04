@@ -1,14 +1,15 @@
 import { lazy } from 'react';
 
+import ENV from '../../../environment';
 import { RouteInterface } from '../../routes/Routes.interfaces';
 
-const About = lazy(() => import('./about/About'));
+const Error404 = lazy(() => import('./404/Error404'));
 
 const pagesRoutes: RouteInterface[] = [
 	{
-		component: About,
+		component: Error404,
 		exact: true,
-		path: '/about'
+		path: ENV().ROUTING.SCREENS.PAGES.E404
 	}
 ];
 export default pagesRoutes;

@@ -19,17 +19,15 @@ export const loginStyles = makeStyles((theme: Theme) => ({
 		backgroundSize: 'cover'
 	},
 	loginPaper: {
-		alignItems: 'center',
-		display: 'flex',
 		flexDirection: 'column',
-		margin: theme.spacing(8, 4)
+		margin: theme.spacing(14, 4, 4)
 	},
 	loginAvatar: {
-		margin: theme.spacing(3, 0),
+		margin: theme.spacing(3, 'auto'),
 		width: theme.spacing(20)
 	},
 	loginForm: {
-		marginTop: theme.spacing(1)
+		marginTop: theme.spacing(2)
 	},
 	loginSubmit: {
 		margin: theme.spacing(3, 0, 2)

@@ -5,6 +5,7 @@ import {
 	AuthUserDetailInterface
 } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
+import { StorageTypeEnum } from '../../screens/authentication/login/Login.enum';
 import { PushMessageTypeEnum } from '../general/General.enum';
 import { PushMessageInterface } from '../general/General.interface';
 import { generalPushMessage } from '../general/General.slice';
@@ -14,7 +15,7 @@ import { AuthSliceInterface } from './Auth.interface';
 // initial state
 export const initialState: AuthSliceInterface = {
 	loading: true,
-	response: null,
+	user: null,
 	errors: null
 };
 
@@ -28,12 +29,12 @@ const dataSlice = createSlice({
 		},
 		authSuccess: (state, action) => {
 			state.loading = false;
-			state.response = action.payload;
+			state.user = action.payload;
 			state.errors = null;
 		},
 		authFailure: (state, action) => {
 			state.loading = false;
-			state.response = null;
+			state.user = null;
 			state.errors = action.payload;
 		},
 		resetState: () => initialState
@@ -97,7 +98,10 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 	AuthService.authLogin(payload)
 		.then((res) => {
 			// set token
-			AuthService.setAccessToken(res.access_token);
+			AuthService.setAccessToken(
+				res.access_token,
+				payload.rememberMe ? StorageTypeEnum.LOCAL : StorageTypeEnum.SESSION
+			);
 
 			// decode user detail from access token
 			const user = AuthService.authUserDetail(res.access_token);

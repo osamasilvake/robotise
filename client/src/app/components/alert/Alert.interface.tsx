@@ -1,5 +1,5 @@
 import { AlertProps } from '@material-ui/lab';
 
-export interface AlertsInterface extends AlertProps {
+export interface AlertInterface extends AlertProps {
 	handleClose?: () => void;
 }

@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { ConfigService } from '../../services';
 
 const drawerWidth = ConfigService.AppOptions.drawer.width;
-export const headerStyles = makeStyles((theme: Theme) => ({
+export const appBarStyles = makeStyles((theme: Theme) => ({
 	appBar: {
 		transition: theme.transitions.create(['width', 'margin'], {
 			easing: theme.transitions.easing.sharp,
@@ -11,7 +11,7 @@ export const headerStyles = makeStyles((theme: Theme) => ({
 		}),
 		zIndex: theme.zIndex.drawer + 1
 	},
-	appBarShift: {
+	appBarOpen: {
 		marginLeft: drawerWidth,
 		transition: theme.transitions.create(['width', 'margin'], {
 			easing: theme.transitions.easing.sharp,
@@ -23,5 +23,12 @@ export const headerStyles = makeStyles((theme: Theme) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 		padding: theme.spacing(0, 2)
+	},
+	appBarAccountButtonBox: {
+		margin: theme.spacing(0, 1, 0, 0),
+		textAlign: 'right'
+	},
+	appBarAccountButtonBoxSubtitle: {
+		marginTop: theme.spacing(-0.25)
 	}
 }));

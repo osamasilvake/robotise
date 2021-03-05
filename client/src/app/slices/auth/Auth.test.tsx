@@ -26,11 +26,11 @@ describe('Authentication', () => {
 
 	test('Access token payload must have exp date', () => {
 		const response = AuthService.authUserDetail(accessToken);
-		expect(Boolean(response['exp'])).toBe(true);
+		expect(Boolean(response.exp)).toBe(true);
 	});
 
 	test('Access token payload must have role as ADMIN', () => {
 		const response = AuthService.authUserDetail(accessToken);
-		expect(response['role']).toBe(AuthUserRoleEnum.ADMIN);
+		expect(response.data.role).toBe(AuthUserRoleEnum.ADMIN);
 	});
 });

@@ -24,9 +24,6 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 		}),
 		width: theme.spacing(7) + 1
 	},
-	drawerAvatar: {
-		width: theme.spacing(15)
-	},
 	drawerToolbar: {
 		alignItems: 'center',
 		display: 'flex',
@@ -34,10 +31,23 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 		minHeight: theme.spacing(8),
 		paddingLeft: theme.spacing(2)
 	},
+	drawerAvatar: {
+		width: theme.spacing(15)
+	},
+	drawerListRoot: {
+		height: '100%',
+		overflowY: 'auto'
+	},
 	drawerListItemWithSubtitle: {
 		padding: theme.spacing(0, 2)
 	},
 	drawerListItem: {
 		padding: theme.spacing(1, 2)
+	},
+	drawerBottom: {
+		alignItems: 'center',
+		display: 'flex',
+		height: 48,
+		justifyContent: 'center'
 	}
 }));

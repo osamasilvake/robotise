@@ -7,24 +7,22 @@ import Alert from '../../components/alert/Alert';
 import { ConfigService } from '../../services';
 import { generalSelector } from '../../slices/general/General.slice';
 
-const PushMessage: FC = () => {
+const Message: FC = () => {
 	const { t } = useTranslation();
 
-	const { pushMessage } = useSelector(generalSelector);
+	const { triggerMessage } = useSelector(generalSelector);
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
-		if (pushMessage.severity && pushMessage.text) {
+		if (triggerMessage.severity && triggerMessage.text) {
 			setOpen(true);
 		}
-	}, [pushMessage]);
+	}, [triggerMessage]);
 
 	/**
 	 * handle close
 	 */
-	const handleClose = () => {
-		setOpen(false);
-	};
+	const handleClose = () => setOpen(false);
 
 	return (
 		<Snackbar
@@ -32,10 +30,10 @@ const PushMessage: FC = () => {
 			autoHideDuration={ConfigService.AppOptions.snackbar.timeout}
 			open={open}
 			onClose={handleClose}>
-			<Alert severity={pushMessage.severity} handleClose={handleClose}>
-				{t(pushMessage.text)}
+			<Alert severity={triggerMessage.severity} handleClose={handleClose}>
+				{t(triggerMessage.text)}
 			</Alert>
 		</Snackbar>
 	);
 };
-export default PushMessage;
+export default Message;

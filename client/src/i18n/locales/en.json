@@ -1,11 +1,4 @@
 {
-	"COMMON": {
-		"CREATE": "CREATE",
-		"EDIT": "EDIT",
-		"UPDATE": "UPDATE",
-		"DELETE": "DELETE",
-		"SAVE": "SAVE"
-	},
 	"META": {
 		"GENERAL": {
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
@@ -69,27 +62,42 @@
 		}
 	},
 	"PRIVATE": {
-		"BUSINESS": {
-			"TITLE": {
-				"MAIN": "Business",
-				"SHORT": "Bu.."
+		"TOOLTIP": {
+			"DRAWER": {
+				"OPEN": "Open Drawer",
+				"CLOSE": "Close Drawer"
 			},
-			"SITES": {
-				"LABEL": "Sites",
-				"HINT": "products"
+			"THEME": "Toggle light/dark theme"
+		},
+		"APPBAR": {},
+		"SIDEBAR": {
+			"BUSINESS": {
+				"TITLE": {
+					"MAIN": "Business",
+					"SHORT": "Bu.."
+				},
+				"LIST": {
+					"SITES": {
+						"LABEL": "Sites",
+						"HINT": "products"
+					},
+					"ROBOTS": {
+						"LABEL": "Robots",
+						"HINT": "inventory, order reports"
+					}
+				}
 			},
-			"ROBOTS": {
-				"LABEL": "Robots",
-				"HINT": "inventory, order reports"
+			"INFORMATION": {
+				"TITLE": {
+					"MAIN": "Information",
+					"SHORT": "Info"
+				},
+				"LIST": {
+					"ALERT_CONFIG": "Alert Config",
+					"CHANGELOGS": "Changelogs"
+				}
 			}
 		},
-		"INFORMATION": {
-			"TITLE": {
-				"MAIN": "Information",
-				"SHORT": "Info"
-			},
-			"ALERT_CONFIG": "Alert Config",
-			"CHANGELOGS": "Changelogs"
-		}
+		"MAIN": {}
 	}
 }

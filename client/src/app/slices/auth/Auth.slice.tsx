@@ -1,14 +1,14 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { TriggerMessageEnum } from '../../frame/message/Message.interface';
 import {
 	AuthLoginInterface,
 	AuthUserDetailInterface
 } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
 import { StorageTypeEnum } from '../../services/services.enum';
-import { PushMessageTypeEnum } from '../general/General.enum';
-import { PushMessageInterface } from '../general/General.interface';
-import { generalPushMessage } from '../general/General.slice';
+import { TriggerMessageInterface } from '../general/General.interface';
+import { triggerMessage } from '../general/General.slice';
 import { RootStateInterface } from '../Slices.interface';
 import { AuthSliceInterface } from './Auth.interface';
 
@@ -65,23 +65,23 @@ export const AuthValidateLogin = () => async (dispatch: Dispatch) => {
 			// dispatch: response
 			dispatch(authSuccess(userInfo));
 		} else {
-			const err: PushMessageInterface = {
-				severity: PushMessageTypeEnum.ERROR,
+			const err: TriggerMessageInterface = {
+				severity: TriggerMessageEnum.ERROR,
 				text: 'GLOBAL.AUTH.LOGIN.ERRORS.TOKEN_EXPIRED'
 			};
 
 			// dispatch: error
 			dispatch(authFailure(err));
 
-			// dispatch: message
-			dispatch(generalPushMessage(err));
+			// dispatch: trigger message
+			dispatch(triggerMessage(err));
 
 			// clear authentication
 			AuthService.authLogout();
 		}
 	} else {
-		const err: PushMessageInterface = {
-			severity: PushMessageTypeEnum.WARNING,
+		const err: TriggerMessageInterface = {
+			severity: TriggerMessageEnum.WARNING,
 			text: 'GLOBAL.AUTH.LOGIN.ERRORS.TOKEN_EMPTY'
 		};
 

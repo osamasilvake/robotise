@@ -1,20 +1,21 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { TriggerMessageEnum } from '../../frame/message/Message.interface';
 import { ConfigService, StorageService } from '../../services';
 import { RootStateInterface } from '../Slices.interface';
-import { PushMessageTypeEnum, ThemeColorsEnum } from './General.enum';
-import { GeneralSliceInterface } from './General.interface';
+import { ThemePaletteEnum } from './General.enum';
+import { GeneralSliceInterface, TriggerMessageInterface } from './General.interface';
 
 // storage items
-const themeColor = StorageService.get(ConfigService.AppLocalStorageItems.ThemeColor);
+const themePalette = StorageService.get(ConfigService.AppLocalStorageItems.ThemePalette);
 const drawerState = StorageService.get(ConfigService.AppLocalStorageItems.DrawerState);
 
 // initial state
 export const initialState: GeneralSliceInterface = {
 	openDrawer: drawerState === '' ? true : drawerState,
-	themeColor: themeColor || ThemeColorsEnum.DARK,
-	pushMessage: {
-		severity: PushMessageTypeEnum.INFO,
+	themePalette: themePalette || ThemePaletteEnum.DARK,
+	triggerMessage: {
+		severity: TriggerMessageEnum.INFO,
 		text: ''
 	}
 };
@@ -24,26 +25,21 @@ const dataSlice = createSlice({
 	name: 'General',
 	initialState,
 	reducers: {
-		generalOpenDrawer: (state, action) => {
+		setDrawerState: (state, action) => {
 			state.openDrawer = action.payload;
 		},
-		generalThemeColor: (state, action) => {
-			state.themeColor = action.payload;
+		applyThemePalette: (state, action) => {
+			state.themePalette = action.payload;
 		},
-		generalPushMessage: (state, action) => {
-			state.pushMessage = action.payload;
+		triggerMessage: (state, action) => {
+			state.triggerMessage = action.payload;
 		},
 		resetState: () => initialState
 	}
 });
 
 // actions
-export const {
-	generalOpenDrawer,
-	generalThemeColor,
-	generalPushMessage,
-	resetState
-} = dataSlice.actions;
+export const { setDrawerState, applyThemePalette, triggerMessage, resetState } = dataSlice.actions;
 
 // selector
 export const generalSelector = (state: RootStateInterface) => state['general'];
@@ -55,22 +51,35 @@ export default dataSlice.reducer;
  * set drawer state
  * @param drawerState
  */
-export const GenernalSetDrawerState = (drawerState: boolean) => async (dispatch: Dispatch) => {
+export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: Dispatch) => {
 	// dispstch: set drawer state
-	dispatch(generalOpenDrawer(drawerState));
+	dispatch(setDrawerState(drawerState));
 
 	// store it in local_storage
 	StorageService.put(ConfigService.AppLocalStorageItems.DrawerState, drawerState);
 };
 
 /**
- * apply theme color
- * @param themeColor
+ * apply theme palette
+ * @param themePalette
  */
-export const GenernalApplyTheme = (themeColor: ThemeColorsEnum) => async (dispatch: Dispatch) => {
-	// dispstch: apply theme color
-	dispatch(generalThemeColor(themeColor));
+export const GeneralApplyThemePalette = (themePalette: ThemePaletteEnum) => async (
+	dispatch: Dispatch
+) => {
+	// dispstch: apply theme palette
+	dispatch(applyThemePalette(themePalette));
 
 	// store it in local_storage
-	StorageService.put(ConfigService.AppLocalStorageItems.ThemeColor, themeColor);
+	StorageService.put(ConfigService.AppLocalStorageItems.ThemePalette, themePalette);
+};
+
+/**
+ * trigger message
+ * @param messagePayload
+ */
+export const GeneralTriggerMessage = (messagePayload: TriggerMessageInterface) => async (
+	dispatch: Dispatch
+) => {
+	// dispstch: trigger message
+	dispatch(triggerMessage(messagePayload));
 };

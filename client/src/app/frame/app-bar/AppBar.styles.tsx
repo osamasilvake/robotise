@@ -34,11 +34,14 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 	appBarColorThemeLight: {
 		fill: ConfigService.AppVariables.colors.c10
 	},
-	appBarAccountButtonBox: {
+	appBarDivider: {
+		margin: theme.spacing(0, 0, 0, 0.5)
+	},
+	appBarAccountDetail: {
 		margin: theme.spacing(0, 1, 0, 0),
 		textAlign: 'right'
 	},
-	appBarAccountButtonBoxSubtitle: {
+	appBarAccountDetailSubtitle: {
 		marginTop: theme.spacing(-0.25)
 	}
 }));

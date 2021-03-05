@@ -1,5 +1,5 @@
+import { TriggerMessageEnum } from '../../frame/message/Message.interface';
 import { AuthUserDetailInterface } from '../../screens/authentication/Auth.interface';
-import { PushMessageTypeEnum } from '../general/General.enum';
 
 // auth slice
 export interface AuthSliceInterface {
@@ -10,6 +10,6 @@ export interface AuthSliceInterface {
 
 // error payload
 export interface ErrorInterface {
-	severity: PushMessageTypeEnum;
+	severity: TriggerMessageEnum;
 	text: string;
 }

@@ -4,11 +4,11 @@ import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
 import Loader from './components/loader/Loader';
+import Message from './frame/message/Message';
 import Meta from './frame/meta/Meta';
-import PushMessage from './frame/push-message/PushMessage';
 import Routes from './Routes';
 import { InterceptorService } from './services';
-import { ThemeColorsEnum } from './slices/general/General.enum';
+import { ThemePaletteEnum } from './slices/general/General.enum';
 import { generalSelector } from './slices/general/General.slice';
 import { ThemeSettings } from './Theme';
 
@@ -16,11 +16,11 @@ import { ThemeSettings } from './Theme';
 InterceptorService.setIntercertors();
 
 const App: FC = () => {
-	const { themeColor } = useSelector(generalSelector);
+	const { themePalette } = useSelector(generalSelector);
 
 	const theme = useMemo(
-		() => createMuiTheme(ThemeSettings(themeColor === ThemeColorsEnum.DARK)),
-		[themeColor]
+		() => createMuiTheme(ThemeSettings(themePalette === ThemePaletteEnum.DARK)),
+		[themePalette]
 	);
 
 	return (
@@ -37,8 +37,8 @@ const App: FC = () => {
 					<Routes />
 				</Suspense>
 
-				{/* push message */}
-				<PushMessage />
+				{/* Message */}
+				<Message />
 			</HelmetProvider>
 		</MuiThemeProvider>
 	);

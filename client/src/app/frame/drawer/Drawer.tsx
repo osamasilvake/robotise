@@ -1,6 +1,7 @@
 import {
 	Avatar,
 	Box,
+	Divider,
 	Drawer,
 	Icon,
 	IconButton,
@@ -8,7 +9,8 @@ import {
 	ListItem,
 	ListItemIcon,
 	ListItemText,
-	ListSubheader
+	ListSubheader,
+	Tooltip
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import clsx from 'clsx';
@@ -19,7 +21,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 import ENV from '../../../environment';
 import { ConfigService } from '../../services';
-import { generalSelector, GenernalSetDrawerState } from '../../slices/general/General.slice';
+import { generalSelector, GeneralSetDrawerState } from '../../slices/general/General.slice';
+import Copyrights from '../copyrights/Copyrights';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
 import { drawerStyles } from './Drawer.styles';
 
@@ -33,7 +36,7 @@ const DrawerCustom: FC = () => {
 	/**
 	 * dispatch: set open drawer
 	 */
-	const handleDrawerClose = () => dispatch(GenernalSetDrawerState(false));
+	const handleDrawerClose = () => dispatch(GeneralSetDrawerState(false));
 
 	return (
 		<Drawer
@@ -58,60 +61,72 @@ const DrawerCustom: FC = () => {
 						alt={ConfigService.envAuthor}
 					/>
 				</Link>
-				<IconButton onClick={handleDrawerClose}>
-					<ArrowBackIcon />
-				</IconButton>
+				<Tooltip title={String(t('TOOLTIP.DRAWER.CLOSE'))}>
+					<IconButton onClick={handleDrawerClose}>
+						<ArrowBackIcon />
+					</IconButton>
+				</Tooltip>
 			</Box>
 
 			{/* List */}
-			<List
-				disablePadding
-				subheader={
-					<ListSubheader>
-						{(openDrawer && t('BUSINESS.TITLE.MAIN')) || t('BUSINESS.TITLE.SHORT')}
-					</ListSubheader>
-				}>
-				{drawerBusinessList.map((item) => (
-					<ListItem
-						key={item.id}
-						button
-						component={NavLink}
-						to={item.path}
-						exact
-						className={drawerClasses.drawerListItemWithSubtitle}>
-						<ListItemIcon>
-							<Icon>{item.icon}</Icon>
-						</ListItemIcon>
-						<ListItemText
-							primary={t(item.label)}
-							secondary={item.hint && t(item.hint)}
-						/>
-					</ListItem>
-				))}
-			</List>
-			<List
-				disablePadding
-				subheader={
-					<ListSubheader>
-						{(openDrawer && t('INFORMATION.TITLE.MAIN')) ||
-							t('INFORMATION.TITLE.SHORT')}
-					</ListSubheader>
-				}>
-				{drawerInformationList.map((item) => (
-					<ListItem
-						key={item.id}
-						button
-						exact
-						component={NavLink}
-						to={item.path}
-						className={drawerClasses.drawerListItem}>
-						<ListItemIcon>
-							<Icon>{item.icon}</Icon>
-						</ListItemIcon>
-						<ListItemText primary={t(item.label)} />
-					</ListItem>
-				))}
-			</List>
+			<Box className={drawerClasses.drawerListRoot}>
+				<List
+					disablePadding
+					subheader={
+						<ListSubheader>
+							{(openDrawer && t('SIDEBAR.BUSINESS.TITLE.MAIN')) ||
+								t('SIDEBAR.BUSINESS.TITLE.SHORT')}
+						</ListSubheader>
+					}>
+					{drawerBusinessList.map((item) => (
+						<ListItem
+							key={item.id}
+							button
+							component={NavLink}
+							to={item.path}
+							exact
+							className={drawerClasses.drawerListItemWithSubtitle}>
+							<ListItemIcon>
+								<Icon>{item.icon}</Icon>
+							</ListItemIcon>
+							<ListItemText
+								primary={t(item.label)}
+								secondary={item.hint && t(item.hint)}
+							/>
+						</ListItem>
+					))}
+				</List>
+				<List
+					disablePadding
+					subheader={
+						<ListSubheader>
+							{(openDrawer && t('SIDEBAR.INFORMATION.TITLE.MAIN')) ||
+								t('SIDEBAR.INFORMATION.TITLE.SHORT')}
+						</ListSubheader>
+					}>
+					{drawerInformationList.map((item) => (
+						<ListItem
+							key={item.id}
+							button
+							exact
+							component={NavLink}
+							to={item.path}
+							className={drawerClasses.drawerListItem}>
+							<ListItemIcon>
+								<Icon>{item.icon}</Icon>
+							</ListItemIcon>
+							<ListItemText primary={t(item.label)} />
+						</ListItem>
+					))}
+				</List>
+			</Box>
+
+			<Divider light />
+
+			{/* Copyrights */}
+			<Box className={drawerClasses.drawerBottom}>
+				{openDrawer ? <Copyrights /> : <Copyrights short />}
+			</Box>
 		</Drawer>
 	);
 };

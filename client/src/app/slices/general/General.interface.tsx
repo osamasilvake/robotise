@@ -1,12 +1,13 @@
-import { PushMessageTypeEnum, ThemeColorsEnum } from './General.enum';
+import { TriggerMessageEnum } from '../../frame/message/Message.interface';
+import { ThemePaletteEnum } from './General.enum';
 
 export interface GeneralSliceInterface {
 	openDrawer: boolean;
-	themeColor: ThemeColorsEnum;
-	pushMessage: PushMessageInterface;
+	themePalette: ThemePaletteEnum;
+	triggerMessage: TriggerMessageInterface;
 }
 
-export interface PushMessageInterface {
-	severity: PushMessageTypeEnum;
+export interface TriggerMessageInterface {
+	severity: TriggerMessageEnum;
 	text: string;
 }

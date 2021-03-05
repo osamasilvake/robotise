@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import Auth from './Auth';
 import GlobalLayout from './layouts/global/GlobalLayout';
 import routesTemplates from './routes/index';
-import Auth from './screens/authentication/Auth';
 import Error404 from './screens/pages/404/Error404';
 
 const Routes = () => {

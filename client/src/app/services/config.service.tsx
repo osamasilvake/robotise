@@ -63,9 +63,9 @@ class ConfigService extends EnvService {
 	 */
 	get AppLocalStorageItems() {
 		return {
-			JWTAccessToken: 'robot_jwt_access_token',
-			ThemePalette: 'robo_theme_palette',
-			DrawerState: 'robo_drawer_state'
+			JWTAccessToken: 'robotise_jwt_access_token',
+			ThemePalette: 'robotise_theme_palette',
+			DrawerState: 'robotise_drawer_state'
 		};
 	}
 
@@ -74,7 +74,7 @@ class ConfigService extends EnvService {
 	 */
 	get AppSessionStorageItems() {
 		return {
-			JWTAccessToken: 'robot_jwt_access_token'
+			JWTAccessToken: 'robotise_jwt_access_token'
 		};
 	}
 

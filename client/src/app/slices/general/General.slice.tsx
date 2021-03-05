@@ -1,9 +1,10 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { TriggerMessageInterface } from '../../frame/message/Message.interface';
 import { ConfigService, StorageService } from '../../services';
 import { RootStateInterface } from '../Slices.interface';
 import { ThemePaletteEnum } from './General.enum';
-import { GeneralSliceInterface, TriggerMessageInterface } from './General.interface';
+import { GeneralSliceInterface } from './General.interface';
 
 // storage items
 const themePalette = StorageService.get(ConfigService.AppLocalStorageItems.ThemePalette);

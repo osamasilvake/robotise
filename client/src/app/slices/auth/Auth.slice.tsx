@@ -1,7 +1,8 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import moment from 'moment';
 
-import { TriggerMessageEnum } from '../../frame/message/Message.interface';
+import { TriggerMessageEnum } from '../../frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../frame/message/Message.interface';
 import {
 	AuthLoginInterface,
 	AuthUserDetailInterface
@@ -9,7 +10,6 @@ import {
 import AuthService from '../../screens/authentication/Auth.service';
 import { ConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/services.enum';
-import { TriggerMessageInterface } from '../general/General.interface';
 import { triggerMessage } from '../general/General.slice';
 import { RootStateInterface } from '../Slices.interface';
 import { AuthSliceInterface } from './Auth.interface';

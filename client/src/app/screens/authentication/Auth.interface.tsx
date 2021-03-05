@@ -30,18 +30,12 @@ export interface AuthJWTInterface {
 	jti: string;
 	realm_access: realmAccessInterface[];
 }
+
 export interface realmAccessInterface {
 	roles: string[];
 }
 
-// user request payload
-export interface AuthLoginInterface {
-	email: string;
-	password: string;
-	rememberMe?: boolean;
-}
-
-// user response payload
+// custom user payload
 export interface AuthUserDetailInterface {
 	data: AuthUserDataInterface;
 	email_verified: boolean;
@@ -55,6 +49,7 @@ export interface AuthUserDetailInterface {
 	jti: string;
 	realm_access: realmAccessInterface[];
 }
+
 export interface AuthUserDataInterface {
 	user_id: string;
 	display_name?: string;
@@ -62,4 +57,10 @@ export interface AuthUserDataInterface {
 	family_name: string;
 	email: string;
 	role: string;
+}
+
+export interface AuthLoginInterface {
+	email: string;
+	password: string;
+	rememberMe?: boolean;
 }

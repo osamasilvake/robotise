@@ -1,6 +1,7 @@
-export enum TriggerMessageEnum {
-	INFO = 'info',
-	WARNING = 'warning',
-	SUCCESS = 'success',
-	ERROR = 'error'
+import { TriggerMessageEnum } from './Message.enum';
+
+export interface TriggerMessageInterface {
+	show: boolean;
+	severity?: TriggerMessageEnum;
+	text?: string;
 }

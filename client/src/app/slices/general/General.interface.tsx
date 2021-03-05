@@ -8,6 +8,7 @@ export interface GeneralSliceInterface {
 }
 
 export interface TriggerMessageInterface {
-	severity: TriggerMessageEnum;
-	text: string;
+	show: boolean;
+	severity?: TriggerMessageEnum;
+	text?: string;
 }

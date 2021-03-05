@@ -13,14 +13,12 @@ class AuthService {
 	 * @param payload
 	 */
 	authLogin = (payload: AuthLoginInterface) => {
-		// request
 		const request = {
 			username: payload.email,
 			password: payload.password,
 			grant_type: 'password',
 			client_id: 'roc-ops-app'
 		};
-
 		return ClientService.post(ConfigService.AppServices.AUTH.SIGN_IN, qs.stringify(request), {
 			headers: ConfigService.AppRequestHeaders.post
 		});
@@ -44,14 +42,42 @@ class AuthService {
 	authUserDetail = (accessToken: string): AuthUserDetailInterface => {
 		const decoded: AuthJWTInterface = jwtDecode(accessToken);
 		return {
+			realm_access: decoded.realm_access,
 			data: {
-				displayName: decoded.name,
-				email: decoded.email
+				user_id: decoded.user_id,
+				display_name: decoded.name,
+				given_name: decoded.given_name,
+				family_name: decoded.family_name,
+				email: decoded.email,
+				role: AuthUserRoleEnum.ADMIN
 			},
-			role: AuthUserRoleEnum.ADMIN,
+			iat: decoded.iat,
 			exp: decoded.exp,
-			uuid: decoded.user_id
+			iss: decoded.iss,
+			typ: decoded.typ,
+			azp: decoded.azp,
+			jti: decoded.jti,
+			session_state: decoded.session_state,
+			scope: decoded.scope,
+			email_verified: decoded.email_verified
 		};
+	};
+
+	/**
+	 * requests a new token
+	 */
+	authRequestNewToken = () => {
+		const request = {
+			access_token: this.getAccessToken(),
+			client_id: 'roc-ops-app'
+		};
+		return ClientService.post(
+			ConfigService.AppServices.AUTH.AUTO_REFRESH,
+			qs.stringify(request),
+			{
+				headers: ConfigService.AppRequestHeaders.post
+			}
+		);
 	};
 
 	/**

@@ -1,6 +1,5 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageEnum } from '../../frame/message/Message.interface';
 import { ConfigService, StorageService } from '../../services';
 import { RootStateInterface } from '../Slices.interface';
 import { ThemePaletteEnum } from './General.enum';
@@ -14,10 +13,7 @@ const drawerState = StorageService.get(ConfigService.AppLocalStorageItems.Drawer
 export const initialState: GeneralSliceInterface = {
 	openDrawer: drawerState === '' ? true : drawerState,
 	themePalette: themePalette || ThemePaletteEnum.DARK,
-	triggerMessage: {
-		severity: TriggerMessageEnum.INFO,
-		text: ''
-	}
+	triggerMessage: { show: false }
 };
 
 // slice
@@ -52,7 +48,7 @@ export default dataSlice.reducer;
  * @param drawerState
  */
 export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: Dispatch) => {
-	// dispstch: set drawer state
+	// dispatch: set drawer state
 	dispatch(setDrawerState(drawerState));
 
 	// store it in local_storage
@@ -66,7 +62,7 @@ export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: 
 export const GeneralApplyThemePalette = (themePalette: ThemePaletteEnum) => async (
 	dispatch: Dispatch
 ) => {
-	// dispstch: apply theme palette
+	// dispatch: apply theme palette
 	dispatch(applyThemePalette(themePalette));
 
 	// store it in local_storage
@@ -80,6 +76,6 @@ export const GeneralApplyThemePalette = (themePalette: ThemePaletteEnum) => asyn
 export const GeneralTriggerMessage = (messagePayload: TriggerMessageInterface) => async (
 	dispatch: Dispatch
 ) => {
-	// dispstch: trigger message
+	// dispatch: trigger message
 	dispatch(triggerMessage(messagePayload));
 };

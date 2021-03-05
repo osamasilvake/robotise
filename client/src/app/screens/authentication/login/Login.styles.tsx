@@ -14,7 +14,7 @@ export const loginStyles = makeStyles((theme: Theme) => ({
 			ConfigService.AppImageURLs.robotise.format
 		})`,
 		backgroundPosition: 'center',
-		backgroundPositionX: '30%',
+		backgroundPositionX: '50%',
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover'
 	},

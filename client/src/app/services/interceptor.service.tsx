@@ -10,17 +10,19 @@ class InterceptorService {
 			},
 			(err) => {
 				return new Promise((_resolve, reject) => {
-					// un-authorized access
+					// un-authorize access
 					const status = err.response && err.response.status;
-					if (status === 401) {
-						// clear authentication
+					const isRetryRequest = err.config && err.config.__isRetryRequest;
+					if (status === 401 && !isRetryRequest) {
 						AuthService.authLogout();
 					}
 
 					// send logs
 					// log.error(loggerService.createLog(err));
 
-					reject(err);
+					// reject
+					const data = err.response && err.response.data;
+					reject(data);
 				});
 			}
 		);

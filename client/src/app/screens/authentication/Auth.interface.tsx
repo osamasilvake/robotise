@@ -15,10 +15,23 @@ export interface AuthInterface<T = ReactNode> {
 // JWT access token payload
 export interface AuthJWTInterface {
 	name: string;
+	given_name: string;
+	family_name: string;
 	email: string;
-	role: string;
+	email_verified: boolean;
+	scope: string;
+	session_state: string;
+	iat: number;
 	exp: number;
 	user_id: string;
+	iss: string;
+	typ: string;
+	azp: string;
+	jti: string;
+	realm_access: realmAccessInterface[];
+}
+export interface realmAccessInterface {
+	roles: string[];
 }
 
 // user request payload
@@ -31,11 +44,22 @@ export interface AuthLoginInterface {
 // user response payload
 export interface AuthUserDetailInterface {
 	data: AuthUserDataInterface;
-	role: string;
+	email_verified: boolean;
+	scope: string;
+	session_state: string;
+	iat: number;
 	exp: number;
-	uuid: string;
+	iss: string;
+	typ: string;
+	azp: string;
+	jti: string;
+	realm_access: realmAccessInterface[];
 }
 export interface AuthUserDataInterface {
-	displayName?: string;
+	user_id: string;
+	display_name?: string;
+	given_name: string;
+	family_name: string;
 	email: string;
+	role: string;
 }

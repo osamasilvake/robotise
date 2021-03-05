@@ -124,13 +124,13 @@ const AppBarCustom: FC = () => {
 						<IconButton edge="end" onClick={handleMenuOpen}>
 							<Box className={appBarClasses.appBarAccountDetail}>
 								<Typography variant="subtitle2">
-									{user?.data.displayName}
+									{user?.data.display_name}
 								</Typography>
 								<Typography
 									variant="body2"
 									color="textSecondary"
 									className={appBarClasses.appBarAccountDetailSubtitle}>
-									{user?.role}
+									{user?.data.role}
 								</Typography>
 							</Box>
 							<Badge>
@@ -150,7 +150,7 @@ const AppBarCustom: FC = () => {
 							<List disablePadding>
 								<ListItem divider>
 									<ListItemText
-										primary={user?.data.displayName}
+										primary={user?.data.display_name}
 										secondary={user?.data.email}
 									/>
 								</ListItem>

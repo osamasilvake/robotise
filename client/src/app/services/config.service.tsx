@@ -52,7 +52,8 @@ class ConfigService extends EnvService {
 	get AppServices() {
 		return {
 			AUTH: {
-				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`
+				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`,
+				AUTO_REFRESH: `${this.envApiUrl}/auth/${this.envRealm}/refresh`
 			}
 		};
 	}

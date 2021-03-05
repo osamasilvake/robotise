@@ -1,37 +1,31 @@
 import { Snackbar } from '@material-ui/core';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Alert from '../../components/alert/Alert';
 import { ConfigService } from '../../services';
-import { generalSelector } from '../../slices/general/General.slice';
+import { generalSelector, GeneralTriggerMessage } from '../../slices/general/General.slice';
 
 const Message: FC = () => {
-	const { t } = useTranslation();
+	const { t } = useTranslation('GLOBAL');
 
+	const dispatch = useDispatch();
 	const { triggerMessage } = useSelector(generalSelector);
-	const [open, setOpen] = useState(false);
-
-	useEffect(() => {
-		if (triggerMessage.severity && triggerMessage.text) {
-			setOpen(true);
-		}
-	}, [triggerMessage]);
 
 	/**
-	 * handle close
+	 * dispatch: trigger message
 	 */
-	const handleClose = () => setOpen(false);
+	const handleCloseMessage = () => dispatch(GeneralTriggerMessage({ show: false }));
 
 	return (
 		<Snackbar
 			anchorOrigin={ConfigService.AppOptions.snackbar.direction}
 			autoHideDuration={ConfigService.AppOptions.snackbar.timeout}
-			open={open}
-			onClose={handleClose}>
-			<Alert severity={triggerMessage.severity} handleClose={handleClose}>
-				{t(triggerMessage.text)}
+			open={triggerMessage.show}
+			onClose={handleCloseMessage}>
+			<Alert severity={triggerMessage.severity} handleClose={handleCloseMessage}>
+				{triggerMessage.text && t(triggerMessage.text)}
 			</Alert>
 		</Snackbar>
 	);

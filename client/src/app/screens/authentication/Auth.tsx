@@ -5,19 +5,21 @@ import { Redirect } from 'react-router-dom';
 import ENV from '../../../environment';
 import Loader from '../../components/loader/Loader';
 import { isPrivate, isSession } from '../../routes/types';
-import { authSelector, AuthValidateLogin } from '../../slices/auth/Auth.slice';
+import { AuthRefreshToken, authSelector } from '../../slices/auth/Auth.slice';
 import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
 	const dispatch = useDispatch();
 	const { loading, user } = useSelector(authSelector);
 
-	const isUser = !!(user && user.uuid);
+	const isUser = !!(user && user.data.user_id);
 
 	useEffect(() => {
-		// dispatch: validate login
-		dispatch(AuthValidateLogin());
-	}, [dispatch]);
+		if (user) {
+			// dispatch: requests a new token 30 seconds before it expires
+			dispatch(AuthRefreshToken(user.exp));
+		}
+	}, [dispatch, user]);
 
 	/**
 	 * authentication state

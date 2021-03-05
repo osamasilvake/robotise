@@ -62,9 +62,6 @@ export const useForm = <UseFormEntity,>(
 		// wait for callback to execute
 		await submitCallBack();
 
-		// timeout: 1000ms
-		await timeout(1000);
-
 		// stop loader
 		setLoader(false);
 	};

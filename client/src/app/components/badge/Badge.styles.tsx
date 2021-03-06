@@ -1,12 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { ConfigService } from '../../services';
+import { AppConfigService } from '../../services';
 
 export const badgeStyles = makeStyles((theme: Theme) => ({
 	badge: {
-		backgroundColor: ConfigService.AppVariables.colors.c9,
+		backgroundColor: AppConfigService.AppVariables.colors.c9,
 		boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-		color: ConfigService.AppVariables.colors.c9,
+		color: AppConfigService.AppVariables.colors.c9,
 		'&::after': {
 			animation: '$ripple 1.2s infinite ease-in-out',
 			border: '1px solid currentColor',

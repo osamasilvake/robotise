@@ -1,8 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-import { ConfigService } from '../../services';
+import { AppConfigService } from '../../services';
 
-const drawerWidth = ConfigService.AppOptions.drawer.width;
+const drawerWidth = AppConfigService.AppOptions.drawer.width;
 export const appBarStyles = makeStyles((theme: Theme) => ({
 	appBar: {
 		transition: theme.transitions.create(['width', 'margin'], {
@@ -32,7 +32,7 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 		textAlign: 'right'
 	},
 	appBarColorThemeLight: {
-		fill: ConfigService.AppVariables.colors.c10
+		fill: AppConfigService.AppVariables.colors.c10
 	},
 	appBarDivider: {
 		margin: theme.spacing(0, 0, 0, 0.5)

@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import Copyright from '../../../frame/copyrights/Copyrights';
-import { ConfigService } from '../../../services';
+import { AppConfigService } from '../../../services';
 import { AuthLogin } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/UseForm';
 import { allPropertiesEmpty } from '../../../utilities/methods/ValidateObjProperties';
@@ -60,8 +60,8 @@ const Login: FC = () => {
 					<Avatar
 						variant="square"
 						className={loginClasses.loginAvatar}
-						src={ConfigService.AppImageURLs.logo.name}
-						alt={ConfigService.envAuthor}
+						src={AppConfigService.AppImageURLs.logo.name}
+						alt={AppConfigService.envAuthor}
 					/>
 					<form className={loginClasses.loginForm} onSubmit={handleSubmit}>
 						<FormControl error fullWidth margin="normal">

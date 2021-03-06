@@ -1,15 +1,15 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import moment from 'moment';
 
-import { TriggerMessageEnum } from '../../frame/message/Message.enum';
+import { TriggerMessageTypeEnum } from '../../frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../frame/message/Message.interface';
 import {
 	AuthLoginInterface,
 	AuthUserDetailInterface
 } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
-import { ConfigService, StorageService } from '../../services';
-import { StorageTypeEnum } from '../../services/index.enum';
+import { AppConfigService, StorageService } from '../../services';
+import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { triggerMessage } from '../general/General.slice';
 import { RootStateInterface } from '../Slices.interface';
 import { AuthSliceInterface } from './Auth.interface';
@@ -79,7 +79,7 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 		.catch((err) => {
 			const message: TriggerMessageInterface = {
 				show: true,
-				severity: TriggerMessageEnum.ERROR,
+				severity: TriggerMessageTypeEnum.ERROR,
 				text: err.error_description
 			};
 
@@ -105,7 +105,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 					.then((res) => {
 						// local-storage
 						const isLocal = StorageService.get(
-							ConfigService.AppLocalStorageItems.JWTAccessToken,
+							AppConfigService.AppLocalStorageItems.JWTAccessToken,
 							StorageTypeEnum.PERSISTANT
 						);
 
@@ -126,7 +126,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 					.catch((err) => {
 						const message: TriggerMessageInterface = {
 							show: true,
-							severity: TriggerMessageEnum.ERROR,
+							severity: TriggerMessageTypeEnum.ERROR,
 							text: err.error_description
 						};
 
@@ -140,7 +140,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 		} else {
 			const message: TriggerMessageInterface = {
 				show: true,
-				severity: TriggerMessageEnum.ERROR,
+				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'AUTH.LOGIN.ERRORS.TOKEN_EXPIRED'
 			};
 
@@ -156,7 +156,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	} else {
 		const message: TriggerMessageInterface = {
 			show: true,
-			severity: TriggerMessageEnum.WARNING,
+			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.LOGIN.ERRORS.TOKEN_EMPTY'
 		};
 

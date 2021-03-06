@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 import ENV from '../../../environment';
-import { ConfigService } from '../../services';
+import { AppConfigService } from '../../services';
 import { generalSelector, GeneralSetDrawerState } from '../../slices/general/General.slice';
 import Copyrights from '../copyrights/Copyrights';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
@@ -57,8 +57,8 @@ const DrawerCustom: FC = () => {
 					<Avatar
 						variant="square"
 						className={drawerClasses.drawerAvatar}
-						src={ConfigService.AppImageURLs.logo.name}
-						alt={ConfigService.envAuthor}
+						src={AppConfigService.AppImageURLs.logo.name}
+						alt={AppConfigService.envAuthor}
 					/>
 				</Link>
 				<Tooltip title={String(t('TOOLTIP.DRAWER.CLOSE'))}>

@@ -1,7 +1,7 @@
-import { TriggerMessageEnum } from './Message.enum';
+import { TriggerMessageTypeEnum } from './Message.enum';
 
 export interface TriggerMessageInterface {
 	show: boolean;
-	severity?: TriggerMessageEnum;
+	severity?: TriggerMessageTypeEnum;
 	text?: string;
 }

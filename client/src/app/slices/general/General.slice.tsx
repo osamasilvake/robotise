@@ -1,19 +1,19 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageInterface } from '../../frame/message/Message.interface';
-import { ConfigService, StorageService } from '../../services';
+import { AppConfigService, StorageService } from '../../services';
 import { RootStateInterface } from '../Slices.interface';
-import { ThemePaletteEnum } from './General.enum';
+import { ThemePaletteTypeEnum } from './General.enum';
 import { GeneralSliceInterface } from './General.interface';
 
 // storage items
-const themePalette = StorageService.get(ConfigService.AppLocalStorageItems.ThemePalette);
-const drawerState = StorageService.get(ConfigService.AppLocalStorageItems.DrawerState);
+const themePalette = StorageService.get(AppConfigService.AppLocalStorageItems.ThemePalette);
+const drawerState = StorageService.get(AppConfigService.AppLocalStorageItems.DrawerState);
 
 // initial state
 export const initialState: GeneralSliceInterface = {
 	openDrawer: drawerState === '' ? true : drawerState,
-	themePalette: themePalette || ThemePaletteEnum.DARK,
+	themePalette: themePalette || ThemePaletteTypeEnum.DARK,
 	triggerMessage: { show: false }
 };
 
@@ -53,21 +53,21 @@ export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: 
 	dispatch(setDrawerState(drawerState));
 
 	// store it in local_storage
-	StorageService.put(ConfigService.AppLocalStorageItems.DrawerState, drawerState);
+	StorageService.put(AppConfigService.AppLocalStorageItems.DrawerState, drawerState);
 };
 
 /**
  * apply theme palette
  * @param themePalette
  */
-export const GeneralApplyThemePalette = (themePalette: ThemePaletteEnum) => async (
+export const GeneralApplyThemePalette = (themePalette: ThemePaletteTypeEnum) => async (
 	dispatch: Dispatch
 ) => {
 	// dispatch: apply theme palette
 	dispatch(applyThemePalette(themePalette));
 
 	// store it in local_storage
-	StorageService.put(ConfigService.AppLocalStorageItems.ThemePalette, themePalette);
+	StorageService.put(AppConfigService.AppLocalStorageItems.ThemePalette, themePalette);
 };
 
 /**

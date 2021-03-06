@@ -23,9 +23,9 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Badge from '../../components/badge/Badge';
-import { ConfigService } from '../../services';
+import { AppConfigService } from '../../services';
 import { AuthLogout, authSelector } from '../../slices/auth/Auth.slice';
-import { ThemePaletteEnum } from '../../slices/general/General.enum';
+import { ThemePaletteTypeEnum } from '../../slices/general/General.enum';
 import {
 	GeneralApplyThemePalette,
 	generalSelector,
@@ -64,7 +64,7 @@ const AppBarCustom: FC = () => {
 	 * dispatch: apply theme palette
 	 * @param themePalette
 	 */
-	const handleThemePalette = (themePalette: ThemePaletteEnum) =>
+	const handleThemePalette = (themePalette: ThemePaletteTypeEnum) =>
 		dispatch(GeneralApplyThemePalette(themePalette));
 
 	/**
@@ -98,12 +98,12 @@ const AppBarCustom: FC = () => {
 								edge="start"
 								onClick={() =>
 									handleThemePalette(
-										themePalette === ThemePaletteEnum.LIGHT
-											? ThemePaletteEnum.DARK
-											: ThemePaletteEnum.LIGHT
+										themePalette === ThemePaletteTypeEnum.LIGHT
+											? ThemePaletteTypeEnum.DARK
+											: ThemePaletteTypeEnum.LIGHT
 									)
 								}>
-								{themePalette === ThemePaletteEnum.LIGHT ? (
+								{themePalette === ThemePaletteTypeEnum.LIGHT ? (
 									<Brightness3Icon />
 								) : (
 									<WbSunnyIcon className={appBarClasses.appBarColorThemeLight} />
@@ -135,8 +135,8 @@ const AppBarCustom: FC = () => {
 							</Box>
 							<Badge>
 								<Avatar
-									src={ConfigService.AppImageURLs.avatar.path}
-									alt={ConfigService.AppImageURLs.avatar.name}
+									src={AppConfigService.AppImageURLs.avatar.path}
+									alt={AppConfigService.AppImageURLs.avatar.name}
 								/>
 							</Badge>
 						</IconButton>

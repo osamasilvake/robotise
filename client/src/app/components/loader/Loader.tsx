@@ -2,7 +2,7 @@ import { Avatar, Box, CircularProgress } from '@material-ui/core';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 
-import { ConfigService } from '../../services';
+import { AppConfigService } from '../../services';
 import { centerStyles } from '../../utilities/styles/Center.style';
 import { loaderStyles } from './Loader.styles';
 
@@ -18,8 +18,8 @@ const Loader: FC = () => {
 			<Box className="logo" marginBottom="15px">
 				<Avatar
 					className={loaderClasses.loaderAvatar}
-					src={ConfigService.AppImageURLs.logo.icon}
-					alt={ConfigService.envAuthor}
+					src={AppConfigService.AppImageURLs.logo.icon}
+					alt={AppConfigService.envAuthor}
 				/>
 			</Box>
 			<Box className={loaderClasses.loaderSpinner}>

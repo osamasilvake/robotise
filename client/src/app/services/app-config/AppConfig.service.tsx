@@ -1,8 +1,8 @@
 import { SnackbarOrigin } from '@material-ui/core/Snackbar';
 
-import EnvService from './env.service';
+import EnvService from '../env/Env.service';
 
-class ConfigService extends EnvService {
+class AppAppConfigService extends EnvService {
 	/**
 	 * variables
 	 */
@@ -114,21 +114,6 @@ class ConfigService extends EnvService {
 			}
 		};
 	}
-
-	/**
-	 * REST API config
-	 */
-	get AppRESTAPIConfig() {
-		return {
-			get: {
-				retry: 3,
-				timeout: 10 * 1000 // 10 seconds
-			},
-			post: {
-				timeout: 20 * 1000 // 20 seconds
-			}
-		};
-	}
 }
-const instance = new ConfigService();
+const instance = new AppAppConfigService();
 export default instance;

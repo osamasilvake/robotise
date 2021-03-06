@@ -1,8 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-import { ConfigService } from '../../services';
+import { AppConfigService } from '../../services';
 
-const drawerWidth = ConfigService.AppOptions.drawer.width;
+const drawerWidth = AppConfigService.AppOptions.drawer.width;
 export const privateLayoutStyles = makeStyles((theme: Theme) => ({
 	privateLayoutContent: {
 		marginTop: theme.spacing(8),

@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-import { ConfigService } from '../../../services';
+import { AppConfigService } from '../../../services';
 import { randomNum } from '../../../utilities/methods/RandomNum';
 
 export const loginStyles = makeStyles((theme: Theme) => ({
@@ -9,9 +9,9 @@ export const loginStyles = makeStyles((theme: Theme) => ({
 	},
 	loginImage: {
 		backgroundImage: `url(${
-			ConfigService.AppImageURLs.robotise.path +
+			AppConfigService.AppImageURLs.robotise.path +
 			randomNum(1, 8) +
-			ConfigService.AppImageURLs.robotise.format
+			AppConfigService.AppImageURLs.robotise.format
 		})`,
 		backgroundPosition: 'center',
 		backgroundPositionX: '50%',

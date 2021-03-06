@@ -1,6 +1,6 @@
-import { AuthUserRoleEnum } from '../../screens/authentication/Auth.enum';
+import { AuthUserRoleTypeEnum } from '../../screens/authentication/Auth.enum';
 import AuthService from '../../screens/authentication/Auth.service';
-import { StorageTypeEnum } from '../../services/index.enum';
+import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 
 describe('Authentication', () => {
 	let accessToken: string;
@@ -31,6 +31,6 @@ describe('Authentication', () => {
 
 	test('Access token payload must have role as ADMIN', () => {
 		const response = AuthService.authUserDetail(accessToken);
-		expect(response.data.role).toBe(AuthUserRoleEnum.ADMIN);
+		expect(response.data.role).toBe(AuthUserRoleTypeEnum.ADMIN);
 	});
 });

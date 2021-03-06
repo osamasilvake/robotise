@@ -1,4 +1,4 @@
-import { StorageTypeEnum } from './index.enum';
+import { StorageTypeEnum } from './Storage.enum';
 
 class StorageService {
 	/**

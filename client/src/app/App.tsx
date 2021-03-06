@@ -8,7 +8,7 @@ import Message from './frame/message/Message';
 import Meta from './frame/meta/Meta';
 import Routes from './Routes';
 import { InterceptorService, LoggerService } from './services';
-import { ThemePaletteEnum } from './slices/general/General.enum';
+import { ThemePaletteTypeEnum } from './slices/general/General.enum';
 import { generalSelector } from './slices/general/General.slice';
 import { ThemeSettings } from './Theme';
 
@@ -20,7 +20,7 @@ const App: FC = () => {
 	const { themePalette } = useSelector(generalSelector);
 
 	const theme = useMemo(
-		() => createMuiTheme(ThemeSettings(themePalette === ThemePaletteEnum.DARK)),
+		() => createMuiTheme(ThemeSettings(themePalette === ThemePaletteTypeEnum.DARK)),
 		[themePalette]
 	);
 

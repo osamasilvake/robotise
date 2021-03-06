@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-class ClientService {
+class HttpClientService {
 	/**
 	 * GET
 	 * @param url
@@ -43,5 +43,5 @@ class ClientService {
 		return resp.data;
 	};
 }
-const instance = new ClientService();
+const instance = new HttpClientService();
 export default instance;

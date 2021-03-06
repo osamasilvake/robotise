@@ -1,4 +1,4 @@
-export interface errorLogInterface {
+export interface LogErrorInterface {
 	message: string;
 	method: string;
 	name: string;
@@ -8,14 +8,14 @@ export interface errorLogInterface {
 	url: string;
 }
 
-export interface logInterface extends errorLogInterface {
+export interface LogInterface extends LogErrorInterface {
 	env: string;
-	level: logLevelInterface;
+	level: LogLevelInterface;
 	logger: string;
 	origin: string;
 	version: string;
 }
 
-export interface logLevelInterface {
+export interface LogLevelInterface {
 	label: string;
 }

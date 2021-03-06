@@ -1,8 +1,8 @@
 import axios from 'axios';
 import log from 'loglevel';
 
-import AuthService from '../screens/authentication/Auth.service';
-import { LoggerService } from '.';
+import AuthService from '../../screens/authentication/Auth.service';
+import { LoggerService } from '..';
 
 class InterceptorService {
 	setIntercertors() {

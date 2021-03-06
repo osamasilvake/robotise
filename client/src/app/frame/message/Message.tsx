@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Alert from '../../components/alert/Alert';
-import { ConfigService } from '../../services';
+import { AppConfigService } from '../../services';
 import { generalSelector, GeneralTriggerMessage } from '../../slices/general/General.slice';
 
 const Message: FC = () => {
@@ -20,8 +20,8 @@ const Message: FC = () => {
 
 	return (
 		<Snackbar
-			anchorOrigin={ConfigService.AppOptions.snackbar.direction}
-			autoHideDuration={ConfigService.AppOptions.snackbar.timeout}
+			anchorOrigin={AppConfigService.AppOptions.snackbar.direction}
+			autoHideDuration={AppConfigService.AppOptions.snackbar.timeout}
 			open={triggerMessage.show}
 			onClose={handleCloseMessage}>
 			<Alert severity={triggerMessage.severity} handleClose={handleCloseMessage}>

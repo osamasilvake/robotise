@@ -1,9 +1,9 @@
 import log from 'loglevel';
 import remote from 'loglevel-plugin-remote';
 
-import { get } from '../utilities/methods/objects/get';
-import { ConfigService, StorageService } from '.';
-import { logInterface } from './index.interface';
+import { get } from '../../utilities/methods/objects/get';
+import { AppConfigService, StorageService } from '..';
+import { LogInterface } from './Logger.interface';
 
 class LoggerService {
 	public mapKeys = [
@@ -18,22 +18,22 @@ class LoggerService {
 
 	init() {
 		const options = {
-			url: ConfigService.AppServices.COMMON.LOGS,
+			url: AppConfigService.AppServices.COMMON.LOGS,
 			method: 'POST',
-			token: StorageService.get(ConfigService.AppLocalStorageItems.JWTAccessToken),
-			level: ConfigService.envIsDevelopment ? 'trace' : 'warn',
+			token: StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken),
+			level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
 			stacktrace: {
 				levels: ['trace', 'warn', 'error'],
 				depth: 5,
 				excess: 0
 			},
-			format: (defaultLog: logInterface) => {
+			format: (defaultLog: LogInterface) => {
 				const log = {
 					...defaultLog,
-					env: ConfigService.env,
+					env: AppConfigService.env,
 					level: defaultLog.level.label,
 					url: window.location.href,
-					version: ConfigService.envVersion,
+					version: AppConfigService.envVersion,
 					origin: 'roc-app-client'
 				};
 				return {
@@ -47,7 +47,7 @@ class LoggerService {
 		remote.apply(log, options);
 
 		// set level based on environment
-		if (ConfigService.env === ConfigService.envProduction) {
+		if (AppConfigService.env === AppConfigService.envProduction) {
 			log.setLevel(log.levels.WARN);
 		} else {
 			log.setLevel(log.levels.TRACE);

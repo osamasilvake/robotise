@@ -53,10 +53,16 @@ const overrides: Overrides = {
 		root: {
 			'&$button': {
 				'&:hover': {
-					backgroundColor: ConfigService.AppVariables.colors.c4
+					backgroundColor: ConfigService.AppVariables.colors.c4,
+					'& svg, span, p': {
+						color: ConfigService.AppVariables.colors.c6
+					}
 				},
 				'&.active': {
-					backgroundColor: ConfigService.AppVariables.colors.c4
+					backgroundColor: ConfigService.AppVariables.colors.c4,
+					'& svg, span, p': {
+						color: ConfigService.AppVariables.colors.c6
+					}
 				}
 			}
 		}

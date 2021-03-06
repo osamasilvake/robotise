@@ -3,7 +3,7 @@ import moment from 'moment';
 import qs from 'querystring';
 
 import { ClientService, ConfigService, StorageService } from '../../services';
-import { StorageTypeEnum } from '../../services/services.enum';
+import { StorageTypeEnum } from '../../services/index.enum';
 import { AuthUserRoleEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
 
@@ -36,7 +36,7 @@ class AuthService {
 	};
 
 	/**
-	 * get user info from decoded token
+	 * fetch user info from decoded token
 	 * @param accessToken
 	 */
 	authUserDetail = (accessToken: string): AuthUserDetailInterface => {
@@ -90,10 +90,10 @@ class AuthService {
 	/**
 	 * set access token
 	 * @param accessToken
-	 * @param StorageType
+	 * @param storageType
 	 */
-	setAccessToken = (accessToken: string, StorageType: StorageTypeEnum) => {
-		if (StorageType === StorageTypeEnum.PERSISTANT) {
+	setAccessToken = (accessToken: string, storageType: StorageTypeEnum) => {
+		if (storageType === StorageTypeEnum.PERSISTANT) {
 			StorageService.put(ConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
 		} else {
 			StorageService.put(

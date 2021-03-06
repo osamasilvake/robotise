@@ -9,7 +9,7 @@ import {
 } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
 import { ConfigService, StorageService } from '../../services';
-import { StorageTypeEnum } from '../../services/services.enum';
+import { StorageTypeEnum } from '../../services/index.enum';
 import { triggerMessage } from '../general/General.slice';
 import { RootStateInterface } from '../Slices.interface';
 import { AuthSliceInterface } from './Auth.interface';
@@ -31,25 +31,25 @@ const dataSlice = createSlice({
 	name: 'Auth',
 	initialState,
 	reducers: {
-		authLoading: (state) => {
+		loading: (state) => {
 			state.loading = true;
 		},
-		authSuccess: (state, action) => {
+		success: (state, action) => {
 			state.loading = false;
 			state.user = action.payload;
 			state.errors = null;
 		},
-		authFailure: (state, action) => {
+		failure: (state, action) => {
 			state.loading = false;
 			state.user = null;
 			state.errors = action.payload;
 		},
-		resetState: () => initialState
+		reset: () => initialState
 	}
 });
 
 // actions
-export const { authLoading, authSuccess, authFailure, resetState } = dataSlice.actions;
+export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const authSelector = (state: RootStateInterface) => state['auth'];
@@ -74,17 +74,17 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 			const user: AuthUserDetailInterface = AuthService.authUserDetail(res.access_token);
 
 			// dispatch: response
-			dispatch(authSuccess(user));
+			dispatch(success(user));
 		})
 		.catch((err) => {
 			const message: TriggerMessageInterface = {
 				show: true,
 				severity: TriggerMessageEnum.ERROR,
-				text: err.message
+				text: err.error_description
 			};
 
 			// dispatch: error
-			dispatch(authFailure(message));
+			dispatch(failure(message));
 
 			// dispatch: trigger message
 			dispatch(triggerMessage(message));
@@ -121,7 +121,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						);
 
 						// dispatch: response
-						dispatch(authSuccess(user));
+						dispatch(success(user));
 					})
 					.catch((err) => {
 						const message: TriggerMessageInterface = {
@@ -131,7 +131,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						};
 
 						// dispatch: failure
-						dispatch(authFailure(message));
+						dispatch(failure(message));
 
 						// dispatch: trigger message
 						dispatch(triggerMessage(message));
@@ -145,7 +145,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			};
 
 			// dispatch: error
-			dispatch(authFailure(message));
+			dispatch(failure(message));
 
 			// dispatch: trigger message
 			dispatch(triggerMessage(message));
@@ -161,7 +161,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 		};
 
 		// dispatch: error
-		dispatch(authFailure(message));
+		dispatch(failure(message));
 	}
 };
 
@@ -170,11 +170,11 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
  */
 export const AuthLogout = () => async (dispatch: Dispatch) => {
 	// dispatch: loader
-	dispatch(authLoading());
+	dispatch(loading());
 
 	// clear authentication
 	AuthService.authLogout();
 
 	// dispatch: failure
-	dispatch(authFailure(null));
+	dispatch(failure(null));
 };

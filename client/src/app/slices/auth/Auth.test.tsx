@@ -1,6 +1,6 @@
 import { AuthUserRoleEnum } from '../../screens/authentication/Auth.enum';
 import AuthService from '../../screens/authentication/Auth.service';
-import { StorageTypeEnum } from '../../services/services.enum';
+import { StorageTypeEnum } from '../../services/index.enum';
 
 describe('Authentication', () => {
 	let accessToken: string;

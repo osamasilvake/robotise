@@ -51,6 +51,9 @@ class ConfigService extends EnvService {
 	 */
 	get AppServices() {
 		return {
+			COMMON: {
+				LOGS: `${this.envApiUrl}/frontend-logs`
+			},
 			AUTH: {
 				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`,
 				AUTO_REFRESH: `${this.envApiUrl}/auth/${this.envRealm}/refresh`

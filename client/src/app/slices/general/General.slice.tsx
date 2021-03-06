@@ -31,12 +31,12 @@ const dataSlice = createSlice({
 		triggerMessage: (state, action) => {
 			state.triggerMessage = action.payload;
 		},
-		resetState: () => initialState
+		reset: () => initialState
 	}
 });
 
 // actions
-export const { setDrawerState, applyThemePalette, triggerMessage, resetState } = dataSlice.actions;
+export const { setDrawerState, applyThemePalette, triggerMessage, reset } = dataSlice.actions;
 
 // selector
 export const generalSelector = (state: RootStateInterface) => state['general'];

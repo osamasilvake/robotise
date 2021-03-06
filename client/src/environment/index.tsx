@@ -4,7 +4,7 @@ import production from './production';
 
 const ENV = () => {
 	switch (ConfigService.env) {
-		case 'production':
+		case ConfigService.envProduction:
 			return production;
 		default:
 			return development;

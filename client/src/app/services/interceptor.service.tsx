@@ -1,6 +1,8 @@
 import axios from 'axios';
+import log from 'loglevel';
 
 import AuthService from '../screens/authentication/Auth.service';
+import { LoggerService } from '.';
 
 class InterceptorService {
 	setIntercertors() {
@@ -17,8 +19,8 @@ class InterceptorService {
 						AuthService.authLogout();
 					}
 
-					// send logs
-					// log.error(loggerService.createLog(err));
+					// send logs to server
+					log.error(LoggerService.createLog(err));
 
 					// reject
 					const data = err.response && err.response.data;

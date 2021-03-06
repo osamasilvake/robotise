@@ -1,15 +1,46 @@
 class EnvService {
+	private dev = 'development';
+	private prod = 'production';
+
 	/**
 	 * environment
 	 */
 	get env() {
-		return process.env.REACT_APP_ENV;
+		return process.env.NODE_ENV;
 	}
 
 	/**
-	 * name
+	 * development: string
 	 */
-	get envName() {
+	get envDevelopment() {
+		return this.dev;
+	}
+
+	/**
+	 * development: boolean
+	 */
+	get envIsDevelopment() {
+		return this.env === this.dev;
+	}
+
+	/**
+	 * production: string
+	 */
+	get envProduction() {
+		return this.prod;
+	}
+
+	/**
+	 * production: boolean
+	 */
+	get envIsProduction() {
+		return this.env === this.dev;
+	}
+
+	/**
+	 * app name
+	 */
+	get envAppName() {
 		return process.env.REACT_APP_NAME?.toUpperCase();
 	}
 
@@ -24,7 +55,7 @@ class EnvService {
 	 * version
 	 */
 	get envVersion() {
-		return process.env.REACT_APP_API_VERSION;
+		return process.env.REACT_APP_API_VERSION || '';
 	}
 
 	/**
@@ -42,7 +73,7 @@ class EnvService {
 	}
 
 	/**
-	 * api base url
+	 * api url
 	 */
 	get envApiUrl() {
 		return `${this.envBaseURL}/${this.envVersion}`;

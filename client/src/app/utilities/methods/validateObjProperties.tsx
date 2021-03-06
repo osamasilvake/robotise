@@ -11,7 +11,7 @@ const allPropertiesEmpty = <T,>(data: T) => {
  * @param data
  */
 const somePropertiesEmpty = <T,>(data: T) => {
-	return Object.values(data).every((x) => x === null || x === '');
+	return Object.values(data).some((x) => x === null || x === '');
 };
 
 export { allPropertiesEmpty, somePropertiesEmpty };

@@ -7,13 +7,14 @@ import Loader from './components/loader/Loader';
 import Message from './frame/message/Message';
 import Meta from './frame/meta/Meta';
 import Routes from './Routes';
-import { InterceptorService } from './services';
+import { InterceptorService, LoggerService } from './services';
 import { ThemePaletteEnum } from './slices/general/General.enum';
 import { generalSelector } from './slices/general/General.slice';
 import { ThemeSettings } from './Theme';
 
-// init axios interceptor
+// init axios-interceptor and log-level
 InterceptorService.setIntercertors();
+LoggerService.init();
 
 const App: FC = () => {
 	const { themePalette } = useSelector(generalSelector);

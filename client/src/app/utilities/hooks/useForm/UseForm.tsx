@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent, FormEvent, useState } from 'react';
 
-import { timeout } from '../methods/Timeout';
+import { timeout } from '../../methods/Timeout';
 import { UseFormEventTypeEnum } from './UseForm.enum';
 import { UseFormRetInterface } from './UseForm.interface';
 

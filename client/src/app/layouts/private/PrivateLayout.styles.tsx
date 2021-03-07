@@ -5,8 +5,7 @@ import { AppConfigService } from '../../services';
 const drawerWidth = AppConfigService.AppOptions.drawer.width;
 export const privateLayoutStyles = makeStyles((theme: Theme) => ({
 	privateLayoutContent: {
-		marginTop: theme.spacing(8),
-		padding: theme.spacing(1.5) + 3
+		marginTop: theme.spacing(8)
 	},
 	privateLayoutContentOpen: {
 		marginLeft: drawerWidth,

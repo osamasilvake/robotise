@@ -21,7 +21,7 @@ import { useDispatch } from 'react-redux';
 import Copyright from '../../../frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
 import { AuthLogin } from '../../../slices/auth/Auth.slice';
-import { useForm } from '../../../utilities/hooks/UseForm';
+import { useForm } from '../../../utilities/hooks/useForm/UseForm';
 import { allPropertiesEmpty } from '../../../utilities/methods/ValidateObjProperties';
 import { AuthLoginInterface } from '../Auth.interface';
 import { loginStyles } from './Login.styles';

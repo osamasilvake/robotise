@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
 import Loader from './components/loader/Loader';
+import ErrorBoundary from './frame/error-boundary/ErrorBoundary';
 import Message from './frame/message/Message';
 import Meta from './frame/meta/Meta';
 import Routes from './Routes';
@@ -30,17 +31,18 @@ const App: FC = () => {
 			<CssBaseline />
 
 			<HelmetProvider>
-				{/* Meta */}
+				{/* Meta: top-level with general info */}
 				<Meta />
 
-				{/* Routes */}
-				<Suspense fallback={<Loader />}>
-					<Routes />
-				</Suspense>
-
-				{/* Message */}
-				<Message />
+				<ErrorBoundary>
+					<Suspense fallback={<Loader />}>
+						<Routes />
+					</Suspense>
+				</ErrorBoundary>
 			</HelmetProvider>
+
+			{/* Message: a snackbar for the app notifications */}
+			<Message />
 		</MuiThemeProvider>
 	);
 };

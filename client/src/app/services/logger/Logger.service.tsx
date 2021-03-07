@@ -6,7 +6,7 @@ import { AppConfigService, StorageService } from '..';
 import { LogInterface } from './Logger.interface';
 
 class LoggerService {
-	public mapKeys = [
+	private mapKeys = [
 		{ key: 'message', prop: 'message' },
 		{ key: 'config.method', prop: 'method' },
 		{ key: 'name', prop: 'name' },

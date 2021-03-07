@@ -2,7 +2,7 @@ import { SnackbarOrigin } from '@material-ui/core/Snackbar';
 
 import EnvService from '../env/Env.service';
 
-class AppAppConfigService extends EnvService {
+class AppConfigService extends EnvService {
 	/**
 	 * variables
 	 */
@@ -115,5 +115,5 @@ class AppAppConfigService extends EnvService {
 		};
 	}
 }
-const instance = new AppAppConfigService();
+const instance = new AppConfigService();
 export default instance;

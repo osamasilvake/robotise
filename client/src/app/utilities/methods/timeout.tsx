@@ -1,5 +1,5 @@
 /**
- * timeout
+ * timeout the execution
  * @param delay
  */
 export const timeout = (delay: number) => {

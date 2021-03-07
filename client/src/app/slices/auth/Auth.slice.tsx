@@ -100,7 +100,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	if (accessToken) {
 		if (AuthService.authTokenValid(accessToken)) {
 			const expiresInMs = expDate * 1000 - moment().valueOf();
-			if (expiresInMs < 30000) {
+			if (expiresInMs < 2 * 60 * 1000) {
 				AuthService.authRequestNewToken()
 					.then((res) => {
 						// local-storage

@@ -1,17 +1,21 @@
 import { Box, Typography } from '@material-ui/core';
-import clsx from 'clsx';
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { centerStyles } from '../../../utilities/styles/Center.style';
+import Meta from '../../../frame/meta/Meta';
 
 const About: FC = () => {
-	const centerClasses = centerStyles();
+	const { t } = useTranslation('META');
 
 	return (
-		<Box component="section" className={clsx('rc-about', centerClasses.centerVH)}>
-			<Typography variant="h1">About</Typography>
-			<Typography variant="body1">About Page</Typography>
-		</Box>
+		<>
+			<Meta title={t('ABOUT.TITLE')} description={t('ABOUT.DESCRIPTION')} />
+			<Box component="section" className="rc-about">
+				<Typography component="h1" variant="h4">
+					About
+				</Typography>
+			</Box>
+		</>
 	);
 };
 export default About;

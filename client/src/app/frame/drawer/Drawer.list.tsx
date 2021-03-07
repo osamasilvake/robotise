@@ -31,6 +31,12 @@ const drawerInformationList: DrawerListInterface[] = [
 		icon: 'assignment',
 		label: 'SIDEBAR.INFORMATION.LIST.CHANGELOGS',
 		path: ENV().ROUTING.SCREENS.INFORMATION.CHANGELOGS
+	},
+	{
+		id: 3,
+		icon: 'info',
+		label: 'SIDEBAR.INFORMATION.LIST.ABOUT',
+		path: ENV().ROUTING.SCREENS.INFORMATION.ABOUT
 	}
 ];
 

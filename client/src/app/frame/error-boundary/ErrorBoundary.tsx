@@ -1,9 +1,13 @@
+import { Box, Typography } from '@material-ui/core';
 import React, { Component, ErrorInfo } from 'react';
 
-import { Props, State } from './ErrorBoundary.interface';
+import {
+	ErrorBoundaryPropsInterface,
+	ErrorBoundaryStateInterface
+} from './ErrorBoundary.interface';
 
-class ErrorBoundary extends Component<Props, State> {
-	state: State = {
+class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundaryStateInterface> {
+	state: ErrorBoundaryStateInterface = {
 		hasError: false,
 		error: null
 	};
@@ -12,7 +16,7 @@ class ErrorBoundary extends Component<Props, State> {
 	 * update state so the next render will show the fallback UI.
 	 * @param error
 	 */
-	static getDerivedStateFromError(error: Error): State {
+	static getDerivedStateFromError(error: Error): ErrorBoundaryStateInterface {
 		return { hasError: true, error };
 	}
 
@@ -27,7 +31,13 @@ class ErrorBoundary extends Component<Props, State> {
 
 	render() {
 		if (this.state.hasError) {
-			return <h1>Sorry.. there was an error</h1>;
+			return (
+				<Box>
+					<Typography component="h1" variant="h4">
+						Error Boundar caught an error for you!
+					</Typography>
+				</Box>
+			);
 		}
 		return this.props.children;
 	}

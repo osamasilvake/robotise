@@ -7,6 +7,7 @@ import Loader from './components/loader/Loader';
 import ErrorBoundary from './frame/error-boundary/ErrorBoundary';
 import Message from './frame/message/Message';
 import Meta from './frame/meta/Meta';
+import ScrollTop from './frame/scroll-top/ScrollTop';
 import Routes from './Routes';
 import { InterceptorService, LoggerService } from './services';
 import { ThemePaletteTypeEnum } from './slices/general/General.enum';
@@ -43,6 +44,9 @@ const App: FC = () => {
 
 			{/* Message: a snackbar for the app notifications */}
 			<Message />
+
+			{/* Scroll Top */}
+			<ScrollTop />
 		</MuiThemeProvider>
 	);
 };

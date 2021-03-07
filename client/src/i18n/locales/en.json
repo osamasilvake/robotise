@@ -18,6 +18,10 @@
 		"CHANGELOGS": {
 			"TITLE": "Changelogs",
 			"DESCRIPTION": "Changelogs Description"
+		},
+		"ABOUT": {
+			"TITLE": "About",
+			"DESCRIPTION": "About Description"
 		}
 	},
 	"GLOBAL": {
@@ -94,7 +98,8 @@
 				},
 				"LIST": {
 					"ALERT_CONFIG": "Alert Config",
-					"CHANGELOGS": "Changelogs"
+					"CHANGELOGS": "Changelogs",
+					"ABOUT": "About"
 				}
 			}
 		},

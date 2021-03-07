@@ -22,7 +22,7 @@ import Copyright from '../../../frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
 import { AuthLogin } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
-import { somePropertiesEmpty } from '../../../utilities/methods/ValidateObjProperties';
+import { somePropertiesEmpty } from '../../../utilities/methods/ObjectUtilities';
 import { AuthLoginInterface } from '../Auth.interface';
 import { loginStyles } from './Login.styles';
 import { LoginFormValidation } from './Login.validation';

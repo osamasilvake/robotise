@@ -41,6 +41,23 @@ class AuthService {
 	};
 
 	/**
+	 * requests a new token
+	 */
+	authRequestNewToken = () => {
+		const request = {
+			access_token: this.getAccessToken(),
+			client_id: 'roc-ops-app'
+		};
+		return HttpClientService.post(
+			AppConfigService.AppServices.AUTH.AUTO_REFRESH,
+			qs.stringify(request),
+			{
+				headers: AppConfigService.AppRequestHeaders.form
+			}
+		);
+	};
+
+	/**
 	 * fetch user info from decoded token
 	 * @param accessToken
 	 */
@@ -66,23 +83,6 @@ class AuthService {
 			scope: decoded.scope,
 			email_verified: decoded.email_verified
 		};
-	};
-
-	/**
-	 * requests a new token
-	 */
-	authRequestNewToken = () => {
-		const request = {
-			access_token: this.getAccessToken(),
-			client_id: 'roc-ops-app'
-		};
-		return HttpClientService.post(
-			AppConfigService.AppServices.AUTH.AUTO_REFRESH,
-			qs.stringify(request),
-			{
-				headers: AppConfigService.AppRequestHeaders.form
-			}
-		);
 	};
 
 	/**

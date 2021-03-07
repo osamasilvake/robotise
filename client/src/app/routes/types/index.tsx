@@ -1,5 +1,19 @@
 import { RouteTypeEnum } from '../Routes.enum';
 
-export const isPrivate = (routeType: RouteTypeEnum) => routeType === RouteTypeEnum.PRIVATE;
-export const isSession = (routeType: RouteTypeEnum) => routeType === RouteTypeEnum.SESSION;
-export const isPublic = (routeType: RouteTypeEnum) => routeType === RouteTypeEnum.PUBLIC;
+/**
+ * type: private
+ * @param type
+ */
+export const isPrivate = (type: RouteTypeEnum) => type === RouteTypeEnum.PRIVATE;
+
+/**
+ * type: session
+ * @param type
+ */
+export const isSession = (type: RouteTypeEnum) => type === RouteTypeEnum.SESSION;
+
+/**
+ * type: public
+ * @param type
+ */
+export const isPublic = (type: RouteTypeEnum) => type === RouteTypeEnum.PUBLIC;

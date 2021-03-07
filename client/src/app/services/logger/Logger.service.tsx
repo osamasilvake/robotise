@@ -1,7 +1,7 @@
 import log from 'loglevel';
 import moment from 'moment';
 
-import { get } from '../../utilities/methods/objects/get';
+import { get } from '../../utilities/methods/ObjectUtilities';
 import { AppConfigService, HttpClientService, StorageService } from '..';
 import { LogInterface } from './Logger.interface';
 

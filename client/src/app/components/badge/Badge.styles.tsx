@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { AppConfigService } from '../../services';
 
 export const badgeStyles = makeStyles((theme: Theme) => ({
-	badge: {
+	badgeDot: {
 		backgroundColor: AppConfigService.AppVariables.colors.c9,
 		boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
 		color: AppConfigService.AppVariables.colors.c9,

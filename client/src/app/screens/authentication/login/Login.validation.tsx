@@ -1,4 +1,4 @@
-import { validateEmail } from '../../../utilities/methods/ValidateEmail';
+import { validateEmail } from '../../../utilities/methods/Validations';
 import { AuthLoginInterface } from '../Auth.interface';
 
 /**

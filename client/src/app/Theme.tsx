@@ -49,6 +49,16 @@ const overrides: Overrides = {
 			borderRadius: pxToRem(2)
 		}
 	},
+	MuiFab: {
+		sizeSmall: {
+			backgroundColor: AppConfigService.AppVariables.colors.c4,
+			color: AppConfigService.AppVariables.colors.c6,
+			'&:hover': {
+				backgroundColor: AppConfigService.AppVariables.colors.c4,
+				opacity: 0.95
+			}
+		}
+	},
 	MuiListItem: {
 		root: {
 			'&$button': {

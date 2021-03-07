@@ -1,3 +1,4 @@
+import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import moment from 'moment';
 import qs from 'querystring';
@@ -23,7 +24,7 @@ class AuthService {
 			AppConfigService.AppServices.AUTH.SIGN_IN,
 			qs.stringify(request),
 			{
-				headers: AppConfigService.AppRequestHeaders.post
+				headers: AppConfigService.AppRequestHeaders.form
 			}
 		);
 	};
@@ -79,7 +80,7 @@ class AuthService {
 			AppConfigService.AppServices.AUTH.AUTO_REFRESH,
 			qs.stringify(request),
 			{
-				headers: AppConfigService.AppRequestHeaders.post
+				headers: AppConfigService.AppRequestHeaders.form
 			}
 		);
 	};
@@ -97,6 +98,8 @@ class AuthService {
 	 * @param storageType
 	 */
 	setAccessToken = (accessToken: string, storageType: StorageTypeEnum) => {
+		axios.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
+
 		if (storageType === StorageTypeEnum.PERSISTANT) {
 			StorageService.put(AppConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
 		} else {
@@ -125,6 +128,8 @@ class AuthService {
 	 * remove access token
 	 */
 	removeAccessToken = () => {
+		delete axios.defaults.headers.common.Authorization;
+
 		if (this.getAccessToken()) {
 			StorageService.remove(AppConfigService.AppLocalStorageItems.JWTAccessToken);
 			StorageService.remove(

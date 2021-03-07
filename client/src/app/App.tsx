@@ -14,7 +14,7 @@ import { generalSelector } from './slices/general/General.slice';
 import { ThemeSettings } from './Theme';
 
 // init axios-interceptor and log-level
-InterceptorService.setIntercertors();
+InterceptorService.init();
 LoggerService.init();
 
 const App: FC = () => {

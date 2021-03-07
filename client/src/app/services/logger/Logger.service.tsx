@@ -1,8 +1,8 @@
 import log from 'loglevel';
-import remote from 'loglevel-plugin-remote';
+import moment from 'moment';
 
 import { get } from '../../utilities/methods/objects/get';
-import { AppConfigService, StorageService } from '..';
+import { AppConfigService, HttpClientService, StorageService } from '..';
 import { LogInterface } from './Logger.interface';
 
 class LoggerService {
@@ -17,42 +17,48 @@ class LoggerService {
 	];
 
 	init() {
-		const options = {
-			url: AppConfigService.AppServices.COMMON.LOGS,
-			method: 'POST',
-			token: StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken),
-			level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
-			stacktrace: {
-				levels: ['trace', 'warn', 'error'],
-				depth: 5,
-				excess: 0
-			},
-			format: (defaultLog: LogInterface) => {
-				const log = {
-					...defaultLog,
-					env: AppConfigService.env,
-					level: defaultLog.level.label,
-					url: window.location.href,
-					version: AppConfigService.envVersion,
-					origin: 'roc-app-client'
-				};
-				return {
-					...log,
-					...JSON.parse(defaultLog.message)
-				};
-			}
-		};
-
-		// apply log
-		remote.apply(log, options);
-
-		// set level based on environment
+		// set log level based on environment
 		if (AppConfigService.env === AppConfigService.envProduction) {
 			log.setLevel(log.levels.WARN);
 		} else {
 			log.setLevel(log.levels.TRACE);
 		}
 	}
+
+	/**
+	 * send logs to the server
+	 * @param err
+	 */
+	sendLogs = <T,>(err: T) => {
+		// create log payload
+		const payload = this.createLog(err);
+
+		// log error on console
+		log.error(payload);
+
+		// send logs to the server
+		const request: LogInterface[] = [
+			{
+				env: AppConfigService.env,
+				level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
+				token: StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken),
+				url: window.location.href,
+				version: AppConfigService.envVersion,
+				timestamp: moment().toISOString(),
+				origin: 'roc-app-client',
+				...JSON.parse(payload.toString())
+			}
+		];
+		HttpClientService.post(
+			AppConfigService.AppServices.COMMON.LOGS,
+			{
+				logs: request
+			},
+			{
+				headers: AppConfigService.AppRequestHeaders.json
+			}
+		);
+	};
 
 	/**
 	 * create the log

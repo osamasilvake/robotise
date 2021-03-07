@@ -21,8 +21,8 @@ import { useDispatch } from 'react-redux';
 import Copyright from '../../../frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
 import { AuthLogin } from '../../../slices/auth/Auth.slice';
-import { useForm } from '../../../utilities/hooks/useForm/UseForm';
-import { allPropertiesEmpty } from '../../../utilities/methods/ValidateObjProperties';
+import { useForm } from '../../../utilities/hooks/form/UseForm';
+import { somePropertiesEmpty } from '../../../utilities/methods/ValidateObjProperties';
 import { AuthLoginInterface } from '../Auth.interface';
 import { loginStyles } from './Login.styles';
 import { LoginFormValidation } from './Login.validation';
@@ -34,7 +34,14 @@ const Login: FC = () => {
 	const dispatch = useDispatch();
 
 	const [showPassword, setShowPassword] = useState(false);
-	const { handleChange, handleSubmit, values, errors, loader } = useForm<AuthLoginInterface>(
+	const {
+		handleChange,
+		handleBlur,
+		handleSubmit,
+		values,
+		errors,
+		loader
+	} = useForm<AuthLoginInterface>(
 		{
 			email: '',
 			password: '',
@@ -73,6 +80,7 @@ const Login: FC = () => {
 								name="email"
 								error={!!errors.email}
 								onChange={handleChange}
+								onBlur={handleBlur}
 								label={t('AUTH.LOGIN.FIELDS.EMAIL.LABEL')}
 								placeholder={t('AUTH.LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								inputProps={{
@@ -93,6 +101,7 @@ const Login: FC = () => {
 								name="password"
 								error={!!errors.password}
 								onChange={handleChange}
+								onBlur={handleBlur}
 								label={t('AUTH.LOGIN.FIELDS.PASSWORD.LABEL')}
 								placeholder={t('AUTH.LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
 								InputProps={{
@@ -125,7 +134,7 @@ const Login: FC = () => {
 							variant="contained"
 							type="submit"
 							className={loginClasses.loginSubmit}
-							disabled={loader || !allPropertiesEmpty(errors)}
+							disabled={somePropertiesEmpty(values) || loader}
 							fullWidth
 							endIcon={loader && <CircularProgress size={20} />}>
 							{t('AUTH.LOGIN.BUTTONS.SIGN_IN.LABEL')}

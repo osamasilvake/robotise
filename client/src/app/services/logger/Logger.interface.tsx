@@ -11,9 +11,11 @@ export interface LogErrorInterface {
 export interface LogInterface extends LogErrorInterface {
 	env: string;
 	level: LogLevelInterface;
+	token: string;
 	logger: string;
 	origin: string;
 	version: string;
+	timestamp: string;
 }
 
 export interface LogLevelInterface {

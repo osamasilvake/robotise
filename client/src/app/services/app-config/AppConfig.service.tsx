@@ -106,10 +106,10 @@ class AppConfigService extends EnvService {
 	 */
 	get AppRequestHeaders() {
 		return {
-			get: {
+			json: {
 				Accept: 'application/json'
 			},
-			post: {
+			form: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}
 		};

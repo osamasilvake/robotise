@@ -13,11 +13,12 @@ import { UseFormRetInterface } from './UseForm.interface';
  */
 export const useForm = <UseFormEntity,>(
 	initState: UseFormEntity,
-	formValidation: (arg: UseFormEntity) => UseFormEntity,
+	formValidation: (arg: UseFormEntity, arg2: UseFormEntity) => UseFormEntity,
 	submitCallBack: () => Promise<void>
 ): UseFormRetInterface<UseFormEntity> => {
 	const [values, setValues] = useState(initState);
 	const [errors, setErrors] = useState(initState);
+	const [touched, setTouched] = useState(initState);
 	const [loader, setLoader] = useState(false);
 
 	/**
@@ -31,15 +32,36 @@ export const useForm = <UseFormEntity,>(
 				? event.target.checked
 				: event.target.value;
 
-		// set values
+		// update value to current selected property
 		setValues((prevState) => {
 			const newState = {
 				...prevState,
 				[name]: value
 			};
 
-			// TODO: validate only incase of error
-			setErrors(formValidation(newState));
+			// form validation
+			setErrors(formValidation(newState, touched));
+
+			return newState;
+		});
+	};
+
+	/**
+	 * handle blur
+	 * @param event
+	 */
+	const handleBlur = (event: ChangeEvent<HTMLInputElement>) => {
+		const { name } = event.target;
+
+		// set touch to current selected property
+		setTouched((prevState) => {
+			const newState = {
+				...prevState,
+				[name]: true
+			};
+
+			// form validation
+			setErrors(formValidation(values, newState));
 
 			return newState;
 		});
@@ -66,5 +88,5 @@ export const useForm = <UseFormEntity,>(
 		setLoader(false);
 	};
 
-	return { handleChange, handleSubmit, values, errors, loader };
+	return { handleChange, handleBlur, handleSubmit, values, errors, loader };
 };

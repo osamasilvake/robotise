@@ -70,4 +70,3 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [JWT Decode](https://jwt.io/)
 - [X] [qs](https://github.com/ljharb/qs/)
 - [X] [loglevel](https://github.com/pimterry/loglevel/)
-- [X] [loglevel Plugin Remote](https://github.com/kutuluk/loglevel-plugin-remote/)

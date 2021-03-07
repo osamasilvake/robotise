@@ -7304,11 +7304,6 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-loglevel-plugin-remote@^0.6.8:
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/loglevel-plugin-remote/-/loglevel-plugin-remote-0.6.8.tgz#9234b75520491dc5b1a34abbbba0101f02dd2b39"
-  integrity sha512-EMhWUOAx4/Wtge1bNzYDvvXzv6PLt07emqTjA+Sc8WfViNSYXxe6kWYFyjcqGS6mqNeOqQ3+AG0xuasynHK0XA==
-
 loglevel@^1.6.8, loglevel@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.1.tgz#005fde2f5e6e47068f935ff28573e125ef72f197"

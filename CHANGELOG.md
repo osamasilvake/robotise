@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.0...v1.0.1) (2021-03-09)
+
+
+### Bug Fixes
+
+* Update lerna config and fix docker-compose issues ([63de2c5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/63de2c570f375b53603987a8f05f7a35dce266dd))
+
+
+
+
+
 # 1.0.0 (2021-03-09)
 
 

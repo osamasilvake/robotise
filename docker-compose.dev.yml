@@ -5,7 +5,7 @@ services:
     stdin_open: true
     container_name: roc-dev
     build:
-      context: .
+      context: ./packages/client
       dockerfile: Dockerfile.dev
     volumes:
       - "client/app/node_modules"

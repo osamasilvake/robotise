@@ -9,17 +9,9 @@ import {
 	Typography,
 	TypographyProps
 } from '@material-ui/core';
-import { makeStyles, Theme } from '@material-ui/core/styles';
 import React, { FC } from 'react';
 
-export const styles = makeStyles((theme: Theme) => ({
-	listItem: {
-		marginTop: theme.spacing(1)
-	},
-	header: {
-		marginTop: theme.spacing(2)
-	}
-}));
+import { markdownStyles } from './Markdown.styles';
 
 /**
  * heading
@@ -27,14 +19,14 @@ export const styles = makeStyles((theme: Theme) => ({
  */
 const MarkdownHeading: FC<{ level: number }> = (props) => {
 	const { level, children } = props;
-	const stylesClasses = styles();
+	const markdownClasses = markdownStyles();
 
 	let component: TypographyProps['variant'];
 	let variant: TypographyProps['variant'];
 	switch (level) {
 		case 1:
 			component = 'h1';
-			variant = 'h4';
+			variant = 'h5';
 			break;
 		case 2:
 			component = 'h2';
@@ -59,7 +51,7 @@ const MarkdownHeading: FC<{ level: number }> = (props) => {
 	}
 	return (
 		<Typography
-			className={stylesClasses.header}
+			className={markdownClasses.markdownHeader}
 			gutterBottom
 			component={component}
 			variant={variant}>
@@ -83,10 +75,10 @@ const MarkdownParagraph: FC = (props) => {
  * @param props
  */
 const MarkdownListItem: FC = (props) => {
-	const stylesClasses = styles();
+	const markdownClasses = markdownStyles();
 
 	return (
-		<li className={stylesClasses.listItem}>
+		<li className={markdownClasses.markdownListItem}>
 			<Typography component="span">{props.children}</Typography>
 		</li>
 	);
@@ -142,7 +134,7 @@ const MarkdownTableRow: FC = (props) => {
 	return <TableRow>{props.children}</TableRow>;
 };
 
-export const renderers = {
+export const MarkdownRenderers = {
 	heading: MarkdownHeading,
 	paragraph: MarkdownParagraph,
 	link: Link,

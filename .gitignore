@@ -20,3 +20,4 @@ coverage/
 .pnp*
 .idea
 .vscode
+lerna-debug.log

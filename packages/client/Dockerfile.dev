@@ -1,0 +1,17 @@
+# Node Image
+FROM node:15
+
+# A directory within the virtualized Docker environment
+WORKDIR /app
+
+# Copies package.json to Docker environment
+COPY ./package.json /app
+
+# Install all node packages and remove the cache
+RUN yarn && yarn cache clean
+
+# Copies everything over to Docker environment
+COPY . /app
+
+# Runs the application
+CMD [ "yarn", "start" ]

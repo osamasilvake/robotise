@@ -6,10 +6,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.0.1](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.0...v1.0.1) (2021-03-09)
 
 
+
+
 ### Bug Fixes
 
 * Update lerna config and fix docker-compose issues ([63de2c5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/63de2c570f375b53603987a8f05f7a35dce266dd))
-
+* Lerna config issue ([3d26119](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3d2611950ad7c9300322dfdf31d264e5008d3197))
+* Update lerna config and fix docker-compose issues ([63de2c5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/63de2c570f375b53603987a8f05f7a35dce266dd))
 
 
 

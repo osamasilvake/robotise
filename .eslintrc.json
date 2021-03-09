@@ -23,7 +23,7 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
-		"prettier/@typescript-eslint",
+		"prettier",
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended", // react hooks
 		"plugin:jsx-a11y/recommended", // automatically surface any accessibility issues as they pop up

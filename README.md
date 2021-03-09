@@ -47,10 +47,6 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
 - [X] [eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)
 
-##### Stylelint
-- [X] [stylelint](https://stylelint.io/)
-- [X] [stylelint-order](https://github.com/hudochenkov/stylelint-order)
-
 #### Precommit Hook & Linting of Staged Files
 - [X] [husky](https://github.com/typicode/husky)
 - [X] [lint-staged](https://github.com/okonet/lint-staged)
@@ -58,13 +54,20 @@ A summary of development workflow with standard-version involving multiple git b
 #### Commit Format and Release
 - [X] [@commitlint/cli](https://github.com/conventional-changelog/commitlint)
 - [X] [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint)
-- [X] [standard-version](https://github.com/facebook/create-react-app)
+- [X] [standard-version](https://github.com/conventional-changelog/standard-version)
 
 ### Client 
-- [X] [Create React App](https://github.com/conventional-changelog/standard-version)
+- [X] [Create React App](https://github.com/facebook/create-react-app)
+- [X] [CRACO](https://github.com/gsoft-inc/craco)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [Material-UI](https://material-ui.com/)
+- [X] [clsx](https://github.com/lukeed/clsx/)
+- [X] [Axios](https://github.com/axios/axios/)
+- [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
+- [X] [Moment](https://momentjs.com/)
 - [X] [JWT Decode](https://jwt.io/)
+- [X] [loglevel](https://github.com/pimterry/loglevel)
+- [X] [Markdown](https://github.com/remarkjs/react-markdown)

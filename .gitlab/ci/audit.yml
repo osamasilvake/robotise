@@ -3,7 +3,7 @@ audit:
   script:
     - yarn audit
 
-    - cd /packages/client/
+    - cd packages/client/
     - yarn audit
   only:
     - merge_requests

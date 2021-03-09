@@ -15,13 +15,13 @@ root:
 client:
   stage: Install
   before_script:
-    - cd client/
+    - cd packages/client/
   script:
     - yarn install
   artifacts:
     name: "client"
     paths:
-      - client/node_modules
+      - packages/client/node_modules
     expire_in: 15 minutes
   only:
     - merge_requests

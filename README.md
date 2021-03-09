@@ -58,6 +58,7 @@ A summary of development workflow with standard-version involving multiple git b
 
 ### Client 
 - [X] [Create React App](https://github.com/facebook/create-react-app)
+- [X] [CRACO](https://github.com/gsoft-inc/craco)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)

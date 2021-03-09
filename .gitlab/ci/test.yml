@@ -3,7 +3,7 @@ jest:
   dependencies:
     - client
   before_script:
-    - cd client/
+    - cd packages/client/
   script:
     - yarn test:ci
   only:

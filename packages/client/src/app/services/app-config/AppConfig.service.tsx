@@ -1,7 +1,7 @@
 import { SnackbarOrigin } from '@material-ui/core/Snackbar';
 
 import EnvService from '../env/Env.service';
-import CHANGELOG from './../../../../../CHANGELOG.md';
+import CHANGELOG from './../../../../../../CHANGELOG.md';
 
 class AppConfigService extends EnvService {
 	/**

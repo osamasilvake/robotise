@@ -54,10 +54,10 @@ A summary of development workflow with standard-version involving multiple git b
 #### Commit Format and Release
 - [X] [@commitlint/cli](https://github.com/conventional-changelog/commitlint)
 - [X] [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint)
-- [X] [standard-version](https://github.com/facebook/create-react-app)
+- [X] [standard-version](https://github.com/conventional-changelog/standard-version)
 
 ### Client 
-- [X] [Create React App](https://github.com/conventional-changelog/standard-version)
+- [X] [Create React App](https://github.com/facebook/create-react-app)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)
@@ -68,6 +68,5 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [Moment](https://momentjs.com/)
 - [X] [JWT Decode](https://jwt.io/)
-- [X] [qs](https://github.com/ljharb/qs/)
-- [X] [loglevel](https://github.com/pimterry/loglevel/)
-- [X] [Markdown](https://github.com/remarkjs/react-markdown/)
+- [X] [loglevel](https://github.com/pimterry/loglevel)
+- [X] [Markdown](https://github.com/remarkjs/react-markdown)

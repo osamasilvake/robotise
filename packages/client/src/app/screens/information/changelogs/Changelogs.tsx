@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Meta from '../../../frame/meta/Meta';
 import { GeneralFetchChangelog, generalSelector } from '../../../slices/general/General.slice';
+import { jsonParse } from '../../../utilities/helpers/json';
 import { renderers } from '../../../utilities/parsers/Markdown';
 
 const Changelogs: FC = () => {
@@ -36,7 +37,7 @@ const Changelogs: FC = () => {
 				<ReactMarkdown
 					escapeHtml={false}
 					renderers={renderers}
-					source={changelog && JSON.parse(changelog)}
+					source={changelog && jsonParse(changelog)}
 				/>
 			</Paper>
 		</Box>

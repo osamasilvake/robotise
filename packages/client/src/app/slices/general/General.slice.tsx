@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageInterface } from '../../frame/message/Message.interface';
 import ChangelogService from '../../screens/information/changelogs/Changelog.service';
 import { AppConfigService, StorageService } from '../../services';
+import { jsonStringify } from '../../utilities/helpers/json';
 import { RootStateInterface } from '../Slices.interface';
 import { ThemePaletteTypeEnum } from './General.enum';
 import { GeneralSliceInterface } from './General.interface';
@@ -98,6 +99,6 @@ export const GeneralTriggerMessage = (messagePayload: TriggerMessageInterface) =
 export const GeneralFetchChangelog = () => async (dispatch: Dispatch) => {
 	ChangelogService.changlogFetch().then((res) => {
 		// dispatch: update changelog
-		dispatch(fetchChangelog(JSON.stringify(res)));
+		dispatch(fetchChangelog(jsonStringify(res)));
 	});
 };

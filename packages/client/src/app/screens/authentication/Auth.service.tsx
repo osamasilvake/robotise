@@ -1,10 +1,10 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import moment from 'moment';
-import qs from 'querystring';
 
 import { AppConfigService, HttpClientService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
+import { serialize } from '../../utilities/methods/Serialize';
 import { AuthUserRoleTypeEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
 
@@ -22,7 +22,7 @@ class AuthService {
 		};
 		return HttpClientService.post(
 			AppConfigService.AppServices.AUTH.SIGN_IN,
-			qs.stringify(request),
+			serialize(request),
 			{
 				headers: AppConfigService.AppRequestHeaders.form
 			}
@@ -50,7 +50,7 @@ class AuthService {
 		};
 		return HttpClientService.post(
 			AppConfigService.AppServices.AUTH.AUTO_REFRESH,
-			qs.stringify(request),
+			serialize(request),
 			{
 				headers: AppConfigService.AppRequestHeaders.form
 			}

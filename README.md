@@ -3,7 +3,7 @@
 
 
 ## Releasing
-A summary of development workflow with standard-version involving multiple git branches.
+A summary of development workflow involving multiple git branches.
 
 * Run `yarn audit` in the _root_ and _client_ (fix and commit)
   
@@ -31,11 +31,10 @@ A summary of development workflow with standard-version involving multiple git b
 ## Libraries and Frameworks
 
 ### Root
-#### Quality `*.{js,jsx,ts,tsx,json}`
+#### Quality: `*.{js,jsx,ts,tsx,json}`
 - [X] [prettier](https://prettier.io/)
 
-#### Lint
-##### Eslint
+##### Lint: Eslint
 - [X] [eslint](https://github.com/eslint/eslint)
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [@typescript-eslint/parser](https://github.com/eslint/typescript-eslint-parser)
@@ -47,14 +46,14 @@ A summary of development workflow with standard-version involving multiple git b
 - [X] [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
 - [X] [eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)
 
-#### Precommit Hook & Linting of Staged Files
+#### Projects Manager
+- [X] [Lerna](https://github.com/lerna/lerna)
+
+#### Precommit Hooks and Linting of Staged Files with Conventional Commits Standards
 - [X] [husky](https://github.com/typicode/husky)
 - [X] [lint-staged](https://github.com/okonet/lint-staged)
-
-#### Commit Format and Release
 - [X] [@commitlint/cli](https://github.com/conventional-changelog/commitlint)
 - [X] [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint)
-- [X] [standard-version](https://github.com/conventional-changelog/standard-version)
 
 ### Client 
 - [X] [Create React App](https://github.com/facebook/create-react-app)

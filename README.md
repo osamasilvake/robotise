@@ -21,17 +21,15 @@ A summary of development workflow involving multiple git branches.
 
 * Create Tag: `git push --follow-tags origin master`
 
-* Create Release Branch: `git checkout -b release-[YOUR_VERSION]`
+* Create a `merge request` from Gitlab to have all changes on the `production` branch
 
-* Push Release Branch: `git push -u origin release-[YOUR_VERSION]`
-
-* Move to _feature branch_ and continue with the new _features_ and _bugs_.
+* Move to _feature branch_ and continue with the new _features_ and _bugfixes_.
 
 
 ## Libraries and Frameworks
 
 ### Root
-#### Quality: `*.{js,jsx,ts,tsx,json}`
+##### Quality: `*.{js,jsx,ts,tsx,json}`
 - [X] [prettier](https://prettier.io/)
 
 ##### Lint: Eslint
@@ -46,7 +44,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
 - [X] [eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)
 
-#### Projects Manager
+##### Projects Manager
 - [X] [Lerna](https://github.com/lerna/lerna)
 
 #### Precommit Hooks and Linting of Staged Files with Conventional Commits Standards

@@ -11,7 +11,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * Commit lint message issue ([46bee9e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/46bee9e95a470aaced335ecafebf6639d91f60cc))
 * Lerna config issue ([3d26119](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3d2611950ad7c9300322dfdf31d264e5008d3197))
 * Package.json license warning messages ([26592b6](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/26592b6544e0da191416962dc335d4395803e13a))
-* Update lerna config and fix docker-compose issues ([63de2c5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/63de2c570f375b53603987a8f05f7a35dce266dd))
 
 
 
@@ -23,10 +22,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * Update lerna config and fix docker-compose issues ([63de2c5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/63de2c570f375b53603987a8f05f7a35dce266dd))
-* Lerna config issue ([3d26119](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3d2611950ad7c9300322dfdf31d264e5008d3197))
-* Update lerna config and fix docker-compose issues ([63de2c5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/63de2c570f375b53603987a8f05f7a35dce266dd))
-
-
 
 
 # 1.0.0 (2021-03-09)

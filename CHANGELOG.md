@@ -1,3 +1,41 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.1.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.3...v1.1.0) (2021-03-09)
+
+
+### Bug Fixes
+
+* Authentication ([b0c173a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b0c173a8c0bcf242f170c0ea4eb1efdb9e2bd1f4))
+* Bug issue ([d0840b0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d0840b0cd72c7d5c46660f96223c926b009c00c3))
+* Eslint issue ([105d837](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/105d837394af84bfa64a34cfe3ef54dec354bb06))
+* Gitlab CI/CD issue ([a1f0bfb](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a1f0bfb2750d12c5dbc59f237146a3a872579c22))
+* Restructure app folders ([9db35ae](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9db35ae3147765611c58dcec76c14cd3b2df3e51))
+* Unit test bug ([92a832b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/92a832b5d221a2a21b212ecf6363ccaadecec792))
+* Update deps ([5a46e9e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/5a46e9e5688e10326d2ddf99ae61f2bf608a0fa7))
+
+
+### Features
+
+* Add copyrights to Drawer bottom ([be5f446](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/be5f446b6b46f9ff2ae6f82351ea2ac5552175f7))
+* Add custom method to send logs to server ([7dd846c](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7dd846cb45870cb3b26dd3141487ec74e0e20df7))
+* Add error boundary ([8c1fce7](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/8c1fce7a1dad7312f53756d2531a9d202c29b925))
+* Add helmet for meta tags ([493741f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/493741f4de388a2c1f06f1c496a79b4d0ae1aed3))
+* Add lerna ([96f728e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/96f728ea369b97b9f3f3f299a61d77fff1b6f051))
+* Add light/dark theme color option ([b9e6412](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b9e64124e8f1b99467f7d1b23358158662a76def))
+* Add log-level ([9dca604](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9dca604f942fab2690832c26097c6800ff09544b))
+* Add multiple layoute ([642e7ad](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/642e7add5f273a37d520216a201c531193c08220))
+* Add refresh token ([850b4f5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/850b4f52d41329e422ab2805442986be30489345))
+* Add scroll top ([1b15974](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/1b1597444ae28a1f3e2f45f855994826937ee0db))
+* Add user login ([7a610e5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7a610e5276861802d6ac9d818491078db3620691))
+* Fix client bugs ([4515987](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/4515987b622908d2734343b6768a051308aae2b9))
+
+
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.

@@ -1,5 +1,6 @@
 {
 	"name": "root",
+	"private": true,
 	"scripts": {
 		"pretty:check": "prettier --check 'packages/client/**/*.{js,jsx,ts,tsx,json}'",
 		"pretty:apply": "prettier --write 'packages/client/**/*.{js,jsx,ts,tsx,json}'",

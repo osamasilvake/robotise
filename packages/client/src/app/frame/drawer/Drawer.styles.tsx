@@ -36,6 +36,7 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 	},
 	drawerListRoot: {
 		height: '100%',
+		overflowX: 'hidden',
 		overflowY: 'auto'
 	},
 	drawerListItemWithSubtitle: {

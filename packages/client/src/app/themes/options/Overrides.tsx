@@ -17,10 +17,10 @@ const OverridesCustom: Overrides = {
 			height: pxToRem(44)
 		},
 		contained: {
-			backgroundColor: AppConfigService.AppVariables.colors.c4,
-			color: AppConfigService.AppVariables.colors.c6,
+			backgroundColor: AppConfigService.AppVariables.colors.c9,
+			color: AppConfigService.AppVariables.colors.c5,
 			'&:hover': {
-				backgroundColor: AppConfigService.AppVariables.colors.c4,
+				backgroundColor: AppConfigService.AppVariables.colors.c9,
 				opacity: 0.9
 			}
 		}
@@ -32,10 +32,10 @@ const OverridesCustom: Overrides = {
 	},
 	MuiFab: {
 		sizeSmall: {
-			backgroundColor: AppConfigService.AppVariables.colors.c4,
-			color: AppConfigService.AppVariables.colors.c6,
+			backgroundColor: AppConfigService.AppVariables.colors.c9,
+			color: AppConfigService.AppVariables.colors.c5,
 			'&:hover': {
-				backgroundColor: AppConfigService.AppVariables.colors.c4,
+				backgroundColor: AppConfigService.AppVariables.colors.c9,
 				opacity: 0.95
 			}
 		}
@@ -44,15 +44,15 @@ const OverridesCustom: Overrides = {
 		root: {
 			'&$button': {
 				'&:hover': {
-					backgroundColor: AppConfigService.AppVariables.colors.c4,
+					backgroundColor: AppConfigService.AppVariables.colors.c9,
 					'& svg, span, p': {
-						color: AppConfigService.AppVariables.colors.c6
+						color: AppConfigService.AppVariables.colors.c5
 					}
 				},
 				'&.active': {
-					backgroundColor: AppConfigService.AppVariables.colors.c4,
+					backgroundColor: AppConfigService.AppVariables.colors.c9,
 					'& svg, span, p': {
-						color: AppConfigService.AppVariables.colors.c6
+						color: AppConfigService.AppVariables.colors.c5
 					}
 				}
 			}

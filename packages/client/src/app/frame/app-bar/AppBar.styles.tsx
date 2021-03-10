@@ -32,7 +32,7 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 		textAlign: 'right'
 	},
 	appBarColorThemeLight: {
-		fill: AppConfigService.AppVariables.colors.c10
+		fill: AppConfigService.AppVariables.colors.c11
 	},
 	appBarDivider: {
 		margin: theme.spacing(0, 0, 0, 0.5)

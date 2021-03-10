@@ -5,9 +5,9 @@ import { pxToRem } from '../../utilities/methods/PixelsToRem';
 
 export const badgeStyles = makeStyles((theme: Theme) => ({
 	badgeDot: {
-		backgroundColor: AppConfigService.AppVariables.colors.c9,
+		backgroundColor: AppConfigService.AppVariables.colors.c10,
 		boxShadow: `0 0 0 ${pxToRem(2)} ${theme.palette.background.paper}`,
-		color: AppConfigService.AppVariables.colors.c9,
+		color: AppConfigService.AppVariables.colors.c10,
 		'&::after': {
 			animation: '$ripple 1.2s infinite ease-in-out',
 			border: '1px solid currentColor',

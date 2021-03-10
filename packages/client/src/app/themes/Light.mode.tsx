@@ -7,7 +7,7 @@ import { pxToRem } from '../utilities/methods/PixelsToRem';
 
 // block shadow
 const blockShadow = `${pxToRem(1)} ${pxToRem(1)} ${pxToRem(1)} ${
-	AppConfigService.AppVariables.colors.c8
+	AppConfigService.AppVariables.colors.c6
 }`;
 
 /**
@@ -27,7 +27,7 @@ const Light = (
 			...palette,
 			type: 'light',
 			background: {
-				default: AppConfigService.AppVariables.colors.c2
+				default: AppConfigService.AppVariables.colors.c4
 			}
 		},
 		overrides: {
@@ -35,7 +35,7 @@ const Light = (
 			MuiPaper: {
 				...overrides.MuiPaper,
 				root: {
-					backgroundColor: AppConfigService.AppVariables.colors.c6
+					backgroundColor: AppConfigService.AppVariables.colors.c5
 				},
 				elevation1: {
 					boxShadow: blockShadow,
@@ -45,24 +45,24 @@ const Light = (
 			},
 			MuiAppBar: {
 				root: {
-					backgroundColor: AppConfigService.AppVariables.colors.c6,
+					backgroundColor: AppConfigService.AppVariables.colors.c5,
 					boxShadow: blockShadow,
-					color: AppConfigService.AppVariables.colors.c1
+					color: AppConfigService.AppVariables.colors.c7
 				}
 			},
 			MuiDrawer: {
 				...overrides.MuiDrawer,
 				paper: {
-					background: AppConfigService.AppVariables.colors.c6,
+					background: AppConfigService.AppVariables.colors.c5,
 					boxShadow: blockShadow,
-					color: AppConfigService.AppVariables.colors.c1
+					color: AppConfigService.AppVariables.colors.c7
 				}
 			},
 			MuiOutlinedInput: {
 				input: {
 					'&:-webkit-autofill': {
 						WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
-							AppConfigService.AppVariables.colors.c6
+							AppConfigService.AppVariables.colors.c5
 						} inset`,
 						'&::first-line': {
 							fontSize: pxToRem(16),

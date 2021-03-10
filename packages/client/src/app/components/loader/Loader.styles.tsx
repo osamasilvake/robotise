@@ -8,6 +8,6 @@ export const loaderStyles = makeStyles((theme: Theme) => ({
 		width: theme.spacing(18)
 	},
 	loaderSpinner: {
-		color: AppConfigService.AppVariables.colors.c4
+		color: AppConfigService.AppVariables.colors.c9
 	}
 }));

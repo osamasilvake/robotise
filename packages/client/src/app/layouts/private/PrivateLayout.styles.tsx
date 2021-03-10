@@ -22,6 +22,6 @@ export const privateLayoutStyles = makeStyles((theme: Theme) => ({
 		})
 	},
 	privateLayoutContentInner: {
-		padding: theme.spacing(2)
+		padding: theme.spacing(1.5)
 	}
 }));

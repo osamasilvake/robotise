@@ -10,16 +10,20 @@ class AppConfigService extends EnvService {
 	get AppVariables() {
 		return {
 			colors: {
-				c1: '#171a20', // warm black
-				c2: '#f2f5fa', // grey
-				c3: '#272b37', // royal blue dark
-				c4: '#26aee4', // robotise blue
-				c5: '#2f3443', // royal blue light
-				c6: '#ffffff', // white
-				c7: '#202227', // dark: box-shadow
-				c8: '#dbdcde', // light: box-shadow
-				c9: '#44b700', // avatar: dot
-				c10: '#f2db4f' // theme-icon: sun
+				c1: '#333435', // dark: 	body/content
+				c2: '#383a3c', // dark:		paper
+				c3: '#2e2e31', // dark: 	box-shadow
+
+				c4: '#f2f5fa', // light: 	body/content
+				c5: '#ffffff', // light: 	paper
+				c6: '#dbdcde', // light: 	box-shadow
+
+				c7: '#171a20', // black
+				c8: '#393c41', // anthrazit
+				c9: '#26aee4', // blue (robotise)
+
+				c10: '#44b700', // icon: 	dot
+				c11: '#f2db4f' // icon: 	sun
 			}
 		};
 	}

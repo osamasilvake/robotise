@@ -62,7 +62,7 @@ const Login: FC = () => {
 	return (
 		<Grid container component="section" className={loginClasses.loginRoot}>
 			<Grid item xs={false} sm={6} md={8} className={loginClasses.loginImage} />
-			<Grid item xs={12} sm={6} md={4} component={Paper} elevation={6} square>
+			<Grid item xs={12} sm={6} md={4} component={Paper} elevation={2} square>
 				<Box className={loginClasses.loginPaper}>
 					<Avatar
 						variant="square"

@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Meta from '../../../frame/meta/Meta';
 import { GeneralFetchChangelog, generalSelector } from '../../../slices/general/General.slice';
-import { jsonParse } from '../../../utilities/helpers/json';
-import { MarkdownRenderers } from '../../../utilities/parsers/Markdown/Markdown';
+import { jsonParse } from '../../../utilities/methods/JsonUtilities';
+import { MarkdownRenderers } from './markdown/Markdown';
 
 const Changelogs: FC = () => {
 	const { t } = useTranslation('META');
@@ -27,19 +27,16 @@ const Changelogs: FC = () => {
 			{/* Meta */}
 			<Meta title={t('CHANGELOGS.TITLE')} description={t('CHANGELOGS.DESCRIPTION')} />
 
-			{/* Header */}
-			<Paper square>
-				<h1>Header</h1>
-			</Paper>
-
 			{/* Content */}
-			<Paper square>
-				<ReactMarkdown
-					escapeHtml={false}
-					renderers={MarkdownRenderers}
-					source={changelog && jsonParse(changelog)}
-				/>
-			</Paper>
+			{changelog && (
+				<Paper square elevation={1}>
+					<ReactMarkdown
+						escapeHtml={false}
+						renderers={MarkdownRenderers}
+						source={jsonParse(changelog)}
+					/>
+				</Paper>
+			)}
 		</Box>
 	);
 };

@@ -10,16 +10,16 @@ class AppConfigService extends EnvService {
 	get AppVariables() {
 		return {
 			colors: {
-				c1: '#000000',
-				c2: '#f2f5fa',
-				c3: '#272b37',
-				c4: '#64b0e5',
-				c5: '#2f3443',
-				c6: '#ffffff',
-				c7: '#202227',
-				c8: '#dbdcde',
-				c9: '#44b700',
-				c10: '#f2db4f'
+				c1: '#171a20', // warm black
+				c2: '#f2f5fa', // grey
+				c3: '#272b37', // royal blue dark
+				c4: '#26aee4', // robotise blue
+				c5: '#2f3443', // royal blue light
+				c6: '#ffffff', // white
+				c7: '#202227', // dark: box-shadow
+				c8: '#dbdcde', // light: box-shadow
+				c9: '#44b700', // avatar: dot
+				c10: '#f2db4f' // theme-icon: sun
 			}
 		};
 	}
@@ -28,21 +28,22 @@ class AppConfigService extends EnvService {
 	 * general
 	 */
 	get AppOptions() {
-		const direction: SnackbarOrigin = {
-			vertical: 'bottom',
-			horizontal: 'left'
-		};
-
 		return {
 			fontFamily: {
 				Roboto: 'Roboto'
 			},
 			snackbar: {
 				timeout: 6000,
-				direction
+				direction: {
+					vertical: 'bottom',
+					horizontal: 'left'
+				} as SnackbarOrigin
 			},
 			drawer: {
 				width: 260
+			},
+			authentication: {
+				validateBefore: 2 * 60 * 1000 // 2 minutes
 			}
 		};
 	}

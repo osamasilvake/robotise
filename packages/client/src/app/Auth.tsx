@@ -16,7 +16,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 
 	useEffect(() => {
 		if (user) {
-			// dispatch: requests a new token 30 seconds before it expires
+			// dispatch: requests a new token before it expires
 			dispatch(AuthRefreshToken(user.exp));
 		}
 	}, [dispatch, user]);

@@ -8,11 +8,11 @@ import ErrorBoundary from './frame/error-boundary/ErrorBoundary';
 import Message from './frame/message/Message';
 import Meta from './frame/meta/Meta';
 import ScrollTop from './frame/scroll-top/ScrollTop';
-import Routes from './Routes';
+import Routes from './routes/Routes';
 import { InterceptorService, LoggerService } from './services';
 import { ThemePaletteTypeEnum } from './slices/general/General.enum';
 import { generalSelector } from './slices/general/General.slice';
-import { ThemeSettings } from './Theme';
+import { Common, Dark, Light, Overrides, Palette } from './themes';
 
 // init axios-interceptor and log-level
 InterceptorService.init();
@@ -20,9 +20,13 @@ LoggerService.init();
 
 const App: FC = () => {
 	const { themePalette } = useSelector(generalSelector);
-
 	const theme = useMemo(
-		() => createMuiTheme(ThemeSettings(themePalette === ThemePaletteTypeEnum.DARK)),
+		() =>
+			createMuiTheme(
+				themePalette === ThemePaletteTypeEnum.DARK
+					? Dark(Common, Palette, Overrides)
+					: Light(Common, Palette, Overrides)
+			),
 		[themePalette]
 	);
 

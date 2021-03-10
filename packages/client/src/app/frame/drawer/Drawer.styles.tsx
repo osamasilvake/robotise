@@ -22,7 +22,7 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen
 		}),
-		width: theme.spacing(7) + 1
+		width: theme.spacing(7)
 	},
 	drawerToolbar: {
 		alignItems: 'center',

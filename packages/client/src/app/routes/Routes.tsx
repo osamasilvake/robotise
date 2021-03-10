@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Auth from './Auth';
-import GlobalLayout from './layouts/global/GlobalLayout';
-import routesTemplates from './routes/index';
-import Error404 from './screens/pages/404/Error404';
+import Auth from '../Auth';
+import GlobalLayout from '../layouts/global/GlobalLayout';
+import Error404 from '../screens/pages/404/Error404';
+import routesTemplates from './Routes.template';
 
 const Routes: FC = () => {
 	return (

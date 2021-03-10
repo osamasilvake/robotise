@@ -47,7 +47,7 @@ A summary of development workflow involving multiple git branches.
 ##### Projects Manager
 - [X] [Lerna](https://github.com/lerna/lerna)
 
-#### Precommit Hooks and Linting of Staged Files with Conventional Commits Standards
+##### Precommit Hooks and Linting of Staged Files with Conventional Commits Standards
 - [X] [husky](https://github.com/typicode/husky)
 - [X] [lint-staged](https://github.com/okonet/lint-staged)
 - [X] [@commitlint/cli](https://github.com/conventional-changelog/commitlint)

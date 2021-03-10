@@ -1,4 +1,4 @@
-import { TriggerMessageInterface } from '../../frame/message/Message.interface';
+import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { ThemePaletteTypeEnum } from './General.enum';
 
 export interface GeneralSliceInterface {

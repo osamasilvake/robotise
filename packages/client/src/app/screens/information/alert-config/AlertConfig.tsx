@@ -1,21 +1,14 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import React, { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import Meta from '../../../frame/meta/Meta';
+import PageHead from '../../../components/content/page-head/PageHead';
 
 const AlertConfig: FC = () => {
-	const { t } = useTranslation('META');
-
 	return (
-		<>
-			<Meta title={t('ALERT_CONFIG.TITLE')} description={t('ALERT_CONFIG.DESCRIPTION')} />
-			<Box component="section" className="rc-alert-config">
-				<Typography component="h1" variant="h4">
-					Alert Config
-				</Typography>
-			</Box>
-		</>
+		<Box component="section">
+			{/* Page Head */}
+			<PageHead title="ALERT_CONFIG.TITLE" description="ALERT_CONFIG.DESCRIPTION" />
+		</Box>
 	);
 };
 export default AlertConfig;

@@ -19,9 +19,9 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
-import ENV from '../../../environment';
-import { AppConfigService } from '../../services';
-import { generalSelector, GeneralSetDrawerState } from '../../slices/general/General.slice';
+import ENV from '../../../../environment';
+import { AppConfigService } from '../../../services';
+import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Copyrights from '../copyrights/Copyrights';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
 import { drawerStyles } from './Drawer.styles';

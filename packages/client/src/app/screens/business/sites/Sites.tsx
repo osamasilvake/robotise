@@ -1,21 +1,14 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import React, { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import Meta from '../../../frame/meta/Meta';
+import PageHead from '../../../components/content/page-head/PageHead';
 
 const Sites: FC = () => {
-	const { t } = useTranslation('META');
-
 	return (
-		<>
-			<Meta title={t('SITES.TITLE')} description={t('SITES.DESCRIPTION')} />
-			<Box component="section" className="rc-sites">
-				<Typography component="h1" variant="h4">
-					Sites
-				</Typography>
-			</Box>
-		</>
+		<Box component="section">
+			{/* Page Head */}
+			<PageHead title="SITES.TITLE" description="SITES.DESCRIPTION" />
+		</Box>
 	);
 };
 export default Sites;

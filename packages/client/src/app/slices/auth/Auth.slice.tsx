@@ -1,8 +1,8 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import moment from 'moment';
 
-import { TriggerMessageTypeEnum } from '../../frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../frame/message/Message.interface';
+import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import {
 	AuthLoginInterface,
 	AuthUserDetailInterface

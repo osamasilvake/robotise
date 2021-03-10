@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-import { AppConfigService } from '../../services';
+import { AppConfigService } from '../../../services';
 
 const drawerWidth = AppConfigService.AppOptions.drawer.width;
 export const drawerStyles = makeStyles((theme: Theme) => ({

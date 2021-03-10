@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { AppConfigService } from '../../services';
-import { pxToRem } from '../../utilities/methods/PixelsToRem';
+import { AppConfigService } from '../../../services';
+import { pxToRem } from '../../../utilities/methods/PixelsToRem';
 
 export const badgeStyles = makeStyles((theme: Theme) => ({
 	badgeDot: {

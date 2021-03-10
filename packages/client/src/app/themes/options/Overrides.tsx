@@ -25,11 +25,6 @@ const OverridesCustom: Overrides = {
 			}
 		}
 	},
-	MuiIconButton: {
-		root: {
-			borderRadius: pxToRem(2)
-		}
-	},
 	MuiFab: {
 		sizeSmall: {
 			backgroundColor: AppConfigService.AppVariables.colors.c9,
@@ -61,6 +56,11 @@ const OverridesCustom: Overrides = {
 	MuiDrawer: {
 		paperAnchorDockedLeft: {
 			borderRight: 0
+		}
+	},
+	MuiIconButton: {
+		root: {
+			borderRadius: pxToRem(2)
 		}
 	}
 };

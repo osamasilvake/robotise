@@ -1,6 +1,4 @@
 import { ThemeOptions } from '@material-ui/core';
-import { PaletteOptions } from '@material-ui/core/styles/createPalette';
-import { Overrides } from '@material-ui/core/styles/overrides';
 
 import { AppConfigService } from '../services';
 import { pxToRem } from '../utilities/methods/PixelsToRem';
@@ -13,49 +11,57 @@ const blockShadow = `${pxToRem(1)} ${pxToRem(1)} ${pxToRem(1)} ${
 /**
  * Dark mode
  * @param common
- * @param palette
- * @param overrides
  */
-const Dark = (
-	common: ThemeOptions,
-	palette: PaletteOptions,
-	overrides: Overrides
-): ThemeOptions => {
+const Dark = (common: ThemeOptions): ThemeOptions => {
 	return {
 		...common,
 		palette: {
-			...palette,
+			...common.palette,
 			type: 'dark',
 			background: {
-				default: AppConfigService.AppVariables.colors.c1
+				default: AppConfigService.AppVariables.colors.c1 // body
+			},
+			text: {
+				primary: AppConfigService.AppVariables.colors.c7,
+				secondary: AppConfigService.AppVariables.colors.c7a
 			}
 		},
 		overrides: {
-			...overrides,
+			...common.overrides,
 			MuiPaper: {
-				...overrides.MuiPaper,
 				root: {
 					backgroundColor: AppConfigService.AppVariables.colors.c2
 				},
-				elevation1: {
+				elevation11: {
+					backgroundColor: AppConfigService.AppVariables.colors.c2a,
 					boxShadow: blockShadow,
-					padding: pxToRem(2),
+					padding: pxToRem(15),
+					transition: 'none'
+				},
+				elevation12: {
+					boxShadow: blockShadow,
+					padding: pxToRem(15),
 					transition: 'none'
 				}
 			},
 			MuiAppBar: {
 				root: {
 					backgroundColor: AppConfigService.AppVariables.colors.c2,
-					boxShadow: blockShadow,
-					color: AppConfigService.AppVariables.colors.c4
+					boxShadow: blockShadow
 				}
 			},
 			MuiDrawer: {
-				...overrides.MuiDrawer,
+				...common.overrides?.MuiDrawer,
 				paper: {
 					background: AppConfigService.AppVariables.colors.c2,
-					boxShadow: blockShadow,
-					color: AppConfigService.AppVariables.colors.c4
+					boxShadow: blockShadow
+				}
+			},
+			MuiIconButton: {
+				...common.overrides?.MuiIconButton,
+				root: {
+					...common.overrides?.MuiIconButton?.root,
+					color: AppConfigService.AppVariables.colors.c7
 				}
 			},
 			MuiOutlinedInput: {

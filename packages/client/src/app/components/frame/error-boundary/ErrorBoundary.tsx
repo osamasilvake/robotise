@@ -33,9 +33,7 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 		if (this.state.hasError) {
 			return (
 				<Box>
-					<Typography component="h1" variant="h4">
-						Error Boundar caught an error for you!
-					</Typography>
+					<Typography variant="h1">Error Boundar caught an error for you!</Typography>
 				</Box>
 			);
 		}

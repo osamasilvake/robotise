@@ -21,15 +21,15 @@ import React, { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Badge from '../../components/badge/Badge';
-import { AppConfigService } from '../../services';
-import { AuthLogout, authSelector } from '../../slices/auth/Auth.slice';
-import { ThemePaletteTypeEnum } from '../../slices/general/General.enum';
+import { AppConfigService } from '../../../services';
+import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
+import { ThemePaletteTypeEnum } from '../../../slices/general/General.enum';
 import {
 	GeneralApplyThemePalette,
 	generalSelector,
 	GeneralSetDrawerState
-} from '../../slices/general/General.slice';
+} from '../../../slices/general/General.slice';
+import Badge from '../../common/badge/Badge';
 import { appBarStyles } from './AppBar.styles';
 
 const AppBarCustom: FC = () => {
@@ -133,14 +133,21 @@ const AppBarCustom: FC = () => {
 								}>
 								<ListItemIcon>
 									{themePalette === ThemePaletteTypeEnum.LIGHT ? (
-										<Brightness3Icon />
-									) : (
 										<WbSunnyIcon
 											className={appBarClasses.appBarColorThemeLight}
 										/>
+									) : (
+										<Brightness3Icon />
 									)}
 								</ListItemIcon>
-								<ListItemText primary={t('TOOLTIP.THEME')} />
+								<ListItemText
+									primary={t('TOOLTIP.THEME.TITLE')}
+									secondary={
+										themePalette === ThemePaletteTypeEnum.LIGHT
+											? t('TOOLTIP.THEME.LIGHT')
+											: t('TOOLTIP.THEME.DARK')
+									}
+								/>
 							</ListItem>
 
 							{/* Logout */}

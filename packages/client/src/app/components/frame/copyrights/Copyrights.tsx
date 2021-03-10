@@ -11,7 +11,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 		<Typography variant="body2" color="textSecondary" align="center">
 			{!short && (
 				<>
-					<Link color="inherit" href={process.env.REACT_APP_URL} target="_blank">
+					<Link href={process.env.REACT_APP_URL} target="_blank">
 						{process.env.REACT_APP_AUTHOR}
 					</Link>
 					{' © '}

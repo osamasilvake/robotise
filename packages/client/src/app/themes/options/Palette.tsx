@@ -5,9 +5,6 @@ import { AppConfigService } from '../../services';
 const PaletteCustom: PaletteOptions = {
 	primary: {
 		main: AppConfigService.AppVariables.colors.c9
-	},
-	secondary: {
-		main: AppConfigService.AppVariables.colors.c7
 	}
 };
 export default PaletteCustom;

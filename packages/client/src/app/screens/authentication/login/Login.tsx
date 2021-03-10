@@ -18,7 +18,7 @@ import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import Copyright from '../../../frame/copyrights/Copyrights';
+import Copyright from '../../../components/frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
 import { AuthLogin } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';

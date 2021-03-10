@@ -1,17 +1,14 @@
 import { Box, Paper } from '@material-ui/core';
 import React, { FC, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Meta from '../../../frame/meta/Meta';
+import PageHead from '../../../components/content/page-head/PageHead';
 import { GeneralFetchChangelog, generalSelector } from '../../../slices/general/General.slice';
 import { jsonParse } from '../../../utilities/methods/JsonUtilities';
 import { MarkdownRenderers } from './markdown/Markdown';
 
 const Changelogs: FC = () => {
-	const { t } = useTranslation('META');
-
 	const dispatch = useDispatch();
 	const { changelog } = useSelector(generalSelector);
 
@@ -24,12 +21,12 @@ const Changelogs: FC = () => {
 
 	return (
 		<Box component="section">
-			{/* Meta */}
-			<Meta title={t('CHANGELOGS.TITLE')} description={t('CHANGELOGS.DESCRIPTION')} />
+			{/* Page Head */}
+			<PageHead title="CHANGELOGS.TITLE" />
 
 			{/* Content */}
 			{changelog && (
-				<Paper square elevation={1}>
+				<Paper square elevation={12}>
 					<ReactMarkdown
 						escapeHtml={false}
 						renderers={MarkdownRenderers}

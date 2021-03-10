@@ -3,9 +3,9 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Alert from '../../components/alert/Alert';
-import { AppConfigService } from '../../services';
-import { generalSelector, GeneralTriggerMessage } from '../../slices/general/General.slice';
+import { AppConfigService } from '../../../services';
+import { generalSelector, GeneralTriggerMessage } from '../../../slices/general/General.slice';
+import Alert from '../../common/alert/Alert';
 
 const Message: FC = () => {
 	const { t } = useTranslation('GLOBAL');

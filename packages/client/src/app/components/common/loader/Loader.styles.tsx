@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { AppConfigService } from '../../services';
+import { AppConfigService } from '../../../services';
 
 export const loaderStyles = makeStyles((theme: Theme) => ({
 	loaderAvatar: {

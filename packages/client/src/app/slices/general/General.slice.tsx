@@ -1,6 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageInterface } from '../../frame/message/Message.interface';
+import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import ChangelogService from '../../screens/information/changelogs/Changelog.service';
 import { AppConfigService, StorageService } from '../../services';
 import { jsonStringify } from '../../utilities/methods/JsonUtilities';

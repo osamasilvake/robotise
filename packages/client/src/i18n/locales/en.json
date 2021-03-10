@@ -3,6 +3,10 @@
 		"GENERAL": {
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
 		},
+		"DASHBOARD": {
+			"TITLE": "Dashboard",
+			"DESCRIPTION": "Dashboard Description"
+		},
 		"SITES": {
 			"TITLE": "Sites",
 			"DESCRIPTION": "Sites Description"
@@ -71,9 +75,12 @@
 				"OPEN": "Open Drawer",
 				"CLOSE": "Close Drawer"
 			},
-			"THEME": "Theme"
+			"THEME": {
+				"TITLE": "Theme",
+				"LIGHT": "Light",
+				"DARK": "Dark"
+			}
 		},
-		"APPBAR": {},
 		"SIDEBAR": {
 			"BUSINESS": {
 				"TITLE": {

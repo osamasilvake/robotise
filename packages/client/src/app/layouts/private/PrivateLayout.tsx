@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import React, { FC, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 
-import AppBar from '../../frame/app-bar/AppBar';
-import Drawer from '../../frame/drawer/Drawer';
-import ErrorBoundary from '../../frame/error-boundary/ErrorBoundary';
+import AppBar from '../../components/frame/app-bar/AppBar';
+import Drawer from '../../components/frame/drawer/Drawer';
+import ErrorBoundary from '../../components/frame/error-boundary/ErrorBoundary';
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
 import { generalSelector } from '../../slices/general/General.slice';
 import { privateLayoutStyles } from './PrivateLayout.styles';

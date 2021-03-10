@@ -71,7 +71,7 @@
 				"OPEN": "Open Drawer",
 				"CLOSE": "Close Drawer"
 			},
-			"THEME": "Toggle light/dark theme"
+			"THEME": "Theme"
 		},
 		"APPBAR": {},
 		"SIDEBAR": {

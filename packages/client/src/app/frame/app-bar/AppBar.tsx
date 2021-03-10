@@ -2,7 +2,6 @@ import {
 	AppBar,
 	Avatar,
 	Box,
-	Divider,
 	IconButton,
 	List,
 	ListItem,
@@ -90,12 +89,41 @@ const AppBarCustom: FC = () => {
 				)}
 
 				<Box className={appBarClasses.appBarOptions}>
-					{/* Light / Dark Mode */}
-					<Box>
-						<Tooltip title={String(t('TOOLTIP.THEME'))}>
-							<IconButton
-								hidden
-								edge="start"
+					<IconButton edge="end" onClick={handleMenuOpen}>
+						<Box className={appBarClasses.appBarAccountDetail}>
+							<Typography variant="subtitle2">{user?.data.display_name}</Typography>
+							<Typography
+								variant="body2"
+								color="textSecondary"
+								className={appBarClasses.appBarAccountDetailSubtitle}>
+								{user?.data.role}
+							</Typography>
+						</Box>
+						<Badge>
+							<Avatar
+								src={AppConfigService.AppImageURLs.avatar.path}
+								alt={AppConfigService.AppImageURLs.avatar.name}
+							/>
+						</Badge>
+					</IconButton>
+					<Popover
+						anchorEl={anchorEl}
+						open={Boolean(anchorEl)}
+						onClose={handleMenuClose}
+						getContentAnchorEl={null}
+						anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+						transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
+						<List disablePadding>
+							<ListItem divider>
+								<ListItemText
+									primary={user?.data.display_name}
+									secondary={user?.data.email}
+								/>
+							</ListItem>
+
+							{/* Light / Dark Mode */}
+							<ListItem
+								button
 								onClick={() =>
 									handleThemePalette(
 										themePalette === ThemePaletteTypeEnum.LIGHT
@@ -103,66 +131,27 @@ const AppBarCustom: FC = () => {
 											: ThemePaletteTypeEnum.LIGHT
 									)
 								}>
-								{themePalette === ThemePaletteTypeEnum.LIGHT ? (
-									<Brightness3Icon />
-								) : (
-									<WbSunnyIcon className={appBarClasses.appBarColorThemeLight} />
-								)}
-							</IconButton>
-						</Tooltip>
-					</Box>
+								<ListItemIcon>
+									{themePalette === ThemePaletteTypeEnum.LIGHT ? (
+										<Brightness3Icon />
+									) : (
+										<WbSunnyIcon
+											className={appBarClasses.appBarColorThemeLight}
+										/>
+									)}
+								</ListItemIcon>
+								<ListItemText primary={t('TOOLTIP.THEME')} />
+							</ListItem>
 
-					<Divider
-						className={appBarClasses.appBarDivider}
-						orientation="vertical"
-						light
-						flexItem
-					/>
-
-					{/* Menu */}
-					<Box>
-						<IconButton edge="end" onClick={handleMenuOpen}>
-							<Box className={appBarClasses.appBarAccountDetail}>
-								<Typography variant="subtitle2">
-									{user?.data.display_name}
-								</Typography>
-								<Typography
-									variant="body2"
-									color="textSecondary"
-									className={appBarClasses.appBarAccountDetailSubtitle}>
-									{user?.data.role}
-								</Typography>
-							</Box>
-							<Badge>
-								<Avatar
-									src={AppConfigService.AppImageURLs.avatar.path}
-									alt={AppConfigService.AppImageURLs.avatar.name}
-								/>
-							</Badge>
-						</IconButton>
-						<Popover
-							anchorEl={anchorEl}
-							open={Boolean(anchorEl)}
-							onClose={handleMenuClose}
-							getContentAnchorEl={null}
-							anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-							transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
-							<List disablePadding>
-								<ListItem divider>
-									<ListItemText
-										primary={user?.data.display_name}
-										secondary={user?.data.email}
-									/>
-								</ListItem>
-								<ListItem button onClick={handleLogout}>
-									<ListItemIcon>
-										<PowerSettingsNewIcon />
-									</ListItemIcon>
-									<ListItemText primary="Logout" />
-								</ListItem>
-							</List>
-						</Popover>
-					</Box>
+							{/* Logout */}
+							<ListItem button onClick={handleLogout}>
+								<ListItemIcon>
+									<PowerSettingsNewIcon />
+								</ListItemIcon>
+								<ListItemText primary="Logout" />
+							</ListItem>
+						</List>
+					</Popover>
 				</Box>
 			</Toolbar>
 		</AppBar>

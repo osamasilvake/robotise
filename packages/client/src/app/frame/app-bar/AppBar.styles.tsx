@@ -25,17 +25,8 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 		padding: theme.spacing(0, 2)
 	},
 	appBarOptions: {
-		alignItems: 'center',
-		display: 'flex',
 		flexGrow: 1,
-		justifyContent: 'flex-end',
 		textAlign: 'right'
-	},
-	appBarColorThemeLight: {
-		fill: AppConfigService.AppVariables.colors.c11
-	},
-	appBarDivider: {
-		margin: theme.spacing(0, 0, 0, 0.5)
 	},
 	appBarAccountDetail: {
 		margin: theme.spacing(0, 1, 0, 0),
@@ -43,5 +34,8 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 	},
 	appBarAccountDetailSubtitle: {
 		marginTop: theme.spacing(-0.25)
+	},
+	appBarColorThemeLight: {
+		fill: AppConfigService.AppVariables.colors.c11
 	}
 }));

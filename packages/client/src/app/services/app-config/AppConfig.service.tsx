@@ -12,12 +12,10 @@ class AppConfigService extends EnvService {
 			colors: {
 				c1: '#333435', // dark: 		body/content
 				c2: '#383a3c', // dark:			paper
-				c2a: '#414446', // dark:		paper
 				c3: '#2e2e31', // dark: 		box-shadow
 
-				c4: '#eeeeee', // light: 		body/content
-				c5: '#ffffff', // light: 		paper
-				c5a: '#eeeeee', // light: 		paper
+				c4: '#ffffff', // light: 		body/content
+				c5: '#eeeeee ', // light: 		paper
 				c6: '#dbdcde', // light: 		box-shadow
 
 				c7: '#ffffff', // dark: 		text

@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 import AppBar from '../../components/frame/app-bar/AppBar';
 import Drawer from '../../components/frame/drawer/Drawer';
-import ErrorBoundary from '../../components/frame/error-boundary/ErrorBoundary';
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
 import { generalSelector } from '../../slices/general/General.slice';
 import { privateLayoutStyles } from './PrivateLayout.styles';
@@ -29,13 +28,9 @@ const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPage
 					[privateLayoutClasses.privateLayoutContentOpen]: openDrawer,
 					[privateLayoutClasses.privateLayoutContentClose]: !openDrawer
 				})}>
-				<ErrorBoundary>
-					<Suspense fallback={<LinearProgress />}>
-						<Box className={privateLayoutClasses.privateLayoutContentInner}>
-							<Component route={route} />
-						</Box>
-					</Suspense>
-				</ErrorBoundary>
+				<Suspense fallback={<LinearProgress />}>
+					<Component route={route} />
+				</Suspense>
 			</Box>
 		</Box>
 	);

@@ -19,17 +19,16 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 	 */
 	const breadcrumbs = (): BreadcrumbInterface[] => {
 		const paths = location.href.split('/').slice(3);
-		const parts = {
-			text: t('DASHBOARD.TITLE'),
-			link: ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD,
-			isLast: false
-		};
 		return [
-			parts,
+			{
+				text: t('DASHBOARD.TITLE'),
+				link: ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD,
+				isLast: false
+			},
 			...paths.map((item, index) => {
 				const link = '/' + paths.slice(0, index + 1).join('/');
 				return {
-					text: item.replace(/\b\w/g, (l) => l.toUpperCase()),
+					text: item.replace(/\b\w/g, (l) => l.toUpperCase()).replace(/-/g, ' '),
 					link,
 					isLast: index === paths.length - 1
 				};
@@ -43,7 +42,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 			<Meta title={title} description={description} />
 
 			{/* Paper */}
-			<Paper square elevation={11} className={pageHeadClasses.pageHead}>
+			<Paper square elevation={11}>
 				{/* Title */}
 				<Typography variant="h1" className={pageHeadClasses.pageHeadTitle}>
 					{t(title)}

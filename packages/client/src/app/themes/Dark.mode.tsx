@@ -3,11 +3,6 @@ import { ThemeOptions } from '@material-ui/core';
 import { AppConfigService } from '../services';
 import { pxToRem } from '../utilities/methods/PixelsToRem';
 
-// block shadow
-const blockShadow = `${pxToRem(1)} ${pxToRem(1)} ${pxToRem(1)} ${
-	AppConfigService.AppVariables.colors.c3
-}`;
-
 /**
  * Dark mode
  * @param common
@@ -30,31 +25,31 @@ const Dark = (common: ThemeOptions): ThemeOptions => {
 			...common.overrides,
 			MuiPaper: {
 				root: {
-					backgroundColor: AppConfigService.AppVariables.colors.c2
+					backgroundColor: AppConfigService.AppVariables.colors.c1
 				},
 				elevation11: {
-					borderBottom: `1px solid ${AppConfigService.AppVariables.colors.c2a}`,
-					boxShadow: blockShadow,
-					padding: pxToRem(15),
+					borderBottom: `1px solid ${AppConfigService.AppVariables.colors.c2}`,
+					boxShadow: 'none',
+					padding: `${pxToRem(20)} ${pxToRem(20)}`,
 					transition: 'none'
 				},
 				elevation12: {
-					boxShadow: blockShadow,
-					padding: pxToRem(15),
+					boxShadow: 'none',
+					padding: `${pxToRem(20)} ${pxToRem(20)}`,
 					transition: 'none'
 				}
 			},
 			MuiAppBar: {
 				root: {
 					backgroundColor: AppConfigService.AppVariables.colors.c2,
-					boxShadow: blockShadow
+					boxShadow: 'none'
 				}
 			},
 			MuiDrawer: {
 				...common.overrides?.MuiDrawer,
 				paper: {
 					background: AppConfigService.AppVariables.colors.c2,
-					boxShadow: blockShadow
+					boxShadow: 'none'
 				}
 			},
 			MuiIconButton: {
@@ -68,7 +63,7 @@ const Dark = (common: ThemeOptions): ThemeOptions => {
 				input: {
 					'&:-webkit-autofill': {
 						WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
-							AppConfigService.AppVariables.colors.c2
+							AppConfigService.AppVariables.colors.c1
 						} inset`,
 						'&::first-line': {
 							fontSize: pxToRem(16),

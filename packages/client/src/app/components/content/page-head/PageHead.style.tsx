@@ -1,9 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
 export const pageHeadStyles = makeStyles((theme: Theme) => ({
-	pageHead: {
-		padding: theme.spacing(1.3, 1.6)
-	},
 	pageHeadTitle: {
 		marginBottom: theme.spacing(0.6)
 	},

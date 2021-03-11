@@ -16,7 +16,7 @@ export const markdownStyles = makeStyles((theme: Theme) => ({
 		margin: theme.spacing(0, 0, 2)
 	},
 	markdownList: {
-		margin: theme.spacing(0, 0, 2)
+		margin: 0
 	},
 	markdownListItem: {
 		padding: 0

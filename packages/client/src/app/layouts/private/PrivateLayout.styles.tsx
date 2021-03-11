@@ -20,8 +20,5 @@ export const privateLayoutStyles = makeStyles((theme: Theme) => ({
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen
 		})
-	},
-	privateLayoutContentInner: {
-		padding: theme.spacing(1.5)
 	}
 }));

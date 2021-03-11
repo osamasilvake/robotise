@@ -29,8 +29,8 @@ const drawerInformationList: DrawerListInterface[] = [
 	{
 		id: 2,
 		icon: 'assignment',
-		label: 'SIDEBAR.INFORMATION.LIST.CHANGELOGS',
-		path: ENV().ROUTING.SCREENS.INFORMATION.CHANGELOGS
+		label: 'SIDEBAR.INFORMATION.LIST.CHANGE_LOG',
+		path: ENV().ROUTING.SCREENS.INFORMATION.CHANGE_LOG
 	},
 	{
 		id: 3,

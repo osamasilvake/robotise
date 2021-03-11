@@ -1,7 +1,7 @@
 import { SnackbarOrigin } from '@material-ui/core/Snackbar';
 
 import EnvService from '../env/Env.service';
-import CHANGELOG from './../../../../CHANGELOG.md';
+import CHANGE_LOG from './../../../../CHANGELOG.md';
 
 class AppConfigService extends EnvService {
 	/**
@@ -15,9 +15,9 @@ class AppConfigService extends EnvService {
 				c2a: '#414446', // dark:		paper
 				c3: '#2e2e31', // dark: 		box-shadow
 
-				c4: '#f9f9f9', // light: 		body/content
+				c4: '#eeeeee', // light: 		body/content
 				c5: '#ffffff', // light: 		paper
-				c5a: '#f2f5fa', // light: 		paper
+				c5a: '#eeeeee', // light: 		paper
 				c6: '#dbdcde', // light: 		box-shadow
 
 				c7: '#ffffff', // dark: 		text
@@ -26,9 +26,8 @@ class AppConfigService extends EnvService {
 				c8a: '#7d8483', // light:		sub-text
 
 				c9: '#26aee4', // dark/light: 	active, links, logo
-
 				c10: '#44b700', // dark/light: 	dot
-				c11: '#f2db4f' // dark/light: 	sun
+				c11: '#ffca03' // dark/light: 	sun
 			}
 		};
 	}
@@ -64,7 +63,7 @@ class AppConfigService extends EnvService {
 		return {
 			COMMON: {
 				LOGS: `${this.envApiUrl}/frontend-logs`,
-				CHANGELOG
+				CHANGE_LOG
 			},
 			AUTH: {
 				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`,

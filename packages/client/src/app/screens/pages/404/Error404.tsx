@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 const Error404: FC = () => {
 	return (
-		<Box component="section" className="rc-e404">
+		<Box component="section">
 			<Typography variant="h1">404</Typography>
 			<Typography variant="body1">Page not found</Typography>
 		</Box>

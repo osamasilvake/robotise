@@ -34,7 +34,7 @@ const Light = (common: ThemeOptions): ThemeOptions => {
 					backgroundColor: AppConfigService.AppVariables.colors.c5
 				},
 				elevation11: {
-					backgroundColor: AppConfigService.AppVariables.colors.c5a,
+					borderBottom: `1px solid ${AppConfigService.AppVariables.colors.c5a}`,
 					boxShadow: blockShadow,
 					padding: pxToRem(15),
 					transition: 'none'

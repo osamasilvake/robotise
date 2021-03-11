@@ -37,7 +37,6 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 			variant = 'body1';
 			break;
 	}
-	console.log(children);
 
 	return (
 		<>

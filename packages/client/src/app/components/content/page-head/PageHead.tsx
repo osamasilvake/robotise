@@ -1,5 +1,4 @@
 import { Box, Breadcrumbs, Link, Paper, Typography } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +9,7 @@ import { pageHeadStyles } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
 	const { title, description } = props;
+
 	const { t } = useTranslation('META');
 	const pageHeadClasses = pageHeadStyles();
 
@@ -22,7 +22,6 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 		const parts = {
 			text: t('DASHBOARD.TITLE'),
 			link: ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD,
-			isFirst: true,
 			isLast: false
 		};
 		return [
@@ -32,7 +31,6 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 				return {
 					text: item.replace(/\b\w/g, (l) => l.toUpperCase()),
 					link,
-					isFirst: false,
 					isLast: index === paths.length - 1
 				};
 			})
@@ -57,19 +55,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 						breadcrumbs().length &&
 						breadcrumbs().map((item) => (
 							<Box key={item.link}>
-								{item.isFirst && (
-									<Link
-										href={item.link}
-										className={pageHeadClasses.pageHeadBreadcrumbLink}>
-										<HomeIcon
-											className={pageHeadClasses.pageHeadBreadcrumbLinkIcon}
-										/>
-										{item.text}
-									</Link>
-								)}
-								{!item.isFirst && !item.isLast && (
-									<Link href={item.text}>{item.text}</Link>
-								)}
+								{!item.isLast && <Link href={item.text}>{item.text}</Link>}
 								{item.isLast && (
 									<Typography color="textPrimary">{item.text}</Typography>
 								)}

@@ -8,33 +8,33 @@ import { GeneralFetchChangelog, generalSelector } from '../../../slices/general/
 import { jsonParse } from '../../../utilities/methods/JsonUtilities';
 import { MarkdownRenderers } from './markdown/Markdown';
 
-const Changelogs: FC = () => {
+const ChangeLog: FC = () => {
 	const dispatch = useDispatch();
-	const { changelog } = useSelector(generalSelector);
+	const { changeLog } = useSelector(generalSelector);
 
 	useEffect(() => {
-		if (!changelog) {
+		if (!changeLog) {
 			// dispatch: update changelog
 			dispatch(GeneralFetchChangelog());
 		}
-	}, [changelog, dispatch]);
+	}, [changeLog, dispatch]);
 
 	return (
 		<Box component="section">
 			{/* Page Head */}
-			<PageHead title="CHANGELOGS.TITLE" />
+			<PageHead title="CHANGE_LOG.TITLE" />
 
 			{/* Content */}
-			{changelog && (
+			{changeLog && (
 				<Paper square elevation={12}>
 					<ReactMarkdown
 						escapeHtml={false}
 						renderers={MarkdownRenderers}
-						source={jsonParse(changelog)}
+						source={jsonParse(changeLog)}
 					/>
 				</Paper>
 			)}
 		</Box>
 	);
 };
-export default Changelogs;
+export default ChangeLog;

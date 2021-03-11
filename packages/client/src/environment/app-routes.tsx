@@ -22,7 +22,7 @@ const appRoutes = {
 			ALERT_CONFIG: {
 				MAIN: '/alert-config'
 			},
-			CHANGELOGS: '/changelogs',
+			CHANGE_LOG: '/change-log',
 			ABOUT: '/about-us'
 		},
 		PAGES: {

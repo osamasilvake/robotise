@@ -6,6 +6,5 @@ export interface PageHeadInterface {
 export interface BreadcrumbInterface {
 	text: string;
 	link: string;
-	isFirst: boolean;
 	isLast: boolean;
 }

@@ -4,15 +4,15 @@ import ENV from '../../../environment';
 import { RouteInterface } from '../../routes/Routes.interfaces';
 import alertConfigRoutes from './alert-config/AlertConfig.routes';
 
-const Changelogs = lazy(() => import('./changelogs/Changelogs'));
+const ChangeLog = lazy(() => import('./change-log/ChangeLog'));
 const About = lazy(() => import('./about/About'));
 
 const informationRoutes: RouteInterface[] = [
 	...alertConfigRoutes,
 	{
-		component: Changelogs,
+		component: ChangeLog,
 		exact: true,
-		path: ENV().ROUTING.SCREENS.INFORMATION.CHANGELOGS
+		path: ENV().ROUTING.SCREENS.INFORMATION.CHANGE_LOG
 	},
 	{
 		component: About,

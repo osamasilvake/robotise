@@ -19,9 +19,9 @@
 			"TITLE": "Alert Config",
 			"DESCRIPTION": "Alert Config Description"
 		},
-		"CHANGELOGS": {
-			"TITLE": "Changelogs",
-			"DESCRIPTION": "Changelogs Description"
+		"CHANGE_LOG": {
+			"TITLE": "Change Log",
+			"DESCRIPTION": "Change Log Description"
 		},
 		"ABOUT": {
 			"TITLE": "About",
@@ -90,11 +90,11 @@
 				"LIST": {
 					"SITES": {
 						"LABEL": "Sites",
-						"HINT": "products"
+						"HINT": "products and more"
 					},
 					"ROBOTS": {
 						"LABEL": "Robots",
-						"HINT": "inventory, order reports"
+						"HINT": "inventory, reports and more"
 					}
 				}
 			},
@@ -105,7 +105,7 @@
 				},
 				"LIST": {
 					"ALERT_CONFIG": "Alert Config",
-					"CHANGELOGS": "Changelogs",
+					"CHANGE_LOG": "Change Log",
 					"ABOUT": "About"
 				}
 			}

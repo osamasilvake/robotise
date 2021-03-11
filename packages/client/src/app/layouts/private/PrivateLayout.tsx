@@ -15,7 +15,7 @@ const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPage
 	const { openDrawer } = useSelector(generalSelector);
 
 	return (
-		<Box className="rc-private-layout">
+		<Box>
 			{/* App Bar */}
 			<AppBar />
 

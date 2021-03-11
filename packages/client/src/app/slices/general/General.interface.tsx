@@ -5,5 +5,5 @@ export interface GeneralSliceInterface {
 	openDrawer: boolean;
 	themePalette: ThemePaletteTypeEnum;
 	triggerMessage: TriggerMessageInterface;
-	changelog: string;
+	changeLog: string;
 }

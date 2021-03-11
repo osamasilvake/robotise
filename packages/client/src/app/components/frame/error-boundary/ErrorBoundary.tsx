@@ -1,6 +1,6 @@
 import { Box, Typography } from '@material-ui/core';
 import log from 'loglevel';
-import React, { Component, ErrorInfo } from 'react';
+import { Component, ErrorInfo } from 'react';
 
 import {
 	ErrorBoundaryPropsInterface,

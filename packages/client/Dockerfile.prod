@@ -1,5 +1,5 @@
-# Node Image
-FROM node:15
+# Node image
+FROM node:15.9
 
 # A directory within the virtualized Docker environment
 WORKDIR /app

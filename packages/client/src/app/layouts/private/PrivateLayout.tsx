@@ -1,6 +1,6 @@
 import { Box, LinearProgress } from '@material-ui/core';
 import clsx from 'clsx';
-import React, { FC, Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 
 import AppBar from '../../components/frame/app-bar/AppBar';

@@ -1,6 +1,6 @@
 import { Link, Typography } from '@material-ui/core';
 import moment from 'moment';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { CopyrightsInterface } from './Copyrights.interface';
 

@@ -1,5 +1,5 @@
 import { Avatar, Box, CircularProgress } from '@material-ui/core';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { AppConfigService } from '../../../services';
 import { centerStyles } from '../../../utilities/styles/Center.style';

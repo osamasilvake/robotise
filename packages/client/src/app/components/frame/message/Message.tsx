@@ -1,5 +1,5 @@
-import { Snackbar } from '@material-ui/core';
-import React, { FC } from 'react';
+import { Snackbar, SnackbarOrigin } from '@material-ui/core';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,7 +20,7 @@ const Message: FC = () => {
 
 	return (
 		<Snackbar
-			anchorOrigin={AppConfigService.AppOptions.snackbar.direction}
+			anchorOrigin={AppConfigService.AppOptions.snackbar.direction as SnackbarOrigin}
 			autoHideDuration={AppConfigService.AppOptions.snackbar.timeout}
 			open={triggerMessage.show}
 			onClose={handleCloseMessage}>

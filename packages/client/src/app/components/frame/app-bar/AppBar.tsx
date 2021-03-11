@@ -17,7 +17,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import clsx from 'clsx';
-import React, { FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 

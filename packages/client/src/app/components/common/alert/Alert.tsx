@@ -1,7 +1,7 @@
 import { IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { Alert } from '@material-ui/lab';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { AlertInterface } from './Alert.interface';
 

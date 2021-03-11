@@ -1,5 +1,3 @@
-import { SnackbarOrigin } from '@material-ui/core/Snackbar';
-
 import EnvService from '../env/Env.service';
 import CHANGE_LOG from './../../../../CHANGELOG.md';
 
@@ -43,7 +41,7 @@ class AppConfigService extends EnvService {
 				direction: {
 					vertical: 'bottom',
 					horizontal: 'left'
-				} as SnackbarOrigin
+				}
 			},
 			drawer: {
 				width: 260

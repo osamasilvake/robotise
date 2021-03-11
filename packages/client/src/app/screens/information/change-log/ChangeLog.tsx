@@ -1,5 +1,5 @@
 import { Box, Paper } from '@material-ui/core';
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useDispatch, useSelector } from 'react-redux';
 

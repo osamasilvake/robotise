@@ -1,5 +1,5 @@
 import { Box, Typography } from '@material-ui/core';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const Error404: FC = () => {
 	return (

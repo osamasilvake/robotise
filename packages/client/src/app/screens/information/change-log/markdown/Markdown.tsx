@@ -1,7 +1,7 @@
 import { Link, Typography } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
 import clsx from 'clsx';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { MarkdownHeadingInterface } from './Markdown.interface';
 import { markdownStyles } from './Markdown.styles';
@@ -26,14 +26,20 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 			variant = 'h6';
 			break;
 		case 3:
-		case 4:
-		case 5:
-		case 6:
-			component = `h${level}` as const;
-			variant = 'body1';
+			component = 'h3';
+			variant = 'h6';
 			break;
+		case 4:
+			component = 'h4';
+			variant = 'h6';
+			break;
+		case 5:
+			component = 'h5';
+			variant = 'h6';
+			break;
+		case 6:
 		default:
-			component = 'h6';
+			component = `h6`;
 			variant = 'body1';
 			break;
 	}

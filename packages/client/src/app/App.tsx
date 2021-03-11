@@ -1,5 +1,5 @@
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
-import React, { FC, Suspense, useMemo } from 'react';
+import { FC, Suspense, useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 

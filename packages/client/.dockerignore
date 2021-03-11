@@ -1,20 +1,11 @@
-.vs
-.vscode
-.idea
-.dockerignore
-.editorconfig
-.env.example
-.git
-.gitignore
-.gitlab
-.gitlab-ci.yml
-.prettierignore
-.prettierrc
-
-dist
-build
-tmp
+# dependencies
 node_modules
-Development.Dockerfile
-Production.Dockerfile
-README.md
+
+# production
+build/
+
+# files & folders
+coverage/
+Dockerfile.dev
+Dockerfile.prod
+CHANGELOG.md

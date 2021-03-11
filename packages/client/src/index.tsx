@@ -1,7 +1,6 @@
 import './i18n/i18n';
 
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import ReduxLogger from 'redux-logger';

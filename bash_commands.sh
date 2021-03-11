@@ -33,7 +33,7 @@ while true; do
             echo -e "${GREY}"
             ncu
 
-            cd client
+            cd packages/client
             echo -e "${GREEN}"
             echo -e "------"
             echo -e "Client"
@@ -41,6 +41,7 @@ while true; do
             echo -e "${GREY}"
             ncu
             echo -e "${NC}"
+            cd ..
             cd ..
             
             echo -e
@@ -55,7 +56,7 @@ while true; do
             rm -R node_modules
             yarn install
 
-            cd client
+            cd packages/client
             echo -e "${GREEN}"
             echo -e "------"
             echo -e "Client"
@@ -64,6 +65,7 @@ while true; do
             ncu -u
             rm -R node_modules
             yarn install
+            cd ..
             cd ..
             
             echo -e
@@ -81,7 +83,7 @@ while true; do
             echo -e
             break;;
         "03")
-            cd client
+            cd packages/client
             echo -e "${GREEN}"
             echo -e "------"
             echo -e "client"
@@ -90,6 +92,7 @@ while true; do
             ncu -u
             rm -R node_modules
             yarn install
+            cd ..
             cd ..
 
             echo -e

@@ -18,7 +18,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 	 * @returns
 	 */
 	const breadcrumbs = (): BreadcrumbInterface[] => {
-		const paths = location.href.split('/').slice(3);
+		const paths = window.location.href.split('/').slice(3);
 		return [
 			{
 				text: t('DASHBOARD.TITLE'),

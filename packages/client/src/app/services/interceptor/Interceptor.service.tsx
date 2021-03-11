@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-import AuthService from '../../screens/authentication/Auth.service';
-import { LoggerService } from '..';
+import { AppConfigService, LoggerService } from '..';
 
 class InterceptorService {
 	init() {
@@ -11,19 +10,18 @@ class InterceptorService {
 			},
 			(err) => {
 				return new Promise((_resolve, reject) => {
-					// un-authorize access
-					const status = err.response && err.response.status;
-					const isRetryRequest = err.config && err.config.__isRetryRequest;
-					if (status === 401 && !isRetryRequest) {
-						AuthService.authLogout();
-					}
+					const response = err?.response;
+					const data = response?.data;
+					const config = response?.config;
 
 					// log error on console
 					// send logs to server
-					LoggerService.sendLogs(err);
+					// stop repition in-case if logs api fails
+					if (config.url !== AppConfigService.AppServices.COMMON.LOGS) {
+						LoggerService.sendLogs(err);
+					}
 
 					// reject
-					const data = err.response && err.response.data;
 					reject(data);
 				});
 			}

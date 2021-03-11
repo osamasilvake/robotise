@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 /**
  * gets the value at path of object.
  * note: If provided path does not exists inside the object js will generate error.
@@ -5,12 +7,12 @@
  * @param path
  * @param defaultValue
  */
-const get = <T,>(obj: any, path: T, defaultValue = undefined) => {
+const get = <T, K>(obj: T, path: K, defaultValue = undefined) => {
 	const travel = (regexp: RegExp) =>
 		String.prototype.split
 			.call(path, regexp)
 			.filter(Boolean)
-			.reduce((res, key) => (res !== null && res !== undefined ? res[key] : res), obj);
+			.reduce<any>((res, key) => (res !== null && res !== undefined ? res[key] : res), obj);
 	const result = travel(/[,[\]]+?/) || travel(/[,[\].]+?/);
 	return result === undefined || result === obj ? defaultValue : result;
 };

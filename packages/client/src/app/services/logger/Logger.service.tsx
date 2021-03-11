@@ -33,11 +33,11 @@ class LoggerService {
 	 * @param err
 	 */
 	sendLogs = <T,>(err: T) => {
-		// create log payload
-		const errorLog = this.createLog(err);
+		// create error log payload
+		const errorPayload = this.createLog(err);
 
 		// log error on console
-		log.error(errorLog);
+		log.error(errorPayload);
 
 		// send logs to the server
 		const request: LogInterface[] = [
@@ -49,7 +49,7 @@ class LoggerService {
 				version: AppConfigService.envVersion,
 				timestamp: moment().toISOString(),
 				origin: 'roc-app-client',
-				...jsonParse(errorLog.toString())
+				...jsonParse(errorPayload.toString())
 			}
 		];
 		HttpClientService.post(

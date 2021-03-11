@@ -15,13 +15,13 @@ export const privateLayoutStyles = makeStyles((theme: Theme) => ({
 		})
 	},
 	privateLayoutContentClose: {
-		marginLeft: theme.spacing(7) + 1,
+		marginLeft: theme.spacing(7),
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen
 		})
 	},
 	privateLayoutContentInner: {
-		padding: 15
+		padding: theme.spacing(1.5)
 	}
 }));

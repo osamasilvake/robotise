@@ -1,9 +1,9 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageInterface } from '../../frame/message/Message.interface';
-import ChangelogService from '../../screens/information/changelogs/Changelog.service';
+import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import ChangeLogService from '../../screens/information/change-log/ChangeLog.service';
 import { AppConfigService, StorageService } from '../../services';
-import { jsonStringify } from '../../utilities/helpers/json';
+import { jsonStringify } from '../../utilities/methods/JsonUtilities';
 import { RootStateInterface } from '../Slices.interface';
 import { ThemePaletteTypeEnum } from './General.enum';
 import { GeneralSliceInterface } from './General.interface';
@@ -17,7 +17,7 @@ export const initialState: GeneralSliceInterface = {
 	openDrawer: drawerState === '' ? true : drawerState,
 	themePalette: themePalette || ThemePaletteTypeEnum.DARK,
 	triggerMessage: { show: false },
-	changelog: ''
+	changeLog: ''
 };
 
 // slice
@@ -34,8 +34,8 @@ const dataSlice = createSlice({
 		triggerMessage: (state, action) => {
 			state.triggerMessage = action.payload;
 		},
-		fetchChangelog: (state, action) => {
-			state.changelog = action.payload;
+		fetchChangeLog: (state, action) => {
+			state.changeLog = action.payload;
 		},
 		reset: () => initialState
 	}
@@ -46,7 +46,7 @@ export const {
 	setDrawerState,
 	applyThemePalette,
 	triggerMessage,
-	fetchChangelog,
+	fetchChangeLog,
 	reset
 } = dataSlice.actions;
 
@@ -97,8 +97,8 @@ export const GeneralTriggerMessage = (messagePayload: TriggerMessageInterface) =
  * fetch changelog
  */
 export const GeneralFetchChangelog = () => async (dispatch: Dispatch) => {
-	ChangelogService.changlogFetch().then((res) => {
+	ChangeLogService.changlogFetch().then((res) => {
 		// dispatch: update changelog
-		dispatch(fetchChangelog(jsonStringify(res)));
+		dispatch(fetchChangeLog(jsonStringify(res)));
 	});
 };

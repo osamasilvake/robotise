@@ -1,4 +1,4 @@
-import { jsonParse, jsonStringify } from '../../utilities/helpers/json';
+import { jsonParse, jsonStringify } from '../../utilities/methods/JsonUtilities';
 import { StorageTypeEnum } from './Storage.enum';
 
 class StorageService {

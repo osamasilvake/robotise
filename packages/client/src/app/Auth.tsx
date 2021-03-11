@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import ENV from '../environment';
-import Loader from './components/loader/Loader';
+import Loader from './components/common/loader/Loader';
 import { isPrivate, isSession } from './routes/types';
 import { AuthInterface } from './screens/authentication/Auth.interface';
 import { AuthRefreshToken, authSelector } from './slices/auth/Auth.slice';
@@ -16,7 +16,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 
 	useEffect(() => {
 		if (user) {
-			// dispatch: requests a new token 30 seconds before it expires
+			// dispatch: requests a new token before it expires
 			dispatch(AuthRefreshToken(user.exp));
 		}
 	}, [dispatch, user]);

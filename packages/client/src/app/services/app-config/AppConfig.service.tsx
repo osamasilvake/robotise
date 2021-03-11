@@ -1,7 +1,7 @@
 import { SnackbarOrigin } from '@material-ui/core/Snackbar';
 
 import EnvService from '../env/Env.service';
-import CHANGELOG from './../../../../CHANGELOG.md';
+import CHANGE_LOG from './../../../../CHANGELOG.md';
 
 class AppConfigService extends EnvService {
 	/**
@@ -10,16 +10,24 @@ class AppConfigService extends EnvService {
 	get AppVariables() {
 		return {
 			colors: {
-				c1: '#000000',
-				c2: '#f2f5fa',
-				c3: '#272b37',
-				c4: '#64b0e5',
-				c5: '#2f3443',
-				c6: '#ffffff',
-				c7: '#202227',
-				c8: '#dbdcde',
-				c9: '#44b700',
-				c10: '#f2db4f'
+				c1: '#333435', // dark: 		body/content
+				c2: '#383a3c', // dark:			paper
+				c2a: '#414446', // dark:		paper
+				c3: '#2e2e31', // dark: 		box-shadow
+
+				c4: '#eeeeee', // light: 		body/content
+				c5: '#ffffff', // light: 		paper
+				c5a: '#eeeeee', // light: 		paper
+				c6: '#dbdcde', // light: 		box-shadow
+
+				c7: '#ffffff', // dark: 		text
+				c7a: '#9ea1a7', // dark: 		sub-text
+				c8: '#171a20', // light:		text
+				c8a: '#7d8483', // light:		sub-text
+
+				c9: '#26aee4', // dark/light: 	active, links, logo
+				c10: '#44b700', // dark/light: 	dot
+				c11: '#ffca03' // dark/light: 	sun
 			}
 		};
 	}
@@ -28,21 +36,22 @@ class AppConfigService extends EnvService {
 	 * general
 	 */
 	get AppOptions() {
-		const direction: SnackbarOrigin = {
-			vertical: 'bottom',
-			horizontal: 'left'
-		};
-
 		return {
 			fontFamily: {
 				Roboto: 'Roboto'
 			},
 			snackbar: {
 				timeout: 6000,
-				direction
+				direction: {
+					vertical: 'bottom',
+					horizontal: 'left'
+				} as SnackbarOrigin
 			},
 			drawer: {
 				width: 260
+			},
+			authentication: {
+				validateBefore: 2 * 60 * 1000 // 2 minutes
 			}
 		};
 	}
@@ -54,7 +63,7 @@ class AppConfigService extends EnvService {
 		return {
 			COMMON: {
 				LOGS: `${this.envApiUrl}/frontend-logs`,
-				CHANGELOG
+				CHANGE_LOG
 			},
 			AUTH: {
 				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`,

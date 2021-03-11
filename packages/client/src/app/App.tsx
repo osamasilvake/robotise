@@ -3,16 +3,17 @@ import React, { FC, Suspense, useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
-import Loader from './components/loader/Loader';
-import ErrorBoundary from './frame/error-boundary/ErrorBoundary';
-import Message from './frame/message/Message';
-import Meta from './frame/meta/Meta';
-import ScrollTop from './frame/scroll-top/ScrollTop';
-import Routes from './Routes';
+import Loader from './components/common/loader/Loader';
+import Meta from './components/common/meta/Meta';
+import ErrorBoundary from './components/frame/error-boundary/ErrorBoundary';
+import Message from './components/frame/message/Message';
+import ScrollTop from './components/frame/scroll-top/ScrollTop';
+import Routes from './routes/Routes';
 import { InterceptorService, LoggerService } from './services';
 import { ThemePaletteTypeEnum } from './slices/general/General.enum';
 import { generalSelector } from './slices/general/General.slice';
-import { ThemeSettings } from './Theme';
+import { Dark, Light } from './themes';
+import Common from './themes/options/Common';
 
 // init axios-interceptor and log-level
 InterceptorService.init();
@@ -20,9 +21,11 @@ LoggerService.init();
 
 const App: FC = () => {
 	const { themePalette } = useSelector(generalSelector);
-
 	const theme = useMemo(
-		() => createMuiTheme(ThemeSettings(themePalette === ThemePaletteTypeEnum.DARK)),
+		() =>
+			createMuiTheme(
+				themePalette === ThemePaletteTypeEnum.DARK ? Dark(Common) : Light(Common)
+			),
 		[themePalette]
 	);
 

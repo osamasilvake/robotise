@@ -1,8 +1,8 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import moment from 'moment';
 
-import { TriggerMessageTypeEnum } from '../../frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../frame/message/Message.interface';
+import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import {
 	AuthLoginInterface,
 	AuthUserDetailInterface
@@ -92,7 +92,7 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 };
 
 /**
- * requests a new token 30 seconds before it expires
+ * requests a new token before it expires
  * @param expDate
  */
 export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) => {
@@ -100,7 +100,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	if (accessToken) {
 		if (AuthService.authTokenValid(accessToken)) {
 			const expiresInMs = expDate * 1000 - moment().valueOf();
-			if (expiresInMs < 2 * 60 * 1000) {
+			if (expiresInMs < AppConfigService.AppOptions.authentication.validateBefore) {
 				AuthService.authRequestNewToken()
 					.then((res) => {
 						// local-storage

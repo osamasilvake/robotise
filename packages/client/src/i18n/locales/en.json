@@ -3,6 +3,10 @@
 		"GENERAL": {
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
 		},
+		"DASHBOARD": {
+			"TITLE": "Dashboard",
+			"DESCRIPTION": "Dashboard Description"
+		},
 		"SITES": {
 			"TITLE": "Sites",
 			"DESCRIPTION": "Sites Description"
@@ -15,9 +19,9 @@
 			"TITLE": "Alert Config",
 			"DESCRIPTION": "Alert Config Description"
 		},
-		"CHANGELOGS": {
-			"TITLE": "Changelogs",
-			"DESCRIPTION": "Changelogs Description"
+		"CHANGE_LOG": {
+			"TITLE": "Change Log",
+			"DESCRIPTION": "Change Log Description"
 		},
 		"ABOUT": {
 			"TITLE": "About",
@@ -71,9 +75,12 @@
 				"OPEN": "Open Drawer",
 				"CLOSE": "Close Drawer"
 			},
-			"THEME": "Toggle light/dark theme"
+			"THEME": {
+				"TITLE": "Theme",
+				"LIGHT": "Light",
+				"DARK": "Dark"
+			}
 		},
-		"APPBAR": {},
 		"SIDEBAR": {
 			"BUSINESS": {
 				"TITLE": {
@@ -83,11 +90,11 @@
 				"LIST": {
 					"SITES": {
 						"LABEL": "Sites",
-						"HINT": "products"
+						"HINT": "products and more"
 					},
 					"ROBOTS": {
 						"LABEL": "Robots",
-						"HINT": "inventory, order reports"
+						"HINT": "inventory, reports and more"
 					}
 				}
 			},
@@ -98,7 +105,7 @@
 				},
 				"LIST": {
 					"ALERT_CONFIG": "Alert Config",
-					"CHANGELOGS": "Changelogs",
+					"CHANGE_LOG": "Change Log",
 					"ABOUT": "About"
 				}
 			}

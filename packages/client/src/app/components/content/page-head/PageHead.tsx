@@ -50,16 +50,14 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 
 				{/* Breadcrumb */}
 				<Breadcrumbs>
-					{breadcrumbs() &&
-						breadcrumbs().length &&
-						breadcrumbs().map((item) => (
-							<Box key={item.link}>
-								{!item.isLast && <Link href={item.text}>{item.text}</Link>}
-								{item.isLast && (
-									<Typography color="textPrimary">{item.text}</Typography>
-								)}
-							</Box>
-						))}
+					{breadcrumbs().map((item) => (
+						<Box key={item.text}>
+							{!item.isLast && <Link href={item.link}>{item.text}</Link>}
+							{item.isLast && (
+								<Typography color="textPrimary">{item.text}</Typography>
+							)}
+						</Box>
+					))}
 				</Breadcrumbs>
 			</Paper>
 		</Box>

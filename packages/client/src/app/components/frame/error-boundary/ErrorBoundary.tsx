@@ -1,4 +1,5 @@
 import { Box, Typography } from '@material-ui/core';
+import log from 'loglevel';
 import React, { Component, ErrorInfo } from 'react';
 
 import {
@@ -26,7 +27,7 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 	 * @param errorInfo
 	 */
 	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		console.error('Uncaught error:', error, errorInfo);
+		log.error('Uncaught error:', error, errorInfo);
 	}
 
 	render() {

@@ -8,7 +8,6 @@ import { pxToRem } from '../utilities/methods/PixelsToRem';
  * @param common
  */
 const Light = (common: ThemeOptions): ThemeOptions => {
-	console.log(common);
 	return {
 		...common,
 		palette: {

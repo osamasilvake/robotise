@@ -4,6 +4,18 @@ import { AppConfigService } from '../../services';
 import { pxToRem } from '../../utilities/methods/PixelsToRem';
 
 const OverridesCustom: Overrides = {
+	MuiCssBaseline: {
+		'@global': {
+			html: {
+				height: '100%',
+				overflow: 'hidden'
+			},
+			body: {
+				height: '100%',
+				overflowY: 'auto'
+			}
+		}
+	},
 	MuiAvatar: {
 		img: {
 			objectFit: 'contain'

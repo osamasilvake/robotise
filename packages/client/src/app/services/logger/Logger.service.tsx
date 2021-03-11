@@ -17,8 +17,10 @@ class LoggerService {
 		{ key: 'config.url', prop: 'url' }
 	];
 
+	/**
+	 * set log level based on environment
+	 */
 	init() {
-		// set log level based on environment
 		if (AppConfigService.env === AppConfigService.envProduction) {
 			log.setLevel(log.levels.WARN);
 		} else {
@@ -32,10 +34,10 @@ class LoggerService {
 	 */
 	sendLogs = <T,>(err: T) => {
 		// create log payload
-		const payload = this.createLog(err);
+		const errorLog = this.createLog(err);
 
 		// log error on console
-		log.error(payload);
+		log.error(errorLog);
 
 		// send logs to the server
 		const request: LogInterface[] = [
@@ -47,7 +49,7 @@ class LoggerService {
 				version: AppConfigService.envVersion,
 				timestamp: moment().toISOString(),
 				origin: 'roc-app-client',
-				...jsonParse(payload.toString())
+				...jsonParse(errorLog.toString())
 			}
 		];
 		HttpClientService.post(

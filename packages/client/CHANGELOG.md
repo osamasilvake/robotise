@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.2...v1.0.3) (2021-03-11)
+
+
+### Bug Fixes
+
+* Adjust appbar ([c5028b7](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/c5028b7e6e05e7aeb18653ed90cf0aa89c719709))
+* Adjust change log markdown ([c684e30](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/c684e30cf09713424dd2f8e1ac46d7269ade2697))
+* Change app colors ([55ff6ee](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/55ff6ee5fbdc440abc8494b8b8f510fc0bd989b0))
+* Overflow horizontal issue on sidebar drawer closed ([6ea3552](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/6ea355245d183f105c425027203ef8a3f76a11f7))
+
+
+
+
+
 ## [1.0.2](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.0...v1.0.2) (2021-03-09)
 
 

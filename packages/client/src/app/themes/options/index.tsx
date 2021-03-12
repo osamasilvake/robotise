@@ -4,10 +4,10 @@ import Overrides from './Overrides';
 import Palette from './Palette';
 import Typography from './Typography';
 
-const CommonCustom: ThemeOptions = {
+const Options: ThemeOptions = {
 	spacing: (factor) => `${0.5 * factor}rem`,
 	palette: Palette,
 	overrides: Overrides,
 	typography: Typography
 };
-export default CommonCustom;
+export default Options;

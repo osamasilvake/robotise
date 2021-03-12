@@ -13,7 +13,7 @@ import { InterceptorService, LoggerService } from './services';
 import { ThemePaletteTypeEnum } from './slices/general/General.enum';
 import { generalSelector } from './slices/general/General.slice';
 import { Dark, Light } from './themes';
-import Common from './themes/options/Common';
+import Options from './themes/options';
 
 // init axios-interceptor and log-level
 InterceptorService.init();
@@ -24,7 +24,7 @@ const App: FC = () => {
 	const theme = useMemo(
 		() =>
 			createMuiTheme(
-				themePalette === ThemePaletteTypeEnum.DARK ? Dark(Common) : Light(Common)
+				themePalette === ThemePaletteTypeEnum.DARK ? Dark(Options) : Light(Options)
 			),
 		[themePalette]
 	);

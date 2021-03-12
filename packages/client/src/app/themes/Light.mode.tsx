@@ -5,13 +5,13 @@ import { pxToRem } from '../utilities/methods/PixelsToRem';
 
 /**
  * Light mode
- * @param common
+ * @param options
  */
-const Light = (common: ThemeOptions): ThemeOptions => {
+const Light = (options: ThemeOptions): ThemeOptions => {
 	return {
-		...common,
+		...options,
 		palette: {
-			...common.palette,
+			...options.palette,
 			type: 'light',
 			background: {
 				default: AppConfigService.AppVariables.colors.c4 // body
@@ -22,7 +22,7 @@ const Light = (common: ThemeOptions): ThemeOptions => {
 			}
 		},
 		overrides: {
-			...common.overrides,
+			...options.overrides,
 			MuiPaper: {
 				root: {
 					backgroundColor: AppConfigService.AppVariables.colors.c4
@@ -46,16 +46,16 @@ const Light = (common: ThemeOptions): ThemeOptions => {
 				}
 			},
 			MuiDrawer: {
-				...common.overrides?.MuiDrawer,
+				...options.overrides?.MuiDrawer,
 				paper: {
 					background: AppConfigService.AppVariables.colors.c5,
 					boxShadow: 'none'
 				}
 			},
 			MuiIconButton: {
-				...common.overrides?.MuiIconButton,
+				...options.overrides?.MuiIconButton,
 				root: {
-					...common.overrides?.MuiIconButton?.root,
+					...options.overrides?.MuiIconButton?.root,
 					color: AppConfigService.AppVariables.colors.c8
 				}
 			},

@@ -30,7 +30,7 @@ const ScrollTop: FC = () => {
 
 	return (
 		<Zoom in={trigger}>
-			<Box onClick={scrollToTop} className={scrollTopClasses.scrollTop}>
+			<Box onClick={scrollToTop} className={scrollTopClasses.sScrollTop}>
 				<Fab size="small">
 					<ArrowUpwardIcon />
 				</Fab>

@@ -1,5 +1,4 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
-import moment from 'moment';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
@@ -10,9 +9,10 @@ import {
 import AuthService from '../../screens/authentication/Auth.service';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
+import { momentNow } from '../../utilities/methods/Moment';
 import { triggerMessage } from '../general/General.slice';
 import { RootStateInterface } from '../Slices.interface';
-import { AuthSliceInterface } from './Auth.interface';
+import { AuthSliceInterface } from './Auth.slice.interface';
 
 // storage items
 const user = AuthService.getAccessToken()
@@ -80,7 +80,7 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 			const message: TriggerMessageInterface = {
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: err.error_description
+				text: err.error_description || err.message
 			};
 
 			// dispatch: error
@@ -99,7 +99,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	const accessToken = AuthService.getAccessToken();
 	if (accessToken) {
 		if (AuthService.authTokenValid(accessToken)) {
-			const expiresInMs = expDate * 1000 - moment().valueOf();
+			const expiresInMs = expDate * 1000 - momentNow();
 			if (expiresInMs < AppConfigService.AppOptions.authentication.validateBefore) {
 				AuthService.authRequestNewToken()
 					.then((res) => {

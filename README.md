@@ -63,6 +63,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [Material-UI](https://material-ui.com/)
 - [X] [clsx](https://github.com/lukeed/clsx/)
 - [X] [Axios](https://github.com/axios/axios/)
+- [X] [JSON-API Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer/)
 - [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [Moment](https://momentjs.com/)
 - [X] [JWT Decode](https://jwt.io/)

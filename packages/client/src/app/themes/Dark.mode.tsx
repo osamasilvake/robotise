@@ -30,7 +30,7 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 				elevation11: {
 					borderBottom: `1px solid ${AppConfigService.AppVariables.colors.c2}`,
 					boxShadow: 'none',
-					padding: `${pxToRem(20)} ${pxToRem(20)}`,
+					padding: `${pxToRem(15)} ${pxToRem(20)}`,
 					transition: 'none'
 				},
 				elevation12: {

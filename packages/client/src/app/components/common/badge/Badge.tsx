@@ -6,37 +6,29 @@ import { BadgeInterface } from './Badge.interface';
 import { badgeStyles } from './Badge.styles';
 
 const AppBadge: FC<BadgeInterface> = (props) => {
-	const { children, type } = props;
+	const { children, options } = props;
 	const badgeClasses = badgeStyles();
 
-	/**
-	 * get badge based on the given type
-	 * @param type
-	 */
-	const getBadge = (type: BadgeTypeEnum) => {
-		switch (type) {
-			case BadgeTypeEnum.NUMBER:
-				return (
-					<Badge badgeContent={4} color="primary">
-						{children}
-					</Badge>
-				);
-			default:
-				return (
-					<Badge
-						classes={{ badge: badgeClasses.badgeDot }}
-						overlap="circle"
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'right'
-						}}
-						variant="dot">
-						{children}
-					</Badge>
-				);
-		}
-	};
+	// number
+	if (options?.type === BadgeTypeEnum.NUMBER) {
+		return (
+			<Badge badgeContent={options?.count} color={options?.color || 'primary'}>
+				{children}
+			</Badge>
+		);
+	}
 
-	return getBadge(type || BadgeTypeEnum.DOT);
+	return (
+		<Badge
+			classes={{ badge: badgeClasses.sDot }}
+			overlap="circle"
+			anchorOrigin={{
+				vertical: 'bottom',
+				horizontal: 'right'
+			}}
+			variant="dot">
+			{children}
+		</Badge>
+	);
 };
 export default AppBadge;

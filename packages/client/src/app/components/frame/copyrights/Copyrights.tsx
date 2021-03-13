@@ -1,7 +1,7 @@
 import { Link, Typography } from '@material-ui/core';
-import moment from 'moment';
 import { FC } from 'react';
 
+import { momentCurrentYear } from '../../../utilities/methods/Moment';
 import { CopyrightsInterface } from './Copyrights.interface';
 
 const Copyright: FC<CopyrightsInterface> = (props) => {
@@ -15,7 +15,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 						{process.env.REACT_APP_AUTHOR}
 					</Link>
 					{' © '}
-					{moment().year()}
+					{momentCurrentYear()}
 					{' • '}
 					{process.env.REACT_APP_NAME?.toUpperCase()}
 					{': '}

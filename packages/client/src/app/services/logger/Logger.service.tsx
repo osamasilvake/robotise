@@ -1,7 +1,6 @@
 import log from 'loglevel';
-import moment from 'moment';
 
-import { jsonParse, jsonStringify } from '../../utilities/methods/JsonUtilities';
+import { momentISOString } from '../../utilities/methods/Moment';
 import { get } from '../../utilities/methods/ObjectUtilities';
 import { AppConfigService, HttpClientService, StorageService } from '..';
 import { LogInterface } from './Logger.interface';
@@ -47,9 +46,9 @@ class LoggerService {
 				token: StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken),
 				url: window.location.href,
 				version: AppConfigService.envVersion,
-				timestamp: moment().toISOString(),
+				timestamp: momentISOString(),
 				origin: 'roc-app-client',
-				...jsonParse(errorPayload.toString())
+				...JSON.parse(errorPayload.toString())
 			}
 		];
 		HttpClientService.post(
@@ -74,14 +73,14 @@ class LoggerService {
 			const value = get(log, item.key);
 			if (value) {
 				if (key === 'payload') {
-					acc[key] = jsonStringify(value);
+					acc[key] = JSON.stringify(value);
 				} else {
 					acc[key] = value;
 				}
 			}
 			return acc;
 		}, {});
-		return stringify ? jsonStringify(data) : data;
+		return stringify ? JSON.stringify(data) : data;
 	};
 }
 const instance = new LoggerService();

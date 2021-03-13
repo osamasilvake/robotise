@@ -23,12 +23,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
 import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
-import { ThemePaletteTypeEnum } from '../../../slices/general/General.enum';
 import {
 	GeneralApplyThemePalette,
 	generalSelector,
 	GeneralSetDrawerState
 } from '../../../slices/general/General.slice';
+import { ThemePaletteTypeEnum } from '../../../slices/general/General.slice.enum';
 import Badge from '../../common/badge/Badge';
 import { appBarStyles } from './AppBar.styles';
 
@@ -76,10 +76,10 @@ const AppBarCustom: FC = () => {
 			position="fixed"
 			elevation={0}
 			color="inherit"
-			className={clsx(appBarClasses.appBar, {
-				[appBarClasses.appBarOpen]: openDrawer
+			className={clsx(appBarClasses.sAppBar, {
+				[appBarClasses.sOpen]: openDrawer
 			})}>
-			<Toolbar className={appBarClasses.appBarToolbar} disableGutters>
+			<Toolbar className={appBarClasses.sToolbar} disableGutters>
 				{!openDrawer && (
 					<Tooltip title={String(t('TOOLTIP.DRAWER.OPEN'))}>
 						<IconButton hidden edge="start" onClick={handleDrawerOpen}>
@@ -88,14 +88,14 @@ const AppBarCustom: FC = () => {
 					</Tooltip>
 				)}
 
-				<Box className={appBarClasses.appBarOptions}>
+				<Box className={appBarClasses.sOptions}>
 					<IconButton edge="end" onClick={handleMenuOpen}>
-						<Box className={appBarClasses.appBarAccountDetail}>
+						<Box className={appBarClasses.sAccountDetail}>
 							<Typography variant="subtitle2">{user?.data.display_name}</Typography>
 							<Typography
 								variant="body2"
 								color="textSecondary"
-								className={appBarClasses.appBarAccountDetailSubtitle}>
+								className={appBarClasses.sAccountDetailSubtitle}>
 								{user?.data.role}
 							</Typography>
 						</Box>
@@ -133,9 +133,7 @@ const AppBarCustom: FC = () => {
 								}>
 								<ListItemIcon>
 									{themePalette === ThemePaletteTypeEnum.LIGHT ? (
-										<WbSunnyIcon
-											className={appBarClasses.appBarColorThemeLight}
-										/>
+										<WbSunnyIcon className={appBarClasses.sColorThemeLight} />
 									) : (
 										<Brightness3Icon />
 									)}

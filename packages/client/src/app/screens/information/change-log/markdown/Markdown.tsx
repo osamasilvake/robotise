@@ -27,15 +27,15 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 			break;
 		case 3:
 			component = 'h3';
-			variant = 'h6';
+			variant = 'body1';
 			break;
 		case 4:
 			component = 'h4';
-			variant = 'h6';
+			variant = 'body1';
 			break;
 		case 5:
 			component = 'h5';
-			variant = 'h6';
+			variant = 'body1';
 			break;
 		case 6:
 		default:
@@ -44,6 +44,10 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 			break;
 	}
 
+	// classes conditions
+	const condition1 = /[h][1]/g.test(component);
+	const condition2 = /[h][2]/g.test(component);
+
 	return (
 		<>
 			{children && children[0] && children[0].props.value !== 'Change Log' && (
@@ -51,10 +55,9 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 					component={component}
 					variant={variant}
 					className={clsx({
-						[markdownClasses.markdownHeadingH1]: component === 'h1',
-						[markdownClasses.markdownHeadingH6]: component === 'h2',
-						[markdownClasses.markdownHeadingBody1]:
-							component !== 'h1' && component !== 'h2'
+						[markdownClasses.sHeadingH1]: condition1,
+						[markdownClasses.sHeadingH2]: condition2,
+						[markdownClasses.sCommon]: !condition1 && !condition2
 					})}>
 					{children}
 				</Typography>
@@ -84,7 +87,7 @@ const MarkdownParagraph: FC = (props) => {
  */
 const MarkdownList: FC = (props) => {
 	const markdownClasses = markdownStyles();
-	return <ul className={markdownClasses.markdownList}>{props.children}</ul>;
+	return <ul className={markdownClasses.sList}>{props.children}</ul>;
 };
 
 /**
@@ -94,7 +97,7 @@ const MarkdownList: FC = (props) => {
 const MarkdownListItem: FC = (props) => {
 	const markdownClasses = markdownStyles();
 	return (
-		<li className={markdownClasses.markdownListItem}>
+		<li className={markdownClasses.sListItem}>
 			<Typography variant="body1">{props.children}</Typography>
 		</li>
 	);

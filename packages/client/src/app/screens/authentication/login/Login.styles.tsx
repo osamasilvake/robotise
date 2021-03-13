@@ -4,10 +4,10 @@ import { AppConfigService } from '../../../services';
 import { randomNum } from '../../../utilities/methods/RandomNum';
 
 export const loginStyles = makeStyles((theme: Theme) => ({
-	loginRoot: {
+	sRoot: {
 		height: '100vh'
 	},
-	loginImage: {
+	sImage: {
 		backgroundImage: `url(${
 			AppConfigService.AppImageURLs.robotise.path +
 			randomNum(1, 7) +
@@ -18,18 +18,18 @@ export const loginStyles = makeStyles((theme: Theme) => ({
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover'
 	},
-	loginPaper: {
+	sPaper: {
 		flexDirection: 'column',
 		margin: theme.spacing(14, 4, 4)
 	},
-	loginAvatar: {
+	sAvatar: {
 		margin: theme.spacing(3, 'auto'),
 		width: theme.spacing(20)
 	},
-	loginForm: {
+	sForm: {
 		marginTop: theme.spacing(2)
 	},
-	loginSubmit: {
+	sSubmit: {
 		margin: theme.spacing(3, 0, 2)
 	}
 }));

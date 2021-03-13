@@ -1,4 +1,7 @@
 {
+	"COMMON": {
+		"LOADING": "Loading..."
+	},
 	"META": {
 		"GENERAL": {
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
@@ -110,6 +113,22 @@
 				}
 			}
 		},
-		"MAIN": {}
+		"MAIN": {
+			"COMMON": {
+				"UNKNOWN": "Unknown",
+				"ERRORS": {
+					"FETCH_ERROR": "Unable to fetch the content!"
+				}
+			},
+			"BUSINESS": {
+				"ROBOTS": {
+					"TABLE": {
+						"COLUMNS": {
+							"NAME": "Name"
+						}
+					}
+				}
+			}
+		}
 	}
 }

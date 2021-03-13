@@ -4,17 +4,17 @@ import { AppConfigService } from '../../services';
 
 const drawerWidth = AppConfigService.AppOptions.drawer.width;
 export const privateLayoutStyles = makeStyles((theme: Theme) => ({
-	privateLayoutContent: {
+	sContent: {
 		marginTop: theme.spacing(8)
 	},
-	privateLayoutContentOpen: {
+	sContentOpen: {
 		marginLeft: drawerWidth,
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen
 		})
 	},
-	privateLayoutContentClose: {
+	sContentClose: {
 		marginLeft: theme.spacing(7),
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,

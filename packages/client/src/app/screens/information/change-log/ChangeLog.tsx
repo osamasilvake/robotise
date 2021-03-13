@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import PageHead from '../../../components/content/page-head/PageHead';
 import { GeneralFetchChangelog, generalSelector } from '../../../slices/general/General.slice';
-import { jsonParse } from '../../../utilities/methods/JsonUtilities';
 import { MarkdownRenderers } from './markdown/Markdown';
 
 const ChangeLog: FC = () => {
@@ -30,7 +29,7 @@ const ChangeLog: FC = () => {
 					<ReactMarkdown
 						escapeHtml={false}
 						renderers={MarkdownRenderers}
-						source={jsonParse(changeLog)}
+						source={JSON.parse(changeLog)}
 					/>
 				</Paper>
 			)}

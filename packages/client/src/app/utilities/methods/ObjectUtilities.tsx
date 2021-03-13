@@ -2,19 +2,19 @@
 
 /**
  * gets the value at path of object.
- * note: If provided path does not exists inside the object js will generate error.
+ * note: if provided path does not exists inside the object js will generate error.
  * @param obj
  * @param path
  * @param defaultValue
  */
-const get = <T, K>(obj: T, path: K, defaultValue = undefined) => {
+const get = <T, K, L>(obj: T, path: K, defaultValue?: L) => {
 	const travel = (regexp: RegExp) =>
 		String.prototype.split
 			.call(path, regexp)
 			.filter(Boolean)
 			.reduce<any>((res, key) => (res !== null && res !== undefined ? res[key] : res), obj);
 	const result = travel(/[,[\]]+?/) || travel(/[,[\].]+?/);
-	return result === undefined || result === obj ? defaultValue : result;
+	return result === undefined || result === obj ? defaultValue || null : result;
 };
 
 /**

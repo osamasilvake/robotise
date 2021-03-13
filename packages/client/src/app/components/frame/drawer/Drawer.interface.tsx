@@ -1,3 +1,5 @@
+import { DrawerListBadgeTypeEnum } from './Drawer.enum';
+
 export interface DrawerListInterface {
 	id: number;
 	icon: string;
@@ -5,4 +7,5 @@ export interface DrawerListInterface {
 	hint?: string;
 	path: string;
 	newLine?: boolean;
+	badge?: DrawerListBadgeTypeEnum;
 }

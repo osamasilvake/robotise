@@ -36,6 +36,9 @@ class AppConfigService extends EnvService {
 			fontFamily: {
 				Roboto: 'Roboto'
 			},
+			authentication: {
+				validateBefore: 2 * 60 * 1000 // 2 minutes
+			},
 			snackbar: {
 				timeout: 6000,
 				direction: {
@@ -46,8 +49,13 @@ class AppConfigService extends EnvService {
 			drawer: {
 				width: 260
 			},
-			authentication: {
-				validateBefore: 2 * 60 * 1000 // 2 minutes
+			loader: {
+				linear: {
+					width: 250
+				}
+			},
+			table: {
+				maxHeight: 248
 			}
 		};
 	}
@@ -64,6 +72,15 @@ class AppConfigService extends EnvService {
 			AUTH: {
 				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`,
 				AUTO_REFRESH: `${this.envApiUrl}/auth/${this.envRealm}/refresh`
+			},
+			SITES: {
+				LIST: `${this.envApiUrl}/sites`
+			},
+			ROBOT_TWINS: {
+				LIST: `${this.envApiUrl}/robot-twins`
+			},
+			ROBOTS: {
+				LIST: `${this.envApiUrl}/robots`
 			}
 		};
 	}

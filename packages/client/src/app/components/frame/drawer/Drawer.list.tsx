@@ -1,4 +1,5 @@
 import ENV from '../../../../environment';
+import { DrawerListBadgeTypeEnum } from './Drawer.enum';
 import { DrawerListInterface } from './Drawer.interface';
 
 const drawerBusinessList: DrawerListInterface[] = [
@@ -14,7 +15,8 @@ const drawerBusinessList: DrawerListInterface[] = [
 		icon: 'android',
 		label: 'SIDEBAR.BUSINESS.LIST.ROBOTS.LABEL',
 		hint: 'SIDEBAR.BUSINESS.LIST.ROBOTS.HINT',
-		path: ENV().ROUTING.SCREENS.BUSINESS.ROBOTS.MAIN
+		path: ENV().ROUTING.SCREENS.BUSINESS.ROBOTS.MAIN,
+		badge: DrawerListBadgeTypeEnum.ROBOT
 	}
 ];
 

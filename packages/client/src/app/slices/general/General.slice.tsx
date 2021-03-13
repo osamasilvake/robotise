@@ -3,10 +3,9 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import ChangeLogService from '../../screens/information/change-log/ChangeLog.service';
 import { AppConfigService, StorageService } from '../../services';
-import { jsonStringify } from '../../utilities/methods/JsonUtilities';
 import { RootStateInterface } from '../Slices.interface';
-import { ThemePaletteTypeEnum } from './General.enum';
-import { GeneralSliceInterface } from './General.interface';
+import { ThemePaletteTypeEnum } from './General.slice.enum';
+import { GeneralSliceInterface } from './General.slice.interface';
 
 // storage items
 const themePalette = StorageService.get(AppConfigService.AppLocalStorageItems.ThemePalette);
@@ -99,6 +98,6 @@ export const GeneralTriggerMessage = (messagePayload: TriggerMessageInterface) =
 export const GeneralFetchChangelog = () => async (dispatch: Dispatch) => {
 	ChangeLogService.changlogFetch().then((res) => {
 		// dispatch: update changelog
-		dispatch(fetchChangeLog(jsonStringify(res)));
+		dispatch(fetchChangeLog(JSON.stringify(res)));
 	});
 };

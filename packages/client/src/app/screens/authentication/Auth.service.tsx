@@ -1,10 +1,10 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import moment from 'moment';
 
 import { AppConfigService, HttpClientService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import { serialize } from '../../utilities/methods/Serialize';
+import { momentNow } from '../../utilities/methods/Moment';
+import { serialize } from '../../utilities/serializers/object/Object';
 import { AuthUserRoleTypeEnum } from './Auth.enum';
 import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
 
@@ -35,7 +35,7 @@ class AuthService {
 	 */
 	authTokenValid = (accessToken: string) => {
 		const decoded: AuthJWTInterface = jwtDecode(accessToken);
-		const now = moment().valueOf();
+		const now = momentNow();
 		const exp = decoded.exp * 1000;
 		return now < exp;
 	};

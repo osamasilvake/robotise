@@ -1,8 +1,9 @@
-import { Box, LinearProgress } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 
+import Loader from '../../components/common/loader/Loader';
 import AppBar from '../../components/frame/app-bar/AppBar';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
@@ -24,11 +25,11 @@ const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPage
 			{/* Content */}
 			<Box
 				component="main"
-				className={clsx(privateLayoutClasses.privateLayoutContent, {
-					[privateLayoutClasses.privateLayoutContentOpen]: openDrawer,
-					[privateLayoutClasses.privateLayoutContentClose]: !openDrawer
+				className={clsx(privateLayoutClasses.sContent, {
+					[privateLayoutClasses.sContentOpen]: openDrawer,
+					[privateLayoutClasses.sContentClose]: !openDrawer
 				})}>
-				<Suspense fallback={<LinearProgress />}>
+				<Suspense fallback={<Loader spinner />}>
 					<Component route={route} />
 				</Suspense>
 			</Box>

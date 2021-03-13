@@ -22,7 +22,11 @@ import { Link, NavLink } from 'react-router-dom';
 import ENV from '../../../../environment';
 import { AppConfigService } from '../../../services';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
+import { robotTwinsSelector } from '../../../slices/robot-twins/RobotTwins.slice';
+import Badge from '../../common/badge/Badge';
+import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Copyrights from '../copyrights/Copyrights';
+import { DrawerListBadgeTypeEnum } from './Drawer.enum';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
 import { drawerStyles } from './Drawer.styles';
 
@@ -32,6 +36,7 @@ const DrawerCustom: FC = () => {
 
 	const dispatch = useDispatch();
 	const { openDrawer } = useSelector(generalSelector);
+	const { content } = useSelector(robotTwinsSelector);
 
 	/**
 	 * dispatch: set open drawer
@@ -41,22 +46,22 @@ const DrawerCustom: FC = () => {
 	return (
 		<Drawer
 			variant="permanent"
-			className={clsx(drawerClasses.drawer, {
-				[drawerClasses.drawerOpen]: openDrawer,
-				[drawerClasses.drawerClose]: !openDrawer
+			className={clsx(drawerClasses.sDrawer, {
+				[drawerClasses.sOpen]: openDrawer,
+				[drawerClasses.sClose]: !openDrawer
 			})}
 			classes={{
 				paper: clsx({
-					[drawerClasses.drawerOpen]: openDrawer,
-					[drawerClasses.drawerClose]: !openDrawer
+					[drawerClasses.sOpen]: openDrawer,
+					[drawerClasses.sClose]: !openDrawer
 				})
 			}}>
 			{/* Avatar & Icon */}
-			<Box className={drawerClasses.drawerToolbar}>
+			<Box className={drawerClasses.sToolbar}>
 				<Link to={ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD}>
 					<Avatar
 						variant="square"
-						className={drawerClasses.drawerAvatar}
+						className={drawerClasses.sAvatar}
 						src={AppConfigService.AppImageURLs.logo.name}
 						alt={AppConfigService.envAuthor}
 					/>
@@ -69,7 +74,7 @@ const DrawerCustom: FC = () => {
 			</Box>
 
 			{/* List */}
-			<Box className={drawerClasses.drawerListRoot}>
+			<Box className={drawerClasses.sListRoot}>
 				<List
 					disablePadding
 					subheader={
@@ -85,9 +90,22 @@ const DrawerCustom: FC = () => {
 							component={NavLink}
 							to={item.path}
 							exact
-							className={drawerClasses.drawerListItemWithSubtitle}>
+							className={drawerClasses.sListItemWithSubtitle}>
 							<ListItemIcon>
-								<Icon>{item.icon}</Icon>
+								{item.badge === DrawerListBadgeTypeEnum.ROBOT &&
+								content &&
+								content.alerts?.danger ? (
+									<Badge
+										options={{
+											type: BadgeTypeEnum.NUMBER,
+											count: content.alerts?.danger,
+											color: 'error'
+										}}>
+										<Icon>{item.icon}</Icon>
+									</Badge>
+								) : (
+									<Icon>{item.icon}</Icon>
+								)}
 							</ListItemIcon>
 							<ListItemText
 								primary={t(item.label)}
@@ -111,7 +129,7 @@ const DrawerCustom: FC = () => {
 							exact
 							component={NavLink}
 							to={item.path}
-							className={drawerClasses.drawerListItem}>
+							className={drawerClasses.sListItem}>
 							<ListItemIcon>
 								<Icon>{item.icon}</Icon>
 							</ListItemIcon>
@@ -124,7 +142,7 @@ const DrawerCustom: FC = () => {
 			<Divider light />
 
 			{/* Copyrights */}
-			<Box className={drawerClasses.drawerBottom}>
+			<Box className={drawerClasses.sBottom}>
 				{openDrawer ? <Copyrights /> : <Copyrights short />}
 			</Box>
 		</Drawer>

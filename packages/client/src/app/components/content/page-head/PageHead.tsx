@@ -1,6 +1,7 @@
 import { Box, Breadcrumbs, Link, Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ENV from '../../../../environment';
 import Meta from '../../common/meta/Meta';
@@ -39,12 +40,15 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 	return (
 		<Box>
 			{/* Meta */}
-			<Meta title={title} description={description} />
+			<Meta
+				title={t(title)}
+				description={(description && t(description)) || t('GENERAL.DESCRIPTION')}
+			/>
 
 			{/* Paper */}
 			<Paper square elevation={11}>
 				{/* Title */}
-				<Typography variant="h1" className={pageHeadClasses.pageHeadTitle}>
+				<Typography variant="h1" className={pageHeadClasses.sTitle}>
 					{t(title)}
 				</Typography>
 
@@ -52,7 +56,11 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 				<Breadcrumbs>
 					{breadcrumbs().map((item) => (
 						<Box key={item.text}>
-							{!item.isLast && <Link href={item.link}>{item.text}</Link>}
+							{!item.isLast && (
+								<Link component={RouterLink} to={item.link}>
+									{item.text}
+								</Link>
+							)}
 							{item.isLast && (
 								<Typography color="textPrimary">{item.text}</Typography>
 							)}

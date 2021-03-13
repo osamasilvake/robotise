@@ -60,17 +60,17 @@ const Login: FC = () => {
 	};
 
 	return (
-		<Grid container component="section" className={loginClasses.loginRoot}>
-			<Grid item xs={false} sm={6} md={8} className={loginClasses.loginImage} />
+		<Grid container component="section" className={loginClasses.sRoot}>
+			<Grid item xs={false} sm={6} md={8} className={loginClasses.sImage} />
 			<Grid item xs={12} sm={6} md={4} component={Paper} elevation={2} square>
-				<Box className={loginClasses.loginPaper}>
+				<Box className={loginClasses.sPaper}>
 					<Avatar
 						variant="square"
-						className={loginClasses.loginAvatar}
+						className={loginClasses.sAvatar}
 						src={AppConfigService.AppImageURLs.logo.name}
 						alt={AppConfigService.envAuthor}
 					/>
-					<form className={loginClasses.loginForm} onSubmit={handleSubmit}>
+					<form className={loginClasses.sForm} onSubmit={handleSubmit}>
 						<FormControl error fullWidth margin="normal">
 							<TextField
 								required
@@ -133,7 +133,7 @@ const Login: FC = () => {
 						<Button
 							variant="contained"
 							type="submit"
-							className={loginClasses.loginSubmit}
+							className={loginClasses.sSubmit}
 							disabled={somePropertiesEmpty(values) || loader}
 							fullWidth
 							endIcon={loader && <CircularProgress size={20} />}>

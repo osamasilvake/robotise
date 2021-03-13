@@ -4,7 +4,7 @@ import { AppConfigService } from '../../../services';
 import { pxToRem } from '../../../utilities/methods/PixelsToRem';
 
 export const badgeStyles = makeStyles((theme: Theme) => ({
-	badgeDot: {
+	sDot: {
 		backgroundColor: AppConfigService.AppVariables.colors.c10,
 		boxShadow: `0 0 0 ${pxToRem(2)} ${theme.palette.background.paper}`,
 		color: AppConfigService.AppVariables.colors.c10,

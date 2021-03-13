@@ -1,4 +1,3 @@
-import { jsonParse, jsonStringify } from '../../utilities/methods/JsonUtilities';
 import { StorageTypeEnum } from './Storage.enum';
 
 class StorageService {
@@ -29,15 +28,15 @@ class StorageService {
 	put = <T,>(key: string, value: T, storageType?: StorageTypeEnum) => {
 		switch (storageType) {
 			case StorageTypeEnum.PERSISTANT:
-				localStorage.setItem(key, jsonStringify(value));
+				localStorage.setItem(key, JSON.stringify(value));
 				break;
 
 			case StorageTypeEnum.SESSION:
-				sessionStorage.setItem(key, jsonStringify(value));
+				sessionStorage.setItem(key, JSON.stringify(value));
 				break;
 
 			default:
-				localStorage.setItem(key, jsonStringify(value));
+				localStorage.setItem(key, JSON.stringify(value));
 		}
 	};
 
@@ -51,20 +50,20 @@ class StorageService {
 			case StorageTypeEnum.PERSISTANT:
 				if (this.exist(key, StorageTypeEnum.PERSISTANT)) {
 					const value = localStorage.getItem(key);
-					return value ? jsonParse(value) : value;
+					return value ? JSON.parse(value) : value;
 				}
 				break;
 
 			case StorageTypeEnum.SESSION:
 				if (this.exist(key, StorageTypeEnum.SESSION)) {
 					const value = sessionStorage.getItem(key);
-					return value ? jsonParse(value) : value;
+					return value ? JSON.parse(value) : value;
 				}
 				break;
 
 			default: {
 				const value = localStorage.getItem(key) || '';
-				return value ? jsonParse(value) : value;
+				return value ? JSON.parse(value) : value;
 			}
 		}
 	};

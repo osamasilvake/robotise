@@ -4,19 +4,19 @@ import { AppConfigService } from '../../../services';
 
 const drawerWidth = AppConfigService.AppOptions.drawer.width;
 export const drawerStyles = makeStyles((theme: Theme) => ({
-	drawer: {
+	sDrawer: {
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
 		width: drawerWidth
 	},
-	drawerOpen: {
+	sOpen: {
 		transition: theme.transitions.create('width', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen
 		}),
 		width: drawerWidth
 	},
-	drawerClose: {
+	sClose: {
 		overflowX: 'hidden',
 		transition: theme.transitions.create('width', {
 			easing: theme.transitions.easing.sharp,
@@ -24,28 +24,28 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 		}),
 		width: theme.spacing(7)
 	},
-	drawerToolbar: {
+	sToolbar: {
 		alignItems: 'center',
 		display: 'flex',
 		justifyContent: 'space-between',
 		minHeight: theme.spacing(8),
 		paddingLeft: theme.spacing(2)
 	},
-	drawerAvatar: {
+	sAvatar: {
 		width: theme.spacing(15)
 	},
-	drawerListRoot: {
+	sListRoot: {
 		height: '100%',
 		overflowX: 'hidden',
 		overflowY: 'auto'
 	},
-	drawerListItemWithSubtitle: {
+	sListItemWithSubtitle: {
 		padding: theme.spacing(0, 2)
 	},
-	drawerListItem: {
+	sListItem: {
 		padding: theme.spacing(1, 2)
 	},
-	drawerBottom: {
+	sBottom: {
 		alignItems: 'center',
 		display: 'flex',
 		height: 48,

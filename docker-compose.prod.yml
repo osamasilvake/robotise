@@ -4,7 +4,7 @@ services:
   client_prod:
     container_name: roc-prod
     build:
-      context: .
+      context: ./packages/client
       dockerfile: Dockerfile.prod
     ports:
       - "5000:5000"

@@ -10,8 +10,8 @@ import Message from './components/frame/message/Message';
 import ScrollTop from './components/frame/scroll-top/ScrollTop';
 import Routes from './routes/Routes';
 import { InterceptorService, LoggerService } from './services';
-import { ThemePaletteTypeEnum } from './slices/general/General.enum';
 import { generalSelector } from './slices/general/General.slice';
+import { ThemePaletteTypeEnum } from './slices/general/General.slice.enum';
 import { Dark, Light } from './themes';
 import Options from './themes/options';
 

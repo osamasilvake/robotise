@@ -3,11 +3,30 @@ import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interf
 
 export interface RobotsSliceInterface {
 	loading: boolean;
-	content: RobotsSliceResponseAllInterface[] | null;
+	content: RobotsSliceResponseAllInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-// content
+export interface RobotsSliceResponseAllInterface {
+	data: RobotsSliceResponseAllDataInterface[];
+	dataById: RobotsSliceDataByIdInterface;
+	meta: JsonApiMeta;
+}
+export interface RobotsSliceResponseAllDataInterface {
+	id: string;
+	name: string;
+	siteId: string;
+	siteTitle: string;
+	updatedAt: string;
+	isReady: boolean;
+	alerts: RobotsSliceResponseAllDataAlertsInterface;
+}
+
+export interface RobotsSliceResponseAllDataAlertsInterface {
+	danger: number;
+	warning: number;
+}
+
 export interface RobotsSliceResponseInterface {
 	data: RobotsSliceResponseDataInterface[];
 	dataById: RobotsSliceDataByIdInterface;
@@ -34,20 +53,4 @@ export interface RobotsSliceResponseDataSiteInterface {
 
 export interface RobotsSliceResponseDataRobotTwinInterface {
 	id: string;
-}
-
-// content all
-export interface RobotsSliceResponseAllInterface {
-	id: string;
-	name: string;
-	siteId: string;
-	siteTitle: string;
-	updatedAt: string;
-	isReady: boolean;
-	alerts: RobotsSliceResponseAllAlertsInterface;
-}
-
-export interface RobotsSliceResponseAllAlertsInterface {
-	danger: number;
-	warning: number;
 }

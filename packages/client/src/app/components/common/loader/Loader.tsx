@@ -37,7 +37,7 @@ const Loader: FC<LoaderInterface> = (props) => {
 	}
 
 	return (
-		<Box className={centerClasses.sVerticalHorizontal} textAlign="center">
+		<Box className={centerClasses.sVHFlex} textAlign="center">
 			<Box className={loaderClasses.sCircularAvatar}>
 				<Avatar
 					className={loaderClasses.sAvatar}

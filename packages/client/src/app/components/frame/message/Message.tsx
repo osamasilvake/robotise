@@ -8,7 +8,7 @@ import { generalSelector, GeneralTriggerMessage } from '../../../slices/general/
 import Alert from '../../common/alert/Alert';
 
 const Message: FC = () => {
-	const { t } = useTranslation('GLOBAL');
+	const { t } = useTranslation('MESSAGE');
 
 	const dispatch = useDispatch();
 	const { triggerMessage } = useSelector(generalSelector);

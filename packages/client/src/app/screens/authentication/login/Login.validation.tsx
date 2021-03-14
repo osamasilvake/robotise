@@ -19,18 +19,18 @@ export const LoginFormValidation = (
 	if (touched.email) {
 		// required
 		if (!values.email) {
-			errors.email = 'AUTH.LOGIN.FIELDS.EMAIL.VALIDATIONS.REQUIRED';
+			errors.email = 'LOGIN.FIELDS.EMAIL.VALIDATIONS.REQUIRED';
 		}
 
 		// format
 		if (values.email && !validateEmail(values.email) && touched.email) {
-			errors.email = 'AUTH.LOGIN.FIELDS.EMAIL.VALIDATIONS.INVALID';
+			errors.email = 'LOGIN.FIELDS.EMAIL.VALIDATIONS.INVALID';
 		}
 	}
 
 	// Password
 	if (touched.password && !values.password) {
-		errors.password = 'AUTH.LOGIN.FIELDS.PASSWORD.VALIDATIONS.REQUIRED';
+		errors.password = 'LOGIN.FIELDS.PASSWORD.VALIDATIONS.REQUIRED';
 	}
 
 	return errors;

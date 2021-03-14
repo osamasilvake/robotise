@@ -4,10 +4,6 @@ import { AppConfigService } from '../../../services';
 
 const linearWidth = AppConfigService.AppOptions.loader.linear.width;
 export const loaderStyles = makeStyles((theme: Theme) => ({
-	sAvatar: {
-		height: theme.spacing(18),
-		width: theme.spacing(18)
-	},
 	sLinear: {
 		margin: theme.spacing(15, 'auto', 0),
 		width: linearWidth
@@ -17,6 +13,11 @@ export const loaderStyles = makeStyles((theme: Theme) => ({
 	},
 	sCircularAvatar: {
 		marginBottom: theme.spacing(2)
+	},
+	sAvatar: {
+		height: theme.spacing(18),
+		margin: theme.spacing(0, 'auto'),
+		width: theme.spacing(18)
 	},
 	sCircularLoader: {
 		color: AppConfigService.AppVariables.colors.c9

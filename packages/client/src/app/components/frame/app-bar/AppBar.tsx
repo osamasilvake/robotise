@@ -33,7 +33,7 @@ import Badge from '../../common/badge/Badge';
 import { appBarStyles } from './AppBar.styles';
 
 const AppBarCustom: FC = () => {
-	const { t } = useTranslation('PRIVATE');
+	const { t } = useTranslation('TOOLTIPS');
 	const appBarClasses = appBarStyles();
 
 	const dispatch = useDispatch();
@@ -81,7 +81,7 @@ const AppBarCustom: FC = () => {
 			})}>
 			<Toolbar className={appBarClasses.sToolbar} disableGutters>
 				{!openDrawer && (
-					<Tooltip title={String(t('TOOLTIP.DRAWER.OPEN'))}>
+					<Tooltip title={String(t('DRAWER.OPEN'))}>
 						<IconButton hidden edge="start" onClick={handleDrawerOpen}>
 							<MenuIcon />
 						</IconButton>
@@ -139,11 +139,11 @@ const AppBarCustom: FC = () => {
 									)}
 								</ListItemIcon>
 								<ListItemText
-									primary={t('TOOLTIP.THEME.TITLE')}
+									primary={t('THEME.TITLE')}
 									secondary={
 										themePalette === ThemePaletteTypeEnum.LIGHT
-											? t('TOOLTIP.THEME.LIGHT')
-											: t('TOOLTIP.THEME.DARK')
+											? t('THEME.LIGHT')
+											: t('THEME.DARK')
 									}
 								/>
 							</ListItem>

@@ -12,7 +12,7 @@ export interface RobotTwinsSliceResponseInterface {
 	alerts?: RobotTwinsSliceResponseAllAlertsInterface;
 }
 
-export interface RobotTwinsSliceResponseDataInterface {
+export interface RobotTwinsSliceResponseDataInterface extends RobotTwinsLooseInterface {
 	id: string;
 	updatedAt?: string;
 	robot: {
@@ -136,4 +136,8 @@ export interface RobotTwinsSliceResponseDataTypeString {
 export interface RobotTwinsSliceResponseDataCameraImageString {
 	updatedAt: string;
 	imageId: string;
+}
+
+export interface RobotTwinsLooseInterface {
+	[key: string]: any;
 }

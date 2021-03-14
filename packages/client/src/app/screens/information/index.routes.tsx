@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
-import ENV from '../../../environment';
 import { RouteInterface } from '../../routes/Routes.interfaces';
+import { AppConfigService } from '../../services';
 import alertConfigRoutes from './alert-config/AlertConfig.routes';
 
 const ChangeLog = lazy(() => import('./change-log/ChangeLog'));
@@ -12,12 +12,12 @@ const informationRoutes: RouteInterface[] = [
 	{
 		component: ChangeLog,
 		exact: true,
-		path: ENV().ROUTING.SCREENS.INFORMATION.CHANGE_LOG
+		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.CHANGE_LOG
 	},
 	{
 		component: About,
 		exact: true,
-		path: ENV().ROUTING.SCREENS.INFORMATION.ABOUT
+		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT
 	}
 ];
 export default informationRoutes;

@@ -3,9 +3,14 @@ import { AppConfigService, HttpClientService } from '../../../services';
 class RobotsService {
 	/**
 	 * fetch robots
+	 * @param pageNo
+	 * @param rowsPerPage
+	 * @returns
 	 */
-	robotsFetch = () => {
-		return HttpClientService.get(AppConfigService.AppServices.ROBOTS.LIST);
+	robotsFetch = (pageNo: number, rowsPerPage: number) => {
+		const url = AppConfigService.AppServices.ROBOTS.LIST;
+		const apiLink = `${url}?page[number]=${pageNo}&page[size]=${rowsPerPage}`;
+		return HttpClientService.get(apiLink);
 	};
 
 	/**

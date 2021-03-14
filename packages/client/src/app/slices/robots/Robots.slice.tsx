@@ -1,4 +1,5 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import { WritableDraft } from 'immer/dist/internal';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
@@ -13,11 +14,7 @@ import {
 import { RobotTwinsSliceResponseInterface } from '../robot-twins/RobotTwins.slice.interface';
 import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
 import { RootStateInterface } from '../Slices.interface';
-import {
-	RobotsSliceInterface,
-	RobotsSliceResponseAllInterface,
-	RobotsSliceResponseInterface
-} from './Robots.slice.interface';
+import { RobotsSliceInterface, RobotsSliceResponseAllInterface } from './Robots.slice.interface';
 
 // initial state
 export const initialState: RobotsSliceInterface = {
@@ -36,7 +33,9 @@ const dataSlice = createSlice({
 		},
 		success: (state, action) => {
 			state.loading = false;
-			state.content = action.payload;
+			state.content = state.content
+				? RobotsOrganizeState(state.content, action.payload)
+				: action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
@@ -59,8 +58,13 @@ export default dataSlice.reducer;
 
 /**
  * fetch sites, robot twins and robots and map them to create robots list
+ * @param pageNo
+ * @param rowsPerPage
+ * @returns
  */
-export const RobotsFetchList = () => async (dispatch: Dispatch) => {
+export const RobotsFetchList = (pageNo: number, rowsPerPage: number) => async (
+	dispatch: Dispatch
+) => {
 	// dispatch: loader
 	dispatch(loading());
 
@@ -68,7 +72,7 @@ export const RobotsFetchList = () => async (dispatch: Dispatch) => {
 	Promise.all([
 		SitesService.sitesFetch(),
 		RobotsService.robotTwinsFetch(),
-		RobotsService.robotsFetch()
+		RobotsService.robotsFetch(pageNo, rowsPerPage)
 	])
 		.then(async (res) => {
 			// deserialize responses
@@ -77,7 +81,7 @@ export const RobotsFetchList = () => async (dispatch: Dispatch) => {
 			const robots = await deserializeRobots(res[2]);
 
 			// map robots data
-			const result: RobotsSliceResponseAllInterface[] = robotsMapping(
+			const result: RobotsSliceResponseAllInterface = robotsMapping(
 				sites,
 				robotTwins,
 				robots
@@ -90,7 +94,7 @@ export const RobotsFetchList = () => async (dispatch: Dispatch) => {
 			const message: TriggerMessageInterface = {
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'MAIN.COMMON.ERRORS.FETCH_ERROR'
+				text: 'API.FETCH'
 			};
 
 			// dispatch: error
@@ -108,24 +112,50 @@ export const RobotsFetchList = () => async (dispatch: Dispatch) => {
 const robotsMapping = (
 	sites: SitesSliceResponseInterface,
 	robotTwins: RobotTwinsSliceResponseInterface,
-	robots: RobotsSliceResponseInterface
-): RobotsSliceResponseAllInterface[] => {
-	return Object.keys(robots.dataById).map((key) => {
-		const robot = robots.dataById[key];
-		const site = sites.dataById[robot.site.id];
-		const robotTwin = robotTwins.dataById[robot.id];
-		const allAlerts = get(robotTwin, 'alerts.value', []);
-		return {
-			id: robot.id,
-			name: robot.name,
-			siteId: get(site, 'id', 'MAIN.COMMON.UNKNOWN'),
-			siteTitle: get(site, 'title', 'MAIN.COMMON.UNKNOWN'),
-			isReady: get(robotTwin, 'robotState.isReady.value'),
-			updatedAt: get(robotTwin, 'updatedAt'),
-			alerts: {
-				danger: allAlerts.filter((f: { level: string }) => f.level === 'danger').length,
-				warning: allAlerts.filter((f: { level: string }) => f.level === 'warning').length
-			}
-		};
-	});
+	robots: RobotsSliceResponseAllInterface
+): RobotsSliceResponseAllInterface => {
+	return {
+		data: Object.keys(robots.dataById).map((key) => {
+			const robot = robots.dataById[key];
+			const site = sites.dataById[robot.site.id];
+			const robotTwin = robotTwins.dataById[robot.id];
+			const allAlerts = get(robotTwin, 'alerts.value', []);
+			return {
+				id: robot.id,
+				name: robot.name,
+				siteId: get(site, 'id', 'TABLE.VALUES.UNKNOWN'),
+				siteTitle: get(site, 'title', 'TABLE.VALUES.UNKNOWN'),
+				isReady: get(robotTwin, 'robotState.isReady.value'),
+				updatedAt: get(robotTwin, 'updatedAt'),
+				alerts: {
+					danger: allAlerts.filter((f: { level: string }) => f.level === 'danger').length,
+					warning: allAlerts.filter((f: { level: string }) => f.level === 'warning')
+						.length
+				}
+			};
+		}),
+		dataById: robots.dataById,
+		meta: robots.meta
+	};
+};
+
+/**
+ * organize robots state to handle pagination
+ * @param state
+ * @param action
+ * @returns
+ */
+const RobotsOrganizeState = (
+	state: WritableDraft<RobotsSliceResponseAllInterface>,
+	action: RobotsSliceResponseAllInterface
+) => {
+	return {
+		...action,
+		meta: action.meta,
+		dataById: {
+			...state.dataById,
+			...action.dataById
+		},
+		data: [...state.data, ...action.data]
+	};
 };

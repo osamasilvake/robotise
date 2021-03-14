@@ -72,7 +72,7 @@ export const RobotTwinsFetchList = () => async (dispatch: Dispatch) => {
 			const message: TriggerMessageInterface = {
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'MAIN.COMMON.ERRORS.FETCH_ERROR'
+				text: 'API.FETCH'
 			};
 
 			// dispatch: error

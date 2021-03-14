@@ -1,3 +1,4 @@
+import appRoutes from '../../routes/app-routes';
 import EnvService from '../env/Env.service';
 import CHANGE_LOG from './../../../../CHANGELOG.md';
 
@@ -36,8 +37,10 @@ class AppConfigService extends EnvService {
 			fontFamily: {
 				Roboto: 'Roboto'
 			},
-			authentication: {
-				validateBefore: 2 * 60 * 1000 // 2 minutes
+			loader: {
+				linear: {
+					width: 250
+				}
 			},
 			snackbar: {
 				timeout: 6000,
@@ -49,15 +52,23 @@ class AppConfigService extends EnvService {
 			drawer: {
 				width: 260
 			},
-			loader: {
-				linear: {
-					width: 250
-				}
-			},
 			table: {
-				maxHeight: 248
+				minusContentHeight: 248
+			},
+			authentication: {
+				validateBefore: 2 * 60 * 1000 // 2 minutes
+			},
+			robots: {
+				pageSize: 2
 			}
 		};
+	}
+
+	/**
+	 * routes
+	 */
+	get AppRoutes() {
+		return appRoutes;
 	}
 
 	/**

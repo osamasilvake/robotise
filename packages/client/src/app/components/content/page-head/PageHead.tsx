@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
-import ENV from '../../../../environment';
+import { AppConfigService } from '../../../services';
 import Meta from '../../common/meta/Meta';
 import { BreadcrumbInterface, PageHeadInterface } from './PageHead.interface';
 import { pageHeadStyles } from './PageHead.style';
@@ -23,7 +23,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 		return [
 			{
 				text: t('DASHBOARD.TITLE'),
-				link: ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD,
+				link: AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD,
 				isLast: false
 			},
 			...paths.map((item, index) => {

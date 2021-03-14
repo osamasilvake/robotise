@@ -1,20 +1,40 @@
 import { Paper, Table } from '@material-ui/core';
-import { TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@material-ui/core';
-import { FC, useState } from 'react';
+import { TableContainer, TablePagination } from '@material-ui/core';
+import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 
-import { RobotsSliceResponseAllInterface } from '../../../../slices/robots/Robots.slice.interface';
-import { RobotsListTableColumnInterface, RobotsListTableInterface } from './RobotsList.interface';
+import { AppConfigService } from '../../../../services';
+import {
+	RobotsListTableHeadId,
+	RobotsListTableHeadOrder,
+	RobotsListTableInterface
+} from './RobotsList.interface';
 import { robotsListTableStyles } from './RobotsListTable.styles';
-import { columns } from './RobotsListTableColumns.list';
+import RobotsListTableBody from './RobotsListTableBody';
 import RobotsListTableHead from './RobotsListTableHead';
+import { columns } from './RobotsListTableHead.list';
 
 const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
-	const { content } = props;
+	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
 
 	const robotsListTableclasses = robotsListTableStyles();
 
-	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(10);
+	const [order, setOrder] = useState<RobotsListTableHeadOrder>('desc');
+	const [orderBy, setOrderBy] = useState(columns[columns.length - 1].id);
+
+	/**
+	 * handle sort request
+	 * @param _event
+	 * @param property
+	 */
+	const handleRequestSort = (_event: MouseEvent, property: RobotsListTableHeadId) => {
+		const isAsc = orderBy === property && order === 'asc';
+
+		// set order
+		setOrder(isAsc ? 'desc' : 'asc');
+
+		// set order by
+		setOrderBy(property);
+	};
 
 	/**
 	 * handle page change
@@ -30,7 +50,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	 * handle change rows per page
 	 * @param event
 	 */
-	const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// set rows
 		setRowsPerPage(+event.target.value);
 
@@ -43,37 +63,31 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 			<TableContainer className={robotsListTableclasses.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
-					<RobotsListTableHead columns={columns} />
+					<RobotsListTableHead
+						order={order}
+						orderBy={orderBy}
+						onRequestSort={handleRequestSort}
+						columns={columns}
+					/>
 
 					{/* Body */}
-					<TableBody>
-						{content
-							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-							.map((robot: RobotsSliceResponseAllInterface) => {
-								return (
-									<TableRow hover role="checkbox" tabIndex={-1} key={robot.id}>
-										{columns.map((column: RobotsListTableColumnInterface) => {
-											const value = robot[column.id];
-											return (
-												<TableCell key={column.id} align={column.align}>
-													{column.format ? column.format(value) : value}
-												</TableCell>
-											);
-										})}
-									</TableRow>
-								);
-							})}
-					</TableBody>
+					<RobotsListTableBody
+						order={order}
+						orderBy={orderBy}
+						page={page}
+						rowsPerPage={rowsPerPage}
+						content={content}
+					/>
 				</Table>
 			</TableContainer>
 
 			{/* Pagination */}
 			<TablePagination
-				rowsPerPageOptions={[10, 25, 100]}
+				rowsPerPageOptions={[AppConfigService.AppOptions.robots.pageSize, 25, 100]}
 				component="div"
-				count={content ? content.length : 0}
-				rowsPerPage={rowsPerPage}
+				count={content ? content.meta.totalDocs : 0}
 				page={page}
+				rowsPerPage={rowsPerPage}
 				onChangePage={handlePageChange}
 				onChangeRowsPerPage={handleChangeRowsPerPage}
 			/>

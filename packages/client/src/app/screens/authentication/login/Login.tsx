@@ -28,7 +28,7 @@ import { loginStyles } from './Login.styles';
 import { LoginFormValidation } from './Login.validation';
 
 const Login: FC = () => {
-	const { t } = useTranslation('GLOBAL');
+	const { t } = useTranslation('AUTH');
 
 	const loginClasses = loginStyles();
 	const dispatch = useDispatch();
@@ -81,8 +81,8 @@ const Login: FC = () => {
 								error={!!errors.email}
 								onChange={handleChange}
 								onBlur={handleBlur}
-								label={t('AUTH.LOGIN.FIELDS.EMAIL.LABEL')}
-								placeholder={t('AUTH.LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
+								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
+								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								inputProps={{
 									form: {
 										autocomplete: 'off'
@@ -102,8 +102,8 @@ const Login: FC = () => {
 								error={!!errors.password}
 								onChange={handleChange}
 								onBlur={handleBlur}
-								label={t('AUTH.LOGIN.FIELDS.PASSWORD.LABEL')}
-								placeholder={t('AUTH.LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
+								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
+								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position="end">
@@ -127,7 +127,7 @@ const Login: FC = () => {
 									color="primary"
 								/>
 							}
-							label={t('AUTH.LOGIN.FIELDS.REMEMBER_ME.LABEL')}
+							label={t('LOGIN.FIELDS.REMEMBER_ME.LABEL')}
 						/>
 
 						<Button
@@ -137,7 +137,7 @@ const Login: FC = () => {
 							disabled={somePropertiesEmpty(values) || loader}
 							fullWidth
 							endIcon={loader && <CircularProgress size={20} />}>
-							{t('AUTH.LOGIN.BUTTONS.SIGN_IN.LABEL')}
+							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
 
 						<Box mt={5}>

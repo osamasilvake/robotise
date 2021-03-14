@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
-import ENV from '../../../environment';
 import { RouteInterface } from '../../routes/Routes.interfaces';
+import { AppConfigService } from '../../services';
 import robotRoutes from './robots/Robots.routes';
 import siteRoutes from './sites/Sites.routes';
 
@@ -11,7 +11,7 @@ const businessRoutes: RouteInterface[] = [
 	{
 		component: Dashboard,
 		exact: true,
-		path: ENV().ROUTING.SCREENS.BUSINESS.DASHBOARD
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD
 	},
 	...siteRoutes,
 	...robotRoutes

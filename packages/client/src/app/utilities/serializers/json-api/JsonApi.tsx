@@ -51,7 +51,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 		},
 		transform: (data) => {
 			try {
-				const result: any = {
+				const result: RobotTwinsSliceResponseDataInterface = {
 					id: data.id,
 					robot: data.robot,
 					updatedAt: data.updatedAt
@@ -143,19 +143,16 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 					const baseMeta = get(data, 'metadata.reported.cameras.base');
 					const top = get(data, 'state.reported.cameras.top');
 					const topMeta = get(data, 'metadata.reported.cameras.top');
-					result.cameras = {};
-					if (base) {
-						result.cameras.base = {
-							imageId: base.imageId,
-							updatedAt: baseMeta.imageId.updatedAt
-						};
-					}
-					if (top) {
-						result.cameras.top = {
-							imageId: top.imageId,
-							updatedAt: topMeta.imageId.updatedAt
-						};
-					}
+					result.cameras = {
+						base: {
+							imageId: base && base.imageId,
+							updatedAt: baseMeta && baseMeta.imageId.updatedAt
+						},
+						top: {
+							imageId: top && top.imageId,
+							updatedAt: topMeta && topMeta.imageId.updatedAt
+						}
+					};
 				}
 				return result;
 			} catch (error) {

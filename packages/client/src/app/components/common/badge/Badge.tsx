@@ -20,13 +20,13 @@ const AppBadge: FC<BadgeInterface> = (props) => {
 
 	return (
 		<Badge
+			variant="dot"
 			classes={{ badge: badgeClasses.sDot }}
 			overlap="circle"
 			anchorOrigin={{
 				vertical: 'bottom',
 				horizontal: 'right'
-			}}
-			variant="dot">
+			}}>
 			{children}
 		</Badge>
 	);

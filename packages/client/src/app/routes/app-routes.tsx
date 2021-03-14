@@ -8,14 +8,16 @@ const appRoutes = {
 			SITES: {
 				MAIN: '/sites',
 				PRODUCTS: {
-					MAIN: '/products'
+					MAIN: 'site/products',
+					CREATE: 'site/product/create',
+					UPDATE: 'site/product/update/:id',
+					READ: 'site/product/read/:id'
 				}
 			},
 			ROBOTS: {
 				MAIN: '/robots',
-				ORDER_REPORTS: {
-					MAIN: '/order-reports'
-				}
+				DETAIL: '/robot/:id',
+				ORDER_REPORTS: '/robot/order-reports'
 			}
 		},
 		INFORMATION: {
@@ -24,9 +26,6 @@ const appRoutes = {
 			},
 			CHANGE_LOG: '/change-log',
 			ABOUT: '/about-us'
-		},
-		PAGES: {
-			E404: '/e-404'
 		}
 	}
 };

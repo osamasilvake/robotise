@@ -141,7 +141,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			const message: TriggerMessageInterface = {
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'AUTH.LOGIN.ERRORS.TOKEN_EXPIRED'
+				text: 'AUTH.TOKEN_EXPIRED'
 			};
 
 			// dispatch: error
@@ -157,7 +157,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 		const message: TriggerMessageInterface = {
 			show: true,
 			severity: TriggerMessageTypeEnum.WARNING,
-			text: 'AUTH.LOGIN.ERRORS.TOKEN_EMPTY'
+			text: 'AUTH.TOKEN_EMPTY'
 		};
 
 		// dispatch: error

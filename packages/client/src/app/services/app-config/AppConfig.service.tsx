@@ -23,8 +23,9 @@ class AppConfigService extends EnvService {
 				c8a: '#7d8483', // light:		sub-text
 
 				c9: '#26aee4', // dark/light: 	active, links, logo
-				c10: '#44b700', // dark/light: 	dot
-				c11: '#ffca03' // dark/light: 	sun
+				c10: '#78b752', // dark/light: 	success
+				c11: '#ffca03', // dark/light: 	warning
+				c12: '#f95d51' // dark/light: 	error
 			}
 		};
 	}
@@ -59,7 +60,7 @@ class AppConfigService extends EnvService {
 				validateBefore: 2 * 60 * 1000 // 2 minutes
 			},
 			robots: {
-				pageSizes: [2, 3, 4, 20, 50]
+				pageSizes: [5, 10, 15, 20, 50]
 			}
 		};
 	}

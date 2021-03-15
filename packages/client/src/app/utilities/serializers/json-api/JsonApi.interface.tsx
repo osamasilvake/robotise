@@ -27,4 +27,5 @@ export interface JsonApiMeta {
 	nextPage: number;
 	page: number;
 	totalDocs: number;
+	rowsPerPage?: number;
 }

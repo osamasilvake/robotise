@@ -13,7 +13,7 @@ const momentSort = <T,>(value: T) => {
  * @param value
  */
 const momentFormat1 = <T,>(value: T) => {
-	return moment(value).format('DD, MMM HH:mm:ss');
+	return moment(value).format('DD, MMM YYYY HH:mm:ss');
 };
 
 /**

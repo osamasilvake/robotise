@@ -52,6 +52,11 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 					boxShadow: 'none'
 				}
 			},
+			MuiTableCell: {
+				stickyHeader: {
+					backgroundColor: AppConfigService.AppVariables.colors.c5
+				}
+			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {

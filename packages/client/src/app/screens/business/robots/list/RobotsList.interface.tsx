@@ -14,7 +14,7 @@ export interface RobotsListTableHeadInterface {
 	columns: RobotsListTableColumnInterface[];
 	onRequestSort: (event: MouseEvent, property: RobotsListTableHeadId) => void;
 	order: RobotsListTableHeadOrder;
-	orderBy: string;
+	orderBy: RobotsListTableHeadId;
 }
 
 export interface RobotsListTableColumnInterface {
@@ -27,7 +27,7 @@ export interface RobotsListTableColumnInterface {
 export interface RobotsListTableBodyInterface {
 	content: RobotsSliceResponseAllInterface | null;
 	order: RobotsListTableHeadOrder;
-	orderBy: string;
+	orderBy: RobotsListTableHeadId;
 	page: number;
 	rowsPerPage: number;
 }

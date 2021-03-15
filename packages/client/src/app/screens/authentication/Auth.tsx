@@ -22,7 +22,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				dispatch(AuthRefreshToken(user.exp));
 
 				// disptach: robot twins
-				// dispatch(RobotTwinsFetchList());
+				dispatch(RobotTwinsFetchList());
 			}
 		}, 10000);
 		return () => window.clearInterval(timeoutID);

@@ -88,7 +88,7 @@ export const RobotsFetchList = (pageNo: number, rowsPerPage: number) => async (
 			);
 
 			// dispatch: success
-			dispatch(success(result));
+			dispatch(success({ ...result, meta: { ...result.meta, rowsPerPage } }));
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
@@ -149,7 +149,12 @@ const RobotsOrganizeState = (
 	state: WritableDraft<RobotsSliceResponseAllInterface>,
 	action: RobotsSliceResponseAllInterface
 ) => {
-	if (action.meta.nextPage > state.meta.nextPage) {
+	if (
+		action.meta.page > 1 &&
+		(action.meta.nextPage === null || action.meta.nextPage > state.meta.nextPage)
+	) {
+		action.meta.nextPage =
+			action.meta.nextPage === null ? state.meta.nextPage + 1 : action.meta.nextPage;
 		return {
 			...action,
 			meta: action.meta,

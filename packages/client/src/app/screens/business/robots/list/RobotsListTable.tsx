@@ -8,7 +8,7 @@ import {
 	RobotsListTableHeadOrder,
 	RobotsListTableInterface
 } from './RobotsList.interface';
-import { robotsListTableStyles } from './RobotsListTable.styles';
+import { robotsListStyles } from './RobotsList.styles';
 import RobotsListTableBody from './RobotsListTableBody';
 import RobotsListTableHead from './RobotsListTableHead';
 import { columns } from './RobotsListTableHead.list';
@@ -16,10 +16,10 @@ import { columns } from './RobotsListTableHead.list';
 const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
 
-	const robotsListTableclasses = robotsListTableStyles();
+	const robotsListClasses = robotsListStyles();
 
 	const [order, setOrder] = useState<RobotsListTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState(columns[columns.length - 1].id);
+	const [orderBy, setOrderBy] = useState<RobotsListTableHeadId>(columns[columns.length - 1].id);
 
 	/**
 	 * handle sort request
@@ -60,7 +60,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 
 	return (
 		<Paper elevation={12}>
-			<TableContainer className={robotsListTableclasses.sTableMaxHeight}>
+			<TableContainer className={robotsListClasses.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
 					<RobotsListTableHead

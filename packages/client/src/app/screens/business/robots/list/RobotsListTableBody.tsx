@@ -1,4 +1,5 @@
-import { TableBody, TableCell, TableRow } from '@material-ui/core';
+import { TableBody, TableCell, TableRow, Typography } from '@material-ui/core';
+import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -13,12 +14,14 @@ import {
 	RobotsListTableColumnInterface,
 	RobotsListTableHeadId
 } from './RobotsList.interface';
+import { robotsListStyles } from './RobotsList.styles';
 import { columns } from './RobotsListTableHead.list';
 
 const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
 
 	const { t } = useTranslation('ROBOTS');
+	const robotsListClasses = robotsListStyles();
 
 	/**
 	 * sort table data
@@ -83,7 +86,17 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	) => {
 		const value = robot[column.id];
 		if (columns[2].id === column.id) {
-			return robot.isReady ? t('TABLE.VALUES.ON') : t('TABLE.VALUES.OFF');
+			return (
+				<Typography
+					variant="button"
+					color="error"
+					className={clsx(robotsListClasses.sTableCellStatus, {
+						[robotsListClasses.sTableCellWarning]: robot.isReady,
+						[robotsListClasses.sTableCellDanger]: !robot.isReady
+					})}>
+					{robot.isReady ? t('TABLE.VALUES.ON') : t('TABLE.VALUES.OFF')}
+				</Typography>
+			);
 		} else if (columns[3].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[4].id === column.id) {

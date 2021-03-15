@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
@@ -37,8 +37,20 @@ const DrawerCustom: FC = () => {
 	const { openDrawer } = useSelector(generalSelector);
 	const { content } = useSelector(robotTwinsSelector);
 
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth < 800 && openDrawer) {
+				// dispatch: set drawer state
+				dispatch(GeneralSetDrawerState(!openDrawer));
+			}
+		};
+		window.addEventListener('resize', handleResize);
+
+		return () => window.removeEventListener('resize', handleResize);
+	}, [dispatch, openDrawer]);
+
 	/**
-	 * dispatch: set open drawer
+	 * dispatch: set drawer state
 	 */
 	const handleDrawerClose = () => dispatch(GeneralSetDrawerState(false));
 

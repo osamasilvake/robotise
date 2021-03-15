@@ -77,8 +77,8 @@ export default RobotsList;
  * Checks:
  * 01: Table Styling + Responsive Layout (sidebar)
  * 02: Update - robot twins new data to robots list
- * 03: Sorting: API
+ * 03: Sorting through API
 
- * 04: Refactor
+ * 04: Refactor - Check interface of robots, sites, robot twins
  * 05: Testing: slices(robot-twins, robots, sites, auth), methods, hooks
  */

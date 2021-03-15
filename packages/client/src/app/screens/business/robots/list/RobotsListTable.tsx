@@ -37,11 +37,11 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	};
 
 	/**
-	 * handle page change
+	 * handle change page
 	 * @param _event
 	 * @param newPage
 	 */
-	const handlePageChange = (_event: unknown, newPage: number) => {
+	const handleChangePage = (_event: unknown, newPage: number) => {
 		// set page
 		setPage(newPage);
 	};
@@ -88,7 +88,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 				count={content ? content.meta.totalDocs : 0}
 				page={page}
 				rowsPerPage={rowsPerPage}
-				onChangePage={handlePageChange}
+				onChangePage={handleChangePage}
 				onChangeRowsPerPage={handleChangeRowsPerPage}
 			/>
 		</Paper>

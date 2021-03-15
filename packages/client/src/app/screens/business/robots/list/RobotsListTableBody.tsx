@@ -60,16 +60,23 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const sortByProperty = (key: RobotsListTableHeadId, type: RobotsListTableSortTypeEnum) => {
 		return (a: RobotsSliceResponseAllDataInterface, b: RobotsSliceResponseAllDataInterface) => {
 			switch (type) {
-				case RobotsListTableSortTypeEnum.STRING:
-					return a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0;
 				case RobotsListTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
-				default:
-					return a.alerts.danger > b.alerts.danger
+				case RobotsListTableSortTypeEnum.OBJECT:
+					if (a.alerts.danger || b.alerts.danger) {
+						return a.alerts.danger > b.alerts.danger
+							? 1
+							: b.alerts.danger > a.alerts.danger
+							? -1
+							: 0;
+					}
+					return a.alerts.warning > b.alerts.warning
 						? 1
-						: b.alerts.danger > a.alerts.danger
+						: b.alerts.warning > a.alerts.warning
 						? -1
 						: 0;
+				default:
+					return a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0;
 			}
 		};
 	};
@@ -91,8 +98,8 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 					variant="button"
 					color="error"
 					className={clsx(robotsListClasses.sTableCellStatus, {
-						[robotsListClasses.sTableCellWarning]: robot.isReady,
-						[robotsListClasses.sTableCellDanger]: !robot.isReady
+						[robotsListClasses.sTableCellStatusOn]: robot.isReady,
+						[robotsListClasses.sTableCellStatusOff]: !robot.isReady
 					})}>
 					{robot.isReady ? t('TABLE.VALUES.ON') : t('TABLE.VALUES.OFF')}
 				</Typography>
@@ -113,7 +120,15 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 					.map((robot: RobotsSliceResponseAllDataInterface) => {
 						return (
-							<TableRow hover role="checkbox" tabIndex={-1} key={robot.id}>
+							<TableRow
+								hover
+								key={robot.id}
+								role="checkbox"
+								tabIndex={-1}
+								className={clsx({
+									[robotsListClasses.sTableRowWarning]: !!robot.alerts.warning,
+									[robotsListClasses.sTableRowDanger]: !!robot.alerts.danger
+								})}>
 								{columns.map((column: RobotsListTableColumnInterface) => {
 									return (
 										<TableCell key={column.id} align={column.align}>

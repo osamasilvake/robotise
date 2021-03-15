@@ -13,10 +13,16 @@ export const robotsListStyles = makeStyles((theme: Theme) => ({
 		color: AppConfigService.AppVariables.colors.c4,
 		padding: theme.spacing(0.2, 0.4)
 	},
-	sTableCellWarning: {
+	sTableRowWarning: {
+		backgroundColor: AppConfigService.AppVariables.colors.c11o
+	},
+	sTableRowDanger: {
+		backgroundColor: AppConfigService.AppVariables.colors.c12o
+	},
+	sTableCellStatusOn: {
 		backgroundColor: AppConfigService.AppVariables.colors.c10
 	},
-	sTableCellDanger: {
+	sTableCellStatusOff: {
 		backgroundColor: AppConfigService.AppVariables.colors.c12
 	}
 }));

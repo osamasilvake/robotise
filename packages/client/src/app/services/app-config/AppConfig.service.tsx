@@ -9,23 +9,25 @@ class AppConfigService extends EnvService {
 	get AppVariables() {
 		return {
 			colors: {
-				c1: '#333435', // dark: 		body/content
-				c2: '#383a3c', // dark:			paper
-				c3: '#2e2e31', // dark: 		box-shadow
+				c1: '#333435', // dark: 			body/content
+				c2: '#383a3c', // dark:				paper
+				c3: '#2e2e31', // dark: 			box-shadow
 
-				c4: '#ffffff', // light: 		body/content
-				c5: '#eeeeee ', // light: 		paper
-				c6: '#dbdcde', // light: 		box-shadow
+				c4: '#ffffff', // light: 			body/content
+				c5: '#eeeeee ', // light: 			paper
+				c6: '#dbdcde', // light: 			box-shadow
 
-				c7: '#ffffff', // dark: 		text
-				c7a: '#9ea1a7', // dark: 		sub-text
-				c8: '#171a20', // light:		text
-				c8a: '#7d8483', // light:		sub-text
+				c7: '#ffffff', // dark: 			text
+				c7a: '#9ea1a7', // dark: 			sub-text
+				c8: '#171a20', // light:			text
+				c8a: '#7d8483', // light:			sub-text
 
-				c9: '#26aee4', // dark/light: 	active, links, logo
-				c10: '#78b752', // dark/light: 	success
-				c11: '#ffca03', // dark/light: 	warning
-				c12: '#f95d51' // dark/light: 	error
+				c9: '#26aee4', // dark/light: 		active, links, logo
+				c10: '#78b752', // dark/light: 		success
+				c11: '#ffca03', // dark/light: 		warning
+				c11o: '#ffca0326', // dark/light: 	warning light
+				c12: '#f95d51', // dark/light: 		error
+				c12o: '#f95d5126' // dark/light: 	error light
 			}
 		};
 	}

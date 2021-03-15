@@ -25,6 +25,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				dispatch(RobotTwinsFetchList());
 			}
 		}, 10000);
+
 		return () => window.clearInterval(timeoutID);
 	}, [dispatch, user]);
 

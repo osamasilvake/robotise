@@ -55,7 +55,7 @@ const AppBarCustom: FC = () => {
 	const handleMenuClose = () => setAnchorEl(null);
 
 	/**
-	 * dispatch: set open drawer
+	 * dispatch: set drawer state
 	 */
 	const handleDrawerOpen = () => dispatch(GeneralSetDrawerState(true));
 

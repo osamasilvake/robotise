@@ -50,7 +50,7 @@ const dataSlice = createSlice({
 				const result: RobotsSliceResponseAllInterface = robotsMapping(
 					state.content.backup.sites,
 					action.payload,
-					state.content.backup.robots
+					state.content
 				);
 
 				// update state
@@ -150,8 +150,7 @@ const robotsMapping = (
 		dataById: robots.dataById,
 		meta: robots.meta,
 		backup: {
-			sites,
-			robots
+			sites
 		}
 	};
 };
@@ -174,23 +173,15 @@ const RobotsOrganizeState = (
 			action.meta.nextPage === null ? state.meta.nextPage + 1 : action.meta.nextPage;
 
 		return {
-			...action,
-			meta: action.meta,
+			...state,
+			meta: {
+				...state.meta,
+				...action.meta
+			},
+			data: [...state.data, ...action.data],
 			dataById: {
 				...state.dataById,
 				...action.dataById
-			},
-			data: [...state.data, ...action.data],
-			backup: {
-				...action.backup,
-				robots: {
-					...action.backup?.robots,
-					data: [...state.data, ...action.data],
-					dataById: {
-						...state.dataById,
-						...action.dataById
-					}
-				}
 			}
 		};
 	}

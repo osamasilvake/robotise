@@ -14,7 +14,6 @@ export interface RobotsSliceResponseAllInterface {
 	meta: JsonApiMeta;
 	backup?: {
 		sites: SitesSliceResponseInterface;
-		robots: RobotsSliceResponseAllInterface;
 	};
 }
 export interface RobotsSliceResponseAllDataInterface {
@@ -27,15 +26,13 @@ export interface RobotsSliceResponseAllDataInterface {
 	alerts: RobotsSliceResponseAllDataAlertsInterface;
 }
 
+export interface RobotsSliceDataByIdInterface {
+	[key: string]: RobotsSliceResponseDataInterface;
+}
+
 export interface RobotsSliceResponseAllDataAlertsInterface {
 	danger: number;
 	warning: number;
-}
-
-export interface RobotsSliceResponseInterface {
-	data: RobotsSliceResponseDataInterface[];
-	dataById: RobotsSliceDataByIdInterface;
-	meta: JsonApiMeta;
 }
 
 export interface RobotsSliceResponseDataInterface {
@@ -46,10 +43,6 @@ export interface RobotsSliceResponseDataInterface {
 	customerName: string;
 	site: RobotsSliceResponseDataSiteInterface;
 	robotTwin: RobotsSliceResponseDataRobotTwinInterface;
-}
-
-export interface RobotsSliceDataByIdInterface {
-	[key: string]: RobotsSliceResponseDataInterface;
 }
 
 export interface RobotsSliceResponseDataSiteInterface {

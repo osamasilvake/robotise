@@ -16,7 +16,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	const isUser = !!(user && user.data.user_id);
 
 	useEffect(() => {
-		const timeoutID = window.setInterval(() => {
+		const initServices = () => {
 			if (user) {
 				// dispatch: requests a new token before it expires
 				dispatch(AuthRefreshToken(user.exp));
@@ -24,7 +24,9 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				// disptach: robot twins
 				dispatch(RobotTwinsFetchList());
 			}
-		}, 10000);
+		};
+		window.addEventListener('load', initServices);
+		const timeoutID = window.setInterval(initServices, 10000);
 
 		return () => window.clearInterval(timeoutID);
 	}, [dispatch, user]);

@@ -5,6 +5,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { get } from '../../utilities/methods/ObjectUtilities';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/JsonApi';
+import { triggerMessage } from '../general/General.slice';
 import { RootStateInterface } from '../Slices.interface';
 import {
 	RobotTwinsSliceInterface,
@@ -53,9 +54,6 @@ export default dataSlice.reducer;
  * fetch robot twins list
  */
 export const RobotTwinsFetchList = () => async (dispatch: Dispatch) => {
-	// dispatch: loader
-	dispatch(loading());
-
 	// fetch robot twins list
 	RobotsService.robotTwinsFetch()
 		.then(async (res) => {
@@ -74,6 +72,9 @@ export const RobotTwinsFetchList = () => async (dispatch: Dispatch) => {
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'API.FETCH'
 			};
+
+			// dispatch: trigger message
+			dispatch(triggerMessage(message));
 
 			// dispatch: error
 			dispatch(failure(message));

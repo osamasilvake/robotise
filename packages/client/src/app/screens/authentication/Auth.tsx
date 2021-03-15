@@ -6,6 +6,7 @@ import Loader from '../../components/common/loader/Loader';
 import { isPrivate, isSession } from '../../routes/types';
 import { AppConfigService } from '../../services';
 import { AuthRefreshToken, authSelector } from '../../slices/auth/Auth.slice';
+import { RobotTwinsFetchList } from '../../slices/robot-twins/RobotTwins.slice';
 import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
@@ -15,10 +16,16 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	const isUser = !!(user && user.data.user_id);
 
 	useEffect(() => {
-		if (user) {
-			// dispatch: requests a new token before it expires
-			dispatch(AuthRefreshToken(user.exp));
-		}
+		const timeoutID = window.setInterval(() => {
+			if (user) {
+				// dispatch: requests a new token before it expires
+				dispatch(AuthRefreshToken(user.exp));
+
+				// disptach: robot twins
+				// dispatch(RobotTwinsFetchList());
+			}
+		}, 10000);
+		return () => window.clearInterval(timeoutID);
 	}, [dispatch, user]);
 
 	/**

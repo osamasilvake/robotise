@@ -149,13 +149,16 @@ const RobotsOrganizeState = (
 	state: WritableDraft<RobotsSliceResponseAllInterface>,
 	action: RobotsSliceResponseAllInterface
 ) => {
-	return {
-		...action,
-		meta: action.meta,
-		dataById: {
-			...state.dataById,
-			...action.dataById
-		},
-		data: [...state.data, ...action.data]
-	};
+	if (action.meta.nextPage > state.meta.nextPage) {
+		return {
+			...action,
+			meta: action.meta,
+			dataById: {
+				...state.dataById,
+				...action.dataById
+			},
+			data: [...state.data, ...action.data]
+		};
+	}
+	return action;
 };

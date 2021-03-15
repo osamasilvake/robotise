@@ -13,26 +13,37 @@ const RobotsList: FC = () => {
 	const { loading, errors, content } = useSelector(robotsSelector);
 
 	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(AppConfigService.AppOptions.robots.pageSize);
+	const [rowsPerPage, setRowsPerPage] = useState(
+		content
+			? Math.ceil(content.meta.totalDocs / content.meta.totalPages)
+			: AppConfigService.AppOptions.robots.pageSizes[0]
+	);
 	const pageState = useRef({
 		page: content ? content.meta.page - 1 : page - 1,
 		rowsPerPage
 	});
 
 	useEffect(() => {
-		const cond1 = pageState.current.page !== -1; // page switch and forth
-		const cond2 = content === null && !cond1; // init
-		const cond3 = page > pageState.current.page; // only detect next click
-		const cond4 = rowsPerPage !== pageState.current.rowsPerPage; // detect change click
+		// when rows per page is changed
+		if (pageState.current.rowsPerPage !== rowsPerPage && page === 0) {
+			// fetch sites, robot twins and robots and map them to create robots list
+			dispatch(RobotsFetchList(page + 1, rowsPerPage));
 
-		console.log(cond1, cond2, cond3);
-		if (cond1 || cond2) {
-			if (cond3 || cond4) {
-				// fetch sites, robot twins and robots and map them to create robots list
-				dispatch(RobotsFetchList(page + 1, rowsPerPage));
+			// update page state and rows per page
+			pageState.current.page = page;
+			pageState.current.rowsPerPage = rowsPerPage;
+		} else {
+			const cond1 = pageState.current.page !== -1; // page switch back and forth
+			const cond2 = content === null && !cond1; // init
+			const cond3 = page > pageState.current.page; // detect next click
+			if (cond1 || cond2) {
+				if (cond3) {
+					// fetch sites, robot twins and robots and map them to create robots list
+					dispatch(RobotsFetchList(page + 1, rowsPerPage));
 
-				// update page state
-				pageState.current.page = page;
+					// update page state
+					pageState.current.page = page;
+				}
 			}
 		}
 	}, [content, dispatch, page, rowsPerPage]);
@@ -74,9 +85,11 @@ export default RobotsList;
  * Set translations
  *
  * Checks:
- * 01: Pagination
- * 02: Table Styling + Responsive Layout (sidebar)
- * 03: Auto-refresh Robots list
- * 04: Show Errors on badge
- * 05: Refactor
+ * 01: Table Styling + Responsive Layout (sidebar)
+ * 02: Auto-refresh Robots list
+ * 03: Show Errors on badge
+ * 04: Refactor
+ * 05: Update - robot twins new data to robots list
+ *
+ * 07: Testing: slices(robot-twins, robots, sites, auth), methods, hooks
  */

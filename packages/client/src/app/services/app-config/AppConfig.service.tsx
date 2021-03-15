@@ -59,7 +59,7 @@ class AppConfigService extends EnvService {
 				validateBefore: 2 * 60 * 1000 // 2 minutes
 			},
 			robots: {
-				pageSize: 2
+				pageSizes: [2, 3, 4, 20, 50]
 			}
 		};
 	}

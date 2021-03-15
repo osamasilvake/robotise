@@ -6,6 +6,7 @@ import RobotsService from '../../screens/business/robots/Robots.service';
 import { get } from '../../utilities/methods/ObjectUtilities';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/JsonApi';
 import { triggerMessage } from '../general/General.slice';
+import { updateRobotTwins } from '../robots/Robots.slice';
 import { RootStateInterface } from '../Slices.interface';
 import {
 	RobotTwinsSliceInterface,
@@ -65,6 +66,9 @@ export const RobotTwinsFetchList = () => async (dispatch: Dispatch) => {
 
 			// dispatch: success
 			dispatch(success({ ...result, alerts }));
+
+			// dispatch: update robot twins result with robots
+			dispatch(updateRobotTwins({ ...result, alerts }));
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {

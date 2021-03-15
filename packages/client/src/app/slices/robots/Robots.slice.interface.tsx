@@ -1,5 +1,6 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
+import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
 
 export interface RobotsSliceInterface {
 	loading: boolean;
@@ -11,6 +12,10 @@ export interface RobotsSliceResponseAllInterface {
 	data: RobotsSliceResponseAllDataInterface[];
 	dataById: RobotsSliceDataByIdInterface;
 	meta: JsonApiMeta;
+	backup?: {
+		sites: SitesSliceResponseInterface;
+		robots: RobotsSliceResponseAllInterface;
+	};
 }
 export interface RobotsSliceResponseAllDataInterface {
 	id: string;

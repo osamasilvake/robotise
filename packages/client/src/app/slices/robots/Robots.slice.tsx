@@ -43,12 +43,25 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
-		reset: () => initialState
+		reset: () => initialState,
+		updateRobotTwins: (state, action) => {
+			if (state.content && state.content.backup && !state.loading) {
+				// map robots data
+				const result: RobotsSliceResponseAllInterface = robotsMapping(
+					state.content.backup.sites,
+					action.payload,
+					state.content.backup.robots
+				);
+
+				// update state
+				state.content = result;
+			}
+		}
 	}
 });
 
 // actions
-export const { loading, success, failure, reset } = dataSlice.actions;
+export const { loading, success, failure, reset, updateRobotTwins } = dataSlice.actions;
 
 // selector
 export const robotsSelector = (state: RootStateInterface) => state['robots'];
@@ -135,7 +148,11 @@ const robotsMapping = (
 			};
 		}),
 		dataById: robots.dataById,
-		meta: robots.meta
+		meta: robots.meta,
+		backup: {
+			sites,
+			robots
+		}
 	};
 };
 
@@ -155,6 +172,7 @@ const RobotsOrganizeState = (
 	) {
 		action.meta.nextPage =
 			action.meta.nextPage === null ? state.meta.nextPage + 1 : action.meta.nextPage;
+
 		return {
 			...action,
 			meta: action.meta,
@@ -162,7 +180,18 @@ const RobotsOrganizeState = (
 				...state.dataById,
 				...action.dataById
 			},
-			data: [...state.data, ...action.data]
+			data: [...state.data, ...action.data],
+			backup: {
+				...action.backup,
+				robots: {
+					...action.backup?.robots,
+					data: [...state.data, ...action.data],
+					dataById: {
+						...state.dataById,
+						...action.dataById
+					}
+				}
+			}
 		};
 	}
 	return action;

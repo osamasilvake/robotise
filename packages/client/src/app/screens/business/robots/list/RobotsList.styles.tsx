@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { AppConfigService } from '../../../../services';
 import { pxToRem } from '../../../../utilities/methods/PixelsToRem';
 
-const minusContentHeight = AppConfigService.AppOptions.table.minusContentHeight;
+const minusContentHeight = AppConfigService.AppOptions.components.table.minusContentHeight;
 export const robotsListStyles = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
 		maxHeight: `calc(100vh - ${minusContentHeight}px)`

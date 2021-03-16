@@ -20,8 +20,10 @@ const Message: FC = () => {
 
 	return (
 		<Snackbar
-			anchorOrigin={AppConfigService.AppOptions.snackbar.direction as SnackbarOrigin}
-			autoHideDuration={AppConfigService.AppOptions.snackbar.timeout}
+			anchorOrigin={
+				AppConfigService.AppOptions.components.snackbar.direction as SnackbarOrigin
+			}
+			autoHideDuration={AppConfigService.AppOptions.components.snackbar.timeout}
 			open={triggerMessage.show}
 			onClose={handleCloseMessage}>
 			<Alert severity={triggerMessage.severity} handleClose={handleCloseMessage}>

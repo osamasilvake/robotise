@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 
 import { AppConfigService } from '../../../services';
 
-const drawerWidth = AppConfigService.AppOptions.drawer.width;
+const drawerWidth = AppConfigService.AppOptions.components.drawer.width;
 export const drawerStyles = makeStyles((theme: Theme) => ({
 	sDrawer: {
 		flexShrink: 0,

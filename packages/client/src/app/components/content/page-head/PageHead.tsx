@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Link, Paper, Typography } from '@material-ui/core';
+import { Box, Breadcrumbs, Divider, Link, Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
@@ -68,6 +68,9 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 					))}
 				</Breadcrumbs>
 			</Paper>
+
+			{/* Divider */}
+			<Divider light />
 		</Box>
 	);
 };

@@ -28,7 +28,6 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					backgroundColor: AppConfigService.AppVariables.colors.c1
 				},
 				elevation11: {
-					borderBottom: `1px solid ${AppConfigService.AppVariables.colors.c2}`,
 					boxShadow: 'none',
 					padding: `${pxToRem(15)} ${pxToRem(20)}`,
 					transition: 'none'
@@ -57,6 +56,14 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					backgroundColor: AppConfigService.AppVariables.colors.c2
 				}
 			},
+			MuiTableRow: {
+				root: {
+					'&.MuiTableRow-hover:hover': {
+						backgroundColor: AppConfigService.AppVariables.colors.c2,
+						cursor: 'pointer'
+					}
+				}
+			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {
@@ -72,7 +79,7 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 						} inset`,
 						'&::first-line': {
 							fontSize: pxToRem(16),
-							fontFamily: AppConfigService.AppOptions.fontFamily.Roboto
+							fontFamily: AppConfigService.AppOptions.styles.fontFamily.Roboto
 						}
 					}
 				}

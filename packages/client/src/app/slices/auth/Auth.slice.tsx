@@ -100,7 +100,10 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	if (accessToken) {
 		if (AuthService.authTokenValid(accessToken)) {
 			const expiresInMs = expDate * 1000 - momentNow();
-			if (expiresInMs < AppConfigService.AppOptions.authentication.validateBefore) {
+			if (
+				expiresInMs <
+				AppConfigService.AppOptions.screens.authentication.validateBeforeExpiry
+			) {
 				AuthService.authRequestNewToken()
 					.then((res) => {
 						// local-storage

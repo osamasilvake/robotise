@@ -37,32 +37,38 @@ class AppConfigService extends EnvService {
 	 */
 	get AppOptions() {
 		return {
-			fontFamily: {
-				Roboto: 'Roboto'
-			},
-			loader: {
-				linear: {
-					width: 250
+			styles: {
+				fontFamily: {
+					Roboto: 'Roboto'
 				}
 			},
-			snackbar: {
-				timeout: 6000,
-				direction: {
-					vertical: 'bottom',
-					horizontal: 'left'
+			components: {
+				loader: {
+					linear: {
+						width: 250
+					}
+				},
+				snackbar: {
+					timeout: 6000,
+					direction: {
+						vertical: 'bottom',
+						horizontal: 'left'
+					}
+				},
+				drawer: {
+					width: 260
+				},
+				table: {
+					minusContentHeight: 248
 				}
 			},
-			drawer: {
-				width: 260
-			},
-			table: {
-				minusContentHeight: 248
-			},
-			authentication: {
-				validateBefore: 2 * 60 * 1000 // 2 minutes
-			},
-			robots: {
-				pageSizes: [5, 10, 15, 20, 50]
+			screens: {
+				authentication: {
+					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
+				},
+				robots: {
+					pageSizes: [5, 10, 15, 20, 50]
+				}
 			}
 		};
 	}

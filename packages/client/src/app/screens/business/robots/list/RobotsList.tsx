@@ -15,8 +15,8 @@ const RobotsList: FC = () => {
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
 		content
-			? content.meta.rowsPerPage || AppConfigService.AppOptions.robots.pageSizes[0]
-			: AppConfigService.AppOptions.robots.pageSizes[0]
+			? content.meta.rowsPerPage || AppConfigService.AppOptions.screens.robots.pageSizes[1]
+			: AppConfigService.AppOptions.screens.robots.pageSizes[1]
 	);
 	const pageState = useRef({
 		page: content ? content.meta.page - 1 : page - 1,
@@ -75,10 +75,6 @@ export default RobotsList;
 
 /**
  * Checks:
- * 01: Table Styling + Responsive Layout (sidebar)
- * 02: Update - robot twins new data to robots list
- * 03: Sorting through API
-
- * 04: Refactor - Check interface of robots, sites, robot twins
- * 05: Testing: slices(robot-twins, robots, sites, auth), methods, hooks
+ * 01: Sorting through API
+ * 02: Testing: slices(robot-twins, robots, sites, auth), methods, hooks
  */

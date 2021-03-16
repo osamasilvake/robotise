@@ -133,6 +133,8 @@ const robotsMapping = (
 			const site = sites.dataById[robot.site.id];
 			const robotTwin = robotTwins.dataById[robot.id];
 			const allAlerts = get(robotTwin, 'alerts.value', []);
+			const alertDanger = allAlerts.filter((f: { level: string }) => f.level === 'danger');
+			const alertWarn = allAlerts.filter((f: { level: string }) => f.level === 'warning');
 			return {
 				id: robot.id,
 				name: robot.name,
@@ -141,9 +143,8 @@ const robotsMapping = (
 				isReady: get(robotTwin, 'robotState.isReady.value'),
 				updatedAt: get(robotTwin, 'updatedAt'),
 				alerts: {
-					danger: allAlerts.filter((f: { level: string }) => f.level === 'danger').length,
-					warning: allAlerts.filter((f: { level: string }) => f.level === 'warning')
-						.length
+					danger: alertDanger.length,
+					warning: alertWarn.length
 				}
 			};
 		}),
@@ -165,13 +166,11 @@ const RobotsOrganizeState = (
 	state: WritableDraft<RobotsSliceResponseAllInterface>,
 	action: RobotsSliceResponseAllInterface
 ) => {
-	if (
-		action.meta.page > 1 &&
-		(action.meta.nextPage === null || action.meta.nextPage > state.meta.nextPage)
-	) {
-		action.meta.nextPage =
-			action.meta.nextPage === null ? state.meta.nextPage + 1 : action.meta.nextPage;
-
+	const cond1 = action.meta.page > 1; // first page
+	const cond2 = action.meta.nextPage > state.meta.nextPage; // between pages
+	const cond3 = action.meta.nextPage === null; // last page
+	if (cond1 && (cond2 || cond3)) {
+		action.meta.nextPage = cond3 ? state.meta.nextPage + 1 : action.meta.nextPage;
 		return {
 			...state,
 			meta: {

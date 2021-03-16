@@ -28,7 +28,6 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 					backgroundColor: AppConfigService.AppVariables.colors.c4
 				},
 				elevation11: {
-					borderBottom: `1px solid ${AppConfigService.AppVariables.colors.c5}`,
 					boxShadow: 'none',
 					padding: `${pxToRem(15)} ${pxToRem(20)}`,
 					transition: 'none'
@@ -57,6 +56,14 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 					backgroundColor: AppConfigService.AppVariables.colors.c5
 				}
 			},
+			MuiTableRow: {
+				root: {
+					'&.MuiTableRow-hover:hover': {
+						backgroundColor: AppConfigService.AppVariables.colors.c5,
+						cursor: 'pointer'
+					}
+				}
+			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {
@@ -72,7 +79,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 						} inset`,
 						'&::first-line': {
 							fontSize: pxToRem(16),
-							fontFamily: AppConfigService.AppOptions.fontFamily.Roboto
+							fontFamily: AppConfigService.AppOptions.styles.fontFamily.Roboto
 						}
 					}
 				}

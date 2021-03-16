@@ -67,7 +67,7 @@ export const RobotTwinsFetchList = () => async (dispatch: Dispatch) => {
 			// dispatch: success
 			dispatch(success({ ...result, alerts }));
 
-			// dispatch: update robot twins result with robots
+			// dispatch: update robot twins result with robots list
 			dispatch(updateRobotTwins({ ...result, alerts }));
 		})
 		.catch(() => {
@@ -95,13 +95,13 @@ const countAlerts = (payload: RobotTwinsSliceResponseInterface) => {
 		(acc, key) => {
 			const robotTwin = payload.dataById[key];
 			const allAlerts = get(robotTwin, 'alerts.value', []);
+
 			if (allAlerts.length) {
-				acc.danger = acc.danger += allAlerts.filter(
-					(f: { level: string }) => f.level === 'danger'
-				).length;
-				acc.warning = acc.warning += allAlerts.filter(
-					(f: { level: string }) => f.level === 'warning'
-				).length;
+				const danger = allAlerts.filter((f: { level: string }) => f.level === 'danger');
+				const warn = allAlerts.filter((f: { level: string }) => f.level === 'warning');
+
+				acc.danger = acc.danger += danger.length;
+				acc.warning = acc.warning += warn.length;
 			}
 			return acc;
 		},

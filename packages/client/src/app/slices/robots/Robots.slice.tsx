@@ -5,7 +5,6 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import SitesService from '../../screens/business/sites/Sites.service';
-import { get } from '../../utilities/methods/ObjectUtilities';
 import {
 	deserializeRobots,
 	deserializeRobotTwins,
@@ -132,19 +131,19 @@ const robotsMapping = (
 			const robot = robots.dataById[key];
 			const site = sites.dataById[robot.site.id];
 			const robotTwin = robotTwins.dataById[robot.id];
-			const allAlerts = get(robotTwin, 'alerts.value', []);
-			const alertDanger = allAlerts.filter((f: { level: string }) => f.level === 'danger');
-			const alertWarn = allAlerts.filter((f: { level: string }) => f.level === 'warning');
+			const allAlerts = robotTwin.alerts.value;
+			const danger = allAlerts.filter((f) => f.level === 'danger');
+			const warn = allAlerts.filter((f) => f.level === 'warning');
 			return {
 				id: robot.id,
 				name: robot.name,
-				siteId: get(site, 'id', 'TABLE.VALUES.UNKNOWN'),
-				siteTitle: get(site, 'title', 'TABLE.VALUES.UNKNOWN'),
-				isReady: get(robotTwin, 'robotState.isReady.value'),
-				updatedAt: get(robotTwin, 'updatedAt'),
+				siteId: site.id,
+				siteTitle: site.title,
+				isReady: robotTwin.robotState.isReady.value,
+				updatedAt: robotTwin.updatedAt,
 				alerts: {
-					danger: alertDanger.length,
-					warning: alertWarn.length
+					danger: danger.length,
+					warning: warn.length
 				}
 			};
 		}),

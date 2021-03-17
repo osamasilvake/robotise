@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { AppConfigService, LoggerService } from '..';
 
@@ -8,7 +8,7 @@ class InterceptorService {
 			(response) => {
 				return response;
 			},
-			(err) => {
+			(err: AxiosError) => {
 				return new Promise((_resolve, reject) => {
 					const response = err?.response;
 					const data = response?.data;
@@ -16,8 +16,8 @@ class InterceptorService {
 
 					// log error on console
 					// send logs to server
-					// stop repition in-case if logs api fails
-					if (config.url !== AppConfigService.AppServices.COMMON.LOGS) {
+					// stop repetition in-case if logs api fails
+					if (config?.url !== AppConfigService.AppServices.COMMON.LOGS) {
 						LoggerService.sendLogs(err);
 					}
 

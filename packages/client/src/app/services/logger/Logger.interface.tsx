@@ -1,11 +1,11 @@
 export interface LogInterface extends LogErrorInterface {
 	env: string;
-	level: LogLevelInterface;
+	level: string;
 	token: string;
-	logger: string;
-	origin: string;
 	version: string;
+	pageUrl: string;
 	timestamp: string;
+	origin: string;
 }
 
 export interface LogErrorInterface {
@@ -16,8 +16,4 @@ export interface LogErrorInterface {
 	stacktrace: string;
 	status: number;
 	url: string;
-}
-
-export interface LogLevelInterface {
-	label: string;
 }

@@ -4,17 +4,19 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import ChangeLogService from '../../screens/information/change-log/ChangeLog.service';
 import { AppConfigService, StorageService } from '../../services';
 import { RootStateInterface } from '../Slices.interface';
-import { ThemePaletteTypeEnum } from './General.slice.enum';
+import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
 import { GeneralSliceInterface } from './General.slice.interface';
 
 // storage items
-const themePalette = StorageService.get(AppConfigService.AppLocalStorageItems.ThemePalette);
+const theme = StorageService.get(AppConfigService.AppLocalStorageItems.ThemePalette);
+const language = StorageService.get(AppConfigService.AppLocalStorageItems.ChangeLanguage);
 const drawerState = StorageService.get(AppConfigService.AppLocalStorageItems.DrawerState);
 
 // initial state
 export const initialState: GeneralSliceInterface = {
-	openDrawer: drawerState === '' ? true : drawerState,
-	themePalette: themePalette || ThemePaletteTypeEnum.DARK,
+	openDrawer: drawerState,
+	themePalette: theme || GeneralThemePaletteTypeEnum.DARK,
+	currentLanguage: language || GeneralLanguageTypeEnum.EN,
 	triggerMessage: { show: false },
 	changeLog: ''
 };
@@ -30,6 +32,9 @@ const dataSlice = createSlice({
 		applyThemePalette: (state, action) => {
 			state.themePalette = action.payload;
 		},
+		changeLanguage: (state, action) => {
+			state.currentLanguage = action.payload;
+		},
 		triggerMessage: (state, action) => {
 			state.triggerMessage = action.payload;
 		},
@@ -44,6 +49,7 @@ const dataSlice = createSlice({
 export const {
 	setDrawerState,
 	applyThemePalette,
+	changeLanguage,
 	triggerMessage,
 	fetchChangeLog,
 	reset
@@ -69,27 +75,41 @@ export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: 
 
 /**
  * apply theme palette
- * @param themePalette
+ * @param theme
  */
-export const GeneralApplyThemePalette = (themePalette: ThemePaletteTypeEnum) => async (
+export const GeneralApplyThemePalette = (theme: GeneralThemePaletteTypeEnum) => async (
 	dispatch: Dispatch
 ) => {
 	// dispatch: apply theme palette
-	dispatch(applyThemePalette(themePalette));
+	dispatch(applyThemePalette(theme));
 
 	// store it in local_storage
-	StorageService.put(AppConfigService.AppLocalStorageItems.ThemePalette, themePalette);
+	StorageService.put(AppConfigService.AppLocalStorageItems.ThemePalette, theme);
+};
+
+/**
+ * change language
+ * @param language
+ */
+export const GeneralChangeLanguage = (language: GeneralLanguageTypeEnum) => async (
+	dispatch: Dispatch
+) => {
+	// dispatch: change language
+	dispatch(changeLanguage(language));
+
+	// store it in local_storage
+	StorageService.put(AppConfigService.AppLocalStorageItems.ChangeLanguage, language);
 };
 
 /**
  * trigger message
- * @param messagePayload
+ * @param message
  */
-export const GeneralTriggerMessage = (messagePayload: TriggerMessageInterface) => async (
+export const GeneralTriggerMessage = (message: TriggerMessageInterface) => async (
 	dispatch: Dispatch
 ) => {
 	// dispatch: trigger message
-	dispatch(triggerMessage(messagePayload));
+	dispatch(triggerMessage(message));
 };
 
 /**

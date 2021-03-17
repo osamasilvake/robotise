@@ -12,35 +12,37 @@ import {
 	Tooltip,
 	Typography
 } from '@material-ui/core';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
 import MenuIcon from '@material-ui/icons/Menu';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import clsx from 'clsx';
-import { FC, MouseEvent, useState } from 'react';
+import i18next from 'i18next';
+import { FC, MouseEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
 import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
-import {
-	GeneralApplyThemePalette,
-	generalSelector,
-	GeneralSetDrawerState
-} from '../../../slices/general/General.slice';
-import { ThemePaletteTypeEnum } from '../../../slices/general/General.slice.enum';
+import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Badge from '../../common/badge/Badge';
 import { appBarStyles } from './AppBar.styles';
+import Language from './language/Language';
+import QRCode from './qr-code/QRCode';
+import ThemePalette from './theme/Theme';
 
 const AppBarCustom: FC = () => {
-	const { t } = useTranslation('TOOLTIPS');
+	const { t } = useTranslation(['APPBAR', 'TOOLTIPS']);
 	const appBarClasses = appBarStyles();
 
 	const dispatch = useDispatch();
 	const { user } = useSelector(authSelector);
-	const { openDrawer, themePalette } = useSelector(generalSelector);
+	const { openDrawer, currentLanguage } = useSelector(generalSelector);
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+	useEffect(() => {
+		// change language
+		i18next.changeLanguage(currentLanguage);
+	}, [currentLanguage]);
 
 	/**
 	 * handle menu open
@@ -60,13 +62,6 @@ const AppBarCustom: FC = () => {
 	const handleDrawerOpen = () => dispatch(GeneralSetDrawerState(true));
 
 	/**
-	 * dispatch: apply theme palette
-	 * @param themePalette
-	 */
-	const handleThemePalette = (themePalette: ThemePaletteTypeEnum) =>
-		dispatch(GeneralApplyThemePalette(themePalette));
-
-	/**
 	 * dispatch: logout
 	 */
 	const handleLogout = () => dispatch(AuthLogout());
@@ -81,7 +76,7 @@ const AppBarCustom: FC = () => {
 			})}>
 			<Toolbar className={appBarClasses.sToolbar} disableGutters>
 				{!openDrawer && (
-					<Tooltip title={String(t('DRAWER.OPEN'))}>
+					<Tooltip title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
 						<IconButton hidden edge="start" onClick={handleDrawerOpen}>
 							<MenuIcon />
 						</IconButton>
@@ -89,6 +84,10 @@ const AppBarCustom: FC = () => {
 				)}
 
 				<Box className={appBarClasses.sOptions}>
+					{/* QR code */}
+					<QRCode />
+
+					{/* Account */}
 					<IconButton edge="end" onClick={handleMenuOpen}>
 						<Box className={appBarClasses.sAccountDetail}>
 							<Typography variant="subtitle2">{user?.data.display_name}</Typography>
@@ -114,6 +113,7 @@ const AppBarCustom: FC = () => {
 						anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
 						transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
 						<List disablePadding>
+							{/* User Info */}
 							<ListItem divider>
 								<ListItemText
 									primary={user?.data.display_name}
@@ -122,38 +122,17 @@ const AppBarCustom: FC = () => {
 							</ListItem>
 
 							{/* Light / Dark Mode */}
-							<ListItem
-								button
-								onClick={() =>
-									handleThemePalette(
-										themePalette === ThemePaletteTypeEnum.LIGHT
-											? ThemePaletteTypeEnum.DARK
-											: ThemePaletteTypeEnum.LIGHT
-									)
-								}>
-								<ListItemIcon>
-									{themePalette === ThemePaletteTypeEnum.LIGHT ? (
-										<WbSunnyIcon className={appBarClasses.sColorThemeLight} />
-									) : (
-										<Brightness3Icon />
-									)}
-								</ListItemIcon>
-								<ListItemText
-									primary={t('THEME.TITLE')}
-									secondary={
-										themePalette === ThemePaletteTypeEnum.LIGHT
-											? t('THEME.LIGHT')
-											: t('THEME.DARK')
-									}
-								/>
-							</ListItem>
+							<ThemePalette />
+
+							{/* Language */}
+							<Language />
 
 							{/* Logout */}
 							<ListItem button onClick={handleLogout}>
 								<ListItemIcon>
 									<PowerSettingsNewIcon />
 								</ListItemIcon>
-								<ListItemText primary="Logout" />
+								<ListItemText primary={t('LOGOUT')} />
 							</ListItem>
 						</List>
 					</Popover>

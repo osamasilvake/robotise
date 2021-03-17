@@ -83,6 +83,11 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 						}
 					}
 				}
+			},
+			MuiTooltip: {
+				tooltip: {
+					backgroundColor: AppConfigService.AppVariables.colors.c2
+				}
 			}
 		}
 	};

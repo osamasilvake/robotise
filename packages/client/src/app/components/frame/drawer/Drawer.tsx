@@ -45,6 +45,7 @@ const DrawerCustom: FC = () => {
 			}
 		};
 		window.addEventListener('resize', handleResize);
+		window.addEventListener('load', handleResize);
 
 		return () => window.removeEventListener('resize', handleResize);
 	}, [dispatch, openDrawer]);

@@ -11,7 +11,7 @@ import ScrollTop from './components/frame/scroll-top/ScrollTop';
 import Routes from './routes/Routes';
 import { InterceptorService, LoggerService } from './services';
 import { generalSelector } from './slices/general/General.slice';
-import { ThemePaletteTypeEnum } from './slices/general/General.slice.enum';
+import { GeneralThemePaletteTypeEnum } from './slices/general/General.slice.enum';
 import { Dark, Light } from './themes';
 import Options from './themes/options';
 
@@ -21,10 +21,12 @@ LoggerService.init();
 
 const App: FC = () => {
 	const { themePalette } = useSelector(generalSelector);
+
+	// change theme
 	const theme = useMemo(
 		() =>
 			createMuiTheme(
-				themePalette === ThemePaletteTypeEnum.DARK ? Dark(Options) : Light(Options)
+				themePalette === GeneralThemePaletteTypeEnum.DARK ? Dark(Options) : Light(Options)
 			),
 		[themePalette]
 	);

@@ -33,11 +33,7 @@
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"
 		},
-		"THEME": {
-			"TITLE": "Theme",
-			"LIGHT": "Light",
-			"DARK": "Dark"
-		}
+		"QR_CODE": "Scan QR to open it on mobile"
 	},
 	"MESSAGE": {
 		"AUTH": {
@@ -46,7 +42,8 @@
 		}
 	},
 	"COMMON": {
-		"LOADING": "Loading..."
+		"LOADING": "Loading...",
+		"ROWS_PER_PAGE": "Per Page"
 	},
 	"ERRORS": {
 		"E404": {
@@ -96,6 +93,19 @@
 				}
 			}
 		}
+	},
+	"APPBAR": {
+		"THEME": {
+			"TITLE": "Theme",
+			"LIGHT": "Light",
+			"DARK": "Dark"
+		},
+		"LANGUAGE": {
+			"TITLE": "Language",
+			"EN": "English",
+			"DE": "Deutsch"
+		},
+		"LOGOUT": "Logout"
 	},
 	"SIDEBAR": {
 		"BUSINESS": {

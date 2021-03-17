@@ -12,6 +12,7 @@ import { privateLayoutStyles } from './PrivateLayout.styles';
 
 const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
 	const privateLayoutClasses = privateLayoutStyles();
+
 	const { openDrawer } = useSelector(generalSelector);
 
 	return (

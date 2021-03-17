@@ -1,21 +1,11 @@
+import { AxiosError } from 'axios';
 import log from 'loglevel';
 
 import { momentISOString } from '../../utilities/methods/Moment';
-import { get } from '../../utilities/methods/ObjectUtilities';
 import { AppConfigService, HttpClientService, StorageService } from '..';
-import { LogInterface } from './Logger.interface';
+import { LogErrorInterface, LogInterface } from './Logger.interface';
 
 class LoggerService {
-	private mapKeys = [
-		{ key: 'message', prop: 'message' },
-		{ key: 'config.method', prop: 'method' },
-		{ key: 'name', prop: 'name' },
-		{ key: 'stack', prop: 'stacktrace' },
-		{ key: 'response.status', prop: 'status' },
-		{ key: 'response.data', prop: 'payload' },
-		{ key: 'config.url', prop: 'url' }
-	];
-
 	/**
 	 * set log level based on environment
 	 */
@@ -31,12 +21,12 @@ class LoggerService {
 	 * send logs to the server
 	 * @param err
 	 */
-	sendLogs = <T,>(err: T) => {
-		// create error log payload
-		const errorPayload = this.createLog(err);
+	sendLogs = (err: AxiosError) => {
+		// create error log
+		const errorLog: LogErrorInterface = this.createErrorLog(err);
 
 		// log error on console
-		log.error(errorPayload);
+		log.error(errorLog);
 
 		// send logs to the server
 		const request: LogInterface[] = [
@@ -44,11 +34,11 @@ class LoggerService {
 				env: AppConfigService.env,
 				level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
 				token: StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken),
-				url: window.location.href,
 				version: AppConfigService.envVersion,
+				pageUrl: window.location.href,
 				timestamp: momentISOString(),
-				origin: 'roc-app-client',
-				...JSON.parse(errorPayload.toString())
+				origin: AppConfigService.envRealm,
+				...errorLog
 			}
 		];
 		HttpClientService.post(
@@ -63,24 +53,19 @@ class LoggerService {
 	};
 
 	/**
-	 * create the log
+	 * create the error log
 	 * @param log
-	 * @param stringify
 	 */
-	createLog = <T,>(log: T, stringify = true) => {
-		const data = this.mapKeys.reduce<Record<string, string>>((acc, item) => {
-			const key = item.prop;
-			const value = get(log, item.key);
-			if (value) {
-				if (key === 'payload') {
-					acc[key] = JSON.stringify(value);
-				} else {
-					acc[key] = value;
-				}
-			}
-			return acc;
-		}, {});
-		return stringify ? JSON.stringify(data) : data;
+	createErrorLog = (log: AxiosError): LogErrorInterface => {
+		return {
+			name: log.name,
+			message: log.message,
+			stacktrace: log.stack || '',
+			method: log.config.method || '',
+			status: log.response?.status || 0,
+			payload: JSON.stringify(log.response?.data),
+			url: log.config.url || ''
+		};
 	};
 }
 const instance = new LoggerService();

@@ -72,9 +72,3 @@ const RobotsList: FC = () => {
 	);
 };
 export default RobotsList;
-
-/**
- * Checks:
- * 01: Sorting through API
- * 02: Testing: slices(robot-twins, robots, sites, auth), methods, hooks
- */

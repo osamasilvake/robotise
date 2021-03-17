@@ -3,7 +3,6 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import { get } from '../../utilities/methods/ObjectUtilities';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/JsonApi';
 import { triggerMessage } from '../general/General.slice';
 import { updateRobotTwins } from '../robots/Robots.slice';
@@ -94,12 +93,10 @@ const countAlerts = (payload: RobotTwinsSliceResponseInterface) => {
 	return Object.keys(payload.dataById).reduce(
 		(acc, key) => {
 			const robotTwin = payload.dataById[key];
-			const allAlerts = get(robotTwin, 'alerts.value', []);
-
+			const allAlerts = robotTwin.alerts.value;
 			if (allAlerts.length) {
-				const danger = allAlerts.filter((f: { level: string }) => f.level === 'danger');
-				const warn = allAlerts.filter((f: { level: string }) => f.level === 'warning');
-
+				const danger = allAlerts.filter((f) => f.level === 'danger');
+				const warn = allAlerts.filter((f) => f.level === 'warning');
 				acc.danger = acc.danger += danger.length;
 				acc.warning = acc.warning += warn.length;
 			}

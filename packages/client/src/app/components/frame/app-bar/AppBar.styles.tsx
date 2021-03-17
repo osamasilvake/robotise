@@ -25,6 +25,9 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 		padding: theme.spacing(0, 2)
 	},
 	sOptions: {
+		alignItems: 'center',
+		display: 'flex',
+		justifyContent: 'flex-end',
 		flexGrow: 1,
 		textAlign: 'right'
 	},
@@ -34,8 +37,5 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 	},
 	sAccountDetailSubtitle: {
 		marginTop: theme.spacing(-0.25)
-	},
-	sColorThemeLight: {
-		fill: AppConfigService.AppVariables.colors.c11
 	}
 }));

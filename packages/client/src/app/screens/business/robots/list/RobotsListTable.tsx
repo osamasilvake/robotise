@@ -1,6 +1,7 @@
 import { Paper, Table } from '@material-ui/core';
 import { TableContainer, TablePagination } from '@material-ui/core';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../services';
 import {
@@ -16,6 +17,7 @@ import { columns } from './RobotsListTableHead.list';
 const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
 
+	const { t } = useTranslation('COMMON');
 	const robotsListClasses = robotsListStyles();
 
 	const [order, setOrder] = useState<RobotsListTableHeadOrder>('desc');
@@ -87,6 +89,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 				component="div"
 				count={content ? content.meta.totalDocs : 0}
 				page={page}
+				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPage={rowsPerPage}
 				onChangePage={handleChangePage}
 				onChangeRowsPerPage={handleChangeRowsPerPage}

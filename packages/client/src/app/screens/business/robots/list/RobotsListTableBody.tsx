@@ -42,7 +42,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 				type = RobotsListTableSortTypeEnum.DATE;
 				break;
 			case columns[4].id:
-				type = RobotsListTableSortTypeEnum.OBJECT;
+				type = RobotsListTableSortTypeEnum.OBJECT_ALERT;
 				break;
 			default:
 				return content.data;
@@ -62,7 +62,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 			switch (type) {
 				case RobotsListTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
-				case RobotsListTableSortTypeEnum.OBJECT:
+				case RobotsListTableSortTypeEnum.OBJECT_ALERT:
 					if (a.alerts.danger || b.alerts.danger) {
 						return a.alerts.danger > b.alerts.danger
 							? 1

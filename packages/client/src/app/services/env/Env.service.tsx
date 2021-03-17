@@ -69,7 +69,7 @@ class EnvService {
 	 * realm
 	 */
 	get envRealm() {
-		return process.env.REACT_APP_AUTH_REALM;
+		return process.env.REACT_APP_AUTH_REALM || '';
 	}
 
 	/**

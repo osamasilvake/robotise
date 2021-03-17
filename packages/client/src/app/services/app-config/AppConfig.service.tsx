@@ -67,6 +67,7 @@ class AppConfigService extends EnvService {
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
 				robots: {
+					robotTwinsRefreshInMs: 10000,
 					pageSizes: [5, 10, 15, 20, 50]
 				}
 			}
@@ -112,6 +113,7 @@ class AppConfigService extends EnvService {
 		return {
 			JWTAccessToken: 'robotise_jwt_access_token',
 			ThemePalette: 'robotise_theme_palette',
+			ChangeLanguage: 'robotise_change_language',
 			DrawerState: 'robotise_drawer_state'
 		};
 	}
@@ -135,12 +137,19 @@ class AppConfigService extends EnvService {
 				name: '/assets/svg/logos/robotise-name.svg'
 			},
 			robotise: {
-				path: '/assets/images/robotise/',
-				format: '.jpg'
+				format: '.jpg',
+				path: '/assets/images/robotise/'
 			},
 			avatar: {
-				path: '/assets/svg/avatars/avatar.svg',
-				name: 'avatar'
+				name: 'avatar',
+				path: '/assets/svg/avatars/avatar.svg'
+			},
+			qrCode: {
+				name: 'qr code',
+				path: {
+					dark: '/assets/svg/qr-code/qr-dark.svg',
+					light: '/assets/svg/qr-code/qr-light.svg'
+				}
 			}
 		};
 	}

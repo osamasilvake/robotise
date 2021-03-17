@@ -26,7 +26,10 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 			}
 		};
 		window.addEventListener('load', init);
-		const timeoutID = window.setInterval(init, 10000);
+		const timeoutID = window.setInterval(
+			init,
+			AppConfigService.AppOptions.screens.robots.robotTwinsRefreshInMs
+		);
 
 		return () => window.clearInterval(timeoutID);
 	}, [dispatch, user]);

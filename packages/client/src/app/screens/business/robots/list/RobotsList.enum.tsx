@@ -1,5 +1,5 @@
 export enum RobotsListTableSortTypeEnum {
 	STRING,
 	DATE,
-	OBJECT
+	OBJECT_ALERT
 }

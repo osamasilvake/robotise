@@ -33,11 +33,11 @@ const RobotsList: FC = () => {
 			pageState.current.page = page;
 			pageState.current.rowsPerPage = rowsPerPage;
 		} else {
-			const cond1 = pageState.current.page !== -1; // page switch back and forth
-			const cond2 = content === null && !cond1; // init
-			const cond3 = page > pageState.current.page; // detect next click
-			if (cond1 || cond2) {
-				if (cond3) {
+			const condition1 = pageState.current.page !== -1; // page switch back and forth
+			const condition2 = content === null && !condition1; // init
+			const condition3 = page > pageState.current.page; // detect next click
+			if (condition1 || condition2) {
+				if (condition3) {
 					// fetch sites, robot twins and robots and map them to create robots list
 					dispatch(RobotsFetchList(page + 1, rowsPerPage));
 

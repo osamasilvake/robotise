@@ -1,4 +1,4 @@
 export enum StorageTypeEnum {
-	PERSISTANT,
+	PERSISTENT,
 	SESSION
 }

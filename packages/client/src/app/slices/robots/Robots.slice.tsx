@@ -1,5 +1,4 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
-import { WritableDraft } from 'immer/dist/internal';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
@@ -162,14 +161,14 @@ const robotsMapping = (
  * @returns
  */
 const RobotsOrganizeState = (
-	state: WritableDraft<RobotsSliceResponseAllInterface>,
+	state: RobotsSliceResponseAllInterface,
 	action: RobotsSliceResponseAllInterface
 ) => {
-	const cond1 = action.meta.page > 1; // first page
-	const cond2 = action.meta.nextPage > state.meta.nextPage; // between pages
-	const cond3 = action.meta.nextPage === null; // last page
-	if (cond1 && (cond2 || cond3)) {
-		action.meta.nextPage = cond3 ? state.meta.nextPage + 1 : action.meta.nextPage;
+	const condition1 = action.meta.page > 1; // first page
+	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
+	const condition3 = action.meta.nextPage === null; // last page
+	if (condition1 && (condition2 || condition3)) {
+		action.meta.nextPage = condition3 ? state.meta.nextPage + 1 : action.meta.nextPage;
 		return {
 			...state,
 			meta: {

@@ -8,7 +8,7 @@ class StorageService {
 	 */
 	exist = (key: string, storageType?: StorageTypeEnum): boolean => {
 		switch (storageType) {
-			case StorageTypeEnum.PERSISTANT:
+			case StorageTypeEnum.PERSISTENT:
 				return localStorage.getItem(key) !== null;
 
 			case StorageTypeEnum.SESSION:
@@ -27,7 +27,7 @@ class StorageService {
 	 */
 	put = <T,>(key: string, value: T, storageType?: StorageTypeEnum) => {
 		switch (storageType) {
-			case StorageTypeEnum.PERSISTANT:
+			case StorageTypeEnum.PERSISTENT:
 				localStorage.setItem(key, JSON.stringify(value));
 				break;
 
@@ -47,8 +47,8 @@ class StorageService {
 	 */
 	get = (key: string, storageType?: StorageTypeEnum) => {
 		switch (storageType) {
-			case StorageTypeEnum.PERSISTANT:
-				if (this.exist(key, StorageTypeEnum.PERSISTANT)) {
+			case StorageTypeEnum.PERSISTENT:
+				if (this.exist(key, StorageTypeEnum.PERSISTENT)) {
 					const value = localStorage.getItem(key);
 					return value ? JSON.parse(value) : value;
 				}
@@ -75,8 +75,8 @@ class StorageService {
 	 */
 	remove = (key: string, storageType?: StorageTypeEnum) => {
 		switch (storageType) {
-			case StorageTypeEnum.PERSISTANT:
-				if (this.exist(key, StorageTypeEnum.PERSISTANT)) {
+			case StorageTypeEnum.PERSISTENT:
+				if (this.exist(key, StorageTypeEnum.PERSISTENT)) {
 					localStorage.removeItem(key);
 				}
 				break;
@@ -88,7 +88,7 @@ class StorageService {
 				break;
 
 			default:
-				if (this.exist(key, StorageTypeEnum.PERSISTANT)) {
+				if (this.exist(key, StorageTypeEnum.PERSISTENT)) {
 					localStorage.removeItem(key);
 				}
 		}

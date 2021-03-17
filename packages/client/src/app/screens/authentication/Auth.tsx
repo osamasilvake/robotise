@@ -21,7 +21,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				// dispatch: requests a new token before it expires
 				dispatch(AuthRefreshToken(user.exp));
 
-				// disptach: robot twins
+				// dispatch: robot twins
 				dispatch(RobotTwinsFetchList());
 			}
 		};

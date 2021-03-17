@@ -100,7 +100,7 @@ class AuthService {
 	setAccessToken = (accessToken: string, storageType: StorageTypeEnum) => {
 		axios.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 
-		if (storageType === StorageTypeEnum.PERSISTANT) {
+		if (storageType === StorageTypeEnum.PERSISTENT) {
 			StorageService.put(AppConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
 		} else {
 			StorageService.put(

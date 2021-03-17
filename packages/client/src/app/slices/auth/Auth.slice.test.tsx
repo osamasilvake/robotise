@@ -20,7 +20,7 @@ describe('Authentication', () => {
 	});
 
 	test('Access token must be valid', () => {
-		AuthService.setAccessToken(accessToken, StorageTypeEnum.PERSISTANT);
+		AuthService.setAccessToken(accessToken, StorageTypeEnum.PERSISTENT);
 		expect(AuthService.authTokenValid(accessToken)).toBeTruthy();
 	});
 

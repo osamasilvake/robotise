@@ -67,7 +67,7 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 			// set token
 			AuthService.setAccessToken(
 				res.access_token,
-				payload.rememberMe ? StorageTypeEnum.PERSISTANT : StorageTypeEnum.SESSION
+				payload.rememberMe ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
 			);
 
 			// decode user detail from access token
@@ -109,13 +109,13 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						// local-storage
 						const isLocal = StorageService.get(
 							AppConfigService.AppLocalStorageItems.JWTAccessToken,
-							StorageTypeEnum.PERSISTANT
+							StorageTypeEnum.PERSISTENT
 						);
 
 						// set token
 						AuthService.setAccessToken(
 							res.access_token,
-							isLocal ? StorageTypeEnum.PERSISTANT : StorageTypeEnum.SESSION
+							isLocal ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
 						);
 
 						// decode user detail from access token

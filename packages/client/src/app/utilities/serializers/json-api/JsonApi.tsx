@@ -56,13 +56,13 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 					updatedAt: data.updatedAt,
 					robotState: {
 						isReady: {
-							value: data.state?.reported?.robotState?.isReady,
-							updatedAt: data.metadata?.reported?.robotState?.isReady?.updatedAt
+							value: data.state?.reported.robotState.isReady,
+							updatedAt: data.metadata?.reported.robotState.isReady?.updatedAt
 						}
 					},
 					alerts: {
-						value: data.state?.reported?.alerts,
-						updatedAt: data.metadata?.reported?.alerts?.updatedAt
+						value: data.state?.reported.alerts,
+						updatedAt: data.metadata?.reported.alerts?.updatedAt
 					}
 				};
 				return result;

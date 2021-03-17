@@ -34,7 +34,10 @@ class LoggerService {
 				env: AppConfigService.env,
 				level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
 				token: StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken),
-				version: AppConfigService.envVersion,
+				version: {
+					app: AppConfigService.envAppVersion,
+					api: AppConfigService.envApiVersion
+				},
 				pageUrl: window.location.href,
 				timestamp: momentISOString(),
 				origin: AppConfigService.envRealm,

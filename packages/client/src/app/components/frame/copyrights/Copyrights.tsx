@@ -1,6 +1,7 @@
 import { Link, Typography } from '@material-ui/core';
 import { FC } from 'react';
 
+import { AppConfigService } from '../../../services';
 import { momentCurrentYear } from '../../../utilities/methods/Moment';
 import { CopyrightsInterface } from './Copyrights.interface';
 
@@ -11,17 +12,17 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 		<Typography variant="body2" color="textSecondary" align="center">
 			{!short && (
 				<>
-					<Link href={process.env.REACT_APP_URL} target="_blank">
-						{process.env.REACT_APP_AUTHOR}
+					<Link href={AppConfigService.envWebsite} target="_blank">
+						{AppConfigService.envAuthor}
 					</Link>
 					{' © '}
 					{momentCurrentYear()}
 					{' • '}
-					{process.env.REACT_APP_NAME?.toUpperCase()}
+					{AppConfigService.envAppName.toUpperCase()}
 					{': '}
 				</>
 			)}
-			v{process.env.REACT_APP_VERSION}
+			v{AppConfigService.envApiVersion}
 		</Typography>
 	);
 };

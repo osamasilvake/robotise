@@ -41,7 +41,7 @@ class EnvService {
 	 * app name
 	 */
 	get envAppName() {
-		return process.env.REACT_APP_NAME?.toUpperCase();
+		return process.env.REACT_APP_NAME?.toUpperCase() || '';
 	}
 
 	/**
@@ -52,10 +52,24 @@ class EnvService {
 	}
 
 	/**
-	 * version
+	 * app version
 	 */
-	get envVersion() {
+	get envAppVersion() {
+		return process.env.REACT_APP_VERSION || '';
+	}
+
+	/**
+	 * api version
+	 */
+	get envApiVersion() {
 		return process.env.REACT_APP_API_VERSION || '';
+	}
+
+	/**
+	 * website
+	 */
+	get envWebsite() {
+		return process.env.REACT_APP_URL || '';
 	}
 
 	/**
@@ -76,7 +90,7 @@ class EnvService {
 	 * api url
 	 */
 	get envApiUrl() {
-		return `${this.envBaseURL}/${this.envVersion}`;
+		return `${this.envBaseURL}/${this.envApiVersion}`;
 	}
 }
 export default EnvService;

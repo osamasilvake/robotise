@@ -10,7 +10,7 @@ class InterceptorService {
 			},
 			(err: AxiosError) => {
 				return new Promise((_resolve, reject) => {
-					const response = err?.response;
+					const response = err.response;
 					const data = response?.data;
 					const config = response?.config;
 

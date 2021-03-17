@@ -24,7 +24,7 @@ const RobotsListTableHead: FC<RobotsListTableHeadInterface> = (props) => {
 	return (
 		<TableHead>
 			<TableRow>
-				{columns?.map((column: RobotsListTableColumnInterface) => (
+				{columns.map((column: RobotsListTableColumnInterface) => (
 					<TableCell
 						key={column.id}
 						align={column.align}

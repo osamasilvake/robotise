@@ -5,15 +5,12 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/JsonApi';
 import { triggerMessage } from '../general/General.slice';
-import { updateRobotTwins } from '../robots/Robots.slice';
 import { RootStateInterface } from '../Slices.interface';
-import {
-	RobotTwinsSliceInterface,
-	RobotTwinsSliceResponseInterface
-} from './RobotTwins.slice.interface';
+import { RTSInterface, RTSResponseInterface } from './RobotTwins.slice.interface';
+import { updateRobotTwins } from './RobotTwinsSummary.slice';
 
 // initial state
-export const initialState: RobotTwinsSliceInterface = {
+export const initialState: RTSInterface = {
 	loading: false,
 	content: null,
 	errors: null
@@ -89,7 +86,7 @@ export const RobotTwinsFetchList = () => async (dispatch: Dispatch) => {
  * @param payload
  * @returns
  */
-const countAlerts = (payload: RobotTwinsSliceResponseInterface) => {
+const countAlerts = (payload: RTSResponseInterface) => {
 	return Object.keys(payload.dataById).reduce(
 		(acc, key) => {
 			const robotTwin = payload.dataById[key];

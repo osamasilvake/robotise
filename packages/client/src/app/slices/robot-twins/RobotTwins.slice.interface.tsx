@@ -1,37 +1,37 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 
-export interface RobotTwinsSliceInterface {
+export interface RTSInterface {
 	loading: boolean;
-	content: RobotTwinsSliceResponseInterface | null;
+	content: RTSResponseInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface RobotTwinsSliceResponseInterface {
-	data: RobotTwinsSliceResponseDataInterface[];
-	dataById: RobotTwinsSliceResponseDataByIdInterface;
-	alerts?: RobotTwinsSliceResponseAllAlertsInterface;
+export interface RTSResponseInterface {
+	data: RTSResponseDataInterface[];
+	dataById: RTSResponseDataByIdInterface;
+	alerts?: RTSResponseAllAlertsInterface;
 }
 
-export interface RobotTwinsSliceResponseDataInterface {
+export interface RTSResponseDataInterface {
 	id: string;
 	updatedAt: string;
 	robot: {
 		id: string;
 	};
 	robotState: {
-		isReady: RobotTwinsSliceResponseDataType<boolean>;
+		isReady: RTSResponseDataType<boolean>;
 	};
 	alerts: {
 		updatedAt: string;
-		value: RobotTwinsSliceResponseDataAlertsValueInterface[];
+		value: RTSResponseDataAlertsValueInterface[];
 	};
 }
 
-export interface RobotTwinsSliceResponseDataByIdInterface {
-	[key: string]: RobotTwinsSliceResponseDataInterface;
+export interface RTSResponseDataByIdInterface {
+	[key: string]: RTSResponseDataInterface;
 }
 
-export interface RobotTwinsSliceResponseDataAlertsValueInterface {
+export interface RTSResponseDataAlertsValueInterface {
 	code: string;
 	conditions: string[];
 	createdAt: string;
@@ -40,12 +40,12 @@ export interface RobotTwinsSliceResponseDataAlertsValueInterface {
 	origin: string;
 }
 
-export interface RobotTwinsSliceResponseAllAlertsInterface {
+export interface RTSResponseAllAlertsInterface {
 	danger: number;
 	warning: number;
 }
 
-export interface RobotTwinsSliceResponseDataType<T> {
+export interface RTSResponseDataType<T> {
 	updatedAt: string;
 	value: T;
 }

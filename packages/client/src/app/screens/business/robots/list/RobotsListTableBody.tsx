@@ -4,9 +4,9 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-	RobotsSliceResponseAllDataInterface,
-	RobotsSliceResponseAllInterface
-} from '../../../../slices/robots/Robots.slice.interface';
+	RTSSContentInterface,
+	RTSSDataResponseInterface
+} from '../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { momentFormat1, momentSort } from '../../../../utilities/methods/Moment';
 import { RobotsListTableSortTypeEnum } from './RobotsList.enum';
 import {
@@ -28,9 +28,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 * @param content
 	 * @returns
 	 */
-	const sortTableData = (
-		content: RobotsSliceResponseAllInterface
-	): RobotsSliceResponseAllDataInterface[] => {
+	const sortTableData = (content: RTSSContentInterface): RTSSDataResponseInterface[] => {
 		let type;
 		switch (orderBy) {
 			case columns[0].id:
@@ -58,7 +56,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 * @returns
 	 */
 	const sortByProperty = (key: RobotsListTableHeadId, type: RobotsListTableSortTypeEnum) => {
-		return (a: RobotsSliceResponseAllDataInterface, b: RobotsSliceResponseAllDataInterface) => {
+		return (a: RTSSDataResponseInterface, b: RTSSDataResponseInterface) => {
 			switch (type) {
 				case RobotsListTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
@@ -88,7 +86,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 * @returns
 	 */
 	const setCellValue = (
-		robot: RobotsSliceResponseAllDataInterface,
+		robot: RTSSDataResponseInterface,
 		column: RobotsListTableColumnInterface
 	) => {
 		const value = robot[column.id];
@@ -118,7 +116,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((robot: RobotsSliceResponseAllDataInterface) => {
+					.map((robot: RTSSDataResponseInterface) => {
 						return (
 							<TableRow
 								hover

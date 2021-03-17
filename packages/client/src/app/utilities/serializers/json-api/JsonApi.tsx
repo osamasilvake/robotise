@@ -1,8 +1,8 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 import log from 'loglevel';
 
-import { RobotTwinsSliceResponseDataInterface } from '../../../slices/robot-twins/RobotTwins.slice.interface';
-import { RobotsSliceResponseDataInterface } from '../../../slices/robots/Robots.slice.interface';
+import { RTSResponseDataInterface } from '../../../slices/robot-twins/RobotTwins.slice.interface';
+import { RTSSDataResponseInterface } from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { SitesSliceResponseDataInterface } from '../../../slices/sites/Sites.slice.interface';
 import {
 	DeserializeRelationshipProperties,
@@ -50,7 +50,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 		},
 		transform: (data) => {
 			try {
-				const result: RobotTwinsSliceResponseDataInterface = {
+				const result: RTSResponseDataInterface = {
 					id: data.id,
 					robot: data.robot,
 					updatedAt: data.updatedAt,
@@ -78,10 +78,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce(
-		(
-			acc: { [x: string]: RobotTwinsSliceResponseDataInterface },
-			item: RobotTwinsSliceResponseDataInterface
-		) => {
+		(acc: { [x: string]: RTSResponseDataInterface }, item: RTSResponseDataInterface) => {
 			acc[item.robot.id] = item;
 			return acc;
 		},
@@ -116,10 +113,7 @@ export const deserializeRobots = async <T extends JsonApiResponse>(payload: T) =
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce(
-		(
-			acc: { [x: string]: RobotsSliceResponseDataInterface },
-			item: RobotsSliceResponseDataInterface
-		) => {
+		(acc: { [x: string]: RTSSDataResponseInterface }, item: RTSSDataResponseInterface) => {
 			acc[item.id] = item;
 			return acc;
 		},

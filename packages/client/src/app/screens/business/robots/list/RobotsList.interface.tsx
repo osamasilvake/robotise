@@ -1,9 +1,9 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
-import { RobotsSliceResponseAllInterface } from '../../../../slices/robots/Robots.slice.interface';
+import { RTSSContentInterface } from '../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 
 export interface RobotsListTableInterface {
-	content: RobotsSliceResponseAllInterface | null;
+	content: RTSSContentInterface | null;
 	page: number;
 	setPage: Dispatch<SetStateAction<number>>;
 	rowsPerPage: number;
@@ -25,7 +25,7 @@ export interface RobotsListTableColumnInterface {
 }
 
 export interface RobotsListTableBodyInterface {
-	content: RobotsSliceResponseAllInterface | null;
+	content: RTSSContentInterface | null;
 	order: RobotsListTableHeadOrder;
 	orderBy: RobotsListTableHeadId;
 	page: number;

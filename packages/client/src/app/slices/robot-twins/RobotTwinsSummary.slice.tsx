@@ -9,13 +9,13 @@ import {
 	deserializeRobotTwins,
 	deserializeSites
 } from '../../utilities/serializers/json-api/JsonApi';
-import { RobotTwinsSliceResponseInterface } from '../robot-twins/RobotTwins.slice.interface';
 import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
 import { RootStateInterface } from '../Slices.interface';
-import { RobotsSliceInterface, RobotsSliceResponseAllInterface } from './Robots.slice.interface';
+import { RTSResponseInterface } from './RobotTwins.slice.interface';
+import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
 
 // initial state
-export const initialState: RobotsSliceInterface = {
+export const initialState: RTSSInterface = {
 	loading: false,
 	content: null,
 	errors: null
@@ -45,7 +45,7 @@ const dataSlice = createSlice({
 		updateRobotTwins: (state, action) => {
 			if (state.content && state.content.backup && !state.loading) {
 				// map robots data
-				const result: RobotsSliceResponseAllInterface = robotsMapping(
+				const result: RTSSContentInterface = robotsMapping(
 					state.content.backup.sites,
 					action.payload,
 					state.content
@@ -92,11 +92,7 @@ export const RobotsFetchList = (pageNo: number, rowsPerPage: number) => async (
 			const robots = await deserializeRobots(res[2]);
 
 			// map robots data
-			const result: RobotsSliceResponseAllInterface = robotsMapping(
-				sites,
-				robotTwins,
-				robots
-			);
+			const result: RTSSContentInterface = robotsMapping(sites, robotTwins, robots);
 
 			// dispatch: success
 			dispatch(success({ ...result, meta: { ...result.meta, rowsPerPage } }));
@@ -122,9 +118,9 @@ export const RobotsFetchList = (pageNo: number, rowsPerPage: number) => async (
  */
 const robotsMapping = (
 	sites: SitesSliceResponseInterface,
-	robotTwins: RobotTwinsSliceResponseInterface,
-	robots: RobotsSliceResponseAllInterface
-): RobotsSliceResponseAllInterface => {
+	robotTwins: RTSResponseInterface,
+	robots: RTSSContentInterface
+): RTSSContentInterface => {
 	return {
 		data: Object.keys(robots.dataById).map((key) => {
 			const robot = robots.dataById[key];
@@ -160,10 +156,7 @@ const robotsMapping = (
  * @param action
  * @returns
  */
-const RobotsOrganizeState = (
-	state: RobotsSliceResponseAllInterface,
-	action: RobotsSliceResponseAllInterface
-) => {
+const RobotsOrganizeState = (state: RTSSContentInterface, action: RTSSContentInterface) => {
 	const condition1 = action.meta.page > 1; // first page
 	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
 	const condition3 = action.meta.nextPage === null; // last page

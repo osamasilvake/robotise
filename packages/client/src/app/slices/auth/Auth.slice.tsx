@@ -130,7 +130,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						const message: TriggerMessageInterface = {
 							show: true,
 							severity: TriggerMessageTypeEnum.ERROR,
-							text: err.error_description
+							text: (err && err.error_description) || null
 						};
 
 						// dispatch: failure

@@ -22,7 +22,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 					{': '}
 				</>
 			)}
-			v{AppConfigService.envApiVersion}
+			v{AppConfigService.envAppVersion}
 		</Typography>
 	);
 };

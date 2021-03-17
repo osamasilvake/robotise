@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../../components/common/loader/Loader';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
-import { RobotsFetchList, robotsSelector } from '../../../../slices/robots/Robots.slice';
+import {
+	RobotsFetchList,
+	robotsSelector
+} from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import RobotsListTable from './RobotsListTable';
 
 const RobotsList: FC = () => {

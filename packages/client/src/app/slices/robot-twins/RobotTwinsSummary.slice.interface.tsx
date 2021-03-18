@@ -1,6 +1,7 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
+import { IAlert } from './RobotTwins.slice.interface';
 
 export interface RTSSInterface {
 	loading: boolean;
@@ -9,48 +10,89 @@ export interface RTSSInterface {
 }
 
 export interface RTSSContentInterface {
-	data: RTSSDataResponseInterface[];
+	data: RTSFinalDataInterface[];
 	dataById: RTSSDataByIdInterface;
 	meta: JsonApiMeta;
+	alerts?: RTSAlertsInterface;
 	backup?: {
 		sites: SitesSliceResponseInterface;
 	};
 }
 
-export interface RTSSDataInterface {
+export interface IRobotTwinSummary {
 	id: string;
-	createdAt: string;
-	updatedAt: string;
-	name: string;
-	customerName: string;
-	site: RTSSDataSiteInterface;
-	robotTwin: RTSSDataRobotTwinInterface;
+	robot: {
+		id: string;
+	};
+	site: {
+		id: string;
+	};
+	updatedAt: Date;
+	state: {
+		reported: {
+			name: string;
+			robotState: {
+				isReady: boolean;
+			};
+			alerts: IAlert[];
+		};
+	};
+	metadata: {
+		reported: {
+			name: {
+				updatedAt: Date;
+			};
+			robotState: {
+				isReady: {
+					updatedAt: Date;
+				};
+			};
+			alerts: {
+				updatedAt: Date;
+			};
+		};
+	};
 }
 
 export interface RTSSDataByIdInterface {
-	[key: string]: RTSSDataInterface;
+	[id: string]: RTSMappedResponseDataInterface;
 }
 
-export interface RTSSDataSiteInterface {
+// mapped response data
+export interface RTSMappedResponseDataInterface {
 	id: string;
+	updatedAt: Date;
+	robot: {
+		id: string;
+		name: string;
+	};
+	site: {
+		id: string;
+	};
+	robotState: {
+		isReady: {
+			value: boolean;
+			updatedAt: Date;
+		};
+	};
+	alerts: {
+		value: IAlert[];
+		updatedAt: Date;
+	};
 }
 
-export interface RTSSDataRobotTwinInterface {
-	id: string;
-}
-
-// content -> data
-export interface RTSSDataResponseInterface {
+// final data response
+export interface RTSFinalDataInterface {
 	id: string;
 	name: string;
 	siteId: string;
 	siteTitle: string;
-	updatedAt: string;
 	isReady: boolean;
-	alerts: RTSSDataResponseAlertsInterface;
+	updatedAt: Date;
+	alerts: RTSAlertsInterface;
 }
 
-export interface RTSSDataResponseAlertsInterface {
+export interface RTSAlertsInterface {
 	danger: number;
 	warning: number;
 }

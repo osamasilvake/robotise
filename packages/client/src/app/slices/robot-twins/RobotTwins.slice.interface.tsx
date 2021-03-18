@@ -1,51 +1,274 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
+import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
 
 export interface RTSInterface {
 	loading: boolean;
-	content: RTSResponseInterface | null;
+	content: RTSContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface RTSResponseInterface {
-	data: RTSResponseDataInterface[];
-	dataById: RTSResponseDataByIdInterface;
-	alerts?: RTSResponseAllAlertsInterface;
+export interface RTSContentInterface {
+	data: IRobotTwin[];
+	dataById: RTSSDataByIdInterface;
+	meta: JsonApiMeta;
+	backup?: {
+		sites: SitesSliceResponseInterface;
+	};
 }
 
-export interface RTSResponseDataInterface {
+export interface IRobotTwin {
+	robot: string;
+	site: string;
+	createdAt: Date;
+	updatedAt: Date;
+	state: {
+		reported: {
+			name: string;
+			customerName: string;
+			batteryState: {
+				percentage: number;
+				powerSupplyStatus: string;
+				powerSupplyHealth: string;
+				current: number;
+				voltage: number;
+			};
+			motorRightWheelState: StateMotorStatus;
+			motorLeftWheelState: StateMotorStatus;
+			dockingState: {
+				isDocked: boolean;
+			};
+			emergencyBrakeState: {
+				votedYes: string;
+			};
+			joystickState: {
+				controlMode: string;
+			};
+			lidarState: {
+				receivingScans: boolean;
+			};
+			cameras: {
+				[key: string]: {
+					imageId: string;
+				};
+			};
+			drawerStates: {
+				[key: string]: {
+					drawerType: string;
+					drawerId: string;
+					commandType: string;
+					isClosed: boolean;
+				};
+			};
+			realsenseState: {
+				receivingData: boolean;
+				processingData: boolean;
+			};
+			activity: string;
+			robotState: {
+				isReady: boolean;
+			};
+			alerts: IAlert[];
+			location: {
+				map: {
+					id: string;
+					floor: string;
+				};
+				point: {
+					x: number;
+					y: number;
+					yaw: number;
+				};
+			};
+			orders: {
+				queue: IOrderQueue[];
+				size: number;
+			};
+			inventory: {
+				status: string;
+			};
+			muteSensorState: string;
+			emergencyStopState: {
+				isTriggered: boolean;
+			};
+			lastBootup: Date;
+			lastShutdown: Date;
+		};
+	};
+	metadata: {
+		reported: {
+			name: {
+				updatedAt: Date;
+			};
+			customerName: {
+				updatedAt: Date;
+			};
+			batteryState: {
+				percentage: {
+					updatedAt: Date;
+				};
+				powerSupplyStatus: {
+					updatedAt: Date;
+				};
+				powerSupplyHealth: {
+					updatedAt: Date;
+				};
+				current: {
+					updatedAt: Date;
+				};
+				voltage: {
+					updatedAt: Date;
+				};
+			};
+			motorRightWheelState: MetadataMotorStatus;
+			motorLeftWheelState: MetadataMotorStatus;
+			dockingState: {
+				isDocked: {
+					updatedAt: Date;
+				};
+			};
+			emergencyBrakeState: {
+				votedYes: {
+					updatedAt: Date;
+				};
+			};
+			joystickState: {
+				controlMode: {
+					updatedAt: Date;
+				};
+			};
+			lidarState: {
+				receivingScans: {
+					updatedAt: Date;
+				};
+			};
+			cameras: {
+				[key: string]: {
+					imageId: {
+						updatedAt: Date;
+					};
+				};
+			};
+			drawerStates: {
+				[key: string]: {
+					drawerType: {
+						updatedAt: Date;
+					};
+					drawerId: {
+						updatedAt: Date;
+					};
+					commandType: {
+						updatedAt: Date;
+					};
+					isClosed: {
+						updatedAt: Date;
+					};
+				};
+			};
+			realsenseState: {
+				receivingData: {
+					updatedAt: Date;
+				};
+				processingData: {
+					updatedAt: Date;
+				};
+			};
+			activity: {
+				updatedAt: Date;
+			};
+			robotState: {
+				isReady: {
+					updatedAt: Date;
+				};
+			};
+			alerts: {
+				updatedAt: Date;
+			};
+			location: {
+				updatedAt: Date;
+			};
+			orders: {
+				updatedAt: Date;
+			};
+			inventory: {
+				status: { updatedAt: Date };
+			};
+			muteSensorState: { updatedAt: Date };
+			emergencyStopState: {
+				isTriggered: { updatedAt: Date };
+			};
+			lastBootup: { updatedAt: Date };
+			lastShutdown: { updatedAt: Date };
+		};
+	};
+}
+
+export interface RTSSDataByIdInterface {
+	[id: string]: IRobotTwin;
+}
+
+export interface StateMotorStatus {
 	id: string;
-	updatedAt: string;
-	robot: {
-		id: string;
+	status: string;
+	last_error_code: string;
+	commanded_velocity: number;
+	controller_temperature: number;
+	controller_voltage: number;
+	position: number;
+	velocity: number;
+	motor_current: number;
+}
+
+export interface MetadataMotorStatus {
+	status: {
+		updatedAt: Date;
 	};
-	robotState: {
-		isReady: RTSResponseDataType<boolean>;
+	last_error_code: {
+		updatedAt: Date;
 	};
-	alerts: {
-		updatedAt: string;
-		value: RTSResponseDataAlertsValueInterface[];
+	commanded_velocity: {
+		updatedAt: Date;
+	};
+	controller_temperature: {
+		updatedAt: Date;
+	};
+	controller_voltage: {
+		updatedAt: Date;
+	};
+	position: {
+		updatedAt: Date;
+	};
+	velocity: {
+		updatedAt: Date;
+	};
+	motor_current: {
+		updatedAt: Date;
 	};
 }
 
-export interface RTSResponseDataByIdInterface {
-	[key: string]: RTSResponseDataInterface;
+export interface IAlertRulesCondition {
+	field: string;
+	condition: string;
+	value: boolean | string | number;
+	currentValue: boolean | string | number;
 }
 
-export interface RTSResponseDataAlertsValueInterface {
+export interface IAlert {
 	code: string;
-	conditions: string[];
-	createdAt: string;
-	level: string;
 	message: string;
+	level: string;
+	createdAt: Date;
+	updatedAt?: Date;
+	notes?: string;
+
+	id: string;
 	origin: string;
+
+	field: string;
+	conditions: IAlertRulesCondition[];
 }
 
-export interface RTSResponseAllAlertsInterface {
-	danger: number;
-	warning: number;
-}
-
-export interface RTSResponseDataType<T> {
-	updatedAt: string;
-	value: T;
+export interface IOrderQueue {
+	id: string;
+	status: string;
 }

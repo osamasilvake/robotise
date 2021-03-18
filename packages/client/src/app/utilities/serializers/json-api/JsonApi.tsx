@@ -1,8 +1,10 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 import log from 'loglevel';
 
-import { RTSResponseDataInterface } from '../../../slices/robot-twins/RobotTwins.slice.interface';
-import { RTSSDataResponseInterface } from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+import {
+	IRobotTwinSummary,
+	RTSMappedResponseDataInterface
+} from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { SitesSliceResponseDataInterface } from '../../../slices/sites/Sites.slice.interface';
 import {
 	DeserializeRelationshipProperties,
@@ -34,35 +36,48 @@ export const deserializeSites = async <T extends JsonApiResponse>(payload: T) =>
 };
 
 /**
- * deserialize robot Twins
+ * deserialize robot Twins summary
  * @param payload
  * @returns
  */
-export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: T) => {
+export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(payload: T) => {
 	const options: DeserializerExtendedOptions = {
 		keyForAttribute: 'camelCase',
 		robots: {
-			valueForRelationship: (relationship) => {
+			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
 				return {
 					id: relationship.id
 				};
 			}
 		},
-		transform: (data) => {
+		sites: {
+			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+				return {
+					id: relationship.id
+				};
+			}
+		},
+		transform: (data: IRobotTwinSummary) => {
 			try {
-				const result: RTSResponseDataInterface = {
+				const result: RTSMappedResponseDataInterface = {
 					id: data.id,
-					robot: data.robot,
 					updatedAt: data.updatedAt,
+					robot: {
+						id: data.robot.id,
+						name: data.state.reported.name
+					},
+					site: {
+						id: data.site.id
+					},
 					robotState: {
 						isReady: {
-							value: data.state?.reported.robotState.isReady,
-							updatedAt: data.metadata?.reported.robotState.isReady?.updatedAt
+							value: data.state.reported.robotState.isReady,
+							updatedAt: data.metadata.reported.robotState.isReady.updatedAt
 						}
 					},
 					alerts: {
-						value: data.state?.reported.alerts,
-						updatedAt: data.metadata?.reported.alerts?.updatedAt
+						value: data.state.reported.alerts,
+						updatedAt: data.metadata.reported.alerts?.updatedAt
 					}
 				};
 				return result;
@@ -78,46 +93,26 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce(
-		(acc: { [x: string]: RTSResponseDataInterface }, item: RTSResponseDataInterface) => {
+		(
+			acc: { [x: string]: RTSMappedResponseDataInterface },
+			item: RTSMappedResponseDataInterface
+		) => {
 			acc[item.robot.id] = item;
 			return acc;
 		},
 		{}
 	);
-	return { data, dataById };
-};
 
-/**
- * deserialize robots
- * @param payload
- * @returns
- */
-export const deserializeRobots = async <T extends JsonApiResponse>(payload: T) => {
-	const options: DeserializerExtendedOptions = {
-		keyForAttribute: 'camelCase',
-		sites: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
-				return {
-					id: relationship.id
-				};
-			}
-		},
-		robotTwins: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
-				return {
-					id: relationship.id
-				};
-			}
-		}
+	// FAKE: meta
+	const meta = {
+		hasNextPage: false,
+		hasPrevPage: false,
+		nextPage: 1,
+		page: 1,
+		prevPage: 1,
+		totalDocs: data.length,
+		totalPages: 1
 	};
-	const deserializer = new JSONAPIDeserializer.Deserializer(options);
-	const data = await deserializer.deserialize(payload);
-	const dataById = data.reduce(
-		(acc: { [x: string]: RTSSDataResponseInterface }, item: RTSSDataResponseInterface) => {
-			acc[item.id] = item;
-			return acc;
-		},
-		{}
-	);
-	return { data, dataById, meta: payload.meta };
+
+	return { data, dataById, meta };
 };

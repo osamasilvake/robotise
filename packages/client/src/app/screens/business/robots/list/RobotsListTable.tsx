@@ -85,7 +85,11 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 
 			{/* Pagination */}
 			<TablePagination
-				rowsPerPageOptions={AppConfigService.AppOptions.screens.robots.pageSizes}
+				rowsPerPageOptions={
+					AppConfigService.AppOptions.screens.robots.showPageSizes
+						? AppConfigService.AppOptions.screens.robots.pageSizes
+						: []
+				}
 				component="div"
 				count={content ? content.meta.totalDocs : 0}
 				page={page}

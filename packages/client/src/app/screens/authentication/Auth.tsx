@@ -6,12 +6,16 @@ import Loader from '../../components/common/loader/Loader';
 import { isPrivate, isSession } from '../../routes/types';
 import { AppConfigService } from '../../services';
 import { AuthRefreshToken, authSelector } from '../../slices/auth/Auth.slice';
-import { RobotTwinsFetchList } from '../../slices/robot-twins/RobotTwins.slice';
+import {
+	RobotTwinsSummaryRefreshList,
+	robotTwinsSummarySelector
+} from '../../slices/robot-twins/RobotTwinsSummary.slice';
 import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
 	const dispatch = useDispatch();
 	const { loading, user } = useSelector(authSelector);
+	const { content } = useSelector(robotTwinsSummarySelector);
 
 	const isUser = !!(user && user.data.user_id);
 
@@ -21,8 +25,12 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				// dispatch: requests a new token before it expires
 				dispatch(AuthRefreshToken(user.exp));
 
-				// dispatch: robot twins
-				dispatch(RobotTwinsFetchList());
+				// dispatch: refresh robot twins summary
+				dispatch(
+					RobotTwinsSummaryRefreshList(
+						content?.backup?.sites ? content.backup.sites : null
+					)
+				);
 			}
 		};
 		window.addEventListener('load', init);
@@ -32,7 +40,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 		);
 
 		return () => window.clearInterval(timeoutID);
-	}, [dispatch, user]);
+	}, [dispatch, content, user]);
 
 	/**
 	 * authentication state

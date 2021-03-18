@@ -68,7 +68,8 @@ class AppConfigService extends EnvService {
 				},
 				robots: {
 					robotTwinsRefreshInMs: 10000,
-					pageSizes: [5, 10, 15, 20, 50]
+					showPageSizes: false,
+					pageSizes: [5, 10, 15, 20, 50, 100, 150]
 				}
 			}
 		};
@@ -98,10 +99,8 @@ class AppConfigService extends EnvService {
 				LIST: `${this.envApiUrl}/sites`
 			},
 			ROBOT_TWINS: {
+				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,
 				LIST: `${this.envApiUrl}/robot-twins`
-			},
-			ROBOTS: {
-				LIST: `${this.envApiUrl}/robots`
 			}
 		};
 	}

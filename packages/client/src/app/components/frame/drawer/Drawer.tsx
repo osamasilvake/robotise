@@ -21,7 +21,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { AppConfigService } from '../../../services';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
-import { robotTwinsSelector } from '../../../slices/robot-twins/RobotTwins.slice';
+import { robotTwinsSummarySelector } from '../../../slices/robot-twins/RobotTwinsSummary.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Copyrights from '../copyrights/Copyrights';
@@ -35,7 +35,7 @@ const DrawerCustom: FC = () => {
 
 	const dispatch = useDispatch();
 	const { openDrawer } = useSelector(generalSelector);
-	const { content } = useSelector(robotTwinsSelector);
+	const { content } = useSelector(robotTwinsSummarySelector);
 
 	useEffect(() => {
 		const handleResize = () => {

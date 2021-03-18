@@ -6,20 +6,20 @@ import Loader from '../../../../components/common/loader/Loader';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
 import {
-	RobotsFetchList,
-	robotsSelector
+	RobotTwinsSummaryFetchList,
+	robotTwinsSummarySelector
 } from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import RobotsListTable from './RobotsListTable';
 
 const RobotsList: FC = () => {
 	const dispatch = useDispatch();
-	const { loading, errors, content } = useSelector(robotsSelector);
+	const { loading, errors, content } = useSelector(robotTwinsSummarySelector);
 
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
 		content
-			? content.meta.rowsPerPage || AppConfigService.AppOptions.screens.robots.pageSizes[1]
-			: AppConfigService.AppOptions.screens.robots.pageSizes[1]
+			? content.meta.rowsPerPage || AppConfigService.AppOptions.screens.robots.pageSizes[5]
+			: AppConfigService.AppOptions.screens.robots.pageSizes[5]
 	);
 	const pageState = useRef({
 		page: content ? content.meta.page - 1 : page - 1,
@@ -29,8 +29,8 @@ const RobotsList: FC = () => {
 	useEffect(() => {
 		// when rows per page is changed
 		if (pageState.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// fetch sites, robot twins and robots and map them to create robots list
-			dispatch(RobotsFetchList(page + 1, rowsPerPage));
+			// fetch robot twins summary
+			dispatch(RobotTwinsSummaryFetchList(page + 1, rowsPerPage));
 
 			// update page state and rows per page
 			pageState.current.page = page;
@@ -41,8 +41,8 @@ const RobotsList: FC = () => {
 			const condition3 = page > pageState.current.page; // detect next click
 			if (condition1 || condition2) {
 				if (condition3) {
-					// fetch sites, robot twins and robots and map them to create robots list
-					dispatch(RobotsFetchList(page + 1, rowsPerPage));
+					// fetch robot twins summary
+					dispatch(RobotTwinsSummaryFetchList(page + 1, rowsPerPage));
 
 					// update page state
 					pageState.current.page = page;

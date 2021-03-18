@@ -5,13 +5,11 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import SitesService from '../../screens/business/sites/Sites.service';
 import {
-	deserializeRobots,
-	deserializeRobotTwins,
+	deserializeRobotTwinsSummary,
 	deserializeSites
 } from '../../utilities/serializers/json-api/JsonApi';
 import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
 import { RootStateInterface } from '../Slices.interface';
-import { RTSResponseInterface } from './RobotTwins.slice.interface';
 import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
 
 // initial state
@@ -23,7 +21,7 @@ export const initialState: RTSSInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Robots',
+	name: 'Robot Twins Summary',
 	initialState,
 	reducers: {
 		loading: (state) => {
@@ -41,61 +39,89 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
-		reset: () => initialState,
-		updateRobotTwins: (state, action) => {
-			if (state.content && state.content.backup && !state.loading) {
-				// map robots data
-				const result: RTSSContentInterface = robotsMapping(
-					state.content.backup.sites,
-					action.payload,
-					state.content
-				);
-
-				// update state
-				state.content = result;
-			}
-		}
+		reset: () => initialState
 	}
 });
 
 // actions
-export const { loading, success, failure, reset, updateRobotTwins } = dataSlice.actions;
+export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const robotsSelector = (state: RootStateInterface) => state['robots'];
+export const robotTwinsSummarySelector = (state: RootStateInterface) => state['robotTwinsSummary'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch sites, robot twins and robots and map them to create robots list
+ * fetch robot twins summary
  * @param pageNo
  * @param rowsPerPage
  * @returns
  */
-export const RobotsFetchList = (pageNo: number, rowsPerPage: number) => async (
+export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) => async (
 	dispatch: Dispatch
 ) => {
 	// dispatch: loader
 	dispatch(loading());
 
-	// fetch sites, robot twins and robots and map them to create robots list
+	// fetch robot twins summary
 	Promise.all([
 		SitesService.sitesFetch(),
-		RobotsService.robotTwinsFetch(),
-		RobotsService.robotsFetch(pageNo, rowsPerPage)
+		RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
 	])
 		.then(async (res) => {
 			// deserialize responses
 			const sites = await deserializeSites(res[0]);
-			const robotTwins = await deserializeRobotTwins(res[1]);
-			const robots = await deserializeRobots(res[2]);
+			const robotTwinsSummary = await deserializeRobotTwinsSummary(res[1]);
 
 			// map robots data
-			const result: RTSSContentInterface = robotsMapping(sites, robotTwins, robots);
+			const result: RTSSContentInterface = robotsMapping(sites, robotTwinsSummary);
+
+			// count alerts for badge
+			const alerts = countAlerts(result);
 
 			// dispatch: success
-			dispatch(success({ ...result, meta: { ...result.meta, rowsPerPage } }));
+			dispatch(success({ ...result, alerts, meta: { ...result.meta, rowsPerPage } }));
+		})
+		.catch(() => {
+			const message: TriggerMessageInterface = {
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: 'API.FETCH'
+			};
+
+			// dispatch: error
+			dispatch(failure(message));
+		});
+};
+
+/**
+ * refresh robot twins summary
+ * @param sites
+ * @returns
+ */
+export const RobotTwinsSummaryRefreshList = (sites: SitesSliceResponseInterface | null) => async (
+	dispatch: Dispatch
+) => {
+	(sites === null
+		? Promise.all([SitesService.sitesFetch(), RobotsService.robotTwinsSummaryFetch()])
+		: RobotsService.robotTwinsSummaryFetch()
+	)
+		.then(async (res) => {
+			// deserialize responses
+			const sitesRes = sites === null ? await deserializeSites(res[0]) : sites;
+			const robotTwinsSummary = await deserializeRobotTwinsSummary(
+				sites === null ? res[1] : res
+			);
+
+			// map robots data
+			const result: RTSSContentInterface = robotsMapping(sitesRes, robotTwinsSummary);
+
+			// count alerts for badge
+			const alerts = countAlerts(result);
+
+			// dispatch: success
+			dispatch(success({ ...result, alerts }));
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
@@ -112,42 +138,61 @@ export const RobotsFetchList = (pageNo: number, rowsPerPage: number) => async (
 /**
  * map robots data
  * @param sites
- * @param robotTwins
- * @param robots
+ * @param robotTwinsSummary
  * @returns
  */
 const robotsMapping = (
 	sites: SitesSliceResponseInterface,
-	robotTwins: RTSResponseInterface,
-	robots: RTSSContentInterface
+	robotTwinsSummary: RTSSContentInterface
 ): RTSSContentInterface => {
 	return {
-		data: Object.keys(robots.dataById).map((key) => {
-			const robot = robots.dataById[key];
-			const site = sites.dataById[robot.site.id];
-			const robotTwin = robotTwins.dataById[robot.id];
-			const allAlerts = robotTwin.alerts.value;
+		data: Object.keys(robotTwinsSummary.dataById).map((key) => {
+			const robotTwinSummary = robotTwinsSummary.dataById[key];
+			const site = sites.dataById[robotTwinSummary.site.id];
+			const allAlerts = robotTwinSummary.alerts.value;
 			const danger = allAlerts.filter((f) => f.level === 'danger');
 			const warn = allAlerts.filter((f) => f.level === 'warning');
 			return {
-				id: robot.id,
-				name: robot.name,
+				id: robotTwinSummary.robot.id,
+				name: robotTwinSummary.robot.name,
 				siteId: site.id,
 				siteTitle: site.title,
-				isReady: robotTwin.robotState.isReady.value,
-				updatedAt: robotTwin.updatedAt,
+				isReady: robotTwinSummary.robotState.isReady.value,
+				updatedAt: robotTwinSummary.updatedAt,
 				alerts: {
 					danger: danger.length,
 					warning: warn.length
 				}
 			};
 		}),
-		dataById: robots.dataById,
-		meta: robots.meta,
+		dataById: robotTwinsSummary.dataById,
+		meta: robotTwinsSummary.meta,
 		backup: {
 			sites
 		}
 	};
+};
+
+/**
+ * count alerts
+ * @param payload
+ * @returns
+ */
+const countAlerts = (payload: RTSSContentInterface) => {
+	return Object.keys(payload.dataById).reduce(
+		(acc, key) => {
+			const robotTwin = payload.dataById[key];
+			const allAlerts = robotTwin.alerts.value;
+			if (allAlerts.length) {
+				const danger = allAlerts.filter((f) => f.level === 'danger');
+				const warn = allAlerts.filter((f) => f.level === 'warning');
+				acc.danger = acc.danger += danger.length;
+				acc.warning = acc.warning += warn.length;
+			}
+			return acc;
+		},
+		{ danger: 0, warning: 0 }
+	);
 };
 
 /**

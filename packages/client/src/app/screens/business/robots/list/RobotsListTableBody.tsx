@@ -4,8 +4,8 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-	RTSSContentInterface,
-	RTSSDataResponseInterface
+	RTSFinalDataInterface,
+	RTSSContentInterface
 } from '../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { momentFormat1, momentSort } from '../../../../utilities/methods/Moment';
 import { RobotsListTableSortTypeEnum } from './RobotsList.enum';
@@ -28,7 +28,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 * @param content
 	 * @returns
 	 */
-	const sortTableData = (content: RTSSContentInterface): RTSSDataResponseInterface[] => {
+	const sortTableData = (content: RTSSContentInterface): RTSFinalDataInterface[] => {
 		let type;
 		switch (orderBy) {
 			case columns[0].id:
@@ -56,7 +56,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 * @returns
 	 */
 	const sortByProperty = (key: RobotsListTableHeadId, type: RobotsListTableSortTypeEnum) => {
-		return (a: RTSSDataResponseInterface, b: RTSSDataResponseInterface) => {
+		return (a: RTSFinalDataInterface, b: RTSFinalDataInterface) => {
 			switch (type) {
 				case RobotsListTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
@@ -85,10 +85,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (
-		robot: RTSSDataResponseInterface,
-		column: RobotsListTableColumnInterface
-	) => {
+	const setCellValue = (robot: RTSFinalDataInterface, column: RobotsListTableColumnInterface) => {
 		const value = robot[column.id];
 		if (columns[2].id === column.id) {
 			return (
@@ -116,7 +113,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((robot: RTSSDataResponseInterface) => {
+					.map((robot: RTSFinalDataInterface) => {
 						return (
 							<TableRow
 								hover

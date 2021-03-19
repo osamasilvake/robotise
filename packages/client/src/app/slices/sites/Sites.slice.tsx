@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeSites } from '../../utilities/serializers/json-api/JsonApi';
-import { RootStateInterface } from '../Slices.interface';
+import { appReducerType } from '..';
 import { SSInterface } from './Sites.slice.interface';
 
 // initial state
@@ -40,7 +40,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const sitesSelector = (state: RootStateInterface) => state['sites'];
+export const sitesSelector = (state: appReducerType) => state['sites'];
 
 // reducer
 export default dataSlice.reducer;

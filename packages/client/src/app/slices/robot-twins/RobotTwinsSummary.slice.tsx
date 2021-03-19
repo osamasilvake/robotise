@@ -9,9 +9,9 @@ import {
 	deserializeRobotTwinsSummary,
 	deserializeSites
 } from '../../utilities/serializers/json-api/JsonApi';
+import { appReducerType } from '..';
 import { success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
-import { RootStateInterface } from '../Slices.interface';
 import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
 
 // initial state
@@ -49,7 +49,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const robotTwinsSummarySelector = (state: RootStateInterface) => state['robotTwinsSummary'];
+export const robotTwinsSummarySelector = (state: appReducerType) => state['robotTwinsSummary'];
 
 // reducer
 export default dataSlice.reducer;
@@ -62,7 +62,7 @@ export default dataSlice.reducer;
  */
 export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) => async (
 	dispatch: Dispatch,
-	getState: () => RootStateInterface
+	getState: () => appReducerType
 ) => {
 	const state = getState();
 
@@ -113,7 +113,7 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
  */
 export const RobotTwinsSummaryRefreshList = () => async (
 	dispatch: Dispatch,
-	getState: () => RootStateInterface
+	getState: () => appReducerType
 ) => {
 	const state = getState();
 
@@ -239,7 +239,7 @@ const RobotsOrganizeState = (state: RTSSContentInterface, action: RTSSContentInt
 	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
 	const condition3 = action.meta.nextPage === null; // last page
 	if (condition1 && (condition2 || condition3)) {
-		action.meta.nextPage = condition3 ? state.meta.nextPage + 1 : action.meta.nextPage;
+		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
 		return {
 			...state,
 			meta: {

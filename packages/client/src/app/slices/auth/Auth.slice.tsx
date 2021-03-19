@@ -10,8 +10,8 @@ import AuthService from '../../screens/authentication/Auth.service';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { momentNow } from '../../utilities/methods/Moment';
+import { appReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
-import { RootStateInterface } from '../Slices.interface';
 import { AuthSliceInterface } from './Auth.slice.interface';
 
 // storage items
@@ -52,7 +52,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const authSelector = (state: RootStateInterface) => state['auth'];
+export const authSelector = (state: appReducerType) => state['auth'];
 
 // reducer
 export default dataSlice.reducer;
@@ -133,7 +133,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 							text: (err && err.error_description) || null
 						};
 
-						// dispatch: failure
+						// dispatch: error
 						dispatch(failure(message));
 
 						// dispatch: trigger message
@@ -178,6 +178,6 @@ export const AuthLogout = () => async (dispatch: Dispatch) => {
 	// clear authentication
 	AuthService.authLogout();
 
-	// dispatch: failure
-	dispatch(failure(null));
+	// dispatch: reset
+	dispatch(reset());
 };

@@ -12,6 +12,15 @@ class RobotsService {
 		const apiLink = !pageNo ? url : `${url}?page[number]=${pageNo}&page[size]=${rowsPerPage}`;
 		return HttpClientService.get(apiLink);
 	};
+
+	/**
+	 * fetch robot twins
+	 * @returns
+	 */
+	robotTwinsFetch = () => {
+		const url = AppConfigService.AppServices.ROBOT_TWINS.ALL;
+		return HttpClientService.get(url);
+	};
 }
 const instance = new RobotsService();
 export default instance;

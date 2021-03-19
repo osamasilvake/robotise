@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import ChangeLogService from '../../screens/information/change-log/ChangeLog.service';
 import { AppConfigService, StorageService } from '../../services';
-import { appReducerType } from '..';
+import { AppReducerType } from '..';
 import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
 import { GeneralSliceInterface } from './General.slice.interface';
 
@@ -56,7 +56,7 @@ export const {
 } = dataSlice.actions;
 
 // selector
-export const generalSelector = (state: appReducerType) => state['general'];
+export const generalSelector = (state: AppReducerType) => state['general'];
 
 // reducer
 export default dataSlice.reducer;

@@ -67,7 +67,7 @@ class AppConfigService extends EnvService {
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
 				robots: {
-					robotTwinsRefreshInMs: 10000,
+					robotTwinsRefreshInMs: 60000,
 					showPageSizes: false,
 					defaultPageSize: 100,
 					pageSizes: [5, 10, 15, 20, 50, 100, 150]
@@ -101,7 +101,7 @@ class AppConfigService extends EnvService {
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,
-				LIST: `${this.envApiUrl}/robot-twins`
+				ALL: `${this.envApiUrl}/robot-twins`
 			}
 		};
 	}

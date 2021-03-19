@@ -19,6 +19,7 @@ import i18next from 'i18next';
 import { FC, MouseEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { AppConfigService } from '../../../services';
 import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
@@ -76,11 +77,23 @@ const AppBarCustom: FC = () => {
 			})}>
 			<Toolbar className={appBarClasses.sToolbar} disableGutters>
 				{!openDrawer && (
-					<Tooltip title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
-						<IconButton hidden edge="start" onClick={handleDrawerOpen}>
-							<MenuIcon />
-						</IconButton>
-					</Tooltip>
+					<>
+						<Link
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}
+							className={appBarClasses.sLogo}>
+							<Avatar
+								src={AppConfigService.AppImageURLs.logo.icon}
+								alt={AppConfigService.AppImageURLs.logo.name}
+							/>
+						</Link>
+						<Tooltip
+							className={appBarClasses.sOpenIcon}
+							title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
+							<IconButton hidden edge="start" onClick={handleDrawerOpen}>
+								<MenuIcon />
+							</IconButton>
+						</Tooltip>
+					</>
 				)}
 
 				<Box className={appBarClasses.sOptions}>

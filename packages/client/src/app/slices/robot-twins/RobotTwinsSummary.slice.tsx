@@ -9,7 +9,7 @@ import {
 	deserializeRobotTwinsSummary,
 	deserializeSites
 } from '../../utilities/serializers/json-api/JsonApi';
-import { appReducerType } from '..';
+import { AppReducerType } from '..';
 import { success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
@@ -49,7 +49,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const robotTwinsSummarySelector = (state: appReducerType) => state['robotTwinsSummary'];
+export const robotTwinsSummarySelector = (state: AppReducerType) => state['robotTwinsSummary'];
 
 // reducer
 export default dataSlice.reducer;
@@ -62,7 +62,7 @@ export default dataSlice.reducer;
  */
 export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) => async (
 	dispatch: Dispatch,
-	getState: () => appReducerType
+	getState: () => AppReducerType
 ) => {
 	// redux state
 	const state = getState();
@@ -72,20 +72,23 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 	const robotTwinsSummary = state.robotTwinsSummary;
 
 	// return on busy
-	if (robotTwinsSummary.loading) {
+	if (robotTwinsSummary && robotTwinsSummary.loading) {
 		return;
 	}
 
 	// dispatch: loader
 	dispatch(loading());
 
-	Promise.all([
-		SitesService.sitesFetch(),
-		RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
-	])
+	(!sites.content
+		? Promise.all([
+				SitesService.sitesFetch(),
+				RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
+		  ])
+		: RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
+	)
 		.then(async (res) => {
 			// deserialize responses
-			const sitesRes = sites.content ? sites.content : await deserializeSites(res[0]);
+			const sitesRes = !sites.content ? await deserializeSites(res[0]) : sites.content;
 			const robotTwinsSummary = await deserializeRobotTwinsSummary(res[1]);
 
 			// prepare robot twins summary content
@@ -120,7 +123,7 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
  */
 export const RobotTwinsSummaryRefreshList = () => async (
 	dispatch: Dispatch,
-	getState: () => appReducerType
+	getState: () => AppReducerType
 ) => {
 	// redux state
 	const state = getState();
@@ -130,7 +133,7 @@ export const RobotTwinsSummaryRefreshList = () => async (
 	const robotTwinsSummary = state.robotTwinsSummary;
 
 	// return on busy
-	if (robotTwinsSummary.loading) {
+	if (robotTwinsSummary && robotTwinsSummary.loading) {
 		return;
 	}
 
@@ -151,7 +154,7 @@ export const RobotTwinsSummaryRefreshList = () => async (
 			// deserialize responses
 			const sitesRes = sites.content ? sites.content : await deserializeSites(res[0]);
 			const robotTwinsSummary = await deserializeRobotTwinsSummary(
-				sites === null ? res[1] : res
+				!sites.content ? res[1] : res
 			);
 
 			// prepare robot twins summary content

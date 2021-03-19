@@ -38,16 +38,14 @@ const DrawerCustom: FC = () => {
 	const { content } = useSelector(robotTwinsSummarySelector);
 
 	useEffect(() => {
-		const handleResize = () => {
-			if (window.innerWidth < 800 && openDrawer) {
+		const handleSmallDevices = () => {
+			// sm: 960
+			if (window.innerWidth < 960 && openDrawer) {
 				// dispatch: set drawer state
 				dispatch(GeneralSetDrawerState(!openDrawer));
 			}
 		};
-		window.addEventListener('resize', handleResize);
-		window.addEventListener('load', handleResize);
-
-		return () => window.removeEventListener('resize', handleResize);
+		window.addEventListener('load', handleSmallDevices, { once: true });
 	}, [dispatch, openDrawer]);
 
 	/**
@@ -70,11 +68,11 @@ const DrawerCustom: FC = () => {
 					})
 				}}>
 				{/* Avatar & Icon */}
-				<Box className={drawerClasses.sToolbar}>
+				<Box className={drawerClasses.sLogoAndCloseIcon}>
 					<Link to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}>
 						<Avatar
 							variant="square"
-							className={drawerClasses.sAvatar}
+							className={drawerClasses.sLogo}
 							src={AppConfigService.AppImageURLs.logo.name}
 							alt={AppConfigService.envAuthor}
 						/>
@@ -155,7 +153,7 @@ const DrawerCustom: FC = () => {
 				<Divider light />
 
 				{/* Copyrights */}
-				<Box className={drawerClasses.sBottom}>
+				<Box className={drawerClasses.sBottomArea}>
 					{openDrawer ? <Copyrights /> : <Copyrights short />}
 				</Box>
 			</Drawer>

@@ -2,14 +2,20 @@ import { lazy } from 'react';
 
 import { RouteInterface } from '../../../routes/Routes.interfaces';
 import { AppConfigService } from '../../../services';
+import Robot from './content/Robot';
 
 const Robots = lazy(() => import('./Robots'));
 
-const robotRoutes: RouteInterface[] = [
+const robotsRoutes: RouteInterface[] = [
 	{
 		component: Robots,
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN
+	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL
 	}
 ];
-export default robotRoutes;
+export default robotsRoutes;

@@ -64,6 +64,12 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 					}
 				}
 			},
+			MuiTabs: {
+				...options.overrides?.MuiTabs,
+				root: {
+					backgroundColor: AppConfigService.AppVariables.colors.c5
+				}
+			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {

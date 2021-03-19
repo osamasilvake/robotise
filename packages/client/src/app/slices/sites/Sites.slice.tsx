@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeSites } from '../../utilities/serializers/json-api/JsonApi';
-import { appReducerType } from '..';
+import { AppReducerType } from '..';
 import { SSInterface } from './Sites.slice.interface';
 
 // initial state
@@ -40,7 +40,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const sitesSelector = (state: appReducerType) => state['sites'];
+export const sitesSelector = (state: AppReducerType) => state['sites'];
 
 // reducer
 export default dataSlice.reducer;
@@ -48,7 +48,18 @@ export default dataSlice.reducer;
 /**
  * fetch sites list
  */
-export const SitesFetchList = () => async (dispatch: Dispatch) => {
+export const SitesFetchList = () => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	// redux state
+	const state = getState();
+
+	// states
+	const sites = state.sites;
+
+	// return on busy
+	if (sites && sites.loading) {
+		return;
+	}
+
 	// dispatch: loader
 	dispatch(loading());
 

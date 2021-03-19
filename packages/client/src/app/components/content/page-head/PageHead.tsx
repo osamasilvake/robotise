@@ -9,7 +9,7 @@ import { BreadcrumbInterface, PageHeadInterface } from './PageHead.interface';
 import { pageHeadStyles } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
-	const { title, description } = props;
+	const { title, description, hideDivider } = props;
 
 	const { t } = useTranslation('META');
 	const pageHeadClasses = pageHeadStyles();
@@ -70,7 +70,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 			</Paper>
 
 			{/* Divider */}
-			<Divider light />
+			{!hideDivider && <Divider light />}
 		</Box>
 	);
 };

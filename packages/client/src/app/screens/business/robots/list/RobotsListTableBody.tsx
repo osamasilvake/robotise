@@ -14,8 +14,8 @@ import {
 	RobotsListTableColumnInterface,
 	RobotsListTableHeadId
 } from './RobotsList.interface';
+import { columns } from './RobotsList.list';
 import { robotsListStyles } from './RobotsList.styles';
-import { columns } from './RobotsListTableHead.list';
 
 const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
@@ -96,7 +96,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 						[robotsListClasses.sTableCellStatusOn]: robot.isReady,
 						[robotsListClasses.sTableCellStatusOff]: !robot.isReady
 					})}>
-					{robot.isReady ? t('TABLE.VALUES.ON') : t('TABLE.VALUES.OFF')}
+					{robot.isReady ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
 				</Typography>
 			);
 		} else if (columns[3].id === column.id) {

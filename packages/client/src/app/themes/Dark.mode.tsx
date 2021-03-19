@@ -64,6 +64,12 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					}
 				}
 			},
+			MuiTabs: {
+				...options.overrides?.MuiTabs,
+				root: {
+					backgroundColor: AppConfigService.AppVariables.colors.c2
+				}
+			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {

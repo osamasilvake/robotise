@@ -13,7 +13,10 @@ export const qrCodeStyles = makeStyles((theme: Theme) => ({
 	},
 	sQRCodeAvatar: {
 		cursor: 'zoom-in',
-		marginRight: theme.spacing(1)
+		marginRight: theme.spacing(1),
+		[theme.breakpoints.down('sm')]: {
+			display: 'none'
+		}
 	},
 	sQRCodeTooltip: {
 		padding: theme.spacing(0.75, 0.25, 0.25)

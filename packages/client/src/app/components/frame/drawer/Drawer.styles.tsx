@@ -24,14 +24,14 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 		}),
 		width: theme.spacing(7)
 	},
-	sToolbar: {
+	sLogoAndCloseIcon: {
 		alignItems: 'center',
 		display: 'flex',
 		justifyContent: 'space-between',
 		minHeight: theme.spacing(8),
 		paddingLeft: theme.spacing(2)
 	},
-	sAvatar: {
+	sLogo: {
 		width: theme.spacing(15)
 	},
 	sListRoot: {
@@ -45,7 +45,7 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 	sListItem: {
 		padding: theme.spacing(1, 2)
 	},
-	sBottom: {
+	sBottomArea: {
 		alignItems: 'center',
 		display: 'flex',
 		height: 48,

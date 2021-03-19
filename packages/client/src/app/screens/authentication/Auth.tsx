@@ -25,7 +25,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				dispatch(RobotTwinsSummaryRefreshList());
 			}
 		};
-		window.addEventListener('load', init);
+		window.addEventListener('load', init, { once: true });
 		const timeoutID = window.setInterval(
 			init,
 			AppConfigService.AppOptions.screens.robots.robotTwinsRefreshInMs

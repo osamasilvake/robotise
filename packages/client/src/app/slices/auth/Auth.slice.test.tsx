@@ -17,7 +17,8 @@ import {
 	initialState,
 	loading,
 	reset,
-	success
+	success,
+	terminate
 } from './Auth.slice';
 import { AuthSliceInterface } from './Auth.slice.interface';
 
@@ -170,7 +171,7 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[Thunk][AuthLogout] Creates loading and reset actions on logout ', () => {
+	it('[Thunk][AuthLogout] Creates loading and terminate actions on logout ', () => {
 		// store
 		const store = mockStore(initialState);
 
@@ -178,7 +179,7 @@ describe('[SLICE] Authentication', () => {
 		store.dispatch(AuthLogout());
 
 		// assert
-		const expectedActions = [loading(), reset()];
+		const expectedActions = [loading(), terminate()];
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 });

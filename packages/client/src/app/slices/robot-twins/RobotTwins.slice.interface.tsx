@@ -1,5 +1,4 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 
 export interface RTSInterface {
 	loading: boolean;
@@ -8,14 +7,47 @@ export interface RTSInterface {
 }
 
 export interface RTSContentInterface {
-	data: IRobotTwin[];
-	dataById: RTSSDataByIdInterface;
-	meta: JsonApiMeta;
+	data: RTSMappedResponseDataInterface[];
+	dataById: RTSDataByIdInterface;
 }
 
+export interface RTSDataByIdInterface {
+	[id: string]: RTSMappedResponseDataInterface;
+}
+
+// mapped response data
+export interface RTSMappedResponseDataInterface {
+	id: string;
+	updatedAt: Date;
+	robot: {
+		id: string;
+		name: string;
+	};
+	site: {
+		id: string;
+		title: string;
+	};
+	robotState: {
+		isReady: {
+			value: boolean;
+			updatedAt: Date;
+		};
+	};
+	alerts: {
+		value: IAlert[];
+		updatedAt: Date;
+	};
+}
+
+// initial
 export interface IRobotTwin {
-	robot: string;
-	site: string;
+	id: string;
+	robot: {
+		id: string;
+	};
+	site: {
+		id: string;
+	};
 	createdAt: Date;
 	updatedAt: Date;
 	state: {
@@ -197,10 +229,6 @@ export interface IRobotTwin {
 			lastShutdown: { updatedAt: Date };
 		};
 	};
-}
-
-export interface RTSSDataByIdInterface {
-	[id: string]: IRobotTwin;
 }
 
 export interface StateMotorStatus {

@@ -1,5 +1,5 @@
 import { Box, CardMedia, Divider, Grid, Paper, Typography } from '@material-ui/core';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import PageHead from '../../../components/content/page-head/PageHead';
 

@@ -10,7 +10,7 @@ import AuthService from '../../screens/authentication/Auth.service';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { momentNow } from '../../utilities/methods/Moment';
-import { appReducerType } from '..';
+import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import { AuthSliceInterface } from './Auth.slice.interface';
 
@@ -44,15 +44,20 @@ const dataSlice = createSlice({
 			state.user = null;
 			state.errors = action.payload;
 		},
+		terminate: (state) => {
+			state.loading = false;
+			state.user = null;
+			state.errors = null;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loading, success, failure, reset } = dataSlice.actions;
+export const { loading, success, failure, terminate, reset } = dataSlice.actions;
 
 // selector
-export const authSelector = (state: appReducerType) => state['auth'];
+export const authSelector = (state: AppReducerType) => state['auth'];
 
 // reducer
 export default dataSlice.reducer;
@@ -178,6 +183,6 @@ export const AuthLogout = () => async (dispatch: Dispatch) => {
 	// clear authentication
 	AuthService.authLogout();
 
-	// dispatch: reset
-	dispatch(reset());
+	// dispatch: terminate
+	dispatch(terminate());
 };

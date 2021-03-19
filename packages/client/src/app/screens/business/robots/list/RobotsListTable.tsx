@@ -9,10 +9,10 @@ import {
 	RobotsListTableHeadOrder,
 	RobotsListTableInterface
 } from './RobotsList.interface';
+import { columns } from './RobotsList.list';
 import { robotsListStyles } from './RobotsList.styles';
 import RobotsListTableBody from './RobotsListTableBody';
 import RobotsListTableHead from './RobotsListTableHead';
-import { columns } from './RobotsListTableHead.list';
 
 const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;

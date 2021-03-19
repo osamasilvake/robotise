@@ -13,7 +13,11 @@
 		},
 		"ROBOTS": {
 			"TITLE": "Robots",
-			"DESCRIPTION": "Robots Description"
+			"DESCRIPTION": "Robots Description",
+			"ROBOT": {
+				"TITLE": "Robot Details",
+				"DESCRIPTION": "Robot Details Description"
+			}
 		},
 		"ALERT_CONFIG": {
 			"TITLE": "Alert Config",
@@ -137,18 +141,28 @@
 		}
 	},
 	"ROBOTS": {
-		"TABLE": {
-			"COLUMNS": {
-				"NAME": "Name",
-				"SITE": "Site",
-				"STATUS": "Status",
-				"UPDATED_AT": "Updated At",
-				"ALERTS": "Alerts (danger / warning)"
-			},
-			"VALUES": {
-				"ON": "ON",
-				"OFF": "OFF",
-				"UNKNOWN": "Unknown"
+		"LIST": {
+			"TABLE": {
+				"COLUMNS": {
+					"NAME": "Name",
+					"SITE": "Site",
+					"STATUS": "Status",
+					"UPDATED_AT": "Updated At",
+					"ALERTS": "Alerts (danger / warning)"
+				},
+				"VALUES": {
+					"ON": "ON",
+					"OFF": "OFF",
+					"UNKNOWN": "Unknown"
+				}
+			}
+		},
+		"CONTENT": {
+			"TABS": {
+				"DETAIL": "DETAIL",
+				"ORDERS": "ORDERS",
+				"PURCHASES": "PURCHASES",
+				"INFORMATION": "INFORMATION"
 			}
 		}
 	}

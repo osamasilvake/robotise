@@ -24,6 +24,16 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 		justifyContent: 'space-between',
 		padding: theme.spacing(0, 2)
 	},
+	sLogo: {
+		[theme.breakpoints.up('md')]: {
+			display: 'none'
+		}
+	},
+	sOpenIcon: {
+		[theme.breakpoints.down('sm')]: {
+			display: 'none'
+		}
+	},
 	sOptions: {
 		alignItems: 'center',
 		display: 'flex',

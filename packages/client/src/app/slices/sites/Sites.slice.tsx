@@ -53,7 +53,7 @@ export const SitesFetchList = () => async (dispatch: Dispatch) => {
 	dispatch(loading());
 
 	// fetch sites list
-	SitesService.sitesFetch()
+	return SitesService.sitesFetch()
 		.then(async (res) => {
 			// deserialize response
 			const result = await deserializeSites(res);

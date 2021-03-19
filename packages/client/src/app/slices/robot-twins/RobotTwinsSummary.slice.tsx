@@ -32,7 +32,7 @@ const dataSlice = createSlice({
 		success: (state, action) => {
 			state.loading = false;
 			state.content = state.content
-				? RobotsOrganizeState(state.content, action.payload)
+				? handlePaginationState(state.content, action.payload)
 				: action.payload;
 			state.errors = null;
 		},
@@ -64,10 +64,17 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 	dispatch: Dispatch,
 	getState: () => appReducerType
 ) => {
+	// redux state
 	const state = getState();
 
-	// sites
-	const sites = state.sites.content;
+	// states
+	const sites = state.sites;
+	const robotTwinsSummary = state.robotTwinsSummary;
+
+	// return on busy
+	if (robotTwinsSummary.loading) {
+		return;
+	}
 
 	// dispatch: loader
 	dispatch(loading());
@@ -78,11 +85,11 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 	])
 		.then(async (res) => {
 			// deserialize responses
-			const sitesRes = sites ? sites : await deserializeSites(res[0]);
+			const sitesRes = sites.content ? sites.content : await deserializeSites(res[0]);
 			const robotTwinsSummary = await deserializeRobotTwinsSummary(res[1]);
 
-			// map robot twins summary
-			const result: RTSSContentInterface = robotsMapping(sitesRes, robotTwinsSummary);
+			// prepare robot twins summary content
+			const result: RTSSContentInterface = prepareContent(sitesRes, robotTwinsSummary);
 
 			// count alerts for badge
 			const alerts = countAlerts(result);
@@ -91,7 +98,7 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 			dispatch(success({ ...result, alerts, meta: { ...result.meta, rowsPerPage } }));
 
 			// dispatch: success (sites)
-			if (sitesRes) {
+			if (!sites.content) {
 				dispatch(sitesSuccess(sitesRes));
 			}
 		})
@@ -115,15 +122,17 @@ export const RobotTwinsSummaryRefreshList = () => async (
 	dispatch: Dispatch,
 	getState: () => appReducerType
 ) => {
+	// redux state
 	const state = getState();
 
+	// states
+	const sites = state.sites;
+	const robotTwinsSummary = state.robotTwinsSummary;
+
 	// return on busy
-	if (state.robotTwinsSummary.loading) {
+	if (robotTwinsSummary.loading) {
 		return;
 	}
-
-	// sites
-	const sites = state.sites.content;
 
 	// meta
 	const pageNo = state.robotTwinsSummary.content?.meta.page || 1;
@@ -131,7 +140,7 @@ export const RobotTwinsSummaryRefreshList = () => async (
 		state.robotTwinsSummary.content?.meta.rowsPerPage ||
 		AppConfigService.AppOptions.screens.robots.defaultPageSize;
 
-	(sites === null
+	(!sites.content
 		? Promise.all([
 				SitesService.sitesFetch(),
 				RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
@@ -140,13 +149,13 @@ export const RobotTwinsSummaryRefreshList = () => async (
 	)
 		.then(async (res) => {
 			// deserialize responses
-			const sitesRes = sites === null ? await deserializeSites(res[0]) : sites;
+			const sitesRes = sites.content ? sites.content : await deserializeSites(res[0]);
 			const robotTwinsSummary = await deserializeRobotTwinsSummary(
 				sites === null ? res[1] : res
 			);
 
-			// map robot twins summary
-			const result: RTSSContentInterface = robotsMapping(sitesRes, robotTwinsSummary);
+			// prepare robot twins summary content
+			const result: RTSSContentInterface = prepareContent(sitesRes, robotTwinsSummary);
 
 			// count alerts for badge
 			const alerts = countAlerts(result);
@@ -155,7 +164,7 @@ export const RobotTwinsSummaryRefreshList = () => async (
 			dispatch(success({ ...result, alerts }));
 
 			// dispatch: success (sites)
-			if (sitesRes) {
+			if (!sites.content) {
 				dispatch(sitesSuccess(sitesRes));
 			}
 		})
@@ -172,12 +181,12 @@ export const RobotTwinsSummaryRefreshList = () => async (
 };
 
 /**
- * map robot twins summary
+ * prepare robot twins summary content
  * @param sites
  * @param robotTwinsSummary
  * @returns
  */
-const robotsMapping = (
+const prepareContent = (
 	sites: SSContentInterface,
 	robotTwinsSummary: RTSSContentInterface
 ): RTSSContentInterface => {
@@ -234,7 +243,7 @@ const countAlerts = (payload: RTSSContentInterface) => {
  * @param action
  * @returns
  */
-const RobotsOrganizeState = (state: RTSSContentInterface, action: RTSSContentInterface) => {
+const handlePaginationState = (state: RTSSContentInterface, action: RTSSContentInterface) => {
 	const condition1 = action.meta.page > 1; // first page
 	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
 	const condition3 = action.meta.nextPage === null; // last page

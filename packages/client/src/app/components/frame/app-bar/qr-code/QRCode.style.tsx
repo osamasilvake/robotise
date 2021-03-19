@@ -6,15 +6,17 @@ export const qrCodeStyles = makeStyles((theme: Theme) => ({
 	sQRCode: {
 		backgroundColor:
 			theme.palette.type === 'dark'
-				? AppConfigService.AppVariables.colors.c2
-				: AppConfigService.AppVariables.colors.c5
+				? AppConfigService.AppVariables.colors.c1
+				: AppConfigService.AppVariables.colors.c4,
+		padding: 0,
+		textAlign: 'center'
 	},
 	sQRCodeAvatar: {
 		cursor: 'zoom-in',
 		marginRight: theme.spacing(1)
 	},
 	sQRCodeTooltip: {
-		padding: theme.spacing(0.25, 0.25, 0.75)
+		padding: theme.spacing(0.75, 0.25, 0.25)
 	},
 	sQRCodeAvatarTooltip: {
 		height: theme.spacing(22),

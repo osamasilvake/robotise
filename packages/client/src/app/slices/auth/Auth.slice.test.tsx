@@ -16,6 +16,7 @@ import {
 	failure,
 	initialState,
 	loading,
+	reset,
 	success
 } from './Auth.slice';
 import { AuthSliceInterface } from './Auth.slice.interface';
@@ -81,9 +82,9 @@ describe('[SLICE] Authentication', () => {
 			email: 'imran.khan@robotise.eu',
 			password: 'fakePassword'
 		};
-		const response = new Error('invalid credentials');
 
 		// mock api once
+		const response = new Error('invalid credentials');
 		mockedAxios.post.mockRejectedValueOnce(response);
 
 		// arrange
@@ -169,7 +170,7 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[Thunk][AuthLogout] Creates loading and failure actions on logout ', () => {
+	it('[Thunk][AuthLogout] Creates loading and reset actions on logout ', () => {
 		// store
 		const store = mockStore(initialState);
 
@@ -177,7 +178,7 @@ describe('[SLICE] Authentication', () => {
 		store.dispatch(AuthLogout());
 
 		// assert
-		const expectedActions = [loading(), failure(null)];
+		const expectedActions = [loading(), reset()];
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 });

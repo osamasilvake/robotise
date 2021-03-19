@@ -1,5 +1,5 @@
-import { Avatar, Box, Tooltip, Typography } from '@material-ui/core';
-import { FC } from 'react';
+import { Avatar, Box, Paper, Tooltip, Typography } from '@material-ui/core';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -22,21 +22,23 @@ const QRCode: FC = () => {
 			interactive
 			className={qrCodeClasses.sQRCodeAvatar}
 			title={
-				<Box className={qrCodeClasses.sQRCodeTooltip}>
-					<Typography variant="caption" color="textSecondary">
-						{String(t('TOOLTIPS:QR_CODE'))}
-					</Typography>
-					<Avatar
-						variant="square"
-						src={
-							themePalette === GeneralThemePaletteTypeEnum.DARK
-								? AppConfigService.AppImageURLs.qrCode.path.dark
-								: AppConfigService.AppImageURLs.qrCode.path.light
-						}
-						alt={AppConfigService.AppImageURLs.qrCode.name}
-						className={qrCodeClasses.sQRCodeAvatarTooltip}
-					/>
-				</Box>
+				<Paper square elevation={2}>
+					<Box className={qrCodeClasses.sQRCodeTooltip}>
+						<Typography variant="caption" color="textSecondary">
+							{String(t('TOOLTIPS:QR_CODE'))}
+						</Typography>
+						<Avatar
+							variant="square"
+							src={
+								themePalette === GeneralThemePaletteTypeEnum.DARK
+									? AppConfigService.AppImageURLs.qrCode.path.dark
+									: AppConfigService.AppImageURLs.qrCode.path.light
+							}
+							alt={AppConfigService.AppImageURLs.qrCode.name}
+							className={qrCodeClasses.sQRCodeAvatarTooltip}
+						/>
+					</Box>
+				</Paper>
 			}>
 			<Avatar
 				variant="square"

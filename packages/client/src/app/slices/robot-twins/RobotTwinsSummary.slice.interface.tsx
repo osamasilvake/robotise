@@ -1,6 +1,5 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
-import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
 import { IAlert } from './RobotTwins.slice.interface';
 
 export interface RTSSInterface {
@@ -14,44 +13,6 @@ export interface RTSSContentInterface {
 	dataById: RTSSDataByIdInterface;
 	meta: JsonApiMeta;
 	alerts?: RTSAlertsInterface;
-	backup?: {
-		sites: SitesSliceResponseInterface;
-	};
-}
-
-export interface IRobotTwinSummary {
-	id: string;
-	robot: {
-		id: string;
-	};
-	site: {
-		id: string;
-	};
-	updatedAt: Date;
-	state: {
-		reported: {
-			name: string;
-			robotState: {
-				isReady: boolean;
-			};
-			alerts: IAlert[];
-		};
-	};
-	metadata: {
-		reported: {
-			name: {
-				updatedAt: Date;
-			};
-			robotState: {
-				isReady: {
-					updatedAt: Date;
-				};
-			};
-			alerts: {
-				updatedAt: Date;
-			};
-		};
-	};
 }
 
 export interface RTSSDataByIdInterface {
@@ -95,4 +56,40 @@ export interface RTSFinalDataInterface {
 export interface RTSAlertsInterface {
 	danger: number;
 	warning: number;
+}
+
+// initial
+export interface IRobotTwinSummary {
+	id: string;
+	robot: {
+		id: string;
+	};
+	site: {
+		id: string;
+	};
+	updatedAt: Date;
+	state: {
+		reported: {
+			name: string;
+			robotState: {
+				isReady: boolean;
+			};
+			alerts: IAlert[];
+		};
+	};
+	metadata: {
+		reported: {
+			name: {
+				updatedAt: Date;
+			};
+			robotState: {
+				isReady: {
+					updatedAt: Date;
+				};
+			};
+			alerts: {
+				updatedAt: Date;
+			};
+		};
+	};
 }

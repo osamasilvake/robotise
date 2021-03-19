@@ -69,6 +69,7 @@ class AppConfigService extends EnvService {
 				robots: {
 					robotTwinsRefreshInMs: 10000,
 					showPageSizes: false,
+					defaultPageSize: 100,
 					pageSizes: [5, 10, 15, 20, 50, 100, 150]
 				}
 			}

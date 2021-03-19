@@ -18,8 +18,8 @@ const RobotsList: FC = () => {
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
 		content
-			? content.meta.rowsPerPage || AppConfigService.AppOptions.screens.robots.pageSizes[5]
-			: AppConfigService.AppOptions.screens.robots.pageSizes[5]
+			? content.meta.rowsPerPage || AppConfigService.AppOptions.screens.robots.defaultPageSize
+			: AppConfigService.AppOptions.screens.robots.defaultPageSize
 	);
 	const pageState = useRef({
 		page: content ? content.meta.page - 1 : page - 1,
@@ -29,7 +29,7 @@ const RobotsList: FC = () => {
 	useEffect(() => {
 		// when rows per page is changed
 		if (pageState.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// fetch robot twins summary
+			// dispatch: fetch robot twins summary
 			dispatch(RobotTwinsSummaryFetchList(page + 1, rowsPerPage));
 
 			// update page state and rows per page
@@ -41,7 +41,7 @@ const RobotsList: FC = () => {
 			const condition3 = page > pageState.current.page; // detect next click
 			if (condition1 || condition2) {
 				if (condition3) {
-					// fetch robot twins summary
+					// dispatch: fetch robot twins summary
 					dispatch(RobotTwinsSummaryFetchList(page + 1, rowsPerPage));
 
 					// update page state

@@ -5,7 +5,7 @@ import {
 	IRobotTwinSummary,
 	RTSMappedResponseDataInterface
 } from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
-import { SitesSliceResponseDataInterface } from '../../../slices/sites/Sites.slice.interface';
+import { ISite } from '../../../slices/sites/Sites.slice.interface';
 import {
 	DeserializeRelationshipProperties,
 	DeserializerExtendedOptions,
@@ -22,16 +22,10 @@ export const deserializeSites = async <T extends JsonApiResponse>(payload: T) =>
 		keyForAttribute: 'camelCase'
 	});
 	const data = await deserializer.deserialize(payload);
-	const dataById = data.reduce(
-		(
-			acc: { [x: string]: SitesSliceResponseDataInterface },
-			item: SitesSliceResponseDataInterface
-		) => {
-			acc[item.id] = item;
-			return acc;
-		},
-		{}
-	);
+	const dataById = data.reduce((acc: { [x: string]: ISite }, item: ISite) => {
+		acc[item.id] = item;
+		return acc;
+	}, {});
 	return { data, dataById, meta: payload.meta };
 };
 

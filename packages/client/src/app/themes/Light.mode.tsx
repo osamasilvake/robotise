@@ -86,7 +86,8 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 			},
 			MuiTooltip: {
 				tooltip: {
-					backgroundColor: AppConfigService.AppVariables.colors.c5
+					backgroundColor: AppConfigService.AppVariables.colors.c2,
+					color: AppConfigService.AppVariables.colors.c7
 				}
 			}
 		}

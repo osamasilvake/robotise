@@ -1,38 +1,50 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 
-export interface SitesSliceInterface {
+export interface SSInterface {
 	loading: boolean;
-	content: SitesSliceResponseInterface | null;
+	content: SSContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SitesSliceResponseInterface {
-	data: SitesSliceResponseDataInterface[];
-	dataById: SitesSliceResponseDataByIdInterface;
+export interface SSContentInterface {
+	data: ISite[];
+	dataById: SSDataByIdInterface;
 	meta: JsonApiMeta;
 }
 
-export interface SitesSliceResponseDataInterface {
+export interface SSDataByIdInterface {
+	[id: string]: ISite;
+}
+
+export interface ISite {
 	id: string;
-	createdAt: string;
-	updatedAt: string;
+	robots?: string[];
 	title: string;
 	timezone: string;
+	currency: string;
+	elevators?: {
+		vendor?: string;
+		buildingId?: string;
+		deviceId?: string;
+	};
+	serviceTime: {
+		startTimeLocal: string;
+		endTimeLocal: string;
+		serviceDays: Day[];
+		holidaysSets?: string[];
+		holidaysExtra?: string[];
+	};
+	rooms: {
+		whitelist: string[] | null;
+	};
 	acceptOrders: boolean;
-	rooms: SitesSliceResponseDataRoomsInterface;
-	serviceTime: SitesSliceResponseDataServiceTimeInterface;
+	phone?: {
+		technicianPhone?: string;
+		callerPhonePrefix?: string;
+	};
+	createdAt: Date;
+	updatedAt: Date;
 }
 
-export interface SitesSliceResponseDataByIdInterface {
-	[key: string]: SitesSliceResponseDataInterface;
-}
-
-export interface SitesSliceResponseDataRoomsInterface {
-	whitelist: number[];
-	available: number[];
-}
-
-export interface SitesSliceResponseDataServiceTimeInterface {
-	serviceDays: number[];
-}
+type Day = 'Mo' | 'Tu' | 'We' | 'Th' | 'Fr' | 'Sa' | 'Su';

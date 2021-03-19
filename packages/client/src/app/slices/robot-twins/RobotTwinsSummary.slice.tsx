@@ -4,11 +4,13 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import SitesService from '../../screens/business/sites/Sites.service';
+import { AppConfigService } from '../../services';
 import {
 	deserializeRobotTwinsSummary,
 	deserializeSites
 } from '../../utilities/serializers/json-api/JsonApi';
-import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
+import { success as sitesSuccess } from '../sites/Sites.slice';
+import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RootStateInterface } from '../Slices.interface';
 import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
 
@@ -59,29 +61,39 @@ export default dataSlice.reducer;
  * @returns
  */
 export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) => async (
-	dispatch: Dispatch
+	dispatch: Dispatch,
+	getState: () => RootStateInterface
 ) => {
+	const state = getState();
+
+	// sites
+	const sites = state.sites.content;
+
 	// dispatch: loader
 	dispatch(loading());
 
-	// fetch robot twins summary
 	Promise.all([
 		SitesService.sitesFetch(),
 		RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
 	])
 		.then(async (res) => {
 			// deserialize responses
-			const sites = await deserializeSites(res[0]);
+			const sitesRes = sites ? sites : await deserializeSites(res[0]);
 			const robotTwinsSummary = await deserializeRobotTwinsSummary(res[1]);
 
-			// map robots data
-			const result: RTSSContentInterface = robotsMapping(sites, robotTwinsSummary);
+			// map robot twins summary
+			const result: RTSSContentInterface = robotsMapping(sitesRes, robotTwinsSummary);
 
 			// count alerts for badge
 			const alerts = countAlerts(result);
 
 			// dispatch: success
 			dispatch(success({ ...result, alerts, meta: { ...result.meta, rowsPerPage } }));
+
+			// dispatch: success (sites)
+			if (sitesRes) {
+				dispatch(sitesSuccess(sitesRes));
+			}
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
@@ -97,15 +109,34 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 
 /**
  * refresh robot twins summary
- * @param sites
  * @returns
  */
-export const RobotTwinsSummaryRefreshList = (sites: SitesSliceResponseInterface | null) => async (
-	dispatch: Dispatch
+export const RobotTwinsSummaryRefreshList = () => async (
+	dispatch: Dispatch,
+	getState: () => RootStateInterface
 ) => {
+	const state = getState();
+
+	// return on busy
+	if (state.robotTwinsSummary.loading) {
+		return;
+	}
+
+	// sites
+	const sites = state.sites.content;
+
+	// meta
+	const pageNo = state.robotTwinsSummary.content?.meta.page || 1;
+	const rowsPerPage =
+		state.robotTwinsSummary.content?.meta.rowsPerPage ||
+		AppConfigService.AppOptions.screens.robots.defaultPageSize;
+
 	(sites === null
-		? Promise.all([SitesService.sitesFetch(), RobotsService.robotTwinsSummaryFetch()])
-		: RobotsService.robotTwinsSummaryFetch()
+		? Promise.all([
+				SitesService.sitesFetch(),
+				RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
+		  ])
+		: RobotsService.robotTwinsSummaryFetch(pageNo, pageNo * rowsPerPage)
 	)
 		.then(async (res) => {
 			// deserialize responses
@@ -114,7 +145,7 @@ export const RobotTwinsSummaryRefreshList = (sites: SitesSliceResponseInterface 
 				sites === null ? res[1] : res
 			);
 
-			// map robots data
+			// map robot twins summary
 			const result: RTSSContentInterface = robotsMapping(sitesRes, robotTwinsSummary);
 
 			// count alerts for badge
@@ -122,6 +153,11 @@ export const RobotTwinsSummaryRefreshList = (sites: SitesSliceResponseInterface 
 
 			// dispatch: success
 			dispatch(success({ ...result, alerts }));
+
+			// dispatch: success (sites)
+			if (sitesRes) {
+				dispatch(sitesSuccess(sitesRes));
+			}
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
@@ -136,13 +172,13 @@ export const RobotTwinsSummaryRefreshList = (sites: SitesSliceResponseInterface 
 };
 
 /**
- * map robots data
+ * map robot twins summary
  * @param sites
  * @param robotTwinsSummary
  * @returns
  */
 const robotsMapping = (
-	sites: SitesSliceResponseInterface,
+	sites: SSContentInterface,
 	robotTwinsSummary: RTSSContentInterface
 ): RTSSContentInterface => {
 	return {
@@ -166,10 +202,7 @@ const robotsMapping = (
 			};
 		}),
 		dataById: robotTwinsSummary.dataById,
-		meta: robotTwinsSummary.meta,
-		backup: {
-			sites
-		}
+		meta: robotTwinsSummary.meta
 	};
 };
 

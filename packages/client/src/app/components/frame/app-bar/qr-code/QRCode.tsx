@@ -16,6 +16,10 @@ const QRCode: FC = () => {
 
 	return (
 		<Tooltip
+			classes={{
+				tooltip: qrCodeClasses.sQRCode
+			}}
+			interactive
 			className={qrCodeClasses.sQRCodeAvatar}
 			title={
 				<Box className={qrCodeClasses.sQRCodeTooltip}>

@@ -5,10 +5,10 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeSites } from '../../utilities/serializers/json-api/JsonApi';
 import { RootStateInterface } from '../Slices.interface';
-import { SitesSliceInterface } from './Sites.slice.interface';
+import { SSInterface } from './Sites.slice.interface';
 
 // initial state
-export const initialState: SitesSliceInterface = {
+export const initialState: SSInterface = {
 	loading: false,
 	content: null,
 	errors: null

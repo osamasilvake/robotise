@@ -5,9 +5,7 @@ import { AppConfigService, LoggerService } from '..';
 class InterceptorService {
 	init() {
 		axios.interceptors.response.use(
-			(response) => {
-				return response;
-			},
+			(response) => response,
 			(err: AxiosError) => {
 				return new Promise((_resolve, reject) => {
 					const response = err.response;
@@ -17,9 +15,11 @@ class InterceptorService {
 					// stop repetition in-case of:
 					// 1: network failure
 					// 2: logs api fails
+					// 3: forbidden (un-authorize)
 					const condition1 = config?.url !== undefined;
 					const condition2 = config?.url !== AppConfigService.AppServices.COMMON.LOGS;
-					if (condition1 && condition2) {
+					const condition3 = response?.status !== 403;
+					if (condition1 && condition2 && condition3) {
 						// log error on console
 						// send logs to server
 						LoggerService.sendLogs(err);

@@ -1,6 +1,5 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
-import { SitesSliceResponseInterface } from '../sites/Sites.slice.interface';
 
 export interface RTSInterface {
 	loading: boolean;
@@ -12,9 +11,6 @@ export interface RTSContentInterface {
 	data: IRobotTwin[];
 	dataById: RTSSDataByIdInterface;
 	meta: JsonApiMeta;
-	backup?: {
-		sites: SitesSliceResponseInterface;
-	};
 }
 
 export interface IRobotTwin {

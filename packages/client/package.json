@@ -16,7 +16,6 @@
 		"@material-ui/lab": "^4.0.0-alpha.57",
 		"@material-ui/pickers": "^3.3.10",
 		"@reduxjs/toolkit": "^1.5.0",
-		"@types/jest": "^26.0.20",
 		"@types/jsonapi-serializer": "^3.6.3",
 		"@types/node": "^14.14.35",
 		"@types/react": "^17.0.3",
@@ -24,9 +23,6 @@
 		"@types/react-redux": "^7.1.16",
 		"@types/react-router-dom": "^5.1.7",
 		"@types/redux-logger": "^3.0.8",
-		"@testing-library/jest-dom": "^5.11.9",
-		"@testing-library/react": "^11.2.5",
-		"@testing-library/user-event": "^12.8.3",
 		"axios": "^0.21.1",
 		"clsx": "^1.1.1",
 		"date-fns": "^2.19.0",
@@ -46,10 +42,14 @@
 		"redux": "^4.0.5",
 		"redux-devtools-extension": "^2.13.9",
 		"redux-logger": "^3.0.6",
-		"redux-thunk": "^2.3.0",
+		"redux-thunk": "^2.3.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^26.0.21",
+		"@types/redux-mock-store": "^1.0.2",
+		"redux-mock-store": "^1.5.4",
 		"typescript": "~4.2.3"
 	},
-	"devDependencies": {},
 	"browserslist": {
 		"production": [
 			">0.2%",

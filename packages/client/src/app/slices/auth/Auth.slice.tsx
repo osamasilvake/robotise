@@ -62,7 +62,7 @@ export default dataSlice.reducer;
  * @param payload
  */
 export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispatch) => {
-	AuthService.authLogin(payload)
+	return AuthService.authLogin(payload)
 		.then((res) => {
 			// set token
 			AuthService.setAccessToken(
@@ -104,7 +104,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 				expiresInMs <
 				AppConfigService.AppOptions.screens.authentication.validateBeforeExpiry
 			) {
-				AuthService.authRequestNewToken()
+				return AuthService.authRequestNewToken()
 					.then((res) => {
 						// local-storage
 						const isLocal = StorageService.get(

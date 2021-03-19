@@ -11,7 +11,7 @@ export interface AuthInterface<T = ReactNode> {
 	type: RouteTypeEnum;
 }
 
-// JWT: access_token payload
+// JWT: access_token response
 export interface AuthJWTInterface {
 	name: string;
 	given_name: string;
@@ -30,7 +30,7 @@ export interface AuthJWTInterface {
 	realm_access: realmAccessInterface[];
 }
 
-// custom: user payload
+// custom: user data
 export interface AuthUserDetailInterface {
 	data: AuthUserDataInterface;
 	email_verified: boolean;
@@ -58,7 +58,7 @@ export interface realmAccessInterface {
 	roles: string[];
 }
 
-// login: user payload
+// login: user request
 export interface AuthLoginInterface {
 	email: string;
 	password: string;

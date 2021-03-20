@@ -1,16 +1,15 @@
-import { Paper, Table } from '@material-ui/core';
-import { TableContainer, TablePagination } from '@material-ui/core';
+import { Table, TableContainer, TablePagination } from '@material-ui/core';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AppConfigService } from '../../../../services';
+import { AppConfigService } from '../../../../../services';
 import {
 	RobotsListTableHeadId,
 	RobotsListTableHeadOrder,
 	RobotsListTableInterface
-} from './RobotsList.interface';
-import { columns } from './RobotsList.list';
-import { robotsListStyles } from './RobotsList.styles';
+} from './RobotsListTable.interface';
+import { columns } from './RobotsListTable.list';
+import { robotsListStyles } from './RobotsListTable.styles';
 import RobotsListTableBody from './RobotsListTableBody';
 import RobotsListTableHead from './RobotsListTableHead';
 
@@ -61,7 +60,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	};
 
 	return (
-		<Paper elevation={12}>
+		<>
 			<TableContainer className={robotsListClasses.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
@@ -98,7 +97,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 				onChangePage={handleChangePage}
 				onChangeRowsPerPage={handleChangeRowsPerPage}
 			/>
-		</Paper>
+		</>
 	);
 };
 export default RobotsListTable;

@@ -1,4 +1,3 @@
-import { Box } from '@material-ui/core';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,6 +9,7 @@ import {
 } from '../../../../../slices/robot-twins/RobotTwins.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { removeSpecialCharacters } from '../../../../../utilities/methods/StringUtilities';
+import RobotDetailGeneral from './RobotDetailGeneral';
 
 const RobotDetail: FC = () => {
 	const dispatch = useDispatch();
@@ -23,10 +23,10 @@ const RobotDetail: FC = () => {
 
 			// fetch robot name in robot twins summary
 			const robotName = removeSpecialCharacters(getRobotName);
-			const findRobot = robotTwinsSummary.content.data.filter(
+			const findRobot = robotTwinsSummary.content.data.find(
 				(r) => removeSpecialCharacters(r.name) === robotName
 			);
-			const robotId = findRobot && findRobot[0] ? findRobot[0].id : 'unknown';
+			const robotId = findRobot ? findRobot.id : 'unknown';
 
 			// dispatch: fetch robot twins of single robot
 			dispatch(RobotTwinsSingleRobotFetchList(robotId));
@@ -43,6 +43,6 @@ const RobotDetail: FC = () => {
 		return <PageError message={robotTwins.errors.text} />;
 	}
 
-	return <Box>Hello World</Box>;
+	return <RobotDetailGeneral content={robotTwins.content} />;
 };
 export default RobotDetail;

@@ -1,4 +1,4 @@
-import { RobotsListTableColumnInterface } from './RobotsList.interface';
+import { RobotsListTableColumnInterface } from './RobotsListTable.interface';
 
 export const columns: RobotsListTableColumnInterface[] = [
 	{

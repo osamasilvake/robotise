@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { AppConfigService } from '../../../../services';
-import { pxToRem } from '../../../../utilities/methods/PixelsToRem';
+import { AppConfigService } from '../../../../../services';
+import { pxToRem } from '../../../../../utilities/methods/PixelsToRem';
 
 const minusContentHeight = AppConfigService.AppOptions.components.table.minusContentHeight;
 export const robotsListStyles = makeStyles((theme: Theme) => ({

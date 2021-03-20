@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,7 +9,7 @@ import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
 } from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
-import RobotsListTable from './RobotsListTable';
+import RobotsListTable from './table/RobotsListTable';
 
 const RobotsList: FC = () => {
 	const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const RobotsList: FC = () => {
 	}
 
 	return (
-		<Box>
+		<Paper elevation={12}>
 			{/* Table */}
 			<RobotsListTable
 				content={robotTwinsSummary.content}
@@ -72,7 +72,7 @@ const RobotsList: FC = () => {
 				setRowsPerPage={setRowsPerPage}
 				setPage={setPage}
 			/>
-		</Box>
+		</Paper>
 	);
 };
 export default RobotsList;

@@ -2,7 +2,7 @@ import { lazy } from 'react';
 
 import { RouteInterface } from '../../../routes/Routes.interfaces';
 import { AppConfigService } from '../../../services';
-import Robot from './content/Robot';
+import Robot from './Robot';
 
 const Robots = lazy(() => import('./Robots'));
 

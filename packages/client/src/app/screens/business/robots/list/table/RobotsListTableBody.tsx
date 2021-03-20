@@ -4,21 +4,21 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-import { AppConfigService } from '../../../../services';
+import { AppConfigService } from '../../../../../services';
 import {
 	RTSFinalDataInterface,
 	RTSSContentInterface
-} from '../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
-import { momentFormat1, momentSort } from '../../../../utilities/methods/Moment';
-import { removeSpecialCharacters } from '../../../../utilities/methods/StringUtilities';
-import { RobotsListTableSortTypeEnum } from './RobotsList.enum';
+} from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+import { momentFormat1, momentSort } from '../../../../../utilities/methods/Moment';
+import { removeSpecialCharacters } from '../../../../../utilities/methods/StringUtilities';
+import { RobotsListTableSortTypeEnum } from './RobotsListTable.enum';
 import {
 	RobotsListTableBodyInterface,
 	RobotsListTableColumnInterface,
 	RobotsListTableHeadId
-} from './RobotsList.interface';
-import { columns } from './RobotsList.list';
-import { robotsListStyles } from './RobotsList.styles';
+} from './RobotsListTable.interface';
+import { columns } from './RobotsListTable.list';
+import { robotsListStyles } from './RobotsListTable.styles';
 
 const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;

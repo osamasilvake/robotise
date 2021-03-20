@@ -6,7 +6,7 @@ import {
 	RobotsListTableColumnInterface,
 	RobotsListTableHeadId,
 	RobotsListTableHeadInterface
-} from './RobotsList.interface';
+} from './RobotsListTable.interface';
 
 const RobotsListTableHead: FC<RobotsListTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;

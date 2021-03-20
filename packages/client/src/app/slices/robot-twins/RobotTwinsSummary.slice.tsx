@@ -67,14 +67,8 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 	// redux state
 	const state = getState();
 
-	// states
+	// state
 	const sites = state.sites;
-	const robotTwinsSummary = state.robotTwinsSummary;
-
-	// return on busy
-	if (robotTwinsSummary && robotTwinsSummary.loading) {
-		return;
-	}
 
 	// dispatch: loader
 	dispatch(loading());
@@ -132,10 +126,10 @@ export const RobotTwinsSummaryRefreshList = () => async (
 
 	// states
 	const sites = state.sites;
-	const robotTwinsSummary = state.robotTwinsSummary;
+	const robotTwins = state.robotTwins;
 
 	// return on busy
-	if (robotTwinsSummary && robotTwinsSummary.loading) {
+	if (robotTwins && robotTwins.loading) {
 		return;
 	}
 

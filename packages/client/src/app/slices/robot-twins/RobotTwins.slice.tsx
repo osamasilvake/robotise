@@ -65,27 +65,18 @@ export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
 
 	// state
 	const sites = state.sites;
-	const robotTwins = state.robotTwins;
-
-	// return on busy
-	if (robotTwins && robotTwins.loading) {
-		return;
-	}
 
 	// dispatch: loader
 	dispatch(loading());
 
 	(!sites.content
-		? Promise.all([
-				SitesService.sitesFetch(),
-				RobotsService.robotTwinsSingleRobotFetch(robotId)
-		  ])
-		: RobotsService.robotTwinsSingleRobotFetch(robotId)
+		? Promise.all([SitesService.sitesFetch(), RobotsService.robotTwinsFetch()])
+		: RobotsService.robotTwinsFetch()
 	)
 		.then(async (res) => {
 			// deserialize responses
 			const sitesRes = !sites.content ? await deserializeSites(res[0]) : sites.content;
-			const robotTwins = await deserializeRobotTwins(res[1]);
+			const robotTwins = await deserializeRobotTwins(!sites.content ? res[1] : res);
 
 			// prepare robot twins content
 			const result: RTSContentInterface = prepareContent(sitesRes, robotTwins);

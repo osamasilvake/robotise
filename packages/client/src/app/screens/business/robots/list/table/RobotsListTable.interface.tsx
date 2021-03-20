@@ -1,6 +1,6 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
-import { RTSSContentInterface } from '../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+import { RTSSContentInterface } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 
 export interface RobotsListTableInterface {
 	content: RTSSContentInterface | null;

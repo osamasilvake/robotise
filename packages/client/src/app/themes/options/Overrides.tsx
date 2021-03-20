@@ -76,14 +76,6 @@ const OverridesCustom: Overrides = {
 			transition: 'none'
 		}
 	},
-	MuiTab: {
-		textColorPrimary: {
-			'&$selected': {
-				backgroundColor: AppConfigService.AppVariables.colors.c9,
-				color: AppConfigService.AppVariables.colors.c4
-			}
-		}
-	},
 	MuiIconButton: {
 		root: {
 			borderRadius: pxToRem(2)

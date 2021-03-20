@@ -13,16 +13,17 @@ import RobotsListTable from './RobotsListTable';
 
 const RobotsList: FC = () => {
 	const dispatch = useDispatch();
-	const { loading, errors, content } = useSelector(robotTwinsSummarySelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
-		content
-			? content.meta.rowsPerPage || AppConfigService.AppOptions.screens.robots.defaultPageSize
+		robotTwinsSummary.content
+			? robotTwinsSummary.content.meta.rowsPerPage ||
+					AppConfigService.AppOptions.screens.robots.defaultPageSize
 			: AppConfigService.AppOptions.screens.robots.defaultPageSize
 	);
 	const pageState = useRef({
-		page: content ? content.meta.page - 1 : page - 1,
+		page: robotTwinsSummary.content ? robotTwinsSummary.content.meta.page - 1 : page - 1,
 		rowsPerPage
 	});
 
@@ -37,7 +38,7 @@ const RobotsList: FC = () => {
 			pageState.current.rowsPerPage = rowsPerPage;
 		} else {
 			const condition1 = pageState.current.page !== -1; // page switch back and forth
-			const condition2 = content === null && !condition1; // init
+			const condition2 = robotTwinsSummary.content === null && !condition1; // init
 			const condition3 = page > pageState.current.page; // detect next click
 			if (condition1 || condition2) {
 				if (condition3) {
@@ -49,23 +50,23 @@ const RobotsList: FC = () => {
 				}
 			}
 		}
-	}, [content, dispatch, page, rowsPerPage]);
+	}, [dispatch, robotTwinsSummary.content, page, rowsPerPage]);
 
 	// loading
-	if (loading) {
+	if (robotTwinsSummary.loading) {
 		return <Loader spinner spinnerSmall spinnerText="LOADING" />;
 	}
 
 	// error
-	if (errors && errors.text) {
-		return <PageError message={errors.text} />;
+	if (robotTwinsSummary.errors && robotTwinsSummary.errors.text) {
+		return <PageError message={robotTwinsSummary.errors.text} />;
 	}
 
 	return (
 		<Box>
 			{/* Table */}
 			<RobotsListTable
-				content={content}
+				content={robotTwinsSummary.content}
 				page={page}
 				rowsPerPage={rowsPerPage}
 				setRowsPerPage={setRowsPerPage}

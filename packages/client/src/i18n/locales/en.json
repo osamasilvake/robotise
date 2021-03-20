@@ -52,7 +52,7 @@
 	"ERRORS": {
 		"E404": {
 			"TITLE": "404",
-			"DESCRIPTION": "Sorry but we could not locate your page!",
+			"DESCRIPTION": "Sorry, we couldn't locate your page!",
 			"LINK": "Go back to Home Page"
 		},
 		"ERROR_BOUNDARY": {

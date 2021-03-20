@@ -107,23 +107,14 @@ class AppConfigService extends EnvService {
 	}
 
 	/**
-	 * local storage
+	 * local/session storage
 	 */
-	get AppLocalStorageItems() {
+	get StorageItems() {
 		return {
 			JWTAccessToken: 'robotise_jwt_access_token',
 			ThemePalette: 'robotise_theme_palette',
 			ChangeLanguage: 'robotise_change_language',
 			DrawerState: 'robotise_drawer_state'
-		};
-	}
-
-	/**
-	 * session storage
-	 */
-	get AppSessionStorageItems() {
-		return {
-			JWTAccessToken: 'robotise_jwt_access_token'
 		};
 	}
 

@@ -20,15 +20,17 @@ InterceptorService.init();
 LoggerService.init();
 
 const App: FC = () => {
-	const { themePalette } = useSelector(generalSelector);
+	const general = useSelector(generalSelector);
 
 	// change theme
 	const theme = useMemo(
 		() =>
 			createMuiTheme(
-				themePalette === GeneralThemePaletteTypeEnum.DARK ? Dark(Options) : Light(Options)
+				general.themePalette === GeneralThemePaletteTypeEnum.DARK
+					? Dark(Options)
+					: Light(Options)
 			),
-		[themePalette]
+		[general.themePalette]
 	);
 
 	return (

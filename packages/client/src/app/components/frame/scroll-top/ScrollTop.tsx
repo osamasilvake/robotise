@@ -15,7 +15,7 @@ const ScrollTop: FC = () => {
 	/**
 	 * scroll to top
 	 */
-	const scrollToTop = () => {
+	const handleScrollToTop = () => {
 		const scrollSpeed = 400;
 		const scrollDuration = scrollSpeed / 25;
 		const scrollStep = -window.scrollY / scrollDuration;
@@ -30,7 +30,7 @@ const ScrollTop: FC = () => {
 
 	return (
 		<Zoom in={trigger}>
-			<Box onClick={scrollToTop} className={scrollTopClasses.sScrollTop}>
+			<Box onClick={handleScrollToTop} className={scrollTopClasses.sScrollTop}>
 				<Fab size="small">
 					<ArrowUpwardIcon />
 				</Fab>

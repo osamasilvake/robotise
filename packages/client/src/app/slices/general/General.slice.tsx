@@ -8,9 +8,9 @@ import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.
 import { GeneralSliceInterface } from './General.slice.interface';
 
 // storage items
-const theme = StorageService.get(AppConfigService.AppLocalStorageItems.ThemePalette);
-const language = StorageService.get(AppConfigService.AppLocalStorageItems.ChangeLanguage);
-const drawerState = StorageService.get(AppConfigService.AppLocalStorageItems.DrawerState);
+const theme = StorageService.get(AppConfigService.StorageItems.ThemePalette);
+const language = StorageService.get(AppConfigService.StorageItems.ChangeLanguage);
+const drawerState = StorageService.get(AppConfigService.StorageItems.DrawerState);
 
 // initial state
 export const initialState: GeneralSliceInterface = {
@@ -70,7 +70,7 @@ export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: 
 	dispatch(setDrawerState(drawerState));
 
 	// store it in local_storage
-	StorageService.put(AppConfigService.AppLocalStorageItems.DrawerState, drawerState);
+	StorageService.put(AppConfigService.StorageItems.DrawerState, drawerState);
 };
 
 /**
@@ -84,7 +84,7 @@ export const GeneralApplyThemePalette = (theme: GeneralThemePaletteTypeEnum) => 
 	dispatch(applyThemePalette(theme));
 
 	// store it in local_storage
-	StorageService.put(AppConfigService.AppLocalStorageItems.ThemePalette, theme);
+	StorageService.put(AppConfigService.StorageItems.ThemePalette, theme);
 };
 
 /**
@@ -98,7 +98,7 @@ export const GeneralChangeLanguage = (language: GeneralLanguageTypeEnum) => asyn
 	dispatch(changeLanguage(language));
 
 	// store it in local_storage
-	StorageService.put(AppConfigService.AppLocalStorageItems.ChangeLanguage, language);
+	StorageService.put(AppConfigService.StorageItems.ChangeLanguage, language);
 };
 
 /**

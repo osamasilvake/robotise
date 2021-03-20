@@ -34,19 +34,19 @@ const DrawerCustom: FC = () => {
 	const drawerClasses = drawerStyles();
 
 	const dispatch = useDispatch();
-	const { openDrawer } = useSelector(generalSelector);
-	const { content } = useSelector(robotTwinsSummarySelector);
+	const general = useSelector(generalSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	useEffect(() => {
 		const handleSmallDevices = () => {
-			// sm: 960
-			if (window.innerWidth < 960 && openDrawer) {
+			// sm: 600
+			if (window.innerWidth < 600 && general.openDrawer) {
 				// dispatch: set drawer state
-				dispatch(GeneralSetDrawerState(!openDrawer));
+				dispatch(GeneralSetDrawerState(!general.openDrawer));
 			}
 		};
 		window.addEventListener('load', handleSmallDevices, { once: true });
-	}, [dispatch, openDrawer]);
+	}, [dispatch, general.openDrawer]);
 
 	/**
 	 * dispatch: set drawer state
@@ -58,13 +58,13 @@ const DrawerCustom: FC = () => {
 			<Drawer
 				variant="permanent"
 				className={clsx(drawerClasses.sDrawer, {
-					[drawerClasses.sOpen]: openDrawer,
-					[drawerClasses.sClose]: !openDrawer
+					[drawerClasses.sOpen]: general.openDrawer,
+					[drawerClasses.sClose]: !general.openDrawer
 				})}
 				classes={{
 					paper: clsx({
-						[drawerClasses.sOpen]: openDrawer,
-						[drawerClasses.sClose]: !openDrawer
+						[drawerClasses.sOpen]: general.openDrawer,
+						[drawerClasses.sClose]: !general.openDrawer
 					})
 				}}>
 				{/* Avatar & Icon */}
@@ -90,7 +90,7 @@ const DrawerCustom: FC = () => {
 						disablePadding
 						subheader={
 							<ListSubheader>
-								{(openDrawer && t('BUSINESS.TITLE.MAIN')) ||
+								{(general.openDrawer && t('BUSINESS.TITLE.MAIN')) ||
 									t('BUSINESS.TITLE.SHORT')}
 							</ListSubheader>
 						}>
@@ -104,12 +104,12 @@ const DrawerCustom: FC = () => {
 								className={drawerClasses.sListItemWithSubtitle}>
 								<ListItemIcon>
 									{item.badge === DrawerListBadgeTypeEnum.ROBOT &&
-									content &&
-									content.alerts?.danger ? (
+									robotTwinsSummary.content &&
+									robotTwinsSummary.content.alerts?.danger ? (
 										<Badge
 											options={{
 												type: BadgeTypeEnum.NUMBER,
-												count: content.alerts?.danger,
+												count: robotTwinsSummary.content.alerts?.danger,
 												color: 'error'
 											}}>
 											<Icon>{item.icon}</Icon>
@@ -129,7 +129,7 @@ const DrawerCustom: FC = () => {
 						disablePadding
 						subheader={
 							<ListSubheader>
-								{(openDrawer && t('INFORMATION.TITLE.MAIN')) ||
+								{(general.openDrawer && t('INFORMATION.TITLE.MAIN')) ||
 									t('INFORMATION.TITLE.SHORT')}
 							</ListSubheader>
 						}>
@@ -154,7 +154,7 @@ const DrawerCustom: FC = () => {
 
 				{/* Copyrights */}
 				<Box className={drawerClasses.sBottomArea}>
-					{openDrawer ? <Copyrights /> : <Copyrights short />}
+					{general.openDrawer ? <Copyrights /> : <Copyrights short />}
 				</Box>
 			</Drawer>
 		</Box>

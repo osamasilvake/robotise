@@ -70,6 +70,15 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 					backgroundColor: AppConfigService.AppVariables.colors.c5
 				}
 			},
+			MuiTab: {
+				textColorPrimary: {
+					'&$selected': {
+						backgroundColor: AppConfigService.AppVariables.colors.c4,
+						borderTop: `1px solid ${AppConfigService.AppVariables.colors.c9}`,
+						color: AppConfigService.AppVariables.colors.c9
+					}
+				}
+			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {

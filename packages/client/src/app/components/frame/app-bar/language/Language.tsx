@@ -12,28 +12,27 @@ const Language: FC = () => {
 	const languageClasses = languageStyles();
 
 	const dispatch = useDispatch();
-	const { currentLanguage } = useSelector(generalSelector);
+	const general = useSelector(generalSelector);
 
 	/**
 	 * dispatch: change language
 	 * @param language
+	 * @returns
 	 */
-	const handleLanguage = (language: GeneralLanguageTypeEnum) =>
+	const handleLanguage = (language: GeneralLanguageTypeEnum) => () =>
 		dispatch(GeneralChangeLanguage(language));
 
 	return (
 		<ListItem
 			button
 			divider
-			onClick={() =>
-				handleLanguage(
-					currentLanguage === GeneralLanguageTypeEnum.EN
-						? GeneralLanguageTypeEnum.DE
-						: GeneralLanguageTypeEnum.EN
-				)
-			}>
+			onClick={handleLanguage(
+				general.currentLanguage === GeneralLanguageTypeEnum.EN
+					? GeneralLanguageTypeEnum.DE
+					: GeneralLanguageTypeEnum.EN
+			)}>
 			<ListItemText className={languageClasses.sLanguageText}>
-				{(currentLanguage === GeneralLanguageTypeEnum.EN
+				{(general.currentLanguage === GeneralLanguageTypeEnum.EN
 					? GeneralLanguageTypeEnum.EN
 					: GeneralLanguageTypeEnum.DE
 				).toUpperCase()}
@@ -41,7 +40,7 @@ const Language: FC = () => {
 			<ListItemText
 				primary={t('LANGUAGE.TITLE')}
 				secondary={
-					currentLanguage === GeneralLanguageTypeEnum.EN
+					general.currentLanguage === GeneralLanguageTypeEnum.EN
 						? t('LANGUAGE.EN')
 						: t('LANGUAGE.DE')
 				}

@@ -11,7 +11,7 @@ const Message: FC = () => {
 	const { t } = useTranslation('MESSAGE');
 
 	const dispatch = useDispatch();
-	const { triggerMessage } = useSelector(generalSelector);
+	const general = useSelector(generalSelector);
 
 	/**
 	 * dispatch: trigger message
@@ -24,10 +24,10 @@ const Message: FC = () => {
 				AppConfigService.AppOptions.components.snackbar.direction as SnackbarOrigin
 			}
 			autoHideDuration={AppConfigService.AppOptions.components.snackbar.timeout}
-			open={triggerMessage.show}
+			open={general.triggerMessage.show}
 			onClose={handleCloseMessage}>
-			<Alert severity={triggerMessage.severity} handleClose={handleCloseMessage}>
-				{triggerMessage.text && t(triggerMessage.text)}
+			<Alert severity={general.triggerMessage.severity} handleClose={handleCloseMessage}>
+				{general.triggerMessage.text && t(general.triggerMessage.text)}
 			</Alert>
 		</Snackbar>
 	);

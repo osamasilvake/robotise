@@ -52,9 +52,11 @@ export const robotTwinsSelector = (state: AppReducerType) => state['robotTwins']
 export default dataSlice.reducer;
 
 /**
- * fetch robot twins
+ * fetch robot twins of single robot
+ * @param robotId
+ * @returns
  */
-export const RobotTwinsFetchList = () => async (
+export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
 	dispatch: Dispatch,
 	getState: () => AppReducerType
 ) => {
@@ -74,8 +76,11 @@ export const RobotTwinsFetchList = () => async (
 	dispatch(loading());
 
 	(!sites.content
-		? Promise.all([SitesService.sitesFetch(), RobotsService.robotTwinsFetch()])
-		: RobotsService.robotTwinsFetch()
+		? Promise.all([
+				SitesService.sitesFetch(),
+				RobotsService.robotTwinsSingleRobotFetch(robotId)
+		  ])
+		: RobotsService.robotTwinsSingleRobotFetch(robotId)
 	)
 		.then(async (res) => {
 			// deserialize responses
@@ -122,7 +127,8 @@ const prepareContent = (
 				id: robotTwinsRes.robot.id,
 				site: {
 					...robotTwinsRes.site,
-					title: site.title
+					title: site.title,
+					elevator: site.elevators
 				}
 			};
 		}),

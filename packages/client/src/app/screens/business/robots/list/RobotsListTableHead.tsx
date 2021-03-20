@@ -13,11 +13,11 @@ const RobotsListTableHead: FC<RobotsListTableHeadInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 
 	/**
-	 * create sort handler
+	 * handle sort request
 	 * @param property
 	 * @returns
 	 */
-	const createSortHandler = (property: RobotsListTableHeadId) => (event: MouseEvent) => {
+	const handleSortRequest = (property: RobotsListTableHeadId) => (event: MouseEvent) => {
 		onRequestSort(event, property);
 	};
 
@@ -33,7 +33,7 @@ const RobotsListTableHead: FC<RobotsListTableHeadInterface> = (props) => {
 						<TableSortLabel
 							active={orderBy === column.id}
 							direction={orderBy === column.id ? order : 'asc'}
-							onClick={createSortHandler(column.id)}>
+							onClick={handleSortRequest(column.id)}>
 							{t(column.label)}
 						</TableSortLabel>
 					</TableCell>

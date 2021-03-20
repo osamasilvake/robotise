@@ -35,15 +35,15 @@ const AppBarCustom: FC = () => {
 	const appBarClasses = appBarStyles();
 
 	const dispatch = useDispatch();
-	const { user } = useSelector(authSelector);
-	const { openDrawer, currentLanguage } = useSelector(generalSelector);
+	const auth = useSelector(authSelector);
+	const general = useSelector(generalSelector);
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
 	useEffect(() => {
 		// change language
-		i18next.changeLanguage(currentLanguage);
-	}, [currentLanguage]);
+		i18next.changeLanguage(general.currentLanguage);
+	}, [general.currentLanguage]);
 
 	/**
 	 * handle menu open
@@ -73,10 +73,10 @@ const AppBarCustom: FC = () => {
 			elevation={0}
 			color="inherit"
 			className={clsx(appBarClasses.sAppBar, {
-				[appBarClasses.sOpen]: openDrawer
+				[appBarClasses.sOpen]: general.openDrawer
 			})}>
 			<Toolbar className={appBarClasses.sToolbar} disableGutters>
-				{!openDrawer && (
+				{!general.openDrawer && (
 					<>
 						<Link
 							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}
@@ -103,12 +103,14 @@ const AppBarCustom: FC = () => {
 					{/* Account */}
 					<IconButton edge="end" onClick={handleMenuOpen}>
 						<Box className={appBarClasses.sAccountDetail}>
-							<Typography variant="subtitle2">{user?.data.display_name}</Typography>
+							<Typography variant="subtitle2">
+								{auth.user?.data.display_name}
+							</Typography>
 							<Typography
 								variant="body2"
 								color="textSecondary"
 								className={appBarClasses.sAccountDetailSubtitle}>
-								{user?.data.role}
+								{auth.user?.data.role}
 							</Typography>
 						</Box>
 						<Badge>
@@ -129,8 +131,8 @@ const AppBarCustom: FC = () => {
 							{/* User Info */}
 							<ListItem divider>
 								<ListItemText
-									primary={user?.data.display_name}
-									secondary={user?.data.email}
+									primary={auth.user?.data.display_name}
+									secondary={auth.user?.data.email}
 								/>
 							</ListItem>
 

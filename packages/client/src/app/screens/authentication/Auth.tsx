@@ -11,15 +11,15 @@ import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
 	const dispatch = useDispatch();
-	const { loading, user } = useSelector(authSelector);
+	const auth = useSelector(authSelector);
 
-	const isUser = !!(user && user.data.user_id);
+	const isUser = !!(auth.user && auth.user.data.user_id);
 
 	useEffect(() => {
 		const init = () => {
-			if (user) {
+			if (auth.user) {
 				// dispatch: requests a new token before it expires
-				dispatch(AuthRefreshToken(user.exp));
+				dispatch(AuthRefreshToken(auth.user.exp));
 
 				// dispatch: refresh robot twins summary
 				dispatch(RobotTwinsSummaryRefreshList());
@@ -32,7 +32,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 		);
 
 		return () => window.clearInterval(timeoutID);
-	}, [dispatch, user]);
+	}, [dispatch, auth.user]);
 
 	/**
 	 * authentication state
@@ -42,7 +42,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	 * !user: 	Login
 	 */
 
-	if (loading) {
+	if (auth.loading) {
 		return <Loader />;
 	} else if (isPrivate(type) && !isUser) {
 		return <Redirect to={AppConfigService.AppRoutes.AUTH.LOGIN} />;

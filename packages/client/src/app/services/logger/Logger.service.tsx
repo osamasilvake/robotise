@@ -31,16 +31,14 @@ class LoggerService {
 		// send logs to the server
 		const request: LogInterface[] = [
 			{
+				apiVersion: AppConfigService.envApiVersion,
+				appVersion: AppConfigService.envAppVersion,
 				env: AppConfigService.env,
-				level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
-				token: StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken),
-				version: {
-					app: AppConfigService.envAppVersion,
-					api: AppConfigService.envApiVersion
-				},
-				pageUrl: window.location.href,
-				timestamp: momentISOString(),
 				origin: AppConfigService.envRealm,
+				level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
+				pageUrl: window.location.href,
+				token: StorageService.get(AppConfigService.StorageItems.JWTAccessToken),
+				timestamp: momentISOString(),
 				...errorLog
 			}
 		];

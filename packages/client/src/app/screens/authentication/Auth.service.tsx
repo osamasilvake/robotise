@@ -98,13 +98,15 @@ class AuthService {
 	 * @param storageType
 	 */
 	setAccessToken = (accessToken: string, storageType: StorageTypeEnum) => {
+		// add authorization to headers
 		axios.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 
+		// set in storage
 		if (storageType === StorageTypeEnum.PERSISTENT) {
-			StorageService.put(AppConfigService.AppLocalStorageItems.JWTAccessToken, accessToken);
+			StorageService.put(AppConfigService.StorageItems.JWTAccessToken, accessToken);
 		} else {
 			StorageService.put(
-				AppConfigService.AppSessionStorageItems.JWTAccessToken,
+				AppConfigService.StorageItems.JWTAccessToken,
 				accessToken,
 				StorageTypeEnum.SESSION
 			);
@@ -115,27 +117,19 @@ class AuthService {
 	 * get access token
 	 */
 	getAccessToken = () => {
-		return (
-			StorageService.get(AppConfigService.AppLocalStorageItems.JWTAccessToken) ||
-			StorageService.get(
-				AppConfigService.AppSessionStorageItems.JWTAccessToken,
-				StorageTypeEnum.SESSION
-			)
-		);
+		return StorageService.get(AppConfigService.StorageItems.JWTAccessToken);
 	};
 
 	/**
 	 * remove access token
 	 */
 	removeAccessToken = () => {
+		// delete authorization from headers
 		delete axios.defaults.headers.common.Authorization;
 
+		// remove from storage
 		if (this.getAccessToken()) {
-			StorageService.remove(AppConfigService.AppLocalStorageItems.JWTAccessToken);
-			StorageService.remove(
-				AppConfigService.AppSessionStorageItems.JWTAccessToken,
-				StorageTypeEnum.SESSION
-			);
+			StorageService.remove(AppConfigService.StorageItems.JWTAccessToken);
 		}
 	};
 }

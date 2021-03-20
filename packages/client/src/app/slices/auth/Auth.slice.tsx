@@ -113,7 +113,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 					.then((res) => {
 						// local-storage
 						const isLocal = StorageService.get(
-							AppConfigService.AppLocalStorageItems.JWTAccessToken,
+							AppConfigService.StorageItems.JWTAccessToken,
 							StorageTypeEnum.PERSISTENT
 						);
 

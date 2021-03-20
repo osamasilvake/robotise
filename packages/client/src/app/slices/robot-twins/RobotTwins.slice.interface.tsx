@@ -26,6 +26,11 @@ export interface RTSMappedResponseDataInterface {
 	site: {
 		id: string;
 		title: string;
+		elevators?: {
+			vendor?: string;
+			buildingId?: string;
+			deviceId?: string;
+		};
 	};
 	robotState: {
 		isReady: {

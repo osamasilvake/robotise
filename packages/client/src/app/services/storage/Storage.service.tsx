@@ -15,28 +15,7 @@ class StorageService {
 				return sessionStorage.getItem(key) !== null;
 
 			default:
-				return localStorage.getItem(key) !== null;
-		}
-	};
-
-	/**
-	 * set item to local or session storage
-	 * @param key
-	 * @param value
-	 * @param storageType
-	 */
-	put = <T,>(key: string, value: T, storageType?: StorageTypeEnum) => {
-		switch (storageType) {
-			case StorageTypeEnum.PERSISTENT:
-				localStorage.setItem(key, JSON.stringify(value));
-				break;
-
-			case StorageTypeEnum.SESSION:
-				sessionStorage.setItem(key, JSON.stringify(value));
-				break;
-
-			default:
-				localStorage.setItem(key, JSON.stringify(value));
+				return localStorage.getItem(key) !== null || sessionStorage.getItem(key) !== null;
 		}
 	};
 
@@ -62,9 +41,30 @@ class StorageService {
 				break;
 
 			default: {
-				const value = localStorage.getItem(key) || '';
+				const value = sessionStorage.getItem(key) || localStorage.getItem(key) || '';
 				return value ? JSON.parse(value) : value;
 			}
+		}
+	};
+
+	/**
+	 * set item to local or session storage
+	 * @param key
+	 * @param value
+	 * @param storageType
+	 */
+	put = <T,>(key: string, value: T, storageType?: StorageTypeEnum) => {
+		switch (storageType) {
+			case StorageTypeEnum.PERSISTENT:
+				localStorage.setItem(key, JSON.stringify(value));
+				break;
+
+			case StorageTypeEnum.SESSION:
+				sessionStorage.setItem(key, JSON.stringify(value));
+				break;
+
+			default:
+				localStorage.setItem(key, JSON.stringify(value));
 		}
 	};
 
@@ -88,8 +88,9 @@ class StorageService {
 				break;
 
 			default:
-				if (this.exist(key, StorageTypeEnum.PERSISTENT)) {
+				if (this.exist(key)) {
 					localStorage.removeItem(key);
+					sessionStorage.removeItem(key);
 				}
 		}
 	};

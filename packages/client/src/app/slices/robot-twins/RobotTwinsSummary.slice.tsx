@@ -89,7 +89,9 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 		.then(async (res) => {
 			// deserialize responses
 			const sitesRes = !sites.content ? await deserializeSites(res[0]) : sites.content;
-			const robotTwinsSummary = await deserializeRobotTwinsSummary(res[1]);
+			const robotTwinsSummary = await deserializeRobotTwinsSummary(
+				!sites.content ? res[1] : res
+			);
 
 			// prepare robot twins summary content
 			const result: RTSSContentInterface = prepareContent(sitesRes, robotTwinsSummary);

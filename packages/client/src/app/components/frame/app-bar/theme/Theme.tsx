@@ -17,27 +17,26 @@ const ThemePalette: FC = () => {
 	const themePaletteClasses = themePaletteStyles();
 
 	const dispatch = useDispatch();
-	const { themePalette } = useSelector(generalSelector);
+	const general = useSelector(generalSelector);
 
 	/**
 	 * dispatch: apply theme palette
 	 * @param theme
+	 * @returns
 	 */
-	const handleThemePalette = (theme: GeneralThemePaletteTypeEnum) =>
+	const handleThemePalette = (theme: GeneralThemePaletteTypeEnum) => () =>
 		dispatch(GeneralApplyThemePalette(theme));
 
 	return (
 		<ListItem
 			button
-			onClick={() =>
-				handleThemePalette(
-					themePalette === GeneralThemePaletteTypeEnum.LIGHT
-						? GeneralThemePaletteTypeEnum.DARK
-						: GeneralThemePaletteTypeEnum.LIGHT
-				)
-			}>
+			onClick={handleThemePalette(
+				general.themePalette === GeneralThemePaletteTypeEnum.LIGHT
+					? GeneralThemePaletteTypeEnum.DARK
+					: GeneralThemePaletteTypeEnum.LIGHT
+			)}>
 			<ListItemIcon>
-				{themePalette === GeneralThemePaletteTypeEnum.LIGHT ? (
+				{general.themePalette === GeneralThemePaletteTypeEnum.LIGHT ? (
 					<WbSunnyIcon className={themePaletteClasses.sColorThemeLight} />
 				) : (
 					<Brightness3Icon />
@@ -46,7 +45,7 @@ const ThemePalette: FC = () => {
 			<ListItemText
 				primary={t('THEME.TITLE')}
 				secondary={
-					themePalette === GeneralThemePaletteTypeEnum.LIGHT
+					general.themePalette === GeneralThemePaletteTypeEnum.LIGHT
 						? t('THEME.LIGHT')
 						: t('THEME.DARK')
 				}

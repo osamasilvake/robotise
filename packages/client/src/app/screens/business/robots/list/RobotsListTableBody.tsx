@@ -2,12 +2,15 @@ import { TableBody, TableCell, TableRow, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
+import { AppConfigService } from '../../../../services';
 import {
 	RTSFinalDataInterface,
 	RTSSContentInterface
 } from '../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { momentFormat1, momentSort } from '../../../../utilities/methods/Moment';
+import { removeSpecialCharacters } from '../../../../utilities/methods/StringUtilities';
 import { RobotsListTableSortTypeEnum } from './RobotsList.enum';
 import {
 	RobotsListTableBodyInterface,
@@ -22,6 +25,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 
 	const { t } = useTranslation('ROBOTS');
 	const robotsListClasses = robotsListStyles();
+	const history = useHistory();
 
 	/**
 	 * sort table data
@@ -80,6 +84,21 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	};
 
 	/**
+	 * handle show robot detail
+	 * @param robot
+	 * @returns
+	 */
+	const handleShowRobotDetail = (robot: RTSFinalDataInterface) => () => {
+		// prepare link
+		const robotName = removeSpecialCharacters(robot.name);
+		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
+		const robotLink = url.replace(':id', robotName);
+
+		// push to history
+		history.push(robotLink);
+	};
+
+	/**
 	 * set cell value
 	 * @param robot
 	 * @param column
@@ -123,7 +142,8 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 								className={clsx({
 									[robotsListClasses.sTableRowWarning]: !!robot.alerts.warning,
 									[robotsListClasses.sTableRowDanger]: !!robot.alerts.danger
-								})}>
+								})}
+								onClick={handleShowRobotDetail(robot)}>
 								{columns.map((column: RobotsListTableColumnInterface) => {
 									return (
 										<TableCell key={column.id} align={column.align}>

@@ -9,14 +9,14 @@ import { MarkdownRenderers } from './markdown/Markdown';
 
 const ChangeLog: FC = () => {
 	const dispatch = useDispatch();
-	const { changeLog } = useSelector(generalSelector);
+	const general = useSelector(generalSelector);
 
 	useEffect(() => {
-		if (!changeLog) {
+		if (!general.changeLog) {
 			// dispatch: update changelog
 			dispatch(GeneralFetchChangelog());
 		}
-	}, [changeLog, dispatch]);
+	}, [dispatch, general.changeLog]);
 
 	return (
 		<Box component="section">
@@ -24,12 +24,12 @@ const ChangeLog: FC = () => {
 			<PageHead title="CHANGE_LOG.TITLE" />
 
 			{/* Content */}
-			{changeLog && (
+			{general.changeLog && (
 				<Paper square elevation={12}>
 					<ReactMarkdown
 						escapeHtml={false}
 						renderers={MarkdownRenderers}
-						source={JSON.parse(changeLog)}
+						source={JSON.parse(general.changeLog)}
 					/>
 				</Paper>
 			)}

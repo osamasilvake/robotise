@@ -12,7 +12,7 @@ const QRCode: FC = () => {
 	const { t } = useTranslation('TOOLTIPS');
 	const qrCodeClasses = qrCodeStyles();
 
-	const { themePalette } = useSelector(generalSelector);
+	const general = useSelector(generalSelector);
 
 	return (
 		<Tooltip
@@ -30,7 +30,7 @@ const QRCode: FC = () => {
 						<Avatar
 							variant="square"
 							src={
-								themePalette === GeneralThemePaletteTypeEnum.DARK
+								general.themePalette === GeneralThemePaletteTypeEnum.DARK
 									? AppConfigService.AppImageURLs.qrCode.path.dark
 									: AppConfigService.AppImageURLs.qrCode.path.light
 							}
@@ -43,7 +43,7 @@ const QRCode: FC = () => {
 			<Avatar
 				variant="square"
 				src={
-					themePalette === GeneralThemePaletteTypeEnum.DARK
+					general.themePalette === GeneralThemePaletteTypeEnum.DARK
 						? AppConfigService.AppImageURLs.qrCode.path.dark
 						: AppConfigService.AppImageURLs.qrCode.path.light
 				}

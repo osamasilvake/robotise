@@ -13,7 +13,7 @@ import { privateLayoutStyles } from './PrivateLayout.styles';
 const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
 	const privateLayoutClasses = privateLayoutStyles();
 
-	const { openDrawer } = useSelector(generalSelector);
+	const general = useSelector(generalSelector);
 
 	return (
 		<Box>
@@ -27,8 +27,8 @@ const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPage
 			<Box
 				component="main"
 				className={clsx(privateLayoutClasses.sContent, {
-					[privateLayoutClasses.sContentOpen]: openDrawer,
-					[privateLayoutClasses.sContentClose]: !openDrawer
+					[privateLayoutClasses.sContentOpen]: general.openDrawer,
+					[privateLayoutClasses.sContentClose]: !general.openDrawer
 				})}>
 				<Suspense fallback={<Loader spinner />}>
 					<Component route={route} />

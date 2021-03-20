@@ -14,12 +14,13 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch robot twins
+	 * fetch robot twins of a single robot
+	 * @param robotId
 	 * @returns
 	 */
-	robotTwinsFetch = () => {
+	robotTwinsSingleRobotFetch = (robotId: string) => {
 		const url = AppConfigService.AppServices.ROBOT_TWINS.ALL;
-		return HttpClientService.get(url);
+		return HttpClientService.get(`${url}/${robotId}`);
 	};
 }
 const instance = new RobotsService();

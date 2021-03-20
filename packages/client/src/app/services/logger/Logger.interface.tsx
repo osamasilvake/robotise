@@ -2,7 +2,8 @@ export interface LogInterface extends LogErrorInterface {
 	env: string;
 	level: string;
 	token: string;
-	version: LogVersionInterface;
+	apiVersion: string;
+	appVersion: string;
 	pageUrl: string;
 	timestamp: string;
 	origin: string;
@@ -16,9 +17,4 @@ export interface LogErrorInterface {
 	stacktrace: string;
 	status: number;
 	url: string;
-}
-
-export interface LogVersionInterface {
-	app: string;
-	api: string;
 }

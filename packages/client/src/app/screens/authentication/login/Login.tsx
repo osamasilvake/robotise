@@ -24,7 +24,7 @@ import { AuthLogin } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { somePropertiesEmpty } from '../../../utilities/methods/ObjectUtilities';
 import { AuthLoginInterface } from '../Auth.interface';
-import { loginStyles } from './Login.styles';
+import { loginStyles } from './Login.style';
 import { LoginFormValidation } from './Login.validation';
 
 const Login: FC = () => {

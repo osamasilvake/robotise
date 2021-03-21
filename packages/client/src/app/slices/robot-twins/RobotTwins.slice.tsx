@@ -119,6 +119,7 @@ const prepareContent = (
 				site: {
 					...robotTwinsRes.site,
 					title: site.title,
+					acceptOrders: site.acceptOrders,
 					elevator: site.elevators
 				}
 			};

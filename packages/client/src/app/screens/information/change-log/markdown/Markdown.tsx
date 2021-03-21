@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { FC } from 'react';
 
 import { MarkdownHeadingInterface } from './Markdown.interface';
-import { markdownStyles } from './Markdown.styles';
+import { markdownStyles } from './Markdown.style';
 
 /**
  * heading
@@ -48,22 +48,18 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 	const condition1 = /[h][1]/g.test(component);
 	const condition2 = /[h][2]/g.test(component);
 
-	return (
-		<>
-			{children && children[0] && children[0].props.value !== 'Change Log' && (
-				<Typography
-					component={component}
-					variant={variant}
-					className={clsx({
-						[markdownClasses.sHeadingH1]: condition1,
-						[markdownClasses.sHeadingH2]: condition2,
-						[markdownClasses.sCommon]: !condition1 && !condition2
-					})}>
-					{children}
-				</Typography>
-			)}
-		</>
-	);
+	return children && children[0] && children[0].props.value !== 'Change Log' ? (
+		<Typography
+			component={component}
+			variant={variant}
+			className={clsx({
+				[markdownClasses.sHeadingH1]: condition1,
+				[markdownClasses.sHeadingH2]: condition2,
+				[markdownClasses.sCommon]: !condition1 && !condition2
+			})}>
+			{children}
+		</Typography>
+	) : null;
 };
 
 /**

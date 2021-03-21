@@ -10,7 +10,7 @@ export const robotsListStyles = makeStyles((theme: Theme) => ({
 	},
 	sTableCellStatus: {
 		borderRadius: pxToRem(4),
-		color: AppConfigService.AppVariables.colors.c4,
+		color: AppConfigService.AppVariables.colors.c7,
 		padding: theme.spacing(0.2, 0.4)
 	},
 	sTableRowWarning: {

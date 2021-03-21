@@ -27,7 +27,7 @@ import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
-import { drawerStyles } from './Drawer.styles';
+import { drawerStyles } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
 	const { t } = useTranslation(['SIDEBAR', 'TOOLTIPS']);
@@ -67,7 +67,7 @@ const DrawerCustom: FC = () => {
 						[drawerClasses.sClose]: !general.openDrawer
 					})
 				}}>
-				{/* Avatar & Icon */}
+				{/* Logo & Close Drawer */}
 				<Box className={drawerClasses.sLogoAndCloseIcon}>
 					<Link to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}>
 						<Avatar

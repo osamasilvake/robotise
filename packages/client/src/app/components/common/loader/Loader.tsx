@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { AppConfigService } from '../../../services';
 import { centerStyles } from '../../../utilities/styles/Center.style';
 import { LoaderInterface } from './Loader.interface';
-import { loaderStyles } from './Loader.styles';
+import { loaderStyles } from './Loader.style';
 
 const Loader: FC<LoaderInterface> = (props) => {
 	const { spinner, spinnerSmall, spinnerText } = props;

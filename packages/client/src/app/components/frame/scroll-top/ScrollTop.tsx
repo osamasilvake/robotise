@@ -2,7 +2,7 @@ import { Box, Fab, useScrollTrigger, Zoom } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { FC } from 'react';
 
-import { scrollTopStyles } from './ScrollTop.styles';
+import { scrollTopStyles } from './ScrollTop.style';
 
 const ScrollTop: FC = () => {
 	const scrollTopClasses = scrollTopStyles();

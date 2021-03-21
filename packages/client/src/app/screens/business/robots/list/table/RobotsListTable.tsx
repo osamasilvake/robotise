@@ -9,7 +9,7 @@ import {
 	RobotsListTableInterface
 } from './RobotsListTable.interface';
 import { columns } from './RobotsListTable.list';
-import { robotsListStyles } from './RobotsListTable.styles';
+import { robotsListStyles } from './RobotsListTable.style';
 import RobotsListTableBody from './RobotsListTableBody';
 import RobotsListTableHead from './RobotsListTableHead';
 

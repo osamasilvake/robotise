@@ -8,7 +8,7 @@ import AppBar from '../../components/frame/app-bar/AppBar';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
 import { generalSelector } from '../../slices/general/General.slice';
-import { privateLayoutStyles } from './PrivateLayout.styles';
+import { privateLayoutStyles } from './PrivateLayout.style';
 
 const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
 	const privateLayoutClasses = privateLayoutStyles();

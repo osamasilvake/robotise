@@ -127,9 +127,10 @@ export const RobotTwinsSummaryRefreshList = () => async (
 	// states
 	const sites = state.sites;
 	const robotTwins = state.robotTwins;
+	const robotTwinsSummary = state.robotTwinsSummary;
 
 	// return on busy
-	if (robotTwins && robotTwins.loading) {
+	if ((robotTwins && robotTwins.loading) || (robotTwinsSummary && robotTwinsSummary.loading)) {
 		return;
 	}
 

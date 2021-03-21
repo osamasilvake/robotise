@@ -76,6 +76,14 @@ const OverridesCustom: Overrides = {
 			transition: 'none'
 		}
 	},
+	MuiCardContent: {
+		root: {
+			padding: pxToRem(15),
+			'&:last-child': {
+				paddingBottom: pxToRem(15)
+			}
+		}
+	},
 	MuiIconButton: {
 		root: {
 			borderRadius: pxToRem(2)

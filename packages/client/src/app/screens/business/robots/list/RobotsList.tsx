@@ -62,6 +62,11 @@ const RobotsList: FC = () => {
 		return <PageError message={robotTwinsSummary.errors.text} />;
 	}
 
+	// init
+	if (!robotTwinsSummary.content) {
+		return null;
+	}
+
 	return (
 		<Paper elevation={12}>
 			{/* Table */}

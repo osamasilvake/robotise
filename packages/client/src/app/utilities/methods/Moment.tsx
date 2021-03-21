@@ -15,7 +15,7 @@ const momentSort = <T,>(value: T): moment.Moment => {
  * @returns
  */
 const momentFormat1 = <T,>(value: T): string => {
-	return moment(value).format('DD, MMM YYYY HH:mm:ss');
+	return moment(value).format('DD MMM YYYY HH:mm:ss');
 };
 
 /**

@@ -25,7 +25,7 @@ import { AppConfigService } from '../../../services';
 import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Badge from '../../common/badge/Badge';
-import { appBarStyles } from './AppBar.styles';
+import { appBarStyles } from './AppBar.style';
 import Language from './language/Language';
 import QRCode from './qr-code/QRCode';
 import ThemePalette from './theme/Theme';
@@ -76,8 +76,9 @@ const AppBarCustom: FC = () => {
 				[appBarClasses.sOpen]: general.openDrawer
 			})}>
 			<Toolbar className={appBarClasses.sToolbar} disableGutters>
+				{/* Logo & Open Drawer */}
 				{!general.openDrawer && (
-					<>
+					<Box>
 						<Link
 							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}
 							className={appBarClasses.sLogo}>
@@ -86,6 +87,7 @@ const AppBarCustom: FC = () => {
 								alt={AppConfigService.AppImageURLs.logo.name}
 							/>
 						</Link>
+
 						<Tooltip
 							className={appBarClasses.sOpenIcon}
 							title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
@@ -93,7 +95,7 @@ const AppBarCustom: FC = () => {
 								<MenuIcon />
 							</IconButton>
 						</Tooltip>
-					</>
+					</Box>
 				)}
 
 				<Box className={appBarClasses.sOptions}>

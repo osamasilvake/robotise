@@ -5,7 +5,7 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { triggerMessage } from '../general/General.slice';
+import { AppReducerType } from '..';
 import { failure, initialState, loading, SitesFetchList, success } from './Sites.slice';
 import { SSInterface } from './Sites.slice.interface';
 
@@ -14,7 +14,7 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // mock store
-type DispatchExts = ThunkDispatch<SSInterface, void, AnyAction>;
+type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
 const mockStore = createMockStore<SSInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Sites', () => {

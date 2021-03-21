@@ -23,11 +23,19 @@ class AppConfigService extends EnvService {
 				c8a: '#7d8483', // light:			sub-text
 
 				c9: '#26aee4', // dark/light: 		active, links, logo
+
 				c10: '#78b752', // dark/light: 		success
+				c10o: '#78b75226', // dark/light: 	success
+
 				c11: '#ffca03', // dark/light: 		warning
+				c11v1: '#debd44', // dark/light:	warning: variation 1
 				c11o: '#ffca0326', // dark/light: 	warning light
+
 				c12: '#f95d51', // dark/light: 		error
-				c12o: '#f95d5126' // dark/light: 	error light
+				c12o: '#f95d5126', // dark/light: 	error light
+
+				c13: '#9ea1a7', // dark/light:		info
+				c13o: '#9ea1a726' // dark/light:	info light
 			}
 		};
 	}

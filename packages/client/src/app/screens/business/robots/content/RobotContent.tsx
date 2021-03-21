@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import RobotDetail from './detail/RobotDetail';
+import RobotDetail from './detail/RobotContentDetail';
 
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
+
 	const [value, setValue] = useState(0);
 
 	/**
@@ -34,7 +35,7 @@ const RobotContent: FC = () => {
 			</Tabs>
 
 			{/* Tab Panel */}
-			<Box>
+			<>
 				{/* Detail */}
 				<Box hidden={value !== 0}>
 					<RobotDetail />
@@ -48,7 +49,7 @@ const RobotContent: FC = () => {
 
 				{/* Information */}
 				<Box hidden={value !== 3}>Item Four</Box>
-			</Box>
+			</>
 		</Paper>
 	);
 };

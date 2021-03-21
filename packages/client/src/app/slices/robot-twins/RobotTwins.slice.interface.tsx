@@ -26,7 +26,8 @@ export interface RTSMappedResponseDataInterface {
 	site: {
 		id: string;
 		title: string;
-		elevators?: {
+		acceptOrders: boolean;
+		elevator?: {
 			vendor?: string;
 			buildingId?: string;
 			deviceId?: string;

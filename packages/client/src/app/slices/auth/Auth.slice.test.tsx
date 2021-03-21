@@ -8,6 +8,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import { AuthLoginInterface } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
+import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import {
 	AuthLogin,
@@ -16,7 +17,6 @@ import {
 	failure,
 	initialState,
 	loading,
-	reset,
 	success,
 	terminate
 } from './Auth.slice';
@@ -27,7 +27,7 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // mock store
-type DispatchExts = ThunkDispatch<AuthSliceInterface, void, AnyAction>;
+type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
 const mockStore = createMockStore<AuthSliceInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Authentication', () => {

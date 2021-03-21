@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { BadgeTypeEnum } from './Badge.enum';
 import { BadgeInterface } from './Badge.interface';
-import { badgeStyles } from './Badge.styles';
+import { badgeStyles } from './Badge.style';
 
 const AppBadge: FC<BadgeInterface> = (props) => {
 	const { children, options } = props;

@@ -18,7 +18,7 @@ import {
 	RobotsListTableHeadId
 } from './RobotsListTable.interface';
 import { columns } from './RobotsListTable.list';
-import { robotsListStyles } from './RobotsListTable.styles';
+import { robotsListStyles } from './RobotsListTable.style';
 
 const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;

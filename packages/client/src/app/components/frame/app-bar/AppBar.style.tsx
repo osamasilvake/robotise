@@ -12,12 +12,12 @@ export const appBarStyles = makeStyles((theme: Theme) => ({
 		zIndex: theme.zIndex.drawer + 1
 	},
 	sOpen: {
-		marginLeft: drawerWidth,
+		marginLeft: theme.typography.pxToRem(drawerWidth),
 		transition: theme.transitions.create(['width', 'margin'], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen
 		}),
-		width: `calc(100% - ${drawerWidth}px)`
+		width: `calc(100% - ${theme.typography.pxToRem(drawerWidth)})`
 	},
 	sToolbar: {
 		display: 'flex',

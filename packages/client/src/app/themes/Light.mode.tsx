@@ -74,7 +74,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				textColorPrimary: {
 					'&$selected': {
 						backgroundColor: AppConfigService.AppVariables.colors.c4,
-						borderTop: `1px solid ${AppConfigService.AppVariables.colors.c9}`,
+						borderTop: `${pxToRem(1)} solid ${AppConfigService.AppVariables.colors.c9}`,
 						color: AppConfigService.AppVariables.colors.c9
 					}
 				}

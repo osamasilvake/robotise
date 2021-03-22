@@ -6,7 +6,7 @@ const linearWidth = AppConfigService.AppOptions.components.loader.linear.width;
 export const loaderStyles = makeStyles((theme: Theme) => ({
 	sLinear: {
 		margin: theme.spacing(15, 'auto', 0),
-		width: linearWidth
+		width: theme.typography.pxToRem(linearWidth)
 	},
 	sLinearText: {
 		marginBottom: theme.spacing(1)

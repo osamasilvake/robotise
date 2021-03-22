@@ -1,15 +1,14 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../services';
-import { pxToRem } from '../../../../../utilities/methods/PixelsToRem';
 
 const minusContentHeight = AppConfigService.AppOptions.components.table.minusContentHeight;
 export const robotsListStyles = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
-		maxHeight: `calc(100vh - ${minusContentHeight}px)`
+		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
 	},
 	sTableCellStatus: {
-		borderRadius: pxToRem(4),
+		borderRadius: theme.typography.pxToRem(2),
 		color: AppConfigService.AppVariables.colors.c7,
 		padding: theme.spacing(0.2, 0.4)
 	},

@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
 import { AppConfigService } from '../../../../../../services';
-import { pxToRem } from '../../../../../../utilities/methods/PixelsToRem';
 
 export const robotContentDetailGeneralStyles = makeStyles((theme: Theme) => ({
 	sGridContainer: {
@@ -11,7 +10,7 @@ export const robotContentDetailGeneralStyles = makeStyles((theme: Theme) => ({
 		display: 'block'
 	},
 	sGridItemStatus: {
-		borderRadius: pxToRem(4),
+		borderRadius: theme.typography.pxToRem(2),
 		color: AppConfigService.AppVariables.colors.c7,
 		display: 'inline-block',
 		padding: theme.spacing(0.2, 0.6, 0)

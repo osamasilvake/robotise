@@ -1,10 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-import { pxToRem } from '../../../utilities/methods/PixelsToRem';
-
 export const pageErrorStyles = makeStyles((theme: Theme) => ({
 	sTitle: {
-		fontSize: pxToRem(30),
+		fontSize: theme.typography.pxToRem(30),
 		margin: theme.spacing(0, 0, 1)
 	},
 	sDescription: {

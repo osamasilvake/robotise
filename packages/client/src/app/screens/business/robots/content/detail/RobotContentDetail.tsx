@@ -26,7 +26,7 @@ const RobotContentDetail: FC = () => {
 			// fetch robot name from url
 			const getRobotName = params.id;
 
-			// fetch robot name in robot twins summary
+			// fetch robot name from robot twins summary
 			const robotName = removeSpecialCharacters(getRobotName);
 			const findRobot = robotTwinsSummary.content.data.find(
 				(r) => removeSpecialCharacters(r.name) === robotName
@@ -48,7 +48,7 @@ const RobotContentDetail: FC = () => {
 		return <PageError message={robotTwins.errors.text} />;
 	}
 
-	// init
+	// empty
 	if (!robotTwins.content) {
 		return null;
 	}

@@ -70,6 +70,11 @@ const OverridesCustom: Overrides = {
 			borderRight: 0
 		}
 	},
+	MuiPopover: {
+		paper: {
+			borderRadius: 0
+		}
+	},
 	MuiTabs: {
 		indicator: {
 			backgroundColor: 'transparent',

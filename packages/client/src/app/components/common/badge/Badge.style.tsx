@@ -1,16 +1,15 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../services';
-import { pxToRem } from '../../../utilities/methods/PixelsToRem';
 
 export const badgeStyles = makeStyles((theme: Theme) => ({
 	sDot: {
 		backgroundColor: AppConfigService.AppVariables.colors.c10,
-		boxShadow: `0 0 0 ${pxToRem(2)} ${theme.palette.background.paper}`,
+		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${theme.palette.background.paper}`,
 		color: AppConfigService.AppVariables.colors.c10,
 		'&::after': {
 			animation: '$ripple 1.2s infinite ease-in-out',
-			border: '1px solid currentColor',
+			border: `${theme.typography.pxToRem(1)} solid currentColor`,
 			borderRadius: '50%',
 			content: '""',
 			height: '100%',

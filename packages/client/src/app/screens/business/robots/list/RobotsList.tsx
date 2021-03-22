@@ -62,7 +62,7 @@ const RobotsList: FC = () => {
 		return <PageError message={robotTwinsSummary.errors.text} />;
 	}
 
-	// init
+	// empty
 	if (!robotTwinsSummary.content) {
 		return null;
 	}

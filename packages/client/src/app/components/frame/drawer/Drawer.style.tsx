@@ -7,14 +7,14 @@ export const drawerStyles = makeStyles((theme: Theme) => ({
 	sDrawer: {
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
-		width: drawerWidth
+		width: theme.typography.pxToRem(drawerWidth)
 	},
 	sOpen: {
 		transition: theme.transitions.create('width', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen
 		}),
-		width: drawerWidth
+		width: theme.typography.pxToRem(drawerWidth)
 	},
 	sClose: {
 		overflowX: 'hidden',

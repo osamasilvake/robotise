@@ -8,7 +8,7 @@ export const privateLayoutStyles = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(8)
 	},
 	sContentOpen: {
-		marginLeft: drawerWidth,
+		marginLeft: theme.typography.pxToRem(drawerWidth),
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen

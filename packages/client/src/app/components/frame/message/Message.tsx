@@ -1,11 +1,13 @@
 import { Snackbar, SnackbarOrigin } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import { Alert } from '@material-ui/lab';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
 import { generalSelector, GeneralTriggerMessage } from '../../../slices/general/General.slice';
-import Alert from '../../common/alert/Alert';
 
 const Message: FC = () => {
 	const { t } = useTranslation('MESSAGE');
@@ -26,7 +28,14 @@ const Message: FC = () => {
 			autoHideDuration={AppConfigService.AppOptions.components.snackbar.timeout}
 			open={general.triggerMessage.show}
 			onClose={handleCloseMessage}>
-			<Alert severity={general.triggerMessage.severity} handleClose={handleCloseMessage}>
+			<Alert
+				elevation={3}
+				action={
+					<IconButton size="small" color="inherit" onClick={handleCloseMessage}>
+						<CloseIcon fontSize="small" />
+					</IconButton>
+				}
+				severity={general.triggerMessage.severity}>
 				{general.triggerMessage.text && t(general.triggerMessage.text)}
 			</Alert>
 		</Snackbar>

@@ -10,11 +10,11 @@ import {
 	generalSelector
 } from '../../../../slices/general/General.slice';
 import { GeneralThemePaletteTypeEnum } from '../../../../slices/general/General.slice.enum';
-import { themePaletteStyles } from './Theme.style';
+import { ThemePaletteStyles } from './Theme.style';
 
 const ThemePalette: FC = () => {
 	const { t } = useTranslation('APPBAR');
-	const themePaletteClasses = themePaletteStyles();
+	const themePaletteClasses = ThemePaletteStyles();
 
 	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);

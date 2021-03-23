@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const centerStyles = makeStyles((theme: Theme) => ({
+export const CenterStyles = makeStyles((theme: Theme) => ({
 	sVHFlex: {
 		display: 'flex',
 		flexDirection: 'column',

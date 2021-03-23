@@ -135,7 +135,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						const message: TriggerMessageInterface = {
 							show: true,
 							severity: TriggerMessageTypeEnum.ERROR,
-							text: (err && err.error_description) || null
+							text: err && err.error_description
 						};
 
 						// dispatch: error

@@ -12,7 +12,7 @@ import {
 	ListSubheader,
 	Tooltip
 } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ClearAllIcon from '@material-ui/icons/ClearAll';
 import clsx from 'clsx';
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,16 +22,17 @@ import { Link, NavLink } from 'react-router-dom';
 import { AppConfigService } from '../../../services';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import { robotTwinsSummarySelector } from '../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { isMobileDevice } from '../../../utilities/methods/MobileUtilities';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
-import { drawerStyles } from './Drawer.style';
+import { DrawerStyles } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
 	const { t } = useTranslation(['SIDEBAR', 'TOOLTIPS']);
-	const drawerClasses = drawerStyles();
+	const drawerClasses = DrawerStyles();
 
 	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);
@@ -39,8 +40,7 @@ const DrawerCustom: FC = () => {
 
 	useEffect(() => {
 		const handleSmallDevices = () => {
-			// sm: 600
-			if (window.innerWidth < 600 && general.openDrawer) {
+			if (isMobileDevice() && general.openDrawer) {
 				// dispatch: set drawer state
 				dispatch(GeneralSetDrawerState(!general.openDrawer));
 			}
@@ -79,7 +79,7 @@ const DrawerCustom: FC = () => {
 					</Link>
 					<Tooltip title={String(t('TOOLTIPS:DRAWER.CLOSE'))}>
 						<IconButton onClick={handleDrawerClose}>
-							<ArrowBackIcon />
+							<ClearAllIcon />
 						</IconButton>
 					</Tooltip>
 				</Box>

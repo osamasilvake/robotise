@@ -7,13 +7,13 @@ import { AppConfigService } from '../../../services';
 import Error from '../../common/error/Error';
 import { ErrorTypeEnum } from '../../common/error/Error.enum';
 import { PageErrorInterface } from './PageError.interface';
-import { pageErrorStyles } from './PageError.style';
+import { PageErrorStyles } from './PageError.style';
 
 const PageError: FC<PageErrorInterface> = (props) => {
 	const { message } = props;
 
 	const { t } = useTranslation('ERRORS');
-	const pageErrorClasses = pageErrorStyles();
+	const pageErrorClasses = PageErrorStyles();
 
 	return (
 		<Error error={ErrorTypeEnum.PAGE_ERROR}>

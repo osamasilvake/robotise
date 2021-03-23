@@ -9,7 +9,7 @@ import {
 	RobotsListTableInterface
 } from './RobotsListTable.interface';
 import { columns } from './RobotsListTable.list';
-import { robotsListStyles } from './RobotsListTable.style';
+import { RobotsListStyles } from './RobotsListTable.style';
 import RobotsListTableBody from './RobotsListTableBody';
 import RobotsListTableHead from './RobotsListTableHead';
 
@@ -17,7 +17,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
 
 	const { t } = useTranslation('COMMON');
-	const robotsListClasses = robotsListStyles();
+	const robotsListClasses = RobotsListStyles();
 
 	const [order, setOrder] = useState<RobotsListTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotsListTableHeadId>(columns[columns.length - 1].id);
@@ -85,8 +85,8 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 			{/* Pagination */}
 			<TablePagination
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.robots.showPageSizes
-						? AppConfigService.AppOptions.screens.robots.pageSizes
+					AppConfigService.AppOptions.screens.robots.list.showPageSizes
+						? AppConfigService.AppOptions.screens.robots.list.pageSizes
 						: []
 				}
 				component="div"

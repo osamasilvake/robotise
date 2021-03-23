@@ -79,11 +79,24 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					}
 				}
 			},
+			MuiCardContent: {
+				...options.overrides?.MuiCardContent,
+				root: {
+					...options.overrides?.MuiCardContent?.root,
+					backgroundColor: AppConfigService.AppVariables.colors.c2
+				}
+			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {
 					...options.overrides?.MuiIconButton?.root,
 					color: AppConfigService.AppVariables.colors.c7
+				}
+			},
+			MuiTooltip: {
+				tooltip: {
+					backgroundColor: AppConfigService.AppVariables.colors.c5,
+					color: AppConfigService.AppVariables.colors.c8
 				}
 			},
 			MuiOutlinedInput: {
@@ -97,12 +110,6 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 							fontFamily: AppConfigService.AppOptions.styles.fontFamily.Roboto
 						}
 					}
-				}
-			},
-			MuiTooltip: {
-				tooltip: {
-					backgroundColor: AppConfigService.AppVariables.colors.c5,
-					color: AppConfigService.AppVariables.colors.c8
 				}
 			}
 		}

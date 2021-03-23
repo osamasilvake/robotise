@@ -2,7 +2,7 @@ import { RobotsListTableColumnInterface } from './RobotsListTable.interface';
 
 export const columns: RobotsListTableColumnInterface[] = [
 	{
-		id: 'name',
+		id: 'robotTitle',
 		label: 'LIST.TABLE.COLUMNS.NAME',
 		minWidth: 170,
 		align: 'left'

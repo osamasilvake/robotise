@@ -25,8 +25,8 @@ export interface RTSMappedResponseDataInterface {
 	};
 	site: {
 		id: string;
-		title: string;
-		acceptOrders: boolean;
+		title?: string;
+		acceptOrders?: boolean;
 		elevator?: {
 			vendor?: string;
 			buildingId?: string;
@@ -41,6 +41,85 @@ export interface RTSMappedResponseDataInterface {
 	};
 	alerts: {
 		value: IAlert[];
+		updatedAt: Date;
+	};
+	batteryState: RTSBatteryStateInterface;
+	dockingState?: RTSDockingStateInterface | undefined;
+	emergencyBrakeState: RTSEmergencyStateInterface | undefined;
+	motorLeftWheelState?: RTSMotorWheelState | undefined;
+	motorRightWheelState?: RTSMotorWheelState | undefined;
+	[key: string]: any;
+}
+
+export interface RTSBatteryStateInterface {
+	current: {
+		value: number;
+		updatedAt: Date;
+	};
+	percentage: {
+		value: number;
+		updatedAt: Date;
+	};
+	powerSupplyStatus: {
+		value: string;
+		updatedAt: Date;
+	};
+	powerSupplyHealth: {
+		value: string;
+		updatedAt: Date;
+	};
+	voltage: {
+		value: number;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSDockingStateInterface {
+	isDocked: {
+		value: boolean;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSEmergencyStateInterface {
+	votedYes: {
+		value: string;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSMotorWheelState {
+	id?: string;
+	status: {
+		value: string;
+		updatedAt: Date;
+	};
+	motorCurrent: {
+		value: number;
+		updatedAt: Date;
+	};
+	commandedVelocity: {
+		value: number;
+		updatedAt: Date;
+	};
+	controllerTemperature: {
+		value: number;
+		updatedAt: Date;
+	};
+	controllerVoltage: {
+		value: number;
+		updatedAt: Date;
+	};
+	position: {
+		value: number;
+		updatedAt: Date;
+	};
+	velocity: {
+		value: number;
+		updatedAt: Date;
+	};
+	lastErrorCode: {
+		value: string;
 		updatedAt: Date;
 	};
 }
@@ -240,29 +319,29 @@ export interface IRobotTwin {
 export interface StateMotorStatus {
 	id: string;
 	status: string;
-	last_error_code: string;
-	commanded_velocity: number;
-	controller_temperature: number;
-	controller_voltage: number;
+	motorCurrent: number;
+	commandedVelocity: number;
+	controllerTemperature: number;
+	controllerVoltage: number;
 	position: number;
 	velocity: number;
-	motor_current: number;
+	lastErrorCode: string;
 }
 
 export interface MetadataMotorStatus {
 	status: {
 		updatedAt: Date;
 	};
-	last_error_code: {
+	motorCurrent: {
 		updatedAt: Date;
 	};
-	commanded_velocity: {
+	commandedVelocity: {
 		updatedAt: Date;
 	};
-	controller_temperature: {
+	controllerTemperature: {
 		updatedAt: Date;
 	};
-	controller_voltage: {
+	controllerVoltage: {
 		updatedAt: Date;
 	};
 	position: {
@@ -271,7 +350,7 @@ export interface MetadataMotorStatus {
 	velocity: {
 		updatedAt: Date;
 	};
-	motor_current: {
+	lastErrorCode: {
 		updatedAt: Date;
 	};
 }

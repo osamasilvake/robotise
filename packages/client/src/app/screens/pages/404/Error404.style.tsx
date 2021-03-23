@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-export const error404Styles = makeStyles((theme: Theme) => ({
+export const Error404Styles = makeStyles((theme: Theme) => ({
 	sTitle: {
 		fontSize: theme.typography.pxToRem(75)
 	},

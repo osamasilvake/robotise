@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-export const markdownStyles = makeStyles((theme: Theme) => ({
+export const MarkdownStyles = makeStyles((theme: Theme) => ({
 	sHeadingH1: {
 		margin: theme.spacing(5, 0, 1.5)
 	},

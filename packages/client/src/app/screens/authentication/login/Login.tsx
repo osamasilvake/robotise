@@ -24,13 +24,13 @@ import { AuthLogin } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { somePropertiesEmpty } from '../../../utilities/methods/ObjectUtilities';
 import { AuthLoginInterface } from '../Auth.interface';
-import { loginStyles } from './Login.style';
+import { LoginStyles } from './Login.style';
 import { LoginFormValidation } from './Login.validation';
 
 const Login: FC = () => {
 	const { t } = useTranslation('AUTH');
 
-	const loginClasses = loginStyles();
+	const loginClasses = LoginStyles();
 	const dispatch = useDispatch();
 
 	const [showPassword, setShowPassword] = useState(false);

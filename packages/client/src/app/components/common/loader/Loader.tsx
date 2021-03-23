@@ -4,16 +4,16 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../services';
-import { centerStyles } from '../../../utilities/styles/Center.style';
+import { CenterStyles } from '../../../utilities/styles/Center.style';
 import { LoaderInterface } from './Loader.interface';
-import { loaderStyles } from './Loader.style';
+import { LoaderStyles } from './Loader.style';
 
 const Loader: FC<LoaderInterface> = (props) => {
 	const { spinner, spinnerSmall, spinnerText } = props;
 
 	const { t } = useTranslation('COMMON');
-	const centerClasses = centerStyles();
-	const loaderClasses = loaderStyles();
+	const centerClasses = CenterStyles();
+	const loaderClasses = LoaderStyles();
 
 	// spinner
 	if (spinner) {

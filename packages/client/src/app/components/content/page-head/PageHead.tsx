@@ -6,13 +6,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import { AppConfigService } from '../../../services';
 import Meta from '../../common/meta/Meta';
 import { BreadcrumbInterface, PageHeadInterface } from './PageHead.interface';
-import { pageHeadStyles } from './PageHead.style';
+import { PageHeadStyles } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
 	const { title, description, hideDivider } = props;
 
 	const { t } = useTranslation('META');
-	const pageHeadClasses = pageHeadStyles();
+	const pageHeadClasses = PageHeadStyles();
 
 	/**
 	 * create breadcrumbs from the link

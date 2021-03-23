@@ -1,9 +1,9 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { fade, makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../services';
 
 const minusContentHeight = AppConfigService.AppOptions.components.table.minusContentHeight;
-export const robotsListStyles = makeStyles((theme: Theme) => ({
+export const RobotsListStyles = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
 	},
@@ -13,10 +13,10 @@ export const robotsListStyles = makeStyles((theme: Theme) => ({
 		padding: theme.spacing(0.2, 0.4)
 	},
 	sTableRowWarning: {
-		backgroundColor: AppConfigService.AppVariables.colors.c11o
+		backgroundColor: fade(AppConfigService.AppVariables.colors.c11, 0.15)
 	},
 	sTableRowDanger: {
-		backgroundColor: AppConfigService.AppVariables.colors.c12o
+		backgroundColor: fade(AppConfigService.AppVariables.colors.c12, 0.15)
 	},
 	sTableCellStatusOn: {
 		backgroundColor: AppConfigService.AppVariables.colors.c10

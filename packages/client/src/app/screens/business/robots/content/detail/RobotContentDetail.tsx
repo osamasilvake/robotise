@@ -13,6 +13,7 @@ import { removeSpecialCharacters } from '../../../../../utilities/methods/String
 import RobotDetailAlerts from './alerts/RobotContentDetailAlerts';
 import RobotDetailGeneral from './general/RobotContentDetailGeneral';
 import { RobotContentDetailGeneralParamsInterface } from './RobotContentDetail.interface';
+import RobotContentDetailStates from './states/RobotContentDetailStates';
 
 const RobotContentDetail: FC = () => {
 	const dispatch = useDispatch();
@@ -22,14 +23,17 @@ const RobotContentDetail: FC = () => {
 	const params: RobotContentDetailGeneralParamsInterface = useParams();
 
 	useEffect(() => {
-		if (params.id && robotTwinsSummary.content !== null && robotTwins.content === null) {
-			// fetch robot name from url
-			const getRobotName = params.id;
+		const cRobotName = removeSpecialCharacters(params.id);
+		const pRobotName = removeSpecialCharacters(robotTwins.content?.data[0].robot.name || '');
 
+		const condition1 = cRobotName;
+		const condition2 = robotTwinsSummary.content !== null && robotTwins.content === null;
+		const condition3 = robotTwins.content !== null && pRobotName !== condition1;
+
+		if ((condition1 && condition2) || condition3) {
 			// fetch robot name from robot twins summary
-			const robotName = removeSpecialCharacters(getRobotName);
-			const findRobot = robotTwinsSummary.content.data.find(
-				(r) => removeSpecialCharacters(r.name) === robotName
+			const findRobot = robotTwinsSummary.content?.data.find(
+				(r) => removeSpecialCharacters(r.robotTitle) === cRobotName
 			);
 			const robotId = findRobot ? findRobot.id : 'unknown';
 
@@ -49,14 +53,15 @@ const RobotContentDetail: FC = () => {
 	}
 
 	// empty
-	if (!robotTwins.content) {
+	if (!(robotTwins.content && robotTwins.content.data)) {
 		return null;
 	}
 
 	return (
 		<>
-			<RobotDetailGeneral content={robotTwins.content} />
-			<RobotDetailAlerts content={robotTwins.content} />
+			<RobotDetailGeneral robot={robotTwins.content.data[0]} />
+			<RobotDetailAlerts robot={robotTwins.content.data[0]} />
+			<RobotContentDetailStates robot={robotTwins.content.data[0]} />
 		</>
 	);
 };

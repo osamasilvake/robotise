@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { AppConfigService } from '../../../services';
 
 const drawerWidth = AppConfigService.AppOptions.components.drawer.width;
-export const appBarStyles = makeStyles((theme: Theme) => ({
+export const AppBarStyles = makeStyles((theme: Theme) => ({
 	sAppBar: {
 		transition: theme.transitions.create(['width', 'margin'], {
 			easing: theme.transitions.easing.sharp,

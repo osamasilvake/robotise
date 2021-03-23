@@ -12,6 +12,7 @@ import {
 import { AppReducerType } from '..';
 import { success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
+import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
 import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
 
 // initial state
@@ -138,7 +139,7 @@ export const RobotTwinsSummaryRefreshList = () => async (
 	const pageNo = state.robotTwinsSummary.content?.meta.page || 1;
 	const rowsPerPage =
 		state.robotTwinsSummary.content?.meta.rowsPerPage ||
-		AppConfigService.AppOptions.screens.robots.defaultPageSize;
+		AppConfigService.AppOptions.screens.robots.list.defaultPageSize;
 
 	(!sites.content
 		? Promise.all([
@@ -195,11 +196,12 @@ const prepareContent = (
 			const robotTwinSummary = robotTwinsSummary.dataById[key];
 			const site = sites.dataById[robotTwinSummary.site.id];
 			const allAlerts = robotTwinSummary.alerts.value;
-			const danger = allAlerts.filter((f) => f.level === 'danger');
-			const warn = allAlerts.filter((f) => f.level === 'warning');
+			const danger = allAlerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.DANGER);
+			const warn = allAlerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);
 			return {
-				id: robotTwinSummary.robot.id,
-				name: robotTwinSummary.robot.name,
+				id: robotTwinSummary.id,
+				robotId: robotTwinSummary.robot.id,
+				robotTitle: robotTwinSummary.robot.name,
 				siteId: site.id,
 				siteTitle: site.title,
 				isReady: robotTwinSummary.robotState.isReady.value,
@@ -226,8 +228,10 @@ const countAlerts = (payload: RTSSContentInterface) => {
 			const robotTwin = payload.dataById[key];
 			const allAlerts = robotTwin.alerts.value;
 			if (allAlerts.length) {
-				const danger = allAlerts.filter((f) => f.level === 'danger');
-				const warn = allAlerts.filter((f) => f.level === 'warning');
+				const danger = allAlerts.filter(
+					(f) => f.level === RobotTwinsSummaryTypeEnum.DANGER
+				);
+				const warn = allAlerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);
 				acc.danger = acc.danger += danger.length;
 				acc.warning = acc.warning += warn.length;
 			}

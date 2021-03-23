@@ -10,7 +10,7 @@ import {
 	ErrorBoundaryPropsInterface,
 	ErrorBoundaryStateInterface
 } from './ErrorBoundary.interface';
-import { errorBoundaryStyles } from './ErrorBoundary.style';
+import { ErrorBoundaryStyles } from './ErrorBoundary.style';
 
 class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundaryStateInterface> {
 	state: ErrorBoundaryStateInterface = {
@@ -63,4 +63,4 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 		return this.props.children;
 	}
 }
-export default withStyles(errorBoundaryStyles)(withTranslation('ERRORS')(ErrorBoundary));
+export default withStyles(ErrorBoundaryStyles)(withTranslation('ERRORS')(ErrorBoundary));

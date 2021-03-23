@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { AppConfigService } from '../../../services';
 
 const linearWidth = AppConfigService.AppOptions.components.loader.linear.width;
-export const loaderStyles = makeStyles((theme: Theme) => ({
+export const LoaderStyles = makeStyles((theme: Theme) => ({
 	sLinear: {
 		margin: theme.spacing(15, 'auto', 0),
 		width: theme.typography.pxToRem(linearWidth)

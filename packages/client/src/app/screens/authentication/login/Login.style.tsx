@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { AppConfigService } from '../../../services';
 import { randomNum } from '../../../utilities/methods/RandomNum';
 
-export const loginStyles = makeStyles((theme: Theme) => ({
+export const LoginStyles = makeStyles((theme: Theme) => ({
 	sRoot: {
 		height: '100vh'
 	},

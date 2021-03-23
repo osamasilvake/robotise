@@ -163,6 +163,80 @@
 				"ORDERS": "ORDERS",
 				"PURCHASES": "PURCHASES",
 				"INFORMATION": "INFORMATION"
+			},
+			"DETAIL": {
+				"GENERAL": {
+					"SITE": "Site",
+					"VENDOR": "Vendor",
+					"LAST_UPDATED": "Last Updated",
+					"STATUS": "Status",
+					"ON": "ON",
+					"OFF": "OFF",
+					"ACCEPT_ORDERS": "Accept Orders",
+					"UNKNOWN": "Unknown"
+				},
+				"STATES": {
+					"BATTERY": {
+						"TITLE": "Battery State",
+						"ITEMS": {
+							"CURRENT": "Current",
+							"PERCENTAGE": "Percentage",
+							"HEALTH": {
+								"TITLE": "Power Supply Health",
+								"OPTIONS": {
+									"GOOD": "Good",
+									"OVERHEAT": "Overheat",
+									"DEAD": "Dead",
+									"OVERVOLTAGE": "Overvoltage",
+									"UNSPECIFIED_FAILURE": "Unspecified failure",
+									"COLD": "Cold",
+									"WATCHDOG_TIMER_EXPIRE": "Watchdog timer expire",
+									"SAFETY_TIMER_EXPIRE": "Safety timer expire",
+									"UNKNOWN": "Unknown"
+								}
+							},
+							"POWER": {
+								"TITLE": "Power Supply Status",
+								"OPTIONS": {
+									"CHARGING": "Charging",
+									"DISCHARGING": "Discharging",
+									"NOT_CHARGING": "Not charging",
+									"FULL": "Full",
+									"UNKNOWN": "Unknown"
+								}
+							},
+							"VOLTAGE": "Voltage"
+						}
+					},
+					"DOCKING": {
+						"TITLE": "Docking State",
+						"ITEMS": {
+							"DOCKING": "DOCKING",
+							"DOCKED": "Docked",
+							"UNDOCKED": "Undocked"
+						}
+					},
+					"EMERGENCY_BRAKE": {
+						"TITLE": "Docking State",
+						"ITEMS": {
+							"VOTED_YES": "Voted Yes"
+						}
+					},
+					"MOTOR_WHEEL": {
+						"TITLE_LEFT": "Motor Left Wheel State",
+						"TITLE_RIGHT": "Motor Right Wheel State",
+						"ITEMS": {
+							"STATUS": "Status",
+							"VELOCITY": "Velocity",
+							"POSITION": "Position",
+							"MOTOR_CURRENT": "Motor Current",
+							"LAST_ERROR_CODE": "Last Error Code",
+							"CONTROLLER_VOLTAGE": "Controller Voltage",
+							"CONTROLLER_TEMPERATURE": "Controller Temperature",
+							"COMMANDED_VELOCITY": "Commanded Velocity"
+						}
+					}
+				}
 			}
 		}
 	}

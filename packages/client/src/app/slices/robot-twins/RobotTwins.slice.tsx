@@ -70,8 +70,11 @@ export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
 	dispatch(loading());
 
 	(!sites.content
-		? Promise.all([SitesService.sitesFetch(), RobotsService.robotTwinsFetch()])
-		: RobotsService.robotTwinsFetch()
+		? Promise.all([
+				SitesService.sitesFetch(),
+				RobotsService.robotTwinsSingleRobotFetch(robotId)
+		  ])
+		: RobotsService.robotTwinsSingleRobotFetch(robotId)
 	)
 		.then(async (res) => {
 			// deserialize responses
@@ -115,7 +118,11 @@ const prepareContent = (
 			const site = sites.dataById[robotTwinsRes.site.id];
 			return {
 				...robotTwinsRes,
-				id: robotTwinsRes.robot.id,
+				id: robotTwinsRes.id,
+				robot: {
+					id: robotTwinsRes.robot.id,
+					name: robotTwinsRes.robot.name
+				},
 				site: {
 					...robotTwinsRes.site,
 					title: site.title,

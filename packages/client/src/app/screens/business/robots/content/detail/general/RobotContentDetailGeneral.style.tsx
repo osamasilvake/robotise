@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 
 import { AppConfigService } from '../../../../../../services';
 
-export const robotContentDetailGeneralStyles = makeStyles((theme: Theme) => ({
+export const RobotContentDetailGeneralStyles = makeStyles((theme: Theme) => ({
 	sGridContainer: {
 		marginTop: theme.spacing(2)
 	},

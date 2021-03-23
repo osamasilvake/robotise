@@ -1,9 +1,20 @@
-import { RTSContentInterface } from '../../../../../slices/robot-twins/RobotTwins.slice.interface';
+import { RTSMappedResponseDataInterface } from '../../../../../slices/robot-twins/RobotTwins.slice.interface';
 
-export interface RobotContentDetailGeneralInterface {
-	content: RTSContentInterface | null;
+export interface RobotContentDetailInterface {
+	robot: RTSMappedResponseDataInterface;
 }
 
 export interface RobotContentDetailGeneralParamsInterface {
 	id: string;
+}
+
+export interface RobotContentDetailStateItemInterface {
+	state:
+		| {
+				title: string;
+				value: string;
+				date: string;
+				icon?: string;
+		  }
+		| undefined;
 }

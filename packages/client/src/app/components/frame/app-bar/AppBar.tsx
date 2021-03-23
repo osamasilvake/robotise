@@ -25,14 +25,14 @@ import { AppConfigService } from '../../../services';
 import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Badge from '../../common/badge/Badge';
-import { appBarStyles } from './AppBar.style';
+import { AppBarStyles } from './AppBar.style';
 import Language from './language/Language';
 import QRCode from './qr-code/QRCode';
 import ThemePalette from './theme/Theme';
 
 const AppBarCustom: FC = () => {
 	const { t } = useTranslation(['APPBAR', 'TOOLTIPS']);
-	const appBarClasses = appBarStyles();
+	const appBarClasses = AppBarStyles();
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);

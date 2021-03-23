@@ -18,13 +18,13 @@ import {
 	RobotsListTableHeadId
 } from './RobotsListTable.interface';
 import { columns } from './RobotsListTable.list';
-import { robotsListStyles } from './RobotsListTable.style';
+import { RobotsListStyles } from './RobotsListTable.style';
 
 const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
 
 	const { t } = useTranslation('ROBOTS');
-	const robotsListClasses = robotsListStyles();
+	const robotsListClasses = RobotsListStyles();
 	const history = useHistory();
 
 	/**
@@ -90,7 +90,7 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 */
 	const handleShowRobotDetail = (robot: RTSFinalDataInterface) => () => {
 		// prepare link
-		const robotName = removeSpecialCharacters(robot.name);
+		const robotName = removeSpecialCharacters(robot.robotTitle);
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
 		const robotLink = url.replace(':id', robotName);
 

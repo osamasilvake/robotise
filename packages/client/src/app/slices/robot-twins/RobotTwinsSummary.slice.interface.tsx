@@ -16,11 +16,11 @@ export interface RTSSContentInterface {
 }
 
 export interface RTSSDataByIdInterface {
-	[id: string]: RTSMappedResponseDataInterface;
+	[id: string]: RTSSMappedResponseDataInterface;
 }
 
 // mapped response data
-export interface RTSMappedResponseDataInterface {
+export interface RTSSMappedResponseDataInterface {
 	id: string;
 	updatedAt: Date;
 	robot: {
@@ -45,7 +45,8 @@ export interface RTSMappedResponseDataInterface {
 // final data response
 export interface RTSFinalDataInterface {
 	id: string;
-	name: string;
+	robotTitle: string;
+	robotId: string;
 	siteId: string;
 	siteTitle: string;
 	isReady: boolean;

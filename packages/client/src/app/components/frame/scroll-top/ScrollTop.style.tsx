@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
-export const scrollTopStyles = makeStyles((theme: Theme) => ({
+export const ScrollTopStyles = makeStyles((theme: Theme) => ({
 	sScrollTop: {
 		position: 'fixed',
 		bottom: theme.spacing(2),

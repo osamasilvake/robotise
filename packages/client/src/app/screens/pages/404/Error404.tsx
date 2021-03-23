@@ -6,11 +6,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import Error from '../../../components/common/error/Error';
 import { ErrorTypeEnum } from '../../../components/common/error/Error.enum';
 import { AppConfigService } from '../../../services';
-import { error404Styles } from './Error404.style';
+import { Error404Styles } from './Error404.style';
 
 const Error404: FC = () => {
 	const { t } = useTranslation('ERRORS');
-	const error404Classes = error404Styles();
+	const error404Classes = Error404Styles();
 
 	return (
 		<Box component="section">

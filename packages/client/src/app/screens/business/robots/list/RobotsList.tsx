@@ -19,8 +19,8 @@ const RobotsList: FC = () => {
 	const [rowsPerPage, setRowsPerPage] = useState(
 		robotTwinsSummary.content
 			? robotTwinsSummary.content.meta.rowsPerPage ||
-					AppConfigService.AppOptions.screens.robots.defaultPageSize
-			: AppConfigService.AppOptions.screens.robots.defaultPageSize
+					AppConfigService.AppOptions.screens.robots.list.defaultPageSize
+			: AppConfigService.AppOptions.screens.robots.list.defaultPageSize
 	);
 	const pageState = useRef({
 		page: robotTwinsSummary.content ? robotTwinsSummary.content.meta.page - 1 : page - 1,

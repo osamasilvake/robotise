@@ -8,11 +8,11 @@ import { AppConfigService } from '../../../../../../services';
 import { IAlert } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 import { isMobileDevice } from '../../../../../../utilities/methods/MobileUtilities';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
-import { RobotContentDetailInterface } from '../RobotContentDetail.interface';
 import { RobotContentDetailAlertsTypeEnum } from './RobotContentDetailAlerts.enum';
+import { RobotContentDetailAlertsInterface } from './RobotContentDetailAlerts.interface';
 import { RobotContentDetailAlertsStyles } from './RobotContentDetailAlerts.style';
 
-const RobotContentDetailAlerts: FC<RobotContentDetailInterface> = (props) => {
+const RobotContentDetailAlerts: FC<RobotContentDetailAlertsInterface> = (props) => {
 	const { robot } = props;
 	const robotContentDetailAlertsClasses = RobotContentDetailAlertsStyles();
 

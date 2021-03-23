@@ -160,7 +160,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 						value: data.state.reported.alerts,
 						updatedAt: data.metadata.reported.alerts?.updatedAt
 					},
-					batteryState: {
+					batteryState: data.state.reported.batteryState && {
 						current: {
 							value: data.state.reported.batteryState.current,
 							updatedAt: data.metadata.reported.batteryState.current.updatedAt

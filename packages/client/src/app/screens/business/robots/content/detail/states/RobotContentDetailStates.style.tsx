@@ -7,19 +7,19 @@ export const RobotContentDetailStatesStyles = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(4)
 	},
 	sStateTitle: {
-		marginBottom: theme.spacing(2)
+		marginBottom: theme.spacing(1)
 	},
-	sStateCardContent: {
+	sCardContent: {
 		position: 'relative'
 	},
-	sStateCardContentIcon: {
+	sCardContentIcon: {
 		color: AppConfigService.AppVariables.colors.c8a,
 		fontSize: theme.spacing(4),
 		position: 'absolute',
 		right: theme.spacing(0.5),
 		top: theme.spacing(0.5)
 	},
-	sStateCardContentValue: {
+	sCardContentValue: {
 		margin: theme.spacing(1, 0)
 	}
 }));

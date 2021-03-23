@@ -12,7 +12,7 @@ import {
 	ListSubheader,
 	Tooltip
 } from '@material-ui/core';
-import ClearAllIcon from '@material-ui/icons/ClearAll';
+import CloseIcon from '@material-ui/icons/Close';
 import clsx from 'clsx';
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -79,7 +79,7 @@ const DrawerCustom: FC = () => {
 					</Link>
 					<Tooltip title={String(t('TOOLTIPS:DRAWER.CLOSE'))}>
 						<IconButton onClick={handleDrawerClose}>
-							<ClearAllIcon />
+							<CloseIcon />
 						</IconButton>
 					</Tooltip>
 				</Box>

@@ -10,7 +10,6 @@ import {
 	RTSSContentInterface
 } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { momentFormat1, momentSort } from '../../../../../utilities/methods/Moment';
-import { removeSpecialCharacters } from '../../../../../utilities/methods/StringUtilities';
 import { RobotsListTableSortTypeEnum } from './RobotsListTable.enum';
 import {
 	RobotsListTableBodyInterface,
@@ -90,9 +89,8 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	 */
 	const handleShowRobotDetail = (robot: RTSFinalDataInterface) => () => {
 		// prepare link
-		const robotName = removeSpecialCharacters(robot.robotTitle);
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
-		const robotLink = url.replace(':id', robotName);
+		const robotLink = url.replace(':id', robot.id);
 
 		// push to history
 		history.push(robotLink);

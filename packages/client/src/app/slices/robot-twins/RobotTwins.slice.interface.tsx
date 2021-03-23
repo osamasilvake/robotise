@@ -43,12 +43,11 @@ export interface RTSMappedResponseDataInterface {
 		value: IAlert[];
 		updatedAt: Date;
 	};
-	batteryState: RTSBatteryStateInterface;
+	batteryState: RTSBatteryStateInterface | undefined;
 	dockingState?: RTSDockingStateInterface | undefined;
 	emergencyBrakeState: RTSEmergencyStateInterface | undefined;
 	motorLeftWheelState?: RTSMotorWheelState | undefined;
 	motorRightWheelState?: RTSMotorWheelState | undefined;
-	[key: string]: any;
 }
 
 export interface RTSBatteryStateInterface {

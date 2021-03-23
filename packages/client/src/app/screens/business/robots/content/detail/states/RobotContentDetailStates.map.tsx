@@ -14,67 +14,79 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 
 	switch (type) {
 		case 'batteryState.current':
-			return {
-				title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.CURRENT',
-				value: current(batteryState.current.value),
-				date: momentFormat2(batteryState.current.updatedAt),
-				icon: 'flash_auto'
-			};
+			return (
+				batteryState && {
+					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.CURRENT',
+					value: current(batteryState.current.value),
+					date: momentFormat2(batteryState.current.updatedAt),
+					icon: 'flash_auto'
+				}
+			);
 		case 'batteryState.percentage':
-			return {
-				title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.PERCENTAGE',
-				value: percentage(batteryState.percentage.value),
-				date: momentFormat2(batteryState.percentage.updatedAt),
-				icon: 'battery_charging_full'
-			};
+			return (
+				batteryState && {
+					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.PERCENTAGE',
+					value: percentage(batteryState.percentage.value),
+					date: momentFormat2(batteryState.percentage.updatedAt),
+					icon: 'battery_charging_full'
+				}
+			);
 		case 'batteryState.powerSupplyHealth':
-			return {
-				title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.TITLE',
-				value: powerSupplyHealth(batteryState.powerSupplyHealth.value),
-				date: momentFormat2(batteryState.powerSupplyHealth.updatedAt),
-				icon: 'local_hospital'
-			};
+			return (
+				batteryState && {
+					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.TITLE',
+					value: powerSupplyHealth(batteryState.powerSupplyHealth.value),
+					date: momentFormat2(batteryState.powerSupplyHealth.updatedAt),
+					icon: 'local_hospital'
+				}
+			);
 		case 'batteryState.powerSupplyStatus':
-			switch (batteryState.powerSupplyStatus.value) {
-				case 'charging':
-					powerSupplyStatus.text =
-						'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.CHARGING';
-					powerSupplyStatus.icon = 'power';
-					break;
-				case 'discharging':
-					powerSupplyStatus.text =
-						'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.DISCHARGING';
-					powerSupplyStatus.icon = 'power_off';
-					break;
-				case 'not_charging':
-					powerSupplyStatus.text =
-						'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.NOT_CHARGING';
-					powerSupplyStatus.icon = 'power_off';
-					break;
-				case 'full':
-					powerSupplyStatus.text =
-						'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.FULL';
-					powerSupplyStatus.icon = 'power';
-					break;
-				case 'unknown':
-				default:
-					powerSupplyStatus.text =
-						'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.UNKNOWN';
-					powerSupplyStatus.icon = 'power_off';
+			if (batteryState) {
+				switch (batteryState.powerSupplyStatus.value) {
+					case 'charging':
+						powerSupplyStatus.text =
+							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.CHARGING';
+						powerSupplyStatus.icon = 'power';
+						break;
+					case 'discharging':
+						powerSupplyStatus.text =
+							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.DISCHARGING';
+						powerSupplyStatus.icon = 'power_off';
+						break;
+					case 'not_charging':
+						powerSupplyStatus.text =
+							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.NOT_CHARGING';
+						powerSupplyStatus.icon = 'power_off';
+						break;
+					case 'full':
+						powerSupplyStatus.text =
+							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.FULL';
+						powerSupplyStatus.icon = 'power';
+						break;
+					case 'unknown':
+					default:
+						powerSupplyStatus.text =
+							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.UNKNOWN';
+						powerSupplyStatus.icon = 'power_off';
+				}
 			}
-			return {
-				title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.TITLE',
-				value: powerSupplyStatus.text,
-				date: momentFormat2(batteryState.powerSupplyStatus.updatedAt),
-				icon: powerSupplyStatus.icon
-			};
+			return (
+				batteryState && {
+					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.TITLE',
+					value: powerSupplyStatus.text,
+					date: momentFormat2(batteryState.powerSupplyStatus.updatedAt),
+					icon: powerSupplyStatus.icon
+				}
+			);
 		case 'batteryState.voltage':
-			return {
-				title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.VOLTAGE',
-				value: voltage(batteryState.voltage.value),
-				date: momentFormat2(batteryState.voltage.updatedAt),
-				icon: 'flash_on'
-			};
+			return (
+				batteryState && {
+					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.VOLTAGE',
+					value: voltage(batteryState.voltage.value),
+					date: momentFormat2(batteryState.voltage.updatedAt),
+					icon: 'flash_on'
+				}
+			);
 		case 'dockingState.isDocked':
 			return (
 				dockingState && {

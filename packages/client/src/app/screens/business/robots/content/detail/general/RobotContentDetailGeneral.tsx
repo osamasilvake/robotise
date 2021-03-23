@@ -4,10 +4,10 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
-import { RobotContentDetailInterface } from '../RobotContentDetail.interface';
+import { RobotContentDetailGeneralInterface } from './RobotContentDetailGeneral.interface';
 import { RobotContentDetailGeneralStyles } from './RobotContentDetailGeneral.style';
 
-const RobotContentDetailGeneral: FC<RobotContentDetailInterface> = (props) => {
+const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props) => {
 	const { robot } = props;
 
 	const { t } = useTranslation('ROBOTS');

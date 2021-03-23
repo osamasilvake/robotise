@@ -10,6 +10,7 @@ import {
 } from '../../utilities/serializers/json-api/JsonApi';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
+import { success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RTSContentInterface, RTSInterface } from './RobotTwins.slice.interface';
 
@@ -86,6 +87,11 @@ export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
 
 			// dispatch: success
 			dispatch(success(result));
+
+			// dispatch: success (sites)
+			if (!sites.content) {
+				dispatch(sitesSuccess(sitesRes));
+			}
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {

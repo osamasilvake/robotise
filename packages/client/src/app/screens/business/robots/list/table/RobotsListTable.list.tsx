@@ -20,6 +20,12 @@ export const columns: RobotsListTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: 'acceptOrders',
+		label: 'LIST.TABLE.COLUMNS.ACCEPT_ORDERS',
+		minWidth: 170,
+		align: 'left'
+	},
+	{
 		id: 'updatedAt',
 		label: 'LIST.TABLE.COLUMNS.UPDATED_AT',
 		minWidth: 170,

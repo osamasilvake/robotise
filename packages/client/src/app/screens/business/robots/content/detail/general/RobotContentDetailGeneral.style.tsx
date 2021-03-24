@@ -27,7 +27,19 @@ export const RobotContentDetailGeneralStyles = makeStyles((theme: Theme) => ({
 			textAlign: 'left'
 		}
 	},
+	sGridLastItemLabelStatus: {
+		display: 'block',
+		fontWeight: 600,
+		marginTop: theme.spacing(-0.5)
+	},
+	sGridLastItemLabelStatusOn: {
+		color: AppConfigService.AppVariables.colors.c10
+	},
+	sGridLastItemLabelStatusOff: {
+		color: AppConfigService.AppVariables.colors.c12
+	},
 	sGridLastItemCheckboxControl: {
+		alignItems: 'flex-start',
 		margin: 0
 	}
 }));

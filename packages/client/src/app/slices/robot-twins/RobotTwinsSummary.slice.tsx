@@ -202,10 +202,11 @@ const prepareContent = (
 				id: robotTwinSummary.id,
 				robotId: robotTwinSummary.robot.id,
 				robotTitle: robotTwinSummary.robot.name,
-				siteId: site.id,
-				siteTitle: site.title,
 				isReady: robotTwinSummary.robotState.isReady.value,
 				updatedAt: robotTwinSummary.updatedAt,
+				siteId: site.id,
+				siteTitle: site.title,
+				acceptOrders: site.acceptOrders,
 				alerts: {
 					danger: danger.length,
 					warning: warn.length

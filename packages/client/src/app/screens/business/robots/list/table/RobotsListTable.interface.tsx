@@ -33,5 +33,11 @@ export interface RobotsListTableBodyInterface {
 }
 
 export type RobotsListTableHeadOrder = 'asc' | 'desc';
-export type RobotsListTableHeadId = 'robotTitle' | 'siteTitle' | 'isReady' | 'updatedAt' | 'alerts';
+export type RobotsListTableHeadId =
+	| 'robotTitle'
+	| 'siteTitle'
+	| 'isReady'
+	| 'acceptOrders'
+	| 'updatedAt'
+	| 'alerts';
 export type RobotsListTableHeadAlignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

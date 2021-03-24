@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, Grid, Typography } from '@material-ui/core';
+import { Box, Checkbox, FormControlLabel, Grid, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 	const robotContentDetailGeneralClasses = RobotContentDetailGeneralStyles();
 
 	return (
-		<Grid container spacing={2} className={robotContentDetailGeneralClasses.sGridContainer}>
+		<Grid container spacing={1} className={robotContentDetailGeneralClasses.sGridContainer}>
 			<Grid item xs={12} sm={6} md={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.SITE')}
@@ -63,7 +63,29 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 				className={robotContentDetailGeneralClasses.sGridLastItem}>
 				<FormControlLabel
 					labelPlacement="start"
-					label={t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS')}
+					label={
+						<Box>
+							<Typography>
+								{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
+							</Typography>
+							<Typography
+								variant="caption"
+								color="textSecondary"
+								className={clsx(
+									robotContentDetailGeneralClasses.sGridLastItemLabelStatus,
+									{
+										[robotContentDetailGeneralClasses.sGridLastItemLabelStatusOn]:
+											robot.site.acceptOrders,
+										[robotContentDetailGeneralClasses.sGridLastItemLabelStatusOff]: !robot
+											.site.acceptOrders
+									}
+								)}>
+								{robot.site.acceptOrders
+									? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ON')
+									: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.OFF')}
+							</Typography>
+						</Box>
+					}
 					className={robotContentDetailGeneralClasses.sGridLastItemCheckboxControl}
 					control={
 						<Checkbox

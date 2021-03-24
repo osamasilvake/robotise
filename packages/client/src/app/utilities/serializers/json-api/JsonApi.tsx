@@ -96,7 +96,7 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(pa
 			acc: { [x: string]: RTSMappedResponseDataInterface },
 			item: RTSMappedResponseDataInterface
 		) => {
-			acc[item.robot.id] = item;
+			acc[item.id] = item;
 			return acc;
 		},
 		{}
@@ -281,6 +281,35 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 								data.metadata.reported.motorRightWheelState.commandedVelocity
 									.updatedAt
 						}
+					},
+					joystickState: data.state.reported.joystickState && {
+						controlMode: {
+							value: data.state.reported.joystickState.controlMode,
+							updatedAt: data.metadata.reported.joystickState.controlMode.updatedAt
+						}
+					},
+					lidarState: data.state.reported.lidarState && {
+						receivingScans: {
+							value: data.state.reported.lidarState.receivingScans,
+							updatedAt: data.metadata.reported.lidarState.receivingScans.updatedAt
+						}
+					},
+					realsenseState: data.state.reported.realsenseState && {
+						receivingData: {
+							value: data.state.reported.realsenseState.receivingData,
+							updatedAt: data.metadata.reported.realsenseState.receivingData.updatedAt
+						},
+						processingData: {
+							value: data.state.reported.realsenseState.processingData,
+							updatedAt:
+								data.metadata.reported.realsenseState.processingData.updatedAt
+						}
+					},
+					activityState: data.state.reported && {
+						latest: {
+							value: data.state.reported.activity,
+							updatedAt: data.metadata.reported.activity?.updatedAt
+						}
 					}
 				};
 				return result;
@@ -301,7 +330,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 			acc: { [x: string]: RTSMappedResponseDataInterface },
 			item: RTSMappedResponseDataInterface
 		) => {
-			acc[item.robot.id] = item;
+			acc[item.id] = item;
 			return acc;
 		},
 		{}

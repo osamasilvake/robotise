@@ -7,6 +7,11 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 	const motorLeftWheelState = robot.motorLeftWheelState;
 	const motorRightWheelState = robot.motorRightWheelState;
 	const emergencyBrakeState = robot.emergencyBrakeState;
+	const joystickState = robot.joystickState;
+	const lidarState = robot.lidarState;
+	const realsenseState = robot.realsenseState;
+	const activityState = robot.activityState;
+
 	const powerSupplyStatus = {
 		text: '',
 		icon: ''
@@ -240,6 +245,51 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 					value: motorRightWheelState.position.value.toFixed(3),
 					date: momentFormat2(motorRightWheelState.position.updatedAt),
 					icon: 'room'
+				}
+			);
+		case 'joystickState.controlMode':
+			return (
+				joystickState && {
+					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE',
+					value: joystickState.controlMode.value,
+					date: momentFormat2(joystickState.controlMode.updatedAt),
+					icon: 'games'
+				}
+			);
+		case 'lidarState.receivingScans':
+			return (
+				lidarState && {
+					title: 'CONTENT.DETAIL.STATES.LIDAR.ITEMS.RECEIVING_SCANS',
+					value: String(lidarState.receivingScans.value),
+					date: momentFormat2(lidarState.receivingScans.updatedAt),
+					icon: 'scanner'
+				}
+			);
+		case 'realsenseState.receivingData':
+			return (
+				realsenseState && {
+					title: 'CONTENT.DETAIL.STATES.REALSENSE.ITEMS.RECEIVING_DATA',
+					value: String(realsenseState.receivingData.value),
+					date: momentFormat2(realsenseState.receivingData.updatedAt),
+					icon: 'data_usage'
+				}
+			);
+		case 'realsenseState.processingData':
+			return (
+				realsenseState && {
+					title: 'CONTENT.DETAIL.STATES.REALSENSE.ITEMS.PROCESSING_DATA',
+					value: String(realsenseState.processingData.value),
+					date: momentFormat2(realsenseState.processingData.updatedAt),
+					icon: 'data_usage'
+				}
+			);
+		case 'activity.latest':
+			return (
+				activityState && {
+					title: 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST',
+					value: activityState.latest.value,
+					date: momentFormat2(activityState.latest.updatedAt),
+					icon: 'timer'
 				}
 			);
 		default:

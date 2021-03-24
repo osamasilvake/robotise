@@ -48,6 +48,10 @@ export interface RTSMappedResponseDataInterface {
 	emergencyBrakeState: RTSEmergencyStateInterface | undefined;
 	motorLeftWheelState?: RTSMotorWheelState | undefined;
 	motorRightWheelState?: RTSMotorWheelState | undefined;
+	joystickState?: RTSJoystickState | undefined;
+	lidarState?: RTSLidarState | undefined;
+	realsenseState?: RTSRealsenseState | undefined;
+	activityState?: RTSActivityState | undefined;
 }
 
 export interface RTSBatteryStateInterface {
@@ -118,6 +122,38 @@ export interface RTSMotorWheelState {
 		updatedAt: Date;
 	};
 	lastErrorCode: {
+		value: string;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSJoystickState {
+	controlMode: {
+		value: string;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSLidarState {
+	receivingScans: {
+		value: boolean;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSRealsenseState {
+	receivingData: {
+		value: boolean;
+		updatedAt: Date;
+	};
+	processingData: {
+		value: boolean;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSActivityState {
+	latest: {
 		value: string;
 		updatedAt: Date;
 	};

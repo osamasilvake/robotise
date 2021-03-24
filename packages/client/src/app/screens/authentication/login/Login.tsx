@@ -120,6 +120,7 @@ const Login: FC = () => {
 						</FormControl>
 
 						<FormControlLabel
+							className={loginClasses.sFormCheckbox}
 							control={
 								<Checkbox
 									name="rememberMe"

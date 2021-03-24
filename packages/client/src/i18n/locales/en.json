@@ -147,6 +147,7 @@
 					"NAME": "Name",
 					"SITE": "Site",
 					"STATUS": "Status",
+					"ACCEPT_ORDERS": "Accept Orders",
 					"UPDATED_AT": "Updated At",
 					"ALERTS": "Alerts (danger / warning)"
 				},
@@ -172,7 +173,11 @@
 					"STATUS": "Status",
 					"ON": "ON",
 					"OFF": "OFF",
-					"ACCEPT_ORDERS": "Accept Orders",
+					"ACCEPT_ORDERS": {
+						"LABEL": "Accept Orders",
+						"ON": "ON",
+						"OFF": "OFF"
+					},
 					"UNKNOWN": "Unknown"
 				},
 				"STATES": {
@@ -234,6 +239,31 @@
 							"CONTROLLER_VOLTAGE": "Controller Voltage",
 							"CONTROLLER_TEMPERATURE": "Controller Temperature",
 							"COMMANDED_VELOCITY": "Commanded Velocity"
+						}
+					},
+					"JOYSTICK": {
+						"TITLE": "Joystick State",
+						"ITEMS": {
+							"CONTROL_MODE": "Control Mode"
+						}
+					},
+					"LIDAR": {
+						"TITLE": "Lidar State",
+						"ITEMS": {
+							"RECEIVING_SCANS": "Receiving Scans"
+						}
+					},
+					"REALSENSE": {
+						"TITLE": "Realsense State",
+						"ITEMS": {
+							"RECEIVING_DATA": "Receiving Data",
+							"PROCESSING_DATA": "Processing Scans"
+						}
+					},
+					"ACTIVITY": {
+						"TITLE": "Activity State",
+						"ITEMS": {
+							"LATEST": "Latest"
 						}
 					}
 				}

@@ -71,6 +71,12 @@ const OverridesCustom: Overrides = {
 			}
 		}
 	},
+	MuiCheckbox: {
+		root: {
+			paddingBottom: pxToRem(3),
+			paddingTop: pxToRem(3)
+		}
+	},
 	MuiIconButton: {
 		root: {
 			borderRadius: pxToRem(2)

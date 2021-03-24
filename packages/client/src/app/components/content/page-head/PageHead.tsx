@@ -9,7 +9,7 @@ import { BreadcrumbInterface, PageHeadInterface } from './PageHead.interface';
 import { PageHeadStyles } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
-	const { title, description, hideDivider } = props;
+	const { title, description, updatePageLabel, hideDivider } = props;
 
 	const { t } = useTranslation('META');
 	const pageHeadClasses = PageHeadStyles();
@@ -62,7 +62,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 								</Link>
 							)}
 							{item.isLast && (
-								<Typography color="textPrimary">{item.text}</Typography>
+								<Typography color="textPrimary">{updatePageLabel}</Typography>
 							)}
 						</Box>
 					))}

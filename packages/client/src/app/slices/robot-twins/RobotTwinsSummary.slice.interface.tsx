@@ -50,6 +50,7 @@ export interface RTSFinalDataInterface {
 	siteId: string;
 	siteTitle: string;
 	isReady: boolean;
+	acceptOrders: boolean;
 	updatedAt: Date;
 	alerts: RTSAlertsInterface;
 }

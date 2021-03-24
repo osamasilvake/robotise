@@ -37,12 +37,13 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 			case columns[0].id:
 			case columns[1].id:
 			case columns[2].id:
+			case columns[3].id:
 				type = RobotsListTableSortTypeEnum.STRING;
 				break;
-			case columns[3].id:
+			case columns[4].id:
 				type = RobotsListTableSortTypeEnum.DATE;
 				break;
-			case columns[4].id:
+			case columns[5].id:
 				type = RobotsListTableSortTypeEnum.OBJECT_ALERT;
 				break;
 			default:
@@ -117,8 +118,20 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 				</Typography>
 			);
 		} else if (columns[3].id === column.id) {
-			return momentFormat1(value);
+			return (
+				<Typography
+					variant="button"
+					color="error"
+					className={clsx(robotsListClasses.sTableCellStatus, {
+						[robotsListClasses.sTableCellStatusOn]: robot.acceptOrders,
+						[robotsListClasses.sTableCellStatusOff]: !robot.acceptOrders
+					})}>
+					{robot.acceptOrders ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
+				</Typography>
+			);
 		} else if (columns[4].id === column.id) {
+			return momentFormat1(value);
+		} else if (columns[5].id === column.id) {
 			return `${robot.alerts.danger}/${robot.alerts.warning}`;
 		}
 		return value;

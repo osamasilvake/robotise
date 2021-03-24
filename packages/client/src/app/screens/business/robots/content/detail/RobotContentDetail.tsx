@@ -8,16 +8,16 @@ import {
 	robotTwinsSelector,
 	RobotTwinsSingleRobotFetchList
 } from '../../../../../slices/robot-twins/RobotTwins.slice';
-import { RobotContentParamsInterface } from '../RobotContent.interface';
 import RobotDetailAlerts from './alerts/RobotContentDetailAlerts';
 import RobotDetailGeneral from './general/RobotContentDetailGeneral';
+import { RobotContentDetailParamsInterface } from './RobotContentDetail.interface';
 import RobotContentDetailStates from './states/RobotContentDetailStates';
 
 const RobotContentDetail: FC = () => {
 	const dispatch = useDispatch();
 	const robotTwins = useSelector(robotTwinsSelector);
 
-	const params: RobotContentParamsInterface = useParams();
+	const params: RobotContentDetailParamsInterface = useParams();
 
 	useEffect(() => {
 		const cRobotId = params.id;

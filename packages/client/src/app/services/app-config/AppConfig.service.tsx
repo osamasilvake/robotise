@@ -25,7 +25,7 @@ class AppConfigService extends EnvService {
 				c9: '#26aee4', // dark/light: 		blue
 				c10: '#78b752', // dark/light: 		green
 				c11: '#ecbd0e', // dark/light: 		yellow
-				c12: '#e03428', // dark/light: 		red
+				c12: '#e4291c', // dark/light: 		red
 				c13: '#818386' // dark/light:		grey
 			}
 		};

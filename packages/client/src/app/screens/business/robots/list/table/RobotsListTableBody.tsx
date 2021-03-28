@@ -1,16 +1,14 @@
-import { TableBody, TableCell, TableRow } from '@material-ui/core';
+import { TableBody, TableRow } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-import Status from '../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../services';
 import {
 	RTSFinalDataInterface,
 	RTSSContentInterface
 } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
-import { momentFormat1, momentSort } from '../../../../../utilities/methods/Moment';
+import { momentSort } from '../../../../../utilities/methods/Moment';
 import { RobotsListTableSortTypeEnum } from './RobotsListTable.enum';
 import {
 	RobotsListTableBodyInterface,
@@ -19,11 +17,11 @@ import {
 } from './RobotsListTable.interface';
 import { columns } from './RobotsListTable.list';
 import { RobotsListStyles } from './RobotsListTable.style';
+import RobotsListTableBodyCell from './RobotsListTableBodyCell';
 
 const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
 
-	const { t } = useTranslation('ROBOTS');
 	const robotsListClasses = RobotsListStyles();
 	const history = useHistory();
 
@@ -98,34 +96,6 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 		history.push(robotLink);
 	};
 
-	/**
-	 * set cell value
-	 * @param robot
-	 * @param column
-	 * @returns
-	 */
-	const setCellValue = (robot: RTSFinalDataInterface, column: RobotsListTableColumnInterface) => {
-		const value = robot[column.id];
-		if (columns[2].id === column.id) {
-			return (
-				<Status active={robot.isReady}>
-					{robot.isReady ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
-				</Status>
-			);
-		} else if (columns[3].id === column.id) {
-			return (
-				<Status active={robot.acceptOrders}>
-					{robot.acceptOrders ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
-				</Status>
-			);
-		} else if (columns[4].id === column.id) {
-			return momentFormat1(value);
-		} else if (columns[5].id === column.id) {
-			return `${robot.alerts.danger}/${robot.alerts.warning}`;
-		}
-		return value;
-	};
-
 	return (
 		<TableBody>
 			{content &&
@@ -144,9 +114,11 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 							})}
 							onClick={handleShowRobotDetail(robot)}>
 							{columns.map((column: RobotsListTableColumnInterface) => (
-								<TableCell key={column.id} align={column.align}>
-									{setCellValue(robot, column)}
-								</TableCell>
+								<RobotsListTableBodyCell
+									key={column.id}
+									column={column}
+									robot={robot}
+								/>
 							))}
 						</TableRow>
 					))}

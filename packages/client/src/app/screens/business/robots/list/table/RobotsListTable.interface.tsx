@@ -1,6 +1,9 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
-import { RTSSContentInterface } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+import {
+	RTSFinalDataInterface,
+	RTSSContentInterface
+} from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 
 export interface RobotsListTableInterface {
 	content: RTSSContentInterface | null;
@@ -30,6 +33,11 @@ export interface RobotsListTableBodyInterface {
 	orderBy: RobotsListTableHeadId;
 	page: number;
 	rowsPerPage: number;
+}
+
+export interface RobotsListTableBodyCellInterface {
+	column: RobotsListTableColumnInterface;
+	robot: RTSFinalDataInterface;
 }
 
 export type RobotsListTableHeadOrder = 'asc' | 'desc';

@@ -181,8 +181,8 @@
 					"OFF": "OFF",
 					"ACCEPT_ORDERS": {
 						"LABEL": "Accept Orders",
-						"ON": "ON",
-						"OFF": "OFF"
+						"ACTIVE": "Active",
+						"INACTIVE": "Inactive"
 					},
 					"UNKNOWN": "Unknown"
 				},

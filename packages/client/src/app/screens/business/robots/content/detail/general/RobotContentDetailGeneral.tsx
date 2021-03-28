@@ -65,8 +65,8 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 							</Typography>
 							<Status active={!!robot.site.acceptOrders} small>
 								{robot.site.acceptOrders
-									? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ON')
-									: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.OFF')}
+									? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ACTIVE')
+									: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.INACTIVE')}
 							</Status>
 						</Box>
 					}

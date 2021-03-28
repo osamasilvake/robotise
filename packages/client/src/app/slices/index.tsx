@@ -8,7 +8,7 @@ import robotTwinsSummary from './robot-twins/RobotTwinsSummary.slice';
 import sites from './sites/Sites.slice';
 
 // app reducers
-const appReducer = combineReducers({
+const combinedReducer = combineReducers({
 	auth,
 	general,
 	robot,
@@ -18,7 +18,7 @@ const appReducer = combineReducers({
 });
 
 // reducers type
-export type AppReducerType = ReturnType<typeof appReducer>;
+export type AppReducerType = ReturnType<typeof combinedReducer>;
 
 // root reducer
 const rootReducer = (rootState: AppReducerType | undefined, action: AnyAction) => {
@@ -26,6 +26,6 @@ const rootReducer = (rootState: AppReducerType | undefined, action: AnyAction) =
 	if (action.type === 'Auth/terminate') {
 		rootState = undefined;
 	}
-	return appReducer(rootState, action);
+	return combinedReducer(rootState, action);
 };
 export default rootReducer;

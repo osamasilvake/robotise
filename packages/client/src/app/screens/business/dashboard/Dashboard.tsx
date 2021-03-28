@@ -1,11 +1,11 @@
-import { Box, Typography } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 
 const Dashboard: FC = () => {
 	return (
-		<Box component="section">
+		<Paper elevation={12} component="section">
 			<Typography variant="h1">Dashboard</Typography>
-		</Box>
+		</Paper>
 	);
 };
 export default Dashboard;

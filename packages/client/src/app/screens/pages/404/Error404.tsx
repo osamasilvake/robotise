@@ -1,4 +1,4 @@
-import { Box, Link, Typography } from '@material-ui/core';
+import { Link, Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Error404: FC = () => {
 	const error404Classes = Error404Styles();
 
 	return (
-		<Box component="section">
+		<Paper elevation={12} component="section">
 			<Error error={ErrorTypeEnum.E404}>
 				<Typography variant="h1" className={error404Classes.sTitle}>
 					{t('E404.TITLE')}
@@ -31,7 +31,7 @@ const Error404: FC = () => {
 					{t('E404.LINK')}
 				</Link>
 			</Error>
-		</Box>
+		</Paper>
 	);
 };
 export default Error404;

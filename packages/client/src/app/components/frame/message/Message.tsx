@@ -20,7 +20,7 @@ const Message: FC = () => {
 	 */
 	const handleCloseMessage = () => dispatch(GeneralTriggerMessage({ show: false }));
 
-	return (
+	return general.triggerMessage.show ? (
 		<Snackbar
 			anchorOrigin={
 				AppConfigService.AppOptions.components.snackbar.direction as SnackbarOrigin
@@ -39,6 +39,6 @@ const Message: FC = () => {
 				{general.triggerMessage.text && t(general.triggerMessage.text)}
 			</Alert>
 		</Snackbar>
-	);
+	) : null;
 };
 export default Message;

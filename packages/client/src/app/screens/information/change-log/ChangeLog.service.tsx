@@ -4,7 +4,7 @@ class ChangelogService {
 	/**
 	 * fetch changelog
 	 */
-	changlogFetch = () => {
+	changelogFetch = () => {
 		return HttpClientService.get(AppConfigService.AppServices.COMMON.CHANGE_LOG);
 	};
 }

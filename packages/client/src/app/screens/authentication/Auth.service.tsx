@@ -98,8 +98,8 @@ class AuthService {
 	 * @param storageType
 	 */
 	setAccessToken = (accessToken: string, storageType: StorageTypeEnum) => {
-		// add authorization to headers
-		axios.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
+		// set authorization to headers
+		this.setAuthorizationToHeaders(accessToken);
 
 		// set in storage
 		if (storageType === StorageTypeEnum.PERSISTENT) {
@@ -125,12 +125,27 @@ class AuthService {
 	 */
 	removeAccessToken = () => {
 		// delete authorization from headers
-		delete axios.defaults.headers.common.Authorization;
+		this.removeAuthorizationToHeaders();
 
 		// remove from storage
 		if (this.getAccessToken()) {
 			StorageService.remove(AppConfigService.StorageItems.JWTAccessToken);
 		}
+	};
+
+	/**
+	 * set authorization to headers
+	 * @param accessToken
+	 */
+	setAuthorizationToHeaders = (accessToken: string) => {
+		axios.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
+	};
+
+	/**
+	 * remove authorization from headers
+	 */
+	removeAuthorizationToHeaders = () => {
+		delete axios.defaults.headers.common.Authorization;
 	};
 }
 const instance = new AuthService();

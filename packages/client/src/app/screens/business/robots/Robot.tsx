@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -11,17 +11,17 @@ const Robot: FC = () => {
 	const cRobotName = robotTwins.content?.data[0]?.robot.name;
 
 	return (
-		<Box component="section">
+		<Paper elevation={12} component="section">
 			{/* Page Head */}
 			<PageHead
 				title="ROBOTS.ROBOT.TITLE"
 				description="ROBOTS.ROBOT.DESCRIPTION"
-				updatePageLabel={!robotTwins.loading ? cRobotName : ''}
+				currentLabel={!robotTwins.loading ? cRobotName : ''}
 			/>
 
 			{/* List */}
 			<RobotContent />
-		</Box>
+		</Paper>
 	);
 };
 export default Robot;

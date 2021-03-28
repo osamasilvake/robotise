@@ -31,6 +31,25 @@ class RobotsService {
 		const url = AppConfigService.AppServices.ROBOT_TWINS.ALL;
 		return HttpClientService.get(`${url}/${robotId}`);
 	};
+
+	/**
+	 * request robot image
+	 * @param camera
+	 * @param id
+	 * @returns
+	 */
+	robotRequestImage = (camera: string, id: string) => {
+		const url = AppConfigService.AppServices.ROBOT.ALL;
+		return HttpClientService.post(`${url}/${id}/commands`, {
+			data: {
+				type: 'robot-commands',
+				attributes: {
+					options: { camera },
+					command: 'catch-camera-image'
+				}
+			}
+		});
+	};
 }
 const instance = new RobotsService();
 export default instance;

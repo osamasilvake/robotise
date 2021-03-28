@@ -1,4 +1,4 @@
-import { Table, TableContainer, TablePagination } from '@material-ui/core';
+import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -60,7 +60,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	};
 
 	return (
-		<>
+		<Box>
 			<TableContainer className={robotsListClasses.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
@@ -97,7 +97,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 				onChangePage={handleChangePage}
 				onChangeRowsPerPage={handleChangeRowsPerPage}
 			/>
-		</>
+		</Box>
 	);
 };
 export default RobotsListTable;

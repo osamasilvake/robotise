@@ -52,6 +52,9 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 				}
 			},
 			MuiTableCell: {
+				root: {
+					borderBottom: 'none'
+				},
 				stickyHeader: {
 					backgroundColor: AppConfigService.AppVariables.colors.c2
 				}
@@ -62,6 +65,11 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 						backgroundColor: AppConfigService.AppVariables.colors.c2,
 						cursor: 'pointer'
 					}
+				}
+			},
+			MuiTablePagination: {
+				root: {
+					backgroundColor: AppConfigService.AppVariables.colors.c2
 				}
 			},
 			MuiTabs: {

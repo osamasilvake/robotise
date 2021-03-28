@@ -74,7 +74,7 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 	// dispatch: loader
 	dispatch(loading());
 
-	(!sites.content
+	return (!sites.content
 		? Promise.all([
 				SitesService.sitesFetch(),
 				RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)
@@ -141,7 +141,7 @@ export const RobotTwinsSummaryRefreshList = () => async (
 		state.robotTwinsSummary.content?.meta.rowsPerPage ||
 		AppConfigService.AppOptions.screens.robots.list.defaultPageSize;
 
-	(!sites.content
+	return (!sites.content
 		? Promise.all([
 				SitesService.sitesFetch(),
 				RobotsService.robotTwinsSummaryFetch(pageNo, rowsPerPage)

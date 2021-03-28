@@ -1,39 +1,50 @@
 import { Card, CardContent, Icon, Typography } from '@material-ui/core';
+import clsx from 'clsx';
 import { FC } from 'react';
 
+import { CardStyles } from '../../../../../../utilities/styles/Card.style';
 import { RobotContentDetailStateCardInterface } from './RobotContentDetailStates.interface';
 import { RobotContentDetailStatesStyles } from './RobotContentDetailStates.style';
 
 const RobotContentDetailStateCard: FC<RobotContentDetailStateCardInterface> = (props) => {
 	const { ...rest } = props;
 
+	const cardClasses = CardStyles();
 	const robotContentDetailStatesClasses = RobotContentDetailStatesStyles();
 
 	return (
 		<Card variant="elevation" square elevation={1}>
-			<CardContent className={robotContentDetailStatesClasses.sCardContent}>
+			<CardContent
+				className={clsx(
+					cardClasses.sCardContent1,
+					robotContentDetailStatesClasses.sCardContent
+				)}>
+				{/* Icon */}
 				{rest.icon && (
 					<Icon className={robotContentDetailStatesClasses.sCardContentIcon}>
 						{rest.icon}
 					</Icon>
 				)}
 
-				{rest.valueTop && (
+				{/* Title */}
+				{rest.title && (
 					<Typography variant="subtitle2" color="textSecondary">
-						{rest.valueTop}
+						{rest.title}
 					</Typography>
 				)}
 
+				{/* Value */}
 				<Typography
 					variant="h3"
 					color="inherit"
 					className={robotContentDetailStatesClasses.sCardContentValue}>
-					{rest.valueMiddle || 'null'}
+					{rest.value || 'null'}
 				</Typography>
 
-				{rest.valueBottom && (
+				{/* Date */}
+				{rest.date && (
 					<Typography variant="body2" color="textSecondary">
-						{rest.valueBottom}
+						{rest.date}
 					</Typography>
 				)}
 			</CardContent>

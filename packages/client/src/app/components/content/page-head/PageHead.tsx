@@ -1,41 +1,16 @@
-import { Box, Breadcrumbs, Divider, Link, Paper, Typography } from '@material-ui/core';
+import { Box, Divider } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
 
-import { AppConfigService } from '../../../services';
+import Breadcrumb from '../../common/breadcrumb/Breadcrumb';
 import Meta from '../../common/meta/Meta';
-import { BreadcrumbInterface, PageHeadInterface } from './PageHead.interface';
+import { PageHeadInterface } from './PageHead.interface';
 import { PageHeadStyles } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
-	const { title, description, updatePageLabel, hideDivider } = props;
-
+	const { title, description, currentLabel, hideDivider } = props;
 	const { t } = useTranslation('META');
 	const pageHeadClasses = PageHeadStyles();
-
-	/**
-	 * create breadcrumbs from the link
-	 * @returns
-	 */
-	const breadcrumbs = (): BreadcrumbInterface[] => {
-		const paths = window.location.href.split('/').slice(3);
-		return [
-			{
-				text: t('DASHBOARD.TITLE'),
-				link: AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD,
-				isLast: false
-			},
-			...paths.map((item, index) => {
-				const link = '/' + paths.slice(0, index + 1).join('/');
-				return {
-					text: item.replace(/\b\w/g, (l) => l.toUpperCase()).replace(/-/g, ' '),
-					link,
-					isLast: index === paths.length - 1
-				};
-			})
-		];
-	};
 
 	return (
 		<Box>
@@ -45,32 +20,15 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 				description={(description && t(description)) || t('GENERAL.DESCRIPTION')}
 			/>
 
-			{/* Paper */}
-			<Paper square elevation={11}>
-				{/* Title */}
-				<Typography variant="h1" className={pageHeadClasses.sTitle}>
-					{t(title)}
-				</Typography>
-
-				{/* Breadcrumb */}
-				<Breadcrumbs>
-					{breadcrumbs().map((item) => (
-						<Box key={item.text}>
-							{!item.isLast && (
-								<Link component={RouterLink} to={item.link}>
-									{item.text}
-								</Link>
-							)}
-							{item.isLast && (
-								<Typography color="textPrimary">{updatePageLabel}</Typography>
-							)}
-						</Box>
-					))}
-				</Breadcrumbs>
-			</Paper>
+			{/* Breadcrumb */}
+			<Breadcrumb title={title} currentLabel={currentLabel} />
 
 			{/* Divider */}
-			{!hideDivider && <Divider light />}
+			{!hideDivider && (
+				<Box className={pageHeadClasses.sDivider}>
+					<Divider light />
+				</Box>
+			)}
 		</Box>
 	);
 };

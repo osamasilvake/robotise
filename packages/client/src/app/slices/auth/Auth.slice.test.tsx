@@ -16,6 +16,7 @@ import {
 	AuthRefreshToken,
 	failure,
 	initialState,
+	loader,
 	loading,
 	success,
 	terminate
@@ -68,7 +69,10 @@ describe('[SLICE] Authentication', () => {
 			.dispatch(AuthLogin(request))
 			.then(() => {
 				// assert
-				const expectedActions = [success(AuthService.authUserDetail(accessToken))];
+				const expectedActions = [
+					loading(),
+					success(AuthService.authUserDetail(accessToken))
+				];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();
@@ -100,7 +104,7 @@ describe('[SLICE] Authentication', () => {
 			.dispatch(AuthLogin(request))
 			.then(() => {
 				// assert
-				const expectedActions = [failure(message), triggerMessage(message)];
+				const expectedActions = [loading(), failure(message), triggerMessage(message)];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();
@@ -179,7 +183,7 @@ describe('[SLICE] Authentication', () => {
 		store.dispatch(AuthLogout());
 
 		// assert
-		const expectedActions = [loading(), terminate()];
+		const expectedActions = [loader(), terminate()];
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 });

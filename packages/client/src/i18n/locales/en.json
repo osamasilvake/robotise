@@ -43,6 +43,12 @@
 		"AUTH": {
 			"TOKEN_EXPIRED": "Token Got Expired!",
 			"TOKEN_EMPTY": "No Token Found!"
+		},
+		"ROBOT": {
+			"CAMERAS": {
+				"SUCCESS": "Top camera image was requested.",
+				"ERROR": "Failed to request top camera image."
+			}
 		}
 	},
 	"COMMON": {
@@ -179,6 +185,13 @@
 						"OFF": "OFF"
 					},
 					"UNKNOWN": "Unknown"
+				},
+				"CAMERAS": {
+					"TITLE": "Cameras",
+					"BASE": "Base Camera",
+					"TOP": "Top Camera",
+					"REQUEST": "Request",
+					"DISABLED": "Robot is off"
 				},
 				"STATES": {
 					"BATTERY": {

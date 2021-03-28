@@ -23,20 +23,22 @@ const RobotContentDetailState: FC<RobotContentDetailStateInterface> = (props) =>
 				{t(state.title)}
 			</Typography>
 
-			{/* State */}
+			{/* Grid */}
 			<Grid container spacing={1}>
 				{Object.keys(state.content).map((item) => {
 					const mappedResult = mapRobotStates(`${state.type}.${item}`, robot);
-					return mappedResult ? (
-						<Grid key={item} item xs={12} sm={6} md={4} lg={3}>
-							<RobotContentDetailStateCard
-								icon={mappedResult?.icon}
-								valueTop={t(mappedResult.title)}
-								valueMiddle={t(mappedResult.value)}
-								valueBottom={mappedResult.date}
-							/>
-						</Grid>
-					) : null;
+					return (
+						mappedResult && (
+							<Grid key={item} item xs={12} sm={6} md={4} lg={3}>
+								<RobotContentDetailStateCard
+									icon={mappedResult?.icon}
+									title={t(mappedResult.title)}
+									value={t(mappedResult.value)}
+									date={mappedResult.date}
+								/>
+							</Grid>
+						)
+					);
 				})}
 			</Grid>
 		</Box>

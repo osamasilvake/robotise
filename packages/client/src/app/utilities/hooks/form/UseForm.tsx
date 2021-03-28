@@ -1,6 +1,5 @@
 import { ChangeEvent, FocusEvent, FormEvent, useState } from 'react';
 
-import { timeout } from '../../methods/Timeout';
 import { UseFormEventTypeEnum } from './UseForm.enum';
 import { UseFormRetInterface } from './UseForm.interface';
 
@@ -19,7 +18,6 @@ export const useForm = <UseFormEntity,>(
 	const [values, setValues] = useState(initState);
 	const [errors, setErrors] = useState(initState);
 	const [touched, setTouched] = useState(initState);
-	const [loader, setLoader] = useState(false);
 
 	/**
 	 * handle change
@@ -75,18 +73,9 @@ export const useForm = <UseFormEntity,>(
 		// prevent default
 		event.preventDefault();
 
-		// start loader
-		setLoader(true);
-
-		// timeout: 1000ms
-		await timeout(1000);
-
 		// wait for callback to execute
 		await submitCallBack();
-
-		// stop loader
-		setLoader(false);
 	};
 
-	return { handleChange, handleBlur, handleSubmit, values, errors, loader };
+	return { handleChange, handleBlur, handleSubmit, values, errors };
 };

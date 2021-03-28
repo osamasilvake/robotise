@@ -37,12 +37,12 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	/**
 	 * authentication state
 	 *
-	 * loading: Loader
+	 * loader: 	Loader
 	 * user: 	Dashboard
 	 * !user: 	Login
 	 */
 
-	if (auth.loading) {
+	if (auth.loader) {
 		return <Loader />;
 	} else if (isPrivate(type) && !isUser) {
 		return <Redirect to={AppConfigService.AppRoutes.AUTH.LOGIN} />;

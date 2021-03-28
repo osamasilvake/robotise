@@ -25,7 +25,7 @@ class AppConfigService extends EnvService {
 				c9: '#26aee4', // dark/light: 		blue
 				c10: '#78b752', // dark/light: 		green
 				c11: '#ecbd0e', // dark/light: 		yellow
-				c12: '#ef3325', // dark/light: 		red
+				c12: '#e03428', // dark/light: 		red
 				c13: '#818386' // dark/light:		grey
 			}
 		};
@@ -58,7 +58,7 @@ class AppConfigService extends EnvService {
 					width: 260
 				},
 				table: {
-					minusContentHeight: 248
+					minusContentHeight: 64 + 40 + 69.8 + 28 + 52 - 8
 				}
 			},
 			screens: {
@@ -106,6 +106,9 @@ class AppConfigService extends EnvService {
 			},
 			SITES: {
 				LIST: `${this.envApiUrl}/sites`
+			},
+			ROBOT: {
+				ALL: `${this.envApiUrl}/robots`
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,

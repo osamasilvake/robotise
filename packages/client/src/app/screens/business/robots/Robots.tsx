@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { FC } from 'react';
 
 import PageHead from '../../../components/content/page-head/PageHead';
@@ -6,13 +6,13 @@ import RobotsList from './list/RobotsList';
 
 const Robots: FC = () => {
 	return (
-		<Box component="section">
+		<Paper elevation={12} component="section">
 			{/* Page Head */}
 			<PageHead title="ROBOTS.TITLE" description="ROBOTS.DESCRIPTION" />
 
 			{/* List */}
 			<RobotsList />
-		</Box>
+		</Paper>
 	);
 };
 export default Robots;

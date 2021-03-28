@@ -19,21 +19,21 @@ const ChangeLog: FC = () => {
 	}, [dispatch, general.changeLog]);
 
 	return (
-		<Box component="section">
+		<Paper elevation={12} component="section">
 			{/* Page Head */}
 			<PageHead title="CHANGE_LOG.TITLE" />
 
 			{/* Content */}
 			{general.changeLog && (
-				<Paper square elevation={12}>
+				<Box>
 					<ReactMarkdown
 						escapeHtml={false}
 						renderers={MarkdownRenderers}
 						source={JSON.parse(general.changeLog)}
 					/>
-				</Paper>
+				</Box>
 			)}
-		</Box>
+		</Paper>
 	);
 };
 export default ChangeLog;

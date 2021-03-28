@@ -17,7 +17,7 @@ class HttpClientService {
 	 * @param data
 	 * @param config
 	 */
-	post = async <T,>(url: string, data: T, config: AxiosRequestConfig) => {
+	post = async <T,>(url: string, data: T, config?: AxiosRequestConfig) => {
 		const resp = await axios.post(url, data, config);
 		return resp.data;
 	};

@@ -70,7 +70,7 @@ export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
 	// dispatch: loader
 	dispatch(loading());
 
-	(!sites.content
+	return (!sites.content
 		? Promise.all([
 				SitesService.sitesFetch(),
 				RobotsService.robotTwinsSingleRobotFetch(robotId)
@@ -100,11 +100,11 @@ export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
 				text: 'API.FETCH'
 			};
 
-			// dispatch: trigger message
-			dispatch(triggerMessage(message));
-
 			// dispatch: error
 			dispatch(failure(message));
+
+			// dispatch: trigger message
+			dispatch(triggerMessage(message));
 		});
 };
 

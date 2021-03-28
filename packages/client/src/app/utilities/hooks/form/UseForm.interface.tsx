@@ -6,5 +6,4 @@ export interface UseFormRetInterface<UseFormEntity> {
 	handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
 	values: UseFormEntity;
 	errors: UseFormEntity;
-	loader: boolean;
 }

@@ -1,6 +1,7 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 import log from 'loglevel';
 
+import { RobotContentDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/camera/RobotContentDetailCameras.enum';
 import {
 	IRobotTwin,
 	RTSMappedResponseDataInterface
@@ -139,6 +140,13 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 			}
 		},
 		transform: (data: IRobotTwin) => {
+			const sCameras = data.state.reported.cameras;
+			const mCameras = data.metadata.reported.cameras;
+			const cameraBase = sCameras[RobotContentDetailCameraTypeEnum.BASE];
+			const cameraBaseMeta = mCameras[RobotContentDetailCameraTypeEnum.BASE];
+			const cameraTop = sCameras[RobotContentDetailCameraTypeEnum.TOP];
+			const cameraTopMeta = mCameras[RobotContentDetailCameraTypeEnum.TOP];
+
 			try {
 				const result: RTSMappedResponseDataInterface = {
 					id: data.id,
@@ -159,6 +167,20 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 					alerts: {
 						value: data.state.reported.alerts,
 						updatedAt: data.metadata.reported.alerts?.updatedAt
+					},
+					cameras: data.state.reported.cameras && {
+						base: cameraBase && {
+							imageId: {
+								value: cameraBase.imageId,
+								updatedAt: cameraBaseMeta.imageId.updatedAt
+							}
+						},
+						top: cameraTop && {
+							imageId: {
+								value: cameraTop.imageId,
+								updatedAt: cameraTopMeta.imageId.updatedAt
+							}
+						}
 					},
 					batteryState: data.state.reported.batteryState && {
 						current: {

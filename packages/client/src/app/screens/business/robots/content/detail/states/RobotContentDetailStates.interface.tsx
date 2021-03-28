@@ -35,8 +35,8 @@ export interface RobotContentDetailStateInfoInterface {
 }
 
 export interface RobotContentDetailStateCardInterface {
-	valueTop: string | undefined;
-	valueMiddle: string | undefined;
-	valueBottom: string | undefined;
+	title: string | undefined;
+	value: string | undefined;
+	date: string | undefined;
 	icon?: string | undefined;
 }

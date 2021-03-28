@@ -2,6 +2,7 @@ import { AnyAction, combineReducers } from 'redux';
 
 import auth from './auth/Auth.slice';
 import general from './general/General.slice';
+import robot from './robot/Robot.slice';
 import robotTwins from './robot-twins/RobotTwins.slice';
 import robotTwinsSummary from './robot-twins/RobotTwinsSummary.slice';
 import sites from './sites/Sites.slice';
@@ -10,6 +11,7 @@ import sites from './sites/Sites.slice';
 const appReducer = combineReducers({
 	auth,
 	general,
+	robot,
 	robotTwins,
 	robotTwinsSummary,
 	sites

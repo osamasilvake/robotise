@@ -5,13 +5,13 @@ import PageHead from '../../../components/content/page-head/PageHead';
 
 const About: FC = () => {
 	return (
-		<Box component="section">
+		<Paper square elevation={12} component="section">
 			{/* Page Head */}
 			<PageHead title="ABOUT.TITLE" description="ABOUT.DESCRIPTION" />
 
 			{/* Content */}
-			<Grid container component="section">
-				<Grid item xs={false} sm={6} md={4} component={Paper} elevation={12} square>
+			<Grid container>
+				<Grid item xs={false} sm={6} md={4}>
 					<Typography variant="h6">Robotise AG</Typography>
 					<Typography variant="body1">Claudius-Keller-Str. 3c</Typography>
 					<Typography variant="body1">81669 München</Typography>
@@ -25,7 +25,7 @@ const About: FC = () => {
 					<Typography variant="body1">Register Court: München</Typography>
 					<Typography variant="body1">Register No.: 262463</Typography>
 				</Grid>
-				<Grid item xs={12} sm={6} md={8} component={Paper} elevation={12} square>
+				<Grid item xs={12} sm={6} md={8}>
 					<CardMedia
 						component="iframe"
 						src="https://player.vimeo.com/video/478088838?background=1&allow=autoplay"
@@ -35,7 +35,7 @@ const About: FC = () => {
 
 			<Divider light />
 
-			<Paper square elevation={12}>
+			<Box>
 				<Typography variant="h6">Jeeves</Typography>
 				<Typography variant="body1">
 					The multi-point service robot JEEVES is the first service robot by Robotise, is
@@ -76,8 +76,8 @@ const About: FC = () => {
 					with JEEVES, and we can provide a choice of solutions. Tell us which type of
 					elevator you have, and we’ll take care of the rest.
 				</Typography>
-			</Paper>
-		</Box>
+			</Box>
+		</Paper>
 	);
 };
 export default About;

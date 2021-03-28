@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -9,6 +10,7 @@ import {
 	RobotTwinsSingleRobotFetchList
 } from '../../../../../slices/robot-twins/RobotTwins.slice';
 import RobotDetailAlerts from './alerts/RobotContentDetailAlerts';
+import RobotContentDetailCameras from './camera/RobotContentDetailCameras';
 import RobotDetailGeneral from './general/RobotContentDetailGeneral';
 import { RobotContentDetailParamsInterface } from './RobotContentDetail.interface';
 import RobotContentDetailStates from './states/RobotContentDetailStates';
@@ -48,11 +50,12 @@ const RobotContentDetail: FC = () => {
 	}
 
 	return (
-		<>
+		<Box>
 			<RobotDetailGeneral robot={robotTwins.content.data[0]} />
 			<RobotDetailAlerts robot={robotTwins.content.data[0]} />
+			<RobotContentDetailCameras robot={robotTwins.content.data[0]} />
 			<RobotContentDetailStates robot={robotTwins.content.data[0]} />
-		</>
+		</Box>
 	);
 };
 export default RobotContentDetail;

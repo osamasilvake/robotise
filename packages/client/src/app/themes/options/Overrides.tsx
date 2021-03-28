@@ -52,15 +52,24 @@ const OverridesCustom: Overrides = {
 	},
 	MuiCardContent: {
 		root: {
-			padding: pxToRem(15),
+			padding: pxToRem(0),
 			'&:last-child': {
-				paddingBottom: pxToRem(15)
+				paddingBottom: pxToRem(0)
 			}
 		}
 	},
 	MuiButton: {
 		root: {
-			height: pxToRem(44)
+			borderRadius: pxToRem(2),
+			height: pxToRem(42)
+		},
+		outlined: {
+			border: `1px solid ${AppConfigService.AppVariables.colors.c9}`,
+			color: AppConfigService.AppVariables.colors.c9,
+			'&:hover': {
+				backgroundColor: AppConfigService.AppVariables.colors.c9,
+				color: AppConfigService.AppVariables.colors.c5
+			}
 		},
 		contained: {
 			backgroundColor: AppConfigService.AppVariables.colors.c9,

@@ -19,31 +19,12 @@ export interface RTSDataByIdInterface {
 export interface RTSMappedResponseDataInterface {
 	id: string;
 	updatedAt: Date;
-	robot: {
-		id: string;
-		name: string;
-	};
-	site: {
-		id: string;
-		title?: string;
-		acceptOrders?: boolean;
-		elevator?: {
-			vendor?: string;
-			buildingId?: string;
-			deviceId?: string;
-		};
-	};
-	robotState: {
-		isReady: {
-			value: boolean;
-			updatedAt: Date;
-		};
-	};
-	alerts: {
-		value: IAlert[];
-		updatedAt: Date;
-	};
-	batteryState: RTSBatteryStateInterface | undefined;
+	robot: RTSRobotInterface;
+	site: RTSSiteInterface;
+	robotState: RTSRobotStateInterface;
+	alerts: RTSRobotAlertInterface;
+	cameras: RTSCameraInterface | undefined;
+	batteryState?: RTSBatteryStateInterface | undefined;
 	dockingState?: RTSDockingStateInterface | undefined;
 	emergencyBrakeState: RTSEmergencyStateInterface | undefined;
 	motorLeftWheelState?: RTSMotorWheelState | undefined;
@@ -52,6 +33,49 @@ export interface RTSMappedResponseDataInterface {
 	lidarState?: RTSLidarState | undefined;
 	realsenseState?: RTSRealsenseState | undefined;
 	activityState?: RTSActivityState | undefined;
+}
+
+export interface RTSRobotInterface {
+	id: string;
+	name: string;
+}
+
+export interface RTSSiteInterface {
+	id: string;
+	title?: string;
+	acceptOrders?: boolean;
+	elevator?: {
+		vendor?: string;
+		buildingId?: string;
+		deviceId?: string;
+	};
+}
+
+export interface RTSRobotStateInterface {
+	isReady: {
+		value: boolean;
+		updatedAt: Date;
+	};
+}
+
+export interface RTSRobotAlertInterface {
+	value: IAlert[];
+	updatedAt: Date;
+}
+
+export interface RTSCameraInterface {
+	base: {
+		imageId: {
+			value: string;
+			updatedAt: Date;
+		};
+	};
+	top: {
+		imageId: {
+			value: string;
+			updatedAt: Date;
+		};
+	};
 }
 
 export interface RTSBatteryStateInterface {

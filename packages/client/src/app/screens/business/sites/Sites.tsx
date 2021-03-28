@@ -1,14 +1,14 @@
-import { Box } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { FC } from 'react';
 
 import PageHead from '../../../components/content/page-head/PageHead';
 
 const Sites: FC = () => {
 	return (
-		<Box component="section">
+		<Paper elevation={12} component="section">
 			{/* Page Head */}
 			<PageHead title="SITES.TITLE" description="SITES.DESCRIPTION" />
-		</Box>
+		</Paper>
 	);
 };
 export default Sites;

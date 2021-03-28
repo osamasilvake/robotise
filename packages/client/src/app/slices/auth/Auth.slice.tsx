@@ -18,9 +18,14 @@ import { AuthSliceInterface } from './Auth.slice.interface';
 const user = AuthService.getAccessToken()
 	? AuthService.authUserDetail(AuthService.getAccessToken())
 	: null;
+if (user) {
+	// set authorization to headers
+	AuthService.setAuthorizationToHeaders(AuthService.getAccessToken());
+}
 
 // initial state
 export const initialState: AuthSliceInterface = {
+	loader: false,
 	loading: false,
 	user,
 	errors: null
@@ -31,20 +36,26 @@ const dataSlice = createSlice({
 	name: 'Auth',
 	initialState,
 	reducers: {
+		loader: (state) => {
+			state.loader = true;
+		},
 		loading: (state) => {
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.loader = false;
 			state.loading = false;
 			state.user = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.loader = false;
 			state.loading = false;
 			state.user = null;
 			state.errors = action.payload;
 		},
 		terminate: (state) => {
+			state.loader = false;
 			state.loading = false;
 			state.user = null;
 			state.errors = null;
@@ -54,7 +65,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loading, success, failure, terminate, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, terminate, reset } = dataSlice.actions;
 
 // selector
 export const authSelector = (state: AppReducerType) => state['auth'];
@@ -67,6 +78,9 @@ export default dataSlice.reducer;
  * @param payload
  */
 export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispatch) => {
+	// dispatch: loader
+	dispatch(loading());
+
 	return AuthService.authLogin(payload)
 		.then((res) => {
 			// set token
@@ -178,7 +192,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
  */
 export const AuthLogout = () => async (dispatch: Dispatch) => {
 	// dispatch: loader
-	dispatch(loading());
+	dispatch(loader());
 
 	// clear authentication
 	AuthService.authLogout();

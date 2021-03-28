@@ -1,9 +1,10 @@
-import { TableBody, TableCell, TableRow, Typography } from '@material-ui/core';
+import { TableBody, TableCell, TableRow } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
+import Status from '../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../services';
 import {
 	RTSFinalDataInterface,
@@ -107,27 +108,15 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 		const value = robot[column.id];
 		if (columns[2].id === column.id) {
 			return (
-				<Typography
-					variant="button"
-					color="error"
-					className={clsx(robotsListClasses.sTableCellStatus, {
-						[robotsListClasses.sTableCellStatusOn]: robot.isReady,
-						[robotsListClasses.sTableCellStatusOff]: !robot.isReady
-					})}>
+				<Status active={robot.isReady}>
 					{robot.isReady ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
-				</Typography>
+				</Status>
 			);
 		} else if (columns[3].id === column.id) {
 			return (
-				<Typography
-					variant="button"
-					color="error"
-					className={clsx(robotsListClasses.sTableCellStatus, {
-						[robotsListClasses.sTableCellStatusOn]: robot.acceptOrders,
-						[robotsListClasses.sTableCellStatusOff]: !robot.acceptOrders
-					})}>
+				<Status active={robot.acceptOrders}>
 					{robot.acceptOrders ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
-				</Typography>
+				</Status>
 			);
 		} else if (columns[4].id === column.id) {
 			return momentFormat1(value);
@@ -143,28 +132,24 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((robot: RTSFinalDataInterface) => {
-						return (
-							<TableRow
-								hover
-								key={robot.id}
-								role="checkbox"
-								tabIndex={-1}
-								className={clsx({
-									[robotsListClasses.sTableRowWarning]: !!robot.alerts.warning,
-									[robotsListClasses.sTableRowDanger]: !!robot.alerts.danger
-								})}
-								onClick={handleShowRobotDetail(robot)}>
-								{columns.map((column: RobotsListTableColumnInterface) => {
-									return (
-										<TableCell key={column.id} align={column.align}>
-											{setCellValue(robot, column)}
-										</TableCell>
-									);
-								})}
-							</TableRow>
-						);
-					})}
+					.map((robot: RTSFinalDataInterface) => (
+						<TableRow
+							hover
+							key={robot.id}
+							role="checkbox"
+							tabIndex={-1}
+							className={clsx({
+								[robotsListClasses.sTableRowWarning]: !!robot.alerts.warning,
+								[robotsListClasses.sTableRowDanger]: !!robot.alerts.danger
+							})}
+							onClick={handleShowRobotDetail(robot)}>
+							{columns.map((column: RobotsListTableColumnInterface) => (
+								<TableCell key={column.id} align={column.align}>
+									{setCellValue(robot, column)}
+								</TableCell>
+							))}
+						</TableRow>
+					))}
 		</TableBody>
 	);
 };

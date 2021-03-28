@@ -6,12 +6,9 @@ export const RobotContentDetailAlertsStyles = makeStyles((theme: Theme) => ({
 	sGridContainer: {
 		marginTop: theme.spacing(4)
 	},
-	sCardTooltip: {
-		padding: theme.spacing(0.5)
-	},
 	sCardContent: {
 		color: AppConfigService.AppVariables.colors.c7,
-		minHeight: 130
+		minHeight: 135
 	},
 	sCardDanger: {
 		backgroundColor: AppConfigService.AppVariables.colors.c12

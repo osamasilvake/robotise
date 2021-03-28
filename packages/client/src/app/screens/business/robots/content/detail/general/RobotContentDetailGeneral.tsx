@@ -1,8 +1,8 @@
 import { Box, Checkbox, FormControlLabel, Grid, Typography } from '@material-ui/core';
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Status from '../../../../../../components/common/status/Status';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { RobotContentDetailGeneralInterface } from './RobotContentDetailGeneral.interface';
 import { RobotContentDetailGeneralStyles } from './RobotContentDetailGeneral.style';
@@ -15,13 +15,13 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 
 	return (
 		<Grid container spacing={1} className={robotContentDetailGeneralClasses.sGridContainer}>
-			<Grid item xs={12} sm={6} md={3}>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.SITE')}
 				</Typography>
 				<Typography variant="body1">{robot.site.title}</Typography>
 			</Grid>
-			<Grid item xs={12} sm={6} md={2}>
+			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.VENDOR')}
 				</Typography>
@@ -29,61 +29,45 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 					{robot.site.elevator?.vendor || t('CONTENT.DETAIL.GENERAL.UNKNOWN')}
 				</Typography>
 			</Grid>
-			<Grid item xs={12} sm={6} md={3}>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.LAST_UPDATED')}
 				</Typography>
 				<Typography variant="body1">{momentFormat1(robot.updatedAt)}</Typography>
 			</Grid>
-			<Grid item xs={12} sm={6} md={1}>
+			<Grid item xs={12} sm={6} md={4} lg={1}>
 				<Typography
 					variant="caption"
 					color="textSecondary"
 					className={robotContentDetailGeneralClasses.sGridItemStatusCaption}>
 					{t('CONTENT.DETAIL.GENERAL.STATUS')}
 				</Typography>
-				<Typography
-					variant="subtitle2"
-					className={clsx(robotContentDetailGeneralClasses.sGridItemStatus, {
-						[robotContentDetailGeneralClasses.sGridItemStatusOn]:
-							robot.robotState.isReady.value,
-						[robotContentDetailGeneralClasses.sGridItemStatusOff]: !robot.robotState
-							.isReady.value
-					})}>
+				<Status active={robot.robotState.isReady.value}>
 					{robot.robotState.isReady.value
 						? t('CONTENT.DETAIL.GENERAL.ON')
 						: t('CONTENT.DETAIL.GENERAL.OFF')}
-				</Typography>
+				</Status>
 			</Grid>
 			<Grid
 				item
 				xs={12}
 				sm={6}
-				md={3}
+				md={8}
+				lg={3}
 				className={robotContentDetailGeneralClasses.sGridLastItem}>
 				<FormControlLabel
 					labelPlacement="start"
 					label={
 						<Box>
-							<Typography>
+							<Typography
+								className={robotContentDetailGeneralClasses.sGridLastItemLabel}>
 								{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
 							</Typography>
-							<Typography
-								variant="caption"
-								color="textSecondary"
-								className={clsx(
-									robotContentDetailGeneralClasses.sGridLastItemLabelStatus,
-									{
-										[robotContentDetailGeneralClasses.sGridLastItemLabelStatusOn]:
-											robot.site.acceptOrders,
-										[robotContentDetailGeneralClasses.sGridLastItemLabelStatusOff]: !robot
-											.site.acceptOrders
-									}
-								)}>
+							<Status active={!!robot.site.acceptOrders} small>
 								{robot.site.acceptOrders
 									? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ON')
 									: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.OFF')}
-							</Typography>
+							</Status>
 						</Box>
 					}
 					className={robotContentDetailGeneralClasses.sGridLastItemCheckboxControl}

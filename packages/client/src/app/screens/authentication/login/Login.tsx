@@ -16,11 +16,11 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Copyright from '../../../components/frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
-import { AuthLogin } from '../../../slices/auth/Auth.slice';
+import { AuthLogin, authSelector } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { somePropertiesEmpty } from '../../../utilities/methods/ObjectUtilities';
 import { AuthLoginInterface } from '../Auth.interface';
@@ -29,35 +29,23 @@ import { LoginFormValidation } from './Login.validation';
 
 const Login: FC = () => {
 	const { t } = useTranslation('AUTH');
-
 	const loginClasses = LoginStyles();
+
 	const dispatch = useDispatch();
+	const auth = useSelector(authSelector);
 
 	const [showPassword, setShowPassword] = useState(false);
-	const {
-		handleChange,
-		handleBlur,
-		handleSubmit,
-		values,
-		errors,
-		loader
-	} = useForm<AuthLoginInterface>(
+	const { handleChange, handleBlur, handleSubmit, values, errors } = useForm<AuthLoginInterface>(
 		{
 			email: '',
 			password: '',
 			rememberMe: false
 		},
 		LoginFormValidation,
-		() => formSubmit()
+		async () => {
+			await dispatch(AuthLogin(values));
+		}
 	);
-
-	/**
-	 * handle submit event
-	 */
-	const formSubmit = async () => {
-		// dispatch: login
-		dispatch(AuthLogin(values));
-	};
 
 	return (
 		<Grid container component="section" className={loginClasses.sRoot}>
@@ -135,9 +123,9 @@ const Login: FC = () => {
 							variant="contained"
 							type="submit"
 							className={loginClasses.sSubmit}
-							disabled={somePropertiesEmpty(values) || loader}
+							disabled={somePropertiesEmpty(values) || auth.loading}
 							fullWidth
-							endIcon={loader && <CircularProgress size={20} />}>
+							endIcon={auth.loading && <CircularProgress size={20} />}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
 

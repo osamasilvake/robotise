@@ -1,8 +1,13 @@
 /**
- * remove special characters from string and replace with hyphen
+ * pretty url pathname
  * @param str
  * @returns
  */
-export const removeSpecialCharacters = (str: string): string => {
-	return str.replace(/\W+/g, '-').replace(/-$/, '').toLowerCase();
+export const prettyUrlPathname = (str: string) => {
+	return str
+		.replace(/-/g, ' ')
+		.toLowerCase()
+		.replace(/\b[a-z]/g, (letter: string) => {
+			return letter.toUpperCase();
+		});
 };

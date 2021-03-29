@@ -8,7 +8,8 @@ export const RobotContentDetailAlertsStyles = makeStyles((theme: Theme) => ({
 	},
 	sCardContent: {
 		color: AppConfigService.AppVariables.colors.c7,
-		minHeight: 135
+		minHeight: 135,
+		position: 'relative'
 	},
 	sCardDanger: {
 		backgroundColor: AppConfigService.AppVariables.colors.c12
@@ -18,6 +19,15 @@ export const RobotContentDetailAlertsStyles = makeStyles((theme: Theme) => ({
 	},
 	sCardOther: {
 		backgroundColor: AppConfigService.AppVariables.colors.c13
+	},
+	sCardContentIcons: {
+		position: 'absolute',
+		right: theme.typography.pxToRem(5),
+		top: theme.typography.pxToRem(5)
+	},
+	sCardContentIcon: {
+		color: AppConfigService.AppVariables.colors.c7,
+		cursor: 'pointer'
 	},
 	sCardContentMessage: {
 		fontWeight: 500,

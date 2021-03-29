@@ -70,6 +70,13 @@ export const RobotTwinsSummaryFetchList = (pageNo: number, rowsPerPage: number) 
 
 	// state
 	const sites = state.sites;
+	const robotTwinsSummary = state.robotTwinsSummary;
+
+	// return on busy
+	// only init case when content is empty
+	if (!robotTwinsSummary.content && robotTwinsSummary.loading) {
+		return;
+	}
 
 	// dispatch: loader
 	dispatch(loading());
@@ -127,12 +134,17 @@ export const RobotTwinsSummaryRefreshList = () => async (
 
 	// states
 	const sites = state.sites;
-	const robotTwins = state.robotTwins;
 	const robotTwinsSummary = state.robotTwinsSummary;
 
 	// return on busy
-	if ((robotTwins && robotTwins.loading) || (robotTwinsSummary && robotTwinsSummary.loading)) {
+	if (robotTwinsSummary.loading) {
 		return;
+	}
+
+	// only init case when content is empty
+	if (!robotTwinsSummary.content) {
+		// dispatch: loader
+		dispatch(loading());
 	}
 
 	// meta

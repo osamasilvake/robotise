@@ -1,4 +1,4 @@
-import { Snackbar, SnackbarOrigin } from '@material-ui/core';
+import { Slide, Snackbar, SnackbarOrigin } from '@material-ui/core';
 import { IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { Alert } from '@material-ui/lab';
@@ -27,6 +27,7 @@ const Message: FC = () => {
 			}
 			autoHideDuration={AppConfigService.AppOptions.components.snackbar.timeout}
 			open={general.triggerMessage.show}
+			TransitionComponent={Slide}
 			onClose={handleCloseMessage}>
 			<Alert
 				elevation={3}

@@ -32,7 +32,9 @@ const RobotsListTableBodyCell: FC<RobotsListTableBodyCellInterface> = (props) =>
 		} else if (columns[3].id === column.id) {
 			return (
 				<Status active={robot.acceptOrders}>
-					{robot.acceptOrders ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
+					{robot.acceptOrders
+						? t('LIST.TABLE.VALUES.ACTIVE')
+						: t('LIST.TABLE.VALUES.INACTIVE')}
 				</Status>
 			);
 		} else if (columns[4].id === column.id) {

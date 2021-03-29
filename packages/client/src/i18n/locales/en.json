@@ -37,7 +37,9 @@
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"
 		},
-		"QR_CODE": "Scan QR to open it on mobile"
+		"QR_CODE": "Scan QR to open it on mobile",
+		"MESSAGE_CLIPBOARD": "Copy to clipboard",
+		"NEW_TAB": "Open in new tab"
 	},
 	"MESSAGE": {
 		"AUTH": {
@@ -45,9 +47,12 @@
 			"TOKEN_EMPTY": "No Token Found!"
 		},
 		"ROBOT": {
+			"ALERTS": {
+				"CLIPBOARD": "Message copied to clipboard!"
+			},
 			"CAMERAS": {
-				"SUCCESS": "Top camera image was requested.",
-				"ERROR": "Failed to request top camera image."
+				"SUCCESS": "Top camera image was requested!",
+				"ERROR": "Failed to request top camera image!"
 			}
 		}
 	},
@@ -160,6 +165,8 @@
 				"VALUES": {
 					"ON": "ON",
 					"OFF": "OFF",
+					"ACTIVE": "Active",
+					"INACTIVE": "Inactive",
 					"UNKNOWN": "Unknown"
 				}
 			}

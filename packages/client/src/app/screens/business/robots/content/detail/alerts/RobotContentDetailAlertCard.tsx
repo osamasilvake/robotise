@@ -32,14 +32,17 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 
 	/**
 	 * copy to clipboard
+	 * @param id
 	 * @param text
+	 * @returns
 	 */
-	const handleCopyToClipboard = (text: string) => () => {
+	const handleCopyToClipboard = (id: string, text: string) => () => {
 		// copy message
 		navigator.clipboard.writeText(text);
 
 		// dispatch: trigger message
 		const message: TriggerMessageInterface = {
+			id,
 			show: true,
 			severity: TriggerMessageTypeEnum.SUCCESS,
 			text: t('ROBOT.ALERTS.CLIPBOARD')
@@ -82,7 +85,7 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 				{/* Icon */}
 				<Box className={robotContentDetailAlertsClasses.sCardContentIcons}>
 					<Icon
-						onClick={handleCopyToClipboard(alert.message)}
+						onClick={handleCopyToClipboard(alert.code, alert.message)}
 						className={robotContentDetailAlertsClasses.sCardContentIcon}>
 						<Tooltip title={String(t('TOOLTIPS:MESSAGE_CLIPBOARD'))} placement="top">
 							<AssignmentIcon />

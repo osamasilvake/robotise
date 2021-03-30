@@ -97,6 +97,7 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 		})
 		.catch((err) => {
 			const message: TriggerMessageInterface = {
+				id: 'login-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: err.error_description || err.message
@@ -147,6 +148,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 					})
 					.catch((err) => {
 						const message: TriggerMessageInterface = {
+							id: 'auto-refresh-error',
 							show: true,
 							severity: TriggerMessageTypeEnum.ERROR,
 							text: err && err.error_description
@@ -161,6 +163,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			}
 		} else {
 			const message: TriggerMessageInterface = {
+				id: 'token-expired-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'AUTH.TOKEN_EXPIRED'
@@ -177,6 +180,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 		}
 	} else {
 		const message: TriggerMessageInterface = {
+			id: 'token-empty-warn',
 			show: true,
 			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.TOKEN_EMPTY'

@@ -19,10 +19,11 @@ const Message: FC = () => {
 	/**
 	 * dispatch: trigger message
 	 */
-	const handleCloseMessage = () => dispatch(GeneralTriggerMessage({ show: false }));
+	const handleCloseMessage = () => dispatch(GeneralTriggerMessage({ id: 'close', show: false }));
 
-	return general.triggerMessage.show ? (
+	return (
 		<Snackbar
+			key={general.triggerMessage.id}
 			open={general.triggerMessage.show}
 			onClose={handleCloseMessage}
 			ClickAwayListenerProps={{ mouseEvent: false }}
@@ -46,6 +47,6 @@ const Message: FC = () => {
 				{general.triggerMessage.text && t(general.triggerMessage.text)}
 			</Alert>
 		</Snackbar>
-	) : null;
+	);
 };
 export default Message;

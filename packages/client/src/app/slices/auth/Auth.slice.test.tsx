@@ -94,6 +94,7 @@ describe('[SLICE] Authentication', () => {
 
 		// arrange
 		const message: TriggerMessageInterface = {
+			id: 'test-login-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: response.message
@@ -116,6 +117,7 @@ describe('[SLICE] Authentication', () => {
 
 		// arrange
 		const message: TriggerMessageInterface = {
+			id: 'test-auto-refresh-warn',
 			show: true,
 			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.TOKEN_EMPTY'
@@ -136,6 +138,7 @@ describe('[SLICE] Authentication', () => {
 
 		// arrange
 		const message: TriggerMessageInterface = {
+			id: 'test-token-expired-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: 'AUTH.TOKEN_EXPIRED'

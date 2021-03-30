@@ -53,6 +53,7 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 			.then(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
+					id: `${camera}-success`,
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: t(`ROBOT.CAMERAS.${camera.toUpperCase()}.SUCCESS`)
@@ -62,8 +63,9 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
+					id: `${camera}-error`,
 					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
+					severity: TriggerMessageTypeEnum.ERROR,
 					text: t(`ROBOT.CAMERAS.${camera.toUpperCase()}.ERROR`)
 				};
 				dispatch(GeneralTriggerMessage(message));

@@ -17,7 +17,10 @@ export const initialState: GeneralSliceInterface = {
 	openDrawer: drawerState,
 	themePalette: theme || GeneralThemePaletteTypeEnum.DARK,
 	currentLanguage: language || GeneralLanguageTypeEnum.EN,
-	triggerMessage: { show: false },
+	triggerMessage: {
+		id: 'init',
+		show: false
+	},
 	changeLog: ''
 };
 

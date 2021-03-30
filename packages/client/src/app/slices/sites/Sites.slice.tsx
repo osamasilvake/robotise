@@ -80,6 +80,7 @@ export const SitesFetchList = () => async (dispatch: Dispatch, getState: () => A
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
+				id: 'fetch-sites-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'API.FETCH'

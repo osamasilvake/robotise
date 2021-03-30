@@ -126,6 +126,7 @@ export const RobotTwinsSummaryFetchList = (
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
+				id: 'fetch-rts-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'API.FETCH'

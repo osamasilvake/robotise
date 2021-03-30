@@ -101,8 +101,8 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 		case 'joystickState.controlMode':
 			return (
 				joystickState && {
-					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE',
-					value: joystickState.controlMode.value,
+					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.TITLE',
+					value: joystick(joystickState.controlMode.value),
 					date: momentFormat2(joystickState.controlMode.updatedAt),
 					icon: 'games'
 				}
@@ -151,6 +151,21 @@ const powerSupplyHealth = (value: string) => {
 };
 
 /**
+ * joystick
+ * @param value
+ */
+const joystick = (value: string) => {
+	switch (value) {
+		case 'autonomous':
+			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.AUTONOMOUS';
+		case 'joystick':
+			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.JOYSTICK';
+		default:
+			return value;
+	}
+};
+
+/**
  * activity
  * @param value
  */
@@ -160,6 +175,10 @@ const activity = (value: string) => {
 			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_ENTERED';
 		case 'leftLift':
 			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEFT';
+		case 'leavingLift':
+			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEAVING';
+		case undefined:
+			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.UNKNOWN';
 		default:
 			return value;
 	}

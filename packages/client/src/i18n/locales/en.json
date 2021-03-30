@@ -250,7 +250,13 @@
 					"JOYSTICK": {
 						"TITLE": "Joystick State",
 						"ITEMS": {
-							"CONTROL_MODE": "Control Mode"
+							"CONTROL_MODE": {
+								"TITLE": "Control Mode",
+								"OPTIONS": {
+									"AUTONOMOUS": "Autonomous",
+									"JOYSTICK": "Joystick"
+								}
+							}
 						}
 					},
 					"ACTIVITY": {
@@ -260,7 +266,9 @@
 								"TITLE": "Latest",
 								"OPTIONS": {
 									"LIFT_ENTERED": "Entered Lift",
-									"LIFT_LEFT": "Lift Left"
+									"LIFT_LEFT": "Left Lift",
+									"LIFT_LEAVING": "Leaving Lift",
+									"UNKNOWN": "Unknown"
 								}
 							}
 						}

@@ -246,29 +246,24 @@ export interface IRobotTwin {
 	};
 }
 
+export interface IOrderQueue {
+	id: string;
+	status: string;
+}
+
+export interface IAlert {
+	code: string;
+	conditions: IAlertRulesCondition[];
+	createdAt: Date;
+	level: string;
+	message: string;
+	notes?: string;
+	updatedAt?: Date;
+}
+
 export interface IAlertRulesCondition {
 	field: string;
 	condition: string;
 	value: boolean | string | number;
 	currentValue: boolean | string | number;
-}
-
-export interface IAlert {
-	code: string;
-	message: string;
-	level: string;
-	createdAt: Date;
-	updatedAt?: Date;
-	notes?: string;
-
-	id: string;
-	origin: string;
-
-	field: string;
-	conditions: IAlertRulesCondition[];
-}
-
-export interface IOrderQueue {
-	id: string;
-	status: string;
 }

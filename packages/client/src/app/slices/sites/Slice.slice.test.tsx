@@ -116,6 +116,7 @@ describe('[SLICE] Sites', () => {
 
 		// arrange
 		const message: TriggerMessageInterface = {
+			id: 'test-fetch-sites-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: apiResponse.message

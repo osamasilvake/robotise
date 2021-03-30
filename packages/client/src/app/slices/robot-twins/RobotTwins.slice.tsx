@@ -9,7 +9,7 @@ import { deserializeRobotTwins } from '../../utilities/serializers/json-api/Robo
 import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
-import { loading as sitesLoading, success as sitesSuccess } from '../sites/Sites.slice';
+import { success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RTSContentInterface, RTSInterface } from './RobotTwins.slice.interface';
 

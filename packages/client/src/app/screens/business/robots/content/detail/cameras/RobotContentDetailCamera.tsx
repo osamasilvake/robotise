@@ -16,12 +16,12 @@ import Picture from '../../../../../../components/common/picture/Picture';
 import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
-import { RobotCameraRequestImage } from '../../../../../../slices/robot/Robot.slice';
 import {
 	robotTwinsSelector,
 	RobotTwinsSingleRobotFetchList
 } from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import RobotsService from '../../../Robots.service';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotContentDetailCameraTypeEnum } from './RobotContentDetailCameras.enum';
 import { RobotContentDetailCameraInterface } from './RobotContentDetailCameras.interface';
@@ -44,10 +44,10 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 		// set selected camera
 		setCurrentCameraType(camera);
 
-		// dispatch: request for robot camera image
+		// api: request for robot camera image
 		// dispatch: fetch robot twins of single robot
 		Promise.all([
-			dispatch(RobotCameraRequestImage(camera, robotTwins.content?.data[0].robot.id || '')),
+			RobotsService.robotRequestImage(camera, robotTwins.content?.data[0].robot.id || ''),
 			dispatch(RobotTwinsSingleRobotFetchList(robot.id, true, true))
 		])
 			.then(() => {

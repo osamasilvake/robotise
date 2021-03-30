@@ -9,6 +9,7 @@ import { SSInterface } from './Sites.slice.interface';
 
 // initial state
 export const initialState: SSInterface = {
+	loader: false,
 	loading: false,
 	content: null,
 	errors: null
@@ -19,15 +20,20 @@ const dataSlice = createSlice({
 	name: 'Sites',
 	initialState,
 	reducers: {
+		loader: (state) => {
+			state.loader = true;
+		},
 		loading: (state) => {
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.loader = false;
 			state.loading = false;
 			state.content = null;
 			state.errors = action.payload;
@@ -37,7 +43,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const sitesSelector = (state: AppReducerType) => state['sites'];

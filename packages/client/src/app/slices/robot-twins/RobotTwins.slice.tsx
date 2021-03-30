@@ -9,7 +9,7 @@ import { deserializeRobotTwins } from '../../utilities/serializers/json-api/Robo
 import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
-import { success as sitesSuccess } from '../sites/Sites.slice';
+import { loading as sitesLoading, success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RTSContentInterface, RTSInterface } from './RobotTwins.slice.interface';
 
@@ -61,26 +61,25 @@ export default dataSlice.reducer;
  * fetch robot twins of single robot
  * @param robotId
  * @param refresh
+ * @param wait
  * @returns
  */
-export const RobotTwinsSingleRobotFetchList = (robotId: string, refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
+export const RobotTwinsSingleRobotFetchList = (
+	robotId: string,
+	refresh = false,
+	wait = false
+) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 	// redux state
 	const state = getState();
 
 	// state
 	const sites = state.sites;
 
-	// loader vs loading
-	if (!refresh) {
-		// dispatch: loader
-		dispatch(loader());
-	} else {
-		// dispatch: loading
-		dispatch(loading());
+	// dispatch: loader/loading
+	dispatch(!refresh ? loader() : loading());
 
+	// waiting
+	if (wait) {
 		// timeout: 8 secs
 		await timeout(8000);
 	}

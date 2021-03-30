@@ -256,7 +256,13 @@
 					"ACTIVITY": {
 						"TITLE": "Activity State",
 						"ITEMS": {
-							"LATEST": "Latest"
+							"LATEST": {
+								"TITLE": "Latest",
+								"OPTIONS": {
+									"LIFT_ENTERED": "Entered Lift",
+									"LIFT_LEFT": "Lift Left"
+								}
+							}
 						}
 					}
 				}

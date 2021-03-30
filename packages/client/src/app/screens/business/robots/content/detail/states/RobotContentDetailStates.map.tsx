@@ -110,8 +110,8 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 		case 'activity.latest':
 			return (
 				activityState && {
-					title: 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST',
-					value: activityState.latest.value,
+					title: 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.TITLE',
+					value: activity(activityState.latest.value),
 					date: momentFormat2(activityState.latest.updatedAt),
 					icon: 'timer'
 				}
@@ -147,6 +147,21 @@ const powerSupplyHealth = (value: string) => {
 		case 'unknown':
 		default:
 			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.UNKNOWN';
+	}
+};
+
+/**
+ * activity
+ * @param value
+ */
+const activity = (value: string) => {
+	switch (value) {
+		case 'enteredLift':
+			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_ENTERED';
+		case 'leftLift':
+			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEFT';
+		default:
+			return value;
 	}
 };
 

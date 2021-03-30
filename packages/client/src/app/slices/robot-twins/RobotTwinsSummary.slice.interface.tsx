@@ -3,6 +3,7 @@ import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interf
 import { IAlert } from './RobotTwins.slice.interface';
 
 export interface RTSSInterface {
+	loader: boolean;
 	loading: boolean;
 	content: RTSSContentInterface | null;
 	errors: TriggerMessageInterface | null;

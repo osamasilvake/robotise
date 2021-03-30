@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 
 export interface SSInterface {
+	loader: boolean;
 	loading: boolean;
 	content: SSContentInterface | null;
 	errors: TriggerMessageInterface | null;

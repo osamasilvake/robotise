@@ -52,8 +52,8 @@ const RobotsList: FC = () => {
 		}
 	}, [dispatch, robotTwinsSummary.content, page, rowsPerPage]);
 
-	// loading
-	if (robotTwinsSummary.loading) {
+	// loader
+	if (robotTwinsSummary.loader) {
 		return <Loader spinner spinnerSmall spinnerText="LOADING" />;
 	}
 

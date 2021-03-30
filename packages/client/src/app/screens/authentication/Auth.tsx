@@ -6,7 +6,7 @@ import Loader from '../../components/common/loader/Loader';
 import { isPrivate, isSession } from '../../routes/types';
 import { AppConfigService } from '../../services';
 import { AuthRefreshToken, authSelector } from '../../slices/auth/Auth.slice';
-import { RobotTwinsSummaryRefreshList } from '../../slices/robot-twins/RobotTwinsSummary.slice';
+import { RobotTwinsSummaryFetchList } from '../../slices/robot-twins/RobotTwinsSummary.slice';
 import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
@@ -22,7 +22,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				dispatch(AuthRefreshToken(auth.user.exp));
 
 				// dispatch: refresh robot twins summary
-				dispatch(RobotTwinsSummaryRefreshList());
+				dispatch(RobotTwinsSummaryFetchList(-1, -1, true));
 			}
 		};
 		window.addEventListener('load', init, { once: true });

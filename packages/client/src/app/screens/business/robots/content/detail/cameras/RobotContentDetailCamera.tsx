@@ -48,14 +48,14 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 		// dispatch: fetch robot twins of single robot
 		Promise.all([
 			dispatch(RobotCameraRequestImage(camera, robotTwins.content?.data[0].robot.id || '')),
-			dispatch(RobotTwinsSingleRobotFetchList(robot.id, true))
+			dispatch(RobotTwinsSingleRobotFetchList(robot.id, true, true))
 		])
 			.then(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: t('ROBOT.CAMERAS.SUCCESS')
+					text: t(`ROBOT.CAMERAS.${camera.toUpperCase()}.SUCCESS`)
 				};
 				dispatch(GeneralTriggerMessage(message));
 			})
@@ -64,15 +64,11 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 				const message: TriggerMessageInterface = {
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: t('ROBOT.CAMERAS.ERROR')
+					text: t(`ROBOT.CAMERAS.${camera.toUpperCase()}.ERROR`)
 				};
 				dispatch(GeneralTriggerMessage(message));
 			});
 	};
-
-	if (robot?.cameras && robot.cameras[cameraType]) {
-		console.log(robot?.cameras[cameraType].imageId.value);
-	}
 
 	return robot?.cameras && robot.cameras[cameraType] ? (
 		<Grid item xs={12} sm={6}>
@@ -86,7 +82,7 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 				{momentFormat1(robot.cameras[cameraType].imageId.updatedAt)}
 			</Typography>
 
-			{/* Card */}
+			{/* Card Picture */}
 			{robot.cameras[cameraType].imageId.value && (
 				<Card square elevation={1} className={robotContentDetailCameraClasses.sCameraCard}>
 					<CardContent>

@@ -2,12 +2,8 @@ import {
 	RTSActivityState,
 	RTSBatteryStateInterface,
 	RTSDockingStateInterface,
-	RTSEmergencyStateInterface,
 	RTSJoystickState,
-	RTSLidarState,
-	RTSMappedResponseDataInterface,
-	RTSMotorWheelState,
-	RTSRealsenseState
+	RTSMappedResponseDataInterface
 } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 
 export interface RobotContentDetailStatesInterface {
@@ -25,11 +21,7 @@ export interface RobotContentDetailStateInfoInterface {
 	content:
 		| RTSBatteryStateInterface
 		| RTSDockingStateInterface
-		| RTSEmergencyStateInterface
-		| RTSMotorWheelState
 		| RTSJoystickState
-		| RTSLidarState
-		| RTSRealsenseState
 		| RTSActivityState
 		| undefined;
 }

@@ -102,125 +102,16 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 							updatedAt: data.metadata.reported.batteryState.voltage.updatedAt
 						}
 					},
-					emergencyBrakeState: data.state.reported.emergencyBrakeState && {
-						votedYes: {
-							value: data.state.reported.emergencyBrakeState.votedYes,
-							updatedAt: data.metadata.reported.emergencyBrakeState.votedYes.updatedAt
-						}
-					},
 					dockingState: data.state.reported.dockingState && {
 						isDocked: {
 							value: data.state.reported.dockingState.isDocked,
 							updatedAt: data.metadata.reported.dockingState.isDocked.updatedAt
 						}
 					},
-					motorLeftWheelState: data.state.reported.motorLeftWheelState && {
-						status: {
-							value: data.state.reported.motorLeftWheelState.status,
-							updatedAt: data.metadata.reported.motorLeftWheelState.status.updatedAt
-						},
-						velocity: {
-							value: data.state.reported.motorLeftWheelState.velocity,
-							updatedAt: data.metadata.reported.motorLeftWheelState.velocity.updatedAt
-						},
-						position: {
-							value: data.state.reported.motorLeftWheelState.position,
-							updatedAt: data.metadata.reported.motorLeftWheelState.position.updatedAt
-						},
-						motorCurrent: {
-							value: data.state.reported.motorLeftWheelState.motorCurrent,
-							updatedAt:
-								data.metadata.reported.motorLeftWheelState.motorCurrent.updatedAt
-						},
-						lastErrorCode: {
-							value: data.state.reported.motorLeftWheelState.lastErrorCode,
-							updatedAt:
-								data.metadata.reported.motorLeftWheelState.lastErrorCode.updatedAt
-						},
-						controllerVoltage: {
-							value: data.state.reported.motorLeftWheelState.controllerVoltage,
-							updatedAt:
-								data.metadata.reported.motorLeftWheelState.controllerVoltage
-									.updatedAt
-						},
-						controllerTemperature: {
-							value: data.state.reported.motorLeftWheelState.controllerTemperature,
-							updatedAt:
-								data.metadata.reported.motorLeftWheelState.controllerTemperature
-									.updatedAt
-						},
-						commandedVelocity: {
-							value: data.state.reported.motorLeftWheelState.commandedVelocity,
-							updatedAt:
-								data.metadata.reported.motorLeftWheelState.commandedVelocity
-									.updatedAt
-						}
-					},
-					motorRightWheelState: data.state.reported.motorRightWheelState && {
-						status: {
-							value: data.state.reported.motorRightWheelState.status,
-							updatedAt: data.metadata.reported.motorRightWheelState.status.updatedAt
-						},
-						velocity: {
-							value: data.state.reported.motorRightWheelState.velocity,
-							updatedAt:
-								data.metadata.reported.motorRightWheelState.velocity.updatedAt
-						},
-						position: {
-							value: data.state.reported.motorRightWheelState.position,
-							updatedAt:
-								data.metadata.reported.motorRightWheelState.position.updatedAt
-						},
-						motorCurrent: {
-							value: data.state.reported.motorRightWheelState.motorCurrent,
-							updatedAt:
-								data.metadata.reported.motorRightWheelState.motorCurrent.updatedAt
-						},
-						lastErrorCode: {
-							value: data.state.reported.motorRightWheelState.lastErrorCode,
-							updatedAt:
-								data.metadata.reported.motorRightWheelState.lastErrorCode.updatedAt
-						},
-						controllerVoltage: {
-							value: data.state.reported.motorRightWheelState.controllerVoltage,
-							updatedAt:
-								data.metadata.reported.motorRightWheelState.controllerVoltage
-									.updatedAt
-						},
-						controllerTemperature: {
-							value: data.state.reported.motorRightWheelState.controllerTemperature,
-							updatedAt:
-								data.metadata.reported.motorRightWheelState.controllerTemperature
-									.updatedAt
-						},
-						commandedVelocity: {
-							value: data.state.reported.motorRightWheelState.commandedVelocity,
-							updatedAt:
-								data.metadata.reported.motorRightWheelState.commandedVelocity
-									.updatedAt
-						}
-					},
 					joystickState: data.state.reported.joystickState && {
 						controlMode: {
 							value: data.state.reported.joystickState.controlMode,
 							updatedAt: data.metadata.reported.joystickState.controlMode.updatedAt
-						}
-					},
-					lidarState: data.state.reported.lidarState && {
-						receivingScans: {
-							value: data.state.reported.lidarState.receivingScans,
-							updatedAt: data.metadata.reported.lidarState.receivingScans.updatedAt
-						}
-					},
-					realsenseState: data.state.reported.realsenseState && {
-						receivingData: {
-							value: data.state.reported.realsenseState.receivingData,
-							updatedAt: data.metadata.reported.realsenseState.receivingData.updatedAt
-						},
-						processingData: {
-							value: data.state.reported.realsenseState.processingData,
-							updatedAt:
-								data.metadata.reported.realsenseState.processingData.updatedAt
 						}
 					},
 					activityState: data.state.reported && {

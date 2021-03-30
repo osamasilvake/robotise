@@ -51,8 +51,14 @@
 				"CLIPBOARD": "Message copied to clipboard!"
 			},
 			"CAMERAS": {
-				"SUCCESS": "Top camera image was requested!",
-				"ERROR": "Failed to request top camera image!"
+				"TOP": {
+					"SUCCESS": "Top camera image was requested!",
+					"ERROR": "Failed to request top camera image!"
+				},
+				"BASE": {
+					"SUCCESS": "Base camera image was requested!",
+					"ERROR": "Failed to request base camera image!"
+				}
 			}
 		}
 	},
@@ -241,43 +247,10 @@
 							"UNDOCKED": "Undocked"
 						}
 					},
-					"EMERGENCY_BRAKE": {
-						"TITLE": "Docking State",
-						"ITEMS": {
-							"VOTED_YES": "Voted Yes"
-						}
-					},
-					"MOTOR_WHEEL": {
-						"TITLE_LEFT": "Motor Left Wheel State",
-						"TITLE_RIGHT": "Motor Right Wheel State",
-						"ITEMS": {
-							"STATUS": "Status",
-							"VELOCITY": "Velocity",
-							"POSITION": "Position",
-							"MOTOR_CURRENT": "Motor Current",
-							"LAST_ERROR_CODE": "Last Error Code",
-							"CONTROLLER_VOLTAGE": "Controller Voltage",
-							"CONTROLLER_TEMPERATURE": "Controller Temperature",
-							"COMMANDED_VELOCITY": "Commanded Velocity"
-						}
-					},
 					"JOYSTICK": {
 						"TITLE": "Joystick State",
 						"ITEMS": {
 							"CONTROL_MODE": "Control Mode"
-						}
-					},
-					"LIDAR": {
-						"TITLE": "Lidar State",
-						"ITEMS": {
-							"RECEIVING_SCANS": "Receiving Scans"
-						}
-					},
-					"REALSENSE": {
-						"TITLE": "Realsense State",
-						"ITEMS": {
-							"RECEIVING_DATA": "Receiving Data",
-							"PROCESSING_DATA": "Processing Scans"
 						}
 					},
 					"ACTIVITY": {

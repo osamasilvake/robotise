@@ -4,12 +4,7 @@ import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterface) => {
 	const batteryState = robot.batteryState;
 	const dockingState = robot.dockingState;
-	const motorLeftWheelState = robot.motorLeftWheelState;
-	const motorRightWheelState = robot.motorRightWheelState;
-	const emergencyBrakeState = robot.emergencyBrakeState;
 	const joystickState = robot.joystickState;
-	const lidarState = robot.lidarState;
-	const realsenseState = robot.realsenseState;
 	const activityState = robot.activityState;
 
 	const powerSupplyStatus = {
@@ -103,150 +98,6 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 					icon: 'dock'
 				}
 			);
-		case 'emergencyBrakeState.votedYes':
-			return (
-				emergencyBrakeState && {
-					title: 'CONTENT.DETAIL.STATES.EMERGENCY_BRAKE.ITEMS.VOTED_YES',
-					value: emergencyBrakeState.votedYes.value,
-					date: momentFormat2(emergencyBrakeState.votedYes.updatedAt),
-					icon: 'how_to_vote'
-				}
-			);
-		case 'motorLeftWheelState.commandedVelocity':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.COMMANDED_VELOCITY',
-					value: velocity(motorLeftWheelState.velocity.value),
-					date: momentFormat2(motorLeftWheelState.velocity.updatedAt),
-					icon: 'speed'
-				}
-			);
-		case 'motorLeftWheelState.controllerTemperature':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.CONTROLLER_TEMPERATURE',
-					value: temperature(motorLeftWheelState.controllerTemperature.value),
-					date: momentFormat2(motorLeftWheelState.controllerTemperature.updatedAt),
-					icon: 'title'
-				}
-			);
-		case 'motorLeftWheelState.controllerVoltage':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.CONTROLLER_VOLTAGE',
-					value: voltage(motorLeftWheelState.controllerVoltage.value),
-					date: momentFormat2(motorLeftWheelState.controllerVoltage.updatedAt),
-					icon: 'flash_on'
-				}
-			);
-		case 'motorLeftWheelState.lastErrorCode':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.LAST_ERROR_CODE',
-					value: motorLeftWheelState.lastErrorCode.value,
-					date: momentFormat2(motorLeftWheelState.lastErrorCode.updatedAt),
-					icon: 'warning'
-				}
-			);
-		case 'motorLeftWheelState.motorCurrent':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.MOTOR_CURRENT',
-					value: current(motorLeftWheelState.motorCurrent.value),
-					date: momentFormat2(motorLeftWheelState.motorCurrent.updatedAt),
-					icon: 'flash_auto'
-				}
-			);
-		case 'motorLeftWheelState.velocity':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.VELOCITY',
-					value: velocity(motorLeftWheelState.velocity.value),
-					date: momentFormat2(motorLeftWheelState.velocity.updatedAt),
-					icon: 'speed'
-				}
-			);
-		case 'motorLeftWheelState.position':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.POSITION',
-					value: motorLeftWheelState.position.value.toFixed(3),
-					date: momentFormat2(motorLeftWheelState.position.updatedAt),
-					icon: 'room'
-				}
-			);
-		case 'motorLeftWheelState.status':
-			return (
-				motorLeftWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.STATUS',
-					value: motorLeftWheelState.status.value,
-					date: momentFormat2(motorLeftWheelState.status.updatedAt),
-					icon: 'new_releases'
-				}
-			);
-		case 'motorRightWheelState.commandedVelocity':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.COMMANDED_VELOCITY',
-					value: velocity(motorRightWheelState.velocity.value),
-					date: momentFormat2(motorRightWheelState.velocity.updatedAt),
-					icon: 'speed'
-				}
-			);
-		case 'motorRightWheelState.controllerTemperature':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.CONTROLLER_TEMPERATURE',
-					value: temperature(motorRightWheelState.controllerTemperature.value),
-					date: momentFormat2(motorRightWheelState.controllerTemperature.updatedAt),
-					icon: 'title'
-				}
-			);
-		case 'motorRightWheelState.controllerVoltage':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.CONTROLLER_VOLTAGE',
-					value: voltage(motorRightWheelState.controllerVoltage.value),
-					date: momentFormat2(motorRightWheelState.controllerVoltage.updatedAt),
-					icon: 'flash_on'
-				}
-			);
-		case 'motorRightWheelState.lastErrorCode':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.LAST_ERROR_CODE',
-					value: motorRightWheelState.lastErrorCode.value,
-					date: momentFormat2(motorRightWheelState.lastErrorCode.updatedAt),
-					icon: 'warning'
-				}
-			);
-		case 'motorRightWheelState.motorCurrent':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.MOTOR_CURRENT',
-					value: current(motorRightWheelState.motorCurrent.value),
-					date: momentFormat2(motorRightWheelState.motorCurrent.updatedAt),
-					icon: 'flash_auto'
-				}
-			);
-		case 'motorRightWheelState.velocity':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.VELOCITY',
-					value: velocity(motorRightWheelState.velocity.value),
-					date: momentFormat2(motorRightWheelState.velocity.updatedAt),
-					icon: 'speed'
-				}
-			);
-		case 'motorRightWheelState.position':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.POSITION',
-					value: motorRightWheelState.position.value.toFixed(3),
-					date: momentFormat2(motorRightWheelState.position.updatedAt),
-					icon: 'room'
-				}
-			);
 		case 'joystickState.controlMode':
 			return (
 				joystickState && {
@@ -254,33 +105,6 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 					value: joystickState.controlMode.value,
 					date: momentFormat2(joystickState.controlMode.updatedAt),
 					icon: 'games'
-				}
-			);
-		case 'lidarState.receivingScans':
-			return (
-				lidarState && {
-					title: 'CONTENT.DETAIL.STATES.LIDAR.ITEMS.RECEIVING_SCANS',
-					value: String(lidarState.receivingScans.value),
-					date: momentFormat2(lidarState.receivingScans.updatedAt),
-					icon: 'scanner'
-				}
-			);
-		case 'realsenseState.receivingData':
-			return (
-				realsenseState && {
-					title: 'CONTENT.DETAIL.STATES.REALSENSE.ITEMS.RECEIVING_DATA',
-					value: String(realsenseState.receivingData.value),
-					date: momentFormat2(realsenseState.receivingData.updatedAt),
-					icon: 'data_usage'
-				}
-			);
-		case 'realsenseState.processingData':
-			return (
-				realsenseState && {
-					title: 'CONTENT.DETAIL.STATES.REALSENSE.ITEMS.PROCESSING_DATA',
-					value: String(realsenseState.processingData.value),
-					date: momentFormat2(realsenseState.processingData.updatedAt),
-					icon: 'data_usage'
 				}
 			);
 		case 'activity.latest':
@@ -293,48 +117,8 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 				}
 			);
 		default:
-		case 'motorRightWheelState.status':
-			return (
-				motorRightWheelState && {
-					title: 'CONTENT.DETAIL.STATES.MOTOR_WHEEL.ITEMS.STATUS',
-					value: motorRightWheelState.status.value,
-					date: momentFormat2(motorRightWheelState.status.updatedAt),
-					icon: 'new_releases'
-				}
-			);
+			console.error('unknown state');
 	}
-};
-
-/**
- * current
- * @param value
- * @param precision
- * @returns
- */
-const current = (value: number, precision = 1) => {
-	let result;
-	try {
-		result = value.toFixed(precision);
-	} catch (error) {
-		result = value;
-	}
-	return `${result}A`;
-};
-
-/**
- * percentage
- * @param value
- * @param precision
- * @returns
- */
-const percentage = (value: number, precision = 0) => {
-	let result;
-	try {
-		result = (value * 100).toFixed(precision);
-	} catch (error) {
-		result = value;
-	}
-	return `${result}%`;
 };
 
 /**
@@ -367,6 +151,38 @@ const powerSupplyHealth = (value: string) => {
 };
 
 /**
+ * percentage
+ * @param value
+ * @param precision
+ * @returns
+ */
+const percentage = (value: number, precision = 0) => {
+	let result;
+	try {
+		result = (value * 100).toFixed(precision);
+	} catch (error) {
+		result = value;
+	}
+	return `${result}%`;
+};
+
+/**
+ * current
+ * @param value
+ * @param precision
+ * @returns
+ */
+const current = (value: number, precision = 1) => {
+	let result;
+	try {
+		result = value.toFixed(precision);
+	} catch (error) {
+		result = value;
+	}
+	return `${result}A`;
+};
+
+/**
  * voltage
  * @param value
  * @param precision
@@ -380,36 +196,4 @@ const voltage = (value: number, precision = 1) => {
 		result = value;
 	}
 	return `${result}V`;
-};
-
-/**
- * velocity
- * @param value
- * @param precision
- * @returns
- */
-const velocity = (value: number, precision = 1) => {
-	let result;
-	try {
-		result = value.toFixed(precision);
-	} catch (error) {
-		result = value;
-	}
-	return `${result} rad/s`;
-};
-
-/**
- * number
- * @param value
- * @param precision
- * @returns
- */
-const temperature = (value: number, precision = 1) => {
-	let result;
-	try {
-		result = value.toFixed(precision);
-	} catch (error) {
-		result = value;
-	}
-	return `${result}°`;
 };

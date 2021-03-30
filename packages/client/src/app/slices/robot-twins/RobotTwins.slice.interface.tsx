@@ -27,12 +27,7 @@ export interface RTSMappedResponseDataInterface {
 	cameras?: RTSCameraInterface | undefined;
 	batteryState?: RTSBatteryStateInterface | undefined;
 	dockingState?: RTSDockingStateInterface | undefined;
-	emergencyBrakeState: RTSEmergencyStateInterface | undefined;
-	motorLeftWheelState?: RTSMotorWheelState | undefined;
-	motorRightWheelState?: RTSMotorWheelState | undefined;
 	joystickState?: RTSJoystickState | undefined;
-	lidarState?: RTSLidarState | undefined;
-	realsenseState?: RTSRealsenseState | undefined;
 	activityState?: RTSActivityState | undefined;
 }
 
@@ -109,70 +104,9 @@ export interface RTSDockingStateInterface {
 	};
 }
 
-export interface RTSEmergencyStateInterface {
-	votedYes: {
-		value: string;
-		updatedAt: Date;
-	};
-}
-
-export interface RTSMotorWheelState {
-	id?: string;
-	status: {
-		value: string;
-		updatedAt: Date;
-	};
-	motorCurrent: {
-		value: number;
-		updatedAt: Date;
-	};
-	commandedVelocity: {
-		value: number;
-		updatedAt: Date;
-	};
-	controllerTemperature: {
-		value: number;
-		updatedAt: Date;
-	};
-	controllerVoltage: {
-		value: number;
-		updatedAt: Date;
-	};
-	position: {
-		value: number;
-		updatedAt: Date;
-	};
-	velocity: {
-		value: number;
-		updatedAt: Date;
-	};
-	lastErrorCode: {
-		value: string;
-		updatedAt: Date;
-	};
-}
-
 export interface RTSJoystickState {
 	controlMode: {
 		value: string;
-		updatedAt: Date;
-	};
-}
-
-export interface RTSLidarState {
-	receivingScans: {
-		value: boolean;
-		updatedAt: Date;
-	};
-}
-
-export interface RTSRealsenseState {
-	receivingData: {
-		value: boolean;
-		updatedAt: Date;
-	};
-	processingData: {
-		value: boolean;
 		updatedAt: Date;
 	};
 }
@@ -199,6 +133,15 @@ export interface IRobotTwin {
 		reported: {
 			name: string;
 			customerName: string;
+			robotState: {
+				isReady: boolean;
+			};
+			alerts: IAlert[];
+			cameras: {
+				[key: string]: {
+					imageId: string;
+				};
+			};
 			batteryState: {
 				percentage: number;
 				powerSupplyStatus: string;
@@ -206,42 +149,13 @@ export interface IRobotTwin {
 				current: number;
 				voltage: number;
 			};
-			motorRightWheelState: StateMotorStatus;
-			motorLeftWheelState: StateMotorStatus;
 			dockingState: {
 				isDocked: boolean;
-			};
-			emergencyBrakeState: {
-				votedYes: string;
 			};
 			joystickState: {
 				controlMode: string;
 			};
-			lidarState: {
-				receivingScans: boolean;
-			};
-			cameras: {
-				[key: string]: {
-					imageId: string;
-				};
-			};
-			drawerStates: {
-				[key: string]: {
-					drawerType: string;
-					drawerId: string;
-					commandType: string;
-					isClosed: boolean;
-				};
-			};
-			realsenseState: {
-				receivingData: boolean;
-				processingData: boolean;
-			};
 			activity: string;
-			robotState: {
-				isReady: boolean;
-			};
-			alerts: IAlert[];
 			location: {
 				map: {
 					id: string;
@@ -260,10 +174,6 @@ export interface IRobotTwin {
 			inventory: {
 				status: string;
 			};
-			muteSensorState: string;
-			emergencyStopState: {
-				isTriggered: boolean;
-			};
 			lastBootup: Date;
 			lastShutdown: Date;
 		};
@@ -275,6 +185,21 @@ export interface IRobotTwin {
 			};
 			customerName: {
 				updatedAt: Date;
+			};
+			robotState: {
+				isReady: {
+					updatedAt: Date;
+				};
+			};
+			alerts: {
+				updatedAt: Date;
+			};
+			cameras: {
+				[key: string]: {
+					imageId: {
+						updatedAt: Date;
+					};
+				};
 			};
 			batteryState: {
 				percentage: {
@@ -293,15 +218,8 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 			};
-			motorRightWheelState: MetadataMotorStatus;
-			motorLeftWheelState: MetadataMotorStatus;
 			dockingState: {
 				isDocked: {
-					updatedAt: Date;
-				};
-			};
-			emergencyBrakeState: {
-				votedYes: {
 					updatedAt: Date;
 				};
 			};
@@ -310,51 +228,7 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 			};
-			lidarState: {
-				receivingScans: {
-					updatedAt: Date;
-				};
-			};
-			cameras: {
-				[key: string]: {
-					imageId: {
-						updatedAt: Date;
-					};
-				};
-			};
-			drawerStates: {
-				[key: string]: {
-					drawerType: {
-						updatedAt: Date;
-					};
-					drawerId: {
-						updatedAt: Date;
-					};
-					commandType: {
-						updatedAt: Date;
-					};
-					isClosed: {
-						updatedAt: Date;
-					};
-				};
-			};
-			realsenseState: {
-				receivingData: {
-					updatedAt: Date;
-				};
-				processingData: {
-					updatedAt: Date;
-				};
-			};
 			activity: {
-				updatedAt: Date;
-			};
-			robotState: {
-				isReady: {
-					updatedAt: Date;
-				};
-			};
-			alerts: {
 				updatedAt: Date;
 			};
 			location: {
@@ -366,52 +240,9 @@ export interface IRobotTwin {
 			inventory: {
 				status: { updatedAt: Date };
 			};
-			muteSensorState: { updatedAt: Date };
-			emergencyStopState: {
-				isTriggered: { updatedAt: Date };
-			};
 			lastBootup: { updatedAt: Date };
 			lastShutdown: { updatedAt: Date };
 		};
-	};
-}
-
-export interface StateMotorStatus {
-	id: string;
-	status: string;
-	motorCurrent: number;
-	commandedVelocity: number;
-	controllerTemperature: number;
-	controllerVoltage: number;
-	position: number;
-	velocity: number;
-	lastErrorCode: string;
-}
-
-export interface MetadataMotorStatus {
-	status: {
-		updatedAt: Date;
-	};
-	motorCurrent: {
-		updatedAt: Date;
-	};
-	commandedVelocity: {
-		updatedAt: Date;
-	};
-	controllerTemperature: {
-		updatedAt: Date;
-	};
-	controllerVoltage: {
-		updatedAt: Date;
-	};
-	position: {
-		updatedAt: Date;
-	};
-	velocity: {
-		updatedAt: Date;
-	};
-	lastErrorCode: {
-		updatedAt: Date;
 	};
 }
 

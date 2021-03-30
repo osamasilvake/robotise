@@ -48,7 +48,10 @@ class AppConfigService extends EnvService {
 					}
 				},
 				snackbar: {
-					timeout: 6000,
+					timeout: {
+						fast: 2000,
+						slow: 10000
+					},
 					direction: {
 						vertical: 'bottom',
 						horizontal: 'left'

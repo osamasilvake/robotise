@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
 import { generalSelector, GeneralTriggerMessage } from '../../../slices/general/General.slice';
+import { TriggerMessageTypeEnum } from './Message.enum';
 
 const Message: FC = () => {
 	const { t } = useTranslation('MESSAGE');
@@ -22,13 +23,18 @@ const Message: FC = () => {
 
 	return general.triggerMessage.show ? (
 		<Snackbar
+			open={general.triggerMessage.show}
+			onClose={handleCloseMessage}
+			ClickAwayListenerProps={{ mouseEvent: false }}
 			anchorOrigin={
 				AppConfigService.AppOptions.components.snackbar.direction as SnackbarOrigin
 			}
-			autoHideDuration={AppConfigService.AppOptions.components.snackbar.timeout}
-			open={general.triggerMessage.show}
-			TransitionComponent={Slide}
-			onClose={handleCloseMessage}>
+			autoHideDuration={
+				general.triggerMessage.severity === TriggerMessageTypeEnum.ERROR
+					? AppConfigService.AppOptions.components.snackbar.timeout.slow
+					: AppConfigService.AppOptions.components.snackbar.timeout.fast
+			}
+			TransitionComponent={Slide}>
 			<Alert
 				elevation={3}
 				action={

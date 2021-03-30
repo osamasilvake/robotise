@@ -1,12 +1,9 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { RobotContentDetailCameraTypeEnum } from '../../screens/business/robots/content/detail/camera/RobotContentDetailCameras.enum';
+import { RobotContentDetailCameraTypeEnum } from '../../screens/business/robots/content/detail/cameras/RobotContentDetailCameras.enum';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import { timeout } from '../../utilities/methods/Timeout';
+import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
 import { AppReducerType } from '..';
-import { triggerMessage } from '../general/General.slice';
 import { RobotTypeEnum } from './Robot.slice.enum';
 import { RobotSliceInterface } from './Robot.slice.interface';
 
@@ -32,25 +29,25 @@ const dataSlice = createSlice({
 	initialState,
 	reducers: {
 		loading: (state, action) => {
-			const { module, type } = action.payload;
+			const { module, camera } = action.payload;
 			if (module === RobotTypeEnum.CAMERAS) {
-				if (type === RobotContentDetailCameraTypeEnum.BASE) {
+				if (camera === RobotContentDetailCameraTypeEnum.BASE) {
 					state.cameras.base.loading = true;
 				}
-				if (type === RobotContentDetailCameraTypeEnum.TOP) {
+				if (camera === RobotContentDetailCameraTypeEnum.TOP) {
 					state.cameras.top.loading = true;
 				}
 			}
 		},
 		success: (state, action) => {
-			const { module, type, response } = action.payload;
+			const { module, camera, response } = action.payload;
 			if (module === RobotTypeEnum.CAMERAS) {
-				if (type === RobotContentDetailCameraTypeEnum.BASE) {
+				if (camera === RobotContentDetailCameraTypeEnum.BASE) {
 					state.cameras.base.loading = false;
 					state.cameras.base.content = response;
 					state.cameras.base.errors = null;
 				}
-				if (type === RobotContentDetailCameraTypeEnum.TOP) {
+				if (camera === RobotContentDetailCameraTypeEnum.TOP) {
 					state.cameras.top.loading = false;
 					state.cameras.top.content = response;
 					state.cameras.top.errors = null;
@@ -58,14 +55,14 @@ const dataSlice = createSlice({
 			}
 		},
 		failure: (state, action) => {
-			const { module, type, response } = action.payload;
+			const { module, camera, response } = action.payload;
 			if (module === RobotTypeEnum.CAMERAS) {
-				if (type === RobotContentDetailCameraTypeEnum.BASE) {
+				if (camera === RobotContentDetailCameraTypeEnum.BASE) {
 					state.cameras.base.loading = false;
 					state.cameras.base.content = null;
 					state.cameras.base.errors = response;
 				}
-				if (type === RobotContentDetailCameraTypeEnum.TOP) {
+				if (camera === RobotContentDetailCameraTypeEnum.TOP) {
 					state.cameras.top.loading = false;
 					state.cameras.top.content = null;
 					state.cameras.top.errors = response;
@@ -86,48 +83,33 @@ export const robotSelector = (state: AppReducerType) => state['robot'];
 export default dataSlice.reducer;
 
 /**
- * camera: request robot image
- * @param type
- * @param id
+ * request for robot camera image
+ * @param camera
+ * @param robotId
  * @returns
  */
-export const RobotCameraRequestImage = (type: string, id: string) => async (dispatch: Dispatch) => {
+export const RobotCameraRequestImage = (
+	camera: RobotContentDetailCameraTypeEnum,
+	robotId: string
+) => async (dispatch: Dispatch) => {
 	const state = {
 		module: RobotTypeEnum.CAMERAS,
-		type
+		camera
 	};
 
 	// dispatch: loader
 	dispatch(loading(state));
 
-	// timeout: 1.5 sec
-	await timeout(1500);
-
-	return RobotsService.robotRequestImage(type, id)
-		.then((res) => {
-			const message: TriggerMessageInterface = {
-				show: true,
-				severity: TriggerMessageTypeEnum.SUCCESS,
-				text: 'ROBOT.CAMERAS.SUCCESS'
-			};
+	return RobotsService.robotRequestImage(camera, robotId)
+		.then(async (res) => {
+			// deserialize response
+			const result = await deserializeRobot(res);
 
 			// dispatch: success
-			dispatch(success({ ...state, response: res.data }));
-
-			// dispatch: trigger message
-			dispatch(triggerMessage(message));
+			dispatch(success({ ...state, response: result }));
 		})
 		.catch(() => {
-			const message: TriggerMessageInterface = {
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'ROBOT.CAMERAS.ERROR'
-			};
-
 			// dispatch: error
-			dispatch(failure({ ...state, response: message }));
-
-			// dispatch: trigger message
-			dispatch(triggerMessage(message));
+			dispatch(failure({ ...state, response: 'Error' }));
 		});
 };

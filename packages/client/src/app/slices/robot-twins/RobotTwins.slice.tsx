@@ -4,10 +4,9 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import SitesService from '../../screens/business/sites/Sites.service';
-import {
-	deserializeRobotTwins,
-	deserializeSites
-} from '../../utilities/serializers/json-api/JsonApi';
+import { timeout } from '../../utilities/methods/Timeout';
+import { deserializeRobotTwins } from '../../utilities/serializers/json-api/RobotTwins.deserialize';
+import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import { success as sitesSuccess } from '../sites/Sites.slice';
@@ -16,6 +15,7 @@ import { RTSContentInterface, RTSInterface } from './RobotTwins.slice.interface'
 
 // initial state
 export const initialState: RTSInterface = {
+	loader: false,
 	loading: false,
 	content: null,
 	errors: null
@@ -26,15 +26,20 @@ const dataSlice = createSlice({
 	name: 'Robot Twins',
 	initialState,
 	reducers: {
+		loader: (state) => {
+			state.loader = true;
+		},
 		loading: (state) => {
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.loader = false;
 			state.loading = false;
 			state.content = null;
 			state.errors = action.payload;
@@ -44,7 +49,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const robotTwinsSelector = (state: AppReducerType) => state['robotTwins'];
@@ -55,9 +60,10 @@ export default dataSlice.reducer;
 /**
  * fetch robot twins of single robot
  * @param robotId
+ * @param refresh
  * @returns
  */
-export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
+export const RobotTwinsSingleRobotFetchList = (robotId: string, refresh = false) => async (
 	dispatch: Dispatch,
 	getState: () => AppReducerType
 ) => {
@@ -67,8 +73,17 @@ export const RobotTwinsSingleRobotFetchList = (robotId: string) => async (
 	// state
 	const sites = state.sites;
 
-	// dispatch: loader
-	dispatch(loading());
+	// loader vs loading
+	if (!refresh) {
+		// dispatch: loader
+		dispatch(loader());
+	} else {
+		// dispatch: loading
+		dispatch(loading());
+
+		// timeout: 8 secs
+		await timeout(8000);
+	}
 
 	return (!sites.content
 		? Promise.all([

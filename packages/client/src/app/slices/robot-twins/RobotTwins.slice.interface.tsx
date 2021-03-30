@@ -1,6 +1,7 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 
 export interface RTSInterface {
+	loader: boolean;
 	loading: boolean;
 	content: RTSContentInterface | null;
 	errors: TriggerMessageInterface | null;
@@ -23,7 +24,7 @@ export interface RTSMappedResponseDataInterface {
 	site: RTSSiteInterface;
 	robotState: RTSRobotStateInterface;
 	alerts: RTSRobotAlertInterface;
-	cameras: RTSCameraInterface | undefined;
+	cameras?: RTSCameraInterface | undefined;
 	batteryState?: RTSBatteryStateInterface | undefined;
 	dockingState?: RTSDockingStateInterface | undefined;
 	emergencyBrakeState: RTSEmergencyStateInterface | undefined;

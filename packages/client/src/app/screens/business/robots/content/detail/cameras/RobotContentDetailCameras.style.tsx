@@ -3,19 +3,14 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { AppConfigService } from '../../../../../../services';
 
 export const RobotContentDetailCameraStyles = makeStyles((theme: Theme) => ({
-	sCameraContainer: {
+	sCamerasContainer: {
 		marginTop: theme.spacing(4)
 	},
-	sCameraTitle: {
+	sCamerasTitle: {
 		marginBottom: theme.spacing(1)
 	},
 	sCameraCard: {
 		marginTop: theme.spacing(1)
-	},
-	sCameraCardImage: {
-		display: 'block',
-		maxHeight: 300,
-		width: '100%'
 	},
 	sCameraButtonBox: {
 		marginTop: theme.spacing(2)

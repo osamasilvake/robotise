@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { RobotContentDetailCameraTypeEnum } from './content/detail/cameras/RobotContentDetailCameras.enum';
 
 class RobotsService {
 	/**
@@ -33,14 +34,14 @@ class RobotsService {
 	};
 
 	/**
-	 * request robot image
+	 * request robot camera image
 	 * @param camera
-	 * @param id
+	 * @param robotId
 	 * @returns
 	 */
-	robotRequestImage = (camera: string, id: string) => {
+	robotRequestImage = (camera: RobotContentDetailCameraTypeEnum, robotId: string) => {
 		const url = AppConfigService.AppServices.ROBOT.ALL;
-		return HttpClientService.post(`${url}/${id}/commands`, {
+		return HttpClientService.post(`${url}/${robotId}/commands`, {
 			data: {
 				type: 'robot-commands',
 				attributes: {

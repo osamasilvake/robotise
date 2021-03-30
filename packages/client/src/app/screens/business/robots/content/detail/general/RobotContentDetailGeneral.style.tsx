@@ -1,22 +1,22 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
 export const RobotContentDetailGeneralStyles = makeStyles((theme: Theme) => ({
-	sGridContainer: {
+	sGeneralContainer: {
 		marginTop: theme.spacing(2)
 	},
-	sGridItemStatusCaption: {
+	sGeneralItemStatusLabel: {
 		display: 'block'
 	},
-	sGridLastItem: {
+	sGeneralLastItem: {
 		textAlign: 'right',
 		[theme.breakpoints.down('md')]: {
 			textAlign: 'left'
 		}
 	},
-	sGridLastItemLabel: {
+	sGeneralLastItemLabel: {
 		marginBottom: theme.spacing(-0.5)
 	},
-	sGridLastItemCheckboxControl: {
+	sGeneralLastItemCheckboxControl: {
 		alignItems: 'flex-start',
 		margin: 0
 	}

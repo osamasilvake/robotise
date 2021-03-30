@@ -1,6 +1,5 @@
 import { Box, Tab, Tabs } from '@material-ui/core';
-import { useState } from 'react';
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import RobotDetail from './detail/RobotContentDetail';

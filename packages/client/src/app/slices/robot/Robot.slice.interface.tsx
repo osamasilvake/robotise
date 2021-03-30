@@ -17,14 +17,23 @@ export interface RobotSliceInterface {
 
 export interface RSCameraInterface {
 	id: string;
-	type: string;
-	attributes: {
-		command: string;
-		status: string;
-		options: {
-			camera: string;
-		};
-		updatedAt: Date;
-		createdAt: Date;
-	};
+	command: string;
+	status: string;
+	createdAt: Date;
+	updatedAt: Date;
+	user: RSCameraUserInterface;
+	robot: RSCameraRobotInterface;
+	options: RSCameraOptionsInterface;
+}
+
+export interface RSCameraUserInterface {
+	id: string;
+}
+
+export interface RSCameraRobotInterface {
+	id: string;
+}
+
+export interface RSCameraOptionsInterface {
+	camera: string;
 }

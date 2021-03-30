@@ -14,7 +14,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 	const robotContentDetailGeneralClasses = RobotContentDetailGeneralStyles();
 
 	return (
-		<Grid container spacing={1} className={robotContentDetailGeneralClasses.sGridContainer}>
+		<Grid container spacing={1} className={robotContentDetailGeneralClasses.sGeneralContainer}>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.SITE')}
@@ -39,7 +39,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 				<Typography
 					variant="caption"
 					color="textSecondary"
-					className={robotContentDetailGeneralClasses.sGridItemStatusCaption}>
+					className={robotContentDetailGeneralClasses.sGeneralItemStatusLabel}>
 					{t('CONTENT.DETAIL.GENERAL.STATUS')}
 				</Typography>
 				<Status active={robot.robotState.isReady.value}>
@@ -54,13 +54,13 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 				sm={6}
 				md={8}
 				lg={3}
-				className={robotContentDetailGeneralClasses.sGridLastItem}>
+				className={robotContentDetailGeneralClasses.sGeneralLastItem}>
 				<FormControlLabel
 					labelPlacement="start"
 					label={
 						<Box>
 							<Typography
-								className={robotContentDetailGeneralClasses.sGridLastItemLabel}>
+								className={robotContentDetailGeneralClasses.sGeneralLastItemLabel}>
 								{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
 							</Typography>
 							<Status active={!!robot.site.acceptOrders} small>
@@ -70,7 +70,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 							</Status>
 						</Box>
 					}
-					className={robotContentDetailGeneralClasses.sGridLastItemCheckboxControl}
+					className={robotContentDetailGeneralClasses.sGeneralLastItemCheckboxControl}
 					control={
 						<Checkbox
 							name="acceptOrder"

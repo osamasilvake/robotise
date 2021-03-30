@@ -106,7 +106,7 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 					color="inherit"
 					className={robotContentDetailAlertsClasses.sCardContentMessage}>
 					{!isMobileDevice() && alert.message.length > msMax
-						? `${alert.message.substr(0, msMax)}...`
+						? `${alert.message.substr(0, msMax)} ...`
 						: alert.message}
 				</Typography>
 			</CardContent>

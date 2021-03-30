@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 import { AppConfigService } from '../../../../../../services';
 
 export const RobotContentDetailAlertsStyles = makeStyles((theme: Theme) => ({
-	sGridContainer: {
+	sAlertsContainer: {
 		marginTop: theme.spacing(4)
 	},
 	sCardContent: {

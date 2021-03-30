@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
-import { deserializeSites } from '../../utilities/serializers/json-api/JsonApi';
+import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
 import { SSInterface } from './Sites.slice.interface';
 

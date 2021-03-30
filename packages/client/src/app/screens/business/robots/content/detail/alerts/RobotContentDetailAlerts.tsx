@@ -32,7 +32,7 @@ const RobotContentDetailAlerts: FC<RobotContentDetailAlertsInterface> = (props) 
 	};
 
 	return robot.alerts.value && robot.alerts.value.length ? (
-		<Grid container spacing={1} className={robotContentDetailAlertsClasses.sGridContainer}>
+		<Grid container spacing={1} className={robotContentDetailAlertsClasses.sAlertsContainer}>
 			{sortByAlertLevel().map((alert) => (
 				<RobotContentDetailAlert key={alert.code} alert={alert} />
 			))}

@@ -7,5 +7,5 @@ import { AppConfigService } from '../../../services';
  */
 export const robotCameraImageUrl = (id: string) => {
 	const url = `${AppConfigService.envBaseURL}/${AppConfigService.envApiVersion}`;
-	return `${url}/storage/camera-images/${id}.jpg?t=${new Date().getTime()}`;
+	return `${url}/storage/camera-images/${id}.jpg`;
 };

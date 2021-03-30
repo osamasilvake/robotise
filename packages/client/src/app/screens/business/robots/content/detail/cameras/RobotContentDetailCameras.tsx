@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@material-ui/core';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import RobotContentDetailCamera from './RobotContentDetailCamera';
@@ -8,18 +8,22 @@ import { RobotContentDetailCamerasInterface } from './RobotContentDetailCameras.
 import { RobotContentDetailCameraStyles } from './RobotContentDetailCameras.style';
 
 const RobotContentDetailCameras: FC<RobotContentDetailCamerasInterface> = (props) => {
-	const { robot } = props;
+	const { robot, loading } = props;
 
 	const { t } = useTranslation('ROBOTS');
 	const robotContentDetailCameraClasses = RobotContentDetailCameraStyles();
 
-	return (
-		<Box className={robotContentDetailCameraClasses.sCameraContainer}>
+	const [currentCameraType, setCurrentCameraType] = useState(
+		RobotContentDetailCameraTypeEnum.BASE
+	);
+
+	return robot?.cameras ? (
+		<Box className={robotContentDetailCameraClasses.sCamerasContainer}>
 			{/* Title */}
 			<Typography
 				variant="h6"
 				color="textSecondary"
-				className={robotContentDetailCameraClasses.sCameraTitle}>
+				className={robotContentDetailCameraClasses.sCamerasTitle}>
 				{t('CONTENT.DETAIL.CAMERAS.TITLE')}
 			</Typography>
 
@@ -27,14 +31,20 @@ const RobotContentDetailCameras: FC<RobotContentDetailCamerasInterface> = (props
 			<Grid container spacing={1}>
 				<RobotContentDetailCamera
 					robot={robot}
-					imageType={RobotContentDetailCameraTypeEnum.BASE}
+					loading={loading}
+					cameraType={RobotContentDetailCameraTypeEnum.BASE}
+					currentCameraType={currentCameraType}
+					setCurrentCameraType={setCurrentCameraType}
 				/>
 				<RobotContentDetailCamera
 					robot={robot}
-					imageType={RobotContentDetailCameraTypeEnum.TOP}
+					loading={loading}
+					cameraType={RobotContentDetailCameraTypeEnum.TOP}
+					currentCameraType={currentCameraType}
+					setCurrentCameraType={setCurrentCameraType}
 				/>
 			</Grid>
 		</Box>
-	);
+	) : null;
 };
 export default RobotContentDetailCameras;

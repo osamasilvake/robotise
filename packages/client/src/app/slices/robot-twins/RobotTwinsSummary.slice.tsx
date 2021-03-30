@@ -5,10 +5,8 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import SitesService from '../../screens/business/sites/Sites.service';
 import { AppConfigService } from '../../services';
-import {
-	deserializeRobotTwinsSummary,
-	deserializeSites
-} from '../../utilities/serializers/json-api/JsonApi';
+import { deserializeRobotTwinsSummary } from '../../utilities/serializers/json-api/RobotTwinsSummary.deserialize';
+import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
 import { success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';

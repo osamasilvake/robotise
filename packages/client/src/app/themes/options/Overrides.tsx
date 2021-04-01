@@ -52,9 +52,9 @@ const OverridesCustom: Overrides = {
 	},
 	MuiCardContent: {
 		root: {
-			padding: pxToRem(0),
+			padding: 0,
 			'&:last-child': {
-				paddingBottom: pxToRem(0)
+				paddingBottom: 0
 			}
 		}
 	},

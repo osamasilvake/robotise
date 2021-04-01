@@ -23,7 +23,8 @@ export interface RTSMappedResponseDataInterface {
 	robot: RTSRobotInterface;
 	site: RTSSiteInterface;
 	robotState: RTSRobotStateInterface;
-	alerts: RTSRobotAlertInterface;
+	alerts: RTSAlertInterface;
+	location?: RTSLocationInterface | undefined;
 	cameras?: RTSCameraInterface | undefined;
 	batteryState?: RTSBatteryStateInterface | undefined;
 	dockingState?: RTSDockingStateInterface | undefined;
@@ -54,8 +55,13 @@ export interface RTSRobotStateInterface {
 	};
 }
 
-export interface RTSRobotAlertInterface {
+export interface RTSAlertInterface {
 	value: IAlert[];
+	updatedAt: Date;
+}
+
+export interface RTSLocationInterface {
+	value: ILocation;
 	updatedAt: Date;
 }
 
@@ -266,4 +272,16 @@ export interface IAlertRulesCondition {
 	condition: string;
 	value: boolean | string | number;
 	currentValue: boolean | string | number;
+}
+
+export interface ILocation {
+	map: {
+		id: string;
+		floor: string;
+	};
+	point: {
+		x: number;
+		y: number;
+		yaw: number;
+	};
 }

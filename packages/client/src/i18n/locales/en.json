@@ -44,7 +44,8 @@
 	"MESSAGE": {
 		"AUTH": {
 			"TOKEN_EXPIRED": "Token Got Expired!",
-			"TOKEN_EMPTY": "No Token Found!"
+			"TOKEN_EMPTY": "No Token Found!",
+			"UNKNOWN": "Unknown"
 		},
 		"ROBOT": {
 			"ALERTS": {
@@ -137,11 +138,11 @@
 			"LIST": {
 				"SITES": {
 					"LABEL": "Sites",
-					"HINT": "products and more"
+					"HINT": "products etc."
 				},
 				"ROBOTS": {
 					"LABEL": "Robots",
-					"HINT": "inventory, reports and more"
+					"HINT": "orders, purchases etc."
 				}
 			}
 		},
@@ -198,6 +199,9 @@
 						"INACTIVE": "Inactive"
 					},
 					"UNKNOWN": "Unknown"
+				},
+				"LOCATION": {
+					"TITLE": "Location"
 				},
 				"CAMERAS": {
 					"TITLE": "Cameras",

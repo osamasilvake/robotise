@@ -37,7 +37,7 @@ export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterfa
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.TITLE',
 					value: powerSupplyHealth(batteryState.powerSupplyHealth.value),
 					date: momentFormat2(batteryState.powerSupplyHealth.updatedAt),
-					icon: 'local_hospital'
+					icon: 'healing'
 				}
 			);
 		case 'batteryState.powerSupplyStatus':

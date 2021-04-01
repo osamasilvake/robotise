@@ -60,6 +60,8 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 					label={
 						<Box>
 							<Typography
+								variant="caption"
+								color="textSecondary"
 								className={robotContentDetailGeneralClasses.sGeneralLastItemLabel}>
 								{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
 							</Typography>

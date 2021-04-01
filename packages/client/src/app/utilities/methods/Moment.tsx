@@ -24,7 +24,7 @@ const momentFormat1 = <T,>(value: T): string => {
  * @returns
  */
 const momentFormat2 = <T,>(value: T): string => {
-	return moment(value).format('DD MMM HH:mm:ss');
+	return moment(value).format('DD MMMM, HH:mm:ss');
 };
 
 /**

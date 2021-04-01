@@ -1,6 +1,6 @@
-import { Box, Card, CardContent, Icon, Tooltip, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, Tooltip, Typography } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -12,7 +12,7 @@ import { TriggerMessageInterface } from '../../../../../../components/frame/mess
 import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
 import { isMobileDevice } from '../../../../../../utilities/methods/MobileUtilities';
-import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { CardStyles } from '../../../../../../utilities/styles/Card.style';
 import { RobotContentDetailAlertsTypeEnum } from './RobotContentDetailAlerts.enum';
 import { RobotContentDetailAlertCardInterface } from './RobotContentDetailAlerts.interface';
@@ -84,23 +84,24 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 				)}>
 				{/* Icon */}
 				<Box className={robotContentDetailAlertsClasses.sCardContentIcons}>
-					<Icon
+					<Tooltip
+						placement="top"
+						title={String(t('TOOLTIPS:MESSAGE_CLIPBOARD'))}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}
 						className={robotContentDetailAlertsClasses.sCardContentIcon}>
-						<Tooltip title={String(t('TOOLTIPS:MESSAGE_CLIPBOARD'))} placement="top">
-							<AssignmentIcon />
-						</Tooltip>
-					</Icon>
-					<Icon className={robotContentDetailAlertsClasses.sCardContentIcon}>
-						<Tooltip title={String(t('TOOLTIPS:NEW_TAB'))} placement="top">
-							<OpenInNewIcon />
-						</Tooltip>
-					</Icon>
+						<FileCopyIcon fontSize="small" />
+					</Tooltip>
+					<Tooltip
+						placement="top"
+						title={String(t('TOOLTIPS:NEW_TAB'))}
+						className={robotContentDetailAlertsClasses.sCardContentIcon}>
+						<OpenInNewIcon fontSize="small" />
+					</Tooltip>
 				</Box>
 
 				{/* Date */}
 				<Typography variant="body2" color="inherit">
-					{momentFormat1(alert.createdAt)}
+					{momentFormat2(alert.createdAt)}
 				</Typography>
 
 				{/* Message */}

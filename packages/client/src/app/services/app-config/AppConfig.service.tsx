@@ -20,11 +20,11 @@ class AppConfigService extends EnvService {
 				c7: '#ffffff', // dark: 			text
 				c7a: '#9ea1a7', // dark: 			sub-text
 				c8: '#171a20', // light:			text
-				c8a: '#7d8483', // light:			sub-text
+				c8a: '#7c8483', // light:			sub-text
 
 				c9: '#26aee4', // dark/light: 		blue
 				c10: '#78b752', // dark/light: 		green
-				c11: '#ecbd0e', // dark/light: 		yellow
+				c11: '#e8ba0e', // dark/light: 		yellow
 				c12: '#e4291c', // dark/light: 		red
 				c13: '#818386' // dark/light:		grey
 			}
@@ -78,7 +78,7 @@ class AppConfigService extends EnvService {
 					content: {
 						info: {
 							alert: {
-								messageSizes: [50, 80]
+								messageSizes: [50, 70]
 							}
 						}
 					}
@@ -111,7 +111,8 @@ class AppConfigService extends EnvService {
 				LIST: `${this.envApiUrl}/sites`
 			},
 			ROBOT: {
-				ALL: `${this.envApiUrl}/robots`
+				ALL: `${this.envApiUrl}/robots`,
+				MAP: `${this.envApiUrl}/maps`
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,
@@ -139,6 +140,7 @@ class AppConfigService extends EnvService {
 		return {
 			logo: {
 				icon: '/assets/svg/logos/robotise-icon.svg',
+				iconOff: '/assets/svg/logos/robotise-icon-off.svg',
 				name: '/assets/svg/logos/robotise-name.svg'
 			},
 			robotise: {

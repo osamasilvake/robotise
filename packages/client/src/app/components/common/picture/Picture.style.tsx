@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 
 export const PictureStyles = makeStyles((theme: Theme) => ({
 	sPictureBox: {
-		padding: 20
+		padding: theme.typography.pxToRem(20)
 	},
 	sPicture: {
 		display: 'block',
@@ -10,6 +10,6 @@ export const PictureStyles = makeStyles((theme: Theme) => ({
 	},
 	sFallback: {
 		margin: theme.spacing(0, 'auto'),
-		width: theme.typography.pxToRem(50)
+		width: theme.typography.pxToRem(40)
 	}
 }));

@@ -100,14 +100,14 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 				id: 'login-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: err.error_description || err.message
+				text: (err && (err.error_description || err.message)) || 'AUTH.UNKNOWN'
 			};
-
-			// dispatch: error
-			dispatch(failure(message));
 
 			// dispatch: trigger message
 			dispatch(triggerMessage(message));
+
+			// dispatch: error
+			dispatch(failure(message));
 		});
 };
 
@@ -154,11 +154,11 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 							text: err && err.error_description
 						};
 
-						// dispatch: error
-						dispatch(failure(message));
-
 						// dispatch: trigger message
 						dispatch(triggerMessage(message));
+
+						// dispatch: error
+						dispatch(failure(message));
 					});
 			}
 		} else {
@@ -169,11 +169,11 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 				text: 'AUTH.TOKEN_EXPIRED'
 			};
 
-			// dispatch: error
-			dispatch(failure(message));
-
 			// dispatch: trigger message
 			dispatch(triggerMessage(message));
+
+			// dispatch: error
+			dispatch(failure(message));
 
 			// clear authentication
 			AuthService.authLogout();

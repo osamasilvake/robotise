@@ -34,12 +34,22 @@ class RobotsService {
 	};
 
 	/**
+	 * fetch robot map of location
+	 * @param mapId
+	 * @returns
+	 */
+	robotLocationMapFetch = (mapId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.MAP;
+		return HttpClientService.get(`${url}/${mapId}`);
+	};
+
+	/**
 	 * request robot camera image
 	 * @param camera
 	 * @param robotId
 	 * @returns
 	 */
-	robotRequestImage = (camera: RobotContentDetailCameraTypeEnum, robotId: string) => {
+	robotRequestCameraImage = (camera: RobotContentDetailCameraTypeEnum, robotId: string) => {
 		const url = AppConfigService.AppServices.ROBOT.ALL;
 		return HttpClientService.post(`${url}/${robotId}/commands`, {
 			data: {

@@ -7,7 +7,6 @@ import {
 	Grid,
 	Typography
 } from '@material-ui/core';
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +19,7 @@ import {
 	robotTwinsSelector,
 	RobotTwinsSingleRobotFetchList
 } from '../../../../../../slices/robot-twins/RobotTwins.slice';
-import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import RobotsService from '../../../Robots.service';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotContentDetailCameraTypeEnum } from './RobotContentDetailCameras.enum';
@@ -47,7 +46,10 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 		// api: request for robot camera image
 		// dispatch: fetch robot twins of single robot
 		Promise.all([
-			RobotsService.robotRequestImage(camera, robotTwins.content?.data[0].robot.id || ''),
+			RobotsService.robotRequestCameraImage(
+				camera,
+				robotTwins.content?.data[0].robot.id || ''
+			),
 			dispatch(RobotTwinsSingleRobotFetchList(robot.id, true, true))
 		])
 			.then(() => {
@@ -81,7 +83,7 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat1(robot.cameras[cameraType].imageId.updatedAt)}
+				{momentFormat2(robot.cameras[cameraType].imageId.updatedAt)}
 			</Typography>
 
 			{/* Card Picture */}
@@ -101,10 +103,6 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 				<Button
 					variant="outlined"
 					onClick={handleRequestRobotImage(cameraType)}
-					className={clsx({
-						[robotContentDetailCameraClasses.sCameraButtonDisabled]: !robot.robotState
-							.isReady.value
-					})}
 					disabled={loading || !robot.robotState.isReady.value}
 					endIcon={
 						loading &&

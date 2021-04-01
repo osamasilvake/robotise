@@ -38,7 +38,7 @@ const AppBarCustom: FC = () => {
 	const auth = useSelector(authSelector);
 	const general = useSelector(generalSelector);
 
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
 	useEffect(() => {
 		// change language

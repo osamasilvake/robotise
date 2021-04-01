@@ -63,6 +63,10 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 						value: data.state.reported.alerts,
 						updatedAt: data.metadata.reported.alerts?.updatedAt
 					},
+					location: data.state.reported.location && {
+						value: data.state.reported.location,
+						updatedAt: data.metadata.reported.location.updatedAt
+					},
 					cameras: data.state.reported.cameras &&
 						(cameraBase || cameraTop) && {
 							base: cameraBase && {

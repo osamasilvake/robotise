@@ -34,7 +34,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				},
 				elevation12: {
 					boxShadow: 'none',
-					padding: `${pxToRem(20)} ${pxToRem(20)}`,
+					padding: pxToRem(20),
 					transition: 'none'
 				}
 			},

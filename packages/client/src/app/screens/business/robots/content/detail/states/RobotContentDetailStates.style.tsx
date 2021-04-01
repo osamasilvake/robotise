@@ -14,7 +14,6 @@ export const RobotContentDetailStatesStyles = makeStyles((theme: Theme) => ({
 	},
 	sCardContentIcon: {
 		color: AppConfigService.AppVariables.colors.c8a,
-		fontSize: theme.spacing(4),
 		position: 'absolute',
 		right: theme.spacing(0.5),
 		top: theme.spacing(0.5)

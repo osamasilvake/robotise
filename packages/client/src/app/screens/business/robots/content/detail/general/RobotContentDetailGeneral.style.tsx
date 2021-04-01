@@ -14,6 +14,7 @@ export const RobotContentDetailGeneralStyles = makeStyles((theme: Theme) => ({
 		}
 	},
 	sGeneralLastItemLabel: {
+		display: 'block',
 		marginBottom: theme.spacing(-0.5)
 	},
 	sGeneralLastItemCheckboxControl: {

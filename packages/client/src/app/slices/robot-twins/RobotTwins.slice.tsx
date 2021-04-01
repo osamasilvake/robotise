@@ -109,17 +109,17 @@ export const RobotTwinsSingleRobotFetchList = (
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
-				id: 'fetch-rt-error',
+				id: 'fetch-rb-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'API.FETCH'
 			};
 
-			// dispatch: error
-			dispatch(failure(message));
-
 			// dispatch: trigger message
 			dispatch(triggerMessage(message));
+
+			// dispatch: error
+			dispatch(failure(message));
 		});
 };
 

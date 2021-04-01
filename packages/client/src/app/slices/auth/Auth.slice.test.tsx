@@ -94,7 +94,7 @@ describe('[SLICE] Authentication', () => {
 
 		// arrange
 		const message: TriggerMessageInterface = {
-			id: 'test-login-error',
+			id: 'login-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: response.message
@@ -105,7 +105,7 @@ describe('[SLICE] Authentication', () => {
 			.dispatch(AuthLogin(request))
 			.then(() => {
 				// assert
-				const expectedActions = [loading(), failure(message), triggerMessage(message)];
+				const expectedActions = [loading(), triggerMessage(message), failure(message)];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();
@@ -117,7 +117,7 @@ describe('[SLICE] Authentication', () => {
 
 		// arrange
 		const message: TriggerMessageInterface = {
-			id: 'test-auto-refresh-warn',
+			id: 'token-empty-warn',
 			show: true,
 			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.TOKEN_EMPTY'
@@ -138,7 +138,7 @@ describe('[SLICE] Authentication', () => {
 
 		// arrange
 		const message: TriggerMessageInterface = {
-			id: 'test-token-expired-error',
+			id: 'token-expired-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: 'AUTH.TOKEN_EXPIRED'
@@ -152,7 +152,7 @@ describe('[SLICE] Authentication', () => {
 		store.dispatch(AuthRefreshToken(1));
 
 		// assert
-		const expectedActions = [failure(message), triggerMessage(message)];
+		const expectedActions = [triggerMessage(message), failure(message)];
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 

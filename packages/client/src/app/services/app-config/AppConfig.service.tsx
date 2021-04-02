@@ -50,7 +50,7 @@ class AppConfigService extends EnvService {
 				snackbar: {
 					timeout: {
 						fast: 2000,
-						slow: 10000
+						slow: 5000
 					},
 					direction: {
 						vertical: 'bottom',
@@ -76,7 +76,7 @@ class AppConfigService extends EnvService {
 						pageSizes: [5, 10, 15, 20, 50, 100, 150]
 					},
 					content: {
-						info: {
+						detail: {
 							alert: {
 								messageSizes: [50, 70]
 							}

@@ -27,8 +27,9 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 
 	const dispatch = useDispatch();
 
-	const msNormal = AppConfigService.AppOptions.screens.robots.content.info.alert.messageSizes[0];
-	const msMax = AppConfigService.AppOptions.screens.robots.content.info.alert.messageSizes[1];
+	const msNormal =
+		AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[0];
+	const msMax = AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[1];
 
 	/**
 	 * copy to clipboard

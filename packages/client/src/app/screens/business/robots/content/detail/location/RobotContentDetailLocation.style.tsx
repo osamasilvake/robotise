@@ -7,11 +7,22 @@ export const RobotContentDetailLocationStyles = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(4)
 	},
 	sLocationTitle: {
-		marginTop: theme.spacing(1)
+		marginBottom: theme.spacing(1)
 	},
 	sLocationCard: {
 		marginTop: theme.spacing(1),
 		position: 'relative'
+	},
+	sLocationCardGridLines: {
+		'&::before': {
+			backgroundImage:
+				'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAAHlBMVEUAAABkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGSH0mEbAAAACnRSTlMAzDPDPPPYnGMw2CgMzQAAAChJREFUKM9jgAPOAgZMwGIwKkhXQSUY0BCCMxkEYUAsEM4cjI4fwYIAf2QMNbUsZjcAAAAASUVORK5CYII=)',
+			backgroundSize: theme.typography.pxToRem(20),
+			content: '""',
+			height: '100%',
+			position: 'absolute',
+			width: '100%'
+		}
 	},
 	sLocationCardIcon: {
 		bottom: 0,
@@ -22,13 +33,15 @@ export const RobotContentDetailLocationStyles = makeStyles((theme: Theme) => ({
 		top: 0,
 		transition: 'top 1s ease 0s',
 		transitionProperty: 'left, top',
-		width: theme.typography.pxToRem(14)
+		width: theme.typography.pxToRem(16)
 	},
 	sLocationInfoLabel: {
 		display: 'inline-block',
 		fontWeight: 500,
-		textDecoration: 'uppercase',
-		width: theme.typography.pxToRem(50)
+		width: theme.typography.pxToRem(70),
+		[theme.breakpoints.up('md')]: {
+			marginLeft: theme.typography.pxToRem(5)
+		}
 	},
 	sLocationInfoValue: {
 		display: 'inline-block'

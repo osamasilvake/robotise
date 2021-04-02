@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { AppConfigService } from '../../../services';
-import { prettyUrlPathname } from '../../../utilities/methods/StringUtilities';
+import {
+	strCapitalizeEachLetter,
+	strRemoveSymbols
+} from '../../../utilities/methods/StringUtilities';
 import { BreadcrumbInterface, BreadcrumbLinksInterface } from './Breadcrumb.interface';
 import { BreadcrumbStyles } from './Breadcrumb.style';
 
@@ -39,7 +42,7 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 				}
 
 				return {
-					text: prettyUrlPathname(path),
+					text: strCapitalizeEachLetter(strRemoveSymbols(path)),
 					link,
 					isLast: index === paths.length - 1
 				};

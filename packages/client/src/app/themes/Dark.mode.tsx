@@ -108,7 +108,9 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 				}
 			},
 			MuiOutlinedInput: {
+				...options.overrides?.MuiOutlinedInput,
 				input: {
+					...options.overrides?.MuiOutlinedInput?.input,
 					'&:-webkit-autofill': {
 						WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
 							AppConfigService.AppVariables.colors.c1

@@ -201,7 +201,8 @@
 					"UNKNOWN": "Unknown"
 				},
 				"LOCATION": {
-					"TITLE": "Location"
+					"TITLE": "Location",
+					"GRID": "Grid"
 				},
 				"CAMERAS": {
 					"TITLE": "Cameras",

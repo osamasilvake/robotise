@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import {
 	RTSLocationInterface,
 	RTSMappedResponseDataInterface
@@ -9,10 +11,13 @@ export interface RobotContentDetailLocationInterface {
 
 export interface RobotContentDetailLocationCardInterface {
 	robot: RTSMappedResponseDataInterface;
+	grid: boolean;
 }
 
 export interface RobotContentDetailLocationInfoInterface {
 	location: RTSLocationInterface | undefined;
+	grid: boolean;
+	showGrid: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface RobotContentDetailLocationCardIconInterface {

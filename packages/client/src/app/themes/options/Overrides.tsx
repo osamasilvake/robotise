@@ -13,6 +13,10 @@ const OverridesCustom: Overrides = {
 			body: {
 				height: '100%',
 				overflowY: 'auto'
+			},
+			'::selection': {
+				backgroundColor: AppConfigService.AppVariables.colors.c9,
+				color: AppConfigService.AppVariables.colors.c7
 			}
 		}
 	},
@@ -107,6 +111,11 @@ const OverridesCustom: Overrides = {
 				backgroundColor: AppConfigService.AppVariables.colors.c9,
 				opacity: 0.95
 			}
+		}
+	},
+	MuiOutlinedInput: {
+		input: {
+			filter: 'none'
 		}
 	}
 };

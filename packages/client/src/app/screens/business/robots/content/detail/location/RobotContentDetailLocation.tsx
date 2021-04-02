@@ -1,9 +1,12 @@
-import { Grid } from '@material-ui/core';
-import { Box, Typography } from '@material-ui/core';
-import { FC } from 'react';
+import { Box, Grid, Typography } from '@material-ui/core';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
+import {
+	strRemoveLastUnderscore,
+	strRemoveSymbols
+} from '../../../../../../utilities/methods/StringUtilities';
 import { RobotContentDetailLocationInterface } from './RobotContentDetailLocation.interface';
 import { RobotContentDetailLocationStyles } from './RobotContentDetailLocation.style';
 import RobotContentDetailLocationCard from './RobotContentDetailLocationCard';
@@ -14,19 +17,22 @@ const RobotContentDetailLocation: FC<RobotContentDetailLocationInterface> = (pro
 	const { t } = useTranslation('ROBOTS');
 	const robotContentDetailLocationClasses = RobotContentDetailLocationStyles();
 
+	const [grid, showGrid] = useState(true);
+
 	return robot.location ? (
 		<Box className={robotContentDetailLocationClasses.sLocationContainer}>
 			{/* Title */}
-			<Typography variant="h6" color="textSecondary">
+			<Typography
+				variant="h6"
+				color="textSecondary"
+				className={robotContentDetailLocationClasses.sLocationTitle}>
 				{t('CONTENT.DETAIL.LOCATION.TITLE')}
 			</Typography>
 
 			{/* Label */}
-			<Typography
-				variant="body1"
-				color="textPrimary"
-				className={robotContentDetailLocationClasses.sLocationTitle}>
-				{robot.location.value.map.id}
+			<Typography variant="body1" color="textPrimary">
+				{strRemoveSymbols(strRemoveLastUnderscore(robot.location.value.map.id))}
+				{robot.location.value.map.floor && ` / ${robot.location.value.map.floor}`}
 			</Typography>
 
 			{/* Date */}
@@ -37,10 +43,14 @@ const RobotContentDetailLocation: FC<RobotContentDetailLocationInterface> = (pro
 			{/* Grid */}
 			<Grid container spacing={1}>
 				{/* Card */}
-				<RobotContentDetailLocationCard robot={robot} />
+				<RobotContentDetailLocationCard robot={robot} grid={grid} />
 
 				{/* Info */}
-				<RobotContentDetailLocationInfo location={robot.location} />
+				<RobotContentDetailLocationInfo
+					location={robot.location}
+					grid={grid}
+					showGrid={showGrid}
+				/>
 			</Grid>
 		</Box>
 	) : null;

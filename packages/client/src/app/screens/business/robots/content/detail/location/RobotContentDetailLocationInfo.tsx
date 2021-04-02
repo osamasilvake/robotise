@@ -27,6 +27,7 @@ const RobotContentDetailLocationInfo: FC<RobotContentDetailLocationInfoInterface
 					{t('CONTENT.DETAIL.LOCATION.GRID')}:
 				</Typography>
 				<Checkbox
+					className={robotContentDetailLocationClasses.sLocationInfoCheckbox}
 					name="acceptOrder"
 					color="primary"
 					checked={grid}

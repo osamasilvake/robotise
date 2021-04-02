@@ -24,21 +24,20 @@ const RobotContentDetailLocationCard: FC<RobotContentDetailLocationCardInterface
 	const mapId = robot.location?.value.map.id || '';
 
 	useEffect(() => {
-		if (mapId) {
-			// dispatch: fetch robot map of location
-			dispatch(RobotLocationMapFetch(mapId));
-		}
+		// dispatch: fetch robot map of location
+		dispatch(RobotLocationMapFetch(mapId));
 	}, [dispatch, mapId]);
 
 	useEffect(() => {
 		const origin = sRobot.map.content?.origin;
 		const coordinates = robot.location?.value.point;
 		const resolution = sRobot.map.content?.resolution;
-
 		if (origin && resolution && ratio && coordinates) {
+			const x = (Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x;
+			const y = (Math.abs(origin[0] - coordinates.y) / resolution) * ratio.y;
 			setPointCoords({
-				x: ((Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x) % ratio.cx,
-				y: ((Math.abs(origin[1] - coordinates.y) / resolution) * ratio.y) % ratio.cy,
+				x: x > 0 ? x % ratio.cx : x,
+				y: y > 0 ? y % ratio.cy : y,
 				yaw: coordinates.yaw
 			});
 		}

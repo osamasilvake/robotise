@@ -13,7 +13,7 @@ import RobotContentDetailLocationCardIcon from './RobotContentDetailLocationCard
 
 const RobotContentDetailLocationCard: FC<RobotContentDetailLocationCardInterface> = (props) => {
 	const { robot, grid } = props;
-	const robotContentDetailLocationClasses = RobotContentDetailLocationStyles();
+	const classes = RobotContentDetailLocationStyles();
 
 	const dispatch = useDispatch();
 	const sRobot = useSelector(robotSelector);
@@ -63,12 +63,12 @@ const RobotContentDetailLocationCard: FC<RobotContentDetailLocationCardInterface
 
 	return (
 		<Grid item sm={12} md={6}>
-			<Card square elevation={1} className={robotContentDetailLocationClasses.sLocationCard}>
+			<Card square elevation={1} className={classes.sLocationCard}>
 				<CardContent>
 					{/* Picture */}
 					<Box
 						className={clsx({
-							[robotContentDetailLocationClasses.sLocationCardGridLines]: grid
+							[classes.sLocationCardGridLines]: grid
 						})}>
 						<Picture src={robotLocationImageUrl(mapId)} alt={mapId} onLoad={onLoad} />
 					</Box>

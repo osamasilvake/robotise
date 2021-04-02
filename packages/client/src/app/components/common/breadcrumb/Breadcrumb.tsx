@@ -14,8 +14,7 @@ import { BreadcrumbStyles } from './Breadcrumb.style';
 const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 	const { title, currentLabel } = props;
 	const { t } = useTranslation('META');
-
-	const breadcrumbClasses = BreadcrumbStyles();
+	const classes = BreadcrumbStyles();
 
 	/**
 	 * create breadcrumbs from the link
@@ -53,7 +52,7 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 	return (
 		<Box>
 			{/* Title */}
-			<Typography variant="h1" className={breadcrumbClasses.sTitle}>
+			<Typography variant="h1" className={classes.sTitle}>
 				{t(title)}
 			</Typography>
 

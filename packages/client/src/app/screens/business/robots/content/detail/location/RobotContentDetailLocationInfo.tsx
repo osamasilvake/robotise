@@ -8,7 +8,7 @@ import { RobotContentDetailLocationStyles } from './RobotContentDetailLocation.s
 const RobotContentDetailLocationInfo: FC<RobotContentDetailLocationInfoInterface> = (props) => {
 	const { location, grid, showGrid } = props;
 	const { t } = useTranslation('ROBOTS');
-	const robotContentDetailLocationClasses = RobotContentDetailLocationStyles();
+	const classes = RobotContentDetailLocationStyles();
 
 	/**
 	 * toggle grid lines
@@ -23,11 +23,11 @@ const RobotContentDetailLocationInfo: FC<RobotContentDetailLocationInfoInterface
 				<Typography
 					variant="body2"
 					color="textSecondary"
-					className={robotContentDetailLocationClasses.sLocationInfoLabel}>
+					className={classes.sLocationInfoLabel}>
 					{t('CONTENT.DETAIL.LOCATION.GRID')}:
 				</Typography>
 				<Checkbox
-					className={robotContentDetailLocationClasses.sLocationInfoCheckbox}
+					className={classes.sLocationInfoCheckbox}
 					name="acceptOrder"
 					color="primary"
 					checked={grid}
@@ -38,13 +38,13 @@ const RobotContentDetailLocationInfo: FC<RobotContentDetailLocationInfoInterface
 				<Typography
 					variant="body2"
 					color="textSecondary"
-					className={robotContentDetailLocationClasses.sLocationInfoLabel}>
+					className={classes.sLocationInfoLabel}>
 					id:
 				</Typography>
 				<Typography
 					variant="subtitle1"
 					color="textPrimary"
-					className={robotContentDetailLocationClasses.sLocationInfoValue}>
+					className={classes.sLocationInfoValue}>
 					{location.value.map.id}
 				</Typography>
 			</Box>
@@ -52,13 +52,13 @@ const RobotContentDetailLocationInfo: FC<RobotContentDetailLocationInfoInterface
 				<Typography
 					variant="body2"
 					color="textSecondary"
-					className={robotContentDetailLocationClasses.sLocationInfoLabel}>
+					className={classes.sLocationInfoLabel}>
 					x:
 				</Typography>
 				<Typography
 					variant="subtitle1"
 					color="textPrimary"
-					className={robotContentDetailLocationClasses.sLocationInfoValue}>
+					className={classes.sLocationInfoValue}>
 					{location.value.point.x.toFixed(2)}
 				</Typography>
 			</Box>
@@ -66,13 +66,13 @@ const RobotContentDetailLocationInfo: FC<RobotContentDetailLocationInfoInterface
 				<Typography
 					variant="body2"
 					color="textSecondary"
-					className={robotContentDetailLocationClasses.sLocationInfoLabel}>
+					className={classes.sLocationInfoLabel}>
 					y:
 				</Typography>
 				<Typography
 					variant="subtitle1"
 					color="textPrimary"
-					className={robotContentDetailLocationClasses.sLocationInfoValue}>
+					className={classes.sLocationInfoValue}>
 					{location.value.point.y.toFixed(2)}
 				</Typography>
 			</Box>
@@ -80,13 +80,13 @@ const RobotContentDetailLocationInfo: FC<RobotContentDetailLocationInfoInterface
 				<Typography
 					variant="body2"
 					color="textSecondary"
-					className={robotContentDetailLocationClasses.sLocationInfoLabel}>
+					className={classes.sLocationInfoLabel}>
 					yaw:
 				</Typography>
 				<Typography
 					variant="subtitle1"
 					color="textPrimary"
-					className={robotContentDetailLocationClasses.sLocationInfoValue}>
+					className={classes.sLocationInfoValue}>
 					{location.value.point.yaw.toFixed(2)}
 				</Typography>
 			</Box>

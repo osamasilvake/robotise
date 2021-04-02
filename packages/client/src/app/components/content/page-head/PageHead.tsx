@@ -10,7 +10,7 @@ import { PageHeadStyles } from './PageHead.style';
 const PageHead: FC<PageHeadInterface> = (props) => {
 	const { title, description, currentLabel, hideDivider } = props;
 	const { t } = useTranslation('META');
-	const pageHeadClasses = PageHeadStyles();
+	const classes = PageHeadStyles();
 
 	return (
 		<Box>
@@ -25,7 +25,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 
 			{/* Divider */}
 			{!hideDivider && (
-				<Box className={pageHeadClasses.sDivider}>
+				<Box className={classes.sDivider}>
 					<Divider light />
 				</Box>
 			)}

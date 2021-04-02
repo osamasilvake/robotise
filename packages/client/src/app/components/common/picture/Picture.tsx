@@ -8,7 +8,7 @@ import { PictureStyles } from './Picture.style';
 
 const Picture: FC<PictureInterface> = (props) => {
 	const { src, alt, fallback, onLoad } = props;
-	const pictureClasses = PictureStyles();
+	const classes = PictureStyles();
 
 	const [image, setImage] = useState(src);
 
@@ -35,16 +35,16 @@ const Picture: FC<PictureInterface> = (props) => {
 
 	return (
 		<Box
-			className={clsx(pictureClasses.sPicture, {
-				[pictureClasses.sPictureBox]: image === AppConfigService.AppImageURLs.logo.iconOff
+			className={clsx(classes.sPicture, {
+				[classes.sPictureBox]: image === AppConfigService.AppImageURLs.logo.iconOff
 			})}>
 			<img
 				src={image}
 				alt={alt}
 				onLoad={onImageLoad}
 				onError={() => setImage(fallback || AppConfigService.AppImageURLs.logo.iconOff)}
-				className={clsx(pictureClasses.sPicture, {
-					[pictureClasses.sFallback]: image === AppConfigService.AppImageURLs.logo.iconOff
+				className={clsx(classes.sPicture, {
+					[classes.sFallback]: image === AppConfigService.AppImageURLs.logo.iconOff
 				})}
 			/>
 		</Box>

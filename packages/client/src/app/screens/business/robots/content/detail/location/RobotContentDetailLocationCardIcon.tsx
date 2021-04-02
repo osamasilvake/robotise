@@ -7,12 +7,12 @@ const RobotContentDetailLocationCardIcon: FC<RobotContentDetailLocationCardIconI
 	props
 ) => {
 	const { pointCoords } = props;
-	const robotContentDetailLocationClasses = RobotContentDetailLocationStyles();
+	const classes = RobotContentDetailLocationStyles();
 
 	return pointCoords ? (
 		<svg
 			viewBox="0 0 50 36"
-			className={robotContentDetailLocationClasses.sLocationCardIcon}
+			className={classes.sLocationCardIcon}
 			style={{
 				left: pointCoords.x,
 				top: pointCoords.y,

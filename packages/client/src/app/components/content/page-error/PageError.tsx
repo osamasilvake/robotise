@@ -11,19 +11,15 @@ import { PageErrorStyles } from './PageError.style';
 
 const PageError: FC<PageErrorInterface> = (props) => {
 	const { message } = props;
-
 	const { t } = useTranslation('ERRORS');
-	const pageErrorClasses = PageErrorStyles();
+	const classes = PageErrorStyles();
 
 	return (
 		<Error error={ErrorTypeEnum.PAGE_ERROR}>
-			<Typography variant="h1" className={pageErrorClasses.sTitle}>
+			<Typography variant="h1" className={classes.sTitle}>
 				{t('PAGE_ERROR.TITLE')}
 			</Typography>
-			<Typography
-				variant="body1"
-				color="textSecondary"
-				className={pageErrorClasses.sDescription}>
+			<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
 				{t(message)}
 			</Typography>
 			<Link component={RouterLink} to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}>

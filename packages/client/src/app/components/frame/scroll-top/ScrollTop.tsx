@@ -6,6 +6,7 @@ import { ScrollTopStyles } from './ScrollTop.style';
 
 const ScrollTop: FC = () => {
 	const scrollTopClasses = ScrollTopStyles();
+
 	const trigger = useScrollTrigger({
 		target: window,
 		disableHysteresis: true,

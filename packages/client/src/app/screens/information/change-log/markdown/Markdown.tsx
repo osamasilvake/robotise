@@ -12,7 +12,7 @@ import { MarkdownStyles } from './Markdown.style';
  */
 const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 	const { level, children } = props;
-	const markdownClasses = MarkdownStyles();
+	const classes = MarkdownStyles();
 
 	let component: Variant;
 	let variant: Variant;
@@ -53,9 +53,9 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 			component={component}
 			variant={variant}
 			className={clsx({
-				[markdownClasses.sHeadingH1]: condition1,
-				[markdownClasses.sHeadingH2]: condition2,
-				[markdownClasses.sCommon]: !condition1 && !condition2
+				[classes.sHeadingH1]: condition1,
+				[classes.sHeadingH2]: condition2,
+				[classes.sCommon]: !condition1 && !condition2
 			})}>
 			{children}
 		</Typography>
@@ -68,10 +68,10 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
  */
 const MarkdownParagraph: FC = (props) => {
 	const { children } = props;
-	const markdownClasses = MarkdownStyles();
+	const classes = MarkdownStyles();
 
 	return (
-		<Typography variant="body1" className={markdownClasses.MarkdownParagraph}>
+		<Typography variant="body1" className={classes.MarkdownParagraph}>
 			{children}
 		</Typography>
 	);
@@ -82,8 +82,9 @@ const MarkdownParagraph: FC = (props) => {
  * @param props
  */
 const MarkdownList: FC = (props) => {
-	const markdownClasses = MarkdownStyles();
-	return <ul className={markdownClasses.sList}>{props.children}</ul>;
+	const classes = MarkdownStyles();
+
+	return <ul className={classes.sList}>{props.children}</ul>;
 };
 
 /**
@@ -91,9 +92,10 @@ const MarkdownList: FC = (props) => {
  * @param props
  */
 const MarkdownListItem: FC = (props) => {
-	const markdownClasses = MarkdownStyles();
+	const classes = MarkdownStyles();
+
 	return (
-		<li className={markdownClasses.sListItem}>
+		<li className={classes.sListItem}>
 			<Typography variant="body1">{props.children}</Typography>
 		</li>
 	);

@@ -11,7 +11,7 @@ import { generalSelector } from '../../slices/general/General.slice';
 import { PrivateLayoutStyles } from './PrivateLayout.style';
 
 const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
-	const privateLayoutClasses = PrivateLayoutStyles();
+	const classes = PrivateLayoutStyles();
 
 	const general = useSelector(generalSelector);
 
@@ -26,9 +26,9 @@ const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPage
 			{/* Content */}
 			<Box
 				component="main"
-				className={clsx(privateLayoutClasses.sContent, {
-					[privateLayoutClasses.sContentOpen]: general.openDrawer,
-					[privateLayoutClasses.sContentClose]: !general.openDrawer
+				className={clsx(classes.sContent, {
+					[classes.sContentOpen]: general.openDrawer,
+					[classes.sContentClose]: !general.openDrawer
 				})}>
 				<Suspense fallback={<Loader spinner />}>
 					<Component route={route} />

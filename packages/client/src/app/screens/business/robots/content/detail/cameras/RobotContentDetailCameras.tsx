@@ -9,21 +9,17 @@ import { RobotContentDetailCameraStyles } from './RobotContentDetailCameras.styl
 
 const RobotContentDetailCameras: FC<RobotContentDetailCamerasInterface> = (props) => {
 	const { robot, loading } = props;
-
 	const { t } = useTranslation('ROBOTS');
-	const robotContentDetailCameraClasses = RobotContentDetailCameraStyles();
+	const classes = RobotContentDetailCameraStyles();
 
 	const [currentCameraType, setCurrentCameraType] = useState(
 		RobotContentDetailCameraTypeEnum.BASE
 	);
 
 	return robot?.cameras ? (
-		<Box className={robotContentDetailCameraClasses.sCamerasContainer}>
+		<Box className={classes.sCamerasContainer}>
 			{/* Title */}
-			<Typography
-				variant="h6"
-				color="textSecondary"
-				className={robotContentDetailCameraClasses.sCamerasTitle}>
+			<Typography variant="h6" color="textSecondary" className={classes.sCamerasTitle}>
 				{t('CONTENT.DETAIL.CAMERAS.TITLE')}
 			</Typography>
 

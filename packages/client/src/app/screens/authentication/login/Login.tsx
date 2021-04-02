@@ -29,7 +29,7 @@ import { LoginFormValidation } from './Login.validation';
 
 const Login: FC = () => {
 	const { t } = useTranslation('AUTH');
-	const loginClasses = LoginStyles();
+	const classes = LoginStyles();
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
@@ -48,17 +48,17 @@ const Login: FC = () => {
 	);
 
 	return (
-		<Grid container component="section" className={loginClasses.sRoot}>
-			<Grid item xs={false} sm={6} md={8} className={loginClasses.sImage} />
+		<Grid container component="section" className={classes.sRoot}>
+			<Grid item xs={false} sm={6} md={8} className={classes.sImage} />
 			<Grid item xs={12} sm={6} md={4} component={Paper} elevation={2} square>
-				<Box className={loginClasses.sPaper}>
+				<Box className={classes.sPaper}>
 					<Avatar
 						variant="square"
-						className={loginClasses.sAvatar}
+						className={classes.sAvatar}
 						src={AppConfigService.AppImageURLs.logo.name}
 						alt={AppConfigService.envAuthor}
 					/>
-					<form className={loginClasses.sForm} onSubmit={handleSubmit}>
+					<form className={classes.sForm} onSubmit={handleSubmit}>
 						<FormControl error fullWidth margin="normal">
 							<TextField
 								required
@@ -108,7 +108,7 @@ const Login: FC = () => {
 						</FormControl>
 
 						<FormControlLabel
-							className={loginClasses.sFormCheckbox}
+							className={classes.sFormCheckbox}
 							control={
 								<Checkbox
 									name="rememberMe"
@@ -122,7 +122,7 @@ const Login: FC = () => {
 						<Button
 							variant="contained"
 							type="submit"
-							className={loginClasses.sSubmit}
+							className={classes.sSubmit}
 							disabled={validateEmptyObjProperty(values) || auth.loading}
 							fullWidth
 							endIcon={auth.loading && <CircularProgress size={20} />}>

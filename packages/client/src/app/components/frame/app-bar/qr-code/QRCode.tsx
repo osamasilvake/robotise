@@ -12,9 +12,8 @@ import { QRCodeStyles } from './QRCode.style';
 
 const QRCode: FC = () => {
 	const { t } = useTranslation('TOOLTIPS');
-
 	const cardClasses = CardStyles();
-	const qrCodeClasses = QRCodeStyles();
+	const classes = QRCodeStyles();
 
 	const general = useSelector(generalSelector);
 
@@ -36,7 +35,7 @@ const QRCode: FC = () => {
 										: AppConfigService.AppImageURLs.qrCode.path.light
 								}
 								alt={AppConfigService.AppImageURLs.qrCode.name}
-								className={qrCodeClasses.sQRCodeAvatarTooltip}
+								className={classes.sQRCodeAvatarTooltip}
 							/>
 						</Box>
 					</CardContent>
@@ -50,7 +49,7 @@ const QRCode: FC = () => {
 						: AppConfigService.AppImageURLs.qrCode.path.light
 				}
 				alt={AppConfigService.AppImageURLs.qrCode.name}
-				className={qrCodeClasses.sQRCodeAvatar}
+				className={classes.sQRCodeAvatar}
 			/>
 		</Tooltip>
 	);

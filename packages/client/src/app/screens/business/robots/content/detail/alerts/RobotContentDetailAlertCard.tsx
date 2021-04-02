@@ -20,10 +20,9 @@ import { RobotContentDetailAlertsStyles } from './RobotContentDetailAlerts.style
 
 const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (props) => {
 	const { alert } = props;
-
 	const { t } = useTranslation(['MESSAGE', 'TOOLTIPS']);
 	const cardClasses = CardStyles();
-	const robotContentDetailAlertsClasses = RobotContentDetailAlertsStyles();
+	const classes = RobotContentDetailAlertsStyles();
 
 	const dispatch = useDispatch();
 
@@ -69,33 +68,28 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 	return (
 		<Card variant="elevation" square elevation={1}>
 			<CardContent
-				className={clsx(
-					cardClasses.sCardContent1,
-					robotContentDetailAlertsClasses.sCardContent,
-					{
-						[robotContentDetailAlertsClasses.sCardDanger]:
-							alert.level === RobotContentDetailAlertsTypeEnum.DANGER,
-						[robotContentDetailAlertsClasses.sCardWarning]:
-							alert.level === RobotContentDetailAlertsTypeEnum.WARNING,
-						[robotContentDetailAlertsClasses.sCardOther]: !(
-							alert.level === RobotContentDetailAlertsTypeEnum.DANGER ||
-							alert.level === RobotContentDetailAlertsTypeEnum.WARNING
-						)
-					}
-				)}>
+				className={clsx(cardClasses.sCardContent1, classes.sCardContent, {
+					[classes.sCardDanger]: alert.level === RobotContentDetailAlertsTypeEnum.DANGER,
+					[classes.sCardWarning]:
+						alert.level === RobotContentDetailAlertsTypeEnum.WARNING,
+					[classes.sCardOther]: !(
+						alert.level === RobotContentDetailAlertsTypeEnum.DANGER ||
+						alert.level === RobotContentDetailAlertsTypeEnum.WARNING
+					)
+				})}>
 				{/* Icon */}
-				<Box className={robotContentDetailAlertsClasses.sCardContentIcons}>
+				<Box className={classes.sCardContentIcons}>
 					<Tooltip
 						placement="top"
 						title={String(t('TOOLTIPS:MESSAGE_CLIPBOARD'))}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}
-						className={robotContentDetailAlertsClasses.sCardContentIcon}>
+						className={classes.sCardContentIcon}>
 						<FileCopyIcon fontSize="small" />
 					</Tooltip>
 					<Tooltip
 						placement="top"
 						title={String(t('TOOLTIPS:NEW_TAB'))}
-						className={robotContentDetailAlertsClasses.sCardContentIcon}>
+						className={classes.sCardContentIcon}>
 						<OpenInNewIcon fontSize="small" />
 					</Tooltip>
 				</Box>
@@ -109,7 +103,7 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 				<Typography
 					variant={adjustAlertMessageSize(alert.message)}
 					color="inherit"
-					className={robotContentDetailAlertsClasses.sCardContentMessage}>
+					className={classes.sCardContentMessage}>
 					{!isMobileDevice() && alert.message.length > msMax
 						? `${alert.message.substr(0, msMax)} ...`
 						: alert.message}

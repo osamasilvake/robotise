@@ -9,7 +9,7 @@ import { LanguageStyles } from './Language.style';
 
 const Language: FC = () => {
 	const { t } = useTranslation('APPBAR');
-	const languageClasses = LanguageStyles();
+	const classes = LanguageStyles();
 
 	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);
@@ -31,7 +31,7 @@ const Language: FC = () => {
 					? GeneralLanguageTypeEnum.DE
 					: GeneralLanguageTypeEnum.EN
 			)}>
-			<ListItemText className={languageClasses.sLanguageText}>
+			<ListItemText className={classes.sLanguageText}>
 				{(general.currentLanguage === GeneralLanguageTypeEnum.EN
 					? GeneralLanguageTypeEnum.EN
 					: GeneralLanguageTypeEnum.DE

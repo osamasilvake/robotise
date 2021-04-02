@@ -29,7 +29,7 @@ import { RobotContentDetailCameraStyles } from './RobotContentDetailCameras.styl
 const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) => {
 	const { robot, loading, cameraType, currentCameraType, setCurrentCameraType } = props;
 	const { t } = useTranslation('ROBOTS');
-	const robotContentDetailCameraClasses = RobotContentDetailCameraStyles();
+	const classes = RobotContentDetailCameraStyles();
 
 	const dispatch = useDispatch();
 	const robotTwins = useSelector(robotTwinsSelector);
@@ -88,7 +88,7 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 
 			{/* Card Picture */}
 			{robot.cameras[cameraType].imageId.value && (
-				<Card square elevation={1} className={robotContentDetailCameraClasses.sCameraCard}>
+				<Card square elevation={1} className={classes.sCameraCard}>
 					<CardContent>
 						<Picture
 							src={robotCameraImageUrl(robot.cameras[cameraType].imageId.value)}
@@ -99,7 +99,7 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 			)}
 
 			{/* Button */}
-			<Box className={robotContentDetailCameraClasses.sCameraButtonBox}>
+			<Box className={classes.sCameraButtonBox}>
 				<Button
 					variant="outlined"
 					onClick={handleRequestRobotImage(cameraType)}

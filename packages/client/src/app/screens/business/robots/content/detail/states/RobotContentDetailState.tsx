@@ -9,17 +9,13 @@ import { RobotContentDetailStatesStyles } from './RobotContentDetailStates.style
 
 const RobotContentDetailState: FC<RobotContentDetailStateInterface> = (props) => {
 	const { robot, state } = props;
-
 	const { t } = useTranslation('ROBOTS');
-	const robotContentDetailStatesClasses = RobotContentDetailStatesStyles();
+	const classes = RobotContentDetailStatesStyles();
 
 	return state && state.content ? (
-		<Box className={robotContentDetailStatesClasses.sStateContainer}>
+		<Box className={classes.sStateContainer}>
 			{/* Title */}
-			<Typography
-				variant="h6"
-				color="textSecondary"
-				className={robotContentDetailStatesClasses.sStateTitle}>
+			<Typography variant="h6" color="textSecondary" className={classes.sStateTitle}>
 				{t(state.title)}
 			</Typography>
 

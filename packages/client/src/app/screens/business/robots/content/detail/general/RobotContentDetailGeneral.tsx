@@ -9,12 +9,11 @@ import { RobotContentDetailGeneralStyles } from './RobotContentDetailGeneral.sty
 
 const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props) => {
 	const { robot } = props;
-
 	const { t } = useTranslation('ROBOTS');
-	const robotContentDetailGeneralClasses = RobotContentDetailGeneralStyles();
+	const classes = RobotContentDetailGeneralStyles();
 
 	return (
-		<Grid container spacing={1} className={robotContentDetailGeneralClasses.sGeneralContainer}>
+		<Grid container spacing={1} className={classes.sGeneralContainer}>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.SITE')}
@@ -39,7 +38,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 				<Typography
 					variant="caption"
 					color="textSecondary"
-					className={robotContentDetailGeneralClasses.sGeneralItemStatusLabel}>
+					className={classes.sGeneralItemStatusLabel}>
 					{t('CONTENT.DETAIL.GENERAL.STATUS')}
 				</Typography>
 				<Status active={robot.robotState.isReady.value}>
@@ -48,13 +47,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 						: t('CONTENT.DETAIL.GENERAL.OFF')}
 				</Status>
 			</Grid>
-			<Grid
-				item
-				xs={12}
-				sm={6}
-				md={8}
-				lg={3}
-				className={robotContentDetailGeneralClasses.sGeneralLastItem}>
+			<Grid item xs={12} sm={6} md={8} lg={3} className={classes.sGeneralLastItem}>
 				<FormControlLabel
 					labelPlacement="start"
 					label={
@@ -62,7 +55,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 							<Typography
 								variant="caption"
 								color="textSecondary"
-								className={robotContentDetailGeneralClasses.sGeneralLastItemLabel}>
+								className={classes.sGeneralLastItemLabel}>
 								{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
 							</Typography>
 							<Status active={!!robot.site.acceptOrders} small>
@@ -72,7 +65,7 @@ const RobotContentDetailGeneral: FC<RobotContentDetailGeneralInterface> = (props
 							</Status>
 						</Box>
 					}
-					className={robotContentDetailGeneralClasses.sGeneralLastItemCheckboxControl}
+					className={classes.sGeneralLastItemCheckboxControl}
 					control={
 						<Checkbox
 							name="acceptOrder"

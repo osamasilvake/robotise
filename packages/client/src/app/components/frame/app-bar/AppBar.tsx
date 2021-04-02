@@ -32,7 +32,7 @@ import ThemePalette from './theme/Theme';
 
 const AppBarCustom: FC = () => {
 	const { t } = useTranslation(['APPBAR', 'TOOLTIPS']);
-	const appBarClasses = AppBarStyles();
+	const classes = AppBarStyles();
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
@@ -72,16 +72,16 @@ const AppBarCustom: FC = () => {
 			position="fixed"
 			elevation={0}
 			color="inherit"
-			className={clsx(appBarClasses.sAppBar, {
-				[appBarClasses.sOpen]: general.openDrawer
+			className={clsx(classes.sAppBar, {
+				[classes.sOpen]: general.openDrawer
 			})}>
-			<Toolbar className={appBarClasses.sToolbar} disableGutters>
+			<Toolbar className={classes.sToolbar} disableGutters>
 				{/* Logo & Open Drawer */}
 				{!general.openDrawer && (
 					<Box>
 						<Link
 							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}
-							className={appBarClasses.sLogo}>
+							className={classes.sLogo}>
 							<Avatar
 								src={AppConfigService.AppImageURLs.logo.icon}
 								alt={AppConfigService.AppImageURLs.logo.name}
@@ -89,7 +89,7 @@ const AppBarCustom: FC = () => {
 						</Link>
 
 						<Tooltip
-							className={appBarClasses.sOpenIcon}
+							className={classes.sOpenIcon}
 							title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
 							<IconButton hidden edge="start" onClick={handleDrawerOpen}>
 								<MenuIcon />
@@ -98,20 +98,20 @@ const AppBarCustom: FC = () => {
 					</Box>
 				)}
 
-				<Box className={appBarClasses.sOptions}>
+				<Box className={classes.sOptions}>
 					{/* QR code */}
 					<QRCode />
 
 					{/* Account */}
 					<IconButton edge="end" onClick={handleMenuOpen}>
-						<Box className={appBarClasses.sAccountDetail}>
+						<Box className={classes.sAccountDetail}>
 							<Typography variant="subtitle2">
 								{auth.user?.data.display_name}
 							</Typography>
 							<Typography
 								variant="body2"
 								color="textSecondary"
-								className={appBarClasses.sAccountDetailSubtitle}>
+								className={classes.sAccountDetailSubtitle}>
 								{auth.user?.data.role}
 							</Typography>
 						</Box>

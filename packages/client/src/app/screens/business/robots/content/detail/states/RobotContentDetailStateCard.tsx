@@ -8,23 +8,14 @@ import { RobotContentDetailStatesStyles } from './RobotContentDetailStates.style
 
 const RobotContentDetailStateCard: FC<RobotContentDetailStateCardInterface> = (props) => {
 	const { ...rest } = props;
-
 	const cardClasses = CardStyles();
-	const robotContentDetailStatesClasses = RobotContentDetailStatesStyles();
+	const classes = RobotContentDetailStatesStyles();
 
 	return (
 		<Card variant="elevation" square elevation={1}>
-			<CardContent
-				className={clsx(
-					cardClasses.sCardContent1,
-					robotContentDetailStatesClasses.sCardContent
-				)}>
+			<CardContent className={clsx(cardClasses.sCardContent1, classes.sCardContent)}>
 				{/* Icon */}
-				{rest.icon && (
-					<Icon className={robotContentDetailStatesClasses.sCardContentIcon}>
-						{rest.icon}
-					</Icon>
-				)}
+				{rest.icon && <Icon className={classes.sCardContentIcon}>{rest.icon}</Icon>}
 
 				{/* Title */}
 				{rest.title && (
@@ -34,10 +25,7 @@ const RobotContentDetailStateCard: FC<RobotContentDetailStateCardInterface> = (p
 				)}
 
 				{/* Value */}
-				<Typography
-					variant="h3"
-					color="inherit"
-					className={robotContentDetailStatesClasses.sCardContentValue}>
+				<Typography variant="h3" color="inherit" className={classes.sCardContentValue}>
 					{rest.value || 'null'}
 				</Typography>
 

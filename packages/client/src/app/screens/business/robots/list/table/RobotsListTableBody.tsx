@@ -21,8 +21,8 @@ import RobotsListTableBodyCell from './RobotsListTableBodyCell';
 
 const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
+	const classes = RobotsListStyles();
 
-	const robotsListClasses = RobotsListStyles();
 	const history = useHistory();
 
 	/**
@@ -109,8 +109,8 @@ const RobotsListTableBody: FC<RobotsListTableBodyInterface> = (props) => {
 							role="checkbox"
 							tabIndex={-1}
 							className={clsx({
-								[robotsListClasses.sTableRowWarning]: !!robot.alerts.warning,
-								[robotsListClasses.sTableRowDanger]: !!robot.alerts.danger
+								[classes.sTableRowWarning]: !!robot.alerts.warning,
+								[classes.sTableRowDanger]: !!robot.alerts.danger
 							})}
 							onClick={handleShowRobotDetail(robot)}>
 							{columns.map((column: RobotsListTableColumnInterface) => (

@@ -15,9 +15,8 @@ import RobotsListTableHead from './RobotsListTableHead';
 
 const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
-
 	const { t } = useTranslation('COMMON');
-	const robotsListClasses = RobotsListStyles();
+	const classes = RobotsListStyles();
 
 	const [order, setOrder] = useState<RobotsListTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotsListTableHeadId>(columns[columns.length - 1].id);
@@ -61,7 +60,7 @@ const RobotsListTable: FC<RobotsListTableInterface> = (props) => {
 
 	return (
 		<Box>
-			<TableContainer className={robotsListClasses.sTableMaxHeight}>
+			<TableContainer className={classes.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
 					<RobotsListTableHead

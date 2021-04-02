@@ -10,24 +10,21 @@ import { Error404Styles } from './Error404.style';
 
 const Error404: FC = () => {
 	const { t } = useTranslation('ERRORS');
-	const error404Classes = Error404Styles();
+	const classes = Error404Styles();
 
 	return (
 		<Paper elevation={12} component="section">
 			<Error error={ErrorTypeEnum.E404}>
-				<Typography variant="h1" className={error404Classes.sTitle}>
+				<Typography variant="h1" className={classes.sTitle}>
 					{t('E404.TITLE')}
 				</Typography>
-				<Typography
-					variant="body1"
-					color="textSecondary"
-					className={error404Classes.sDescription}>
+				<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
 					{t('E404.DESCRIPTION')}
 				</Typography>
 				<Link
 					component={RouterLink}
 					to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}
-					className={error404Classes.sLink}>
+					className={classes.sLink}>
 					{t('E404.LINK')}
 				</Link>
 			</Error>

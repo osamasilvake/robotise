@@ -7,7 +7,7 @@ import { BadgeStyles } from './Badge.style';
 
 const AppBadge: FC<BadgeInterface> = (props) => {
 	const { children, options } = props;
-	const badgeClasses = BadgeStyles();
+	const classes = BadgeStyles();
 
 	// number
 	if (options?.type === BadgeTypeEnum.NUMBER) {
@@ -21,7 +21,7 @@ const AppBadge: FC<BadgeInterface> = (props) => {
 	return (
 		<Badge
 			variant="dot"
-			classes={{ badge: badgeClasses.sDot }}
+			classes={{ badge: classes.sDot }}
 			overlap="circle"
 			anchorOrigin={{
 				vertical: 'bottom',

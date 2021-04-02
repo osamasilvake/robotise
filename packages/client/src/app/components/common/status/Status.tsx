@@ -7,15 +7,15 @@ import { StatusStyles } from './Status.style';
 
 const Status: FC<StatusInterface> = (props) => {
 	const { children, active, small } = props;
-	const statusClasses = StatusStyles();
+	const classes = StatusStyles();
 
 	return (
 		<Typography
 			variant="button"
-			className={clsx(statusClasses.sStatus, {
-				[statusClasses.sStatusSmall]: small,
-				[statusClasses.sStatusActive]: active,
-				[statusClasses.sStatusInActive]: !active
+			className={clsx(classes.sStatus, {
+				[classes.sStatusSmall]: small,
+				[classes.sStatusActive]: active,
+				[classes.sStatusInActive]: !active
 			})}>
 			{children}
 		</Typography>

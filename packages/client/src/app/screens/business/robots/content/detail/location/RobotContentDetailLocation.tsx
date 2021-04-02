@@ -15,17 +15,14 @@ import RobotContentDetailLocationInfo from './RobotContentDetailLocationInfo';
 const RobotContentDetailLocation: FC<RobotContentDetailLocationInterface> = (props) => {
 	const { robot } = props;
 	const { t } = useTranslation('ROBOTS');
-	const robotContentDetailLocationClasses = RobotContentDetailLocationStyles();
+	const classes = RobotContentDetailLocationStyles();
 
 	const [grid, showGrid] = useState(true);
 
 	return robot.location ? (
-		<Box className={robotContentDetailLocationClasses.sLocationContainer}>
+		<Box className={classes.sLocationContainer}>
 			{/* Title */}
-			<Typography
-				variant="h6"
-				color="textSecondary"
-				className={robotContentDetailLocationClasses.sLocationTitle}>
+			<Typography variant="h6" color="textSecondary" className={classes.sLocationTitle}>
 				{t('CONTENT.DETAIL.LOCATION.TITLE')}
 			</Typography>
 

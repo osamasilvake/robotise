@@ -14,7 +14,7 @@ import { ThemePaletteStyles } from './Theme.style';
 
 const ThemePalette: FC = () => {
 	const { t } = useTranslation('APPBAR');
-	const themePaletteClasses = ThemePaletteStyles();
+	const classes = ThemePaletteStyles();
 
 	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);
@@ -37,7 +37,7 @@ const ThemePalette: FC = () => {
 			)}>
 			<ListItemIcon>
 				{general.themePalette === GeneralThemePaletteTypeEnum.LIGHT ? (
-					<WbSunnyIcon className={themePaletteClasses.sColorThemeLight} />
+					<WbSunnyIcon className={classes.sColorThemeLight} />
 				) : (
 					<Brightness3Icon />
 				)}

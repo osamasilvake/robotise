@@ -9,7 +9,7 @@ import { RobotContentDetailAlertsStyles } from './RobotContentDetailAlerts.style
 
 const RobotContentDetailAlerts: FC<RobotContentDetailAlertsInterface> = (props) => {
 	const { robot } = props;
-	const robotContentDetailAlertsClasses = RobotContentDetailAlertsStyles();
+	const classes = RobotContentDetailAlertsStyles();
 
 	/**
 	 * sort by alert level
@@ -32,7 +32,7 @@ const RobotContentDetailAlerts: FC<RobotContentDetailAlertsInterface> = (props) 
 	};
 
 	return robot.alerts.value && robot.alerts.value.length ? (
-		<Grid container spacing={1} className={robotContentDetailAlertsClasses.sAlertsContainer}>
+		<Grid container spacing={1} className={classes.sAlertsContainer}>
 			{sortByAlertLevel().map((alert) => (
 				<RobotContentDetailAlert key={alert.code} alert={alert} />
 			))}

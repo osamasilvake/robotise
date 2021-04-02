@@ -32,7 +32,7 @@ import { DrawerStyles } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
 	const { t } = useTranslation(['SIDEBAR', 'TOOLTIPS']);
-	const drawerClasses = DrawerStyles();
+	const classes = DrawerStyles();
 
 	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);
@@ -57,22 +57,22 @@ const DrawerCustom: FC = () => {
 		<Box component="section">
 			<Drawer
 				variant="permanent"
-				className={clsx(drawerClasses.sDrawer, {
-					[drawerClasses.sOpen]: general.openDrawer,
-					[drawerClasses.sClose]: !general.openDrawer
+				className={clsx(classes.sDrawer, {
+					[classes.sOpen]: general.openDrawer,
+					[classes.sClose]: !general.openDrawer
 				})}
 				classes={{
 					paper: clsx({
-						[drawerClasses.sOpen]: general.openDrawer,
-						[drawerClasses.sClose]: !general.openDrawer
+						[classes.sOpen]: general.openDrawer,
+						[classes.sClose]: !general.openDrawer
 					})
 				}}>
 				{/* Logo & Close Drawer */}
-				<Box className={drawerClasses.sLogoAndCloseIcon}>
+				<Box className={classes.sLogoAndCloseIcon}>
 					<Link to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}>
 						<Avatar
 							variant="square"
-							className={drawerClasses.sLogo}
+							className={classes.sLogo}
 							src={AppConfigService.AppImageURLs.logo.name}
 							alt={AppConfigService.envAuthor}
 						/>
@@ -85,7 +85,7 @@ const DrawerCustom: FC = () => {
 				</Box>
 
 				{/* List */}
-				<Box className={drawerClasses.sListRoot}>
+				<Box className={classes.sListRoot}>
 					<List
 						disablePadding
 						subheader={
@@ -101,7 +101,7 @@ const DrawerCustom: FC = () => {
 								component={NavLink}
 								to={item.path}
 								exact
-								className={drawerClasses.sListItemWithSubtitle}>
+								className={classes.sListItemWithSubtitle}>
 								<ListItemIcon>
 									{item.badge === DrawerListBadgeTypeEnum.ROBOT &&
 									robotTwinsSummary.content &&
@@ -140,7 +140,7 @@ const DrawerCustom: FC = () => {
 								exact
 								component={NavLink}
 								to={item.path}
-								className={drawerClasses.sListItem}>
+								className={classes.sListItem}>
 								<ListItemIcon>
 									<Icon>{item.icon}</Icon>
 								</ListItemIcon>
@@ -153,7 +153,7 @@ const DrawerCustom: FC = () => {
 				<Divider light />
 
 				{/* Copyrights */}
-				<Box className={drawerClasses.sBottomArea}>
+				<Box className={classes.sBottomArea}>
 					{general.openDrawer ? <Copyrights /> : <Copyrights short />}
 				</Box>
 			</Drawer>

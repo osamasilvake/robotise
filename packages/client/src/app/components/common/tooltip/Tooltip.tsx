@@ -8,18 +8,18 @@ import { TooltipStyles } from './Tooltip.style';
 
 const TooltipCustom: FC<TooltipInterface> = (props) => {
 	const { children, title, hideOnMobile, hideTitleOnMobile, ...rest } = props;
-	const tooltipClasses = TooltipStyles();
+	const classes = TooltipStyles();
 
 	return (
 		<Tooltip
 			interactive
 			classes={{
-				tooltip: tooltipClasses.sTooltip
+				tooltip: classes.sTooltip
 			}}
 			className={clsx({
-				[tooltipClasses.sTooltipElementHideOnMobile]: hideOnMobile,
-				[tooltipClasses.sTooltipElementCursorZoom]: !!title,
-				[tooltipClasses.sTooltipElementCursorDefault]: hideTitleOnMobile && isMobileDevice()
+				[classes.sTooltipElementHideOnMobile]: hideOnMobile,
+				[classes.sTooltipElementCursorZoom]: !!title,
+				[classes.sTooltipElementCursorDefault]: hideTitleOnMobile && isMobileDevice()
 			})}
 			title={!(hideTitleOnMobile && isMobileDevice()) && title}
 			{...rest}>

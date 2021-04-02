@@ -10,10 +10,9 @@ import { LoaderStyles } from './Loader.style';
 
 const Loader: FC<LoaderInterface> = (props) => {
 	const { spinner, spinnerSmall, spinnerText } = props;
-
 	const { t } = useTranslation('COMMON');
 	const centerClasses = CenterStyles();
-	const loaderClasses = LoaderStyles();
+	const classes = LoaderStyles();
 
 	// spinner
 	if (spinner) {
@@ -21,13 +20,13 @@ const Loader: FC<LoaderInterface> = (props) => {
 			<Box
 				textAlign="center"
 				className={clsx({
-					[loaderClasses.sLinear]: spinnerSmall
+					[classes.sLinear]: spinnerSmall
 				})}>
 				{spinnerText && (
 					<Typography
 						variant="body2"
 						color="textSecondary"
-						className={loaderClasses.sLinearText}>
+						className={classes.sLinearText}>
 						{t(spinnerText)}
 					</Typography>
 				)}
@@ -38,14 +37,14 @@ const Loader: FC<LoaderInterface> = (props) => {
 
 	return (
 		<Box className={centerClasses.sVHFlex} textAlign="center">
-			<Box className={loaderClasses.sCircularAvatar}>
+			<Box className={classes.sCircularAvatar}>
 				<Avatar
-					className={loaderClasses.sAvatar}
+					className={classes.sAvatar}
 					src={AppConfigService.AppImageURLs.logo.icon}
 					alt={AppConfigService.envAuthor}
 				/>
 			</Box>
-			<Box className={loaderClasses.sCircularLoader}>
+			<Box className={classes.sCircularLoader}>
 				<CircularProgress color="inherit" />
 			</Box>
 		</Box>

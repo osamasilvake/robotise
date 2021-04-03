@@ -40,13 +40,13 @@ export const RobotContentDetailLocationStyles = makeStyles((theme: Theme) => ({
 		fontWeight: 500,
 		width: theme.typography.pxToRem(70),
 		[theme.breakpoints.up('md')]: {
-			marginLeft: theme.typography.pxToRem(5)
+			marginLeft: theme.spacing(0.65)
 		}
 	},
 	sLocationInfoValue: {
 		display: 'inline-block'
 	},
 	sLocationInfoCheckbox: {
-		marginLeft: theme.typography.pxToRem(-10)
+		marginLeft: theme.spacing(-1.25)
 	}
 }));

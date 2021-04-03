@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 
 export const TooltipStyles = makeStyles((theme: Theme) => ({
 	sTooltip: {
-		padding: theme.spacing(0),
+		padding: 0,
 		textAlign: 'left'
 	},
 	sTooltipElementHideOnMobile: {

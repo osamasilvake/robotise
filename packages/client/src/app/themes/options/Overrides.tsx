@@ -68,7 +68,7 @@ const OverridesCustom: Overrides = {
 			height: pxToRem(42)
 		},
 		outlined: {
-			border: `1px solid ${AppConfigService.AppVariables.colors.c9}`,
+			border: `${pxToRem(1)} solid ${AppConfigService.AppVariables.colors.c9}`,
 			color: AppConfigService.AppVariables.colors.c9,
 			'&:hover': {
 				backgroundColor: AppConfigService.AppVariables.colors.c9,

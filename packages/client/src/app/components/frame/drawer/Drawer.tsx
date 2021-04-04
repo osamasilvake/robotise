@@ -22,7 +22,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { AppConfigService } from '../../../services';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import { robotTwinsSummarySelector } from '../../../slices/robot-twins/RobotTwinsSummary.slice';
-import { isMobileDevice } from '../../../utilities/methods/MobileUtilities';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Copyrights from '../copyrights/Copyrights';
@@ -39,8 +38,9 @@ const DrawerCustom: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	useEffect(() => {
+		const mobileScreen = AppConfigService.AppOptions.styles.responsive.mobile;
 		const handleSmallDevices = () => {
-			if (isMobileDevice() && general.openDrawer) {
+			if (window && window.innerWidth <= mobileScreen && general.openDrawer) {
 				// dispatch: set drawer state
 				dispatch(GeneralSetDrawerState(!general.openDrawer));
 			}

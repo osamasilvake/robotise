@@ -47,6 +47,15 @@ const Login: FC = () => {
 		}
 	);
 
+	/**
+	 * handle set password
+	 * @param value
+	 * @returns
+	 */
+	const handleSetPassword = (value: boolean) => () => {
+		setShowPassword(value);
+	};
+
 	return (
 		<Grid container component="section" className={classes.sRoot}>
 			<Grid item xs={false} sm={6} md={8} className={classes.sImage} />
@@ -97,7 +106,7 @@ const Login: FC = () => {
 										<InputAdornment position="end">
 											<IconButton
 												edge="end"
-												onClick={() => setShowPassword(!showPassword)}>
+												onClick={handleSetPassword(!showPassword)}>
 												{showPassword ? <Visibility /> : <VisibilityOff />}
 											</IconButton>
 										</InputAdornment>

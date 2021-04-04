@@ -11,7 +11,7 @@ import { TriggerMessageTypeEnum } from '../../../../../../components/frame/messa
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
 import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
-import { isMobileDevice } from '../../../../../../utilities/methods/MobileUtilities';
+import { useWindow } from '../../../../../../utilities/hooks/window/Window';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { CardStyles } from '../../../../../../utilities/styles/Card.style';
 import { RobotContentDetailAlertsTypeEnum } from './RobotContentDetailAlerts.enum';
@@ -26,6 +26,9 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 
 	const dispatch = useDispatch();
 
+	const cWindow = useWindow();
+
+	const mobileScreen = AppConfigService.AppOptions.styles.responsive.mobile;
 	const msNormal =
 		AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[0];
 	const msMax = AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[1];
@@ -104,7 +107,7 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 					variant={adjustAlertMessageSize(alert.message)}
 					color="inherit"
 					className={classes.sCardContentMessage}>
-					{!isMobileDevice() && alert.message.length > msMax
+					{!(cWindow.innerWidth <= mobileScreen) && alert.message.length > msMax
 						? `${alert.message.substr(0, msMax)} ...`
 						: alert.message}
 				</Typography>

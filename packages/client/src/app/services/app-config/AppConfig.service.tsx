@@ -39,6 +39,9 @@ class AppConfigService extends EnvService {
 			styles: {
 				fontFamily: {
 					Roboto: 'Roboto'
+				},
+				responsive: {
+					mobile: 600 - 1
 				}
 			},
 			components: {

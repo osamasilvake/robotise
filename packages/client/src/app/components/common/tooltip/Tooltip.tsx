@@ -2,13 +2,18 @@ import { Tooltip } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 
-import { isMobileDevice } from '../../../utilities/methods/MobileUtilities';
+import { AppConfigService } from '../../../services';
+import { useWindow } from '../../../utilities/hooks/window/Window';
 import { TooltipInterface } from './Tooltip.interface';
 import { TooltipStyles } from './Tooltip.style';
 
 const TooltipCustom: FC<TooltipInterface> = (props) => {
 	const { children, title, hideOnMobile, hideTitleOnMobile, ...rest } = props;
 	const classes = TooltipStyles();
+
+	const cWindow = useWindow();
+
+	const mobileScreen = AppConfigService.AppOptions.styles.responsive.mobile;
 
 	return (
 		<Tooltip
@@ -19,9 +24,10 @@ const TooltipCustom: FC<TooltipInterface> = (props) => {
 			className={clsx({
 				[classes.sTooltipElementHideOnMobile]: hideOnMobile,
 				[classes.sTooltipElementCursorZoom]: !!title,
-				[classes.sTooltipElementCursorDefault]: hideTitleOnMobile && isMobileDevice()
+				[classes.sTooltipElementCursorDefault]:
+					hideTitleOnMobile && cWindow.innerWidth <= mobileScreen
 			})}
-			title={!(hideTitleOnMobile && isMobileDevice()) && title}
+			title={!(hideTitleOnMobile && cWindow.innerWidth <= mobileScreen) && title}
 			{...rest}>
 			{children}
 		</Tooltip>

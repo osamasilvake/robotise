@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Grid } from '@material-ui/core';
 import clsx from 'clsx';
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
@@ -34,7 +34,7 @@ const RobotContentDetailLocationCard: FC<RobotContentDetailLocationCardInterface
 		const resolution = sRobot.map.content?.resolution;
 		if (origin && resolution && ratio && coordinates) {
 			const x = (Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x;
-			const y = (Math.abs(origin[0] - coordinates.y) / resolution) * ratio.y;
+			const y = (Math.abs(origin[1] - coordinates.y) / resolution) * ratio.y;
 			setPointCoords({
 				x: x > 0 ? x % ratio.cx : x,
 				y: y > 0 ? y % ratio.cy : y,
@@ -52,14 +52,15 @@ const RobotContentDetailLocationCard: FC<RobotContentDetailLocationCardInterface
 	 * on image load
 	 * @param values
 	 */
-	const onLoad = (values: PictureOnLoadInterface) => {
+	const onLoad = useCallback((values: PictureOnLoadInterface) => {
+		// set ratio
 		setRatio({
 			x: values.clientWidth / values.naturalWidth,
 			y: values.clientHeight / values.naturalHeight,
 			cx: values.clientWidth,
 			cy: values.clientHeight
 		});
-	};
+	}, []);
 
 	return (
 		<Grid item sm={12} md={6}>

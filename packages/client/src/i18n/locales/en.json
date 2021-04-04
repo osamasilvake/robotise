@@ -86,7 +86,6 @@
 		},
 		"PAGE_ERROR": {
 			"TITLE": "Whoops!",
-			"DESCRIPTION": "Something bad happened!",
 			"LINK": "Go back to Dashboard"
 		},
 		"API": {

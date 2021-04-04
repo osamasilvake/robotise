@@ -4,6 +4,7 @@ import { FC, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 
 import Loader from '../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../components/common/loader/Loader.enum';
 import AppBar from '../../components/frame/app-bar/AppBar';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
@@ -30,7 +31,7 @@ const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPage
 					[classes.sContentOpen]: general.openDrawer,
 					[classes.sContentClose]: !general.openDrawer
 				})}>
-				<Suspense fallback={<Loader spinner />}>
+				<Suspense fallback={<Loader loader={LoaderTypeEnum.FALLBACK_LOADER} />}>
 					<Component route={route} />
 				</Suspense>
 			</Box>

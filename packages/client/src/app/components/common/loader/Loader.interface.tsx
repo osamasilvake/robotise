@@ -1,5 +1,6 @@
+import { LoaderTypeEnum } from './Loader.enum';
+
 export interface LoaderInterface {
-	spinner?: boolean;
-	spinnerSmall?: boolean;
+	loader?: LoaderTypeEnum;
 	spinnerText?: string;
 }

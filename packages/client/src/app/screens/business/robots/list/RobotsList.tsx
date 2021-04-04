@@ -3,6 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
 import {
@@ -54,7 +55,7 @@ const RobotsList: FC = () => {
 
 	// loader
 	if (robotTwinsSummary.loader) {
-		return <Loader spinner spinnerSmall spinnerText="LOADING" />;
+		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error

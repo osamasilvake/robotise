@@ -11,7 +11,7 @@ import { TriggerMessageTypeEnum } from '../../../../../../components/frame/messa
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
 import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
-import { useWindow } from '../../../../../../utilities/hooks/window/Window';
+import { useWindow } from '../../../../../../utilities/hooks/window/UseWindow';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { CardStyles } from '../../../../../../utilities/styles/Card.style';
 import { RobotContentDetailAlertsTypeEnum } from './RobotContentDetailAlerts.enum';
@@ -48,7 +48,7 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 			id,
 			show: true,
 			severity: TriggerMessageTypeEnum.SUCCESS,
-			text: t('ROBOT.ALERTS.CLIPBOARD')
+			text: 'ROBOT.ALERTS.CLIPBOARD'
 		};
 		dispatch(GeneralTriggerMessage(message));
 	};
@@ -84,14 +84,14 @@ const RobotContentDetailAlertCard: FC<RobotContentDetailAlertCardInterface> = (p
 				<Box className={classes.sCardContentIcons}>
 					<Tooltip
 						placement="top"
-						title={String(t('TOOLTIPS:MESSAGE_CLIPBOARD'))}
+						title={String(t('TOOLTIPS:COPY_CLIPBOARD'))}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}
 						className={classes.sCardContentIcon}>
 						<FileCopyIcon fontSize="small" />
 					</Tooltip>
 					<Tooltip
 						placement="top"
-						title={String(t('TOOLTIPS:NEW_TAB'))}
+						title={String(t('TOOLTIPS:OPEN_TAB'))}
 						className={classes.sCardContentIcon}>
 						<OpenInNewIcon fontSize="small" />
 					</Tooltip>

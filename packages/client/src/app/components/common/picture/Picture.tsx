@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import { AppConfigService } from '../../../services';
 import { generalSelector } from '../../../slices/general/General.slice';
 import { GeneralSliceInterface } from '../../../slices/general/General.slice.interface';
-import { useDebounce } from '../../../utilities/hooks/debounce/Debounce';
-import { useWindow } from '../../../utilities/hooks/window/Window';
-import { WindowInterface } from '../../../utilities/hooks/window/Window.interface';
+import { useDebounce } from '../../../utilities/hooks/debounce/UseDebounce';
+import { useWindow } from '../../../utilities/hooks/window/UseWindow';
+import { WindowInterface } from '../../../utilities/hooks/window/UseWindow.interface';
 import { PictureInterface, PictureOnLoadInterface } from './Picture.interface';
 import { PictureStyles } from './Picture.style';
 

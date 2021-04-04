@@ -22,31 +22,31 @@ const RobotsList: FC = () => {
 					AppConfigService.AppOptions.screens.robots.list.defaultPageSize
 			: AppConfigService.AppOptions.screens.robots.list.defaultPageSize
 	);
-	const pageState = useRef({
+	const pageRef = useRef({
 		page: robotTwinsSummary.content ? robotTwinsSummary.content.meta.page - 1 : page - 1,
 		rowsPerPage
 	});
 
 	useEffect(() => {
 		// when rows per page is changed
-		if (pageState.current.rowsPerPage !== rowsPerPage && page === 0) {
+		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch robot twins summary
 			dispatch(RobotTwinsSummaryFetchList(page + 1, rowsPerPage));
 
 			// update page state and rows per page
-			pageState.current.page = page;
-			pageState.current.rowsPerPage = rowsPerPage;
+			pageRef.current.page = page;
+			pageRef.current.rowsPerPage = rowsPerPage;
 		} else {
-			const condition1 = pageState.current.page !== -1; // page switch back and forth
+			const condition1 = pageRef.current.page !== -1; // page switch back and forth
 			const condition2 = robotTwinsSummary.content === null && !condition1; // init
-			const condition3 = page > pageState.current.page; // detect next click
+			const condition3 = page > pageRef.current.page; // detect next click
 			if (condition1 || condition2) {
 				if (condition3) {
 					// dispatch: fetch robot twins summary
 					dispatch(RobotTwinsSummaryFetchList(page + 1, rowsPerPage));
 
 					// update page state
-					pageState.current.page = page;
+					pageRef.current.page = page;
 				}
 			}
 		}

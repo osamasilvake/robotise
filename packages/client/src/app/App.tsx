@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Loader from './components/common/loader/Loader';
 import Meta from './components/common/meta/Meta';
 import ErrorBoundary from './components/frame/error-boundary/ErrorBoundary';
+import Listeners from './components/frame/listeners/Listeners';
 import Message from './components/frame/message/Message';
 import ScrollTop from './components/frame/scroll-top/ScrollTop';
 import Routes from './routes/Routes';
@@ -39,7 +40,7 @@ const App: FC = () => {
 			<CssBaseline />
 
 			<HelmetProvider>
-				{/* Meta: top-level with general info */}
+				{/* Meta: General Top-Level */}
 				<Meta />
 
 				<ErrorBoundary>
@@ -49,11 +50,14 @@ const App: FC = () => {
 				</ErrorBoundary>
 			</HelmetProvider>
 
-			{/* Message: a snackbar for the app notifications */}
+			{/* Message: Snackbar for Notifications */}
 			<Message />
 
-			{/* Scroll Top */}
+			{/* Scroll-Top */}
 			<ScrollTop />
+
+			{/* Listeners: Network */}
+			<Listeners />
 		</MuiThemeProvider>
 	);
 };

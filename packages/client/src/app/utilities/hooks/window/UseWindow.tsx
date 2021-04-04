@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { WindowInterface } from './Window.interface';
+import { WindowInterface } from './UseWindow.interface';
 
 /**
  * custom hook: useWindow

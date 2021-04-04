@@ -25,12 +25,15 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				dispatch(RobotTwinsSummaryFetchList(-1, -1, true));
 			}
 		};
+
+		// on-page load
 		window.addEventListener('load', init, { once: true });
+
+		// interval
 		const timeoutID = window.setInterval(
 			init,
 			AppConfigService.AppOptions.screens.robots.list.robotTwinsRefreshInMs
 		);
-
 		return () => window.clearInterval(timeoutID);
 	}, [dispatch, auth.user]);
 

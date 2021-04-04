@@ -6,13 +6,8 @@ import { pxToRem } from '../../utilities/methods/PixelsToRem';
 const OverridesCustom: Overrides = {
 	MuiCssBaseline: {
 		'@global': {
-			html: {
-				height: '100%',
-				overflow: 'hidden'
-			},
 			body: {
-				height: '100%',
-				overflowY: 'auto'
+				overscrollBehaviorY: 'none'
 			},
 			'::selection': {
 				backgroundColor: AppConfigService.AppVariables.colors.c9,

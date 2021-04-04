@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../services';
-import { useWindow } from '../../../utilities/hooks/window/Window';
+import { useWindow } from '../../../utilities/hooks/window/UseWindow';
 import { TooltipInterface } from './Tooltip.interface';
 import { TooltipStyles } from './Tooltip.style';
 

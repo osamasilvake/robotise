@@ -2,6 +2,7 @@
 	"name": "root",
 	"private": true,
 	"scripts": {
+		"start": "cd packages/client && yarn start",
 		"pretty:check": "prettier --check 'packages/client/**/*.{js,jsx,ts,tsx,json}'",
 		"pretty:apply": "prettier --write 'packages/client/**/*.{js,jsx,ts,tsx,json}'",
 		"lint:es": "npx eslint 'packages/client/**/*.{js,jsx,ts,tsx}' --quiet",

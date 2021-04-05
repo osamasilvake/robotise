@@ -17,7 +17,6 @@ const AppBadge: FC<BadgeInterface> = (props) => {
 			</Badge>
 		);
 	}
-
 	return (
 		<Badge
 			variant="dot"

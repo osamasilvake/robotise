@@ -55,11 +55,9 @@ export default dataSlice.reducer;
  * fetch sites list
  */
 export const SitesFetchList = () => async (dispatch: Dispatch, getState: () => AppReducerType) => {
-	// redux state
-	const state = getState();
-
 	// states
-	const sites = state.sites;
+	const states = getState();
+	const sites = states.sites;
 
 	// return on busy
 	if (sites && sites.loading) {

@@ -71,12 +71,10 @@ export const RobotTwinsSummaryFetchList = (
 	rowsPerPage: number,
 	refresh = false
 ) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
-	// redux state
-	const state = getState();
-
-	// state
-	const sites = state.sites;
-	const robotTwinsSummary = state.robotTwinsSummary;
+	// states
+	const states = getState();
+	const sites = states.sites;
+	const robotTwinsSummary = states.robotTwinsSummary;
 
 	// return on busy
 	if (robotTwinsSummary.loader || robotTwinsSummary.loading) {
@@ -87,10 +85,10 @@ export const RobotTwinsSummaryFetchList = (
 	dispatch(!refresh ? loader() : loading());
 
 	// meta: paging
-	const sPageNo = pageNo === -1 ? state.robotTwinsSummary.content?.meta.page || 1 : pageNo;
+	const sPageNo = pageNo === -1 ? robotTwinsSummary.content?.meta.page || 1 : pageNo;
 	const sRowsPerPage =
 		rowsPerPage === -1
-			? state.robotTwinsSummary.content?.meta.rowsPerPage ||
+			? robotTwinsSummary.content?.meta.rowsPerPage ||
 			  AppConfigService.AppOptions.screens.robots.list.defaultPageSize
 			: rowsPerPage;
 

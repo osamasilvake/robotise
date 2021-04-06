@@ -69,20 +69,21 @@ export const RobotTwinsSingleRobotFetchList = (
 	refresh = false,
 	wait = false
 ) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
-	// redux state
-	const state = getState();
+	// states
+	const states = getState();
+	const sites = states.sites;
+	const robotTwins = states.robotTwins;
 
-	// state
-	const sites = state.sites;
+	// return on busy
+	if (robotTwins.loader || robotTwins.loading) {
+		return;
+	}
 
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	// waiting
-	if (wait) {
-		// timeout: 8 secs
-		await timeout(8000);
-	}
+	// wait
+	wait && (await timeout(8000));
 
 	return (!sites.content
 		? Promise.all([

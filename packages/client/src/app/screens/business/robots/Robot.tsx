@@ -16,7 +16,7 @@ const Robot: FC = () => {
 			<PageHead
 				title="ROBOTS.ROBOT.TITLE"
 				description="ROBOTS.ROBOT.DESCRIPTION"
-				currentLabel={!robotTwins.loading ? cRobotName : ''}
+				currentLabel={!robotTwins.loader ? cRobotName : ''}
 			/>
 
 			{/* List */}

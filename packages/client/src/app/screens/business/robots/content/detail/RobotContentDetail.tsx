@@ -22,22 +22,24 @@ const RobotContentDetail: FC = () => {
 	const robotTwins = useSelector(robotTwinsSelector);
 
 	const params: RobotContentDetailParamsInterface = useParams();
+	const cRobotId = params.id;
+	const pRobotId = robotTwins.content?.data[0].id;
 
 	useEffect(() => {
-		const cRobotId = params.id;
-		const pRobotId = robotTwins.content?.data[0].id;
-
 		const condition1 = robotTwins.content === null && cRobotId;
 		const condition2 = robotTwins.content !== null && pRobotId !== cRobotId;
 
 		if (condition1 || condition2) {
 			// dispatch: fetch robot twins of single robot
-			dispatch(RobotTwinsSingleRobotFetchList(cRobotId));
+			// loading: robot id; current === previous
+			dispatch(RobotTwinsSingleRobotFetchList(cRobotId, pRobotId === cRobotId));
 		}
-	}, [dispatch, params.id, robotTwins.content]);
+	}, [dispatch, cRobotId, pRobotId, robotTwins.content]);
 
 	// loader
-	if (robotTwins.loader) {
+	// 1. robot-twins loader
+	// 2. robot id; current !== previous
+	if (robotTwins.loader || pRobotId !== cRobotId) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 

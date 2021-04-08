@@ -20,8 +20,6 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	const isUser = !!(auth.user && auth.user.data.user_id);
 
 	useEffect(() => {
-		const robotTwinsSummary = RobotTwinsSummary && RobotTwinsSummary.content;
-
 		/**
 		 * execute
 		 * 1. validate and refresh access_token
@@ -33,12 +31,12 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				dispatch(AuthRefreshToken(auth.user.exp));
 
 				// dispatch: refresh robot twins summary
-				dispatch(RobotTwinsSummaryFetchList(-1, -1, !!robotTwinsSummary));
+				dispatch(RobotTwinsSummaryFetchList(-1, -1, !!RobotTwinsSummary.content));
 			}
 		};
 
 		// init
-		!robotTwinsSummary && executeServices();
+		!RobotTwinsSummary.content && executeServices();
 
 		// interval
 		const timeoutID = window.setInterval(
@@ -46,7 +44,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 			AppConfigService.AppOptions.screens.robots.list.robotTwinsRefreshInMs
 		);
 		return () => window.clearInterval(timeoutID);
-	}, [dispatch, auth.user, RobotTwinsSummary]);
+	}, [dispatch, auth.user, RobotTwinsSummary.content]);
 
 	/**
 	 * authentication state

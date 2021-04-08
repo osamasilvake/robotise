@@ -21,7 +21,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 			/>
 
 			{/* Breadcrumb */}
-			<Breadcrumb title={title} currentLabel={currentLabel} />
+			<Breadcrumb title={title} currentLabel={currentLabel || '...'} />
 
 			{/* Divider */}
 			{!hideDivider && (

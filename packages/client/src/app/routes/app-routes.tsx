@@ -17,8 +17,10 @@ const appRoutes = {
 			ROBOTS: {
 				MAIN: '/robots',
 				DETAIL: '/robots/:id',
-				ORDER: '/robots/orders',
-				PURCHASES: '/robots/purchases'
+				INVENTORY: '/robots/:id/inventory',
+				ORDER: '/robots/:id/orders',
+				PURCHASES: '/robots/:id/purchases',
+				INFORMATION: '/robots/:id/information'
 			}
 		},
 		INFORMATION: {

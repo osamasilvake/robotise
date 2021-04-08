@@ -129,7 +129,7 @@ class AppConfigService extends EnvService {
 	 */
 	get StorageItems() {
 		return {
-			JWTAccessToken: 'robotise_jwt_access_token',
+			JWTAccessToken: 'robotise_access_token',
 			ThemePalette: 'robotise_theme_palette',
 			ChangeLanguage: 'robotise_change_language',
 			DrawerState: 'robotise_drawer_state'

@@ -6,6 +6,11 @@ import Robot from './Robot';
 
 const Robots = lazy(() => import('./Robots'));
 
+/**
+ * NOTE:
+ * the robot tabs are shown based on the robotsRoutes objects
+ * therefore, don't change the sequence of the objects.
+ */
 const robotsRoutes: RouteInterface[] = [
 	{
 		component: Robots,
@@ -16,6 +21,26 @@ const robotsRoutes: RouteInterface[] = [
 		component: Robot,
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL
+	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.INVENTORY
+	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDER
+	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES
+	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.INFORMATION
 	}
 ];
 export default robotsRoutes;

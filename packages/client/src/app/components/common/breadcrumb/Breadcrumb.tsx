@@ -35,8 +35,9 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 				const digits = /^(?=.*\d+)[0-9A-Za-z-]+$/;
 				if (digits.test(path)) {
 					return {
-						text: currentLabel || '',
-						isLast: true
+						text: currentLabel,
+						link,
+						isLast: index === paths.length - 1
 					};
 				}
 

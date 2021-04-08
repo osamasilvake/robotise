@@ -1,6 +1,6 @@
 export interface BreadcrumbInterface {
 	title: string;
-	currentLabel: string | undefined;
+	currentLabel: string;
 }
 
 export interface BreadcrumbLinksInterface {

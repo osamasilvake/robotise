@@ -31,15 +31,13 @@ const RobotContentDetail: FC = () => {
 
 		if (condition1 || condition2) {
 			// dispatch: fetch robot twins of single robot
-			// loading: robot id; current === previous
+			// loading: previous robotId !== current robotId
 			dispatch(RobotTwinsSingleRobotFetchList(cRobotId, pRobotId === cRobotId));
 		}
-	}, [dispatch, cRobotId, pRobotId, robotTwins.content]);
+	}, [dispatch, robotTwins.content, cRobotId, pRobotId]);
 
 	// loader
-	// 1. robot-twins loader
-	// 2. robot id; current !== previous
-	if (robotTwins.loader || pRobotId !== cRobotId) {
+	if (robotTwins.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
@@ -49,7 +47,15 @@ const RobotContentDetail: FC = () => {
 	}
 
 	// empty
-	if (!(robotTwins.content && robotTwins.content.data)) {
+	if (!robotTwins.content) {
+		return null;
+	}
+
+	/**
+	 * additional
+	 * previous robotId !== current robotId
+	 */
+	if (pRobotId !== cRobotId) {
 		return null;
 	}
 

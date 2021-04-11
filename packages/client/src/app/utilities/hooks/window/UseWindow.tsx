@@ -25,6 +25,7 @@ export const useWindow = (): WindowInterface => {
 			setValue(getWindow());
 		};
 		window.addEventListener('resize', handleResize);
+
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 

@@ -34,7 +34,7 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch robot map of location
+	 * fetch robot map location
 	 * @param mapId
 	 * @returns
 	 */

@@ -10,7 +10,7 @@ import { RobotContentParamsInterface } from './RobotContent.interface';
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
-	const [value, setValue] = useState(0);
+	const [value, setValue] = useState(-1);
 	const params: RobotContentParamsInterface = useParams();
 	const location = useLocation();
 	const history = useHistory();
@@ -35,14 +35,14 @@ const RobotContent: FC = () => {
 		history.push(url);
 	};
 
-	return (
+	return value !== -1 ? (
 		<Box>
 			{/* Tabs */}
 			<Tabs
 				value={value}
 				onChange={handleTabChange}
 				variant="scrollable"
-				scrollButtons="off"
+				scrollButtons="auto"
 				textColor="primary">
 				<Tab label={t('CONTENT.TABS.DETAIL')} />
 				<Tab label={t('CONTENT.TABS.INVENTORY')} />
@@ -54,23 +54,21 @@ const RobotContent: FC = () => {
 			{/* Tab Panel */}
 			<Box>
 				{/* Detail */}
-				<Box hidden={value !== 0}>
-					<RobotDetail />
-				</Box>
+				{value === 0 && <RobotDetail />}
 
 				{/* Inventory */}
-				<Box hidden={value !== 1}>Item Two</Box>
+				{value === 1 && <>Two</>}
 
 				{/* Orders */}
-				<Box hidden={value !== 2}>Item Three</Box>
+				{value === 2 && <>Three</>}
 
 				{/* Purchases */}
-				<Box hidden={value !== 3}>Item Four</Box>
+				{value === 3 && <>Four</>}
 
 				{/* Information */}
-				<Box hidden={value !== 4}>Item Five</Box>
+				{value === 4 && <>Five</>}
 			</Box>
 		</Box>
-	);
+	) : null;
 };
 export default RobotContent;

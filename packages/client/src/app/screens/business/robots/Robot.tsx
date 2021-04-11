@@ -3,12 +3,15 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 import PageHead from '../../../components/content/page-head/PageHead';
-import { robotTwinsSelector } from '../../../slices/robot-twins/RobotTwins.slice';
+import { robotTwinsSummarySelector } from '../../../slices/robot-twins/RobotTwinsSummary.slice';
 import RobotContent from './content/RobotContent';
 
 const Robot: FC = () => {
-	const robotTwins = useSelector(robotTwinsSelector);
-	const cRobotName = robotTwins.content?.data[0]?.robot.name;
+	const robotTwins = useSelector(robotTwinsSummarySelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+
+	const id = robotTwins.content?.data[0].id;
+	const cRobotName = id && robotTwinsSummary.content?.dataById[id]?.robot.name;
 
 	return (
 		<Paper elevation={12} component="section">

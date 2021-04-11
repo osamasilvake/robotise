@@ -13,6 +13,7 @@ const Listeners: FC = () => {
 	const network = useNetwork();
 
 	useEffect(() => {
+		// network connection
 		// dispatch: trigger message
 		const message: TriggerMessageInterface = {
 			id: network ? 'network-on' : 'network-off',

@@ -58,7 +58,7 @@ export const robotSelector = (state: AppReducerType) => state['robot'];
 export default dataSlice.reducer;
 
 /**
- * fetch robot map of location
+ * fetch robot map location
  * @param mapId
  * @returns
  */

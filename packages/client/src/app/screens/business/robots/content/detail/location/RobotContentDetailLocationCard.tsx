@@ -24,7 +24,7 @@ const RobotContentDetailLocationCard: FC<RobotContentDetailLocationCardInterface
 	const mapId = robot.location?.value.map.id || '';
 
 	useEffect(() => {
-		// dispatch: fetch robot map of location
+		// dispatch: fetch robot map location
 		dispatch(RobotLocationMapFetch(mapId));
 	}, [dispatch, mapId]);
 
@@ -53,7 +53,6 @@ const RobotContentDetailLocationCard: FC<RobotContentDetailLocationCardInterface
 	 * @param values
 	 */
 	const onLoad = useCallback((values: PictureOnLoadInterface) => {
-		// set ratio
 		setRatio({
 			x: values.clientWidth / values.naturalWidth,
 			y: values.clientHeight / values.naturalHeight,

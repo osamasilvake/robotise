@@ -82,6 +82,9 @@ class AppConfigService extends EnvService {
 						detail: {
 							alert: {
 								messageSizes: [50, 70]
+							},
+							camera: {
+								requestDelay: 8000
 							}
 						}
 					}

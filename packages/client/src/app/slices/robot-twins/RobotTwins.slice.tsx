@@ -3,13 +3,10 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import SitesService from '../../screens/business/sites/Sites.service';
 import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/RobotTwins.deserialize';
-import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
-import { success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RTSContentInterface, RTSInterface } from './RobotTwins.slice.interface';
 
@@ -67,7 +64,7 @@ export default dataSlice.reducer;
 export const RobotTwinsSingleRobotFetchList = (
 	robotId: string,
 	refresh = false,
-	wait = false
+	wait = -1
 ) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 	// states
 	const states = getState();
@@ -83,29 +80,19 @@ export const RobotTwinsSingleRobotFetchList = (
 	dispatch(!refresh ? loader() : loading());
 
 	// wait
-	wait && (await timeout(8000));
+	wait >= 0 && (await timeout(wait));
 
-	return (!sites.content
-		? Promise.all([
-				SitesService.sitesFetch(),
-				RobotsService.robotTwinsSingleRobotFetch(robotId)
-		  ])
-		: RobotsService.robotTwinsSingleRobotFetch(robotId)
-	)
+	return RobotsService.robotTwinsSingleRobotFetch(robotId)
 		.then(async (res) => {
-			// deserialize responses
-			const sitesRes = !sites.content ? await deserializeSites(res[0]) : sites.content;
-			const robotTwins = await deserializeRobotTwins(!sites.content ? res[1] : res);
+			// deserialize response
+			const robotTwins = await deserializeRobotTwins(res);
 
 			// prepare robot twins content
-			const result: RTSContentInterface = prepareContent(sitesRes, robotTwins);
+			if (sites && sites.content) {
+				const result: RTSContentInterface = prepareContent(sites.content, robotTwins);
 
-			// dispatch: success
-			dispatch(success(result));
-
-			// dispatch: success (sites)
-			if (!sites.content) {
-				dispatch(sitesSuccess(sitesRes));
+				// dispatch: success
+				dispatch(success(result));
 			}
 		})
 		.catch(() => {

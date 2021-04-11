@@ -10,6 +10,7 @@ import {
 	robotTwinsSelector,
 	RobotTwinsSingleRobotFetchList
 } from '../../../../../slices/robot-twins/RobotTwins.slice';
+import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import RobotDetailAlerts from './alerts/RobotContentDetailAlerts';
 import RobotContentDetailCameras from './cameras/RobotContentDetailCameras';
 import RobotDetailGeneral from './general/RobotContentDetailGeneral';
@@ -19,6 +20,7 @@ import RobotContentDetailStates from './states/RobotContentDetailStates';
 
 const RobotContentDetail: FC = () => {
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const robotTwins = useSelector(robotTwinsSelector);
 
 	const params: RobotContentDetailParamsInterface = useParams();
@@ -28,16 +30,17 @@ const RobotContentDetail: FC = () => {
 	useEffect(() => {
 		const condition1 = robotTwins.content === null && cRobotId;
 		const condition2 = robotTwins.content !== null && pRobotId !== cRobotId;
+		const condition3 = !sites.loader;
 
-		if (condition1 || condition2) {
+		if ((condition1 || condition2) && condition3) {
 			// dispatch: fetch robot twins of single robot
 			// loading: previous robotId !== current robotId
 			dispatch(RobotTwinsSingleRobotFetchList(cRobotId, pRobotId === cRobotId));
 		}
-	}, [dispatch, robotTwins.content, cRobotId, pRobotId]);
+	}, [dispatch, sites.loader, robotTwins.content, cRobotId, pRobotId]);
 
 	// loader
-	if (robotTwins.loader) {
+	if (sites.loader || robotTwins.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 

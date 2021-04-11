@@ -54,7 +54,10 @@ export default dataSlice.reducer;
 /**
  * fetch sites list
  */
-export const SitesFetchList = () => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const SitesFetchList = (refresh = false) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
 	// states
 	const states = getState();
 	const sites = states.sites;
@@ -64,8 +67,8 @@ export const SitesFetchList = () => async (dispatch: Dispatch, getState: () => A
 		return;
 	}
 
-	// dispatch: loader
-	dispatch(loading());
+	// dispatch: loader/loading
+	dispatch(!refresh ? loader() : loading());
 
 	// fetch sites list
 	return SitesService.sitesFetch()

@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Picture from '../../../../../../components/common/picture/Picture';
 import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
+import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
 import {
 	robotTwinsSelector,
@@ -50,7 +51,13 @@ const RobotContentDetailCamera: FC<RobotContentDetailCameraInterface> = (props) 
 				camera,
 				robotTwins.content?.data[0].robot.id || ''
 			),
-			dispatch(RobotTwinsSingleRobotFetchList(robot.id, true, true))
+			dispatch(
+				RobotTwinsSingleRobotFetchList(
+					robot.id,
+					true,
+					AppConfigService.AppOptions.screens.robots.content.detail.camera.requestDelay
+				)
+			)
 		])
 			.then(() => {
 				// dispatch: trigger message

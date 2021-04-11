@@ -8,7 +8,7 @@ import { AppConfigService } from '../../services';
 import { deserializeRobotTwinsSummary } from '../../utilities/serializers/json-api/RobotTwinsSummary.deserialize';
 import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
-import { success as sitesSuccess } from '../sites/Sites.slice';
+import { loader as sitesLoader, success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
 import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
@@ -80,6 +80,9 @@ export const RobotTwinsSummaryFetchList = (
 	if (robotTwinsSummary.loader || robotTwinsSummary.loading) {
 		return;
 	}
+
+	// sites loader
+	!sites.content && dispatch(sitesLoader());
 
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());

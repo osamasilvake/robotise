@@ -6,7 +6,7 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppReducerType } from '..';
-import { failure, initialState, loading, SitesFetchList, success } from './Sites.slice';
+import { failure, initialState, loader, SitesFetchList, success } from './Sites.slice';
 import { SSInterface } from './Sites.slice.interface';
 
 // mock axios
@@ -100,7 +100,7 @@ describe('[SLICE] Sites', () => {
 			.dispatch(SitesFetchList())
 			.then(() => {
 				// assert
-				const expectedActions = [loading(), success(mappedResult)];
+				const expectedActions = [loader(), success(mappedResult)];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();
@@ -127,7 +127,7 @@ describe('[SLICE] Sites', () => {
 			.dispatch(SitesFetchList())
 			.then(() => {
 				// assert
-				const expectedActions = [loading(), failure(message)];
+				const expectedActions = [loader(), failure(message)];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();

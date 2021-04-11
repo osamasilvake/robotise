@@ -18,7 +18,7 @@ type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
 const mockStore = createMockStore<SSInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Sites', () => {
-	it('[Thunk][SitesFetchList] Creates loading and success actions on successful fetch request ', () => {
+	it('[SitesFetchList] Creates loading and success actions on successful fetch request ', () => {
 		// store
 		const store = mockStore(initialState);
 
@@ -106,21 +106,18 @@ describe('[SLICE] Sites', () => {
 			.catch();
 	});
 
-	it('[Thunk][SitesFetchList] Creates loading and failure actions on unsuccessful fetch request ', () => {
-		// store
+	it('[SitesFetchList] Creates loading and failure actions on unsuccessful fetch request ', () => {
 		const store = mockStore(initialState);
 
 		// mock api once
 		const apiResponse = new Error('API.FETCH');
-		mockedAxios.get.mockRejectedValueOnce(apiResponse);
-
-		// arrange
 		const message: TriggerMessageInterface = {
 			id: 'fetch-sites-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: apiResponse.message
 		};
+		mockedAxios.get.mockRejectedValueOnce(apiResponse);
 
 		// act
 		return store

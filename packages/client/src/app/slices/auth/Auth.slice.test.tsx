@@ -45,17 +45,14 @@ describe('[SLICE] Authentication', () => {
 		AuthService.removeAccessToken();
 	});
 
-	it('[Thunk][AuthLogin] Creates loading and success actions when login succeeds ', () => {
-		// store
+	it('[AuthLogin] Creates loading and success actions when login succeeds ', () => {
 		const store = mockStore(initialState);
-
-		// arrange
+		const response = accessToken;
 		const request: AuthLoginInterface = {
 			email: 'imran.khan@robotise.eu',
 			password: 'fakePassword',
 			rememberMe: true
 		};
-		const response = accessToken;
 
 		// mock api once
 		mockedAxios.post.mockResolvedValueOnce({
@@ -78,11 +75,8 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[Thunk][AuthLogin] Creates loading and failure actions when login fails ', () => {
-		// store
+	it('[AuthLogin] Creates loading and failure actions when login fails ', () => {
 		const store = mockStore(initialState);
-
-		// request
 		const request = {
 			email: 'imran.khan@robotise.eu',
 			password: 'fakePassword'
@@ -90,15 +84,13 @@ describe('[SLICE] Authentication', () => {
 
 		// mock api once
 		const response = new Error('invalid credentials');
-		mockedAxios.post.mockRejectedValueOnce(response);
-
-		// arrange
 		const message: TriggerMessageInterface = {
 			id: 'login-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: response.message
 		};
+		mockedAxios.post.mockRejectedValueOnce(response);
 
 		// act
 		return store
@@ -111,11 +103,8 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[Thunk][AuthRefreshToken] Create failure action on empty access token ', () => {
-		// store
+	it('[AuthRefreshToken] Create failure action on empty access token ', () => {
 		const store = mockStore(initialState);
-
-		// arrange
 		const message: TriggerMessageInterface = {
 			id: 'token-empty-warn',
 			show: true,
@@ -132,11 +121,8 @@ describe('[SLICE] Authentication', () => {
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 
-	it('[Thunk][AuthRefreshToken] Creates failure and triggerMessage actions on expired access token ', () => {
-		// store
+	it('[AuthRefreshToken] Creates failure and triggerMessage actions on expired access token ', () => {
 		const store = mockStore(initialState);
-
-		// arrange
 		const message: TriggerMessageInterface = {
 			id: 'token-expired-error',
 			show: true,
@@ -156,8 +142,7 @@ describe('[SLICE] Authentication', () => {
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 
-	it('[Thunk][AuthRefreshToken] Create success action on refresh token ', () => {
-		// store
+	it('[AuthRefreshToken] Create success action on refresh token ', () => {
 		const store = mockStore(initialState);
 
 		// mock api once
@@ -178,8 +163,7 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[Thunk][AuthLogout] Creates loading and terminate actions on logout ', () => {
-		// store
+	it('[AuthLogout] Creates loading and terminate actions on logout ', () => {
 		const store = mockStore(initialState);
 
 		// act

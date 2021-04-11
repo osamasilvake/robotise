@@ -119,7 +119,7 @@ export const GeneralTriggerMessage = (message: TriggerMessageInterface) => async
  * fetch changelog
  */
 export const GeneralFetchChangelog = () => async (dispatch: Dispatch) => {
-	ChangeLogService.changelogFetch().then((res) => {
+	return ChangeLogService.changelogFetch().then((res) => {
 		// dispatch: update changelog
 		dispatch(fetchChangeLog(JSON.stringify(res)));
 	});

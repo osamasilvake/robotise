@@ -53,6 +53,8 @@ export default dataSlice.reducer;
 
 /**
  * fetch sites list
+ * @param refresh
+ * @returns
  */
 export const SitesFetchList = (refresh = false) => async (
 	dispatch: Dispatch,

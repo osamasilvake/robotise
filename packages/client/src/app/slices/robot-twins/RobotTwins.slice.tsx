@@ -6,7 +6,6 @@ import RobotsService from '../../screens/business/robots/Robots.service';
 import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/RobotTwins.deserialize';
 import { AppReducerType } from '..';
-import { triggerMessage } from '../general/General.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RTSContentInterface, RTSInterface } from './RobotTwins.slice.interface';
 
@@ -103,10 +102,7 @@ export const RobotTwinsSingleRobotFetchList = (
 				text: 'API.FETCH'
 			};
 
-			// dispatch: trigger message
-			dispatch(triggerMessage(message));
-
-			// dispatch: error
+			// dispatch: failure
 			dispatch(failure(message));
 		});
 };

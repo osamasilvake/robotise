@@ -89,7 +89,7 @@ export const SitesFetchList = (refresh = false) => async (
 				text: 'API.FETCH'
 			};
 
-			// dispatch: error
+			// dispatch: failure
 			dispatch(failure(message));
 		});
 };

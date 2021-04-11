@@ -21,8 +21,6 @@ describe('[SLICE] Sites', () => {
 	it('[SitesFetchList] Creates loading and success actions on successful fetch request ', () => {
 		// store
 		const store = mockStore(initialState);
-
-		// arrange
 		const apiResponse = {
 			data: [
 				{

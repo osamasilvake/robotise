@@ -106,7 +106,7 @@ export const AuthLogin = (payload: AuthLoginInterface) => async (dispatch: Dispa
 			// dispatch: trigger message
 			dispatch(triggerMessage(message));
 
-			// dispatch: error
+			// dispatch: failure
 			dispatch(failure(message));
 		});
 };
@@ -157,7 +157,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						// dispatch: trigger message
 						dispatch(triggerMessage(message));
 
-						// dispatch: error
+						// dispatch: failure
 						dispatch(failure(message));
 					});
 			}
@@ -172,7 +172,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			// dispatch: trigger message
 			dispatch(triggerMessage(message));
 
-			// dispatch: error
+			// dispatch: failure
 			dispatch(failure(message));
 
 			// clear authentication
@@ -186,7 +186,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			text: 'AUTH.TOKEN_EMPTY'
 		};
 
-		// dispatch: error
+		// dispatch: failure
 		dispatch(failure(message));
 	}
 };

@@ -87,10 +87,7 @@ export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatc
 				text: 'API.FETCH'
 			};
 
-			// dispatch: error
-			dispatch(failure(message));
-
-			// dispatch: error
-			dispatch(failure({ ...state, response: 'Error: MAP' }));
+			// dispatch: failure
+			dispatch(failure({ ...state, response: message }));
 		});
 };

@@ -133,7 +133,7 @@ export const RobotTwinsSummaryFetchList = (
 				text: 'API.FETCH'
 			};
 
-			// dispatch: error
+			// dispatch: failure
 			dispatch(failure(message));
 		});
 };

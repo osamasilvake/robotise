@@ -54,17 +54,16 @@ export const robotTwinsSelector = (state: AppReducerType) => state['robotTwins']
 export default dataSlice.reducer;
 
 /**
- * fetch robot twins of single robot
+ * fetch robot twins of a robot
  * @param robotId
  * @param refresh
  * @param wait
  * @returns
  */
-export const RobotTwinsSingleRobotFetchList = (
-	robotId: string,
-	refresh = false,
-	wait = -1
-) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const RobotTwinsFetchList = (robotId: string, refresh = false, wait = -1) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
 	// states
 	const states = getState();
 	const sites = states.sites;

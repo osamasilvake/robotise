@@ -1,7 +1,7 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 import log from 'loglevel';
 
-import { RobotContentDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotContentDetailCameras.enum';
+import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	IRobotTwin,
 	RTSMappedResponseDataInterface
@@ -37,10 +37,10 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 		transform: (data: IRobotTwin) => {
 			const sCameras = data.state.reported.cameras;
 			const mCameras = data.metadata.reported.cameras;
-			const cameraBase = sCameras && sCameras[RobotContentDetailCameraTypeEnum.BASE];
-			const cameraBaseMeta = cameraBase && mCameras[RobotContentDetailCameraTypeEnum.BASE];
-			const cameraTop = sCameras && sCameras[RobotContentDetailCameraTypeEnum.TOP];
-			const cameraTopMeta = cameraBase && mCameras[RobotContentDetailCameraTypeEnum.TOP];
+			const cameraBase = sCameras && sCameras[RobotDetailCameraTypeEnum.BASE];
+			const cameraBaseMeta = cameraBase && mCameras[RobotDetailCameraTypeEnum.BASE];
+			const cameraTop = sCameras && sCameras[RobotDetailCameraTypeEnum.TOP];
+			const cameraTopMeta = cameraBase && mCameras[RobotDetailCameraTypeEnum.TOP];
 
 			try {
 				const result: RTSMappedResponseDataInterface = {

@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import robotsRoutes from '../Robots.routes';
-import RobotDetail from './detail/RobotContentDetail';
+import RobotDetail from './detail/RobotDetail';
+import RobotInventory from './inventory/RobotInventory';
 import { RobotContentParamsInterface } from './RobotContent.interface';
 
 const RobotContent: FC = () => {
@@ -57,7 +58,7 @@ const RobotContent: FC = () => {
 				{value === 0 && <RobotDetail />}
 
 				{/* Inventory */}
-				{value === 1 && <>Two</>}
+				{value === 1 && <RobotInventory />}
 
 				{/* Orders */}
 				{value === 2 && <>Three</>}

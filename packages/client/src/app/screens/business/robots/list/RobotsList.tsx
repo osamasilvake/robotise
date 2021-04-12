@@ -10,7 +10,7 @@ import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
 } from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
-import RobotsListTable from './table/RobotsListTable';
+import RobotsTable from './table/RobotsTable';
 
 const RobotsList: FC = () => {
 	const dispatch = useDispatch();
@@ -71,7 +71,7 @@ const RobotsList: FC = () => {
 	return (
 		<Box>
 			{/* Table */}
-			<RobotsListTable
+			<RobotsTable
 				content={robotTwinsSummary.content}
 				page={page}
 				rowsPerPage={rowsPerPage}

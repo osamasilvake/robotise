@@ -3,16 +3,16 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
+import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
-import { RobotContentParamsInterface } from './RobotContent.interface';
 
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
 	const [value, setValue] = useState(-1);
-	const params: RobotContentParamsInterface = useParams();
+	const params: RobotParamsInterface = useParams();
 	const location = useLocation();
 	const history = useHistory();
 

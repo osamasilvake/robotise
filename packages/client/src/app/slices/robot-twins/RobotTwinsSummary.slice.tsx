@@ -77,7 +77,7 @@ export const RobotTwinsSummaryFetchList = (
 	const robotTwinsSummary = states.robotTwinsSummary;
 
 	// return on busy
-	if (robotTwinsSummary.loader || robotTwinsSummary.loading) {
+	if (robotTwinsSummary && (robotTwinsSummary.loader || robotTwinsSummary.loading)) {
 		return;
 	}
 

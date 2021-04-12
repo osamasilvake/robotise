@@ -59,7 +59,7 @@ const RobotsList: FC = () => {
 	}
 
 	// error
-	if (robotTwinsSummary.errors && robotTwinsSummary.errors.text) {
+	if (robotTwinsSummary.errors) {
 		return <PageError message={robotTwinsSummary.errors.text} />;
 	}
 

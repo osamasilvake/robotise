@@ -24,20 +24,20 @@ const RobotDetail: FC = () => {
 	const robotTwins = useSelector(robotTwinsSelector);
 
 	const params: RobotDetailParamsInterface = useParams();
-	const cRobotId = params.id;
-	const pRobotId = robotTwins.content?.data[0].id;
+	const cRobotTwinsId = params.id;
+	const pRobotTwinsId = robotTwins.content?.data[0].id;
 
 	useEffect(() => {
-		const condition1 = robotTwins.content === null && cRobotId;
-		const condition2 = robotTwins.content !== null && pRobotId !== cRobotId;
+		const condition1 = robotTwins.content === null && cRobotTwinsId;
+		const condition2 = robotTwins.content !== null && pRobotTwinsId !== cRobotTwinsId;
 		const condition3 = !sites.loader;
 
 		if ((condition1 || condition2) && condition3) {
 			// dispatch: fetch robot twins of a robot
-			// loading: previous robotId !== current robotId
-			dispatch(RobotTwinsFetchList(cRobotId, pRobotId === cRobotId));
+			// loading: previous robotTwinsId !== current robotTwinsId
+			dispatch(RobotTwinsFetchList(cRobotTwinsId, pRobotTwinsId === cRobotTwinsId));
 		}
-	}, [dispatch, sites.loader, robotTwins.content, cRobotId, pRobotId]);
+	}, [dispatch, sites.loader, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
 
 	// loader
 	if (sites.loader || robotTwins.loader) {
@@ -45,7 +45,7 @@ const RobotDetail: FC = () => {
 	}
 
 	// error
-	if (robotTwins.errors && robotTwins.errors.text) {
+	if (robotTwins.errors) {
 		return <PageError message={robotTwins.errors.text} />;
 	}
 
@@ -56,9 +56,9 @@ const RobotDetail: FC = () => {
 
 	/**
 	 * additional
-	 * previous robotId !== current robotId
+	 * previous robotTwinsId !== current robotTwinsId
 	 */
-	if (pRobotId !== cRobotId) {
+	if (pRobotTwinsId !== cRobotTwinsId) {
 		return null;
 	}
 

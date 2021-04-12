@@ -40,6 +40,9 @@ class AppConfigService extends EnvService {
 				fontFamily: {
 					Roboto: 'Roboto'
 				},
+				zIndex: {
+					two: 2
+				},
 				responsive: {
 					mobile: 600 - 1
 				}
@@ -113,12 +116,14 @@ class AppConfigService extends EnvService {
 				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`,
 				AUTO_REFRESH: `${this.envApiUrl}/auth/${this.envRealm}/refresh`
 			},
-			SITES: {
-				LIST: `${this.envApiUrl}/sites`
+			SITE: {
+				ALL: `${this.envApiUrl}/sites`,
+				PRODUCTS: `${this.envApiUrl}/products`
 			},
 			ROBOT: {
 				ALL: `${this.envApiUrl}/robots`,
-				MAP: `${this.envApiUrl}/maps`
+				MAP: `${this.envApiUrl}/maps`,
+				INVENTORY: `${this.envApiUrl}/robots`
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,

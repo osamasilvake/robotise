@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import ChangeLogService from '../../screens/information/change-log/ChangeLog.service';
 import { AppConfigService, StorageService } from '../../services';
@@ -19,7 +20,9 @@ export const initialState: GeneralSliceInterface = {
 	currentLanguage: language || GeneralLanguageTypeEnum.EN,
 	triggerMessage: {
 		id: 'init',
-		show: false
+		show: false,
+		severity: TriggerMessageTypeEnum.INFO,
+		text: 'INIT'
 	},
 	changeLog: ''
 };

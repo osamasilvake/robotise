@@ -3,12 +3,12 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
-import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
+import { deserializeProducts } from '../../utilities/serializers/json-api/Products.deserialize';
 import { AppReducerType } from '..';
-import { SSInterface } from './Sites.slice.interface';
+import { ProductsInterface } from './Products.slice.interface';
 
 // initial state
-export const initialState: SSInterface = {
+export const initialState: ProductsInterface = {
 	loader: false,
 	loading: false,
 	content: null,
@@ -17,7 +17,7 @@ export const initialState: SSInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Sites',
+	name: 'Products',
 	initialState,
 	reducers: {
 		loader: (state) => {
@@ -46,44 +46,44 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const sitesSelector = (state: AppReducerType) => state['sites'];
+export const productsSelector = (state: AppReducerType) => state['products'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch sites list
+ * fetch products
+ * @param siteId
  * @param refresh
  * @returns
  */
-export const SitesFetchList = (refresh = false) => async (
+export const ProductsFetchList = (siteId: string, refresh = false) => async (
 	dispatch: Dispatch,
 	getState: () => AppReducerType
 ) => {
 	// states
 	const states = getState();
-	const sites = states.sites;
+	const inventory = states.inventory;
 
 	// return on busy
-	if (sites && (sites.loader || sites.loading)) {
+	if (inventory && (inventory.loader || inventory.loading)) {
 		return;
 	}
 
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	// fetch sites list
-	return SitesService.sitesFetch()
+	return SitesService.siteProductsFetch(siteId)
 		.then(async (res) => {
 			// deserialize response
-			const result = await deserializeSites(res);
+			const result = await deserializeProducts(res);
 
 			// dispatch: success
 			dispatch(success(result));
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
-				id: 'fetch-sites-error',
+				id: 'fetch-products-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'API.FETCH'

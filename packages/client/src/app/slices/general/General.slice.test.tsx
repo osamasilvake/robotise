@@ -76,7 +76,8 @@ describe('[SLICE] General', () => {
 		const message: TriggerMessageInterface = {
 			id: 'general-trigger-message',
 			show: true,
-			severity: TriggerMessageTypeEnum.INFO
+			severity: TriggerMessageTypeEnum.INFO,
+			text: 'TEST'
 		};
 
 		// act

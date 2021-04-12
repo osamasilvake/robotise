@@ -18,7 +18,15 @@ const Message: FC = () => {
 	/**
 	 * dispatch: trigger message
 	 */
-	const handleCloseMessage = () => dispatch(GeneralTriggerMessage({ id: 'close', show: false }));
+	const handleCloseMessage = () =>
+		dispatch(
+			GeneralTriggerMessage({
+				id: 'close',
+				show: false,
+				severity: TriggerMessageTypeEnum.INFO,
+				text: 'CLOSED'
+			})
+		);
 
 	return (
 		<Snackbar

@@ -61,6 +61,15 @@ class RobotsService {
 			}
 		});
 	};
+
+	/**
+	 * fetch robot inventory
+	 * @param robotId
+	 */
+	robotInventoryFetch = (robotId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.INVENTORY;
+		return HttpClientService.get(`${url}/${robotId}/inventory`);
+	};
 }
 const instance = new RobotsService();
 export default instance;

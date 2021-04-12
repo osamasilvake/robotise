@@ -4,6 +4,8 @@ import ReduxLogger from 'redux-logger';
 
 import auth from './auth/Auth.slice';
 import general from './general/General.slice';
+import inventory from './inventory/Inventory.slice';
+import products from './products/Products.slice';
 import robot from './robot/Robot.slice';
 import robotTwins from './robot-twins/RobotTwins.slice';
 import robotTwinsSummary from './robot-twins/RobotTwinsSummary.slice';
@@ -13,6 +15,8 @@ import sites from './sites/Sites.slice';
 const combinedReducer = combineReducers({
 	auth,
 	general,
+	inventory,
+	products,
 	robot,
 	robotTwins,
 	robotTwinsSummary,

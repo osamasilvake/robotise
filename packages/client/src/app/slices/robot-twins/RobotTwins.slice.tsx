@@ -70,7 +70,7 @@ export const RobotTwinsFetchList = (robotId: string, refresh = false, wait = -1)
 	const robotTwins = states.robotTwins;
 
 	// return on busy
-	if (robotTwins.loader || robotTwins.loading) {
+	if (robotTwins && (robotTwins.loader || robotTwins.loading)) {
 		return;
 	}
 
@@ -87,6 +87,7 @@ export const RobotTwinsFetchList = (robotId: string, refresh = false, wait = -1)
 
 			// prepare robot twins content
 			if (sites && sites.content) {
+				// prepare robot twins content
 				const result: RTSContentInterface = prepareContent(sites.content, robotTwins);
 
 				// dispatch: success

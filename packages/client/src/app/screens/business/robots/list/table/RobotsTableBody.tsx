@@ -87,10 +87,10 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 * @param robot
 	 * @returns
 	 */
-	const handleShowRobotDetail = (robot: RTSFinalDataInterface) => () => {
+	const handleShowRobotDetail = (robotTwins: RTSFinalDataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
-		const robotLink = url.replace(':id', robot.id);
+		const robotLink = url.replace(':id', robotTwins.id);
 
 		// push to history
 		history.push(robotLink);
@@ -102,22 +102,21 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((robot: RTSFinalDataInterface) => (
+					.map((robotTwins: RTSFinalDataInterface) => (
 						<TableRow
 							hover
-							key={robot.id}
-							role="checkbox"
+							key={robotTwins.id}
 							tabIndex={-1}
 							className={clsx({
-								[classes.sTableRowWarning]: !!robot.alerts.warning,
-								[classes.sTableRowDanger]: !!robot.alerts.danger
+								[classes.sTableRowWarning]: !!robotTwins.alerts.warning,
+								[classes.sTableRowDanger]: !!robotTwins.alerts.danger
 							})}
-							onClick={handleShowRobotDetail(robot)}>
+							onClick={handleShowRobotDetail(robotTwins)}>
 							{columns.map((column: RobotsTableColumnInterface) => (
 								<RobotsTableBodyCell
 									key={column.id}
 									column={column}
-									robot={robot}
+									robot={robotTwins}
 								/>
 							))}
 						</TableRow>

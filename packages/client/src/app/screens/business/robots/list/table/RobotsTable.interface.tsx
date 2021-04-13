@@ -4,6 +4,7 @@ import {
 	RTSFinalDataInterface,
 	RTSSContentInterface
 } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 
 export interface RobotsTableInterface {
 	content: RTSSContentInterface | null;
@@ -15,22 +16,23 @@ export interface RobotsTableInterface {
 
 export interface RobotsTableHeadInterface {
 	columns: RobotsTableColumnInterface[];
-	onRequestSort: (event: MouseEvent, property: RobotsTableHeadId) => void;
+	onRequestSort: (event: MouseEvent, property: RobotsTableColumnsTypeEnum) => void;
 	order: RobotsTableHeadOrder;
-	orderBy: RobotsTableHeadId;
+	orderBy: RobotsTableColumnsTypeEnum;
 }
 
 export interface RobotsTableColumnInterface {
-	id: RobotsTableHeadId;
+	id: RobotsTableColumnsTypeEnum;
 	label: string;
 	minWidth?: number;
+	width?: number;
 	align?: RobotsTableHeadAlignment;
 }
 
 export interface RobotsTableBodyInterface {
 	content: RTSSContentInterface | null;
 	order: RobotsTableHeadOrder;
-	orderBy: RobotsTableHeadId;
+	orderBy: RobotsTableColumnsTypeEnum;
 	page: number;
 	rowsPerPage: number;
 }
@@ -41,11 +43,4 @@ export interface RobotsTableBodyCellInterface {
 }
 
 export type RobotsTableHeadOrder = 'asc' | 'desc';
-export type RobotsTableHeadId =
-	| 'robotTitle'
-	| 'siteTitle'
-	| 'isReady'
-	| 'acceptOrders'
-	| 'updatedAt'
-	| 'alerts';
 export type RobotsTableHeadAlignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

@@ -172,7 +172,7 @@
 					"STATUS": "Status",
 					"ACCEPT_ORDERS": "Accept Orders",
 					"UPDATED_AT": "Updated At",
-					"ALERTS": "Alerts (danger / warning)"
+					"ALERTS": "Alerts"
 				},
 				"VALUES": {
 					"ON": "ON",
@@ -288,7 +288,13 @@
 			},
 			"INVENTORY": {
 				"DRAWERS": {
-					"TITLE": "Drawers",
+					"TITLES": {
+						"DRAWER1": "Drawer 1",
+						"DRAWER2": "Drawer 2",
+						"DRAWER3": "Drawer 3",
+						"DRAWER4": "Drawer 4",
+						"DRAWER5": "Drawer 5"
+					},
 					"TABLE": {
 						"COLUMNS": {
 							"IMAGE": "Image",

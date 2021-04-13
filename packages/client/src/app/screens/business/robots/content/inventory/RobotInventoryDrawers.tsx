@@ -8,10 +8,14 @@ import RobotInventoryDrawer from './RobotInventoryDrawer';
 const RobotInventoryDrawers: FC = () => {
 	const inventory = useSelector(inventorySelector);
 
-	return inventory ? (
+	return inventory && inventory.content ? (
 		<Box>
-			{inventory.content?.drawers.map((drawer) => (
-				<RobotInventoryDrawer key={drawer.index} drawer={drawer} />
+			{inventory.content.drawers.map((drawer) => (
+				<RobotInventoryDrawer
+					key={drawer.index}
+					drawer={drawer}
+					isLastDrawer={(inventory.content?.drawers.length || 0) - 1 === drawer.index}
+				/>
 			))}
 		</Box>
 	) : null;

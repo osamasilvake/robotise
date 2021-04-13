@@ -2,11 +2,8 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@material-ui/cor
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-	RobotsTableColumnInterface,
-	RobotsTableHeadId,
-	RobotsTableHeadInterface
-} from './RobotsTable.interface';
+import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
+import { RobotsTableColumnInterface, RobotsTableHeadInterface } from './RobotsTable.interface';
 
 const RobotsTableHead: FC<RobotsTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;
@@ -17,7 +14,7 @@ const RobotsTableHead: FC<RobotsTableHeadInterface> = (props) => {
 	 * @param property
 	 * @returns
 	 */
-	const handleSortRequest = (property: RobotsTableHeadId) => (event: MouseEvent) => {
+	const handleSortRequest = (property: RobotsTableColumnsTypeEnum) => (event: MouseEvent) => {
 		onRequestSort(event, property);
 	};
 
@@ -28,7 +25,7 @@ const RobotsTableHead: FC<RobotsTableHeadInterface> = (props) => {
 					<TableCell
 						key={column.id}
 						align={column.align}
-						style={{ minWidth: column.minWidth }}
+						style={{ minWidth: column.minWidth, width: column.width }}
 						sortDirection={orderBy === column.id ? order : false}>
 						<TableSortLabel
 							active={orderBy === column.id}

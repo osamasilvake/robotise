@@ -9,12 +9,8 @@ import {
 	RTSSContentInterface
 } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { momentSort } from '../../../../../utilities/methods/Moment';
-import { RobotsTableSortTypeEnum } from './RobotsTable.enum';
-import {
-	RobotsTableBodyInterface,
-	RobotsTableColumnInterface,
-	RobotsTableHeadId
-} from './RobotsTable.interface';
+import { RobotsTableColumnsTypeEnum, RobotsTableSortTypeEnum } from './RobotsTable.enum';
+import { RobotsTableBodyInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
 import { RobotsListStyles } from './RobotsTable.style';
 import RobotsTableBodyCell from './RobotsTableBodyCell';
@@ -58,7 +54,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 * @param type
 	 * @returns
 	 */
-	const sortByProperty = (key: RobotsTableHeadId, type: RobotsTableSortTypeEnum) => {
+	const sortByProperty = (key: RobotsTableColumnsTypeEnum, type: RobotsTableSortTypeEnum) => {
 		return (a: RTSFinalDataInterface, b: RTSFinalDataInterface) => {
 			switch (type) {
 				case RobotsTableSortTypeEnum.DATE:

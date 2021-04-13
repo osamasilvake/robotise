@@ -1,40 +1,41 @@
+import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 import { RobotsTableColumnInterface } from './RobotsTable.interface';
 
 export const columns: RobotsTableColumnInterface[] = [
 	{
-		id: 'robotTitle',
+		id: RobotsTableColumnsTypeEnum.ROBOT_TITLE,
 		label: 'LIST.TABLE.COLUMNS.NAME',
 		minWidth: 170,
 		align: 'left'
 	},
 	{
-		id: 'siteTitle',
+		id: RobotsTableColumnsTypeEnum.SITE_TITLE,
 		label: 'LIST.TABLE.COLUMNS.SITE',
 		minWidth: 170,
 		align: 'left'
 	},
 	{
-		id: 'isReady',
+		id: RobotsTableColumnsTypeEnum.STATUS,
 		label: 'LIST.TABLE.COLUMNS.STATUS',
-		minWidth: 170,
+		width: 150,
 		align: 'left'
 	},
 	{
-		id: 'acceptOrders',
+		id: RobotsTableColumnsTypeEnum.ACCEPT_ORDER,
 		label: 'LIST.TABLE.COLUMNS.ACCEPT_ORDERS',
-		minWidth: 170,
+		width: 150,
 		align: 'left'
 	},
 	{
-		id: 'updatedAt',
+		id: RobotsTableColumnsTypeEnum.UPDATED_AT,
 		label: 'LIST.TABLE.COLUMNS.UPDATED_AT',
-		minWidth: 170,
+		width: 180,
 		align: 'left'
 	},
 	{
-		id: 'alerts',
+		id: RobotsTableColumnsTypeEnum.ALERTS,
 		label: 'LIST.TABLE.COLUMNS.ALERTS',
-		minWidth: 170,
+		width: 150,
 		align: 'right'
 	}
 ];

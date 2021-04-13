@@ -1,21 +1,17 @@
 import { InventoryContentDrawerInterface } from '../../../../../slices/inventory/Inventory.slice.interface';
+import { RobotInventoryColumnsTypeEnum } from './RobotInventory.enum';
 
 export interface RobotInventoryDrawerInterface {
 	drawer: InventoryContentDrawerInterface;
+	isLastDrawer: boolean;
 }
 
 export interface RobotInventoryTableColumnInterface {
-	id: RobotInventoryTableHeadId;
+	id: RobotInventoryColumnsTypeEnum;
 	label: string;
 	minWidth?: number;
+	width?: number;
 	align?: RobotInventoryTableHeadAlignment;
 }
 
-export type RobotInventoryTableHeadId =
-	| 'image'
-	| 'name'
-	| 'volume'
-	| 'quantity'
-	| 'capacity'
-	| 'price';
 export type RobotInventoryTableHeadAlignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

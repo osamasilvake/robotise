@@ -3,11 +3,8 @@ import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../services';
-import {
-	RobotsTableHeadId,
-	RobotsTableHeadOrder,
-	RobotsTableInterface
-} from './RobotsTable.interface';
+import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
+import { RobotsTableHeadOrder, RobotsTableInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
 import { RobotsListStyles } from './RobotsTable.style';
 import RobotsTableBody from './RobotsTableBody';
@@ -19,14 +16,16 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 	const classes = RobotsListStyles();
 
 	const [order, setOrder] = useState<RobotsTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<RobotsTableHeadId>(columns[columns.length - 1].id);
+	const [orderBy, setOrderBy] = useState<RobotsTableColumnsTypeEnum>(
+		columns[columns.length - 1].id
+	);
 
 	/**
 	 * handle sort request
 	 * @param _event
 	 * @param property
 	 */
-	const handleRequestSort = (_event: MouseEvent, property: RobotsTableHeadId) => {
+	const handleRequestSort = (_event: MouseEvent, property: RobotsTableColumnsTypeEnum) => {
 		const isAsc = orderBy === property && order === 'asc';
 
 		// set order

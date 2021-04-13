@@ -29,13 +29,13 @@ const QRCode: FC = () => {
 							</Typography>
 							<Avatar
 								variant="square"
+								className={classes.sQRCodeAvatarTooltip}
 								src={
 									general.themePalette === GeneralThemePaletteTypeEnum.DARK
 										? AppConfigService.AppImageURLs.qrCode.path.dark
 										: AppConfigService.AppImageURLs.qrCode.path.light
 								}
 								alt={AppConfigService.AppImageURLs.qrCode.name}
-								className={classes.sQRCodeAvatarTooltip}
 							/>
 						</Box>
 					</CardContent>
@@ -43,13 +43,13 @@ const QRCode: FC = () => {
 			}>
 			<Avatar
 				variant="square"
+				className={classes.sQRCodeAvatar}
 				src={
 					general.themePalette === GeneralThemePaletteTypeEnum.DARK
 						? AppConfigService.AppImageURLs.qrCode.path.dark
 						: AppConfigService.AppImageURLs.qrCode.path.light
 				}
 				alt={AppConfigService.AppImageURLs.qrCode.name}
-				className={classes.sQRCodeAvatar}
 			/>
 		</Tooltip>
 	);

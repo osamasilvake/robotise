@@ -1,40 +1,41 @@
+import { RobotInventoryColumnsTypeEnum } from './RobotInventory.enum';
 import { RobotInventoryTableColumnInterface } from './RobotInventory.interface';
 
 export const columns: RobotInventoryTableColumnInterface[] = [
 	{
-		id: 'image',
+		id: RobotInventoryColumnsTypeEnum.IMAGE,
 		label: 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS.IMAGE',
-		minWidth: 170,
+		width: 100,
 		align: 'left'
 	},
 	{
-		id: 'name',
+		id: RobotInventoryColumnsTypeEnum.NAME,
 		label: 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS.NAME',
 		minWidth: 170,
 		align: 'left'
 	},
 	{
-		id: 'volume',
+		id: RobotInventoryColumnsTypeEnum.SIZE,
 		label: 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS.SIZE',
-		minWidth: 170,
-		align: 'left'
+		width: 150,
+		align: 'center'
 	},
 	{
-		id: 'quantity',
+		id: RobotInventoryColumnsTypeEnum.QUANTITY,
 		label: 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS.QUANTITY',
-		minWidth: 170,
-		align: 'left'
+		width: 150,
+		align: 'center'
 	},
 	{
-		id: 'capacity',
+		id: RobotInventoryColumnsTypeEnum.CAPACITY,
 		label: 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS.CAPACITY',
-		minWidth: 170,
-		align: 'left'
+		width: 150,
+		align: 'center'
 	},
 	{
-		id: 'price',
+		id: RobotInventoryColumnsTypeEnum.PRICE,
 		label: 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS.PRICE',
-		minWidth: 170,
+		width: 125,
 		align: 'right'
 	}
 ];

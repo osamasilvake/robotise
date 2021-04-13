@@ -12,10 +12,13 @@ export const StatusStyles = makeStyles((theme: Theme) => ({
 	sStatusSmall: {
 		fontSize: theme.typography.pxToRem(12)
 	},
-	sStatusActive: {
+	sStatusSuccess: {
 		backgroundColor: AppConfigService.AppVariables.colors.c10
 	},
-	sStatusInActive: {
+	sStatusWarning: {
+		backgroundColor: AppConfigService.AppVariables.colors.c11
+	},
+	sStatusError: {
 		backgroundColor: AppConfigService.AppVariables.colors.c12
 	}
 }));

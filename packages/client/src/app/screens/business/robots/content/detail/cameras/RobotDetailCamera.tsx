@@ -35,6 +35,8 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const dispatch = useDispatch();
 	const robotTwins = useSelector(robotTwinsSelector);
 
+	const cameraTypeUppercase = cameraType.toUpperCase();
+
 	/**
 	 * request for robot camera image
 	 * fetch robot twins of single robot
@@ -65,7 +67,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 					id: `${camera}-success`,
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOT.CAMERAS.${camera.toUpperCase()}.SUCCESS`
+					text: `ROBOT.CAMERAS.${cameraTypeUppercase}.SUCCESS`
 				};
 				dispatch(GeneralTriggerMessage(message));
 			})
@@ -75,7 +77,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 					id: `${camera}-error`,
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOT.CAMERAS.${camera.toUpperCase()}.ERROR`
+					text: `ROBOT.CAMERAS.${cameraTypeUppercase}.ERROR`
 				};
 				dispatch(GeneralTriggerMessage(message));
 			});
@@ -85,7 +87,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		<Grid item xs={12} sm={6}>
 			{/* Label */}
 			<Typography variant="body1" color="textPrimary">
-				{t(`CONTENT.DETAIL.CAMERAS.${cameraType.toUpperCase()}`)}
+				{t(`CONTENT.DETAIL.CAMERAS.${cameraTypeUppercase}`)}
 			</Typography>
 
 			{/* Date */}

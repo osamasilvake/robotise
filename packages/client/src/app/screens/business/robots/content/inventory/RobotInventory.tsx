@@ -23,33 +23,36 @@ const RobotInventory: FC = () => {
 	const params: RobotParamsInterface = useParams();
 	const pRobotId = inventory.content?.robot.id;
 	const cRobotId = robotTwinsSummary.content?.dataById[params.id]?.robot.id;
+	const pSiteId = products.content?.site.id;
 	const cSiteId = robotTwinsSummary.content?.dataById[params.id]?.site.id;
 
 	useEffect(() => {
 		const condition1 = robotTwinsSummary.content !== null;
-		const condition2 = products.content !== null;
-		const condition3 = inventory.content === null;
-		const condition4 = inventory.content !== null && pRobotId !== cRobotId;
+		const condition2 = products.content === null;
+		const condition3 = products.content !== null && pSiteId && pSiteId !== cSiteId;
+		const condition4 = inventory.content === null;
+		const condition5 = inventory.content !== null && pRobotId && pRobotId !== cRobotId;
 
-		// prerequisite: products
-		if (cSiteId && !condition2) {
+		// products
+		if (condition2 || condition3) {
 			// dispatch: fetch products
-			dispatch(ProductsFetchList(cSiteId));
+			cSiteId && dispatch(ProductsFetchList(cSiteId));
 		}
 
 		// inventory
-		if (cRobotId && condition1 && condition2 && (condition3 || condition4)) {
+		else if (condition1 && (condition4 || condition5)) {
 			// dispatch: fetch inventory
-			dispatch(InventoryFetchList(cRobotId));
+			cRobotId && dispatch(InventoryFetchList(cRobotId));
 		}
 	}, [
 		dispatch,
 		inventory.content,
 		robotTwinsSummary.content,
 		products.content,
-		cRobotId,
+		pSiteId,
+		cSiteId,
 		pRobotId,
-		cSiteId
+		cRobotId
 	]);
 
 	// loader
@@ -64,6 +67,10 @@ const RobotInventory: FC = () => {
 
 	// empty
 	if (!inventory.content) {
+		return null;
+	}
+
+	if ((pSiteId && pSiteId !== cSiteId) || (pRobotId && pRobotId !== cRobotId)) {
 		return null;
 	}
 

@@ -163,6 +163,7 @@ const prepareContent = (
 				updatedAt: robotTwinSummary.updatedAt,
 				siteId: site.id,
 				siteTitle: site.title,
+				siteCurrency: site.currency,
 				acceptOrders: site.acceptOrders,
 				alerts: {
 					danger: danger.length,

@@ -50,6 +50,7 @@ export interface RTSFinalDataInterface {
 	robotId: string;
 	siteId: string;
 	siteTitle: string;
+	siteCurrency: string;
 	isReady: boolean;
 	acceptOrders: boolean;
 	updatedAt: Date;

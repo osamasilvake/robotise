@@ -55,6 +55,9 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				root: {
 					borderBottom: 'none'
 				},
+				head: {
+					backgroundColor: AppConfigService.AppVariables.colors.c5
+				},
 				stickyHeader: {
 					backgroundColor: AppConfigService.AppVariables.colors.c5
 				}

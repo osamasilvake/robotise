@@ -15,7 +15,11 @@ class SitesService {
 	 */
 	siteProductsFetch = (siteId: string) => {
 		const url = AppConfigService.AppServices.SITE.PRODUCTS;
-		return HttpClientService.get(`${url}?filter[site]=${siteId}`);
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
 	};
 }
 const instance = new SitesService();

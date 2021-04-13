@@ -55,6 +55,9 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 				root: {
 					borderBottom: 'none'
 				},
+				head: {
+					backgroundColor: AppConfigService.AppVariables.colors.c2
+				},
 				stickyHeader: {
 					backgroundColor: AppConfigService.AppVariables.colors.c2
 				}

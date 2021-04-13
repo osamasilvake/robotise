@@ -28,14 +28,14 @@ const RobotDetail: FC = () => {
 	const pRobotTwinsId = robotTwins.content?.data[0].id;
 
 	useEffect(() => {
-		const condition1 = robotTwins.content === null && cRobotTwinsId;
-		const condition2 = robotTwins.content !== null && pRobotTwinsId !== cRobotTwinsId;
-		const condition3 = !sites.loader;
+		const condition1 = !sites.loader;
+		const condition2 = robotTwins.content === null && cRobotTwinsId;
+		const condition3 =
+			robotTwins.content !== null && pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId;
 
-		if ((condition1 || condition2) && condition3) {
+		if (condition1 && (condition2 || condition3)) {
 			// dispatch: fetch robot twins of a robot
-			// loading: previous robotTwinsId !== current robotTwinsId
-			dispatch(RobotTwinsFetchList(cRobotTwinsId, pRobotTwinsId === cRobotTwinsId));
+			dispatch(RobotTwinsFetchList(cRobotTwinsId));
 		}
 	}, [dispatch, sites.loader, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
 
@@ -58,7 +58,7 @@ const RobotDetail: FC = () => {
 	 * additional
 	 * previous robotTwinsId !== current robotTwinsId
 	 */
-	if (pRobotTwinsId !== cRobotTwinsId) {
+	if (pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId) {
 		return null;
 	}
 

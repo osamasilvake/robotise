@@ -18,7 +18,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 					{' © '}
 					{momentCurrentYear()}
 					{' • '}
-					{AppConfigService.envAppName.toUpperCase()}
+					{AppConfigService.envAppName}
 					{': '}
 				</>
 			)}

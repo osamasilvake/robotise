@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { ProductsContentInterface } from '../products/Products.slice.interface';
+import { ProductsContentItemInterface } from '../products/Products.slice.interface';
 
 export interface InventoryInterface {
 	loader: boolean;
@@ -29,7 +29,7 @@ export interface InventoryContentRobotInterface {
 export interface InventoryContentDrawerLaneInterface {
 	index: number;
 	capacity: number;
-	product: ProductsContentInterface;
+	product: ProductsContentItemInterface | null;
 	productId: string;
 	quantity: number;
 	status: string;

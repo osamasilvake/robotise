@@ -3,11 +3,17 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 export interface ProductsInterface {
 	loader: boolean;
 	loading: boolean;
-	content: ProductsContentInterface[] | null;
+	content: ProductsContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
 export interface ProductsContentInterface {
+	data: ProductsContentItemInterface[];
+	site: ProductsContentSiteInterface;
+}
+
+export interface ProductsContentItemInterface {
+	site: ProductsContentSiteInterface;
 	id: string;
 	image: string;
 	name: string;
@@ -16,4 +22,8 @@ export interface ProductsContentInterface {
 	price: number;
 	createdAt: string;
 	updatedAt: string;
+}
+
+export interface ProductsContentSiteInterface {
+	id: string;
 }

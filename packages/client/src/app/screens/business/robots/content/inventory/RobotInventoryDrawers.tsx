@@ -8,13 +8,12 @@ import RobotInventoryDrawer from './RobotInventoryDrawer';
 const RobotInventoryDrawers: FC = () => {
 	const inventory = useSelector(inventorySelector);
 
-	return (
+	return inventory ? (
 		<Box>
-			{inventory &&
-				inventory.content?.drawers.map((drawer) => (
-					<RobotInventoryDrawer key={drawer.index} drawer={drawer} />
-				))}
+			{inventory.content?.drawers.map((drawer) => (
+				<RobotInventoryDrawer key={drawer.index} drawer={drawer} />
+			))}
 		</Box>
-	);
+	) : null;
 };
 export default RobotInventoryDrawers;

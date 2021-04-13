@@ -14,7 +14,7 @@ import {
 export const deserializeProducts = async <T extends JsonApiResponse>(payload: T) => {
 	const options: DeserializerExtendedOptions = {
 		keyForAttribute: 'camelCase',
-		robots: {
+		sites: {
 			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
 				return {
 					id: relationship.id
@@ -24,5 +24,5 @@ export const deserializeProducts = async <T extends JsonApiResponse>(payload: T)
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-	return data;
+	return { data, meta: payload.meta };
 };

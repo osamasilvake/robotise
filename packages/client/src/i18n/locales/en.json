@@ -285,6 +285,21 @@
 						}
 					}
 				}
+			},
+			"INVENTORY": {
+				"DRAWERS": {
+					"TITLE": "Drawers",
+					"TABLE": {
+						"COLUMNS": {
+							"IMAGE": "Image",
+							"NAME": "Name",
+							"SIZE": "Size",
+							"QUANTITY": "Quantity",
+							"CAPACITY": "Capacity",
+							"PRICE": "Price"
+						}
+					}
+				}
 			}
 		}
 	},

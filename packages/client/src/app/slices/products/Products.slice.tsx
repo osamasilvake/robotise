@@ -63,10 +63,10 @@ export const ProductsFetchList = (siteId: string, refresh = false) => async (
 ) => {
 	// states
 	const states = getState();
-	const inventory = states.inventory;
+	const products = states.products;
 
 	// return on busy
-	if (inventory && (inventory.loader || inventory.loading)) {
+	if (products && (products.loader || products.loading)) {
 		return;
 	}
 
@@ -79,7 +79,7 @@ export const ProductsFetchList = (siteId: string, refresh = false) => async (
 			const result = await deserializeProducts(res);
 
 			// dispatch: success
-			dispatch(success(result));
+			dispatch(success({ ...result, site: { id: siteId } }));
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {

@@ -6,8 +6,14 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppReducerType } from '..';
-import { failure, initialState, loader, SitesFetchList, success } from './Sites.slice';
-import { SSInterface } from './Sites.slice.interface';
+import {
+	failure,
+	initialState,
+	loader,
+	ProductsFetchList,
+	success
+} from '../products/Products.slice';
+import { ProductsInterface } from '../products/Products.slice.interface';
 
 // mock axios
 jest.mock('axios');
@@ -15,35 +21,31 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // mock store
 type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
-const mockStore = createMockStore<SSInterface, DispatchExts>([thunk]);
+const mockStore = createMockStore<ProductsInterface, DispatchExts>([thunk]);
 
-describe('[SLICE] Sites', () => {
-	it('[SitesFetchList] Creates loading and success actions on successful fetch request', () => {
-		// store
+describe('[SLICE] Inventory', () => {
+	it('[ProductsFetchList] Creates loading and success actions on successful fetch request', () => {
 		const store = mockStore(initialState);
+		const siteId = '10549e17-3f9a-4a01-9fde-20b953a180ed';
 		const apiResponse = {
 			data: [
 				{
 					attributes: {
-						acceptOrders: true,
-						createdAt: '2021-03-16T14:58:41.982Z',
-						timezone: 'Europe/Berlin',
-						title: 'Cliniserve / Portalklinik',
-						updatedAt: '2021-03-18T13:00:03.175Z'
+						createdAt: '2020-12-15T12:42:54.958Z',
+						image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAA',
+						length: 38,
+						name: 'Kambly Cookies',
+						price: 15,
+						updatedAt: '2021-03-31T15:30:41.080Z',
+						volume: '80g'
 					},
-					id: 'd190585d-9e8b-43a9-94fc-141c0ca7d78e',
-					relationships: {
-						robots: {
-							data: [
-								{
-									id: '4c00971b-d127-4a46-9a34-400019f2c463',
-									type: 'robots'
-								}
-							]
-						}
-					}
+					id: 'ffc23dcf-193d-4e5b-9ada-758a6ea37b8a',
+					type: 'products'
 				}
 			],
+			site: {
+				id: '10549e17-3f9a-4a01-9fde-20b953a180ed'
+			},
 			meta: {
 				hasNextPage: false,
 				hasPrevPage: false,
@@ -57,25 +59,18 @@ describe('[SLICE] Sites', () => {
 		const mappedResult = {
 			data: [
 				{
-					acceptOrders: true,
-					createdAt: '2021-03-16T14:58:41.982Z',
-					timezone: 'Europe/Berlin',
-					title: 'Cliniserve / Portalklinik',
-					updatedAt: '2021-03-18T13:00:03.175Z',
-					id: 'd190585d-9e8b-43a9-94fc-141c0ca7d78e',
-					robots: [null]
+					id: 'ffc23dcf-193d-4e5b-9ada-758a6ea37b8a',
+					createdAt: '2020-12-15T12:42:54.958Z',
+					image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAA',
+					length: 38,
+					name: 'Kambly Cookies',
+					price: 15,
+					updatedAt: '2021-03-31T15:30:41.080Z',
+					volume: '80g'
 				}
 			],
-			dataById: {
-				['d190585d-9e8b-43a9-94fc-141c0ca7d78e']: {
-					acceptOrders: true,
-					createdAt: '2021-03-16T14:58:41.982Z',
-					timezone: 'Europe/Berlin',
-					title: 'Cliniserve / Portalklinik',
-					updatedAt: '2021-03-18T13:00:03.175Z',
-					id: 'd190585d-9e8b-43a9-94fc-141c0ca7d78e',
-					robots: [null]
-				}
+			site: {
+				id: '10549e17-3f9a-4a01-9fde-20b953a180ed'
 			},
 			meta: {
 				hasNextPage: false,
@@ -95,7 +90,7 @@ describe('[SLICE] Sites', () => {
 
 		// act
 		store
-			.dispatch(SitesFetchList())
+			.dispatch(ProductsFetchList(siteId))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), success(mappedResult)];
@@ -104,22 +99,23 @@ describe('[SLICE] Sites', () => {
 			.catch();
 	});
 
-	it('[SitesFetchList] Creates loading and failure actions on unsuccessful fetch request', () => {
+	it('[ProductsFetchList] Creates loading and failure actions on unsuccessful fetch request', () => {
 		const store = mockStore(initialState);
+		const siteId = '10549e17-3f9a-4a01-9fde-20b953a180ed';
 
 		// mock api once
 		const apiResponse = new Error('API.FETCH');
 		const message: TriggerMessageInterface = {
-			id: 'fetch-sites-error',
+			id: 'fetch-products-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
-			text: apiResponse.message
+			text: 'API.FETCH'
 		};
 		mockedAxios.get.mockRejectedValueOnce(apiResponse);
 
 		// act
 		store
-			.dispatch(SitesFetchList())
+			.dispatch(ProductsFetchList(siteId))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), failure(message)];

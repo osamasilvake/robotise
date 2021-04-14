@@ -86,7 +86,7 @@ export const InventoryFetchList = (robotId: string, refresh = false) => async (
 			const inventory = await deserializeInventory(res);
 
 			// prepare inventory content
-			if (products.content) {
+			if (products && products.content) {
 				// add products to inventory
 				const result = addProductsToInventory(inventory, products.content.data);
 

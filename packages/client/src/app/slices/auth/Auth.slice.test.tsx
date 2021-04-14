@@ -45,7 +45,7 @@ describe('[SLICE] Authentication', () => {
 		AuthService.removeAccessToken();
 	});
 
-	it('[AuthLogin] Creates loading and success actions when login succeeds ', () => {
+	it('[AuthLogin] Creates loading and success actions when login succeeds', () => {
 		const store = mockStore(initialState);
 		const response = accessToken;
 		const request: AuthLoginInterface = {
@@ -62,7 +62,7 @@ describe('[SLICE] Authentication', () => {
 		});
 
 		// act
-		return store
+		store
 			.dispatch(AuthLogin(request))
 			.then(() => {
 				// assert
@@ -75,7 +75,7 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[AuthLogin] Creates loading and failure actions when login fails ', () => {
+	it('[AuthLogin] Creates loading and failure actions when login fails', () => {
 		const store = mockStore(initialState);
 		const request = {
 			email: 'imran.khan@robotise.eu',
@@ -93,7 +93,7 @@ describe('[SLICE] Authentication', () => {
 		mockedAxios.post.mockRejectedValueOnce(response);
 
 		// act
-		return store
+		store
 			.dispatch(AuthLogin(request))
 			.then(() => {
 				// assert
@@ -103,7 +103,7 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[AuthRefreshToken] Create failure action on empty access token ', () => {
+	it('[AuthRefreshToken] Create failure action on empty access token', () => {
 		const store = mockStore(initialState);
 		const message: TriggerMessageInterface = {
 			id: 'token-empty-warn',
@@ -121,7 +121,7 @@ describe('[SLICE] Authentication', () => {
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 
-	it('[AuthRefreshToken] Creates failure and triggerMessage actions on expired access token ', () => {
+	it('[AuthRefreshToken] Creates failure and triggerMessage actions on expired access token', () => {
 		const store = mockStore(initialState);
 		const message: TriggerMessageInterface = {
 			id: 'token-expired-error',
@@ -142,7 +142,7 @@ describe('[SLICE] Authentication', () => {
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 
-	it('[AuthRefreshToken] Create success action on refresh token ', () => {
+	it('[AuthRefreshToken] Create success action on refresh token', () => {
 		const store = mockStore(initialState);
 
 		// mock api once
@@ -163,7 +163,7 @@ describe('[SLICE] Authentication', () => {
 			.catch();
 	});
 
-	it('[AuthLogout] Creates loading and terminate actions on logout ', () => {
+	it('[AuthLogout] Creates loading and terminate actions on logout', () => {
 		const store = mockStore(initialState);
 
 		// act

@@ -90,7 +90,7 @@ describe('[SLICE] General', () => {
 		mockedAxios.get.mockRejectedValueOnce(apiResponse);
 
 		// act
-		return store
+		store
 			.dispatch(RobotLocationMapFetch(mapId))
 			.then(() => {
 				// assert

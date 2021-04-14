@@ -4,9 +4,9 @@ import { AppConfigService } from '../../../services';
 
 export const BadgeStyles = makeStyles((theme: Theme) => ({
 	sDot: {
-		backgroundColor: AppConfigService.AppVariables.colors.c10,
+		backgroundColor: AppConfigService.AppOptions.colors.c10,
 		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${theme.palette.background.paper}`,
-		color: AppConfigService.AppVariables.colors.c10,
+		color: AppConfigService.AppOptions.colors.c10,
 		'&::after': {
 			animation: '$ripple 1.2s infinite ease-in-out',
 			border: `${theme.typography.pxToRem(1)} solid currentColor`,

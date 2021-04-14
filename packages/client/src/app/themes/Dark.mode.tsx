@@ -14,18 +14,18 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 			...options.palette,
 			type: 'dark',
 			background: {
-				default: AppConfigService.AppVariables.colors.c1 // body
+				default: AppConfigService.AppOptions.colors.c1 // body
 			},
 			text: {
-				primary: AppConfigService.AppVariables.colors.c7,
-				secondary: AppConfigService.AppVariables.colors.c7a
+				primary: AppConfigService.AppOptions.colors.c7,
+				secondary: AppConfigService.AppOptions.colors.c7a
 			}
 		},
 		overrides: {
 			...options.overrides,
 			MuiPaper: {
 				root: {
-					backgroundColor: AppConfigService.AppVariables.colors.c1
+					backgroundColor: AppConfigService.AppOptions.colors.c1
 				},
 				elevation11: {
 					boxShadow: 'none',
@@ -40,14 +40,14 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 			},
 			MuiAppBar: {
 				root: {
-					backgroundColor: AppConfigService.AppVariables.colors.c2,
+					backgroundColor: AppConfigService.AppOptions.colors.c2,
 					boxShadow: 'none'
 				}
 			},
 			MuiDrawer: {
 				...options.overrides?.MuiDrawer,
 				paper: {
-					background: AppConfigService.AppVariables.colors.c2,
+					background: AppConfigService.AppOptions.colors.c2,
 					boxShadow: 'none'
 				}
 			},
@@ -56,37 +56,37 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					borderBottom: 'none'
 				},
 				head: {
-					backgroundColor: AppConfigService.AppVariables.colors.c2
+					backgroundColor: AppConfigService.AppOptions.colors.c2
 				},
 				stickyHeader: {
-					backgroundColor: AppConfigService.AppVariables.colors.c2
+					backgroundColor: AppConfigService.AppOptions.colors.c2
 				}
 			},
 			MuiTableRow: {
 				root: {
 					'&.MuiTableRow-hover:hover': {
-						backgroundColor: AppConfigService.AppVariables.colors.c2,
+						backgroundColor: AppConfigService.AppOptions.colors.c2,
 						cursor: 'pointer'
 					}
 				}
 			},
 			MuiTablePagination: {
 				root: {
-					backgroundColor: AppConfigService.AppVariables.colors.c2
+					backgroundColor: AppConfigService.AppOptions.colors.c2
 				}
 			},
 			MuiTabs: {
 				...options.overrides?.MuiTabs,
 				root: {
-					backgroundColor: AppConfigService.AppVariables.colors.c2
+					backgroundColor: AppConfigService.AppOptions.colors.c2
 				}
 			},
 			MuiTab: {
 				textColorPrimary: {
 					'&$selected': {
-						backgroundColor: AppConfigService.AppVariables.colors.c1,
-						borderTop: `${pxToRem(1)} solid ${AppConfigService.AppVariables.colors.c9}`,
-						color: AppConfigService.AppVariables.colors.c9
+						backgroundColor: AppConfigService.AppOptions.colors.c1,
+						borderTop: `${pxToRem(1)} solid ${AppConfigService.AppOptions.colors.c9}`,
+						color: AppConfigService.AppOptions.colors.c9
 					}
 				}
 			},
@@ -94,20 +94,20 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 				...options.overrides?.MuiCardContent,
 				root: {
 					...options.overrides?.MuiCardContent?.root,
-					backgroundColor: AppConfigService.AppVariables.colors.c2
+					backgroundColor: AppConfigService.AppOptions.colors.c2
 				}
 			},
 			MuiIconButton: {
 				...options.overrides?.MuiIconButton,
 				root: {
 					...options.overrides?.MuiIconButton?.root,
-					color: AppConfigService.AppVariables.colors.c7
+					color: AppConfigService.AppOptions.colors.c7
 				}
 			},
 			MuiTooltip: {
 				tooltip: {
-					backgroundColor: AppConfigService.AppVariables.colors.c5,
-					color: AppConfigService.AppVariables.colors.c8
+					backgroundColor: AppConfigService.AppOptions.colors.c5,
+					color: AppConfigService.AppOptions.colors.c8
 				}
 			},
 			MuiOutlinedInput: {
@@ -116,7 +116,7 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					...options.overrides?.MuiOutlinedInput?.input,
 					'&:-webkit-autofill': {
 						WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
-							AppConfigService.AppVariables.colors.c1
+							AppConfigService.AppOptions.colors.c1
 						} inset`,
 						'&::first-line': {
 							fontSize: pxToRem(16),

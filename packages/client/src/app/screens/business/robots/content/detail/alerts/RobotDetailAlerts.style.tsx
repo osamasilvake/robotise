@@ -7,18 +7,18 @@ export const RobotDetailAlertsStyles = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(4)
 	},
 	sCardContent: {
-		color: AppConfigService.AppVariables.colors.c7,
+		color: AppConfigService.AppOptions.colors.c7,
 		minHeight: 135,
 		position: 'relative'
 	},
 	sCardDanger: {
-		backgroundColor: AppConfigService.AppVariables.colors.c12
+		backgroundColor: AppConfigService.AppOptions.colors.c12
 	},
 	sCardWarning: {
-		backgroundColor: AppConfigService.AppVariables.colors.c11
+		backgroundColor: AppConfigService.AppOptions.colors.c11
 	},
 	sCardOther: {
-		backgroundColor: AppConfigService.AppVariables.colors.c13
+		backgroundColor: AppConfigService.AppOptions.colors.c13
 	},
 	sCardContentIcons: {
 		position: 'absolute',
@@ -26,7 +26,7 @@ export const RobotDetailAlertsStyles = makeStyles((theme: Theme) => ({
 		top: theme.typography.pxToRem(5)
 	},
 	sCardContentIcon: {
-		color: AppConfigService.AppVariables.colors.c7,
+		color: AppConfigService.AppOptions.colors.c7,
 		cursor: 'pointer'
 	},
 	sCardContentMessage: {

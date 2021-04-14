@@ -4,9 +4,9 @@ import CHANGE_LOG from './../../../../CHANGELOG.md';
 
 class AppConfigService extends EnvService {
 	/**
-	 * variables
+	 * options
 	 */
-	get AppVariables() {
+	get AppOptions() {
 		return {
 			colors: {
 				c1: '#313131', // dark: 			body/content
@@ -20,7 +20,7 @@ class AppConfigService extends EnvService {
 				c7: '#ffffff', // dark: 			text
 				c7a: '#9ea1a7', // dark: 			sub-text
 				c8: '#171a20', // light:			text
-				c8a: '#7c8483', // light:			sub-text
+				c8a: '#818386', // light:			sub-text
 
 				c9: '#26aee4', // dark/light: 		blue
 				c10: '#78b752', // dark/light: 		green
@@ -28,21 +28,13 @@ class AppConfigService extends EnvService {
 				c12: '#e4291c', // dark/light: 		red
 				c13: '#818386', // dark/light:		grey
 				c14: '#fba438' // dark/light:		orange
-			}
-		};
-	}
-
-	/**
-	 * general
-	 */
-	get AppOptions() {
-		return {
+			},
 			styles: {
 				fontFamily: {
 					Roboto: 'Roboto'
 				},
 				zIndex: {
-					two: 2
+					level2: 2
 				},
 				responsive: {
 					mobile: 600 - 1
@@ -77,7 +69,7 @@ class AppConfigService extends EnvService {
 				},
 				robots: {
 					list: {
-						robotTwinsRefreshInMs: 20000,
+						refreshTime: 20000,
 						showPageSizes: false,
 						defaultPageSize: 100,
 						pageSizes: [5, 10, 15, 20, 50, 100, 150]
@@ -90,6 +82,9 @@ class AppConfigService extends EnvService {
 							camera: {
 								requestDelay: 8000
 							}
+						},
+						inventory: {
+							refreshTime: 60000
 						}
 					}
 				}
@@ -146,7 +141,7 @@ class AppConfigService extends EnvService {
 	}
 
 	/**
-	 * images URLs
+	 * links
 	 */
 	get AppImageURLs() {
 		return {
@@ -174,7 +169,7 @@ class AppConfigService extends EnvService {
 	}
 
 	/**
-	 * headers for a request to backend
+	 * headers
 	 */
 	get AppRequestHeaders() {
 		return {

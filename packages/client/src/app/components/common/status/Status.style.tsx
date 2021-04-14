@@ -5,7 +5,7 @@ import { AppConfigService } from '../../../services';
 export const StatusStyles = makeStyles((theme: Theme) => ({
 	sStatus: {
 		borderRadius: theme.typography.pxToRem(2),
-		color: AppConfigService.AppVariables.colors.c7,
+		color: AppConfigService.AppOptions.colors.c7,
 		padding: theme.spacing(0.2, 0.4),
 		textTransform: 'capitalize'
 	},
@@ -13,12 +13,12 @@ export const StatusStyles = makeStyles((theme: Theme) => ({
 		fontSize: theme.typography.pxToRem(12)
 	},
 	sStatusSuccess: {
-		backgroundColor: AppConfigService.AppVariables.colors.c10
+		backgroundColor: AppConfigService.AppOptions.colors.c10
 	},
 	sStatusWarning: {
-		backgroundColor: AppConfigService.AppVariables.colors.c14
+		backgroundColor: AppConfigService.AppOptions.colors.c14
 	},
 	sStatusError: {
-		backgroundColor: AppConfigService.AppVariables.colors.c12
+		backgroundColor: AppConfigService.AppOptions.colors.c12
 	}
 }));

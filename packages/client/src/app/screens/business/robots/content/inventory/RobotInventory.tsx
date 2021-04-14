@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import PageError from '../../../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../../../services';
 import {
 	InventoryFetchList,
 	inventorySelector
@@ -54,6 +55,20 @@ const RobotInventory: FC = () => {
 		pRobotId,
 		cRobotId
 	]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch inventory
+			cRobotId && dispatch(InventoryFetchList(cRobotId, true));
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.robots.content.inventory.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, cRobotId]);
 
 	// loader
 	if (robotTwinsSummary.loader || products.loader || inventory.loader) {

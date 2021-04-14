@@ -4,6 +4,6 @@ import { AppConfigService } from '../../../../services';
 
 export const ThemePaletteStyles = makeStyles(() => ({
 	sColorThemeLight: {
-		fill: AppConfigService.AppVariables.colors.c11
+		fill: AppConfigService.AppOptions.colors.c11
 	}
 }));

@@ -7,6 +7,6 @@ export const ScrollTopStyles = makeStyles((theme: Theme) => ({
 		position: 'fixed',
 		bottom: theme.spacing(2),
 		right: theme.spacing(2),
-		zIndex: AppConfigService.AppOptions.styles.zIndex.two
+		zIndex: AppConfigService.AppOptions.styles.zIndex.level2
 	}
 }));

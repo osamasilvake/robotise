@@ -8,9 +8,9 @@ export const RobotsListStyles = makeStyles((theme: Theme) => ({
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
 	},
 	sTableRowWarning: {
-		backgroundColor: fade(AppConfigService.AppVariables.colors.c11, 0.15)
+		backgroundColor: fade(AppConfigService.AppOptions.colors.c11, 0.15)
 	},
 	sTableRowDanger: {
-		backgroundColor: fade(AppConfigService.AppVariables.colors.c12, 0.15)
+		backgroundColor: fade(AppConfigService.AppOptions.colors.c12, 0.15)
 	}
 }));

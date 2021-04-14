@@ -39,11 +39,11 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 		!RobotTwinsSummary.content && executeServices();
 
 		// interval
-		const timeoutID = window.setInterval(
+		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.list.robotTwinsRefreshInMs
+			AppConfigService.AppOptions.screens.robots.list.refreshTime
 		);
-		return () => window.clearInterval(timeoutID);
+		return () => window.clearInterval(intervalId);
 	}, [dispatch, auth.user, RobotTwinsSummary.content]);
 
 	/**

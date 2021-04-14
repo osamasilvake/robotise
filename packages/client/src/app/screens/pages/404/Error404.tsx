@@ -13,7 +13,7 @@ const Error404: FC = () => {
 	const classes = Error404Styles();
 
 	return (
-		<Paper elevation={12} component="section">
+		<Paper elevation={12} component="section" square>
 			<Error error={ErrorTypeEnum.E404}>
 				<Typography variant="h1" className={classes.sTitle}>
 					{t('E404.TITLE')}

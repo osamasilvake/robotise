@@ -79,7 +79,7 @@ const RobotInventoryDrawer: FC<RobotInventoryDrawerInterface> = (props) => {
 							(lane.product && lane.product[column.id]) ||
 							AppConfigService.AppImageURLs.logo.iconOff
 						}
-						alt={lane.product ? lane.product.name : ''}
+						alt={lane.product ? lane.product.name : 'product'}
 					/>
 				);
 			case RobotInventoryColumnsTypeEnum.QUANTITY:
@@ -110,7 +110,7 @@ const RobotInventoryDrawer: FC<RobotInventoryDrawerInterface> = (props) => {
 				className={clsx({
 					[classes.sTableContainer]: !isLastDrawer
 				})}>
-				<Table size="small">
+				<Table>
 					<TableHead>
 						<TableRow>
 							{columns.map((column: RobotInventoryTableColumnInterface) => (

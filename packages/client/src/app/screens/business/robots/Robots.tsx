@@ -6,7 +6,7 @@ import RobotsList from './list/RobotsList';
 
 const Robots: FC = () => {
 	return (
-		<Paper elevation={12} component="section">
+		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
 			<PageHead title="ROBOTS.TITLE" description="ROBOTS.DESCRIPTION" />
 

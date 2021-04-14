@@ -11,7 +11,7 @@ const About: FC = () => {
 	const classes = AboutStyles();
 
 	return (
-		<Paper square elevation={12} component="section">
+		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
 			<PageHead title="ABOUT.TITLE" description="ABOUT.DESCRIPTION" />
 

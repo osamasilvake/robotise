@@ -16,7 +16,7 @@ export const StatusStyles = makeStyles((theme: Theme) => ({
 		backgroundColor: AppConfigService.AppVariables.colors.c10
 	},
 	sStatusWarning: {
-		backgroundColor: AppConfigService.AppVariables.colors.c11
+		backgroundColor: AppConfigService.AppVariables.colors.c14
 	},
 	sStatusError: {
 		backgroundColor: AppConfigService.AppVariables.colors.c12

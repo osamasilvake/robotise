@@ -19,7 +19,7 @@ const ChangeLog: FC = () => {
 	}, [dispatch, general.changeLog]);
 
 	return (
-		<Paper elevation={12} component="section">
+		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
 			<PageHead title="CHANGE_LOG.TITLE" />
 

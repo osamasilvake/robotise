@@ -9,7 +9,7 @@ class AppConfigService extends EnvService {
 	get AppVariables() {
 		return {
 			colors: {
-				c1: '#333435', // dark: 			body/content
+				c1: '#313131', // dark: 			body/content
 				c2: '#383a3c', // dark:				paper
 				c3: '#2e2e31', // dark: 			box-shadow
 
@@ -26,7 +26,8 @@ class AppConfigService extends EnvService {
 				c10: '#78b752', // dark/light: 		green
 				c11: '#e8ba0e', // dark/light: 		yellow
 				c12: '#e4291c', // dark/light: 		red
-				c13: '#818386' // dark/light:		grey
+				c13: '#818386', // dark/light:		grey
+				c14: '#fba438' // dark/light:		orange
 			}
 		};
 	}

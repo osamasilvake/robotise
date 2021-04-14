@@ -16,7 +16,7 @@ const Robot: FC = () => {
 	const cRobotName = robotTwinsSummary.content?.dataById[params.id]?.robot.name;
 
 	return (
-		<Paper elevation={12} component="section">
+		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
 			<PageHead
 				title="ROBOTS.ROBOT.TITLE"

@@ -13,7 +13,7 @@ const RobotDetailLocationCardIcon: FC<RobotDetailLocationCardIconInterface> = (p
 			className={classes.sLocationCardIcon}
 			style={{
 				left: pointCoords.x,
-				top: pointCoords.y,
+				bottom: pointCoords.y,
 				transform: `translate(-50%, 50%) rotate(${
 					pointCoords.yaw < 0 ? Math.abs(pointCoords.yaw) : -pointCoords.yaw
 				}deg)`

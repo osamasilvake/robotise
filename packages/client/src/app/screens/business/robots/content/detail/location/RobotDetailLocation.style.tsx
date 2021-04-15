@@ -25,12 +25,10 @@ export const RobotDetailLocationStyles = makeStyles((theme: Theme) => ({
 		}
 	},
 	sLocationCardIcon: {
-		bottom: 0,
 		fill: AppConfigService.AppOptions.colors.c12,
 		left: 0,
 		position: 'absolute',
 		right: 0,
-		top: 0,
 		transition: 'top 1s ease 0s',
 		transitionProperty: 'left, top',
 		width: theme.typography.pxToRem(16)

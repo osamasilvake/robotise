@@ -1,4 +1,4 @@
-import { Box, CardMedia, Divider, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, CardMedia, Divider, Grid, Link, Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -25,10 +25,16 @@ const About: FC = () => {
 					<br />
 					<Typography variant="h6">{t('INFO.CONTACT.TITLE')}</Typography>
 					<Typography variant="body1">
-						{t('INFO.CONTACT.TEL.LABEL')}: {t('INFO.CONTACT.TEL.VALUE')}
+						{t('INFO.CONTACT.TEL.LABEL')}:{' '}
+						<Link href={`tel:${t('INFO.CONTACT.TEL.VALUE')}`}>
+							{t('INFO.CONTACT.TEL.VALUE')}
+						</Link>
 					</Typography>
 					<Typography variant="body1">
-						{t('INFO.CONTACT.EMAIL.LABEL')}: {t('INFO.CONTACT.EMAIL.VALUE')}
+						{t('INFO.CONTACT.EMAIL.LABEL')}:{' '}
+						<Link href={`mailto:${t('INFO.CONTACT.EMAIL.VALUE')}`}>
+							{t('INFO.CONTACT.EMAIL.VALUE')}
+						</Link>
 					</Typography>
 					<br />
 					<Typography variant="h6">{t('INFO.REGISTRY.TITLE')}</Typography>

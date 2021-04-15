@@ -92,8 +92,8 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 				page={page}
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPage={rowsPerPage}
-				onChangePage={handleChangePage}
-				onChangeRowsPerPage={handleChangeRowsPerPage}
+				onPageChange={handleChangePage}
+				onRowsPerPageChange={handleChangeRowsPerPage}
 			/>
 		</Box>
 	);

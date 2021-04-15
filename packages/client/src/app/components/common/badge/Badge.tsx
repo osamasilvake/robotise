@@ -21,7 +21,7 @@ const AppBadge: FC<BadgeInterface> = (props) => {
 		<Badge
 			variant="dot"
 			classes={{ badge: classes.sDot }}
-			overlap="circle"
+			overlap="circular"
 			anchorOrigin={{
 				vertical: 'bottom',
 				horizontal: 'right'

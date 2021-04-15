@@ -1,7 +1,8 @@
 import {
+	createMuiTheme,
 	CssBaseline,
 	MuiThemeProvider,
-	unstable_createMuiStrictModeTheme as createMuiTheme
+	StyledEngineProvider
 } from '@material-ui/core';
 import { FC, Suspense, useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
@@ -40,28 +41,31 @@ const App: FC = () => {
 
 	return (
 		<MuiThemeProvider theme={theme}>
-			{/* UI baseline */}
-			<CssBaseline />
+			{/* Precedence to makeStyles */}
+			<StyledEngineProvider injectFirst>
+				{/* UI baseline */}
+				<CssBaseline />
 
-			<HelmetProvider>
-				{/* Meta: General Top-Level */}
-				<Meta />
+				<HelmetProvider>
+					{/* Meta: General Top-Level */}
+					<Meta />
 
-				<ErrorBoundary>
-					<Suspense fallback={<Loader />}>
-						<Routes />
-					</Suspense>
-				</ErrorBoundary>
-			</HelmetProvider>
+					<ErrorBoundary>
+						<Suspense fallback={<Loader />}>
+							<Routes />
+						</Suspense>
+					</ErrorBoundary>
+				</HelmetProvider>
 
-			{/* Message: Snackbar for Notifications */}
-			<Message />
+				{/* Message: Snackbar for Notifications */}
+				<Message />
 
-			{/* Scroll-Top */}
-			<ScrollTop />
+				{/* Scroll-Top */}
+				<ScrollTop />
 
-			{/* Listeners: Network */}
-			<Listeners />
+				{/* Listeners: Network */}
+				<Listeners />
+			</StyledEngineProvider>
 		</MuiThemeProvider>
 	);
 };

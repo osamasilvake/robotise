@@ -12,7 +12,7 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 		...options,
 		palette: {
 			...options.palette,
-			type: 'dark',
+			mode: 'dark',
 			background: {
 				default: AppConfigService.AppOptions.colors.c1 // body
 			},
@@ -21,113 +21,148 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 				secondary: AppConfigService.AppOptions.colors.c7a
 			}
 		},
-		overrides: {
-			...options.overrides,
+		components: {
+			...options.components,
 			MuiPaper: {
-				root: {
-					backgroundColor: AppConfigService.AppOptions.colors.c1
-				},
-				elevation11: {
-					boxShadow: 'none',
-					padding: `${pxToRem(15)} ${pxToRem(20)}`,
-					transition: 'none'
-				},
-				elevation12: {
-					boxShadow: 'none',
-					padding: pxToRem(20),
-					transition: 'none'
+				styleOverrides: {
+					root: {
+						backgroundColor: AppConfigService.AppOptions.colors.c1
+					},
+					elevation11: {
+						boxShadow: 'none',
+						padding: `${pxToRem(15)} ${pxToRem(20)}`,
+						transition: 'none'
+					},
+					elevation12: {
+						boxShadow: 'none',
+						padding: pxToRem(20),
+						transition: 'none'
+					}
 				}
 			},
 			MuiAppBar: {
-				root: {
-					backgroundColor: AppConfigService.AppOptions.colors.c2,
-					boxShadow: 'none'
+				styleOverrides: {
+					root: {
+						backgroundColor: AppConfigService.AppOptions.colors.c2,
+						boxShadow: 'none'
+					}
 				}
 			},
 			MuiDrawer: {
-				...options.overrides?.MuiDrawer,
-				paper: {
-					background: AppConfigService.AppOptions.colors.c2,
-					boxShadow: 'none'
+				styleOverrides: {
+					...options.components?.MuiDrawer?.styleOverrides,
+					paper: {
+						background: AppConfigService.AppOptions.colors.c2,
+						boxShadow: 'none'
+					}
 				}
 			},
 			MuiPopover: {
-				...options.overrides?.MuiPopover,
-				paper: {
-					...options.overrides?.MuiPopover?.paper,
-					backgroundColor: AppConfigService.AppOptions.colors.c2
+				styleOverrides: {
+					...options.components?.MuiPopover?.styleOverrides,
+					paper: {
+						...options.components?.MuiPopover?.styleOverrides?.paper,
+						backgroundColor: AppConfigService.AppOptions.colors.c2
+					}
 				}
 			},
 			MuiTableCell: {
-				root: {
-					borderBottom: 'none'
-				},
-				head: {
-					backgroundColor: AppConfigService.AppOptions.colors.c2
-				},
-				stickyHeader: {
-					backgroundColor: AppConfigService.AppOptions.colors.c2
+				styleOverrides: {
+					root: {
+						borderBottom: 'none'
+					},
+					head: {
+						backgroundColor: AppConfigService.AppOptions.colors.c2
+					},
+					stickyHeader: {
+						backgroundColor: AppConfigService.AppOptions.colors.c2
+					}
 				}
 			},
 			MuiTableRow: {
-				root: {
-					'&.MuiTableRow-hover:hover': {
-						backgroundColor: AppConfigService.AppOptions.colors.c2,
-						cursor: 'pointer'
+				styleOverrides: {
+					root: {
+						'&.MuiTableRow-hover:hover': {
+							backgroundColor: AppConfigService.AppOptions.colors.c2,
+							cursor: 'pointer'
+						}
 					}
 				}
 			},
 			MuiTablePagination: {
-				root: {
-					backgroundColor: AppConfigService.AppOptions.colors.c2
+				styleOverrides: {
+					root: {
+						backgroundColor: AppConfigService.AppOptions.colors.c2
+					}
 				}
 			},
 			MuiTabs: {
-				...options.overrides?.MuiTabs,
-				root: {
-					backgroundColor: AppConfigService.AppOptions.colors.c2
+				styleOverrides: {
+					...options.components?.MuiTabs?.styleOverrides,
+					root: {
+						backgroundColor: AppConfigService.AppOptions.colors.c2
+					}
 				}
 			},
 			MuiTab: {
-				textColorPrimary: {
-					'&$selected': {
-						backgroundColor: AppConfigService.AppOptions.colors.c1,
-						borderTop: `${pxToRem(1)} solid ${AppConfigService.AppOptions.colors.c9}`,
-						color: AppConfigService.AppOptions.colors.c9
+				styleOverrides: {
+					textColorPrimary: {
+						'&$selected': {
+							backgroundColor: AppConfigService.AppOptions.colors.c1,
+							borderTop: `${pxToRem(1)} solid ${
+								AppConfigService.AppOptions.colors.c9
+							}`,
+							color: AppConfigService.AppOptions.colors.c9
+						}
+					}
+				}
+			},
+			MuiListSubheader: {
+				styleOverrides: {
+					root: {
+						backgroundColor: AppConfigService.AppOptions.colors.c2
 					}
 				}
 			},
 			MuiCardContent: {
-				...options.overrides?.MuiCardContent,
-				root: {
-					...options.overrides?.MuiCardContent?.root,
-					backgroundColor: AppConfigService.AppOptions.colors.c2
+				styleOverrides: {
+					...options.components?.MuiCardContent?.styleOverrides,
+					root: {
+						...options.components?.MuiCardContent?.styleOverrides?.root,
+						backgroundColor: AppConfigService.AppOptions.colors.c2
+					}
 				}
 			},
 			MuiIconButton: {
-				...options.overrides?.MuiIconButton,
-				root: {
-					...options.overrides?.MuiIconButton?.root,
-					color: AppConfigService.AppOptions.colors.c7
+				styleOverrides: {
+					...options.components?.MuiIconButton?.styleOverrides,
+					root: {
+						...options.components?.MuiIconButton?.styleOverrides?.root,
+						color: AppConfigService.AppOptions.colors.c7
+					}
 				}
 			},
 			MuiTooltip: {
-				tooltip: {
-					backgroundColor: AppConfigService.AppOptions.colors.c5,
-					color: AppConfigService.AppOptions.colors.c8
+				styleOverrides: {
+					tooltip: {
+						backgroundColor: AppConfigService.AppOptions.colors.c5,
+						color: AppConfigService.AppOptions.colors.c8
+					}
 				}
 			},
 			MuiOutlinedInput: {
-				...options.overrides?.MuiOutlinedInput,
-				input: {
-					...options.overrides?.MuiOutlinedInput?.input,
-					'&:-webkit-autofill': {
-						WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
-							AppConfigService.AppOptions.colors.c1
-						} inset`,
-						'&::first-line': {
-							fontSize: pxToRem(16),
-							fontFamily: AppConfigService.AppOptions.styles.fontFamily.Roboto
+				styleOverrides: {
+					...options.components?.MuiOutlinedInput?.styleOverrides,
+					input: {
+						...options.components?.MuiOutlinedInput?.styleOverrides?.input,
+						'&:-webkit-autofill': {
+							WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
+								AppConfigService.AppOptions.colors.c1
+							} inset`,
+							'&::first-line': {
+								fontSize: pxToRem(16),
+								fontFamily: AppConfigService.AppOptions.styles.fontFamily.Roboto
+							}
 						}
 					}
 				}

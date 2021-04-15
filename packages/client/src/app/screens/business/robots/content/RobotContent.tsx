@@ -1,5 +1,5 @@
 import { Box, Tab, Tabs } from '@material-ui/core';
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const RobotContent: FC = () => {
 	 * @param _event
 	 * @param value
 	 */
-	const handleTabChange = (_event: ChangeEvent<unknown>, value: number) => {
+	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
 		const url = robotsRoutes[value + 1].path.replace(':id', params.id);
 
@@ -43,7 +43,7 @@ const RobotContent: FC = () => {
 				value={value}
 				onChange={handleTabChange}
 				variant="scrollable"
-				scrollButtons="auto"
+				allowScrollButtonsMobile
 				textColor="primary">
 				<Tab label={t('CONTENT.TABS.DETAIL')} />
 				<Tab label={t('CONTENT.TABS.INVENTORY')} />

@@ -17,7 +17,6 @@ const TooltipCustom: FC<TooltipInterface> = (props) => {
 
 	return (
 		<Tooltip
-			interactive
 			classes={{
 				tooltip: classes.sTooltip
 			}}

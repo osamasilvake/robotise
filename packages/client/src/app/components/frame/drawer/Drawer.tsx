@@ -118,10 +118,7 @@ const DrawerCustom: FC = () => {
 										<Icon>{item.icon}</Icon>
 									)}
 								</ListItemIcon>
-								<ListItemText
-									primary={t(item.label)}
-									secondary={item.hint && t(item.hint)}
-								/>
+								<ListItemText primary={t(item.label)} secondary={item.hint} />
 							</ListItem>
 						))}
 					</List>

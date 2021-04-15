@@ -21,12 +21,15 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const [pointCoords, setPointCoords] = useState({ x: 0, y: 0, yaw: 0 });
 	const [ratio, setRatio] = useState({ x: 0, y: 0, cx: 0, cy: 0 });
 
-	const mapId = robot.location?.value.map.id || '';
+	const robotTwinsMapId = robot.location?.value.map.id || '';
+	const robotMapId = sRobot.map.content?.name || '';
 
 	useEffect(() => {
-		// dispatch: fetch robot map location
-		dispatch(RobotLocationMapFetch(mapId));
-	}, [dispatch, mapId]);
+		if (robotTwinsMapId !== robotMapId) {
+			// dispatch: fetch robot map location
+			dispatch(RobotLocationMapFetch(robotTwinsMapId));
+		}
+	}, [dispatch, robotTwinsMapId, robotMapId]);
 
 	useEffect(() => {
 		const origin = sRobot.map.content?.origin;
@@ -70,7 +73,11 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 						className={clsx({
 							[classes.sLocationCardGridLines]: grid
 						})}>
-						<Picture src={robotLocationImageUrl(mapId)} alt={mapId} onLoad={onLoad} />
+						<Picture
+							src={robotLocationImageUrl(robotTwinsMapId)}
+							alt={robotTwinsMapId}
+							onLoad={onLoad}
+						/>
 					</Box>
 
 					{/* Icon */}

@@ -7,14 +7,14 @@ const drawerBusinessList: DrawerListInterface[] = [
 		id: 1,
 		icon: 'apartment',
 		label: 'BUSINESS.LIST.SITES.LABEL',
-		hint: 'BUSINESS.LIST.SITES.HINT',
+		hint: '🏢  🍜',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN
 	},
 	{
 		id: 2,
 		icon: 'android',
 		label: 'BUSINESS.LIST.ROBOTS.LABEL',
-		hint: 'BUSINESS.LIST.ROBOTS.HINT',
+		hint: '🤖  🗄  📦  🛒',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN,
 		badge: DrawerListBadgeTypeEnum.ROBOT
 	}

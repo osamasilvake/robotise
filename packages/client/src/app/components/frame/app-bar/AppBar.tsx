@@ -123,6 +123,7 @@ const AppBarCustom: FC = () => {
 						</Badge>
 					</IconButton>
 					<Popover
+						elevation={2}
 						anchorEl={anchorEl}
 						open={Boolean(anchorEl)}
 						onClose={handleMenuClose}

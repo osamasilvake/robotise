@@ -51,6 +51,13 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 					boxShadow: 'none'
 				}
 			},
+			MuiPopover: {
+				...options.overrides?.MuiPopover,
+				paper: {
+					...options.overrides?.MuiPopover?.paper,
+					backgroundColor: AppConfigService.AppOptions.colors.c5
+				}
+			},
 			MuiTableCell: {
 				root: {
 					borderBottom: 'none'

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import PageError from '../../../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../../../services';
 import {
 	RobotTwinsFetchList,
 	robotTwinsSelector
@@ -39,6 +40,20 @@ const RobotDetail: FC = () => {
 		}
 	}, [dispatch, sites.loader, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
 
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch robot twins of a robot
+			dispatch(RobotTwinsFetchList(cRobotTwinsId, true));
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.robots.content.detail.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, cRobotTwinsId]);
+
 	// loader
 	if (sites.loader || robotTwins.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
@@ -51,14 +66,6 @@ const RobotDetail: FC = () => {
 
 	// empty
 	if (!robotTwins.content) {
-		return null;
-	}
-
-	/**
-	 * additional
-	 * previous robotTwinsId !== current robotTwinsId
-	 */
-	if (pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId) {
 		return null;
 	}
 

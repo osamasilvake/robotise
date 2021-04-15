@@ -37,16 +37,24 @@ const OverridesCustom: Overrides = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					'& svg, span, p': {
-						color: AppConfigService.AppOptions.colors.c5
+						color: AppConfigService.AppOptions.colors.c4
 					}
 				},
 				'&.active': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					'& svg, span, p': {
-						color: AppConfigService.AppOptions.colors.c5
+						color: AppConfigService.AppOptions.colors.c4
 					}
 				}
 			}
+		},
+		button: {
+			transition: 'none'
+		}
+	},
+	MuiListItemIcon: {
+		root: {
+			color: AppConfigService.AppOptions.colors.c8a
 		}
 	},
 	MuiCardContent: {

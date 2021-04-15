@@ -142,12 +142,10 @@
 			},
 			"LIST": {
 				"SITES": {
-					"LABEL": "Sites",
-					"HINT": "products etc."
+					"LABEL": "Sites"
 				},
 				"ROBOTS": {
-					"LABEL": "Robots",
-					"HINT": "orders, purchases etc."
+					"LABEL": "Robots"
 				}
 			}
 		},

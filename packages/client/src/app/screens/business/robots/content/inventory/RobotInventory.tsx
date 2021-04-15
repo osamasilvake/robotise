@@ -85,10 +85,6 @@ const RobotInventory: FC = () => {
 		return null;
 	}
 
-	if ((pSiteId && pSiteId !== cSiteId) || (pRobotId && pRobotId !== cRobotId)) {
-		return null;
-	}
-
 	return <RobotInventoryDrawers />;
 };
 export default RobotInventory;

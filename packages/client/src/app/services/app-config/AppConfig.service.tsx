@@ -76,6 +76,7 @@ class AppConfigService extends EnvService {
 					},
 					content: {
 						detail: {
+							refreshTime: 30000,
 							alert: {
 								messageSizes: [50, 70]
 							},
@@ -84,7 +85,7 @@ class AppConfigService extends EnvService {
 							}
 						},
 						inventory: {
-							refreshTime: 60000
+							refreshTime: 30000
 						}
 					}
 				}

@@ -61,6 +61,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [Material-UI](https://material-ui.com/)
+- [X] [Emotion](https://github.com/emotion-js/emotion/)
 - [X] [clsx](https://github.com/lukeed/clsx/)
 - [X] [Axios](https://github.com/axios/axios/)
 - [X] [JSON-API Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer/)

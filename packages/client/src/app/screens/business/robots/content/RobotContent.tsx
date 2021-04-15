@@ -39,12 +39,7 @@ const RobotContent: FC = () => {
 	return value !== -1 ? (
 		<Box>
 			{/* Tabs */}
-			<Tabs
-				value={value}
-				onChange={handleTabChange}
-				variant="scrollable"
-				allowScrollButtonsMobile
-				textColor="primary">
+			<Tabs value={value} onChange={handleTabChange} variant="scrollable" textColor="primary">
 				<Tab label={t('CONTENT.TABS.DETAIL')} />
 				<Tab label={t('CONTENT.TABS.INVENTORY')} />
 				<Tab label={t('CONTENT.TABS.ORDERS')} />

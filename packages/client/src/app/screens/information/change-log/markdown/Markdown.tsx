@@ -10,7 +10,7 @@ import { MarkdownStyles } from './Markdown.style';
  * heading
  * @param props
  */
-const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
+const MarkdownHeading: FC<any> = (props) => {
 	const { level, children } = props;
 	const classes = MarkdownStyles();
 
@@ -48,7 +48,7 @@ const MarkdownHeading: FC<MarkdownHeadingInterface> = (props) => {
 	const condition1 = /[h][1]/g.test(component);
 	const condition2 = /[h][2]/g.test(component);
 
-	return children && children[0] && children[0].props.value !== 'Change Log' ? (
+	return children && children[0] !== 'Change Log' ? (
 		<Typography
 			component={component}
 			variant={variant}
@@ -84,7 +84,11 @@ const MarkdownParagraph: FC = (props) => {
 const MarkdownList: FC = (props) => {
 	const classes = MarkdownStyles();
 
-	return <ul className={classes.sList}>{props.children}</ul>;
+	return (
+		<Typography component="ul" className={classes.sList}>
+			{props.children}
+		</Typography>
+	);
 };
 
 /**
@@ -95,16 +99,21 @@ const MarkdownListItem: FC = (props) => {
 	const classes = MarkdownStyles();
 
 	return (
-		<li className={classes.sListItem}>
+		<Typography component="li" className={classes.sListItem}>
 			<Typography variant="body1">{props.children}</Typography>
-		</li>
+		</Typography>
 	);
 };
 
 export const MarkdownRenderers = {
-	heading: MarkdownHeading,
-	paragraph: MarkdownParagraph,
-	link: Link,
-	list: MarkdownList,
-	listItem: MarkdownListItem
+	h1: MarkdownHeading,
+	h2: MarkdownHeading,
+	h3: MarkdownHeading,
+	h4: MarkdownHeading,
+	h5: MarkdownHeading,
+	h6: MarkdownHeading,
+	p: MarkdownParagraph,
+	a: Link,
+	ul: MarkdownList,
+	li: MarkdownListItem
 };

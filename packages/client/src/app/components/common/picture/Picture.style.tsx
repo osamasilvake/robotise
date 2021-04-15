@@ -9,7 +9,7 @@ export const PictureStyles = makeStyles((theme: Theme) => ({
 		width: '100%'
 	},
 	sFallback: {
-		margin: theme.spacing(0, 'auto'),
+		margin: `0 auto`,
 		width: theme.typography.pxToRem(40)
 	}
 }));

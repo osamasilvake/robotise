@@ -9,7 +9,7 @@ export const RobotDetailGeneralStyles = makeStyles((theme: Theme) => ({
 	},
 	sGeneralLastItem: {
 		textAlign: 'right',
-		[theme.breakpoints.down('md')]: {
+		[theme.breakpoints.down('lg')]: {
 			textAlign: 'left'
 		}
 	},

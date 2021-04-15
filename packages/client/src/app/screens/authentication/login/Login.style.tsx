@@ -23,7 +23,7 @@ export const LoginStyles = makeStyles((theme: Theme) => ({
 		margin: theme.spacing(14, 4, 4)
 	},
 	sAvatar: {
-		margin: theme.spacing(3, 'auto'),
+		margin: `${theme.spacing(3)} auto`,
 		width: theme.spacing(20)
 	},
 	sForm: {

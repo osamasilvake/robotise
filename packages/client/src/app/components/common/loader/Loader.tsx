@@ -19,7 +19,7 @@ const Loader: FC<LoaderInterface> = (props) => {
 			return <LinearProgress />;
 		case LoaderTypeEnum.PAGE_LOADER:
 			return (
-				<Box textAlign="center" className={classes.sLinear}>
+				<Box className={classes.sLinear}>
 					{spinnerText && (
 						<Typography
 							variant="body2"
@@ -34,7 +34,7 @@ const Loader: FC<LoaderInterface> = (props) => {
 		case LoaderTypeEnum.APP_LOADER:
 		default:
 			return (
-				<Box className={centerClasses.sVHFlex} textAlign="center">
+				<Box className={centerClasses.sVHFlex}>
 					<Box className={classes.sCircularAvatar}>
 						<Avatar
 							className={classes.sAvatar}

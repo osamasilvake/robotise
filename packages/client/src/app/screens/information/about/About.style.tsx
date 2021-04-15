@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core';
 
 export const AboutStyles = makeStyles((theme: Theme) => ({
 	sMediaGrid: {
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			marginTop: theme.typography.pxToRem(15)
 		}
 	},

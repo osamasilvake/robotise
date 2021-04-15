@@ -7,7 +7,7 @@ export const ErrorBoundaryStyles = (theme: Theme) => ({
 	sDescription: {
 		fontSize: theme.typography.pxToRem(20),
 		lineHeight: 1.2,
-		margin: theme.spacing(0, 'auto', 1.5),
+		margin: `0 auto ${theme.spacing(1.5)}`,
 		maxWidth: 500
 	},
 	sLink: {

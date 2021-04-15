@@ -5,7 +5,8 @@ import { AppConfigService } from '../../../services';
 const linearWidth = AppConfigService.AppOptions.components.loader.linear.width;
 export const LoaderStyles = makeStyles((theme: Theme) => ({
 	sLinear: {
-		margin: theme.spacing(15, 'auto', 0),
+		margin: `${theme.spacing(15)} auto 0`,
+		textAlign: 'center',
 		width: theme.typography.pxToRem(linearWidth)
 	},
 	sLinearText: {
@@ -16,7 +17,7 @@ export const LoaderStyles = makeStyles((theme: Theme) => ({
 	},
 	sAvatar: {
 		height: theme.spacing(18),
-		margin: theme.spacing(0, 'auto'),
+		margin: `0 auto`,
 		width: theme.spacing(18)
 	},
 	sCircularLoader: {

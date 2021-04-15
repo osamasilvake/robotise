@@ -26,11 +26,9 @@ const ChangeLog: FC = () => {
 			{/* Content */}
 			{general.changeLog && (
 				<Box>
-					<ReactMarkdown
-						escapeHtml={false}
-						renderers={MarkdownRenderers}
-						source={JSON.parse(general.changeLog)}
-					/>
+					<ReactMarkdown components={MarkdownRenderers}>
+						{JSON.parse(general.changeLog)}
+					</ReactMarkdown>
 				</Box>
 			)}
 		</Paper>

@@ -107,7 +107,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 			MuiTab: {
 				styleOverrides: {
 					textColorPrimary: {
-						'&$selected': {
+						'&.Mui-selected': {
 							backgroundColor: AppConfigService.AppOptions.colors.c4,
 							borderTop: `${pxToRem(1)} solid ${
 								AppConfigService.AppOptions.colors.c9

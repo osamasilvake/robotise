@@ -5,6 +5,7 @@ import ReduxLogger from 'redux-logger';
 import auth from './auth/Auth.slice';
 import general from './general/General.slice';
 import inventory from './inventory/Inventory.slice';
+import orders from './orders/Orders.slice';
 import products from './products/Products.slice';
 import robot from './robot/Robot.slice';
 import robotTwins from './robot-twins/RobotTwins.slice';
@@ -16,6 +17,7 @@ const combinedReducer = combineReducers({
 	auth,
 	general,
 	inventory,
+	orders,
 	products,
 	robot,
 	robotTwins,

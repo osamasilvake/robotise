@@ -29,8 +29,11 @@ class RobotsService {
 	 * @returns
 	 */
 	robotTwinsSingleRobotFetch = (robotId: string) => {
-		const url = AppConfigService.AppServices.ROBOT_TWINS.ALL;
-		return HttpClientService.get(`${url}/${robotId}`);
+		const url = AppConfigService.AppServices.ROBOT_TWINS.SINGLE.replace(
+			':robotTwinId',
+			robotId
+		);
+		return HttpClientService.get(url);
 	};
 
 	/**
@@ -39,8 +42,8 @@ class RobotsService {
 	 * @returns
 	 */
 	robotLocationMapFetch = (mapId: string) => {
-		const url = AppConfigService.AppServices.ROBOT.MAP;
-		return HttpClientService.get(`${url}/${mapId}`);
+		const url = AppConfigService.AppServices.ROBOT.MAPS.replace(':mapId', mapId);
+		return HttpClientService.get(url);
 	};
 
 	/**
@@ -50,8 +53,8 @@ class RobotsService {
 	 * @returns
 	 */
 	robotRequestCameraImage = (camera: RobotDetailCameraTypeEnum, robotId: string) => {
-		const url = AppConfigService.AppServices.ROBOT.ALL;
-		return HttpClientService.post(`${url}/${robotId}/commands`, {
+		const url = AppConfigService.AppServices.ROBOT.COMMANDS.replace(':robot', robotId);
+		return HttpClientService.post(url, {
 			data: {
 				type: 'robot-commands',
 				attributes: {
@@ -67,8 +70,21 @@ class RobotsService {
 	 * @param robotId
 	 */
 	robotInventoryFetch = (robotId: string) => {
-		const url = AppConfigService.AppServices.ROBOT.INVENTORY;
-		return HttpClientService.get(`${url}/${robotId}/inventory`);
+		const url = AppConfigService.AppServices.ROBOT.INVENTORY.replace(':robot', robotId);
+		return HttpClientService.get(url);
+	};
+
+	/**
+	 * fetch robot orders
+	 * @param robotId
+	 */
+	robotOrdersFetch = (robotId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.ORDERS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[robot]': robotId
+			}
+		});
 	};
 }
 const instance = new RobotsService();

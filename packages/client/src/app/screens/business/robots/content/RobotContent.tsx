@@ -7,6 +7,7 @@ import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
+import RobotOrders from './orders/RobotOrders';
 
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
@@ -18,10 +19,10 @@ const RobotContent: FC = () => {
 
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
-			(r) => r.path.replace(':id', params.id) === location.pathname
+			(r) => r.path.replace(':robot', params.robot) === location.pathname
 		);
 		setValue(cIndex - 1);
-	}, [location.pathname, params.id]);
+	}, [location.pathname, params.robot]);
 
 	/**
 	 * handle tab change
@@ -30,7 +31,7 @@ const RobotContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = robotsRoutes[value + 1].path.replace(':id', params.id);
+		const url = robotsRoutes[value + 1].path.replace(':robot', params.robot);
 
 		// push to history
 		history.push(url);
@@ -44,7 +45,6 @@ const RobotContent: FC = () => {
 				<Tab label={t('CONTENT.TABS.INVENTORY')} />
 				<Tab label={t('CONTENT.TABS.ORDERS')} />
 				<Tab label={t('CONTENT.TABS.PURCHASES')} />
-				<Tab label={t('CONTENT.TABS.INFORMATION')} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -56,13 +56,10 @@ const RobotContent: FC = () => {
 				{value === 1 && <RobotInventory />}
 
 				{/* Orders */}
-				{value === 2 && <>Three</>}
+				{value === 2 && <RobotOrders />}
 
 				{/* Purchases */}
 				{value === 3 && <>Four</>}
-
-				{/* Information */}
-				{value === 4 && <>Five</>}
 			</Box>
 		</Box>
 	) : null;

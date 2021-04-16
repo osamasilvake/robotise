@@ -13,7 +13,7 @@ const Robot: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 
-	const cRobotName = robotTwinsSummary.content?.dataById[params.id]?.robot.name;
+	const cRobotName = robotTwinsSummary.content?.dataById[params.robot]?.robot.name;
 
 	return (
 		<Paper elevation={12} component="section" square>

@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeInventory } from '../../utilities/serializers/json-api/Inventory.deserialize';
 import { AppReducerType } from '..';
-import { ProductsContentItemInterface } from '../products/Products.slice.interface';
+import { ProductsDataInterface } from '../products/Products.slice.interface';
 import {
 	InventoryContentDrawerInterface,
 	InventoryContentDrawerLaneInterface,
@@ -115,7 +115,7 @@ export const InventoryFetchList = (robotId: string, refresh = false) => async (
  */
 const addProductsToInventory = (
 	inventory: InventoryContentInterface,
-	products: ProductsContentItemInterface[]
+	products: ProductsDataInterface[]
 ) => {
 	return {
 		...inventory,
@@ -125,7 +125,7 @@ const addProductsToInventory = (
 					...drawer,
 					lanes: drawer.lanes.map((lane: InventoryContentDrawerLaneInterface) => {
 						const product = products.find(
-							(p: ProductsContentItemInterface) => p.id === lane.productId
+							(p: ProductsDataInterface) => p.id === lane.productId
 						);
 						return {
 							...lane,

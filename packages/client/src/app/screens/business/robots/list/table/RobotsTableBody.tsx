@@ -86,7 +86,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const handleShowRobotDetail = (robotTwins: RTSFinalDataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
-		const robotLink = url.replace(':id', robotTwins.id);
+		const robotLink = url.replace(':robot', robotTwins.id);
 
 		// push to history
 		history.push(robotLink);

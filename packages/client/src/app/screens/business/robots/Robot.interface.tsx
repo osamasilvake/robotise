@@ -1,3 +1,3 @@
 export interface RobotParamsInterface {
-	id: string;
+	robot: string;
 }

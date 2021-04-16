@@ -1,6 +1,6 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { ProductsDataInterface } from '../../../slices/products/Products.slice.interface';
+import { OrderDataInterface } from '../../../slices/orders/Orders.slice.interface';
 import {
 	DeserializeRelationshipProperties,
 	DeserializerExtendedOptions,
@@ -8,14 +8,21 @@ import {
 } from './JsonApi.interface';
 
 /**
- * deserialize products
+ * deserialize orders
  * @param payload
  * @returns
  */
-export const deserializeProducts = async <T extends JsonApiResponse>(payload: T) => {
+export const deserializeOrders = async <T extends JsonApiResponse>(payload: T) => {
 	const options: DeserializerExtendedOptions = {
 		keyForAttribute: 'camelCase',
 		sites: {
+			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+				return {
+					id: relationship.id
+				};
+			}
+		},
+		robots: {
 			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
 				return {
 					id: relationship.id
@@ -26,7 +33,7 @@ export const deserializeProducts = async <T extends JsonApiResponse>(payload: T)
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce(
-		(acc: { [x: string]: ProductsDataInterface }, item: ProductsDataInterface) => {
+		(acc: { [x: string]: OrderDataInterface }, item: OrderDataInterface) => {
 			acc[item.id] = item;
 			return acc;
 		},

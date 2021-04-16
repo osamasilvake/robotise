@@ -6,21 +6,14 @@ const appRoutes = {
 		BUSINESS: {
 			DASHBOARD: '/',
 			SITES: {
-				MAIN: '/sites',
-				PRODUCTS: {
-					MAIN: 'site/products',
-					CREATE: 'site/product/create',
-					UPDATE: 'site/product/update/:id',
-					READ: 'site/product/read/:id'
-				}
+				MAIN: '/sites'
 			},
 			ROBOTS: {
 				MAIN: '/robots',
-				DETAIL: '/robots/:id',
-				INVENTORY: '/robots/:id/inventory',
-				ORDER: '/robots/:id/orders',
-				PURCHASES: '/robots/:id/purchases',
-				INFORMATION: '/robots/:id/information'
+				DETAIL: '/robots/:robot',
+				INVENTORY: '/robots/:robot/inventory',
+				ORDER: '/robots/:robot/orders',
+				PURCHASES: '/robots/:robot/purchases'
 			}
 		},
 		INFORMATION: {

@@ -119,12 +119,15 @@ class AppConfigService extends EnvService {
 			},
 			ROBOT: {
 				ALL: `${this.envApiUrl}/robots`,
-				MAP: `${this.envApiUrl}/maps`,
-				INVENTORY: `${this.envApiUrl}/robots`
+				MAPS: `${this.envApiUrl}/maps/:mapId`,
+				COMMANDS: `${this.envApiUrl}/robots/:robot/commands`,
+				INVENTORY: `${this.envApiUrl}/robots/:robot/inventory`,
+				ORDERS: `${this.envApiUrl}/orders`
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,
-				ALL: `${this.envApiUrl}/robot-twins`
+				ALL: `${this.envApiUrl}/robot-twins`,
+				SINGLE: `${this.envApiUrl}/robot-twins/:robotTwinId`
 			}
 		};
 	}

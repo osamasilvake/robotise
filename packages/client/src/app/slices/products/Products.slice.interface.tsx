@@ -1,4 +1,5 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 
 export interface ProductsInterface {
 	loader: boolean;
@@ -8,12 +9,14 @@ export interface ProductsInterface {
 }
 
 export interface ProductsContentInterface {
-	data: ProductsContentItemInterface[];
-	site: ProductsContentSiteInterface;
+	data: ProductsDataInterface[];
+	dataById: ProductsDataByIdInterface;
+	site: ProductsSiteInterface;
+	meta: JsonApiMeta;
 }
 
-export interface ProductsContentItemInterface {
-	site: ProductsContentSiteInterface;
+export interface ProductsDataInterface {
+	site: ProductsSiteInterface;
 	id: string;
 	image: string;
 	name: string;
@@ -24,6 +27,10 @@ export interface ProductsContentItemInterface {
 	updatedAt: string;
 }
 
-export interface ProductsContentSiteInterface {
+export interface ProductsDataByIdInterface {
+	[id: string]: ProductsDataInterface;
+}
+
+export interface ProductsSiteInterface {
 	id: string;
 }

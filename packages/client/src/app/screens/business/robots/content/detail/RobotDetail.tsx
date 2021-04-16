@@ -12,11 +12,11 @@ import {
 	robotTwinsSelector
 } from '../../../../../slices/robot-twins/RobotTwins.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
+import { RobotParamsInterface } from '../../Robot.interface';
 import RobotDetailAlerts from './alerts/RobotDetailAlerts';
 import RobotDetailCameras from './cameras/RobotDetailCameras';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailLocation from './location/RobotDetailLocation';
-import { RobotDetailParamsInterface } from './RobotDetail.interface';
 import RobotDetailStates from './states/RobotDetailStates';
 
 const RobotDetail: FC = () => {
@@ -24,8 +24,8 @@ const RobotDetail: FC = () => {
 	const sites = useSelector(sitesSelector);
 	const robotTwins = useSelector(robotTwinsSelector);
 
-	const params: RobotDetailParamsInterface = useParams();
-	const cRobotTwinsId = params.id;
+	const params: RobotParamsInterface = useParams();
+	const cRobotTwinsId = params.robot;
 	const pRobotTwinsId = robotTwins.content?.data[0].id;
 
 	useEffect(() => {

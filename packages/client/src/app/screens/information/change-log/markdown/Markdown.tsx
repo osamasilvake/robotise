@@ -10,8 +10,8 @@ import { MarkdownStyles } from './Markdown.style';
  * heading
  * @param props
  */
-const MarkdownHeading: FC<any> = (props) => {
-	const { level, children } = props;
+const MarkdownHeading: FC = (props) => {
+	const { level, children } = props as MarkdownHeadingInterface;
 	const classes = MarkdownStyles();
 
 	let component: Variant;

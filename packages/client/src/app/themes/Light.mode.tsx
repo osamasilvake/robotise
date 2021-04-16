@@ -26,7 +26,8 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 			MuiPaper: {
 				styleOverrides: {
 					root: {
-						backgroundColor: AppConfigService.AppOptions.colors.c4
+						backgroundColor: AppConfigService.AppOptions.colors.c4,
+						backgroundImage: 'none'
 					},
 					elevation11: {
 						boxShadow: 'none',

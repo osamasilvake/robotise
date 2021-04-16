@@ -6,7 +6,7 @@ export const TooltipStyles = makeStyles((theme: Theme) => ({
 		textAlign: 'left'
 	},
 	sTooltipElementHideOnMobile: {
-		[theme.breakpoints.down('md')]: {
+		[theme.breakpoints.down('sm')]: {
 			display: 'none'
 		}
 	},

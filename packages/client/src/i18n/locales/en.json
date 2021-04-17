@@ -58,11 +58,11 @@
 				"CLIPBOARD": "Message copied to clipboard!"
 			},
 			"CAMERAS": {
-				"TOP": {
+				"top": {
 					"SUCCESS": "Top camera image was requested!",
 					"ERROR": "Failed to request top camera image!"
 				},
-				"BASE": {
+				"base": {
 					"SUCCESS": "Base camera image was requested!",
 					"ERROR": "Failed to request base camera image!"
 				}
@@ -286,11 +286,11 @@
 			"INVENTORY": {
 				"DRAWERS": {
 					"TITLES": {
-						"DRAWER1": "Drawer 1",
-						"DRAWER2": "Drawer 2",
-						"DRAWER3": "Drawer 3",
-						"DRAWER4": "Drawer 4",
-						"DRAWER5": "Drawer 5"
+						"drawer1": "Drawer 1",
+						"drawer2": "Drawer 2",
+						"drawer3": "Drawer 3",
+						"drawer4": "Drawer 4",
+						"drawer5": "Drawer 5"
 					},
 					"TABLE": {
 						"COLUMNS": {
@@ -300,6 +300,48 @@
 							"QUANTITY": "Quantity",
 							"CAPACITY": "Capacity",
 							"PRICE": "Price"
+						}
+					}
+				}
+			},
+			"ORDERS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"TARGET": "Target",
+							"ROBOT": "Robot",
+							"MODE": "Mode",
+							"DATE": "Date",
+							"ORIGIN": "Origin",
+							"CANCEL": "Cancel"
+						},
+						"VALUES": {
+							"STATUS": {
+								"created": "Created",
+								"pending": "Pending",
+								"in_progress:arrived": "Arrived",
+								"finished": "Finished",
+								"in_progress:customer_present": "Present",
+								"in_progress:traveling": "Travelling",
+								"canceled": "Canceled",
+								"cancelRequest": "Cancellation Request",
+								"rejected": "Rejected",
+								"error": "Error"
+							},
+							"TARGET": {
+								"RECEPTION": "Reception"
+							},
+							"MODE": {
+								"mini-bar": "Minibar",
+								"room-service": "Room Service",
+								"service-position": "Service Position"
+							},
+							"ORIGIN": {
+								"phone": "Phone",
+								"manualGUI": "JEEVES",
+								"api-hotel": "Hotel App"
+							}
 						}
 					}
 				}

@@ -23,11 +23,11 @@ class AppConfigService extends EnvService {
 				c8a: '#818386', // light:			sub-text
 
 				c9: '#26aee4', // dark/light: 		blue
-				c10: '#78b752', // dark/light: 		green
+				c10: '#3c963f', // dark/light: 		green
 				c11: '#e8ba0e', // dark/light: 		yellow
 				c12: '#e4291c', // dark/light: 		red
 				c13: '#818386', // dark/light:		grey
-				c14: '#fba438' // dark/light:		orange
+				c14: '#f7a034' // dark/light:		orange
 			},
 			styles: {
 				fontFamily: {
@@ -60,7 +60,8 @@ class AppConfigService extends EnvService {
 					width: 260
 				},
 				table: {
-					minusContentHeight: 64 + 40 + 69.8 + 28 + 52 - 8
+					contentHeight1: 64 + 40 + 69.8 + 28 + 52 - 8,
+					contentHeight2: 64 + 40 + 69.8 + 28 + 52 + 72 - 8
 				}
 			},
 			screens: {
@@ -86,6 +87,14 @@ class AppConfigService extends EnvService {
 						},
 						inventory: {
 							refreshTime: 30000
+						},
+						orders: {
+							list: {
+								refreshTime: 20000,
+								showPageSizes: true,
+								defaultPageSize: 100,
+								pageSizes: [5, 10, 15, 20, 50, 100, 150]
+							}
 						}
 					}
 				}

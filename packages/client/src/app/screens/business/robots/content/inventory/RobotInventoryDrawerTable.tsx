@@ -14,18 +14,18 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Status from '../../../../../components/common/status/Status';
-import { StatusTypeEnum } from '../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../services';
 import { InventoryContentDrawerLaneInterface } from '../../../../../slices/inventory/Inventory.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
-import { RobotInventoryColumnsTypeEnum, RobotInventoryStatusTypeEnum } from './RobotInventory.enum';
+import { RobotInventoryColumnsTypeEnum } from './RobotInventory.enum';
 import {
 	RobotInventoryDrawerInterface,
 	RobotInventoryTableColumnInterface
 } from './RobotInventory.interface';
 import { columns } from './RobotInventory.list';
+import { mapStatusLevel } from './RobotInventory.map';
 import { RobotsInventoryStyles } from './RobotInventory.style';
 
 const RobotInventoryDrawerTable: FC<RobotInventoryDrawerInterface> = (props) => {
@@ -74,30 +74,13 @@ const RobotInventoryDrawerTable: FC<RobotInventoryDrawerInterface> = (props) => 
 					/>
 				);
 			case RobotInventoryColumnsTypeEnum.QUANTITY:
-				return <Status level={mapProductStatus(lane['status'])}>{lane[column.id]}</Status>;
+				return <Status level={mapStatusLevel(lane['status'])}>{lane[column.id]}</Status>;
 			case RobotInventoryColumnsTypeEnum.CAPACITY:
 				return lane[column.id];
 			case RobotInventoryColumnsTypeEnum.PRICE:
 				return lane.product ? `${currency} ${lane.product[column.id]}` : '-';
 			default:
 				return lane.product ? lane.product[column.id] || '-' : '-';
-		}
-	};
-
-	/**
-	 * map product status
-	 * @param status
-	 * @returns
-	 */
-	const mapProductStatus = (status: string) => {
-		switch (status) {
-			case RobotInventoryStatusTypeEnum.HIGH:
-				return StatusTypeEnum.SUCCESS;
-			case RobotInventoryStatusTypeEnum.MEDIUM:
-				return StatusTypeEnum.WARNING;
-			case RobotInventoryStatusTypeEnum.LOW:
-			default:
-				return StatusTypeEnum.ERROR;
 		}
 	};
 

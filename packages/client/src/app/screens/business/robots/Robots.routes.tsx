@@ -30,12 +30,12 @@ const robotsRoutes: RouteInterface[] = [
 	{
 		component: Robot,
 		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDER
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.MAIN
 	},
 	{
 		component: Robot,
 		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.MAIN
 	}
 ];
 export default robotsRoutes;

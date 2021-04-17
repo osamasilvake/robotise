@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -9,11 +9,18 @@ import PageError from '../../../../../components/content/page-error/PageError';
 import { OrdersFetchList, ordersSelector } from '../../../../../slices/orders/Orders.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
+import RobotOrdersTable from './list/table/RobotOrdersTable';
+import { RobotOrdersStyles } from './RobotOrders.style';
 
 const RobotOrders: FC = () => {
+	const classes = RobotOrdersStyles();
+
 	const dispatch = useDispatch();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
+
+	const [page, setPage] = useState(0);
+	const [rowsPerPage, setRowsPerPage] = useState(20);
 
 	const params: RobotParamsInterface = useParams();
 	const pRobotId = orders.content?.robot.id;
@@ -45,6 +52,16 @@ const RobotOrders: FC = () => {
 		return null;
 	}
 
-	return <Box>Hello World</Box>;
+	return (
+		<Box className={classes.sBox}>
+			<RobotOrdersTable
+				content={orders.content}
+				page={page}
+				setPage={setPage}
+				rowsPerPage={rowsPerPage}
+				setRowsPerPage={setRowsPerPage}
+			/>
+		</Box>
+	);
 };
 export default RobotOrders;

@@ -74,9 +74,9 @@ const RobotsList: FC = () => {
 			<RobotsTable
 				content={robotTwinsSummary.content}
 				page={page}
+				setPage={setPage}
 				rowsPerPage={rowsPerPage}
 				setRowsPerPage={setRowsPerPage}
-				setPage={setPage}
 			/>
 		</Box>
 	);

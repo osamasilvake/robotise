@@ -20,7 +20,7 @@ const RobotInventoryDrawer: FC<RobotInventoryDrawerInterface> = (props) => {
 					{t(drawer.type)}
 				</Typography>
 				<Typography variant="h6" color="textSecondary">
-					{t(`CONTENT.INVENTORY.DRAWERS.TITLES.${drawer.title.toUpperCase()}`)}
+					{t(`CONTENT.INVENTORY.DRAWERS.TITLES.${drawer.title}`)}
 				</Typography>
 			</Box>
 

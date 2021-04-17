@@ -71,9 +71,9 @@ class AppConfigService extends EnvService {
 				robots: {
 					list: {
 						refreshTime: 20000,
-						showPageSizes: false,
+						showPageSizes: true,
 						defaultPageSize: 100,
-						pageSizes: [5, 10, 15, 20, 50, 100]
+						pageSizes: []
 					},
 					content: {
 						detail: {

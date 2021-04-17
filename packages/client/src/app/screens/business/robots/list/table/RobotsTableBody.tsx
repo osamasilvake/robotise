@@ -16,7 +16,7 @@ import { RobotsListStyles } from './RobotsTable.style';
 import RobotsTableBodyCell from './RobotsTableBodyCell';
 
 const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
-	const { content, order, orderBy, page, rowsPerPage } = props;
+	const { content, order, orderBy } = props;
 	const classes = RobotsListStyles();
 
 	const history = useHistory();
@@ -96,27 +96,25 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		<TableBody>
 			{content &&
 				content.data &&
-				sortTableData(content)
-					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((robotTwins: RTSFinalDataInterface) => (
-						<TableRow
-							hover
-							key={robotTwins.id}
-							tabIndex={-1}
-							className={clsx({
-								[classes.sTableRowWarning]: !!robotTwins.alerts.warning,
-								[classes.sTableRowDanger]: !!robotTwins.alerts.danger
-							})}
-							onClick={handleShowRobotDetail(robotTwins)}>
-							{columns.map((column: RobotsTableColumnInterface) => (
-								<RobotsTableBodyCell
-									key={column.id}
-									column={column}
-									robot={robotTwins}
-								/>
-							))}
-						</TableRow>
-					))}
+				sortTableData(content).map((robotTwins: RTSFinalDataInterface) => (
+					<TableRow
+						hover
+						key={robotTwins.id}
+						tabIndex={-1}
+						className={clsx({
+							[classes.sTableRowWarning]: !!robotTwins.alerts.warning,
+							[classes.sTableRowDanger]: !!robotTwins.alerts.danger
+						})}
+						onClick={handleShowRobotDetail(robotTwins)}>
+						{columns.map((column: RobotsTableColumnInterface) => (
+							<RobotsTableBodyCell
+								key={column.id}
+								column={column}
+								robot={robotTwins}
+							/>
+						))}
+					</TableRow>
+				))}
 		</TableBody>
 	);
 };

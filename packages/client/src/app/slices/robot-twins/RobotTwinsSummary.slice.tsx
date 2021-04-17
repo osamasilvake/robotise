@@ -4,7 +4,6 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import SitesService from '../../screens/business/sites/Sites.service';
-import { AppConfigService } from '../../services';
 import { deserializeRobotTwinsSummary } from '../../utilities/serializers/json-api/RobotTwinsSummary.deserialize';
 import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
@@ -35,9 +34,7 @@ const dataSlice = createSlice({
 		success: (state, action) => {
 			state.loader = false;
 			state.loading = false;
-			state.content = state.content
-				? handlePaginationState(state.content, action.payload)
-				: action.payload;
+			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
@@ -61,16 +58,13 @@ export default dataSlice.reducer;
 
 /**
  * fetch robot twins summary
- * @param pageNo
- * @param rowsPerPage
  * @param refresh
  * @returns
  */
-export const RobotTwinsSummaryFetchList = (
-	pageNo: number,
-	rowsPerPage: number,
-	refresh = false
-) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const RobotTwinsSummaryFetchList = (refresh = false) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
 	// states
 	const states = getState();
 	const sites = states.sites;
@@ -87,20 +81,9 @@ export const RobotTwinsSummaryFetchList = (
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	// meta: paging
-	const sPageNo = pageNo === -1 ? robotTwinsSummary.content?.meta.page || 1 : pageNo;
-	const sRowsPerPage =
-		rowsPerPage === -1
-			? robotTwinsSummary.content?.meta.rowsPerPage ||
-			  AppConfigService.AppOptions.screens.robots.list.defaultPageSize
-			: rowsPerPage;
-
 	return (!sites.content
-		? Promise.all([
-				SitesService.sitesFetch(),
-				RobotsService.robotTwinsSummaryFetch(sPageNo, sRowsPerPage)
-		  ])
-		: RobotsService.robotTwinsSummaryFetch(sPageNo, sRowsPerPage)
+		? Promise.all([SitesService.sitesFetch(), RobotsService.robotTwinsSummaryFetch()])
+		: RobotsService.robotTwinsSummaryFetch()
 	)
 		.then(async (res) => {
 			// deserialize responses
@@ -116,9 +99,7 @@ export const RobotTwinsSummaryFetchList = (
 			const alerts = countAlerts(result);
 
 			// dispatch: success
-			dispatch(
-				success({ ...result, alerts, meta: { ...result.meta, rowsPerPage: sRowsPerPage } })
-			);
+			dispatch(success({ ...result, alerts }));
 
 			// dispatch: success (sites)
 			if (!sites.content) {
@@ -198,32 +179,4 @@ const countAlerts = (payload: RTSSContentInterface) => {
 		},
 		{ danger: 0, warning: 0 }
 	);
-};
-
-/**
- * organize robots state to handle pagination
- * @param state
- * @param action
- * @returns
- */
-const handlePaginationState = (state: RTSSContentInterface, action: RTSSContentInterface) => {
-	const condition1 = action.meta.page > 1; // first page
-	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
-	const condition3 = action.meta.nextPage === null; // last page
-	if (condition1 && (condition2 || condition3)) {
-		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
-		return {
-			...state,
-			meta: {
-				...state.meta,
-				...action.meta
-			},
-			data: [...state.data, ...action.data],
-			dataById: {
-				...state.dataById,
-				...action.dataById
-			}
-		};
-	}
-	return action;
 };

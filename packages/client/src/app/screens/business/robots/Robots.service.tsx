@@ -4,14 +4,11 @@ import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailC
 class RobotsService {
 	/**
 	 * fetch robot twins summary
-	 * @param pageNo
-	 * @param rowsPerPage
 	 * @returns
 	 */
-	robotTwinsSummaryFetch = (pageNo?: number, rowsPerPage?: number) => {
+	robotTwinsSummaryFetch = () => {
 		const url = AppConfigService.AppServices.ROBOT_TWINS.SUMMARY;
-		const apiLink = !pageNo ? url : `${url}?page[number]=${pageNo}&page[size]=${rowsPerPage}`;
-		return HttpClientService.get(apiLink);
+		return HttpClientService.get(url);
 	};
 
 	/**

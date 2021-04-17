@@ -31,7 +31,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 				dispatch(AuthRefreshToken(auth.user.exp));
 
 				// dispatch: refresh robot twins summary
-				dispatch(RobotTwinsSummaryFetchList(-1, -1, !!RobotTwinsSummary.content));
+				dispatch(RobotTwinsSummaryFetchList(!!RobotTwinsSummary.content));
 			}
 		};
 

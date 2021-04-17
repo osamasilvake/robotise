@@ -1,5 +1,5 @@
 import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
-import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../services';
@@ -11,7 +11,7 @@ import RobotsTableBody from './RobotsTableBody';
 import RobotsTableHead from './RobotsTableHead';
 
 const RobotsTable: FC<RobotsTableInterface> = (props) => {
-	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
+	const { content } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotsListStyles();
 
@@ -35,28 +35,6 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 		setOrderBy(property);
 	};
 
-	/**
-	 * handle change page
-	 * @param _event
-	 * @param newPage
-	 */
-	const handleChangePage = (_event: unknown, newPage: number) => {
-		// set page
-		setPage(newPage);
-	};
-
-	/**
-	 * handle change rows per page
-	 * @param event
-	 */
-	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-		// set rows
-		setRowsPerPage(+event.target.value);
-
-		// set page: 0
-		setPage(0);
-	};
-
 	return (
 		<Box>
 			<TableContainer className={classes.sTableMaxHeight}>
@@ -70,13 +48,7 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 					/>
 
 					{/* Body */}
-					<RobotsTableBody
-						order={order}
-						orderBy={orderBy}
-						page={page}
-						rowsPerPage={rowsPerPage}
-						content={content}
-					/>
+					<RobotsTableBody order={order} orderBy={orderBy} content={content} />
 				</Table>
 			</TableContainer>
 
@@ -89,11 +61,10 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 				}
 				component="div"
 				count={content ? content.meta.totalDocs : 0}
-				page={page}
-				labelRowsPerPage={t('ROWS_PER_PAGE')}
-				rowsPerPage={rowsPerPage}
-				onPageChange={handleChangePage}
-				onRowsPerPageChange={handleChangeRowsPerPage}
+				page={0}
+				rowsPerPage={AppConfigService.AppOptions.screens.robots.list.defaultPageSize}
+				onPageChange={() => null}
+				onRowsPerPageChange={() => null}
 			/>
 		</Box>
 	);

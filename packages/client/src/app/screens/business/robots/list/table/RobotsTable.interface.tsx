@@ -1,4 +1,4 @@
-import { Dispatch, MouseEvent, SetStateAction } from 'react';
+import { MouseEvent } from 'react';
 
 import {
 	RTSFinalDataInterface,
@@ -8,10 +8,6 @@ import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 
 export interface RobotsTableInterface {
 	content: RTSSContentInterface | null;
-	page: number;
-	setPage: Dispatch<SetStateAction<number>>;
-	rowsPerPage: number;
-	setRowsPerPage: Dispatch<SetStateAction<number>>;
 }
 
 export interface RobotsTableHeadInterface {
@@ -33,8 +29,6 @@ export interface RobotsTableBodyInterface {
 	content: RTSSContentInterface | null;
 	order: RobotsTableHeadOrder;
 	orderBy: RobotsTableColumnsTypeEnum;
-	page: number;
-	rowsPerPage: number;
 }
 
 export interface RobotsTableBodyCellInterface {

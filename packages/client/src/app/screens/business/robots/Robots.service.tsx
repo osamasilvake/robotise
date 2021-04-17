@@ -77,10 +77,14 @@ class RobotsService {
 	/**
 	 * fetch robot orders
 	 * @param robotId
+	 * @param pageNo
+	 * @param rowsPerPage
+	 * @returns
 	 */
-	robotOrdersFetch = (robotId: string) => {
+	robotOrdersFetch = (robotId: string, pageNo: number, rowsPerPage: number) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
-		return HttpClientService.get(url, {
+		const apiLink = !pageNo ? url : `${url}?page[number]=${pageNo}&page[size]=${rowsPerPage}`;
+		return HttpClientService.get(apiLink, {
 			params: {
 				'filter[robot]': robotId
 			}

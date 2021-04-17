@@ -340,7 +340,9 @@
 							"ORIGIN": {
 								"phone": "Phone",
 								"manualGUI": "JEEVES",
-								"api-hotel": "Hotel App"
+								"api-hotel": "Hotel App",
+								"rest": "API",
+								"debug": "Debug"
 							}
 						}
 					}

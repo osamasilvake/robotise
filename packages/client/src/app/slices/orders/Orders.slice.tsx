@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeOrders } from '../../utilities/serializers/json-api/Orders.deserialize';
 import { AppReducerType } from '..';
-import { OrdersInterface } from './Orders.slice.interface';
+import { OrdersContentInterface, OrdersInterface } from './Orders.slice.interface';
 
 // initial state
 export const initialState: OrdersInterface = {
@@ -29,7 +29,9 @@ const dataSlice = createSlice({
 		success: (state, action) => {
 			state.loader = false;
 			state.loading = false;
-			state.content = action.payload;
+			state.content = state.content
+				? handlePaginationState(state.content, action.payload)
+				: action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
@@ -54,13 +56,17 @@ export default dataSlice.reducer;
 /**
  * fetch orders
  * @param robotId
+ * @param pageNo
+ * @param rowsPerPage
  * @param refresh
  * @returns
  */
-export const OrdersFetchList = (robotId: string, refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
+export const OrdersFetchList = (
+	robotId: string,
+	pageNo: number,
+	rowsPerPage: number,
+	refresh = false
+) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 	// states
 	const states = getState();
 	const orders = states.orders;
@@ -73,13 +79,19 @@ export const OrdersFetchList = (robotId: string, refresh = false) => async (
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotOrdersFetch(robotId)
+	return RobotsService.robotOrdersFetch(robotId, pageNo, rowsPerPage)
 		.then(async (res) => {
 			// deserialize response
 			const result = await deserializeOrders(res);
 
 			// dispatch: success
-			dispatch(success({ ...result, robot: { id: robotId } }));
+			dispatch(
+				success({
+					...result,
+					meta: { ...result.meta, rowsPerPage: rowsPerPage },
+					robot: { id: robotId }
+				})
+			);
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
@@ -92,4 +104,32 @@ export const OrdersFetchList = (robotId: string, refresh = false) => async (
 			// dispatch: failure
 			dispatch(failure(message));
 		});
+};
+
+/**
+ * organize robots state to handle pagination
+ * @param state
+ * @param action
+ * @returns
+ */
+const handlePaginationState = (state: OrdersContentInterface, action: OrdersContentInterface) => {
+	const condition1 = action.meta.page > 1; // first page
+	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
+	const condition3 = action.meta.nextPage === null; // last page
+	if (condition1 && (condition2 || condition3)) {
+		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
+		return {
+			...state,
+			meta: {
+				...state.meta,
+				...action.meta
+			},
+			data: [...state.data, ...action.data],
+			dataById: {
+				...state.dataById,
+				...action.dataById
+			}
+		};
+	}
+	return action;
 };

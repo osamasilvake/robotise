@@ -73,7 +73,7 @@ class AppConfigService extends EnvService {
 						refreshTime: 20000,
 						showPageSizes: false,
 						defaultPageSize: 100,
-						pageSizes: [5, 10, 15, 20, 50, 100, 150]
+						pageSizes: [5, 10, 15, 20, 50, 100]
 					},
 					content: {
 						detail: {
@@ -92,8 +92,8 @@ class AppConfigService extends EnvService {
 							list: {
 								refreshTime: 20000,
 								showPageSizes: true,
-								defaultPageSize: 100,
-								pageSizes: [5, 10, 15, 20, 50, 100, 150]
+								defaultPageSize: 10,
+								pageSizes: [5, 10, 15, 20, 50, 100]
 							}
 						}
 					}

@@ -7,17 +7,19 @@ import { StatusInterface } from './Status.interface';
 import { StatusStyles } from './Status.style';
 
 const Status: FC<StatusInterface> = (props) => {
-	const { children, small, active, level } = props;
+	const { children, small, active, level = -1 } = props;
 	const classes = StatusStyles();
 
 	return (
 		<Typography
 			variant="button"
 			className={clsx(classes.sStatus, {
-				[classes.sStatusSmall]: small,
-				[classes.sStatusSuccess]: (!level && active) || level === StatusTypeEnum.SUCCESS,
-				[classes.sStatusWarning]: level === StatusTypeEnum.WARNING,
-				[classes.sStatusError]: (!level && !active) || level === StatusTypeEnum.ERROR
+				[classes.sSmall]: small,
+				[classes.sSuccess]: (level === -1 && active) || level === StatusTypeEnum.SUCCESS,
+				[classes.sError]: (level === -1 && !active) || level === StatusTypeEnum.ERROR,
+				[classes.sWarning]: level === StatusTypeEnum.WARN,
+				[classes.sInit]: level === StatusTypeEnum.INIT,
+				[classes.sNotice]: level === StatusTypeEnum.NOTICE
 			})}>
 			{children}
 		</Typography>

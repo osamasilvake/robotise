@@ -6,19 +6,26 @@ export const StatusStyles = makeStyles((theme: Theme) => ({
 	sStatus: {
 		borderRadius: theme.typography.pxToRem(2),
 		color: AppConfigService.AppOptions.colors.c7,
-		padding: theme.spacing(0.2, 0.4),
+		fontWeight: 400,
+		padding: theme.spacing(0.4, 0.5),
 		textTransform: 'capitalize'
 	},
-	sStatusSmall: {
+	sSmall: {
 		fontSize: theme.typography.pxToRem(12)
 	},
-	sStatusSuccess: {
+	sSuccess: {
 		backgroundColor: AppConfigService.AppOptions.colors.c10
 	},
-	sStatusWarning: {
+	sWarning: {
 		backgroundColor: AppConfigService.AppOptions.colors.c14
 	},
-	sStatusError: {
+	sError: {
 		backgroundColor: AppConfigService.AppOptions.colors.c12
+	},
+	sInit: {
+		backgroundColor: AppConfigService.AppOptions.colors.c11
+	},
+	sNotice: {
+		backgroundColor: AppConfigService.AppOptions.colors.c13
 	}
 }));

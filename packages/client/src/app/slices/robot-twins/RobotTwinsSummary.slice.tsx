@@ -3,11 +3,8 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeRobotTwinsSummary } from '../../utilities/serializers/json-api/RobotTwinsSummary.deserialize';
-import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
-import { loader as sitesLoader, success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
 import {
@@ -78,35 +75,26 @@ export const RobotTwinsSummaryFetchList = (refresh = false) => async (
 		return;
 	}
 
-	// sites loader
-	!sites.content && dispatch(sitesLoader());
-
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	return (!sites.content
-		? Promise.all([SitesService.sitesFetch(), RobotsService.robotTwinsSummaryFetch()])
-		: RobotsService.robotTwinsSummaryFetch()
-	)
+	return RobotsService.robotTwinsSummaryFetch()
 		.then(async (res) => {
-			// deserialize responses
-			const sitesRes = !sites.content ? await deserializeSites(res[0]) : sites.content;
-			const robotTwinsSummary = await deserializeRobotTwinsSummary(
-				!sites.content ? res[1] : res
-			);
+			// deserialize response
+			const robotTwinsSummary = await deserializeRobotTwinsSummary(res);
 
-			// prepare robot twins summary content
-			const result: RTSContentInterface = prepareContent(sitesRes, robotTwinsSummary);
+			if (sites && sites.content) {
+				// prepare robot twins summary content
+				const result: RTSContentInterface = prepareContent(
+					sites.content,
+					robotTwinsSummary
+				);
 
-			// count alerts for badge
-			const alerts = countAlerts(result);
+				// count alerts for badge
+				const alerts = countAlerts(result);
 
-			// dispatch: success
-			dispatch(success({ ...result, alerts }));
-
-			// dispatch: success (sites)
-			if (!sites.content) {
-				dispatch(sitesSuccess(sitesRes));
+				// dispatch: success
+				dispatch(success({ ...result, alerts }));
 			}
 		})
 		.catch(() => {

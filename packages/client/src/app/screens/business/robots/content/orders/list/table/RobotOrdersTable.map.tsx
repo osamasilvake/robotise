@@ -9,8 +9,8 @@ import { RobotOrdersTableColumnStatusTypeEnum } from './RobotOrdersTable.enum';
 export const mapStatusLevel = (status: string) => {
 	switch (status) {
 		case RobotOrdersTableColumnStatusTypeEnum.CREATED:
-			return StatusTypeEnum.INIT;
 		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
+			return StatusTypeEnum.INIT;
 		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:
 		case RobotOrdersTableColumnStatusTypeEnum.FINISHED:
 			return StatusTypeEnum.SUCCESS;

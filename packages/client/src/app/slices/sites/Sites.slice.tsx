@@ -52,7 +52,7 @@ export const sitesSelector = (state: AppReducerType) => state['sites'];
 export default dataSlice.reducer;
 
 /**
- * fetch sites list
+ * fetch sites
  * @param refresh
  * @returns
  */

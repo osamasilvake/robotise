@@ -8,22 +8,25 @@ import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
 } from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../slices/sites/Sites.slice';
 import RobotsTable from './table/RobotsTable';
 
 const RobotsList: FC = () => {
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	useEffect(() => {
-		const condition1 = robotTwinsSummary.content === null;
-		if (condition1) {
+		const condition1 = sites.content !== null;
+		const condition2 = robotTwinsSummary.content === null;
+		if (condition1 && condition2) {
 			// dispatch: fetch robot twins summary
 			dispatch(RobotTwinsSummaryFetchList());
 		}
-	}, [dispatch, robotTwinsSummary.content]);
+	}, [dispatch, sites.content, robotTwinsSummary.content]);
 
 	// loader
-	if (robotTwinsSummary.loader) {
+	if (sites.loader || robotTwinsSummary.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 

@@ -12,11 +12,13 @@ import {
 } from '../../../../../slices/inventory/Inventory.slice';
 import { ProductsFetchList, productsSelector } from '../../../../../slices/products/Products.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotInventoryDrawers from './RobotInventoryDrawers';
 
 const RobotInventory: FC = () => {
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const products = useSelector(productsSelector);
 	const inventory = useSelector(inventorySelector);
@@ -71,7 +73,7 @@ const RobotInventory: FC = () => {
 	}, [dispatch, cRobotId]);
 
 	// loader
-	if (robotTwinsSummary.loader || products.loader || inventory.loader) {
+	if (sites.loader || robotTwinsSummary.loader || products.loader || inventory.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 

@@ -9,6 +9,7 @@ import PageError from '../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../services';
 import { OrdersFetchList, ordersSelector } from '../../../../../slices/orders/Orders.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotOrdersTable from './list/table/RobotOrdersTable';
 import { RobotOrdersStyles } from './RobotOrders.style';
@@ -17,6 +18,7 @@ const RobotOrders: FC = () => {
 	const classes = RobotOrdersStyles();
 
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
@@ -75,7 +77,7 @@ const RobotOrders: FC = () => {
 	]);
 
 	// loader
-	if (robotTwinsSummary.loader || orders.loader) {
+	if (sites.loader || robotTwinsSummary.loader || orders.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 

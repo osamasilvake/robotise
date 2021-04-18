@@ -23,7 +23,7 @@ export const StatusStyles = makeStyles((theme: Theme) => ({
 		backgroundColor: AppConfigService.AppOptions.colors.c12
 	},
 	sInit: {
-		backgroundColor: AppConfigService.AppOptions.colors.c11
+		backgroundColor: AppConfigService.AppOptions.colors.c15
 	},
 	sNotice: {
 		backgroundColor: AppConfigService.AppOptions.colors.c13

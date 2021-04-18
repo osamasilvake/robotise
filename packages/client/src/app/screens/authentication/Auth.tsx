@@ -10,12 +10,14 @@ import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
 } from '../../slices/robot-twins/RobotTwinsSummary.slice';
+import { SitesFetchList, sitesSelector } from '../../slices/sites/Sites.slice';
 import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterface) => {
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
-	const RobotTwinsSummary = useSelector(robotTwinsSummarySelector);
+	const sites = useSelector(sitesSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const isUser = !!(auth.user && auth.user.data.user_id);
 
@@ -23,20 +25,24 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 		/**
 		 * execute
 		 * 1. validate and refresh access_token
-		 * 2. refresh robot-twins summary
+		 * 2. load sites
+		 * 3. load and refresh robot-twins summary
 		 */
 		const executeServices = () => {
 			if (auth.user) {
 				// dispatch: requests a new token before it expires
 				dispatch(AuthRefreshToken(auth.user.exp));
 
-				// dispatch: refresh robot twins summary
-				dispatch(RobotTwinsSummaryFetchList(!!RobotTwinsSummary.content));
+				// dispatch: fetch sites
+				!sites.content && dispatch(SitesFetchList());
+
+				// dispatch: fetch robot twins summary
+				sites.content && dispatch(RobotTwinsSummaryFetchList(!!robotTwinsSummary.content));
 			}
 		};
 
 		// init
-		!RobotTwinsSummary.content && executeServices();
+		!robotTwinsSummary.content && executeServices();
 
 		// interval
 		const intervalId = window.setInterval(
@@ -44,7 +50,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 			AppConfigService.AppOptions.screens.robots.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, auth.user, RobotTwinsSummary.content]);
+	}, [dispatch, auth.user, sites.content, robotTwinsSummary.content]);
 
 	/**
 	 * authentication state

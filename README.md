@@ -44,9 +44,6 @@ A summary of development workflow involving multiple git branches.
 - [X] [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
 - [X] [eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)
 
-##### Projects Manager
-- [X] [Lerna](https://github.com/lerna/lerna)
-
 ##### Precommit Hooks and Linting of Staged Files with Conventional Commits Standards
 - [X] [husky](https://github.com/typicode/husky)
 - [X] [lint-staged](https://github.com/okonet/lint-staged)

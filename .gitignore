@@ -8,16 +8,11 @@ node_modules/
 # production
 build/
 
-# testing
-coverage/
-
 # cache
 .eslintcache
 .cache
 
 # misc
 .DS_Store
-.pnp*
 .idea
 .vscode
-lerna-debug.log

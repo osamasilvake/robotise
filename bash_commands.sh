@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This bash script is used to check and update 
-# all the dependencies of root and client directories.
+# all the dependencies of the project.
 
 RED='\033[0;31m'        # Red
 GREEN='\033[0;32m'      # Green
@@ -17,9 +17,7 @@ while true; do
     echo -e "------------------------"
     echo -e "00: To check all dependencies current state."
     echo -e "01: To update & install all dependencies."
-    echo -e "02: To update & install root dependencies."
-    echo -e "03: To update & install client dependencies."
-    echo -e "04: To restart the docker containers."
+    echo -e "02: To restart the docker containers."
 
     echo -e "${BLUE}"
     read -p "Do you wish to update all the dependencies?: " option
@@ -27,83 +25,35 @@ while true; do
     case $option in
         "00")
             echo -e "${GREEN}"
-            echo -e "----"
-            echo -e "Root"
-            echo -e "----"
+            echo -e "-----------"
+            echo -e "Checking..."
+            echo -e "-----------"
             echo -e "${GREY}"
             ncu
 
-            cd packages/client
-            echo -e "${GREEN}"
-            echo -e "------"
-            echo -e "Client"
-            echo -e "------"
-            echo -e "${GREY}"
-            ncu
             echo -e "${NC}"
-            cd ..
-            cd ..
-            
             echo -e
             break;;
         "01")
             echo -e "${GREEN}"
-            echo -e "----"
-            echo -e "Root"
-            echo -e "----"
+            echo -e "-----------"
+            echo -e "Updating..."
+            echo -e "-----------"
             echo -e "${GREY}"
             ncu -u
             rm -R node_modules
             yarn install
 
-            cd packages/client
-            echo -e "${GREEN}"
-            echo -e "------"
-            echo -e "Client"
-            echo -e "------"
-            echo -e "${GREY}"
-            ncu -u
-            rm -R node_modules
-            yarn install
-            cd ..
-            cd ..
-            
+            echo -e "${NC}"
             echo -e
             break;;
         "02")
-            echo -e "${GREEN}"
-            echo -e "----"
-            echo -e "Root"
-            echo -e "----"
-            echo -e "${GREY}"
-            ncu -u
-            rm -R node_modules
-            yarn install
-
-            echo -e
-            break;;
-        "03")
-            cd packages/client
-            echo -e "${GREEN}"
-            echo -e "------"
-            echo -e "client"
-            echo -e "------"
-            echo -e "${GREY}"
-            ncu -u
-            rm -R node_modules
-            yarn install
-            cd ..
-            cd ..
-
-            echo -e
-            break;;
-        "04")
             docker stop roc-client
             yarn docker:dev
 
             echo -e
             break;;
         *)
-            echo -e "\n${RED}Please choose a correct option: 00, 01, 02, 03, 04!";;
+            echo -e "\n${RED}Please choose a correct option: 00, 01, 02!";;
     esac
 done

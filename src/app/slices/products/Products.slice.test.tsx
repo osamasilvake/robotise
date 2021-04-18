@@ -6,14 +6,8 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppReducerType } from '..';
-import {
-	failure,
-	initialState,
-	loader,
-	ProductsFetchList,
-	success
-} from '../products/Products.slice';
-import { SliceProductsInterface } from '../products/Products.slice.interface';
+import { failure, initialState, loader, ProductsFetchList, success } from './Products.slice';
+import { SliceProductsInterface } from './Products.slice.interface';
 
 // mock axios
 jest.mock('axios');

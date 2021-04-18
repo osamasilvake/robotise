@@ -1,13 +1,13 @@
 import { MouseEvent } from 'react';
 
 import {
-	RTSFinalDataInterface,
-	RTSSContentInterface
+	RTSContentDataInterface,
+	RTSContentInterface
 } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 
 export interface RobotsTableInterface {
-	content: RTSSContentInterface | null;
+	content: RTSContentInterface | null;
 }
 
 export interface RobotsTableHeadInterface {
@@ -26,14 +26,14 @@ export interface RobotsTableColumnInterface {
 }
 
 export interface RobotsTableBodyInterface {
-	content: RTSSContentInterface | null;
+	content: RTSContentInterface | null;
 	order: RobotsTableHeadOrder;
 	orderBy: RobotsTableColumnsTypeEnum;
 }
 
 export interface RobotsTableBodyCellInterface {
 	column: RobotsTableColumnInterface;
-	robot: RTSFinalDataInterface;
+	robot: RTSContentDataInterface;
 }
 
 export type RobotsTableHeadOrder = 'asc' | 'desc';

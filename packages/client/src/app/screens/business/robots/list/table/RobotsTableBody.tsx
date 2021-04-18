@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
 import {
-	RTSFinalDataInterface,
-	RTSSContentInterface
+	RTSContentDataInterface,
+	RTSContentInterface
 } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { momentSort } from '../../../../../utilities/methods/Moment';
 import { RobotsTableColumnsTypeEnum, RobotsTableSortTypeEnum } from './RobotsTable.enum';
@@ -26,7 +26,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 * @param content
 	 * @returns
 	 */
-	const sortTableData = (content: RTSSContentInterface): RTSFinalDataInterface[] => {
+	const sortTableData = (content: RTSContentInterface): RTSContentDataInterface[] => {
 		let type;
 		switch (orderBy) {
 			case columns[0].id:
@@ -55,7 +55,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 * @returns
 	 */
 	const sortByProperty = (key: RobotsTableColumnsTypeEnum, type: RobotsTableSortTypeEnum) => {
-		return (a: RTSFinalDataInterface, b: RTSFinalDataInterface) => {
+		return (a: RTSContentDataInterface, b: RTSContentDataInterface) => {
 			switch (type) {
 				case RobotsTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
@@ -83,7 +83,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 * @param robot
 	 * @returns
 	 */
-	const handleShowRobotDetail = (robotTwins: RTSFinalDataInterface) => () => {
+	const handleShowRobotDetail = (robotTwins: RTSContentDataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
 		const robotLink = url.replace(':robot', robotTwins.id);
@@ -96,7 +96,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		<TableBody>
 			{content &&
 				content.data &&
-				sortTableData(content).map((robotTwins: RTSFinalDataInterface) => (
+				sortTableData(content).map((robotTwins: RTSContentDataInterface) => (
 					<TableRow
 						hover
 						key={robotTwins.id}

@@ -4,7 +4,7 @@ import log from 'loglevel';
 import { RTSMappedResponseDataInterface } from '../../../slices/robot-twins/RobotTwins.slice.interface';
 import {
 	IRobotTwinSummary,
-	RTSSMappedResponseDataInterface
+	RTSContentTransformDataInterface
 } from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import {
 	DeserializeRelationshipProperties,
@@ -36,7 +36,7 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(pa
 		},
 		transform: (data: IRobotTwinSummary) => {
 			try {
-				const result: RTSSMappedResponseDataInterface = {
+				const result: RTSContentTransformDataInterface = {
 					id: data.id,
 					updatedAt: data.updatedAt,
 					robot: {

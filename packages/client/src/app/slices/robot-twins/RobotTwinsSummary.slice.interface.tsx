@@ -2,26 +2,43 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 import { IAlert } from './RobotTwins.slice.interface';
 
-export interface RTSSInterface {
+export interface RobotTwinsSummaryInterface {
 	loader: boolean;
 	loading: boolean;
-	content: RTSSContentInterface | null;
+	content: RTSContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface RTSSContentInterface {
-	data: RTSFinalDataInterface[];
-	dataById: RTSSDataByIdInterface;
+export interface RTSContentInterface {
+	data: RTSContentDataInterface[];
+	dataById: RTSContentDataByIdInterface;
 	meta: JsonApiMeta;
-	alerts?: RTSAlertsInterface;
+	alerts?: RTSContentAlertsInterface;
 }
 
-export interface RTSSDataByIdInterface {
-	[id: string]: RTSSMappedResponseDataInterface;
+export interface RTSContentDataInterface {
+	id: string;
+	robotTitle: string;
+	robotId: string;
+	siteId: string;
+	siteTitle: string;
+	siteCurrency: string;
+	isReady: boolean;
+	acceptOrders: boolean;
+	updatedAt: Date;
+	alerts: RTSContentAlertsInterface;
 }
 
-// mapped response data
-export interface RTSSMappedResponseDataInterface {
+export interface RTSContentDataByIdInterface {
+	[id: string]: RTSContentTransformDataInterface;
+}
+
+export interface RTSContentAlertsInterface {
+	danger: number;
+	warning: number;
+}
+
+export interface RTSContentTransformDataInterface {
 	id: string;
 	updatedAt: Date;
 	robot: {
@@ -43,26 +60,6 @@ export interface RTSSMappedResponseDataInterface {
 	};
 }
 
-// final data response
-export interface RTSFinalDataInterface {
-	id: string;
-	robotTitle: string;
-	robotId: string;
-	siteId: string;
-	siteTitle: string;
-	siteCurrency: string;
-	isReady: boolean;
-	acceptOrders: boolean;
-	updatedAt: Date;
-	alerts: RTSAlertsInterface;
-}
-
-export interface RTSAlertsInterface {
-	danger: number;
-	warning: number;
-}
-
-// initial
 export interface IRobotTwinSummary {
 	id: string;
 	robot: {

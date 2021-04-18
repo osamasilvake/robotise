@@ -10,10 +10,13 @@ import { AppReducerType } from '..';
 import { loader as sitesLoader, success as sitesSuccess } from '../sites/Sites.slice';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
-import { RTSSContentInterface, RTSSInterface } from './RobotTwinsSummary.slice.interface';
+import {
+	RobotTwinsSummaryInterface,
+	RTSContentInterface
+} from './RobotTwinsSummary.slice.interface';
 
 // initial state
-export const initialState: RTSSInterface = {
+export const initialState: RobotTwinsSummaryInterface = {
 	loader: false,
 	loading: false,
 	content: null,
@@ -93,7 +96,7 @@ export const RobotTwinsSummaryFetchList = (refresh = false) => async (
 			);
 
 			// prepare robot twins summary content
-			const result: RTSSContentInterface = prepareContent(sitesRes, robotTwinsSummary);
+			const result: RTSContentInterface = prepareContent(sitesRes, robotTwinsSummary);
 
 			// count alerts for badge
 			const alerts = countAlerts(result);
@@ -127,8 +130,8 @@ export const RobotTwinsSummaryFetchList = (refresh = false) => async (
  */
 const prepareContent = (
 	sites: SSContentInterface,
-	robotTwinsSummary: RTSSContentInterface
-): RTSSContentInterface => {
+	robotTwinsSummary: RTSContentInterface
+): RTSContentInterface => {
 	return {
 		data: Object.keys(robotTwinsSummary.dataById).map((key) => {
 			const robotTwinSummary = robotTwinsSummary.dataById[key];
@@ -162,7 +165,7 @@ const prepareContent = (
  * @param payload
  * @returns
  */
-const countAlerts = (payload: RTSSContentInterface) => {
+const countAlerts = (payload: RTSContentInterface) => {
 	return Object.keys(payload.dataById).reduce(
 		(acc, key) => {
 			const robotTwin = payload.dataById[key];

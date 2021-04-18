@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../components/common/status/Status';
-import { RTSFinalDataInterface } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+import { RTSContentDataInterface } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
@@ -18,7 +18,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (robot: RTSFinalDataInterface, column: RobotsTableColumnInterface) => {
+	const setCellValue = (robot: RTSContentDataInterface, column: RobotsTableColumnInterface) => {
 		const value = robot[column.id];
 		if (columns[2].id === column.id) {
 			return (

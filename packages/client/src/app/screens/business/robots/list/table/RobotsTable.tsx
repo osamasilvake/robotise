@@ -58,7 +58,7 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 						: []
 				}
 				component="div"
-				count={content ? content.meta.totalDocs : 0}
+				count={0}
 				page={0}
 				rowsPerPage={AppConfigService.AppOptions.screens.robots.list.defaultPageSize}
 				onPageChange={() => null}

@@ -7,10 +7,10 @@ import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/RobotTwins.deserialize';
 import { AppReducerType } from '..';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
-import { RTSContentInterface, RTSInterface } from './RobotTwins.slice.interface';
+import { SliceRobotTwinsInterface, SRTContentInterface } from './RobotTwins.slice.interface';
 
 // initial state
-export const initialState: RTSInterface = {
+export const initialState: SliceRobotTwinsInterface = {
 	loader: false,
 	loading: false,
 	content: null,
@@ -88,7 +88,7 @@ export const RobotTwinsFetchList = (robotId: string, refresh = false, wait = -1)
 			// prepare robot twins content
 			if (sites && sites.content) {
 				// prepare robot twins content
-				const result: RTSContentInterface = prepareContent(sites.content, robotTwins);
+				const result: SRTContentInterface = prepareContent(sites.content, robotTwins);
 
 				// dispatch: success
 				dispatch(success(result));
@@ -115,8 +115,8 @@ export const RobotTwinsFetchList = (robotId: string, refresh = false, wait = -1)
  */
 const prepareContent = (
 	sites: SSContentInterface,
-	robotTwins: RTSContentInterface
-): RTSContentInterface => {
+	robotTwins: SRTContentInterface
+): SRTContentInterface => {
 	return {
 		data: Object.keys(robotTwins.dataById).map((key) => {
 			const robotTwinsRes = robotTwins.dataById[key];

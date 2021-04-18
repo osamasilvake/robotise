@@ -1,15 +1,15 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { RTSMappedResponseDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 
 export interface RobotDetailCamerasInterface {
-	robot: RTSMappedResponseDataInterface;
+	robot: SRTContentDataInterface;
 	loading: boolean;
 }
 
 export interface RobotDetailCameraInterface {
-	robot: RTSMappedResponseDataInterface;
+	robot: SRTContentDataInterface;
 	loading: boolean;
 	cameraType: RobotDetailCameraTypeEnum;
 	currentCameraType: RobotDetailCameraTypeEnum;

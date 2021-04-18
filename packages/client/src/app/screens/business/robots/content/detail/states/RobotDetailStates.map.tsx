@@ -1,7 +1,7 @@
-import { RTSMappedResponseDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 
-export const mapRobotStates = (type: string, robot: RTSMappedResponseDataInterface) => {
+export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => {
 	const batteryState = robot.batteryState;
 	const dockingState = robot.dockingState;
 	const joystickState = robot.joystickState;

@@ -1,6 +1,6 @@
-import { RTSMappedResponseDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 
-export const robotStates = (robot: RTSMappedResponseDataInterface) => [
+export const robotStates = (robot: SRTContentDataInterface) => [
 	{
 		title: 'CONTENT.DETAIL.STATES.BATTERY.TITLE',
 		type: 'batteryState',

@@ -1,9 +1,9 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 import log from 'loglevel';
 
-import { RTSMappedResponseDataInterface } from '../../../slices/robot-twins/RobotTwins.slice.interface';
 import {
 	IRobotTwinSummary,
+	RTSContentDataInterface,
 	RTSContentTransformDataInterface
 } from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import {
@@ -70,26 +70,12 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(pa
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce(
-		(
-			acc: { [x: string]: RTSMappedResponseDataInterface },
-			item: RTSMappedResponseDataInterface
-		) => {
+		(acc: { [x: string]: RTSContentDataInterface }, item: RTSContentDataInterface) => {
 			acc[item.id] = item;
 			return acc;
 		},
 		{}
 	);
 
-	// FAKE: meta
-	const meta = {
-		hasNextPage: false,
-		hasPrevPage: false,
-		nextPage: 1,
-		page: 1,
-		prevPage: 1,
-		totalDocs: data.length,
-		totalPages: 1
-	};
-
-	return { data, dataById, meta };
+	return { data, dataById };
 };

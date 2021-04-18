@@ -1,21 +1,21 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import {
-	RTSLocationInterface,
-	RTSMappedResponseDataInterface
+	SRTContentDataInterface,
+	SRTContentLocationInterface
 } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 
 export interface RobotDetailLocationInterface {
-	robot: RTSMappedResponseDataInterface;
+	robot: SRTContentDataInterface;
 }
 
 export interface RobotDetailLocationCardInterface {
-	robot: RTSMappedResponseDataInterface;
+	robot: SRTContentDataInterface;
 	grid: boolean;
 }
 
 export interface RobotDetailLocationInfoInterface {
-	location: RTSLocationInterface | undefined;
+	location: SRTContentLocationInterface | undefined;
 	grid: boolean;
 	showGrid: Dispatch<SetStateAction<boolean>>;
 }

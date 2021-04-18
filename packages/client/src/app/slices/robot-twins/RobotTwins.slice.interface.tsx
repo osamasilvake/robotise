@@ -1,43 +1,37 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 
-export interface RTSInterface {
+export interface SliceRobotTwinsInterface {
 	loader: boolean;
 	loading: boolean;
-	content: RTSContentInterface | null;
+	content: SRTContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface RTSContentInterface {
-	data: RTSMappedResponseDataInterface[];
-	dataById: RTSDataByIdInterface;
+export interface SRTContentInterface {
+	data: SRTContentDataInterface[];
+	dataById: SRTContentDataByIdInterface;
 }
 
-export interface RTSDataByIdInterface {
-	[id: string]: RTSMappedResponseDataInterface;
-}
-
-// mapped response data
-export interface RTSMappedResponseDataInterface {
+export interface SRTContentDataInterface {
 	id: string;
 	updatedAt: Date;
-	robot: RTSRobotInterface;
-	site: RTSSiteInterface;
-	robotState: RTSRobotStateInterface;
-	alerts: RTSAlertInterface;
-	location?: RTSLocationInterface | undefined;
-	cameras?: RTSCameraInterface | undefined;
-	batteryState?: RTSBatteryStateInterface | undefined;
-	dockingState?: RTSDockingStateInterface | undefined;
-	joystickState?: RTSJoystickState | undefined;
-	activityState?: RTSActivityState | undefined;
+	site: SRTContentSiteInterface;
+	robot: SRTContentRobotInterface;
+	robotState: SRTContentRobotStateInterface;
+	alerts: SRTContentAlertsInterface;
+	location?: SRTContentLocationInterface | undefined;
+	cameras?: SRTContentCameraInterface | undefined;
+	batteryState?: SRTContentBatteryStateInterface | undefined;
+	dockingState?: SRTContentDockingStateInterface | undefined;
+	joystickState?: SRTContentJoystickState | undefined;
+	activityState?: SRTContentActivityState | undefined;
 }
 
-export interface RTSRobotInterface {
-	id: string;
-	name: string;
+export interface SRTContentDataByIdInterface {
+	[id: string]: SRTContentDataInterface;
 }
 
-export interface RTSSiteInterface {
+export interface SRTContentSiteInterface {
 	id: string;
 	title?: string;
 	acceptOrders?: boolean;
@@ -48,24 +42,29 @@ export interface RTSSiteInterface {
 	};
 }
 
-export interface RTSRobotStateInterface {
+export interface SRTContentRobotInterface {
+	id: string;
+	name: string;
+}
+
+export interface SRTContentRobotStateInterface {
 	isReady: {
 		value: boolean;
 		updatedAt: Date;
 	};
 }
 
-export interface RTSAlertInterface {
+export interface SRTContentAlertsInterface {
 	value: IAlert[];
 	updatedAt: Date;
 }
 
-export interface RTSLocationInterface {
+export interface SRTContentLocationInterface {
 	value: ILocation;
 	updatedAt: Date;
 }
 
-export interface RTSCameraInterface {
+export interface SRTContentCameraInterface {
 	base: {
 		imageId: {
 			value: string;
@@ -80,7 +79,7 @@ export interface RTSCameraInterface {
 	};
 }
 
-export interface RTSBatteryStateInterface {
+export interface SRTContentBatteryStateInterface {
 	current: {
 		value: number;
 		updatedAt: Date;
@@ -103,28 +102,27 @@ export interface RTSBatteryStateInterface {
 	};
 }
 
-export interface RTSDockingStateInterface {
+export interface SRTContentDockingStateInterface {
 	isDocked: {
 		value: boolean;
 		updatedAt: Date;
 	};
 }
 
-export interface RTSJoystickState {
+export interface SRTContentJoystickState {
 	controlMode: {
 		value: string;
 		updatedAt: Date;
 	};
 }
 
-export interface RTSActivityState {
+export interface SRTContentActivityState {
 	latest: {
 		value: string;
 		updatedAt: Date;
 	};
 }
 
-// initial
 export interface IRobotTwin {
 	id: string;
 	robot: {

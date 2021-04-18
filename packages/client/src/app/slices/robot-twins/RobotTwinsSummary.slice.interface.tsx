@@ -1,5 +1,4 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 import { IAlert } from './RobotTwins.slice.interface';
 
 export interface RobotTwinsSummaryInterface {
@@ -12,7 +11,6 @@ export interface RobotTwinsSummaryInterface {
 export interface RTSContentInterface {
 	data: RTSContentDataInterface[];
 	dataById: RTSContentDataByIdInterface;
-	meta: JsonApiMeta;
 	alerts?: RTSContentAlertsInterface;
 }
 

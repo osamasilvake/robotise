@@ -155,8 +155,7 @@ const prepareContent = (
 				}
 			};
 		}),
-		dataById: robotTwinsSummary.dataById,
-		meta: robotTwinsSummary.meta
+		dataById: robotTwinsSummary.dataById
 	};
 };
 

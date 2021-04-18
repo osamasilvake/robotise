@@ -4,7 +4,7 @@ import log from 'loglevel';
 import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	IRobotTwin,
-	RTSMappedResponseDataInterface
+	SRTContentDataInterface
 } from '../../../slices/robot-twins/RobotTwins.slice.interface';
 import {
 	DeserializeRelationshipProperties,
@@ -43,7 +43,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 			const cameraTopMeta = cameraBase && mCameras[RobotDetailCameraTypeEnum.TOP];
 
 			try {
-				const result: RTSMappedResponseDataInterface = {
+				const result: SRTContentDataInterface = {
 					id: data.id,
 					updatedAt: data.updatedAt,
 					robot: {
@@ -139,10 +139,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 	let data = await deserializer.deserialize(payload);
 	data = typeof data === 'object' ? [data] : data;
 	const dataById = data.reduce(
-		(
-			acc: { [x: string]: RTSMappedResponseDataInterface },
-			item: RTSMappedResponseDataInterface
-		) => {
+		(acc: { [x: string]: SRTContentDataInterface }, item: SRTContentDataInterface) => {
 			acc[item.id] = item;
 			return acc;
 		},

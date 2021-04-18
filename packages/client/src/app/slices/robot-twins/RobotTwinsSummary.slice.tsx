@@ -11,12 +11,12 @@ import { loader as sitesLoader, success as sitesSuccess } from '../sites/Sites.s
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
 import {
-	RobotTwinsSummaryInterface,
-	RTSContentInterface
+	RTSContentInterface,
+	SliceRobotTwinsSummaryInterface
 } from './RobotTwinsSummary.slice.interface';
 
 // initial state
-export const initialState: RobotTwinsSummaryInterface = {
+export const initialState: SliceRobotTwinsSummaryInterface = {
 	loader: false,
 	loading: false,
 	content: null,

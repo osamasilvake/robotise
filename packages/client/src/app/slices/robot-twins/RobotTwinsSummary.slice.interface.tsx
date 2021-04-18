@@ -1,7 +1,7 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { IAlert } from './RobotTwins.slice.interface';
 
-export interface RobotTwinsSummaryInterface {
+export interface SliceRobotTwinsSummaryInterface {
 	loader: boolean;
 	loading: boolean;
 	content: RTSContentInterface | null;

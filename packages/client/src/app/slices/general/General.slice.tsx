@@ -6,7 +6,7 @@ import ChangeLogService from '../../screens/information/change-log/ChangeLog.ser
 import { AppConfigService, StorageService } from '../../services';
 import { AppReducerType } from '..';
 import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
-import { GeneralSliceInterface } from './General.slice.interface';
+import { SliceGeneralInterface } from './General.slice.interface';
 
 // storage items
 const theme = StorageService.get(AppConfigService.StorageItems.ThemePalette);
@@ -14,7 +14,7 @@ const language = StorageService.get(AppConfigService.StorageItems.ChangeLanguage
 const drawerState = StorageService.get(AppConfigService.StorageItems.DrawerState);
 
 // initial state
-export const initialState: GeneralSliceInterface = {
+export const initialState: SliceGeneralInterface = {
 	openDrawer: drawerState,
 	themePalette: theme || GeneralThemePaletteTypeEnum.DARK,
 	currentLanguage: language || GeneralLanguageTypeEnum.EN,

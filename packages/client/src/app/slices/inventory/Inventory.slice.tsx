@@ -5,16 +5,16 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeInventory } from '../../utilities/serializers/json-api/Inventory.deserialize';
 import { AppReducerType } from '..';
-import { ProductsDataInterface } from '../products/Products.slice.interface';
+import { SPCDataInterface } from '../products/Products.slice.interface';
 import {
-	InventoryContentDrawerInterface,
-	InventoryContentDrawerLaneInterface,
-	InventoryContentInterface,
-	InventoryInterface
+	SICDrawerInterface,
+	SICDrawerLaneInterface,
+	SIContentInterface,
+	SliceInventoryInterface
 } from './Inventory.slice.interface';
 
 // initial state
-export const initialState: InventoryInterface = {
+export const initialState: SliceInventoryInterface = {
 	loader: false,
 	loading: false,
 	content: null,
@@ -113,19 +113,16 @@ export const InventoryFetchList = (robotId: string, refresh = false) => async (
  * @param products
  * @returns
  */
-const addProductsToInventory = (
-	inventory: InventoryContentInterface,
-	products: ProductsDataInterface[]
-) => {
+const addProductsToInventory = (inventory: SIContentInterface, products: SPCDataInterface[]) => {
 	return {
 		...inventory,
 		drawers: [
-			...inventory.drawers.map((drawer: InventoryContentDrawerInterface) => {
+			...inventory.drawers.map((drawer: SICDrawerInterface) => {
 				return {
 					...drawer,
-					lanes: drawer.lanes.map((lane: InventoryContentDrawerLaneInterface) => {
+					lanes: drawer.lanes.map((lane: SICDrawerLaneInterface) => {
 						const product = products.find(
-							(p: ProductsDataInterface) => p.id === lane.productId
+							(p: SPCDataInterface) => p.id === lane.productId
 						);
 						return {
 							...lane,

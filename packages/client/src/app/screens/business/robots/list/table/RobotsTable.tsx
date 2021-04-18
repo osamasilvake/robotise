@@ -1,6 +1,5 @@
 import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
 import { FC, MouseEvent, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../services';
 import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
@@ -12,7 +11,6 @@ import RobotsTableHead from './RobotsTableHead';
 
 const RobotsTable: FC<RobotsTableInterface> = (props) => {
 	const { content } = props;
-	const { t } = useTranslation('COMMON');
 	const classes = RobotsListStyles();
 
 	const [order, setOrder] = useState<RobotsTableHeadOrder>('desc');

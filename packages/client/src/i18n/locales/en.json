@@ -209,8 +209,8 @@
 				},
 				"CAMERAS": {
 					"TITLE": "Cameras",
-					"BASE": "Base Camera",
-					"TOP": "Top Camera",
+					"base": "Base Camera",
+					"top": "Top Camera",
 					"REQUEST": "Request",
 					"DISABLED": "Robot is off"
 				},

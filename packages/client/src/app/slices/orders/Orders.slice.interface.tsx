@@ -1,21 +1,21 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 
-export interface OrdersInterface {
+export interface SliceOrdersInterface {
 	loader: boolean;
 	loading: boolean;
-	content: OrdersContentInterface | null;
+	content: SOContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface OrdersContentInterface {
-	data: OrderDataInterface[];
-	dataById: OrdersDataByIdInterface;
+export interface SOContentInterface {
+	data: SOCDataInterface[];
+	dataById: SOCDataByIdInterface;
 	meta: JsonApiMeta;
-	robot: OrderDataRobotInterface;
+	robot: SOCRobotInterface;
 }
 
-export interface OrderDataInterface {
+export interface SOCDataInterface {
 	id: string;
 	room: string;
 	mode: string;
@@ -23,25 +23,25 @@ export interface OrderDataInterface {
 	origin: string;
 	updatedAt: string;
 	createdAt: string;
-	history: OrderDataHistoryInterface[];
-	site: OrderDataSiteInterface;
-	robot: OrderDataRobotInterface;
+	history: SOCDataHistoryInterface[];
+	site: SOCDataSiteInterface;
+	robot: SOCRobotInterface;
 }
 
-export interface OrdersDataByIdInterface {
-	[id: string]: OrderDataInterface;
+export interface SOCDataByIdInterface {
+	[id: string]: SOCDataInterface;
 }
 
-export interface OrderDataHistoryInterface {
+export interface SOCDataHistoryInterface {
 	event: string;
 	details: string;
 	createdAt: string;
 }
 
-export interface OrderDataSiteInterface {
+export interface SOCDataSiteInterface {
 	id: string;
 }
 
-export interface OrderDataRobotInterface {
+export interface SOCRobotInterface {
 	id: string;
 }

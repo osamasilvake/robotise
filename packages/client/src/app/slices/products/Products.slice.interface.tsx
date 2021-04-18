@@ -1,22 +1,22 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 
-export interface ProductsInterface {
+export interface SliceProductsInterface {
 	loader: boolean;
 	loading: boolean;
-	content: ProductsContentInterface | null;
+	content: SPContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface ProductsContentInterface {
-	data: ProductsDataInterface[];
-	dataById: ProductsDataByIdInterface;
-	site: ProductsSiteInterface;
+export interface SPContentInterface {
+	data: SPCDataInterface[];
+	dataById: SPCDataByIdInterface;
+	site: SPCSiteInterface;
 	meta: JsonApiMeta;
 }
 
-export interface ProductsDataInterface {
-	site: ProductsSiteInterface;
+export interface SPCDataInterface {
+	site: SPCSiteInterface;
 	id: string;
 	image: string;
 	name: string;
@@ -27,10 +27,10 @@ export interface ProductsDataInterface {
 	updatedAt: string;
 }
 
-export interface ProductsDataByIdInterface {
-	[id: string]: ProductsDataInterface;
+export interface SPCDataByIdInterface {
+	[id: string]: SPCDataInterface;
 }
 
-export interface ProductsSiteInterface {
+export interface SPCSiteInterface {
 	id: string;
 }

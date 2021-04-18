@@ -8,7 +8,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import { AppReducerType } from '..';
 import { failure, initialState, loading, RobotLocationMapFetch, success } from './Robot.slice';
 import { RobotTypeEnum } from './Robot.slice.enum';
-import { RSInterface } from './Robot.slice.interface';
+import { SliceRobotInterface } from './Robot.slice.interface';
 
 // mock axios
 jest.mock('axios');
@@ -16,7 +16,7 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // mock store
 type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
-const mockStore = createMockStore<RSInterface, DispatchExts>([thunk]);
+const mockStore = createMockStore<SliceRobotInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] General', () => {
 	it('[RobotDetailLocation] Creates loading and success actions on successful fetch request', () => {

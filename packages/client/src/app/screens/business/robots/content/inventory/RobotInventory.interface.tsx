@@ -1,8 +1,8 @@
-import { InventoryContentDrawerInterface } from '../../../../../slices/inventory/Inventory.slice.interface';
+import { SICDrawerInterface } from '../../../../../slices/inventory/Inventory.slice.interface';
 import { RobotInventoryColumnsTypeEnum } from './RobotInventory.enum';
 
 export interface RobotInventoryDrawerInterface {
-	drawer: InventoryContentDrawerInterface;
+	drawer: SICDrawerInterface;
 	isLastDrawer: boolean;
 }
 

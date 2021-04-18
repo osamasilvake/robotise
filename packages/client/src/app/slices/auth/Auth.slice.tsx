@@ -12,7 +12,7 @@ import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { momentNow } from '../../utilities/methods/Moment';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
-import { AuthSliceInterface } from './Auth.slice.interface';
+import { SliceAuthInterface } from './Auth.slice.interface';
 
 // storage items
 const user = AuthService.getAccessToken()
@@ -24,7 +24,7 @@ if (user) {
 }
 
 // initial state
-export const initialState: AuthSliceInterface = {
+export const initialState: SliceAuthInterface = {
 	loader: false,
 	loading: false,
 	user,

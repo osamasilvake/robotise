@@ -1,35 +1,35 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { ProductsDataInterface } from '../products/Products.slice.interface';
+import { SPCDataInterface } from '../products/Products.slice.interface';
 
-export interface InventoryInterface {
+export interface SliceInventoryInterface {
 	loader: boolean;
 	loading: boolean;
-	content: InventoryContentInterface | null;
+	content: SIContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface InventoryContentInterface {
+export interface SIContentInterface {
 	status: string;
 	id: string;
-	drawers: InventoryContentDrawerInterface[];
-	robot: InventoryContentRobotInterface;
+	drawers: SICDrawerInterface[];
+	robot: SICRobotInterface;
 }
 
-export interface InventoryContentDrawerInterface {
+export interface SICDrawerInterface {
 	index: number;
 	type: string;
-	lanes: InventoryContentDrawerLaneInterface[];
+	lanes: SICDrawerLaneInterface[];
 	title: string;
 }
 
-export interface InventoryContentRobotInterface {
+export interface SICRobotInterface {
 	id: string;
 }
 
-export interface InventoryContentDrawerLaneInterface {
+export interface SICDrawerLaneInterface {
 	index: number;
 	capacity: number;
-	product: ProductsDataInterface | null;
+	product: SPCDataInterface | null;
 	productId: string;
 	quantity: number;
 	status: string;

@@ -21,7 +21,7 @@ import {
 	success,
 	terminate
 } from './Auth.slice';
-import { AuthSliceInterface } from './Auth.slice.interface';
+import { SliceAuthInterface } from './Auth.slice.interface';
 
 // mock axios
 jest.mock('axios');
@@ -29,7 +29,7 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // mock store
 type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
-const mockStore = createMockStore<AuthSliceInterface, DispatchExts>([thunk]);
+const mockStore = createMockStore<SliceAuthInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Authentication', () => {
 	const accessToken =

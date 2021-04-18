@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 
 import Status from '../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../services';
-import { InventoryContentDrawerLaneInterface } from '../../../../../slices/inventory/Inventory.slice.interface';
+import { SICDrawerLaneInterface } from '../../../../../slices/inventory/Inventory.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
@@ -47,7 +47,7 @@ const RobotInventoryDrawerTable: FC<RobotInventoryDrawerInterface> = (props) => 
 	 * @returns
 	 */
 	const setCellValue = (
-		lane: InventoryContentDrawerLaneInterface,
+		lane: SICDrawerLaneInterface,
 		column: RobotInventoryTableColumnInterface
 	) => {
 		switch (column.id) {

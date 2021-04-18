@@ -1,13 +1,13 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import {
-	OrderDataInterface,
-	OrdersContentInterface
+	SOCDataInterface,
+	SOContentInterface
 } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 
 export interface RobotOrdersTableInterface {
-	content: OrdersContentInterface | null;
+	content: SOContentInterface | null;
 	page: number;
 	setPage: Dispatch<SetStateAction<number>>;
 	rowsPerPage: number;
@@ -30,7 +30,7 @@ export interface RobotOrdersTableColumnInterface {
 }
 
 export interface RobotOrdersTableBodyInterface {
-	content: OrdersContentInterface | null;
+	content: SOContentInterface | null;
 	order: RobotOrdersTableHeadOrder;
 	orderBy: RobotOrdersTableColumnsTypeEnum;
 	page: number;
@@ -39,7 +39,7 @@ export interface RobotOrdersTableBodyInterface {
 
 export interface RobotOrdersTableBodyCellInterface {
 	column: RobotOrdersTableColumnInterface;
-	order: OrderDataInterface;
+	order: SOCDataInterface;
 }
 
 export type RobotOrdersTableHeadOrder = 'asc' | 'desc';

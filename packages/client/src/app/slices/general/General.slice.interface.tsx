@@ -1,7 +1,7 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
 
-export interface GeneralSliceInterface {
+export interface SliceGeneralInterface {
 	openDrawer: boolean;
 	themePalette: GeneralThemePaletteTypeEnum;
 	currentLanguage: GeneralLanguageTypeEnum;

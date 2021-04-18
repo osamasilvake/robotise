@@ -6,10 +6,10 @@ import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
 import { AppReducerType } from '..';
 import { RobotTypeEnum } from './Robot.slice.enum';
-import { RSInterface } from './Robot.slice.interface';
+import { SliceRobotInterface } from './Robot.slice.interface';
 
 // initial state
-export const initialState: RSInterface = {
+export const initialState: SliceRobotInterface = {
 	map: {
 		loading: false,
 		content: null,

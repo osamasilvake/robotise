@@ -5,10 +5,10 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeOrders } from '../../utilities/serializers/json-api/Orders.deserialize';
 import { AppReducerType } from '..';
-import { OrdersContentInterface, OrdersInterface } from './Orders.slice.interface';
+import { SliceOrdersInterface, SOContentInterface } from './Orders.slice.interface';
 
 // initial state
-export const initialState: OrdersInterface = {
+export const initialState: SliceOrdersInterface = {
 	loader: false,
 	loading: false,
 	content: null,
@@ -112,7 +112,7 @@ export const OrdersFetchList = (
  * @param action
  * @returns
  */
-const handlePaginationState = (state: OrdersContentInterface, action: OrdersContentInterface) => {
+const handlePaginationState = (state: SOContentInterface, action: SOContentInterface) => {
 	const condition1 = action.meta.page > 1; // first page
 	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
 	const condition3 = action.meta.nextPage === null; // last page

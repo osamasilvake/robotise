@@ -19,11 +19,11 @@ import {
 	triggerMessage
 } from './General.slice';
 import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
-import { GeneralSliceInterface } from './General.slice.interface';
+import { SliceGeneralInterface } from './General.slice.interface';
 
 // mock store
 type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
-const mockStore = createMockStore<GeneralSliceInterface, DispatchExts>([thunk]);
+const mockStore = createMockStore<SliceGeneralInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] General', () => {
 	it('[GeneralSetDrawerState] Set drawer state', () => {

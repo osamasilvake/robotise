@@ -4,8 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import {
-	OrderDataInterface,
-	OrdersContentInterface
+	SOCDataInterface,
+	SOContentInterface
 } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { momentSort } from '../../../../../../../utilities/methods/Moment';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -31,7 +31,7 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	 * @param content
 	 * @returns
 	 */
-	const sortTableData = (content: OrdersContentInterface): OrderDataInterface[] => {
+	const sortTableData = (content: SOContentInterface): SOCDataInterface[] => {
 		let type;
 		switch (orderBy) {
 			case columns[0].id:
@@ -60,7 +60,7 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 		key: RobotOrdersTableColumnsTypeEnum,
 		type: RobotOrdersTableSortTypeEnum
 	) => {
-		return (a: OrderDataInterface, b: OrderDataInterface) => {
+		return (a: SOCDataInterface, b: SOCDataInterface) => {
 			switch (type) {
 				case RobotOrdersTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
@@ -75,7 +75,7 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	 * @param robot
 	 * @returns
 	 */
-	const handleShowOrderDetail = (order: OrderDataInterface) => () => {
+	const handleShowOrderDetail = (order: SOCDataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL;
 		const robotLink = url.replace(':robot', params.robot).replace(':order', order.id);
@@ -90,7 +90,7 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((order: OrderDataInterface) => (
+					.map((order: SOCDataInterface) => (
 						<TableRow
 							hover
 							key={order.id}

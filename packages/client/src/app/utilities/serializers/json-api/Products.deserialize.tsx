@@ -1,6 +1,6 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { ProductsDataInterface } from '../../../slices/products/Products.slice.interface';
+import { SPCDataInterface } from '../../../slices/products/Products.slice.interface';
 import {
 	DeserializeRelationshipProperties,
 	DeserializerExtendedOptions,
@@ -26,7 +26,7 @@ export const deserializeProducts = async <T extends JsonApiResponse>(payload: T)
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce(
-		(acc: { [x: string]: ProductsDataInterface }, item: ProductsDataInterface) => {
+		(acc: { [x: string]: SPCDataInterface }, item: SPCDataInterface) => {
 			acc[item.id] = item;
 			return acc;
 		},

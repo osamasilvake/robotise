@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
 import { generalSelector } from '../../../slices/general/General.slice';
-import { GeneralSliceInterface } from '../../../slices/general/General.slice.interface';
+import { SliceGeneralInterface } from '../../../slices/general/General.slice.interface';
 import { useDebounce } from '../../../utilities/hooks/debounce/UseDebounce';
 import { useWindow } from '../../../utilities/hooks/window/UseWindow';
 import { WindowInterface } from '../../../utilities/hooks/window/UseWindow.interface';
@@ -22,7 +22,7 @@ const Picture: FC<PictureInterface> = (props) => {
 	const [image, setImage] = useState(src);
 	const cWindow = useWindow();
 	const debouncedWindow = useDebounce<WindowInterface | undefined>(cWindow, 500);
-	const debouncedGeneral = useDebounce<GeneralSliceInterface>(general, 500);
+	const debouncedGeneral = useDebounce<SliceGeneralInterface>(general, 500);
 
 	const imgRef = useRef<HTMLImageElement>(null);
 

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import { OrderDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
+import { SOCDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import {
 	RobotOrdersTableBodyCellInterface,
@@ -22,7 +22,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (order: OrderDataInterface, column: RobotOrdersTableColumnInterface) => {
+	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
 		const value = order[column.id];
 		if (columns[0].id === column.id) {
 			return (

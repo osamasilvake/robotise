@@ -1,7 +1,7 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interface';
 
-export interface SSInterface {
+export interface SliceSitesInterface {
 	loader: boolean;
 	loading: boolean;
 	content: SSContentInterface | null;
@@ -10,11 +10,11 @@ export interface SSInterface {
 
 export interface SSContentInterface {
 	data: ISite[];
-	dataById: SSDataByIdInterface;
+	dataById: SSContentDataByIdInterface;
 	meta: JsonApiMeta;
 }
 
-export interface SSDataByIdInterface {
+export interface SSContentDataByIdInterface {
 	[id: string]: ISite;
 }
 

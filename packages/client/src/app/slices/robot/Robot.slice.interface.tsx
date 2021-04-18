@@ -1,14 +1,14 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 
-export interface RSInterface {
+export interface SliceRobotInterface {
 	map: {
 		loading: boolean;
-		content: RSContentMapInterface | null;
+		content: SRContentMapInterface | null;
 		errors: TriggerMessageInterface | null;
 	};
 }
 
-export interface RSContentMapInterface {
+export interface SRContentMapInterface {
 	createdAt: string;
 	floor: number;
 	imagePath: string;

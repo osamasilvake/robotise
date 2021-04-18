@@ -7,7 +7,7 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppReducerType } from '..';
 import { failure, initialState, loader, SitesFetchList, success } from './Sites.slice';
-import { SSInterface } from './Sites.slice.interface';
+import { SliceSitesInterface } from './Sites.slice.interface';
 
 // mock axios
 jest.mock('axios');
@@ -15,7 +15,7 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // mock store
 type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
-const mockStore = createMockStore<SSInterface, DispatchExts>([thunk]);
+const mockStore = createMockStore<SliceSitesInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Sites', () => {
 	it('[SitesFetchList] Creates loading and success actions on successful fetch request', () => {

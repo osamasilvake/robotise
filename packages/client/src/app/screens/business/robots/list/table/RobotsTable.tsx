@@ -1,5 +1,6 @@
 import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
 import { FC, MouseEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../services';
 import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
@@ -11,6 +12,7 @@ import RobotsTableHead from './RobotsTableHead';
 
 const RobotsTable: FC<RobotsTableInterface> = (props) => {
 	const { content } = props;
+	const { t } = useTranslation('COMMON');
 	const classes = RobotsListStyles();
 
 	const [order, setOrder] = useState<RobotsTableHeadOrder>('desc');
@@ -52,16 +54,17 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 
 			{/* Pagination */}
 			<TablePagination
+				component="div"
+				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
 					AppConfigService.AppOptions.screens.robots.list.showPageSizes
 						? AppConfigService.AppOptions.screens.robots.list.pageSizes
 						: []
 				}
-				component="div"
-				count={0}
+				count={content?.data.length || 0}
 				page={0}
-				rowsPerPage={AppConfigService.AppOptions.screens.robots.list.defaultPageSize}
 				onPageChange={() => null}
+				rowsPerPage={AppConfigService.AppOptions.screens.robots.list.defaultPageSize}
 				onRowsPerPageChange={() => null}
 			/>
 		</Box>

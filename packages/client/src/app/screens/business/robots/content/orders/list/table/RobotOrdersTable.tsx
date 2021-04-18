@@ -82,17 +82,17 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 
 			{/* Pagination */}
 			<TablePagination
+				component="div"
+				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
 					AppConfigService.AppOptions.screens.robots.content.orders.list.showPageSizes
 						? AppConfigService.AppOptions.screens.robots.content.orders.list.pageSizes
 						: []
 				}
-				component="div"
 				count={content ? content.meta.totalDocs : 0}
 				page={page}
-				labelRowsPerPage={t('ROWS_PER_PAGE')}
-				rowsPerPage={rowsPerPage}
 				onPageChange={handleChangePage}
+				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 			/>
 		</Box>

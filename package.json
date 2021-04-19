@@ -12,8 +12,8 @@
 		"lint:es": "npx eslint './**/*.{js,jsx,ts,tsx}' --quiet",
 		"lint:es:fix": "npx eslint './**/*.{js,jsx,ts,tsx}' --fix",
 		"scan:all": "yarn pretty:apply && yarn lint:es && yarn test:ci",
-		"docker:dev": "docker-compose --file docker-compose.dev.yml up",
-		"docker:prod": "docker-compose --file docker-compose.prod.yml up --build"
+		"docker:dev": "docker-compose --file Docker.dev.yml up",
+		"docker:prod": "docker-compose --file Docker.prod.yml up --build"
 	},
 	"dependencies": {
 		"@craco/craco": "^6.1.1",

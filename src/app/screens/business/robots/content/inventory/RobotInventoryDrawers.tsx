@@ -1,12 +1,11 @@
 import { Box } from '@material-ui/core';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 
-import { inventorySelector } from '../../../../../slices/inventory/Inventory.slice';
+import { RobotInventoryDrawersInterface } from './RobotInventory.interface';
 import RobotInventoryDrawer from './RobotInventoryDrawer';
 
-const RobotInventoryDrawers: FC = () => {
-	const inventory = useSelector(inventorySelector);
+const RobotInventoryDrawers: FC<RobotInventoryDrawersInterface> = (props) => {
+	const { inventory } = props;
 
 	return inventory && inventory.content ? (
 		<Box>

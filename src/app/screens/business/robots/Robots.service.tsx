@@ -25,7 +25,7 @@ class RobotsService {
 	 * @param robotId
 	 * @returns
 	 */
-	robotTwinsSingleRobotFetch = (robotId: string) => {
+	robotTwinsSingleFetch = (robotId: string) => {
 		const url = AppConfigService.AppServices.ROBOT_TWINS.SINGLE.replace(
 			':robotTwinId',
 			robotId
@@ -80,10 +80,11 @@ class RobotsService {
 	 */
 	robotOrdersFetch = (robotId: string, pageNo: number, rowsPerPage: number) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
-		const apiLink = !pageNo ? url : `${url}?page[number]=${pageNo}&page[size]=${rowsPerPage}`;
-		return HttpClientService.get(apiLink, {
+		return HttpClientService.get(url, {
 			params: {
-				'filter[robot]': robotId
+				'filter[robot]': robotId,
+				'page[number]': pageNo,
+				'page[size]': rowsPerPage
 			}
 		});
 	};

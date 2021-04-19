@@ -4,5 +4,4 @@ export interface PageHeadInterface {
 	title: string;
 	description?: string;
 	labels?: BreadcrumbLabelsInterface;
-	hideDivider?: boolean;
 }

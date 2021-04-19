@@ -10,12 +10,10 @@ import {
 	strRemoveSymbols
 } from '../../../utilities/methods/StringUtilities';
 import { BreadcrumbInterface, BreadcrumbLinksInterface } from './Breadcrumb.interface';
-import { BreadcrumbStyles } from './Breadcrumb.style';
 
 const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
-	const { title, labels } = props;
+	const { labels } = props;
 	const { t } = useTranslation('META');
-	const classes = BreadcrumbStyles();
 
 	const params: RobotParamsInterface = useParams();
 
@@ -63,26 +61,18 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 	};
 
 	return (
-		<Box>
-			{/* Title */}
-			<Typography variant="h1" className={classes.sTitle}>
-				{t(title)}
-			</Typography>
-
-			{/* Breadcrumb */}
-			<Breadcrumbs>
-				{breadcrumbs().map((item) => (
-					<Box key={item.text}>
-						{!item.isLast && item.link && (
-							<Link component={RouterLink} to={item.link}>
-								{item.text}
-							</Link>
-						)}
-						{item.isLast && <Typography color="textPrimary">{item.text}</Typography>}
-					</Box>
-				))}
-			</Breadcrumbs>
-		</Box>
+		<Breadcrumbs maxItems={4} itemsAfterCollapse={3}>
+			{breadcrumbs().map((item) => (
+				<Box key={item.text}>
+					{!item.isLast && item.link && (
+						<Link component={RouterLink} to={item.link}>
+							{item.text}
+						</Link>
+					)}
+					{item.isLast && <Typography color="textPrimary">{item.text}</Typography>}
+				</Box>
+			))}
+		</Breadcrumbs>
 	);
 };
 export default BreadcrumbCustom;

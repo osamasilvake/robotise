@@ -87,6 +87,6 @@ const RobotInventory: FC = () => {
 		return null;
 	}
 
-	return <RobotInventoryDrawers />;
+	return <RobotInventoryDrawers inventory={inventory} />;
 };
 export default RobotInventory;

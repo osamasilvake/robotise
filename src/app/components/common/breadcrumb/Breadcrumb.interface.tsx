@@ -1,5 +1,4 @@
 export interface BreadcrumbInterface {
-	title: string;
 	labels: BreadcrumbLabelsInterface | null;
 }
 

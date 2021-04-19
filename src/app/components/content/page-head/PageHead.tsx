@@ -1,4 +1,4 @@
-import { Box, Divider } from '@material-ui/core';
+import { Box, Divider, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,7 @@ import { PageHeadInterface } from './PageHead.interface';
 import { PageHeadStyles } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
-	const { title, description, labels, hideDivider } = props;
+	const { title, description, labels } = props;
 	const { t } = useTranslation('META');
 	const classes = PageHeadStyles();
 
@@ -20,15 +20,18 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 				description={(description && t(description)) || t('GENERAL.DESCRIPTION')}
 			/>
 
+			{/* Title */}
+			<Typography variant="h1" className={classes.sTitle}>
+				{t(title)}
+			</Typography>
+
 			{/* Breadcrumb */}
-			<Breadcrumb title={title} labels={labels || null} />
+			<Breadcrumb labels={labels || null} />
 
 			{/* Divider */}
-			{!hideDivider && (
-				<Box className={classes.sDivider}>
-					<Divider light />
-				</Box>
-			)}
+			<Box className={classes.sDivider}>
+				<Divider light />
+			</Box>
 		</Box>
 	);
 };

@@ -1,4 +1,4 @@
-export enum RobotInventoryColumnsTypeEnum {
+export enum RobotInventoryTableColumnsTypeEnum {
 	IMAGE = 'image',
 	NAME = 'name',
 	SIZE = 'volume',
@@ -7,7 +7,7 @@ export enum RobotInventoryColumnsTypeEnum {
 	PRICE = 'price'
 }
 
-export enum RobotInventoryStatusTypeEnum {
+export enum RobotInventoryTableStatusTypeEnum {
 	HIGH = 'high',
 	MEDIUM = 'medium',
 	LOW = 'low'

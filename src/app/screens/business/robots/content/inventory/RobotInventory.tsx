@@ -14,7 +14,7 @@ import { ProductsFetchList, productsSelector } from '../../../../../slices/produ
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
-import RobotInventoryDrawers from './RobotInventoryDrawers';
+import RobotInventoryList from './list/RobotInventoryList';
 
 const RobotInventory: FC = () => {
 	const dispatch = useDispatch();
@@ -87,6 +87,6 @@ const RobotInventory: FC = () => {
 		return null;
 	}
 
-	return <RobotInventoryDrawers inventory={inventory} />;
+	return <RobotInventoryList inventory={inventory} />;
 };
 export default RobotInventory;

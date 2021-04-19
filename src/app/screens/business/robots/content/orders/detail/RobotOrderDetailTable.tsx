@@ -33,7 +33,6 @@ const RobotOrderDetailTable: FC<RobotOrderDetailInterface> = (props) => {
 	const setCellValue = (row: SOCDataHistoryInterface, column: RobotOrderTableColumnInterface) => {
 		switch (column.id) {
 			case RobotOrderColumnsTypeEnum.DETAILS:
-				console.log(row[column.id]);
 				return (
 					<Status level={mapStatusLevel(row.details)}>
 						{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id]}`)}

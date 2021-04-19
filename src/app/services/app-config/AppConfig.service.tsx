@@ -22,13 +22,14 @@ class AppConfigService extends EnvService {
 				c8: '#171a20', // light:			text
 				c8a: '#818386', // light:			sub-text
 
-				c9: '#26aee4', // dark/light: 		blue
-				c10: '#3c963f', // dark/light: 		green
-				c11: '#e8ba0e', // dark/light: 		yellow
-				c12: '#e4291c', // dark/light: 		red
-				c13: '#818386', // dark/light:		grey
-				c14: '#d4892d', // dark/light:		orange
-				c15: '#9d48de' // dark/light:		purple
+				c9: '#26aee4', // 					blue
+				c10: '#2e7d32', //					green
+				c10v1: '#4caf50', // 				green LIGHT
+				c11: '#e8ba0e', // 			 		yellow
+				c12: '#e4291c', //			 		red
+				c13: '#818386', // 					grey
+				c14: '#d4892d', //					orange
+				c15: '#9c27b0' //					purple
 			},
 			styles: {
 				fontFamily: {
@@ -91,10 +92,13 @@ class AppConfigService extends EnvService {
 						},
 						orders: {
 							list: {
-								refreshTime: 20000,
+								refreshTime: 30000,
 								showPageSizes: true,
-								defaultPageSize: 20,
+								defaultPageSize: 50,
 								pageSizes: [5, 10, 15, 20, 50, 100]
+							},
+							content: {
+								refreshTime: 30000
 							}
 						}
 					}
@@ -128,11 +132,11 @@ class AppConfigService extends EnvService {
 				PRODUCTS: `${this.envApiUrl}/products`
 			},
 			ROBOT: {
-				ALL: `${this.envApiUrl}/robots`,
 				MAPS: `${this.envApiUrl}/maps/:mapId`,
 				COMMANDS: `${this.envApiUrl}/robots/:robot/commands`,
 				INVENTORY: `${this.envApiUrl}/robots/:robot/inventory`,
-				ORDERS: `${this.envApiUrl}/orders`
+				ORDERS: `${this.envApiUrl}/orders`,
+				ORDER: `${this.envApiUrl}/orders/:order`
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,

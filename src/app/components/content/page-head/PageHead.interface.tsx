@@ -1,6 +1,8 @@
+import { BreadcrumbLabelsInterface } from '../../common/breadcrumb/Breadcrumb.interface';
+
 export interface PageHeadInterface {
 	title: string;
 	description?: string;
-	currentLabel?: string;
+	labels?: BreadcrumbLabelsInterface;
 	hideDivider?: boolean;
 }

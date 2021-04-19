@@ -60,7 +60,7 @@ export default dataSlice.reducer;
  * @param wait
  * @returns
  */
-export const RobotTwinsFetchList = (robotId: string, refresh = false, wait = -1) => async (
+export const RobotTwinsFetch = (robotId: string, refresh = false, wait = -1) => async (
 	dispatch: Dispatch,
 	getState: () => AppReducerType
 ) => {

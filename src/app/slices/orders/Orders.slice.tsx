@@ -88,8 +88,13 @@ export const OrdersFetchList = (
 			dispatch(
 				success({
 					...result,
-					meta: { ...result.meta, rowsPerPage: rowsPerPage },
-					robot: { id: robotId }
+					meta: {
+						...result.meta,
+						rowsPerPage: rowsPerPage
+					},
+					robot: {
+						id: robotId
+					}
 				})
 			);
 		})

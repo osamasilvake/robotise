@@ -9,18 +9,20 @@ import { RobotOrdersTableColumnStatusTypeEnum } from './RobotOrdersTable.enum';
 export const mapStatusLevel = (status: string) => {
 	switch (status) {
 		case RobotOrdersTableColumnStatusTypeEnum.CREATED:
-		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
 			return StatusTypeEnum.INIT;
-		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:
-		case RobotOrdersTableColumnStatusTypeEnum.FINISHED:
-			return StatusTypeEnum.SUCCESS;
 		case RobotOrdersTableColumnStatusTypeEnum.PENDING:
-		case RobotOrdersTableColumnStatusTypeEnum.CANCELED:
-		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_REQUEST:
 			return StatusTypeEnum.WARN;
+		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
+		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:
+		case RobotOrdersTableColumnStatusTypeEnum.CUSTOMER_PRESENT:
+			return StatusTypeEnum.SUCCESS_LIGHT;
+		case RobotOrdersTableColumnStatusTypeEnum.FINISHED:
+			return StatusTypeEnum.SUCCESS_DARK;
 		case RobotOrdersTableColumnStatusTypeEnum.REJECTED:
 		case RobotOrdersTableColumnStatusTypeEnum.ERROR:
 			return StatusTypeEnum.ERROR;
+		case RobotOrdersTableColumnStatusTypeEnum.CANCELED:
+		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_REQUEST:
 		default:
 			return StatusTypeEnum.NOTICE;
 	}

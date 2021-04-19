@@ -13,11 +13,14 @@ export const StatusStyles = makeStyles((theme: Theme) => ({
 	sSmall: {
 		fontSize: theme.typography.pxToRem(12)
 	},
-	sSuccess: {
+	sSuccessDark: {
 		backgroundColor: AppConfigService.AppOptions.colors.c10
 	},
-	sWarning: {
-		backgroundColor: AppConfigService.AppOptions.colors.c14
+	sSuccessLight: {
+		backgroundColor: AppConfigService.AppOptions.colors.c10v1
+	},
+	sWarn: {
+		backgroundColor: AppConfigService.AppOptions.colors.c11
 	},
 	sError: {
 		backgroundColor: AppConfigService.AppOptions.colors.c12

@@ -15,9 +15,12 @@ const Status: FC<StatusInterface> = (props) => {
 			variant="button"
 			className={clsx(classes.sStatus, {
 				[classes.sSmall]: small,
-				[classes.sSuccess]: (level === -1 && active) || level === StatusTypeEnum.SUCCESS,
+				[classes.sSuccessDark]:
+					(level === -1 && active) || level === StatusTypeEnum.SUCCESS_DARK,
+				[classes.sSuccessLight]:
+					(level === -1 && active) || level === StatusTypeEnum.SUCCESS_LIGHT,
 				[classes.sError]: (level === -1 && !active) || level === StatusTypeEnum.ERROR,
-				[classes.sWarning]: level === StatusTypeEnum.WARN,
+				[classes.sWarn]: level === StatusTypeEnum.WARN,
 				[classes.sInit]: level === StatusTypeEnum.INIT,
 				[classes.sNotice]: level === StatusTypeEnum.NOTICE
 			})}>

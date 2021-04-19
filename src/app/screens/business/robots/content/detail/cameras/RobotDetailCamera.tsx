@@ -17,10 +17,10 @@ import { TriggerMessageInterface } from '../../../../../../components/frame/mess
 import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
 import {
-	RobotTwinsFetchList,
+	RobotTwinsFetch,
 	robotTwinsSelector
 } from '../../../../../../slices/robot-twins/RobotTwins.slice';
-import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 import RobotsService from '../../../Robots.service';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
@@ -52,7 +52,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				robotTwins.content?.data[0].robot.id || ''
 			),
 			dispatch(
-				RobotTwinsFetchList(
+				RobotTwinsFetch(
 					robot.id,
 					true,
 					AppConfigService.AppOptions.screens.robots.content.detail.camera.requestDelay
@@ -90,7 +90,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat2(robot.cameras[cameraType].imageId.updatedAt)}
+				{momentFormat3(robot.cameras[cameraType].imageId.updatedAt)}
 			</Typography>
 
 			{/* Card Picture */}

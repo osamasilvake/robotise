@@ -1,8 +1,9 @@
 import { Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
+import { RobotParamsInterface } from '../../../screens/business/robots/Robot.interface';
 import { AppConfigService } from '../../../services';
 import {
 	strCapitalizeEachLetter,
@@ -12,9 +13,11 @@ import { BreadcrumbInterface, BreadcrumbLinksInterface } from './Breadcrumb.inte
 import { BreadcrumbStyles } from './Breadcrumb.style';
 
 const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
-	const { title, currentLabel } = props;
+	const { title, labels } = props;
 	const { t } = useTranslation('META');
 	const classes = BreadcrumbStyles();
+
+	const params: RobotParamsInterface = useParams();
 
 	/**
 	 * create breadcrumbs from the link
@@ -31,11 +34,20 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 			...paths.map((path, index) => {
 				const link = '/' + paths.slice(0, index + 1).join('/');
 
-				// validate digits in pathname
-				const digits = /^(?=.*\d+)[0-9A-Za-z-]+$/;
-				if (digits.test(path)) {
+				/**
+				 * params:
+				 * 1. robot
+				 * 2. order
+				 */
+				if (path === params.robot) {
 					return {
-						text: currentLabel,
+						text: labels?.robotName || '...',
+						link,
+						isLast: index === paths.length - 1
+					};
+				} else if (path === params.order) {
+					return {
+						text: labels?.orderRoom || '...',
 						link,
 						isLast: index === paths.length - 1
 					};

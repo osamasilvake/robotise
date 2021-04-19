@@ -1,5 +1,6 @@
 export enum StatusTypeEnum {
-	SUCCESS,
+	SUCCESS_DARK,
+	SUCCESS_LIGHT,
 	WARN,
 	ERROR,
 	INIT,

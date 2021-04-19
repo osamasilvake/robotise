@@ -8,7 +8,7 @@ import { RobotInventoryStatusTypeEnum } from './RobotInventory.enum';
 export const mapStatusLevel = (status: string) => {
 	switch (status) {
 		case RobotInventoryStatusTypeEnum.HIGH:
-			return StatusTypeEnum.SUCCESS;
+			return StatusTypeEnum.SUCCESS_LIGHT;
 		case RobotInventoryStatusTypeEnum.MEDIUM:
 			return StatusTypeEnum.WARN;
 		case RobotInventoryStatusTypeEnum.LOW:

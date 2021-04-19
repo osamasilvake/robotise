@@ -1,5 +1,5 @@
 import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
-import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 
 export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => {
 	const batteryState = robot.batteryState;
@@ -18,7 +18,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.CURRENT',
 					value: current(batteryState.current.value),
-					date: momentFormat2(batteryState.current.updatedAt),
+					date: momentFormat3(batteryState.current.updatedAt),
 					icon: 'flash_auto'
 				}
 			);
@@ -27,7 +27,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.PERCENTAGE',
 					value: percentage(batteryState.percentage.value),
-					date: momentFormat2(batteryState.percentage.updatedAt),
+					date: momentFormat3(batteryState.percentage.updatedAt),
 					icon: 'battery_charging_full'
 				}
 			);
@@ -36,7 +36,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.TITLE',
 					value: powerSupplyHealth(batteryState.powerSupplyHealth.value),
-					date: momentFormat2(batteryState.powerSupplyHealth.updatedAt),
+					date: momentFormat3(batteryState.powerSupplyHealth.updatedAt),
 					icon: 'healing'
 				}
 			);
@@ -74,7 +74,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.TITLE',
 					value: powerSupplyStatus.text,
-					date: momentFormat2(batteryState.powerSupplyStatus.updatedAt),
+					date: momentFormat3(batteryState.powerSupplyStatus.updatedAt),
 					icon: powerSupplyStatus.icon
 				}
 			);
@@ -83,7 +83,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.VOLTAGE',
 					value: voltage(batteryState.voltage.value),
-					date: momentFormat2(batteryState.voltage.updatedAt),
+					date: momentFormat3(batteryState.voltage.updatedAt),
 					icon: 'flash_on'
 				}
 			);
@@ -94,7 +94,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 					value: dockingState.isDocked.value
 						? 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.DOCKED'
 						: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.UNDOCKED',
-					date: momentFormat2(dockingState.isDocked.updatedAt),
+					date: momentFormat3(dockingState.isDocked.updatedAt),
 					icon: 'dock'
 				}
 			);
@@ -103,7 +103,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				joystickState && {
 					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.TITLE',
 					value: joystick(joystickState.controlMode.value),
-					date: momentFormat2(joystickState.controlMode.updatedAt),
+					date: momentFormat3(joystickState.controlMode.updatedAt),
 					icon: 'games'
 				}
 			);
@@ -112,7 +112,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				activityState && {
 					title: 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.TITLE',
 					value: activity(activityState.latest.value),
-					date: momentFormat2(activityState.latest.updatedAt),
+					date: momentFormat3(activityState.latest.updatedAt),
 					icon: 'timer'
 				}
 			);

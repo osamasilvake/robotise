@@ -87,6 +87,16 @@ class RobotsService {
 			}
 		});
 	};
+
+	/**
+	 * fetch robot order
+	 * @param orderId
+	 * @returns
+	 */
+	robotOrderFetch = (orderId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.ORDER.replace(':order', orderId);
+		return HttpClientService.get(url);
+	};
 }
 const instance = new RobotsService();
 export default instance;

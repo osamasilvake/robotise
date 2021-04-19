@@ -313,8 +313,7 @@
 							"ROBOT": "Robot",
 							"MODE": "Mode",
 							"DATE": "Date",
-							"ORIGIN": "Origin",
-							"CANCEL": "Cancel"
+							"ORIGIN": "Origin"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -322,7 +321,7 @@
 								"pending": "Pending",
 								"in_progress:arrived": "Arrived",
 								"finished": "Finished",
-								"in_progress:customer_present": "Present",
+								"in_progress:customer_present": "Customer Present",
 								"in_progress:traveling": "Travelling",
 								"canceled": "Canceled",
 								"cancelRequest": "Cancellation Request",
@@ -342,8 +341,16 @@
 								"manualGUI": "JEEVES",
 								"api-hotel": "Hotel App",
 								"rest": "API",
-								"debug": "Debug"
+								"debug": "MM ROC Bots"
 							}
+						}
+					}
+				},
+				"CONTENT": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"UPDATED_ON": "Updated On"
 						}
 					}
 				}

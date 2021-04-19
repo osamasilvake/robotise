@@ -41,7 +41,7 @@ const RobotOrders: FC = () => {
 	useEffect(() => {
 		// when rows per page is changed
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// dispatch: fetch robot twins summary
+			// dispatch: fetch orders
 			cRobotId && dispatch(OrdersFetchList(cRobotId, page + 1, rowsPerPage));
 
 			// update page state and rows per page

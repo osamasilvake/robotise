@@ -1,6 +1,11 @@
 export interface BreadcrumbInterface {
 	title: string;
-	currentLabel: string;
+	labels: BreadcrumbLabelsInterface | null;
+}
+
+export interface BreadcrumbLabelsInterface {
+	robotName?: string;
+	orderRoom?: string;
 }
 
 export interface BreadcrumbLinksInterface {

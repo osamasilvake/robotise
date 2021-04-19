@@ -8,7 +8,7 @@ import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.e
 import PageError from '../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../services';
 import {
-	RobotTwinsFetchList,
+	RobotTwinsFetch,
 	robotTwinsSelector
 } from '../../../../../slices/robot-twins/RobotTwins.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
@@ -36,14 +36,14 @@ const RobotDetail: FC = () => {
 
 		if (condition1 && (condition2 || condition3)) {
 			// dispatch: fetch robot twins of a robot
-			dispatch(RobotTwinsFetchList(cRobotTwinsId));
+			dispatch(RobotTwinsFetch(cRobotTwinsId));
 		}
 	}, [dispatch, sites.loader, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			// dispatch: fetch robot twins of a robot
-			dispatch(RobotTwinsFetchList(cRobotTwinsId, true));
+			dispatch(RobotTwinsFetch(cRobotTwinsId, true));
 		};
 
 		// interval

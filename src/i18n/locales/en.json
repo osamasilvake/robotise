@@ -69,6 +69,12 @@
 			}
 		}
 	},
+	"DIALOG": {
+		"BUTTONS": {
+			"AGREE": "Agree",
+			"DISAGREE": "Disagree"
+		}
+	},
 	"COMMON": {
 		"LOADING": "Loading...",
 		"ROWS_PER_PAGE": "Per Page"
@@ -306,6 +312,15 @@
 			},
 			"ORDERS": {
 				"LIST": {
+					"OPTIONS": {
+						"ORDERS_ACTIVE": "Active Orders",
+						"ORDER_NEW": "New Order",
+						"ORDER_CANCEL": {
+							"LABEL": "cancel",
+							"TITLE": "Cancel Order",
+							"TEXT": "Do you want to cancel the order of room: {{room}}?"
+						}
+					},
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",

@@ -5,7 +5,7 @@ export const columns: RobotOrderTableColumnInterface[] = [
 	{
 		id: RobotOrderColumnsTypeEnum.DETAILS,
 		label: 'CONTENT.ORDERS.CONTENT.TABLE.COLUMNS.STATUS',
-		width: 200,
+		width: 225,
 		align: 'left'
 	},
 	{

@@ -21,7 +21,7 @@ import { columns } from './RobotOrdersTable.list';
 import RobotOrdersTableBodyCell from './RobotOrdersTableBodyCell';
 
 const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
-	const { content, order, orderBy, page, rowsPerPage } = props;
+	const { content, executing, order, orderBy, page, rowsPerPage } = props;
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
@@ -37,10 +37,10 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 			case columns[0].id:
 			case columns[1].id:
 			case columns[2].id:
-			case columns[3].id:
+			case columns[4].id:
 				type = RobotOrdersTableSortTypeEnum.STRING;
 				break;
-			case columns[4].id:
+			case columns[3].id:
 				type = RobotOrdersTableSortTypeEnum.DATE;
 				break;
 			default:
@@ -101,6 +101,7 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 									key={column.id}
 									column={column}
 									order={order}
+									executing={executing}
 								/>
 							))}
 						</TableRow>

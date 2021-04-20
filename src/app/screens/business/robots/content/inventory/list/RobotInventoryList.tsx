@@ -6,11 +6,11 @@ import { RobotInventoryListInterface } from './RobotInventoryList.interface';
 import RobotInventoryTable from './table/RobotInventoryTable';
 
 const RobotInventoryList: FC<RobotInventoryListInterface> = (props) => {
-	const { inventory } = props;
+	const { content } = props;
 
-	return inventory && inventory.content ? (
+	return content ? (
 		<Box>
-			{inventory.content.drawers.map((drawer) => (
+			{content.drawers.map((drawer) => (
 				<Box key={drawer.index}>
 					{/* Info */}
 					<RobotInventoryInfo drawer={drawer} />
@@ -18,7 +18,7 @@ const RobotInventoryList: FC<RobotInventoryListInterface> = (props) => {
 					{/* Table */}
 					<RobotInventoryTable
 						drawer={drawer}
-						isLastDrawer={(inventory.content?.drawers.length || 0) - 1 === drawer.index}
+						isLastDrawer={(content?.drawers.length || 0) - 1 === drawer.index}
 					/>
 				</Box>
 			))}

@@ -107,11 +107,9 @@ const DrawerCustom: FC = () => {
 									robotTwinsSummary.content &&
 									robotTwinsSummary.content.alerts?.danger ? (
 										<Badge
-											options={{
-												type: BadgeTypeEnum.NUMBER,
-												count: robotTwinsSummary.content.alerts?.danger,
-												color: 'error'
-											}}>
+											type={BadgeTypeEnum.NUMBER}
+											count={robotTwinsSummary.content.alerts?.danger}
+											color="error">
 											<Icon>{item.icon}</Icon>
 										</Badge>
 									) : (

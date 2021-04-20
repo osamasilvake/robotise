@@ -1,11 +1,7 @@
 import { BadgeTypeEnum } from './Badge.enum';
 
 export interface BadgeInterface {
-	options?: BadgeNumberInterface;
-}
-
-export interface BadgeNumberInterface {
-	type?: BadgeTypeEnum.NUMBER;
+	type: BadgeTypeEnum;
 	count?: number;
 	color?: 'primary' | 'secondary' | 'default' | 'error';
 }

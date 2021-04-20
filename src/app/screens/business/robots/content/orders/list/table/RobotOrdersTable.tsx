@@ -6,18 +6,18 @@ import { AppConfigService } from '../../../../../../../services';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableHeadOrder, RobotOrdersTableInterface } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
-import { RobotOrdersListStyles } from './RobotOrdersTable.style';
+import { RobotOrdersTableStyles } from './RobotOrdersTable.style';
 import RobotOrdersTableBody from './RobotOrdersTableBody';
 import RobotOrdersTableHead from './RobotOrdersTableHead';
 
 const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
-	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
+	const { content, executing, page, setPage, rowsPerPage, setRowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotOrdersListStyles();
+	const classes = RobotOrdersTableStyles();
 
 	const [order, setOrder] = useState<RobotOrdersTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotOrdersTableColumnsTypeEnum>(
-		columns[columns.length - 2].id
+		columns[columns.length - 3].id
 	);
 
 	/**
@@ -71,11 +71,12 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 
 					{/* Body */}
 					<RobotOrdersTableBody
+						content={content}
+						executing={executing}
 						order={order}
 						orderBy={orderBy}
 						page={page}
 						rowsPerPage={rowsPerPage}
-						content={content}
 					/>
 				</Table>
 			</TableContainer>

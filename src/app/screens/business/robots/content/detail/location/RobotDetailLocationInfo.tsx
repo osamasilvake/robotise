@@ -28,8 +28,8 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 				</Typography>
 				<Checkbox
 					className={classes.sLocationInfoCheckbox}
-					name="acceptOrder"
 					color="primary"
+					name="gridLines"
 					checked={grid}
 					onChange={toggleGridLines}
 				/>

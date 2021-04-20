@@ -22,6 +22,13 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
+	MuiDialogTitle: {
+		styleOverrides: {
+			root: {
+				paddingBottom: pxToRem(8)
+			}
+		}
+	},
 	MuiPopover: {
 		styleOverrides: {
 			paper: {
@@ -78,8 +85,7 @@ const OverridesCustom: Components = {
 	MuiButton: {
 		styleOverrides: {
 			root: {
-				borderRadius: pxToRem(2),
-				height: pxToRem(42)
+				borderRadius: pxToRem(2)
 			},
 			outlined: {
 				border: `${pxToRem(1)} solid ${AppConfigService.AppOptions.colors.c9}`,
@@ -87,7 +93,8 @@ const OverridesCustom: Components = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					color: AppConfigService.AppOptions.colors.c5
-				}
+				},
+				height: pxToRem(38)
 			},
 			contained: {
 				backgroundColor: AppConfigService.AppOptions.colors.c9,
@@ -95,7 +102,8 @@ const OverridesCustom: Components = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					opacity: 0.9
-				}
+				},
+				height: pxToRem(42)
 			}
 		}
 	},

@@ -8,6 +8,7 @@ import {
 	TableRow
 } from '@material-ui/core';
 import clsx from 'clsx';
+import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ import { AppConfigService } from '../../../../../../../services';
 import { SICDrawerLaneInterface } from '../../../../../../../slices/inventory/Inventory.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
+import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotInventoryTableColumnsTypeEnum } from './RobotInventoryTable.enum';
 import {
@@ -38,7 +40,8 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const cSiteId = robotTwinsSummary.content?.dataById[params.robot]?.site.id;
-	const currency = (cSiteId && sites.content?.dataById[cSiteId]?.currency) || '€';
+	const currency = (cSiteId && sites.content?.dataById[cSiteId]?.currency) || 'EUR';
+	const unknown = 'N/A';
 
 	/**
 	 * set cell value
@@ -78,9 +81,11 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 			case RobotInventoryTableColumnsTypeEnum.CAPACITY:
 				return lane[column.id];
 			case RobotInventoryTableColumnsTypeEnum.PRICE:
-				return lane.product ? `${currency} ${lane.product[column.id]}` : '-';
+				return lane.product
+					? `${currencyFormat(lane.product[column.id], currency, i18next.language)}`
+					: unknown;
 			default:
-				return lane.product ? lane.product[column.id] || '-' : '-';
+				return lane.product ? lane.product[column.id] || unknown : unknown;
 		}
 	};
 

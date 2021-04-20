@@ -25,6 +25,7 @@ import { AppConfigService } from '../../../services';
 import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Badge from '../../common/badge/Badge';
+import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import { AppBarStyles } from './AppBar.style';
 import Language from './language/Language';
 import QRCode from './qr-code/QRCode';
@@ -115,7 +116,7 @@ const AppBarCustom: FC = () => {
 								{auth.user?.data.role}
 							</Typography>
 						</Box>
-						<Badge>
+						<Badge type={BadgeTypeEnum.DOT}>
 							<Avatar
 								src={AppConfigService.AppImageURLs.avatar.path}
 								alt={AppConfigService.AppImageURLs.avatar.name}

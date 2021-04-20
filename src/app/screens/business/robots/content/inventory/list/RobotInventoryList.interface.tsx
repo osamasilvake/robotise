@@ -1,5 +1,5 @@
-import { SliceInventoryInterface } from '../../../../../../slices/inventory/Inventory.slice.interface';
+import { SIContentInterface } from '../../../../../../slices/inventory/Inventory.slice.interface';
 
 export interface RobotInventoryListInterface {
-	inventory: SliceInventoryInterface;
+	content: SIContentInterface | null;
 }

@@ -1,5 +1,6 @@
 import { Paper } from '@material-ui/core';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -11,6 +12,8 @@ import RobotContent from './content/RobotContent';
 import { RobotParamsInterface } from './Robot.interface';
 
 const Robot: FC = () => {
+	const { t } = useTranslation('ROBOTS');
+
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const order = useSelector(orderSelector);
 
@@ -20,7 +23,7 @@ const Robot: FC = () => {
 	const cOrderRoom = order && order.content ? order.content.room : undefined;
 
 	/**
-	 * switch to detail page based on params
+	 * switch detail page
 	 * @returns
 	 */
 	const switchDetailRoute = () => {
@@ -38,7 +41,9 @@ const Robot: FC = () => {
 				description="ROBOTS.ROBOT.DESCRIPTION"
 				labels={{
 					robotName: !robotTwinsSummary.loader ? cRobotName : '',
-					orderRoom: !order.loader ? cOrderRoom : ''
+					orderRoom: !order.loader
+						? cOrderRoom || t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION')
+						: ''
 				}}
 			/>
 

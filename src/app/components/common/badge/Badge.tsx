@@ -6,13 +6,12 @@ import { BadgeInterface } from './Badge.interface';
 import { BadgeStyles } from './Badge.style';
 
 const AppBadge: FC<BadgeInterface> = (props) => {
-	const { children, options } = props;
+	const { children, type, count, color } = props;
 	const classes = BadgeStyles();
 
-	// number
-	if (options?.type === BadgeTypeEnum.NUMBER) {
+	if (type === BadgeTypeEnum.NUMBER) {
 		return (
-			<Badge badgeContent={options?.count} color={options?.color || 'primary'}>
+			<Badge badgeContent={count} color={color || 'primary'}>
 				{children}
 			</Badge>
 		);

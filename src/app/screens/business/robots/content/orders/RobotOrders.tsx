@@ -11,6 +11,7 @@ import { OrdersFetchList, ordersSelector } from '../../../../../slices/orders/Or
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
+import RobotOrdersOptions from './list/options/RobotOrdersOptions';
 import RobotOrdersTable from './list/table/RobotOrdersTable';
 import { RobotOrdersStyles } from './RobotOrders.style';
 
@@ -22,6 +23,7 @@ const RobotOrders: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
+	const [activeOrders, setActiveOrders] = useState(false);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
 		orders.content
@@ -76,6 +78,10 @@ const RobotOrders: FC = () => {
 		page
 	]);
 
+	useEffect(() => {
+		// console.log(activeOrders);
+	}, [activeOrders]);
+
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || orders.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
@@ -93,8 +99,17 @@ const RobotOrders: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Options */}
+			<RobotOrdersOptions
+				executing={orders.executing}
+				activeOrders={activeOrders}
+				setActiveOrders={setActiveOrders}
+			/>
+
+			{/* Table */}
 			<RobotOrdersTable
 				content={orders.content}
+				executing={orders.executing}
 				page={page}
 				setPage={setPage}
 				rowsPerPage={rowsPerPage}

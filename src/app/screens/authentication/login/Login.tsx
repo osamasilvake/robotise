@@ -120,9 +120,9 @@ const Login: FC = () => {
 							className={classes.sFormCheckbox}
 							control={
 								<Checkbox
+									color="primary"
 									name="rememberMe"
 									onChange={handleChange}
-									color="primary"
 								/>
 							}
 							label={t('LOGIN.FIELDS.REMEMBER_ME.LABEL')}

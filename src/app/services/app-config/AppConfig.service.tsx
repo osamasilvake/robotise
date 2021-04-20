@@ -36,7 +36,8 @@ class AppConfigService extends EnvService {
 					Roboto: 'Roboto'
 				},
 				zIndex: {
-					level2: 2
+					level2: 2,
+					level3: 3
 				},
 				responsive: {
 					mobile: 600 - 1

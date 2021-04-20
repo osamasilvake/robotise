@@ -53,7 +53,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				styleOverrides: {
 					...options.components?.MuiDrawer?.styleOverrides,
 					paper: {
-						background: AppConfigService.AppOptions.colors.c5,
+						backgroundColor: AppConfigService.AppOptions.colors.c5,
 						boxShadow: 'none'
 					}
 				}

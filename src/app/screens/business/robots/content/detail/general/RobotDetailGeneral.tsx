@@ -68,8 +68,8 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					className={classes.sGeneralLastItemCheckboxControl}
 					control={
 						<Checkbox
-							name="acceptOrder"
 							color="primary"
+							name="acceptOrder"
 							checked={robot.site.acceptOrders}
 						/>
 					}

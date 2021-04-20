@@ -28,7 +28,7 @@ class HttpClientService {
 	 * @param data
 	 * @param config
 	 */
-	patch = async <T,>(url: string, data: T, config: AxiosRequestConfig) => {
+	patch = async <T,>(url: string, data: T, config?: AxiosRequestConfig) => {
 		const resp = await axios.patch(url, data, config);
 		return resp.data;
 	};

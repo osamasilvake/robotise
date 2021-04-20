@@ -14,7 +14,6 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 		minWidth: 170,
 		align: 'left'
 	},
-
 	{
 		id: RobotOrdersTableColumnsTypeEnum.MODE,
 		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.MODE',

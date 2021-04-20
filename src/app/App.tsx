@@ -57,7 +57,7 @@ const App: FC = () => {
 					</ErrorBoundary>
 				</HelmetProvider>
 
-				{/* Message: Snackbar for Notifications */}
+				{/* Snackbar */}
 				<Message />
 
 				{/* Scroll-Top */}

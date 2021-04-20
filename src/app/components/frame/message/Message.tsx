@@ -20,10 +20,10 @@ const Message: FC = () => {
 	const handleCloseMessage = () =>
 		dispatch(
 			GeneralTriggerMessage({
-				id: 'close',
+				id: general.triggerMessage.id,
 				show: false,
-				severity: TriggerMessageTypeEnum.INFO,
-				text: 'CLOSED'
+				severity: general.triggerMessage.severity,
+				text: general.triggerMessage.text
 			})
 		);
 

@@ -35,7 +35,12 @@ const RobotOrderDetailTable: FC<RobotOrderDetailInterface> = (props) => {
 			case RobotOrderColumnsTypeEnum.DETAILS:
 				return (
 					<Status level={mapStatusLevel(row.details)}>
-						{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id]}`)}
+						{t(
+							`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id].replace(
+								':',
+								'_'
+							)}`
+						)}
 					</Status>
 				);
 			default:

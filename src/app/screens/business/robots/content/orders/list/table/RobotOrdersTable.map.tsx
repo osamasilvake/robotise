@@ -11,6 +11,7 @@ export const mapStatusLevel = (status: string) => {
 		case RobotOrdersTableColumnStatusTypeEnum.CREATED:
 			return StatusTypeEnum.INIT;
 		case RobotOrdersTableColumnStatusTypeEnum.PENDING:
+		case RobotOrdersTableColumnStatusTypeEnum.TIMEOUT:
 			return StatusTypeEnum.WARN;
 		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
 		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:

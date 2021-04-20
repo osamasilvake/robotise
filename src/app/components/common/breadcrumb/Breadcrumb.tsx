@@ -45,7 +45,7 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 					};
 				} else if (path === params.order) {
 					return {
-						text: labels?.orderRoom || '...',
+						text: labels?.orderRoom || '',
 						link,
 						isLast: index === paths.length - 1
 					};

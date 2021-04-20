@@ -1,5 +1,5 @@
-import { TableCell } from '@material-ui/core';
-import { FC } from 'react';
+import { Checkbox, TableCell } from '@material-ui/core';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
@@ -24,10 +24,10 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 */
 	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
 		const value = order[column.id];
-		if (columns[0].id === column.id) {
+		if (columns[0].id === column.id && typeof value === 'string') {
 			return (
 				<Status level={mapStatusLevel(value)}>
-					{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${value}`)}
+					{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${value.replace(':', '_')}`)}
 				</Status>
 			);
 		} else if (columns[1].id === column.id) {
@@ -38,6 +38,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 			return momentFormat1(value);
 		} else if (columns[4].id === column.id) {
 			return t(`CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${value}`);
+		} else if (columns[5].id === column.id) {
+			return <Checkbox disabled name="testOrder" checked={!!value} />;
 		}
 		return value;
 	};

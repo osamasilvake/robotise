@@ -21,6 +21,7 @@ export interface SOCDataInterface {
 	mode: string;
 	status: string;
 	origin: string;
+	isDebug: boolean;
 	updatedAt: string;
 	createdAt: string;
 	history: SOCDataHistoryInterface[];

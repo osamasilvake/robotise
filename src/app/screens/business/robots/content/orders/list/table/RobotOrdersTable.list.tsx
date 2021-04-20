@@ -24,7 +24,7 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 	{
 		id: RobotOrdersTableColumnsTypeEnum.DATE,
 		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.DATE',
-		minWidth: 170,
+		minWidth: 200,
 		align: 'left'
 	},
 	{
@@ -32,5 +32,11 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.ORIGIN',
 		minWidth: 170,
 		align: 'left'
+	},
+	{
+		id: RobotOrdersTableColumnsTypeEnum.TEST,
+		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.TEST',
+		minWidth: 170,
+		align: 'right'
 	}
 ];

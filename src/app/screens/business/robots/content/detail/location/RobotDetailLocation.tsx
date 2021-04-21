@@ -13,13 +13,13 @@ import RobotDetailLocationCard from './RobotDetailLocationCard';
 import RobotDetailLocationInfo from './RobotDetailLocationInfo';
 
 const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
-	const { robot } = props;
+	const { robotTwin } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailLocationStyles();
 
 	const [grid, showGrid] = useState(true);
 
-	return robot.location ? (
+	return robotTwin.location ? (
 		<Box className={classes.sLocationContainer}>
 			{/* Title */}
 			<Typography variant="h6" color="textSecondary" className={classes.sLocationTitle}>
@@ -28,23 +28,23 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 
 			{/* Label */}
 			<Typography variant="body1" color="textPrimary">
-				{strRemoveSymbols(strRemoveLastUnderscore(robot.location.value.map.id))}
-				{robot.location.value.map.floor && ` / ${robot.location.value.map.floor}`}
+				{strRemoveSymbols(strRemoveLastUnderscore(robotTwin.location.value.map.id))}
+				{robotTwin.location.value.map.floor && ` / ${robotTwin.location.value.map.floor}`}
 			</Typography>
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat3(robot.location.updatedAt)}
+				{momentFormat3(robotTwin.location.updatedAt)}
 			</Typography>
 
 			{/* Grid */}
 			<Grid container spacing={1}>
 				{/* Card */}
-				<RobotDetailLocationCard robot={robot} grid={grid} />
+				<RobotDetailLocationCard robotTwin={robotTwin} grid={grid} />
 
 				{/* Info */}
 				<RobotDetailLocationInfo
-					location={robot.location}
+					location={robotTwin.location}
 					grid={grid}
 					showGrid={showGrid}
 				/>

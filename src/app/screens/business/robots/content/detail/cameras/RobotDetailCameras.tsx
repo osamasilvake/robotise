@@ -8,13 +8,13 @@ import { RobotDetailCamerasInterface } from './RobotDetailCameras.interface';
 import { RobotDetailCameraStyles } from './RobotDetailCameras.style';
 
 const RobotDetailCameras: FC<RobotDetailCamerasInterface> = (props) => {
-	const { robot, loading } = props;
+	const { robotTwin, loading } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCameraStyles();
 
 	const [currentCameraType, setCurrentCameraType] = useState(RobotDetailCameraTypeEnum.BASE);
 
-	return robot?.cameras ? (
+	return robotTwin?.cameras ? (
 		<Box className={classes.sCamerasContainer}>
 			{/* Title */}
 			<Typography variant="h6" color="textSecondary" className={classes.sCamerasTitle}>
@@ -24,14 +24,14 @@ const RobotDetailCameras: FC<RobotDetailCamerasInterface> = (props) => {
 			{/* Grid */}
 			<Grid container spacing={1}>
 				<RobotDetailCamera
-					robot={robot}
+					robotTwin={robotTwin}
 					loading={loading}
 					cameraType={RobotDetailCameraTypeEnum.BASE}
 					currentCameraType={currentCameraType}
 					setCurrentCameraType={setCurrentCameraType}
 				/>
 				<RobotDetailCamera
-					robot={robot}
+					robotTwin={robotTwin}
 					loading={loading}
 					cameraType={RobotDetailCameraTypeEnum.TOP}
 					currentCameraType={currentCameraType}

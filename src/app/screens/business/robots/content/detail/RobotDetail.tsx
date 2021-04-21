@@ -71,11 +71,14 @@ const RobotDetail: FC = () => {
 
 	return (
 		<Box>
-			<RobotDetailGeneral robot={robotTwins.content.data[0]} />
-			<RobotDetailAlerts robot={robotTwins.content.data[0]} />
-			<RobotDetailLocation robot={robotTwins.content.data[0]} />
-			<RobotDetailCameras robot={robotTwins.content.data[0]} loading={robotTwins.loading} />
-			<RobotDetailStates robot={robotTwins.content.data[0]} />
+			<RobotDetailGeneral robotTwin={robotTwins.content.data[0]} />
+			<RobotDetailAlerts robotTwin={robotTwins.content.data[0]} />
+			<RobotDetailLocation robotTwin={robotTwins.content.data[0]} />
+			<RobotDetailCameras
+				robotTwin={robotTwins.content.data[0]}
+				loading={robotTwins.loading}
+			/>
+			<RobotDetailStates robotTwin={robotTwins.content.data[0]} />
 		</Box>
 	);
 };

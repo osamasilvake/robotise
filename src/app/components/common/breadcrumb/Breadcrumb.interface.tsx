@@ -1,3 +1,8 @@
+export interface BreadcrumbParamsInterface {
+	robot?: string;
+	order?: string;
+}
+
 export interface BreadcrumbInterface {
 	labels: BreadcrumbLabelsInterface | null;
 }

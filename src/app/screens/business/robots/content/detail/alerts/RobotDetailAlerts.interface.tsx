@@ -4,7 +4,7 @@ import {
 } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 
 export interface RobotDetailAlertsInterface {
-	robot: SRTContentDataInterface;
+	robotTwin: SRTContentDataInterface;
 }
 
 export interface RobotDetailAlertInterface {

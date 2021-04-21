@@ -8,7 +8,7 @@ import RobotInventoryTable from './table/RobotInventoryTable';
 const RobotInventoryList: FC<RobotInventoryListInterface> = (props) => {
 	const { content } = props;
 
-	return content ? (
+	return content && content.drawers ? (
 		<Box>
 			{content.drawers.map((drawer) => (
 				<Box key={drawer.index}>

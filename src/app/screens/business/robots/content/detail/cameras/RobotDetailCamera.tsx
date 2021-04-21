@@ -25,7 +25,7 @@ import { RobotDetailCameraInterface } from './RobotDetailCameras.interface';
 import { RobotDetailCameraStyles } from './RobotDetailCameras.style';
 
 const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
-	const { robot, loading, cameraType, currentCameraType, setCurrentCameraType } = props;
+	const { robotTwin, loading, cameraType, currentCameraType, setCurrentCameraType } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCameraStyles();
 
@@ -43,10 +43,10 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		// api: request for robot camera image
 		// dispatch: fetch robot twins of a robot
 		Promise.all([
-			RobotsService.robotRequestCameraImage(camera, robot.id || ''),
+			RobotsService.robotRequestCameraImage(camera, robotTwin.robot.id || ''),
 			dispatch(
 				RobotTwinsFetch(
-					robot.id,
+					robotTwin.id,
 					true,
 					AppConfigService.AppOptions.screens.robots.content.detail.camera.requestDelay
 				)
@@ -74,7 +74,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 			});
 	};
 
-	return robot?.cameras && robot.cameras[cameraType] ? (
+	return robotTwin?.cameras && robotTwin.cameras[cameraType] ? (
 		<Grid item xs={12} sm={6}>
 			{/* Label */}
 			<Typography variant="body1" color="textPrimary">
@@ -83,15 +83,15 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat3(robot.cameras[cameraType].imageId.updatedAt)}
+				{momentFormat3(robotTwin.cameras[cameraType].imageId.updatedAt)}
 			</Typography>
 
 			{/* Card Picture */}
-			{robot.cameras[cameraType].imageId.value && (
+			{robotTwin.cameras[cameraType].imageId.value && (
 				<Card square elevation={1} className={classes.sCameraCard}>
 					<CardContent>
 						<Picture
-							src={robotCameraImageUrl(robot.cameras[cameraType].imageId.value)}
+							src={robotCameraImageUrl(robotTwin.cameras[cameraType].imageId.value)}
 							alt="camera"
 						/>
 					</CardContent>
@@ -103,13 +103,13 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleRequestRobotImage(cameraType)}
-					disabled={loading || !robot.robotState.isReady.value}
+					disabled={loading || !robotTwin.robotState.isReady.value}
 					endIcon={
 						loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />
 					}>
-					{robot.robotState.isReady.value && t('CONTENT.DETAIL.CAMERAS.REQUEST')}
-					{!robot.robotState.isReady.value && t('CONTENT.DETAIL.CAMERAS.DISABLED')}
+					{robotTwin.robotState.isReady.value && t('CONTENT.DETAIL.CAMERAS.REQUEST')}
+					{!robotTwin.robotState.isReady.value && t('CONTENT.DETAIL.CAMERAS.DISABLED')}
 				</Button>
 			</Box>
 		</Grid>

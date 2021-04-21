@@ -7,11 +7,11 @@ import {
 } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 
 export interface RobotDetailStatesInterface {
-	robot: SRTContentDataInterface;
+	robotTwin: SRTContentDataInterface;
 }
 
 export interface RobotDetailStateInterface {
-	robot: SRTContentDataInterface;
+	robotTwin: SRTContentDataInterface;
 	state: RobotDetailStateInfoInterface;
 }
 

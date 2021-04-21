@@ -4,12 +4,12 @@ import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/Ro
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 
 export interface RobotDetailCamerasInterface {
-	robot: SRTContentDataInterface;
+	robotTwin: SRTContentDataInterface;
 	loading: boolean;
 }
 
 export interface RobotDetailCameraInterface {
-	robot: SRTContentDataInterface;
+	robotTwin: SRTContentDataInterface;
 	loading: boolean;
 	cameraType: RobotDetailCameraTypeEnum;
 	currentCameraType: RobotDetailCameraTypeEnum;

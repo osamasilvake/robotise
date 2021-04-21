@@ -9,14 +9,17 @@ import {
 } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
 import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
 import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
-import { RobotTwinsFetch } from '../../../../../../slices/robot-twins/RobotTwins.slice';
+import {
+	RobotTwinsFetch,
+	robotTwinsSelector
+} from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 import RobotsService from '../../../Robots.service';
 import { robotCameraImageUrl } from '../../../Robots.url';
@@ -25,11 +28,12 @@ import { RobotDetailCameraInterface } from './RobotDetailCameras.interface';
 import { RobotDetailCameraStyles } from './RobotDetailCameras.style';
 
 const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
-	const { robotTwin, loading, cameraType, currentCameraType, setCurrentCameraType } = props;
+	const { robotTwin, cameraType, currentCameraType, setCurrentCameraType } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCameraStyles();
 
 	const dispatch = useDispatch();
+	const robotTwins = useSelector(robotTwinsSelector);
 
 	/**
 	 * request for robot camera image
@@ -103,9 +107,9 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleRequestRobotImage(cameraType)}
-					disabled={loading || !robotTwin.robotState.isReady.value}
+					disabled={robotTwins.loading || !robotTwin.robotState.isReady.value}
 					endIcon={
-						loading &&
+						robotTwins.loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />
 					}>
 					{robotTwin.robotState.isReady.value && t('CONTENT.DETAIL.CAMERAS.REQUEST')}

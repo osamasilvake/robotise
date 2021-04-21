@@ -1,24 +1,25 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export interface RobotOrdersOptionsInterface {
-	activeOrders: boolean;
-	setActiveOrders: Dispatch<SetStateAction<boolean>>;
-	setPage: Dispatch<SetStateAction<number>>;
-	executing: boolean;
-}
+import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 
-export interface RobotOrdersOptionActiveOrdersInterface {
+export interface RobotOrdersActionsInterface {
 	activeOrders: boolean;
 	setActiveOrders: Dispatch<SetStateAction<boolean>>;
 	setPage: Dispatch<SetStateAction<number>>;
 }
 
-export interface RobotOrdersOptionNewOrderInterface {
-	executing: boolean;
+export interface RobotOrdersActiveOrdersInterface {
+	activeOrders: boolean;
+	setActiveOrders: Dispatch<SetStateAction<boolean>>;
+	setPage: Dispatch<SetStateAction<number>>;
 }
 
-export interface DialogNewOrderOrderInterface {
-	executing: boolean;
+export interface DialogCreateOrderPayloadInterface {
+	isDebug: boolean;
+	location: string;
+	mode: RobotOrderModeTypeEnum;
+}
+export interface DialogNewOrderInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }

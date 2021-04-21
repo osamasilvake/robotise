@@ -21,7 +21,7 @@ import { columns } from './RobotOrdersTable.list';
 import RobotOrdersTableBodyCell from './RobotOrdersTableBodyCell';
 
 const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
-	const { content, executing, order, orderBy, page, rowsPerPage } = props;
+	const { content, order, orderBy, page, rowsPerPage } = props;
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
@@ -101,7 +101,6 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 									key={column.id}
 									column={column}
 									order={order}
-									executing={executing}
 								/>
 							))}
 						</TableRow>

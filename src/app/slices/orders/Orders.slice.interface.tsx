@@ -4,7 +4,8 @@ import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interf
 export interface SliceOrdersInterface {
 	loader: boolean;
 	loading: boolean;
-	executing: boolean;
+	creating: boolean;
+	canceling: boolean;
 	content: SOContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

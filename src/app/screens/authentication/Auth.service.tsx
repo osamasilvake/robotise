@@ -6,14 +6,18 @@ import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { momentNow } from '../../utilities/methods/Moment';
 import { serialize } from '../../utilities/serializers/object/Object';
 import { AuthUserRoleTypeEnum } from './Auth.enum';
-import { AuthJWTInterface, AuthLoginInterface, AuthUserDetailInterface } from './Auth.interface';
+import {
+	AuthJWTInterface,
+	AuthLoginPayloadInterface,
+	AuthUserDetailInterface
+} from './Auth.interface';
 
 class AuthService {
 	/**
 	 * login user
 	 * @param payload
 	 */
-	authLogin = (payload: AuthLoginInterface) => {
+	authLogin = (payload: AuthLoginPayloadInterface) => {
 		const request = {
 			username: payload.email,
 			password: payload.password,

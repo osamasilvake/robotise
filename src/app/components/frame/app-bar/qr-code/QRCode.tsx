@@ -25,7 +25,7 @@ const QRCode: FC = () => {
 					<CardContent className={cardClasses.sCardContent3}>
 						<Box>
 							<Typography variant="caption" color="textSecondary">
-								{String(t('QR_CODE'))}
+								{t('QR_CODE')}
 							</Typography>
 							<Avatar
 								variant="square"

@@ -1,5 +1,5 @@
 import { validateEmail } from '../../../utilities/methods/Validations';
-import { AuthLoginInterface } from '../Auth.interface';
+import { AuthLoginPayloadInterface } from '../Auth.interface';
 
 /**
  * login form validation
@@ -7,10 +7,10 @@ import { AuthLoginInterface } from '../Auth.interface';
  * @param touched
  */
 export const LoginFormValidation = (
-	values: AuthLoginInterface,
-	touched: AuthLoginInterface
-): AuthLoginInterface => {
-	const errors: AuthLoginInterface = {
+	values: AuthLoginPayloadInterface,
+	touched: AuthLoginPayloadInterface
+): AuthLoginPayloadInterface => {
+	const errors: AuthLoginPayloadInterface = {
 		email: '',
 		password: ''
 	};
@@ -22,7 +22,7 @@ export const LoginFormValidation = (
 			errors.email = 'LOGIN.FIELDS.EMAIL.VALIDATIONS.REQUIRED';
 		}
 
-		// format
+		// validate
 		if (values.email && !validateEmail(values.email) && touched.email) {
 			errors.email = 'LOGIN.FIELDS.EMAIL.VALIDATIONS.INVALID';
 		}

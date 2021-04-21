@@ -1,7 +1,6 @@
-import { ChangeEvent, FocusEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
-import { UseFormEventTypeEnum } from './UseForm.enum';
-import { UseFormRetInterface } from './UseForm.interface';
+import { SelectInterface, UseFormRetInterface } from './UseForm.interface';
 
 /**
  * custom hook: useForm
@@ -20,17 +19,51 @@ export const useForm = <UseFormEntity,>(
 	const [touched, setTouched] = useState(initState);
 
 	/**
-	 * handle change
+	 * handle change: input
 	 * @param event
 	 */
-	const handleChange = (event: FocusEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
+	const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name } = event.target;
-		const value =
-			event.target.type === UseFormEventTypeEnum.CHECKBOX
-				? event.target.checked
-				: event.target.value;
+		const value = event.target.value;
 
-		// update value to current selected property
+		if (name) {
+			// set change event values
+			setChangeEventValues(name, value);
+		}
+	};
+
+	/**
+	 * handle change: checkbox
+	 * @param event
+	 */
+	const handleChangeCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
+		const { name } = event.target;
+		const value = event.target.checked;
+
+		if (name) {
+			// set change event values
+			setChangeEventValues(name, value);
+		}
+	};
+
+	/**
+	 * handle change: select
+	 * @param event
+	 */
+	const handleChangeSelect = (event: ChangeEvent<SelectInterface>) => {
+		const { name, value } = event.target;
+		if (name && value) {
+			// set change event values
+			setChangeEventValues(name, value);
+		}
+	};
+
+	/**
+	 * set change event values
+	 * @param name
+	 * @param value
+	 */
+	const setChangeEventValues = (name: string, value: string | boolean | unknown) => {
 		setValues((prevState) => {
 			const newState = {
 				...prevState,
@@ -77,5 +110,13 @@ export const useForm = <UseFormEntity,>(
 		await submitCallBack();
 	};
 
-	return { handleChange, handleBlur, handleSubmit, values, errors };
+	return {
+		handleChangeInput,
+		handleChangeCheckbox,
+		handleChangeSelect,
+		handleBlur,
+		handleSubmit,
+		values,
+		errors
+	};
 };

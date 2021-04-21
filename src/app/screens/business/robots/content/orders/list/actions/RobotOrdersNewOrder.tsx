@@ -2,14 +2,12 @@ import { Box, Button, Typography } from '@material-ui/core';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import DialogNewOrder from './DialogNewOrder';
-import { RobotOrdersOptionNewOrderInterface } from './RobotOrdersOptions.interface';
-import { RobotOrdersOptionsStyles } from './RobotOrdersOptions.style';
+import DialogCreateOrder from './DialogCreateOrder';
+import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 
-const RobotOrdersOptionNewOrder: FC<RobotOrdersOptionNewOrderInterface> = (props) => {
-	const { executing } = props;
+const RobotOrdersCreateOrder: FC = () => {
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotOrdersOptionsStyles();
+	const classes = RobotOrdersActionsStyles();
 
 	const [openDialog, setOpenDialog] = useState(false);
 
@@ -28,7 +26,7 @@ const RobotOrdersOptionNewOrder: FC<RobotOrdersOptionNewOrderInterface> = (props
 
 	return (
 		<>
-			<Box className={classes.sNewOrder}>
+			<Box className={classes.sCreateOrder}>
 				<Typography variant="subtitle1" color="textSecondary">
 					Create
 				</Typography>
@@ -36,8 +34,8 @@ const RobotOrdersOptionNewOrder: FC<RobotOrdersOptionNewOrderInterface> = (props
 					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_NEW.LABEL')}
 				</Button>
 			</Box>
-			<DialogNewOrder open={openDialog} setOpen={setOpenDialog} executing={executing} />
+			<DialogCreateOrder open={openDialog} setOpen={setOpenDialog} />
 		</>
 	);
 };
-export default RobotOrdersOptionNewOrder;
+export default RobotOrdersCreateOrder;

@@ -2,9 +2,9 @@ import { Box, Checkbox, FormControlLabel, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RobotOrdersOptionActiveOrdersInterface } from './RobotOrdersOptions.interface';
+import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
 
-const RobotOrdersOptionActiveOrders: FC<RobotOrdersOptionActiveOrdersInterface> = (props) => {
+const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {
 	const { activeOrders, setActiveOrders, setPage } = props;
 	const { t } = useTranslation('ROBOTS');
 
@@ -40,4 +40,4 @@ const RobotOrdersOptionActiveOrders: FC<RobotOrdersOptionActiveOrdersInterface> 
 		</Box>
 	);
 };
-export default RobotOrdersOptionActiveOrders;
+export default RobotOrdersActiveOrders;

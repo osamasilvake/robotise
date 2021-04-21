@@ -11,7 +11,7 @@ import RobotOrdersTableBody from './RobotOrdersTableBody';
 import RobotOrdersTableHead from './RobotOrdersTableHead';
 
 const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
-	const { content, executing, page, setPage, rowsPerPage, setRowsPerPage } = props;
+	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotOrdersTableStyles();
 
@@ -72,7 +72,6 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 					{/* Body */}
 					<RobotOrdersTableBody
 						content={content}
-						executing={executing}
 						order={order}
 						orderBy={orderBy}
 						page={page}

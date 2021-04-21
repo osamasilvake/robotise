@@ -1,6 +1,7 @@
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableColumnInterface } from './RobotOrdersTable.interface';
 
+// columns
 export const columns: RobotOrdersTableColumnInterface[] = [
 	{
 		id: RobotOrdersTableColumnsTypeEnum.STATUS,
@@ -38,4 +39,12 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 		minWidth: 170,
 		align: 'right'
 	}
+];
+
+// cancellable orders
+export const CANCELLABLE_ORDERS = [
+	'created',
+	'in_progress:traveling',
+	'in_progress:arrived',
+	'pending'
 ];

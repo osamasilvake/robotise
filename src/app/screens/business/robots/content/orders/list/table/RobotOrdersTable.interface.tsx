@@ -8,7 +8,6 @@ import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 
 export interface RobotOrdersTableInterface {
 	content: SOContentInterface | null;
-	executing: boolean;
 	page: number;
 	setPage: Dispatch<SetStateAction<number>>;
 	rowsPerPage: number;
@@ -32,7 +31,6 @@ export interface RobotOrdersTableColumnInterface {
 
 export interface RobotOrdersTableBodyInterface {
 	content: SOContentInterface | null;
-	executing: boolean;
 	order: RobotOrdersTableHeadOrder;
 	orderBy: RobotOrdersTableColumnsTypeEnum;
 	page: number;
@@ -42,12 +40,10 @@ export interface RobotOrdersTableBodyInterface {
 export interface RobotOrdersTableBodyCellInterface {
 	column: RobotOrdersTableColumnInterface;
 	order: SOCDataInterface;
-	executing: boolean;
 }
 
 export interface DialogCancelOrderInterface {
 	order: SOCDataInterface;
-	executing: boolean;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }

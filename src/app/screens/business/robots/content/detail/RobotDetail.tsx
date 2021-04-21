@@ -74,10 +74,7 @@ const RobotDetail: FC = () => {
 			<RobotDetailGeneral robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailAlerts robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailLocation robotTwin={robotTwins.content.data[0]} />
-			<RobotDetailCameras
-				robotTwin={robotTwins.content.data[0]}
-				loading={robotTwins.loading}
-			/>
+			<RobotDetailCameras robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailStates robotTwin={robotTwins.content.data[0]} />
 		</Box>
 	);

@@ -5,18 +5,17 @@ import { useTranslation } from 'react-i18next';
 import Status from '../../../../../../../components/common/status/Status';
 import { SOCDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
-import { isOrderCancellable } from '../options/RobotOrdersOptions.map';
 import DialogCancelOrder from './DialogCancelOrder';
 import {
 	RobotOrdersTableBodyCellInterface,
 	RobotOrdersTableColumnInterface
 } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
-import { mapStatusLevel } from './RobotOrdersTable.map';
+import { isOrderCancellable, mapStatusLevel } from './RobotOrdersTable.map';
 import { RobotOrdersTableStyles } from './RobotOrdersTable.style';
 
 const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) => {
-	const { column, order, executing } = props;
+	const { column, order } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersTableStyles();
 
@@ -62,7 +61,6 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 							/>
 							<DialogCancelOrder
 								order={order}
-								executing={executing}
 								open={openDialog}
 								setOpen={setOpenDialog}
 							/>
@@ -73,7 +71,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		} else if (columns[1].id === column.id) {
 			return value ? value : t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
 		} else if (columns[2].id === column.id) {
-			return t(`CONTENT.ORDERS.LIST.TABLE.VALUES.MODE.${value}`);
+			return t(`CONTENT.ORDERS.COMMON.MODE.${value}`);
 		} else if (columns[3].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[4].id === column.id) {

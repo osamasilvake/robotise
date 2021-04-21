@@ -1,5 +1,6 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
+import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 
 class RobotsService {
 	/**
@@ -97,12 +98,36 @@ class RobotsService {
 	};
 
 	/**
-	 * delete robot order
+	 * create an order
+	 * @param payload
+	 * @param siteId
+	 * @returns
+	 */
+	robotOrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.ORDERS;
+		return HttpClientService.post(url, {
+			data: {
+				type: 'orders',
+				attributes: payload,
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: siteId
+						}
+					}
+				}
+			}
+		});
+	};
+
+	/**
+	 * cancel an order
 	 * @param ids
 	 * @param siteId
 	 * @returns
 	 */
-	robotOrderDelete = (ids: string[], siteId: string) => {
+	robotOrderCancel = (ids: string[], siteId: string) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
 		return HttpClientService.patch(url, {
 			data: ids.map((id) => {

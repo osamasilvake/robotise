@@ -5,12 +5,10 @@ import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 
 export interface RobotDetailCamerasInterface {
 	robotTwin: SRTContentDataInterface;
-	loading: boolean;
 }
 
 export interface RobotDetailCameraInterface {
 	robotTwin: SRTContentDataInterface;
-	loading: boolean;
 	cameraType: RobotDetailCameraTypeEnum;
 	currentCameraType: RobotDetailCameraTypeEnum;
 	setCurrentCameraType: Dispatch<SetStateAction<RobotDetailCameraTypeEnum>>;

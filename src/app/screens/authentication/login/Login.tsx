@@ -23,7 +23,7 @@ import { AppConfigService } from '../../../services';
 import { AuthLogin, authSelector } from '../../../slices/auth/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { validateEmptyObjProperty } from '../../../utilities/methods/ObjectUtilities';
-import { AuthLoginInterface } from '../Auth.interface';
+import { AuthLoginPayloadInterface } from '../Auth.interface';
 import { LoginStyles } from './Login.style';
 import { LoginFormValidation } from './Login.validation';
 
@@ -35,7 +35,14 @@ const Login: FC = () => {
 	const auth = useSelector(authSelector);
 
 	const [showPassword, setShowPassword] = useState(false);
-	const { handleChange, handleBlur, handleSubmit, values, errors } = useForm<AuthLoginInterface>(
+	const {
+		handleChangeInput,
+		handleChangeCheckbox,
+		handleBlur,
+		handleSubmit,
+		values,
+		errors
+	} = useForm<AuthLoginPayloadInterface>(
 		{
 			email: '',
 			password: '',
@@ -76,7 +83,7 @@ const Login: FC = () => {
 								id="email"
 								name="email"
 								error={!!errors.email}
-								onChange={handleChange}
+								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
 								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
@@ -97,7 +104,7 @@ const Login: FC = () => {
 								id="password"
 								name="password"
 								error={!!errors.password}
-								onChange={handleChange}
+								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
 								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
@@ -122,7 +129,7 @@ const Login: FC = () => {
 								<Checkbox
 									color="primary"
 									name="rememberMe"
-									onChange={handleChange}
+									onChange={handleChangeCheckbox}
 								/>
 							}
 							label={t('LOGIN.FIELDS.REMEMBER_ME.LABEL')}

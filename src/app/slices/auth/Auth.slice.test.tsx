@@ -5,7 +5,7 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { AuthLoginInterface } from '../../screens/authentication/Auth.interface';
+import { AuthLoginPayloadInterface } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { AppReducerType } from '..';
@@ -48,7 +48,7 @@ describe('[SLICE] Authentication', () => {
 	it('[AuthLogin] Creates loading and success actions when login succeeds', () => {
 		const store = mockStore(initialState);
 		const response = accessToken;
-		const request: AuthLoginInterface = {
+		const request: AuthLoginPayloadInterface = {
 			email: 'imran.khan@robotise.eu',
 			password: 'fakePassword',
 			rememberMe: true

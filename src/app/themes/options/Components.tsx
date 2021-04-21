@@ -25,7 +25,21 @@ const OverridesCustom: Components = {
 	MuiDialogTitle: {
 		styleOverrides: {
 			root: {
-				paddingBottom: pxToRem(8)
+				padding: `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(10)}`
+			}
+		}
+	},
+	MuiDialogContent: {
+		styleOverrides: {
+			root: {
+				padding: `${pxToRem(5)} ${pxToRem(20)}`
+			}
+		}
+	},
+	MuiDialogActions: {
+		styleOverrides: {
+			root: {
+				padding: `${pxToRem(10)} ${pxToRem(20)} ${pxToRem(15)}`
 			}
 		}
 	},

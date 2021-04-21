@@ -72,7 +72,9 @@
 	"DIALOG": {
 		"BUTTONS": {
 			"AGREE": "Agree",
-			"DISAGREE": "Disagree"
+			"DISAGREE": "Disagree",
+			"CANCEL": "Cancel",
+			"CREATE": "Create"
 		}
 	},
 	"COMMON": {
@@ -95,7 +97,8 @@
 			"LINK": "Go back to Dashboard"
 		},
 		"API": {
-			"FETCH": "Unable to fetch the content!"
+			"FETCH": "Unable to fetch the content!",
+			"CANCEL": "Unable to execute the action!"
 		}
 	},
 	"AUTH": {
@@ -314,7 +317,24 @@
 				"LIST": {
 					"OPTIONS": {
 						"ORDERS_ACTIVE": "Active Orders",
-						"ORDER_NEW": "New Order",
+						"ORDER_NEW": {
+							"LABEL": "New Order",
+							"TITLE": "New Order",
+							"TEXT": "Create a new order for JEEVES by providing a target location.",
+							"FIELDS": {
+								"LOCATION": {
+									"LABEL": "Location",
+									"PLACEHOLDER": "Please enter the Location",
+									"VALIDATIONS": {
+										"REQUIRED": "Please enter the target location.",
+										"INVALID": "Invalid Location!"
+									}
+								},
+								"DEBUG": {
+									"LABEL": "Debug Order"
+								}
+							}
+						},
 						"ORDER_CANCEL": {
 							"LABEL": "cancel",
 							"TITLE": "Cancel Order",
@@ -348,11 +368,7 @@
 							"TARGET": {
 								"RECEPTION": "Reception"
 							},
-							"MODE": {
-								"mini-bar": "Minibar",
-								"room-service": "Room Service",
-								"service-position": "Service Position"
-							},
+
 							"ORIGIN": {
 								"phone": "Phone",
 								"manualGUI": "JEEVES",
@@ -370,6 +386,13 @@
 							"STATUS": "Status",
 							"UPDATED_ON": "Updated On"
 						}
+					}
+				},
+				"COMMON": {
+					"MODE": {
+						"mini-bar": "Minibar",
+						"room-service": "Room Service",
+						"service-position": "Service Position"
 					}
 				}
 			}

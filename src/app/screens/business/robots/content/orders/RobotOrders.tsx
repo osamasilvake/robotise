@@ -11,7 +11,7 @@ import { OrdersFetchList, ordersSelector } from '../../../../../slices/orders/Or
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
-import RobotOrdersOptions from './list/options/RobotOrdersOptions';
+import RobotOrdersActions from './list/actions/RobotOrdersActions';
 import RobotOrdersTable from './list/table/RobotOrdersTable';
 import { RobotOrdersStyles } from './RobotOrders.style';
 
@@ -107,8 +107,7 @@ const RobotOrders: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Options */}
-			<RobotOrdersOptions
-				executing={orders.executing}
+			<RobotOrdersActions
 				activeOrders={activeOrders}
 				setActiveOrders={setActiveOrders}
 				setPage={setPage}
@@ -117,7 +116,6 @@ const RobotOrders: FC = () => {
 			{/* Table */}
 			<RobotOrdersTable
 				content={orders.content}
-				executing={orders.executing}
 				page={page}
 				setPage={setPage}
 				rowsPerPage={rowsPerPage}

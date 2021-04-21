@@ -96,14 +96,13 @@ export const AuthLogin = (payload: AuthLoginPayloadInterface) => async (dispatch
 			dispatch(success(user));
 		})
 		.catch((err) => {
+			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: 'login-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: (err && (err.error_description || err.message)) || 'AUTH.UNKNOWN'
 			};
-
-			// dispatch: trigger message
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
@@ -147,14 +146,13 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						dispatch(success(user));
 					})
 					.catch((err) => {
+						// dispatch: trigger message
 						const message: TriggerMessageInterface = {
 							id: 'auto-refresh-error',
 							show: true,
 							severity: TriggerMessageTypeEnum.ERROR,
 							text: err && err.error_description
 						};
-
-						// dispatch: trigger message
 						dispatch(triggerMessage(message));
 
 						// dispatch: failure
@@ -162,14 +160,13 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 					});
 			}
 		} else {
+			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: 'token-expired-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'AUTH.TOKEN_EXPIRED'
 			};
-
-			// dispatch: trigger message
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure

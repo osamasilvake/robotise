@@ -48,7 +48,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 			id,
 			show: true,
 			severity: TriggerMessageTypeEnum.SUCCESS,
-			text: 'ROBOT.ALERTS.CLIPBOARD'
+			text: 'ROBOTS.DETAIL.ALERTS.CLIPBOARD'
 		};
 		dispatch(GeneralTriggerMessage(message));
 	};

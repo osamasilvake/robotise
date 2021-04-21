@@ -56,14 +56,14 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 						variant="outlined"
 						disabled={orders.canceling}
 						onClick={onAction(false)}>
-						{t('BUTTONS.DISAGREE')}
+						{t('BUTTONS.CLOSE')}
 					</Button>
 					<Button
 						variant="outlined"
 						onClick={onAction(true)}
 						disabled={orders.canceling}
 						endIcon={orders.canceling && <CircularProgress size={20} />}>
-						{t('BUTTONS.AGREE')}
+						{t('BUTTONS.CANCEL')}
 					</Button>
 				</DialogActions>
 			</Box>

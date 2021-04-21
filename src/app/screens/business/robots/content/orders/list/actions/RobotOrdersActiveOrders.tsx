@@ -1,17 +1,17 @@
-import { Box, Checkbox, FormControlLabel, Typography } from '@material-ui/core';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
+import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 
 const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {
 	const { activeOrders, setActiveOrders, setPage } = props;
 	const { t } = useTranslation('ROBOTS');
+	const classes = RobotOrdersActionsStyles();
 
 	/**
 	 * toggle active orders
-	 * @param value
-	 * @returns
 	 */
 	const toggleActiveOrders = () => {
 		// set active orders
@@ -22,22 +22,18 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 	};
 
 	return (
-		<Box>
-			<Typography variant="subtitle1" color="textSecondary">
-				Toggle
-			</Typography>
-			<FormControlLabel
-				control={
-					<Checkbox
-						color="primary"
-						name="activeOrders"
-						checked={activeOrders}
-						onChange={toggleActiveOrders}
-					/>
-				}
-				label={t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDERS_ACTIVE')}
-			/>
-		</Box>
+		<FormControlLabel
+			className={classes.sActiveOrders}
+			control={
+				<Checkbox
+					color="primary"
+					name="activeOrders"
+					checked={activeOrders}
+					onChange={toggleActiveOrders}
+				/>
+			}
+			label={t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDERS_ACTIVE.LABEL')}
+		/>
 	);
 };
 export default RobotOrdersActiveOrders;

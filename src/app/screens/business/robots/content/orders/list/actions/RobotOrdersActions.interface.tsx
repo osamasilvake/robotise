@@ -14,12 +14,13 @@ export interface RobotOrdersActiveOrdersInterface {
 	setPage: Dispatch<SetStateAction<number>>;
 }
 
+export interface DialogCreateOrderInterface {
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
 export interface DialogCreateOrderPayloadInterface {
 	isDebug: boolean;
 	location: string;
 	mode: RobotOrderModeTypeEnum;
-}
-export interface DialogNewOrderInterface {
-	open: boolean;
-	setOpen: Dispatch<SetStateAction<boolean>>;
 }

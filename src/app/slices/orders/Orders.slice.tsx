@@ -4,8 +4,10 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { DialogCreateOrderPayloadInterface } from '../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
+import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize copy';
 import { deserializeOrders } from '../../utilities/serializers/json-api/Orders.deserialize';
 import { AppReducerType } from '..';
+import { triggerMessage } from '../general/General.slice';
 import {
 	SliceOrdersInterface,
 	SOCDataInterface,
@@ -49,13 +51,11 @@ const dataSlice = createSlice({
 		},
 		created: (state, action) => {
 			state.creating = false;
-			state.content =
-				state.content && updateCreatedOrder(state.content, action.payload.data[0]);
+			state.content = action.payload;
 		},
 		canceled: (state, action) => {
 			state.canceling = false;
-			state.content =
-				state.content && updateCanceledOrder(state.content, action.payload.data[0]);
+			state.content = action.payload;
 		},
 		failure: (state, action) => {
 			state.loader = false;
@@ -155,18 +155,37 @@ export const OrdersFetchList = (
  * @returns
  */
 export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: string) => async (
-	dispatch: Dispatch
+	dispatch: Dispatch,
+	getState: () => AppReducerType
 ) => {
+	// states
+	const states = getState();
+	const orders = states.orders;
+
 	// dispatch: creating
 	dispatch(creating());
 
 	return RobotsService.robotOrderCreate(payload, siteId)
 		.then(async (res) => {
 			// deserialize response
-			const result = await deserializeOrders(res);
+			let result = await deserializeOrder(res);
 
-			// dispatch: created
-			dispatch(created(result));
+			if (orders.content) {
+				// update created order
+				result = updateCreatedOrder(orders.content, result);
+
+				// dispatch: created
+				dispatch(created(result));
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'create-order-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ORDERS.ORDER_CREATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			}
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
@@ -186,17 +205,38 @@ export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: 
  * @param order
  * @returns
  */
-export const OrderCancel = (order: SOCDataInterface) => async (dispatch: Dispatch) => {
+export const OrderCancel = (order: SOCDataInterface) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
+	// states
+	const states = getState();
+	const orders = states.orders;
+
 	// dispatch: canceling
 	dispatch(canceling());
 
 	return RobotsService.robotOrderCancel([order.id], order.site.id)
 		.then(async (res) => {
 			// deserialize response
-			const result = await deserializeOrders(res);
+			let result = await deserializeOrders(res);
 
-			// dispatch: canceled
-			dispatch(canceled(result));
+			if (orders.content) {
+				// update created order
+				result = updateCanceledOrder(orders.content, result.data[0]);
+
+				// dispatch: canceled
+				dispatch(canceled(result));
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'cancel-order-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ORDERS.ORDER_CANCEL.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			}
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {

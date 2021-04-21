@@ -53,26 +53,35 @@
 			"TOKEN_EMPTY": "No Token Found!",
 			"UNKNOWN": "Unknown"
 		},
-		"ROBOT": {
-			"ALERTS": {
-				"CLIPBOARD": "Message copied to clipboard!"
-			},
-			"CAMERAS": {
-				"top": {
-					"SUCCESS": "Top camera image was requested!",
-					"ERROR": "Failed to request top camera image!"
+		"ROBOTS": {
+			"DETAIL": {
+				"ALERTS": {
+					"CLIPBOARD": "Message copied to clipboard!"
 				},
-				"base": {
-					"SUCCESS": "Base camera image was requested!",
-					"ERROR": "Failed to request base camera image!"
+				"CAMERAS": {
+					"top": {
+						"SUCCESS": "Top camera image was requested!",
+						"ERROR": "Failed to request top camera image!"
+					},
+					"base": {
+						"SUCCESS": "Base camera image was requested!",
+						"ERROR": "Failed to request base camera image!"
+					}
+				}
+			},
+			"ORDERS": {
+				"ORDER_CREATE": {
+					"SUCCESS": "Order was created successfully!"
+				},
+				"ORDER_CANCEL": {
+					"SUCCESS": "Order was canceled successfully!"
 				}
 			}
 		}
 	},
 	"DIALOG": {
 		"BUTTONS": {
-			"AGREE": "Agree",
-			"DISAGREE": "Disagree",
+			"CLOSE": "Close",
 			"CANCEL": "Cancel",
 			"CREATE": "Create"
 		}
@@ -316,10 +325,13 @@
 			"ORDERS": {
 				"LIST": {
 					"OPTIONS": {
-						"ORDERS_ACTIVE": "Active Orders",
-						"ORDER_NEW": {
-							"LABEL": "New Order",
-							"TITLE": "New Order",
+						"HEADING": "Actions",
+						"ORDERS_ACTIVE": {
+							"LABEL": "Active Orders"
+						},
+						"ORDER_CREATE": {
+							"LABEL": "Create Order",
+							"TITLE": "Create Order",
 							"TEXT": "Create a new order for JEEVES by providing a target location.",
 							"FIELDS": {
 								"LOCATION": {

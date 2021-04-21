@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,32 +9,31 @@ const RobotOrdersCreateOrder: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersActionsStyles();
 
-	const [openDialog, setOpenDialog] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	/**
-	 * on new order
-	 * @param order
-	 * @returns
+	 * open create order dialog
+	 * @param event
 	 */
-	const onNewOrder = (event: MouseEvent<HTMLButtonElement>) => {
+	const openCreateOrderDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
-		// open dialog
-		setOpenDialog(true);
+		// set open
+		setOpen(true);
 	};
 
 	return (
 		<>
+			{/* Action */}
 			<Box className={classes.sCreateOrder}>
-				<Typography variant="subtitle1" color="textSecondary">
-					Create
-				</Typography>
-				<Button variant="outlined" onClick={onNewOrder}>
-					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_NEW.LABEL')}
+				<Button variant="outlined" onClick={openCreateOrderDialog}>
+					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.LABEL')}
 				</Button>
 			</Box>
-			<DialogCreateOrder open={openDialog} setOpen={setOpenDialog} />
+
+			{/* Dialog */}
+			<DialogCreateOrder open={open} setOpen={setOpen} />
 		</>
 	);
 };

@@ -62,7 +62,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 					id: `${camera}-success`,
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOT.CAMERAS.${cameraType}.SUCCESS`
+					text: `ROBOTS.DETAIL.CAMERAS.${cameraType}.SUCCESS`
 				};
 				dispatch(GeneralTriggerMessage(message));
 			})
@@ -72,7 +72,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 					id: `${camera}-error`,
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOT.CAMERAS.${cameraType}.ERROR`
+					text: `ROBOTS.DETAIL.CAMERAS.${cameraType}.ERROR`
 				};
 				dispatch(GeneralTriggerMessage(message));
 			});

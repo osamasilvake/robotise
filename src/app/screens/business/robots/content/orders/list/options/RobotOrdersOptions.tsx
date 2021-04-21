@@ -7,7 +7,7 @@ import RobotOrdersOptionNewOrder from './RobotOrdersOptionNewOrder';
 import { RobotOrdersOptionsInterface } from './RobotOrdersOptions.interface';
 
 const RobotOrdersOptions: FC<RobotOrdersOptionsInterface> = (props) => {
-	const { activeOrders, setActiveOrders, executing } = props;
+	const { activeOrders, setActiveOrders, setPage, executing } = props;
 	const floatStyles = FloatStyles();
 
 	return (
@@ -16,7 +16,7 @@ const RobotOrdersOptions: FC<RobotOrdersOptionsInterface> = (props) => {
 			<RobotOrdersOptionActiveOrders
 				activeOrders={activeOrders}
 				setActiveOrders={setActiveOrders}
-				executing={executing}
+				setPage={setPage}
 			/>
 
 			{/* New Order */}

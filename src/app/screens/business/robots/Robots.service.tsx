@@ -76,16 +76,52 @@ class RobotsService {
 	 * @param robotId
 	 * @param pageNo
 	 * @param rowsPerPage
+	 * @param activeOrders
 	 * @returns
 	 */
-	robotOrdersFetch = (robotId: string, pageNo: number, rowsPerPage: number) => {
+	robotOrdersFetch = (
+		robotId: string,
+		pageNo: number,
+		rowsPerPage: number,
+		activeOrders: boolean
+	) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,
+				'filter[active]': activeOrders || undefined,
 				'page[number]': pageNo,
 				'page[size]': rowsPerPage
 			}
+		});
+	};
+
+	/**
+	 * delete robot order
+	 * @param ids
+	 * @param siteId
+	 * @returns
+	 */
+	robotOrderDelete = (ids: string[], siteId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.ORDERS;
+		return HttpClientService.patch(url, {
+			data: ids.map((id) => {
+				return {
+					id,
+					type: 'orders',
+					attributes: {
+						status: 'cancelRequest'
+					},
+					relationships: {
+						site: {
+							data: {
+								type: 'sites',
+								id: siteId
+							}
+						}
+					}
+				};
+			})
 		});
 	};
 

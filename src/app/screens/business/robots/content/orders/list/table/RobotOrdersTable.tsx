@@ -53,7 +53,7 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 		// set rows
 		setRowsPerPage(+event.target.value);
 
-		// set page: 0
+		// set page
 		setPage(0);
 	};
 

@@ -26,14 +26,15 @@ const RobotOrders: FC = () => {
 	const [activeOrders, setActiveOrders] = useState(false);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
-		orders.content
-			? orders.content.meta.rowsPerPage ||
-					AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
+		orders.content && orders.content.meta.rowsPerPage
+			? orders.content.meta.rowsPerPage
 			: AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
 	);
+
 	const pageRef = useRef({
 		page: orders.content ? orders.content.meta.page - 1 : page - 1,
-		rowsPerPage
+		rowsPerPage,
+		activeOrders
 	});
 
 	const params: RobotParamsInterface = useParams();
@@ -41,12 +42,18 @@ const RobotOrders: FC = () => {
 	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
 
 	useEffect(() => {
-		// when rows per page is changed
-		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
+		if (pageRef.current.activeOrders !== activeOrders && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, page + 1, rowsPerPage));
+			cRobotId && dispatch(OrdersFetchList(cRobotId, 1, rowsPerPage, activeOrders));
 
-			// update page state and rows per page
+			// update ref
+			pageRef.current.page = 0;
+			pageRef.current.activeOrders = activeOrders;
+		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
+			// dispatch: fetch orders
+			cRobotId && dispatch(OrdersFetchList(cRobotId, page + 1, rowsPerPage, activeOrders));
+
+			// update ref
 			pageRef.current.page = page;
 			pageRef.current.rowsPerPage = rowsPerPage;
 		} else {
@@ -60,9 +67,12 @@ const RobotOrders: FC = () => {
 				if (condition2 || condition3 || condition4) {
 					if (condition3 || condition5) {
 						// dispatch: fetch orders
-						cRobotId && dispatch(OrdersFetchList(cRobotId, page + 1, rowsPerPage));
+						cRobotId &&
+							dispatch(
+								OrdersFetchList(cRobotId, page + 1, rowsPerPage, activeOrders)
+							);
 
-						// update page state
+						// update ref
 						pageRef.current.page = page;
 					}
 				}
@@ -75,12 +85,9 @@ const RobotOrders: FC = () => {
 		pRobotId,
 		cRobotId,
 		rowsPerPage,
-		page
+		page,
+		activeOrders
 	]);
-
-	useEffect(() => {
-		// console.log(activeOrders);
-	}, [activeOrders]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || orders.loader) {
@@ -104,6 +111,7 @@ const RobotOrders: FC = () => {
 				executing={orders.executing}
 				activeOrders={activeOrders}
 				setActiveOrders={setActiveOrders}
+				setPage={setPage}
 			/>
 
 			{/* Table */}

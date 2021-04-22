@@ -343,14 +343,14 @@
 									}
 								},
 								"DEBUG": {
-									"LABEL": "Debug Order"
+									"LABEL": "Test Order"
 								}
 							}
 						},
 						"ORDER_CANCEL": {
 							"LABEL": "cancel",
 							"TITLE": "Cancel Order",
-							"TEXT": "Do you want to cancel the order of room: {{room}}?"
+							"TEXT": "Do you want to cancel the order of Room No. {{room}}?"
 						}
 					},
 					"TABLE": {
@@ -359,7 +359,7 @@
 							"TARGET": "Target",
 							"ROBOT": "Robot",
 							"MODE": "Mode",
-							"DATE": "Date",
+							"CREATED": "Created At",
 							"ORIGIN": "Origin",
 							"TEST": "Test"
 						},

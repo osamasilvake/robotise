@@ -3,7 +3,7 @@ export enum RobotOrdersTableColumnsTypeEnum {
 	TARGET = 'room',
 	MODE = 'mode',
 	ORIGIN = 'origin',
-	DATE = 'updatedAt',
+	CREATED = 'createdAt',
 	TEST = 'isDebug'
 }
 

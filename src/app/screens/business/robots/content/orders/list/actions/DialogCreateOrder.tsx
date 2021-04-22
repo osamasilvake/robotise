@@ -61,7 +61,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		CreateOrderValidation,
 		async () => {
 			// dispatch: create an order
-			siteId && dispatch(OrderCreate(values, siteId));
+			siteId &&
+				Promise.all([dispatch(OrderCreate(values, siteId))]).then(() => {
+					// close dialog
+					setOpen(false);
+				});
 		}
 	);
 
@@ -128,18 +132,20 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						</Select>
 					</FormControl>
 
-					<FormControlLabel
-						control={
-							<Checkbox
-								color="primary"
-								name="isDebug"
-								onChange={handleChangeCheckbox}
-							/>
-						}
-						label={t(
-							'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.DEBUG.LABEL'
-						)}
-					/>
+					<FormControl margin="dense">
+						<FormControlLabel
+							control={
+								<Checkbox
+									color="primary"
+									name="isDebug"
+									onChange={handleChangeCheckbox}
+								/>
+							}
+							label={t(
+								'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.DEBUG.LABEL'
+							)}
+						/>
+					</FormControl>
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={onActionClose}>
@@ -150,7 +156,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						type="submit"
 						disabled={validateEmptyObjProperty(values) || orders.creating}
 						endIcon={orders.creating && <CircularProgress size={20} />}>
-						{t('BUTTONS.CANCEL')}
+						{t('BUTTONS.CREATE')}
 					</Button>
 				</DialogActions>
 			</form>

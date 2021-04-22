@@ -22,8 +22,8 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotOrdersTableColumnsTypeEnum.DATE,
-		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.DATE',
+		id: RobotOrdersTableColumnsTypeEnum.CREATED,
+		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.CREATED',
 		minWidth: 200,
 		align: 'left'
 	},

@@ -22,24 +22,11 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiDialogTitle: {
+	MuiTabs: {
 		styleOverrides: {
-			root: {
-				padding: `${pxToRem(15)} ${pxToRem(20)} ${pxToRem(10)}`
-			}
-		}
-	},
-	MuiDialogContent: {
-		styleOverrides: {
-			root: {
-				padding: `${pxToRem(5)} ${pxToRem(20)}`
-			}
-		}
-	},
-	MuiDialogActions: {
-		styleOverrides: {
-			root: {
-				padding: `${pxToRem(10)} ${pxToRem(20)} ${pxToRem(15)}`
+			indicator: {
+				backgroundColor: 'transparent',
+				transition: 'none'
 			}
 		}
 	},
@@ -47,14 +34,6 @@ const OverridesCustom: Components = {
 		styleOverrides: {
 			paper: {
 				borderRadius: 0
-			}
-		}
-	},
-	MuiTabs: {
-		styleOverrides: {
-			indicator: {
-				backgroundColor: 'transparent',
-				transition: 'none'
 			}
 		}
 	},
@@ -93,6 +72,34 @@ const OverridesCustom: Components = {
 				'&:last-child': {
 					paddingBottom: 0
 				}
+			}
+		}
+	},
+	MuiFormControl: {
+		styleOverrides: {
+			root: {
+				display: 'flex'
+			}
+		}
+	},
+	MuiDialogTitle: {
+		styleOverrides: {
+			root: {
+				padding: `${pxToRem(15)} ${pxToRem(20)}`
+			}
+		}
+	},
+	MuiDialogContent: {
+		styleOverrides: {
+			root: {
+				padding: `${pxToRem(0)} ${pxToRem(20)} ${pxToRem(5)}`
+			}
+		}
+	},
+	MuiDialogActions: {
+		styleOverrides: {
+			root: {
+				padding: `${pxToRem(10)} ${pxToRem(20)}`
 			}
 		}
 	},

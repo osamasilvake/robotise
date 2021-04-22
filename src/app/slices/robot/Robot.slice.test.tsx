@@ -23,8 +23,7 @@ describe('[SLICE] General', () => {
 		const store = mockStore(initialState);
 		const mapId = 'portalklinik_1a';
 		const state = {
-			module: RobotTypeEnum.MAP,
-			type: null
+			module: RobotTypeEnum.MAP
 		};
 		const apiResponse = {
 			data: {
@@ -75,14 +74,13 @@ describe('[SLICE] General', () => {
 		const store = mockStore(initialState);
 		const mapId = 'portalklinik_1a';
 		const state = {
-			module: RobotTypeEnum.MAP,
-			type: null
+			module: RobotTypeEnum.MAP
 		};
 
 		// mock api once
 		const apiResponse = new Error('API.FETCH');
 		const message: TriggerMessageInterface = {
-			id: 'fetch-rt-error',
+			id: 'fetch-robot-location-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: apiResponse.message

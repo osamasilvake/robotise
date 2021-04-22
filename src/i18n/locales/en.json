@@ -81,9 +81,9 @@
 	},
 	"DIALOG": {
 		"BUTTONS": {
-			"CLOSE": "Close",
 			"CANCEL": "Cancel",
-			"CREATE": "Create"
+			"CREATE": "Create",
+			"CONFIRM": "Confirm"
 		}
 	},
 	"COMMON": {
@@ -348,9 +348,9 @@
 							}
 						},
 						"ORDER_CANCEL": {
-							"LABEL": "cancel",
+							"LABEL": "abort",
 							"TITLE": "Cancel Order",
-							"TEXT": "Do you want to cancel the order of Room No. {{room}}?"
+							"TEXT": "Are you sure you want to cancel the order?"
 						}
 					},
 					"TABLE": {
@@ -359,7 +359,7 @@
 							"TARGET": "Target",
 							"ROBOT": "Robot",
 							"MODE": "Mode",
-							"CREATED": "Created At",
+							"CREATED": "Created",
 							"ORIGIN": "Origin",
 							"TEST": "Test"
 						},

@@ -22,6 +22,7 @@ import { useParams } from 'react-router-dom';
 
 import { OrderCreate, ordersSelector } from '../../../../../../../slices/orders/Orders.slice';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObjProperty } from '../../../../../../../utilities/methods/ObjectUtilities';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -34,15 +35,17 @@ import {
 import { orderModes } from './RobotOrdersActions.map';
 
 const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
-	const { open, setOpen } = props;
+	const { open, setOpen, setPage } = props;
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
 	const params: RobotParamsInterface = useParams();
 	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.site.id;
+	const acceptOrders = siteId && sites.content?.dataById[siteId].acceptOrders;
 
 	const {
 		handleChangeInput,
@@ -63,8 +66,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 			// dispatch: create an order
 			siteId &&
 				Promise.all([dispatch(OrderCreate(values, siteId))]).then(() => {
-					// close dialog
+					// set open
 					setOpen(false);
+
+					// set page
+					setPage(0);
 				});
 		}
 	);
@@ -138,6 +144,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								<Checkbox
 									color="primary"
 									name="isDebug"
+									disabled={!acceptOrders || undefined}
+									checked={!acceptOrders || undefined}
 									onChange={handleChangeCheckbox}
 								/>
 							}
@@ -149,7 +157,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={onActionClose}>
-						{t('BUTTONS.CLOSE')}
+						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"

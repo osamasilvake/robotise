@@ -19,7 +19,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersTableStyles();
 
-	const [openDialog, setOpenDialog] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	/**
 	 * on cancel order
@@ -30,8 +30,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		// stop propagation
 		event.stopPropagation();
 
-		// open dialog
-		setOpenDialog(true);
+		// set open
+		setOpen(true);
 	};
 
 	/**
@@ -59,11 +59,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 								onClick={onCancelOrder}
 								className={classes.sCancelOrder}
 							/>
-							<DialogCancelOrder
-								order={order}
-								open={openDialog}
-								setOpen={setOpenDialog}
-							/>
+							<DialogCancelOrder order={order} open={open} setOpen={setOpen} />
 						</>
 					)}
 				</Box>

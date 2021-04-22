@@ -22,7 +22,6 @@ import {
 	robotTwinsSelector
 } from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
-import RobotsService from '../../../Robots.service';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 import { RobotDetailCameraInterface } from './RobotDetailCameras.interface';

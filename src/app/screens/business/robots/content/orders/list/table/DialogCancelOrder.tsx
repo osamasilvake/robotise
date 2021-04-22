@@ -46,9 +46,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 				</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.TEXT', {
-							room: order.room
-						})}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.TEXT')}
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
@@ -56,14 +54,14 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 						variant="outlined"
 						disabled={orders.canceling}
 						onClick={onAction(false)}>
-						{t('BUTTONS.CLOSE')}
+						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						onClick={onAction(true)}
 						disabled={orders.canceling}
 						endIcon={orders.canceling && <CircularProgress size={20} />}>
-						{t('BUTTONS.CANCEL')}
+						{t('BUTTONS.CONFIRM')}
 					</Button>
 				</DialogActions>
 			</Box>

@@ -107,7 +107,7 @@ export const OrdersFetchList = (
 	const orders = states.orders;
 
 	// return on busy
-	if (orders && (orders.loader || orders.loading)) {
+	if (orders && (orders.loader || orders.loading || orders.creating || orders.canceling)) {
 		return;
 	}
 
@@ -132,7 +132,7 @@ export const OrdersFetchList = (
 			};
 
 			// handle pagination state
-			result = orders.content ? handlePaginationState(orders.content, result) : result;
+			result = orders && orders.content ? handlePagination(orders.content, result) : result;
 
 			// dispatch: success
 			dispatch(success(result));
@@ -254,12 +254,12 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 };
 
 /**
- * handle pagination state
+ * handle pagination
  * @param state
  * @param action
  * @returns
  */
-const handlePaginationState = (state: SOContentInterface, action: SOContentInterface) => {
+const handlePagination = (state: SOContentInterface, action: SOContentInterface) => {
 	const condition1 = action.meta.page > 1; // first page
 	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
 	const condition3 = action.meta.nextPage === null; // last page
@@ -283,6 +283,10 @@ const handlePaginationState = (state: SOContentInterface, action: SOContentInter
 
 /**
  * update created order
+ *
+ * cases:
+ * add item on the front
+ * remove item from the end
  * @param state
  * @param order
  * @returns
@@ -293,7 +297,7 @@ const updateCreatedOrder = (
 ): SOContentInterface => {
 	return {
 		...state,
-		data: [order, ...state.data],
+		data: [order, ...state.data.slice(0, -1)],
 		dataById: {
 			[order.id]: order,
 			...state.dataById

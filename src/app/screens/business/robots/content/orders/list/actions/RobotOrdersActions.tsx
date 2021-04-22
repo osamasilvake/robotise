@@ -27,7 +27,7 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 			/>
 
 			{/* Create Order */}
-			<RobotOrdersCreateOrder />
+			<RobotOrdersCreateOrder setPage={setPage} />
 		</Paper>
 	);
 };

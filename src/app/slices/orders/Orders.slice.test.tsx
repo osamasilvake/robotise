@@ -1,0 +1,150 @@
+import { AnyAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import createMockStore from 'redux-mock-store';
+import thunk, { ThunkDispatch } from 'redux-thunk';
+
+import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { AppReducerType } from '..';
+import { failure, initialState, loader, OrdersFetchList, success } from './Orders.slice';
+import { SliceOrdersInterface } from './Orders.slice.interface';
+
+// mock axios
+jest.mock('axios');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+// mock store
+type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
+const mockStore = createMockStore<SliceOrdersInterface, DispatchExts>([thunk]);
+
+describe('[SLICE] Order', () => {
+	it('[OrdersFetchList] Creates loading and success actions on successful fetch request', () => {
+		const store = mockStore(initialState);
+		const siteId = '10549e17-3f9a-4a01-9fde-20b953a180ed';
+		const robotId = '2ee43036-37e5-46f6-9ccc-8054eb67ec2b';
+		const orderId = '1db0f232-9a2a-47c6-906c-dc390dba4996';
+		const apiResponse = {
+			data: [
+				{
+					attributes: {
+						mode: 'mini-bar',
+						origin: 'phone',
+						room: '661',
+						status: 'finished',
+						createdAt: '2021-04-22T08:31:44.884Z',
+						updatedAt: '2021-04-22T08:38:02.172Z',
+						site: {
+							id: siteId
+						},
+						robot: {
+							id: robotId
+						}
+					},
+					id: orderId,
+					type: 'orders'
+				}
+			],
+			robot: {
+				id: robotId
+			},
+			meta: {
+				hasNextPage: false,
+				hasPrevPage: false,
+				nextPage: null,
+				page: 1,
+				prevPage: null,
+				totalDocs: 11,
+				totalPages: 1
+			}
+		};
+		const mappedResult = {
+			data: [
+				{
+					id: orderId,
+					mode: 'mini-bar',
+					origin: 'phone',
+					room: '661',
+					status: 'finished',
+					createdAt: '2021-04-22T08:31:44.884Z',
+					updatedAt: '2021-04-22T08:38:02.172Z',
+					site: {
+						id: siteId
+					},
+					robot: {
+						id: robotId
+					}
+				}
+			],
+			dataById: {
+				[orderId]: {
+					id: orderId,
+					mode: 'mini-bar',
+					origin: 'phone',
+					room: '661',
+					status: 'finished',
+					createdAt: '2021-04-22T08:31:44.884Z',
+					updatedAt: '2021-04-22T08:38:02.172Z',
+					site: {
+						id: siteId
+					},
+					robot: {
+						id: robotId
+					}
+				}
+			},
+			robot: {
+				id: robotId
+			},
+			meta: {
+				hasNextPage: false,
+				hasPrevPage: false,
+				nextPage: null,
+				page: 1,
+				prevPage: null,
+				rowsPerPage: 50,
+				totalDocs: 11,
+				totalPages: 1
+			}
+		};
+
+		// mock api once
+		mockedAxios.get.mockResolvedValueOnce({
+			data: apiResponse
+		});
+
+		// act
+		store
+			.dispatch(OrdersFetchList(robotId, 1, 50))
+			.then(() => {
+				// assert
+				const expectedActions = [loader(), success(mappedResult)];
+				expect(store.getActions()).toEqual(expectedActions);
+			})
+			.catch();
+	});
+
+	it('[OrdersFetchList] Creates loading and failure actions on unsuccessful fetch request', () => {
+		const store = mockStore(initialState);
+		const orderId = '1db0f232-9a2a-47c6-906c-dc390dba4996';
+
+		// mock api once
+		const apiResponse = new Error('API.FETCH');
+		const message: TriggerMessageInterface = {
+			id: 'fetch-orders-error',
+			show: true,
+			severity: TriggerMessageTypeEnum.ERROR,
+			text: 'API.FETCH'
+		};
+		mockedAxios.get.mockRejectedValueOnce(apiResponse);
+
+		// act
+		store
+			.dispatch(OrdersFetchList(orderId, 1, 50))
+			.then(() => {
+				// assert
+				const expectedActions = [loader(), failure(message)];
+				expect(store.getActions()).toEqual(expectedActions);
+			})
+			.catch();
+	});
+});

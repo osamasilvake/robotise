@@ -1,3 +1,4 @@
 export enum RobotTypeEnum {
-	MAP = 'Map'
+	MAP,
+	COMMAND_CAMERA
 }

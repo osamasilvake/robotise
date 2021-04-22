@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeProducts } from '../../utilities/serializers/json-api/Products.deserialize';
 import { AppReducerType } from '..';
-import { SliceProductsInterface } from './Products.slice.interface';
+import { SliceProductsInterface, SPContentInterface } from './Products.slice.interface';
 
 // initial state
 export const initialState: SliceProductsInterface = {
@@ -76,10 +76,18 @@ export const ProductsFetchList = (siteId: string, refresh = false) => async (
 	return SitesService.siteProductsFetch(siteId)
 		.then(async (res) => {
 			// deserialize response
-			const result = await deserializeProducts(res);
+			let result: SPContentInterface = await deserializeProducts(res);
+
+			// prepare content
+			result = {
+				...result,
+				site: {
+					id: siteId
+				}
+			};
 
 			// dispatch: success
-			dispatch(success({ ...result, site: { id: siteId } }));
+			dispatch(success(result));
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {

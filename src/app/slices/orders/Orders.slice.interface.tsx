@@ -13,7 +13,7 @@ export interface SliceOrdersInterface {
 export interface SOContentInterface {
 	data: SOCDataInterface[];
 	dataById: SOCDataByIdInterface;
-	robot: SOCRobotInterface;
+	robot?: SOCRobotInterface;
 	meta: JsonApiMeta;
 }
 

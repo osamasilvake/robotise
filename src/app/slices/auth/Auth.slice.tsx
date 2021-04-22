@@ -78,7 +78,7 @@ export default dataSlice.reducer;
  * @param payload
  */
 export const AuthLogin = (payload: AuthLoginPayloadInterface) => async (dispatch: Dispatch) => {
-	// dispatch: loader
+	// dispatch: loading
 	dispatch(loading());
 
 	return AuthService.authLogin(payload)
@@ -92,7 +92,7 @@ export const AuthLogin = (payload: AuthLoginPayloadInterface) => async (dispatch
 			// decode user detail from access token
 			const user: AuthUserDetailInterface = AuthService.authUserDetail(res.access_token);
 
-			// dispatch: response
+			// dispatch: success
 			dispatch(success(user));
 		})
 		.catch((err) => {
@@ -142,7 +142,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 							res.access_token
 						);
 
-						// dispatch: response
+						// dispatch: success
 						dispatch(success(user));
 					})
 					.catch((err) => {

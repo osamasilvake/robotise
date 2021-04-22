@@ -13,7 +13,7 @@ const ChangeLog: FC = () => {
 
 	useEffect(() => {
 		if (!general.changeLog) {
-			// dispatch: update changelog
+			// dispatch: fetch changelog
 			dispatch(GeneralFetchChangelog());
 		}
 	}, [dispatch, general.changeLog]);

@@ -11,7 +11,7 @@ export interface SliceProductsInterface {
 export interface SPContentInterface {
 	data: SPCDataInterface[];
 	dataById: SPCDataByIdInterface;
-	site: SPCSiteInterface;
+	site?: SPCSiteInterface;
 	meta: JsonApiMeta;
 }
 

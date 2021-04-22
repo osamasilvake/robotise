@@ -16,6 +16,7 @@ import { TriggerMessageTypeEnum } from '../../../../../../components/frame/messa
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
 import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
+import { RobotCommandCameraImageRequest } from '../../../../../../slices/robot/Robot.slice';
 import {
 	RobotTwinsFetch,
 	robotTwinsSelector
@@ -44,10 +45,10 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		// set selected camera
 		setCurrentCameraType(camera);
 
-		// api: request for robot camera image
+		// dispatch: request robot camera image
 		// dispatch: fetch robot twins of a robot
 		Promise.all([
-			RobotsService.robotRequestCameraImage(camera, robotTwin.robot.id || ''),
+			dispatch(RobotCommandCameraImageRequest(camera, robotTwin.robot.id || '')),
 			dispatch(
 				RobotTwinsFetch(
 					robotTwin.id,

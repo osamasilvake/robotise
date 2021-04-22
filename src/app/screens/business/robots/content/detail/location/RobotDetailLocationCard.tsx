@@ -16,13 +16,13 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const classes = RobotDetailLocationStyles();
 
 	const dispatch = useDispatch();
-	const sRobot = useSelector(robotSelector);
+	const robot = useSelector(robotSelector);
 
 	const [pointCoords, setPointCoords] = useState({ x: 0, y: 0, yaw: 0 });
 	const [ratio, setRatio] = useState({ x: 0, y: 0, cx: 0, cy: 0 });
 
 	const robotTwinsMapId = robotTwin.location?.value.map.id || '';
-	const robotMapId = sRobot.map.content?.name || '';
+	const robotMapId = robot.map.content?.name || '';
 
 	useEffect(() => {
 		if (robotTwinsMapId !== robotMapId) {
@@ -32,9 +32,9 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	}, [dispatch, robotTwinsMapId, robotMapId]);
 
 	useEffect(() => {
-		const origin = sRobot.map.content?.origin;
+		const origin = robot.map.content?.origin;
 		const coordinates = robotTwin.location?.value.point;
-		const resolution = sRobot.map.content?.resolution;
+		const resolution = robot.map.content?.resolution;
 		if (origin && resolution && ratio && coordinates) {
 			const x = (Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x;
 			const y = (Math.abs(origin[1] - coordinates.y) / resolution) * ratio.y;
@@ -46,8 +46,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		}
 	}, [
 		ratio,
-		sRobot.map.content?.origin,
-		sRobot.map.content?.resolution,
+		robot.map.content?.origin,
+		robot.map.content?.resolution,
 		robotTwin.location?.value.point
 	]);
 

@@ -38,7 +38,7 @@ const RobotOrders: FC = () => {
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = orders.content?.robot.id;
+	const pRobotId = orders.content?.robot?.id;
 	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
 
 	useEffect(() => {

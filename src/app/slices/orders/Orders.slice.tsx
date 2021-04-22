@@ -44,9 +44,7 @@ const dataSlice = createSlice({
 		success: (state, action) => {
 			state.loader = false;
 			state.loading = false;
-			state.content = state.content
-				? handlePaginationState(state.content, action.payload)
-				: action.payload;
+			state.content = action.payload;
 			state.errors = null;
 		},
 		created: (state, action) => {
@@ -119,21 +117,25 @@ export const OrdersFetchList = (
 	return RobotsService.robotOrdersFetch(robotId, pageNo, rowsPerPage, activeOrders)
 		.then(async (res) => {
 			// deserialize response
-			const result = await deserializeOrders(res);
+			let result: SOContentInterface = await deserializeOrders(res);
+
+			// prepare content
+			result = {
+				...result,
+				meta: {
+					...result.meta,
+					rowsPerPage: rowsPerPage
+				},
+				robot: {
+					id: robotId
+				}
+			};
+
+			// handle pagination state
+			result = orders.content ? handlePaginationState(orders.content, result) : result;
 
 			// dispatch: success
-			dispatch(
-				success({
-					...result,
-					meta: {
-						...result.meta,
-						rowsPerPage: rowsPerPage
-					},
-					robot: {
-						id: robotId
-					}
-				})
-			);
+			dispatch(success(result));
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
@@ -252,6 +254,34 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 };
 
 /**
+ * handle pagination state
+ * @param state
+ * @param action
+ * @returns
+ */
+const handlePaginationState = (state: SOContentInterface, action: SOContentInterface) => {
+	const condition1 = action.meta.page > 1; // first page
+	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
+	const condition3 = action.meta.nextPage === null; // last page
+	if (condition1 && (condition2 || condition3)) {
+		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
+		return {
+			...state,
+			meta: {
+				...state.meta,
+				...action.meta
+			},
+			data: [...state.data, ...action.data],
+			dataById: {
+				...state.dataById,
+				...action.dataById
+			}
+		};
+	}
+	return action;
+};
+
+/**
  * update created order
  * @param state
  * @param order
@@ -294,32 +324,4 @@ const updateCanceledOrder = (
 			[order.id]: order
 		}
 	};
-};
-
-/**
- * organize robots state to handle pagination
- * @param state
- * @param action
- * @returns
- */
-const handlePaginationState = (state: SOContentInterface, action: SOContentInterface) => {
-	const condition1 = action.meta.page > 1; // first page
-	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
-	const condition3 = action.meta.nextPage === null; // last page
-	if (condition1 && (condition2 || condition3)) {
-		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
-		return {
-			...state,
-			meta: {
-				...state.meta,
-				...action.meta
-			},
-			data: [...state.data, ...action.data],
-			dataById: {
-				...state.dataById,
-				...action.dataById
-			}
-		};
-	}
-	return action;
 };

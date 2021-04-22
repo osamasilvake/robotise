@@ -350,7 +350,10 @@
 						"ORDER_CANCEL": {
 							"LABEL": "abort",
 							"TITLE": "Cancel Order",
-							"TEXT": "Are you sure you want to cancel the order?"
+							"TEXT": "Are you sure you want to cancel the order?",
+							"ERROR": {
+								"SITE": "Missing site ID in the order!"
+							}
 						}
 					},
 					"TABLE": {

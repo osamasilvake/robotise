@@ -1,4 +1,5 @@
 import {
+	Alert,
 	Box,
 	Button,
 	CircularProgress,
@@ -41,6 +42,11 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	return (
 		<Dialog open={open} onClose={onAction(false)}>
 			<Box onClick={(e) => e.stopPropagation()}>
+				{!order.site && (
+					<Alert severity="error">
+						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.ERROR.SITE')}
+					</Alert>
+				)}
 				<DialogTitle>
 					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.TITLE')}
 				</DialogTitle>
@@ -59,7 +65,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 					<Button
 						variant="outlined"
 						onClick={onAction(true)}
-						disabled={orders.canceling}
+						disabled={orders.canceling || !order.site}
 						endIcon={orders.canceling && <CircularProgress size={20} />}>
 						{t('BUTTONS.CONFIRM')}
 					</Button>

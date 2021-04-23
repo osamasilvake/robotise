@@ -4,7 +4,7 @@ publish-image-dev:
     # publish to GCP container registry
     - docker load -i images/release.tar
     - cat $GCP_CR_SERVICE_ACCOUNT_KEY | docker login -u _json_key --password-stdin "https://$GCP_CONTAINER_REGISTRY_HOSTNAME"
-    - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$CI_PROJECT_NAME:dev"
-    - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$CI_PROJECT_NAME:dev"
+    - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:dev"
+    - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:dev"
   only:
     - master

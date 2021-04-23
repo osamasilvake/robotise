@@ -7,19 +7,20 @@ stages:
   - Install
   - Quality
   - Test
-  # - Build Image
-  # - Publish Image
+  - Build Image
+  - Publish Image
   # - Deploy
 
 include:
+  - local: .gitlab/ci/variables.yml
   - local: .gitlab/ci/audit.yml
   - local: .gitlab/ci/install.yml
   - local: .gitlab/ci/quality.yml
   - local: .gitlab/ci/test.yml
 
-  # - local: .gitlab/ci/staging/build-image.yml
-  # - local: .gitlab/ci/staging/publish-image.yml
-  # - local: .gitlab/ci/staging/deploy.yml
+  - local: .gitlab/ci/development/build-image.yml
+  - local: .gitlab/ci/development/publish-image.yml
+  # - local: .gitlab/ci/development/deploy.yml
 
   # - local: .gitlab/ci/production/build-image.yml
   # - local: .gitlab/ci/production/publish-image.yml

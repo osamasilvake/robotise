@@ -1,0 +1,11 @@
+variables:
+  DOCKER_DRIVER: overlay2 # to use git 19
+  DOCKER_TLS_CERTDIR: "" # to use git 19
+  GCP_PROJECT: roc-cloud
+  GCP_CONTAINER_REGISTRY_HOSTNAME: 'eu.gcr.io'
+  GKE_CLUSTER_NAME: roc-vega
+  GKE_CLUSTER_ZONE: europe-west1-c
+  HELM_REPO_DOMAIN: chartmuseum.robotise.eu
+  HELM_REPO_NAME: chartmuseumrobotise
+  HELM_CHART_NAME: "$CI_PROJECT_NAME-v2"
+  HELM_RELEASE_NAME_DEV: "$CI_PROJECT_NAME-v2"

@@ -2,9 +2,6 @@ audit:
   stage: Audit
   script:
     - yarn audit
-
-    - cd packages/client/
-    - yarn audit
   only:
     - merge_requests
     - master

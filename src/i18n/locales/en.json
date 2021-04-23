@@ -1,0 +1,463 @@
+{
+	"META": {
+		"GENERAL": {
+			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
+		},
+		"DASHBOARD": {
+			"TITLE": "Dashboard",
+			"DESCRIPTION": "Dashboard Description"
+		},
+		"SITES": {
+			"TITLE": "Sites",
+			"DESCRIPTION": "Sites Description"
+		},
+		"ROBOTS": {
+			"TITLE": "Robots",
+			"DESCRIPTION": "Robots Description",
+			"ROBOT": {
+				"TITLE": "Robot Details",
+				"DESCRIPTION": "Robot Details Description"
+			}
+		},
+		"ALERT_CONFIG": {
+			"TITLE": "Alert Config",
+			"DESCRIPTION": "Alert Config Description"
+		},
+		"CHANGE_LOG": {
+			"TITLE": "Change Log",
+			"DESCRIPTION": "Change Log Description"
+		},
+		"ABOUT": {
+			"TITLE": "About",
+			"DESCRIPTION": "About Description"
+		}
+	},
+	"TOOLTIPS": {
+		"DRAWER": {
+			"OPEN": "Open Drawer",
+			"CLOSE": "Close Drawer"
+		},
+		"QR_CODE": "Scan QR to open it on mobile",
+		"COPY_CLIPBOARD": "Copy to clipboard",
+		"OPEN_TAB": "Open in new tab"
+	},
+	"MESSAGE": {
+		"COMMON": {
+			"NETWORK": {
+				"ONLINE": "Network connection is established!",
+				"OFFLINE": "Network connection is offline!"
+			}
+		},
+		"AUTH": {
+			"TOKEN_EXPIRED": "Token Got Expired!",
+			"TOKEN_EMPTY": "No Token Found!",
+			"UNKNOWN": "Unknown"
+		},
+		"ROBOTS": {
+			"DETAIL": {
+				"ALERTS": {
+					"CLIPBOARD": "Message copied to clipboard!"
+				},
+				"CAMERAS": {
+					"top": {
+						"SUCCESS": "Top camera image was requested!",
+						"ERROR": "Failed to request top camera image!"
+					},
+					"base": {
+						"SUCCESS": "Base camera image was requested!",
+						"ERROR": "Failed to request base camera image!"
+					}
+				}
+			},
+			"ORDERS": {
+				"ORDER_CREATE": {
+					"SUCCESS": "Order was created successfully!"
+				},
+				"ORDER_CANCEL": {
+					"SUCCESS": "Order was canceled successfully!"
+				}
+			}
+		}
+	},
+	"DIALOG": {
+		"BUTTONS": {
+			"CANCEL": "Cancel",
+			"CREATE": "Create",
+			"CONFIRM": "Confirm"
+		}
+	},
+	"COMMON": {
+		"LOADING": "Loading...",
+		"ROWS_PER_PAGE": "Per Page"
+	},
+	"ERRORS": {
+		"E404": {
+			"TITLE": "404",
+			"DESCRIPTION": "Sorry, we couldn't locate your page!",
+			"LINK": "Go back to Home Page"
+		},
+		"ERROR_BOUNDARY": {
+			"TITLE": "Whoops!",
+			"DESCRIPTION": "Something bad happened!",
+			"LINK": "Go back to Home Page"
+		},
+		"PAGE_ERROR": {
+			"TITLE": "Whoops!",
+			"LINK": "Go back to Dashboard"
+		},
+		"API": {
+			"FETCH": "Unable to fetch the content!",
+			"CANCEL": "Unable to execute the action!"
+		}
+	},
+	"AUTH": {
+		"LOGIN": {
+			"FIELDS": {
+				"EMAIL": {
+					"LABEL": "Email Address",
+					"PLACEHOLDER": "Enter your email Address",
+					"VALIDATIONS": {
+						"REQUIRED": "Please enter the required email address!",
+						"INVALID": "Please enter the correct Email format!"
+					}
+				},
+				"PASSWORD": {
+					"LABEL": "Password",
+					"PLACEHOLDER": "Enter your password",
+					"VALIDATIONS": {
+						"REQUIRED": "Please enter the required password!"
+					}
+				},
+				"REMEMBER_ME": {
+					"LABEL": "Remember Me"
+				}
+			},
+			"BUTTONS": {
+				"SIGN_IN": {
+					"LABEL": "Sign In"
+				}
+			}
+		}
+	},
+	"APPBAR": {
+		"THEME": {
+			"TITLE": "Theme",
+			"LIGHT": "Light",
+			"DARK": "Dark"
+		},
+		"LANGUAGE": {
+			"TITLE": "Language",
+			"EN": "English",
+			"DE": "Deutsch"
+		},
+		"LOGOUT": "Logout"
+	},
+	"SIDEBAR": {
+		"BUSINESS": {
+			"TITLE": {
+				"MAIN": "Business",
+				"SHORT": "Bus."
+			},
+			"LIST": {
+				"SITES": {
+					"LABEL": "Sites"
+				},
+				"ROBOTS": {
+					"LABEL": "Robots"
+				}
+			}
+		},
+		"INFORMATION": {
+			"TITLE": {
+				"MAIN": "Information",
+				"SHORT": "Info"
+			},
+			"LIST": {
+				"ALERT_CONFIG": "Alert Config",
+				"CHANGE_LOG": "Change Log",
+				"ABOUT": "About"
+			}
+		}
+	},
+	"ROBOTS": {
+		"LIST": {
+			"TABLE": {
+				"COLUMNS": {
+					"NAME": "Name",
+					"SITE": "Site",
+					"STATUS": "Status",
+					"ACCEPT_ORDERS": "Accept Orders",
+					"UPDATED_AT": "Updated At",
+					"ALERTS": "Alerts"
+				},
+				"VALUES": {
+					"ON": "ON",
+					"OFF": "OFF",
+					"ACTIVE": "Active",
+					"INACTIVE": "Inactive",
+					"UNKNOWN": "Unknown"
+				}
+			}
+		},
+		"CONTENT": {
+			"TABS": {
+				"DETAIL": "DETAIL",
+				"INVENTORY": "INVENTORY",
+				"ORDERS": "ORDERS",
+				"PURCHASES": "PURCHASES"
+			},
+			"DETAIL": {
+				"GENERAL": {
+					"SITE": "Site",
+					"VENDOR": "Vendor",
+					"LAST_UPDATED": "Last Updated",
+					"STATUS": "Status",
+					"ON": "ON",
+					"OFF": "OFF",
+					"ACCEPT_ORDERS": {
+						"LABEL": "Accept Orders",
+						"ACTIVE": "Active",
+						"INACTIVE": "Inactive"
+					},
+					"UNKNOWN": "Unknown"
+				},
+				"LOCATION": {
+					"TITLE": "Location",
+					"GRID": "Grid"
+				},
+				"CAMERAS": {
+					"TITLE": "Cameras",
+					"base": "Base Camera",
+					"top": "Top Camera",
+					"REQUEST": "Request",
+					"DISABLED": "Robot is off"
+				},
+				"STATES": {
+					"BATTERY": {
+						"TITLE": "Battery State",
+						"ITEMS": {
+							"CURRENT": "Current",
+							"PERCENTAGE": "Percentage",
+							"HEALTH": {
+								"TITLE": "Power Supply Health",
+								"OPTIONS": {
+									"GOOD": "Good",
+									"OVERHEAT": "Overheat",
+									"DEAD": "Dead",
+									"OVERVOLTAGE": "Overvoltage",
+									"UNSPECIFIED_FAILURE": "Unspecified failure",
+									"COLD": "Cold",
+									"WATCHDOG_TIMER_EXPIRE": "Watchdog timer expire",
+									"SAFETY_TIMER_EXPIRE": "Safety timer expire",
+									"UNKNOWN": "Unknown"
+								}
+							},
+							"POWER": {
+								"TITLE": "Power Supply Status",
+								"OPTIONS": {
+									"CHARGING": "Charging",
+									"DISCHARGING": "Discharging",
+									"NOT_CHARGING": "Not charging",
+									"FULL": "Full",
+									"UNKNOWN": "Unknown"
+								}
+							},
+							"VOLTAGE": "Voltage"
+						}
+					},
+					"DOCKING": {
+						"TITLE": "Docking State",
+						"ITEMS": {
+							"DOCKING": "DOCKING",
+							"DOCKED": "Docked",
+							"UNDOCKED": "Undocked"
+						}
+					},
+					"JOYSTICK": {
+						"TITLE": "Joystick State",
+						"ITEMS": {
+							"CONTROL_MODE": {
+								"TITLE": "Control Mode",
+								"OPTIONS": {
+									"AUTONOMOUS": "Autonomous",
+									"JOYSTICK": "Joystick"
+								}
+							}
+						}
+					},
+					"ACTIVITY": {
+						"TITLE": "Activity State",
+						"ITEMS": {
+							"LATEST": {
+								"TITLE": "Latest",
+								"OPTIONS": {
+									"LIFT_ENTERED": "Entered Lift",
+									"LIFT_LEFT": "Left Lift",
+									"LIFT_LEAVING": "Leaving Lift",
+									"UNKNOWN": "Unknown"
+								}
+							}
+						}
+					}
+				}
+			},
+			"INVENTORY": {
+				"DRAWERS": {
+					"TITLES": {
+						"drawer1": "Drawer 1",
+						"drawer2": "Drawer 2",
+						"drawer3": "Drawer 3",
+						"drawer4": "Drawer 4",
+						"drawer5": "Drawer 5"
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"IMAGE": "Image",
+							"NAME": "Name",
+							"SIZE": "Size",
+							"QUANTITY": "Quantity",
+							"CAPACITY": "Capacity",
+							"PRICE": "Price"
+						}
+					}
+				}
+			},
+			"ORDERS": {
+				"LIST": {
+					"OPTIONS": {
+						"HEADING": "Actions",
+						"ORDERS_ACTIVE": {
+							"LABEL": "Active Orders"
+						},
+						"ORDER_CREATE": {
+							"LABEL": "Create Order",
+							"TITLE": "Create Order",
+							"TEXT": "Create a new order for JEEVES by providing a target location.",
+							"FIELDS": {
+								"LOCATION": {
+									"LABEL": "Location",
+									"PLACEHOLDER": "Please enter the Location",
+									"VALIDATIONS": {
+										"REQUIRED": "Please enter the target location.",
+										"INVALID": "Invalid Location!"
+									}
+								},
+								"DEBUG": {
+									"LABEL": "Test Order"
+								}
+							}
+						},
+						"ORDER_CANCEL": {
+							"LABEL": "abort",
+							"TITLE": "Cancel Order",
+							"TEXT": "Are you sure you want to cancel the order?",
+							"ERROR": {
+								"SITE": "Missing site ID in the order!"
+							}
+						}
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"TARGET": "Target",
+							"ROBOT": "Robot",
+							"MODE": "Mode",
+							"CREATED": "Created",
+							"ORIGIN": "Origin",
+							"TEST": "Test"
+						},
+						"VALUES": {
+							"STATUS": {
+								"created": "Created",
+								"pending": "Pending",
+								"canceled_timeout_during_interaction": "Timeout",
+								"in_progress_traveling": "Travelling",
+								"in_progress_arrived": "Arrived",
+								"in_progress_customer_present": "Customer Present",
+								"finished": "Finished",
+								"rejected": "Rejected",
+								"error": "Error",
+								"canceled": "Canceled",
+								"cancelRequest": "Cancellation Request"
+							},
+							"TARGET": {
+								"RECEPTION": "Reception"
+							},
+
+							"ORIGIN": {
+								"phone": "Phone",
+								"manualGUI": "JEEVES",
+								"api-hotel": "Hotel App",
+								"api-connect": "API Connect",
+								"rest": "ROC App",
+								"debug": "MM ROC Bots"
+							}
+						}
+					}
+				},
+				"CONTENT": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"UPDATED_ON": "Updated On"
+						}
+					}
+				},
+				"COMMON": {
+					"MODE": {
+						"mini-bar": "Minibar",
+						"room-service": "Room Service",
+						"service-position": "Service Position"
+					}
+				}
+			}
+		}
+	},
+	"ABOUT": {
+		"INFO": {
+			"ADDRESS": "Claudius-Keller-Str. 3c",
+			"POSTAL_CITY": "81669 München",
+			"OWNER": "Oliver Stahl",
+			"CONTACT": {
+				"TITLE": "Contact",
+				"TEL": {
+					"LABEL": "Telefone",
+					"VALUE": "+49 89 890 828 41"
+				},
+				"EMAIL": {
+					"LABEL": "E-Mail",
+					"VALUE": "info@robotise.eu"
+				}
+			},
+			"REGISTRY": {
+				"TITLE": "Register Entry",
+				"COURT": {
+					"LABEL": "Register Court",
+					"VALUE": "München"
+				},
+				"REG_NO": {
+					"LABEL": "Register No.",
+					"VALUE": "262463"
+				}
+			}
+		},
+		"SERVICES": {
+			"JEEVES": {
+				"TITLE": "Jeeves",
+				"DESCRIPTION": "The multi-point service robot JEEVES is the first service robot by Robotise, is used in hotels, healthcare facilities, offices, airports and many other settings. His main duty is to transport materials and products. Thanks to his spacious drawers and intelligent route planning, JEEVES can service multiple points in a single run. Optionally, he can be loaded with a set range of items. All of these features allow him to provide an unrivalled range of services."
+			},
+			"RB_130": {
+				"TITLE": "RB-130",
+				"DESCRIPTION": "Our RB-130 is a medium-sized, compact, autonomous, mobile service robot designed for indoor use and with a focus on safety. Our robot base has unique capabilities for 24/7 operation in close proximity to humans and builds on our know-how and experience from existing applications in the hospitality industry. The robot base introduces a completely new level of security in professional and production environments for collaborative use scenarios. Our robot uses a differential drive train, has expandable power and connection options and modular components to perform all tasks smoothly and reliably."
+			},
+			"SAFETY_MEASURES": {
+				"TITLE": "The highest safety measures",
+				"DESCRIPTION": "Our robots employ the very latest safety sensors in order to safely navigate around humans, stairs and other obstacles. The sensors also stop them instantaneously and safely in critical situations. The latest standards were applied during development and experienced partners and certification institutions were involved in product development. Our mission is to provide unsurpassed safety."
+			},
+			"ELEVATOR": {
+				"TITLE": "Riding the elevator",
+				"DESCRIPTION": "Our robots work with the elevators in your building. We do this by working with the manufacturer to install an interface in the elevator which JEEVES can use to call the elevator car. Most elevator systems can be easily retrofitted to work with JEEVES, and we can provide a choice of solutions. Tell us which type of elevator you have, and we’ll take care of the rest."
+			}
+		}
+	}
+}

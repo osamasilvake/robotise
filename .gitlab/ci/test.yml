@@ -2,8 +2,6 @@ jest:
   stage: Test
   dependencies:
     - client
-  before_script:
-    - cd packages/client/
   script:
     - yarn test:ci
   only:

@@ -1,0 +1,15 @@
+# dependencies
+node_modules
+
+# production
+build
+
+# docker
+Dockerfile.dev
+Dockerfile.prod
+docker-compose.dev.yml
+docker-compose.prod.yml
+
+# files & folders
+bash_commands.sh
+README.md

@@ -1,5 +1,5 @@
-# Ignore folders
-.npm
+# dependencies
+node_modules
+
+# production
 build
-assets
-cache

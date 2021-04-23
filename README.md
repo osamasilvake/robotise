@@ -44,9 +44,6 @@ A summary of development workflow involving multiple git branches.
 - [X] [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
 - [X] [eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)
 
-##### Projects Manager
-- [X] [Lerna](https://github.com/lerna/lerna)
-
 ##### Precommit Hooks and Linting of Staged Files with Conventional Commits Standards
 - [X] [husky](https://github.com/typicode/husky)
 - [X] [lint-staged](https://github.com/okonet/lint-staged)
@@ -61,10 +58,13 @@ A summary of development workflow involving multiple git branches.
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [TypeScript](https://www.typescriptlang.org/)
 - [X] [Material-UI](https://material-ui.com/)
+- [X] [Emotion](https://github.com/emotion-js/emotion/)
 - [X] [clsx](https://github.com/lukeed/clsx/)
 - [X] [Axios](https://github.com/axios/axios/)
-- [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
-- [X] [Moment](https://momentjs.com/)
+- [X] [JSON-API Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer/)
 - [X] [JWT Decode](https://jwt.io/)
 - [X] [loglevel](https://github.com/pimterry/loglevel)
+- [X] [i18n](https://www.i18next.com/)
+- [X] [Moment](https://momentjs.com/)
+- [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [Markdown](https://github.com/remarkjs/react-markdown)

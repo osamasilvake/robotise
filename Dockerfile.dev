@@ -1,0 +1,17 @@
+# node image
+FROM node:15.9
+
+# directory within the virtualized cocker environment
+WORKDIR /app
+
+# copies package.json to docker environment
+COPY ./package.json /app
+
+# install all node packages and remove the cache
+RUN yarn && yarn cache clean
+
+# copies everything over to docker environment
+COPY . /app
+
+# runs the application
+CMD [ "yarn", "start" ]

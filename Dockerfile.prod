@@ -1,0 +1,21 @@
+# node image
+FROM node:15.9
+
+# directory within the virtualized Docker environment
+WORKDIR /app
+
+# copies everything over to Docker environment
+COPY . /app
+
+# install all node_modules and remove the cache
+# build app
+# delete node_modules
+# install serve globally
+RUN yarn && yarn cache clean \
+  && yarn build \
+  && rm -rf node_modules/ \
+  && rm -rf src/ \
+  && yarn global add serve
+
+# serve the application
+CMD [ "serve", "-s", "build" ]

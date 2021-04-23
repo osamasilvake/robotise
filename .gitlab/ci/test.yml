@@ -1,9 +1,0 @@
-jest:
-  stage: Test
-  image: node:15-alpine
-  script:
-    - yarn test:ci
-  only:
-    - merge_requests
-    - master
-    - production

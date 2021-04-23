@@ -3,23 +3,19 @@ image: docker:19-git
 services:
   - docker:19-dind
 
-# Define Stages
 stages:
-  - Audit
-  - Install
-  - Quality
-  - Test
+  - Initialize
+  - Code Quality
   - Build Image
   - Publish Image
   - Deploy
 
 include:
   - local: .gitlab/ci/variables.yml
-  - local: .gitlab/ci/audit.yml
-  - local: .gitlab/ci/install.yml
-  - local: .gitlab/ci/quality.yml
-  - local: .gitlab/ci/test.yml
   
-  - local: .gitlab/ci/development/build-image.yml
-  - local: .gitlab/ci/development/publish-image.yml
+  - local: .gitlab/ci/initialize.yml
+  - local: .gitlab/ci/quality.yml
+  
+  - local: .gitlab/ci/development/build.yml
+  - local: .gitlab/ci/development/publish.yml
   - local: .gitlab/ci/development/deploy.yml

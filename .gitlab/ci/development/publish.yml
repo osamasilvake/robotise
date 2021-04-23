@@ -1,5 +1,5 @@
 publish-image-dev:
-  stage: Publish Image
+  stage: Publish
   script:
     # publish to GCP container registry
     - docker load -i images/release.tar
@@ -8,3 +8,4 @@ publish-image-dev:
     - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$CI_COMMIT_SHORT_SHA"
   only:
     - master
+    - production

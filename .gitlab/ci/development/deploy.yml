@@ -15,3 +15,4 @@ deploy-dev:
     - helm upgrade --namespace=development $HELM_RELEASE_NAME_DEV $HELM_REPO_NAME/$HELM_CHART_NAME --reuse-values --set-string=image.tag="$CI_COMMIT_SHORT_SHA"
   only:
     - master
+    - production

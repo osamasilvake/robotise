@@ -1,5 +1,5 @@
 audit:
-  stage: Audit
+  stage: Initialize
   image: node:15-alpine
   script:
     - yarn audit
@@ -9,7 +9,7 @@ audit:
     - production
 
 client:
-  stage: Install
+  stage: Initialize
   image: node:15-alpine
   script:
     - yarn install

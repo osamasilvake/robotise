@@ -6,8 +6,8 @@ services:
 stages:
   - Initialize
   - Code Quality
-  - Build Image
-  - Publish Image
+  - Build
+  - Publish
   - Deploy
 
 include:

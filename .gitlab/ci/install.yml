@@ -4,7 +4,6 @@ client:
   script:
     - yarn install
   artifacts:
-    name: "root"
     paths:
       - node_modules
     expire_in: 15 minutes

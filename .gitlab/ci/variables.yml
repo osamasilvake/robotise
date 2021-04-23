@@ -8,5 +8,5 @@ variables:
   HELM_REPO_DOMAIN: chartmuseum.robotise.eu
   HELM_REPO_NAME: chartmuseumrobotise
   HELM_CHART_NAME: "$CI_PROJECT_NAME-app-v2"
-  HELM_RELEASE_NAME_DEV: "$CI_PROJECT_NAME-app-v2"
+  HELM_RELEASE_NAME_DEV: "dev-$CI_PROJECT_NAME-app-v2"
   DOCKER_PROJECT_NAME: "$CI_PROJECT_NAME-app-v2"

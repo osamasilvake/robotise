@@ -1,0 +1,17 @@
+deploy-dev:
+  stage: Deploy
+  image: "google/cloud-sdk:latest"
+  script:
+    # Install HELM
+    - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+    # Auth with service account
+    - gcloud auth activate-service-account --key-file="$GCP_GKE_SERVICE_ACCOUNT_KEY"
+    - gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone $GKE_CLUSTER_ZONE --project $GCP_PROJECT
+
+    # Deploy with HELM
+    - helm repo add $HELM_REPO_NAME "http://$HELM_BASIC_AUTH@$HELM_REPO_DOMAIN"
+    - helm repo update
+    - helm upgrade $HELM_RELEASE_NAME_DEV $HELM_REPO_NAME/$HELM_CHART_NAME --reuse-values --recreate-pods --set-string=image.tag=dev
+  only:
+    - master

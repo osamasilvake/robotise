@@ -17,8 +17,8 @@ RUN yarn && yarn cache clean \
   && rm -rf src/ \
   && yarn global add serve
 
-# Expose port
+# expose port
 EXPOSE 3000
 
 # serve the application
-CMD [ "serve", "-l", "3000", "-s", "build" ]
+CMD serve -s build -l 3000

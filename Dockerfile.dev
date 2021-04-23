@@ -14,4 +14,4 @@ RUN yarn && yarn cache clean
 COPY . /app
 
 # runs the application
-CMD [ "yarn", "start" ]
+CMD yarn start

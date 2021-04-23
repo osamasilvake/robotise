@@ -11,7 +11,7 @@ stages:
   # - Test
   - Build Image
   - Publish Image
-  # - Deploy
+  - Deploy
 
 include:
   - local: .gitlab/ci/variables.yml
@@ -22,7 +22,7 @@ include:
 
   - local: .gitlab/ci/development/build-image.yml
   - local: .gitlab/ci/development/publish-image.yml
-  # - local: .gitlab/ci/development/deploy.yml
+  - local: .gitlab/ci/development/deploy.yml
 
   # - local: .gitlab/ci/production/build-image.yml
   # - local: .gitlab/ci/production/publish-image.yml

@@ -104,6 +104,7 @@ const Login: FC = () => {
 								onBlur={handleBlur}
 								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
 								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
+								InputLabelProps={{ shrink: true }}
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position="end">

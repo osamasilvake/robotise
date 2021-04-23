@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.1.1...v1.1.2) (2021-04-23)
+
+
+### Bug Fixes
+
+* Gitlab deployment yml ([2bc8032](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/2bc8032e6b9c34d510f4401e3b9bf7322558db14))
+
 ### [1.1.1](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.1.0...v1.1.1) (2021-04-23)
 
 

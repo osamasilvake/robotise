@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.1.0...v1.1.1) (2021-04-23)
+
+
+### Bug Fixes
+
+* Add development build image yml ([75676c8](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/75676c8ed7cb87dbac7cc2a9c4c5d056a248673a))
+* Bug in Popover component ([d7bebe5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d7bebe51ba4ce0aff0718345ec39f06221b110e4))
+* Dockerfile changes ([245de1b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/245de1bb4bd773a242552077d543432df5012ef5))
+* Update docker file ([4136276](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/413627656c46c921bcbae8f0510b153fbf95befb))
+* Update docker file ([e89c05e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e89c05edd3f2c3e968422ed0f31abaa6d29604cb))
+* Update gitlab ([183c417](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/183c41711e12eeffa87c25ec9c29a3e83008b73d))
+* Update gitlab ([b4ff111](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b4ff11173ca4451fc6b77ea7db344f87719bce35))
+* Update gitlab variables ([a37cf75](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a37cf75e5bf3358c30c31512100716f13030e445))
+* Update gitlab variables ([7ad6eb0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7ad6eb0869430ae07618ad5f1f57c1055033aa78))
+* Update gitlab variables ([2362c4a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/2362c4ae1d390b97963782972ac36c3622c69e41))
+
 ## [1.1.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.0.3...v1.1.0) (2021-04-23)
 
 

@@ -14,7 +14,10 @@
 		"scan:all": "yarn pretty:apply && yarn lint:es && yarn test:ci",
 		"docker:dev": "docker-compose --file Docker.dev.yml up",
 		"docker:prod": "docker-compose --file Docker.prod.yml up --build",
-		"release": "standard-version"
+		"release": "standard-version",
+		"release:major": "yarn release -- --release-as major",
+		"release:minor": "yarn release -- --release-as minor",
+		"release:patch": "yarn release -- --release-as patch"
 	},
 	"dependencies": {
 		"@craco/craco": "^6.1.1",
@@ -71,7 +74,6 @@
 		"husky": "^6.0.0",
 		"lint-staged": ">=10",
 		"prettier": "^2.2.1",
-		"semantic-release": "^17.4.2",
 		"standard-version": "^9.2.0"
 	},
 	"browserslist": {

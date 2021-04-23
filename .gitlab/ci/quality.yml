@@ -1,8 +1,6 @@
 prettier:
   stage: Quality
   image: node:15-alpine
-  dependencies:
-    - root
   script:
     - yarn pretty:check
   only:
@@ -13,8 +11,6 @@ prettier:
 eslint:
   stage: Quality
   image: node:15-alpine
-  dependencies:
-    - root
   script:
     - yarn lint:es
   only:

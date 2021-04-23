@@ -7,5 +7,5 @@ variables:
   GKE_CLUSTER_ZONE: europe-west1-c
   HELM_REPO_DOMAIN: chartmuseum.robotise.eu
   HELM_REPO_NAME: chartmuseumrobotise
-  HELM_CHART_NAME: "$CI_PROJECT_NAME-v2"
-  HELM_RELEASE_NAME_DEV: "$CI_PROJECT_NAME-v2"
+  HELM_CHART_NAME: "$CI_PROJECT_NAME-app-v2"
+  HELM_RELEASE_NAME_DEV: "$CI_PROJECT_NAME-app-v2"

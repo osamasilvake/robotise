@@ -8,7 +8,7 @@ audit:
     - master
     - production
 
-client:
+install:
   stage: Initialize
   image: node:15-alpine
   script:

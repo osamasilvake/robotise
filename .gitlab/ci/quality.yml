@@ -1,4 +1,4 @@
-prettier:
+lint:prettier:
   stage: Code Quality
   image: node:15-alpine
   script:
@@ -8,7 +8,7 @@ prettier:
     - master
     - production
 
-eslint:
+lint:eslint:
   stage: Code Quality
   image: node:15-alpine
   script:
@@ -18,7 +18,7 @@ eslint:
     - master
     - production
 
-jest:
+test:jest:
   stage: Code Quality
   image: node:15-alpine
   script:

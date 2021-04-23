@@ -1,5 +1,6 @@
 prettier:
   stage: Quality
+  image: node:15-alpine
   dependencies:
     - root
   script:
@@ -11,6 +12,7 @@ prettier:
 
 eslint:
   stage: Quality
+  image: node:15-alpine
   dependencies:
     - root
   script:

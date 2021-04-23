@@ -1,5 +1,6 @@
 jest:
   stage: Test
+  image: node:15-alpine
   dependencies:
     - client
   script:

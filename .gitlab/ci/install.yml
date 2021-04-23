@@ -1,23 +1,10 @@
-root:
+client:
   stage: Install
+  image: node:15-alpine
   script:
     - yarn install
   artifacts:
     name: "root"
-    paths:
-      - node_modules
-    expire_in: 15 minutes
-  only:
-    - merge_requests
-    - master
-    - production
-    
-client:
-  stage: Install
-  script:
-    - yarn install
-  artifacts:
-    name: "client"
     paths:
       - node_modules
     expire_in: 15 minutes

@@ -87,11 +87,7 @@ const Login: FC = () => {
 								onBlur={handleBlur}
 								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
 								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
-								inputProps={{
-									form: {
-										autocomplete: 'off'
-									}
-								}}
+								InputLabelProps={{ shrink: true }}
 							/>
 							<FormHelperText>{t(errors.email)}</FormHelperText>
 						</FormControl>

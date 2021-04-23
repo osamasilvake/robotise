@@ -47,15 +47,17 @@ const MarkdownHeading: FC = (props) => {
 	// classes conditions
 	const condition1 = /[h][1]/g.test(component);
 	const condition2 = /[h][2]/g.test(component);
+	const condition3 = /[h][3]/g.test(component);
 
-	return children && children[0] !== 'Change Log' ? (
+	return children && children[0] !== 'Changelog' ? (
 		<Typography
 			component={component}
 			variant={variant}
 			className={clsx({
 				[classes.sHeadingH1]: condition1,
 				[classes.sHeadingH2]: condition2,
-				[classes.sCommon]: !condition1 && !condition2
+				[classes.sHeadingH3]: condition3,
+				[classes.sCommon]: !condition1 && !condition2 && !condition3
 			})}>
 			{children}
 		</Typography>

@@ -28,7 +28,7 @@ A summary of development workflow involving multiple git branches.
 
 ## Libraries and Frameworks
 
-### Root
+### Quality, Lint, Commit & Release
 ##### Quality: `*.{js,jsx,ts,tsx,json}`
 - [X] [prettier](https://prettier.io/)
 
@@ -50,7 +50,11 @@ A summary of development workflow involving multiple git branches.
 - [X] [@commitlint/cli](https://github.com/conventional-changelog/commitlint)
 - [X] [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint)
 
-### Client 
+##### Release
+- [X] [standard-version](https://github.com/conventional-changelog/standard-version)
+
+
+### Client Packages 
 - [X] [Create React App](https://github.com/facebook/create-react-app)
 - [X] [CRACO](https://github.com/gsoft-inc/craco)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)

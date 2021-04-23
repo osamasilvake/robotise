@@ -1,6 +1,10 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
 export const MarkdownStyles = makeStyles((theme: Theme) => ({
+	sCommon: {
+		fontWeight: 500,
+		margin: 0
+	},
 	sHeadingH1: {
 		margin: theme.spacing(5, 0, 1.5)
 	},
@@ -8,9 +12,9 @@ export const MarkdownStyles = makeStyles((theme: Theme) => ({
 		fontWeight: 600,
 		margin: theme.spacing(4, 0, 1)
 	},
-	sCommon: {
+	sHeadingH3: {
 		fontWeight: 500,
-		margin: 0
+		margin: theme.spacing(1.5, 0, 1)
 	},
 	MarkdownParagraph: {
 		margin: theme.spacing(0, 0, 2)

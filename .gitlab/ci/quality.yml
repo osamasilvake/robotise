@@ -1,5 +1,5 @@
-lint:prettier:
-  stage: Code Quality
+prettier:
+  stage: Quality
   image: node:15-alpine
   script:
     - yarn pretty:check
@@ -9,7 +9,7 @@ lint:prettier:
     - production
 
 lint:eslint:
-  stage: Code Quality
+  stage: Quality
   image: node:15-alpine
   script:
     - yarn lint:es
@@ -19,7 +19,7 @@ lint:eslint:
     - production
 
 test:jest:
-  stage: Code Quality
+  stage: Quality
   image: node:15-alpine
   script:
     - yarn test:ci

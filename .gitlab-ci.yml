@@ -5,7 +5,7 @@ services:
 
 stages:
   - Initialize
-  - Code Quality
+  - Quality
   - Build
   - Publish
   - Deploy

@@ -2,10 +2,10 @@ dev:build:
   stage: Build
   before_script:
     - mkdir images
+    - apk add --no-cache py2-pip && pip install docker-compose
   script:
     - |
-      docker build \
-      --file docker/Dockerfile.prod . \
+      yarn docker:prod \
       --tag release \
       --build-arg APP_ENV=dev \
       --build-arg REACT_APP_API_BASE_URL \
@@ -13,6 +13,8 @@ dev:build:
       --build-arg REACT_APP_AUTH_BASE_URL \
       --build-arg REACT_APP_AUTH_REALM
     - docker save release > images/release.tar
+  dependencies:
+    - install
   artifacts:
     paths:
       - images

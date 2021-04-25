@@ -4,8 +4,8 @@ services:
   - docker:19-dind
 
 stages:
-  - Initialize
-  - Quality
+  #- Initialize
+  #- Quality
   - Build
   - Publish
   - Deploy
@@ -13,8 +13,8 @@ stages:
 include:
   - local: .gitlab/ci/variables.yml
   
-  - local: .gitlab/ci/initialize.yml
-  - local: .gitlab/ci/quality.yml
+  #- local: .gitlab/ci/initialize.yml
+  #- local: .gitlab/ci/quality.yml
   
   - local: .gitlab/ci/development/build.yml
   - local: .gitlab/ci/development/publish.yml

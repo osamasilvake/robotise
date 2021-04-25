@@ -4,14 +4,11 @@ FROM node:15-alpine
 # directory within the virtualized cocker environment
 WORKDIR /app
 
-# copies everything over to Docker environment
-COPY . /app
+# copies package.json to Docker environment
+COPY ./package.json /app
 
 # install all node packages and remove the cache
 RUN yarn && yarn cache clean
-
-# copies everything over to docker environment
-COPY . /app
 
 # runs the application
 CMD yarn start

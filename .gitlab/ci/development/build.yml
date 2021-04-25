@@ -4,14 +4,13 @@ dev:build:
     - mkdir images
   script:
     - |
-      docker build \
+      yarn docker:prod \
       --tag release \
       --build-arg APP_ENV=dev \
       --build-arg REACT_APP_API_BASE_URL \
       --build-arg REACT_APP_API_VERSION \
       --build-arg REACT_APP_AUTH_BASE_URL \
-      --build-arg REACT_APP_AUTH_REALM \
-      --file Dockerfile.prod .
+      --build-arg REACT_APP_AUTH_REALM
     - docker save release > images/release.tar
   artifacts:
     paths:

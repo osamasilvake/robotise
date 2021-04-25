@@ -5,13 +5,13 @@ services:
     stdin_open: true
     container_name: roc-dev
     build:
-      context: .
-      dockerfile: Dockerfile.dev
+      context: ../
+      dockerfile: docker/Dockerfile.dev
     volumes:
-      - .:/app
-      - node_modules:/app/node_modules
+      - ../:/app
+      - ../node_modules:/app/node_modules
     ports:
-      - "3000:3000"
+      - 3000:3000
 
 volumes:
   node_modules:

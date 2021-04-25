@@ -1,15 +1,8 @@
-# dependencies
+# folders
 node_modules
-
-# production
 build
+docker
 
-# docker
-Docker.dev.yml
-Docker.prod.yml
-Dockerfile.dev
-Dockerfile.prod
-
-# files & folders
+# files
 README.md
 update.sh

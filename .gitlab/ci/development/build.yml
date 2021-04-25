@@ -1,5 +1,6 @@
 dev:build:
   stage: Build
+  image: node:15-alpine
   before_script:
     - mkdir images
   script:

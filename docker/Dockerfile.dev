@@ -1,11 +1,11 @@
 # node image
 FROM node:15-alpine
 
-# directory within the virtualized cocker environment
+# directory within the virtualized docker environment
 WORKDIR /app
 
-# copies package.json to Docker environment
-COPY ./package.json /app
+# copies all to docker environment
+COPY . /app
 
 # install all node packages and remove the cache
 RUN yarn && yarn cache clean

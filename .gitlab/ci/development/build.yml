@@ -1,12 +1,11 @@
 dev:build:
   stage: Build
+  image: tiangolo/docker-with-compose
   before_script:
     - mkdir images
-    - apk add --update py-pip
-    - pip install docker-compose
   script:
     - |
-      yarn docker:prod \
+      cd docker && docker-compose --file Docker.prod.yml up --build \
       --tag release \
       --build-arg APP_ENV=dev \
       --build-arg REACT_APP_API_BASE_URL \

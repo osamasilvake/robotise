@@ -10,7 +10,7 @@ export const LoginStyles = makeStyles((theme: Theme) => ({
 	sImage: {
 		backgroundImage: `url(${
 			AppConfigService.AppImageURLs.robotise.path +
-			randomNum(1, 7) +
+			randomNum(1, 4) +
 			AppConfigService.AppImageURLs.robotise.format
 		})`,
 		backgroundPosition: 'center',

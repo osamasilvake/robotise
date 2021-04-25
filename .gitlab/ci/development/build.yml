@@ -5,7 +5,7 @@ dev:build:
     - mkdir images
   script:
     - |
-      cd docker && docker-compose --file Docker.prod.yml up --build \
+      yarn docker:prod \
       --tag release \
       --build-arg APP_ENV=dev \
       --build-arg REACT_APP_API_BASE_URL \

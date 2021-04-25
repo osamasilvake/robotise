@@ -5,11 +5,11 @@ node_modules
 build
 
 # docker
+Docker.dev.yml
+Docker.prod.yml
 Dockerfile.dev
 Dockerfile.prod
-docker-compose.dev.yml
-docker-compose.prod.yml
 
 # files & folders
-bash_commands.sh
 README.md
+update.sh

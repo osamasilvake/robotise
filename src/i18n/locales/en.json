@@ -383,7 +383,6 @@
 							"TARGET": {
 								"RECEPTION": "Reception"
 							},
-
 							"ORIGIN": {
 								"phone": "Phone",
 								"manualGUI": "JEEVES",
@@ -413,6 +412,12 @@
 			},
 			"PURCHASES": {
 				"LIST": {
+					"OPTIONS": {
+						"HEADING": "Actions",
+						"BILLED": {
+							"LABEL": "Billed"
+						}
+					},
 					"TABLE": {
 						"COLUMNS": {
 							"TARGET": "Target",

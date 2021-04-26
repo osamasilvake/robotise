@@ -6,5 +6,8 @@ const minusContentHeight = AppConfigService.AppOptions.components.table.contentH
 export const RobotPurchasesTableStyles = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
+	},
+	sTableCellComment: {
+		whiteSpace: 'pre-wrap'
 	}
 }));

@@ -165,13 +165,20 @@ class RobotsService {
 	 * @param robotId
 	 * @param pageNo
 	 * @param rowsPerPage
+	 * @param billed
 	 * @returns
 	 */
-	robotPurchasesFetch = (robotId: string, pageNo: number, rowsPerPage: number) => {
+	robotPurchasesFetch = (
+		robotId: string,
+		pageNo: number,
+		rowsPerPage: number,
+		billed: boolean
+	) => {
 		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,
+				'filter[isBilled]': billed || undefined,
 				'page[number]': pageNo,
 				'page[size]': rowsPerPage
 			}

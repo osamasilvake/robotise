@@ -14,6 +14,7 @@ import {
 import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
+import RobotPurchasesActions from './list/actions/RobotPurchasesActions';
 import RobotPurchasesTable from './list/table/RobotPurchasesTable';
 import { RobotPurchasesStyles } from './RobotPurchases.style';
 
@@ -46,14 +47,14 @@ const RobotPurchases: FC = () => {
 	useEffect(() => {
 		if (pageRef.current.billed !== billed && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(cRobotId, 1, rowsPerPage));
+			cRobotId && dispatch(PurchasesFetchList(cRobotId, 1, rowsPerPage, billed));
 
 			// update ref
 			pageRef.current.page = 0;
 			pageRef.current.billed = billed;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(cRobotId, page + 1, rowsPerPage));
+			cRobotId && dispatch(PurchasesFetchList(cRobotId, page + 1, rowsPerPage, billed));
 
 			// update ref
 			pageRef.current.page = page;
@@ -106,6 +107,9 @@ const RobotPurchases: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Options */}
+			<RobotPurchasesActions billed={billed} setBilled={setBilled} setPage={setPage} />
+
 			{/* Table */}
 			<RobotPurchasesTable
 				content={purchases.content}

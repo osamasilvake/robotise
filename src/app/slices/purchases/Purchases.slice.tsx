@@ -65,6 +65,7 @@ export default dataSlice.reducer;
  * @param robotId
  * @param pageNo
  * @param rowsPerPage
+ * @param billed
  * @param refresh
  * @returns
  */
@@ -72,6 +73,7 @@ export const PurchasesFetchList = (
 	robotId: string,
 	pageNo: number,
 	rowsPerPage: number,
+	billed = false,
 	refresh = false
 ) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 	// states
@@ -86,7 +88,7 @@ export const PurchasesFetchList = (
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotPurchasesFetch(robotId, pageNo, rowsPerPage)
+	return RobotsService.robotPurchasesFetch(robotId, pageNo, rowsPerPage, billed)
 		.then(async (res) => {
 			// deserialize response
 			let result: SPContentInterface = await deserializePurchases(res);

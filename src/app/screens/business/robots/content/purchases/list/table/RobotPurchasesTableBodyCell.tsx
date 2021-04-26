@@ -1,4 +1,4 @@
-import { Checkbox, TableCell } from '@material-ui/core';
+import { Checkbox, TableCell, Typography } from '@material-ui/core';
 import i18next from 'i18next';
 import { FC } from 'react';
 
@@ -11,9 +11,11 @@ import {
 	RobotPurchasesTableColumnInterface
 } from '../../../purchases/list/table/RobotPurchasesTable.interface';
 import { columns } from './RobotPurchasesTable.list';
+import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
 
 const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (props) => {
 	const { column, purchase } = props;
+	const classes = RobotPurchasesTableStyles();
 
 	const unknown = 'N/A';
 
@@ -41,6 +43,12 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						i18next.language
 				  )}`
 				: 0;
+		} else if (columns[3].id === column.id) {
+			return (
+				<Typography variant="body2" className={classes.sTableCellComment}>
+					{value}
+				</Typography>
+			);
 		} else if (columns[4].id === column.id) {
 			return <Checkbox disabled checked={!!value} />;
 		}

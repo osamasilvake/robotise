@@ -8,8 +8,8 @@ export enum RobotOrdersTableColumnsTypeEnum {
 }
 
 export enum RobotOrdersTableSortTypeEnum {
-	STRING,
-	DATE
+	DATE,
+	STRING
 }
 
 export enum RobotOrdersTableColumnStatusTypeEnum {

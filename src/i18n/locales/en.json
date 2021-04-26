@@ -410,6 +410,19 @@
 						"service-position": "Service Position"
 					}
 				}
+			},
+			"PURCHASES": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"TARGET": "Target",
+							"CREATED": "Created",
+							"TOTAL_PRICE": "Total Price",
+							"COMMENT": "Comment",
+							"BILLED": "Billed"
+						}
+					}
+				}
 			}
 		}
 	},
@@ -421,7 +434,7 @@
 			"CONTACT": {
 				"TITLE": "Contact",
 				"TEL": {
-					"LABEL": "Telefone",
+					"LABEL": "Telephone",
 					"VALUE": "+49 89 890 828 41"
 				},
 				"EMAIL": {

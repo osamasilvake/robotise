@@ -159,6 +159,24 @@ class RobotsService {
 		const url = AppConfigService.AppServices.ROBOT.ORDER.replace(':order', orderId);
 		return HttpClientService.get(url);
 	};
+
+	/**
+	 * fetch robot purchases
+	 * @param robotId
+	 * @param pageNo
+	 * @param rowsPerPage
+	 * @returns
+	 */
+	robotPurchasesFetch = (robotId: string, pageNo: number, rowsPerPage: number) => {
+		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[robot]': robotId,
+				'page[number]': pageNo,
+				'page[size]': rowsPerPage
+			}
+		});
+	};
 }
 const instance = new RobotsService();
 export default instance;

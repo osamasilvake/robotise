@@ -8,6 +8,7 @@ import robotsRoutes from '../Robots.routes';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
 import RobotOrders from './orders/RobotOrders';
+import RobotPurchases from './purchases/RobotPurchases';
 
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
@@ -59,7 +60,7 @@ const RobotContent: FC = () => {
 				{value === 2 && <RobotOrders />}
 
 				{/* Purchases */}
-				{value === 3 && <>Four</>}
+				{value === 3 && <RobotPurchases />}
 			</Box>
 		</Box>
 	) : null;

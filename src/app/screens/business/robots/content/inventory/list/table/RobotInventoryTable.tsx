@@ -40,7 +40,9 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.site.id;
-	const currency = (siteId && sites.content?.dataById[siteId]?.currency) || 'EUR';
+	const currency =
+		(siteId && sites.content?.dataById[siteId]?.currency) ||
+		AppConfigService.AppOptions.common.defaultCurrency;
 	const unknown = 'N/A';
 
 	/**

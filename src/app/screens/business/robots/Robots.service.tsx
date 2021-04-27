@@ -75,14 +75,14 @@ class RobotsService {
 	/**
 	 * fetch robot orders
 	 * @param robotId
-	 * @param pageNo
+	 * @param page
 	 * @param rowsPerPage
 	 * @param activeOrders
 	 * @returns
 	 */
 	robotOrdersFetch = (
 		robotId: string,
-		pageNo: number,
+		page: number,
 		rowsPerPage: number,
 		activeOrders: boolean
 	) => {
@@ -91,7 +91,7 @@ class RobotsService {
 			params: {
 				'filter[robot]': robotId,
 				'filter[active]': activeOrders || undefined,
-				'page[number]': pageNo,
+				'page[number]': page + 1,
 				'page[size]': rowsPerPage
 			}
 		});
@@ -163,23 +163,18 @@ class RobotsService {
 	/**
 	 * fetch robot purchases
 	 * @param robotId
-	 * @param pageNo
+	 * @param page
 	 * @param rowsPerPage
 	 * @param billed
 	 * @returns
 	 */
-	robotPurchasesFetch = (
-		robotId: string,
-		pageNo: number,
-		rowsPerPage: number,
-		billed: boolean
-	) => {
+	robotPurchasesFetch = (robotId: string, page: number, rowsPerPage: number, billed: boolean) => {
 		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,
 				'filter[isBilled]': billed || undefined,
-				'page[number]': pageNo,
+				'page[number]': page + 1,
 				'page[size]': rowsPerPage
 			}
 		});

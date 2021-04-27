@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
 import { PurchaseUpdateState } from '../../../../../../../slices/purchases/Purchases.slice';
+import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import {
 	RobotPurchasesTableHeadOrder,
@@ -16,7 +17,7 @@ import RobotPurchasesTableBody from './RobotPurchasesTableBody';
 import RobotPurchasesTableHead from './RobotPurchasesTableHead';
 
 const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
-	const { content, page, setPage, rowsPerPage } = props;
+	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotPurchasesTableStyles();
 
@@ -49,8 +50,12 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	 * @param newPage
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
-		// set page
-		setPage(newPage);
+		// dispatch: update state
+		const payload: SPCState = {
+			...content?.state,
+			page: newPage
+		};
+		dispatch(PurchaseUpdateState(payload));
 	};
 
 	/**
@@ -59,14 +64,12 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const payload = {
+		const payload: SPCState = {
 			...content?.state,
+			page: 0,
 			rowsPerPage: +event.target.value
 		};
 		dispatch(PurchaseUpdateState(payload));
-
-		// set page
-		setPage(0);
 	};
 
 	return (

@@ -38,6 +38,7 @@ export interface SOCDataByIdInterface {
 
 export interface SOCState {
 	robotId?: string;
+	page?: number;
 	rowsPerPage?: number;
 	activeOrders?: boolean;
 }

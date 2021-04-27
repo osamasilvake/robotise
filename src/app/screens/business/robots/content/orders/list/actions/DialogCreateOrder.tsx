@@ -20,7 +20,12 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { OrderCreate, ordersSelector } from '../../../../../../../slices/orders/Orders.slice';
+import {
+	OrderCreate,
+	ordersSelector,
+	OrderUpdateState
+} from '../../../../../../../slices/orders/Orders.slice';
+import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
@@ -35,7 +40,7 @@ import {
 import { orderModes } from './RobotOrdersActions.map';
 
 const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
-	const { open, setOpen, setPage } = props;
+	const { open, setOpen } = props;
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
 	const dispatch = useDispatch();
@@ -69,8 +74,12 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					// set open
 					setOpen(false);
 
-					// set page
-					setPage(0);
+					// dispatch: update state
+					const payload: SOCState = {
+						...orders.content?.state,
+						page: 0
+					};
+					dispatch(OrderUpdateState(payload));
 				});
 		}
 	);

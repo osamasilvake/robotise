@@ -7,32 +7,29 @@ import {
 	purchasesSelector,
 	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
+import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesBilledInterface } from './RobotPurchasesActions.interface';
 import { RobotPurchasesActionsStyles } from './RobotPurchasesActions.style';
 
 const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
-	const { setPage } = props;
+	const { billed } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesActionsStyles();
 
 	const dispatch = useDispatch();
 	const purchases = useSelector(purchasesSelector);
 
-	const billed = !!purchases.content?.state?.billed;
-
 	/**
 	 * toggle active orders
 	 */
 	const toggleBilled = () => {
 		// dispatch: update state
-		const payload = {
+		const payload: SPCState = {
 			...purchases.content?.state,
+			page: 0,
 			billed: !billed
 		};
 		dispatch(PurchaseUpdateState(payload));
-
-		// set page
-		setPage(0);
 	};
 
 	return (

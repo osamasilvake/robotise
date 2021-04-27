@@ -39,6 +39,7 @@ export interface SPCDataByIdInterface {
 export interface SPCState {
 	robotId?: string;
 	billed?: boolean;
+	page?: number;
 	rowsPerPage?: number;
 }
 

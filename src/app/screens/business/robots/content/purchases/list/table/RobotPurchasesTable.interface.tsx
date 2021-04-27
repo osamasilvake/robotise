@@ -9,7 +9,6 @@ import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 export interface RobotPurchasesTableInterface {
 	content: SPContentInterface | null;
 	page: number;
-	setPage: Dispatch<SetStateAction<number>>;
 	rowsPerPage: number;
 }
 

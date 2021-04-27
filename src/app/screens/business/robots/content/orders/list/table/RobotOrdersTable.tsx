@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
 import { OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
+import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableHeadOrder, RobotOrdersTableInterface } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
@@ -13,7 +14,7 @@ import RobotOrdersTableBody from './RobotOrdersTableBody';
 import RobotOrdersTableHead from './RobotOrdersTableHead';
 
 const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
-	const { content, page, setPage, rowsPerPage } = props;
+	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotOrdersTableStyles();
 
@@ -45,8 +46,12 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	 * @param newPage
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
-		// set page
-		setPage(newPage);
+		// dispatch: update state
+		const payload: SOCState = {
+			...content?.state,
+			page: newPage
+		};
+		dispatch(OrderUpdateState(payload));
 	};
 
 	/**
@@ -55,14 +60,12 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const payload = {
+		const payload: SOCState = {
 			...content?.state,
+			page: 0,
 			rowsPerPage: +event.target.value
 		};
 		dispatch(OrderUpdateState(payload));
-
-		// set page
-		setPage(0);
 	};
 
 	return (

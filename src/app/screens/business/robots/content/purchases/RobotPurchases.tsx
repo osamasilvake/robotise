@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -26,14 +26,13 @@ const RobotPurchases: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const purchases = useSelector(purchasesSelector);
 
-	const [page, setPage] = useState(0);
-
+	const page = purchases.content?.state?.page || 0;
 	const rowsPerPage =
 		purchases.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.robots.content.purchases.list.defaultPageSize;
 	const billed = !!purchases.content?.state?.billed;
 	const pageRef = useRef({
-		page: (purchases.content?.meta.page || page) - 1,
+		page: (purchases.content?.meta?.page || 0) - 1,
 		rowsPerPage,
 		billed
 	});
@@ -45,14 +44,14 @@ const RobotPurchases: FC = () => {
 	useEffect(() => {
 		if (pageRef.current.billed !== billed && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(cRobotId, 1, rowsPerPage, billed));
+			cRobotId && dispatch(PurchasesFetchList(cRobotId, page, rowsPerPage, billed));
 
 			// update ref
 			pageRef.current.page = 0;
 			pageRef.current.billed = billed;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(cRobotId, page + 1, rowsPerPage, billed));
+			cRobotId && dispatch(PurchasesFetchList(cRobotId, page, rowsPerPage, billed));
 
 			// update ref
 			pageRef.current.page = page;
@@ -69,7 +68,7 @@ const RobotPurchases: FC = () => {
 					if (condition3 || condition5) {
 						// dispatch: fetch purchases
 						cRobotId &&
-							dispatch(PurchasesFetchList(cRobotId, page + 1, rowsPerPage, billed));
+							dispatch(PurchasesFetchList(cRobotId, page, rowsPerPage, billed));
 
 						// update ref
 						pageRef.current.page = page;
@@ -106,13 +105,12 @@ const RobotPurchases: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Options */}
-			<RobotPurchasesActions setPage={setPage} />
+			<RobotPurchasesActions billed={billed} />
 
 			{/* Table */}
 			<RobotPurchasesTable
 				content={purchases.content}
 				page={page}
-				setPage={setPage}
 				rowsPerPage={rowsPerPage}
 			/>
 		</Box>

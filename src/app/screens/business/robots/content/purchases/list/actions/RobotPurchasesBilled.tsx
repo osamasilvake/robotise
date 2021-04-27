@@ -1,21 +1,31 @@
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
+import {
+	purchasesSelector,
+	PurchaseUpdateBilled
+} from '../../../../../../../slices/purchases/Purchases.slice';
 import { RobotPurchasesBilledInterface } from './RobotPurchasesActions.interface';
 import { RobotPurchasesActionsStyles } from './RobotPurchasesActions.style';
 
 const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
-	const { billed, setBilled, setPage } = props;
+	const { setPage } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesActionsStyles();
+
+	const dispatch = useDispatch();
+	const purchases = useSelector(purchasesSelector);
+
+	const billed = !!purchases.content?.state?.billed;
 
 	/**
 	 * toggle active orders
 	 */
 	const toggleBilled = () => {
-		// set active orders
-		setBilled(!billed);
+		// dispatch: update billed state
+		dispatch(PurchaseUpdateBilled(!billed));
 
 		// set page
 		setPage(0);

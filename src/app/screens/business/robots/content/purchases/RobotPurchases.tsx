@@ -26,13 +26,13 @@ const RobotPurchases: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const purchases = useSelector(purchasesSelector);
 
-	const [billed, setBilled] = useState(!!purchases.content?.state?.billed);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
 		purchases.content?.meta.rowsPerPage ||
 			AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
 	);
 
+	const billed = !!purchases.content?.state?.billed;
 	const pageRef = useRef({
 		page: (purchases.content?.meta.page || page) - 1,
 		rowsPerPage,
@@ -107,7 +107,7 @@ const RobotPurchases: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Options */}
-			<RobotPurchasesActions billed={billed} setBilled={setBilled} setPage={setPage} />
+			<RobotPurchasesActions setPage={setPage} />
 
 			{/* Table */}
 			<RobotPurchasesTable

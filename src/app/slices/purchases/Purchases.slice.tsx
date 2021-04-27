@@ -160,7 +160,7 @@ export const PurchaseEditComment = (purchaseId: string, comment: string) => asyn
 				// update edited comment
 				result = updateEditedComment(purchases.content, result);
 
-				// dispatch: updating
+				// dispatch: updated
 				dispatch(updated(result));
 
 				// dispatch: trigger message
@@ -184,6 +184,36 @@ export const PurchaseEditComment = (purchaseId: string, comment: string) => asyn
 			// dispatch: failure
 			dispatch(failure(message));
 		});
+};
+
+/**
+ * update billed state
+ * @param billed
+ * @returns
+ */
+export const PurchaseUpdateBilled = (billed: boolean) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
+	// states
+	const states = getState();
+	const purchases = states.purchases;
+
+	// dispatch: updating
+	dispatch(updating());
+
+	if (purchases && purchases.content) {
+		const result = {
+			...purchases.content,
+			state: {
+				...purchases.content.state,
+				billed
+			}
+		};
+
+		// dispatch: updated
+		dispatch(updated(result));
+	}
 };
 
 /**

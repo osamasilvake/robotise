@@ -18,6 +18,7 @@ import {
 export const initialState: SliceOrdersInterface = {
 	loader: false,
 	loading: false,
+	updating: false,
 	creating: false,
 	canceling: false,
 	content: null,
@@ -35,6 +36,9 @@ const dataSlice = createSlice({
 		loading: (state) => {
 			state.loading = true;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
 		creating: (state) => {
 			state.creating = true;
 		},
@@ -46,6 +50,10 @@ const dataSlice = createSlice({
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
+		},
+		updated: (state, action) => {
+			state.updating = false;
+			state.content = action.payload;
 		},
 		created: (state, action) => {
 			state.creating = false;
@@ -71,9 +79,11 @@ const dataSlice = createSlice({
 export const {
 	loader,
 	loading,
+	updating,
 	creating,
 	canceling,
 	success,
+	updated,
 	created,
 	canceled,
 	failure,
@@ -252,6 +262,36 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 			// dispatch: failure
 			dispatch(failure(message));
 		});
+};
+
+/**
+ * update active orders state
+ * @param activeOrders
+ * @returns
+ */
+export const OrderUpdateActiveOrders = (activeOrders: boolean) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
+	// states
+	const states = getState();
+	const orders = states.orders;
+
+	// dispatch: updating
+	dispatch(updating());
+
+	if (orders && orders.content) {
+		const result = {
+			...orders.content,
+			state: {
+				...orders.content.state,
+				activeOrders
+			}
+		};
+
+		// dispatch: updated
+		dispatch(updated(result));
+	}
 };
 
 /**

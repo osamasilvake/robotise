@@ -1,21 +1,31 @@
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
+import {
+	ordersSelector,
+	OrderUpdateActiveOrders
+} from '../../../../../../../slices/orders/Orders.slice';
 import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
 import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 
 const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {
-	const { activeOrders, setActiveOrders, setPage } = props;
+	const { setPage } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersActionsStyles();
+
+	const dispatch = useDispatch();
+	const orders = useSelector(ordersSelector);
+
+	const activeOrders = !!orders.content?.state?.activeOrders;
 
 	/**
 	 * toggle active orders
 	 */
 	const toggleActiveOrders = () => {
-		// set active orders
-		setActiveOrders(!activeOrders);
+		// dispatch: update active orders state
+		dispatch(OrderUpdateActiveOrders(!activeOrders));
 
 		// set page
 		setPage(0);

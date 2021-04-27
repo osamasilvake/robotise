@@ -8,7 +8,7 @@ import RobotOrdersActiveOrders from './RobotOrdersActiveOrders';
 import RobotOrdersCreateOrder from './RobotOrdersCreateOrder';
 
 const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
-	const { activeOrders, setActiveOrders, setPage } = props;
+	const { setPage } = props;
 	const { t } = useTranslation('ROBOTS');
 	const floatStyles = FloatStyles();
 
@@ -20,11 +20,7 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 			</Typography>
 
 			{/* Active Orders */}
-			<RobotOrdersActiveOrders
-				activeOrders={activeOrders}
-				setActiveOrders={setActiveOrders}
-				setPage={setPage}
-			/>
+			<RobotOrdersActiveOrders setPage={setPage} />
 
 			{/* Create Order */}
 			<RobotOrdersCreateOrder setPage={setPage} />

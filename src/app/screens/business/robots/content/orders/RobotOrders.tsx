@@ -23,13 +23,13 @@ const RobotOrders: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
-	const [activeOrders, setActiveOrders] = useState(!!orders.content?.state?.activeOrders);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
 		orders.content?.meta.rowsPerPage ||
 			AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
 	);
 
+	const activeOrders = !!orders.content?.state?.activeOrders;
 	const pageRef = useRef({
 		page: (orders.content?.meta.page || page) - 1,
 		rowsPerPage,
@@ -106,11 +106,7 @@ const RobotOrders: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Options */}
-			<RobotOrdersActions
-				activeOrders={activeOrders}
-				setActiveOrders={setActiveOrders}
-				setPage={setPage}
-			/>
+			<RobotOrdersActions setPage={setPage} />
 
 			{/* Table */}
 			<RobotOrdersTable

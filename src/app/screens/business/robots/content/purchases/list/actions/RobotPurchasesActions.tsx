@@ -7,7 +7,7 @@ import { RobotPurchasesActionsInterface } from './RobotPurchasesActions.interfac
 import RobotOrdersBilled from './RobotPurchasesBilled';
 
 const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
-	const { billed, setBilled, setPage } = props;
+	const { setPage } = props;
 	const { t } = useTranslation('ROBOTS');
 	const floatStyles = FloatStyles();
 
@@ -19,7 +19,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 			</Typography>
 
 			{/* Billed */}
-			<RobotOrdersBilled billed={billed} setBilled={setBilled} setPage={setPage} />
+			<RobotOrdersBilled setPage={setPage} />
 		</Paper>
 	);
 };

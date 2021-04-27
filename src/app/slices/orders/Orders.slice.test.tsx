@@ -44,9 +44,6 @@ describe('[SLICE] Order', () => {
 					type: 'orders'
 				}
 			],
-			robot: {
-				id: robotId
-			},
 			meta: {
 				hasNextPage: false,
 				hasPrevPage: false,
@@ -55,6 +52,10 @@ describe('[SLICE] Order', () => {
 				prevPage: null,
 				totalDocs: 11,
 				totalPages: 1
+			},
+			state: {
+				robotId,
+				activeOrders: false
 			}
 		};
 		const mappedResult = {
@@ -92,9 +93,6 @@ describe('[SLICE] Order', () => {
 					}
 				}
 			},
-			robot: {
-				id: robotId
-			},
 			meta: {
 				hasNextPage: false,
 				hasPrevPage: false,
@@ -104,6 +102,10 @@ describe('[SLICE] Order', () => {
 				rowsPerPage: 50,
 				totalDocs: 11,
 				totalPages: 1
+			},
+			state: {
+				robotId,
+				activeOrders: false
 			}
 		};
 
@@ -114,7 +116,7 @@ describe('[SLICE] Order', () => {
 
 		// act
 		store
-			.dispatch(OrdersFetchList(robotId, 1, 50))
+			.dispatch(OrdersFetchList(robotId, 1, 50, false))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), success(mappedResult)];
@@ -139,7 +141,7 @@ describe('[SLICE] Order', () => {
 
 		// act
 		store
-			.dispatch(OrdersFetchList(orderId, 1, 50))
+			.dispatch(OrdersFetchList(orderId, 1, 50, false))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), failure(message)];

@@ -184,6 +184,24 @@ class RobotsService {
 			}
 		});
 	};
+
+	/**
+	 * edit a comment field
+	 * @param purchaseId
+	 * @param comment
+	 * @returns
+	 */
+	robotPurchaseEditComment = (purchaseId: string, comment: string) => {
+		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
+		return HttpClientService.patch(`${url}/${purchaseId}`, {
+			data: {
+				type: 'orderReports',
+				attributes: {
+					comment: comment
+				}
+			}
+		});
+	};
 }
 const instance = new RobotsService();
 export default instance;

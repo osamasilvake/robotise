@@ -115,5 +115,4 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		</TableBody>
 	);
 };
-
 export default RobotsTableBody;

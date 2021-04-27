@@ -20,7 +20,7 @@ import {
 import { columns } from './RobotOrdersTable.list';
 import RobotOrdersTableBodyCell from './RobotOrdersTableBodyCell';
 
-const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
+const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
 
 	const params: RobotParamsInterface = useParams();
@@ -114,5 +114,4 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 		</TableBody>
 	);
 };
-
-export default RobotsTableBody;
+export default RobotOrdersTableBody;

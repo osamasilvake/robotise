@@ -27,7 +27,7 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 			control={
 				<Checkbox color="primary" name="billed" checked={billed} onChange={toggleBilled} />
 			}
-			label={t('ROBOTS:CONTENT.PURCHASES.LIST.OPTIONS.BILLED.LABEL')}
+			label={t('CONTENT.PURCHASES.LIST.OPTIONS.BILLED.LABEL')}
 		/>
 	);
 };

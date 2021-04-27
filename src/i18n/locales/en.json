@@ -76,6 +76,11 @@
 				"ORDER_CANCEL": {
 					"SUCCESS": "Order was canceled successfully!"
 				}
+			},
+			"PURCHASES": {
+				"EDIT_COMMENT": {
+					"SUCCESS": "Comment was updated successfully!"
+				}
 			}
 		}
 	},
@@ -425,6 +430,21 @@
 							"TOTAL_PRICE": "Total Price",
 							"COMMENT": "Comment",
 							"BILLED": "Billed"
+						}
+					}
+				},
+				"CONTENT": {
+					"TABLE": {
+						"VALUES": {
+							"COMMENT": {
+								"EDIT": "Edit",
+								"SAVE": "Save",
+								"CANCEL": "Cancel",
+								"FIELD": {
+									"LABEL": "Comment",
+									"PLACEHOLDER": "Enter a comment"
+								}
+							}
 						}
 					}
 				}

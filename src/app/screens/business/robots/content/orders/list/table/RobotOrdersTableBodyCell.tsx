@@ -22,11 +22,11 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const [open, setOpen] = useState(false);
 
 	/**
-	 * on cancel order
+	 * open cancel order dialog
 	 * @param order
 	 * @returns
 	 */
-	const onCancelOrder = (event: MouseEvent<HTMLDivElement>) => {
+	const openCancelOrderDialog = (event: MouseEvent<HTMLDivElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -52,11 +52,11 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 						<>
 							<Chip
 								size="small"
-								label={t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.LABEL')}
+								label={t('CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.LABEL')}
 								color="primary"
 								variant="outlined"
 								clickable={true}
-								onClick={onCancelOrder}
+								onClick={openCancelOrderDialog}
 								className={classes.sCancelOrder}
 							/>
 							<DialogCancelOrder order={order} open={open} setOpen={setOpen} />

@@ -15,7 +15,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 		<Paper elevation={2} square className={floatStyles.sFloat1}>
 			{/* Heading */}
 			<Typography variant="h6" color="textSecondary">
-				{t('ROBOTS:CONTENT.PURCHASES.LIST.OPTIONS.HEADING')}
+				{t('CONTENT.PURCHASES.LIST.OPTIONS.HEADING')}
 			</Typography>
 
 			{/* Billed */}

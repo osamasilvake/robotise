@@ -16,7 +16,7 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 		<Paper elevation={2} square className={floatStyles.sFloat1}>
 			{/* Heading */}
 			<Typography variant="h6" color="textSecondary">
-				{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.HEADING')}
+				{t('CONTENT.ORDERS.LIST.OPTIONS.HEADING')}
 			</Typography>
 
 			{/* Active Orders */}

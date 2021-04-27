@@ -42,5 +42,11 @@ export interface RobotPurchasesTableBodyCellInterface {
 	purchase: SPCDataInterface;
 }
 
+export interface TableFieldCommentInterface {
+	purchase: SPCDataInterface;
+	edit: boolean;
+	setEdit: Dispatch<SetStateAction<boolean>>;
+}
+
 export type RobotPurchasesTableHeadOrder = 'asc' | 'desc';
 export type RobotPurchasesTableHeadAlignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize copy';
+import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize';
 import { AppReducerType } from '..';
 import { OrderHistoryTypeEnum } from './Order.slice.enum';
 import { SliceOrderInterface } from './Order.slice.interface';

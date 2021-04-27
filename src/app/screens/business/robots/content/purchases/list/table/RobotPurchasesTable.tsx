@@ -94,7 +94,7 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 								.pageSizes
 						: []
 				}
-				count={content ? content.meta.totalDocs : 0}
+				count={content?.meta.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

@@ -30,7 +30,7 @@ const RobotOrdersCreateOrder: FC<RobotOrdersCreateOrderInterface> = (props) => {
 			{/* Action */}
 			<Box className={classes.sCreateOrder}>
 				<Button variant="outlined" onClick={openCreateOrderDialog}>
-					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.LABEL')}
+					{t('CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.LABEL')}
 				</Button>
 			</Box>
 

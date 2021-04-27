@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { DialogCreateOrderPayloadInterface } from '../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize copy';
+import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize';
 import { deserializeOrders } from '../../utilities/serializers/json-api/Orders.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';

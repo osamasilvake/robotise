@@ -76,11 +76,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	);
 
 	/**
-	 * on close action
+	 * close create order dialog
 	 * @param status
 	 * @returns
 	 */
-	const onActionClose = (event: MouseEvent<HTMLButtonElement>) => {
+	const closeCreateOrderDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -89,7 +89,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	};
 
 	return (
-		<Dialog open={open} onClose={onActionClose}>
+		<Dialog open={open} onClose={closeCreateOrderDialog}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
 					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.TITLE')}
@@ -156,7 +156,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					</FormControl>
 				</DialogContent>
 				<DialogActions>
-					<Button variant="outlined" onClick={onActionClose}>
+					<Button variant="outlined" onClick={closeCreateOrderDialog}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button

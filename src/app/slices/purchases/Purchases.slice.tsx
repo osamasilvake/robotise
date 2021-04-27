@@ -3,9 +3,15 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
+import { deserializePurchase } from '../../utilities/serializers/json-api/Purchase.deserialize';
 import { deserializePurchases } from '../../utilities/serializers/json-api/Purchases.deserialize';
 import { AppReducerType } from '..';
-import { SlicePurchasesInterface, SPContentInterface } from './Purchases.slice.interface';
+import { triggerMessage } from '../general/General.slice';
+import {
+	SlicePurchasesInterface,
+	SPCDataInterface,
+	SPContentInterface
+} from './Purchases.slice.interface';
 
 // initial state
 export const initialState: SlicePurchasesInterface = {
@@ -129,6 +135,58 @@ export const PurchasesFetchList = (
 };
 
 /**
+ * edit a comment field
+ * @param purchaseId
+ * @param comment
+ * @returns
+ */
+export const PurchaseEditComment = (purchaseId: string, comment: string) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
+	// states
+	const states = getState();
+	const purchases = states.purchases;
+
+	// dispatch: updating
+	dispatch(updating());
+
+	return RobotsService.robotPurchaseEditComment(purchaseId, comment)
+		.then(async (res) => {
+			// deserialize response
+			let result = await deserializePurchase(res);
+
+			if (purchases.content) {
+				// update edited comment
+				result = updateEditedComment(purchases.content, result);
+
+				// dispatch: updating
+				dispatch(updated(result));
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'edit-comment-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			}
+		})
+		.catch(() => {
+			const message: TriggerMessageInterface = {
+				id: 'edit-comment-error',
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: 'API.CANCEL'
+			};
+
+			// dispatch: failure
+			dispatch(failure(message));
+		});
+};
+
+/**
  * handle pagination
  * @param state
  * @param action
@@ -154,4 +212,29 @@ const handlePagination = (state: SPContentInterface, action: SPContentInterface)
 		};
 	}
 	return action;
+};
+
+/**
+ * update edited comment
+ * @param state
+ * @param purchase
+ * @returns
+ */
+const updateEditedComment = (
+	state: SPContentInterface,
+	purchase: SPCDataInterface
+): SPContentInterface => {
+	return {
+		...state,
+		data: state.data.map((d) => {
+			if (d.id === purchase.id) {
+				return purchase;
+			}
+			return d;
+		}),
+		dataById: {
+			...state.dataById,
+			[purchase.id]: purchase
+		}
+	};
 };

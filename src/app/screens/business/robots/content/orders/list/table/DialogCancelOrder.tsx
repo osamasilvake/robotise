@@ -24,11 +24,11 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	const orders = useSelector(ordersSelector);
 
 	/**
-	 * on action
+	 * cancel order
 	 * @param status
 	 * @returns
 	 */
-	const onAction = (status: boolean) => (event: MouseEvent<HTMLButtonElement>) => {
+	const cancelOrder = (status: boolean) => (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -40,7 +40,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	};
 
 	return (
-		<Dialog open={open} onClose={onAction(false)}>
+		<Dialog open={open} onClose={cancelOrder(false)}>
 			<Box onClick={(e) => e.stopPropagation()}>
 				{!order.site && (
 					<Alert severity="error">
@@ -59,12 +59,12 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 					<Button
 						variant="outlined"
 						disabled={orders.canceling}
-						onClick={onAction(false)}>
+						onClick={cancelOrder(false)}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
-						onClick={onAction(true)}
+						onClick={cancelOrder(true)}
 						disabled={orders.canceling || !order.site}
 						endIcon={orders.canceling && <CircularProgress size={20} />}>
 						{t('BUTTONS.CONFIRM')}

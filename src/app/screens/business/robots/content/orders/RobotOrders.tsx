@@ -23,22 +23,21 @@ const RobotOrders: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
-	const [activeOrders, setActiveOrders] = useState(false);
+	const [activeOrders, setActiveOrders] = useState(!!orders.content?.state?.activeOrders);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
-		orders.content && orders.content.meta.rowsPerPage
-			? orders.content.meta.rowsPerPage
-			: AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
+		orders.content?.meta.rowsPerPage ||
+			AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
 	);
 
 	const pageRef = useRef({
-		page: orders.content ? orders.content.meta.page - 1 : page - 1,
+		page: (orders.content?.meta.page || page) - 1,
 		rowsPerPage,
 		activeOrders
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = orders.content?.robot?.id;
+	const pRobotId = orders.content?.state?.robotId;
 	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
 
 	useEffect(() => {

@@ -20,7 +20,7 @@ const Robot: FC = () => {
 	const params: RobotParamsInterface = useParams();
 
 	const cRobotName = robotTwinsSummary.content?.dataById[params.robot]?.robot.name;
-	const cOrderRoom = order && order.content ? order.content.room : undefined;
+	const cOrderRoom = order.content?.room || undefined;
 
 	/**
 	 * switch detail page

@@ -9,7 +9,8 @@ export enum RobotOrdersTableColumnsTypeEnum {
 
 export enum RobotOrdersTableSortTypeEnum {
 	DATE,
-	STRING
+	STRING,
+	BOOLEAN
 }
 
 export enum RobotOrdersTableColumnStatusTypeEnum {

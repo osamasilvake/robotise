@@ -9,5 +9,6 @@ export enum RobotPurchasesTableColumnsTypeEnum {
 export enum RobotPurchasesTableSortTypeEnum {
 	DATE,
 	STRING,
-	NUMBER
+	NUMBER,
+	BOOLEAN
 }

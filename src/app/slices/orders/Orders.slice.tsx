@@ -126,8 +126,9 @@ export const OrdersFetchList = (
 					...result.meta,
 					rowsPerPage: rowsPerPage
 				},
-				robot: {
-					id: robotId
+				state: {
+					robotId,
+					activeOrders
 				}
 			};
 

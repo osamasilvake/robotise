@@ -26,22 +26,21 @@ const RobotPurchases: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const purchases = useSelector(purchasesSelector);
 
-	const [billed, setBilled] = useState(false);
+	const [billed, setBilled] = useState(!!purchases.content?.state?.billed);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(
-		purchases.content && purchases.content.meta.rowsPerPage
-			? purchases.content.meta.rowsPerPage
-			: AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
+		purchases.content?.meta.rowsPerPage ||
+			AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
 	);
 
 	const pageRef = useRef({
-		page: purchases.content ? purchases.content.meta.page - 1 : page - 1,
+		page: (purchases.content?.meta.page || page) - 1,
 		rowsPerPage,
 		billed
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = purchases.content?.robot?.id;
+	const pRobotId = purchases.content?.state?.robotId;
 	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
 
 	useEffect(() => {

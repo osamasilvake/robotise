@@ -100,8 +100,9 @@ export const PurchasesFetchList = (
 					...result.meta,
 					rowsPerPage: rowsPerPage
 				},
-				robot: {
-					id: robotId
+				state: {
+					robotId,
+					billed
 				}
 			};
 

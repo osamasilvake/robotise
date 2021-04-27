@@ -29,17 +29,19 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const sortTableData = (content: RTSContentInterface): RTSContentDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[0].id:
-			case columns[1].id:
-			case columns[2].id:
-			case columns[3].id:
-				type = RobotsTableSortTypeEnum.STRING;
+			case columns[5].id:
+				type = RobotsTableSortTypeEnum.OBJECT_ALERT;
 				break;
 			case columns[4].id:
 				type = RobotsTableSortTypeEnum.DATE;
 				break;
-			case columns[5].id:
-				type = RobotsTableSortTypeEnum.OBJECT_ALERT;
+			case columns[2].id:
+			case columns[3].id:
+				type = RobotsTableSortTypeEnum.BOOLEAN;
+				break;
+			case columns[0].id:
+			case columns[1].id:
+				type = RobotsTableSortTypeEnum.STRING;
 				break;
 			default:
 				return content.data;
@@ -57,23 +59,18 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const sortByProperty = (key: RobotsTableColumnsTypeEnum, type: RobotsTableSortTypeEnum) => {
 		return (a: RTSContentDataInterface, b: RTSContentDataInterface) => {
 			switch (type) {
-				case RobotsTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotsTableSortTypeEnum.OBJECT_ALERT:
 					if (a.alerts.danger || b.alerts.danger) {
-						return a.alerts.danger > b.alerts.danger
-							? 1
-							: b.alerts.danger > a.alerts.danger
-							? -1
-							: 0;
+						return a.alerts.danger - b.alerts.danger;
 					}
-					return a.alerts.warning > b.alerts.warning
-						? 1
-						: b.alerts.warning > a.alerts.warning
-						? -1
-						: 0;
+					return a.alerts.warning - b.alerts.warning;
+				case RobotsTableSortTypeEnum.DATE:
+					return momentSort(a[key]).diff(momentSort(b[key]));
+				case RobotsTableSortTypeEnum.BOOLEAN:
+					return a[key] ? -1 : 1;
+				case RobotsTableSortTypeEnum.STRING:
 				default:
-					return a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0;
+					return String(a[key]).localeCompare(String(b[key]));
 			}
 		};
 	};

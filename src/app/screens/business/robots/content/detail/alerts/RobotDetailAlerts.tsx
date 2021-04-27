@@ -28,7 +28,7 @@ const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
 				}
 			})
 			.concat()
-			.sort((a, b) => (a.sortId > b.sortId ? 1 : b.sortId > a.sortId ? -1 : 0));
+			.sort((a, b) => a.sortId - b.sortId);
 	};
 
 	return robotTwin.alerts.value && robotTwin.alerts.value.length ? (

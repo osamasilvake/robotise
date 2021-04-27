@@ -13,8 +13,8 @@ export interface SliceOrdersInterface {
 export interface SOContentInterface {
 	data: SOCDataInterface[];
 	dataById: SOCDataByIdInterface;
-	robot?: SOCRobotInterface;
 	meta: JsonApiMeta;
+	state?: SOCState;
 }
 
 export interface SOCDataInterface {
@@ -33,6 +33,11 @@ export interface SOCDataInterface {
 
 export interface SOCDataByIdInterface {
 	[id: string]: SOCDataInterface;
+}
+
+export interface SOCState {
+	robotId: string;
+	activeOrders: boolean;
 }
 
 export interface SOCDataHistoryInterface {

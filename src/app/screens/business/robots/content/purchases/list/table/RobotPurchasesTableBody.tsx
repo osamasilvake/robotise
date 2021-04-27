@@ -34,11 +34,14 @@ const RobotsTableBody: FC<RobotPurchasesTableBodyInterface> = (props) => {
 	const sortTableData = (content: SPContentInterface): SPCDataInterface[] => {
 		let type;
 		switch (orderBy) {
+			case columns[2].id:
+				type = RobotPurchasesTableSortTypeEnum.NUMBER;
+				break;
 			case columns[1].id:
 				type = RobotPurchasesTableSortTypeEnum.DATE;
 				break;
-			case columns[2].id:
-				type = RobotPurchasesTableSortTypeEnum.NUMBER;
+			case columns[4].id:
+				type = RobotPurchasesTableSortTypeEnum.BOOLEAN;
 				break;
 			case columns[0].id:
 			case columns[3].id:
@@ -63,12 +66,15 @@ const RobotsTableBody: FC<RobotPurchasesTableBodyInterface> = (props) => {
 	) => {
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
 			switch (type) {
-				case RobotPurchasesTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotPurchasesTableSortTypeEnum.NUMBER:
 					return Number(a[key]) - Number(b[key]);
+				case RobotPurchasesTableSortTypeEnum.DATE:
+					return momentSort(a[key]).diff(momentSort(b[key]));
+				case RobotPurchasesTableSortTypeEnum.BOOLEAN:
+					return a[key] ? -1 : 1;
+				case RobotPurchasesTableSortTypeEnum.STRING:
 				default:
-					return a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0;
+					return String(a[key]).localeCompare(String(b[key]));
 			}
 		};
 	};

@@ -27,11 +27,10 @@ const RobotPurchases: FC = () => {
 	const purchases = useSelector(purchasesSelector);
 
 	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(
-		purchases.content?.meta.rowsPerPage ||
-			AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
-	);
 
+	const rowsPerPage =
+		purchases.content?.state?.rowsPerPage ||
+		AppConfigService.AppOptions.screens.robots.content.purchases.list.defaultPageSize;
 	const billed = !!purchases.content?.state?.billed;
 	const pageRef = useRef({
 		page: (purchases.content?.meta.page || page) - 1,
@@ -115,7 +114,6 @@ const RobotPurchases: FC = () => {
 				page={page}
 				setPage={setPage}
 				rowsPerPage={rowsPerPage}
-				setRowsPerPage={setRowsPerPage}
 			/>
 		</Box>
 	);

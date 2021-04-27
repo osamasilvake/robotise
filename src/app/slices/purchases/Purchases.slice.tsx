@@ -10,7 +10,8 @@ import { triggerMessage } from '../general/General.slice';
 import {
 	SlicePurchasesInterface,
 	SPCDataInterface,
-	SPContentInterface
+	SPContentInterface,
+	SPCState
 } from './Purchases.slice.interface';
 
 // initial state
@@ -187,11 +188,11 @@ export const PurchaseEditComment = (purchaseId: string, comment: string) => asyn
 };
 
 /**
- * update billed state
- * @param billed
+ * update state
+ * @param state
  * @returns
  */
-export const PurchaseUpdateBilled = (billed: boolean) => async (
+export const PurchaseUpdateState = (state: SPCState) => async (
 	dispatch: Dispatch,
 	getState: () => AppReducerType
 ) => {
@@ -205,10 +206,7 @@ export const PurchaseUpdateBilled = (billed: boolean) => async (
 	if (purchases && purchases.content) {
 		const result = {
 			...purchases.content,
-			state: {
-				...purchases.content.state,
-				billed
-			}
+			state
 		};
 
 		// dispatch: updated

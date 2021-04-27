@@ -11,7 +11,8 @@ import { triggerMessage } from '../general/General.slice';
 import {
 	SliceOrdersInterface,
 	SOCDataInterface,
-	SOContentInterface
+	SOContentInterface,
+	SOCState
 } from './Orders.slice.interface';
 
 // initial state
@@ -138,6 +139,7 @@ export const OrdersFetchList = (
 				},
 				state: {
 					robotId,
+					rowsPerPage,
 					activeOrders
 				}
 			};
@@ -265,11 +267,11 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 };
 
 /**
- * update active orders state
- * @param activeOrders
+ * update state
+ * @param state
  * @returns
  */
-export const OrderUpdateActiveOrders = (activeOrders: boolean) => async (
+export const OrderUpdateState = (state: SOCState) => async (
 	dispatch: Dispatch,
 	getState: () => AppReducerType
 ) => {
@@ -283,10 +285,7 @@ export const OrderUpdateActiveOrders = (activeOrders: boolean) => async (
 	if (orders && orders.content) {
 		const result = {
 			...orders.content,
-			state: {
-				...orders.content.state,
-				activeOrders
-			}
+			state
 		};
 
 		// dispatch: updated

@@ -1,8 +1,10 @@
 import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
+import { OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableHeadOrder, RobotOrdersTableInterface } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
@@ -11,9 +13,11 @@ import RobotOrdersTableBody from './RobotOrdersTableBody';
 import RobotOrdersTableHead from './RobotOrdersTableHead';
 
 const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
-	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
+	const { content, page, setPage, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotOrdersTableStyles();
+
+	const dispatch = useDispatch();
 
 	const [order, setOrder] = useState<RobotOrdersTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotOrdersTableColumnsTypeEnum>(
@@ -50,8 +54,12 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	 * @param event
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-		// set rows
-		setRowsPerPage(+event.target.value);
+		// dispatch: update state
+		const payload = {
+			...content?.state,
+			rowsPerPage: +event.target.value
+		};
+		dispatch(OrderUpdateState(payload));
 
 		// set page
 		setPage(0);

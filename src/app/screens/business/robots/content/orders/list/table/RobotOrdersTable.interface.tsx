@@ -11,7 +11,6 @@ export interface RobotOrdersTableInterface {
 	page: number;
 	setPage: Dispatch<SetStateAction<number>>;
 	rowsPerPage: number;
-	setRowsPerPage: Dispatch<SetStateAction<number>>;
 }
 
 export interface RobotOrdersTableHeadInterface {

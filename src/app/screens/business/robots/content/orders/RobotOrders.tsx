@@ -24,11 +24,10 @@ const RobotOrders: FC = () => {
 	const orders = useSelector(ordersSelector);
 
 	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(
-		orders.content?.meta.rowsPerPage ||
-			AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
-	);
 
+	const rowsPerPage =
+		orders.content?.state?.rowsPerPage ||
+		AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize;
 	const activeOrders = !!orders.content?.state?.activeOrders;
 	const pageRef = useRef({
 		page: (orders.content?.meta.page || page) - 1,
@@ -114,7 +113,6 @@ const RobotOrders: FC = () => {
 				page={page}
 				setPage={setPage}
 				rowsPerPage={rowsPerPage}
-				setRowsPerPage={setRowsPerPage}
 			/>
 		</Box>
 	);

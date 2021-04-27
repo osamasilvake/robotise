@@ -3,10 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-	ordersSelector,
-	OrderUpdateActiveOrders
-} from '../../../../../../../slices/orders/Orders.slice';
+import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
 import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
 import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 
@@ -24,8 +21,12 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 	 * toggle active orders
 	 */
 	const toggleActiveOrders = () => {
-		// dispatch: update active orders state
-		dispatch(OrderUpdateActiveOrders(!activeOrders));
+		// dispatch: update state
+		const payload = {
+			...orders.content?.state,
+			activeOrders: !activeOrders
+		};
+		dispatch(OrderUpdateState(payload));
 
 		// set page
 		setPage(0);

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
 	purchasesSelector,
-	PurchaseUpdateBilled
+	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
 import { RobotPurchasesBilledInterface } from './RobotPurchasesActions.interface';
 import { RobotPurchasesActionsStyles } from './RobotPurchasesActions.style';
@@ -24,8 +24,12 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	 * toggle active orders
 	 */
 	const toggleBilled = () => {
-		// dispatch: update billed state
-		dispatch(PurchaseUpdateBilled(!billed));
+		// dispatch: update state
+		const payload = {
+			...purchases.content?.state,
+			billed: !billed
+		};
+		dispatch(PurchaseUpdateState(payload));
 
 		// set page
 		setPage(0);

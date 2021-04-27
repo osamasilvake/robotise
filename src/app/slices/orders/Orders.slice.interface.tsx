@@ -37,8 +37,9 @@ export interface SOCDataByIdInterface {
 }
 
 export interface SOCState {
-	robotId: string;
-	activeOrders: boolean;
+	robotId?: string;
+	rowsPerPage?: number;
+	activeOrders?: boolean;
 }
 
 export interface SOCDataHistoryInterface {

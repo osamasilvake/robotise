@@ -52,10 +52,6 @@ describe('[SLICE] Order', () => {
 				prevPage: null,
 				totalDocs: 11,
 				totalPages: 1
-			},
-			state: {
-				robotId,
-				activeOrders: false
 			}
 		};
 		const mappedResult = {
@@ -99,13 +95,14 @@ describe('[SLICE] Order', () => {
 				nextPage: null,
 				page: 1,
 				prevPage: null,
-				rowsPerPage: 50,
 				totalDocs: 11,
 				totalPages: 1
 			},
 			state: {
 				robotId,
-				activeOrders: false
+				activeOrders: false,
+				page: 1,
+				rowsPerPage: 50
 			}
 		};
 

@@ -431,22 +431,36 @@
 							"COMMENT": "Comment",
 							"BILLED": "Billed"
 						}
+					},
+					"VALUES": {
+						"COMMENT": {
+							"EDIT": "Edit",
+							"SAVE": "Save",
+							"CLEAR": "Clear",
+							"CANCEL": "Cancel",
+							"FIELD": {
+								"LABEL": "Comment",
+								"PLACEHOLDER": "Enter a comment"
+							}
+						}
 					}
 				},
 				"CONTENT": {
+					"ROOM_UNKNOWN": "N/A",
+					"HEAD": {
+						"BILLED": "Billed",
+						"NOT_BILLED": "Not Billed",
+						"TITLE": "Products"
+					},
 					"TABLE": {
-						"VALUES": {
-							"COMMENT": {
-								"EDIT": "Edit",
-								"SAVE": "Save",
-								"CLEAR": "Clear",
-								"CANCEL": "Cancel",
-								"FIELD": {
-									"LABEL": "Comment",
-									"PLACEHOLDER": "Enter a comment"
-								}
-							}
+						"COLUMNS": {
+							"TITLE": "Title",
+							"QUANTITY": "Quantity",
+							"PRICE": "Price"
 						}
+					},
+					"FOOT": {
+						"COMMENT": "Comment"
 					}
 				}
 			}

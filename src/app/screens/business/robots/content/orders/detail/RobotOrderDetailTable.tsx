@@ -43,6 +43,7 @@ const RobotOrderDetailTable: FC<RobotOrderDetailInterface> = (props) => {
 						)}
 					</Status>
 				);
+			case RobotOrderColumnsTypeEnum.CREATED_AT:
 			default:
 				return momentFormat2(row[column.id]);
 		}

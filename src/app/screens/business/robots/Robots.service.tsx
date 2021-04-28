@@ -197,6 +197,16 @@ class RobotsService {
 			}
 		});
 	};
+
+	/**
+	 * fetch robot purchase
+	 * @param purchaseId
+	 * @returns
+	 */
+	robotPurchaseFetch = (purchaseId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.PURCHASE.replace(':purchase', purchaseId);
+		return HttpClientService.get(url);
+	};
 }
 const instance = new RobotsService();
 export default instance;

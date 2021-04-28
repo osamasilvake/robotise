@@ -68,10 +68,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					type="text"
 					id="field-comment"
 					name="comment"
-					label={t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.COMMENT.FIELD.LABEL')}
-					placeholder={t(
-						'CONTENT.PURCHASES.CONTENT.TABLE.VALUES.COMMENT.FIELD.PLACEHOLDER'
-					)}
+					label={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.FIELD.LABEL')}
+					placeholder={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.FIELD.PLACEHOLDER')}
 					multiline
 					rows={4}
 					onChange={handleChangeInput}
@@ -84,7 +82,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 			{edit && (
 				<Chip
 					size="small"
-					label={t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.COMMENT.CANCEL')}
+					label={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.CANCEL')}
 					color="primary"
 					variant="outlined"
 					clickable={true}
@@ -98,7 +96,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 			{edit && (
 				<Chip
 					size="small"
-					label={t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.COMMENT.CLEAR')}
+					label={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.CLEAR')}
 					color="primary"
 					variant="outlined"
 					clickable={true}
@@ -113,8 +111,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				size="small"
 				label={
 					edit
-						? t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.COMMENT.SAVE')
-						: t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.COMMENT.EDIT')
+						? t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.SAVE')
+						: t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.EDIT')
 				}
 				color="primary"
 				variant="outlined"

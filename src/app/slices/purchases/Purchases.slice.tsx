@@ -122,7 +122,7 @@ export const PurchasesFetchList = (
 		})
 		.catch(() => {
 			const message: TriggerMessageInterface = {
-				id: 'fetch-orders-error',
+				id: 'fetch-purchases-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'API.FETCH'

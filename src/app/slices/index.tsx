@@ -8,6 +8,7 @@ import inventory from './inventory/Inventory.slice';
 import order from './orders/Order.slice';
 import orders from './orders/Orders.slice';
 import products from './products/Products.slice';
+import purchase from './purchases/Purchase.slice';
 import purchases from './purchases/Purchases.slice';
 import robot from './robot/Robot.slice';
 import robotTwins from './robot-twins/RobotTwins.slice';
@@ -26,7 +27,8 @@ const combinedReducer = combineReducers({
 	inventory,
 	orders,
 	order,
-	purchases
+	purchases,
+	purchase
 });
 
 // reducers type

@@ -33,6 +33,7 @@ export const breadcrumbs = (
 			 * params:
 			 * 1. robot
 			 * 2. order
+			 * 3. purchase
 			 */
 			if (path === params.robot) {
 				return {
@@ -43,6 +44,12 @@ export const breadcrumbs = (
 			} else if (path === params.order) {
 				return {
 					text: labels?.orderRoom || '',
+					link,
+					isLast: index === paths.length - 1
+				};
+			} else if (path === params.purchase) {
+				return {
+					text: labels?.purchaseRoom || '',
 					link,
 					isLast: index === paths.length - 1
 				};

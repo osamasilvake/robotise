@@ -12,14 +12,15 @@ const Robots = lazy(() => import('./Robots'));
  * therefore, changing the sequence of objects will make tabs malfunction.
  */
 const robotsRoutes: RouteInterface[] = [
-	/**
-	 * Tabs
-	 */
 	{
 		component: Robots,
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN
 	},
+
+	/**
+	 * Tabs
+	 */
 	{
 		component: Robot,
 		exact: true,
@@ -48,6 +49,11 @@ const robotsRoutes: RouteInterface[] = [
 		component: Robot,
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL
+	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL
 	}
 ];
 export default robotsRoutes;

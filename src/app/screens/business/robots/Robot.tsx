@@ -6,8 +6,10 @@ import { useParams } from 'react-router-dom';
 
 import PageHead from '../../../components/content/page-head/PageHead';
 import { orderSelector } from '../../../slices/orders/Order.slice';
+import { purchaseSelector } from '../../../slices/purchases/Purchase.slice';
 import { robotTwinsSummarySelector } from '../../../slices/robot-twins/RobotTwinsSummary.slice';
 import RobotOrderDetail from './content/orders/detail/RobotOrderDetail';
+import RobotPurchaseDetail from './content/purchases/detail/RobotPurchaseDetail';
 import RobotContent from './content/RobotContent';
 import { RobotParamsInterface } from './Robot.interface';
 
@@ -16,11 +18,13 @@ const Robot: FC = () => {
 
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const order = useSelector(orderSelector);
+	const purchase = useSelector(purchaseSelector);
 
 	const params: RobotParamsInterface = useParams();
 
 	const cRobotName = robotTwinsSummary.content?.dataById[params.robot]?.robot.name;
 	const cOrderRoom = order.content?.room || undefined;
+	const cPurchaseRoom = purchase.content?.room || undefined;
 
 	/**
 	 * switch detail page
@@ -29,6 +33,8 @@ const Robot: FC = () => {
 	const switchDetailRoute = () => {
 		if (params.order) {
 			return <RobotOrderDetail />;
+		} else if (params.purchase) {
+			return <RobotPurchaseDetail />;
 		}
 		return <RobotContent />;
 	};
@@ -43,6 +49,9 @@ const Robot: FC = () => {
 					robotName: !robotTwinsSummary.loader ? cRobotName : '',
 					orderRoom: !order.loader
 						? cOrderRoom || t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION')
+						: '',
+					purchaseRoom: !purchase.loader
+						? cPurchaseRoom || t('CONTENT.PURCHASES.CONTENT.ROOM_UNKNOWN')
 						: ''
 				}}
 			/>

@@ -5,8 +5,6 @@ export interface SliceOrdersInterface {
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;
-	creating: boolean;
-	canceling: boolean;
 	content: SOContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

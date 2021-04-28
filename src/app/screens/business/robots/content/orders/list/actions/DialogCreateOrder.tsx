@@ -171,8 +171,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={validateEmptyObjProperty(values) || orders.creating}
-						endIcon={orders.creating && <CircularProgress size={20} />}>
+						disabled={validateEmptyObjProperty(values) || orders.updating}
+						endIcon={orders.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CREATE')}
 					</Button>
 				</DialogActions>

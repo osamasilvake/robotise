@@ -20,8 +20,6 @@ export const initialState: SliceOrdersInterface = {
 	loader: false,
 	loading: false,
 	updating: false,
-	creating: false,
-	canceling: false,
 	content: null,
 	errors: null
 };
@@ -40,12 +38,6 @@ const dataSlice = createSlice({
 		updating: (state) => {
 			state.updating = true;
 		},
-		creating: (state) => {
-			state.creating = true;
-		},
-		canceling: (state) => {
-			state.canceling = true;
-		},
 		success: (state, action) => {
 			state.loader = false;
 			state.loading = false;
@@ -56,19 +48,10 @@ const dataSlice = createSlice({
 			state.updating = false;
 			state.content = action.payload;
 		},
-		created: (state, action) => {
-			state.creating = false;
-			state.content = action.payload;
-		},
-		canceled: (state, action) => {
-			state.canceling = false;
-			state.content = action.payload;
-		},
 		failure: (state, action) => {
 			state.loader = false;
 			state.loading = false;
-			state.creating = false;
-			state.canceling = false;
+			state.updating = false;
 			state.content = null;
 			state.errors = action.payload;
 		},
@@ -77,19 +60,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const {
-	loader,
-	loading,
-	updating,
-	creating,
-	canceling,
-	success,
-	updated,
-	created,
-	canceled,
-	failure,
-	reset
-} = dataSlice.actions;
+export const { loader, loading, updating, success, updated, failure, reset } = dataSlice.actions;
 
 // selector
 export const ordersSelector = (state: AppReducerType) => state['orders'];
@@ -118,7 +89,7 @@ export const OrdersFetchList = (
 	const orders = states.orders;
 
 	// return on busy
-	if (orders && (orders.loader || orders.loading || orders.creating || orders.canceling)) {
+	if (orders && (orders.loader || orders.loading || orders.updating)) {
 		return;
 	}
 
@@ -174,8 +145,8 @@ export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: 
 	const states = getState();
 	const orders = states.orders;
 
-	// dispatch: creating
-	dispatch(creating());
+	// dispatch: updating
+	dispatch(updating());
 
 	return RobotsService.robotOrderCreate(payload, siteId)
 		.then(async (res) => {
@@ -186,8 +157,8 @@ export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: 
 				// update created order
 				result = updateCreatedOrder(orders.content, result);
 
-				// dispatch: created
-				dispatch(created(result));
+				// dispatch: updated
+				dispatch(updated(result));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
@@ -225,8 +196,8 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 	const states = getState();
 	const orders = states.orders;
 
-	// dispatch: canceling
-	dispatch(canceling());
+	// dispatch: updating
+	dispatch(updating());
 
 	return RobotsService.robotOrderCancel([order.id], order.site.id)
 		.then(async (res) => {
@@ -237,8 +208,8 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 				// update created order
 				result = updateCanceledOrder(orders.content, result.data[0]);
 
-				// dispatch: canceled
-				dispatch(canceled(result));
+				// dispatch: updated
+				dispatch(updated(result));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {

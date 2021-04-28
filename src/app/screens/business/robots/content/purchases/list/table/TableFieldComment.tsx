@@ -42,6 +42,9 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 		} else {
 			// set edit
 			setEdit(true);
+
+			// set value
+			setValue(purchase.comment);
 		}
 	};
 

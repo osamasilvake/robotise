@@ -61,6 +61,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 
 	return (
 		<Box onClick={handlePropagation}>
+			{/* Input */}
 			{edit && (
 				<TextField
 					variant="outlined"
@@ -79,6 +80,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				/>
 			)}
 
+			{/* Cancel */}
 			{edit && (
 				<Chip
 					size="small"
@@ -92,6 +94,21 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				/>
 			)}
 
+			{/* Clear */}
+			{edit && (
+				<Chip
+					size="small"
+					label={t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.COMMENT.CLEAR')}
+					color="primary"
+					variant="outlined"
+					clickable={true}
+					disabled={purchases.updating}
+					onClick={() => setValue('')}
+					className={classes.sCommentClear}
+				/>
+			)}
+
+			{/* Edit/Save */}
 			<Chip
 				size="small"
 				label={
@@ -107,6 +124,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				onClick={toggleCommentField}
 			/>
 
+			{/* Value */}
 			{!edit && (
 				<Typography variant="body2" className={classes.sCommentValue}>
 					{purchase.comment}

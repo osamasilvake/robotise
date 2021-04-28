@@ -439,6 +439,7 @@
 							"COMMENT": {
 								"EDIT": "Edit",
 								"SAVE": "Save",
+								"CLEAR": "Clear",
 								"CANCEL": "Cancel",
 								"FIELD": {
 									"LABEL": "Comment",

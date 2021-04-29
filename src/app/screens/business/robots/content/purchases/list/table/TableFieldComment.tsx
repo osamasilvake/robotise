@@ -73,6 +73,12 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					placeholder={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.FIELD.PLACEHOLDER')}
 					onChange={(event) => setValue(event.target.value)}
 					inputRef={(input) => input && input.focus()}
+					onFocus={(e) =>
+						e.currentTarget.setSelectionRange(
+							e.currentTarget.value.length,
+							e.currentTarget.value.length
+						)
+					}
 					multiline
 					rows={4}
 					value={value}

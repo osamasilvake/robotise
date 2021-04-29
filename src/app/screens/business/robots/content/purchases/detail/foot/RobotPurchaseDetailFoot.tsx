@@ -13,7 +13,7 @@ const RobotPurchaseDetailFoot: FC<RobotPurchaseDetailFootInterface> = (props) =>
 	return purchase?.content?.comment ? (
 		<Box className={classes.sFootBox}>
 			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.PURCHASES.CONTENT.FOOT.COMMENT')}
+				{t('CONTENT.PURCHASES.CONTENT.FOOT.NOTE')}
 			</Typography>
 			<Typography variant="body1">{purchase.content.comment}</Typography>
 		</Box>

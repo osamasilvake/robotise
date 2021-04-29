@@ -41,6 +41,7 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 				type = RobotPurchasesTableSortTypeEnum.DATE;
 				break;
 			case columns[4].id:
+			case columns[5].id:
 				type = RobotPurchasesTableSortTypeEnum.BOOLEAN;
 				break;
 			case columns[0].id:

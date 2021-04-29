@@ -7,6 +7,10 @@ export const RobotPurchasesTableStyles = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
 	},
+	sTablePagination: {
+		opacity: 0.6,
+		pointerEvents: 'none'
+	},
 	sCommentTextField: {
 		marginBottom: theme.spacing(1)
 	},

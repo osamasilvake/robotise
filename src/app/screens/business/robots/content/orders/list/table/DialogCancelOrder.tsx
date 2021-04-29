@@ -44,15 +44,15 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 			<Box onClick={(e) => e.stopPropagation()}>
 				{!order.site && (
 					<Alert severity="error">
-						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.ERROR.SITE')}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.ERROR.SITE')}
 					</Alert>
 				)}
 				<DialogTitle>
-					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.TITLE')}
+					{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.TITLE')}
 				</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.TEXT')}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.TEXT')}
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>

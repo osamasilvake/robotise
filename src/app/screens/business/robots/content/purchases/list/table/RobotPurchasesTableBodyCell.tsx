@@ -1,7 +1,10 @@
-import { Checkbox, TableCell } from '@material-ui/core';
+import { TableCell } from '@material-ui/core';
 import i18next from 'i18next';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
+import Status from '../../../../../../../components/common/status/Status';
+import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
@@ -15,6 +18,7 @@ import TableFieldComment from './TableFieldComment';
 
 const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (props) => {
 	const { purchase, column } = props;
+	const { t } = useTranslation('ROBOTS');
 
 	const unknown = 'N/A';
 
@@ -45,7 +49,21 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 		} else if (columns[3].id === column.id) {
 			return <TableFieldComment purchase={purchase} />;
 		} else if (columns[4].id === column.id) {
-			return <Checkbox disabled checked={!!value} />;
+			return (
+				value && (
+					<Status level={StatusTypeEnum.SUCCESS_LIGHT}>
+						{t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.BILLED`)}
+					</Status>
+				)
+			);
+		} else if (columns[5].id === column.id) {
+			return (
+				value && (
+					<Status level={StatusTypeEnum.WARN}>
+						{t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.DEBUG`)}
+					</Status>
+				)
+			);
 		}
 		return value;
 	};

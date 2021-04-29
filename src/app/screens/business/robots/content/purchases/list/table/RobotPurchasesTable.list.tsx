@@ -6,7 +6,7 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.TARGET,
 		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.TARGET',
-		width: 120,
+		width: 80,
 		align: 'left'
 	},
 	{
@@ -30,7 +30,13 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.BILLED,
 		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.BILLED',
-		minWidth: 120,
+		minWidth: 80,
+		align: 'left'
+	},
+	{
+		id: RobotPurchasesTableColumnsTypeEnum.DEBUG,
+		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.DEBUG',
+		minWidth: 80,
 		align: 'right'
 	}
 ];

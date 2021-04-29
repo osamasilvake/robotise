@@ -1,6 +1,7 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
+import { RobotPurchasesFetchListInterface } from './content/purchases/list/table/RobotPurchasesTable.interface';
 
 class RobotsService {
 	/**
@@ -78,19 +79,22 @@ class RobotsService {
 	 * @param page
 	 * @param rowsPerPage
 	 * @param activeOrders
+	 * @param debug
 	 * @returns
 	 */
 	robotOrdersFetch = (
 		robotId: string,
 		page: number,
 		rowsPerPage: number,
-		activeOrders: boolean
+		activeOrders: boolean,
+		debug: boolean
 	) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,
 				'filter[active]': activeOrders || undefined,
+				'filter[isDebug]': debug || undefined,
 				'page[number]': page + 1,
 				'page[size]': rowsPerPage
 			}
@@ -162,20 +166,18 @@ class RobotsService {
 
 	/**
 	 * fetch robot purchases
-	 * @param robotId
-	 * @param page
-	 * @param rowsPerPage
-	 * @param billed
+	 * @param payload
 	 * @returns
 	 */
-	robotPurchasesFetch = (robotId: string, page: number, rowsPerPage: number, billed: boolean) => {
+	robotPurchasesFetch = (payload: RobotPurchasesFetchListInterface) => {
 		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[robot]': robotId,
-				'filter[isBilled]': billed || undefined,
-				'page[number]': page + 1,
-				'page[size]': rowsPerPage
+				'filter[robot]': payload.robotId,
+				'filter[isBilled]': payload.billed || undefined,
+				'filter[isDebug]': payload.debug || undefined,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};

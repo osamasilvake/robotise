@@ -39,6 +39,7 @@ export interface SOCState {
 	page?: number;
 	rowsPerPage?: number;
 	activeOrders?: boolean;
+	debug?: boolean;
 }
 
 export interface SOCDataHistoryInterface {

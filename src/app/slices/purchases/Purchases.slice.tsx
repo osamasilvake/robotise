@@ -2,6 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { RobotPurchasesFetchListInterface } from '../../screens/business/robots/content/purchases/list/table/RobotPurchasesTable.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializePurchase } from '../../utilities/serializers/json-api/Purchase.deserialize';
 import { deserializePurchases } from '../../utilities/serializers/json-api/Purchases.deserialize';
@@ -69,20 +70,19 @@ export default dataSlice.reducer;
 
 /**
  * fetch purchases
- * @param robotId
- * @param page
- * @param rowsPerPage
- * @param billed
+ * @param payload
  * @param refresh
+ * @param restart
  * @returns
  */
 export const PurchasesFetchList = (
-	robotId: string,
-	page: number,
-	rowsPerPage: number,
-	billed = false,
-	refresh = false
+	payload: RobotPurchasesFetchListInterface,
+	refresh = false,
+	restart = false
 ) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	// restart
+	restart && dispatch(reset());
+
 	// states
 	const states = getState();
 	const purchases = states.purchases;
@@ -95,27 +95,26 @@ export const PurchasesFetchList = (
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotPurchasesFetch(robotId, page, rowsPerPage, billed)
+	return RobotsService.robotPurchasesFetch(payload)
 		.then(async (res) => {
 			// deserialize response
 			let result: SPContentInterface = await deserializePurchases(res);
 
-			// prepare content
+			// state
 			result = {
 				...result,
-				state: {
-					robotId,
-					page,
-					rowsPerPage,
-					billed
-				}
+				state: payload
 			};
 
-			// handle pagination state
-			result =
-				purchases && purchases.content
-					? handlePagination(purchases.content, result)
-					: result;
+			// handle refresh and pagination
+			if (purchases && purchases.content) {
+				result = handleRefreshAndPagination(
+					purchases.content,
+					result,
+					refresh,
+					payload.rowsPerPage
+				);
+			}
 
 			// dispatch: success
 			dispatch(success(result));
@@ -198,9 +197,6 @@ export const PurchaseUpdateState = (state: SPCState) => async (
 	const states = getState();
 	const purchases = states.purchases;
 
-	// dispatch: updating
-	dispatch(updating());
-
 	if (purchases && purchases.content) {
 		const result = {
 			...purchases.content,
@@ -213,53 +209,71 @@ export const PurchaseUpdateState = (state: SPCState) => async (
 };
 
 /**
- * handle pagination
- * @param state
- * @param action
+ * handle refresh and pagination
+ * @param current
+ * @param result
+ * @param refresh
+ * @param rowsPerPage
  * @returns
  */
-const handlePagination = (state: SPContentInterface, action: SPContentInterface) => {
-	const condition1 = action.meta.page > 1; // first page
-	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
-	const condition3 = action.meta.nextPage === null; // last page
-	if (condition1 && (condition2 || condition3)) {
-		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
+const handleRefreshAndPagination = (
+	current: SPContentInterface,
+	result: SPContentInterface,
+	refresh: boolean,
+	rowsPerPage: number
+) => {
+	if (refresh) {
+		const dataItems = current.data.slice(rowsPerPage);
 		return {
-			...state,
-			meta: {
-				...state.meta,
-				...action.meta
-			},
-			data: [...state.data, ...action.data],
+			...current,
+			data: [...result.data, ...dataItems],
 			dataById: {
-				...state.dataById,
-				...action.dataById
+				...current.dataById,
+				...result.dataById
+			},
+			meta: {
+				...current.meta,
+				totalDocs: result.meta.totalDocs,
+				totalPages: result.meta.totalPages
+			}
+		};
+	} else if (result.meta.page > 1) {
+		return {
+			...current,
+			meta: {
+				...current.meta,
+				...result.meta
+			},
+			data: [...current.data, ...result.data],
+			dataById: {
+				...current.dataById,
+				...result.dataById
 			}
 		};
 	}
-	return action;
+	return result;
 };
 
 /**
  * update edited comment
- * @param state
+ * @param current
  * @param purchase
  * @returns
  */
 const updateEditedComment = (
-	state: SPContentInterface,
+	current: SPContentInterface,
 	purchase: SPCDataInterface
 ): SPContentInterface => {
 	return {
-		...state,
-		data: state.data.map((d) => {
-			if (d.id === purchase.id) {
+		...current,
+		data: current.data.map((item) => {
+			if (item.id === purchase.id) {
 				return purchase;
 			}
-			return d;
+			return item;
 		}),
 		dataById: {
-			...state.dataById,
+			...current.dataById,
 			[purchase.id]: purchase
 		}
 	};

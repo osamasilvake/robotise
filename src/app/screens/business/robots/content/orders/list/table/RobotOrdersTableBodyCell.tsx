@@ -1,8 +1,9 @@
-import { Box, Checkbox, Chip, TableCell } from '@material-ui/core';
+import { Box, Chip, TableCell } from '@material-ui/core';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
+import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { SOCDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import DialogCancelOrder from './DialogCancelOrder';
@@ -52,7 +53,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 						<>
 							<Chip
 								size="small"
-								label={t('CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.LABEL')}
+								label={t('CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.LABEL')}
 								color="primary"
 								variant="outlined"
 								clickable={true}
@@ -73,7 +74,13 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		} else if (columns[4].id === column.id) {
 			return t(`CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${value}`);
 		} else if (columns[5].id === column.id) {
-			return <Checkbox disabled checked={!!value} />;
+			return (
+				value && (
+					<Status level={StatusTypeEnum.WARN}>
+						{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.DEBUG`)}
+					</Status>
+				)
+			);
 		}
 		return value;
 	};

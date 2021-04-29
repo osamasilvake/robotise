@@ -101,11 +101,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		<Dialog open={open} onClose={closeCreateOrderDialog}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
-					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.TITLE')}
+					{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.TITLE')}
 				</DialogTitle>
 				<DialogContent>
 					<Typography variant="body1" color="textSecondary">
-						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.TEXT')}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.TEXT')}
 					</Typography>
 
 					<FormControl error fullWidth margin="normal">
@@ -119,12 +119,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
 							label={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.LOCATION.LABEL'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.LABEL'
 							)}
 							placeholder={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.LOCATION.PLACEHOLDER'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.PLACEHOLDER'
 							)}
-							inputRef={(input) => input && input.focus()}
 						/>
 						<FormHelperText>{t(errors.location)}</FormHelperText>
 					</FormControl>
@@ -160,7 +159,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								/>
 							}
 							label={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.DEBUG.LABEL'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.DEBUG.LABEL'
 							)}
 						/>
 					</FormControl>

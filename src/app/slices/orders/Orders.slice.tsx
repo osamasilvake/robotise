@@ -74,6 +74,7 @@ export default dataSlice.reducer;
  * @param page
  * @param rowsPerPage
  * @param activeOrders
+ * @param debug
  * @param refresh
  * @returns
  */
@@ -82,6 +83,7 @@ export const OrdersFetchList = (
 	page: number,
 	rowsPerPage: number,
 	activeOrders = false,
+	debug = false,
 	refresh = false
 ) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 	// states
@@ -96,7 +98,7 @@ export const OrdersFetchList = (
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotOrdersFetch(robotId, page, rowsPerPage, activeOrders)
+	return RobotsService.robotOrdersFetch(robotId, page, rowsPerPage, activeOrders, debug)
 		.then(async (res) => {
 			// deserialize response
 			let result: SOContentInterface = await deserializeOrders(res);
@@ -108,7 +110,8 @@ export const OrdersFetchList = (
 					robotId,
 					page,
 					rowsPerPage,
-					activeOrders
+					activeOrders,
+					debug
 				}
 			};
 

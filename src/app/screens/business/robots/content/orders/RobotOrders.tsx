@@ -28,10 +28,12 @@ const RobotOrders: FC = () => {
 		orders.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize;
 	const activeOrders = !!orders.content?.state?.activeOrders;
+	const debug = !!orders.content?.state?.debug;
 	const pageRef = useRef({
 		page: (orders.content?.meta?.page || 0) - 1,
 		rowsPerPage,
-		activeOrders
+		activeOrders,
+		debug
 	});
 
 	const params: RobotParamsInterface = useParams();
@@ -41,14 +43,21 @@ const RobotOrders: FC = () => {
 	useEffect(() => {
 		if (pageRef.current.activeOrders !== activeOrders && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders));
+			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug));
 
 			// update ref
 			pageRef.current.page = 0;
 			pageRef.current.activeOrders = activeOrders;
+		} else if (pageRef.current.debug !== debug && page === 0) {
+			// dispatch: fetch orders
+			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug));
+
+			// update ref
+			pageRef.current.page = 0;
+			pageRef.current.debug = debug;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders));
+			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug));
 
 			// update ref
 			pageRef.current.page = page;
@@ -65,7 +74,9 @@ const RobotOrders: FC = () => {
 					if (condition3 || condition5) {
 						// dispatch: fetch orders
 						cRobotId &&
-							dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders));
+							dispatch(
+								OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug)
+							);
 
 						// update ref
 						pageRef.current.page = page;
@@ -81,7 +92,8 @@ const RobotOrders: FC = () => {
 		cRobotId,
 		rowsPerPage,
 		page,
-		activeOrders
+		activeOrders,
+		debug
 	]);
 
 	// loader
@@ -102,7 +114,7 @@ const RobotOrders: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Options */}
-			<RobotOrdersActions activeOrders={activeOrders} />
+			<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
 
 			{/* Table */}
 			<RobotOrdersTable content={orders.content} page={page} rowsPerPage={rowsPerPage} />

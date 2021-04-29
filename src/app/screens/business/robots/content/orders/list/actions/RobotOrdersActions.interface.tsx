@@ -4,10 +4,15 @@ import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 
 export interface RobotOrdersActionsInterface {
 	activeOrders: boolean;
+	debug: boolean;
 }
 
 export interface RobotOrdersActiveOrdersInterface {
 	activeOrders: boolean;
+}
+
+export interface RobotOrdersDebugInterface {
+	debug: boolean;
 }
 
 export interface DialogCreateOrderInterface {

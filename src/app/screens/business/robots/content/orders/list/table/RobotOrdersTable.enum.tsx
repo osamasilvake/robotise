@@ -4,7 +4,7 @@ export enum RobotOrdersTableColumnsTypeEnum {
 	MODE = 'mode',
 	ORIGIN = 'origin',
 	CREATED = 'createdAt',
-	TEST = 'isDebug'
+	DEBUG = 'isDebug'
 }
 
 export enum RobotOrdersTableSortTypeEnum {

@@ -16,6 +16,7 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotPurchasesActions from './list/actions/RobotPurchasesActions';
 import RobotPurchasesTable from './list/table/RobotPurchasesTable';
+import { RobotPurchasesFetchListInterface } from './list/table/RobotPurchasesTable.interface';
 import { RobotPurchasesStyles } from './RobotPurchases.style';
 
 const RobotPurchases: FC = () => {
@@ -31,10 +32,13 @@ const RobotPurchases: FC = () => {
 		purchases.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.robots.content.purchases.list.defaultPageSize;
 	const billed = !!purchases.content?.state?.billed;
+	const debug = !!purchases.content?.state?.debug;
+
 	const pageRef = useRef({
 		page: (purchases.content?.meta?.page || 0) - 1,
 		rowsPerPage,
-		billed
+		billed,
+		debug
 	});
 
 	const params: RobotParamsInterface = useParams();
@@ -42,16 +46,31 @@ const RobotPurchases: FC = () => {
 	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
 
 	useEffect(() => {
+		const payload: RobotPurchasesFetchListInterface = {
+			robotId: cRobotId,
+			page,
+			rowsPerPage,
+			billed,
+			debug
+		};
+
 		if (pageRef.current.billed !== billed && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(cRobotId, page, rowsPerPage, billed));
+			cRobotId && dispatch(PurchasesFetchList(payload));
 
 			// update ref
-			pageRef.current.page = 0;
+			pageRef.current.page = page;
 			pageRef.current.billed = billed;
+		} else if (pageRef.current.debug !== debug && page === 0) {
+			// dispatch: fetch purchases
+			cRobotId && dispatch(PurchasesFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.debug = debug;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(cRobotId, page, rowsPerPage, billed));
+			cRobotId && dispatch(PurchasesFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -59,7 +78,8 @@ const RobotPurchases: FC = () => {
 		} else {
 			const condition1 = robotTwinsSummary.content !== null;
 			const condition2 = purchases.content === null;
-			const condition3 = purchases.content !== null && pRobotId && pRobotId !== cRobotId;
+			const condition3 = !!(purchases.content !== null && pRobotId && pRobotId !== cRobotId);
+
 			const condition4 = pageRef.current.page !== -1; // page switch back and forth
 			const condition5 = page > pageRef.current.page; // detect next click
 
@@ -68,10 +88,23 @@ const RobotPurchases: FC = () => {
 					if (condition3 || condition5) {
 						// dispatch: fetch purchases
 						cRobotId &&
-							dispatch(PurchasesFetchList(cRobotId, page, rowsPerPage, billed));
+							dispatch(
+								PurchasesFetchList(
+									{
+										...payload,
+										page: condition3 ? 0 : page,
+										billed: condition3 ? false : billed,
+										debug: condition3 ? false : debug
+									},
+									false,
+									condition3
+								)
+							);
 
 						// update ref
-						pageRef.current.page = page;
+						pageRef.current.page = condition3 ? 0 : page;
+						pageRef.current.billed = condition3 ? false : billed;
+						pageRef.current.debug = condition3 ? false : debug;
 					}
 				}
 			}
@@ -84,8 +117,35 @@ const RobotPurchases: FC = () => {
 		cRobotId,
 		rowsPerPage,
 		page,
-		billed
+		billed,
+		debug
 	]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch purchases
+			cRobotId &&
+				dispatch(
+					PurchasesFetchList(
+						{
+							robotId: cRobotId,
+							page: 0,
+							rowsPerPage,
+							billed,
+							debug
+						},
+						true
+					)
+				);
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.robots.content.purchases.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, cRobotId, page, rowsPerPage, billed, debug]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || purchases.loader) {
@@ -105,7 +165,7 @@ const RobotPurchases: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Options */}
-			<RobotPurchasesActions billed={billed} />
+			<RobotPurchasesActions billed={billed} debug={debug} />
 
 			{/* Table */}
 			<RobotPurchasesTable

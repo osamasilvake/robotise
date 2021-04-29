@@ -1,15 +1,15 @@
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { Box, Checkbox, FormControlLabel } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
 import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
-import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
+import { RobotOrdersDebugInterface } from './RobotOrdersActions.interface';
 import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 
-const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {
-	const { activeOrders } = props;
+const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
+	const { debug } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersActionsStyles();
 
@@ -17,31 +17,28 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 	const orders = useSelector(ordersSelector);
 
 	/**
-	 * toggle active orders
+	 * toggle debug
 	 */
-	const toggleActiveOrders = () => {
+	const toggleDebug = () => {
 		// dispatch: update state
 		const payload: SOCState = {
 			...orders.content?.state,
 			page: 0,
-			activeOrders: !activeOrders
+			debug: !debug
 		};
 		dispatch(OrderUpdateState(payload));
 	};
 
 	return (
-		<FormControlLabel
-			className={classes.sActiveOrders}
-			control={
-				<Checkbox
-					color="primary"
-					name="activeOrders"
-					checked={activeOrders}
-					onChange={toggleActiveOrders}
-				/>
-			}
-			label={t('CONTENT.ORDERS.LIST.ACTIONS.ORDERS_ACTIVE.LABEL')}
-		/>
+		<Box>
+			<FormControlLabel
+				className={classes.sDebug}
+				control={
+					<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
+				}
+				label={t('CONTENT.ORDERS.LIST.ACTIONS.DEBUG.LABEL')}
+			/>
+		</Box>
 	);
 };
-export default RobotOrdersActiveOrders;
+export default RobotOrdersDebug;

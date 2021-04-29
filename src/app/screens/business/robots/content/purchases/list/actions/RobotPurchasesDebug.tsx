@@ -8,11 +8,11 @@ import {
 	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
 import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
-import { RobotPurchasesBilledInterface } from './RobotPurchasesActions.interface';
+import { RobotPurchasesDebugInterface } from './RobotPurchasesActions.interface';
 import { RobotPurchasesActionsStyles } from './RobotPurchasesActions.style';
 
-const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
-	const { billed } = props;
+const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
+	const { debug } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesActionsStyles();
 
@@ -20,14 +20,14 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	const purchases = useSelector(purchasesSelector);
 
 	/**
-	 * toggle billed
+	 * toggle debug
 	 */
-	const toggleBilled = () => {
+	const toggleDebug = () => {
 		// dispatch: update state
 		const payload: SPCState = {
 			...purchases.content?.state,
 			page: 0,
-			billed: !billed
+			debug: !debug
 		};
 		dispatch(PurchaseUpdateState(payload));
 	};
@@ -35,18 +35,13 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	return (
 		<Box>
 			<FormControlLabel
-				className={classes.sBilled}
+				className={classes.sDebug}
 				control={
-					<Checkbox
-						color="primary"
-						name="billed"
-						checked={billed}
-						onChange={toggleBilled}
-					/>
+					<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
 				}
-				label={t('CONTENT.PURCHASES.LIST.ACTIONS.BILLED.LABEL')}
+				label={t('CONTENT.PURCHASES.LIST.ACTIONS.DEBUG.LABEL')}
 			/>
 		</Box>
 	);
 };
-export default RobotPurchasesBilled;
+export default RobotPurchasesDebug;

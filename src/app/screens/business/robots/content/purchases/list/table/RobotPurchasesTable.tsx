@@ -1,10 +1,14 @@
 import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
+import clsx from 'clsx';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
-import { PurchaseUpdateState } from '../../../../../../../slices/purchases/Purchases.slice';
+import {
+	purchasesSelector,
+	PurchaseUpdateState
+} from '../../../../../../../slices/purchases/Purchases.slice';
 import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import {
@@ -22,6 +26,7 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	const classes = RobotPurchasesTableStyles();
 
 	const dispatch = useDispatch();
+	const purchases = useSelector(purchasesSelector);
 
 	const [order, setOrder] = useState<RobotPurchasesTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotPurchasesTableColumnsTypeEnum>(columns[1].id);
@@ -110,6 +115,9 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
+				className={clsx({
+					[classes.sTablePagination]: purchases.loading
+				})}
 			/>
 		</Box>
 	);

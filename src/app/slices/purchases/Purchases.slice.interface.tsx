@@ -21,6 +21,7 @@ export interface SPCDataInterface {
 	comment: string;
 	currency: string;
 	isBilled: boolean;
+	isDebug: boolean;
 	room: string;
 	totalPrice: string;
 	createdAt: string;
@@ -41,6 +42,7 @@ export interface SPCState {
 	page?: number;
 	rowsPerPage?: number;
 	billed?: boolean;
+	debug?: boolean;
 	locked?: string;
 }
 

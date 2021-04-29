@@ -329,10 +329,16 @@
 			},
 			"ORDERS": {
 				"LIST": {
-					"OPTIONS": {
-						"HEADING": "Actions",
+					"ACTIONS": {
+						"HEADINGS": {
+							"FILTERS": "Filters",
+							"ACTIONS": "Actions"
+						},
 						"ORDERS_ACTIVE": {
 							"LABEL": "Active Orders"
+						},
+						"DEBUG": {
+							"LABEL": "Test Orders"
 						},
 						"ORDER_CREATE": {
 							"LABEL": "Create Order",
@@ -369,7 +375,7 @@
 							"MODE": "Mode",
 							"CREATED": "Created",
 							"ORIGIN": "Origin",
-							"TEST": "Test"
+							"DEBUG": "Test"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -395,7 +401,8 @@
 								"api-connect": "API Connect",
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
-							}
+							},
+							"DEBUG": "Test"
 						}
 					}
 				},
@@ -417,10 +424,15 @@
 			},
 			"PURCHASES": {
 				"LIST": {
-					"OPTIONS": {
-						"HEADING": "Actions",
+					"ACTIONS": {
+						"HEADINGS": {
+							"FILTERS": "Filters"
+						},
 						"BILLED": {
-							"LABEL": "Billed"
+							"LABEL": "Billed Purchases"
+						},
+						"DEBUG": {
+							"LABEL": "Test Purchases"
 						}
 					},
 					"TABLE": {
@@ -429,19 +441,22 @@
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
 							"COMMENT": "Comment",
-							"BILLED": "Billed"
-						}
-					},
-					"VALUES": {
-						"COMMENT": {
-							"EDIT": "Edit",
-							"SAVE": "Save",
-							"CLEAR": "Clear",
-							"CANCEL": "Cancel",
-							"FIELD": {
-								"LABEL": "Comment",
-								"PLACEHOLDER": "Enter a comment"
-							}
+							"BILLED": "Billed",
+							"DEBUG": "Test"
+						},
+						"VALUES": {
+							"COMMENT": {
+								"EDIT": "Edit",
+								"SAVE": "Save",
+								"CLEAR": "Clear",
+								"CANCEL": "Cancel",
+								"FIELD": {
+									"LABEL": "Comment",
+									"PLACEHOLDER": "Enter a comment"
+								}
+							},
+							"BILLED": "Billed",
+							"DEBUG": "Test"
 						}
 					}
 				},

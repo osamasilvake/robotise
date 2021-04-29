@@ -1,6 +1,6 @@
 import { Checkbox, TableCell } from '@material-ui/core';
 import i18next from 'i18next';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
@@ -14,9 +14,7 @@ import { columns } from './RobotPurchasesTable.list';
 import TableFieldComment from './TableFieldComment';
 
 const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (props) => {
-	const { column, purchase } = props;
-
-	const [edit, setEdit] = useState(false);
+	const { purchase, column } = props;
 
 	const unknown = 'N/A';
 
@@ -45,7 +43,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 				  )}`
 				: 0;
 		} else if (columns[3].id === column.id) {
-			return <TableFieldComment purchase={purchase} edit={edit} setEdit={setEdit} />;
+			return <TableFieldComment purchase={purchase} />;
 		} else if (columns[4].id === column.id) {
 			return <Checkbox disabled checked={!!value} />;
 		}

@@ -101,19 +101,19 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 					.map((purchase: SPCDataInterface) => (
 						<TableRow
-							hover={Number(purchase.totalPrice) > 0}
+							hover={!content.state?.locked && Number(purchase.totalPrice) > 0}
 							key={purchase.id}
 							tabIndex={-1}
 							onClick={
-								Number(purchase.totalPrice) > 0
+								!content.state?.locked && Number(purchase.totalPrice) > 0
 									? handleShowPurchaseDetail(purchase)
 									: () => null
 							}>
 							{columns.map((column: RobotPurchasesTableColumnInterface) => (
 								<RobotPurchasesTableBodyCell
 									key={column.id}
-									column={column}
 									purchase={purchase}
+									column={column}
 								/>
 							))}
 						</TableRow>

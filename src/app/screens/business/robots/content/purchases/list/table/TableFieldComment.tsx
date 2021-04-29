@@ -1,17 +1,19 @@
 import { Box, Chip, CircularProgress, TextField, Typography } from '@material-ui/core';
-import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
 	PurchaseEditComment,
-	purchasesSelector
+	purchasesSelector,
+	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
+import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { TableFieldCommentInterface } from './RobotPurchasesTable.interface';
 import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
 
 const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
-	const { purchase, edit, setEdit } = props;
+	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyles();
 
@@ -20,28 +22,26 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 
 	const [value, setValue] = useState(purchase.comment);
 
-	/**
-	 * handle propagation
-	 * @param event
-	 */
-	const handlePropagation = (event: MouseEvent<HTMLDivElement>) => {
-		// stop propagation
-		event.stopPropagation();
-	};
+	const purchaseId = purchases.content?.state?.locked;
+	const editMode = purchase.id === purchaseId;
 
 	/**
-	 * toggle comment field
+	 * toggle edit mode
 	 */
-	const toggleCommentField = () => {
-		if (edit) {
+	const toggleEditMode = () => {
+		if (editMode) {
 			// dispatch: edit comment
 			Promise.all([dispatch(PurchaseEditComment(purchase.id, value))]).then(() => {
-				// set edit
-				setEdit(false);
+				// close edit mode
+				closeEditMode();
 			});
 		} else {
-			// set edit
-			setEdit(true);
+			// dispatch: update state
+			const payload: SPCState = {
+				...purchases.content?.state,
+				locked: purchase.id
+			};
+			dispatch(PurchaseUpdateState(payload));
 
 			// set value
 			setValue(purchase.comment);
@@ -49,20 +49,21 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	};
 
 	/**
-	 * handle change
-	 * @param event
+	 * close edit mode
 	 */
-	const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value;
-
-		// set value
-		setValue(value);
+	const closeEditMode = () => {
+		// dispatch: update state
+		const payload: SPCState = {
+			...purchases.content?.state,
+			locked: ''
+		};
+		dispatch(PurchaseUpdateState(payload));
 	};
 
 	return (
-		<Box onClick={handlePropagation}>
+		<Box onClick={(event) => event.stopPropagation()}>
 			{/* Input */}
-			{edit && (
+			{editMode && (
 				<TextField
 					variant="outlined"
 					type="text"
@@ -70,16 +71,17 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					name="comment"
 					label={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.FIELD.LABEL')}
 					placeholder={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.FIELD.PLACEHOLDER')}
+					onChange={(event) => setValue(event.target.value)}
+					inputRef={(input) => input && input.focus()}
 					multiline
 					rows={4}
-					onChange={handleChangeInput}
 					value={value}
 					className={classes.sCommentTextField}
 				/>
 			)}
 
 			{/* Cancel */}
-			{edit && (
+			{editMode && (
 				<Chip
 					size="small"
 					label={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.CANCEL')}
@@ -87,13 +89,13 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					variant="outlined"
 					clickable={true}
 					disabled={purchases.updating}
-					onClick={() => setEdit(false)}
+					onClick={closeEditMode}
 					className={classes.sCommentCancel}
 				/>
 			)}
 
 			{/* Clear */}
-			{edit && (
+			{editMode && (
 				<Chip
 					size="small"
 					label={t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.CLEAR')}
@@ -110,20 +112,20 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 			<Chip
 				size="small"
 				label={
-					edit
+					editMode
 						? t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.SAVE')
 						: t('CONTENT.PURCHASES.LIST.VALUES.COMMENT.EDIT')
 				}
 				color="primary"
 				variant="outlined"
 				clickable={true}
-				icon={edit && purchases.updating ? <CircularProgress size={20} /> : undefined}
+				icon={editMode && purchases.updating ? <CircularProgress size={20} /> : undefined}
 				disabled={purchases.updating}
-				onClick={toggleCommentField}
+				onClick={toggleEditMode}
 			/>
 
 			{/* Value */}
-			{!edit && (
+			{!editMode && (
 				<Typography variant="body2" className={classes.sCommentValue}>
 					{purchase.comment}
 				</Typography>

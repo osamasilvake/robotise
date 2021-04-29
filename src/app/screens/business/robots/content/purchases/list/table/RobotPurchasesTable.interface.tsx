@@ -36,14 +36,12 @@ export interface RobotPurchasesTableBodyInterface {
 }
 
 export interface RobotPurchasesTableBodyCellInterface {
-	column: RobotPurchasesTableColumnInterface;
 	purchase: SPCDataInterface;
+	column: RobotPurchasesTableColumnInterface;
 }
 
 export interface TableFieldCommentInterface {
 	purchase: SPCDataInterface;
-	edit: boolean;
-	setEdit: Dispatch<SetStateAction<boolean>>;
 }
 
 export type RobotPurchasesTableHeadOrder = 'asc' | 'desc';

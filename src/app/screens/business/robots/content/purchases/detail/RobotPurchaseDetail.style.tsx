@@ -10,7 +10,7 @@ export const RobotPurchaseDetailStyles = makeStyles((theme: Theme) => ({
 		marginBottom: theme.spacing(0.4)
 	},
 	sTableBody: {
-		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.25)
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c10, 0.1)
 	},
 	sFootBox: {
 		margin: theme.spacing(2.5, 0, 0)

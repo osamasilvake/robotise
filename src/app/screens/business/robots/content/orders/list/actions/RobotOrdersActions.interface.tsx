@@ -4,24 +4,20 @@ import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 
 export interface RobotOrdersActionsInterface {
 	activeOrders: boolean;
-	setActiveOrders: Dispatch<SetStateAction<boolean>>;
-	setPage: Dispatch<SetStateAction<number>>;
+	debug: boolean;
 }
 
 export interface RobotOrdersActiveOrdersInterface {
 	activeOrders: boolean;
-	setActiveOrders: Dispatch<SetStateAction<boolean>>;
-	setPage: Dispatch<SetStateAction<number>>;
 }
 
-export interface RobotOrdersCreateOrderInterface {
-	setPage: Dispatch<SetStateAction<number>>;
+export interface RobotOrdersDebugInterface {
+	debug: boolean;
 }
 
 export interface DialogCreateOrderInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
-	setPage: Dispatch<SetStateAction<number>>;
 }
 
 export interface DialogCreateOrderPayloadInterface {

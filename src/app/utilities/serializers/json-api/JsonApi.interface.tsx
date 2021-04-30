@@ -4,8 +4,9 @@ export interface DeserializerExtendedOptions extends DeserializerOptions {
 	sites?: DeserializeRelationship;
 	robotTwins?: DeserializeRelationship;
 	robots?: DeserializeRelationship;
-	activity?: DeserializeRelationship;
+	orders?: DeserializeRelationship;
 	users?: DeserializeRelationship;
+	activity?: DeserializeRelationship;
 }
 
 export interface DeserializeRelationship {
@@ -28,5 +29,4 @@ export interface JsonApiMeta {
 	nextPage: number;
 	page: number;
 	totalDocs: number;
-	rowsPerPage?: number;
 }

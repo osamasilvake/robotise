@@ -1,8 +1,12 @@
 import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
+import clsx from 'clsx';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
+import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
+import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableHeadOrder, RobotOrdersTableInterface } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
@@ -11,9 +15,12 @@ import RobotOrdersTableBody from './RobotOrdersTableBody';
 import RobotOrdersTableHead from './RobotOrdersTableHead';
 
 const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
-	const { content, page, setPage, rowsPerPage, setRowsPerPage } = props;
+	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotOrdersTableStyles();
+
+	const dispatch = useDispatch();
+	const orders = useSelector(ordersSelector);
 
 	const [order, setOrder] = useState<RobotOrdersTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotOrdersTableColumnsTypeEnum>(
@@ -41,8 +48,12 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	 * @param newPage
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
-		// set page
-		setPage(newPage);
+		// dispatch: update state
+		const payload: SOCState = {
+			...content?.state,
+			page: newPage
+		};
+		dispatch(OrderUpdateState(payload));
 	};
 
 	/**
@@ -50,11 +61,13 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	 * @param event
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-		// set rows
-		setRowsPerPage(+event.target.value);
-
-		// set page
-		setPage(0);
+		// dispatch: update state
+		const payload: SOCState = {
+			...content?.state,
+			page: 0,
+			rowsPerPage: +event.target.value
+		};
+		dispatch(OrderUpdateState(payload));
 	};
 
 	return (
@@ -89,11 +102,14 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 						? AppConfigService.AppOptions.screens.robots.content.orders.list.pageSizes
 						: []
 				}
-				count={content ? content.meta.totalDocs : 0}
+				count={content?.meta.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
+				className={clsx({
+					[classes.sTablePagination]: orders.loading
+				})}
 			/>
 		</Box>
 	);

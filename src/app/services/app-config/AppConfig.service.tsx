@@ -8,6 +8,9 @@ class AppConfigService extends EnvService {
 	 */
 	get AppOptions() {
 		return {
+			common: {
+				defaultCurrency: 'EUR'
+			},
 			colors: {
 				c1: '#313131', // dark: 			body/content
 				c2: '#383a3c', // dark:				paper
@@ -101,6 +104,17 @@ class AppConfigService extends EnvService {
 							content: {
 								refreshTime: 30000
 							}
+						},
+						purchases: {
+							list: {
+								refreshTime: 30000,
+								showPageSizes: true,
+								defaultPageSize: 50,
+								pageSizes: [5, 10, 15, 20, 50, 100]
+							},
+							content: {
+								refreshTime: 30000
+							}
 						}
 					}
 				}
@@ -137,7 +151,9 @@ class AppConfigService extends EnvService {
 				COMMANDS: `${this.envApiUrl}/robots/:robot/commands`,
 				INVENTORY: `${this.envApiUrl}/robots/:robot/inventory`,
 				ORDERS: `${this.envApiUrl}/orders`,
-				ORDER: `${this.envApiUrl}/orders/:order`
+				ORDER: `${this.envApiUrl}/orders/:order`,
+				PURCHASES: `${this.envApiUrl}/order-reports`,
+				PURCHASE: `${this.envApiUrl}/order-reports/:purchase`
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,

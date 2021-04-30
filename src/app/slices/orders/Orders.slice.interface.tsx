@@ -4,8 +4,7 @@ import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interf
 export interface SliceOrdersInterface {
 	loader: boolean;
 	loading: boolean;
-	creating: boolean;
-	canceling: boolean;
+	updating: boolean;
 	content: SOContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
@@ -13,8 +12,8 @@ export interface SliceOrdersInterface {
 export interface SOContentInterface {
 	data: SOCDataInterface[];
 	dataById: SOCDataByIdInterface;
-	robot?: SOCRobotInterface;
 	meta: JsonApiMeta;
+	state?: SOCState;
 }
 
 export interface SOCDataInterface {
@@ -33,6 +32,14 @@ export interface SOCDataInterface {
 
 export interface SOCDataByIdInterface {
 	[id: string]: SOCDataInterface;
+}
+
+export interface SOCState {
+	robotId?: string;
+	page?: number;
+	rowsPerPage?: number;
+	activeOrders?: boolean;
+	debug?: boolean;
 }
 
 export interface SOCDataHistoryInterface {

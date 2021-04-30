@@ -3,23 +3,24 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { DialogCreateOrderPayloadInterface } from '../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
+import { RobotOrdersFetchListInterface } from '../../screens/business/robots/content/orders/RobotOrders.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize copy';
+import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize';
 import { deserializeOrders } from '../../utilities/serializers/json-api/Orders.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import {
 	SliceOrdersInterface,
 	SOCDataInterface,
-	SOContentInterface
+	SOContentInterface,
+	SOCState
 } from './Orders.slice.interface';
 
 // initial state
 export const initialState: SliceOrdersInterface = {
 	loader: false,
 	loading: false,
-	creating: false,
-	canceling: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -35,11 +36,8 @@ const dataSlice = createSlice({
 		loading: (state) => {
 			state.loading = true;
 		},
-		creating: (state) => {
-			state.creating = true;
-		},
-		canceling: (state) => {
-			state.canceling = true;
+		updating: (state) => {
+			state.updating = true;
 		},
 		success: (state, action) => {
 			state.loader = false;
@@ -47,19 +45,14 @@ const dataSlice = createSlice({
 			state.content = action.payload;
 			state.errors = null;
 		},
-		created: (state, action) => {
-			state.creating = false;
-			state.content = action.payload;
-		},
-		canceled: (state, action) => {
-			state.canceling = false;
+		updated: (state, action) => {
+			state.updating = false;
 			state.content = action.payload;
 		},
 		failure: (state, action) => {
 			state.loader = false;
 			state.loading = false;
-			state.creating = false;
-			state.canceling = false;
+			state.updating = false;
 			state.content = null;
 			state.errors = action.payload;
 		},
@@ -68,17 +61,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const {
-	loader,
-	loading,
-	creating,
-	canceling,
-	success,
-	created,
-	canceled,
-	failure,
-	reset
-} = dataSlice.actions;
+export const { loader, loading, updating, success, updated, failure, reset } = dataSlice.actions;
 
 // selector
 export const ordersSelector = (state: AppReducerType) => state['orders'];
@@ -88,51 +71,46 @@ export default dataSlice.reducer;
 
 /**
  * fetch orders
- * @param robotId
- * @param pageNo
- * @param rowsPerPage
- * @param activeOrders
+ * @param payload
  * @param refresh
  * @returns
  */
-export const OrdersFetchList = (
-	robotId: string,
-	pageNo: number,
-	rowsPerPage: number,
-	activeOrders = false,
-	refresh = false
-) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const OrdersFetchList = (payload: RobotOrdersFetchListInterface, refresh = false) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
 	// states
 	const states = getState();
 	const orders = states.orders;
 
 	// return on busy
-	if (orders && (orders.loader || orders.loading || orders.creating || orders.canceling)) {
+	if (orders && (orders.loader || orders.loading || orders.updating)) {
 		return;
 	}
 
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotOrdersFetch(robotId, pageNo, rowsPerPage, activeOrders)
+	return RobotsService.robotOrdersFetch(payload)
 		.then(async (res) => {
 			// deserialize response
 			let result: SOContentInterface = await deserializeOrders(res);
 
-			// prepare content
+			// state
 			result = {
 				...result,
-				meta: {
-					...result.meta,
-					rowsPerPage: rowsPerPage
-				},
-				robot: {
-					id: robotId
-				}
+				state: payload
 			};
 
-			// handle pagination state
-			result = orders && orders.content ? handlePagination(orders.content, result) : result;
+			// handle refresh and pagination
+			if (orders && orders.content) {
+				result = handleRefreshAndPagination(
+					orders.content,
+					result,
+					refresh,
+					payload.rowsPerPage
+				);
+			}
 
 			// dispatch: success
 			dispatch(success(result));
@@ -164,8 +142,8 @@ export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: 
 	const states = getState();
 	const orders = states.orders;
 
-	// dispatch: creating
-	dispatch(creating());
+	// dispatch: updating
+	dispatch(updating());
 
 	return RobotsService.robotOrderCreate(payload, siteId)
 		.then(async (res) => {
@@ -176,8 +154,8 @@ export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: 
 				// update created order
 				result = updateCreatedOrder(orders.content, result);
 
-				// dispatch: created
-				dispatch(created(result));
+				// dispatch: updated
+				dispatch(updated(result));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
@@ -215,8 +193,8 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 	const states = getState();
 	const orders = states.orders;
 
-	// dispatch: canceling
-	dispatch(canceling());
+	// dispatch: updating
+	dispatch(updating());
 
 	return RobotsService.robotOrderCancel([order.id], order.site.id)
 		.then(async (res) => {
@@ -227,8 +205,8 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 				// update created order
 				result = updateCanceledOrder(orders.content, result.data[0]);
 
-				// dispatch: canceled
-				dispatch(canceled(result));
+				// dispatch: updated
+				dispatch(updated(result));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
@@ -254,31 +232,76 @@ export const OrderCancel = (order: SOCDataInterface) => async (
 };
 
 /**
- * handle pagination
+ * update state
  * @param state
- * @param action
  * @returns
  */
-const handlePagination = (state: SOContentInterface, action: SOContentInterface) => {
-	const condition1 = action.meta.page > 1; // first page
-	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
-	const condition3 = action.meta.nextPage === null; // last page
-	if (condition1 && (condition2 || condition3)) {
-		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
+export const OrderUpdateState = (state: SOCState) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
+	// states
+	const states = getState();
+	const orders = states.orders;
+
+	// dispatch: updating
+	dispatch(updating());
+
+	if (orders && orders.content) {
+		const result = {
+			...orders.content,
+			state
+		};
+
+		// dispatch: updated
+		dispatch(updated(result));
+	}
+};
+
+/**
+ * handle refresh and pagination
+ * @param current
+ * @param result
+ * @param refresh
+ * @param rowsPerPage
+ * @returns
+ */
+const handleRefreshAndPagination = (
+	current: SOContentInterface,
+	result: SOContentInterface,
+	refresh: boolean,
+	rowsPerPage: number
+) => {
+	if (refresh) {
+		const dataItems = current.data.slice(rowsPerPage);
 		return {
-			...state,
-			meta: {
-				...state.meta,
-				...action.meta
-			},
-			data: [...state.data, ...action.data],
+			...current,
+			data: [...result.data, ...dataItems],
 			dataById: {
-				...state.dataById,
-				...action.dataById
+				...current.dataById,
+				...result.dataById
+			},
+			meta: {
+				...current.meta,
+				totalDocs: result.meta.totalDocs,
+				totalPages: result.meta.totalPages
+			}
+		};
+	} else if (result.meta.page > 1) {
+		return {
+			...current,
+			meta: {
+				...current.meta,
+				...result.meta
+			},
+			data: [...current.data, ...result.data],
+			dataById: {
+				...current.dataById,
+				...result.dataById
 			}
 		};
 	}
-	return action;
+	return result;
 };
 
 /**

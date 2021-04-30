@@ -1,33 +1,46 @@
-import { Paper, Typography } from '@material-ui/core';
+import { Box, Divider, Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FloatStyles } from '../../../../../../../utilities/styles/Float.style';
 import { RobotOrdersActionsInterface } from './RobotOrdersActions.interface';
+import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 import RobotOrdersActiveOrders from './RobotOrdersActiveOrders';
 import RobotOrdersCreateOrder from './RobotOrdersCreateOrder';
+import RobotOrdersDebug from './RobotOrdersDebug';
 
 const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
-	const { activeOrders, setActiveOrders, setPage } = props;
+	const { activeOrders, debug } = props;
 	const { t } = useTranslation('ROBOTS');
+	const classes = RobotOrdersActionsStyles();
 	const floatStyles = FloatStyles();
 
 	return (
 		<Paper elevation={2} square className={floatStyles.sFloat1}>
-			{/* Heading */}
-			<Typography variant="h6" color="textSecondary">
-				{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.HEADING')}
-			</Typography>
+			<Box className={classes.sFilterBlock}>
+				{/* Heading */}
+				<Typography variant="h6" color="textSecondary">
+					{t('CONTENT.ORDERS.LIST.ACTIONS.HEADINGS.FILTERS')}
+				</Typography>
 
-			{/* Active Orders */}
-			<RobotOrdersActiveOrders
-				activeOrders={activeOrders}
-				setActiveOrders={setActiveOrders}
-				setPage={setPage}
-			/>
+				{/* Active Orders */}
+				<RobotOrdersActiveOrders activeOrders={activeOrders} />
 
-			{/* Create Order */}
-			<RobotOrdersCreateOrder setPage={setPage} />
+				{/* Debug */}
+				<RobotOrdersDebug debug={debug} />
+			</Box>
+
+			<Divider />
+
+			<Box className={classes.sActionBlock}>
+				{/* Heading */}
+				<Typography variant="h6" color="textSecondary">
+					{t('CONTENT.ORDERS.LIST.ACTIONS.HEADINGS.ACTIONS')}
+				</Typography>
+
+				{/* Create Order */}
+				<RobotOrdersCreateOrder />
+			</Box>
 		</Paper>
 	);
 };

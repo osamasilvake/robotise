@@ -27,7 +27,7 @@ export const LoginStyles = makeStyles((theme: Theme) => ({
 		width: theme.spacing(20)
 	},
 	sForm: {
-		marginTop: theme.spacing(2)
+		marginTop: theme.spacing(6)
 	},
 	sFormCheckbox: {
 		marginBottom: theme.spacing(1),

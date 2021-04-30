@@ -24,11 +24,11 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	const orders = useSelector(ordersSelector);
 
 	/**
-	 * on action
+	 * cancel order
 	 * @param status
 	 * @returns
 	 */
-	const onAction = (status: boolean) => (event: MouseEvent<HTMLButtonElement>) => {
+	const cancelOrder = (status: boolean) => (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -40,33 +40,33 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	};
 
 	return (
-		<Dialog open={open} onClose={onAction(false)}>
+		<Dialog open={open} onClose={cancelOrder(false)}>
 			<Box onClick={(e) => e.stopPropagation()}>
 				{!order.site && (
 					<Alert severity="error">
-						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.ERROR.SITE')}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.ERROR.SITE')}
 					</Alert>
 				)}
 				<DialogTitle>
-					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.TITLE')}
+					{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.TITLE')}
 				</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CANCEL.TEXT')}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.TEXT')}
 					</DialogContentText>
 				</DialogContent>
 				<DialogActions>
 					<Button
 						variant="outlined"
-						disabled={orders.canceling}
-						onClick={onAction(false)}>
+						disabled={orders.updating}
+						onClick={cancelOrder(false)}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
-						onClick={onAction(true)}
-						disabled={orders.canceling || !order.site}
-						endIcon={orders.canceling && <CircularProgress size={20} />}>
+						onClick={cancelOrder(true)}
+						disabled={orders.updating || !order.site}
+						endIcon={orders.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CONFIRM')}
 					</Button>
 				</DialogActions>

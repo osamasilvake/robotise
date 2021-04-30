@@ -76,6 +76,11 @@
 				"ORDER_CANCEL": {
 					"SUCCESS": "Order was canceled successfully!"
 				}
+			},
+			"PURCHASES": {
+				"EDIT_COMMENT": {
+					"SUCCESS": "Comment was updated successfully!"
+				}
 			}
 		}
 	},
@@ -324,10 +329,16 @@
 			},
 			"ORDERS": {
 				"LIST": {
-					"OPTIONS": {
-						"HEADING": "Actions",
+					"ACTIONS": {
+						"HEADINGS": {
+							"FILTERS": "Filters",
+							"ACTIONS": "Actions"
+						},
 						"ORDERS_ACTIVE": {
 							"LABEL": "Active Orders"
+						},
+						"DEBUG": {
+							"LABEL": "Test Orders"
 						},
 						"ORDER_CREATE": {
 							"LABEL": "Create Order",
@@ -364,7 +375,7 @@
 							"MODE": "Mode",
 							"CREATED": "Created",
 							"ORIGIN": "Origin",
-							"TEST": "Test"
+							"DEBUG": "Test"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -383,7 +394,6 @@
 							"TARGET": {
 								"RECEPTION": "Reception"
 							},
-
 							"ORIGIN": {
 								"phone": "Phone",
 								"manualGUI": "JEEVES",
@@ -391,7 +401,8 @@
 								"api-connect": "API Connect",
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
-							}
+							},
+							"DEBUG": "Test"
 						}
 					}
 				},
@@ -410,6 +421,63 @@
 						"service-position": "Service Position"
 					}
 				}
+			},
+			"PURCHASES": {
+				"LIST": {
+					"ACTIONS": {
+						"HEADINGS": {
+							"FILTERS": "Filters"
+						},
+						"BILLED": {
+							"LABEL": "Billed Purchases"
+						},
+						"DEBUG": {
+							"LABEL": "Test Purchases"
+						}
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"TARGET": "Target",
+							"CREATED": "Created",
+							"TOTAL_PRICE": "Total Price",
+							"COMMENT": "Comment",
+							"BILLED": "Billed",
+							"DEBUG": "Test"
+						},
+						"VALUES": {
+							"COMMENT": {
+								"EDIT": "Edit",
+								"SAVE": "Save",
+								"CLEAR": "Clear",
+								"CANCEL": "Cancel",
+								"FIELD": {
+									"LABEL": "Comment",
+									"PLACEHOLDER": "Enter a comment"
+								}
+							},
+							"BILLED": "Billed",
+							"DEBUG": "Test"
+						}
+					}
+				},
+				"CONTENT": {
+					"ROOM_UNKNOWN": "N/A",
+					"HEAD": {
+						"BILLED": "Billed",
+						"NOT_BILLED": "Not Billed",
+						"TITLE": "Products"
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"TITLE": "Title",
+							"QUANTITY": "Quantity",
+							"PRICE": "Price"
+						}
+					},
+					"FOOT": {
+						"NOTE": "Note"
+					}
+				}
 			}
 		}
 	},
@@ -421,7 +489,7 @@
 			"CONTACT": {
 				"TITLE": "Contact",
 				"TEL": {
-					"LABEL": "Telefone",
+					"LABEL": "Telephone",
 					"VALUE": "+49 89 890 828 41"
 				},
 				"EMAIL": {

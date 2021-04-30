@@ -1,7 +1,7 @@
 import { Box } from '@material-ui/core';
 import { FC } from 'react';
 
-import RobotInventoryInfo from './info/RobotInventoryInfo';
+import RobotInventoryInfo from './head/RobotInventoryHead';
 import { RobotInventoryListInterface } from './RobotInventoryList.interface';
 import RobotInventoryTable from './table/RobotInventoryTable';
 

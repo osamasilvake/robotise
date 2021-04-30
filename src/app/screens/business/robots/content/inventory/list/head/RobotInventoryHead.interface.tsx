@@ -1,5 +1,5 @@
 import { SICDrawerInterface } from '../../../../../../../slices/inventory/Inventory.slice.interface';
 
-export interface RobotInventoryInfoInterface {
+export interface RobotInventoryHeadInterface {
 	drawer: SICDrawerInterface;
 }

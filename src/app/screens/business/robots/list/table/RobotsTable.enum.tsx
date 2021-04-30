@@ -8,7 +8,8 @@ export enum RobotsTableColumnsTypeEnum {
 }
 
 export enum RobotsTableSortTypeEnum {
-	STRING,
 	DATE,
-	OBJECT_ALERT
+	STRING,
+	OBJECT_ALERT,
+	BOOLEAN
 }

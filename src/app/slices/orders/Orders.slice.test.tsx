@@ -44,9 +44,6 @@ describe('[SLICE] Order', () => {
 					type: 'orders'
 				}
 			],
-			robot: {
-				id: robotId
-			},
 			meta: {
 				hasNextPage: false,
 				hasPrevPage: false,
@@ -92,19 +89,29 @@ describe('[SLICE] Order', () => {
 					}
 				}
 			},
-			robot: {
-				id: robotId
-			},
 			meta: {
 				hasNextPage: false,
 				hasPrevPage: false,
 				nextPage: null,
 				page: 1,
 				prevPage: null,
-				rowsPerPage: 50,
 				totalDocs: 11,
 				totalPages: 1
+			},
+			state: {
+				robotId,
+				page: 1,
+				rowsPerPage: 50,
+				activeOrders: false,
+				debug: false
 			}
+		};
+		const payload = {
+			robotId,
+			page: 1,
+			rowsPerPage: 50,
+			activeOrders: false,
+			debug: false
 		};
 
 		// mock api once
@@ -114,7 +121,7 @@ describe('[SLICE] Order', () => {
 
 		// act
 		store
-			.dispatch(OrdersFetchList(robotId, 1, 50))
+			.dispatch(OrdersFetchList(payload))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), success(mappedResult)];
@@ -125,7 +132,14 @@ describe('[SLICE] Order', () => {
 
 	it('[OrdersFetchList] Creates loading and failure actions on unsuccessful fetch request', () => {
 		const store = mockStore(initialState);
-		const orderId = '1db0f232-9a2a-47c6-906c-dc390dba4996';
+		const robotId = '2ee43036-37e5-46f6-9ccc-8054eb67ec2b';
+		const payload = {
+			robotId,
+			page: 0,
+			rowsPerPage: 50,
+			activeOrders: false,
+			debug: false
+		};
 
 		// mock api once
 		const apiResponse = new Error('API.FETCH');
@@ -139,7 +153,7 @@ describe('[SLICE] Order', () => {
 
 		// act
 		store
-			.dispatch(OrdersFetchList(orderId, 1, 50))
+			.dispatch(OrdersFetchList(payload))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), failure(message)];

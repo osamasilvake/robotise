@@ -9,9 +9,7 @@ import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 export interface RobotOrdersTableInterface {
 	content: SOContentInterface | null;
 	page: number;
-	setPage: Dispatch<SetStateAction<number>>;
 	rowsPerPage: number;
-	setRowsPerPage: Dispatch<SetStateAction<number>>;
 }
 
 export interface RobotOrdersTableHeadInterface {

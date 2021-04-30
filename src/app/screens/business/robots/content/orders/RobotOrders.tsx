@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotOrdersActions from './list/actions/RobotOrdersActions';
 import RobotOrdersTable from './list/table/RobotOrdersTable';
+import { RobotOrdersFetchListInterface } from './RobotOrders.interface';
 import { RobotOrdersStyles } from './RobotOrders.style';
 
 const RobotOrders: FC = () => {
@@ -23,35 +24,50 @@ const RobotOrders: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
-	const [activeOrders, setActiveOrders] = useState(false);
-	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(
-		orders.content && orders.content.meta.rowsPerPage
-			? orders.content.meta.rowsPerPage
-			: AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize
-	);
+	const page = orders.content?.state?.page || 0;
+	const rowsPerPage =
+		orders.content?.state?.rowsPerPage ||
+		AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize;
+	const activeOrders = !!orders.content?.state?.activeOrders;
+	const debug = !!orders.content?.state?.debug;
 
 	const pageRef = useRef({
-		page: orders.content ? orders.content.meta.page - 1 : page - 1,
+		page: (orders.content?.meta?.page || 0) - 1,
 		rowsPerPage,
-		activeOrders
+		activeOrders,
+		debug
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = orders.content?.robot?.id;
+	const pRobotId = orders.content?.state?.robotId;
 	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
 
 	useEffect(() => {
+		const payload: RobotOrdersFetchListInterface = {
+			robotId: cRobotId,
+			page,
+			rowsPerPage,
+			activeOrders,
+			debug
+		};
+
 		if (pageRef.current.activeOrders !== activeOrders && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, 1, rowsPerPage, activeOrders));
+			dispatch(OrdersFetchList(payload));
 
 			// update ref
-			pageRef.current.page = 0;
+			pageRef.current.page = page;
 			pageRef.current.activeOrders = activeOrders;
+		} else if (pageRef.current.debug !== debug && page === 0) {
+			// dispatch: fetch orders
+			dispatch(OrdersFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.debug = debug;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, page + 1, rowsPerPage, activeOrders));
+			dispatch(OrdersFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -59,7 +75,8 @@ const RobotOrders: FC = () => {
 		} else {
 			const condition1 = robotTwinsSummary.content !== null;
 			const condition2 = orders.content === null;
-			const condition3 = orders.content !== null && pRobotId && pRobotId !== cRobotId;
+			const condition3 = !!(orders.content !== null && pRobotId && pRobotId !== cRobotId);
+
 			const condition4 = pageRef.current.page !== -1; // page switch back and forth
 			const condition5 = page > pageRef.current.page; // detect next click
 
@@ -67,27 +84,59 @@ const RobotOrders: FC = () => {
 				if (condition2 || condition3 || condition4) {
 					if (condition3 || condition5) {
 						// dispatch: fetch orders
-						cRobotId &&
-							dispatch(
-								OrdersFetchList(cRobotId, page + 1, rowsPerPage, activeOrders)
-							);
+						dispatch(
+							OrdersFetchList({
+								...payload,
+								page: condition3 ? 0 : page,
+								activeOrders: condition3 ? false : activeOrders,
+								debug: condition3 ? false : debug
+							})
+						);
 
 						// update ref
-						pageRef.current.page = page;
+						pageRef.current.page = condition3 ? 0 : page;
+						pageRef.current.activeOrders = condition3 ? false : activeOrders;
+						pageRef.current.debug = condition3 ? false : debug;
 					}
 				}
 			}
 		}
 	}, [
 		dispatch,
-		orders.content,
 		robotTwinsSummary.content,
+		orders.content,
 		pRobotId,
 		cRobotId,
 		rowsPerPage,
 		page,
-		activeOrders
+		activeOrders,
+		debug
 	]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch orders
+			dispatch(
+				OrdersFetchList(
+					{
+						robotId: cRobotId,
+						page: 0,
+						rowsPerPage,
+						activeOrders,
+						debug
+					},
+					true
+				)
+			);
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.robots.content.orders.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, cRobotId, page, rowsPerPage, activeOrders, debug]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || orders.loader) {
@@ -107,20 +156,10 @@ const RobotOrders: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Options */}
-			<RobotOrdersActions
-				activeOrders={activeOrders}
-				setActiveOrders={setActiveOrders}
-				setPage={setPage}
-			/>
+			<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
 
 			{/* Table */}
-			<RobotOrdersTable
-				content={orders.content}
-				page={page}
-				setPage={setPage}
-				rowsPerPage={rowsPerPage}
-				setRowsPerPage={setRowsPerPage}
-			/>
+			<RobotOrdersTable content={orders.content} page={page} rowsPerPage={rowsPerPage} />
 		</Box>
 	);
 };

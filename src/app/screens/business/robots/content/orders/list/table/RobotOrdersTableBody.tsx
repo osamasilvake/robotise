@@ -20,7 +20,7 @@ import {
 import { columns } from './RobotOrdersTable.list';
 import RobotOrdersTableBodyCell from './RobotOrdersTableBodyCell';
 
-const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
+const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
 
 	const params: RobotParamsInterface = useParams();
@@ -34,14 +34,17 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const sortTableData = (content: SOContentInterface): SOCDataInterface[] => {
 		let type;
 		switch (orderBy) {
+			case columns[5].id:
+				type = RobotOrdersTableSortTypeEnum.BOOLEAN;
+				break;
+			case columns[3].id:
+				type = RobotOrdersTableSortTypeEnum.DATE;
+				break;
 			case columns[0].id:
 			case columns[1].id:
 			case columns[2].id:
 			case columns[4].id:
 				type = RobotOrdersTableSortTypeEnum.STRING;
-				break;
-			case columns[3].id:
-				type = RobotOrdersTableSortTypeEnum.DATE;
 				break;
 			default:
 				return content.data;
@@ -64,8 +67,11 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 			switch (type) {
 				case RobotOrdersTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
+				case RobotOrdersTableSortTypeEnum.BOOLEAN:
+					return a[key] ? -1 : 1;
+				case RobotOrdersTableSortTypeEnum.STRING:
 				default:
-					return a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : 0;
+					return String(a[key]).localeCompare(String(b[key]));
 			}
 		};
 	};
@@ -108,5 +114,4 @@ const RobotsTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 		</TableBody>
 	);
 };
-
-export default RobotsTableBody;
+export default RobotOrdersTableBody;

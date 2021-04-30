@@ -1,6 +1,8 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
+import { RobotOrdersFetchListInterface } from './content/orders/RobotOrders.interface';
+import { RobotPurchasesFetchListInterface } from './content/purchases/list/table/RobotPurchasesTable.interface';
 
 class RobotsService {
 	/**
@@ -74,25 +76,18 @@ class RobotsService {
 
 	/**
 	 * fetch robot orders
-	 * @param robotId
-	 * @param pageNo
-	 * @param rowsPerPage
-	 * @param activeOrders
+	 * @param payload
 	 * @returns
 	 */
-	robotOrdersFetch = (
-		robotId: string,
-		pageNo: number,
-		rowsPerPage: number,
-		activeOrders: boolean
-	) => {
+	robotOrdersFetch = (payload: RobotOrdersFetchListInterface) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[robot]': robotId,
-				'filter[active]': activeOrders || undefined,
-				'page[number]': pageNo,
-				'page[size]': rowsPerPage
+				'filter[robot]': payload.robotId,
+				'filter[active]': payload.activeOrders || undefined,
+				'filter[isDebug]': payload.debug || undefined,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};
@@ -157,6 +152,52 @@ class RobotsService {
 	 */
 	robotOrderFetch = (orderId: string) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDER.replace(':order', orderId);
+		return HttpClientService.get(url);
+	};
+
+	/**
+	 * fetch robot purchases
+	 * @param payload
+	 * @returns
+	 */
+	robotPurchasesFetch = (payload: RobotPurchasesFetchListInterface) => {
+		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[robot]': payload.robotId,
+				'filter[isBilled]': payload.billed || undefined,
+				'filter[isDebug]': payload.debug || undefined,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
+	 * edit a comment field
+	 * @param purchaseId
+	 * @param comment
+	 * @returns
+	 */
+	robotPurchaseEditComment = (purchaseId: string, comment: string) => {
+		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
+		return HttpClientService.patch(`${url}/${purchaseId}`, {
+			data: {
+				type: 'orderReports',
+				attributes: {
+					comment: comment
+				}
+			}
+		});
+	};
+
+	/**
+	 * fetch robot purchase
+	 * @param purchaseId
+	 * @returns
+	 */
+	robotPurchaseFetch = (purchaseId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.PURCHASE.replace(':purchase', purchaseId);
 		return HttpClientService.get(url);
 	};
 }

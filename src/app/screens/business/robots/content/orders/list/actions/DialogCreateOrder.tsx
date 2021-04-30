@@ -20,7 +20,12 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { OrderCreate, ordersSelector } from '../../../../../../../slices/orders/Orders.slice';
+import {
+	OrderCreate,
+	ordersSelector,
+	OrderUpdateState
+} from '../../../../../../../slices/orders/Orders.slice';
+import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
@@ -35,7 +40,7 @@ import {
 import { orderModes } from './RobotOrdersActions.map';
 
 const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
-	const { open, setOpen, setPage } = props;
+	const { open, setOpen } = props;
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
 	const dispatch = useDispatch();
@@ -69,18 +74,22 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					// set open
 					setOpen(false);
 
-					// set page
-					setPage(0);
+					// dispatch: update state
+					const payload: SOCState = {
+						...orders.content?.state,
+						page: 0
+					};
+					dispatch(OrderUpdateState(payload));
 				});
 		}
 	);
 
 	/**
-	 * on close action
+	 * close create order dialog
 	 * @param status
 	 * @returns
 	 */
-	const onActionClose = (event: MouseEvent<HTMLButtonElement>) => {
+	const closeCreateOrderDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -89,14 +98,14 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	};
 
 	return (
-		<Dialog open={open} onClose={onActionClose}>
+		<Dialog open={open} onClose={closeCreateOrderDialog}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
-					{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.TITLE')}
+					{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.TITLE')}
 				</DialogTitle>
 				<DialogContent>
 					<Typography variant="body1" color="textSecondary">
-						{t('ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.TEXT')}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.TEXT')}
 					</Typography>
 
 					<FormControl error fullWidth margin="normal">
@@ -110,10 +119,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
 							label={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.LOCATION.LABEL'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.LABEL'
 							)}
 							placeholder={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.LOCATION.PLACEHOLDER'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.PLACEHOLDER'
 							)}
 						/>
 						<FormHelperText>{t(errors.location)}</FormHelperText>
@@ -150,20 +159,20 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								/>
 							}
 							label={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.OPTIONS.ORDER_CREATE.FIELDS.DEBUG.LABEL'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.DEBUG.LABEL'
 							)}
 						/>
 					</FormControl>
 				</DialogContent>
 				<DialogActions>
-					<Button variant="outlined" onClick={onActionClose}>
+					<Button variant="outlined" onClick={closeCreateOrderDialog}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={validateEmptyObjProperty(values) || orders.creating}
-						endIcon={orders.creating && <CircularProgress size={20} />}>
+						disabled={validateEmptyObjProperty(values) || orders.updating}
+						endIcon={orders.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CREATE')}
 					</Button>
 				</DialogActions>

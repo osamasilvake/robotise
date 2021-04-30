@@ -13,13 +13,17 @@ const Robots = lazy(() => import('./Robots'));
  */
 const robotsRoutes: RouteInterface[] = [
 	/**
-	 * Tabs
+	 * Main
 	 */
 	{
 		component: Robots,
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN
 	},
+
+	/**
+	 * Tabs
+	 */
 	{
 		component: Robot,
 		exact: true,
@@ -42,12 +46,17 @@ const robotsRoutes: RouteInterface[] = [
 	},
 
 	/**
-	 * Detail
+	 * Details
 	 */
 	{
 		component: Robot,
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL
+	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL
 	}
 ];
 export default robotsRoutes;

@@ -3,7 +3,6 @@ import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { SOCDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import DialogCancelOrder from './DialogCancelOrder';
@@ -46,9 +45,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		if (columns[0].id === column.id && typeof value === 'string') {
 			return (
 				<Box>
-					<Status level={mapStatusLevel(value)}>
-						{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${value.replace(':', '_')}`)}
-					</Status>
+					<Status level={mapStatusLevel(value)}>{t(value.replace(':', '_'))}</Status>
 					{isOrderCancellable(value) && (
 						<>
 							<Chip
@@ -65,24 +62,10 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 					)}
 				</Box>
 			);
-		} else if (columns[1].id === column.id) {
-			return value ? value : t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
-		} else if (columns[2].id === column.id) {
-			return t(`CONTENT.ORDERS.COMMON.MODE.${value}`);
 		} else if (columns[3].id === column.id) {
 			return momentFormat1(value);
-		} else if (columns[4].id === column.id) {
-			return t(`CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${value}`);
-		} else if (columns[5].id === column.id) {
-			return (
-				value && (
-					<Status level={StatusTypeEnum.WARN}>
-						{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.DEBUG`)}
-					</Status>
-				)
-			);
 		}
-		return value;
+		return t(value);
 	};
 
 	return (

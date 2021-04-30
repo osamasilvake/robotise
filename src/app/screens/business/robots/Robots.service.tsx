@@ -85,7 +85,7 @@ class RobotsService {
 			params: {
 				'filter[robot]': payload.robotId,
 				'filter[active]': payload.activeOrders || undefined,
-				'filter[isDebug]': payload.debug || undefined,
+				'filter[isDebug]': payload.debug ? undefined : false,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}
@@ -165,8 +165,8 @@ class RobotsService {
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': payload.robotId,
-				'filter[isBilled]': payload.billed || undefined,
-				'filter[isDebug]': payload.debug || undefined,
+				'filter[isBilled]': payload.billed ? false : undefined,
+				'filter[isDebug]': payload.debug ? undefined : false,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}

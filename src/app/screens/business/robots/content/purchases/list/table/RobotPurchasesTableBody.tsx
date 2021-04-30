@@ -1,4 +1,5 @@
 import { TableBody, TableRow } from '@material-ui/core';
+import clsx from 'clsx';
 import { FC } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -18,10 +19,12 @@ import {
 	RobotPurchasesTableColumnInterface
 } from './RobotPurchasesTable.interface';
 import { columns } from './RobotPurchasesTable.list';
+import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
 import RobotPurchasesTableBodyCell from './RobotPurchasesTableBodyCell';
 
 const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
+	const classes = RobotPurchasesTableStyles();
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
@@ -34,18 +37,14 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 	const sortTableData = (content: SPContentInterface): SPCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[2].id:
+			case columns[3].id:
 				type = RobotPurchasesTableSortTypeEnum.NUMBER;
 				break;
 			case columns[1].id:
 				type = RobotPurchasesTableSortTypeEnum.DATE;
 				break;
-			case columns[4].id:
-			case columns[5].id:
-				type = RobotPurchasesTableSortTypeEnum.BOOLEAN;
-				break;
 			case columns[0].id:
-			case columns[3].id:
+			case columns[2].id:
 				type = RobotPurchasesTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -71,8 +70,6 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 					return Number(a[key]) - Number(b[key]);
 				case RobotPurchasesTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
-				case RobotPurchasesTableSortTypeEnum.BOOLEAN:
-					return a[key] ? -1 : 1;
 				case RobotPurchasesTableSortTypeEnum.STRING:
 				default:
 					return String(a[key]).localeCompare(String(b[key]));
@@ -109,7 +106,10 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 								!content.state?.locked && Number(purchase.totalPrice) > 0
 									? handleShowPurchaseDetail(purchase)
 									: () => null
-							}>
+							}
+							className={clsx({
+								[classes.sTableRowWarning]: purchase.isDebug
+							})}>
 							{columns.map((column: RobotPurchasesTableColumnInterface) => (
 								<RobotPurchasesTableBodyCell
 									key={column.id}

@@ -102,6 +102,9 @@ export const OrdersFetchList = (payload: RobotOrdersFetchListInterface, refresh 
 				state: payload
 			};
 
+			// handle mapping
+			result = handleMapping(result);
+
 			// handle refresh and pagination
 			if (orders && orders.content) {
 				result = handleRefreshAndPagination(
@@ -256,6 +259,26 @@ export const OrderUpdateState = (state: SOCState) => async (
 		// dispatch: updated
 		dispatch(updated(result));
 	}
+};
+
+/**
+ * handle mapping
+ * @param result
+ * @returns
+ */
+const handleMapping = (result: SOContentInterface) => {
+	return {
+		...result,
+		data: result.data.map((item) => {
+			return {
+				...item,
+				status: `CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${item.status}`,
+				room: item.room || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
+				mode: `CONTENT.ORDERS.COMMON.MODE.${item.mode}`,
+				origin: `CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
+			};
+		})
+	};
 };
 
 /**

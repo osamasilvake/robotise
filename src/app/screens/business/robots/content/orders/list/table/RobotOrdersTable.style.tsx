@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../../../services';
 
@@ -6,6 +6,9 @@ const minusContentHeight = AppConfigService.AppOptions.components.table.contentH
 export const RobotOrdersTableStyles = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
+	},
+	sTableRowWarning: {
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)
 	},
 	sTablePagination: {
 		opacity: 0.6,

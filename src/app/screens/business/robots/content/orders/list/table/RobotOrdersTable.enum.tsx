@@ -3,14 +3,12 @@ export enum RobotOrdersTableColumnsTypeEnum {
 	TARGET = 'room',
 	MODE = 'mode',
 	ORIGIN = 'origin',
-	CREATED = 'createdAt',
-	DEBUG = 'isDebug'
+	CREATED = 'createdAt'
 }
 
 export enum RobotOrdersTableSortTypeEnum {
 	DATE,
-	STRING,
-	BOOLEAN
+	STRING
 }
 
 export enum RobotOrdersTableColumnStatusTypeEnum {

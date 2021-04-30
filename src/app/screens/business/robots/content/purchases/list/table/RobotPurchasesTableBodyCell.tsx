@@ -1,4 +1,4 @@
-import { TableCell } from '@material-ui/core';
+import { Box, TableCell } from '@material-ui/core';
 import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,11 +14,13 @@ import {
 	RobotPurchasesTableColumnInterface
 } from '../../../purchases/list/table/RobotPurchasesTable.interface';
 import { columns } from './RobotPurchasesTable.list';
+import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
 import TableFieldComment from './TableFieldComment';
 
 const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (props) => {
 	const { purchase, column } = props;
 	const { t } = useTranslation('ROBOTS');
+	const classes = RobotPurchasesTableStyles();
 
 	const unknown = 'N/A';
 
@@ -34,7 +36,18 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	) => {
 		const value = purchase[column.id];
 		if (columns[0].id === column.id) {
-			return value || unknown;
+			return (
+				<Box>
+					{value || unknown}
+					{!purchase['isBilled'] && (
+						<Box component="span" className={classes.sTarget}>
+							<Status level={StatusTypeEnum.INFO} small>
+								{t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.UN_BILLED`)}
+							</Status>
+						</Box>
+					)}
+				</Box>
+			);
 		} else if (columns[1].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[2].id === column.id) {
@@ -48,22 +61,6 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 				: 0;
 		} else if (columns[3].id === column.id) {
 			return <TableFieldComment purchase={purchase} />;
-		} else if (columns[4].id === column.id) {
-			return (
-				value && (
-					<Status level={StatusTypeEnum.SUCCESS_LIGHT}>
-						{t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.BILLED`)}
-					</Status>
-				)
-			);
-		} else if (columns[5].id === column.id) {
-			return (
-				value && (
-					<Status level={StatusTypeEnum.WARN}>
-						{t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.DEBUG`)}
-					</Status>
-				)
-			);
 		}
 		return value;
 	};

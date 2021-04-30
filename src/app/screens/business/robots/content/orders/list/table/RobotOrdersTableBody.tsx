@@ -1,4 +1,5 @@
 import { TableBody, TableRow } from '@material-ui/core';
+import clsx from 'clsx';
 import { FC } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -18,10 +19,12 @@ import {
 	RobotOrdersTableColumnInterface
 } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
+import { RobotOrdersTableStyles } from './RobotOrdersTable.style';
 import RobotOrdersTableBodyCell from './RobotOrdersTableBodyCell';
 
 const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
+	const classes = RobotOrdersTableStyles();
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
@@ -34,9 +37,6 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const sortTableData = (content: SOContentInterface): SOCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[5].id:
-				type = RobotOrdersTableSortTypeEnum.BOOLEAN;
-				break;
 			case columns[3].id:
 				type = RobotOrdersTableSortTypeEnum.DATE;
 				break;
@@ -67,8 +67,6 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 			switch (type) {
 				case RobotOrdersTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
-				case RobotOrdersTableSortTypeEnum.BOOLEAN:
-					return a[key] ? -1 : 1;
 				case RobotOrdersTableSortTypeEnum.STRING:
 				default:
 					return String(a[key]).localeCompare(String(b[key]));
@@ -101,7 +99,10 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 							hover
 							key={order.id}
 							tabIndex={-1}
-							onClick={handleShowOrderDetail(order)}>
+							onClick={handleShowOrderDetail(order)}
+							className={clsx({
+								[classes.sTableRowWarning]: order.isDebug
+							})}>
 							{columns.map((column: RobotOrdersTableColumnInterface) => (
 								<RobotOrdersTableBodyCell
 									key={column.id}

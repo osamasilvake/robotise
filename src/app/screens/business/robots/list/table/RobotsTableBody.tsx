@@ -98,11 +98,11 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 						hover
 						key={robotTwins.id}
 						tabIndex={-1}
+						onClick={handleShowRobotDetail(robotTwins)}
 						className={clsx({
 							[classes.sTableRowWarning]: !!robotTwins.alerts.warning,
 							[classes.sTableRowDanger]: !!robotTwins.alerts.danger
-						})}
-						onClick={handleShowRobotDetail(robotTwins)}>
+						})}>
 						{columns.map((column: RobotsTableColumnInterface) => (
 							<RobotsTableBodyCell
 								key={column.id}

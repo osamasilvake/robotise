@@ -31,12 +31,6 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 		id: RobotOrdersTableColumnsTypeEnum.ORIGIN,
 		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.ORIGIN',
 		minWidth: 170,
-		align: 'left'
-	},
-	{
-		id: RobotOrdersTableColumnsTypeEnum.DEBUG,
-		label: 'CONTENT.ORDERS.LIST.TABLE.COLUMNS.DEBUG',
-		minWidth: 170,
 		align: 'right'
 	}
 ];

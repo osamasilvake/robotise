@@ -3,13 +3,13 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import { RobotPurchaseDetailHeadInterface } from '../RobotPurchaseDetail.interface';
-import { RobotPurchaseDetailStyles } from '../RobotPurchaseDetail.style';
+import { RobotPurchaseDetailHeadInterface } from './RobotPurchaseDetailHead.interface';
+import { RobotPurchaseDetailHeadStyles } from './RobotPurchaseDetailHead.style';
 
 const RobotPurchaseDetailHead: FC<RobotPurchaseDetailHeadInterface> = (props) => {
 	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchaseDetailStyles();
+	const classes = RobotPurchaseDetailHeadStyles();
 
 	return (
 		<Box className={classes.sHeadBox}>

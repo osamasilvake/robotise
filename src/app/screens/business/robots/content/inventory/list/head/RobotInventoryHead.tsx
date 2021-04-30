@@ -2,13 +2,13 @@ import { Box, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RobotInventoryInfoInterface } from './RobotInventoryInfo.interface';
-import { RobotsInventoryInfoStyles } from './RobotInventoryInfo.style';
+import { RobotInventoryHeadInterface } from './RobotInventoryHead.interface';
+import { RobotsInventoryHeadStyles } from './RobotInventoryHead.style';
 
-const RobotInventoryInfo: FC<RobotInventoryInfoInterface> = (props) => {
+const RobotInventoryHead: FC<RobotInventoryHeadInterface> = (props) => {
 	const { drawer } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotsInventoryInfoStyles();
+	const classes = RobotsInventoryHeadStyles();
 
 	return (
 		<Box className={classes.sTitleBox}>
@@ -21,4 +21,4 @@ const RobotInventoryInfo: FC<RobotInventoryInfoInterface> = (props) => {
 		</Box>
 	);
 };
-export default RobotInventoryInfo;
+export default RobotInventoryHead;

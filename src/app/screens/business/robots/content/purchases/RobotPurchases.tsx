@@ -56,21 +56,21 @@ const RobotPurchases: FC = () => {
 
 		if (pageRef.current.billed !== billed && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(payload));
+			dispatch(PurchasesFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.billed = billed;
 		} else if (pageRef.current.debug !== debug && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(payload));
+			dispatch(PurchasesFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.debug = debug;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch purchases
-			cRobotId && dispatch(PurchasesFetchList(payload));
+			dispatch(PurchasesFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -87,19 +87,14 @@ const RobotPurchases: FC = () => {
 				if (condition2 || condition3 || condition4) {
 					if (condition3 || condition5) {
 						// dispatch: fetch purchases
-						cRobotId &&
-							dispatch(
-								PurchasesFetchList(
-									{
-										...payload,
-										page: condition3 ? 0 : page,
-										billed: condition3 ? false : billed,
-										debug: condition3 ? false : debug
-									},
-									false,
-									condition3
-								)
-							);
+						dispatch(
+							PurchasesFetchList({
+								...payload,
+								page: condition3 ? 0 : page,
+								billed: condition3 ? false : billed,
+								debug: condition3 ? false : debug
+							})
+						);
 
 						// update ref
 						pageRef.current.page = condition3 ? 0 : page;

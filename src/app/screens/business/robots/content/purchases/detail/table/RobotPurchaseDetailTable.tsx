@@ -14,18 +14,18 @@ import { useTranslation } from 'react-i18next';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataCartInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
-import {
-	RobotPurchaseDetailInterface,
-	RobotPurchaseDetailTableColumnInterface
-} from '../RobotPurchaseDetail.interface';
-import { RobotPurchaseDetailStyles } from '../RobotPurchaseDetail.style';
 import { RobotPurchaseDetailTableColumnsTypeEnum } from './RobotPurchaseDetailTable.enum';
+import {
+	RobotPurchaseDetailTableColumnInterface,
+	RobotPurchaseDetailTableInterface
+} from './RobotPurchaseDetailTable.interface';
 import { columns } from './RobotPurchaseDetailTable.list';
+import { RobotPurchaseDetailTableStyles } from './RobotPurchaseDetailTable.style';
 
-const RobotPurchaseDetailTable: FC<RobotPurchaseDetailInterface> = (props) => {
+const RobotPurchaseDetailTable: FC<RobotPurchaseDetailTableInterface> = (props) => {
 	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchaseDetailStyles();
+	const classes = RobotPurchaseDetailTableStyles();
 
 	/**
 	 * set cell value

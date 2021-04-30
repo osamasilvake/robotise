@@ -72,17 +72,12 @@ export default dataSlice.reducer;
  * fetch purchases
  * @param payload
  * @param refresh
- * @param restart
  * @returns
  */
 export const PurchasesFetchList = (
 	payload: RobotPurchasesFetchListInterface,
-	refresh = false,
-	restart = false
+	refresh = false
 ) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
-	// restart
-	restart && dispatch(reset());
-
 	// states
 	const states = getState();
 	const purchases = states.purchases;

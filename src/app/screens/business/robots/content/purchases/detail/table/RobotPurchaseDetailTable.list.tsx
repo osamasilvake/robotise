@@ -1,5 +1,5 @@
-import { RobotPurchaseDetailTableColumnInterface } from '../RobotPurchaseDetail.interface';
 import { RobotPurchaseDetailTableColumnsTypeEnum } from './RobotPurchaseDetailTable.enum';
+import { RobotPurchaseDetailTableColumnInterface } from './RobotPurchaseDetailTable.interface';
 
 export const columns: RobotPurchaseDetailTableColumnInterface[] = [
 	{

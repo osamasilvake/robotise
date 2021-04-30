@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
+import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { RobotPurchaseDetailHeadInterface } from './RobotPurchaseDetailHead.interface';
 import { RobotPurchaseDetailHeadStyles } from './RobotPurchaseDetailHead.style';
 
@@ -14,10 +15,16 @@ const RobotPurchaseDetailHead: FC<RobotPurchaseDetailHeadInterface> = (props) =>
 	return (
 		<Box className={classes.sHeadBox}>
 			<Typography variant="body2" color="textSecondary" className={classes.sHeadBilled}>
-				<Status active={purchase?.content?.isBilled} small>
+				<Status
+					level={
+						purchase?.content?.isBilled
+							? StatusTypeEnum.SUCCESS_LIGHT
+							: StatusTypeEnum.WARN
+					}
+					small>
 					{purchase?.content?.isBilled
 						? t('CONTENT.PURCHASES.CONTENT.HEAD.BILLED')
-						: t('CONTENT.PURCHASES.CONTENT.HEAD.NOT_BILLED')}
+						: t('CONTENT.PURCHASES.CONTENT.HEAD.UN_BILLED')}
 				</Status>
 			</Typography>
 			<Typography variant="h6" color="textSecondary">

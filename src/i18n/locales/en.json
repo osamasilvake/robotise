@@ -335,10 +335,10 @@
 							"ACTIONS": "Actions"
 						},
 						"ORDERS_ACTIVE": {
-							"LABEL": "Active Orders"
+							"LABEL": "Inactive Orders only"
 						},
 						"DEBUG": {
-							"LABEL": "Test Orders"
+							"LABEL": "Test only"
 						},
 						"ORDER_CREATE": {
 							"LABEL": "Create Order",
@@ -374,8 +374,7 @@
 							"ROBOT": "Robot",
 							"MODE": "Mode",
 							"CREATED": "Created",
-							"ORIGIN": "Origin",
-							"DEBUG": "Test"
+							"ORIGIN": "Origin"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -401,8 +400,7 @@
 								"api-connect": "API Connect",
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
-							},
-							"DEBUG": "Test"
+							}
 						}
 					}
 				},
@@ -429,10 +427,10 @@
 							"FILTERS": "Filters"
 						},
 						"BILLED": {
-							"LABEL": "Billed Purchases"
+							"LABEL": "Unbilled only"
 						},
 						"DEBUG": {
-							"LABEL": "Test Purchases"
+							"LABEL": "Test only"
 						}
 					},
 					"TABLE": {
@@ -440,9 +438,7 @@
 							"TARGET": "Target",
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
-							"COMMENT": "Comment",
-							"BILLED": "Billed",
-							"DEBUG": "Test"
+							"COMMENT": "Comment"
 						},
 						"VALUES": {
 							"COMMENT": {
@@ -455,8 +451,7 @@
 									"PLACEHOLDER": "Enter a comment"
 								}
 							},
-							"BILLED": "Billed",
-							"DEBUG": "Test"
+							"UN_BILLED": "Unbilled"
 						}
 					}
 				},
@@ -464,7 +459,7 @@
 					"ROOM_UNKNOWN": "N/A",
 					"HEAD": {
 						"BILLED": "Billed",
-						"NOT_BILLED": "Not Billed",
+						"UN_BILLED": "Unbilled",
 						"TITLE": "Products"
 					},
 					"TABLE": {

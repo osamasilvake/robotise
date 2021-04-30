@@ -6,37 +6,25 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.TARGET,
 		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.TARGET',
-		width: 80,
+		minWidth: 180,
 		align: 'left'
 	},
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.CREATED,
 		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.CREATED',
-		width: 220,
-		align: 'left'
-	},
-	{
-		id: RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE,
-		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.TOTAL_PRICE',
-		width: 150,
+		minWidth: 250,
 		align: 'left'
 	},
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.COMMENT,
 		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.COMMENT',
-		minWidth: 300,
+		minWidth: 450,
 		align: 'left'
 	},
 	{
-		id: RobotPurchasesTableColumnsTypeEnum.BILLED,
-		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.BILLED',
-		minWidth: 80,
-		align: 'left'
-	},
-	{
-		id: RobotPurchasesTableColumnsTypeEnum.DEBUG,
-		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.DEBUG',
-		minWidth: 80,
+		id: RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE,
+		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.TOTAL_PRICE',
+		minWidth: 150,
 		align: 'right'
 	}
 ];

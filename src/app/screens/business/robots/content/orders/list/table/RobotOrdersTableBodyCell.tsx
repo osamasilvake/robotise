@@ -3,7 +3,6 @@ import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { SOCDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import DialogCancelOrder from './DialogCancelOrder';
@@ -73,14 +72,6 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 			return momentFormat1(value);
 		} else if (columns[4].id === column.id) {
 			return t(`CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${value}`);
-		} else if (columns[5].id === column.id) {
-			return (
-				value && (
-					<Status level={StatusTypeEnum.WARN}>
-						{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.DEBUG`)}
-					</Status>
-				)
-			);
 		}
 		return value;
 	};

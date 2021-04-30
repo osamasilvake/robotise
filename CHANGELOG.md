@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.1.2...v1.2.0) (2021-04-30)
+
+
+### Features
+
+* Add clear option on comment field ([dc0dd79](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/dc0dd79fd0be2a63bda2d3fd09a3ae6afebe822e))
+* Add editable comment field column ([ec810de](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ec810dea7022c22806399647b2e22f0c5548c0ae))
+* Add lock system on table list ([dabb309](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/dabb3090c93921b2135310b97953eedb1bff3da7))
+* Add purchase detail page ([9f9a33d](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9f9a33da79c60a418bba0fe8334f1ace7b9c3ab7))
+* Add purchases list ([f7e17f0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f7e17f03c704d30e5974d92475ed38905da3ef59))
+
+
+### Bug Fixes
+
+* Add missing action to the purchase list page ([7927b0f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7927b0f22315d3841100393fc2247049bf5b3fe7))
+* Add refresh and refactor pagination ([c284baf](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/c284baf3d0d54a1986b2b6a202fb1e5d5666785c))
+* Add refresh and refactor pagination in Orders page ([7e0cec8](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7e0cec811638447e549de34f84e08b8c7f0f2bc9))
+* Build job issue ([fcac87a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/fcac87a01cb794db424e588b837269d6790d7e20))
+* Change-log spacing ([7d55044](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7d5504403d079af8042483ace6591fac540f9884))
+* Cursor position on focus ([6318948](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/63189483b64a468517a3c3903b1c1ac55a1fee53))
+* Docker ignorefile ([4109799](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/410979977bee1c624fd78e0bcbc11227f9add516))
+* Gitlab build job ([6906e7b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/6906e7ba0e1935e142c3f2df37733435b2b02d31))
+* Gitlab job ([58c9afe](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/58c9afe4a88c2cb8875f469e830798c0d2c1b23e))
+* Gitlabs jobs ([d7c84d9](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d7c84d914ee1103ddf7ec5394612fa323d325fcb))
+* Label and text overlap on Input ([74ebd4c](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/74ebd4c4c046545b30064e46adea9a9d5d3b2994))
+* Orders slice test ([e6a5180](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e6a51806ffa40138c64a349aaeace7c1cc39384f))
+* Orders slice test ([92aba1b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/92aba1ba607655d2405ce1bea3dc9bdb7cffad64))
+* Orders test ([d8a6262](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d8a62625a0e827fbeb92885713221383415d40cf))
+* Reduce app bundle size by removing source files and compress img ([5382a87](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/5382a87119d23526a770d08b5e9acb61559a034d))
+* Reduce stages in Gitlab ([7da1569](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7da156928d7ca9c3f55e661301af4799603cc5a5))
+* Remove creating and updating properties in Orders slice ([125b330](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/125b330859bcf46687c864594cf9412f5fc63b95))
+* Remove state for setRowsPerPage ([3ccb15c](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3ccb15cf27b3f5bcccb617d33a4708b144248ca0))
+* Remove useState for billed and activeOrders toggle ([c34cebd](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/c34cebd3a45324a340c473dac1918b6e884798dd))
+* Remove useState for page and store it in redux ([75c3287](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/75c3287c403e87adc8760ace5307962f82b4eb2c))
+* Sorting on all tables ([2c3e8af](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/2c3e8af9f32b453d96a803d31a93a1cc6ee1cb16))
+* Update gitlab deployment ([b183933](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b18393340c5087c240476abeea3b3a2394255314))
+* Update gitlab job names ([66fdc6f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/66fdc6fbcfbbf2bb567336434b7422de19d2e2c8))
+
 ### [1.1.2](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.1.1...v1.1.2) (2021-04-23)
 
 

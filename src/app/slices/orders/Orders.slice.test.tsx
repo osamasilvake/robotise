@@ -58,10 +58,10 @@ describe('[SLICE] Order', () => {
 			data: [
 				{
 					id: orderId,
-					mode: 'mini-bar',
-					origin: 'phone',
+					mode: 'CONTENT.ORDERS.COMMON.MODE.mini-bar',
+					origin: 'CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.phone',
 					room: '661',
-					status: 'finished',
+					status: 'CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.finished',
 					createdAt: '2021-04-22T08:31:44.884Z',
 					updatedAt: '2021-04-22T08:38:02.172Z',
 					site: {

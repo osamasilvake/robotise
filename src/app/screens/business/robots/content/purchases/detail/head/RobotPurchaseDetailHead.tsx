@@ -18,8 +18,8 @@ const RobotPurchaseDetailHead: FC<RobotPurchaseDetailHeadInterface> = (props) =>
 				<Status
 					level={
 						purchase?.content?.isBilled
-							? StatusTypeEnum.SUCCESS_LIGHT
-							: StatusTypeEnum.WARN
+							? StatusTypeEnum.SUCCESS_DARK
+							: StatusTypeEnum.INFO
 					}
 					small>
 					{purchase?.content?.isBilled

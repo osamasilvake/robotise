@@ -338,7 +338,7 @@
 							"LABEL": "Active Orders only"
 						},
 						"DEBUG": {
-							"LABEL": "Test only"
+							"LABEL": "Include Test Orders"
 						},
 						"ORDER_CREATE": {
 							"LABEL": "Create Order",
@@ -430,7 +430,7 @@
 							"LABEL": "Unbilled only"
 						},
 						"DEBUG": {
-							"LABEL": "Test only"
+							"LABEL": "Include Test Orders"
 						}
 					},
 					"TABLE": {

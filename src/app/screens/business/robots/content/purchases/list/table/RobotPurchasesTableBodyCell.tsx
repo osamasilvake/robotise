@@ -41,7 +41,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					{value || unknown}
 					{!purchase['isBilled'] && (
 						<Box component="span" className={classes.sTarget}>
-							<Status level={StatusTypeEnum.WARN} small>
+							<Status level={StatusTypeEnum.INFO} small>
 								{t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.UN_BILLED`)}
 							</Status>
 						</Box>
@@ -51,8 +51,6 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 		} else if (columns[1].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[2].id === column.id) {
-			return <TableFieldComment purchase={purchase} />;
-		} else if (columns[3].id === column.id) {
 			const price = Number(value);
 			return price > 0
 				? `${currencyFormat(
@@ -61,6 +59,8 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						i18next.language
 				  )}`
 				: 0;
+		} else if (columns[3].id === column.id) {
+			return <TableFieldComment purchase={purchase} />;
 		}
 		return value;
 	};

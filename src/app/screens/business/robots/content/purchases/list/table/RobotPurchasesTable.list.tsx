@@ -16,15 +16,15 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE,
+		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.TOTAL_PRICE',
+		minWidth: 150,
+		align: 'left'
+	},
+	{
 		id: RobotPurchasesTableColumnsTypeEnum.COMMENT,
 		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.COMMENT',
 		minWidth: 450,
 		align: 'left'
-	},
-	{
-		id: RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE,
-		label: 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS.TOTAL_PRICE',
-		minWidth: 150,
-		align: 'right'
 	}
 ];

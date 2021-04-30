@@ -45,9 +45,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		if (columns[0].id === column.id && typeof value === 'string') {
 			return (
 				<Box>
-					<Status level={mapStatusLevel(value)}>
-						{t(`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${value.replace(':', '_')}`)}
-					</Status>
+					<Status level={mapStatusLevel(value)}>{t(value.replace(':', '_'))}</Status>
 					{isOrderCancellable(value) && (
 						<>
 							<Chip
@@ -64,16 +62,10 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 					)}
 				</Box>
 			);
-		} else if (columns[1].id === column.id) {
-			return value ? value : t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
-		} else if (columns[2].id === column.id) {
-			return t(`CONTENT.ORDERS.COMMON.MODE.${value}`);
 		} else if (columns[3].id === column.id) {
 			return momentFormat1(value);
-		} else if (columns[4].id === column.id) {
-			return t(`CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${value}`);
 		}
-		return value;
+		return t(value);
 	};
 
 	return (

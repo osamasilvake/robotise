@@ -335,7 +335,7 @@
 							"ACTIONS": "Actions"
 						},
 						"ORDERS_ACTIVE": {
-							"LABEL": "Inactive Orders only"
+							"LABEL": "Active Orders only"
 						},
 						"DEBUG": {
 							"LABEL": "Test only"

@@ -84,7 +84,7 @@ class RobotsService {
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': payload.robotId,
-				'filter[active]': payload.activeOrders ? false : undefined,
+				'filter[active]': payload.activeOrders || undefined,
 				'filter[isDebug]': payload.debug,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage

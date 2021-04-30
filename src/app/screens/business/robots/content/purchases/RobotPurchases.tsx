@@ -119,19 +119,18 @@ const RobotPurchases: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			// dispatch: fetch purchases
-			cRobotId &&
-				dispatch(
-					PurchasesFetchList(
-						{
-							robotId: cRobotId,
-							page: 0,
-							rowsPerPage,
-							billed,
-							debug
-						},
-						true
-					)
-				);
+			dispatch(
+				PurchasesFetchList(
+					{
+						robotId: cRobotId,
+						page: 0,
+						rowsPerPage,
+						billed,
+						debug
+					},
+					true
+				)
+			);
 		};
 
 		// interval

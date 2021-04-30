@@ -13,6 +13,7 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotOrdersActions from './list/actions/RobotOrdersActions';
 import RobotOrdersTable from './list/table/RobotOrdersTable';
+import { RobotOrdersFetchListInterface } from './RobotOrders.interface';
 import { RobotOrdersStyles } from './RobotOrders.style';
 
 const RobotOrders: FC = () => {
@@ -29,6 +30,7 @@ const RobotOrders: FC = () => {
 		AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize;
 	const activeOrders = !!orders.content?.state?.activeOrders;
 	const debug = !!orders.content?.state?.debug;
+
 	const pageRef = useRef({
 		page: (orders.content?.meta?.page || 0) - 1,
 		rowsPerPage,
@@ -41,23 +43,31 @@ const RobotOrders: FC = () => {
 	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
 
 	useEffect(() => {
+		const payload: RobotOrdersFetchListInterface = {
+			robotId: cRobotId,
+			page,
+			rowsPerPage,
+			activeOrders,
+			debug
+		};
+
 		if (pageRef.current.activeOrders !== activeOrders && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug));
+			dispatch(OrdersFetchList(payload));
 
 			// update ref
-			pageRef.current.page = 0;
+			pageRef.current.page = page;
 			pageRef.current.activeOrders = activeOrders;
 		} else if (pageRef.current.debug !== debug && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug));
+			dispatch(OrdersFetchList(payload));
 
 			// update ref
-			pageRef.current.page = 0;
+			pageRef.current.page = page;
 			pageRef.current.debug = debug;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch orders
-			cRobotId && dispatch(OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug));
+			dispatch(OrdersFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -65,7 +75,8 @@ const RobotOrders: FC = () => {
 		} else {
 			const condition1 = robotTwinsSummary.content !== null;
 			const condition2 = orders.content === null;
-			const condition3 = orders.content !== null && pRobotId && pRobotId !== cRobotId;
+			const condition3 = !!(orders.content !== null && pRobotId && pRobotId !== cRobotId);
+
 			const condition4 = pageRef.current.page !== -1; // page switch back and forth
 			const condition5 = page > pageRef.current.page; // detect next click
 
@@ -73,13 +84,19 @@ const RobotOrders: FC = () => {
 				if (condition2 || condition3 || condition4) {
 					if (condition3 || condition5) {
 						// dispatch: fetch orders
-						cRobotId &&
-							dispatch(
-								OrdersFetchList(cRobotId, page, rowsPerPage, activeOrders, debug)
-							);
+						dispatch(
+							OrdersFetchList({
+								...payload,
+								page: condition3 ? 0 : page,
+								activeOrders: condition3 ? false : activeOrders,
+								debug: condition3 ? false : debug
+							})
+						);
 
 						// update ref
-						pageRef.current.page = page;
+						pageRef.current.page = condition3 ? 0 : page;
+						pageRef.current.activeOrders = condition3 ? false : activeOrders;
+						pageRef.current.debug = condition3 ? false : debug;
 					}
 				}
 			}
@@ -95,6 +112,31 @@ const RobotOrders: FC = () => {
 		activeOrders,
 		debug
 	]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch orders
+			dispatch(
+				OrdersFetchList(
+					{
+						robotId: cRobotId,
+						page: 0,
+						rowsPerPage,
+						activeOrders,
+						debug
+					},
+					true
+				)
+			);
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.robots.content.orders.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, cRobotId, page, rowsPerPage, activeOrders, debug]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || orders.loader) {

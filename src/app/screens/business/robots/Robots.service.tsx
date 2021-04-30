@@ -1,6 +1,7 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
+import { RobotOrdersFetchListInterface } from './content/orders/RobotOrders.interface';
 import { RobotPurchasesFetchListInterface } from './content/purchases/list/table/RobotPurchasesTable.interface';
 
 class RobotsService {
@@ -75,28 +76,18 @@ class RobotsService {
 
 	/**
 	 * fetch robot orders
-	 * @param robotId
-	 * @param page
-	 * @param rowsPerPage
-	 * @param activeOrders
-	 * @param debug
+	 * @param payload
 	 * @returns
 	 */
-	robotOrdersFetch = (
-		robotId: string,
-		page: number,
-		rowsPerPage: number,
-		activeOrders: boolean,
-		debug: boolean
-	) => {
+	robotOrdersFetch = (payload: RobotOrdersFetchListInterface) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[robot]': robotId,
-				'filter[active]': activeOrders || undefined,
-				'filter[isDebug]': debug || undefined,
-				'page[number]': page + 1,
-				'page[size]': rowsPerPage
+				'filter[robot]': payload.robotId,
+				'filter[active]': payload.activeOrders || undefined,
+				'filter[isDebug]': payload.debug || undefined,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};

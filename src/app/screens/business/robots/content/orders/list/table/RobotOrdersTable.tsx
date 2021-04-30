@@ -1,10 +1,11 @@
 import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
+import clsx from 'clsx';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
-import { OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
+import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
 import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableHeadOrder, RobotOrdersTableInterface } from './RobotOrdersTable.interface';
@@ -19,6 +20,7 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	const classes = RobotOrdersTableStyles();
 
 	const dispatch = useDispatch();
+	const orders = useSelector(ordersSelector);
 
 	const [order, setOrder] = useState<RobotOrdersTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotOrdersTableColumnsTypeEnum>(
@@ -105,6 +107,9 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
+				className={clsx({
+					[classes.sTablePagination]: orders.loading
+				})}
 			/>
 		</Box>
 	);

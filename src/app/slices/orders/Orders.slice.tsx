@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { DialogCreateOrderPayloadInterface } from '../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
+import { RobotOrdersFetchListInterface } from '../../screens/business/robots/content/orders/RobotOrders.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize';
 import { deserializeOrders } from '../../utilities/serializers/json-api/Orders.deserialize';
@@ -70,22 +71,14 @@ export default dataSlice.reducer;
 
 /**
  * fetch orders
- * @param robotId
- * @param page
- * @param rowsPerPage
- * @param activeOrders
- * @param debug
+ * @param payload
  * @param refresh
  * @returns
  */
-export const OrdersFetchList = (
-	robotId: string,
-	page: number,
-	rowsPerPage: number,
-	activeOrders = false,
-	debug = false,
-	refresh = false
-) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const OrdersFetchList = (payload: RobotOrdersFetchListInterface, refresh = false) => async (
+	dispatch: Dispatch,
+	getState: () => AppReducerType
+) => {
 	// states
 	const states = getState();
 	const orders = states.orders;
@@ -98,25 +91,26 @@ export const OrdersFetchList = (
 	// dispatch: loader/loading
 	dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotOrdersFetch(robotId, page, rowsPerPage, activeOrders, debug)
+	return RobotsService.robotOrdersFetch(payload)
 		.then(async (res) => {
 			// deserialize response
 			let result: SOContentInterface = await deserializeOrders(res);
 
-			// prepare content
+			// state
 			result = {
 				...result,
-				state: {
-					robotId,
-					page,
-					rowsPerPage,
-					activeOrders,
-					debug
-				}
+				state: payload
 			};
 
-			// handle pagination state
-			result = orders && orders.content ? handlePagination(orders.content, result) : result;
+			// handle refresh and pagination
+			if (orders && orders.content) {
+				result = handleRefreshAndPagination(
+					orders.content,
+					result,
+					refresh,
+					payload.rowsPerPage
+				);
+			}
 
 			// dispatch: success
 			dispatch(success(result));
@@ -265,31 +259,49 @@ export const OrderUpdateState = (state: SOCState) => async (
 };
 
 /**
- * handle pagination
- * @param state
- * @param action
+ * handle refresh and pagination
+ * @param current
+ * @param result
+ * @param refresh
+ * @param rowsPerPage
  * @returns
  */
-const handlePagination = (state: SOContentInterface, action: SOContentInterface) => {
-	const condition1 = action.meta.page > 1; // first page
-	const condition2 = action.meta.nextPage > state.meta.nextPage; // between pages
-	const condition3 = action.meta.nextPage === null; // last page
-	if (condition1 && (condition2 || condition3)) {
-		action.meta.nextPage = condition3 ? state.meta.page + 1 : action.meta.nextPage;
+const handleRefreshAndPagination = (
+	current: SOContentInterface,
+	result: SOContentInterface,
+	refresh: boolean,
+	rowsPerPage: number
+) => {
+	if (refresh) {
+		const dataItems = current.data.slice(rowsPerPage);
 		return {
-			...state,
-			meta: {
-				...state.meta,
-				...action.meta
-			},
-			data: [...state.data, ...action.data],
+			...current,
+			data: [...result.data, ...dataItems],
 			dataById: {
-				...state.dataById,
-				...action.dataById
+				...current.dataById,
+				...result.dataById
+			},
+			meta: {
+				...current.meta,
+				totalDocs: result.meta.totalDocs,
+				totalPages: result.meta.totalPages
+			}
+		};
+	} else if (result.meta.page > 1) {
+		return {
+			...current,
+			meta: {
+				...current.meta,
+				...result.meta
+			},
+			data: [...current.data, ...result.data],
+			dataById: {
+				...current.dataById,
+				...result.dataById
 			}
 		};
 	}
-	return action;
+	return result;
 };
 
 /**

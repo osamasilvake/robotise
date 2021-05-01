@@ -19,10 +19,6 @@
 				"DESCRIPTION": "Robot Details Description"
 			}
 		},
-		"ALERT_CONFIG": {
-			"TITLE": "Alert Config",
-			"DESCRIPTION": "Alert Config Description"
-		},
 		"CHANGE_LOG": {
 			"TITLE": "Change Log",
 			"DESCRIPTION": "Change Log Description"
@@ -38,8 +34,7 @@
 			"CLOSE": "Close Drawer"
 		},
 		"QR_CODE": "Scan QR to open it on mobile",
-		"COPY_CLIPBOARD": "Copy to clipboard",
-		"OPEN_TAB": "Open in new tab"
+		"COPY_CLIPBOARD": "Copy to clipboard"
 	},
 	"MESSAGE": {
 		"COMMON": {
@@ -178,7 +173,6 @@
 				"SHORT": "Info"
 			},
 			"LIST": {
-				"ALERT_CONFIG": "Alert Config",
 				"CHANGE_LOG": "Change Log",
 				"ABOUT": "About"
 			}

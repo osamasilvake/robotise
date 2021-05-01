@@ -2,13 +2,11 @@ import { lazy } from 'react';
 
 import { RouteInterface } from '../../routes/Routes.interfaces';
 import { AppConfigService } from '../../services';
-import alertConfigRoutes from './alert-config/AlertConfig.routes';
 
 const ChangeLog = lazy(() => import('./change-log/ChangeLog'));
 const About = lazy(() => import('./about/About'));
 
 const informationRoutes: RouteInterface[] = [
-	...alertConfigRoutes,
 	{
 		component: ChangeLog,
 		exact: true,

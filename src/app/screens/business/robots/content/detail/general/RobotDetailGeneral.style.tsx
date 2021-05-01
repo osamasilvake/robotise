@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 export const RobotDetailGeneralStyles = makeStyles((theme: Theme) => ({
 	sGeneralContainer: {

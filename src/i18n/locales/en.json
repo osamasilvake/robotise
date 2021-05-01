@@ -34,8 +34,7 @@
 			"CLOSE": "Close Drawer"
 		},
 		"QR_CODE": "Scan QR to open it on mobile",
-		"COPY_CLIPBOARD": "Copy to clipboard",
-		"OPEN_TAB": "Open in new tab"
+		"COPY_CLIPBOARD": "Copy to clipboard"
 	},
 	"MESSAGE": {
 		"COMMON": {

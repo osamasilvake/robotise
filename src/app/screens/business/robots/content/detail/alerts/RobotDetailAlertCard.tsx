@@ -88,12 +88,6 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 						className={classes.sCardContentIcon}>
 						<FileCopyIcon fontSize="small" />
 					</Tooltip>
-					<Tooltip
-						placement="top"
-						title={String(t('TOOLTIPS:OPEN_TAB'))}
-						className={classes.sCardContentIcon}>
-						<OpenInNewIcon fontSize="small" />
-					</Tooltip>
 				</Box>
 
 				{/* Date */}

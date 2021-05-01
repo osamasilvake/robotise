@@ -19,10 +19,6 @@
 				"DESCRIPTION": "Robot Details Description"
 			}
 		},
-		"ALERT_CONFIG": {
-			"TITLE": "Alert Config",
-			"DESCRIPTION": "Alert Config Description"
-		},
 		"CHANGE_LOG": {
 			"TITLE": "Change Log",
 			"DESCRIPTION": "Change Log Description"
@@ -178,7 +174,6 @@
 				"SHORT": "Info"
 			},
 			"LIST": {
-				"ALERT_CONFIG": "Alert Config",
 				"CHANGE_LOG": "Change Log",
 				"ABOUT": "About"
 			}

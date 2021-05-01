@@ -8,7 +8,8 @@ import { CANCELLABLE_ORDERS } from './RobotOrdersTable.list';
  * @returns
  */
 export const mapStatusLevel = (status: string) => {
-	switch (status) {
+	const value = status.split('.').pop();
+	switch (value) {
 		case RobotOrdersTableColumnStatusTypeEnum.CREATED:
 			return StatusTypeEnum.INIT;
 		case RobotOrdersTableColumnStatusTypeEnum.PENDING:

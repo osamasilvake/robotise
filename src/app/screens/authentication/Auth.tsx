@@ -56,7 +56,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	 * authentication state
 	 *
 	 * loader: 	Loader
-	 * user: 	Dashboard
+	 * user: 	Robots
 	 * !user: 	Login
 	 */
 
@@ -65,7 +65,7 @@ const Auth: FC<AuthInterface> = ({ appRoute, template, route, type }: AuthInterf
 	} else if (isPrivate(type) && !isUser) {
 		return <Redirect to={AppConfigService.AppRoutes.AUTH.LOGIN} />;
 	} else if (isSession(type) && isUser) {
-		return <Redirect to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD} />;
+		return <Redirect to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN} />;
 	} else {
 		const Layout = appRoute.template ? appRoute.template : template;
 		return <Layout Component={appRoute.component} route={route} />;

@@ -1,5 +1,3 @@
-import { Box } from '@material-ui/core';
-import clsx from 'clsx';
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -74,21 +72,14 @@ const Picture: FC<PictureInterface> = (props) => {
 	};
 
 	return (
-		<Box
-			className={clsx(classes.sPicture, {
-				[classes.sPictureBox]: image === AppConfigService.AppImageURLs.logo.iconOff
-			})}>
-			<img
-				ref={imgRef}
-				src={image}
-				alt={alt}
-				onLoad={onImageLoad}
-				onError={handleError(fallback || AppConfigService.AppImageURLs.logo.iconOff)}
-				className={clsx(classes.sPicture, {
-					[classes.sFallback]: image === AppConfigService.AppImageURLs.logo.iconOff
-				})}
-			/>
-		</Box>
+		<img
+			ref={imgRef}
+			src={image}
+			alt={alt}
+			onLoad={onImageLoad}
+			onError={handleError(fallback || AppConfigService.AppImageURLs.logo.iconOff)}
+			className={classes.sImage}
+		/>
 	);
 };
 export default Picture;

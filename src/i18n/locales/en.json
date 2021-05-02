@@ -459,7 +459,11 @@
 						"COLUMNS": {
 							"TITLE": "Title",
 							"QUANTITY": "Quantity",
-							"PRICE": "Price"
+							"PRICE_UNIT": "Unit Price",
+							"PRICE_TOTAL": "Total Price"
+						},
+						"VALUES": {
+							"TOTAL": "Total"
 						}
 					},
 					"FOOT": {

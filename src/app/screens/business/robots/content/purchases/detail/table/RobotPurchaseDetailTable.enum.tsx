@@ -1,5 +1,6 @@
 export enum RobotPurchaseDetailTableColumnsTypeEnum {
 	TITLE = 'title',
 	QUANTITY = 'quantity',
-	PRICE = 'price'
+	PRICE_UNIT = 'price',
+	PRICE_TOTAL = 'total_price'
 }

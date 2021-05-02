@@ -192,13 +192,6 @@ class AppConfigService extends EnvService {
 			avatar: {
 				name: 'avatar',
 				path: '/assets/svg/avatars/avatar.svg'
-			},
-			qrCode: {
-				name: 'qr code',
-				path: {
-					dark: '/assets/svg/qr-code/qr-dark.svg',
-					light: '/assets/svg/qr-code/qr-light.svg'
-				}
 			}
 		};
 	}

@@ -77,6 +77,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 							src={robotLocationImageUrl(robotTwinsMapId)}
 							alt={robotTwinsMapId}
 							onLoad={onLoad}
+							fullWidth
 						/>
 					</Box>
 

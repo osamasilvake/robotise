@@ -88,7 +88,7 @@ export const RobotTwinsFetch = (robotId: string, refresh = false, wait = -1) => 
 			// prepare robot twins content
 			if (sites && sites.content) {
 				// prepare robot twins content
-				const result: SRTContentInterface = prepareContent(sites.content, robotTwins);
+				const result = prepareContent(sites.content, robotTwins);
 
 				// dispatch: success
 				dispatch(success(result));

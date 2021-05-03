@@ -80,7 +80,7 @@ const OverridesCustom: Components = {
 	},
 	MuiFormControl: {
 		styleOverrides: {
-			root: {
+			fullWidth: {
 				display: 'flex'
 			}
 		}

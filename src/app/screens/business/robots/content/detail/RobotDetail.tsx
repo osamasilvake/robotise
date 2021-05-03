@@ -65,7 +65,8 @@ const RobotDetail: FC = () => {
 	}
 
 	// empty
-	if (!robotTwins.content) {
+	// previous !== current
+	if (!robotTwins.content || (pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId)) {
 		return null;
 	}
 

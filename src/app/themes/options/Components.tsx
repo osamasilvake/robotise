@@ -110,7 +110,8 @@ const OverridesCustom: Components = {
 		styleOverrides: {
 			root: {
 				borderRadius: pxToRem(2),
-				height: pxToRem(40)
+				height: pxToRem(40),
+				transition: 'none'
 			},
 			outlined: {
 				border: `${pxToRem(1)} solid ${AppConfigService.AppOptions.colors.c9}`,
@@ -118,6 +119,12 @@ const OverridesCustom: Components = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					color: AppConfigService.AppOptions.colors.c5
+				},
+				'&.selected': {
+					backgroundColor: AppConfigService.AppOptions.colors.c9,
+					color: AppConfigService.AppOptions.colors.c5,
+					cursor: 'default',
+					pointerEvents: 'none'
 				}
 			},
 			contained: {
@@ -169,8 +176,18 @@ const OverridesCustom: Components = {
 	},
 	MuiOutlinedInput: {
 		styleOverrides: {
+			root: {
+				borderRadius: pxToRem(2)
+			},
 			input: {
 				filter: 'none'
+			}
+		}
+	},
+	MuiInputLabel: {
+		styleOverrides: {
+			root: {
+				transition: 'none'
 			}
 		}
 	}

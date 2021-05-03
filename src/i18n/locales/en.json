@@ -52,6 +52,10 @@
 				"ALERTS": {
 					"CLIPBOARD": "Message copied to clipboard!"
 				},
+				"COMMANDS": {
+					"SUCCESS": "Command has been executed successfully!",
+					"ERROR": "Failed to request control access!"
+				},
 				"CAMERAS": {
 					"top": {
 						"SUCCESS": "Top camera image was requested!",
@@ -222,6 +226,30 @@
 				"LOCATION": {
 					"TITLE": "Location",
 					"GRID": "Grid"
+				},
+				"COMMANDS": {
+					"CONTROL": {
+						"TITLE": "ROC Control",
+						"ON": "ON",
+						"OFF": "OFF"
+					},
+					"MUTE": {
+						"TITLE": "Mute Sensors",
+						"FRONT": "FRONT",
+						"BACK": "BACK",
+						"UN_MUTE": "UNMUTE"
+					},
+					"ACTIONS": {
+						"TITLE": "Commands",
+						"ROTATE": {
+							"LABEL": "Angle",
+							"BUTTON": "Rotate"
+						},
+						"TRANSLATE": {
+							"LABEL": "Distance (cm)",
+							"BUTTON": "Translate"
+						}
+					}
 				},
 				"CAMERAS": {
 					"TITLE": "Cameras",

@@ -25,15 +25,33 @@ class RobotsService {
 
 	/**
 	 * fetch robot twins of a single robot
-	 * @param robotId
+	 * @param robotTwinId
 	 * @returns
 	 */
-	robotTwinsSingleFetch = (robotId: string) => {
+	robotTwinsSingleFetch = (robotTwinId: string) => {
 		const url = AppConfigService.AppServices.ROBOT_TWINS.SINGLE.replace(
 			':robotTwinId',
-			robotId
+			robotTwinId
 		);
 		return HttpClientService.get(url);
+	};
+
+	/**
+	 * send robot control command
+	 * @param robotId
+	 * @param command
+	 * @returns
+	 */
+	robotControlCommandSend = (robotId: string, command: string) => {
+		const url = AppConfigService.AppServices.ROBOT.COMMANDS.replace(':robot', robotId);
+		return HttpClientService.post(url, {
+			data: {
+				type: 'robot-commands',
+				attributes: {
+					command: command
+				}
+			}
+		});
 	};
 
 	/**

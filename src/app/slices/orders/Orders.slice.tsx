@@ -153,6 +153,9 @@ export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: 
 			// deserialize response
 			let result = await deserializeOrder(res);
 
+			// handle mapping
+			result = mapItem(result);
+
 			if (orders.content) {
 				// update created order
 				result = updateCreatedOrder(orders.content, result);
@@ -269,15 +272,22 @@ export const OrderUpdateState = (state: SOCState) => async (
 const handleMapping = (result: SOContentInterface) => {
 	return {
 		...result,
-		data: result.data.map((item) => {
-			return {
-				...item,
-				status: `CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${item.status}`,
-				room: item.room || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
-				mode: `CONTENT.ORDERS.COMMON.MODE.${item.mode}`,
-				origin: `CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
-			};
-		})
+		data: result.data.map((item) => mapItem(item))
+	};
+};
+
+/**
+ * map item
+ * @param item
+ * @returns
+ */
+const mapItem = (item: SOCDataInterface) => {
+	return {
+		...item,
+		status: `CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${item.status}`,
+		room: item.room || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
+		mode: `CONTENT.ORDERS.COMMON.MODE.${item.mode}`,
+		origin: `CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
 	};
 };
 

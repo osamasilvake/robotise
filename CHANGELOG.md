@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.2.0...v1.3.0) (2021-05-04)
+
+
+### Features
+
+* Add roc control to robot detail page ([11682da](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/11682da05723bd8c78d4a43c7ec6bd6e0a3547e9))
+
+
+### Bug Fixes
+
+* Active orders filter on orders page ([901ef60](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/901ef602e20dbc80f532cea2633750d95f9b31a1))
+* Add full-width option to picture component ([af5718f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/af5718f0b286fdbfd2e1492a1aa4b604b23ead69))
+* Add total price for each product ([a59a0bd](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a59a0bd9471c0100e33e6c263c6b59f343e45e98))
+* App alert colors ([b317ba8](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b317ba8131fee4fbff4d54d7357990fd7b8f236c))
+* Commands rotate and translate ([7e38bf7](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7e38bf7c467b1417d54fa1b7046a4c6118a35ab7))
+* Error messages on all robot pages ([be69cd7](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/be69cd78d581f31d7e36d3001f4536f2ed652cd3))
+* Handle data mapping for Orders slice ([449eb53](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/449eb53523810a0551fed1c055a43475d6201ee4))
+* Improve robot detail page improvement ([b6f2c48](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b6f2c48b863ce2bf909f674a6a6850c7b95e1f80))
+* List item icon colors ([9eb510a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9eb510a2cb3cab53f7342c60160fff1e760ca423))
+* Orders list status colors ([7b00520](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7b005201389497ff5946b5ad25f3b513741711de))
+* Orders test ([5a1654f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/5a1654f5b25cbc0c090099ca07e3026913a4efba))
+* Picture component ([b076505](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b076505004a66b4c6061f2e29f76134ca0bc77cc))
+* Remove test and billed columns ([0e76457](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/0e764571485eec40fd961a7bed6b091b55eaa7da))
+* Robot detail commands and alerts ([1214b07](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/1214b0715d3ddeb3aca619e3a6db2d8bdbad7972))
+* Roc commands dropdown issue ([cd4713d](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/cd4713d2ac62bcc35311933258ffbe2d3e82c772))
+* Set styles import properly ([aef2235](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/aef22351ff0d78171aa8a36d0964e79a465c89e0))
+
 ## [1.2.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.1.2...v1.2.0) (2021-04-30)
 
 

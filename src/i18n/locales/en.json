@@ -97,16 +97,16 @@
 		"E404": {
 			"TITLE": "404",
 			"DESCRIPTION": "Sorry, we couldn't locate your page!",
-			"LINK": "Go back to Home Page"
+			"LINK": "Refresh Page"
 		},
 		"ERROR_BOUNDARY": {
 			"TITLE": "Whoops!",
 			"DESCRIPTION": "Something bad happened!",
-			"LINK": "Go back to Home Page"
+			"LINK": "Refresh Page"
 		},
 		"PAGE_ERROR": {
 			"TITLE": "Whoops!",
-			"LINK": "Go back to Dashboard"
+			"LINK": "Refresh Page"
 		},
 		"API": {
 			"FETCH": "Unable to fetch the content!",

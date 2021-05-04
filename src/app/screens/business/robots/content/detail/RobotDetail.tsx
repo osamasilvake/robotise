@@ -7,7 +7,6 @@ import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import PageError from '../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../services';
-import { robotSelector } from '../../../../../slices/robot/Robot.slice';
 import {
 	RobotTwinsFetch,
 	robotTwinsSelector
@@ -25,14 +24,13 @@ const RobotDetail: FC = () => {
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 	const robotTwins = useSelector(robotTwinsSelector);
-	const robot = useSelector(robotSelector);
 
 	const params: RobotParamsInterface = useParams();
 	const cRobotTwinsId = params.robot;
 	const pRobotTwinsId = robotTwins.content?.data[0].id;
 
 	useEffect(() => {
-		const condition1 = !sites.loader;
+		const condition1 = sites.content !== null;
 		const condition2 = robotTwins.content === null && cRobotTwinsId;
 		const condition3 =
 			robotTwins.content !== null && pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId;
@@ -41,12 +39,14 @@ const RobotDetail: FC = () => {
 			// dispatch: fetch robot twins of a robot
 			dispatch(RobotTwinsFetch(cRobotTwinsId));
 		}
-	}, [dispatch, sites.loader, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
+	}, [dispatch, sites.content, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			// dispatch: fetch robot twins of a robot
-			dispatch(RobotTwinsFetch(cRobotTwinsId, true));
+			if (sites.content && cRobotTwinsId) {
+				// dispatch: fetch robot twins of a robot
+				dispatch(RobotTwinsFetch(cRobotTwinsId, true));
+			}
 		};
 
 		// interval
@@ -55,17 +55,14 @@ const RobotDetail: FC = () => {
 			AppConfigService.AppOptions.screens.robots.content.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, cRobotTwinsId]);
+	}, [dispatch, cRobotTwinsId, sites.content]);
 
 	useEffect(() => {
-		const condition1 = !sites.loader;
-		const condition2 = cRobotTwinsId;
-
-		if (condition1 && condition2) {
+		if (sites.content && cRobotTwinsId) {
 			// dispatch: fetch robot twins of a robot
 			dispatch(RobotTwinsFetch(cRobotTwinsId, true));
 		}
-	}, [dispatch, cRobotTwinsId, sites.loader, robot.control.content?.command]);
+	}, [dispatch, sites.content, cRobotTwinsId]);
 
 	// loader
 	if (sites.loader || robotTwins.loader) {
@@ -73,8 +70,8 @@ const RobotDetail: FC = () => {
 	}
 
 	// error
-	if (robotTwins.errors) {
-		return <PageError message={robotTwins.errors.text} />;
+	if (sites.errors || robotTwins.errors) {
+		return <PageError message={sites.errors?.text || robotTwins.errors?.text} />;
 	}
 
 	// empty

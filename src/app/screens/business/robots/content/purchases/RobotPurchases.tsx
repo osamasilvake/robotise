@@ -118,19 +118,21 @@ const RobotPurchases: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			// dispatch: fetch purchases
-			dispatch(
-				PurchasesFetchList(
-					{
-						robotId: cRobotId,
-						page: 0,
-						rowsPerPage,
-						billed,
-						debug
-					},
-					true
-				)
-			);
+			if (purchases.content) {
+				// dispatch: fetch purchases
+				dispatch(
+					PurchasesFetchList(
+						{
+							robotId: cRobotId,
+							page: 0,
+							rowsPerPage,
+							billed,
+							debug
+						},
+						true
+					)
+				);
+			}
 		};
 
 		// interval
@@ -139,7 +141,7 @@ const RobotPurchases: FC = () => {
 			AppConfigService.AppOptions.screens.robots.content.purchases.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, cRobotId, page, rowsPerPage, billed, debug]);
+	}, [dispatch, purchases.content, cRobotId, page, rowsPerPage, billed, debug]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || purchases.loader) {
@@ -147,8 +149,14 @@ const RobotPurchases: FC = () => {
 	}
 
 	// error
-	if (purchases.errors) {
-		return <PageError message={purchases.errors.text} />;
+	if (sites.errors || robotTwinsSummary.errors || purchases.errors) {
+		return (
+			<PageError
+				message={
+					sites.errors?.text || robotTwinsSummary.errors?.text || purchases.errors?.text
+				}
+			/>
+		);
 	}
 
 	// empty

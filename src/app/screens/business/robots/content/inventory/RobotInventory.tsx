@@ -49,9 +49,9 @@ const RobotInventory: FC = () => {
 		}
 	}, [
 		dispatch,
-		inventory.content,
 		robotTwinsSummary.content,
 		products.content,
+		inventory.content,
 		pSiteId,
 		cSiteId,
 		pRobotId,
@@ -60,8 +60,10 @@ const RobotInventory: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			// dispatch: fetch inventory
-			cRobotId && dispatch(InventoryFetchList(cRobotId, true));
+			if (inventory.content && cRobotId) {
+				// dispatch: fetch inventory
+				dispatch(InventoryFetchList(cRobotId, true));
+			}
 		};
 
 		// interval
@@ -70,7 +72,7 @@ const RobotInventory: FC = () => {
 			AppConfigService.AppOptions.screens.robots.content.inventory.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, cRobotId]);
+	}, [dispatch, inventory.content, cRobotId]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || products.loader || inventory.loader) {
@@ -78,8 +80,17 @@ const RobotInventory: FC = () => {
 	}
 
 	// error
-	if (inventory.errors) {
-		return <PageError message={inventory.errors.text} />;
+	if (sites.errors || robotTwinsSummary.errors || products.errors || inventory.errors) {
+		return (
+			<PageError
+				message={
+					sites.errors?.text ||
+					robotTwinsSummary.errors?.text ||
+					products.errors?.text ||
+					inventory.errors?.text
+				}
+			/>
+		);
 	}
 
 	// empty

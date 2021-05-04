@@ -20,10 +20,10 @@ class AppConfigService extends EnvService {
 				c5: '#eeeeee ', // light: 			paper
 				c6: '#dbdcde', // light: 			box-shadow
 
-				c7: '#ffffff', // dark: 			text
-				c7a: '#9ea1a7', // dark: 			sub-text
-				c8: '#171a20', // light:			text
-				c8a: '#818386', // light:			sub-text
+				c7: '#ffffff', // dark: 			text-dark
+				c7a: '#9ea1a7', // dark: 			text-light
+				c8: '#171a20', // light:			text-dark
+				c8a: '#717375', // light:			text-light
 
 				c9: '#26aee4', // 					blue
 				c10: '#2e7d32', //					green

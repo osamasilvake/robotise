@@ -61,13 +61,6 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiListItemIcon: {
-		styleOverrides: {
-			root: {
-				color: AppConfigService.AppOptions.colors.c8a
-			}
-		}
-	},
 	MuiCardContent: {
 		styleOverrides: {
 			root: {

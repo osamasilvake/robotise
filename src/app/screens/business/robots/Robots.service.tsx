@@ -1,5 +1,11 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
+import {
+	RobotDetailCommandsControlTypeEnum,
+	RobotDetailCommandsMuteSensorsTypeEnum,
+	RobotDetailCommandsTypeEnum
+} from './content/detail/commands/RobotDetailCommands.enum';
+import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
 import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersFetchListInterface } from './content/orders/RobotOrders.interface';
 import { RobotPurchasesFetchListInterface } from './content/purchases/list/table/RobotPurchasesTable.interface';
@@ -43,18 +49,36 @@ class RobotsService {
 	 * @param option
 	 * @returns
 	 */
-	robotControlCommandSend = (robotId: string, command: string, option?: string) => {
+	robotControlCommandSend = (
+		robotId: string,
+		command: RobotDetailCommandsTypeEnum,
+		option?:
+			| RobotDetailCommandsControlTypeEnum
+			| RobotDetailCommandsMuteSensorsTypeEnum
+			| string
+			| number
+	) => {
 		const url = AppConfigService.AppServices.ROBOT.COMMANDS.replace(':robot', robotId);
 
-		const attributes = {
-			command: command,
-			options: { state: option }
-		};
+		const options: RobotDetailCommandsStateOptionInterface = {};
+		switch (command) {
+			case RobotDetailCommandsTypeEnum.TRANSLATE:
+				options.distance = option;
+				break;
+			case RobotDetailCommandsTypeEnum.ROTATE:
+				options.angle = option;
+				break;
+			default:
+				options.state = option;
+		}
 
 		return HttpClientService.post(url, {
 			data: {
 				type: 'robot-commands',
-				attributes
+				attributes: {
+					command,
+					options
+				}
 			}
 		});
 	};

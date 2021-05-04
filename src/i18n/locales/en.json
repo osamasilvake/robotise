@@ -229,9 +229,19 @@
 				},
 				"COMMANDS": {
 					"CONTROL": {
-						"TITLE": "ROC Control",
-						"ON": "ON",
-						"OFF": "OFF"
+						"TITLE": "ROC Commands",
+						"CHIPS": {
+							"ROBOT_OFF": "Robot OFF",
+							"MODE": {
+								"JOYSTICK": "Joystick",
+								"AUTONOMOUS": "Autonomous",
+								"ROC_CONTROL": "ROC Control"
+							}
+						},
+						"STATE": {
+							"ON": "ON",
+							"OFF": "OFF"
+						}
 					},
 					"MUTE": {
 						"TITLE": "Mute Sensors",
@@ -242,7 +252,7 @@
 					"ACTIONS": {
 						"TITLE": "Commands",
 						"ROTATE": {
-							"LABEL": "Angle",
+							"LABEL": "Angle (degree)",
 							"BUTTON": "Rotate"
 						},
 						"TRANSLATE": {
@@ -256,7 +266,7 @@
 					"base": "Base Camera",
 					"top": "Top Camera",
 					"REQUEST": "Request",
-					"DISABLED": "Robot is off"
+					"DISABLED": "Robot OFF"
 				},
 				"STATES": {
 					"BATTERY": {

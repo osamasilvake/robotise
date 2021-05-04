@@ -19,6 +19,7 @@ export enum RobotDetailCommandsMuteSensorsTypeEnum {
 }
 
 export enum RobotDetailCommandsActionTypeEnum {
+	NONE,
 	BACKWARD,
 	FORWARD
 }

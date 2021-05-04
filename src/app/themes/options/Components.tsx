@@ -78,6 +78,13 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
+	MuiChip: {
+		styleOverrides: {
+			root: {
+				transition: 'none'
+			}
+		}
+	},
 	MuiFormControl: {
 		styleOverrides: {
 			fullWidth: {

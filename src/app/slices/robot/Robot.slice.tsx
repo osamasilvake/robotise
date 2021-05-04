@@ -3,6 +3,11 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { RobotDetailCameraTypeEnum } from '../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
+import {
+	RobotDetailCommandsControlTypeEnum,
+	RobotDetailCommandsMuteSensorsTypeEnum,
+	RobotDetailCommandsTypeEnum
+} from '../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
 import { AppReducerType } from '..';
@@ -97,8 +102,12 @@ export default dataSlice.reducer;
  */
 export const RobotControlCommandSend = (
 	robotId: string,
-	command: string,
-	option?: string | number
+	command: RobotDetailCommandsTypeEnum,
+	option?:
+		| RobotDetailCommandsControlTypeEnum
+		| RobotDetailCommandsMuteSensorsTypeEnum
+		| string
+		| number
 ) => async (dispatch: Dispatch) => {
 	const state = {
 		module: RobotTypeEnum.ROC_CONTROL

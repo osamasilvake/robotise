@@ -27,6 +27,7 @@ export interface RobotDetailCommandsPayloadInterface {
 }
 
 export interface RobotDetailCommandControlInterface {
+	robotTwin: SRTContentDataInterface;
 	robot: SliceRobotInterface;
 	state: RobotDetailCommandsStateInterface;
 	sendControlCommand: (
@@ -47,4 +48,10 @@ export interface RobotDetailCommandActionsInterface {
 	sendControlCommand: (
 		payload: RobotDetailCommandsPayloadInterface
 	) => MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+export interface RobotDetailCommandsStateOptionInterface {
+	state?: string | number;
+	angle?: string | number;
+	distance?: string | number;
 }

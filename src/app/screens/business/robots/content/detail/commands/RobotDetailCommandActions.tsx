@@ -46,7 +46,13 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			<Box>
 				<FormControl
 					variant="outlined"
-					disabled={!state.ready || !state.control || state.forward || state.backward}
+					disabled={
+						!state.ready ||
+						!state.control ||
+						state.forward ||
+						state.backward ||
+						robotTwins.loading
+					}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-rotate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.ROTATE.LABEL')}
@@ -68,12 +74,12 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				<Button
 					variant="outlined"
 					disabled={
-						!state.ready ||
-						robotTwins.loading ||
 						rotate === rotateAngles[4].value ||
+						!state.ready ||
 						!state.control ||
 						state.forward ||
-						state.backward
+						state.backward ||
+						robotTwins.loading
 					}
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({
@@ -86,7 +92,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			<Box className={classes.sCommandsActionTranslateBox}>
 				<FormControl
 					variant="outlined"
-					disabled={!state.ready || !state.control}
+					disabled={!state.ready || !state.control || robotTwins.loading}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-translate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.LABEL')}
@@ -98,29 +104,30 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						label={t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.LABEL')}
 						value={translate}
 						onChange={(event) => setTranslate(event.target.value)}>
-						{translateDistances
-							.filter(
-								(d) =>
-									(d.type !== RobotDetailCommandsActionTypeEnum.FORWARD &&
+						{translateDistances.map((distance) => (
+							<MenuItem
+								key={distance.value}
+								value={distance.value}
+								disabled={
+									((distance.type === RobotDetailCommandsActionTypeEnum.FORWARD &&
 										state.forward) ||
-									(d.type !== RobotDetailCommandsActionTypeEnum.BACKWARD &&
-										state.backward) ||
-									(!state.forward && !state.backward)
-							)
-							.map((distance) => (
-								<MenuItem key={distance.value} value={distance.value}>
-									{distance.label}
-								</MenuItem>
-							))}
+										(distance.type ===
+											RobotDetailCommandsActionTypeEnum.BACKWARD &&
+											state.backward)) &&
+									distance.value !== 'none'
+								}>
+								{distance.label}
+							</MenuItem>
+						))}
 					</Select>
 				</FormControl>
 				<Button
 					variant="outlined"
 					disabled={
-						!state.ready ||
-						robotTwins.loading ||
 						translate === translateDistances[4].value ||
-						!state.control
+						!state.ready ||
+						!state.control ||
+						robotTwins.loading
 					}
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({

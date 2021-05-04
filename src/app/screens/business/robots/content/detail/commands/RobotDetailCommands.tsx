@@ -114,6 +114,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 		<Box className={classes.sCommandsContainer}>
 			{/* Control */}
 			<RobotDetailCommandControl
+				robotTwin={robotTwin}
 				robot={robot}
 				state={state}
 				sendControlCommand={sendControlCommand}

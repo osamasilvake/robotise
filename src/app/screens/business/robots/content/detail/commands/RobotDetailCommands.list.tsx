@@ -18,7 +18,7 @@ export const rotateAngles = [
 		value: '-15'
 	},
 	{
-		type: 'init',
+		type: RobotDetailCommandsActionTypeEnum.NONE,
 		value: 'None'
 	},
 	{
@@ -61,7 +61,7 @@ export const translateDistances = [
 		value: '-0.01'
 	},
 	{
-		type: 'init',
+		type: RobotDetailCommandsActionTypeEnum.NONE,
 		label: 'None',
 		value: 'none'
 	},

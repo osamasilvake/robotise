@@ -124,7 +124,10 @@ const OverridesCustom: Components = {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					color: AppConfigService.AppOptions.colors.c5,
 					cursor: 'default',
-					pointerEvents: 'none'
+					pointerEvents: 'none',
+					'&.Mui-disabled': {
+						opacity: 0.7
+					}
 				}
 			},
 			contained: {

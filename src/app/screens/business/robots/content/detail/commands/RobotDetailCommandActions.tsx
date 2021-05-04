@@ -1,16 +1,16 @@
 import {
 	Box,
 	Button,
-	CircularProgress,
 	FormControl,
 	InputLabel,
 	MenuItem,
 	Select,
 	Typography
 } from '@material-ui/core';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { RobotDetailCommandsActionTypeEnum } from './RobotDetailCommands.enum';
 import { RobotDetailCommandActionsInterface } from './RobotDetailCommands.interface';
 import { rotateAngles, translateDistances } from './RobotDetailCommands.list';
 import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
@@ -21,10 +21,12 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 	const classes = RobotDetailCommandsStyles();
 
 	const [rotate, setRotate] = useState(rotateAngles[4].value);
-	const [translate, setTranslate] = useState(translateDistances[4].value);
+	const [translate, setTranslate] = useState(translateDistances[5].value);
 
-	const lRotate = false;
-	const lTranslate = false;
+	useEffect(() => {
+		setRotate(rotateAngles[4].value);
+		setTranslate(translateDistances[5].value);
+	}, [state.control, state.forward, state.backward]);
 
 	return (
 		<Box>
@@ -37,7 +39,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			<Box>
 				<FormControl
 					variant="outlined"
-					disabled={!state.control}
+					disabled={!state.control || state.forward || state.backward}
 					className={classes.sCommandsActionRotateSelect}>
 					<InputLabel id="control-rotate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.ROTATE.LABEL')}
@@ -58,8 +60,12 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				</FormControl>
 				<Button
 					variant="outlined"
-					disabled={rotate === rotateAngles[4].value}
-					endIcon={lRotate && <CircularProgress size={20} />}
+					disabled={
+						rotate === rotateAngles[4].value ||
+						!state.control ||
+						state.forward ||
+						state.backward
+					}
 					className={classes.sCommandsActionRotateButton}>
 					{t('CONTENT.DETAIL.COMMANDS.ACTIONS.ROTATE.BUTTON')}
 				</Button>
@@ -79,17 +85,25 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						label={t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.LABEL')}
 						value={translate}
 						onChange={(event) => setTranslate(event.target.value)}>
-						{translateDistances.map((distance) => (
-							<MenuItem key={distance.value} value={distance.value}>
-								{distance.value}
-							</MenuItem>
-						))}
+						{translateDistances
+							.filter(
+								(d) =>
+									(d.type !== RobotDetailCommandsActionTypeEnum.FORWARD &&
+										state.forward) ||
+									(d.type !== RobotDetailCommandsActionTypeEnum.BACKWARD &&
+										state.backward) ||
+									(!state.forward && !state.backward)
+							)
+							.map((distance) => (
+								<MenuItem key={distance.value} value={distance.value}>
+									{distance.value}
+								</MenuItem>
+							))}
 					</Select>
 				</FormControl>
 				<Button
 					variant="outlined"
-					disabled={translate === translateDistances[4].value}
-					endIcon={lTranslate && <CircularProgress size={20} />}
+					disabled={translate === translateDistances[5].value || !state.control}
 					className={classes.sCommandsActionTranslateButton}>
 					{t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.BUTTON')}
 				</Button>

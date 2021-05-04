@@ -34,18 +34,16 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 		if (controlMode === RobotDetailCommandsControlTypeEnum.ROC_CONTROL) {
 			const state = {
 				control: true,
-				forward: true,
-				backward: true,
+				forward: false,
+				backward: false,
 				rotate: true,
-				translate: true
+				translate: false
 			};
 			if (muteSensorState === RobotDetailCommandsMuteSensorsTypeEnum.FRONT_MUTED) {
-				state.forward = false;
-				state.backward = true;
+				state.forward = true;
 				state.rotate = false;
 			} else if (muteSensorState === RobotDetailCommandsMuteSensorsTypeEnum.BACK_MUTED) {
-				state.forward = true;
-				state.backward = false;
+				state.backward = true;
 				state.rotate = false;
 			}
 			setState(state);
@@ -54,8 +52,8 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 				control: false,
 				rotate: false,
 				translate: false,
-				forward: true,
-				backward: true
+				forward: false,
+				backward: false
 			});
 		}
 	}, [controlMode, muteSensorState]);
@@ -66,7 +64,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 			<RobotDetailCommandControl robotTwin={robotTwin} robot={robot} state={state} />
 
 			{/* Mute Sensors */}
-			<RobotDetailCommandMuteSensors state={state} />
+			<RobotDetailCommandMuteSensors robotTwin={robotTwin} robot={robot} state={state} />
 
 			{/* Actions */}
 			<RobotDetailCommandActions state={state} />

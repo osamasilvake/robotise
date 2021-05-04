@@ -40,16 +40,21 @@ class RobotsService {
 	 * send robot control command
 	 * @param robotId
 	 * @param command
+	 * @param option
 	 * @returns
 	 */
-	robotControlCommandSend = (robotId: string, command: string) => {
+	robotControlCommandSend = (robotId: string, command: string, option?: string) => {
 		const url = AppConfigService.AppServices.ROBOT.COMMANDS.replace(':robot', robotId);
+
+		const attributes = {
+			command: command,
+			options: { state: option }
+		};
+
 		return HttpClientService.post(url, {
 			data: {
 				type: 'robot-commands',
-				attributes: {
-					command: command
-				}
+				attributes
 			}
 		});
 	};

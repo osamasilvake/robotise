@@ -4,12 +4,14 @@ export const RobotDetailCommandsStyles = makeStyles((theme: Theme) => ({
 	sCommandsContainer: {
 		marginTop: theme.spacing(4)
 	},
+	sCommandsControlLabel: {
+		display: 'flex'
+	},
 	sCommandsControlTitle: {
 		marginBottom: theme.spacing(1.5)
 	},
 	sCommandsControlLoading: {
-		margin: theme.spacing(0.5, 0, 0, 2),
-		position: 'absolute'
+		margin: theme.spacing(0.4, 0, 0, 1.5)
 	},
 	sCommandsMuteTitle: {
 		margin: theme.spacing(2, 0, 1)

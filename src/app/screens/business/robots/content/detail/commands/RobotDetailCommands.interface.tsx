@@ -20,6 +20,8 @@ export interface RobotDetailCommandControlInterface {
 }
 
 export interface RobotDetailCommandMuteSensorsInterface {
+	robotTwin: SRTContentDataInterface;
+	robot: SliceRobotInterface;
 	state: RobotDetailCommandsStateInterface;
 }
 

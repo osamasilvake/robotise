@@ -42,6 +42,10 @@ export const rotateAngles = [
 export const translateDistances = [
 	{
 		type: RobotDetailCommandsActionTypeEnum.BACKWARD,
+		value: '-15'
+	},
+	{
+		type: RobotDetailCommandsActionTypeEnum.BACKWARD,
 		value: '-10'
 	},
 	{
@@ -75,5 +79,9 @@ export const translateDistances = [
 	{
 		type: RobotDetailCommandsActionTypeEnum.FORWARD,
 		value: '10'
+	},
+	{
+		type: RobotDetailCommandsActionTypeEnum.FORWARD,
+		value: '15'
 	}
 ];

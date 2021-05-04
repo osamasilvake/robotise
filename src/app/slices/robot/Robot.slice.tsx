@@ -92,11 +92,14 @@ export default dataSlice.reducer;
  * send robot control command
  * @param robotId
  * @param command
+ * @param option
  * @returns
  */
-export const RobotControlCommandSend = (robotId: string, command: string) => async (
-	dispatch: Dispatch
-) => {
+export const RobotControlCommandSend = (
+	robotId: string,
+	command: string,
+	option?: string
+) => async (dispatch: Dispatch) => {
 	const state = {
 		module: RobotTypeEnum.ROC_CONTROL
 	};
@@ -104,7 +107,7 @@ export const RobotControlCommandSend = (robotId: string, command: string) => asy
 	// dispatch: loading
 	dispatch(loading(state));
 
-	return RobotsService.robotControlCommandSend(robotId, command)
+	return RobotsService.robotControlCommandSend(robotId, command, option)
 		.then(async (res) => {
 			// deserialize response
 			const result = await deserializeRobot(res);

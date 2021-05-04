@@ -59,7 +59,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'command-control--error',
+					id: 'command-control-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.DETAIL.COMMANDS.ERROR`
@@ -70,16 +70,27 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 
 	return (
 		<Box>
-			<Typography
-				variant="h6"
-				color="textSecondary"
-				className={classes.sCommandsControlTitle}>
-				{t('CONTENT.DETAIL.COMMANDS.CONTROL.TITLE')}
-			</Typography>
+			<Box className={classes.sCommandsControlLabel}>
+				<Typography
+					variant="h6"
+					color="textSecondary"
+					className={classes.sCommandsControlTitle}>
+					{t('CONTENT.DETAIL.COMMANDS.CONTROL.TITLE')}
+				</Typography>
+
+				{(robotTwins.loading || robot.control.loading) && (
+					<Box component="span" className={classes.sCommandsControlLoading}>
+						{<CircularProgress size={20} />}
+					</Box>
+				)}
+			</Box>
+
 			<ButtonGroup
 				color="primary"
 				variant="outlined"
-				disabled={robotTwins.loading || robot.control.loading}>
+				disabled={
+					state.forward || state.backward || robotTwins.loading || robot.control.loading
+				}>
 				<Button
 					className={clsx({
 						['selected']: state.control
@@ -95,12 +106,6 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					{t('CONTENT.DETAIL.COMMANDS.CONTROL.OFF')}
 				</Button>
 			</ButtonGroup>
-
-			{(robotTwins.loading || robot.control.loading) && (
-				<Box component="span" className={classes.sCommandsControlLoading}>
-					{<CircularProgress size={30} />}
-				</Box>
-			)}
 		</Box>
 	);
 };

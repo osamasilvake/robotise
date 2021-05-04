@@ -20,15 +20,12 @@ export const StatusStyles = makeStyles((theme: Theme) => ({
 		backgroundColor: AppConfigService.AppOptions.colors.c10v1
 	},
 	sWarn: {
-		backgroundColor: AppConfigService.AppOptions.colors.c11
+		backgroundColor: AppConfigService.AppOptions.colors.c14
 	},
 	sError: {
 		backgroundColor: AppConfigService.AppOptions.colors.c12
 	},
 	sInfo: {
 		backgroundColor: AppConfigService.AppOptions.colors.c13
-	},
-	sInit: {
-		backgroundColor: AppConfigService.AppOptions.colors.c15
 	}
 }));

@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../../services';
 
@@ -7,18 +7,16 @@ export const RobotDetailAlertsStyles = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(4)
 	},
 	sCardContent: {
-		color: AppConfigService.AppOptions.colors.c7,
 		minHeight: 135,
 		position: 'relative'
 	},
 	sCardDanger: {
-		backgroundColor: AppConfigService.AppOptions.colors.c12
+		backgroundColor: AppConfigService.AppOptions.colors.c12,
+		color: AppConfigService.AppOptions.colors.c7
 	},
 	sCardWarning: {
-		backgroundColor: AppConfigService.AppOptions.colors.c11
-	},
-	sCardOther: {
-		backgroundColor: AppConfigService.AppOptions.colors.c13
+		backgroundColor: AppConfigService.AppOptions.colors.c11,
+		color: AppConfigService.AppOptions.colors.c8
 	},
 	sCardContentIcons: {
 		position: 'absolute',
@@ -26,11 +24,9 @@ export const RobotDetailAlertsStyles = makeStyles((theme: Theme) => ({
 		top: theme.typography.pxToRem(5)
 	},
 	sCardContentIcon: {
-		color: AppConfigService.AppOptions.colors.c7,
 		cursor: 'pointer'
 	},
 	sCardContentMessage: {
-		fontWeight: 500,
 		lineHeight: 1.4,
 		marginTop: theme.spacing(1),
 		wordBreak: 'break-word'

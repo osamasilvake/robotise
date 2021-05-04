@@ -22,17 +22,10 @@ export const RobotDetailCommandsStyles = makeStyles((theme: Theme) => ({
 	sCommandsActionTranslateBox: {
 		marginTop: theme.spacing(2)
 	},
-	sCommandsActionRotateSelect: {
+	sCommandsActionSelect: {
 		minWidth: theme.typography.pxToRem(150)
 	},
-	sCommandsActionRotateButton: {
-		height: theme.typography.pxToRem(56),
-		marginLeft: theme.spacing(2)
-	},
-	sCommandsActionTranslateSelect: {
-		minWidth: theme.typography.pxToRem(150)
-	},
-	sCommandsActionTranslateButton: {
+	sCommandsActionButton: {
 		height: theme.typography.pxToRem(56),
 		marginLeft: theme.spacing(2)
 	}

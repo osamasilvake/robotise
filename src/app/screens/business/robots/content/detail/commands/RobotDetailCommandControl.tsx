@@ -2,71 +2,19 @@ import { Box, Button, ButtonGroup, CircularProgress, Typography } from '@materia
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
-import { AppConfigService } from '../../../../../../services';
-import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
-import { RobotControlCommandSend } from '../../../../../../slices/robot/Robot.slice';
-import {
-	RobotTwinsFetch,
-	robotTwinsSelector
-} from '../../../../../../slices/robot-twins/RobotTwins.slice';
+import { robotTwinsSelector } from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import { RobotDetailCommandsTypeEnum } from './RobotDetailCommands.enum';
 import { RobotDetailCommandControlInterface } from './RobotDetailCommands.interface';
 import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
 
 const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props) => {
-	const { robotTwin, robot, state } = props;
+	const { robot, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyles();
 
-	const dispatch = useDispatch();
 	const robotTwins = useSelector(robotTwinsSelector);
-
-	/**
-	 * send control command
-	 * @param status
-	 * @returns
-	 */
-	const sendControlCommand = (status: boolean) => () => {
-		// dispatch: send robot control command
-		// dispatch: fetch robot twins of a robot
-		const value = status
-			? RobotDetailCommandsTypeEnum.CONTROL_START
-			: RobotDetailCommandsTypeEnum.CONTROL_STOP;
-		Promise.all([
-			dispatch(RobotControlCommandSend(robotTwin.robot.id, value)),
-			dispatch(
-				RobotTwinsFetch(
-					robotTwin.id,
-					true,
-					AppConfigService.AppOptions.screens.robots.content.detail.commands.requestDelay
-				)
-			)
-		])
-			.then(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'command-control-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.DETAIL.COMMANDS.SUCCESS`
-				};
-				dispatch(GeneralTriggerMessage(message));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'command-control-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.COMMANDS.ERROR`
-				};
-				dispatch(GeneralTriggerMessage(message));
-			});
-	};
 
 	return (
 		<Box>
@@ -95,14 +43,18 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					className={clsx({
 						['selected']: state.control
 					})}
-					onClick={sendControlCommand(true)}>
+					onClick={sendControlCommand({
+						command: RobotDetailCommandsTypeEnum.CONTROL_START
+					})}>
 					{t('CONTENT.DETAIL.COMMANDS.CONTROL.ON')}
 				</Button>
 				<Button
 					className={clsx({
 						['selected']: !state.control
 					})}
-					onClick={sendControlCommand(false)}>
+					onClick={sendControlCommand({
+						command: RobotDetailCommandsTypeEnum.CONTROL_STOP
+					})}>
 					{t('CONTENT.DETAIL.COMMANDS.CONTROL.OFF')}
 				</Button>
 			</ButtonGroup>

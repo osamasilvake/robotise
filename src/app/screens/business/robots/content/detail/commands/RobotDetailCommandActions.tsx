@@ -9,16 +9,23 @@ import {
 } from '@material-ui/core';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
-import { RobotDetailCommandsActionTypeEnum } from './RobotDetailCommands.enum';
+import { robotTwinsSelector } from '../../../../../../slices/robot-twins/RobotTwins.slice';
+import {
+	RobotDetailCommandsActionTypeEnum,
+	RobotDetailCommandsTypeEnum
+} from './RobotDetailCommands.enum';
 import { RobotDetailCommandActionsInterface } from './RobotDetailCommands.interface';
 import { rotateAngles, translateDistances } from './RobotDetailCommands.list';
 import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
 
 const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props) => {
-	const { state } = props;
+	const { state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyles();
+
+	const robotTwins = useSelector(robotTwinsSelector);
 
 	const [rotate, setRotate] = useState(rotateAngles[4].value);
 	const [translate, setTranslate] = useState(translateDistances[5].value);
@@ -40,7 +47,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				<FormControl
 					variant="outlined"
 					disabled={!state.control || state.forward || state.backward}
-					className={classes.sCommandsActionRotateSelect}>
+					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-rotate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.ROTATE.LABEL')}
 					</InputLabel>
@@ -61,12 +68,17 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				<Button
 					variant="outlined"
 					disabled={
+						robotTwins.loading ||
 						rotate === rotateAngles[4].value ||
 						!state.control ||
 						state.forward ||
 						state.backward
 					}
-					className={classes.sCommandsActionRotateButton}>
+					className={classes.sCommandsActionButton}
+					onClick={sendControlCommand({
+						command: RobotDetailCommandsTypeEnum.ROTATE,
+						state: rotate
+					})}>
 					{t('CONTENT.DETAIL.COMMANDS.ACTIONS.ROTATE.BUTTON')}
 				</Button>
 			</Box>
@@ -74,7 +86,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				<FormControl
 					variant="outlined"
 					disabled={!state.control}
-					className={classes.sCommandsActionTranslateSelect}>
+					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-translate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.LABEL')}
 					</InputLabel>
@@ -103,8 +115,16 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				</FormControl>
 				<Button
 					variant="outlined"
-					disabled={translate === translateDistances[5].value || !state.control}
-					className={classes.sCommandsActionTranslateButton}>
+					disabled={
+						robotTwins.loading ||
+						translate === translateDistances[5].value ||
+						!state.control
+					}
+					className={classes.sCommandsActionButton}
+					onClick={sendControlCommand({
+						command: RobotDetailCommandsTypeEnum.TRANSLATE,
+						state: translate
+					})}>
 					{t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.BUTTON')}
 				</Button>
 			</Box>

@@ -12,5 +12,5 @@ export interface UseFormRetInterface<UseFormEntity> {
 
 export interface SelectInterface {
 	name?: string;
-	value: unknown;
+	value: string;
 }

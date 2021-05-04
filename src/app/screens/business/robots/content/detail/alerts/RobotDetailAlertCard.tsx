@@ -72,11 +72,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 			<CardContent
 				className={clsx(cardClasses.sCardContent1, classes.sCardContent, {
 					[classes.sCardDanger]: alert.level === RobotDetailAlertsTypeEnum.DANGER,
-					[classes.sCardWarning]: alert.level === RobotDetailAlertsTypeEnum.WARNING,
-					[classes.sCardOther]: !(
-						alert.level === RobotDetailAlertsTypeEnum.DANGER ||
-						alert.level === RobotDetailAlertsTypeEnum.WARNING
-					)
+					[classes.sCardWarning]: alert.level === RobotDetailAlertsTypeEnum.WARNING
 				})}>
 				{/* Icon */}
 				<Box className={classes.sCardContentIcons}>
@@ -90,14 +86,11 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 				</Box>
 
 				{/* Date */}
-				<Typography variant="body2" color="inherit">
-					{momentFormat3(alert.createdAt)}
-				</Typography>
+				<Typography variant="body2">{momentFormat3(alert.createdAt)}</Typography>
 
 				{/* Message */}
 				<Typography
 					variant={adjustAlertMessageSize(alert.message)}
-					color="inherit"
 					className={classes.sCardContentMessage}>
 					{!(cWindow.innerWidth <= mobileScreen) && alert.message.length > msMax
 						? `${alert.message.substr(0, msMax)} ...`

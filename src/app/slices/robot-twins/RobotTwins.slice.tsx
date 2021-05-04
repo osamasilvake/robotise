@@ -55,12 +55,12 @@ export default dataSlice.reducer;
 
 /**
  * fetch robot twins of a robot
- * @param robotId
+ * @param robotTwinId
  * @param refresh
  * @param wait
  * @returns
  */
-export const RobotTwinsFetch = (robotId: string, refresh = false, wait = -1) => async (
+export const RobotTwinsFetch = (robotTwinId: string, refresh = false, wait = -1) => async (
 	dispatch: Dispatch,
 	getState: () => AppReducerType
 ) => {
@@ -80,7 +80,7 @@ export const RobotTwinsFetch = (robotId: string, refresh = false, wait = -1) => 
 	// wait
 	wait >= 0 && (await timeout(wait));
 
-	return RobotsService.robotTwinsSingleFetch(robotId)
+	return RobotsService.robotTwinsSingleFetch(robotTwinId)
 		.then(async (res) => {
 			// deserialize response
 			const robotTwins = await deserializeRobotTwins(res);
@@ -88,7 +88,7 @@ export const RobotTwinsFetch = (robotId: string, refresh = false, wait = -1) => 
 			// prepare robot twins content
 			if (sites && sites.content) {
 				// prepare robot twins content
-				const result: SRTContentInterface = prepareContent(sites.content, robotTwins);
+				const result = prepareContent(sites.content, robotTwins);
 
 				// dispatch: success
 				dispatch(success(result));

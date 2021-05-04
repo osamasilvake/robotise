@@ -1,10 +1,8 @@
-import { Box, TableCell } from '@material-ui/core';
+import { Box, Chip, TableCell } from '@material-ui/core';
 import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Status from '../../../../../../../components/common/status/Status';
-import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
@@ -41,9 +39,10 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					{value || unknown}
 					{!purchase['isBilled'] && (
 						<Box component="span" className={classes.sTarget}>
-							<Status level={StatusTypeEnum.INFO} small>
-								{t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.UN_BILLED`)}
-							</Status>
+							<Chip
+								label={t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.UN_BILLED`)}
+								size="small"
+							/>
 						</Box>
 					)}
 				</Box>

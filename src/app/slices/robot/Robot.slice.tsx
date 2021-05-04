@@ -3,6 +3,11 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { RobotDetailCameraTypeEnum } from '../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
+import {
+	RobotDetailCommandsControlTypeEnum,
+	RobotDetailCommandsMuteSensorsTypeEnum,
+	RobotDetailCommandsTypeEnum
+} from '../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
 import { AppReducerType } from '..';
@@ -11,6 +16,11 @@ import { SliceRobotInterface } from './Robot.slice.interface';
 
 // initial state
 export const initialState: SliceRobotInterface = {
+	control: {
+		loading: false,
+		content: null,
+		errors: null
+	},
 	map: {
 		loading: false,
 		content: null,
@@ -30,7 +40,9 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.ROC_CONTROL) {
+				state.control.loading = true;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
@@ -38,7 +50,11 @@ const dataSlice = createSlice({
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.ROC_CONTROL) {
+				state.control.loading = false;
+				state.control.content = response;
+				state.control.errors = null;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
 				state.map.errors = null;
@@ -50,7 +66,11 @@ const dataSlice = createSlice({
 		},
 		failure: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.ROC_CONTROL) {
+				state.control.loading = false;
+				state.control.content = null;
+				state.control.errors = response;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = null;
 				state.map.errors = response;
@@ -72,6 +92,50 @@ export const robotSelector = (state: AppReducerType) => state['robot'];
 
 // reducer
 export default dataSlice.reducer;
+
+/**
+ * send robot control command
+ * @param robotId
+ * @param command
+ * @param option
+ * @returns
+ */
+export const RobotControlCommandSend = (
+	robotId: string,
+	command: RobotDetailCommandsTypeEnum,
+	option?:
+		| RobotDetailCommandsControlTypeEnum
+		| RobotDetailCommandsMuteSensorsTypeEnum
+		| string
+		| number
+) => async (dispatch: Dispatch) => {
+	const state = {
+		module: RobotTypeEnum.ROC_CONTROL
+	};
+
+	// dispatch: loading
+	dispatch(loading(state));
+
+	return RobotsService.robotControlCommandSend(robotId, command, option)
+		.then(async (res) => {
+			// deserialize response
+			const result = await deserializeRobot(res);
+
+			// dispatch: success
+			dispatch(success({ ...state, response: result }));
+		})
+		.catch(() => {
+			const message: TriggerMessageInterface = {
+				id: 'send-control-command-error',
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: 'API.FETCH'
+			};
+
+			// dispatch: failure
+			dispatch(failure({ ...state, response: message }));
+		});
+};
 
 /**
  * fetch robot map location

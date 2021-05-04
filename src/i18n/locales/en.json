@@ -33,7 +33,6 @@
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"
 		},
-		"QR_CODE": "Scan QR to open it on mobile",
 		"COPY_CLIPBOARD": "Copy to clipboard"
 	},
 	"MESSAGE": {
@@ -52,6 +51,10 @@
 			"DETAIL": {
 				"ALERTS": {
 					"CLIPBOARD": "Message copied to clipboard!"
+				},
+				"COMMANDS": {
+					"SUCCESS": "Command has been executed successfully!",
+					"ERROR": "Failed to request control access!"
 				},
 				"CAMERAS": {
 					"top": {
@@ -94,16 +97,16 @@
 		"E404": {
 			"TITLE": "404",
 			"DESCRIPTION": "Sorry, we couldn't locate your page!",
-			"LINK": "Go back to Home Page"
+			"LINK": "Refresh Page"
 		},
 		"ERROR_BOUNDARY": {
 			"TITLE": "Whoops!",
 			"DESCRIPTION": "Something bad happened!",
-			"LINK": "Go back to Home Page"
+			"LINK": "Refresh Page"
 		},
 		"PAGE_ERROR": {
 			"TITLE": "Whoops!",
-			"LINK": "Go back to Dashboard"
+			"LINK": "Refresh Page"
 		},
 		"API": {
 			"FETCH": "Unable to fetch the content!",
@@ -224,12 +227,46 @@
 					"TITLE": "Location",
 					"GRID": "Grid"
 				},
+				"COMMANDS": {
+					"CONTROL": {
+						"TITLE": "ROC Commands",
+						"CHIPS": {
+							"ROBOT_OFF": "Robot OFF",
+							"MODE": {
+								"JOYSTICK": "Joystick",
+								"AUTONOMOUS": "Autonomous",
+								"ROC_CONTROL": "ROC Control"
+							}
+						},
+						"STATE": {
+							"ON": "ON",
+							"OFF": "OFF"
+						}
+					},
+					"MUTE": {
+						"TITLE": "Mute Sensors",
+						"FRONT": "FRONT",
+						"BACK": "BACK",
+						"UN_MUTE": "UNMUTE"
+					},
+					"ACTIONS": {
+						"TITLE": "Commands",
+						"ROTATE": {
+							"LABEL": "Angle (degree)",
+							"BUTTON": "Rotate"
+						},
+						"TRANSLATE": {
+							"LABEL": "Distance (cm)",
+							"BUTTON": "Translate"
+						}
+					}
+				},
 				"CAMERAS": {
 					"TITLE": "Cameras",
 					"base": "Base Camera",
 					"top": "Top Camera",
 					"REQUEST": "Request",
-					"DISABLED": "Robot is off"
+					"DISABLED": "Robot OFF"
 				},
 				"STATES": {
 					"BATTERY": {
@@ -278,8 +315,9 @@
 							"CONTROL_MODE": {
 								"TITLE": "Control Mode",
 								"OPTIONS": {
+									"JOYSTICK": "Joystick",
 									"AUTONOMOUS": "Autonomous",
-									"JOYSTICK": "Joystick"
+									"ROC_CONTROL": "ROC Control"
 								}
 							}
 						}
@@ -460,7 +498,11 @@
 						"COLUMNS": {
 							"TITLE": "Title",
 							"QUANTITY": "Quantity",
-							"PRICE": "Price"
+							"PRICE_UNIT": "Unit Price",
+							"PRICE_TOTAL": "Total Price"
+						},
+						"VALUES": {
+							"TOTAL": "Total"
 						}
 					},
 					"FOOT": {

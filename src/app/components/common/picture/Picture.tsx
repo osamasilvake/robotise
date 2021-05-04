@@ -1,4 +1,3 @@
-import { Box } from '@material-ui/core';
 import clsx from 'clsx';
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -13,7 +12,7 @@ import { PictureInterface, PictureOnLoadInterface } from './Picture.interface';
 import { PictureStyles } from './Picture.style';
 
 const Picture: FC<PictureInterface> = (props) => {
-	const { src, alt, fallback, onLoad } = props;
+	const { src, alt, fallback, onLoad, fullWidth } = props;
 	const classes = PictureStyles();
 
 	const general = useSelector(generalSelector);
@@ -74,21 +73,16 @@ const Picture: FC<PictureInterface> = (props) => {
 	};
 
 	return (
-		<Box
-			className={clsx(classes.sPicture, {
-				[classes.sPictureBox]: image === AppConfigService.AppImageURLs.logo.iconOff
-			})}>
-			<img
-				ref={imgRef}
-				src={image}
-				alt={alt}
-				onLoad={onImageLoad}
-				onError={handleError(fallback || AppConfigService.AppImageURLs.logo.iconOff)}
-				className={clsx(classes.sPicture, {
-					[classes.sFallback]: image === AppConfigService.AppImageURLs.logo.iconOff
-				})}
-			/>
-		</Box>
+		<img
+			ref={imgRef}
+			src={image}
+			alt={alt}
+			onLoad={onImageLoad}
+			onError={handleError(fallback || AppConfigService.AppImageURLs.logo.iconOff)}
+			className={clsx(classes.sImage, {
+				[classes.sImageFullWidth]: fullWidth
+			})}
+		/>
 	);
 };
 export default Picture;

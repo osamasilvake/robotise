@@ -10,8 +10,6 @@ import { CANCELLABLE_ORDERS } from './RobotOrdersTable.list';
 export const mapStatusLevel = (status: string) => {
 	const value = status.split('.').pop();
 	switch (value) {
-		case RobotOrdersTableColumnStatusTypeEnum.CREATED:
-			return StatusTypeEnum.INIT;
 		case RobotOrdersTableColumnStatusTypeEnum.PENDING:
 		case RobotOrdersTableColumnStatusTypeEnum.TIMEOUT:
 			return StatusTypeEnum.WARN;
@@ -25,14 +23,19 @@ export const mapStatusLevel = (status: string) => {
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED:
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_REQUEST:
 		case RobotOrdersTableColumnStatusTypeEnum.ERROR:
-		default:
 			return StatusTypeEnum.ERROR;
+		case RobotOrdersTableColumnStatusTypeEnum.CREATED:
+		default:
+			return StatusTypeEnum.INFO;
 	}
 };
 
 /**
  * is cancellable order
- * @param orders
+ * @param status
  * @returns
  */
-export const isOrderCancellable = (status: string) => CANCELLABLE_ORDERS.includes(status);
+export const isOrderCancellable = (status: string) => {
+	const value = status.split('.').pop();
+	return CANCELLABLE_ORDERS.includes(value || '');
+};

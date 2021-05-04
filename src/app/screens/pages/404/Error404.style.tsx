@@ -11,6 +11,7 @@ export const Error404Styles = makeStyles((theme: Theme) => ({
 		maxWidth: 500
 	},
 	sLink: {
+		cursor: 'pointer',
 		fontSize: theme.typography.pxToRem(17)
 	}
 }));

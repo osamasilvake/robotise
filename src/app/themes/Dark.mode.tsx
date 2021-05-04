@@ -125,6 +125,13 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					}
 				}
 			},
+			MuiListItemIcon: {
+				styleOverrides: {
+					root: {
+						color: AppConfigService.AppOptions.colors.c7a
+					}
+				}
+			},
 			MuiCardContent: {
 				styleOverrides: {
 					...options.components?.MuiCardContent?.styleOverrides,

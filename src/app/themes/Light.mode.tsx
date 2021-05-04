@@ -125,6 +125,13 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 					}
 				}
 			},
+			MuiListItemIcon: {
+				styleOverrides: {
+					root: {
+						color: AppConfigService.AppOptions.colors.c8a
+					}
+				}
+			},
 			MuiCardContent: {
 				styleOverrides: {
 					...options.components?.MuiCardContent?.styleOverrides,

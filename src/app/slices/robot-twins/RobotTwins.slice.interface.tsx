@@ -19,6 +19,7 @@ export interface SRTContentDataInterface {
 	robot: SRTContentRobotInterface;
 	robotState: SRTContentRobotStateInterface;
 	alerts: SRTContentAlertsInterface;
+	muteSensorState: SRTContentMuteSensorsInterface;
 	location?: SRTContentLocationInterface | undefined;
 	cameras?: SRTContentCameraInterface | undefined;
 	batteryState?: SRTContentBatteryStateInterface | undefined;
@@ -56,6 +57,11 @@ export interface SRTContentRobotStateInterface {
 
 export interface SRTContentAlertsInterface {
 	value: IAlert[];
+	updatedAt: Date;
+}
+
+export interface SRTContentMuteSensorsInterface {
+	value: string;
 	updatedAt: Date;
 }
 
@@ -159,6 +165,7 @@ export interface IRobotTwin {
 			joystickState: {
 				controlMode: string;
 			};
+			muteSensorState: string;
 			activity: string;
 			location: {
 				map: {
@@ -231,6 +238,9 @@ export interface IRobotTwin {
 				controlMode: {
 					updatedAt: Date;
 				};
+			};
+			muteSensorState: {
+				updatedAt: Date;
 			};
 			activity: {
 				updatedAt: Date;

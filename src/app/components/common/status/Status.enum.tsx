@@ -3,6 +3,5 @@ export enum StatusTypeEnum {
 	SUCCESS_LIGHT,
 	WARN,
 	ERROR,
-	INFO,
-	INIT
+	INFO
 }

@@ -3,6 +3,7 @@ export interface PictureInterface {
 	alt: string;
 	onLoad?: (values: PictureOnLoadInterface) => void;
 	fallback?: string;
+	fullWidth?: boolean;
 }
 
 export interface PictureOnLoadInterface {

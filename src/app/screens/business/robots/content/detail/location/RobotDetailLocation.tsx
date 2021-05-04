@@ -3,10 +3,7 @@ import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
-import {
-	strRemoveLastUnderscore,
-	strRemoveSymbols
-} from '../../../../../../utilities/methods/StringUtilities';
+import { strRemoveLastUnderscore } from '../../../../../../utilities/methods/StringUtilities';
 import { RobotDetailLocationInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyles } from './RobotDetailLocation.style';
 import RobotDetailLocationCard from './RobotDetailLocationCard';
@@ -28,7 +25,7 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 
 			{/* Label */}
 			<Typography variant="body1" color="textPrimary">
-				{strRemoveSymbols(strRemoveLastUnderscore(robotTwin.location.value.map.id))}
+				{strRemoveLastUnderscore(robotTwin.location.value.map.id)}
 				{robotTwin.location.value.map.floor && ` / ${robotTwin.location.value.map.floor}`}
 			</Typography>
 

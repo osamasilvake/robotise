@@ -3,7 +3,6 @@ import log from 'loglevel';
 import { Component, ErrorInfo } from 'react';
 import { withTranslation } from 'react-i18next';
 
-import { AppConfigService } from '../../../services';
 import Error from '../../common/error/Error';
 import { ErrorTypeEnum } from '../../common/error/Error.enum';
 import {
@@ -51,9 +50,7 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 							className={classes.sDescription}>
 							{t('ERROR_BOUNDARY.DESCRIPTION')}
 						</Typography>
-						<Link
-							href={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}
-							className={classes.sLink}>
+						<Link onClick={() => window.location.reload()} className={classes.sLink}>
 							{t('ERROR_BOUNDARY.LINK')}
 						</Link>
 					</Error>

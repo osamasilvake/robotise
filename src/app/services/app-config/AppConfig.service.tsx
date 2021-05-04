@@ -20,19 +20,18 @@ class AppConfigService extends EnvService {
 				c5: '#eeeeee ', // light: 			paper
 				c6: '#dbdcde', // light: 			box-shadow
 
-				c7: '#ffffff', // dark: 			text
-				c7a: '#9ea1a7', // dark: 			sub-text
-				c8: '#171a20', // light:			text
-				c8a: '#818386', // light:			sub-text
+				c7: '#ffffff', // dark: 			text-dark
+				c7a: '#9ea1a7', // dark: 			text-light
+				c8: '#171a20', // light:			text-dark
+				c8a: '#717375', // light:			text-light
 
 				c9: '#26aee4', // 					blue
 				c10: '#2e7d32', //					green
 				c10v1: '#4caf50', // 				green LIGHT
-				c11: '#e8ba0e', // 			 		yellow
-				c12: '#e4291c', //			 		red
-				c13: '#818386', // 					grey
-				c14: '#d4892d', //					orange
-				c15: '#9c27b0' //					purple
+				c11: '#ffe200', // 			 		yellow
+				c12: '#ff3729', //			 		red
+				c13: '#717375', // 					grey
+				c14: '#ff9d24' //					orange
 			},
 			styles: {
 				fontFamily: {
@@ -83,9 +82,12 @@ class AppConfigService extends EnvService {
 					},
 					content: {
 						detail: {
-							refreshTime: 30000,
+							refreshTime: 10000,
 							alert: {
 								messageSizes: [50, 70]
+							},
+							commands: {
+								requestDelay: 4000
 							},
 							camera: {
 								requestDelay: 8000
@@ -192,13 +194,6 @@ class AppConfigService extends EnvService {
 			avatar: {
 				name: 'avatar',
 				path: '/assets/svg/avatars/avatar.svg'
-			},
-			qrCode: {
-				name: 'qr code',
-				path: {
-					dark: '/assets/svg/qr-code/qr-dark.svg',
-					light: '/assets/svg/qr-code/qr-light.svg'
-				}
 			}
 		};
 	}

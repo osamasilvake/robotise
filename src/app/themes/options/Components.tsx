@@ -12,6 +12,9 @@ const OverridesCustom: Components = {
 			'::selection': {
 				backgroundColor: AppConfigService.AppOptions.colors.c9,
 				color: AppConfigService.AppOptions.colors.c7
+			},
+			img: {
+				maxWidth: '100%'
 			}
 		}
 	},
@@ -58,13 +61,6 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiListItemIcon: {
-		styleOverrides: {
-			root: {
-				color: AppConfigService.AppOptions.colors.c8a
-			}
-		}
-	},
 	MuiCardContent: {
 		styleOverrides: {
 			root: {
@@ -75,9 +71,16 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiFormControl: {
+	MuiChip: {
 		styleOverrides: {
 			root: {
+				transition: 'none'
+			}
+		}
+	},
+	MuiFormControl: {
+		styleOverrides: {
+			fullWidth: {
 				display: 'flex'
 			}
 		}
@@ -106,7 +109,9 @@ const OverridesCustom: Components = {
 	MuiButton: {
 		styleOverrides: {
 			root: {
-				borderRadius: pxToRem(2)
+				borderRadius: pxToRem(2),
+				height: pxToRem(40),
+				transition: 'none'
 			},
 			outlined: {
 				border: `${pxToRem(1)} solid ${AppConfigService.AppOptions.colors.c9}`,
@@ -115,7 +120,15 @@ const OverridesCustom: Components = {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					color: AppConfigService.AppOptions.colors.c5
 				},
-				height: pxToRem(38)
+				'&.selected': {
+					backgroundColor: AppConfigService.AppOptions.colors.c9,
+					color: AppConfigService.AppOptions.colors.c5,
+					cursor: 'default',
+					pointerEvents: 'none',
+					'&.Mui-disabled': {
+						opacity: 0.7
+					}
+				}
 			},
 			contained: {
 				backgroundColor: AppConfigService.AppOptions.colors.c9,
@@ -123,8 +136,7 @@ const OverridesCustom: Components = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					opacity: 0.9
-				},
-				height: pxToRem(42)
+				}
 			}
 		}
 	},
@@ -167,8 +179,18 @@ const OverridesCustom: Components = {
 	},
 	MuiOutlinedInput: {
 		styleOverrides: {
+			root: {
+				borderRadius: pxToRem(2)
+			},
 			input: {
 				filter: 'none'
+			}
+		}
+	},
+	MuiInputLabel: {
+		styleOverrides: {
+			root: {
+				transition: 'none'
 			}
 		}
 	}

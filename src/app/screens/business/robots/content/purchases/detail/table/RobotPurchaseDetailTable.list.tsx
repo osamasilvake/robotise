@@ -11,13 +11,19 @@ export const columns: RobotPurchaseDetailTableColumnInterface[] = [
 	{
 		id: RobotPurchaseDetailTableColumnsTypeEnum.QUANTITY,
 		label: 'CONTENT.PURCHASES.CONTENT.TABLE.COLUMNS.QUANTITY',
+		width: 120,
+		align: 'left'
+	},
+	{
+		id: RobotPurchaseDetailTableColumnsTypeEnum.PRICE_UNIT,
+		label: 'CONTENT.PURCHASES.CONTENT.TABLE.COLUMNS.PRICE_UNIT',
 		width: 100,
 		align: 'left'
 	},
 	{
-		id: RobotPurchaseDetailTableColumnsTypeEnum.PRICE,
-		label: 'CONTENT.PURCHASES.CONTENT.TABLE.COLUMNS.PRICE',
-		width: 150,
+		id: RobotPurchaseDetailTableColumnsTypeEnum.PRICE_TOTAL,
+		label: 'CONTENT.PURCHASES.CONTENT.TABLE.COLUMNS.PRICE_TOTAL',
+		width: 120,
 		align: 'right'
 	}
 ];

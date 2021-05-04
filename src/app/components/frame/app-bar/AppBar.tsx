@@ -28,7 +28,6 @@ import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import { AppBarStyles } from './AppBar.style';
 import Language from './language/Language';
-import QRCode from './qr-code/QRCode';
 import ThemePalette from './theme/Theme';
 
 const AppBarCustom: FC = () => {
@@ -100,9 +99,6 @@ const AppBarCustom: FC = () => {
 				)}
 
 				<Box className={classes.sOptions}>
-					{/* QR code */}
-					<QRCode />
-
 					{/* Account */}
 					<IconButton edge="end" onClick={handleMenuOpen}>
 						<Box className={classes.sAccountDetail}>

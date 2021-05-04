@@ -115,19 +115,21 @@ const RobotOrders: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			// dispatch: fetch orders
-			dispatch(
-				OrdersFetchList(
-					{
-						robotId: cRobotId,
-						page: 0,
-						rowsPerPage,
-						activeOrders,
-						debug
-					},
-					true
-				)
-			);
+			if (orders.content) {
+				// dispatch: fetch orders
+				dispatch(
+					OrdersFetchList(
+						{
+							robotId: cRobotId,
+							page: 0,
+							rowsPerPage,
+							activeOrders,
+							debug
+						},
+						true
+					)
+				);
+			}
 		};
 
 		// interval
@@ -136,7 +138,7 @@ const RobotOrders: FC = () => {
 			AppConfigService.AppOptions.screens.robots.content.orders.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, cRobotId, page, rowsPerPage, activeOrders, debug]);
+	}, [dispatch, orders.content, cRobotId, page, rowsPerPage, activeOrders, debug]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader || orders.loader) {
@@ -144,8 +146,14 @@ const RobotOrders: FC = () => {
 	}
 
 	// error
-	if (orders.errors) {
-		return <PageError message={orders.errors.text} />;
+	if (sites.errors || robotTwinsSummary.errors || orders.errors) {
+		return (
+			<PageError
+				message={
+					sites.errors?.text || robotTwinsSummary.errors?.text || orders.errors?.text
+				}
+			/>
+		);
 	}
 
 	// empty

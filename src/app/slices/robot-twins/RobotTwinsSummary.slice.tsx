@@ -85,10 +85,7 @@ export const RobotTwinsSummaryFetchList = (refresh = false) => async (
 
 			if (sites && sites.content) {
 				// prepare robot twins summary content
-				const result: RTSContentInterface = prepareContent(
-					sites.content,
-					robotTwinsSummary
-				);
+				const result = prepareContent(sites.content, robotTwinsSummary);
 
 				// count alerts for badge
 				const alerts = countAlerts(result);

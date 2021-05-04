@@ -1,3 +1,3 @@
 export interface PageErrorInterface {
-	message: string;
+	message: string | undefined;
 }

@@ -16,7 +16,7 @@ const drawerState = StorageService.get(AppConfigService.StorageItems.DrawerState
 // initial state
 export const initialState: SliceGeneralInterface = {
 	openDrawer: drawerState,
-	themePalette: theme || GeneralThemePaletteTypeEnum.DARK,
+	themePalette: theme || GeneralThemePaletteTypeEnum.LIGHT,
 	currentLanguage: language || GeneralLanguageTypeEnum.EN,
 	triggerMessage: {
 		id: 'init',

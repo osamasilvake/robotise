@@ -15,6 +15,7 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotDetailAlerts from './alerts/RobotDetailAlerts';
 import RobotDetailCameras from './cameras/RobotDetailCameras';
+import RobotDetailCommands from './commands/RobotDetailCommands';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailLocation from './location/RobotDetailLocation';
 import RobotDetailStates from './states/RobotDetailStates';
@@ -29,7 +30,7 @@ const RobotDetail: FC = () => {
 	const pRobotTwinsId = robotTwins.content?.data[0].id;
 
 	useEffect(() => {
-		const condition1 = !sites.loader;
+		const condition1 = sites.content !== null;
 		const condition2 = robotTwins.content === null && cRobotTwinsId;
 		const condition3 =
 			robotTwins.content !== null && pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId;
@@ -38,12 +39,14 @@ const RobotDetail: FC = () => {
 			// dispatch: fetch robot twins of a robot
 			dispatch(RobotTwinsFetch(cRobotTwinsId));
 		}
-	}, [dispatch, sites.loader, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
+	}, [dispatch, sites.content, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			// dispatch: fetch robot twins of a robot
-			dispatch(RobotTwinsFetch(cRobotTwinsId, true));
+			if (sites.content && cRobotTwinsId) {
+				// dispatch: fetch robot twins of a robot
+				dispatch(RobotTwinsFetch(cRobotTwinsId, true));
+			}
 		};
 
 		// interval
@@ -52,7 +55,14 @@ const RobotDetail: FC = () => {
 			AppConfigService.AppOptions.screens.robots.content.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, cRobotTwinsId]);
+	}, [dispatch, cRobotTwinsId, sites.content]);
+
+	useEffect(() => {
+		if (sites.content && cRobotTwinsId) {
+			// dispatch: fetch robot twins of a robot
+			dispatch(RobotTwinsFetch(cRobotTwinsId, true));
+		}
+	}, [dispatch, sites.content, cRobotTwinsId]);
 
 	// loader
 	if (sites.loader || robotTwins.loader) {
@@ -60,12 +70,13 @@ const RobotDetail: FC = () => {
 	}
 
 	// error
-	if (robotTwins.errors) {
-		return <PageError message={robotTwins.errors.text} />;
+	if (sites.errors || robotTwins.errors) {
+		return <PageError message={sites.errors?.text || robotTwins.errors?.text} />;
 	}
 
 	// empty
-	if (!robotTwins.content) {
+	// previous !== current
+	if (!robotTwins.content || (pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId)) {
 		return null;
 	}
 
@@ -74,6 +85,7 @@ const RobotDetail: FC = () => {
 			<RobotDetailGeneral robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailAlerts robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailLocation robotTwin={robotTwins.content.data[0]} />
+			<RobotDetailCommands robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailCameras robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailStates robotTwin={robotTwins.content.data[0]} />
 		</Box>

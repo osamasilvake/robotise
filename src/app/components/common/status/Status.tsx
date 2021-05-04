@@ -21,8 +21,7 @@ const Status: FC<StatusInterface> = (props) => {
 					(level === -1 && active) || level === StatusTypeEnum.SUCCESS_LIGHT,
 				[classes.sError]: (level === -1 && !active) || level === StatusTypeEnum.ERROR,
 				[classes.sWarn]: level === StatusTypeEnum.WARN,
-				[classes.sInfo]: level === StatusTypeEnum.INFO,
-				[classes.sInit]: level === StatusTypeEnum.INIT
+				[classes.sInfo]: level === StatusTypeEnum.INFO
 			})}>
 			{children}
 		</Typography>

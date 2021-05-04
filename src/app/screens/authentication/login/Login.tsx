@@ -46,7 +46,7 @@ const Login: FC = () => {
 		{
 			email: '',
 			password: '',
-			rememberMe: false
+			rememberMe: true
 		},
 		LoginFormValidation,
 		async () => {
@@ -126,6 +126,7 @@ const Login: FC = () => {
 								<Checkbox
 									color="primary"
 									name="rememberMe"
+									checked={values.rememberMe}
 									onChange={handleChangeCheckbox}
 								/>
 							}

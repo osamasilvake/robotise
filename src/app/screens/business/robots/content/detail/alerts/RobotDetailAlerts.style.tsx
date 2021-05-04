@@ -27,6 +27,7 @@ export const RobotDetailAlertsStyles = makeStyles((theme: Theme) => ({
 		cursor: 'pointer'
 	},
 	sCardContentMessage: {
+		fontWeight: 400,
 		lineHeight: 1.4,
 		marginTop: theme.spacing(1),
 		wordBreak: 'break-word'

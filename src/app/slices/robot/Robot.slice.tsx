@@ -98,7 +98,7 @@ export default dataSlice.reducer;
 export const RobotControlCommandSend = (
 	robotId: string,
 	command: string,
-	option?: string
+	option?: string | number
 ) => async (dispatch: Dispatch) => {
 	const state = {
 		module: RobotTypeEnum.ROC_CONTROL

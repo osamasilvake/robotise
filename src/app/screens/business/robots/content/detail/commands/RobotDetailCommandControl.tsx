@@ -37,7 +37,11 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 				color="primary"
 				variant="outlined"
 				disabled={
-					state.forward || state.backward || robotTwins.loading || robot.control.loading
+					!state.ready ||
+					state.forward ||
+					state.backward ||
+					robotTwins.loading ||
+					robot.control.loading
 				}>
 				<Button
 					className={clsx({

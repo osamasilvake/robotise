@@ -156,10 +156,12 @@ const powerSupplyHealth = (value: string) => {
  */
 const joystick = (value: string) => {
 	switch (value) {
-		case 'autonomous':
-			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.AUTONOMOUS';
 		case 'joystick':
 			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.JOYSTICK';
+		case 'autonomous':
+			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.AUTONOMOUS';
+		case 'roc_control':
+			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.ROC_CONTROL';
 		default:
 			return value;
 	}

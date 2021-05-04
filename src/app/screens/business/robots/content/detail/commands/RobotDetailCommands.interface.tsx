@@ -13,6 +13,7 @@ export interface RobotDetailCommandsInterface {
 }
 
 export interface RobotDetailCommandsStateInterface {
+	ready: boolean;
 	control: boolean;
 	forward: boolean;
 	backward: boolean;
@@ -22,7 +23,7 @@ export interface RobotDetailCommandsStateInterface {
 
 export interface RobotDetailCommandsPayloadInterface {
 	command: RobotDetailCommandsTypeEnum;
-	state?: RobotDetailCommandsControlTypeEnum | RobotDetailCommandsMuteSensorsTypeEnum | string;
+	state?: RobotDetailCommandsControlTypeEnum | RobotDetailCommandsMuteSensorsTypeEnum | number;
 }
 
 export interface RobotDetailCommandControlInterface {

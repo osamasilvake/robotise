@@ -305,8 +305,9 @@
 							"CONTROL_MODE": {
 								"TITLE": "Control Mode",
 								"OPTIONS": {
+									"JOYSTICK": "Joystick",
 									"AUTONOMOUS": "Autonomous",
-									"JOYSTICK": "Joystick"
+									"ROC_CONTROL": "ROC Control"
 								}
 							}
 						}

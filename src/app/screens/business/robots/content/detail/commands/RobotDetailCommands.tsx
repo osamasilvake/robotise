@@ -29,6 +29,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 	const robot = useSelector(robotSelector);
 
 	const [state, setState] = useState({
+		ready: robotTwin.robotState.isReady.value,
 		control: false,
 		forward: false,
 		backward: false,
@@ -41,7 +42,8 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 
 	useEffect(() => {
 		if (controlMode === RobotDetailCommandsControlTypeEnum.ROC_CONTROL) {
-			const state = {
+			const payload = {
+				ready: state.ready,
 				control: true,
 				forward: false,
 				backward: false,
@@ -49,15 +51,16 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 				translate: false
 			};
 			if (muteSensorState === RobotDetailCommandsMuteSensorsTypeEnum.FRONT_MUTED) {
-				state.forward = true;
-				state.rotate = false;
+				payload.forward = true;
+				payload.rotate = false;
 			} else if (muteSensorState === RobotDetailCommandsMuteSensorsTypeEnum.BACK_MUTED) {
-				state.backward = true;
-				state.rotate = false;
+				payload.backward = true;
+				payload.rotate = false;
 			}
-			setState(state);
+			setState(payload);
 		} else {
 			setState({
+				ready: state.ready,
 				control: false,
 				rotate: false,
 				translate: false,
@@ -65,7 +68,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 				backward: false
 			});
 		}
-	}, [controlMode, muteSensorState]);
+	}, [controlMode, muteSensorState, state.ready]);
 
 	/**
 	 * send control command

@@ -28,11 +28,11 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 	const robotTwins = useSelector(robotTwinsSelector);
 
 	const [rotate, setRotate] = useState(rotateAngles[4].value);
-	const [translate, setTranslate] = useState(translateDistances[5].value);
+	const [translate, setTranslate] = useState(translateDistances[4].value);
 
 	useEffect(() => {
 		setRotate(rotateAngles[4].value);
-		setTranslate(translateDistances[5].value);
+		setTranslate(translateDistances[4].value);
 	}, [state.control, state.forward, state.backward]);
 
 	return (
@@ -46,7 +46,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			<Box>
 				<FormControl
 					variant="outlined"
-					disabled={!state.control || state.forward || state.backward}
+					disabled={!state.ready || !state.control || state.forward || state.backward}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-rotate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.ROTATE.LABEL')}
@@ -68,6 +68,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				<Button
 					variant="outlined"
 					disabled={
+						!state.ready ||
 						robotTwins.loading ||
 						rotate === rotateAngles[4].value ||
 						!state.control ||
@@ -77,7 +78,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({
 						command: RobotDetailCommandsTypeEnum.ROTATE,
-						state: rotate
+						state: Number(rotate)
 					})}>
 					{t('CONTENT.DETAIL.COMMANDS.ACTIONS.ROTATE.BUTTON')}
 				</Button>
@@ -85,7 +86,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			<Box className={classes.sCommandsActionTranslateBox}>
 				<FormControl
 					variant="outlined"
-					disabled={!state.control}
+					disabled={!state.ready || !state.control}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-translate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.LABEL')}
@@ -108,7 +109,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 							)
 							.map((distance) => (
 								<MenuItem key={distance.value} value={distance.value}>
-									{distance.value}
+									{distance.label}
 								</MenuItem>
 							))}
 					</Select>
@@ -116,14 +117,15 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				<Button
 					variant="outlined"
 					disabled={
+						!state.ready ||
 						robotTwins.loading ||
-						translate === translateDistances[5].value ||
+						translate === translateDistances[4].value ||
 						!state.control
 					}
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({
 						command: RobotDetailCommandsTypeEnum.TRANSLATE,
-						state: translate
+						state: Number(translate)
 					})}>
 					{t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.BUTTON')}
 				</Button>

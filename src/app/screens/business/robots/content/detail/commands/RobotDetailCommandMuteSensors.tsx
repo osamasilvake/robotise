@@ -30,7 +30,9 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 			<ButtonGroup
 				color="primary"
 				variant="outlined"
-				disabled={!state.control || robotTwins.loading || robot.control.loading}>
+				disabled={
+					!state.ready || !state.control || robotTwins.loading || robot.control.loading
+				}>
 				{/* Front */}
 				<Button
 					className={clsx({

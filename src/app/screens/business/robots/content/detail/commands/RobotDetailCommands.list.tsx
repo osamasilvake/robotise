@@ -42,46 +42,47 @@ export const rotateAngles = [
 export const translateDistances = [
 	{
 		type: RobotDetailCommandsActionTypeEnum.BACKWARD,
-		value: '-15'
+		label: '-10',
+		value: '-0.1'
 	},
 	{
 		type: RobotDetailCommandsActionTypeEnum.BACKWARD,
-		value: '-10'
+		label: '-5',
+		value: '-0.05'
 	},
 	{
 		type: RobotDetailCommandsActionTypeEnum.BACKWARD,
-		value: '-5'
+		label: '-3',
+		value: '-0.03'
 	},
 	{
 		type: RobotDetailCommandsActionTypeEnum.BACKWARD,
-		value: '-3'
-	},
-	{
-		type: RobotDetailCommandsActionTypeEnum.BACKWARD,
-		value: '-1'
+		label: '-1',
+		value: '-0.01'
 	},
 	{
 		type: 'init',
-		value: 'None'
+		label: 'None',
+		value: 'none'
 	},
 	{
 		type: RobotDetailCommandsActionTypeEnum.FORWARD,
-		value: '1'
+		label: '1',
+		value: '0.01'
 	},
 	{
 		type: RobotDetailCommandsActionTypeEnum.FORWARD,
-		value: '3'
+		label: '3',
+		value: '0.03'
 	},
 	{
 		type: RobotDetailCommandsActionTypeEnum.FORWARD,
-		value: '5'
+		label: '5',
+		value: '0.05'
 	},
 	{
 		type: RobotDetailCommandsActionTypeEnum.FORWARD,
-		value: '10'
-	},
-	{
-		type: RobotDetailCommandsActionTypeEnum.FORWARD,
-		value: '15'
+		label: '10',
+		value: '0.1'
 	}
 ];

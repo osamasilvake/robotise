@@ -10,7 +10,7 @@ class LoggerService {
 	 * set log level based on environment
 	 */
 	init() {
-		if (AppConfigService.env === AppConfigService.envProduction) {
+		if (AppConfigService.envProd) {
 			log.setLevel(log.levels.WARN);
 		} else {
 			log.setLevel(log.levels.TRACE);
@@ -35,7 +35,7 @@ class LoggerService {
 				appVersion: AppConfigService.envAppVersion,
 				env: AppConfigService.env,
 				origin: AppConfigService.envRealm,
-				level: AppConfigService.envIsDevelopment ? 'trace' : 'warn',
+				level: AppConfigService.envDev ? 'trace' : 'warn',
 				pageUrl: window.location.href,
 				token: StorageService.get(AppConfigService.StorageItems.JWTAccessToken),
 				timestamp: momentISOString(),

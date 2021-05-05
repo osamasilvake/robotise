@@ -72,7 +72,7 @@ const Login: FC = () => {
 						variant="square"
 						className={classes.sAvatar}
 						src={AppConfigService.AppImageURLs.logo.name}
-						alt={AppConfigService.envAuthor}
+						alt={AppConfigService.envCompanyName}
 					/>
 					<form className={classes.sForm} onSubmit={handleSubmit}>
 						<FormControl error fullWidth margin="normal">

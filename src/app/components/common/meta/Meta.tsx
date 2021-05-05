@@ -10,7 +10,7 @@ const Meta: FC<MetaInterface> = (props) => {
 	return (
 		<Helmet>
 			<title>
-				{title || AppConfigService.envAppName} | {AppConfigService.envAuthor}
+				{title || AppConfigService.envAppName} | {AppConfigService.envCompanyName}
 			</title>
 			<meta name="description" content={description} />
 		</Helmet>

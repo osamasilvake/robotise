@@ -339,13 +339,7 @@
 			},
 			"INVENTORY": {
 				"DRAWERS": {
-					"TITLES": {
-						"drawer1": "Drawer 1",
-						"drawer2": "Drawer 2",
-						"drawer3": "Drawer 3",
-						"drawer4": "Drawer 4",
-						"drawer5": "Drawer 5"
-					},
+					"TITLE": "Drawer",
 					"TABLE": {
 						"COLUMNS": {
 							"IMAGE": "Image",

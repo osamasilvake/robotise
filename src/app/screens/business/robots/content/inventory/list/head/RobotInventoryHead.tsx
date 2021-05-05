@@ -16,7 +16,7 @@ const RobotInventoryHead: FC<RobotInventoryHeadInterface> = (props) => {
 				{t(drawer.type)}
 			</Typography>
 			<Typography variant="h6" color="textSecondary">
-				{t(`CONTENT.INVENTORY.DRAWERS.TITLES.${drawer.title}`)}
+				{`${t('CONTENT.INVENTORY.DRAWERS.TITLE')} ${drawer.index + 1}`}
 			</Typography>
 		</Box>
 	);

@@ -18,7 +18,7 @@ const About: FC = () => {
 			{/* Content */}
 			<Grid container>
 				<Grid item xs={12} md={6}>
-					<Typography variant="h6">{AppConfigService.envAuthor}</Typography>
+					<Typography variant="h6">{AppConfigService.envCompanyName}</Typography>
 					<Typography variant="body1">{t('INFO.ADDRESS')}</Typography>
 					<Typography variant="body1">{t('INFO.POSTAL_CITY')}</Typography>
 					<Typography variant="body1">{t('INFO.OWNER')}</Typography>

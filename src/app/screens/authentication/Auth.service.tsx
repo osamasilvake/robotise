@@ -22,7 +22,7 @@ class AuthService {
 			username: payload.email,
 			password: payload.password,
 			grant_type: 'password',
-			client_id: 'roc-ops-app'
+			client_id: 'roc-app'
 		};
 		return HttpClientService.post(
 			AppConfigService.AppServices.AUTH.SIGN_IN,
@@ -50,7 +50,7 @@ class AuthService {
 	authRequestNewToken = () => {
 		const request = {
 			access_token: this.getAccessToken(),
-			client_id: 'roc-ops-app'
+			client_id: 'roc-app'
 		};
 		return HttpClientService.post(
 			AppConfigService.AppServices.AUTH.AUTO_REFRESH,

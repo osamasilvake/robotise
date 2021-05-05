@@ -39,7 +39,7 @@ const Loader: FC<LoaderInterface> = (props) => {
 						<Avatar
 							className={classes.sAvatar}
 							src={AppConfigService.AppImageURLs.logo.icon}
-							alt={AppConfigService.envAuthor}
+							alt={AppConfigService.envCompanyName}
 						/>
 					</Box>
 					<Box className={classes.sCircularLoader}>

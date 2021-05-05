@@ -74,7 +74,7 @@ const DrawerCustom: FC = () => {
 							variant="square"
 							className={classes.sLogo}
 							src={AppConfigService.AppImageURLs.logo.name}
-							alt={AppConfigService.envAuthor}
+							alt={AppConfigService.envCompanyName}
 						/>
 					</Link>
 					<Tooltip title={String(t('TOOLTIPS:DRAWER.CLOSE'))}>

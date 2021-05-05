@@ -137,30 +137,30 @@ class AppConfigService extends EnvService {
 	get AppServices() {
 		return {
 			COMMON: {
-				LOGS: `${this.envApiUrl}/frontend-logs`,
+				LOGS: `${this.envAppUrl}/frontend-logs`,
 				CHANGE_LOG
 			},
 			AUTH: {
-				SIGN_IN: `${this.envApiUrl}/auth/${this.envRealm}/login`,
-				AUTO_REFRESH: `${this.envApiUrl}/auth/${this.envRealm}/refresh`
+				SIGN_IN: `${this.envAppUrl}/auth/${this.envRealm}/login`,
+				AUTO_REFRESH: `${this.envAppUrl}/auth/${this.envRealm}/refresh`
 			},
 			SITE: {
-				ALL: `${this.envApiUrl}/sites`,
-				PRODUCTS: `${this.envApiUrl}/products`
+				ALL: `${this.envAppUrl}/sites`,
+				PRODUCTS: `${this.envAppUrl}/products`
 			},
 			ROBOT: {
-				MAPS: `${this.envApiUrl}/maps/:mapId`,
-				COMMANDS: `${this.envApiUrl}/robots/:robot/commands`,
-				INVENTORY: `${this.envApiUrl}/robots/:robot/inventory`,
-				ORDERS: `${this.envApiUrl}/orders`,
-				ORDER: `${this.envApiUrl}/orders/:order`,
-				PURCHASES: `${this.envApiUrl}/order-reports`,
-				PURCHASE: `${this.envApiUrl}/order-reports/:purchase`
+				MAPS: `${this.envAppUrl}/maps/:mapId`,
+				COMMANDS: `${this.envAppUrl}/robots/:robot/commands`,
+				INVENTORY: `${this.envAppUrl}/robots/:robot/inventory`,
+				ORDERS: `${this.envAppUrl}/orders`,
+				ORDER: `${this.envAppUrl}/orders/:order`,
+				PURCHASES: `${this.envAppUrl}/order-reports`,
+				PURCHASE: `${this.envAppUrl}/order-reports/:purchase`
 			},
 			ROBOT_TWINS: {
-				SUMMARY: `${this.envApiUrl}/robot-twins-summary`,
-				ALL: `${this.envApiUrl}/robot-twins`,
-				SINGLE: `${this.envApiUrl}/robot-twins/:robotTwinId`
+				SUMMARY: `${this.envAppUrl}/robot-twins-summary`,
+				ALL: `${this.envAppUrl}/robot-twins`,
+				SINGLE: `${this.envAppUrl}/robot-twins/:robotTwinId`
 			}
 		};
 	}

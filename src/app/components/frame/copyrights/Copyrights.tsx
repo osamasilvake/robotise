@@ -12,8 +12,8 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 		<Typography variant="body2" color="textSecondary" align="center">
 			{!short && (
 				<>
-					<Link href={AppConfigService.envWebsite} target="_blank">
-						{AppConfigService.envAuthor}
+					<Link href={AppConfigService.envCompanyUrl} target="_blank">
+						{AppConfigService.envCompanyName}
 					</Link>
 					{' © '}
 					{momentCurrentYear()}

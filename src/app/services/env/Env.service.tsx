@@ -10,52 +10,38 @@ class EnvService {
 	}
 
 	/**
-	 * development: string
+	 * development
 	 */
-	get envDevelopment() {
-		return this.dev;
-	}
-
-	/**
-	 * development: boolean
-	 */
-	get envIsDevelopment() {
+	get envDev() {
 		return this.env === this.dev;
 	}
 
 	/**
-	 * production: string
+	 * production
 	 */
-	get envProduction() {
-		return this.prod;
+	get envProd() {
+		return this.env === this.prod;
 	}
 
 	/**
-	 * production: boolean
+	 * company name
 	 */
-	get envIsProduction() {
-		return this.env === this.dev;
+	get envCompanyName() {
+		return process.env.REACT_APP_COMPANY_NAME;
 	}
 
 	/**
-	 * app name
+	 * company url
 	 */
-	get envAppName() {
-		return process.env.REACT_APP_NAME?.toUpperCase() || '';
+	get envCompanyUrl() {
+		return process.env.REACT_APP_COMPANY_URL || '';
 	}
 
 	/**
-	 * author
+	 * api base URL
 	 */
-	get envAuthor() {
-		return process.env.REACT_APP_AUTHOR;
-	}
-
-	/**
-	 * app version
-	 */
-	get envAppVersion() {
-		return process.env.REACT_APP_VERSION || '';
+	get envBaseURL() {
+		return process.env.REACT_APP_API_BASE_URL;
 	}
 
 	/**
@@ -66,31 +52,31 @@ class EnvService {
 	}
 
 	/**
-	 * website
-	 */
-	get envWebsite() {
-		return process.env.REACT_APP_URL || '';
-	}
-
-	/**
-	 * base URL
-	 */
-	get envBaseURL() {
-		return process.env.REACT_APP_API_BASE_URL;
-	}
-
-	/**
-	 * realm
+	 * auth realm
 	 */
 	get envRealm() {
 		return process.env.REACT_APP_AUTH_REALM || '';
 	}
 
 	/**
-	 * api url
+	 * app name
 	 */
-	get envApiUrl() {
+	get envAppName() {
+		return process.env.REACT_APP_NAME?.toUpperCase() || '';
+	}
+
+	/**
+	 * app url
+	 */
+	get envAppUrl() {
 		return `${this.envBaseURL}/${this.envApiVersion}`;
+	}
+
+	/**
+	 * app version
+	 */
+	get envAppVersion() {
+		return process.env.REACT_APP_VERSION || '';
 	}
 }
 export default EnvService;

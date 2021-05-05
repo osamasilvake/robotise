@@ -19,7 +19,8 @@ export interface SICDrawerInterface {
 	index: number;
 	type: string;
 	lanes: SICDrawerLaneInterface[];
-	title: string;
+	is_empty: boolean;
+	lane_count: number;
 }
 
 export interface SICRobotInterface {
@@ -28,9 +29,10 @@ export interface SICRobotInterface {
 
 export interface SICDrawerLaneInterface {
 	index: number;
-	capacity: number;
-	product: SPCDataInterface | null;
-	productId: string;
-	quantity: number;
 	status: string;
+	capacity: number;
+	quantity: number;
+	inCartQuantity: number;
+	productId: string;
+	product: SPCDataInterface | null;
 }

@@ -1,4 +1,4 @@
-import { Box, Chip, CircularProgress, TextField, Typography } from '@material-ui/core';
+import { Box, Chip, CircularProgress, FormControl, TextField, Typography } from '@material-ui/core';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,78 +64,86 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 		<Box onClick={(event) => event.stopPropagation()}>
 			{/* Input */}
 			{editMode && (
-				<TextField
-					variant="outlined"
-					type="text"
-					id="field-comment"
-					name="comment"
-					label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.FIELD.LABEL')}
-					placeholder={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.FIELD.PLACEHOLDER')}
-					onChange={(event) => setValue(event.target.value)}
-					inputRef={(input) => input && input.focus()}
-					onFocus={(e) =>
-						e.currentTarget.setSelectionRange(
-							e.currentTarget.value.length,
-							e.currentTarget.value.length
-						)
+				<FormControl fullWidth>
+					<TextField
+						variant="outlined"
+						type="text"
+						id="field-comment"
+						name="comment"
+						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.FIELD.LABEL')}
+						placeholder={t(
+							'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.FIELD.PLACEHOLDER'
+						)}
+						onChange={(event) => setValue(event.target.value)}
+						inputRef={(input) => input && input.focus()}
+						onFocus={(e) =>
+							e.currentTarget.setSelectionRange(
+								e.currentTarget.value.length,
+								e.currentTarget.value.length
+							)
+						}
+						multiline
+						rows={4}
+						value={value}
+						className={classes.sCommentTextField}
+					/>
+				</FormControl>
+			)}
+
+			<Box>
+				{/* Cancel */}
+				{editMode && (
+					<Chip
+						size="small"
+						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CANCEL')}
+						color="primary"
+						variant="outlined"
+						clickable={true}
+						disabled={purchases.updating}
+						onClick={closeEditMode}
+						className={classes.sCommentCancel}
+					/>
+				)}
+
+				{/* Clear */}
+				{editMode && (
+					<Chip
+						size="small"
+						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CLEAR')}
+						color="primary"
+						variant="outlined"
+						clickable={true}
+						disabled={purchases.updating}
+						onClick={() => setValue('')}
+						className={classes.sCommentClear}
+					/>
+				)}
+
+				{/* Edit/Save */}
+				<Chip
+					size="small"
+					label={
+						editMode
+							? t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.SAVE')
+							: t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.EDIT')
 					}
-					multiline
-					rows={4}
-					value={value}
-					className={classes.sCommentTextField}
-				/>
-			)}
-
-			{/* Cancel */}
-			{editMode && (
-				<Chip
-					size="small"
-					label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CANCEL')}
 					color="primary"
 					variant="outlined"
 					clickable={true}
+					icon={
+						editMode && purchases.updating ? <CircularProgress size={20} /> : undefined
+					}
 					disabled={purchases.updating}
-					onClick={closeEditMode}
-					className={classes.sCommentCancel}
+					onClick={toggleEditMode}
 				/>
-			)}
 
-			{/* Clear */}
-			{editMode && (
-				<Chip
-					size="small"
-					label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CLEAR')}
-					color="primary"
-					variant="outlined"
-					clickable={true}
-					disabled={purchases.updating}
-					onClick={() => setValue('')}
-					className={classes.sCommentClear}
-				/>
-			)}
-
-			{/* Edit/Save */}
-			<Chip
-				size="small"
-				label={
-					editMode
-						? t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.SAVE')
-						: t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.EDIT')
-				}
-				color="primary"
-				variant="outlined"
-				clickable={true}
-				icon={editMode && purchases.updating ? <CircularProgress size={20} /> : undefined}
-				disabled={purchases.updating}
-				onClick={toggleEditMode}
-			/>
-
-			{/* Value */}
-			{!editMode && (
-				<Typography variant="body2" className={classes.sCommentValue}>
-					{purchase.comment}
-				</Typography>
-			)}
+				{/* Value */}
+				{!editMode && (
+					<Typography variant="body2" className={classes.sCommentValue}>
+						{purchase.comment}
+					</Typography>
+				)}
+			</Box>
 		</Box>
 	);
 };

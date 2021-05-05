@@ -29,14 +29,16 @@ describe('[SLICE] Inventory', () => {
 							index: 0,
 							lanes: [
 								{
-									capacity: 12,
 									index: 0,
-									product_id: 'fbee95a4-a7d0-4561-bd5f-3ca55f831053',
+									status: 'low',
+									capacity: 12,
 									quantity: 0,
-									status: 'low'
+									inCartQuantity: 2,
+									product_id: 'fbee95a4-a7d0-4561-bd5f-3ca55f831053'
 								}
 							],
-							title: 'drawer1',
+							is_empty: false,
+							lane_count: 2,
 							type: 'delivery'
 						}
 					],
@@ -56,14 +58,16 @@ describe('[SLICE] Inventory', () => {
 					index: 0,
 					lanes: [
 						{
-							capacity: 12,
 							index: 0,
-							product_id: 'fbee95a4-a7d0-4561-bd5f-3ca55f831053',
+							status: 'low',
+							capacity: 12,
 							quantity: 0,
-							status: 'low'
+							inCartQuantity: 2,
+							product_id: 'fbee95a4-a7d0-4561-bd5f-3ca55f831053'
 						}
 					],
-					title: 'drawer1',
+					is_empty: false,
+					lane_count: 2,
 					type: 'delivery'
 				}
 			],

@@ -20,10 +20,13 @@ export interface SSContentDataByIdInterface {
 
 export interface ISite {
 	id: string;
-	robots?: string[];
 	title: string;
 	timezone: string;
 	currency: string;
+	acceptOrders: boolean;
+	createdAt: Date;
+	updatedAt: Date;
+	robots?: string[];
 	elevators?: {
 		vendor?: string;
 		buildingId?: string;
@@ -39,13 +42,10 @@ export interface ISite {
 	rooms: {
 		whitelist: string[] | null;
 	};
-	acceptOrders: boolean;
 	phone?: {
 		technicianPhone?: string;
 		callerPhonePrefix?: string;
 	};
-	createdAt: Date;
-	updatedAt: Date;
 }
 
 type Day = 'Mo' | 'Tu' | 'We' | 'Th' | 'Fr' | 'Sa' | 'Su';

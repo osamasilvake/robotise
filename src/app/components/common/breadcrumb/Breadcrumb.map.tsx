@@ -43,13 +43,13 @@ export const breadcrumbs = (
 				};
 			} else if (path === params.order) {
 				return {
-					text: labels?.orderRoom || '',
+					text: labels?.orderTarget || '',
 					link,
 					isLast: index === paths.length - 1
 				};
 			} else if (path === params.purchase) {
 				return {
-					text: labels?.purchaseRoom || '',
+					text: labels?.purchaseTarget || '',
 					link,
 					isLast: index === paths.length - 1
 				};

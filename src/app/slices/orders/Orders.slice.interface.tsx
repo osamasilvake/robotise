@@ -18,7 +18,7 @@ export interface SOContentInterface {
 
 export interface SOCDataInterface {
 	id: string;
-	room: string;
+	location: string;
 	mode: string;
 	status: string;
 	origin: string;

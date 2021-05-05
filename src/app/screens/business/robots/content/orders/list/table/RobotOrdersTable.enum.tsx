@@ -1,6 +1,6 @@
 export enum RobotOrdersTableColumnsTypeEnum {
 	STATUS = 'status',
-	TARGET = 'room',
+	TARGET = 'location',
 	MODE = 'mode',
 	ORIGIN = 'origin',
 	CREATED = 'createdAt'

@@ -186,13 +186,6 @@ const OverridesCustom: Components = {
 				filter: 'none'
 			}
 		}
-	},
-	MuiInputLabel: {
-		styleOverrides: {
-			root: {
-				transition: 'none'
-			}
-		}
 	}
 };
 export default OverridesCustom;

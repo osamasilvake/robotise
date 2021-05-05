@@ -10,8 +10,8 @@ export interface BreadcrumbInterface {
 
 export interface BreadcrumbLabelsInterface {
 	robotName?: string;
-	orderRoom?: string;
-	purchaseRoom?: string;
+	orderTarget?: string;
+	purchaseTarget?: string;
 }
 
 export interface BreadcrumbLinksInterface {

@@ -285,7 +285,7 @@ const mapItem = (item: SOCDataInterface) => {
 	return {
 		...item,
 		status: `CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${item.status}`,
-		room: item.room || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
+		location: item.location || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
 		mode: `CONTENT.ORDERS.COMMON.MODE.${item.mode}`,
 		origin: `CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
 	};

@@ -23,8 +23,8 @@ const Robot: FC = () => {
 	const params: RobotParamsInterface = useParams();
 
 	const cRobotName = robotTwinsSummary.content?.dataById[params.robot]?.robot.name;
-	const cOrderRoom = order.content?.room || undefined;
-	const cPurchaseRoom = purchase.content?.room || undefined;
+	const cOrderTarget = order.content?.location || undefined;
+	const cPurchaseTarget = purchase.content?.location || undefined;
 
 	/**
 	 * switch detail page
@@ -47,11 +47,11 @@ const Robot: FC = () => {
 				description="ROBOTS.ROBOT.DESCRIPTION"
 				labels={{
 					robotName: !robotTwinsSummary.loader ? cRobotName : '',
-					orderRoom: !order.loader
-						? cOrderRoom || t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION')
+					orderTarget: !order.loader
+						? cOrderTarget || t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION')
 						: '',
-					purchaseRoom: !purchase.loader
-						? cPurchaseRoom || t('CONTENT.PURCHASES.CONTENT.ROOM_UNKNOWN')
+					purchaseTarget: !purchase.loader
+						? cPurchaseTarget || t('CONTENT.PURCHASES.CONTENT.ROOM_UNKNOWN')
 						: ''
 				}}
 			/>

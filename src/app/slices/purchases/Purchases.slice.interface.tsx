@@ -22,7 +22,7 @@ export interface SPCDataInterface {
 	currency: string;
 	isBilled: boolean;
 	isDebug: boolean;
-	room: string;
+	location: string;
 	totalPrice: string;
 	createdAt: string;
 	updatedAt: string;

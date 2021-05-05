@@ -112,8 +112,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 						robotTwins.loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />
 					}>
-					{robotTwin.robotState.isReady.value && t('CONTENT.DETAIL.CAMERAS.REQUEST')}
-					{!robotTwin.robotState.isReady.value && t('CONTENT.DETAIL.CAMERAS.DISABLED')}
+					{t('CONTENT.DETAIL.CAMERAS.REQUEST')}
 				</Button>
 			</Box>
 		</Grid>

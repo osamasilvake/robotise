@@ -19,7 +19,7 @@ export interface SRTContentDataInterface {
 	robot: SRTContentRobotInterface;
 	robotState: SRTContentRobotStateInterface;
 	alerts: SRTContentAlertsInterface;
-	muteSensorState: SRTContentMuteSensorsInterface;
+	muteSensorState: SRTContentMuteSensorsInterface | undefined;
 	location?: SRTContentLocationInterface | undefined;
 	cameras?: SRTContentCameraInterface | undefined;
 	batteryState?: SRTContentBatteryStateInterface | undefined;

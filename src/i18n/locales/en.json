@@ -265,8 +265,7 @@
 					"TITLE": "Cameras",
 					"base": "Base Camera",
 					"top": "Top Camera",
-					"REQUEST": "Request",
-					"DISABLED": "Robot OFF"
+					"REQUEST": "Request"
 				},
 				"STATES": {
 					"BATTERY": {

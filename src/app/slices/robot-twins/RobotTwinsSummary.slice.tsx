@@ -121,9 +121,9 @@ const prepareContent = (
 		data: Object.keys(robotTwinsSummary.dataById).map((key) => {
 			const robotTwinSummary = robotTwinsSummary.dataById[key];
 			const site = sites.dataById[robotTwinSummary.site.id];
-			const allAlerts = robotTwinSummary.alerts.value;
-			const danger = allAlerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.DANGER);
-			const warn = allAlerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);
+			const alerts = robotTwinSummary.alerts.value;
+			const danger = alerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.DANGER);
+			const warn = alerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);
 			return {
 				id: robotTwinSummary.id,
 				robotId: robotTwinSummary.robot.id,
@@ -153,17 +153,16 @@ const countAlerts = (payload: RTSContentInterface) => {
 	return Object.keys(payload.dataById).reduce(
 		(acc, key) => {
 			const robotTwin = payload.dataById[key];
-			const allAlerts = robotTwin.alerts.value;
-			if (allAlerts.length) {
-				const danger = allAlerts.filter(
-					(f) => f.level === RobotTwinsSummaryTypeEnum.DANGER
-				);
-				const warn = allAlerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);
+			const alerts = robotTwin.alerts.value;
+			if (alerts.length) {
+				const danger = alerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.DANGER);
+				const warn = alerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);
 				acc.danger = acc.danger += danger.length;
 				acc.warning = acc.warning += warn.length;
+				acc.count = acc.count += 1;
 			}
 			return acc;
 		},
-		{ danger: 0, warning: 0 }
+		{ count: 0, danger: 0, warning: 0 }
 	);
 };

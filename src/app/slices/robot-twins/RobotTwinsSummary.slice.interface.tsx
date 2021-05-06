@@ -32,6 +32,7 @@ export interface RTSContentDataByIdInterface {
 }
 
 export interface RTSContentAlertsInterface {
+	count?: number;
 	danger: number;
 	warning: number;
 }

@@ -13,7 +13,7 @@ const RobotInventoryHead: FC<RobotInventoryHeadInterface> = (props) => {
 	return (
 		<Box className={classes.sTitleBox}>
 			<Typography variant="caption" color="textSecondary">
-				{t(drawer.type)}
+				{t(drawer.type.toUpperCase())}
 			</Typography>
 			<Typography variant="h6" color="textSecondary">
 				{`${t('CONTENT.INVENTORY.DRAWERS.TITLE')} ${drawer.index + 1}`}

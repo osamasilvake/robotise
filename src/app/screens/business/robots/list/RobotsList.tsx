@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
+import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
 import {
 	RobotTwinsSummaryFetchList,
@@ -36,8 +37,8 @@ const RobotsList: FC = () => {
 	}
 
 	// empty
-	if (!robotTwinsSummary.content) {
-		return null;
+	if (!robotTwinsSummary.content || !robotTwinsSummary.content.data.length) {
+		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 
 	return <RobotsTable content={robotTwinsSummary.content} />;

@@ -91,7 +91,12 @@
 	},
 	"COMMON": {
 		"LOADING": "Loading...",
-		"ROWS_PER_PAGE": "Per Page"
+		"ROWS_PER_PAGE": "Per Page",
+		"EMPTY": {
+			"TITLE": "Empty 😢",
+			"MESSAGE": "Fetched content is empty!",
+			"LINK": "Reload"
+		}
 	},
 	"ERRORS": {
 		"E404": {
@@ -100,13 +105,13 @@
 			"LINK": "Refresh Page"
 		},
 		"ERROR_BOUNDARY": {
-			"TITLE": "Whoops!",
+			"TITLE": "Whoops! 🤭",
 			"DESCRIPTION": "Something bad happened!",
-			"LINK": "Refresh Page"
+			"LINK": "Reload"
 		},
 		"PAGE_ERROR": {
-			"TITLE": "Whoops!",
-			"LINK": "Refresh Page"
+			"TITLE": "Whoops! 🤭",
+			"LINK": "Reload"
 		},
 		"API": {
 			"FETCH": "Unable to fetch the content!",

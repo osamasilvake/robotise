@@ -14,7 +14,7 @@ const PageError: FC<PageErrorInterface> = (props) => {
 
 	return (
 		<Error error={ErrorTypeEnum.PAGE_ERROR}>
-			<Typography variant="h1" className={classes.sTitle}>
+			<Typography variant="h2" className={classes.sTitle}>
 				{t('PAGE_ERROR.TITLE')}
 			</Typography>
 			{message && (

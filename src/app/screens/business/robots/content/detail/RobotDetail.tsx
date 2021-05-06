@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
+import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../services';
 import {
@@ -76,8 +77,12 @@ const RobotDetail: FC = () => {
 
 	// empty
 	// previous !== current
-	if (!robotTwins.content || (pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId)) {
-		return null;
+	if (
+		!robotTwins.content ||
+		!robotTwins.content.data.length ||
+		(pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId)
+	) {
+		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 
 	return (

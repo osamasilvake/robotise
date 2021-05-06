@@ -16,6 +16,6 @@ include:
   - local: .gitlab/ci/initialize.yml
   - local: .gitlab/ci/quality.yml
   
-  - local: .gitlab/ci/development/build.yml
-  - local: .gitlab/ci/development/publish.yml
-  - local: .gitlab/ci/development/deploy.yml
+  - local: .gitlab/ci/production/build.yml
+  - local: .gitlab/ci/production/publish.yml
+  - local: .gitlab/ci/production/deploy.yml

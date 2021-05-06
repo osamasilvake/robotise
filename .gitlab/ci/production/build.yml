@@ -18,5 +18,4 @@ dev:build:
       - images
     expire_in: 30 minutes
   only:
-    - master
-    - production
+    - feature/migration-v2

@@ -58,7 +58,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 								className={classes.sGeneralLastItemLabel}>
 								{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
 							</Typography>
-							<Status active={!!robotTwin.site.acceptOrders} small>
+							<Status active={!!robotTwin.site.acceptOrders}>
 								{robotTwin.site.acceptOrders
 									? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ACTIVE')
 									: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.INACTIVE')}
@@ -71,6 +71,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 							color="primary"
 							name="acceptOrder"
 							checked={robotTwin.site.acceptOrders}
+							disabled
 						/>
 					}
 				/>

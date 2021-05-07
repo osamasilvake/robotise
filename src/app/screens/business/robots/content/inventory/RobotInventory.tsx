@@ -94,8 +94,13 @@ const RobotInventory: FC = () => {
 		);
 	}
 
+	// null
+	if (!inventory.content) {
+		return null;
+	}
+
 	// empty
-	if (!inventory.content || !inventory.content.drawers.length) {
+	if (!inventory.content.drawers.length) {
 		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 

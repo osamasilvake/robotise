@@ -3,9 +3,9 @@ import { MouseEventHandler } from 'react';
 import { SliceRobotInterface } from '../../../../../../slices/robot/Robot.slice.interface';
 import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 import {
-	RobotDetailCommandsControlTypeEnum,
 	RobotDetailCommandsMuteSensorsTypeEnum,
-	RobotDetailCommandsTypeEnum
+	RobotDetailCommandsTypeEnum,
+	RobotDetailControlModeTypeEnum
 } from './RobotDetailCommands.enum';
 
 export interface RobotDetailCommandsInterface {
@@ -23,7 +23,7 @@ export interface RobotDetailCommandsStateInterface {
 
 export interface RobotDetailCommandsPayloadInterface {
 	command: RobotDetailCommandsTypeEnum;
-	state?: RobotDetailCommandsControlTypeEnum | RobotDetailCommandsMuteSensorsTypeEnum | number;
+	state?: RobotDetailControlModeTypeEnum | RobotDetailCommandsMuteSensorsTypeEnum | number;
 }
 
 export interface RobotDetailCommandControlInterface {
@@ -51,7 +51,7 @@ export interface RobotDetailCommandActionsInterface {
 }
 
 export interface RobotDetailCommandsStateOptionInterface {
-	state?: string | number;
+	mode?: string | number;
 	angle?: string | number;
 	distance?: string | number;
 }

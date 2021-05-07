@@ -17,8 +17,8 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.CURRENT',
-					value: current(batteryState.current.value),
-					date: momentFormat3(batteryState.current.updatedAt),
+					value: current(batteryState.current),
+					date: momentFormat3(batteryState.updatedAt),
 					icon: 'flash_auto'
 				}
 			);
@@ -26,8 +26,8 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.PERCENTAGE',
-					value: percentage(batteryState.percentage.value),
-					date: momentFormat3(batteryState.percentage.updatedAt),
+					value: percentage(batteryState.percentage),
+					date: momentFormat3(batteryState.updatedAt),
 					icon: 'battery_charging_full'
 				}
 			);
@@ -35,14 +35,14 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.TITLE',
-					value: powerSupplyHealth(batteryState.powerSupplyHealth.value),
-					date: momentFormat3(batteryState.powerSupplyHealth.updatedAt),
+					value: powerSupplyHealth(batteryState.powerSupplyHealth),
+					date: momentFormat3(batteryState.updatedAt),
 					icon: 'healing'
 				}
 			);
 		case 'batteryState.powerSupplyStatus':
 			if (batteryState) {
-				switch (batteryState.powerSupplyStatus.value) {
+				switch (batteryState.powerSupplyStatus) {
 					case 'charging':
 						powerSupplyStatus.text =
 							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.CHARGING';
@@ -74,7 +74,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.TITLE',
 					value: powerSupplyStatus.text,
-					date: momentFormat3(batteryState.powerSupplyStatus.updatedAt),
+					date: momentFormat3(batteryState.updatedAt),
 					icon: powerSupplyStatus.icon
 				}
 			);
@@ -82,8 +82,8 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.VOLTAGE',
-					value: voltage(batteryState.voltage.value),
-					date: momentFormat3(batteryState.voltage.updatedAt),
+					value: voltage(batteryState.voltage),
+					date: momentFormat3(batteryState.updatedAt),
 					icon: 'flash_on'
 				}
 			);
@@ -91,19 +91,21 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				dockingState && {
 					title: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.DOCKING',
-					value: dockingState.isDocked.value
+					value: dockingState.isDocked
 						? 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.DOCKED'
 						: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.UNDOCKED',
-					date: momentFormat3(dockingState.isDocked.updatedAt),
+					date: momentFormat3(dockingState.updatedAt),
 					icon: 'dock'
 				}
 			);
-		case 'joystickState.controlMode':
+		case 'joystickState.isConnected':
 			return (
 				joystickState && {
-					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.TITLE',
-					value: joystick(joystickState.controlMode.value),
-					date: momentFormat3(joystickState.controlMode.updatedAt),
+					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONNECTING',
+					value: joystickState.isConnected
+						? 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONNECTED'
+						: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.NOT_CONNECTED',
+					date: momentFormat3(joystickState.updatedAt),
 					icon: 'games'
 				}
 			);
@@ -111,8 +113,8 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				activityState && {
 					title: 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.TITLE',
-					value: activity(activityState.latest.value),
-					date: momentFormat3(activityState.latest.updatedAt),
+					value: activity(activityState.latest),
+					date: momentFormat3(activityState.updatedAt),
 					icon: 'timer'
 				}
 			);
@@ -147,23 +149,6 @@ const powerSupplyHealth = (value: string) => {
 		case 'unknown':
 		default:
 			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.UNKNOWN';
-	}
-};
-
-/**
- * joystick
- * @param value
- */
-const joystick = (value: string) => {
-	switch (value) {
-		case 'joystick':
-			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.JOYSTICK';
-		case 'autonomous':
-			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.AUTONOMOUS';
-		case 'roc_control':
-			return 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONTROL_MODE.OPTIONS.ROC_CONTROL';
-		default:
-			return value;
 	}
 };
 

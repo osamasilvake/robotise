@@ -1,4 +1,5 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { RobotDetailControlModeTypeEnum } from '../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 
 export interface SliceRobotTwinsInterface {
 	loader: boolean;
@@ -19,13 +20,16 @@ export interface SRTContentDataInterface {
 	robot: SRTContentRobotInterface;
 	robotState: SRTContentRobotStateInterface;
 	alerts: SRTContentAlertsInterface;
-	muteSensorState: SRTContentMuteSensorsInterface | undefined;
+	controlMode: SRTContentControlModeInterface;
+
 	location?: SRTContentLocationInterface | undefined;
 	cameras?: SRTContentCameraInterface | undefined;
+
 	batteryState?: SRTContentBatteryStateInterface | undefined;
 	dockingState?: SRTContentDockingStateInterface | undefined;
 	joystickState?: SRTContentJoystickState | undefined;
 	activityState?: SRTContentActivityState | undefined;
+	safetySystemsState: SRTContentSafetySystemsState;
 }
 
 export interface SRTContentDataByIdInterface {
@@ -60,8 +64,8 @@ export interface SRTContentAlertsInterface {
 	updatedAt: Date;
 }
 
-export interface SRTContentMuteSensorsInterface {
-	value: string;
+export interface SRTContentControlModeInterface {
+	value: RobotDetailControlModeTypeEnum;
 	updatedAt: Date;
 }
 
@@ -86,59 +90,45 @@ export interface SRTContentCameraInterface {
 }
 
 export interface SRTContentBatteryStateInterface {
-	current: {
-		value: number;
-		updatedAt: Date;
-	};
-	percentage: {
-		value: number;
-		updatedAt: Date;
-	};
-	powerSupplyStatus: {
-		value: string;
-		updatedAt: Date;
-	};
-	powerSupplyHealth: {
-		value: string;
-		updatedAt: Date;
-	};
-	voltage: {
-		value: number;
-		updatedAt: Date;
-	};
+	current: number;
+	percentage: number;
+	powerSupplyStatus: string;
+	powerSupplyHealth: string;
+	voltage: number;
+	updatedAt: Date;
 }
 
 export interface SRTContentDockingStateInterface {
-	isDocked: {
-		value: boolean;
-		updatedAt: Date;
-	};
+	isDocked: boolean;
+	updatedAt: Date;
 }
 
 export interface SRTContentJoystickState {
-	controlMode: {
-		value: string;
-		updatedAt: Date;
-	};
+	isConnected: boolean;
+	updatedAt: Date;
 }
 
 export interface SRTContentActivityState {
-	latest: {
-		value: string;
-		updatedAt: Date;
-	};
+	latest: string;
+	updatedAt: Date;
+}
+
+export interface SRTContentSafetySystemsState {
+	backMutingActive: boolean;
+	frontMutingActive: boolean;
+	updatedAt: Date;
 }
 
 export interface IRobotTwin {
 	id: string;
+	createdAt: Date;
+	updatedAt: Date;
 	robot: {
 		id: string;
 	};
 	site: {
 		id: string;
 	};
-	createdAt: Date;
-	updatedAt: Date;
 	state: {
 		reported: {
 			name: string;
@@ -152,41 +142,30 @@ export interface IRobotTwin {
 					imageId: string;
 				};
 			};
-			batteryState: {
-				percentage: number;
-				powerSupplyStatus: string;
-				powerSupplyHealth: string;
-				current: number;
-				voltage: number;
-			};
-			dockingState: {
-				isDocked: boolean;
-			};
-			joystickState: {
-				controlMode: string;
-			};
-			muteSensorState: string;
-			activity: string;
-			location: {
-				map: {
-					id: string;
+			status: {
+				controlMode: RobotDetailControlModeTypeEnum;
+				location: {
+					mapName: string;
 					floor: string;
-				};
-				point: {
 					x: number;
 					y: number;
 					yaw: number;
 				};
+				batteryState: {
+					current: number;
+					percentage: number;
+					powerSupplyStatus: string;
+					powerSupplyHealth: string;
+					voltage: number;
+				};
+				isDocked: boolean;
+				isJoystickConnected: boolean;
+				safetySystem: {
+					backMutingActive: boolean;
+					frontMutingActive: boolean;
+				};
 			};
-			orders: {
-				queue: IOrderQueue[];
-				size: number;
-			};
-			inventory: {
-				status: string;
-			};
-			lastBootup: Date;
-			lastShutdown: Date;
+			activity: string;
 		};
 	};
 	metadata: {
@@ -212,50 +191,29 @@ export interface IRobotTwin {
 					};
 				};
 			};
-			batteryState: {
-				percentage: {
-					updatedAt: Date;
-				};
-				powerSupplyStatus: {
-					updatedAt: Date;
-				};
-				powerSupplyHealth: {
-					updatedAt: Date;
-				};
-				current: {
-					updatedAt: Date;
-				};
-				voltage: {
-					updatedAt: Date;
-				};
-			};
-			dockingState: {
-				isDocked: {
-					updatedAt: Date;
-				};
-			};
-			joystickState: {
+			status: {
 				controlMode: {
 					updatedAt: Date;
 				};
-			};
-			muteSensorState: {
-				updatedAt: Date;
+				location: {
+					updatedAt: Date;
+				};
+				batteryState: {
+					updatedAt: Date;
+				};
+				isDocked: {
+					updatedAt: Date;
+				};
+				isJoystickConnected: {
+					updatedAt: Date;
+				};
+				safetySystem: {
+					updatedAt: Date;
+				};
 			};
 			activity: {
 				updatedAt: Date;
 			};
-			location: {
-				updatedAt: Date;
-			};
-			orders: {
-				updatedAt: Date;
-			};
-			inventory: {
-				status: { updatedAt: Date };
-			};
-			lastBootup: { updatedAt: Date };
-			lastShutdown: { updatedAt: Date };
 		};
 	};
 }
@@ -283,13 +241,9 @@ export interface IAlertRulesCondition {
 }
 
 export interface ILocation {
-	map: {
-		id: string;
-		floor: string;
-	};
-	point: {
-		x: number;
-		y: number;
-		yaw: number;
-	};
+	mapName: string;
+	floor: string;
+	x: number;
+	y: number;
+	yaw: number;
 }

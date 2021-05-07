@@ -4,9 +4,9 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { RobotDetailCameraTypeEnum } from '../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
-	RobotDetailCommandsControlTypeEnum,
 	RobotDetailCommandsMuteSensorsTypeEnum,
-	RobotDetailCommandsTypeEnum
+	RobotDetailCommandsTypeEnum,
+	RobotDetailControlModeTypeEnum
 } from '../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
@@ -104,7 +104,7 @@ export const RobotControlCommandSend = (
 	robotId: string,
 	command: RobotDetailCommandsTypeEnum,
 	option?:
-		| RobotDetailCommandsControlTypeEnum
+		| RobotDetailControlModeTypeEnum
 		| RobotDetailCommandsMuteSensorsTypeEnum
 		| string
 		| number

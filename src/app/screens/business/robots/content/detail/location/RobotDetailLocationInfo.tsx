@@ -45,7 +45,7 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 					variant="subtitle1"
 					color="textPrimary"
 					className={classes.sLocationInfoValue}>
-					{location.value.map.id}
+					{location.value.mapName}
 				</Typography>
 			</Box>
 			<Box>
@@ -59,7 +59,7 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 					variant="subtitle1"
 					color="textPrimary"
 					className={classes.sLocationInfoValue}>
-					{location.value.point.x.toFixed(2)}
+					{location.value.x.toFixed(2)}
 				</Typography>
 			</Box>
 			<Box>
@@ -73,7 +73,7 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 					variant="subtitle1"
 					color="textPrimary"
 					className={classes.sLocationInfoValue}>
-					{location.value.point.y.toFixed(2)}
+					{location.value.y.toFixed(2)}
 				</Typography>
 			</Box>
 			<Box>
@@ -87,7 +87,7 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 					variant="subtitle1"
 					color="textPrimary"
 					className={classes.sLocationInfoValue}>
-					{location.value.point.yaw.toFixed(2)}
+					{location.value.yaw.toFixed(2)}
 				</Typography>
 			</Box>
 		</Grid>

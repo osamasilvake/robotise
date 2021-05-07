@@ -15,7 +15,7 @@ export const robotLocationImageUrl = (mapId: string) => {
  * @param imageId
  * @returns
  */
-export const robotCameraImageUrl = (imageId: string) => {
+export const robotCameraImageUrl = (imageId: string | undefined) => {
 	const url = `${AppConfigService.envBaseURL}/${AppConfigService.envApiVersion}`;
 	return `${url}/storage/camera-images/${imageId}.jpg`;
 };

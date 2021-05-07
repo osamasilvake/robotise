@@ -235,17 +235,10 @@
 				"COMMANDS": {
 					"CONTROL": {
 						"TITLE": "ROC Commands",
-						"CHIPS": {
-							"ROBOT_OFF": "Robot OFF",
-							"MODE": {
-								"JOYSTICK": "Joystick",
-								"AUTONOMOUS": "Autonomous",
-								"ROC_CONTROL": "ROC Control"
-							}
-						},
 						"STATE": {
-							"ON": "ON",
-							"OFF": "OFF"
+							"JOYSTICK": "Joystick",
+							"AUTONOMOUS": "Autonomous",
+							"REMOTE_CONTROL": "ROC Control"
 						}
 					},
 					"MUTE": {
@@ -308,7 +301,7 @@
 					"DOCKING": {
 						"TITLE": "Docking State",
 						"ITEMS": {
-							"DOCKING": "DOCKING",
+							"DOCKING": "Docking",
 							"DOCKED": "Docked",
 							"UNDOCKED": "Undocked"
 						}
@@ -316,14 +309,9 @@
 					"JOYSTICK": {
 						"TITLE": "Joystick State",
 						"ITEMS": {
-							"CONTROL_MODE": {
-								"TITLE": "Control Mode",
-								"OPTIONS": {
-									"JOYSTICK": "Joystick",
-									"AUTONOMOUS": "Autonomous",
-									"ROC_CONTROL": "ROC Control"
-								}
-							}
+							"CONNECTING": "Connecting",
+							"CONNECTED": "Connected",
+							"NOT_CONNECTED": "Not Connected"
 						}
 					},
 					"ACTIVITY": {

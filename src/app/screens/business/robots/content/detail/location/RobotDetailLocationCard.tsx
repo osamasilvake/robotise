@@ -21,19 +21,19 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const [pointCoords, setPointCoords] = useState({ x: 0, y: 0, yaw: 0 });
 	const [ratio, setRatio] = useState({ x: 0, y: 0, cx: 0, cy: 0 });
 
-	const robotTwinsMapId = robotTwin.location?.value.map.id || '';
-	const robotMapId = robot.map.content?.name || '';
+	const robotTwinsMapName = robotTwin.location?.value.mapName || '';
+	const robotMapName = robot.map.content?.name || '';
 
 	useEffect(() => {
-		if (robotTwinsMapId !== robotMapId) {
+		if (robotTwinsMapName !== robotMapName) {
 			// dispatch: fetch robot map location
-			dispatch(RobotLocationMapFetch(robotTwinsMapId));
+			dispatch(RobotLocationMapFetch(robotTwinsMapName));
 		}
-	}, [dispatch, robotTwinsMapId, robotMapId]);
+	}, [dispatch, robotTwinsMapName, robotMapName]);
 
 	useEffect(() => {
 		const origin = robot.map.content?.origin;
-		const coordinates = robotTwin.location?.value.point;
+		const coordinates = robotTwin.location?.value;
 		const resolution = robot.map.content?.resolution;
 		if (origin && resolution && ratio && coordinates) {
 			const x = (Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x;
@@ -48,7 +48,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		ratio,
 		robot.map.content?.origin,
 		robot.map.content?.resolution,
-		robotTwin.location?.value.point
+		robotTwin.location?.value
 	]);
 
 	/**
@@ -64,7 +64,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		});
 	}, []);
 
-	return (
+	return robot.map ? (
 		<Grid item sm={12} md={6}>
 			<Card square elevation={1} className={classes.sLocationCard}>
 				<CardContent>
@@ -74,8 +74,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 							[classes.sLocationCardGridLines]: grid
 						})}>
 						<Picture
-							src={robotLocationImageUrl(robotTwinsMapId)}
-							alt={robotTwinsMapId}
+							src={robotLocationImageUrl(robotTwinsMapName)}
+							alt={robotTwinsMapName}
 							onLoad={onLoad}
 							fullWidth
 						/>
@@ -86,6 +86,6 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 				</CardContent>
 			</Card>
 		</Grid>
-	);
+	) : null;
 };
 export default RobotDetailLocationCard;

@@ -1,9 +1,9 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
-	RobotDetailCommandsControlTypeEnum,
 	RobotDetailCommandsMuteSensorsTypeEnum,
-	RobotDetailCommandsTypeEnum
+	RobotDetailCommandsTypeEnum,
+	RobotDetailControlModeTypeEnum
 } from './content/detail/commands/RobotDetailCommands.enum';
 import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
 import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
@@ -53,7 +53,7 @@ class RobotsService {
 		robotId: string,
 		command: RobotDetailCommandsTypeEnum,
 		option?:
-			| RobotDetailCommandsControlTypeEnum
+			| RobotDetailControlModeTypeEnum
 			| RobotDetailCommandsMuteSensorsTypeEnum
 			| string
 			| number
@@ -69,7 +69,7 @@ class RobotsService {
 				options.angle = option;
 				break;
 			default:
-				options.state = option;
+				options.mode = option;
 		}
 
 		return HttpClientService.post(url, {

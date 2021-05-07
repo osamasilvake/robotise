@@ -11,10 +11,7 @@ import { RobotTwinsFetch } from '../../../../../../slices/robot-twins/RobotTwins
 import RobotDetailCommandActions from './RobotDetailCommandActions';
 import RobotDetailCommandControl from './RobotDetailCommandControl';
 import RobotDetailCommandMuteSensors from './RobotDetailCommandMuteSensors';
-import {
-	RobotDetailCommandsControlTypeEnum,
-	RobotDetailCommandsMuteSensorsTypeEnum
-} from './RobotDetailCommands.enum';
+import { RobotDetailControlModeTypeEnum } from './RobotDetailCommands.enum';
 import {
 	RobotDetailCommandsInterface,
 	RobotDetailCommandsPayloadInterface
@@ -37,11 +34,12 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 		translate: false
 	});
 
-	const controlMode = robotTwin.joystickState?.controlMode.value;
-	const muteSensorState = robotTwin.muteSensorState?.value;
+	const controlMode = robotTwin.controlMode.value;
+	const muteSensorBack = robotTwin.safetySystemsState.backMutingActive;
+	const muteSensorFront = robotTwin.safetySystemsState.frontMutingActive;
 
 	useEffect(() => {
-		if (controlMode === RobotDetailCommandsControlTypeEnum.ROC_CONTROL) {
+		if (controlMode === RobotDetailControlModeTypeEnum.ROC_CONTROL) {
 			const payload = {
 				ready: state.ready,
 				control: true,
@@ -50,11 +48,11 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 				rotate: true,
 				translate: false
 			};
-			if (muteSensorState === RobotDetailCommandsMuteSensorsTypeEnum.FRONT_MUTED) {
-				payload.forward = true;
-				payload.rotate = false;
-			} else if (muteSensorState === RobotDetailCommandsMuteSensorsTypeEnum.BACK_MUTED) {
+			if (muteSensorBack) {
 				payload.backward = true;
+				payload.rotate = false;
+			} else if (muteSensorFront) {
+				payload.forward = true;
 				payload.rotate = false;
 			}
 			setState(payload);
@@ -68,7 +66,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 				backward: false
 			});
 		}
-	}, [controlMode, muteSensorState, state.ready]);
+	}, [controlMode, muteSensorBack, muteSensorFront, state.ready]);
 
 	/**
 	 * send control command

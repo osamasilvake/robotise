@@ -157,8 +157,13 @@ const RobotOrders: FC = () => {
 		);
 	}
 
+	// null
+	if (!orders.content) {
+		return null;
+	}
+
 	// empty
-	if (!orders.content || !orders.content.data.length) {
+	if (!orders.content.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 

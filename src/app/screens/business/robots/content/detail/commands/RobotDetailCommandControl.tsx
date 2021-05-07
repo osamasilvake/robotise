@@ -1,13 +1,15 @@
-import { Box, Button, ButtonGroup, Chip, CircularProgress, Typography } from '@material-ui/core';
+import { Box, Button, ButtonGroup, CircularProgress, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { robotTwinsSelector } from '../../../../../../slices/robot-twins/RobotTwins.slice';
-import { RobotDetailCommandsTypeEnum } from './RobotDetailCommands.enum';
+import {
+	RobotDetailCommandsTypeEnum,
+	RobotDetailControlModeTypeEnum
+} from './RobotDetailCommands.enum';
 import { RobotDetailCommandControlInterface } from './RobotDetailCommands.interface';
-import { controlMode } from './RobotDetailCommands.map';
 import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
 
 const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props) => {
@@ -26,22 +28,6 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					className={classes.sCommandsControlTitle}>
 					{t('CONTENT.DETAIL.COMMANDS.CONTROL.TITLE')}
 				</Typography>
-
-				<Box className={classes.sCommandsControlChips}>
-					{!state.ready && (
-						<Chip
-							label={t('CONTENT.DETAIL.COMMANDS.CONTROL.CHIPS.ROBOT_OFF')}
-							size="small"
-							className={classes.sCommandsControlChipError}
-						/>
-					)}
-					{robotTwin.joystickState?.controlMode.value && (
-						<Chip
-							label={t(controlMode(robotTwin.joystickState?.controlMode.value))}
-							size="small"
-						/>
-					)}
-				</Box>
 
 				{(robotTwins.loading || robot.control.loading) && (
 					<Box component="span" className={classes.sCommandsControlLoading}>
@@ -65,18 +51,35 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 						['selected']: state.control
 					})}
 					onClick={sendControlCommand({
-						command: RobotDetailCommandsTypeEnum.CONTROL_START
+						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,
+						state: RobotDetailControlModeTypeEnum.REMOTE_CONTROL
 					})}>
-					{t('CONTENT.DETAIL.COMMANDS.CONTROL.STATE.ON')}
+					{t('CONTENT.DETAIL.COMMANDS.CONTROL.STATE.REMOTE_CONTROL')}
 				</Button>
 				<Button
 					className={clsx({
-						['selected']: !state.control
+						['selected']:
+							!state.control &&
+							robotTwin.controlMode.value ===
+								RobotDetailControlModeTypeEnum.AUTONOMOUS
 					})}
 					onClick={sendControlCommand({
-						command: RobotDetailCommandsTypeEnum.CONTROL_STOP
+						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,
+						state: RobotDetailControlModeTypeEnum.AUTONOMOUS
 					})}>
-					{t('CONTENT.DETAIL.COMMANDS.CONTROL.STATE.OFF')}
+					{t('CONTENT.DETAIL.COMMANDS.CONTROL.STATE.AUTONOMOUS')}
+				</Button>
+				<Button
+					className={clsx({
+						['selected']:
+							!state.control &&
+							robotTwin.controlMode.value === RobotDetailControlModeTypeEnum.JOYSTICK
+					})}
+					onClick={sendControlCommand({
+						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,
+						state: RobotDetailControlModeTypeEnum.JOYSTICK
+					})}>
+					{t('CONTENT.DETAIL.COMMANDS.CONTROL.STATE.JOYSTICK')}
 				</Button>
 			</ButtonGroup>
 		</Box>

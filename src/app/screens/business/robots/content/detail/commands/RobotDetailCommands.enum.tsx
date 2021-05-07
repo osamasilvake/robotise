@@ -1,15 +1,16 @@
 export enum RobotDetailCommandsTypeEnum {
-	CONTROL_START = 'remote-control-start',
-	CONTROL_STOP = 'remote-control-stop',
+	CONTROL_MODE = 'set-control-mode',
 	MUTE_SENSORS = 'set-mute-sensor-state',
 	ROTATE = 'remote-control-rotate',
 	TRANSLATE = 'remote-control-translate'
 }
 
-export enum RobotDetailCommandsControlTypeEnum {
+export enum RobotDetailControlModeTypeEnum {
+	UNKNOWN = 'unknown',
 	ROC_CONTROL = 'roc_control',
+	JOYSTICK = 'joystick',
 	AUTONOMOUS = 'autonomous',
-	JOYSTICK = 'joystick'
+	REMOTE_CONTROL = 'remote_control'
 }
 
 export enum RobotDetailCommandsMuteSensorsTypeEnum {

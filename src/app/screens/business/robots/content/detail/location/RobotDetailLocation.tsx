@@ -25,8 +25,8 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 
 			{/* Label */}
 			<Typography variant="body1" color="textPrimary">
-				{strRemoveLastUnderscore(robotTwin.location.value.map.id)}
-				{robotTwin.location.value.map.floor && ` / ${robotTwin.location.value.map.floor}`}
+				{strRemoveLastUnderscore(robotTwin.location.value.mapName)}
+				{robotTwin.location.value.floor && ` / ${robotTwin.location.value.floor}`}
 			</Typography>
 
 			{/* Date */}

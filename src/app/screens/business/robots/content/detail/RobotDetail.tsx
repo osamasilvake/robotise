@@ -75,13 +75,13 @@ const RobotDetail: FC = () => {
 		return <PageError message={sites.errors?.text || robotTwins.errors?.text} />;
 	}
 
+	// null
+	if (!robotTwins.content || (pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId)) {
+		return null;
+	}
+
 	// empty
-	// previous !== current
-	if (
-		!robotTwins.content ||
-		!robotTwins.content.data.length ||
-		(pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId)
-	) {
+	if (!robotTwins.content.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 

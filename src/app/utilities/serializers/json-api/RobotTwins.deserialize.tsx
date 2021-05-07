@@ -35,12 +35,16 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 			}
 		},
 		transform: (data: IRobotTwin) => {
-			const sCameras = data.state.reported.cameras;
-			const mCameras = data.metadata.reported.cameras;
+			const state = data.state.reported;
+			const meta = data.metadata.reported;
+			const sCameras = state.cameras;
+			const mCameras = meta.cameras;
 			const cameraBase = sCameras && sCameras[RobotDetailCameraTypeEnum.BASE];
 			const cameraBaseMeta = cameraBase && mCameras[RobotDetailCameraTypeEnum.BASE];
 			const cameraTop = sCameras && sCameras[RobotDetailCameraTypeEnum.TOP];
 			const cameraTopMeta = cameraBase && mCameras[RobotDetailCameraTypeEnum.TOP];
+
+			console.log(data);
 
 			try {
 				const result: SRTContentDataInterface = {
@@ -48,30 +52,30 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 					updatedAt: data.updatedAt,
 					robot: {
 						id: data.robot.id,
-						name: data.state.reported.name
+						name: state.name
 					},
 					site: {
 						id: data.site.id
 					},
 					robotState: {
 						isReady: {
-							value: data.state.reported.robotState.isReady,
-							updatedAt: data.metadata.reported.robotState.isReady.updatedAt
+							value: state.robotState.isReady,
+							updatedAt: meta.robotState.isReady.updatedAt
 						}
 					},
 					alerts: {
-						value: data.state.reported.alerts,
-						updatedAt: data.metadata.reported.alerts?.updatedAt
+						value: state.alerts,
+						updatedAt: meta.alerts?.updatedAt
 					},
-					location: data.state.reported.location && {
-						value: data.state.reported.location,
-						updatedAt: data.metadata.reported.location.updatedAt
+					controlMode: {
+						value: state.status.controlMode,
+						updatedAt: meta.status.controlMode.updatedAt
 					},
-					muteSensorState: data.metadata.reported.muteSensorState && {
-						value: data.state.reported.muteSensorState,
-						updatedAt: data.metadata.reported.muteSensorState.updatedAt
+					location: state.status.location && {
+						value: state.status.location,
+						updatedAt: meta.status.location.updatedAt
 					},
-					cameras: data.state.reported.cameras &&
+					cameras: state.cameras &&
 						(cameraBase || cameraTop) && {
 							base: cameraBase && {
 								imageId: {
@@ -86,47 +90,30 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 								}
 							}
 						},
-					batteryState: data.state.reported.batteryState && {
-						current: {
-							value: data.state.reported.batteryState.current,
-							updatedAt: data.metadata.reported.batteryState.current.updatedAt
-						},
-						percentage: {
-							value: data.state.reported.batteryState.percentage,
-							updatedAt: data.metadata.reported.batteryState.percentage.updatedAt
-						},
-						powerSupplyHealth: {
-							value: data.state.reported.batteryState.powerSupplyHealth,
-							updatedAt:
-								data.metadata.reported.batteryState.powerSupplyHealth.updatedAt
-						},
-						powerSupplyStatus: {
-							value: data.state.reported.batteryState.powerSupplyStatus,
-							updatedAt:
-								data.metadata.reported.batteryState.powerSupplyStatus.updatedAt
-						},
-						voltage: {
-							value: data.state.reported.batteryState.voltage,
-							updatedAt: data.metadata.reported.batteryState.voltage.updatedAt
-						}
+					batteryState: state.status.batteryState && {
+						current: state.status.batteryState.current,
+						percentage: state.status.batteryState.percentage,
+						powerSupplyHealth: state.status.batteryState.powerSupplyHealth,
+						powerSupplyStatus: state.status.batteryState.powerSupplyStatus,
+						voltage: state.status.batteryState.voltage,
+						updatedAt: meta.status.batteryState.updatedAt
 					},
-					dockingState: data.state.reported.dockingState && {
-						isDocked: {
-							value: data.state.reported.dockingState.isDocked,
-							updatedAt: data.metadata.reported.dockingState.isDocked.updatedAt
-						}
+					dockingState: meta.status.isDocked && {
+						isDocked: state.status.isDocked,
+						updatedAt: meta.status.isDocked.updatedAt
 					},
-					joystickState: data.state.reported.joystickState && {
-						controlMode: {
-							value: data.state.reported.joystickState.controlMode,
-							updatedAt: data.metadata.reported.joystickState.controlMode.updatedAt
-						}
+					joystickState: meta.status.isJoystickConnected && {
+						isConnected: state.status.isJoystickConnected,
+						updatedAt: meta.status.isJoystickConnected.updatedAt
 					},
-					activityState: data.state.reported && {
-						latest: {
-							value: data.state.reported.activity,
-							updatedAt: data.metadata.reported.activity?.updatedAt
-						}
+					activityState: state && {
+						latest: state.activity,
+						updatedAt: meta.activity?.updatedAt
+					},
+					safetySystemsState: {
+						backMutingActive: state.status.safetySystem.backMutingActive,
+						frontMutingActive: state.status.safetySystem.frontMutingActive,
+						updatedAt: meta.status.safetySystem.updatedAt
 					}
 				};
 				return result;

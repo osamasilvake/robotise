@@ -160,8 +160,13 @@ const RobotPurchases: FC = () => {
 		);
 	}
 
+	// null
+	if (!purchases.content) {
+		return null;
+	}
+
 	// empty
-	if (!purchases.content || !purchases.content.data.length) {
+	if (!purchases.content.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 

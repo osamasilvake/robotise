@@ -78,7 +78,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 			});
 	};
 
-	return robotTwin?.cameras && robotTwin.cameras[cameraType] ? (
+	return (
 		<Grid item xs={12} sm={6}>
 			{/* Label */}
 			<Typography variant="body1" color="textPrimary">
@@ -86,21 +86,25 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 			</Typography>
 
 			{/* Date */}
-			<Typography variant="caption" color="textSecondary">
-				{momentFormat3(robotTwin.cameras[cameraType].imageId.updatedAt)}
-			</Typography>
+			{robotTwin.cameras && robotTwin.cameras[cameraType] && (
+				<Typography variant="caption" color="textSecondary">
+					{momentFormat3(robotTwin.cameras[cameraType].imageId.updatedAt)}
+				</Typography>
+			)}
 
 			{/* Card Picture */}
-			{robotTwin.cameras[cameraType].imageId.value && (
-				<Card square elevation={1} className={classes.sCameraCard}>
-					<CardContent>
-						<Picture
-							src={robotCameraImageUrl(robotTwin.cameras[cameraType].imageId.value)}
-							alt="camera"
-						/>
-					</CardContent>
-				</Card>
-			)}
+			<Card square elevation={1} className={classes.sCameraCard}>
+				<CardContent>
+					<Picture
+						src={robotCameraImageUrl(
+							robotTwin.cameras &&
+								robotTwin.cameras[cameraType] &&
+								robotTwin.cameras[cameraType].imageId.value
+						)}
+						alt="camera"
+					/>
+				</CardContent>
+			</Card>
 
 			{/* Button */}
 			<Box className={classes.sCameraButtonBox}>
@@ -116,6 +120,6 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				</Button>
 			</Box>
 		</Grid>
-	) : null;
+	);
 };
 export default RobotDetailCamera;

@@ -24,6 +24,7 @@ const Language: FC = () => {
 
 	return (
 		<ListItem
+			disabled
 			button
 			divider
 			onClick={handleLanguage(

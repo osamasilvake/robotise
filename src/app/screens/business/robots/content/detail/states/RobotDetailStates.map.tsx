@@ -90,10 +90,10 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'dockingState.isDocked':
 			return (
 				dockingState && {
-					title: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.DOCKING',
+					title: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.STATUS',
 					value: dockingState.isDocked
 						? 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.DOCKED'
-						: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.UNDOCKED',
+						: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.UN_DOCKED',
 					date: momentFormat3(dockingState.updatedAt),
 					icon: 'dock'
 				}
@@ -101,7 +101,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'joystickState.isConnected':
 			return (
 				joystickState && {
-					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONNECTING',
+					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.STATUS',
 					value: joystickState.isConnected
 						? 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONNECTED'
 						: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.NOT_CONNECTED',

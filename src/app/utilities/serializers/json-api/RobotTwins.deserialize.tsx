@@ -44,8 +44,6 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 			const cameraTop = sCameras && sCameras[RobotDetailCameraTypeEnum.TOP];
 			const cameraTopMeta = cameraBase && mCameras[RobotDetailCameraTypeEnum.TOP];
 
-			console.log(data);
-
 			try {
 				const result: SRTContentDataInterface = {
 					id: data.id,

@@ -301,15 +301,15 @@
 					"DOCKING": {
 						"TITLE": "Docking State",
 						"ITEMS": {
-							"DOCKING": "Docking",
+							"STATUS": "Status",
 							"DOCKED": "Docked",
-							"UNDOCKED": "Undocked"
+							"UN_DOCKED": "Undocked"
 						}
 					},
 					"JOYSTICK": {
 						"TITLE": "Joystick State",
 						"ITEMS": {
-							"CONNECTING": "Connecting",
+							"STATUS": "Status",
 							"CONNECTED": "Connected",
 							"NOT_CONNECTED": "Not Connected"
 						}

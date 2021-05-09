@@ -58,13 +58,6 @@ const RobotDetail: FC = () => {
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, cRobotTwinsId, sites.content]);
 
-	useEffect(() => {
-		if (sites.content && cRobotTwinsId) {
-			// dispatch: fetch robot twins of a robot
-			dispatch(RobotTwinsFetch(cRobotTwinsId, true));
-		}
-	}, [dispatch, sites.content, cRobotTwinsId]);
-
 	// loader
 	if (sites.loader || robotTwins.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;

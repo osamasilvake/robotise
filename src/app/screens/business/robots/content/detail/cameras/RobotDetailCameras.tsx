@@ -14,7 +14,7 @@ const RobotDetailCameras: FC<RobotDetailCamerasInterface> = (props) => {
 
 	const [currentCameraType, setCurrentCameraType] = useState(RobotDetailCameraTypeEnum.BASE);
 
-	return robotTwin?.cameras ? (
+	return (
 		<Box className={classes.sCamerasContainer}>
 			{/* Title */}
 			<Typography variant="h6" color="textSecondary" className={classes.sCamerasTitle}>
@@ -37,6 +37,6 @@ const RobotDetailCameras: FC<RobotDetailCamerasInterface> = (props) => {
 				/>
 			</Grid>
 		</Box>
-	) : null;
+	);
 };
 export default RobotDetailCameras;

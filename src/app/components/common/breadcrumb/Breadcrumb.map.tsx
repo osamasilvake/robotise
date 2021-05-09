@@ -31,11 +31,18 @@ export const breadcrumbs = (
 
 			/**
 			 * params:
-			 * 1. robot
-			 * 2. order
-			 * 3. purchase
+			 * 1. site
+			 * 2. robot
+			 * 3. order
+			 * 4. purchase
 			 */
-			if (path === params.robot) {
+			if (path === params.site) {
+				return {
+					text: labels?.siteName || '...',
+					link,
+					isLast: index === paths.length - 1
+				};
+			} else if (path === params.robot) {
 				return {
 					text: labels?.robotName || '...',
 					link,

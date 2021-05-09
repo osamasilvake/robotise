@@ -205,6 +205,12 @@
 					"INACTIVE": "Inactive"
 				}
 			}
+		},
+		"CONTENT": {
+			"TABS": {
+				"DETAIL": "DETAIL",
+				"PRODUCTS": "PRODUCTS"
+			}
 		}
 	},
 	"ROBOTS": {

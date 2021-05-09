@@ -1,4 +1,5 @@
 export interface BreadcrumbParamsInterface {
+	site?: string;
 	robot?: string;
 	order?: string;
 	purchase?: string;
@@ -9,6 +10,7 @@ export interface BreadcrumbInterface {
 }
 
 export interface BreadcrumbLabelsInterface {
+	siteName?: string;
 	robotName?: string;
 	orderTarget?: string;
 	purchaseTarget?: string;

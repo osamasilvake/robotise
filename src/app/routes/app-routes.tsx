@@ -6,7 +6,12 @@ const appRoutes = {
 		BUSINESS: {
 			DASHBOARD: '/',
 			SITES: {
-				MAIN: '/sites'
+				MAIN: '/sites',
+				DETAIL: '/sites/:site',
+				PRODUCTS: {
+					MAIN: '/sites/:site/products',
+					DETAIL: '/sites/:site/products/:product'
+				}
 			},
 			ROBOTS: {
 				MAIN: '/robots',

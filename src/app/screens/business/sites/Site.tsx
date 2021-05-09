@@ -2,17 +2,13 @@ import { Paper } from '@material-ui/core';
 import { FC } from 'react';
 
 import PageHead from '../../../components/content/page-head/PageHead';
-import SitesList from './list/SitesList';
 
-const Sites: FC = () => {
+const Site: FC = () => {
 	return (
 		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
-			<PageHead title="SITES.TITLE" description="SITES.DESCRIPTION" />
-
-			{/* List */}
-			<SitesList />
+			<PageHead title="SITES.SITE.TITLE" description="SITES.SITE.DESCRIPTION" />
 		</Paper>
 	);
 };
-export default Sites;
+export default Site;

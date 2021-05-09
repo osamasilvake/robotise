@@ -73,6 +73,14 @@ class AppConfigService extends EnvService {
 				authentication: {
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
+				sites: {
+					list: {
+						refreshTime: 20000,
+						showPageSizes: false,
+						defaultPageSize: 100,
+						pageSizes: [5, 10, 15, 20, 50, 100]
+					}
+				},
 				robots: {
 					list: {
 						refreshTime: 20000,

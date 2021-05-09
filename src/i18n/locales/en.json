@@ -9,7 +9,11 @@
 		},
 		"SITES": {
 			"TITLE": "Sites",
-			"DESCRIPTION": "Sites Description"
+			"DESCRIPTION": "Sites Description",
+			"SITE": {
+				"TITLE": "Site Details",
+				"DESCRIPTION": "Site Details Description"
+			}
 		},
 		"ROBOTS": {
 			"TITLE": "Robots",
@@ -183,6 +187,23 @@
 			"LIST": {
 				"CHANGE_LOG": "Change Log",
 				"ABOUT": "About"
+			}
+		}
+	},
+	"SITES": {
+		"LIST": {
+			"TABLE": {
+				"COLUMNS": {
+					"NAME": "Site",
+					"TIMEZONE": "Timezone",
+					"CURRENCY": "Currency",
+					"ACCEPT_ORDERS": "Accept Orders",
+					"UPDATED_AT": "Updated At"
+				},
+				"VALUES": {
+					"ACTIVE": "Active",
+					"INACTIVE": "Inactive"
+				}
 			}
 		}
 	},

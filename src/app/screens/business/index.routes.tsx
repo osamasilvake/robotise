@@ -3,7 +3,7 @@ import { lazy } from 'react';
 import { RouteInterface } from '../../routes/Routes.interfaces';
 import { AppConfigService } from '../../services';
 import robotsRoutes from './robots/Robots.routes';
-import siteRoutes from './sites/Sites.routes';
+import sitesRoutes from './sites/Sites.routes';
 
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 
@@ -13,7 +13,7 @@ const businessRoutes: RouteInterface[] = [
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD
 	},
-	...siteRoutes,
+	...sitesRoutes,
 	...robotsRoutes
 ];
 export default businessRoutes;

@@ -124,8 +124,14 @@ const AppBarCustom: FC = () => {
 						anchorEl={anchorEl}
 						open={Boolean(anchorEl)}
 						onClose={handleMenuClose}
-						anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-						transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'center'
+						}}
+						transformOrigin={{
+							vertical: 'top',
+							horizontal: 'center'
+						}}>
 						<List disablePadding>
 							{/* User Info */}
 							<ListItem divider>

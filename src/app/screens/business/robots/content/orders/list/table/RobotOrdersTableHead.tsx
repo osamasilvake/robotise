@@ -29,7 +29,10 @@ const RobotOrdersTableHead: FC<RobotOrdersTableHeadInterface> = (props) => {
 					<TableCell
 						key={column.id}
 						align={column.align}
-						style={{ minWidth: column.minWidth, width: column.width }}
+						style={{
+							minWidth: column.minWidth,
+							width: column.width
+						}}
 						sortDirection={orderBy === column.id ? order : false}>
 						<TableSortLabel
 							active={orderBy === column.id}

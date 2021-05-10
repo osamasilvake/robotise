@@ -61,51 +61,50 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const RobotTwinsSummaryFetchList = (refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const sites = states.sites;
-	const robotTwinsSummary = states.robotTwinsSummary;
+export const RobotTwinsSummaryFetchList =
+	(refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const sites = states.sites;
+		const robotTwinsSummary = states.robotTwinsSummary;
 
-	// return on busy
-	if (robotTwinsSummary && (robotTwinsSummary.loader || robotTwinsSummary.loading)) {
-		return;
-	}
+		// return on busy
+		if (robotTwinsSummary && (robotTwinsSummary.loader || robotTwinsSummary.loading)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotTwinsSummaryFetch()
-		.then(async (res) => {
-			// deserialize response
-			const robotTwinsSummary = await deserializeRobotTwinsSummary(res);
+		return RobotsService.robotTwinsSummaryFetch()
+			.then(async (res) => {
+				// deserialize response
+				const robotTwinsSummary = await deserializeRobotTwinsSummary(res);
 
-			if (sites && sites.content) {
-				// prepare robot twins summary content
-				const result = prepareContent(sites.content, robotTwinsSummary);
+				if (sites && sites.content) {
+					// prepare robot twins summary content
+					const result = prepareContent(sites.content, robotTwinsSummary);
 
-				// count alerts for badge
-				const alerts = countAlerts(result);
+					// count alerts for badge
+					const alerts = countAlerts(result);
 
-				// dispatch: success
-				dispatch(success({ ...result, alerts }));
-			}
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-rts-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+					// dispatch: success
+					dispatch(success({ ...result, alerts }));
+				}
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-rts-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * prepare robot twins summary content

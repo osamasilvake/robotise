@@ -59,45 +59,44 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const OrderFetch = (orderId: string, refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const order = states.order;
+export const OrderFetch =
+	(orderId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const order = states.order;
 
-	// return on busy
-	if (order && (order.loader || order.loading)) {
-		return;
-	}
+		// return on busy
+		if (order && (order.loader || order.loading)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotOrderFetch(orderId)
-		.then(async (res) => {
-			// deserialize response
-			const order = await deserializeOrder(res);
+		return RobotsService.robotOrderFetch(orderId)
+			.then(async (res) => {
+				// deserialize response
+				const order = await deserializeOrder(res);
 
-			// prepare order content
-			const result = prepareContent(order);
+				// prepare order content
+				const result = prepareContent(order);
 
-			// dispatch: success
-			dispatch(success(result));
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-order-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-order-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * prepare order content

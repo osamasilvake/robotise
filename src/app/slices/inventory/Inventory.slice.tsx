@@ -63,49 +63,48 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const InventoryFetchList = (robotId: string, refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const inventory = states.inventory;
-	const products = states.products;
+export const InventoryFetchList =
+	(robotId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const inventory = states.inventory;
+		const products = states.products;
 
-	// return on busy
-	if (inventory && (inventory.loader || inventory.loading)) {
-		return;
-	}
+		// return on busy
+		if (inventory && (inventory.loader || inventory.loading)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotInventoryFetch(robotId)
-		.then(async (res) => {
-			// deserialize response
-			const inventory = await deserializeInventory(res);
+		return RobotsService.robotInventoryFetch(robotId)
+			.then(async (res) => {
+				// deserialize response
+				const inventory = await deserializeInventory(res);
 
-			// prepare inventory content
-			if (products && products.content) {
-				// add products to inventory
-				const result = addProductsToInventory(inventory, products.content.data);
+				// prepare inventory content
+				if (products && products.content) {
+					// add products to inventory
+					const result = addProductsToInventory(inventory, products.content.data);
 
-				// dispatch: success
-				dispatch(success(result));
-			}
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-inventory-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+					// dispatch: success
+					dispatch(success(result));
+				}
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-inventory-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * add products to inventory

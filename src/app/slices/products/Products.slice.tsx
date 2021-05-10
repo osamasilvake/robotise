@@ -57,47 +57,46 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const ProductsFetchList = (siteId: string, refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const products = states.products;
+export const ProductsFetchList =
+	(siteId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const products = states.products;
 
-	// return on busy
-	if (products && (products.loader || products.loading)) {
-		return;
-	}
+		// return on busy
+		if (products && (products.loader || products.loading)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	return SitesService.siteProductsFetch(siteId)
-		.then(async (res) => {
-			// deserialize response
-			let result: SPContentInterface = await deserializeProducts(res);
+		return SitesService.siteProductsFetch(siteId)
+			.then(async (res) => {
+				// deserialize response
+				let result: SPContentInterface = await deserializeProducts(res);
 
-			// prepare content
-			result = {
-				...result,
-				site: {
-					id: siteId
-				}
-			};
+				// prepare content
+				result = {
+					...result,
+					site: {
+						id: siteId
+					}
+				};
 
-			// dispatch: success
-			dispatch(success(result));
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-products-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-products-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};

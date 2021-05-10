@@ -60,52 +60,51 @@ export default dataSlice.reducer;
  * @param wait
  * @returns
  */
-export const RobotTwinsFetch = (robotTwinId: string, refresh = false, wait = -1) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const sites = states.sites;
-	const robotTwins = states.robotTwins;
+export const RobotTwinsFetch =
+	(robotTwinId: string, refresh = false, wait = -1) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const sites = states.sites;
+		const robotTwins = states.robotTwins;
 
-	// return on busy
-	if (robotTwins && (robotTwins.loader || robotTwins.loading)) {
-		return;
-	}
+		// return on busy
+		if (robotTwins && (robotTwins.loader || robotTwins.loading)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	// wait
-	wait >= 0 && (await timeout(wait));
+		// wait
+		wait >= 0 && (await timeout(wait));
 
-	return RobotsService.robotTwinsSingleFetch(robotTwinId)
-		.then(async (res) => {
-			// deserialize response
-			const robotTwins = await deserializeRobotTwins(res);
+		return RobotsService.robotTwinsSingleFetch(robotTwinId)
+			.then(async (res) => {
+				// deserialize response
+				const robotTwins = await deserializeRobotTwins(res);
 
-			// prepare robot twins content
-			if (sites && sites.content) {
 				// prepare robot twins content
-				const result = prepareContent(sites.content, robotTwins);
+				if (sites && sites.content) {
+					// prepare robot twins content
+					const result = prepareContent(sites.content, robotTwins);
 
-				// dispatch: success
-				dispatch(success(result));
-			}
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-rb-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+					// dispatch: success
+					dispatch(success(result));
+				}
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-rb-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * prepare robot twins content

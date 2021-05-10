@@ -17,11 +17,10 @@ const RobotPurchasesTableHead: FC<RobotPurchasesTableHeadInterface> = (props) =>
 	 * @param property
 	 * @returns
 	 */
-	const handleSortRequest = (property: RobotPurchasesTableColumnsTypeEnum) => (
-		event: MouseEvent
-	) => {
-		onRequestSort(event, property);
-	};
+	const handleSortRequest =
+		(property: RobotPurchasesTableColumnsTypeEnum) => (event: MouseEvent) => {
+			onRequestSort(event, property);
+		};
 
 	return (
 		<TableHead>

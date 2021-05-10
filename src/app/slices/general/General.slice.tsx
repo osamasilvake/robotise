@@ -83,40 +83,37 @@ export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: 
  * apply theme palette
  * @param theme
  */
-export const GeneralApplyThemePalette = (theme: GeneralThemePaletteTypeEnum) => async (
-	dispatch: Dispatch
-) => {
-	// dispatch: apply theme palette
-	dispatch(applyThemePalette(theme));
+export const GeneralApplyThemePalette =
+	(theme: GeneralThemePaletteTypeEnum) => async (dispatch: Dispatch) => {
+		// dispatch: apply theme palette
+		dispatch(applyThemePalette(theme));
 
-	// store it in local_storage
-	StorageService.put(AppConfigService.StorageItems.ThemePalette, theme);
-};
+		// store it in local_storage
+		StorageService.put(AppConfigService.StorageItems.ThemePalette, theme);
+	};
 
 /**
  * change language
  * @param language
  */
-export const GeneralChangeLanguage = (language: GeneralLanguageTypeEnum) => async (
-	dispatch: Dispatch
-) => {
-	// dispatch: change language
-	dispatch(changeLanguage(language));
+export const GeneralChangeLanguage =
+	(language: GeneralLanguageTypeEnum) => async (dispatch: Dispatch) => {
+		// dispatch: change language
+		dispatch(changeLanguage(language));
 
-	// store it in local_storage
-	StorageService.put(AppConfigService.StorageItems.ChangeLanguage, language);
-};
+		// store it in local_storage
+		StorageService.put(AppConfigService.StorageItems.ChangeLanguage, language);
+	};
 
 /**
  * trigger message
  * @param message
  */
-export const GeneralTriggerMessage = (message: TriggerMessageInterface) => async (
-	dispatch: Dispatch
-) => {
-	// dispatch: trigger message
-	dispatch(triggerMessage(message));
-};
+export const GeneralTriggerMessage =
+	(message: TriggerMessageInterface) => async (dispatch: Dispatch) => {
+		// dispatch: trigger message
+		dispatch(triggerMessage(message));
+	};
 
 /**
  * fetch changelog

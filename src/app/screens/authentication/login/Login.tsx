@@ -35,24 +35,18 @@ const Login: FC = () => {
 	const auth = useSelector(authSelector);
 
 	const [showPassword, setShowPassword] = useState(false);
-	const {
-		handleChangeInput,
-		handleChangeCheckbox,
-		handleBlur,
-		handleSubmit,
-		values,
-		errors
-	} = useForm<AuthLoginPayloadInterface>(
-		{
-			email: '',
-			password: '',
-			rememberMe: true
-		},
-		LoginFormValidation,
-		async () => {
-			dispatch(AuthLogin(values));
-		}
-	);
+	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
+		useForm<AuthLoginPayloadInterface>(
+			{
+				email: '',
+				password: '',
+				rememberMe: true
+			},
+			LoginFormValidation,
+			async () => {
+				dispatch(AuthLogin(values));
+			}
+		);
 
 	/**
 	 * handle set password

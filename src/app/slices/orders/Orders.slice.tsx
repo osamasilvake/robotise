@@ -75,61 +75,60 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const OrdersFetchList = (payload: RobotOrdersFetchListInterface, refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const orders = states.orders;
+export const OrdersFetchList =
+	(payload: RobotOrdersFetchListInterface, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const orders = states.orders;
 
-	// return on busy
-	if (orders && (orders.loader || orders.loading || orders.updating)) {
-		return;
-	}
+		// return on busy
+		if (orders && (orders.loader || orders.loading || orders.updating)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotOrdersFetch(payload)
-		.then(async (res) => {
-			// deserialize response
-			let result: SOContentInterface = await deserializeOrders(res);
+		return RobotsService.robotOrdersFetch(payload)
+			.then(async (res) => {
+				// deserialize response
+				let result: SOContentInterface = await deserializeOrders(res);
 
-			// state
-			result = {
-				...result,
-				state: payload
-			};
+				// state
+				result = {
+					...result,
+					state: payload
+				};
 
-			// handle mapping
-			result = handleMapping(result);
+				// handle mapping
+				result = handleMapping(result);
 
-			// handle refresh and pagination
-			if (orders && orders.content) {
-				result = handleRefreshAndPagination(
-					orders.content,
-					result,
-					refresh,
-					payload.rowsPerPage
-				);
-			}
+				// handle refresh and pagination
+				if (orders && orders.content) {
+					result = handleRefreshAndPagination(
+						orders.content,
+						result,
+						refresh,
+						payload.rowsPerPage
+					);
+				}
 
-			// dispatch: success
-			dispatch(success(result));
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-orders-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-orders-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * create an order
@@ -137,132 +136,127 @@ export const OrdersFetchList = (payload: RobotOrdersFetchListInterface, refresh 
  * @param siteId
  * @returns
  */
-export const OrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: string) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const orders = states.orders;
+export const OrderCreate =
+	(payload: DialogCreateOrderPayloadInterface, siteId: string) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const orders = states.orders;
 
-	// dispatch: updating
-	dispatch(updating());
+		// dispatch: updating
+		dispatch(updating());
 
-	return RobotsService.robotOrderCreate(payload, siteId)
-		.then(async (res) => {
-			// deserialize response
-			let result = await deserializeOrder(res);
+		return RobotsService.robotOrderCreate(payload, siteId)
+			.then(async (res) => {
+				// deserialize response
+				let result = await deserializeOrder(res);
 
-			// handle mapping
-			result = mapItem(result);
+				// handle mapping
+				result = mapItem(result);
 
-			if (orders.content) {
-				// update created order
-				result = updateCreatedOrder(orders.content, result);
+				if (orders.content) {
+					// update created order
+					result = updateCreatedOrder(orders.content, result);
 
-				// dispatch: updated
-				dispatch(updated(result));
+					// dispatch: updated
+					dispatch(updated(result));
 
-				// dispatch: trigger message
+					// dispatch: trigger message
+					const message: TriggerMessageInterface = {
+						id: 'create-order-success',
+						show: true,
+						severity: TriggerMessageTypeEnum.SUCCESS,
+						text: 'ROBOTS.ORDERS.ORDER_CREATE.SUCCESS'
+					};
+					dispatch(triggerMessage(message));
+				}
+			})
+			.catch(() => {
 				const message: TriggerMessageInterface = {
-					id: 'create-order-success',
+					id: 'create-order-error',
 					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.ORDERS.ORDER_CREATE.SUCCESS'
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.CANCEL'
 				};
-				dispatch(triggerMessage(message));
-			}
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'create-order-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.CANCEL'
-			};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * cancel an order
  * @param order
  * @returns
  */
-export const OrderCancel = (order: SOCDataInterface) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const orders = states.orders;
+export const OrderCancel =
+	(order: SOCDataInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const orders = states.orders;
 
-	// dispatch: updating
-	dispatch(updating());
+		// dispatch: updating
+		dispatch(updating());
 
-	return RobotsService.robotOrderCancel([order.id], order.site.id)
-		.then(async (res) => {
-			// deserialize response
-			let result = await deserializeOrders(res);
+		return RobotsService.robotOrderCancel([order.id], order.site.id)
+			.then(async (res) => {
+				// deserialize response
+				let result = await deserializeOrders(res);
 
-			if (orders.content) {
-				// update created order
-				result = updateCanceledOrder(orders.content, result.data[0]);
+				if (orders.content) {
+					// update created order
+					result = updateCanceledOrder(orders.content, result.data[0]);
 
-				// dispatch: updated
-				dispatch(updated(result));
+					// dispatch: updated
+					dispatch(updated(result));
 
-				// dispatch: trigger message
+					// dispatch: trigger message
+					const message: TriggerMessageInterface = {
+						id: 'cancel-order-success',
+						show: true,
+						severity: TriggerMessageTypeEnum.SUCCESS,
+						text: 'ROBOTS.ORDERS.ORDER_CANCEL.SUCCESS'
+					};
+					dispatch(triggerMessage(message));
+				}
+			})
+			.catch(() => {
 				const message: TriggerMessageInterface = {
-					id: 'cancel-order-success',
+					id: 'cancel-order-error',
 					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.ORDERS.ORDER_CANCEL.SUCCESS'
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.CANCEL'
 				};
-				dispatch(triggerMessage(message));
-			}
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'cancel-order-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.CANCEL'
-			};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * update state
  * @param state
  * @returns
  */
-export const OrderUpdateState = (state: SOCState) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const orders = states.orders;
+export const OrderUpdateState =
+	(state: SOCState) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const orders = states.orders;
 
-	// dispatch: updating
-	dispatch(updating());
+		// dispatch: updating
+		dispatch(updating());
 
-	if (orders && orders.content) {
-		const result = {
-			...orders.content,
-			state
-		};
+		if (orders && orders.content) {
+			const result = {
+				...orders.content,
+				state
+			};
 
-		// dispatch: updated
-		dispatch(updated(result));
-	}
-};
+			// dispatch: updated
+			dispatch(updated(result));
+		}
+	};
 
 /**
  * handle mapping

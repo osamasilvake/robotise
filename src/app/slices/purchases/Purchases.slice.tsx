@@ -74,58 +74,57 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const PurchasesFetchList = (
-	payload: RobotPurchasesFetchListInterface,
-	refresh = false
-) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
-	// states
-	const states = getState();
-	const purchases = states.purchases;
+export const PurchasesFetchList =
+	(payload: RobotPurchasesFetchListInterface, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const purchases = states.purchases;
 
-	// return on busy
-	if (purchases && (purchases.loader || purchases.loading || purchases.updating)) {
-		return;
-	}
+		// return on busy
+		if (purchases && (purchases.loader || purchases.loading || purchases.updating)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotPurchasesFetch(payload)
-		.then(async (res) => {
-			// deserialize response
-			let result: SPContentInterface = await deserializePurchases(res);
+		return RobotsService.robotPurchasesFetch(payload)
+			.then(async (res) => {
+				// deserialize response
+				let result: SPContentInterface = await deserializePurchases(res);
 
-			// state
-			result = {
-				...result,
-				state: payload
-			};
+				// state
+				result = {
+					...result,
+					state: payload
+				};
 
-			// handle refresh and pagination
-			if (purchases && purchases.content) {
-				result = handleRefreshAndPagination(
-					purchases.content,
-					result,
-					refresh,
-					payload.rowsPerPage
-				);
-			}
+				// handle refresh and pagination
+				if (purchases && purchases.content) {
+					result = handleRefreshAndPagination(
+						purchases.content,
+						result,
+						refresh,
+						payload.rowsPerPage
+					);
+				}
 
-			// dispatch: success
-			dispatch(success(result));
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-purchases-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-purchases-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * edit a comment field
@@ -133,75 +132,72 @@ export const PurchasesFetchList = (
  * @param comment
  * @returns
  */
-export const PurchaseEditComment = (purchaseId: string, comment: string) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const purchases = states.purchases;
+export const PurchaseEditComment =
+	(purchaseId: string, comment: string) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const purchases = states.purchases;
 
-	// dispatch: updating
-	dispatch(updating());
+		// dispatch: updating
+		dispatch(updating());
 
-	return RobotsService.robotPurchaseEditComment(purchaseId, comment)
-		.then(async (res) => {
-			// deserialize response
-			let result = await deserializePurchase(res);
+		return RobotsService.robotPurchaseEditComment(purchaseId, comment)
+			.then(async (res) => {
+				// deserialize response
+				let result = await deserializePurchase(res);
 
-			if (purchases.content) {
-				// update edited comment
-				result = updateEditedComment(purchases.content, result);
+				if (purchases.content) {
+					// update edited comment
+					result = updateEditedComment(purchases.content, result);
 
-				// dispatch: updated
-				dispatch(updated(result));
+					// dispatch: updated
+					dispatch(updated(result));
 
-				// dispatch: trigger message
+					// dispatch: trigger message
+					const message: TriggerMessageInterface = {
+						id: 'edit-comment-success',
+						show: true,
+						severity: TriggerMessageTypeEnum.SUCCESS,
+						text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
+					};
+					dispatch(triggerMessage(message));
+				}
+			})
+			.catch(() => {
 				const message: TriggerMessageInterface = {
-					id: 'edit-comment-success',
+					id: 'edit-comment-error',
 					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.CANCEL'
 				};
-				dispatch(triggerMessage(message));
-			}
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'edit-comment-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.CANCEL'
-			};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
 
 /**
  * update state
  * @param state
  * @returns
  */
-export const PurchaseUpdateState = (state: SPCState) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const purchases = states.purchases;
+export const PurchaseUpdateState =
+	(state: SPCState) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const purchases = states.purchases;
 
-	if (purchases && purchases.content) {
-		const result = {
-			...purchases.content,
-			state
-		};
+		if (purchases && purchases.content) {
+			const result = {
+				...purchases.content,
+				state
+			};
 
-		// dispatch: updated
-		dispatch(updated(result));
-	}
-};
+			// dispatch: updated
+			dispatch(updated(result));
+		}
+	};
 
 /**
  * handle refresh and pagination

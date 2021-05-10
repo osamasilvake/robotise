@@ -56,40 +56,39 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const SitesFetchList = (refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const sites = states.sites;
+export const SitesFetchList =
+	(refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const sites = states.sites;
 
-	// return on busy
-	if (sites && (sites.loader || sites.loading)) {
-		return;
-	}
+		// return on busy
+		if (sites && (sites.loader || sites.loading)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	// fetch sites list
-	return SitesService.sitesFetch()
-		.then(async (res) => {
-			// deserialize response
-			const result = await deserializeSites(res);
+		// fetch sites list
+		return SitesService.sitesFetch()
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeSites(res);
 
-			// dispatch: success
-			dispatch(success(result));
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-sites-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-sites-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};

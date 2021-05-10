@@ -57,39 +57,38 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const PurchaseFetch = (purchaseId: string, refresh = false) => async (
-	dispatch: Dispatch,
-	getState: () => AppReducerType
-) => {
-	// states
-	const states = getState();
-	const purchase = states.purchase;
+export const PurchaseFetch =
+	(purchaseId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const purchase = states.purchase;
 
-	// return on busy
-	if (purchase && (purchase.loader || purchase.loading)) {
-		return;
-	}
+		// return on busy
+		if (purchase && (purchase.loader || purchase.loading)) {
+			return;
+		}
 
-	// dispatch: loader/loading
-	dispatch(!refresh ? loader() : loading());
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
 
-	return RobotsService.robotPurchaseFetch(purchaseId)
-		.then(async (res) => {
-			// deserialize response
-			const result = await deserializePurchase(res);
+		return RobotsService.robotPurchaseFetch(purchaseId)
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializePurchase(res);
 
-			// dispatch: success
-			dispatch(success(result));
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-purchase-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				const message: TriggerMessageInterface = {
+					id: 'fetch-purchase-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.FETCH'
+				};
 
-			// dispatch: failure
-			dispatch(failure(message));
-		});
-};
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};

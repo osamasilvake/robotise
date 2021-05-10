@@ -51,6 +51,7 @@ describe('[SLICE] Inventory', () => {
 				id: robotId
 			}
 		};
+		/**
 		const mappedResult = {
 			id: 'ffc23dcf-193d-4e5b-9ada-758a6ea37b8a',
 			drawers: [
@@ -76,6 +77,7 @@ describe('[SLICE] Inventory', () => {
 				id: robotId
 			}
 		};
+		*/
 
 		// mock api once
 		mockedAxios.get.mockResolvedValueOnce({

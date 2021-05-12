@@ -14,7 +14,7 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailLocationStyles();
 
-	const [grid, showGrid] = useState(true);
+	const [grid, showGrid] = useState(false);
 
 	return robotTwin.location ? (
 		<Box className={classes.sLocationContainer}>

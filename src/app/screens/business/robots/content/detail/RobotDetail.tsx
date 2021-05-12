@@ -19,9 +19,12 @@ import RobotDetailCameras from './cameras/RobotDetailCameras';
 import RobotDetailCommands from './commands/RobotDetailCommands';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailLocation from './location/RobotDetailLocation';
+import { RobotDetailStyles } from './RobotDetail.style';
 import RobotDetailStates from './states/RobotDetailStates';
 
 const RobotDetail: FC = () => {
+	const classes = RobotDetailStyles();
+
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 	const robotTwins = useSelector(robotTwinsSelector);
@@ -79,7 +82,7 @@ const RobotDetail: FC = () => {
 	}
 
 	return (
-		<Box>
+		<Box className={classes.sBox}>
 			<RobotDetailGeneral robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailAlerts robotTwin={robotTwins.content.data[0]} />
 			<RobotDetailLocation robotTwin={robotTwins.content.data[0]} />

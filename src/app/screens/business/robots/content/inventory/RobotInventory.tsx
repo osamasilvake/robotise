@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -16,8 +17,11 @@ import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/Rob
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotInventoryList from './list/RobotInventoryList';
+import { RobotInventoryStyles } from './RobotInventory.style';
 
 const RobotInventory: FC = () => {
+	const classes = RobotInventoryStyles();
+
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
@@ -104,6 +108,10 @@ const RobotInventory: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 
-	return <RobotInventoryList content={inventory.content} />;
+	return (
+		<Box className={classes.sBox}>
+			<RobotInventoryList content={inventory.content} />;
+		</Box>
+	);
 };
 export default RobotInventory;

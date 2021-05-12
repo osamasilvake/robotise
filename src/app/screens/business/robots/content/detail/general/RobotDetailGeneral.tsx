@@ -13,7 +13,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const classes = RobotDetailGeneralStyles();
 
 	return (
-		<Grid container spacing={1} className={classes.sGeneralContainer}>
+		<Grid container spacing={1}>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.SITE')}

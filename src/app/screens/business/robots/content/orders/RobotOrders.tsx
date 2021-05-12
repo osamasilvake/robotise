@@ -165,7 +165,7 @@ const RobotOrders: FC = () => {
 	// empty
 	if (!orders.content.data.length) {
 		return (
-			<Box className={classes.sBox}>
+			<Box>
 				{/* Actions */}
 				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
 

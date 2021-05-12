@@ -13,8 +13,7 @@ export const CenterStyles = makeStyles((theme: Theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
-		marginTop: theme.spacing(15),
-		padding: theme.spacing(2),
+		padding: theme.spacing(12, 2, 2, 2),
 		textAlign: 'center'
 	}
 }));

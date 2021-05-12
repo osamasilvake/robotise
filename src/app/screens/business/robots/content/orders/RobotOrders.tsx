@@ -165,19 +165,19 @@ const RobotOrders: FC = () => {
 	// empty
 	if (!orders.content.data.length) {
 		return (
-			<Box>
+			<Box className={classes.sBox}>
+				{/* Actions */}
+				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
+
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE"></PageEmpty>
-
-				{/* Options */}
-				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
 			</Box>
 		);
 	}
 
 	return (
 		<Box className={classes.sBox}>
-			{/* Options */}
+			{/* Actions */}
 			<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
 
 			{/* Table */}

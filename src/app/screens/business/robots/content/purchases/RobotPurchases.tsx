@@ -172,7 +172,7 @@ const RobotPurchases: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			{/* Options */}
+			{/* Actions */}
 			<RobotPurchasesActions billed={billed} debug={debug} />
 
 			{/* Table */}

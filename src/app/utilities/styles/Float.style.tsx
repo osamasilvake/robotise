@@ -8,7 +8,6 @@ export const FloatStyles = makeStyles((theme: Theme) => ({
 		padding: theme.spacing(2),
 		position: 'fixed',
 		right: -245,
-		top: 175,
 		transition: '0.5s all',
 		width: theme.typography.pxToRem(250),
 		zIndex: AppConfigService.AppOptions.styles.zIndex.level3,

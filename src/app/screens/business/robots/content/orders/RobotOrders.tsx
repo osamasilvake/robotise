@@ -165,10 +165,13 @@ const RobotOrders: FC = () => {
 	// empty
 	if (!orders.content.data.length) {
 		return (
-			<>
+			<Box>
+				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE"></PageEmpty>
+
+				{/* Options */}
 				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
-			</>
+			</Box>
 		);
 	}
 

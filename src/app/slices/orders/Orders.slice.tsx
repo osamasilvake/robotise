@@ -347,7 +347,7 @@ const updateCreatedOrder = (
 ): SOContentInterface => {
 	return {
 		...state,
-		data: [order, ...state.data.slice(0, -1)],
+		data: [order, ...state.data],
 		dataById: {
 			[order.id]: order,
 			...state.dataById

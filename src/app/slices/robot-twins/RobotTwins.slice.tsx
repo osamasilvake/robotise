@@ -93,16 +93,18 @@ export const RobotTwinsFetch =
 					dispatch(success(result));
 				}
 			})
-			.catch(() => {
-				const message: TriggerMessageInterface = {
-					id: 'fetch-rb-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.FETCH'
-				};
+			.catch(async (res) => {
+				// deserialize response
+				const robotTwins = await deserializeRobotTwins(res);
 
-				// dispatch: failure
-				dispatch(failure(message));
+				// prepare robot twins content
+				if (sites && sites.content) {
+					// prepare robot twins content
+					const result = prepareContent(sites.content, robotTwins);
+
+					// dispatch: success
+					dispatch(success(result));
+				}
 			});
 	};
 

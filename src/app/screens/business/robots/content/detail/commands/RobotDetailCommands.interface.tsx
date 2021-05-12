@@ -52,6 +52,7 @@ export interface RobotDetailCommandActionsInterface {
 
 export interface RobotDetailCommandsStateOptionInterface {
 	mode?: string | number;
+	state?: string | number;
 	angle?: string | number;
 	distance?: string | number;
 }

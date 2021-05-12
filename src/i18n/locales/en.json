@@ -265,7 +265,7 @@
 						"STATE": {
 							"JOYSTICK": "Joystick",
 							"AUTONOMOUS": "Autonomous",
-							"REMOTE_CONTROL": "ROC Control"
+							"ROC_CONTROL": "ROC Control"
 						}
 					},
 					"MUTE": {

@@ -68,6 +68,10 @@ class RobotsService {
 			case RobotDetailCommandsTypeEnum.ROTATE:
 				options.angle = option;
 				break;
+			case RobotDetailCommandsTypeEnum.MUTE_SENSORS:
+				options.state = option;
+				break;
+			case RobotDetailCommandsTypeEnum.CONTROL_MODE:
 			default:
 				options.mode = option;
 		}

@@ -9,8 +9,7 @@ export enum RobotDetailControlModeTypeEnum {
 	UNKNOWN = 'unknown',
 	ROC_CONTROL = 'roc_control',
 	JOYSTICK = 'joystick',
-	AUTONOMOUS = 'autonomous',
-	REMOTE_CONTROL = 'remote_control'
+	AUTONOMOUS = 'autonomous'
 }
 
 export enum RobotDetailCommandsMuteSensorsTypeEnum {

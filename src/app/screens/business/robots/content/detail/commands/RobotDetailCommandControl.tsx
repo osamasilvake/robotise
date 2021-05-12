@@ -52,9 +52,9 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					})}
 					onClick={sendControlCommand({
 						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,
-						state: RobotDetailControlModeTypeEnum.REMOTE_CONTROL
+						state: RobotDetailControlModeTypeEnum.ROC_CONTROL
 					})}>
-					{t('CONTENT.DETAIL.COMMANDS.CONTROL.STATE.REMOTE_CONTROL')}
+					{t('CONTENT.DETAIL.COMMANDS.CONTROL.STATE.ROC_CONTROL')}
 				</Button>
 				<Button
 					className={clsx({

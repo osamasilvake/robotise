@@ -9,9 +9,11 @@ import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
 import RobotOrders from './orders/RobotOrders';
 import RobotPurchases from './purchases/RobotPurchases';
+import { RobotContentStyles } from './RobotContent.style';
 
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
+	const classes = RobotContentStyles();
 
 	const [value, setValue] = useState(-1);
 	const params: RobotParamsInterface = useParams();
@@ -39,7 +41,7 @@ const RobotContent: FC = () => {
 	};
 
 	return value !== -1 ? (
-		<Box>
+		<Box className={classes.sBox}>
 			{/* Tabs */}
 			<Tabs value={value} onChange={handleTabChange} variant="scrollable" textColor="primary">
 				<Tab label={t('CONTENT.TABS.DETAIL')} />

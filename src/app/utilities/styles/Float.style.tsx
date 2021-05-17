@@ -5,7 +5,6 @@ import { AppConfigService } from '../../services';
 export const FloatStyles = makeStyles((theme: Theme) => ({
 	sFloat1: {
 		borderLeft: `${theme.typography.pxToRem(5)} solid ${AppConfigService.AppOptions.colors.c9}`,
-		marginTop: theme.spacing(3),
 		padding: theme.spacing(2),
 		position: 'fixed',
 		right: -245,

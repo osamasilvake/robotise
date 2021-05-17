@@ -151,12 +151,9 @@ export const OrderCreate =
 				// deserialize response
 				let result = await deserializeOrder(res);
 
-				// handle mapping
-				result = mapItem(result);
-
 				if (orders.content) {
 					// update created order
-					result = updateCreatedOrder(orders.content, result);
+					result = updateCreatedOrder(orders.content, mapItem(result));
 
 					// dispatch: updated
 					dispatch(updated(result));
@@ -205,7 +202,7 @@ export const OrderCancel =
 
 				if (orders.content) {
 					// update created order
-					result = updateCanceledOrder(orders.content, result.data[0]);
+					result = updateCanceledOrder(orders.content, mapItem(result.data[0]));
 
 					// dispatch: updated
 					dispatch(updated(result));

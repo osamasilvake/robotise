@@ -167,7 +167,7 @@ const RobotOrders: FC = () => {
 		return (
 			<Box>
 				{/* Actions */}
-				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
+				<RobotOrdersActions activeOrders={activeOrders} debug={debug} topSpace />
 
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE"></PageEmpty>

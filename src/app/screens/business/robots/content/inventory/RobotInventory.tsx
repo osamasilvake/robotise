@@ -110,7 +110,7 @@ const RobotInventory: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			<RobotInventoryList content={inventory.content} />;
+			<RobotInventoryList content={inventory.content} />
 		</Box>
 	);
 };

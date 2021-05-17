@@ -98,7 +98,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CANCEL')}
 						color="primary"
 						variant="outlined"
-						clickable={true}
+						clickable
 						disabled={purchases.updating}
 						onClick={closeEditMode}
 						className={classes.sCommentCancel}
@@ -112,7 +112,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CLEAR')}
 						color="primary"
 						variant="outlined"
-						clickable={true}
+						clickable
 						disabled={purchases.updating}
 						onClick={() => setValue('')}
 						className={classes.sCommentClear}
@@ -129,7 +129,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					}
 					color="primary"
 					variant="outlined"
-					clickable={true}
+					clickable
 					icon={
 						editMode && purchases.updating ? <CircularProgress size={20} /> : undefined
 					}

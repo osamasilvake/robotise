@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../components/common/status/Status';
+import { AppConfigService } from '../../../../../services';
 import { ISite } from '../../../../../slices/sites/Sites.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
 import { SitesTableBodyCellInterface, SitesTableColumnInterface } from './SitesTable.interface';
@@ -20,7 +21,9 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 	 */
 	const setCellValue = (site: ISite, column: SitesTableColumnInterface) => {
 		const value = site[column.id];
-		if (columns[3].id === column.id) {
+		if (columns[2].id === column.id) {
+			return value || AppConfigService.AppOptions.common.defaultCurrency;
+		} else if (columns[3].id === column.id) {
 			return (
 				<Status active={site.acceptOrders}>
 					{site.acceptOrders

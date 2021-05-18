@@ -79,6 +79,11 @@ class AppConfigService extends EnvService {
 						showPageSizes: false,
 						defaultPageSize: 100,
 						pageSizes: [5, 10, 15, 20, 50, 100]
+					},
+					content: {
+						detail: {
+							refreshTime: 10000
+						}
 					}
 				},
 				robots: {
@@ -154,6 +159,7 @@ class AppConfigService extends EnvService {
 			},
 			SITE: {
 				ALL: `${this.envAppUrl}/sites`,
+				SINGLE: `${this.envAppUrl}/sites/:siteId`,
 				PRODUCTS: `${this.envAppUrl}/products`
 			},
 			ROBOT: {

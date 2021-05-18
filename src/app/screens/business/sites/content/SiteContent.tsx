@@ -5,6 +5,7 @@ import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import { SiteParamsInterface } from '../Site.interface';
 import sitesRoutes from '../Sites.routes';
+import SiteDetail from './detail/SiteDetail';
 
 const SiteContent: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -45,7 +46,7 @@ const SiteContent: FC = () => {
 			{/* Tab Panel */}
 			<Box>
 				{/* Detail */}
-				{value === 0 && <>Site Detail</>}
+				{value === 0 && <SiteDetail />}
 
 				{/* Products */}
 				{value === 1 && <>Products</>}

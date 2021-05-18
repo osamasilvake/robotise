@@ -21,20 +21,11 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch robot twins
-	 * @returns
-	 */
-	robotTwinsFetch = () => {
-		const url = AppConfigService.AppServices.ROBOT_TWINS.ALL;
-		return HttpClientService.get(url);
-	};
-
-	/**
-	 * fetch robot twins of a single robot
+	 * fetch robot twin
 	 * @param robotTwinId
 	 * @returns
 	 */
-	robotTwinsSingleFetch = (robotTwinId: string) => {
+	robotTwinFetch = (robotTwinId: string) => {
 		const url = AppConfigService.AppServices.ROBOT_TWINS.SINGLE.replace(
 			':robotTwinId',
 			robotTwinId

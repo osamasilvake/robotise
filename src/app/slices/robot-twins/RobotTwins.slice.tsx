@@ -79,7 +79,7 @@ export const RobotTwinsFetch =
 		// wait
 		wait >= 0 && (await timeout(wait));
 
-		return RobotsService.robotTwinsSingleFetch(robotTwinId)
+		return RobotsService.robotTwinFetch(robotTwinId)
 			.then(async (res) => {
 				// deserialize response
 				const robotTwins = await deserializeRobotTwins(res);

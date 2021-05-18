@@ -26,6 +26,9 @@ const Robot: FC = () => {
 	const cOrderTarget = order.content?.location || undefined;
 	const cPurchaseTarget = purchase.content?.location || undefined;
 
+	const orderDefault = t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
+	const purchaseDefault = t('CONTENT.PURCHASES.CONTENT.ROOM_UNKNOWN');
+
 	/**
 	 * switch detail page
 	 * @returns
@@ -47,12 +50,8 @@ const Robot: FC = () => {
 				description="ROBOTS.ROBOT.DESCRIPTION"
 				labels={{
 					robotName: !robotTwinsSummary.loader ? cRobotName : '',
-					orderTarget: !order.loader
-						? cOrderTarget || t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION')
-						: '',
-					purchaseTarget: !purchase.loader
-						? cPurchaseTarget || t('CONTENT.PURCHASES.CONTENT.ROOM_UNKNOWN')
-						: ''
+					orderTarget: !order.loader ? cOrderTarget || orderDefault : '',
+					purchaseTarget: !purchase.loader ? cPurchaseTarget || purchaseDefault : ''
 				}}
 			/>
 

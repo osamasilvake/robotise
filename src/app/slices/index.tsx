@@ -13,12 +13,14 @@ import purchases from './purchases/Purchases.slice';
 import robot from './robot/Robot.slice';
 import robotTwins from './robot-twins/RobotTwins.slice';
 import robotTwinsSummary from './robot-twins/RobotTwinsSummary.slice';
+import site from './sites/Site.slice';
 import sites from './sites/Sites.slice';
 
 // app reducers
 const combinedReducer = combineReducers({
 	auth,
 	general,
+	site,
 	sites,
 	robotTwinsSummary,
 	robotTwins,

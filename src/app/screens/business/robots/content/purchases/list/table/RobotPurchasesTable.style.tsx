@@ -15,7 +15,7 @@ export const RobotPurchasesTableStyles = makeStyles((theme: Theme) => ({
 		pointerEvents: 'none'
 	},
 	sTarget: {
-		marginLeft: theme.spacing(1)
+		marginLeft: theme.spacing(2)
 	},
 	sCommentTextField: {
 		marginBottom: theme.spacing(1)

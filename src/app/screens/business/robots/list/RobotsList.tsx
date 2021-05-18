@@ -32,8 +32,8 @@ const RobotsList: FC = () => {
 	}
 
 	// error
-	if (robotTwinsSummary.errors) {
-		return <PageError message={robotTwinsSummary.errors.text} />;
+	if (sites.errors || robotTwinsSummary.errors) {
+		return <PageError message={sites.errors?.text || robotTwinsSummary.errors?.text} />;
 	}
 
 	// null

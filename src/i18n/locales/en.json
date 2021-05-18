@@ -210,6 +210,20 @@
 			"TABS": {
 				"DETAIL": "DETAIL",
 				"PRODUCTS": "PRODUCTS"
+			},
+			"DETAIL": {
+				"GENERAL": {
+					"SITE": "Site",
+					"VENDOR": "Vendor",
+					"LAST_UPDATED": "Last Updated",
+					"TIMEZONE": "Timezone",
+					"ACCEPT_ORDERS": {
+						"LABEL": "Accept Orders",
+						"ACTIVE": "Active",
+						"INACTIVE": "Inactive"
+					},
+					"UNKNOWN": "Unknown"
+				}
 			}
 		}
 	},

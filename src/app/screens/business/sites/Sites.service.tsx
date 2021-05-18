@@ -9,6 +9,16 @@ class SitesService {
 	};
 
 	/**
+	 * fetch site
+	 * @param siteId
+	 * @returns
+	 */
+	siteFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SITE.SINGLE.replace(':siteId', siteId);
+		return HttpClientService.get(url);
+	};
+
+	/**
 	 * fetch products
 	 * @param siteId
 	 * @returns

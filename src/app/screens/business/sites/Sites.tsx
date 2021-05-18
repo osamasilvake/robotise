@@ -11,9 +11,7 @@ const Sites: FC = () => {
 			<PageHead title="SITES.TITLE" description="SITES.DESCRIPTION" />
 
 			{/* List */}
-			{/*
 			<SitesList />
-			*/}
 		</Paper>
 	);
 };

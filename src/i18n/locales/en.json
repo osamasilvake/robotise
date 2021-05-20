@@ -224,6 +224,20 @@
 					},
 					"UNKNOWN": "Unknown"
 				}
+			},
+			"PRODUCTS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"IMAGE": "Image",
+							"NAME": "Name",
+							"PRICE": "Price",
+							"LENGTH": "Length",
+							"VOLUME": "Volume",
+							"UPDATED": "Updated"
+						}
+					}
+				}
 			}
 		}
 	},

@@ -20,7 +20,7 @@ const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<SiteProductsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<SiteProductsTableColumnsTypeEnum>(
-		columns[columns.length - 1].id
+		columns[columns.length - 2].id
 	);
 
 	/**

@@ -40,8 +40,8 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					{!purchase['isBilled'] && (
 						<Box component="span" className={classes.sTarget}>
 							<Chip
-								label={t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.UN_BILLED`)}
 								size="small"
+								label={t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.UN_BILLED`)}
 							/>
 						</Box>
 					)}

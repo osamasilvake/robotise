@@ -4,11 +4,17 @@ export enum SiteProductsTableColumnsTypeEnum {
 	PRICE = 'price',
 	LENGTH = 'length',
 	VOLUME = 'volume',
-	UPDATED = 'updatedAt'
+	UPDATED = 'updatedAt',
+	ACTIONS = 'actions'
 }
 
 export enum SiteProductsTableSortTypeEnum {
 	DATE,
 	STRING,
 	NUMBER
+}
+
+export enum SiteProductCreateEditTypeEnum {
+	CREATE,
+	EDIT
 }

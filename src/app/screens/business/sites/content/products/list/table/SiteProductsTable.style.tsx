@@ -6,5 +6,8 @@ const minusContentHeight = AppConfigService.AppOptions.components.table.contentH
 export const SiteProductsTableStyles = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
+	},
+	sEditProduct: {
+		marginRight: theme.spacing(0.5)
 	}
 }));

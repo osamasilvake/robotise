@@ -1,10 +1,13 @@
-import { MouseEvent } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import {
 	SPCDataInterface,
 	SPContentInterface
 } from '../../../../../../../slices/products/Products.slice.interface';
-import { SiteProductsTableColumnsTypeEnum } from './SiteProductsTable.enum';
+import {
+	SiteProductCreateEditTypeEnum,
+	SiteProductsTableColumnsTypeEnum
+} from './SiteProductsTable.enum';
 
 export interface SiteProductsTableInterface {
 	content: SPContentInterface | null;
@@ -23,6 +26,7 @@ export interface SiteProductsTableColumnInterface {
 	minWidth?: number;
 	width?: number;
 	align?: SiteProductsTableHeadAlignment;
+	noSort?: boolean;
 }
 
 export interface SiteProductsTableBodyInterface {
@@ -33,7 +37,23 @@ export interface SiteProductsTableBodyInterface {
 
 export interface SiteProductsTableBodyCellInterface {
 	column: SiteProductsTableColumnInterface;
-	order: SPCDataInterface;
+	product: SPCDataInterface;
+}
+
+export interface DialogCreateEditProductInterface {
+	product: SPCDataInterface | null;
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+	type: SiteProductCreateEditTypeEnum;
+}
+
+export interface DialogCreateEditProductPayloadInterface {
+	image: string;
+	name: string;
+	price: number | string;
+	length: number | string;
+	weight: number | string;
+	volume: string;
 }
 
 export type SiteProductsTableHeadOrder = 'asc' | 'desc';

@@ -330,10 +330,6 @@ const handleRefreshAndPagination = (
 
 /**
  * update created order
- *
- * cases:
- * add item on the front
- * remove item from the end
  * @param state
  * @param order
  * @returns

@@ -4,6 +4,7 @@ import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interf
 export interface SliceProductsInterface {
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: SPContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

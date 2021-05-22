@@ -7,7 +7,7 @@ const OverridesCustom: Components = {
 	MuiCssBaseline: {
 		styleOverrides: {
 			body: {
-				overscrollBehaviorY: 'none'
+				overscrollBehavior: 'none'
 			},
 			'::selection': {
 				backgroundColor: AppConfigService.AppOptions.colors.c9,

@@ -99,6 +99,7 @@
 		"BUTTONS": {
 			"CANCEL": "Cancel",
 			"CREATE": "Create",
+			"UPDATE": "Update",
 			"CONFIRM": "Confirm"
 		}
 	},
@@ -227,6 +228,41 @@
 			},
 			"PRODUCTS": {
 				"LIST": {
+					"ACTIONS": {
+						"PRODUCT_CREATE_EDIT": {
+							"CREATE": {
+								"TITLE": "Create Product",
+								"TEXT": "Create a new product."
+							},
+							"EDIT": {
+								"TITLE": "Edit Product",
+								"TEXT": "Edit an existing product."
+							},
+							"FIELDS": {
+								"NAME": {
+									"LABEL": "Name",
+									"PLACEHOLDER": "Please enter product name",
+									"VALIDATIONS": {
+										"REQUIRED": "Product name is required."
+									}
+								},
+								"PRICE": {
+									"LABEL": "Price",
+									"PLACEHOLDER": "Please enter product price",
+									"VALIDATIONS": {
+										"REQUIRED": "Product price is required."
+									}
+								},
+								"LENGTH": {
+									"LABEL": "Length",
+									"PLACEHOLDER": "Please enter product length",
+									"VALIDATIONS": {
+										"REQUIRED": "Product length is required."
+									}
+								}
+							}
+						}
+					},
 					"TABLE": {
 						"COLUMNS": {
 							"IMAGE": "Image",
@@ -234,7 +270,12 @@
 							"PRICE": "Price",
 							"LENGTH": "Length",
 							"VOLUME": "Volume",
-							"UPDATED": "Updated"
+							"UPDATED": "Updated",
+							"ACTIONS": "Actions"
+						},
+						"VALUES": {
+							"EDIT": "Edit",
+							"DELETE": "Delete"
 						}
 					}
 				}

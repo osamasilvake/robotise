@@ -37,6 +37,7 @@ const SiteProductsTableHead: FC<SiteProductsTableHeadInterface> = (props) => {
 						<TableSortLabel
 							active={orderBy === column.id}
 							direction={orderBy === column.id ? order : 'asc'}
+							disabled={column.noSort}
 							onClick={handleSortRequest(column.id)}>
 							{t(column.label)}
 						</TableSortLabel>

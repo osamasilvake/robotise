@@ -57,15 +57,18 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 		type: SiteProductsTableSortTypeEnum
 	) => {
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
-			switch (type) {
-				case SiteProductsTableSortTypeEnum.NUMBER:
-					return Number(a[key]) - Number(b[key]);
-				case SiteProductsTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
-				case SiteProductsTableSortTypeEnum.STRING:
-				default:
-					return String(a[key]).localeCompare(String(b[key]));
+			if (key !== SiteProductsTableColumnsTypeEnum.ACTIONS) {
+				switch (type) {
+					case SiteProductsTableSortTypeEnum.NUMBER:
+						return Number(a[key]) - Number(b[key]);
+					case SiteProductsTableSortTypeEnum.DATE:
+						return momentSort(a[key]).diff(momentSort(b[key]));
+					case SiteProductsTableSortTypeEnum.STRING:
+					default:
+						return String(a[key]).localeCompare(String(b[key]));
+				}
 			}
+			return 1;
 		};
 	};
 
@@ -73,13 +76,13 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 		<TableBody>
 			{content &&
 				content.data &&
-				sortTableData(content).map((order: SPCDataInterface) => (
-					<TableRow key={order.id} tabIndex={-1}>
+				sortTableData(content).map((product: SPCDataInterface) => (
+					<TableRow key={product.id} tabIndex={-1}>
 						{columns.map((column: SiteProductsTableColumnInterface) => (
 							<SiteProductsTableBodyCell
 								key={column.id}
 								column={column}
-								order={order}
+								product={product}
 							/>
 						))}
 					</TableRow>

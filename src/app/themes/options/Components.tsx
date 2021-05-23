@@ -85,6 +85,13 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
+	MuiFormHelperText: {
+		styleOverrides: {
+			root: {
+				marginLeft: 0
+			}
+		}
+	},
 	MuiDialogTitle: {
 		styleOverrides: {
 			root: {

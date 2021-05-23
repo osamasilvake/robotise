@@ -231,34 +231,43 @@
 					"ACTIONS": {
 						"PRODUCT_CREATE_EDIT": {
 							"CREATE": {
-								"TITLE": "Create Product",
-								"TEXT": "Create a new product."
+								"TITLE": "Create Product"
 							},
 							"EDIT": {
-								"TITLE": "Edit Product",
-								"TEXT": "Edit an existing product."
+								"TITLE": "Edit Product"
 							},
 							"FIELDS": {
+								"IMAGE": {
+									"LABEL": "Upload",
+									"VALIDATIONS": {
+										"REQUIRED": "Name is required."
+									}
+								},
 								"NAME": {
 									"LABEL": "Name",
 									"PLACEHOLDER": "Please enter product name",
 									"VALIDATIONS": {
-										"REQUIRED": "Product name is required."
+										"REQUIRED": "Name is required."
 									}
 								},
 								"PRICE": {
 									"LABEL": "Price",
-									"PLACEHOLDER": "Please enter product price",
+									"PLACEHOLDER": "Please enter price",
 									"VALIDATIONS": {
-										"REQUIRED": "Product price is required."
+										"REQUIRED": "Price is required."
 									}
 								},
 								"LENGTH": {
 									"LABEL": "Length",
-									"PLACEHOLDER": "Please enter product length",
-									"VALIDATIONS": {
-										"REQUIRED": "Product length is required."
-									}
+									"PLACEHOLDER": "Please enter product length"
+								},
+								"WEIGHT": {
+									"LABEL": "Weight",
+									"PLACEHOLDER": "Please enter product weight"
+								},
+								"VOLUME": {
+									"LABEL": "Volume",
+									"PLACEHOLDER": "Please enter product volume"
 								}
 							}
 						}
@@ -269,6 +278,7 @@
 							"NAME": "Name",
 							"PRICE": "Price",
 							"LENGTH": "Length",
+							"WEIGHT": "Weight",
 							"VOLUME": "Volume",
 							"UPDATED": "Updated",
 							"ACTIONS": "Actions"

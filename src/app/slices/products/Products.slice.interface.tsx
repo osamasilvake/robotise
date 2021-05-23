@@ -22,6 +22,7 @@ export interface SPCDataInterface {
 	image: string;
 	name: string;
 	length: number;
+	weight: number;
 	volume: string;
 	price: number;
 	createdAt: string;

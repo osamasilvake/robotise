@@ -76,14 +76,14 @@ const Login: FC = () => {
 								type="text"
 								id="email"
 								name="email"
-								error={!!errors.email}
+								error={!!errors?.email}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
 								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								InputLabelProps={{ shrink: true }}
 							/>
-							<FormHelperText>{t(errors.email)}</FormHelperText>
+							{errors && <FormHelperText>{t(errors.email)}</FormHelperText>}
 						</FormControl>
 
 						<FormControl error fullWidth margin="normal">
@@ -93,7 +93,7 @@ const Login: FC = () => {
 								type={showPassword ? 'text' : 'password'}
 								id="password"
 								name="password"
-								error={!!errors.password}
+								error={!!errors?.password}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
@@ -111,7 +111,7 @@ const Login: FC = () => {
 									)
 								}}
 							/>
-							<FormHelperText>{t(errors.password)}</FormHelperText>
+							{errors && <FormHelperText>{t(errors.password)}</FormHelperText>}
 						</FormControl>
 
 						<FormControlLabel

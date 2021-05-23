@@ -30,13 +30,14 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 		switch (orderBy) {
 			case columns[2].id:
 			case columns[3].id:
+			case columns[4].id:
 				type = SiteProductsTableSortTypeEnum.NUMBER;
 				break;
-			case columns[5].id:
+			case columns[6].id:
 				type = SiteProductsTableSortTypeEnum.DATE;
 				break;
 			case columns[1].id:
-			case columns[4].id:
+			case columns[5].id:
 				type = SiteProductsTableSortTypeEnum.STRING;
 				break;
 			default:

@@ -86,8 +86,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	/**
 	 * close create order dialog
-	 * @param status
-	 * @returns
+	 * @param event
 	 */
 	const closeCreateOrderDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
@@ -115,7 +114,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							type="number"
 							id="location"
 							name="location"
-							error={!!errors.location}
+							error={!!errors?.location}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
 							label={t(
@@ -125,7 +124,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.PLACEHOLDER'
 							)}
 						/>
-						<FormHelperText>{t(errors.location)}</FormHelperText>
+						{errors && <FormHelperText>{t(errors.location)}</FormHelperText>}
 					</FormControl>
 
 					<FormControl variant="outlined" fullWidth margin="normal">

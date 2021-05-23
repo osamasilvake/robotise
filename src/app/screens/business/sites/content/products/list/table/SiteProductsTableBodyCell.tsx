@@ -38,8 +38,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 
 	/**
 	 * open create/edit product dialog
-	 * @param product
-	 * @returns
+	 * @param event
 	 */
 	const openCreateEditProductDialog = (event: MouseEvent<HTMLDivElement>) => {
 		// stop propagation
@@ -98,7 +97,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				return value;
 			} else if (columns[0].id === column.id) {
 				return <Avatar variant="square" src={value} alt={order['name']} />;
-			} else if (columns[5].id === column.id) {
+			} else if (columns[6].id === column.id) {
 				return momentFormat1(value);
 			}
 			return t(value) || unknown;

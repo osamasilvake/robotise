@@ -35,29 +35,5 @@ export const CreateEditProductValidation = (
 		}
 	}
 
-	// Length
-	if (touched.length) {
-		// required
-		if (!values.length) {
-			errors.length = `${commonText}.LENGTH.VALIDATIONS.REQUIRED`;
-		}
-	}
-
-	// Weight
-	if (touched.weight) {
-		// required
-		if (!values.weight) {
-			errors.weight = `${commonText}.WEIGHT.VALIDATIONS.REQUIRED`;
-		}
-	}
-
-	// Volume
-	if (touched.volume) {
-		// required
-		if (!values.volume) {
-			errors.volume = `${commonText}.VOLUME.VALIDATIONS.REQUIRED`;
-		}
-	}
-
 	return errors;
 };

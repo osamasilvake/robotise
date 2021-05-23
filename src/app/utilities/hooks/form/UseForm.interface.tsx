@@ -7,7 +7,7 @@ export interface UseFormRetInterface<UseFormEntity> {
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 	handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
 	values: UseFormEntity;
-	errors: UseFormEntity;
+	errors: null | UseFormEntity;
 }
 
 export interface SelectInterface {

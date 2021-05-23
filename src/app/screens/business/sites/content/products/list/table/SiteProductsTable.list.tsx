@@ -19,19 +19,25 @@ export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.PRICE,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.PRICE',
-		minWidth: 110,
+		minWidth: 100,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.LENGTH,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.LENGTH',
-		minWidth: 110,
+		minWidth: 100,
+		align: 'left'
+	},
+	{
+		id: SiteProductsTableColumnsTypeEnum.WEIGHT,
+		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.WEIGHT',
+		minWidth: 100,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.VOLUME,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.VOLUME',
-		minWidth: 110,
+		minWidth: 100,
 		align: 'left'
 	},
 	{
@@ -43,7 +49,7 @@ export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.ACTIONS,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.ACTIONS',
-		minWidth: 200,
+		minWidth: 100,
 		align: 'right'
 	}
 ];

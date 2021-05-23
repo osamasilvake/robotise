@@ -15,7 +15,7 @@ export const useForm = <UseFormEntity,>(
 	submitCallBack: () => Promise<void>
 ): UseFormRetInterface<UseFormEntity> => {
 	const [values, setValues] = useState(initState);
-	const [errors, setErrors] = useState(initState);
+	const [errors, setErrors] = useState<null | UseFormEntity>(null);
 	const [touched, setTouched] = useState(initState);
 
 	/**

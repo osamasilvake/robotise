@@ -1,5 +1,8 @@
 import {
+	Avatar,
+	Box,
 	Button,
+	Chip,
 	CircularProgress,
 	Dialog,
 	DialogActions,
@@ -7,6 +10,7 @@ import {
 	DialogTitle,
 	FormControl,
 	FormHelperText,
+	Grid,
 	TextField,
 	Typography
 } from '@material-ui/core';
@@ -15,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppConfigService } from '../../../../../../../services';
 import {
 	ProductCreateEdit,
 	productsSelector
@@ -28,10 +33,12 @@ import {
 	DialogCreateEditProductInterface,
 	DialogCreateEditProductPayloadInterface
 } from './SiteProductsTable.interface';
+import { SiteProductsTableStyles } from './SiteProductsTable.style';
 
 const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) => {
 	const { product, open, setOpen, type } = props;
 	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const classes = SiteProductsTableStyles();
 
 	const dispatch = useDispatch();
 	const products = useSelector(productsSelector);
@@ -42,16 +49,15 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductPayloadInterface>(
 			{
-				image: '',
-				name: '',
-				price: 0,
-				length: 0,
-				weight: 0,
-				volume: ''
+				image: product?.image || '',
+				name: product?.name || '',
+				price: product?.price || 0,
+				length: product?.length || 0,
+				weight: product?.weight || 0,
+				volume: product?.volume || ''
 			},
 			CreateEditProductValidation,
 			async () => {
-				console.log('kk');
 				// dispatch: create a product
 				params.site &&
 					Promise.all([
@@ -85,67 +91,119 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 					{type === SiteProductCreateEditTypeEnum.EDIT && t(`${commonText}.EDIT.TITLE`)}
 				</DialogTitle>
 				<DialogContent>
-					<Typography variant="body1" color="textSecondary">
-						{type === SiteProductCreateEditTypeEnum.CREATE &&
-							t(`${commonText}.CREATE.TEXT`)}
-						{type === SiteProductCreateEditTypeEnum.EDIT &&
-							t(`${commonText}.EDIT.TEXT`)}
-					</Typography>
+					<Grid container spacing={2}>
+						<Grid item xs={12} sm={6} md={6}>
+							<Box>
+								<Avatar
+									variant="square"
+									src={
+										values?.image || AppConfigService.AppImageURLs.logo.iconOff
+									}
+									alt={AppConfigService.AppImageURLs.logo.name}
+								/>
+								<Chip
+									size="small"
+									label={t(`${commonText}.FIELDS.IMAGE.LABEL`)}
+									color="primary"
+									variant="outlined"
+									clickable
+									className={classes.sImageUpload}
+								/>
+							</Box>
+							<Box className={classes.sImageInfo}>
+								<Typography variant="body2">Maximum Filesize: 500KB</Typography>
+								<Typography variant="body2">Supported Filetype: png</Typography>
+								<Typography variant="body2">
+									Supported Resolution Upto: 220x220
+								</Typography>
+							</Box>
+						</Grid>
 
-					<FormControl error fullWidth margin="normal">
-						<TextField
-							required
-							variant="outlined"
-							type="string"
-							id="name"
-							name="name"
-							value={product?.name}
-							error={!!errors.name}
-							onChange={handleChangeInput}
-							onBlur={handleBlur}
-							label={t(`${commonText}.FIELDS.NAME.LABEL`)}
-							placeholder={t(`${commonText}.FIELDS.NAME.PLACEHOLDER`)}
-						/>
-						<FormHelperText>{t(errors.name)}</FormHelperText>
-					</FormControl>
+						<Grid item xs={12} sm={6} md={6}>
+							<FormControl error fullWidth margin="normal">
+								<TextField
+									required
+									variant="outlined"
+									type="string"
+									id="name"
+									name="name"
+									value={values?.name}
+									error={!!errors?.name}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									label={t(`${commonText}.FIELDS.NAME.LABEL`)}
+									placeholder={t(`${commonText}.FIELDS.NAME.PLACEHOLDER`)}
+								/>
+								{errors && <FormHelperText>{t(errors.name)}</FormHelperText>}
+							</FormControl>
+							<FormControl error fullWidth margin="normal">
+								<TextField
+									required
+									variant="outlined"
+									type="number"
+									id="price"
+									name="price"
+									value={values?.price}
+									error={!!errors?.price}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									label={t(`${commonText}.FIELDS.PRICE.LABEL`)}
+									placeholder={t(`${commonText}.FIELDS.PRICE.PLACEHOLDER`)}
+								/>
+								{errors && typeof errors.price === 'string' && (
+									<FormHelperText>{t(errors.price)}</FormHelperText>
+								)}
+							</FormControl>
+						</Grid>
 
-					<FormControl error fullWidth margin="normal">
-						<TextField
-							required
-							variant="outlined"
-							type="string"
-							id="price"
-							name="price"
-							value={product?.price}
-							error={!!errors.price}
-							onChange={handleChangeInput}
-							onBlur={handleBlur}
-							label={t(`${commonText}.FIELDS.PRICE.LABEL`)}
-							placeholder={t(`${commonText}.FIELDS.PRICE.PLACEHOLDER`)}
-						/>
-						{errors.price > 0 && (
-							<FormHelperText>{t(String(errors.price))}</FormHelperText>
-						)}
-					</FormControl>
+						<Grid item xs={12} sm={4} md={4}>
+							<FormControl error fullWidth>
+								<TextField
+									variant="outlined"
+									type="number"
+									id="length"
+									name="length"
+									value={values?.length}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									label={t(`${commonText}.FIELDS.LENGTH.LABEL`)}
+									placeholder={t(`${commonText}.FIELDS.LENGTH.PLACEHOLDER`)}
+								/>
+							</FormControl>
+						</Grid>
 
-					<FormControl error fullWidth margin="normal">
-						<TextField
-							required
-							variant="outlined"
-							type="string"
-							id="length"
-							name="length"
-							value={product?.length}
-							error={!!errors.length}
-							onChange={handleChangeInput}
-							onBlur={handleBlur}
-							label={t(`${commonText}.FIELDS.LENGTH.LABEL`)}
-							placeholder={t(`${commonText}.FIELDS.LENGTH.PLACEHOLDER`)}
-						/>
-						{errors.length > 0 && (
-							<FormHelperText>{t(String(errors.price))}</FormHelperText>
-						)}
-					</FormControl>
+						<Grid item xs={12} sm={4} md={4}>
+							<FormControl error fullWidth>
+								<TextField
+									variant="outlined"
+									type="number"
+									id="weight"
+									name="weight"
+									value={values?.weight}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									label={t(`${commonText}.FIELDS.WEIGHT.LABEL`)}
+									placeholder={t(`${commonText}.FIELDS.WEIGHT.PLACEHOLDER`)}
+								/>
+							</FormControl>
+						</Grid>
+
+						<Grid item xs={12} sm={4} md={4}>
+							<FormControl error fullWidth>
+								<TextField
+									variant="outlined"
+									type="string"
+									id="volume"
+									name="volume"
+									value={values?.volume}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									label={t(`${commonText}.FIELDS.VOLUME.LABEL`)}
+									placeholder={t(`${commonText}.FIELDS.VOLUME.PLACEHOLDER`)}
+								/>
+							</FormControl>
+						</Grid>
+					</Grid>
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={closeCreateEditProductDialog}>

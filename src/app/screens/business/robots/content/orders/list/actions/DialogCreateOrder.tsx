@@ -123,6 +123,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							placeholder={t(
 								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.PLACEHOLDER'
 							)}
+							InputProps={{ inputProps: { min: 0 } }}
 						/>
 						{errors && <FormHelperText>{t(errors.location)}</FormHelperText>}
 					</FormControl>

@@ -155,10 +155,14 @@ export const ProductCreateEdit =
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'create-product-success',
+						id: 'create-update-product-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: 'ROBOTS.PRODUCTS.PRODUCT_CREATE_EDIT.SUCCESS'
+						text: `SITES.PRODUCTS.${
+							type === SiteProductCreateEditTypeEnum.CREATE
+								? 'PURCHASE_CREATE'
+								: 'PURCHASE_EDIT'
+						}.SUCCESS`
 					};
 					dispatch(triggerMessage(message));
 				}

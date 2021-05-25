@@ -14,7 +14,8 @@ import {
 	TextField,
 	Typography
 } from '@material-ui/core';
-import { FC, MouseEvent } from 'react';
+import clsx from 'clsx';
+import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -25,11 +26,13 @@ import {
 	productsSelector
 } from '../../../../../../../slices/products/Products.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+import { imageFromInput } from '../../../../../../../utilities/methods/Image';
 import { validateEmptyObjProperty } from '../../../../../../../utilities/methods/ObjectUtilities';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';
 import { SiteProductCreateEditTypeEnum } from './SiteProductsTable.enum';
 import {
+	DialogCreateEditProductImageChangeInterface,
 	DialogCreateEditProductInterface,
 	DialogCreateEditProductPayloadInterface
 } from './SiteProductsTable.interface';
@@ -42,9 +45,6 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 
 	const dispatch = useDispatch();
 	const products = useSelector(productsSelector);
-
-	const params: SiteParamsInterface = useParams();
-	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.PRODUCT_CREATE_EDIT';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductPayloadInterface>(
@@ -68,6 +68,14 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 					});
 			}
 		);
+	const [image, setImage] = useState<string>(values?.image);
+	const [imageError, setImageError] = useState(0);
+
+	const params: SiteParamsInterface = useParams();
+	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.PRODUCT_CREATE_EDIT';
+	const maxSize = AppConfigService.AppOptions.components.uploadImage.maxSize;
+	const maxHeight = AppConfigService.AppOptions.components.uploadImage.maxHeight;
+	const maxWidth = AppConfigService.AppOptions.components.uploadImage.maxWidth;
 
 	/**
 	 * close create/edit dialog
@@ -80,6 +88,20 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 
 		// close dialog
 		setOpen(false);
+	};
+
+	/**
+	 * handle image change
+	 * @param event
+	 */
+	const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
+		const image = (await imageFromInput(event)) as DialogCreateEditProductImageChangeInterface;
+		if (image.validate) {
+			setImageError(0);
+			setImage(image.value);
+		} else {
+			setImageError(image.type);
+		}
 	};
 
 	return (
@@ -96,25 +118,51 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							<Box>
 								<Avatar
 									variant="square"
-									src={
-										values?.image || AppConfigService.AppImageURLs.logo.iconOff
-									}
+									src={image || AppConfigService.AppImageURLs.logo.iconOff}
 									alt={AppConfigService.AppImageURLs.logo.name}
 								/>
-								<Chip
-									size="small"
-									label={t(`${commonText}.FIELDS.IMAGE.LABEL`)}
-									color="primary"
-									variant="outlined"
-									clickable
-									className={classes.sImageUpload}
-								/>
+
+								<label htmlFor="button-file">
+									<Box display="none">
+										<input
+											accept="image/png"
+											className="hidden"
+											id="button-file"
+											type="file"
+											onChange={handleImageChange}
+										/>
+									</Box>
+									<Chip
+										size="small"
+										label={t(`${commonText}.FIELDS.IMAGE.LABEL`)}
+										color="primary"
+										variant="outlined"
+										clickable
+										className={classes.sImageUpload}
+									/>
+								</label>
 							</Box>
 							<Box className={classes.sImageInfo}>
-								<Typography variant="body2">Maximum Filesize: 500KB</Typography>
-								<Typography variant="body2">Supported Filetype: png</Typography>
 								<Typography variant="body2">
-									Supported Resolution Upto: 220x220
+									{t(`${commonText}.FIELDS.IMAGE.RULES.RULE_1`)}
+								</Typography>
+								<Typography
+									variant="body2"
+									className={clsx({
+										[classes.sImageInvalid]: imageError === 1
+									})}>
+									{t(`${commonText}.FIELDS.IMAGE.RULES.RULE_2`, {
+										value: maxSize
+									})}
+								</Typography>
+								<Typography
+									variant="body2"
+									className={clsx({
+										[classes.sImageInvalid]: imageError === 2
+									})}>
+									{t(`${commonText}.FIELDS.IMAGE.RULES.RULE_3`, {
+										value: `${maxWidth}x${maxHeight}`
+									})}
 								</Typography>
 							</Box>
 						</Grid>
@@ -149,6 +197,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									onBlur={handleBlur}
 									label={t(`${commonText}.FIELDS.PRICE.LABEL`)}
 									placeholder={t(`${commonText}.FIELDS.PRICE.PLACEHOLDER`)}
+									InputProps={{ inputProps: { min: 0 } }}
 								/>
 								{errors && typeof errors.price === 'string' && (
 									<FormHelperText>{t(errors.price)}</FormHelperText>
@@ -168,6 +217,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									onBlur={handleBlur}
 									label={t(`${commonText}.FIELDS.LENGTH.LABEL`)}
 									placeholder={t(`${commonText}.FIELDS.LENGTH.PLACEHOLDER`)}
+									InputProps={{ inputProps: { min: 0 } }}
 								/>
 							</FormControl>
 						</Grid>
@@ -184,6 +234,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									onBlur={handleBlur}
 									label={t(`${commonText}.FIELDS.WEIGHT.LABEL`)}
 									placeholder={t(`${commonText}.FIELDS.WEIGHT.PLACEHOLDER`)}
+									InputProps={{ inputProps: { min: 0 } }}
 								/>
 							</FormControl>
 						</Grid>

@@ -15,5 +15,8 @@ export const SiteProductsTableStyles = makeStyles((theme: Theme) => ({
 	},
 	sImageInfo: {
 		marginTop: theme.spacing(1)
+	},
+	sImageInvalid: {
+		color: AppConfigService.AppOptions.colors.c12
 	}
 }));

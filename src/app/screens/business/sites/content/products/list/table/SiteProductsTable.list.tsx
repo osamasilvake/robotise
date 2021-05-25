@@ -49,7 +49,7 @@ export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.ACTIONS,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.ACTIONS',
-		minWidth: 100,
+		minWidth: 150,
 		align: 'right'
 	}
 ];

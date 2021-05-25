@@ -23,12 +23,6 @@ export const CreateOrderValidation = (
 			errors.location =
 				'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.VALIDATIONS.REQUIRED';
 		}
-
-		// validate
-		if (values.location && Number(values.location) < 0) {
-			errors.location =
-				'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.VALIDATIONS.INVALID';
-		}
 	}
 
 	return errors;

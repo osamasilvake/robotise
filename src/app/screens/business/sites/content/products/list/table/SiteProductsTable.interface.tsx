@@ -56,5 +56,11 @@ export interface DialogCreateEditProductPayloadInterface {
 	volume: string;
 }
 
+export interface DialogCreateEditProductImageChangeInterface {
+	validate: boolean;
+	type: number;
+	value: string;
+}
+
 export type SiteProductsTableHeadOrder = 'asc' | 'desc';
 export type SiteProductsTableHeadAlignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

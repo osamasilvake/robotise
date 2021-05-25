@@ -60,6 +60,16 @@
 			"TOKEN_EMPTY": "No Token Found!",
 			"UNKNOWN": "Unknown"
 		},
+		"SITES": {
+			"PRODUCTS": {
+				"PURCHASE_CREATE": {
+					"SUCCESS": "Product has been created successfully!"
+				},
+				"PURCHASE_EDIT": {
+					"SUCCESS": "Product has been updated successfully!"
+				}
+			}
+		},
 		"ROBOTS": {
 			"DETAIL": {
 				"ALERTS": {
@@ -82,15 +92,15 @@
 			},
 			"ORDERS": {
 				"ORDER_CREATE": {
-					"SUCCESS": "Order was created successfully!"
+					"SUCCESS": "Order has been created successfully!"
 				},
 				"ORDER_CANCEL": {
-					"SUCCESS": "Order was canceled successfully!"
+					"SUCCESS": "Order has been canceled successfully!"
 				}
 			},
 			"PURCHASES": {
 				"EDIT_COMMENT": {
-					"SUCCESS": "Comment was updated successfully!"
+					"SUCCESS": "Comment has been updated successfully!"
 				}
 			}
 		}
@@ -241,6 +251,11 @@
 									"LABEL": "Upload",
 									"VALIDATIONS": {
 										"REQUIRED": "Name is required."
+									},
+									"RULES": {
+										"RULE_1": "Supported Filetype: png",
+										"RULE_2": "Maximum Filesize: {{value}}KB",
+										"RULE_3": "Supported Resolution Upto: {{value}}"
 									}
 								},
 								"NAME": {
@@ -473,8 +488,7 @@
 									"LABEL": "Location",
 									"PLACEHOLDER": "Please enter the Location",
 									"VALIDATIONS": {
-										"REQUIRED": "Please enter the target location.",
-										"INVALID": "Invalid Location!"
+										"REQUIRED": "Please enter the target location."
 									}
 								},
 								"DEBUG": {

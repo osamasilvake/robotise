@@ -1,4 +1,12 @@
-
+audit:
+  stage: Initialize
+  image: node:15-alpine
+  script:
+    - yarn audit
+  only:
+    - merge_requests
+    - master
+    - production
 
 install:
   stage: Initialize

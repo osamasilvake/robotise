@@ -5,7 +5,7 @@ services:
 
 stages:
   - Initialize
-  #- Quality
+  - Quality
   - Build
   - Publish
   - Deploy
@@ -14,7 +14,7 @@ include:
   - local: .gitlab/ci/variables.yml
   
   - local: .gitlab/ci/initialize.yml
-  #- local: .gitlab/ci/quality.yml
+  - local: .gitlab/ci/quality.yml
   
   - local: .gitlab/ci/development/build.yml
   - local: .gitlab/ci/development/publish.yml

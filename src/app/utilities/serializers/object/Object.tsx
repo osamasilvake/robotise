@@ -5,6 +5,6 @@
  */
 export const serialize = <T,>(obj: T): string => {
 	return Object.entries(obj)
-		.map(([key, val]) => `${key}=${val}`)
+		.map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
 		.join('&');
 };

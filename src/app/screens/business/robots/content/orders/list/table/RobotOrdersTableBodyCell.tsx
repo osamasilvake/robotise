@@ -50,7 +50,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 						<>
 							<Chip
 								size="small"
-								label={t('CONTENT.ORDERS.LIST.ACTIONS.ORDER_CANCEL.LABEL')}
+								label={t('CONTENT.ORDERS.LIST.ACTIONS.CANCEL.LABEL')}
 								color="primary"
 								variant="outlined"
 								clickable

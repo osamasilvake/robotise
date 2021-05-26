@@ -123,7 +123,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							)}
 							InputProps={{ inputProps: { min: 0 } }}
 						/>
-						{errors && <FormHelperText>{t(errors.location)}</FormHelperText>}
+						{errors?.location && <FormHelperText>{t(errors.location)}</FormHelperText>}
 					</FormControl>
 
 					<FormControl variant="outlined" fullWidth margin="normal">

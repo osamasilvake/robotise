@@ -37,20 +37,20 @@ class SitesService {
 	/**
 	 * create/edit product
 	 * @param payload
-	 * @param siteId
 	 * @param type
+	 * @param siteId
 	 * @param productId
 	 * @returns
 	 */
 	siteProductCreateEdit = (
 		payload: DialogCreateEditProductPayloadInterface,
-		siteId: string,
 		type: SiteProductCreateEditTypeEnum,
+		siteId: string,
 		productId: string | undefined
 	) => {
 		const url = AppConfigService.AppServices.SITE.PRODUCTS;
 		if (type === SiteProductCreateEditTypeEnum.EDIT) {
-			return HttpClientService.patch(url, {
+			return HttpClientService.patch(`${url}/${productId}`, {
 				data: {
 					type: 'products',
 					id: productId,
@@ -61,13 +61,13 @@ class SitesService {
 		return HttpClientService.post(url, {
 			data: {
 				type: 'products',
-				attributes: payload
-			},
-			relationships: {
-				site: {
-					data: {
-						type: 'sites',
-						id: siteId
+				attributes: payload,
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: siteId
+						}
 					}
 				}
 			}

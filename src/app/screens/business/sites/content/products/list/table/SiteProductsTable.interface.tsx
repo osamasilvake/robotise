@@ -41,10 +41,10 @@ export interface SiteProductsTableBodyCellInterface {
 }
 
 export interface DialogCreateEditProductInterface {
-	product: SPCDataInterface | null;
+	product?: SPCDataInterface | null;
+	type: SiteProductCreateEditTypeEnum;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
-	type: SiteProductCreateEditTypeEnum;
 }
 
 export interface DialogCreateEditProductPayloadInterface {

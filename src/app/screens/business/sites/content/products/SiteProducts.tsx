@@ -11,6 +11,7 @@ import { AppConfigService } from '../../../../../services';
 import { ProductsFetchList, productsSelector } from '../../../../../slices/products/Products.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
+import SiteProductsActions from './list/actions/SiteProductsActions';
 import SiteProductsTable from './list/table/SiteProductsTable';
 import { siteProductsStyles } from './SiteProducts.style';
 
@@ -74,6 +75,7 @@ const SiteProducts: FC = () => {
 		return (
 			<Box>
 				{/* Actions */}
+				<SiteProductsActions topSpace />
 
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE"></PageEmpty>
@@ -84,6 +86,7 @@ const SiteProducts: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Actions */}
+			<SiteProductsActions />
 
 			{/* Table */}
 			<SiteProductsTable content={products.content} />

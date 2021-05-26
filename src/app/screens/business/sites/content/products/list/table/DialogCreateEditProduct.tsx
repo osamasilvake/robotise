@@ -61,7 +61,17 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				// dispatch: create a product
 				params.site &&
 					Promise.all([
-						dispatch(ProductCreateEdit(values, params.site, type, product?.id))
+						dispatch(
+							ProductCreateEdit(
+								{
+									...values,
+									image
+								},
+								type,
+								params.site,
+								product?.id
+							)
+						)
 					]).then(() => {
 						// set open
 						setOpen(false);
@@ -182,7 +192,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									label={t(`${commonText}.FIELDS.NAME.LABEL`)}
 									placeholder={t(`${commonText}.FIELDS.NAME.PLACEHOLDER`)}
 								/>
-								{errors && <FormHelperText>{t(errors.name)}</FormHelperText>}
+								{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 							</FormControl>
 							<FormControl error fullWidth margin="normal">
 								<TextField
@@ -263,7 +273,13 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={validateEmptyObjProperty(values) || products.updating}
+						disabled={
+							validateEmptyObjProperty({
+								image,
+								name: values.name,
+								price: values.price
+							}) || products.updating
+						}
 						endIcon={products.updating && <CircularProgress size={20} />}>
 						{type === SiteProductCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}
 						{type === SiteProductCreateEditTypeEnum.EDIT && t('BUTTONS.UPDATE')}

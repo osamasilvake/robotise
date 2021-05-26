@@ -239,6 +239,9 @@
 			"PRODUCTS": {
 				"LIST": {
 					"ACTIONS": {
+						"HEADINGS": {
+							"ACTIONS": "Actions"
+						},
 						"PRODUCT_CREATE_EDIT": {
 							"CREATE": {
 								"TITLE": "Create Product"
@@ -273,15 +276,15 @@
 									}
 								},
 								"LENGTH": {
-									"LABEL": "Length",
+									"LABEL": "Length (mm)",
 									"PLACEHOLDER": "Please enter product length"
 								},
 								"WEIGHT": {
-									"LABEL": "Weight",
+									"LABEL": "Weight (g)",
 									"PLACEHOLDER": "Please enter product weight"
 								},
 								"VOLUME": {
-									"LABEL": "Volume",
+									"LABEL": "Volume (l)",
 									"PLACEHOLDER": "Please enter product volume"
 								}
 							}
@@ -292,8 +295,8 @@
 							"IMAGE": "Image",
 							"NAME": "Name",
 							"PRICE": "Price",
-							"LENGTH": "Length",
-							"WEIGHT": "Weight",
+							"LENGTH": "Length (mm)",
+							"WEIGHT": "Weight (g)",
 							"VOLUME": "Volume",
 							"UPDATED": "Updated",
 							"ACTIONS": "Actions"

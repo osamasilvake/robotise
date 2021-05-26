@@ -6,32 +6,32 @@ export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.IMAGE,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.IMAGE',
-		minWidth: 120,
+		minWidth: 80,
 		align: 'left',
 		noSort: true
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.NAME,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.NAME',
-		minWidth: 230,
+		minWidth: 200,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.PRICE,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.PRICE',
-		minWidth: 100,
+		minWidth: 110,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.LENGTH,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.LENGTH',
-		minWidth: 100,
+		minWidth: 145,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.WEIGHT,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.WEIGHT',
-		minWidth: 100,
+		minWidth: 125,
 		align: 'left'
 	},
 	{
@@ -49,7 +49,7 @@ export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.ACTIONS,
 		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.ACTIONS',
-		minWidth: 150,
+		minWidth: 145,
 		align: 'right'
 	}
 ];

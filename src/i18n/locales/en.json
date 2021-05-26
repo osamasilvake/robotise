@@ -55,6 +55,10 @@
 				"OFFLINE": "Network connection is offline!"
 			}
 		},
+		"API": {
+			"FETCH": "Unable to fetch the content!",
+			"CANCEL": "Unable to execute the action!"
+		},
 		"AUTH": {
 			"TOKEN_EXPIRED": "Token Got Expired!",
 			"TOKEN_EMPTY": "No Token Found!",
@@ -127,10 +131,6 @@
 		"PAGE_ERROR": {
 			"TITLE": "Whoops! 🤭",
 			"LINK": "Reload"
-		},
-		"API": {
-			"FETCH": "Unable to fetch the content!",
-			"CANCEL": "Unable to execute the action!"
 		}
 	},
 	"AUTH": {

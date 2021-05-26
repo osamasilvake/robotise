@@ -35,32 +35,35 @@ const dataSlice = createSlice({
 		loading: (state) => {
 			state.loading = true;
 		},
-		updating: (state) => {
-			state.updating = true;
-		},
 		success: (state, action) => {
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
+		failure: (state, action) => {
+			state.loader = false;
+			state.loading = false;
+			state.content = null;
+			state.errors = action.payload;
+		},
+		updating: (state) => {
+			state.updating = true;
+		},
 		updated: (state, action) => {
 			state.updating = false;
 			state.content = action.payload;
 		},
-		failure: (state, action) => {
-			state.loader = false;
-			state.loading = false;
+		updateFailed: (state) => {
 			state.updating = false;
-			state.content = null;
-			state.errors = action.payload;
 		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, updating, success, updated, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const productsSelector = (state: AppReducerType) => state['products'];
@@ -168,15 +171,17 @@ export const ProductCreateEdit =
 				}
 			})
 			.catch(() => {
+				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-product-error',
+					id: 'create-update-product-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'API.CANCEL'
 				};
+				dispatch(triggerMessage(message));
 
-				// dispatch: failure
-				dispatch(failure(message));
+				// dispatch: update failed
+				dispatch(updateFailed());
 			});
 	};
 

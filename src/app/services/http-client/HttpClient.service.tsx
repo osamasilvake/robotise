@@ -38,7 +38,7 @@ class HttpClientService {
 	 * @param url
 	 * @param config
 	 */
-	delete = async (url: string, config: AxiosRequestConfig) => {
+	delete = async (url: string, config?: AxiosRequestConfig) => {
 		const resp = await axios.delete(url, config);
 		return resp.data;
 	};

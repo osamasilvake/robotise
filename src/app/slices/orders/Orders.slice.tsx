@@ -166,7 +166,7 @@ export const OrderCreate =
 						id: 'create-order-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: 'ROBOTS.ORDERS.ORDER_CREATE.SUCCESS'
+						text: 'ROBOTS.ORDERS.CREATE.SUCCESS'
 					};
 					dispatch(triggerMessage(message));
 				}
@@ -217,7 +217,7 @@ export const OrderCancel =
 						id: 'cancel-order-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: 'ROBOTS.ORDERS.ORDER_CANCEL.SUCCESS'
+						text: 'ROBOTS.ORDERS.CANCEL.SUCCESS'
 					};
 					dispatch(triggerMessage(message));
 				}

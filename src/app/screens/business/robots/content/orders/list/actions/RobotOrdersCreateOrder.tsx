@@ -28,7 +28,7 @@ const RobotOrdersCreateOrder: FC = () => {
 			{/* Action */}
 			<Box className={classes.sCreateOrder}>
 				<Button variant="outlined" onClick={openCreateOrderDialog}>
-					{t('CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.LABEL')}
+					{t('CONTENT.ORDERS.LIST.ACTIONS.CREATE.LABEL')}
 				</Button>
 			</Box>
 

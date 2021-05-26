@@ -17,7 +17,7 @@ import { OrderCancel, ordersSelector } from '../../../../../../../slices/orders/
 import { DialogCancelOrderInterface } from './RobotOrdersTable.interface';
 
 const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
-	const { open, setOpen, order } = props;
+	const { order, open, setOpen } = props;
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
 	const dispatch = useDispatch();

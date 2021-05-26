@@ -162,9 +162,7 @@ export const ProductCreateEdit =
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: `SITES.PRODUCTS.${
-							type === SiteProductCreateEditTypeEnum.CREATE
-								? 'PURCHASE_CREATE'
-								: 'PURCHASE_EDIT'
+							type === SiteProductCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
 						}.SUCCESS`
 					};
 					dispatch(triggerMessage(message));
@@ -174,6 +172,54 @@ export const ProductCreateEdit =
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'create-update-product-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'API.CANCEL'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
+ * delete product
+ * @param product
+ * @returns
+ */
+export const ProductDelete =
+	(product: SPCDataInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const products = states.products;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		return SitesService.siteProductDelete(product.id)
+			.then(async () => {
+				if (products.content) {
+					// remove delete product
+					const result = removeDeletedProduct(products.content, product);
+
+					// dispatch: updated
+					dispatch(updated(result));
+
+					// dispatch: trigger message
+					const message: TriggerMessageInterface = {
+						id: 'delete-product-success',
+						show: true,
+						severity: TriggerMessageTypeEnum.SUCCESS,
+						text: 'SITES.PRODUCTS.DELETE.SUCCESS'
+					};
+					dispatch(triggerMessage(message));
+				}
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'delete-product-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'API.CANCEL'
@@ -219,4 +265,23 @@ const updateCreatedEditedProduct = (
 					[product.id]: product
 				}
 		  };
+};
+
+/**
+ * remove deleted product
+ * @param state
+ * @param product
+ * @returns
+ */
+const removeDeletedProduct = (
+	state: SPContentInterface,
+	product: SPCDataInterface
+): SPContentInterface => {
+	return {
+		...state,
+		data: state.data.filter((d) => d.id !== product.id),
+		dataById: {
+			...state.dataById
+		}
+	};
 };

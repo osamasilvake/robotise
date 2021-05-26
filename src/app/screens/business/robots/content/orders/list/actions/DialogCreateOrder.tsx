@@ -99,12 +99,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	return (
 		<Dialog open={open} onClose={closeCreateOrderDialog}>
 			<form onSubmit={handleSubmit}>
-				<DialogTitle>
-					{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.TITLE')}
-				</DialogTitle>
+				<DialogTitle>{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE.TITLE')}</DialogTitle>
 				<DialogContent>
 					<Typography variant="body1" color="textSecondary">
-						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.TEXT')}
+						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE.TEXT')}
 					</Typography>
 
 					<FormControl error fullWidth margin="normal">
@@ -118,10 +116,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
 							label={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.LABEL'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE.FIELDS.LOCATION.LABEL'
 							)}
 							placeholder={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.PLACEHOLDER'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE.FIELDS.LOCATION.PLACEHOLDER'
 							)}
 							InputProps={{ inputProps: { min: 0 } }}
 						/>
@@ -159,7 +157,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								/>
 							}
 							label={t(
-								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.DEBUG.LABEL'
+								'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE.FIELDS.DEBUG.LABEL'
 							)}
 						/>
 					</FormControl>

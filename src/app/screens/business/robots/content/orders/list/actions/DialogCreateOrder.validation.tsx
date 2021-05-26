@@ -21,7 +21,7 @@ export const CreateOrderValidation = (
 		// required
 		if (!values.location) {
 			errors.location =
-				'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.ORDER_CREATE.FIELDS.LOCATION.VALIDATIONS.REQUIRED';
+				'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE.FIELDS.LOCATION.VALIDATIONS.REQUIRED';
 		}
 	}
 

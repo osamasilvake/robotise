@@ -40,7 +40,7 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 					onChange={toggleActiveOrders}
 				/>
 			}
-			label={t('CONTENT.ORDERS.LIST.ACTIONS.ORDERS_ACTIVE.LABEL')}
+			label={t('CONTENT.ORDERS.LIST.ACTIONS.ACTIVE_ORDERS.LABEL')}
 		/>
 	);
 };

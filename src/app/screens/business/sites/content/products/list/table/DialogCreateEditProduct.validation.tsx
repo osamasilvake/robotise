@@ -9,7 +9,7 @@ export const CreateEditProductValidation = (
 	values: DialogCreateEditProductPayloadInterface,
 	touched: DialogCreateEditProductPayloadInterface
 ): DialogCreateEditProductPayloadInterface => {
-	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.PRODUCT_CREATE_EDIT.FIELDS';
+	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
 	const errors: DialogCreateEditProductPayloadInterface = {
 		image: '',
 		name: '',

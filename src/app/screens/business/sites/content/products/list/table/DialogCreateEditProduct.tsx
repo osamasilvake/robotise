@@ -82,7 +82,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const [imageError, setImageError] = useState(0);
 
 	const params: SiteParamsInterface = useParams();
-	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.PRODUCT_CREATE_EDIT';
+	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 	const maxSize = AppConfigService.AppOptions.components.uploadImage.maxSize;
 	const maxHeight = AppConfigService.AppOptions.components.uploadImage.maxHeight;
 	const maxWidth = AppConfigService.AppOptions.components.uploadImage.maxWidth;
@@ -207,7 +207,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									onBlur={handleBlur}
 									label={t(`${commonText}.FIELDS.PRICE.LABEL`)}
 									placeholder={t(`${commonText}.FIELDS.PRICE.PLACEHOLDER`)}
-									InputProps={{ inputProps: { min: 0 } }}
+									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
 								/>
 								{errors && typeof errors.price === 'string' && (
 									<FormHelperText>{t(errors.price)}</FormHelperText>
@@ -227,7 +227,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									onBlur={handleBlur}
 									label={t(`${commonText}.FIELDS.LENGTH.LABEL`)}
 									placeholder={t(`${commonText}.FIELDS.LENGTH.PLACEHOLDER`)}
-									InputProps={{ inputProps: { min: 0 } }}
+									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
 								/>
 							</FormControl>
 						</Grid>
@@ -244,7 +244,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									onBlur={handleBlur}
 									label={t(`${commonText}.FIELDS.WEIGHT.LABEL`)}
 									placeholder={t(`${commonText}.FIELDS.WEIGHT.PLACEHOLDER`)}
-									InputProps={{ inputProps: { min: 0 } }}
+									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
 								/>
 							</FormControl>
 						</Grid>

@@ -12,6 +12,7 @@ import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditProduct from './DialogCreateEditProduct';
+import DialogDeleteProduct from './DialogDeleteProduct';
 import {
 	SiteProductCreateEditTypeEnum,
 	SiteProductsTableColumnsTypeEnum
@@ -30,7 +31,8 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 
 	const sites = useSelector(sitesSelector);
 
-	const [open, setOpen] = useState(false);
+	const [openCreateEdit, setOpenCreateEdit] = useState(false);
+	const [openDelete, setOpenDelete] = useState(false);
 
 	const params: SiteParamsInterface = useParams();
 	const currency = sites.content?.dataById[params.site]?.currency;
@@ -44,8 +46,20 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 		// stop propagation
 		event.stopPropagation();
 
-		// set open
-		setOpen(true);
+		// set create/edit open
+		setOpenCreateEdit(true);
+	};
+
+	/**
+	 * open delete product dialog
+	 * @param event
+	 */
+	const openDeleteProductDialog = (event: MouseEvent<HTMLDivElement>) => {
+		// stop propagation
+		event.stopPropagation();
+
+		// set delete open
+		setOpenDelete(true);
 	};
 
 	/**
@@ -54,7 +68,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (order: SPCDataInterface, column: SiteProductsTableColumnInterface) => {
+	const setCellValue = (product: SPCDataInterface, column: SiteProductsTableColumnInterface) => {
 		if (column.id === SiteProductsTableColumnsTypeEnum.ACTIONS) {
 			return (
 				<Box>
@@ -69,9 +83,9 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 					/>
 					<DialogCreateEditProduct
 						product={product}
-						open={open}
 						type={SiteProductCreateEditTypeEnum.EDIT}
-						setOpen={setOpen}
+						open={openCreateEdit}
+						setOpen={setOpenCreateEdit}
 					/>
 
 					<Chip
@@ -80,11 +94,17 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 						color="secondary"
 						variant="outlined"
 						clickable
+						onClick={openDeleteProductDialog}
+					/>
+					<DialogDeleteProduct
+						product={product}
+						open={openDelete}
+						setOpen={setOpenDelete}
 					/>
 				</Box>
 			);
 		} else {
-			const value = order[column.id];
+			const value = product[column.id];
 			if (typeof value === 'number') {
 				if (columns[2].id === column.id) {
 					const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
@@ -96,7 +116,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				}
 				return value;
 			} else if (columns[0].id === column.id) {
-				return <Avatar variant="square" src={value} alt={order['name']} />;
+				return <Avatar variant="square" src={value} alt={product['name']} />;
 			} else if (columns[6].id === column.id) {
 				return momentFormat1(value);
 			}

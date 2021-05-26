@@ -29,7 +29,7 @@ const SiteProductsCreateProduct: FC = () => {
 			{/* Action */}
 			<Box className={classes.sCreateProduct}>
 				<Button variant="outlined" onClick={openCreateProductDialog}>
-					{t('CONTENT.PRODUCTS.LIST.ACTIONS.PRODUCT_CREATE_EDIT.CREATE.TITLE')}
+					{t('CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.CREATE.TITLE')}
 				</Button>
 			</Box>
 

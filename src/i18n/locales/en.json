@@ -66,11 +66,14 @@
 		},
 		"SITES": {
 			"PRODUCTS": {
-				"PURCHASE_CREATE": {
+				"CREATE": {
 					"SUCCESS": "Product has been created successfully!"
 				},
-				"PURCHASE_EDIT": {
+				"EDIT": {
 					"SUCCESS": "Product has been updated successfully!"
+				},
+				"DELETE": {
+					"SUCCESS": "Product has been deleted successfully!"
 				}
 			}
 		},
@@ -95,10 +98,10 @@
 				}
 			},
 			"ORDERS": {
-				"ORDER_CREATE": {
+				"CREATE": {
 					"SUCCESS": "Order has been created successfully!"
 				},
-				"ORDER_CANCEL": {
+				"CANCEL": {
 					"SUCCESS": "Order has been canceled successfully!"
 				}
 			},
@@ -242,7 +245,7 @@
 						"HEADINGS": {
 							"ACTIONS": "Actions"
 						},
-						"PRODUCT_CREATE_EDIT": {
+						"CREATE_EDIT": {
 							"CREATE": {
 								"TITLE": "Create Product"
 							},
@@ -288,6 +291,10 @@
 									"PLACEHOLDER": "Please enter product volume"
 								}
 							}
+						},
+						"DELETE": {
+							"TITLE": "Delete Product",
+							"TEXT": "Are you sure you want to delete the product?"
 						}
 					},
 					"TABLE": {
@@ -476,13 +483,13 @@
 							"FILTERS": "Filters",
 							"ACTIONS": "Actions"
 						},
-						"ORDERS_ACTIVE": {
+						"ACTIVE_ORDERS": {
 							"LABEL": "Active Orders only"
 						},
 						"DEBUG": {
 							"LABEL": "Include Test Orders"
 						},
-						"ORDER_CREATE": {
+						"CREATE": {
 							"LABEL": "Create Order",
 							"TITLE": "Create Order",
 							"TEXT": "Create a new order for JEEVES by providing a target location.",
@@ -499,7 +506,7 @@
 								}
 							}
 						},
-						"ORDER_CANCEL": {
+						"CANCEL": {
 							"LABEL": "abort",
 							"TITLE": "Cancel Order",
 							"TEXT": "Are you sure you want to cancel the order?",

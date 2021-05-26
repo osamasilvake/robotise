@@ -62,5 +62,11 @@ export interface DialogCreateEditProductImageChangeInterface {
 	value: string;
 }
 
+export interface DialogDeleteProductInterface {
+	product: SPCDataInterface;
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
 export type SiteProductsTableHeadOrder = 'asc' | 'desc';
 export type SiteProductsTableHeadAlignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

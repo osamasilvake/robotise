@@ -73,6 +73,16 @@ class SitesService {
 			}
 		});
 	};
+
+	/**
+	 * delete product
+	 * @param productId
+	 * @returns
+	 */
+	siteProductDelete = (productId: string) => {
+		const url = AppConfigService.AppServices.SITE.PRODUCTS;
+		return HttpClientService.delete(`${url}/${productId}`);
+	};
 }
 const instance = new SitesService();
 export default instance;

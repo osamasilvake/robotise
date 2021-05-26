@@ -167,7 +167,15 @@ const RobotPurchases: FC = () => {
 
 	// empty
 	if (!purchases.content.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
+		return (
+			<Box>
+				{/* Actions */}
+				<RobotPurchasesActions billed={billed} debug={debug} topSpace />
+
+				{/* Empty */}
+				<PageEmpty message="EMPTY.MESSAGE"></PageEmpty>
+			</Box>
+		);
 	}
 
 	return (

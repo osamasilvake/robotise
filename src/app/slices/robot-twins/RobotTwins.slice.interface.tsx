@@ -4,13 +4,8 @@ import { RobotDetailControlModeTypeEnum } from '../../screens/business/robots/co
 export interface SliceRobotTwinsInterface {
 	loader: boolean;
 	loading: boolean;
-	content: SRTContentInterface | null;
+	content: SRTContentDataInterface | null;
 	errors: TriggerMessageInterface | null;
-}
-
-export interface SRTContentInterface {
-	data: SRTContentDataInterface[];
-	dataById: SRTContentDataByIdInterface;
 }
 
 export interface SRTContentDataInterface {
@@ -30,10 +25,6 @@ export interface SRTContentDataInterface {
 	joystickState?: SRTContentJoystickState | undefined;
 	activityState?: SRTContentActivityState | undefined;
 	safetySystemsState: SRTContentSafetySystemsState;
-}
-
-export interface SRTContentDataByIdInterface {
-	[id: string]: SRTContentDataInterface;
 }
 
 export interface SRTContentSiteInterface {

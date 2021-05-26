@@ -5,10 +5,10 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
-import { SliceSitesInterface } from './Sites.slice.interface';
+import { SliceSiteInterface } from './Site.slice.interface';
 
 // initial state
-export const initialState: SliceSitesInterface = {
+export const initialState: SliceSiteInterface = {
 	loader: false,
 	loading: false,
 	content: null,

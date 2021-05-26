@@ -7,7 +7,7 @@ import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/RobotTwins.deserialize';
 import { AppReducerType } from '..';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
-import { SliceRobotTwinsInterface, SRTContentInterface } from './RobotTwins.slice.interface';
+import { SliceRobotTwinsInterface, SRTContentDataInterface } from './RobotTwins.slice.interface';
 
 // initial state
 export const initialState: SliceRobotTwinsInterface = {
@@ -114,27 +114,21 @@ export const RobotTwinsFetch =
  */
 const prepareContent = (
 	sites: SSContentInterface,
-	robotTwins: SRTContentInterface
-): SRTContentInterface => {
+	robotTwins: SRTContentDataInterface
+): SRTContentDataInterface => {
+	const site = sites.dataById[robotTwins.site.id];
 	return {
-		data: Object.keys(robotTwins.dataById).map((key) => {
-			const robotTwinsRes = robotTwins.dataById[key];
-			const site = sites.dataById[robotTwinsRes.site.id];
-			return {
-				...robotTwinsRes,
-				id: robotTwinsRes.id,
-				robot: {
-					id: robotTwinsRes.robot.id,
-					name: robotTwinsRes.robot.name
-				},
-				site: {
-					...robotTwinsRes.site,
-					title: site.title,
-					acceptOrders: site.acceptOrders,
-					elevator: site.elevators
-				}
-			};
-		}),
-		dataById: robotTwins.dataById
+		...robotTwins,
+		id: robotTwins.id,
+		robot: {
+			id: robotTwins.robot.id,
+			name: robotTwins.robot.name
+		},
+		site: {
+			...robotTwins.site,
+			title: site.title,
+			acceptOrders: site.acceptOrders,
+			elevator: site.elevators
+		}
 	};
 };

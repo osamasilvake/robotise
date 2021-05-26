@@ -125,15 +125,6 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 		}
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
-	let data = await deserializer.deserialize(payload);
-	data = typeof data === 'object' ? [data] : data;
-	const dataById = data.reduce(
-		(acc: { [x: string]: SRTContentDataInterface }, item: SRTContentDataInterface) => {
-			acc[item.id] = item;
-			return acc;
-		},
-		{}
-	);
-
-	return { data, dataById };
+	const data = await deserializer.deserialize(payload);
+	return data;
 };

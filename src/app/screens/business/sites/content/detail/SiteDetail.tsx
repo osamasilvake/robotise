@@ -21,7 +21,7 @@ const SiteDetail: FC = () => {
 
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.site;
-	const pSiteId = site.content?.data[0].id;
+	const pSiteId = site.content?.id;
 
 	useEffect(() => {
 		const condition1 = site.content === null && cSiteId;
@@ -65,13 +65,13 @@ const SiteDetail: FC = () => {
 	}
 
 	// empty
-	if (!site.content.data.length) {
+	if (!site.content) {
 		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 
 	return (
 		<Box className={classes.sBox}>
-			<SiteDetailGeneral site={site.content.data[0]} />
+			<SiteDetailGeneral site={site.content} />
 		</Box>
 	);
 };

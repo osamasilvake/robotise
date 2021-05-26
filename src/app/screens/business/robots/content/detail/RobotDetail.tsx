@@ -31,7 +31,7 @@ const RobotDetail: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 	const cRobotTwinsId = params.robot;
-	const pRobotTwinsId = robotTwins.content?.data[0].id;
+	const pRobotTwinsId = robotTwins.content?.id;
 
 	useEffect(() => {
 		const condition1 = sites.content !== null;
@@ -77,18 +77,18 @@ const RobotDetail: FC = () => {
 	}
 
 	// empty
-	if (!robotTwins.content.data.length) {
+	if (!robotTwins.content) {
 		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
 	}
 
 	return (
 		<Box className={classes.sBox}>
-			<RobotDetailGeneral robotTwin={robotTwins.content.data[0]} />
-			<RobotDetailAlerts robotTwin={robotTwins.content.data[0]} />
-			<RobotDetailLocation robotTwin={robotTwins.content.data[0]} />
-			<RobotDetailCommands robotTwin={robotTwins.content.data[0]} />
-			<RobotDetailCameras robotTwin={robotTwins.content.data[0]} />
-			<RobotDetailStates robotTwin={robotTwins.content.data[0]} />
+			<RobotDetailGeneral robotTwin={robotTwins.content} />
+			<RobotDetailAlerts robotTwin={robotTwins.content} />
+			<RobotDetailLocation robotTwin={robotTwins.content} />
+			<RobotDetailCommands robotTwin={robotTwins.content} />
+			<RobotDetailCameras robotTwin={robotTwins.content} />
+			<RobotDetailStates robotTwin={robotTwins.content} />
 		</Box>
 	);
 };

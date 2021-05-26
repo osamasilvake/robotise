@@ -40,11 +40,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 		!status && setOpen(false);
 
 		// dispatch: delete product
-		status &&
-			Promise.all([dispatch(ProductDelete(product))]).then(() => {
-				// set open
-				setOpen(false);
-			});
+		status && Promise.all([dispatch(ProductDelete(product))]);
 	};
 
 	return (

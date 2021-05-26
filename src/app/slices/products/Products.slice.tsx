@@ -247,9 +247,9 @@ const updateCreatedEditedProduct = (
 		? {
 				...state,
 				data: [product, ...state.data],
-				dataById: {
-					[product.id]: product,
-					...state.dataById
+				meta: {
+					...state.meta,
+					totalDocs: state.meta.totalDocs + 1
 				}
 		  }
 		: {
@@ -259,11 +259,7 @@ const updateCreatedEditedProduct = (
 						return product;
 					}
 					return d;
-				}),
-				dataById: {
-					...state.dataById,
-					[product.id]: product
-				}
+				})
 		  };
 };
 
@@ -280,8 +276,9 @@ const removeDeletedProduct = (
 	return {
 		...state,
 		data: state.data.filter((d) => d.id !== product.id),
-		dataById: {
-			...state.dataById
+		meta: {
+			...state.meta,
+			totalDocs: state.meta.totalDocs - 1
 		}
 	};
 };

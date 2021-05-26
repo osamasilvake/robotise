@@ -1,6 +1,5 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { SOCDataInterface } from '../../../slices/orders/Orders.slice.interface';
 import {
 	DeserializeRelationshipProperties,
 	DeserializerExtendedOptions,
@@ -32,13 +31,6 @@ export const deserializeOrders = async <T extends JsonApiResponse>(payload: T) =
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-	const dataById = data.reduce(
-		(acc: { [x: string]: SOCDataInterface }, item: SOCDataInterface) => {
-			acc[item.id] = item;
-			return acc;
-		},
-		{}
-	);
 
-	return { data, dataById, meta: payload.meta };
+	return { data, meta: payload.meta };
 };

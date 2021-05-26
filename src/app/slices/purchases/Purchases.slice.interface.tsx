@@ -11,7 +11,6 @@ export interface SlicePurchasesInterface {
 
 export interface SPContentInterface {
 	data: SPCDataInterface[];
-	dataById: SPCDataByIdInterface;
 	meta: JsonApiMeta;
 	state?: SPCState;
 }
@@ -31,10 +30,6 @@ export interface SPCDataInterface {
 	site: SPCDataSiteInterface;
 	robot: SPCRobotInterface;
 	order: SPCOrderInterface;
-}
-
-export interface SPCDataByIdInterface {
-	[id: string]: SPCDataInterface;
 }
 
 export interface SPCState {

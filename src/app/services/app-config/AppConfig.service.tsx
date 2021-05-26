@@ -92,7 +92,7 @@ class AppConfigService extends EnvService {
 						products: {
 							list: {
 								refreshTime: 30000,
-								showPageSizes: true,
+								showPageSizes: false,
 								defaultPageSize: 50,
 								pageSizes: [5, 10, 15, 20, 50, 100]
 							}

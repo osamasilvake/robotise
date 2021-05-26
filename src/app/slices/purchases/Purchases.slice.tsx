@@ -224,10 +224,6 @@ const handleRefreshAndPagination = (
 		return {
 			...current,
 			data: [...result.data, ...dataItems],
-			dataById: {
-				...current.dataById,
-				...result.dataById
-			},
 			meta: {
 				...current.meta,
 				totalDocs: result.meta.totalDocs,
@@ -241,11 +237,7 @@ const handleRefreshAndPagination = (
 				...current.meta,
 				...result.meta
 			},
-			data: [...current.data, ...result.data],
-			dataById: {
-				...current.dataById,
-				...result.dataById
-			}
+			data: [...current.data, ...result.data]
 		};
 	}
 	return result;
@@ -268,10 +260,6 @@ const updateEditedComment = (
 				return purchase;
 			}
 			return item;
-		}),
-		dataById: {
-			...current.dataById,
-			[purchase.id]: purchase
-		}
+		})
 	};
 };

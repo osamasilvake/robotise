@@ -64,7 +64,7 @@ const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 						? AppConfigService.AppOptions.screens.sites.content.products.list.pageSizes
 						: []
 				}
-				count={content?.data.length || 0}
+				count={content?.meta.totalDocs || 0}
 				page={0}
 				onPageChange={() => null}
 				rowsPerPage={AppConfigService.AppOptions.screens.sites.list.defaultPageSize}

@@ -11,7 +11,6 @@ export interface SliceProductsInterface {
 
 export interface SPContentInterface {
 	data: SPCDataInterface[];
-	dataById: SPCDataByIdInterface;
 	meta: JsonApiMeta;
 	site?: SPCSiteInterface;
 }
@@ -27,10 +26,6 @@ export interface SPCDataInterface {
 	price: number;
 	createdAt: string;
 	updatedAt: string;
-}
-
-export interface SPCDataByIdInterface {
-	[id: string]: SPCDataInterface;
 }
 
 export interface SPCSiteInterface {

@@ -11,7 +11,6 @@ export interface SliceOrdersInterface {
 
 export interface SOContentInterface {
 	data: SOCDataInterface[];
-	dataById: SOCDataByIdInterface;
 	meta: JsonApiMeta;
 	state?: SOCState;
 }
@@ -28,10 +27,6 @@ export interface SOCDataInterface {
 	history: SOCDataHistoryInterface[];
 	site: SOCDataSiteInterface;
 	robot: SOCRobotInterface;
-}
-
-export interface SOCDataByIdInterface {
-	[id: string]: SOCDataInterface;
 }
 
 export interface SOCState {

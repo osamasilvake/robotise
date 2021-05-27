@@ -125,12 +125,12 @@ describe('[SLICE] Order', () => {
 		};
 
 		// mock api once
-		const apiResponse = new Error('API.FETCH');
+		const apiResponse = new Error('PAGE_ERROR.DESCRIPTION');
 		const message: TriggerMessageInterface = {
 			id: 'fetch-orders-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
-			text: 'API.FETCH'
+			text: 'PAGE_ERROR.DESCRIPTION'
 		};
 		mockedAxios.get.mockRejectedValueOnce(apiResponse);
 

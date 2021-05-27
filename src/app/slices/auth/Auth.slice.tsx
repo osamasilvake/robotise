@@ -176,6 +176,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			AuthService.authLogout();
 		}
 	} else {
+		// dispatch: trigger message
 		const message: TriggerMessageInterface = {
 			id: 'token-empty-warn',
 			show: true,

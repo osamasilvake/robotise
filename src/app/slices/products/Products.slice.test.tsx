@@ -98,12 +98,12 @@ describe('[SLICE] Inventory', () => {
 		const siteId = '10549e17-3f9a-4a01-9fde-20b953a180ed';
 
 		// mock api once
-		const apiResponse = new Error('API.FETCH');
+		const apiResponse = new Error('PAGE_ERROR.DESCRIPTION');
 		const message: TriggerMessageInterface = {
 			id: 'fetch-products-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
-			text: 'API.FETCH'
+			text: 'PAGE_ERROR.DESCRIPTION'
 		};
 		mockedAxios.get.mockRejectedValueOnce(apiResponse);
 

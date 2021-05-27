@@ -19,7 +19,7 @@ import { RobotDetailAlertsStyles } from './RobotDetailAlerts.style';
 
 const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	const { alert } = props;
-	const { t } = useTranslation(['MESSAGE', 'TOOLTIPS']);
+	const { t } = useTranslation('TOOLTIPS');
 	const cardClasses = CardStyles();
 	const classes = RobotDetailAlertsStyles();
 
@@ -78,7 +78,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 				<Box className={classes.sCardContentIcons}>
 					<Tooltip
 						placement="top"
-						title={String(t('TOOLTIPS:COPY_CLIPBOARD'))}
+						title={String(t('COPY_CLIPBOARD'))}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}
 						className={classes.sCardContentIcon}>
 						<FileCopyIcon fontSize="small" />

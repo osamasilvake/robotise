@@ -81,11 +81,12 @@ export const PurchaseFetch =
 				dispatch(success(result));
 			})
 			.catch(() => {
+				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'fetch-purchase-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.FETCH'
+					text: 'PAGE_ERROR.DESCRIPTION'
 				};
 
 				// dispatch: failure

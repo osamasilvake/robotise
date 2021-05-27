@@ -121,11 +121,12 @@ export const OrdersFetchList =
 				dispatch(success(result));
 			})
 			.catch(() => {
+				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'fetch-orders-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.FETCH'
+					text: 'PAGE_ERROR.DESCRIPTION'
 				};
 
 				// dispatch: failure
@@ -177,7 +178,7 @@ export const OrderCreate =
 					id: 'create-order-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.CANCEL'
+					text: 'API.ORDER.CREATE'
 				};
 				dispatch(triggerMessage(message));
 
@@ -228,7 +229,7 @@ export const OrderCancel =
 					id: 'cancel-order-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.CANCEL'
+					text: 'API.ORDER.CANCEL'
 				};
 				dispatch(triggerMessage(message));
 
@@ -267,27 +268,23 @@ export const OrderUpdateState =
  * @param result
  * @returns
  */
-const handleMapping = (result: SOContentInterface) => {
-	return {
-		...result,
-		data: result.data.map((item) => mapItem(item))
-	};
-};
+const handleMapping = (result: SOContentInterface) => ({
+	...result,
+	data: result.data.map((item) => mapItem(item))
+});
 
 /**
  * map item
  * @param item
  * @returns
  */
-const mapItem = (item: SOCDataInterface) => {
-	return {
-		...item,
-		status: `CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${item.status}`,
-		location: item.location || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
-		mode: `CONTENT.ORDERS.COMMON.MODE.${item.mode}`,
-		origin: `CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
-	};
-};
+const mapItem = (item: SOCDataInterface) => ({
+	...item,
+	status: `CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${item.status}`,
+	location: item.location || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
+	mode: `CONTENT.ORDERS.COMMON.MODE.${item.mode}`,
+	origin: `CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
+});
 
 /**
  * handle refresh and pagination

@@ -56,8 +56,20 @@
 			}
 		},
 		"API": {
-			"FETCH": "Unable to fetch the content!",
-			"CANCEL": "Unable to execute the action!"
+			"SERVICE_POSITIONS": {
+				"FETCH": "Unable to fetch service positions!"
+			},
+			"ORDER": {
+				"CREATE": "Unable to create an order!",
+				"CANCEL": "Unable to cancel the order!"
+			},
+			"PRODUCT": {
+				"CREATE_EDIT": "Unable to create/edit a product!",
+				"DELETE": "Unable to delete a product!"
+			},
+			"PURCHASE": {
+				"EDIT_COMMENT": "Unable to edit a comment field!"
+			}
 		},
 		"AUTH": {
 			"TOKEN_EXPIRED": "Token Got Expired!",
@@ -81,6 +93,9 @@
 			"DETAIL": {
 				"ALERTS": {
 					"CLIPBOARD": "Message copied to clipboard!"
+				},
+				"MAP": {
+					"ERROR": "Failed to load map location!"
 				},
 				"COMMANDS": {
 					"SUCCESS": "Command has been executed successfully!",
@@ -133,6 +148,7 @@
 		},
 		"PAGE_ERROR": {
 			"TITLE": "Whoops! 🤭",
+			"DESCRIPTION": "Unable to fetch the content!",
 			"LINK": "Reload"
 		}
 	},

@@ -6,6 +6,7 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppReducerType } from '..';
+import { triggerMessage } from '../general/General.slice';
 import { failure, initialState, loading, RobotLocationMapFetch, success } from './Robot.slice';
 import { RobotTypeEnum } from './Robot.slice.enum';
 import { SliceRobotInterface } from './Robot.slice.interface';
@@ -78,7 +79,7 @@ describe('[SLICE] General', () => {
 		};
 
 		// mock api once
-		const apiResponse = new Error('API.FETCH');
+		const apiResponse = new Error('ROBOTS.DETAIL.MAP.ERROR');
 		const message: TriggerMessageInterface = {
 			id: 'fetch-robot-location-error',
 			show: true,
@@ -92,7 +93,11 @@ describe('[SLICE] General', () => {
 			.dispatch(RobotLocationMapFetch(mapId))
 			.then(() => {
 				// assert
-				const expectedActions = [loading(state), failure({ ...state, response: message })];
+				const expectedActions = [
+					loading(state),
+					triggerMessage(message),
+					failure({ ...state, error: apiResponse })
+				];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();

@@ -100,12 +100,12 @@ describe('[SLICE] Inventory', () => {
 		const robotId = '2ee43036-37e5-46f6-9ccc-8054eb67ec2b';
 
 		// mock api once
-		const apiResponse = new Error('API.FETCH');
+		const apiResponse = new Error('PAGE_ERROR.DESCRIPTION');
 		const message: TriggerMessageInterface = {
 			id: 'fetch-inventory-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
-			text: 'API.FETCH'
+			text: 'PAGE_ERROR.DESCRIPTION'
 		};
 		mockedAxios.get.mockRejectedValueOnce(apiResponse);
 

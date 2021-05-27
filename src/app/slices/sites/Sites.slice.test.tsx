@@ -108,7 +108,7 @@ describe('[SLICE] Sites', () => {
 		const store = mockStore(initialState);
 
 		// mock api once
-		const apiResponse = new Error('API.FETCH');
+		const apiResponse = new Error('PAGE_ERROR.DESCRIPTION');
 		const message: TriggerMessageInterface = {
 			id: 'fetch-sites-error',
 			show: true,

@@ -109,11 +109,12 @@ export const ProductsFetchList =
 				dispatch(success(result));
 			})
 			.catch(() => {
+				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'fetch-products-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.FETCH'
+					text: 'PAGE_ERROR.DESCRIPTION'
 				};
 
 				// dispatch: failure
@@ -174,7 +175,7 @@ export const ProductCreateEdit =
 					id: 'create-update-product-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.CANCEL'
+					text: 'API.PRODUCT.CREATE_EDIT'
 				};
 				dispatch(triggerMessage(message));
 
@@ -222,7 +223,7 @@ export const ProductDelete =
 					id: 'delete-product-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.CANCEL'
+					text: 'API.PRODUCT.DELETE'
 				};
 				dispatch(triggerMessage(message));
 

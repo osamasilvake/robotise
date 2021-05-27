@@ -11,25 +11,24 @@ import {
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
 import { AppReducerType } from '..';
+import { triggerMessage } from '../general/General.slice';
 import { RobotTypeEnum } from './Robot.slice.enum';
 import { SliceRobotInterface } from './Robot.slice.interface';
 
 // initial state
 export const initialState: SliceRobotInterface = {
-	control: {
-		loading: false,
-		content: null,
-		errors: null
-	},
 	map: {
 		loading: false,
 		content: null,
 		errors: null
 	},
+	control: {
+		loading: false,
+		content: null
+	},
 	camera: {
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	}
 };
 
@@ -40,44 +39,38 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.ROC_CONTROL) {
-				state.control.loading = true;
-			} else if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
+				state.map.content = null;
+				state.map.errors = null;
+			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+				state.control.loading = true;
+				state.control.content = null;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
+				state.camera.content = null;
 			}
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.ROC_CONTROL) {
-				state.control.loading = false;
-				state.control.content = response;
-				state.control.errors = null;
-			} else if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
 				state.map.errors = null;
+			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+				state.control.loading = false;
+				state.control.content = response;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
 				state.camera.content = response;
-				state.camera.errors = null;
 			}
 		},
 		failure: (state, action) => {
-			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.ROC_CONTROL) {
-				state.control.loading = false;
-				state.control.content = null;
-				state.control.errors = response;
-			} else if (module === RobotTypeEnum.MAP) {
+			const { module, error } = action.payload;
+			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = null;
-				state.map.errors = response;
-			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
-				state.camera.loading = false;
-				state.camera.content = null;
-				state.camera.errors = response;
+				state.map.errors = error;
 			}
 		},
 		reset: () => initialState
@@ -92,6 +85,42 @@ export const robotSelector = (state: AppReducerType) => state['robot'];
 
 // reducer
 export default dataSlice.reducer;
+
+/**
+ * fetch robot map location
+ * @param mapId
+ * @returns
+ */
+export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatch) => {
+	const state = {
+		module: RobotTypeEnum.MAP
+	};
+
+	// dispatch: loading
+	dispatch(loading(state));
+
+	return RobotsService.robotLocationMapFetch(mapId)
+		.then(async (res) => {
+			// deserialize response
+			const result = await deserializeRobot(res);
+
+			// dispatch: success
+			dispatch(success({ ...state, response: result }));
+		})
+		.catch((err) => {
+			// dispatch: trigger message
+			const message: TriggerMessageInterface = {
+				id: `fetch-robot-location-error`,
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: `ROBOTS.DETAIL.MAP.ERROR`
+			};
+			dispatch(triggerMessage(message));
+
+			// dispatch: failure
+			dispatch(failure({ ...state, error: err }));
+		});
+};
 
 /**
  * send robot control command
@@ -115,63 +144,14 @@ export const RobotControlCommandSend =
 			module: RobotTypeEnum.ROC_CONTROL
 		};
 
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return RobotsService.robotControlCommandSend(robotId, command, option)
-			.then(async (res) => {
-				// deserialize response
-				const result = await deserializeRobot(res);
-
-				// dispatch: success
-				dispatch(success({ ...state, response: result }));
-			})
-			.catch(() => {
-				const message: TriggerMessageInterface = {
-					id: 'send-control-command-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.FETCH'
-				};
-
-				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
-			});
-	};
-
-/**
- * fetch robot map location
- * @param mapId
- * @returns
- */
-export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatch) => {
-	const state = {
-		module: RobotTypeEnum.MAP
-	};
-
-	// dispatch: loading
-	dispatch(loading(state));
-
-	return RobotsService.robotLocationMapFetch(mapId)
-		.then(async (res) => {
+		return RobotsService.robotControlCommandSend(robotId, command, option).then(async (res) => {
 			// deserialize response
 			const result = await deserializeRobot(res);
 
 			// dispatch: success
 			dispatch(success({ ...state, response: result }));
-		})
-		.catch(() => {
-			const message: TriggerMessageInterface = {
-				id: 'fetch-robot-location-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'API.FETCH'
-			};
-
-			// dispatch: failure
-			dispatch(failure({ ...state, response: message }));
 		});
-};
+	};
 
 /**
  * request robot camera image
@@ -185,26 +165,11 @@ export const RobotCommandCameraImageRequest =
 			module: RobotTypeEnum.COMMAND_CAMERA
 		};
 
-		// dispatch: loading
-		dispatch(loading(state));
+		return RobotsService.robotRequestCameraImage(camera, robotId).then(async (res) => {
+			// deserialize response
+			const result = await deserializeRobot(res);
 
-		return RobotsService.robotRequestCameraImage(camera, robotId)
-			.then(async (res) => {
-				// deserialize response
-				const result = await deserializeRobot(res);
-
-				// dispatch: success
-				dispatch(success({ ...state, response: result }));
-			})
-			.catch(() => {
-				const message: TriggerMessageInterface = {
-					id: 'fetch-robot-camera-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.FETCH'
-				};
-
-				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
-			});
+			// dispatch: success
+			dispatch(success({ ...state, response: result }));
+		});
 	};

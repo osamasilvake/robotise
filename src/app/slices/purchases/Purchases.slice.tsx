@@ -118,11 +118,12 @@ export const PurchasesFetchList =
 				dispatch(success(result));
 			})
 			.catch(() => {
+				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'fetch-purchases-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.FETCH'
+					text: 'PAGE_ERROR.DESCRIPTION'
 				};
 
 				// dispatch: failure
@@ -174,7 +175,7 @@ export const PurchaseEditComment =
 					id: 'edit-comment-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.CANCEL'
+					text: 'API.PURCHASE.EDIT_COMMENT'
 				};
 				dispatch(triggerMessage(message));
 

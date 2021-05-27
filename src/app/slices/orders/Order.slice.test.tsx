@@ -66,12 +66,12 @@ describe('[SLICE] Order', () => {
 		const orderId = '1db0f232-9a2a-47c6-906c-dc390dba4996';
 
 		// mock api once
-		const apiResponse = new Error('API.FETCH');
+		const apiResponse = new Error('PAGE_ERROR.DESCRIPTION');
 		const message: TriggerMessageInterface = {
 			id: 'fetch-order-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
-			text: 'API.FETCH'
+			text: 'PAGE_ERROR.DESCRIPTION'
 		};
 		mockedAxios.get.mockRejectedValueOnce(apiResponse);
 

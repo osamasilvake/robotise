@@ -63,18 +63,6 @@ describe('[SLICE] Inventory', () => {
 					volume: '80g'
 				}
 			],
-			dataById: {
-				['ffc23dcf-193d-4e5b-9ada-758a6ea37b8a']: {
-					id: 'ffc23dcf-193d-4e5b-9ada-758a6ea37b8a',
-					createdAt: '2020-12-15T12:42:54.958Z',
-					image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAA',
-					length: 38,
-					name: 'Kambly Cookies',
-					price: 15,
-					updatedAt: '2021-03-31T15:30:41.080Z',
-					volume: '80g'
-				}
-			},
 			site: {
 				id: '10549e17-3f9a-4a01-9fde-20b953a180ed'
 			},

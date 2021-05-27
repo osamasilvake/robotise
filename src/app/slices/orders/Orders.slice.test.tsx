@@ -72,23 +72,6 @@ describe('[SLICE] Order', () => {
 					}
 				}
 			],
-			dataById: {
-				[orderId]: {
-					id: orderId,
-					mode: 'mini-bar',
-					origin: 'phone',
-					location: '661',
-					status: 'finished',
-					createdAt: '2021-04-22T08:31:44.884Z',
-					updatedAt: '2021-04-22T08:38:02.172Z',
-					site: {
-						id: siteId
-					},
-					robot: {
-						id: robotId
-					}
-				}
-			},
 			meta: {
 				hasNextPage: false,
 				hasPrevPage: false,

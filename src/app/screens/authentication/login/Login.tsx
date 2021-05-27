@@ -83,7 +83,7 @@ const Login: FC = () => {
 								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								InputLabelProps={{ shrink: true }}
 							/>
-							{errors && <FormHelperText>{t(errors.email)}</FormHelperText>}
+							{errors?.email && <FormHelperText>{t(errors.email)}</FormHelperText>}
 						</FormControl>
 
 						<FormControl error fullWidth margin="normal">
@@ -111,7 +111,9 @@ const Login: FC = () => {
 									)
 								}}
 							/>
-							{errors && <FormHelperText>{t(errors.password)}</FormHelperText>}
+							{errors?.password && (
+								<FormHelperText>{t(errors.password)}</FormHelperText>
+							)}
 						</FormControl>
 
 						<FormControlLabel

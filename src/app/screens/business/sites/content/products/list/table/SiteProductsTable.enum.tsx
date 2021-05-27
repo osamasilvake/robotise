@@ -3,7 +3,7 @@ export enum SiteProductsTableColumnsTypeEnum {
 	NAME = 'name',
 	PRICE = 'price',
 	LENGTH = 'length',
-	VOLUME = 'volume',
+	SIZE = 'volume',
 	WEIGHT = 'weight',
 	UPDATED = 'updatedAt',
 	ACTIONS = 'actions'

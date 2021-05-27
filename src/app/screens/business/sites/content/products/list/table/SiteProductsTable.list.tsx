@@ -35,8 +35,8 @@ export const columns: SiteProductsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SiteProductsTableColumnsTypeEnum.VOLUME,
-		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.VOLUME',
+		id: SiteProductsTableColumnsTypeEnum.SIZE,
+		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.SIZE',
 		minWidth: 100,
 		align: 'left'
 	},

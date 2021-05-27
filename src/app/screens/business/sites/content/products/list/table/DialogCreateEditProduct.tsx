@@ -254,13 +254,13 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 								<TextField
 									variant="outlined"
 									type="string"
-									id="volume"
-									name="volume"
+									id="size"
+									name="size"
 									value={values?.volume}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${commonText}.FIELDS.VOLUME.LABEL`)}
-									placeholder={t(`${commonText}.FIELDS.VOLUME.PLACEHOLDER`)}
+									label={t(`${commonText}.FIELDS.SIZE.LABEL`)}
+									placeholder={t(`${commonText}.FIELDS.SIZE.PLACEHOLDER`)}
 								/>
 							</FormControl>
 						</Grid>

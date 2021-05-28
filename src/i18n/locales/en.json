@@ -290,7 +290,8 @@
 									"LABEL": "Price",
 									"PLACEHOLDER": "Please enter price",
 									"VALIDATIONS": {
-										"REQUIRED": "Price is required."
+										"REQUIRED": "Price is required.",
+										"INVALID": "Max 2 decimal points allowed."
 									}
 								},
 								"LENGTH": {

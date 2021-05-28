@@ -1,3 +1,4 @@
+import { AppConfigService } from '../../../../../../../services';
 import { DialogCreateEditProductPayloadInterface } from './SiteProductsTable.interface';
 
 /**
@@ -32,6 +33,14 @@ export const CreateEditProductValidation = (
 		// required
 		if (!values.price) {
 			errors.price = `${commonText}.PRICE.VALIDATIONS.REQUIRED`;
+		}
+
+		// max two decimal points
+		if (
+			values.price &&
+			!AppConfigService.AppOptions.regex.maxTwoDecimalPoints.test(values.price.toString())
+		) {
+			errors.price = `${commonText}.PRICE.VALIDATIONS.INVALID`;
 		}
 	}
 

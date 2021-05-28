@@ -146,6 +146,9 @@ class AppConfigService extends EnvService {
 						}
 					}
 				}
+			},
+			regex: {
+				maxTwoDecimalPoints: new RegExp(/^\d+\.\d{0,2}$/)
 			}
 		};
 	}

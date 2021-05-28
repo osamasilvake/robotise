@@ -8,7 +8,7 @@ import { mapRobotStates } from './RobotDetailStates.map';
 import { RobotDetailStatesStyles } from './RobotDetailStates.style';
 
 const RobotDetailState: FC<RobotDetailStateInterface> = (props) => {
-	const { robotTwin, state } = props;
+	const { robotTwins, state } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailStatesStyles();
 
@@ -24,7 +24,10 @@ const RobotDetailState: FC<RobotDetailStateInterface> = (props) => {
 				{Object.keys(state.content)
 					.filter((p) => p !== 'updatedAt')
 					.map((property) => {
-						const mappedResult = mapRobotStates(`${state.type}.${property}`, robotTwin);
+						const mappedResult = mapRobotStates(
+							`${state.type}.${property}`,
+							robotTwins
+						);
 						return (
 							mappedResult && (
 								<Grid key={property} item xs={12} sm={6} md={4} lg={3}>

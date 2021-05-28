@@ -5,12 +5,12 @@ import { RobotDetailStatesInterface } from './RobotDetailStates.interface';
 import { robotStates } from './RobotDetailStates.list';
 
 const RobotDetailStates: FC<RobotDetailStatesInterface> = (props) => {
-	const { robotTwin } = props;
+	const { robotTwins } = props;
 
 	return (
 		<>
-			{robotStates(robotTwin).map((state) => (
-				<RobotDetailState key={state.type} robotTwin={robotTwin} state={state} />
+			{robotStates(robotTwins).map((state) => (
+				<RobotDetailState key={state.type} robotTwins={robotTwins} state={state} />
 			))}
 		</>
 	);

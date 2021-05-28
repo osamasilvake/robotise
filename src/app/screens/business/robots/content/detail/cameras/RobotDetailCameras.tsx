@@ -8,7 +8,7 @@ import { RobotDetailCamerasInterface } from './RobotDetailCameras.interface';
 import { RobotDetailCameraStyles } from './RobotDetailCameras.style';
 
 const RobotDetailCameras: FC<RobotDetailCamerasInterface> = (props) => {
-	const { robotTwin } = props;
+	const { robotTwins } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCameraStyles();
 
@@ -24,13 +24,13 @@ const RobotDetailCameras: FC<RobotDetailCamerasInterface> = (props) => {
 			{/* Grid */}
 			<Grid container spacing={1}>
 				<RobotDetailCamera
-					robotTwin={robotTwin}
+					robotTwins={robotTwins}
 					cameraType={RobotDetailCameraTypeEnum.BASE}
 					currentCameraType={currentCameraType}
 					setCurrentCameraType={setCurrentCameraType}
 				/>
 				<RobotDetailCamera
-					robotTwin={robotTwin}
+					robotTwins={robotTwins}
 					cameraType={RobotDetailCameraTypeEnum.TOP}
 					currentCameraType={currentCameraType}
 					setCurrentCameraType={setCurrentCameraType}

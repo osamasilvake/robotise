@@ -108,6 +108,16 @@ class RobotsService {
 	};
 
 	/**
+	 * sync products with robot GUI
+	 * @param robotId
+	 * @returns
+	 */
+	robotSyncProducts = (robotId: string) => {
+		const url = AppConfigService.AppServices.ROBOT.SYNC_PRODUCTS.replace(':robot', robotId);
+		return HttpClientService.post(url);
+	};
+
+	/**
 	 * fetch robot inventory
 	 * @param robotId
 	 */

@@ -8,7 +8,7 @@ import { RobotDetailAlertsInterface } from './RobotDetailAlerts.interface';
 import { RobotDetailAlertsStyles } from './RobotDetailAlerts.style';
 
 const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
-	const { robotTwin } = props;
+	const { robotTwins } = props;
 	const classes = RobotDetailAlertsStyles();
 
 	/**
@@ -16,7 +16,7 @@ const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
 	 * @returns
 	 */
 	const sortByAlertLevel = (): IAlert[] => {
-		return robotTwin.alerts.value
+		return robotTwins.alerts.value
 			.map((item) => {
 				switch (item.level) {
 					case RobotDetailAlertsTypeEnum.DANGER:
@@ -31,7 +31,7 @@ const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
 			.sort((a, b) => a.sortId - b.sortId);
 	};
 
-	return robotTwin.alerts.value && robotTwin.alerts.value.length ? (
+	return robotTwins.alerts.value && robotTwins.alerts.value.length ? (
 		<Grid container spacing={1} className={classes.sAlertsContainer}>
 			{sortByAlertLevel().map((alert) => (
 				<RobotDetailAlert key={alert.code} alert={alert} />

@@ -14,14 +14,14 @@ import {
 import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
 
 const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
-	const { robotTwin } = props;
+	const { robotTwins } = props;
 	const classes = RobotDetailCommandsStyles();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
 	const [state, setState] = useState({
-		ready: robotTwin.robotState.isReady.value,
+		ready: robotTwins.robotState.isReady.value,
 		control: false,
 		forward: false,
 		backward: false,
@@ -29,9 +29,9 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 		translate: false
 	});
 
-	const controlMode = robotTwin.controlMode.value;
-	const muteSensorBack = robotTwin.safetySystemsState.backMutingActive;
-	const muteSensorFront = robotTwin.safetySystemsState.frontMutingActive;
+	const controlMode = robotTwins.controlMode.value;
+	const muteSensorBack = robotTwins.safetySystemsState.backMutingActive;
+	const muteSensorFront = robotTwins.safetySystemsState.frontMutingActive;
 
 	useEffect(() => {
 		if (controlMode === RobotDetailControlModeTypeEnum.ROC_CONTROL) {
@@ -70,14 +70,14 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 	 */
 	const sendControlCommand = (payload: RobotDetailCommandsPayloadInterface) => () => {
 		// dispatch: send robot control command
-		dispatch(RobotControlCommandSend(robotTwin.robot.id, payload.command, payload.state));
+		dispatch(RobotControlCommandSend(robotTwins.robot.id, payload.command, payload.state));
 	};
 
-	return robotTwin ? (
+	return robotTwins ? (
 		<Box className={classes.sCommandsContainer}>
 			{/* Control */}
 			<RobotDetailCommandControl
-				robotTwin={robotTwin}
+				robotTwins={robotTwins}
 				robot={robot}
 				state={state}
 				sendControlCommand={sendControlCommand}

@@ -23,7 +23,7 @@ import { RobotDetailCameraInterface } from './RobotDetailCameras.interface';
 import { RobotDetailCameraStyles } from './RobotDetailCameras.style';
 
 const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
-	const { robotTwin, cameraType, currentCameraType, setCurrentCameraType } = props;
+	const { robotTwins, cameraType, currentCameraType, setCurrentCameraType } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCameraStyles();
 
@@ -39,7 +39,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		setCurrentCameraType(camera);
 
 		// dispatch: request robot camera image
-		dispatch(RobotCommandCameraImageRequest(camera, robotTwin.robot.id || ''));
+		dispatch(RobotCommandCameraImageRequest(camera, robotTwins.robot.id || ''));
 	};
 
 	return (
@@ -50,9 +50,9 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 			</Typography>
 
 			{/* Date */}
-			{robotTwin.cameras && robotTwin.cameras[cameraType] && (
+			{robotTwins.cameras && robotTwins.cameras[cameraType] && (
 				<Typography variant="caption" color="textSecondary">
-					{momentFormat3(robotTwin.cameras[cameraType].imageId.updatedAt)}
+					{momentFormat3(robotTwins.cameras[cameraType].imageId.updatedAt)}
 				</Typography>
 			)}
 
@@ -61,9 +61,9 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				<CardContent>
 					<Picture
 						src={robotCameraImageUrl(
-							robotTwin.cameras &&
-								robotTwin.cameras[cameraType] &&
-								robotTwin.cameras[cameraType].imageId.value
+							robotTwins.cameras &&
+								robotTwins.cameras[cameraType] &&
+								robotTwins.cameras[cameraType].imageId.value
 						)}
 						alt="camera"
 					/>
@@ -75,7 +75,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleRequestRobotImage(cameraType)}
-					disabled={robot.camera.loading || !robotTwin.robotState.isReady.value}
+					disabled={robot.camera.loading || !robotTwins.robotState.isReady.value}
 					endIcon={
 						robot.camera.loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />

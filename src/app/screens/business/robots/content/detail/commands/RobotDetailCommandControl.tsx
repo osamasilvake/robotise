@@ -11,7 +11,7 @@ import { RobotDetailCommandControlInterface } from './RobotDetailCommands.interf
 import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
 
 const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props) => {
-	const { robotTwin, robot, state, sendControlCommand } = props;
+	const { robotTwins, robot, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyles();
 
@@ -50,7 +50,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					className={clsx({
 						['selected']:
 							!state.control &&
-							robotTwin.controlMode.value ===
+							robotTwins.controlMode.value ===
 								RobotDetailControlModeTypeEnum.AUTONOMOUS
 					})}
 					onClick={sendControlCommand({
@@ -63,7 +63,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					className={clsx({
 						['selected']:
 							!state.control &&
-							robotTwin.controlMode.value === RobotDetailControlModeTypeEnum.JOYSTICK
+							robotTwins.controlMode.value === RobotDetailControlModeTypeEnum.JOYSTICK
 					})}
 					onClick={sendControlCommand({
 						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,

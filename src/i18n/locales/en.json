@@ -53,22 +53,9 @@
 			"NETWORK": {
 				"ONLINE": "Network connection is established!",
 				"OFFLINE": "Network connection is offline!"
-			}
-		},
-		"API": {
+			},
 			"SERVICE_POSITIONS": {
-				"FETCH": "Unable to fetch service positions!"
-			},
-			"ORDER": {
-				"CREATE": "Unable to create an order!",
-				"CANCEL": "Unable to cancel the order!"
-			},
-			"PRODUCT": {
-				"CREATE_EDIT": "Unable to create/edit a product!",
-				"DELETE": "Unable to delete a product!"
-			},
-			"PURCHASE": {
-				"EDIT_COMMENT": "Unable to edit a comment field!"
+				"ERROR": "Unable to fetch service positions!"
 			}
 		},
 		"AUTH": {
@@ -79,13 +66,16 @@
 		"SITES": {
 			"PRODUCTS": {
 				"CREATE": {
-					"SUCCESS": "Product has been created successfully!"
+					"SUCCESS": "Product has been created successfully!",
+					"ERROR": "Unable to create a product!"
 				},
 				"EDIT": {
-					"SUCCESS": "Product has been updated successfully!"
+					"SUCCESS": "Product has been updated successfully!",
+					"ERROR": "Unable to edit a product!"
 				},
 				"DELETE": {
-					"SUCCESS": "Product has been deleted successfully!"
+					"SUCCESS": "Product has been deleted successfully!",
+					"ERROR": "Unable to delete a product!"
 				}
 			}
 		},
@@ -114,15 +104,24 @@
 			},
 			"ORDERS": {
 				"CREATE": {
-					"SUCCESS": "Order has been created successfully!"
+					"SUCCESS": "Order has been created successfully!",
+					"ERROR": "Unable to create an order!"
 				},
 				"CANCEL": {
-					"SUCCESS": "Order has been canceled successfully!"
+					"SUCCESS": "Order has been canceled successfully!",
+					"ERROR": "Unable to cancel the order!"
 				}
 			},
 			"PURCHASES": {
 				"EDIT_COMMENT": {
-					"SUCCESS": "Comment has been updated successfully!"
+					"SUCCESS": "Comment has been updated successfully!",
+					"ERROR": "Unable to edit a comment field!"
+				}
+			},
+			"CONFIGURATION": {
+				"SYNC_PRODUCTS": {
+					"SUCCESS": "Products has been synchronized successfully!",
+					"ERROR": "Unable to sync products on GUI!"
 				}
 			}
 		}
@@ -358,7 +357,8 @@
 				"DETAIL": "DETAIL",
 				"INVENTORY": "INVENTORY",
 				"ORDERS": "ORDERS",
-				"PURCHASES": "PURCHASES"
+				"PURCHASES": "PURCHASES",
+				"CONFIGURATION": "CONFIGURATION"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -640,6 +640,13 @@
 					"FOOT": {
 						"NOTE": "Note"
 					}
+				}
+			},
+			"CONFIGURATION": {
+				"SYNC_PRODUCTS": {
+					"TITLE": "Sync Products",
+					"EXCERPT": "Sync Products with GUI on the robot.",
+					"SYNC": "SYNC"
 				}
 			}
 		}

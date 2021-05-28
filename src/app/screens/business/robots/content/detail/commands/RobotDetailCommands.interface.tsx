@@ -9,7 +9,7 @@ import {
 } from './RobotDetailCommands.enum';
 
 export interface RobotDetailCommandsInterface {
-	robotTwin: SRTContentDataInterface;
+	robotTwins: SRTContentDataInterface;
 }
 
 export interface RobotDetailCommandsStateInterface {
@@ -27,7 +27,7 @@ export interface RobotDetailCommandsPayloadInterface {
 }
 
 export interface RobotDetailCommandControlInterface {
-	robotTwin: SRTContentDataInterface;
+	robotTwins: SRTContentDataInterface;
 	robot: SliceRobotInterface;
 	state: RobotDetailCommandsStateInterface;
 	sendControlCommand: (

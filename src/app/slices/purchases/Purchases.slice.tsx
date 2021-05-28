@@ -175,7 +175,7 @@ export const PurchaseEditComment =
 					id: 'edit-comment-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.PURCHASE.EDIT_COMMENT'
+					text: 'ROBOTS.PURCHASES.EDIT_COMMENT.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

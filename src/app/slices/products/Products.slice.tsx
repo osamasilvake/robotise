@@ -175,7 +175,9 @@ export const ProductCreateEdit =
 					id: 'create-update-product-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.PRODUCT.CREATE_EDIT'
+					text: `SITES.PRODUCTS.${
+						type === SiteProductCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
+					}.ERROR`
 				};
 				dispatch(triggerMessage(message));
 
@@ -223,7 +225,7 @@ export const ProductDelete =
 					id: 'delete-product-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.PRODUCT.DELETE'
+					text: 'SITES.PRODUCTS.DELETE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

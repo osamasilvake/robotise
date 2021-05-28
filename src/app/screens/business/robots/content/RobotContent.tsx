@@ -5,6 +5,7 @@ import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
+import Configuration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
 import RobotOrders from './orders/RobotOrders';
@@ -46,6 +47,7 @@ const RobotContent: FC = () => {
 				<Tab label={t('CONTENT.TABS.INVENTORY')} />
 				<Tab label={t('CONTENT.TABS.ORDERS')} />
 				<Tab label={t('CONTENT.TABS.PURCHASES')} />
+				<Tab label={t('CONTENT.TABS.CONFIGURATION')} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -61,6 +63,9 @@ const RobotContent: FC = () => {
 
 				{/* Purchases */}
 				{value === 3 && <RobotPurchases />}
+
+				{/* Configuration */}
+				{value === 4 && <Configuration />}
 			</Box>
 		</Box>
 	) : null;

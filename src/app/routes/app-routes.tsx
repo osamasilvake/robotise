@@ -24,7 +24,8 @@ const appRoutes = {
 				PURCHASES: {
 					MAIN: '/robots/:robot/purchases',
 					DETAIL: '/robots/:robot/purchases/:purchase'
-				}
+				},
+				CONFIGURATION: '/robots/:robot/configuration'
 			}
 		},
 		INFORMATION: {

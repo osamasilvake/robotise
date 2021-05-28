@@ -32,6 +32,11 @@ export const initialState: SliceRobotInterface = {
 		loading: false,
 		content: null,
 		errors: null
+	},
+	syncProducts: {
+		loading: false,
+		content: null,
+		errors: null
 	}
 };
 
@@ -48,6 +53,8 @@ const dataSlice = createSlice({
 				state.control.loading = true;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
+			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+				state.syncProducts.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -64,6 +71,10 @@ const dataSlice = createSlice({
 				state.camera.loading = false;
 				state.camera.content = response;
 				state.camera.errors = null;
+			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+				state.syncProducts.loading = false;
+				state.syncProducts.content = response;
+				state.syncProducts.errors = null;
 			}
 		},
 		failure: (state, action) => {
@@ -80,6 +91,10 @@ const dataSlice = createSlice({
 				state.camera.loading = false;
 				state.camera.content = null;
 				state.camera.errors = error;
+			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+				state.syncProducts.loading = false;
+				state.syncProducts.content = null;
+				state.syncProducts.errors = error;
 			}
 		},
 		reset: () => initialState
@@ -166,7 +181,7 @@ export const RobotControlCommandSend =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'command-control-success',
+					id: 'robot-command-control-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: `ROBOTS.DETAIL.COMMANDS.SUCCESS`
@@ -179,7 +194,7 @@ export const RobotControlCommandSend =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'command-control-error',
+					id: 'robot-command-control-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.DETAIL.COMMANDS.ERROR`
@@ -213,7 +228,7 @@ export const RobotCommandCameraImageRequest =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `${camera}-success`,
+					id: `robot-${camera}-success`,
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: `ROBOTS.DETAIL.CAMERAS.${camera}.SUCCESS`
@@ -226,7 +241,7 @@ export const RobotCommandCameraImageRequest =
 			.catch((err) => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `${camera}-error`,
+					id: `robot-${camera}-error`,
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.DETAIL.CAMERAS.${camera}.ERROR`
@@ -237,3 +252,48 @@ export const RobotCommandCameraImageRequest =
 				dispatch(failure({ ...state, error: err }));
 			});
 	};
+
+/**
+ * sync products with robot GUI
+ * @param robotId
+ * @returns
+ */
+export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch) => {
+	const state = {
+		module: RobotTypeEnum.SYNC_PRODUCTS
+	};
+
+	// dispatch: loading
+	dispatch(loading(state));
+
+	return RobotsService.robotSyncProducts(robotId)
+		.then(async (res) => {
+			// deserialize response
+			const result = await deserializeRobot(res);
+
+			// dispatch: trigger message
+			const message: TriggerMessageInterface = {
+				id: `robot-sync-products-success`,
+				show: true,
+				severity: TriggerMessageTypeEnum.SUCCESS,
+				text: `ROBOTS.CONFIGURATION.SYNC_PRODUCTS.SUCCESS`
+			};
+			dispatch(triggerMessage(message));
+
+			// dispatch: success
+			dispatch(success({ ...state, response: result }));
+		})
+		.catch((err) => {
+			// dispatch: trigger message
+			const message: TriggerMessageInterface = {
+				id: `robot-sync-products-error`,
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: `ROBOTS.CONFIGURATION.SYNC_PRODUCTS.ERROR`
+			};
+			dispatch(triggerMessage(message));
+
+			// dispatch: failure
+			dispatch(failure({ ...state, error: err }));
+		});
+};

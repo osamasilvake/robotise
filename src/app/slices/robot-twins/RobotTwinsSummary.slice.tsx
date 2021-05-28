@@ -152,8 +152,8 @@ const prepareContent = (
 const countAlerts = (payload: RTSContentInterface) => {
 	return Object.keys(payload.dataById).reduce(
 		(acc, key) => {
-			const robotTwin = payload.dataById[key];
-			const alerts = robotTwin.alerts.value;
+			const robotTwins = payload.dataById[key];
+			const alerts = robotTwins.alerts.value;
 			if (alerts.length) {
 				const danger = alerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.DANGER);
 				const warn = alerts.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);

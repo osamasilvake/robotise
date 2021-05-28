@@ -25,7 +25,7 @@ const RobotDetailStateCard: FC<RobotDetailStateCardInterface> = (props) => {
 				)}
 
 				{/* Value */}
-				<Typography variant="h3" color="inherit" className={classes.sCardContentValue}>
+				<Typography variant="h3" className={classes.sCardContentValue}>
 					{rest.value || 'null'}
 				</Typography>
 

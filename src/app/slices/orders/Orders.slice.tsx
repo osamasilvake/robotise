@@ -178,7 +178,7 @@ export const OrderCreate =
 					id: 'create-order-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.ORDER.CREATE'
+					text: 'ROBOTS.ORDERS.CREATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -229,7 +229,7 @@ export const OrderCancel =
 					id: 'cancel-order-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'API.ORDER.CANCEL'
+					text: 'ROBOTS.ORDERS.CANCEL.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

@@ -6,11 +6,11 @@ import {
 } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
 
 export interface RobotDetailLocationInterface {
-	robotTwin: SRTContentDataInterface;
+	robotTwins: SRTContentDataInterface;
 }
 
 export interface RobotDetailLocationCardInterface {
-	robotTwin: SRTContentDataInterface;
+	robotTwins: SRTContentDataInterface;
 	grid: boolean;
 }
 

@@ -182,7 +182,8 @@ class AppConfigService extends EnvService {
 				ORDERS: `${this.envAppUrl}/orders`,
 				ORDER: `${this.envAppUrl}/orders/:order`,
 				PURCHASES: `${this.envAppUrl}/order-reports`,
-				PURCHASE: `${this.envAppUrl}/order-reports/:purchase`
+				PURCHASE: `${this.envAppUrl}/order-reports/:purchase`,
+				SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robot/sync-products`
 			},
 			ROBOT_TWINS: {
 				SUMMARY: `${this.envAppUrl}/robot-twins-summary`,

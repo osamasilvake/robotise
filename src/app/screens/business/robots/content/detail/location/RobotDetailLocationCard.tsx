@@ -12,7 +12,7 @@ import { RobotDetailLocationStyles } from './RobotDetailLocation.style';
 import RobotDetailLocationCardIcon from './RobotDetailLocationCardIcon';
 
 const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) => {
-	const { robotTwin, grid } = props;
+	const { robotTwins, grid } = props;
 	const classes = RobotDetailLocationStyles();
 
 	const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const [pointCoords, setPointCoords] = useState({ x: 0, y: 0, yaw: 0 });
 	const [ratio, setRatio] = useState({ x: 0, y: 0, cx: 0, cy: 0 });
 
-	const robotTwinsMapName = robotTwin.location?.value.mapName || '';
+	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
 	const robotMapName = robot.map.content?.name || '';
 
 	useEffect(() => {
@@ -33,7 +33,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 
 	useEffect(() => {
 		const origin = robot.map.content?.origin;
-		const coordinates = robotTwin.location?.value;
+		const coordinates = robotTwins.location?.value;
 		const resolution = robot.map.content?.resolution;
 		if (origin && resolution && ratio && coordinates) {
 			const x = (Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x;
@@ -48,7 +48,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		ratio,
 		robot.map.content?.origin,
 		robot.map.content?.resolution,
-		robotTwin.location?.value
+		robotTwins.location?.value
 	]);
 
 	/**

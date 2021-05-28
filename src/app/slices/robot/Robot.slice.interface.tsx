@@ -16,6 +16,11 @@ export interface SliceRobotInterface {
 		content: SRContentCameraImageInterface | null;
 		errors: TriggerMessageInterface | null;
 	};
+	syncProducts: {
+		loading: boolean;
+		content: SRContentCameraImageInterface | null;
+		errors: TriggerMessageInterface | null;
+	};
 }
 
 export interface SRContentControlInterface {

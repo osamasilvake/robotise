@@ -108,7 +108,7 @@ class AppConfigService extends EnvService {
 					},
 					content: {
 						detail: {
-							refreshTime: 4000,
+							refreshTime: 2000,
 							alert: {
 								messageSizes: [50, 70]
 							},

@@ -81,7 +81,7 @@ describe('[SLICE] General', () => {
 		// mock api once
 		const apiResponse = new Error('ROBOTS.DETAIL.MAP.ERROR');
 		const message: TriggerMessageInterface = {
-			id: 'fetch-robot-location-error',
+			id: 'robot-map-location-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: apiResponse.message

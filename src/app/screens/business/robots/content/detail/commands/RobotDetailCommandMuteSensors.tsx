@@ -2,9 +2,7 @@ import { Box, Button, ButtonGroup, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
-import { robotTwinsSelector } from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
 	RobotDetailCommandsTypeEnum
@@ -17,8 +15,6 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyles();
 
-	const robotTwins = useSelector(robotTwinsSelector);
-
 	return (
 		<Box>
 			<Typography
@@ -30,9 +26,7 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 			<ButtonGroup
 				color="primary"
 				variant="outlined"
-				disabled={
-					!state.ready || !state.control || robotTwins.loading || robot.control.loading
-				}>
+				disabled={!state.ready || !state.control || robot.control.loading}>
 				{/* Front */}
 				<Button
 					className={clsx({

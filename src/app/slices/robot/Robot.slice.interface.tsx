@@ -9,10 +9,12 @@ export interface SliceRobotInterface {
 	control: {
 		loading: boolean;
 		content: SRContentControlInterface | null;
+		errors: TriggerMessageInterface | null;
 	};
 	camera: {
 		loading: boolean;
 		content: SRContentCameraImageInterface | null;
+		errors: TriggerMessageInterface | null;
 	};
 }
 

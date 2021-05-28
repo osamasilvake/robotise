@@ -9,6 +9,7 @@ import {
 	RobotDetailControlModeTypeEnum
 } from '../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import RobotsService from '../../screens/business/robots/Robots.service';
+import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
@@ -24,11 +25,13 @@ export const initialState: SliceRobotInterface = {
 	},
 	control: {
 		loading: false,
-		content: null
+		content: null,
+		errors: null
 	},
 	camera: {
 		loading: false,
-		content: null
+		content: null,
+		errors: null
 	}
 };
 
@@ -41,14 +44,10 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
-				state.map.content = null;
-				state.map.errors = null;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = true;
-				state.control.content = null;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
-				state.camera.content = null;
 			}
 		},
 		success: (state, action) => {
@@ -60,9 +59,11 @@ const dataSlice = createSlice({
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
 				state.control.content = response;
+				state.camera.errors = null;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
 				state.camera.content = response;
+				state.camera.errors = null;
 			}
 		},
 		failure: (state, action) => {
@@ -71,6 +72,14 @@ const dataSlice = createSlice({
 				state.map.loading = false;
 				state.map.content = null;
 				state.map.errors = error;
+			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+				state.control.loading = false;
+				state.control.content = null;
+				state.control.errors = error;
+			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
+				state.camera.loading = false;
+				state.camera.content = null;
+				state.camera.errors = error;
 			}
 		},
 		reset: () => initialState
@@ -110,7 +119,7 @@ export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatc
 		.catch((err) => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: `fetch-robot-location-error`,
+				id: `robot-map-location-error`,
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: `ROBOTS.DETAIL.MAP.ERROR`
@@ -144,13 +153,39 @@ export const RobotControlCommandSend =
 			module: RobotTypeEnum.ROC_CONTROL
 		};
 
-		return RobotsService.robotControlCommandSend(robotId, command, option).then(async (res) => {
-			// deserialize response
-			const result = await deserializeRobot(res);
+		// dispatch: loading
+		dispatch(loading(state));
 
-			// dispatch: success
-			dispatch(success({ ...state, response: result }));
-		});
+		return RobotsService.robotControlCommandSend(robotId, command, option)
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeRobot(res);
+
+				// wait
+				await timeout(3000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'command-control-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `ROBOTS.DETAIL.COMMANDS.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'command-control-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.DETAIL.COMMANDS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+			});
 	};
 
 /**
@@ -165,11 +200,40 @@ export const RobotCommandCameraImageRequest =
 			module: RobotTypeEnum.COMMAND_CAMERA
 		};
 
-		return RobotsService.robotRequestCameraImage(camera, robotId).then(async (res) => {
-			// deserialize response
-			const result = await deserializeRobot(res);
+		// dispatch: loading
+		dispatch(loading(state));
 
-			// dispatch: success
-			dispatch(success({ ...state, response: result }));
-		});
+		return RobotsService.robotRequestCameraImage(camera, robotId)
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeRobot(res);
+
+				// wait
+				await timeout(3000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `${camera}-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `ROBOTS.DETAIL.CAMERAS.${camera}.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch((err) => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `${camera}-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.DETAIL.CAMERAS.${camera}.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, error: err }));
+			});
 	};

@@ -9,9 +9,7 @@ import {
 } from '@material-ui/core';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
-import { robotTwinsSelector } from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import {
 	RobotDetailCommandsActionTypeEnum,
 	RobotDetailCommandsTypeEnum
@@ -21,11 +19,9 @@ import { rotateAngles, translateDistances } from './RobotDetailCommands.list';
 import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
 
 const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props) => {
-	const { state, sendControlCommand } = props;
+	const { robot, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyles();
-
-	const robotTwins = useSelector(robotTwinsSelector);
 
 	const [rotate, setRotate] = useState(rotateAngles[4].value);
 	const [translate, setTranslate] = useState(translateDistances[4].value);
@@ -51,7 +47,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						!state.control ||
 						state.forward ||
 						state.backward ||
-						robotTwins.loading
+						robot.control.loading
 					}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-rotate">
@@ -79,7 +75,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						!state.control ||
 						state.forward ||
 						state.backward ||
-						robotTwins.loading
+						robot.control.loading
 					}
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({
@@ -92,7 +88,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			<Box className={classes.sCommandsActionTranslateBox}>
 				<FormControl
 					variant="outlined"
-					disabled={!state.ready || !state.control || robotTwins.loading}
+					disabled={!state.ready || !state.control || robot.control.loading}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-translate">
 						{t('CONTENT.DETAIL.COMMANDS.ACTIONS.TRANSLATE.LABEL')}
@@ -127,7 +123,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						translate === translateDistances[4].value ||
 						!state.ready ||
 						!state.control ||
-						robotTwins.loading
+						robot.control.loading
 					}
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({

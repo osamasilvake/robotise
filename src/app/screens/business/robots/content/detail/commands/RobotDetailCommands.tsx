@@ -2,12 +2,7 @@ import { Box } from '@material-ui/core';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
-import { AppConfigService } from '../../../../../../services';
-import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
 import { RobotControlCommandSend, robotSelector } from '../../../../../../slices/robot/Robot.slice';
-import { RobotTwinsFetch } from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import RobotDetailCommandActions from './RobotDetailCommandActions';
 import RobotDetailCommandControl from './RobotDetailCommandControl';
 import RobotDetailCommandMuteSensors from './RobotDetailCommandMuteSensors';
@@ -75,37 +70,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 	 */
 	const sendControlCommand = (payload: RobotDetailCommandsPayloadInterface) => () => {
 		// dispatch: send robot control command
-		// dispatch: fetch robot twins of a robot
-		Promise.all([
-			dispatch(RobotControlCommandSend(robotTwin.robot.id, payload.command, payload.state)),
-			dispatch(
-				RobotTwinsFetch(
-					robotTwin.id,
-					true,
-					AppConfigService.AppOptions.screens.robots.content.detail.commands.requestDelay
-				)
-			)
-		])
-			.then(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'command-control-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.DETAIL.COMMANDS.SUCCESS`
-				};
-				dispatch(GeneralTriggerMessage(message));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'command-control-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.COMMANDS.ERROR`
-				};
-				dispatch(GeneralTriggerMessage(message));
-			});
+		dispatch(RobotControlCommandSend(robotTwin.robot.id, payload.command, payload.state));
 	};
 
 	return robotTwin ? (
@@ -126,7 +91,11 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 			/>
 
 			{/* Actions */}
-			<RobotDetailCommandActions state={state} sendControlCommand={sendControlCommand} />
+			<RobotDetailCommandActions
+				robot={robot}
+				state={state}
+				sendControlCommand={sendControlCommand}
+			/>
 		</Box>
 	) : null;
 };

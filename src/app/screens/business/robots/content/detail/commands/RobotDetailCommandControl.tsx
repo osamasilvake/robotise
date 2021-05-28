@@ -2,9 +2,7 @@ import { Box, Button, ButtonGroup, CircularProgress, Typography } from '@materia
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
-import { robotTwinsSelector } from '../../../../../../slices/robot-twins/RobotTwins.slice';
 import {
 	RobotDetailCommandsTypeEnum,
 	RobotDetailControlModeTypeEnum
@@ -17,8 +15,6 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyles();
 
-	const robotTwins = useSelector(robotTwinsSelector);
-
 	return (
 		<Box>
 			<Box className={classes.sCommandsControlLabel}>
@@ -29,7 +25,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					{t('CONTENT.DETAIL.COMMANDS.CONTROL.TITLE')}
 				</Typography>
 
-				{(robotTwins.loading || robot.control.loading) && (
+				{robot.control.loading && (
 					<Box component="span" className={classes.sCommandsControlLoading}>
 						{<CircularProgress size={20} />}
 					</Box>
@@ -39,13 +35,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 			<ButtonGroup
 				color="primary"
 				variant="outlined"
-				disabled={
-					!state.ready ||
-					state.forward ||
-					state.backward ||
-					robotTwins.loading ||
-					robot.control.loading
-				}>
+				disabled={!state.ready || state.forward || state.backward || robot.control.loading}>
 				<Button
 					className={clsx({
 						['selected']: state.control

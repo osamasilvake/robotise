@@ -44,6 +44,7 @@ export interface RobotDetailCommandMuteSensorsInterface {
 }
 
 export interface RobotDetailCommandActionsInterface {
+	robot: SliceRobotInterface;
 	state: RobotDetailCommandsStateInterface;
 	sendControlCommand: (
 		payload: RobotDetailCommandsPayloadInterface

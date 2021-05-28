@@ -12,15 +12,10 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
-import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
-import { AppConfigService } from '../../../../../../services';
-import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
-import { RobotCommandCameraImageRequest } from '../../../../../../slices/robot/Robot.slice';
 import {
-	RobotTwinsFetch,
-	robotTwinsSelector
-} from '../../../../../../slices/robot-twins/RobotTwins.slice';
+	RobotCommandCameraImageRequest,
+	robotSelector
+} from '../../../../../../slices/robot/Robot.slice';
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
@@ -33,11 +28,10 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const classes = RobotDetailCameraStyles();
 
 	const dispatch = useDispatch();
-	const robotTwins = useSelector(robotTwinsSelector);
+	const robot = useSelector(robotSelector);
 
 	/**
 	 * request for robot camera image
-	 * fetch robot twins of single robot
 	 * @param camera
 	 */
 	const handleRequestRobotImage = (camera: RobotDetailCameraTypeEnum) => async () => {
@@ -45,37 +39,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		setCurrentCameraType(camera);
 
 		// dispatch: request robot camera image
-		// dispatch: fetch robot twins of a robot
-		Promise.all([
-			dispatch(RobotCommandCameraImageRequest(camera, robotTwin.robot.id || '')),
-			dispatch(
-				RobotTwinsFetch(
-					robotTwin.id,
-					true,
-					AppConfigService.AppOptions.screens.robots.content.detail.camera.requestDelay
-				)
-			)
-		])
-			.then(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: `${camera}-success`,
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.DETAIL.CAMERAS.${cameraType}.SUCCESS`
-				};
-				dispatch(GeneralTriggerMessage(message));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: `${camera}-error`,
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.CAMERAS.${cameraType}.ERROR`
-				};
-				dispatch(GeneralTriggerMessage(message));
-			});
+		dispatch(RobotCommandCameraImageRequest(camera, robotTwin.robot.id || ''));
 	};
 
 	return (
@@ -111,9 +75,9 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleRequestRobotImage(cameraType)}
-					disabled={robotTwins.loading || !robotTwin.robotState.isReady.value}
+					disabled={robot.camera.loading || !robotTwin.robotState.isReady.value}
 					endIcon={
-						robotTwins.loading &&
+						robot.camera.loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />
 					}>
 					{t('CONTENT.DETAIL.CAMERAS.REQUEST')}

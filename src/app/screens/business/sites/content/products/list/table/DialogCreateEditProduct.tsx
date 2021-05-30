@@ -25,6 +25,7 @@ import {
 	ProductCreateEdit,
 	productsSelector
 } from '../../../../../../../slices/products/Products.slice';
+import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { imageFromInput } from '../../../../../../../utilities/methods/Image';
 import { validateEmptyObjProperty } from '../../../../../../../utilities/methods/ObjectUtilities';
@@ -44,6 +45,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const classes = SiteProductsTableStyles();
 
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
@@ -83,6 +85,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 
 	const params: SiteParamsInterface = useParams();
 	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
+	const currency = sites.content?.dataById[params.site]?.currency;
 	const maxSize = AppConfigService.AppOptions.components.uploadImage.maxSize;
 	const maxHeight = AppConfigService.AppOptions.components.uploadImage.maxHeight;
 	const maxWidth = AppConfigService.AppOptions.components.uploadImage.maxWidth;
@@ -205,7 +208,9 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.price}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${commonText}.FIELDS.PRICE.LABEL`)}
+									label={t(`${commonText}.FIELDS.PRICE.LABEL`, {
+										value: currency
+									})}
 									placeholder={t(`${commonText}.FIELDS.PRICE.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
 								/>

@@ -148,7 +148,7 @@ class AppConfigService extends EnvService {
 				}
 			},
 			regex: {
-				maxTwoDecimalPoints: new RegExp(/^\d+\.\d{0,2}$/)
+				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/)
 			}
 		};
 	}
@@ -176,6 +176,7 @@ class AppConfigService extends EnvService {
 			SITE: {
 				ALL: `${this.envAppUrl}/sites`,
 				SINGLE: `${this.envAppUrl}/sites/:siteId`,
+				SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
 				PRODUCTS: `${this.envAppUrl}/products`
 			},
 			ROBOT: {

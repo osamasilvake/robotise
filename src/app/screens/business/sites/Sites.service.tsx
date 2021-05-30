@@ -21,6 +21,20 @@ class SitesService {
 	};
 
 	/**
+	 * fetch service positions
+	 * @param siteId
+	 * @returns
+	 */
+	siteServicePositionsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SITE.SERVICE_POSITIONS.replace(':siteId', siteId);
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
 	 * fetch products
 	 * @param siteId
 	 * @returns

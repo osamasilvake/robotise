@@ -16,7 +16,7 @@ const RobotConfiguration: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			<Grid container>
-				<Grid item xs={12} sm={6} md={4} lg={3} component={Paper} elevation={2} square>
+				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<RobotConfigurationSyncProducts
 						robotTwinsSummary={robotTwinsSummary}
 						robot={robot}

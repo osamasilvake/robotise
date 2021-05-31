@@ -1,4 +1,4 @@
-import { Box, Grid, Paper } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 

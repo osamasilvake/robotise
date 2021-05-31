@@ -518,6 +518,12 @@
 										"REQUIRED": "Please enter the target location."
 									}
 								},
+								"SERVICE_POSITIONS": {
+									"LABEL": "Service Positions *"
+								},
+								"MODE": {
+									"LABEL": "MODE"
+								},
 								"DEBUG": {
 									"LABEL": "Test Order"
 								}

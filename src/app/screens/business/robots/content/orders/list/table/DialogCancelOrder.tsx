@@ -23,6 +23,8 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	const dispatch = useDispatch();
 	const orders = useSelector(ordersSelector);
 
+	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CANCEL';
+
 	/**
 	 * cancel order
 	 * @param status
@@ -46,16 +48,10 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	return (
 		<Dialog open={open} onClose={cancelOrder(false)}>
 			<Box onClick={(e) => e.stopPropagation()}>
-				{!order.site && (
-					<Alert severity="error">
-						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CANCEL.ERROR.SITE')}
-					</Alert>
-				)}
-				<DialogTitle>{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CANCEL.TITLE')}</DialogTitle>
+				{!order.site && <Alert severity="error">{t(`${common}.ERROR.SITE`)}</Alert>}
+				<DialogTitle>{t(`${common}.TITLE`)}</DialogTitle>
 				<DialogContent>
-					<DialogContentText>
-						{t('ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CANCEL.TEXT')}
-					</DialogContentText>
+					<DialogContentText>{t(`${common}.TEXT`)}</DialogContentText>
 				</DialogContent>
 				<DialogActions>
 					<Button

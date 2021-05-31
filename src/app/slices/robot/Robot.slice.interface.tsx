@@ -1,6 +1,11 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 
 export interface SliceRobotInterface {
+	servicePositions: {
+		loading: boolean;
+		content: SRContentServicePositionsInterface | null;
+		errors: TriggerMessageInterface | null;
+	};
 	map: {
 		loading: boolean;
 		content: SRContentMapInterface | null;
@@ -18,9 +23,30 @@ export interface SliceRobotInterface {
 	};
 	syncProducts: {
 		loading: boolean;
-		content: SRContentCameraImageInterface | null;
+		content: SRContentSyncProductsInterface | null;
 		errors: TriggerMessageInterface | null;
 	};
+}
+
+export interface SRContentServicePositionsInterface {
+	data: {
+		id: string;
+		name: string;
+		location: string;
+	}[];
+	site: {
+		id: string;
+	};
+}
+
+export interface SRContentMapInterface {
+	floor: number;
+	imagePath: string;
+	name: string;
+	origin: number[];
+	resolution: number;
+	createdAt: string;
+	updatedAt: string;
 }
 
 export interface SRContentControlInterface {
@@ -33,16 +59,6 @@ export interface SRContentControlInterface {
 		status: string;
 		createdAt: string;
 	}[];
-}
-
-export interface SRContentMapInterface {
-	floor: number;
-	imagePath: string;
-	name: string;
-	origin: number[];
-	resolution: number;
-	createdAt: string;
-	updatedAt: string;
 }
 
 export interface SRContentCameraImageInterface {
@@ -58,4 +74,9 @@ export interface SRContentCameraImageInterface {
 		status: string;
 		createdAt: string;
 	}[];
+}
+
+export interface SRContentSyncProductsInterface {
+	id: string;
+	commandName: string;
 }

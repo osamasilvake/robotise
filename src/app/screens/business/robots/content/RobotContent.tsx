@@ -1,8 +1,11 @@
 import { Box, Tab, Tabs } from '@material-ui/core';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
+import { robotSelector, RobotServicePositionsFetch } from '../../../../slices/robot/Robot.slice';
+import { robotTwinsSummarySelector } from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import Configuration from './configuration/RobotConfiguration';
@@ -14,10 +17,17 @@ import RobotPurchases from './purchases/RobotPurchases';
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
+	const dispatch = useDispatch();
+	const robot = useSelector(robotSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+
 	const [value, setValue] = useState(-1);
 	const params: RobotParamsInterface = useParams();
 	const location = useLocation();
 	const history = useHistory();
+
+	const cSiteId = robotTwinsSummary.content?.dataById[params.robot].site.id;
+	const pSiteId = robot.servicePositions.content?.site?.id;
 
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
@@ -25,6 +35,16 @@ const RobotContent: FC = () => {
 		);
 		setValue(cIndex - 1);
 	}, [location.pathname, params.robot]);
+
+	useEffect(() => {
+		const condition1 = robot.servicePositions.content === null;
+		const condition2 = robot.servicePositions.content !== null && cSiteId !== pSiteId;
+
+		if (condition1 || condition2) {
+			// dispatch: fetch site service positions
+			cSiteId && dispatch(RobotServicePositionsFetch(cSiteId));
+		}
+	}, [dispatch, pSiteId, cSiteId, robot.servicePositions.content]);
 
 	/**
 	 * handle tab change

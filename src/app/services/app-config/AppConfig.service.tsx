@@ -148,6 +148,7 @@ class AppConfigService extends EnvService {
 				}
 			},
 			regex: {
+				onlyNumbers: new RegExp(/^\d+$/),
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/)
 			}
 		};

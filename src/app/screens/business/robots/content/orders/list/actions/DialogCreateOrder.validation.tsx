@@ -10,6 +10,7 @@ export const CreateOrderValidation = (
 	values: DialogCreateOrderPayloadInterface,
 	touched: DialogCreateOrderPayloadInterface
 ): DialogCreateOrderPayloadInterface => {
+	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
 	const errors: DialogCreateOrderPayloadInterface = {
 		isDebug: false,
 		location: '',
@@ -20,8 +21,7 @@ export const CreateOrderValidation = (
 	if (touched.location) {
 		// required
 		if (!values.location) {
-			errors.location =
-				'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE.FIELDS.LOCATION.VALIDATIONS.REQUIRED';
+			errors.location = `${common}.FIELDS.LOCATION.VALIDATIONS.REQUIRED`;
 		}
 	}
 

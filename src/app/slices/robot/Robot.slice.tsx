@@ -9,8 +9,10 @@ import {
 	RobotDetailControlModeTypeEnum
 } from '../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import RobotsService from '../../screens/business/robots/Robots.service';
+import SitesService from '../../screens/business/sites/Sites.service';
 import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeRobot } from '../../utilities/serializers/json-api/Robot.deserialize';
+import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import { RobotTypeEnum } from './Robot.slice.enum';
@@ -18,6 +20,11 @@ import { SliceRobotInterface } from './Robot.slice.interface';
 
 // initial state
 export const initialState: SliceRobotInterface = {
+	servicePositions: {
+		loading: false,
+		content: null,
+		errors: null
+	},
 	map: {
 		loading: false,
 		content: null,
@@ -47,7 +54,9 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.SERVICE_POSITIONS) {
+				state.servicePositions.loading = true;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = true;
@@ -59,7 +68,11 @@ const dataSlice = createSlice({
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.SERVICE_POSITIONS) {
+				state.servicePositions.loading = false;
+				state.servicePositions.content = response;
+				state.servicePositions.errors = null;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
 				state.map.errors = null;
@@ -79,7 +92,11 @@ const dataSlice = createSlice({
 		},
 		failure: (state, action) => {
 			const { module, error } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.SERVICE_POSITIONS) {
+				state.servicePositions.loading = false;
+				state.servicePositions.content = null;
+				state.servicePositions.errors = error;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = null;
 				state.map.errors = error;
@@ -109,6 +126,43 @@ export const robotSelector = (state: AppReducerType) => state['robot'];
 
 // reducer
 export default dataSlice.reducer;
+
+/**
+ * fetch service positions per site
+ * @param siteId
+ * @returns
+ */
+export const RobotServicePositionsFetch = (siteId: string) => async (dispatch: Dispatch) => {
+	const state = {
+		module: RobotTypeEnum.SERVICE_POSITIONS
+	};
+
+	// dispatch: loading
+	dispatch(loading(state));
+
+	// fetch sites list
+	return SitesService.siteServicePositionsFetch(siteId)
+		.then(async (res) => {
+			// deserialize response
+			const result = await deserializeSite(res);
+
+			// dispatch: success
+			dispatch(success({ ...state, response: { data: result, site: { id: siteId } } }));
+		})
+		.catch((err) => {
+			// dispatch: trigger message
+			const message: TriggerMessageInterface = {
+				id: 'fetch-site-service-positions-error',
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: 'COMMON.SERVICE_POSITIONS.ERROR'
+			};
+			dispatch(triggerMessage(message));
+
+			// dispatch: failure
+			dispatch(failure({ ...state, error: err }));
+		});
+};
 
 /**
  * fetch robot map location

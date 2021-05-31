@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { AnyAction, combineReducers } from 'redux';
-import ReduxLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import auth from './auth/Auth.slice';
 import general from './general/General.slice';
@@ -54,7 +54,7 @@ const rootReducer = (rootState: AppReducerType | undefined, action: AnyAction) =
 // configure store
 export const store = configureStore({
 	reducer: rootReducer,
-	middleware: [...getDefaultMiddleware(), ReduxLogger]
+	middleware: [...getDefaultMiddleware(), createLogger({ collapsed: true })]
 });
 
 // store redux initial state

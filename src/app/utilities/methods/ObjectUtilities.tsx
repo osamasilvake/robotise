@@ -4,7 +4,7 @@
  * @returns
  */
 export const validateEmptyObj = <T,>(data: T): boolean => {
-	return Object.values(data).every((x) => x === null || x === '');
+	return data && Object.values(data).every((x) => x === null || x === '' || x === 0);
 };
 
 /**
@@ -13,5 +13,5 @@ export const validateEmptyObj = <T,>(data: T): boolean => {
  * @returns
  */
 export const validateEmptyObjProperty = <T,>(data: T): boolean => {
-	return Object.values(data).some((x) => x === null || x === '');
+	return data && Object.values(data).some((x) => x === null || x === '' || x === 0);
 };

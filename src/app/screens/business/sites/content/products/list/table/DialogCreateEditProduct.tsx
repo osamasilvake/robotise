@@ -28,7 +28,10 @@ import {
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { imageFromInput } from '../../../../../../../utilities/methods/Image';
-import { validateEmptyObjProperty } from '../../../../../../../utilities/methods/ObjectUtilities';
+import {
+	validateEmptyObj,
+	validateEmptyObjProperty
+} from '../../../../../../../utilities/methods/ObjectUtilities';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';
 import { SiteProductCreateEditTypeEnum } from './SiteProductsTable.enum';
@@ -280,7 +283,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						variant="outlined"
 						type="submit"
 						disabled={
-							!!errors?.price ||
+							!validateEmptyObj(errors) ||
 							validateEmptyObjProperty({
 								image,
 								name: values.name,

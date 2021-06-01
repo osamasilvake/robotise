@@ -60,12 +60,7 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 					}
 					className={classes.sGeneralLastItemCheckboxControl}
 					control={
-						<Checkbox
-							color="primary"
-							name="acceptOrder"
-							checked={site.acceptOrders}
-							disabled
-						/>
+						<Checkbox color="primary" name="acceptOrder" checked={site.acceptOrders} />
 					}
 				/>
 			</Grid>

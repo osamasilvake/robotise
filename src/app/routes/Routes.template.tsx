@@ -13,14 +13,14 @@ const routesTemplate: RouteTemplateInterface[] = [
 		type: RouteTypeEnum.PUBLIC
 	},
 	{
-		routes: privateRoutes,
-		template: PrivateLayout,
-		type: RouteTypeEnum.PRIVATE
-	},
-	{
 		routes: sessionRoutes,
 		template: GlobalLayout,
 		type: RouteTypeEnum.SESSION
+	},
+	{
+		routes: privateRoutes,
+		template: PrivateLayout,
+		type: RouteTypeEnum.PRIVATE
 	}
 ];
 export default routesTemplate;

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { WindowInterface } from './UseWindow.interface';
 
 /**
- * custom hook: useWindow
  * detect change in window
  * @returns
  */

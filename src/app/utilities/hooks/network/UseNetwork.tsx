@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 /**
- * useDebounce
  * check for network connection
  * @returns
  */

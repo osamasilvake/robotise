@@ -85,7 +85,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 
 	const params: SiteParamsInterface = useParams();
 	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
-	const currency = sites.content?.dataById[params.site]?.currency;
+	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
+	const currency = sites.content?.dataById[params.site]?.currency || defaultCurrency;
 	const maxSize = AppConfigService.AppOptions.components.uploadImage.maxSize;
 	const maxHeight = AppConfigService.AppOptions.components.uploadImage.maxHeight;
 	const maxWidth = AppConfigService.AppOptions.components.uploadImage.maxWidth;

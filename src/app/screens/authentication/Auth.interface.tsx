@@ -8,7 +8,7 @@ export interface AuthInterface<T = ReactNode> {
 	appRoute: RouteInterface;
 	template: FC<LayoutPageInterface>;
 	route: RouteComponentProps<T>;
-	type: RouteTypeEnum;
+	type?: RouteTypeEnum;
 }
 
 // JWT: access_token response

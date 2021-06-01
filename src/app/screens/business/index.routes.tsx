@@ -11,7 +11,7 @@ const businessRoutes: RouteInterface[] = [
 	{
 		component: Dashboard,
 		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD
+		path: AppConfigService.AppRoutes.HOME
 	},
 	...sitesRoutes,
 	...robotsRoutes

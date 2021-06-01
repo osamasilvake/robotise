@@ -23,7 +23,7 @@ export const breadcrumbs = (
 	return [
 		{
 			text: 'DASHBOARD.TITLE',
-			link: AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD,
+			link: AppConfigService.AppRoutes.HOME,
 			isLast: false
 		},
 		...paths.map((path, index) => {

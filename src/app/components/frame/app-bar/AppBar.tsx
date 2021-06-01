@@ -79,9 +79,7 @@ const AppBarCustom: FC = () => {
 				{/* Logo & Open Drawer */}
 				{!general.openDrawer && (
 					<Box>
-						<Link
-							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}
-							className={classes.sLogo}>
+						<Link to={AppConfigService.AppRoutes.HOME} className={classes.sLogo}>
 							<Avatar
 								src={AppConfigService.AppImageURLs.logo.icon}
 								alt={AppConfigService.AppImageURLs.logo.name}

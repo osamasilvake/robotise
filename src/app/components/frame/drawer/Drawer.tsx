@@ -68,7 +68,7 @@ const DrawerCustom: FC = () => {
 			}}>
 			{/* Logo & Close Drawer */}
 			<Box className={classes.sLogoAndCloseIcon}>
-				<Link to={AppConfigService.AppRoutes.SCREENS.BUSINESS.DASHBOARD}>
+				<Link to={AppConfigService.AppRoutes.HOME}>
 					<Avatar
 						variant="square"
 						className={classes.sLogo}

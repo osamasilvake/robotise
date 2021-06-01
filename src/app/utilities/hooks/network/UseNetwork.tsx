@@ -21,7 +21,7 @@ export const useNetwork = (): boolean => {
 			window.removeEventListener('offline', updateNetwork);
 			window.removeEventListener('online', updateNetwork);
 		};
-	});
+	}, []);
 
 	return isOnline;
 };

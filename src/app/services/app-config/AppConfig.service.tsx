@@ -206,7 +206,8 @@ class AppConfigService extends EnvService {
 			JWTAccessToken: 'robotise_access_token',
 			ThemePalette: 'robotise_theme_palette',
 			ChangeLanguage: 'robotise_change_language',
-			DrawerState: 'robotise_drawer_state'
+			DrawerState: 'robotise_drawer_state',
+			IntendedURL: 'robotise_intended_url'
 		};
 	}
 

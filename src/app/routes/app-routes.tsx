@@ -1,10 +1,10 @@
 const appRoutes = {
+	HOME: '/',
 	AUTH: {
 		LOGIN: '/login'
 	},
 	SCREENS: {
 		BUSINESS: {
-			DASHBOARD: '/',
 			SITES: {
 				MAIN: '/sites',
 				DETAIL: '/sites/:site',

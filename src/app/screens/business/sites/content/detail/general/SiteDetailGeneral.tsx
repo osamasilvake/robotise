@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -34,35 +34,25 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 				</Typography>
 				<Typography variant="body1">{momentFormat1(site.updatedAt)}</Typography>
 			</Grid>
-			<Grid item xs={12} sm={6} md={4} lg={1}>
+			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.TIMEZONE')}
 				</Typography>
 				<Typography variant="body1">{site.timezone}</Typography>
 			</Grid>
-			<Grid item xs={12} sm={6} md={8} lg={3} className={classes.sGeneralLastItem}>
-				<FormControlLabel
-					labelPlacement="start"
-					label={
-						<Box>
-							<Typography
-								variant="caption"
-								color="textSecondary"
-								className={classes.sGeneralLastItemLabel}>
-								{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
-							</Typography>
-							<Status active={!!site.acceptOrders}>
-								{site.acceptOrders
-									? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ACTIVE')
-									: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.INACTIVE')}
-							</Status>
-						</Box>
-					}
-					className={classes.sGeneralLastItemCheckboxControl}
-					control={
-						<Checkbox color="primary" name="acceptOrder" checked={site.acceptOrders} />
-					}
-				/>
+
+			<Grid item xs={12} sm={6} md={8} lg={2} className={classes.sGeneralLastItem}>
+				<Typography
+					variant="caption"
+					color="textSecondary"
+					className={classes.sGeneralLastItemLabel}>
+					{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
+				</Typography>
+				<Status active={!!site.acceptOrders}>
+					{site.acceptOrders
+						? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ACTIVE')
+						: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.INACTIVE')}
+				</Status>
 			</Grid>
 		</Grid>
 	);

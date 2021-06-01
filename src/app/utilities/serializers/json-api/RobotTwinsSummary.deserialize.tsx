@@ -3,7 +3,6 @@ import log from 'loglevel';
 
 import {
 	IRobotTwinSummary,
-	RTSContentDataInterface,
 	RTSContentTransformDataInterface
 } from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
 import {
@@ -70,8 +69,11 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(pa
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce(
-		(acc: { [x: string]: RTSContentDataInterface }, item: RTSContentDataInterface) => {
-			acc[item.id] = item;
+		(
+			acc: { [x: string]: RTSContentTransformDataInterface },
+			item: RTSContentTransformDataInterface
+		) => {
+			acc[item.robot.id] = item;
 			return acc;
 		},
 		{}

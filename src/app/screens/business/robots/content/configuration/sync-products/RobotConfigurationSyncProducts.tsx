@@ -19,7 +19,7 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 	const dispatch = useDispatch();
 
 	const params: RobotParamsInterface = useParams();
-	const robotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
+	const robotId = params.robot;
 	const robotState = robotTwinsSummary.content?.dataById[params.robot]?.robotState;
 
 	/**

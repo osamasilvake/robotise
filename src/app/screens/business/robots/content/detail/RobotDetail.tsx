@@ -12,6 +12,7 @@ import {
 	RobotTwinsFetch,
 	robotTwinsSelector
 } from '../../../../../slices/robot-twins/RobotTwins.slice';
+import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotDetailAlerts from './alerts/RobotDetailAlerts';
@@ -27,29 +28,30 @@ const RobotDetail: FC = () => {
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotTwins = useSelector(robotTwinsSelector);
 
 	const params: RobotParamsInterface = useParams();
-	const cRobotTwinsId = params.robot;
-	const pRobotTwinsId = robotTwins.content?.id;
+	const cRobotId = params.robot;
+	const pRobotId = robotTwins.content?.robot.id;
+	const robotTwinId = robotTwinsSummary.content?.dataById[params.robot].id;
 
 	useEffect(() => {
 		const condition1 = sites.content !== null;
-		const condition2 = robotTwins.content === null && cRobotTwinsId;
-		const condition3 =
-			robotTwins.content !== null && pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId;
+		const condition2 = robotTwins.content === null && cRobotId;
+		const condition3 = robotTwins.content !== null && pRobotId && pRobotId !== cRobotId;
 
 		if (condition1 && (condition2 || condition3)) {
 			// dispatch: fetch robot twins of a robot
-			dispatch(RobotTwinsFetch(cRobotTwinsId));
+			robotTwinId && dispatch(RobotTwinsFetch(robotTwinId));
 		}
-	}, [dispatch, sites.content, robotTwins.content, pRobotTwinsId, cRobotTwinsId]);
+	}, [dispatch, sites.content, robotTwins.content, pRobotId, cRobotId, robotTwinId]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (sites.content && cRobotTwinsId) {
+			if (sites.content && robotTwinId) {
 				// dispatch: fetch robot twins of a robot
-				dispatch(RobotTwinsFetch(cRobotTwinsId, true));
+				dispatch(RobotTwinsFetch(robotTwinId, true));
 			}
 		};
 
@@ -59,7 +61,7 @@ const RobotDetail: FC = () => {
 			AppConfigService.AppOptions.screens.robots.content.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, cRobotTwinsId, sites.content]);
+	}, [dispatch, robotTwinId, sites.content]);
 
 	// loader
 	if (sites.loader || robotTwins.loader) {
@@ -72,7 +74,7 @@ const RobotDetail: FC = () => {
 	}
 
 	// null
-	if (!robotTwins.content || (pRobotTwinsId && pRobotTwinsId !== cRobotTwinsId)) {
+	if (!robotTwins.content || (pRobotId && pRobotId !== cRobotId)) {
 		return null;
 	}
 

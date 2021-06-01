@@ -12,8 +12,5 @@ export const RobotDetailGeneralStyles = makeStyles((theme: Theme) => ({
 	},
 	sGeneralLastItemLabel: {
 		display: 'block'
-	},
-	sLink: {
-		cursor: 'pointer'
 	}
 }));

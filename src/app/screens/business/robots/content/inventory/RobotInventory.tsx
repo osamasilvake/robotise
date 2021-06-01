@@ -30,7 +30,7 @@ const RobotInventory: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 	const pRobotId = inventory.content?.robot.id;
-	const cRobotId = robotTwinsSummary.content?.dataById[params.robot]?.robot.id;
+	const cRobotId = params.robot;
 	const pSiteId = products.content?.site?.id;
 	const cSiteId = robotTwinsSummary.content?.dataById[params.robot]?.site.id;
 

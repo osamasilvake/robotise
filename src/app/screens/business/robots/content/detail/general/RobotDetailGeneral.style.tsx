@@ -13,8 +13,7 @@ export const RobotDetailGeneralStyles = makeStyles((theme: Theme) => ({
 	sGeneralLastItemLabel: {
 		display: 'block'
 	},
-	sGeneralLastItemCheckboxControl: {
-		alignItems: 'flex-start',
-		margin: 0
+	sLink: {
+		cursor: 'pointer'
 	}
 }));

@@ -82,7 +82,7 @@
 		"ROBOTS": {
 			"DETAIL": {
 				"ALERTS": {
-					"CLIPBOARD": "Message copied to clipboard!"
+					"CLIPBOARD": "Copied to clipboard!"
 				},
 				"MAP": {
 					"ERROR": "Failed to load map location!"
@@ -363,6 +363,7 @@
 			},
 			"DETAIL": {
 				"GENERAL": {
+					"ROBOT": "Robot (ID)",
 					"SITE": "Site",
 					"VENDOR": "Vendor",
 					"LAST_UPDATED": "Last Updated",

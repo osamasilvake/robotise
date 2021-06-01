@@ -55,15 +55,14 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 	/**
 	 * authentication state
 	 *
-	 * login:       Robots
-	 * others:		Intended Route
+	 * login route:     Robots
+	 * others:		    Intended Route
 	 */
 
 	if (appRoute.path === AppConfigService.AppRoutes.AUTH.LOGIN) {
 		const intendedUrl = StorageService.get(AppConfigService.StorageItems.IntendedURL);
-		return (
-			<Redirect to={intendedUrl || AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN} />
-		);
+		const defaultUrl = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
+		return <Redirect to={intendedUrl || defaultUrl} />;
 	}
 	const Layout = appRoute.template ? appRoute.template : template;
 	return <Layout Component={appRoute.component} route={route} />;

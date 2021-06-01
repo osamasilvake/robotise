@@ -280,11 +280,13 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						variant="outlined"
 						type="submit"
 						disabled={
+							!!errors?.price ||
 							validateEmptyObjProperty({
 								image,
 								name: values.name,
 								price: values.price
-							}) || products.updating
+							}) ||
+							products.updating
 						}
 						endIcon={products.updating && <CircularProgress size={20} />}>
 						{type === SiteProductCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}

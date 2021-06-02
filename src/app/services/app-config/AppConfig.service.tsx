@@ -80,7 +80,7 @@ class AppConfigService extends EnvService {
 				},
 				sites: {
 					list: {
-						refreshTime: 20000,
+						refreshTime: 10000,
 						showPageSizes: false,
 						defaultPageSize: 100,
 						pageSizes: [5, 10, 15, 20, 50, 100]
@@ -91,7 +91,7 @@ class AppConfigService extends EnvService {
 						},
 						products: {
 							list: {
-								refreshTime: 30000,
+								refreshTime: 10000,
 								showPageSizes: false,
 								defaultPageSize: 50,
 								pageSizes: [5, 10, 15, 20, 50, 100]
@@ -101,7 +101,7 @@ class AppConfigService extends EnvService {
 				},
 				robots: {
 					list: {
-						refreshTime: 20000,
+						refreshTime: 10000,
 						showPageSizes: false,
 						defaultPageSize: 100,
 						pageSizes: [5, 10, 15, 20, 50, 100]
@@ -120,7 +120,7 @@ class AppConfigService extends EnvService {
 							}
 						},
 						inventory: {
-							refreshTime: 30000
+							refreshTime: 10000
 						},
 						orders: {
 							list: {
@@ -135,13 +135,13 @@ class AppConfigService extends EnvService {
 						},
 						purchases: {
 							list: {
-								refreshTime: 30000,
+								refreshTime: 10000,
 								showPageSizes: true,
 								defaultPageSize: 50,
 								pageSizes: [5, 10, 15, 20, 50, 100]
 							},
 							content: {
-								refreshTime: 30000
+								refreshTime: 10000
 							}
 						}
 					}

@@ -8,7 +8,7 @@ import { robotSelector, RobotServicePositionsFetch } from '../../../../slices/ro
 import { robotTwinsSummarySelector } from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
-import Configuration from './configuration/RobotConfiguration';
+import RobotConfiguration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
 import RobotOrders from './orders/RobotOrders';
@@ -85,7 +85,7 @@ const RobotContent: FC = () => {
 				{value === 3 && <RobotPurchases />}
 
 				{/* Configuration */}
-				{value === 4 && <Configuration />}
+				{value === 4 && <RobotConfiguration />}
 			</Box>
 		</Box>
 	) : null;

@@ -124,13 +124,13 @@ class AppConfigService extends EnvService {
 						},
 						orders: {
 							list: {
-								refreshTime: 30000,
+								refreshTime: 10000,
 								showPageSizes: true,
 								defaultPageSize: 50,
 								pageSizes: [5, 10, 15, 20, 50, 100]
 							},
 							content: {
-								refreshTime: 30000
+								refreshTime: 10000
 							}
 						},
 						purchases: {

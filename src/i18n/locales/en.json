@@ -652,7 +652,7 @@
 			"CONFIGURATION": {
 				"SYNC_PRODUCTS": {
 					"TITLE": "Sync Products",
-					"EXCERPT": "Sync Products with GUI on the robot.",
+					"EXCERPT": "Sync Products on the robot.",
 					"SYNC": "SYNC"
 				}
 			}

@@ -12,7 +12,7 @@ import {
 	PurchasesFetchList,
 	purchasesSelector
 } from '../../../../../slices/purchases/Purchases.slice';
-import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { robotTwinsSummarySelector } from '../../../../../slices/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotPurchasesActions from './list/actions/RobotPurchasesActions';

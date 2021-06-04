@@ -17,7 +17,7 @@ import { useParams } from 'react-router-dom';
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { SICDrawerLaneInterface } from '../../../../../../../slices/inventory/Inventory.slice.interface';
-import { robotTwinsSummarySelector } from '../../../../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';

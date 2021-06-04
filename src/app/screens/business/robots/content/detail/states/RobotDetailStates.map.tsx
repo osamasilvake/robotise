@@ -1,4 +1,4 @@
-import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+import { SRTContentDataInterface } from '../../../../../../slices/robots/RobotTwins.slice.interface';
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 
 export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => {

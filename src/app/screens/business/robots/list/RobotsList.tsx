@@ -8,7 +8,7 @@ import PageError from '../../../../components/content/page-error/PageError';
 import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
-} from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
+} from '../../../../slices/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../slices/sites/Sites.slice';
 import RobotsTable from './table/RobotsTable';
 

@@ -4,7 +4,7 @@ import {
 	SRTContentDataInterface,
 	SRTContentDockingStateInterface,
 	SRTContentJoystickState
-} from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+} from '../../../../../../slices/robots/RobotTwins.slice.interface';
 
 export interface RobotDetailStatesInterface {
 	robotTwins: SRTContentDataInterface;

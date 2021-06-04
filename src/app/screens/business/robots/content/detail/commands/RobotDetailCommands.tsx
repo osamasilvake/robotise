@@ -2,7 +2,10 @@ import { Box } from '@material-ui/core';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RobotControlCommandSend, robotSelector } from '../../../../../../slices/robot/Robot.slice';
+import {
+	RobotControlCommandSend,
+	robotSelector
+} from '../../../../../../slices/robots/Robot.slice';
 import RobotDetailCommandActions from './RobotDetailCommandActions';
 import RobotDetailCommandControl from './RobotDetailCommandControl';
 import RobotDetailCommandMuteSensors from './RobotDetailCommandMuteSensors';

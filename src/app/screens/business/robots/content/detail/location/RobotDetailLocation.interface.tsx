@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import {
 	SRTContentDataInterface,
 	SRTContentLocationInterface
-} from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+} from '../../../../../../slices/robots/RobotTwins.slice.interface';
 
 export interface RobotDetailLocationInterface {
 	robotTwins: SRTContentDataInterface;

@@ -5,7 +5,7 @@ import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/cont
 import {
 	IRobotTwin,
 	SRTContentDataInterface
-} from '../../../slices/robot-twins/RobotTwins.slice.interface';
+} from '../../../slices/robots/RobotTwins.slice.interface';
 import {
 	DeserializeRelationshipProperties,
 	DeserializerExtendedOptions,

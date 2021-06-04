@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../components/common/status/Status';
-import { RTSContentDataInterface } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+import { RTSContentDataInterface } from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';

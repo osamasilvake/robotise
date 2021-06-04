@@ -10,9 +10,9 @@ import orders from './orders/Orders.slice';
 import products from './products/Products.slice';
 import purchase from './purchases/Purchase.slice';
 import purchases from './purchases/Purchases.slice';
-import robot from './robot/Robot.slice';
-import robotTwins from './robot-twins/RobotTwins.slice';
-import robotTwinsSummary from './robot-twins/RobotTwinsSummary.slice';
+import robot from './robots/Robot.slice';
+import robotTwins from './robots/RobotTwins.slice';
+import robotTwinsSummary from './robots/RobotTwinsSummary.slice';
 import site from './sites/Site.slice';
 import sites from './sites/Sites.slice';
 

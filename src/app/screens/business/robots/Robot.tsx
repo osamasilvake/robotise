@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import PageHead from '../../../components/content/page-head/PageHead';
 import { orderSelector } from '../../../slices/orders/Order.slice';
 import { purchaseSelector } from '../../../slices/purchases/Purchase.slice';
-import { robotTwinsSummarySelector } from '../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { robotTwinsSummarySelector } from '../../../slices/robots/RobotTwinsSummary.slice';
 import RobotOrderDetail from './content/orders/detail/RobotOrderDetail';
 import RobotPurchaseDetail from './content/purchases/detail/RobotPurchaseDetail';
 import RobotContent from './content/RobotContent';

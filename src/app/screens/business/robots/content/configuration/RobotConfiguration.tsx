@@ -2,8 +2,8 @@ import { Box, Grid } from '@material-ui/core';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { robotSelector } from '../../../../../slices/robot/Robot.slice';
-import { robotTwinsSummarySelector } from '../../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { robotSelector } from '../../../../../slices/robots/Robot.slice';
+import { robotTwinsSummarySelector } from '../../../../../slices/robots/RobotTwinsSummary.slice';
 import { RobotConfigurationStyles } from './RobotConfiguration.style';
 import RobotConfigurationSyncProducts from './sync-products/RobotConfigurationSyncProducts';
 

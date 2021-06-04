@@ -21,7 +21,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { AppConfigService } from '../../../services';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
-import { robotTwinsSummarySelector } from '../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { robotTwinsSummarySelector } from '../../../slices/robots/RobotTwinsSummary.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Copyrights from '../copyrights/Copyrights';

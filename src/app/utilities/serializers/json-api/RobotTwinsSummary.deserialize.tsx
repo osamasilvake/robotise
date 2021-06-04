@@ -4,7 +4,7 @@ import log from 'loglevel';
 import {
 	IRobotTwinSummary,
 	RTSContentTransformDataInterface
-} from '../../../slices/robot-twins/RobotTwinsSummary.slice.interface';
+} from '../../../slices/robots/RobotTwinsSummary.slice.interface';
 import {
 	DeserializeRelationshipProperties,
 	DeserializerExtendedOptions,

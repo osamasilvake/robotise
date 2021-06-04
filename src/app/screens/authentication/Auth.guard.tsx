@@ -8,7 +8,7 @@ import { AuthRefreshToken, authSelector } from '../../slices/auth/Auth.slice';
 import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
-} from '../../slices/robot-twins/RobotTwinsSummary.slice';
+} from '../../slices/robots/RobotTwinsSummary.slice';
 import { SitesFetchList, sitesSelector } from '../../slices/sites/Sites.slice';
 import { AuthInterface } from './Auth.interface';
 
@@ -23,7 +23,6 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 	useEffect(() => {
 		/**
 		 * actions
-		 *
 		 * 1. validate and refresh access_token
 		 * 2. load sites
 		 * 3. load and refresh robot-twins summary

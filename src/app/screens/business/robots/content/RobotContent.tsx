@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
-import { robotSelector, RobotServicePositionsFetch } from '../../../../slices/robot/Robot.slice';
-import { robotTwinsSummarySelector } from '../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { robotSelector, RobotServicePositionsFetch } from '../../../../slices/robots/Robot.slice';
+import { robotTwinsSummarySelector } from '../../../../slices/robots/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import RobotConfiguration from './configuration/RobotConfiguration';

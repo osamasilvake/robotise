@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+import { SRTContentDataInterface } from '../../../../../../slices/robots/RobotTwins.slice.interface';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 
 export interface RobotDetailCamerasInterface {

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { RobotSyncProducts } from '../../../../../../slices/robot/Robot.slice';
+import { RobotSyncProducts } from '../../../../../../slices/robots/Robot.slice';
 import { CardStyles } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationSyncProductsInterface } from './RobotConfigurationSyncProducts.interface';

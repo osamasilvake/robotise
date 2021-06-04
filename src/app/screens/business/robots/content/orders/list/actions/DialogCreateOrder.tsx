@@ -27,8 +27,8 @@ import {
 	OrderUpdateState
 } from '../../../../../../../slices/orders/Orders.slice';
 import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
-import { robotSelector } from '../../../../../../../slices/robot/Robot.slice';
-import { robotTwinsSummarySelector } from '../../../../../../../slices/robot-twins/RobotTwinsSummary.slice';
+import { robotSelector } from '../../../../../../../slices/robots/Robot.slice';
+import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';

@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react';
 
-import { SliceRobotInterface } from '../../../../../../slices/robot/Robot.slice.interface';
-import { SRTContentDataInterface } from '../../../../../../slices/robot-twins/RobotTwins.slice.interface';
+import { SliceRobotInterface } from '../../../../../../slices/robots/Robot.slice.interface';
+import { SRTContentDataInterface } from '../../../../../../slices/robots/RobotTwins.slice.interface';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
 	RobotDetailCommandsTypeEnum,

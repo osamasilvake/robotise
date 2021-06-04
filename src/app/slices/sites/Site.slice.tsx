@@ -12,6 +12,11 @@ import { SliceSiteInterface } from './Site.slice.interface';
 
 // initial state
 export const initialState: SliceSiteInterface = {
+	servicePositions: {
+		loading: false,
+		content: null,
+		errors: null
+	},
 	acceptOrders: {
 		loading: false,
 		content: null,
@@ -26,13 +31,19 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
+				state.servicePositions.loading = true;
+			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = true;
 			}
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
+				state.servicePositions.loading = false;
+				state.servicePositions.content = response;
+				state.servicePositions.errors = null;
+			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 				state.acceptOrders.content = response;
 				state.acceptOrders.errors = null;
@@ -40,7 +51,11 @@ const dataSlice = createSlice({
 		},
 		failure: (state, action) => {
 			const { module, error } = action.payload;
-			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
+				state.servicePositions.loading = false;
+				state.servicePositions.content = null;
+				state.servicePositions.errors = error;
+			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 				state.acceptOrders.content = null;
 				state.acceptOrders.errors = error;
@@ -58,6 +73,43 @@ export const siteSelector = (state: AppReducerType) => state['site'];
 
 // reducer
 export default dataSlice.reducer;
+
+/**
+ * fetch service positions
+ * @param siteId
+ * @returns
+ */
+export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Dispatch) => {
+	const state = {
+		module: SiteTypeEnum.SERVICE_POSITIONS
+	};
+
+	// dispatch: loading
+	dispatch(loading(state));
+
+	// fetch sites list
+	return SitesService.siteServicePositionsFetch(siteId)
+		.then(async (res) => {
+			// deserialize response
+			const result = await deserializeSite(res);
+
+			// dispatch: success
+			dispatch(success({ ...state, response: { data: result, site: { id: siteId } } }));
+		})
+		.catch((err) => {
+			// dispatch: trigger message
+			const message: TriggerMessageInterface = {
+				id: 'fetch-site-service-positions-error',
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: 'COMMON.SERVICE_POSITIONS.ERROR'
+			};
+			dispatch(triggerMessage(message));
+
+			// dispatch: failure
+			dispatch(failure({ ...state, error: err }));
+		});
+};
 
 /**
  * accept orders

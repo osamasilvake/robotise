@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
-import { robotSelector, RobotServicePositionsFetch } from '../../../../slices/robots/Robot.slice';
 import { robotTwinsSummarySelector } from '../../../../slices/robots/RobotTwinsSummary.slice';
+import { siteSelector, SiteServicePositionsFetch } from '../../../../slices/sites/Site.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import RobotConfiguration from './configuration/RobotConfiguration';
@@ -18,7 +18,7 @@ const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
 	const dispatch = useDispatch();
-	const robot = useSelector(robotSelector);
+	const site = useSelector(siteSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const [value, setValue] = useState(-1);
@@ -27,7 +27,7 @@ const RobotContent: FC = () => {
 	const history = useHistory();
 
 	const cSiteId = robotTwinsSummary.content?.dataById[params.robot].site.id;
-	const pSiteId = robot.servicePositions.content?.site?.id;
+	const pSiteId = site.servicePositions.content?.site?.id;
 
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
@@ -37,14 +37,14 @@ const RobotContent: FC = () => {
 	}, [location.pathname, params.robot]);
 
 	useEffect(() => {
-		const condition1 = robot.servicePositions.content === null;
-		const condition2 = robot.servicePositions.content !== null && cSiteId !== pSiteId;
+		const condition1 = site.servicePositions.content === null;
+		const condition2 = site.servicePositions.content !== null && cSiteId !== pSiteId;
 
 		if (condition1 || condition2) {
 			// dispatch: fetch site service positions
-			cSiteId && dispatch(RobotServicePositionsFetch(cSiteId));
+			cSiteId && dispatch(SiteServicePositionsFetch(cSiteId));
 		}
-	}, [dispatch, pSiteId, cSiteId, robot.servicePositions.content]);
+	}, [dispatch, pSiteId, cSiteId, site.servicePositions.content]);
 
 	/**
 	 * handle tab change

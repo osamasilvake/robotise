@@ -1,11 +1,6 @@
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 
 export interface SliceRobotInterface {
-	servicePositions: {
-		loading: boolean;
-		content: SRContentServicePositionsInterface | null;
-		errors: TriggerMessageInterface | null;
-	};
 	map: {
 		loading: boolean;
 		content: SRContentMapInterface | null;
@@ -25,17 +20,6 @@ export interface SliceRobotInterface {
 		loading: boolean;
 		content: SRContentSyncProductsInterface | null;
 		errors: TriggerMessageInterface | null;
-	};
-}
-
-export interface SRContentServicePositionsInterface {
-	data: {
-		id: string;
-		name: string;
-		location: string;
-	}[];
-	site: {
-		id: string;
 	};
 }
 

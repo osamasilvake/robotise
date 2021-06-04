@@ -27,8 +27,8 @@ import {
 	OrderUpdateState
 } from '../../../../../../../slices/orders/Orders.slice';
 import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
-import { robotSelector } from '../../../../../../../slices/robots/Robot.slice';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
+import { siteSelector } from '../../../../../../../slices/sites/Site.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -46,7 +46,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
-	const robot = useSelector(robotSelector);
+	const site = useSelector(siteSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
@@ -148,9 +148,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									handleChangeSelect(e);
 								}}
 								label={t(`${common}.FIELDS.SERVICE_POSITIONS.LABEL`)}>
-								{robot.servicePositions.content?.data.map((position) => (
-									<MenuItem key={position.id} value={position.id}>
-										{position.location}
+								{site.servicePositions.content?.data.map((position) => (
+									<MenuItem key={position.id} value={position.location}>
+										{position.name}
 									</MenuItem>
 								))}
 							</Select>
@@ -175,7 +175,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								(mode) =>
 									(mode !== RobotOrderModeTypeEnum.SERVICE_POSITION ||
 										(mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
-											robot.servicePositions.content?.data.length)) && (
+											site.servicePositions.content?.data.length)) && (
 										<MenuItem key={mode} value={mode}>
 											{t(`ROBOTS:CONTENT.ORDERS.COMMON.MODE.${mode}`)}
 										</MenuItem>

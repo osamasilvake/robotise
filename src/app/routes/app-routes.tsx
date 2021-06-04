@@ -11,7 +11,8 @@ const appRoutes = {
 				PRODUCTS: {
 					MAIN: '/sites/:site/products',
 					DETAIL: '/sites/:site/products/:product'
-				}
+				},
+				CONFIGURATION: '/sites/:site/configuration'
 			},
 			ROBOTS: {
 				MAIN: '/robots',

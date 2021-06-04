@@ -5,6 +5,7 @@ import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import { SiteParamsInterface } from '../Site.interface';
 import sitesRoutes from '../Sites.routes';
+import SiteConfiguration from './configuration/SiteConfiguration';
 import SiteDetail from './detail/SiteDetail';
 import SiteProducts from './products/SiteProducts';
 
@@ -42,6 +43,7 @@ const SiteContent: FC = () => {
 			<Tabs value={value} onChange={handleTabChange} variant="scrollable" textColor="primary">
 				<Tab label={t('CONTENT.TABS.DETAIL')} />
 				<Tab label={t('CONTENT.TABS.PRODUCTS')} />
+				<Tab label={t('CONTENT.TABS.CONFIGURATION')} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -51,6 +53,9 @@ const SiteContent: FC = () => {
 
 				{/* Products */}
 				{value === 1 && <SiteProducts />}
+
+				{/* Configuration */}
+				{value === 2 && <SiteConfiguration />}
 			</Box>
 		</Box>
 	) : null;

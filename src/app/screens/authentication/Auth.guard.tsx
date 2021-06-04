@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { AppConfigService, StorageService } from '../../services';
+import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { AuthRefreshToken, authSelector } from '../../slices/auth/Auth.slice';
 import {
 	RobotTwinsSummaryFetchList,
@@ -21,16 +22,13 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 
 	useEffect(() => {
 		/**
-		 * execute
-		 * 0. remove intended_url from session storage
+		 * actions
+		 *
 		 * 1. validate and refresh access_token
 		 * 2. load sites
 		 * 3. load and refresh robot-twins summary
 		 */
-		const executeServices = () => {
-			// remove intended url from session session
-			StorageService.remove(AppConfigService.StorageItems.IntendedURL);
-
+		const actions = () => {
 			// dispatch: requests a new token before it expires
 			auth?.user && dispatch(AuthRefreshToken(auth.user.exp));
 
@@ -42,11 +40,11 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 		};
 
 		// init
-		!robotTwinsSummary.content && executeServices();
+		!robotTwinsSummary.content && actions();
 
 		// interval
 		const intervalId = window.setInterval(
-			executeServices,
+			actions,
 			AppConfigService.AppOptions.screens.robots.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
@@ -55,13 +53,18 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 	/**
 	 * authentication state
 	 *
-	 * login route:     Robots
-	 * others:		    Intended Route
+	 * login:		Robots
+	 * others:		Route
 	 */
-
 	if (appRoute.path === AppConfigService.AppRoutes.AUTH.LOGIN) {
 		const intendedUrl = StorageService.get(AppConfigService.StorageItems.IntendedURL);
 		const defaultUrl = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
+		setTimeout(() =>
+			StorageService.remove(
+				AppConfigService.StorageItems.IntendedURL,
+				StorageTypeEnum.SESSION
+			)
+		);
 		return <Redirect to={intendedUrl || defaultUrl} />;
 	}
 	const Layout = appRoute.template ? appRoute.template : template;

@@ -40,13 +40,14 @@ const Auth: FC<AuthInterface> = (props) => {
 	 * authentication state
 	 *
 	 * loader: 						Loader
-	 * !user: 						Login
+	 * !user + private + !login: 	Login
+	 * !user + !private: 			Route
+	 * others:						Auth Guard
 	 */
-
 	if (auth.loader) {
 		return <Loader />;
 	} else if (!isUser) {
-		if (appRoute.path !== AppConfigService.AppRoutes.AUTH.LOGIN) {
+		if (type && isPrivate(type) && appRoute.path !== AppConfigService.AppRoutes.AUTH.LOGIN) {
 			return <Redirect to={AppConfigService.AppRoutes.AUTH.LOGIN} />;
 		}
 		const Layout = appRoute.template ? appRoute.template : template;

@@ -97,6 +97,25 @@ class SitesService {
 		const url = AppConfigService.AppServices.SITE.PRODUCTS;
 		return HttpClientService.delete(`${url}/${productId}`);
 	};
+
+	/**
+	 * accept orders
+	 * @param siteId
+	 * @param acceptOrders
+	 * @returns
+	 */
+	siteAcceptOrders = (siteId: string, acceptOrders: boolean) => {
+		const url = AppConfigService.AppServices.SITE.SINGLE.replace(':siteId', siteId);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				id: siteId,
+				attributes: {
+					acceptOrders
+				}
+			}
+		});
+	};
 }
 const instance = new SitesService();
 export default instance;

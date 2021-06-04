@@ -3,16 +3,20 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
+import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
+import { triggerMessage } from '../general/General.slice';
+import { SiteTypeEnum } from './Site.slice.enum';
 import { SliceSiteInterface } from './Site.slice.interface';
 
 // initial state
 export const initialState: SliceSiteInterface = {
-	loader: false,
-	loading: false,
-	content: null,
-	errors: null
+	acceptOrders: {
+		loading: false,
+		content: null,
+		errors: null
+	}
 };
 
 // slice
@@ -20,30 +24,34 @@ const dataSlice = createSlice({
 	name: 'Site',
 	initialState,
 	reducers: {
-		loader: (state) => {
-			state.loader = true;
-		},
-		loading: (state) => {
-			state.loading = true;
+		loading: (state, action) => {
+			const { module } = action.payload;
+			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+				state.acceptOrders.loading = true;
+			}
 		},
 		success: (state, action) => {
-			state.loader = false;
-			state.loading = false;
-			state.content = action.payload;
-			state.errors = null;
+			const { module, response } = action.payload;
+			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+				state.acceptOrders.loading = false;
+				state.acceptOrders.content = response;
+				state.acceptOrders.errors = null;
+			}
 		},
 		failure: (state, action) => {
-			state.loader = false;
-			state.loading = false;
-			state.content = null;
-			state.errors = action.payload;
+			const { module, error } = action.payload;
+			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+				state.acceptOrders.loading = false;
+				state.acceptOrders.content = null;
+				state.acceptOrders.errors = error;
+			}
 		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const siteSelector = (state: AppReducerType) => state['site'];
@@ -52,45 +60,51 @@ export const siteSelector = (state: AppReducerType) => state['site'];
 export default dataSlice.reducer;
 
 /**
- * fetch site
+ * accept orders
  * @param siteId
- * @param refresh
+ * @param acceptOrders
  * @returns
  */
-export const SiteFetch =
-	(siteId: string, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const site = states.site;
+export const SiteAcceptOrders =
+	(siteId: string, acceptOrders: boolean) => async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteTypeEnum.ACCEPT_ORDERS
+		};
 
-		// return on busy
-		if (site && (site.loader || site.loading)) {
-			return;
-		}
+		// dispatch: loading
+		dispatch(loading(state));
 
-		// dispatch: loader/loading
-		dispatch(!refresh ? loader() : loading());
-
-		// fetch site list
-		return SitesService.siteFetch(siteId)
+		return SitesService.siteAcceptOrders(siteId, acceptOrders)
 			.then(async (res) => {
 				// deserialize response
 				const result = await deserializeSite(res);
 
-				// dispatch: success
-				dispatch(success(result));
-			})
-			.catch(() => {
+				// wait
+				await timeout(3000);
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-site-error',
+					id: `site-accept-orders-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch((err) => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-accept-orders-error`,
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'PAGE_ERROR.DESCRIPTION'
+					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR`
 				};
+				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure(message));
+				dispatch(failure({ ...state, error: err }));
 			});
 	};

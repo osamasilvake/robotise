@@ -155,6 +155,25 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
+	MuiSwitch: {
+		styleOverrides: {
+			switchBase: {
+				color: AppConfigService.AppOptions.colors.c9,
+				'&.Mui-checked': {
+					color: AppConfigService.AppOptions.colors.c9,
+					'+.MuiSwitch-track': {
+						backgroundColor: AppConfigService.AppOptions.colors.c9
+					},
+					'&:hover': {
+						backgroundColor: 'transparent'
+					}
+				},
+				'&:hover': {
+					backgroundColor: 'transparent'
+				}
+			}
+		}
+	},
 	MuiIconButton: {
 		styleOverrides: {
 			root: {

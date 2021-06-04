@@ -77,6 +77,12 @@
 					"SUCCESS": "Product has been deleted successfully!",
 					"ERROR": "Unable to delete a product!"
 				}
+			},
+			"CONFIGURATION": {
+				"ACCEPT_ORDERS": {
+					"SUCCESS": "Settings has been updated successfully!",
+					"ERROR": "Unable to update the settings!"
+				}
 			}
 		},
 		"ROBOTS": {
@@ -238,7 +244,8 @@
 		"CONTENT": {
 			"TABS": {
 				"DETAIL": "DETAIL",
-				"PRODUCTS": "PRODUCTS"
+				"PRODUCTS": "PRODUCTS",
+				"CONFIGURATION": "CONFIGURATION"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -329,6 +336,13 @@
 							"DELETE": "Delete"
 						}
 					}
+				}
+			},
+			"CONFIGURATION": {
+				"ACCEPT_ORDERS": {
+					"TITLE": "Accept Orders",
+					"EXCERPT": "Allow robots to accept customers orders.",
+					"ACTIVE": "Active"
 				}
 			}
 		}

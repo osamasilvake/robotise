@@ -352,11 +352,11 @@ const updateCanceledOrder = (
 ): SOContentInterface => {
 	return {
 		...state,
-		data: state.data.map((d) => {
-			if (d.id === order.id) {
+		data: state.data.map((item) => {
+			if (item.id === order.id) {
 				return order;
 			}
-			return d;
+			return item;
 		})
 	};
 };

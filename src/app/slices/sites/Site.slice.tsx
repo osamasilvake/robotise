@@ -3,7 +3,6 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
-import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
@@ -130,9 +129,6 @@ export const SiteAcceptOrders =
 			.then(async (res) => {
 				// deserialize response
 				const result = await deserializeSite(res);
-
-				// wait
-				await timeout(3000);
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {

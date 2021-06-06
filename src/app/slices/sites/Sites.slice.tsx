@@ -3,9 +3,10 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
+import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
-import { SliceSitesInterface } from './Sites.slice.interface';
+import { ISite, SliceSitesInterface, SSContentInterface } from './Sites.slice.interface';
 
 // initial state
 export const initialState: SliceSitesInterface = {
@@ -92,4 +93,90 @@ export const SitesFetchList =
 				// dispatch: failure
 				dispatch(failure(message));
 			});
+	};
+
+/**
+ * fetch site
+ * @param siteId
+ * @param refresh
+ * @returns
+ */
+export const SiteFetch =
+	(siteId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const sites = states.sites;
+
+		// return on busy
+		if (sites && (sites.loader || sites.loading)) {
+			return;
+		}
+
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
+
+		// fetch site
+		return SitesService.siteFetch(siteId)
+			.then(async (res) => {
+				// deserialize response
+				let result = await deserializeSite(res);
+
+				// handle site mapping
+				result = handleMapping(sites.content, result);
+
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'fetch-site-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'PAGE_ERROR.DESCRIPTION'
+				};
+
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
+
+/**
+ * Update site
+ * @param site
+ * @returns
+ */
+export const SiteUpdate =
+	(site: ISite) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const sites = states.sites;
+
+		// handle site mapping
+		const result = handleMapping(sites.content, site);
+
+		// dispatch: success
+		dispatch(success(result));
+	};
+
+/**
+ * handle site mapping
+ * @param sites
+ * @param site
+ * @returns
+ */
+const handleMapping = (sites: SSContentInterface | null, site: ISite) =>
+	sites && {
+		...sites,
+		data: sites.data.map((item) => {
+			if (item.id === site.id) {
+				return site;
+			}
+			return item;
+		}),
+		dataById: {
+			...sites.dataById,
+			[site.id]: site
+		}
 	};

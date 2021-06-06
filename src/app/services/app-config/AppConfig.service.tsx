@@ -86,6 +86,9 @@ class AppConfigService extends EnvService {
 						pageSizes: [5, 10, 15, 20, 50, 100]
 					},
 					content: {
+						detail: {
+							refreshTime: 10000
+						},
 						products: {
 							list: {
 								refreshTime: 10000,

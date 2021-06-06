@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { SiteAcceptOrders } from '../../../../../../slices/sites/Site.slice';
+import { SiteUpdate } from '../../../../../../slices/sites/Sites.slice';
 import { CardStyles } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigurationAcceptOrdersInterface } from './SiteConfigurationAcceptOrders.interface';
@@ -35,8 +36,18 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 	 * handle accept orders
 	 */
 	const handleAcceptOrders = () => {
-		// dispatch: accept orders
-		siteId && dispatch(SiteAcceptOrders(siteId, !siteContent?.acceptOrders));
+		Promise.all([dispatch(SiteAcceptOrders(siteId, !siteContent?.acceptOrders))]).then(() => {
+			const cSite = sites.content?.dataById[siteId];
+			if (cSite) {
+				// dispatch: update site
+				dispatch(
+					SiteUpdate({
+						...cSite,
+						acceptOrders: !siteContent?.acceptOrders
+					})
+				);
+			}
+		});
 	};
 
 	return (
@@ -63,7 +74,7 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 						control={
 							<Switch
 								name="accept-orders"
-								checked={siteContent?.acceptOrders}
+								checked={!!siteContent?.acceptOrders}
 								onChange={handleAcceptOrders}
 							/>
 						}

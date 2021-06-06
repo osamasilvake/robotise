@@ -257,11 +257,11 @@ const updateCreatedEditedProduct = (
 		  }
 		: {
 				...state,
-				data: state.data.map((d) => {
-					if (d.id === product.id) {
+				data: state.data.map((item) => {
+					if (item.id === product.id) {
 						return product;
 					}
-					return d;
+					return item;
 				})
 		  };
 };
@@ -278,7 +278,7 @@ const removeDeletedProduct = (
 ): SPContentInterface => {
 	return {
 		...state,
-		data: state.data.filter((d) => d.id !== product.id),
+		data: state.data.filter((item) => item.id !== product.id),
 		meta: {
 			...state.meta,
 			totalDocs: state.meta.totalDocs - 1

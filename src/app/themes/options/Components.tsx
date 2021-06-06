@@ -1,3 +1,4 @@
+import { alpha } from '@material-ui/core/styles';
 import { Components } from '@material-ui/core/styles/components';
 
 import { AppConfigService } from '../../services';
@@ -166,6 +167,9 @@ const OverridesCustom: Components = {
 					},
 					'&:hover': {
 						backgroundColor: 'transparent'
+					},
+					'&.Mui-disabled': {
+						color: alpha(AppConfigService.AppOptions.colors.c9, 0.5)
 					}
 				},
 				'&:hover': {

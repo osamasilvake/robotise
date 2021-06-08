@@ -16,15 +16,14 @@ export interface SRTContentDataInterface {
 	robotState: SRTContentRobotStateInterface;
 	alerts: SRTContentAlertsInterface;
 	controlMode: SRTContentControlModeInterface;
-
 	location?: SRTContentLocationInterface | undefined;
 	cameras?: SRTContentCameraInterface | undefined;
-
 	batteryState?: SRTContentBatteryStateInterface | undefined;
 	dockingState?: SRTContentDockingStateInterface | undefined;
 	joystickState?: SRTContentJoystickState | undefined;
 	activityState?: SRTContentActivityState | undefined;
-	safetySystemsState: SRTContentSafetySystemsState;
+	safetySensorsState?: SRTContentSafetySensorsState | undefined;
+	safetySystemsState?: SRTContentSafetySystemsState | undefined;
 }
 
 export interface SRTContentSiteInterface {

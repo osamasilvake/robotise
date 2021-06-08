@@ -18,6 +18,7 @@ import RobotDetailCommands from './commands/RobotDetailCommands';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailLocation from './location/RobotDetailLocation';
 import { RobotDetailStyles } from './RobotDetail.style';
+import RobotDetailSafety from './safety/RobotDetailSafety';
 import RobotDetailStates from './states/RobotDetailStates';
 
 const RobotDetail: FC = () => {
@@ -88,6 +89,7 @@ const RobotDetail: FC = () => {
 			<RobotDetailCommands robotTwins={robotTwins.content} />
 			<RobotDetailCameras robotTwins={robotTwins.content} />
 			<RobotDetailStates robotTwins={robotTwins.content} />
+			<RobotDetailSafety robotTwins={robotTwins.content} />
 		</Box>
 	);
 };

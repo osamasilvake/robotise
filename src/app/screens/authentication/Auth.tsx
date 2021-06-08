@@ -24,7 +24,7 @@ const Auth: FC<AuthInterface> = (props) => {
 		window.addEventListener(
 			'DOMContentLoaded',
 			() => {
-				if (type && isPrivate(type) && !isUser) {
+				if (type && isPrivate(type) && !isUser && location.pathname.length > 1) {
 					StorageService.put(
 						AppConfigService.StorageItems.IntendedURL,
 						location.pathname,

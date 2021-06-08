@@ -15,11 +15,12 @@ export const mapSafetyContent = (
 	type: RobotDetailSafetyTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
+		console.log(key);
 		const common = `CONTENT.DETAIL.SAFETY.${type}.TABLE.VALUES`;
 		return {
 			proto: `${common}.${key}.LABEL`,
 			msg1: `${common}.${key}.MSG_1`,
 			msg2: `${common}.${key}.MSG_2`,
-			value: Boolean(value)
+			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value)
 		};
 	});

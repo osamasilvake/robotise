@@ -19,29 +19,29 @@ import {
 } from './RobotDetailSafety.enum';
 import {
 	RobotDetailSafetyColumnInterface,
-	RobotDetailSystemsInterface
+	RobotDetailSafetySensorsInterface
 } from './RobotDetailSafety.interface';
 import { columns } from './RobotDetailSafety.list';
 import { mapSafetyContent } from './RobotDetailSafety.map';
 import { RobotDetailSafetyStyles } from './RobotDetailSafety.style';
 
-const RobotDetailSystems: FC<RobotDetailSystemsInterface> = (props) => {
-	const { systems } = props;
+const RobotDetailSensors: FC<RobotDetailSafetySensorsInterface> = (props) => {
+	const { sensors } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailSafetyStyles();
 
-	const mappedSystem = systems && mapSafetyContent(systems, RobotDetailSafetyTypeEnum.SYSTEMS);
+	const mappedSensors = sensors && mapSafetyContent(sensors, RobotDetailSafetyTypeEnum.SENSORS);
 
-	return mappedSystem ? (
+	return mappedSensors ? (
 		<Box className={classes.sStateContainer}>
 			{/* Title */}
 			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.DETAIL.SAFETY.SYSTEMS.TITLE')}
+				{t('CONTENT.DETAIL.SAFETY.SENSORS.TITLE')}
 			</Typography>
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat3(systems?.updatedAt)}
+				{momentFormat3(sensors?.updatedAt)}
 			</Typography>
 
 			{/* Table */}
@@ -64,7 +64,7 @@ const RobotDetailSystems: FC<RobotDetailSystemsInterface> = (props) => {
 					</TableHead>
 
 					<TableBody>
-						{mappedSystem.map((row) => (
+						{mappedSensors.map((row) => (
 							<TableRow key={row.proto}>
 								{columns.map((column: RobotDetailSafetyColumnInterface) => (
 									<TableCell
@@ -91,4 +91,4 @@ const RobotDetailSystems: FC<RobotDetailSystemsInterface> = (props) => {
 		</Box>
 	) : null;
 };
-export default RobotDetailSystems;
+export default RobotDetailSensors;

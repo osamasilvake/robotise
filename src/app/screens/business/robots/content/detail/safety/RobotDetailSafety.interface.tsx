@@ -9,11 +9,11 @@ export interface RobotDetailSafetyInterface {
 	robotTwins: SRTContentDataInterface;
 }
 
-export interface RobotDetailSensorsInterface {
+export interface RobotDetailSafetySensorsInterface {
 	sensors?: SRTContentSafetySensorsState | undefined;
 }
 
-export interface RobotDetailSystemsInterface {
+export interface RobotDetailSafetySystemsInterface {
 	systems?: SRTContentSafetySystemsState | undefined;
 }
 

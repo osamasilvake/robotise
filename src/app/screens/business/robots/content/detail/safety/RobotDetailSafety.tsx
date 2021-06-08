@@ -2,16 +2,16 @@ import { Box } from '@material-ui/core';
 import { FC } from 'react';
 
 import { RobotDetailSafetyInterface } from './RobotDetailSafety.interface';
-import RobotDetailSensors from './RobotDetailSensors';
-import RobotDetailSystems from './RobotDetailSystems';
+import RobotDetailSafetySensors from './RobotDetailSafetySensors';
+import RobotDetailSafetySystems from './RobotDetailSafetySystems';
 
 const RobotDetailSafety: FC<RobotDetailSafetyInterface> = (props) => {
 	const { robotTwins } = props;
 
 	return (
 		<Box>
-			<RobotDetailSensors sensors={robotTwins.safetySensorsState} />
-			<RobotDetailSystems systems={robotTwins.safetySystemsState} />
+			<RobotDetailSafetySensors sensors={robotTwins.safetySensorsState} />
+			<RobotDetailSafetySystems systems={robotTwins.safetySystemsState} />
 		</Box>
 	);
 };

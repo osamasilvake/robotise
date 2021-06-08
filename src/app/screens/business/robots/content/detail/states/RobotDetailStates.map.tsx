@@ -17,7 +17,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.CURRENT',
-					value: current(batteryState.current),
+					value: current(batteryState.properties.current),
 					date: momentFormat3(batteryState.updatedAt),
 					icon: 'flash_auto'
 				}
@@ -26,7 +26,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.PERCENTAGE',
-					value: percentage(batteryState.percentage),
+					value: percentage(batteryState.properties.percentage),
 					date: momentFormat3(batteryState.updatedAt),
 					icon: 'battery_charging_full'
 				}
@@ -35,14 +35,14 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.TITLE',
-					value: powerSupplyHealth(batteryState.powerSupplyHealth),
+					value: powerSupplyHealth(batteryState.properties.powerSupplyHealth),
 					date: momentFormat3(batteryState.updatedAt),
 					icon: 'healing'
 				}
 			);
 		case 'batteryState.powerSupplyStatus':
 			if (batteryState) {
-				switch (batteryState.powerSupplyStatus) {
+				switch (batteryState.properties.powerSupplyStatus) {
 					case 'charging':
 						powerSupplyStatus.text =
 							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.CHARGING';
@@ -82,7 +82,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				batteryState && {
 					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.VOLTAGE',
-					value: voltage(batteryState.voltage),
+					value: voltage(batteryState.properties.voltage),
 					date: momentFormat3(batteryState.updatedAt),
 					icon: 'flash_on'
 				}
@@ -91,7 +91,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				dockingState && {
 					title: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.STATUS',
-					value: dockingState.isDocked
+					value: dockingState.properties.isDocked
 						? 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.DOCKED'
 						: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.UN_DOCKED',
 					date: momentFormat3(dockingState.updatedAt),
@@ -102,7 +102,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				joystickState && {
 					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.STATUS',
-					value: joystickState.isConnected
+					value: joystickState.properties.isConnected
 						? 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONNECTED'
 						: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.NOT_CONNECTED',
 					date: momentFormat3(joystickState.updatedAt),
@@ -113,7 +113,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			return (
 				activityState && {
 					title: 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.TITLE',
-					value: activity(activityState.latest),
+					value: activity(activityState.properties.latest),
 					date: momentFormat3(activityState.updatedAt),
 					icon: 'timer'
 				}

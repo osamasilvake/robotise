@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { RobotDetailSafetyInterface } from './RobotDetailSafety.interface';
 import RobotDetailSafetySensors from './RobotDetailSafetySensors';
-import RobotDetailSafetySystems from './RobotDetailSafetySystems';
+import RobotDetailSafetySystems from './RobotDetailSystems';
 
 const RobotDetailSafety: FC<RobotDetailSafetyInterface> = (props) => {
 	const { robotTwins } = props;

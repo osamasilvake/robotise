@@ -428,8 +428,9 @@
 					"REQUEST": "Request"
 				},
 				"STATES": {
+					"TITLE": "States",
 					"BATTERY": {
-						"TITLE": "Battery State",
+						"TITLE": "Battery:",
 						"ITEMS": {
 							"CURRENT": "Current",
 							"PERCENTAGE": "Percentage",
@@ -461,7 +462,7 @@
 						}
 					},
 					"DOCKING": {
-						"TITLE": "Docking State",
+						"TITLE": "Docking:",
 						"ITEMS": {
 							"STATUS": "Status",
 							"DOCKED": "Docked",
@@ -469,7 +470,7 @@
 						}
 					},
 					"JOYSTICK": {
-						"TITLE": "Joystick State",
+						"TITLE": "Joystick:",
 						"ITEMS": {
 							"STATUS": "Status",
 							"CONNECTED": "Connected",
@@ -477,7 +478,7 @@
 						}
 					},
 					"ACTIVITY": {
-						"TITLE": "Activity State",
+						"TITLE": "Activity:",
 						"ITEMS": {
 							"LATEST": {
 								"TITLE": "Latest",

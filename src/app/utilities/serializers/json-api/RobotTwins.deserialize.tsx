@@ -89,23 +89,31 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 							}
 						},
 					batteryState: state.status.batteryState && {
-						current: state.status.batteryState.current,
-						percentage: state.status.batteryState.percentage,
-						powerSupplyHealth: state.status.batteryState.powerSupplyHealth,
-						powerSupplyStatus: state.status.batteryState.powerSupplyStatus,
-						voltage: state.status.batteryState.voltage,
+						properties: {
+							current: state.status.batteryState.current,
+							percentage: state.status.batteryState.percentage,
+							powerSupplyHealth: state.status.batteryState.powerSupplyHealth,
+							powerSupplyStatus: state.status.batteryState.powerSupplyStatus,
+							voltage: state.status.batteryState.voltage
+						},
 						updatedAt: meta.status.batteryState.updatedAt
 					},
 					dockingState: meta.status.isDocked && {
-						isDocked: state.status.isDocked,
+						properties: {
+							isDocked: state.status.isDocked
+						},
 						updatedAt: meta.status.isDocked.updatedAt
 					},
 					joystickState: meta.status.isJoystickConnected && {
-						isConnected: state.status.isJoystickConnected,
+						properties: {
+							isConnected: state.status.isJoystickConnected
+						},
 						updatedAt: meta.status.isJoystickConnected.updatedAt
 					},
 					activityState: state && {
-						latest: state.activity,
+						properties: {
+							latest: state.activity
+						},
 						updatedAt: meta.activity?.updatedAt
 					},
 					safetySensorsState: state.status.safetySensors && {

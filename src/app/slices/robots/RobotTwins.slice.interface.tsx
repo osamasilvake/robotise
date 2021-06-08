@@ -80,26 +80,34 @@ export interface SRTContentCameraInterface {
 }
 
 export interface SRTContentBatteryStateInterface {
-	current: number;
-	percentage: number;
-	powerSupplyStatus: string;
-	powerSupplyHealth: string;
-	voltage: number;
+	properties: {
+		current: number;
+		percentage: number;
+		powerSupplyStatus: string;
+		powerSupplyHealth: string;
+		voltage: number;
+	};
 	updatedAt: Date;
 }
 
 export interface SRTContentDockingStateInterface {
-	isDocked: boolean;
+	properties: {
+		isDocked: boolean;
+	};
 	updatedAt: Date;
 }
 
 export interface SRTContentJoystickState {
-	isConnected: boolean;
+	properties: {
+		isConnected: boolean;
+	};
 	updatedAt: Date;
 }
 
 export interface SRTContentActivityState {
-	latest: string;
+	properties: {
+		latest: string;
+	};
 	updatedAt: Date;
 }
 

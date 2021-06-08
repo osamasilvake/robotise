@@ -108,9 +108,42 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 						latest: state.activity,
 						updatedAt: meta.activity?.updatedAt
 					},
-					safetySystemsState: {
-						backMutingActive: state.status.safetySystem.backMutingActive,
-						frontMutingActive: state.status.safetySystem.frontMutingActive,
+					safetySensorsState: state.status.safetySensors && {
+						properties: {
+							drawers: state.status.safetySensors.drawers,
+							fallProtectionBackLeft:
+								state.status.safetySensors.fallProtectionBackLeft,
+							fallProtectionBackRight:
+								state.status.safetySensors.fallProtectionBackRight,
+							fallProtectionFrontLeft:
+								state.status.safetySensors.fallProtectionFrontLeft,
+							fallProtectionFrontRight:
+								state.status.safetySensors.fallProtectionFrontRight,
+							lidarBottom: state.status.safetySensors.lidarBottom,
+							lidarTop: state.status.safetySensors.lidarTop,
+							magnetSensorLeft: state.status.safetySensors.magnetSensorLeft,
+							magnetSensorRight: state.status.safetySensors.magnetSensorRight,
+							safetyEdge: state.status.safetySensors.safetyEdge
+						},
+						updatedAt: meta.status.safetySensors.updatedAt
+					},
+					safetySystemsState: state.status.safetySystem && {
+						properties: {
+							backMutingActive: state.status.safetySystem.backMutingActive,
+							brakeReleasePressed: state.status.safetySystem.brakeReleasePressed,
+							brakeReleased: state.status.safetySystem.brakeReleased,
+							driveTorqueEnabled: state.status.safetySystem.driveTorqueEnabled,
+							estopSwitchReleased: state.status.safetySystem.estopSwitchReleased,
+							forceBrakeActive: state.status.safetySystem.forceBrakeActive,
+							forceStop0Active: state.status.safetySystem.forceStop0Active,
+							frontMutingActive: state.status.safetySystem.frontMutingActive,
+							noDriveStop: state.status.safetySystem.noDriveStop,
+							noStop0: state.status.safetySystem.noStop0,
+							noStop1: state.status.safetySystem.noStop1,
+							noStop2Trigger: state.status.safetySystem.noStop2Trigger,
+							stop0ResetRequired: state.status.safetySystem.stop0ResetRequired,
+							stop1ResetRequired: state.status.safetySystem.stop1ResetRequired
+						},
 						updatedAt: meta.status.safetySystem.updatedAt
 					}
 				};

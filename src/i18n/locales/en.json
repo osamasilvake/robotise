@@ -490,6 +490,151 @@
 							}
 						}
 					}
+				},
+				"SAFETY": {
+					"SENSORS": {
+						"TITLE": "Safety Sensors",
+						"TABLE": {
+							"VALUES": {
+								"drawers": {
+									"LABEL": "drawers",
+									"MSG_1": "All drawers are active",
+									"MSG_2": "All drawers are not active"
+								},
+								"fallProtectionBackLeft": {
+									"LABEL": "fall_protection_back_left",
+									"MSG_1": "Fall protection back left is enabled",
+									"MSG_2": "Fall protection back left is disabled"
+								},
+								"fallProtectionBackRight": {
+									"LABEL": "fall_protection_back_right",
+									"MSG_1": "Fall protection back right is enabled",
+									"MSG_2": "Fall protection back right is disabled"
+								},
+								"fallProtectionFrontLeft": {
+									"LABEL": "fall_protection_front_left",
+									"MSG_1": "Fall protection front left is enabled",
+									"MSG_2": "Fall protection front left is disabled"
+								},
+								"fallProtectionFrontRight": {
+									"LABEL": "fall_protection_front_right",
+									"MSG_1": "Fall protection front right is enabled",
+									"MSG_2": "Fall protection front right is disabled"
+								},
+								"lidarBottom": {
+									"LABEL": "lidar_bottom",
+									"MSG_1": "Lidar bottom is active",
+									"MSG_2": "Lidar bottom is disabled"
+								},
+								"lidarTop": {
+									"LABEL": "lidar_top",
+									"MSG_1": "Lidar top is active",
+									"MSG_2": "Lidar top is disabled"
+								},
+								"magnetSensorLeft": {
+									"LABEL": "magnet_sensor_left",
+									"MSG_1": "Magnet sensor left is active",
+									"MSG_2": "Magnet sensor left is disabled"
+								},
+								"magnetSensorRight": {
+									"LABEL": "magnet_sensor_right",
+									"MSG_1": "Magnet sensor right is active",
+									"MSG_2": "Magnet sensor right is disabled"
+								},
+								"safetyEdge": {
+									"LABEL": "safety_edge",
+									"MSG_1": "Safety edge is active",
+									"MSG_2": "Safety edge is disabled"
+								}								
+							}
+						}
+					},
+					"SYSTEMS": {
+						"TITLE": "Safety Systems",
+						"TABLE": {
+							"VALUES": {
+								"backMutingActive": {
+									"LABEL": "back_muting_active",
+									"MSG_1": "Back muting is active",
+									"MSG_2": "Back muting is disabled"
+								},
+								"brakeReleasePressed": {
+									"LABEL": "brake_release_pressed",
+									"MSG_1": "White button is pressed while emergency is active",
+									"MSG_2": "Ok"
+								},
+								"brakeReleased": {
+									"LABEL": "brake_released",
+									"MSG_1": "Brakes are released",
+									"MSG_2": "Brakes are active"
+								},
+								"driveTorqueEnabled": {
+									"LABEL": "drive_torque_enabled",
+									"MSG_1": "Drive torque is enabled",
+									"MSG_2": "Drive torque is disabled"
+								},
+								"estopSwitchReleased": {
+									"LABEL": "estop_switch_released",
+									"MSG_1": "Emergency button is not pressed",
+									"MSG_2": "Emergency button is pressed"
+								},
+								"forceBrakeActive": {
+									"LABEL": "force_brake_active",
+									"MSG_1": "Internal",
+									"MSG_2": "Internal"
+								},
+								"forceStop0Active": {
+									"LABEL": "force_stop0_active",
+									"MSG_1": "Docking activated brakes",
+									"MSG_2": "Ok"
+								},
+								"frontMutingActive": {
+									"LABEL": "front_muting_active",
+									"MSG_1": "Front muting is active",
+									"MSG_2": "Front muting is disabled"
+								},
+								"noDriveStop": {
+									"LABEL": "no_drive_stop",
+									"MSG_1": "Safety system is ok",
+									"MSG_2": "Safety System is triggered"
+								},
+								"noStop0": {
+									"LABEL": "no_stop0",
+									"MSG_1": "Ok",
+									"MSG_2": "Motion monitoring error"
+								},
+								"noStop1": {
+									"LABEL": "no_stop1",
+									"MSG_1": "Emergency stop and magnet sensor are ok",
+									"MSG_2": "Emergency stop or magnet sensor triggered"
+								},
+								"noStop2Trigger": {
+									"LABEL": "no_stop2_trigger",
+									"MSG_1": "Safety sensors are ok",
+									"MSG_2": "Safety sensor is triggered"
+								},
+								"stop0ResetRequired": {
+									"LABEL": "stop0_reset_required",
+									"MSG_1": "Reset required (Blue button should be pressed)",
+									"MSG_2": "Reset is not required"
+								},
+								"stop1ResetRequired": {
+									"LABEL": "stop1_reset_required",
+									"MSG_1": "Reset required (Blue button should be pressed)",
+									"MSG_2": "Reset is not required"
+								}
+							}
+						}
+					},
+					"COMMON": {
+						"TABLE": {
+							"COLUMNS": {
+								"PROTO": "Proto Field",
+								"TRUE": "True Message",
+								"FALSE": "False Message"
+							}
+						}
+					}
 				}
 			},
 			"INVENTORY": {

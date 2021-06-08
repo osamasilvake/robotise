@@ -103,9 +103,45 @@ export interface SRTContentActivityState {
 	updatedAt: Date;
 }
 
+export interface SRTContentSafetySensorsState {
+	properties: {
+		drawers: {
+			0: boolean;
+			1: boolean;
+			2: boolean;
+			3: boolean;
+			4: boolean;
+		}[];
+		fallProtectionBackLeft: boolean;
+		fallProtectionBackRight: boolean;
+		fallProtectionFrontLeft: boolean;
+		fallProtectionFrontRight: boolean;
+		lidarBottom: boolean;
+		lidarTop: boolean;
+		magnetSensorLeft: boolean;
+		magnetSensorRight: boolean;
+		safetyEdge: boolean;
+	};
+	updatedAt: Date;
+}
+
 export interface SRTContentSafetySystemsState {
-	backMutingActive: boolean;
-	frontMutingActive: boolean;
+	properties: {
+		backMutingActive: boolean;
+		brakeReleasePressed: boolean;
+		brakeReleased: boolean;
+		driveTorqueEnabled: boolean;
+		estopSwitchReleased: boolean;
+		forceBrakeActive: boolean;
+		forceStop0Active: boolean;
+		frontMutingActive: boolean;
+		noDriveStop: boolean;
+		noStop0: boolean;
+		noStop1: boolean;
+		noStop2Trigger: boolean;
+		stop0ResetRequired: boolean;
+		stop1ResetRequired: boolean;
+	};
 	updatedAt: Date;
 }
 
@@ -150,9 +186,39 @@ export interface IRobotTwin {
 				};
 				isDocked: boolean;
 				isJoystickConnected: boolean;
+				safetySensors: {
+					drawers: {
+						0: boolean;
+						1: boolean;
+						2: boolean;
+						3: boolean;
+						4: boolean;
+					}[];
+					fallProtectionBackLeft: boolean;
+					fallProtectionBackRight: boolean;
+					fallProtectionFrontLeft: boolean;
+					fallProtectionFrontRight: boolean;
+					lidarBottom: boolean;
+					lidarTop: boolean;
+					magnetSensorLeft: boolean;
+					magnetSensorRight: boolean;
+					safetyEdge: boolean;
+				};
 				safetySystem: {
 					backMutingActive: boolean;
+					brakeReleasePressed: boolean;
+					brakeReleased: boolean;
+					driveTorqueEnabled: boolean;
+					estopSwitchReleased: boolean;
+					forceBrakeActive: boolean;
+					forceStop0Active: boolean;
 					frontMutingActive: boolean;
+					noDriveStop: boolean;
+					noStop0: boolean;
+					noStop1: boolean;
+					noStop2Trigger: boolean;
+					stop0ResetRequired: boolean;
+					stop1ResetRequired: boolean;
 				};
 			};
 			activity: string;
@@ -195,6 +261,9 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 				isJoystickConnected: {
+					updatedAt: Date;
+				};
+				safetySensors: {
 					updatedAt: Date;
 				};
 				safetySystem: {

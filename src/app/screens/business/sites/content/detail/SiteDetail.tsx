@@ -53,14 +53,14 @@ const SiteDetail: FC = () => {
 	}
 
 	// empty
-	if (!sites.content) {
-		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
+	if (!site?.id) {
+		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return site ? (
+	return (
 		<Box className={classes.sBox}>
 			<SiteDetailGeneral site={site} />
 		</Box>
-	) : null;
+	);
 };
 export default SiteDetail;

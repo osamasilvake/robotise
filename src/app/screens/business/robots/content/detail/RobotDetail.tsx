@@ -77,8 +77,8 @@ const RobotDetail: FC = () => {
 	}
 
 	// empty
-	if (!robotTwins.content) {
-		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
+	if (!robotTwins.content.updatedAt) {
+		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
 	return (

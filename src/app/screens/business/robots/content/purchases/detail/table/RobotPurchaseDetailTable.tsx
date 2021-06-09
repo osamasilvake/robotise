@@ -94,8 +94,8 @@ const RobotPurchaseDetailTable: FC<RobotPurchaseDetailTableInterface> = (props) 
 								{t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.TOTAL')}
 							</Typography>
 						</TableCell>
-						<TableCell></TableCell>
-						<TableCell></TableCell>
+						<TableCell />
+						<TableCell />
 						<TableCell align="right">
 							<Typography variant="h6">
 								{`${currencyFormat(

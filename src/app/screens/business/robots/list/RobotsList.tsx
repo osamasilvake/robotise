@@ -43,7 +43,7 @@ const RobotsList: FC = () => {
 
 	// empty
 	if (!robotTwinsSummary.content.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
+		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
 	return <RobotsTable content={robotTwinsSummary.content} />;

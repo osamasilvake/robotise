@@ -78,7 +78,7 @@ const SiteProducts: FC = () => {
 				<SiteProductsActions topSpace />
 
 				{/* Empty */}
-				<PageEmpty message="EMPTY.MESSAGE"></PageEmpty>
+				<PageEmpty message="EMPTY.MESSAGE" />
 			</Box>
 		);
 	}

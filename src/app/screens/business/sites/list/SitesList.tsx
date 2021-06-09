@@ -57,7 +57,7 @@ const SitesList: FC = () => {
 
 	// empty
 	if (!sites.content.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
+		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
 	return <SitesTable content={sites.content} />;

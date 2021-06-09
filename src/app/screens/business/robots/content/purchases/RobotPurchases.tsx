@@ -173,7 +173,7 @@ const RobotPurchases: FC = () => {
 				<RobotPurchasesActions billed={billed} debug={debug} topSpace />
 
 				{/* Empty */}
-				<PageEmpty message="EMPTY.MESSAGE"></PageEmpty>
+				<PageEmpty message="EMPTY.MESSAGE" />
 			</Box>
 		);
 	}

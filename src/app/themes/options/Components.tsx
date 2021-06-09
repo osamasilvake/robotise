@@ -47,13 +47,13 @@ const OverridesCustom: Components = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					'& svg, span, p': {
-						color: AppConfigService.AppOptions.colors.c4
+						color: AppConfigService.AppOptions.colors.c7
 					}
 				},
 				'&.active': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					'& svg, span, p': {
-						color: AppConfigService.AppOptions.colors.c4
+						color: AppConfigService.AppOptions.colors.c7
 					}
 				}
 			},
@@ -126,11 +126,11 @@ const OverridesCustom: Components = {
 				color: AppConfigService.AppOptions.colors.c9,
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					color: AppConfigService.AppOptions.colors.c5
+					color: AppConfigService.AppOptions.colors.c7
 				},
 				'&.selected': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					color: AppConfigService.AppOptions.colors.c5,
+					color: AppConfigService.AppOptions.colors.c7,
 					cursor: 'default',
 					pointerEvents: 'none',
 					'&.Mui-disabled': {
@@ -140,7 +140,7 @@ const OverridesCustom: Components = {
 			},
 			contained: {
 				backgroundColor: AppConfigService.AppOptions.colors.c9,
-				color: AppConfigService.AppOptions.colors.c5,
+				color: AppConfigService.AppOptions.colors.c7,
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					opacity: 0.9
@@ -199,7 +199,7 @@ const OverridesCustom: Components = {
 		styleOverrides: {
 			sizeSmall: {
 				backgroundColor: AppConfigService.AppOptions.colors.c9,
-				color: AppConfigService.AppOptions.colors.c5,
+				color: AppConfigService.AppOptions.colors.c7,
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					opacity: 0.95

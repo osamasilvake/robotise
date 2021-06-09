@@ -40,6 +40,7 @@ export interface ISite {
 		holidaysExtra?: string[];
 	};
 	rooms: {
+		available: string[] | null;
 		whitelist: string[] | null;
 	};
 	phone?: {

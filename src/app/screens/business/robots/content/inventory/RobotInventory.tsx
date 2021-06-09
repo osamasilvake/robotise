@@ -105,7 +105,7 @@ const RobotInventory: FC = () => {
 
 	// empty
 	if (!inventory.content.drawers.length) {
-		return <PageEmpty message="EMPTY.MESSAGE"></PageEmpty>;
+		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
 	return (

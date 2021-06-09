@@ -1,29 +1,25 @@
 import {
-	Avatar,
 	Box,
 	Divider,
 	Drawer,
 	Icon,
-	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
 	ListItemText,
-	ListSubheader,
-	Tooltip
+	ListSubheader
 } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
 import clsx from 'clsx';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-import { AppConfigService } from '../../../services';
-import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
+import { generalSelector } from '../../../slices/general/General.slice';
 import { robotTwinsSummarySelector } from '../../../slices/robots/RobotTwinsSummary.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
+import AppBar from '../app-bar/AppBar';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
@@ -33,25 +29,8 @@ const DrawerCustom: FC = () => {
 	const { t } = useTranslation(['SIDEBAR', 'TOOLTIPS']);
 	const classes = DrawerStyles();
 
-	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
-
-	useEffect(() => {
-		const mobileScreen = AppConfigService.AppOptions.styles.responsive.mobile;
-		const handleSmallDevices = () => {
-			if (window && window.innerWidth <= mobileScreen && general.openDrawer) {
-				// dispatch: set drawer state
-				dispatch(GeneralSetDrawerState(!general.openDrawer));
-			}
-		};
-		window.addEventListener('load', handleSmallDevices, { once: true });
-	}, [dispatch, general.openDrawer]);
-
-	/**
-	 * dispatch: set drawer state
-	 */
-	const handleDrawerClose = () => dispatch(GeneralSetDrawerState(false));
 
 	return (
 		<Drawer
@@ -66,22 +45,8 @@ const DrawerCustom: FC = () => {
 					[classes.sClose]: !general.openDrawer
 				})
 			}}>
-			{/* Logo & Close Drawer */}
-			<Box className={classes.sLogoAndCloseIcon}>
-				<Link to={AppConfigService.AppRoutes.HOME}>
-					<Avatar
-						variant="square"
-						className={classes.sLogo}
-						src={AppConfigService.AppImageURLs.logo.name}
-						alt={AppConfigService.envCompanyName}
-					/>
-				</Link>
-				<Tooltip title={String(t('TOOLTIPS:DRAWER.CLOSE'))}>
-					<IconButton onClick={handleDrawerClose}>
-						<CloseIcon />
-					</IconButton>
-				</Tooltip>
-			</Box>
+			{/* Appbar */}
+			<AppBar />
 
 			{/* List */}
 			<Box className={classes.sListRoot}>

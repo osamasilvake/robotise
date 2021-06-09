@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 import Loader from '../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../components/common/loader/Loader.enum';
-import AppBar from '../../components/frame/app-bar/AppBar';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
 import { generalSelector } from '../../slices/general/General.slice';
@@ -18,16 +17,13 @@ const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPage
 
 	return (
 		<Box>
-			{/* App Bar */}
-			<AppBar />
-
 			{/* Drawer */}
 			<Drawer />
 
 			{/* Content */}
 			<Box
 				component="main"
-				className={clsx(classes.sContent, {
+				className={clsx({
 					[classes.sContentOpen]: general.openDrawer,
 					[classes.sContentClose]: !general.openDrawer
 				})}>

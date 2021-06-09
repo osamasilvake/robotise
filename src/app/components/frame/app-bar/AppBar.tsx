@@ -1,5 +1,4 @@
 import {
-	AppBar,
 	Avatar,
 	Box,
 	IconButton,
@@ -8,13 +7,12 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Popover,
-	Toolbar,
 	Tooltip,
 	Typography
 } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC, MouseEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -40,10 +38,29 @@ const AppBarCustom: FC = () => {
 
 	const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
+	const mobileScreen = AppConfigService.AppOptions.styles.responsive.mobile;
+
 	useEffect(() => {
 		// change language
 		i18next.changeLanguage(general.currentLanguage);
 	}, [general.currentLanguage]);
+
+	useEffect(() => {
+		const handleSmallDevices = () => {
+			if (window && window.innerWidth <= mobileScreen && general.openDrawer) {
+				// dispatch: set drawer state
+				dispatch(GeneralSetDrawerState(!general.openDrawer));
+			}
+		};
+		window.addEventListener('load', handleSmallDevices, { once: true });
+	}, [dispatch, general.openDrawer, mobileScreen]);
+
+	/**
+	 * dispatch: set drawer state
+	 * @param status
+	 * @returns
+	 */
+	const handleDrawer = (status: boolean) => () => dispatch(GeneralSetDrawerState(status));
 
 	/**
 	 * handle menu open
@@ -58,105 +75,104 @@ const AppBarCustom: FC = () => {
 	const handleMenuClose = () => setAnchorEl(null);
 
 	/**
-	 * dispatch: set drawer state
-	 */
-	const handleDrawerOpen = () => dispatch(GeneralSetDrawerState(true));
-
-	/**
 	 * dispatch: logout
 	 */
 	const handleLogout = () => dispatch(AuthLogout());
 
 	return (
-		<AppBar
-			position="fixed"
-			elevation={0}
-			color="inherit"
-			className={clsx(classes.sAppBar, {
-				[classes.sOpen]: general.openDrawer
-			})}>
-			<Toolbar className={classes.sToolbar} disableGutters>
-				{/* Logo & Open Drawer */}
-				{!general.openDrawer && (
+		<Box className={classes.sLogoAndCloseIcon}>
+			{/* Opened Drawer */}
+			{general.openDrawer && (
+				<>
 					<Box>
-						<Link to={AppConfigService.AppRoutes.HOME} className={classes.sLogo}>
+						{/* Account */}
+						<IconButton onClick={handleMenuOpen}>
+							<Badge type={BadgeTypeEnum.DOT}>
+								<Avatar
+									src={AppConfigService.AppImageURLs.avatar.path}
+									alt={AppConfigService.AppImageURLs.avatar.name}
+								/>
+							</Badge>
+							<Box className={classes.sAccountDetail}>
+								<Typography variant="subtitle2">
+									{auth.user?.data.display_name}
+								</Typography>
+								<Typography
+									variant="body2"
+									color="textSecondary"
+									className={classes.sAccountDetailSubtitle}>
+									{auth.user?.data.role}
+								</Typography>
+							</Box>
+						</IconButton>
+						<Popover
+							elevation={2}
+							anchorEl={anchorEl}
+							open={Boolean(anchorEl)}
+							onClose={handleMenuClose}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'center'
+							}}
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'center'
+							}}>
+							<List disablePadding>
+								{/* User Info */}
+								<ListItem divider>
+									<ListItemText
+										primary={auth.user?.data.display_name}
+										secondary={auth.user?.data.email}
+									/>
+								</ListItem>
+
+								{/* Light / Dark Mode */}
+								<ThemePalette />
+
+								{/* Language */}
+								<Language />
+
+								{/* Logout */}
+								<ListItem button onClick={handleLogout}>
+									<ListItemIcon>
+										<PowerSettingsNewIcon />
+									</ListItemIcon>
+									<ListItemText primary={t('LOGOUT')} />
+								</ListItem>
+							</List>
+						</Popover>
+					</Box>
+					<Tooltip title={String(t('TOOLTIPS:DRAWER.CLOSE'))}>
+						<IconButton onClick={handleDrawer(false)}>
+							<CloseIcon />
+						</IconButton>
+					</Tooltip>
+				</>
+			)}
+
+			{/* Closed Drawer */}
+			{!general.openDrawer && (
+				<>
+					{window && window.innerWidth <= mobileScreen && (
+						<Link to={AppConfigService.AppRoutes.HOME}>
 							<Avatar
+								className={classes.sLogoIcon}
 								src={AppConfigService.AppImageURLs.logo.icon}
-								alt={AppConfigService.AppImageURLs.logo.name}
+								alt={AppConfigService.envCompanyName}
 							/>
 						</Link>
-
-						<Tooltip
-							className={classes.sOpenIcon}
-							title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
-							<IconButton hidden edge="start" onClick={handleDrawerOpen}>
+					)}
+					{window && window.innerWidth > mobileScreen && (
+						<Tooltip title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
+							<IconButton onClick={handleDrawer(true)}>
 								<MenuIcon />
 							</IconButton>
 						</Tooltip>
-					</Box>
-				)}
-
-				<Box className={classes.sOptions}>
-					{/* Account */}
-					<IconButton edge="end" onClick={handleMenuOpen}>
-						<Box className={classes.sAccountDetail}>
-							<Typography variant="subtitle2">
-								{auth.user?.data.display_name}
-							</Typography>
-							<Typography
-								variant="body2"
-								color="textSecondary"
-								className={classes.sAccountDetailSubtitle}>
-								{auth.user?.data.role}
-							</Typography>
-						</Box>
-						<Badge type={BadgeTypeEnum.DOT}>
-							<Avatar
-								src={AppConfigService.AppImageURLs.avatar.path}
-								alt={AppConfigService.AppImageURLs.avatar.name}
-							/>
-						</Badge>
-					</IconButton>
-					<Popover
-						elevation={2}
-						anchorEl={anchorEl}
-						open={Boolean(anchorEl)}
-						onClose={handleMenuClose}
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'center'
-						}}
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'center'
-						}}>
-						<List disablePadding>
-							{/* User Info */}
-							<ListItem divider>
-								<ListItemText
-									primary={auth.user?.data.display_name}
-									secondary={auth.user?.data.email}
-								/>
-							</ListItem>
-
-							{/* Light / Dark Mode */}
-							<ThemePalette />
-
-							{/* Language */}
-							<Language />
-
-							{/* Logout */}
-							<ListItem button onClick={handleLogout}>
-								<ListItemIcon>
-									<PowerSettingsNewIcon />
-								</ListItemIcon>
-								<ListItemText primary={t('LOGOUT')} />
-							</ListItem>
-						</List>
-					</Popover>
-				</Box>
-			</Toolbar>
-		</AppBar>
+					)}
+				</>
+			)}
+		</Box>
 	);
 };
 export default AppBarCustom;

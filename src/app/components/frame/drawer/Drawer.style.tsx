@@ -24,16 +24,6 @@ export const DrawerStyles = makeStyles((theme: Theme) => ({
 		}),
 		width: theme.spacing(7)
 	},
-	sLogoAndCloseIcon: {
-		alignItems: 'center',
-		display: 'flex',
-		justifyContent: 'space-between',
-		minHeight: theme.spacing(8),
-		paddingLeft: theme.spacing(2)
-	},
-	sLogo: {
-		width: theme.spacing(15)
-	},
 	sListRoot: {
 		height: '100%',
 		overflowX: 'hidden',

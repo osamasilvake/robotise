@@ -17,16 +17,16 @@ const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props
 	const [result, setResult] = useState<SiteRoomsBlacklistContentGroupAccInterface | null>(null);
 
 	const allRooms = siteSingle.rooms && siteSingle.rooms.available;
-	// const allWhitelist = site.rooms && site.rooms.whitelist;
+	const allWhitelist = siteSingle.rooms && siteSingle.rooms.whitelist;
 
 	useEffect(() => {
-		/**
-		 * group rooms by floor
-		 * @param rooms
-		 * @returns
-		 */
-		const groupAllRooms = (rooms: string[]) =>
-			rooms.reduce((acc: SiteRoomsBlacklistContentGroupAccInterface, val) => {
+		// sort rooms
+		const sortedRooms = allRooms?.concat().sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
+
+		// group rooms by floor
+		const groupedRooms =
+			sortedRooms &&
+			sortedRooms.reduce((acc: SiteRoomsBlacklistContentGroupAccInterface, val) => {
 				const letters = val.length > 3 ? val.substring(0, val.length - 2) : val.charAt(0);
 				if (!acc[letters]) {
 					acc[letters] = [val];
@@ -36,27 +36,40 @@ const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props
 				return acc;
 			}, {});
 
-		// sorted rooms
-		const sortedRooms = allRooms?.concat().sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
-
 		// set result
-		sortedRooms && setResult(groupAllRooms(sortedRooms));
+		groupedRooms && setResult(groupedRooms);
 	}, [allRooms]);
 
 	return (
 		<>
 			{result &&
-				Object.keys(result).map((key) => (
+				Object.keys(result).map((key, idx) => (
 					<Box key={key}>
+						{/* Floor */}
+						<Typography variant="h2" className={classes.sFloorLabel}>
+							Floor {key}
+						</Typography>
+
+						{/* Grid */}
 						{result[key] && result[key].length > 0 && (
-							<Grid container spacing={1}>
+							<Grid
+								container
+								spacing={1}
+								className={clsx({
+									[classes.sGridContainer]: Object.keys(result).length - 1 !== idx
+								})}>
 								{result[key].map((room) => (
 									<Grid item xs={12} sm={6} md={3} lg={2} key={room}>
 										<Card square elevation={1}>
 											<CardContent
-												className={clsx(cardClasses.sCardContent2, {
-													[classes.sAvailable]: true
-												})}>
+												className={clsx(
+													cardClasses.sCardContent2,
+													classes.sActive,
+													{
+														[classes.sInactive]:
+															!allWhitelist?.includes(room)
+													}
+												)}>
 												<Typography variant="body2">Room</Typography>
 												<Typography variant="h4">{room}</Typography>
 											</CardContent>

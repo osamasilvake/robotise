@@ -342,7 +342,7 @@
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
 					"TITLE": "Accept Orders",
-					"EXCERPT": "Allow robots to accept customers orders.",
+					"EXCERPT": "Allow robots to accept orders.",
 					"ACTIVE": "Active"
 				}
 			}

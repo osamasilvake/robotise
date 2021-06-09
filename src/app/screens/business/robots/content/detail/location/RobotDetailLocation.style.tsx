@@ -30,7 +30,7 @@ export const RobotDetailLocationStyles = makeStyles((theme: Theme) => ({
 		position: 'absolute',
 		right: 0,
 		transition: 'top 1s ease 0s',
-		transitionProperty: 'left, top',
+		transitionProperty: 'left, bottom',
 		width: theme.typography.pxToRem(16)
 	},
 	sLocationInfoLabel: {

@@ -1,8 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { AppConfigService } from '../../../services';
-
-const drawerWidth = AppConfigService.AppOptions.components.drawer.width;
 export const AppBarStyles = makeStyles((theme: Theme) => ({
 	sLogoAndCloseIcon: {
 		alignItems: 'center',

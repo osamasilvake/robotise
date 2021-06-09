@@ -22,7 +22,7 @@ export const useForm = <UseFormEntity,>(
 	 * handle change: input
 	 * @param event
 	 */
-	const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+	const handleChangeInput = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name } = event.target;
 		const value = event.target.value;
 

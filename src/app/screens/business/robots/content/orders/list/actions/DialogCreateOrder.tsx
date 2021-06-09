@@ -20,7 +20,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppConfigService } from '../../../../../../../services';
 import {
 	OrderCreate,
 	ordersSelector,
@@ -50,13 +49,13 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
+	const [location, setLocation] = useState(0);
 	const [position, setPosition] = useState('');
 
 	const params: RobotParamsInterface = useParams();
 	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
 	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.site.id;
 	const acceptOrders = siteId && sites.content?.dataById[siteId].acceptOrders;
-	const regexOnlyNumbers = AppConfigService.AppOptions.regex.onlyNumbers;
 
 	const {
 		handleChangeInput,
@@ -119,8 +118,12 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								type="number"
 								id="location"
 								name="location"
+								value={location}
 								error={!!errors?.location}
-								onChange={handleChangeInput}
+								onChange={(e) => {
+									setLocation(Number(e.target.value));
+									handleChangeInput(e);
+								}}
 								onBlur={handleBlur}
 								label={t(`${common}.FIELDS.LOCATION.LABEL`)}
 								placeholder={t(`${common}.FIELDS.LOCATION.PLACEHOLDER`)}
@@ -166,21 +169,23 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							name="mode"
 							value={values.mode}
 							onChange={(e) => {
+								setLocation(0);
 								setPosition('');
 								handleChangeSelect(e);
 							}}
 							onBlur={handleBlur}
 							label={t(`${common}.FIELDS.MODE.LABEL`)}>
-							{orderModes().map(
-								(mode) =>
-									(mode !== RobotOrderModeTypeEnum.SERVICE_POSITION ||
-										(mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
-											site.servicePositions.content?.data.length)) && (
-										<MenuItem key={mode} value={mode}>
-											{t(`ROBOTS:CONTENT.ORDERS.COMMON.MODE.${mode}`)}
-										</MenuItem>
-									)
-							)}
+							{orderModes().map((mode) => (
+								<MenuItem
+									key={mode}
+									value={mode}
+									disabled={
+										mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
+										site.servicePositions.content?.data.length === 0
+									}>
+									{t(`ROBOTS:CONTENT.ORDERS.COMMON.MODE.${mode}`)}
+								</MenuItem>
+							))}
 						</Select>
 					</FormControl>
 
@@ -208,12 +213,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						type="submit"
 						disabled={
 							orders.updating ||
-							!values.location ||
 							(values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
 								!position) ||
-							(values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION
-								? regexOnlyNumbers.test(values.location)
-								: !regexOnlyNumbers.test(values.location))
+							(values.mode !== RobotOrderModeTypeEnum.SERVICE_POSITION &&
+								location === 0)
 						}
 						endIcon={orders.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CREATE')}

@@ -1,7 +1,7 @@
 import { ISite } from '../../../../../slices/sites/Sites.slice.interface';
 
 export interface SiteRoomsBlacklistContentInterface {
-	site: ISite;
+	siteSingle: ISite;
 }
 
 export interface SiteRoomsBlacklistContentGroupAccInterface {

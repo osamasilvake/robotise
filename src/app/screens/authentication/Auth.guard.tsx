@@ -24,7 +24,7 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 		/**
 		 * actions
 		 * 1. validate and refresh access_token
-		 * 2. load sites
+		 * 2. load and refresh sites
 		 * 3. load and refresh robot-twins summary
 		 */
 		const actions = () => {
@@ -32,7 +32,8 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 			auth?.user && dispatch(AuthRefreshToken(auth.user.exp));
 
 			// dispatch: fetch sites
-			!sites.content && dispatch(SitesFetchList());
+			(!sites.content || robotTwinsSummary.content) &&
+				dispatch(SitesFetchList(!!sites.content));
 
 			// dispatch: fetch robot twins summary
 			sites.content && dispatch(RobotTwinsSummaryFetchList(!!robotTwinsSummary.content));

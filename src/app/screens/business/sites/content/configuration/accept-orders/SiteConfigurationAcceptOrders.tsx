@@ -29,21 +29,21 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 	const dispatch = useDispatch();
 
 	const params: SiteParamsInterface = useParams();
-	const siteContent = sites.content?.dataById[params.site];
+	const siteSingle = sites.content?.dataById[params.site];
 	const siteId = params.site;
 
 	/**
 	 * handle accept orders
 	 */
 	const handleAcceptOrders = () => {
-		Promise.all([dispatch(SiteAcceptOrders(siteId, !siteContent?.acceptOrders))]).then(() => {
+		Promise.all([dispatch(SiteAcceptOrders(siteId, !siteSingle?.acceptOrders))]).then(() => {
 			const cSite = sites.content?.dataById[siteId];
 			if (cSite) {
 				// dispatch: update site
 				dispatch(
 					SiteUpdate({
 						...cSite,
-						acceptOrders: !siteContent?.acceptOrders
+						acceptOrders: !siteSingle?.acceptOrders
 					})
 				);
 			}
@@ -74,7 +74,7 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 						control={
 							<Switch
 								name="accept-orders"
-								checked={!!siteContent?.acceptOrders}
+								checked={!!siteSingle?.acceptOrders}
 								onChange={handleAcceptOrders}
 							/>
 						}

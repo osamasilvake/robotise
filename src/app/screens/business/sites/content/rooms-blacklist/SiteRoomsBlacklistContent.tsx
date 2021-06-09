@@ -10,40 +10,37 @@ import {
 import { SiteRoomsBlacklistStyles } from './SiteRoomsBlacklist.style';
 
 const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props) => {
-	const { site } = props;
+	const { siteSingle } = props;
 	const classes = SiteRoomsBlacklistStyles();
 	const cardClasses = CardStyles();
 
 	const [result, setResult] = useState<SiteRoomsBlacklistContentGroupAccInterface | null>(null);
 
-	const allRooms = site.rooms && site.rooms.available;
+	const allRooms = siteSingle.rooms && siteSingle.rooms.available;
 	// const allWhitelist = site.rooms && site.rooms.whitelist;
 
 	useEffect(() => {
-		if (allRooms) {
-			/**
-			 * group rooms by floor
-			 * @param rooms
-			 * @returns
-			 */
-			const groupAllRooms = (rooms: string[]) =>
-				rooms.reduce((acc: SiteRoomsBlacklistContentGroupAccInterface, val) => {
-					const letters =
-						val.length > 3 ? val.substring(0, val.length - 2) : val.charAt(0);
-					if (!acc[letters]) {
-						acc[letters] = [val];
-					} else {
-						acc[letters].push(val);
-					}
-					return acc;
-				}, {});
+		/**
+		 * group rooms by floor
+		 * @param rooms
+		 * @returns
+		 */
+		const groupAllRooms = (rooms: string[]) =>
+			rooms.reduce((acc: SiteRoomsBlacklistContentGroupAccInterface, val) => {
+				const letters = val.length > 3 ? val.substring(0, val.length - 2) : val.charAt(0);
+				if (!acc[letters]) {
+					acc[letters] = [val];
+				} else {
+					acc[letters].push(val);
+				}
+				return acc;
+			}, {});
 
-			// sorted rooms
-			const sortedRooms = allRooms.concat().sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
+		// sorted rooms
+		const sortedRooms = allRooms?.concat().sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
 
-			// set result
-			setResult(sortedRooms && groupAllRooms(sortedRooms));
-		}
+		// set result
+		sortedRooms && setResult(groupAllRooms(sortedRooms));
 	}, [allRooms]);
 
 	return (

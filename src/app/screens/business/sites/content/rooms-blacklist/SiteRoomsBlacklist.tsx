@@ -18,7 +18,7 @@ const SiteRoomsBlacklist: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const site = sites.content?.dataById[params.site];
+	const siteSingle = sites.content?.dataById[params.site];
 
 	// loader
 	if (sites.loader) {
@@ -36,13 +36,13 @@ const SiteRoomsBlacklist: FC = () => {
 	}
 
 	// empty
-	if (!site?.id || !site?.rooms.available) {
+	if (!siteSingle?.id || !siteSingle?.rooms.available) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
 	return (
 		<Box className={classes.sBox}>
-			<SiteRoomsBlacklistContent site={site} />
+			<SiteRoomsBlacklistContent siteSingle={siteSingle} />
 		</Box>
 	);
 };

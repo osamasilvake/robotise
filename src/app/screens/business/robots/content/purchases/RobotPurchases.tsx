@@ -17,7 +17,7 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotPurchasesActions from './list/actions/RobotPurchasesActions';
 import RobotPurchasesTable from './list/table/RobotPurchasesTable';
-import { RobotPurchasesFetchListInterface } from './list/table/RobotPurchasesTable.interface';
+import { RobotPurchasesFetchListPayloadInterface } from './RobotPurchases.interface';
 import { RobotPurchasesStyles } from './RobotPurchases.style';
 
 const RobotPurchases: FC = () => {
@@ -47,7 +47,7 @@ const RobotPurchases: FC = () => {
 	const cRobotId = params.robot;
 
 	useEffect(() => {
-		const payload: RobotPurchasesFetchListInterface = {
+		const payload: RobotPurchasesFetchListPayloadInterface = {
 			robotId: cRobotId,
 			page,
 			rowsPerPage,

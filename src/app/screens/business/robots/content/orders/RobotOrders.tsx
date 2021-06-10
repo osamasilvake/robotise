@@ -14,7 +14,7 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotOrdersActions from './list/actions/RobotOrdersActions';
 import RobotOrdersTable from './list/table/RobotOrdersTable';
-import { RobotOrdersFetchListInterface } from './RobotOrders.interface';
+import { RobotOrdersFetchListPayloadInterface } from './RobotOrders.interface';
 import { RobotOrdersStyles } from './RobotOrders.style';
 
 const RobotOrders: FC = () => {
@@ -44,7 +44,7 @@ const RobotOrders: FC = () => {
 	const cRobotId = params.robot;
 
 	useEffect(() => {
-		const payload: RobotOrdersFetchListInterface = {
+		const payload: RobotOrdersFetchListPayloadInterface = {
 			robotId: cRobotId,
 			page,
 			rowsPerPage,

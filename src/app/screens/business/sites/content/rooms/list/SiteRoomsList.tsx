@@ -4,13 +4,13 @@ import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CardStyles } from '../../../../../../utilities/styles/Card.style';
-import { SiteRoomsStyles } from '../SiteRooms.style';
 import { SiteRoomsListGroupAccInterface, SiteRoomsListInterface } from './SiteRoomsList.interface';
+import { SiteRoomsListStyles } from './SiteRoomsList.style';
 
 const SiteRoomsList: FC<SiteRoomsListInterface> = (props) => {
 	const { siteSingle } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteRoomsStyles();
+	const classes = SiteRoomsListStyles();
 	const cardClasses = CardStyles();
 
 	const [result, setResult] = useState<SiteRoomsListGroupAccInterface | null>(null);

@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { DialogCreateOrderPayloadInterface } from '../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
-import { RobotOrdersFetchListInterface } from '../../screens/business/robots/content/orders/RobotOrders.interface';
+import { RobotOrdersFetchListPayloadInterface } from '../../screens/business/robots/content/orders/RobotOrders.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
 import { deserializeOrder } from '../../utilities/serializers/json-api/Order.deserialize';
 import { deserializeOrders } from '../../utilities/serializers/json-api/Orders.deserialize';
@@ -79,7 +79,7 @@ export default dataSlice.reducer;
  * @returns
  */
 export const OrdersFetchList =
-	(payload: RobotOrdersFetchListInterface, refresh = false) =>
+	(payload: RobotOrdersFetchListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

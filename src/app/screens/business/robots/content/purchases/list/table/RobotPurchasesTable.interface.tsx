@@ -6,14 +6,6 @@ import {
 } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 
-export interface RobotPurchasesFetchListInterface {
-	robotId: string | undefined;
-	page: number;
-	rowsPerPage: number;
-	billed: boolean;
-	debug: boolean;
-}
-
 export interface RobotPurchasesTableInterface {
 	content: SPContentInterface | null;
 	page: number;

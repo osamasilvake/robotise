@@ -12,7 +12,7 @@ const appRoutes = {
 					MAIN: '/sites/:site/products',
 					DETAIL: '/sites/:site/products/:product'
 				},
-				ROOMS_BLACKLIST: '/sites/:site/rooms-blacklist',
+				ROOMS: '/sites/:site/rooms',
 				CONFIGURATION: '/sites/:site/configuration'
 			},
 			ROBOTS: {

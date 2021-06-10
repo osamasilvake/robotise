@@ -37,7 +37,7 @@ const sitesRoutes: RouteInterface[] = [
 	{
 		component: Site,
 		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.ROOMS_BLACKLIST
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.ROOMS
 	},
 	{
 		component: Site,

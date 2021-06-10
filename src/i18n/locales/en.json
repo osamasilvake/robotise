@@ -245,7 +245,7 @@
 			"TABS": {
 				"DETAIL": "DETAIL",
 				"PRODUCTS": "PRODUCTS",
-				"ROOM_BLACKLIST": "ROOMS BLACKLIST",
+				"ROOMS": "ROOMS",
 				"CONFIGURATION": "CONFIGURATION"
 			},
 			"DETAIL": {
@@ -337,6 +337,12 @@
 							"DELETE": "Delete"
 						}
 					}
+				}
+			},
+			"ROOMS": {
+				"LIST": {
+					"FLOOR": "Floor",
+					"ROOM": "Room"
 				}
 			},
 			"CONFIGURATION": {

@@ -8,7 +8,7 @@ import sitesRoutes from '../Sites.routes';
 import SiteConfiguration from './configuration/SiteConfiguration';
 import SiteDetail from './detail/SiteDetail';
 import SiteProducts from './products/SiteProducts';
-import SiteRoomsBlacklist from './rooms-blacklist/SiteRoomsBlacklist';
+import SiteRooms from './rooms/SiteRooms';
 
 const SiteContent: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -44,7 +44,7 @@ const SiteContent: FC = () => {
 			<Tabs value={value} onChange={handleTabChange} variant="scrollable" textColor="primary">
 				<Tab label={t('CONTENT.TABS.DETAIL')} />
 				<Tab label={t('CONTENT.TABS.PRODUCTS')} />
-				<Tab label={t('CONTENT.TABS.ROOM_BLACKLIST')} />
+				<Tab label={t('CONTENT.TABS.ROOMS')} />
 				<Tab label={t('CONTENT.TABS.CONFIGURATION')} />
 			</Tabs>
 
@@ -56,8 +56,8 @@ const SiteContent: FC = () => {
 				{/* Products */}
 				{value === 1 && <SiteProducts />}
 
-				{/* Rooms Blacklist */}
-				{value === 2 && <SiteRoomsBlacklist />}
+				{/* Rooms */}
+				{value === 2 && <SiteRooms />}
 
 				{/* Configuration */}
 				{value === 3 && <SiteConfiguration />}

@@ -9,11 +9,11 @@ import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../components/content/page-error/PageError';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
-import { SiteRoomsBlacklistStyles } from './SiteRoomsBlacklist.style';
-import SiteRoomsBlacklistContent from './SiteRoomsBlacklistContent';
+import SiteRoomsContent from './list/SiteRoomsList';
+import { SiteRoomsStyles } from './SiteRooms.style';
 
-const SiteRoomsBlacklist: FC = () => {
-	const classes = SiteRoomsBlacklistStyles();
+const SiteRooms: FC = () => {
+	const classes = SiteRoomsStyles();
 
 	const sites = useSelector(sitesSelector);
 
@@ -42,8 +42,8 @@ const SiteRoomsBlacklist: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			<SiteRoomsBlacklistContent siteSingle={siteSingle} />
+			<SiteRoomsContent siteSingle={siteSingle} />
 		</Box>
 	);
 };
-export default SiteRoomsBlacklist;
+export default SiteRooms;

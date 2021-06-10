@@ -1,20 +1,19 @@
 import { Box, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { CardStyles } from '../../../../../utilities/styles/Card.style';
-import {
-	SiteRoomsBlacklistContentGroupAccInterface,
-	SiteRoomsBlacklistContentInterface
-} from './SiteRoomsBlacklist.interface';
-import { SiteRoomsBlacklistStyles } from './SiteRoomsBlacklist.style';
+import { CardStyles } from '../../../../../../utilities/styles/Card.style';
+import { SiteRoomsStyles } from '../SiteRooms.style';
+import { SiteRoomsListGroupAccInterface, SiteRoomsListInterface } from './SiteRoomsList.interface';
 
-const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props) => {
+const SiteRoomsList: FC<SiteRoomsListInterface> = (props) => {
 	const { siteSingle } = props;
-	const classes = SiteRoomsBlacklistStyles();
+	const { t } = useTranslation('SITES');
+	const classes = SiteRoomsStyles();
 	const cardClasses = CardStyles();
 
-	const [result, setResult] = useState<SiteRoomsBlacklistContentGroupAccInterface | null>(null);
+	const [result, setResult] = useState<SiteRoomsListGroupAccInterface | null>(null);
 
 	const allRooms = siteSingle.rooms && siteSingle.rooms.available;
 	const allWhitelist = siteSingle.rooms && siteSingle.rooms.whitelist;
@@ -26,7 +25,7 @@ const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props
 		// group rooms by floor
 		const groupedRooms =
 			sortedRooms &&
-			sortedRooms.reduce((acc: SiteRoomsBlacklistContentGroupAccInterface, val) => {
+			sortedRooms.reduce((acc: SiteRoomsListGroupAccInterface, val) => {
 				const letters = val.length > 3 ? val.substring(0, val.length - 2) : val.charAt(0);
 				if (!acc[letters]) {
 					acc[letters] = [val];
@@ -47,7 +46,7 @@ const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props
 					<Box key={key}>
 						{/* Floor */}
 						<Typography variant="h2" className={classes.sFloorLabel}>
-							Floor {key}
+							{t('CONTENT.ROOMS.LIST.FLOOR')} {key}
 						</Typography>
 
 						{/* Grid */}
@@ -70,7 +69,9 @@ const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props
 															!allWhitelist?.includes(room)
 													}
 												)}>
-												<Typography variant="body2">Room</Typography>
+												<Typography variant="body2">
+													{t('CONTENT.ROOMS.LIST.ROOM')}
+												</Typography>
 												<Typography variant="h4">{room}</Typography>
 											</CardContent>
 										</Card>
@@ -83,4 +84,4 @@ const SiteRoomsBlacklistContent: FC<SiteRoomsBlacklistContentInterface> = (props
 		</>
 	);
 };
-export default SiteRoomsBlacklistContent;
+export default SiteRoomsList;

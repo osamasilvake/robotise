@@ -99,6 +99,27 @@ class SitesService {
 	};
 
 	/**
+	 * update room state
+	 * @param siteId
+	 * @param whitelist
+	 * @returns
+	 */
+	siteUpdateRoomState = (siteId: string, whitelist: string[]) => {
+		const url = AppConfigService.AppServices.SITE.SINGLE.replace(':siteId', siteId);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				id: siteId,
+				attributes: {
+					rooms: {
+						whitelist
+					}
+				}
+			}
+		});
+	};
+
+	/**
 	 * accept orders
 	 * @param siteId
 	 * @param acceptOrders

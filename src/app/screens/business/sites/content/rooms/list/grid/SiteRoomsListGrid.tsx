@@ -1,8 +1,19 @@
-import { Box, Card, CardContent, Grid, Typography } from '@material-ui/core';
+import {
+	Box,
+	Card,
+	CardContent,
+	Checkbox,
+	FormControlLabel,
+	Grid,
+	Typography
+} from '@material-ui/core';
 import clsx from 'clsx';
-import { FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
+import { RoomUpdateState } from '../../../../../../../slices/rooms/Rooms.slice';
+import { SiteUpdate } from '../../../../../../../slices/sites/Sites.slice';
 import { CardStyles } from '../../../../../../../utilities/styles/Card.style';
 import {
 	SiteRoomsListGridGroupAccInterface,
@@ -16,10 +27,12 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 	const classes = SiteRoomsListGridStyles();
 	const cardClasses = CardStyles();
 
+	const dispatch = useDispatch();
+
 	const [result, setResult] = useState<SiteRoomsListGridGroupAccInterface | null>(null);
 
-	const allRooms = siteSingle.rooms && siteSingle.rooms.available;
-	const allWhitelist = siteSingle.rooms && siteSingle.rooms.whitelist;
+	const allRooms = siteSingle.rooms.available;
+	const allWhitelist = siteSingle.rooms.whitelist;
 
 	useEffect(() => {
 		const allBlacklist = allRooms?.filter((r) => !allWhitelist?.includes(r));
@@ -29,11 +42,11 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 		if (!active && !inactive) {
 			rooms = allRooms;
 		} else if (active && inactive) {
-			rooms = [...(allWhitelist || []), ...(allBlacklist || [])];
+			rooms = [...allWhitelist, ...allBlacklist];
 		} else if (active) {
 			rooms = allWhitelist;
 		} else {
-			rooms = allBlacklist || [];
+			rooms = allBlacklist;
 		}
 
 		// sort rooms
@@ -55,6 +68,33 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 		// set result
 		groupedRooms && setResult(groupedRooms);
 	}, [allRooms, allWhitelist, active, inactive]);
+
+	/**
+	 * handle room toggle
+	 * @param room
+	 * @returns
+	 */
+	const handleRoomToggle = (room: string) => (event: ChangeEvent<HTMLInputElement>) => {
+		const whitelist = event.target.checked
+			? allWhitelist.filter((r) => r !== room)
+			: [...allWhitelist, room];
+
+		// dispatch: update room
+		if (siteSingle?.id) {
+			Promise.all([dispatch(RoomUpdateState(siteSingle.id, whitelist))]).then(() => {
+				// dispatch: update site
+				dispatch(
+					SiteUpdate({
+						...siteSingle,
+						rooms: {
+							...siteSingle.rooms,
+							whitelist
+						}
+					})
+				);
+			});
+		}
+	};
 
 	return (
 		<>
@@ -79,6 +119,7 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 										<Card square elevation={1}>
 											<CardContent
 												className={clsx(
+													classes.sCardContent,
 													cardClasses.sCardContent2,
 													classes.sActive,
 													{
@@ -86,10 +127,30 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 															!allWhitelist?.includes(room)
 													}
 												)}>
-												<Typography variant="body2">
-													{t('CONTENT.ROOMS.LIST.GRID.ROOM')}
-												</Typography>
-												<Typography variant="h4">{room}</Typography>
+												<Box className={classes.sToggle}>
+													<FormControlLabel
+														control={
+															<Checkbox
+																color="primary"
+																className={classes.sToggleCheckbox}
+																name="toggle"
+																checked={
+																	!allWhitelist?.includes(room)
+																}
+																onChange={handleRoomToggle(room)}
+															/>
+														}
+														label={t('CONTENT.ROOMS.LIST.GRID.BLOCKED')}
+														labelPlacement="start"
+													/>
+												</Box>
+
+												<Box>
+													<Typography variant="body2">
+														{t('CONTENT.ROOMS.LIST.GRID.ROOM')}
+													</Typography>
+													<Typography variant="h4">{room}</Typography>
+												</Box>
 											</CardContent>
 										</Card>
 									</Grid>

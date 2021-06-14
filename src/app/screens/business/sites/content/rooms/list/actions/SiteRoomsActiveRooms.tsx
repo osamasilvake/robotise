@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { SiteRoomsUpdateFilters, siteSelector } from '../../../../../../../slices/sites/Site.slice';
+import { roomsSelector, RoomUpdateFilters } from '../../../../../../../slices/rooms/Rooms.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import {
@@ -20,22 +20,21 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
-	const site = useSelector(siteSelector);
+	const rooms = useSelector(roomsSelector);
 
 	const params: SiteParamsInterface = useParams();
 	const siteSingle = sites.content?.dataById[params.site];
 
 	/**
-	 * toggle active rooms
+	 * toggle room state
 	 */
 	const toggleRoomState = () => {
 		// dispatch: update state
 		const payload: SiteRoomsActionsFiltersPayloadInterface = {
-			...site.rooms.content,
-			active: !active,
-			siteId: siteSingle?.id
+			...rooms.content?.filters,
+			active: !active
 		};
-		dispatch(SiteRoomsUpdateFilters(payload));
+		dispatch(RoomUpdateFilters(siteSingle?.id, payload));
 	};
 
 	return (

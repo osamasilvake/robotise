@@ -13,6 +13,7 @@ import purchases from './purchases/Purchases.slice';
 import robot from './robots/Robot.slice';
 import robotTwins from './robots/RobotTwins.slice';
 import robotTwinsSummary from './robots/RobotTwinsSummary.slice';
+import rooms from './rooms/Rooms.slice';
 import site from './sites/Site.slice';
 import sites from './sites/Sites.slice';
 
@@ -26,6 +27,7 @@ const combinedReducer = combineReducers({
 	robotTwins,
 	robot,
 	products,
+	rooms,
 	inventory,
 	orders,
 	order,

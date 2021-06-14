@@ -10,7 +10,7 @@ export const SiteRoomsListGridStyles = makeStyles((theme: Theme) => ({
 		marginBottom: theme.spacing(3)
 	},
 	sCardContent: {
-		padding: theme.spacing(1)
+		position: 'relative'
 	},
 	sActive: {
 		backgroundColor: AppConfigService.AppOptions.colors.c10v1,
@@ -18,5 +18,16 @@ export const SiteRoomsListGridStyles = makeStyles((theme: Theme) => ({
 	},
 	sInactive: {
 		backgroundColor: AppConfigService.AppOptions.colors.c12
+	},
+	sToggle: {
+		alignItems: 'center',
+		display: 'flex',
+		height: '100%',
+		position: 'absolute',
+		right: theme.spacing(1.25),
+		top: 0
+	},
+	sToggleCheckbox: {
+		color: AppConfigService.AppOptions.colors.c15
 	}
 }));

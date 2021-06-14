@@ -7,7 +7,7 @@ import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../components/content/page-error/PageError';
-import { SiteRoomsUpdateFilters, siteSelector } from '../../../../../slices/sites/Site.slice';
+import { roomsSelector, RoomUpdateFilters } from '../../../../../slices/rooms/Rooms.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SiteRoomsActions from './list/actions/SiteRoomsActions';
@@ -20,16 +20,16 @@ const SiteRooms: FC = () => {
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
-	const site = useSelector(siteSelector);
+	const rooms = useSelector(roomsSelector);
 
 	const params: SiteParamsInterface = useParams();
 	const siteSingle = sites.content?.dataById[params.site];
 
 	const cSiteId = siteSingle?.id;
-	const pSiteId = site.rooms.content?.siteId;
+	const pSiteId = rooms.content?.siteId;
 
-	const active = cSiteId === pSiteId && !!site.rooms.content?.active;
-	const inactive = cSiteId === pSiteId && !!site.rooms.content?.inactive;
+	const active = cSiteId === pSiteId && !!rooms.content?.filters.active;
+	const inactive = cSiteId === pSiteId && !!rooms.content?.filters.inactive;
 
 	useEffect(() => {
 		// clear filters on site change
@@ -37,10 +37,9 @@ const SiteRooms: FC = () => {
 			// dispatch: update state
 			const payload: SiteRoomsActionsFiltersPayloadInterface = {
 				active: false,
-				inactive: false,
-				siteId: undefined
+				inactive: false
 			};
-			dispatch(SiteRoomsUpdateFilters(payload));
+			dispatch(RoomUpdateFilters(cSiteId, payload));
 		}
 	}, [dispatch, cSiteId, pSiteId]);
 

@@ -78,6 +78,12 @@
 					"ERROR": "Unable to delete a product!"
 				}
 			},
+			"ROOMS": {
+				"UPDATE": {
+					"SUCCESS": "Room has been updated successfully!",
+					"ERROR": "Unable to update room state!"	
+				}
+			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
 					"SUCCESS": "Settings has been updated successfully!",
@@ -353,6 +359,7 @@
 						}
 					},
 					"GRID": {
+						"BLOCKED": "Blocked",
 						"FLOOR": "Floor",
 						"ROOM": "Room"
 					}

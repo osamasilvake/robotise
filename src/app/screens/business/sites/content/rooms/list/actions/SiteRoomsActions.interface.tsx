@@ -6,7 +6,6 @@ export interface SiteRoomsActionsInterface {
 export interface SiteRoomsActionsFiltersPayloadInterface {
 	active?: boolean;
 	inactive?: boolean;
-	siteId: string | undefined;
 }
 
 export interface SiteRoomsActiveRoomsInterface {

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { SiteRoomsUpdateFilters, siteSelector } from '../../../../../../../slices/sites/Site.slice';
+import { roomsSelector, RoomUpdateFilters } from '../../../../../../../slices/rooms/Rooms.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import {
@@ -20,22 +20,21 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
-	const site = useSelector(siteSelector);
+	const rooms = useSelector(roomsSelector);
 
 	const params: SiteParamsInterface = useParams();
 	const siteSingle = sites.content?.dataById[params.site];
 
 	/**
-	 * toggle inactive rooms
+	 * toggle room state
 	 */
 	const toggleRoomState = () => {
 		// dispatch: update state
 		const payload: SiteRoomsActionsFiltersPayloadInterface = {
-			...site.rooms.content,
-			inactive: !inactive,
-			siteId: siteSingle?.id
+			...rooms.content?.filters,
+			inactive: !inactive
 		};
-		dispatch(SiteRoomsUpdateFilters(payload));
+		dispatch(RoomUpdateFilters(siteSingle?.id, payload));
 	};
 
 	return (

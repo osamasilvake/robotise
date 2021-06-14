@@ -6,6 +6,9 @@ const PaletteCustom: PaletteOptions = {
 	primary: {
 		main: AppConfigService.AppOptions.colors.c9
 	},
+	secondary: {
+		main: AppConfigService.AppOptions.colors.c12
+	},
 	error: {
 		main: AppConfigService.AppOptions.colors.c12
 	}

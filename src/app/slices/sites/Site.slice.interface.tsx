@@ -12,11 +12,6 @@ export interface SliceSiteInterface {
 		content: ISite | null;
 		errors: TriggerMessageInterface | null;
 	};
-	rooms: {
-		loading: boolean;
-		content: SRContentRoomsInterface | null;
-		errors: TriggerMessageInterface | null;
-	};
 }
 
 export interface SRContentServicePositionsInterface {
@@ -28,10 +23,4 @@ export interface SRContentServicePositionsInterface {
 	site: {
 		id: string;
 	};
-}
-
-export interface SRContentRoomsInterface {
-	active: boolean;
-	inactive: boolean;
-	siteId: string;
 }

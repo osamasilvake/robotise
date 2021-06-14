@@ -11,12 +11,10 @@ import {
 	SiteRoomsActionsFiltersPayloadInterface,
 	SiteRoomsActiveRoomsInterface
 } from './SiteRoomsActions.interface';
-import { SiteRoomsActionsStyles } from './SiteRoomsActions.style';
 
 const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 	const { active } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteRoomsActionsStyles();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -39,7 +37,6 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 
 	return (
 		<FormControlLabel
-			className={classes.sActive}
 			control={
 				<Checkbox
 					color="primary"

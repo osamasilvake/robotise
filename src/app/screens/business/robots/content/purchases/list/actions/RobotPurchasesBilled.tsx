@@ -9,12 +9,10 @@ import {
 } from '../../../../../../../slices/purchases/Purchases.slice';
 import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesBilledInterface } from './RobotPurchasesActions.interface';
-import { RobotPurchasesActionsStyles } from './RobotPurchasesActions.style';
 
 const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	const { billed } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchasesActionsStyles();
 
 	const dispatch = useDispatch();
 	const purchases = useSelector(purchasesSelector);
@@ -35,7 +33,6 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	return (
 		<Box>
 			<FormControlLabel
-				className={classes.sBilled}
 				control={
 					<Checkbox
 						color="primary"

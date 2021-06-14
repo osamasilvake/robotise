@@ -9,12 +9,10 @@ import {
 } from '../../../../../../../slices/purchases/Purchases.slice';
 import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesDebugInterface } from './RobotPurchasesActions.interface';
-import { RobotPurchasesActionsStyles } from './RobotPurchasesActions.style';
 
 const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	const { debug } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchasesActionsStyles();
 
 	const dispatch = useDispatch();
 	const purchases = useSelector(purchasesSelector);
@@ -35,7 +33,6 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	return (
 		<Box>
 			<FormControlLabel
-				className={classes.sDebug}
 				control={
 					<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
 				}

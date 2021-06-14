@@ -11,12 +11,10 @@ import {
 	SiteRoomsActionsFiltersPayloadInterface,
 	SiteRoomsInactiveRoomsInterface
 } from './SiteRoomsActions.interface';
-import { SiteRoomsActionsStyles } from './SiteRoomsActions.style';
 
 const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 	const { inactive } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteRoomsActionsStyles();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -39,7 +37,6 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 
 	return (
 		<FormControlLabel
-			className={classes.sInactive}
 			control={
 				<Checkbox
 					color="primary"

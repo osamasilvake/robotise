@@ -45,6 +45,6 @@ export const RobotDetailLocationStyles = makeStyles((theme: Theme) => ({
 		display: 'inline-block'
 	},
 	sLocationInfoCheckbox: {
-		marginLeft: theme.spacing(-1.25)
+		marginLeft: theme.spacing(-1.5)
 	}
 }));

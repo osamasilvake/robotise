@@ -189,7 +189,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						</Select>
 					</FormControl>
 
-					<FormControl margin="dense">
+					<FormControl>
 						<FormControlLabel
 							control={
 								<Checkbox

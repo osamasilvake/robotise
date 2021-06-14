@@ -6,12 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
 import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { RobotOrdersDebugInterface } from './RobotOrdersActions.interface';
-import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 
 const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	const { debug } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotOrdersActionsStyles();
 
 	const dispatch = useDispatch();
 	const orders = useSelector(ordersSelector);
@@ -32,7 +30,6 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	return (
 		<Box>
 			<FormControlLabel
-				className={classes.sDebug}
 				control={
 					<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
 				}

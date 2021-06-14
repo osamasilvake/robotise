@@ -148,14 +148,6 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiCheckbox: {
-		styleOverrides: {
-			root: {
-				paddingBottom: pxToRem(3),
-				paddingTop: pxToRem(3)
-			}
-		}
-	},
 	MuiSwitch: {
 		styleOverrides: {
 			switchBase: {

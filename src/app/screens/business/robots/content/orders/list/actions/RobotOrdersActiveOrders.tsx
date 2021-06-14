@@ -6,12 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
 import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
-import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
 
 const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {
 	const { activeOrders } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotOrdersActionsStyles();
 
 	const dispatch = useDispatch();
 	const orders = useSelector(ordersSelector);
@@ -31,7 +29,6 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 
 	return (
 		<FormControlLabel
-			className={classes.sActiveOrders}
 			control={
 				<Checkbox
 					color="primary"

@@ -12,6 +12,7 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
+import { AppConfigService } from '../../../../../../../services';
 import { RoomUpdateState } from '../../../../../../../slices/rooms/Rooms.slice';
 import { SiteUpdate } from '../../../../../../../slices/sites/Sites.slice';
 import { CardStyles } from '../../../../../../../utilities/styles/Card.style';
@@ -127,17 +128,20 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 															!allWhitelist?.includes(room)
 													}
 												)}>
-												<Box className={classes.sToggle}>
+												<Box>
 													<FormControlLabel
+														className={classes.sToggle}
 														control={
 															<Checkbox
-																color="primary"
-																className={classes.sToggleCheckbox}
 																name="toggle"
 																checked={
 																	!allWhitelist?.includes(room)
 																}
 																onChange={handleRoomToggle(room)}
+																style={{
+																	color: AppConfigService
+																		.AppOptions.colors.c15
+																}}
 															/>
 														}
 														label={t('CONTENT.ROOMS.LIST.GRID.BLOCKED')}

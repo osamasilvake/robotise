@@ -1,4 +1,5 @@
 export enum SiteTypeEnum {
 	SERVICE_POSITIONS,
-	ACCEPT_ORDERS
+	ACCEPT_ORDERS,
+	ROOMS
 }

@@ -1,24 +1,48 @@
 import { Box } from '@material-ui/core';
-import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../components/content/page-error/PageError';
+import { SiteRoomsUpdateFilters, siteSelector } from '../../../../../slices/sites/Site.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
-import SiteRoomsContent from './list/SiteRoomsList';
+import SiteRoomsActions from './list/actions/SiteRoomsActions';
+import { SiteRoomsActionsFiltersPayloadInterface } from './list/actions/SiteRoomsActions.interface';
+import SiteRoomsListGrid from './list/grid/SiteRoomsListGrid';
 import { SiteRoomsStyles } from './SiteRooms.style';
 
 const SiteRooms: FC = () => {
 	const classes = SiteRoomsStyles();
 
+	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
+	const site = useSelector(siteSelector);
 
 	const params: SiteParamsInterface = useParams();
 	const siteSingle = sites.content?.dataById[params.site];
+
+	const cSiteId = siteSingle?.id;
+	const pSiteId = site.rooms.content?.siteId;
+
+	const active = cSiteId === pSiteId && !!site.rooms.content?.active;
+	const inactive = cSiteId === pSiteId && !!site.rooms.content?.inactive;
+
+	useEffect(() => {
+		// clear filters on site change
+		if (cSiteId !== pSiteId) {
+			// dispatch: update state
+			const payload: SiteRoomsActionsFiltersPayloadInterface = {
+				active: false,
+				inactive: false,
+				siteId: undefined
+			};
+			dispatch(SiteRoomsUpdateFilters(payload));
+		}
+	}, [dispatch, cSiteId, pSiteId]);
 
 	// loader
 	if (sites.loader) {
@@ -42,7 +66,11 @@ const SiteRooms: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			<SiteRoomsContent siteSingle={siteSingle} />
+			{/* Actions */}
+			<SiteRoomsActions active={active} inactive={inactive} />
+
+			{/* Grid */}
+			<SiteRoomsListGrid siteSingle={siteSingle} active={active} inactive={inactive} />
 		</Box>
 	);
 };

@@ -2,6 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { SiteRoomsActionsFiltersPayloadInterface } from '../../screens/business/sites/content/rooms/list/actions/SiteRoomsActions.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
@@ -17,6 +18,11 @@ export const initialState: SliceSiteInterface = {
 		errors: null
 	},
 	acceptOrders: {
+		loading: false,
+		content: null,
+		errors: null
+	},
+	rooms: {
 		loading: false,
 		content: null,
 		errors: null
@@ -46,6 +52,10 @@ const dataSlice = createSlice({
 				state.acceptOrders.loading = false;
 				state.acceptOrders.content = response;
 				state.acceptOrders.errors = null;
+			} else if (module === SiteTypeEnum.ROOMS) {
+				state.rooms.loading = false;
+				state.rooms.content = response;
+				state.rooms.errors = null;
 			}
 		},
 		failure: (state, action) => {
@@ -155,4 +165,20 @@ export const SiteAcceptOrders =
 				// dispatch: failure
 				dispatch(failure({ ...state, error: err }));
 			});
+	};
+
+/**
+ * update rooms filters
+ * @param payload
+ * @returns
+ */
+export const SiteRoomsUpdateFilters =
+	(payload: SiteRoomsActionsFiltersPayloadInterface) => async (dispatch: Dispatch) => {
+		// state
+		const state = {
+			module: SiteTypeEnum.ROOMS
+		};
+
+		// dispatch: success
+		dispatch(success({ ...state, response: payload }));
 	};

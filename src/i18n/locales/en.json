@@ -341,8 +341,21 @@
 			},
 			"ROOMS": {
 				"LIST": {
-					"FLOOR": "Floor",
-					"ROOM": "Room"
+					"ACTIONS": {
+						"HEADINGS": {
+							"FILTERS": "Filters"
+						},
+						"ACTIVE": {
+							"LABEL": "Active rooms only"
+						},
+						"INACTIVE": {
+							"LABEL": "Inactive rooms only"
+						}
+					},
+					"GRID": {
+						"FLOOR": "Floor",
+						"ROOM": "Room"
+					}
 				}
 			},
 			"CONFIGURATION": {

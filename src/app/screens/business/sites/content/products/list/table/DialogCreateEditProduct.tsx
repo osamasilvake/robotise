@@ -263,8 +263,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 								<TextField
 									variant="outlined"
 									type="string"
-									id="size"
-									name="size"
+									id="volume"
+									name="volume"
 									value={values?.volume}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}

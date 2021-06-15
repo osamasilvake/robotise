@@ -1,4 +1,12 @@
-import { Collapse, List, ListItem, ListItemText, ListSubheader } from '@material-ui/core';
+import {
+	Collapse,
+	Icon,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	ListSubheader
+} from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { FC, useState } from 'react';
@@ -30,8 +38,11 @@ const RobotDetailSensors: FC<RobotDetailSafetySensorsInterface> = (props) => {
 			{mappedSensors.map((row) => (
 				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
 					<ListItem>
+						<ListItemIcon>
+							<Icon>{t(row['icon'])}</Icon>
+						</ListItemIcon>
 						<ListItemText
-							key={row['proto']}
+							key={String(t(row['proto']))}
 							primary={t(row['proto'])}
 							secondary={row['value'] ? t(row['msg1']) : t(row['msg2'])}
 						/>

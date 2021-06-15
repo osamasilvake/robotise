@@ -17,6 +17,7 @@ export const mapSafetyContent = (
 	Object.entries(data.properties).map(([key, value]) => {
 		const common = `CONTENT.DETAIL.SAFETY.${type}.VALUES`;
 		return {
+			icon: `${common}.${key}.ICON`,
 			proto: `${common}.${key}.LABEL`,
 			msg1: `${common}.${key}.MSG_1`,
 			msg2: `${common}.${key}.MSG_2`,

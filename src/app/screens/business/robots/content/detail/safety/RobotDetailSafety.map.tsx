@@ -15,7 +15,7 @@ export const mapSafetyContent = (
 	type: RobotDetailSafetyTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
-		const common = `CONTENT.DETAIL.SAFETY.${type}.TABLE.VALUES`;
+		const common = `CONTENT.DETAIL.SAFETY.${type}.VALUES`;
 		return {
 			proto: `${common}.${key}.LABEL`,
 			msg1: `${common}.${key}.MSG_1`,

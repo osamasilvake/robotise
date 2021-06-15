@@ -1,27 +1,11 @@
-import {
-	Box,
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Typography
-} from '@material-ui/core';
-import clsx from 'clsx';
-import { FC } from 'react';
+import { Collapse, List, ListItem, ListItemText, ListSubheader } from '@material-ui/core';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
-import {
-	RobotDetailSafetyTableColumnsTypeEnum,
-	RobotDetailSafetyTypeEnum
-} from './RobotDetailSafety.enum';
-import {
-	RobotDetailSafetyColumnInterface,
-	RobotDetailSafetySensorsInterface
-} from './RobotDetailSafety.interface';
-import { columns } from './RobotDetailSafety.list';
+import { RobotDetailSafetyTypeEnum } from './RobotDetailSafety.enum';
+import { RobotDetailSafetySensorsInterface } from './RobotDetailSafety.interface';
 import { mapSafetyContent } from './RobotDetailSafety.map';
 import { RobotDetailSafetyStyles } from './RobotDetailSafety.style';
 
@@ -30,65 +14,31 @@ const RobotDetailSensors: FC<RobotDetailSafetySensorsInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailSafetyStyles();
 
+	const [open, setOpen] = useState(false);
+
 	const mappedSensors = sensors && mapSafetyContent(sensors, RobotDetailSafetyTypeEnum.SENSORS);
 
 	return mappedSensors ? (
-		<Box className={classes.sStateContainer}>
-			{/* Title */}
-			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.DETAIL.SAFETY.SENSORS.TITLE')}
-			</Typography>
-
-			{/* Date */}
-			<Typography variant="caption" color="textSecondary">
-				{momentFormat3(sensors?.updatedAt)}
-			</Typography>
-
-			{/* Table */}
-			<TableContainer className={classes.sSafetyTable}>
-				<Table size="small">
-					<TableHead>
-						<TableRow>
-							{columns.map((column: RobotDetailSafetyColumnInterface) => (
-								<TableCell
-									key={column.id}
-									align={column.align}
-									style={{
-										minWidth: column.minWidth,
-										width: column.width
-									}}>
-									{t(column.label)}
-								</TableCell>
-							))}
-						</TableRow>
-					</TableHead>
-
-					<TableBody>
-						{mappedSensors.map((row) => (
-							<TableRow key={row.proto}>
-								{columns.map((column: RobotDetailSafetyColumnInterface) => (
-									<TableCell
-										key={column.id}
-										align={column.align}
-										className={clsx({
-											[classes.sSafetyActive]:
-												column.id ===
-													RobotDetailSafetyTableColumnsTypeEnum.TRUE &&
-												row.value,
-											[classes.sSafetyInactive]:
-												column.id ===
-													RobotDetailSafetyTableColumnsTypeEnum.FALSE &&
-												!row.value
-										})}>
-										{t(row[column.id])}
-									</TableCell>
-								))}
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</TableContainer>
-		</Box>
+		<List
+			className={classes.sList}
+			subheader={
+				<ListSubheader className={classes.sListSubheader} onClick={() => setOpen(!open)}>
+					{t('CONTENT.DETAIL.SAFETY.SENSORS.TITLE')}
+					{open ? <ExpandLess /> : <ExpandMore />}
+				</ListSubheader>
+			}>
+			{mappedSensors.map((row) => (
+				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
+					<ListItem>
+						<ListItemText
+							key={row['proto']}
+							primary={t(row['proto'])}
+							secondary={row['value'] ? t(row['msg1']) : t(row['msg2'])}
+						/>
+					</ListItem>
+				</Collapse>
+			))}
+		</List>
 	) : null;
 };
 export default RobotDetailSensors;

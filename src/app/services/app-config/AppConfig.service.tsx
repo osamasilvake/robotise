@@ -12,13 +12,13 @@ class AppConfigService extends EnvService {
 				defaultCurrency: 'EUR'
 			},
 			colors: {
-				c1: '#313131', // dark: 			body/content
-				c2: '#383a3c', // dark:				paper
-				c3: '#2e2e31', // dark: 			box-shadow
+				c1: '#212629', // dark: 			content
+				c2: '#272c2f', // dark:				sidebar
+				c3: '#2e2e31', // dark: 			shadow
 
-				c4: '#ffffff', // light: 			body/content
-				c5: '#eeeeee ', // light: 			paper
-				c6: '#dbdcde', // light: 			box-shadow
+				c4: '#ffffff', // light: 			content
+				c5: '#eeeeee ', // light: 			sidebar
+				c6: '#dbdcde', // light: 			shadow
 
 				c7: '#ffffff', //					text-dark
 				c7a: '#9ea1a7', //					text-light

@@ -29,11 +29,11 @@ const RobotDetailSafety: FC<RobotDetailSafetyInterface> = (props) => {
 			</Typography>
 
 			{/* Grid */}
-			<Grid container className={classes.sGridContainer}>
-				<Grid item xs={12} sm={6}>
+			<Grid container spacing={1} className={classes.sGridContainer}>
+				<Grid item xs={12} md={6}>
 					<RobotDetailSafetySystems systems={robotTwins.safetySystemsState} />
 				</Grid>
-				<Grid item xs={12} sm={6}>
+				<Grid item xs={12} md={6}>
 					<RobotDetailSafetySensors sensors={robotTwins.safetySensorsState} />
 				</Grid>
 			</Grid>

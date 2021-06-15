@@ -5,7 +5,7 @@ export const RobotDetailSafetyStyles = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(4)
 	},
 	sGridContainer: {
-		margin: theme.spacing(1.5, 0, 0)
+		marginTop: theme.spacing(0.5)
 	},
 	sList: {
 		paddingBottom: 0

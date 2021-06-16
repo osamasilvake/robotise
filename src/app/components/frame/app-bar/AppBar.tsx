@@ -120,7 +120,7 @@ const AppBarCustom: FC = () => {
 							}}>
 							<List disablePadding>
 								{/* User Info */}
-								<ListItem divider>
+								<ListItem divider className={classes.sListItem}>
 									<ListItemText
 										primary={auth.user?.data.display_name}
 										secondary={auth.user?.data.email}

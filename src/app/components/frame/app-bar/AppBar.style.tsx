@@ -17,5 +17,8 @@ export const AppBarStyles = makeStyles((theme: Theme) => ({
 	},
 	sAccountDetailSubtitle: {
 		marginTop: theme.spacing(-0.25)
+	},
+	sListItem: {
+		pointerEvents: 'none'
 	}
 }));

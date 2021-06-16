@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { FC } from 'react';
 
 import { MarkdownHeadingInterface } from './Markdown.interface';
-import { MarkdownStyles } from './Markdown.style';
+import { MarkdownStyle } from './Markdown.style';
 
 /**
  * heading
@@ -12,7 +12,7 @@ import { MarkdownStyles } from './Markdown.style';
  */
 const MarkdownHeading: FC = (props) => {
 	const { level, children } = props as MarkdownHeadingInterface;
-	const classes = MarkdownStyles();
+	const classes = MarkdownStyle();
 
 	let component: Variant;
 	let variant: Variant;
@@ -70,7 +70,7 @@ const MarkdownHeading: FC = (props) => {
  */
 const MarkdownParagraph: FC = (props) => {
 	const { children } = props;
-	const classes = MarkdownStyles();
+	const classes = MarkdownStyle();
 
 	return (
 		<Typography variant="body1" className={classes.MarkdownParagraph}>
@@ -84,7 +84,7 @@ const MarkdownParagraph: FC = (props) => {
  * @param props
  */
 const MarkdownList: FC = (props) => {
-	const classes = MarkdownStyles();
+	const classes = MarkdownStyle();
 
 	return (
 		<Typography component="ul" className={classes.sList}>
@@ -98,7 +98,7 @@ const MarkdownList: FC = (props) => {
  * @param props
  */
 const MarkdownListItem: FC = (props) => {
-	const classes = MarkdownStyles();
+	const classes = MarkdownStyle();
 
 	return (
 		<Typography component="li" className={classes.sListItem}>

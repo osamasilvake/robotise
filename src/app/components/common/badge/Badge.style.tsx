@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../services';
 
-export const BadgeStyles = makeStyles((theme: Theme) => ({
+export const BadgeStyle = makeStyles((theme: Theme) => ({
 	sDot: {
 		backgroundColor: AppConfigService.AppOptions.colors.c10v1,
 		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${theme.palette.background.paper}`,

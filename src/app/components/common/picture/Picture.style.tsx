@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const PictureStyles = makeStyles(() => ({
+export const PictureStyle = makeStyles(() => ({
 	sImage: {
 		display: 'block',
 		margin: '0 auto'

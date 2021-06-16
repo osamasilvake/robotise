@@ -11,10 +11,10 @@ import { siteSelector } from '../../../../../slices/sites/Site.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
-import { SiteConfigurationStyles } from './SiteConfiguration.style';
+import { SiteConfigurationStyle } from './SiteConfiguration.style';
 
 const SiteConfiguration: FC = () => {
-	const classes = SiteConfigurationStyles();
+	const classes = SiteConfigurationStyle();
 
 	const sites = useSelector(sitesSelector);
 	const site = useSelector(siteSelector);

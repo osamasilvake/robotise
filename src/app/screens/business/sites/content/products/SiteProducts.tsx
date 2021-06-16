@@ -13,10 +13,10 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SiteProductsActions from './list/actions/SiteProductsActions';
 import SiteProductsTable from './list/table/SiteProductsTable';
-import { siteProductsStyles } from './SiteProducts.style';
+import { siteProductsStyle } from './SiteProducts.style';
 
 const SiteProducts: FC = () => {
-	const classes = siteProductsStyles();
+	const classes = siteProductsStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);

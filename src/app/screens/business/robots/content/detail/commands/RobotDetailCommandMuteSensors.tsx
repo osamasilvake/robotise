@@ -8,12 +8,12 @@ import {
 	RobotDetailCommandsTypeEnum
 } from './RobotDetailCommands.enum';
 import { RobotDetailCommandMuteSensorsInterface } from './RobotDetailCommands.interface';
-import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
+import { RobotDetailCommandsStyle } from './RobotDetailCommands.style';
 
 const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> = (props) => {
 	const { robot, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailCommandsStyles();
+	const classes = RobotDetailCommandsStyle();
 
 	return (
 		<Box>

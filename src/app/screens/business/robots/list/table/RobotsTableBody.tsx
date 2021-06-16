@@ -12,12 +12,12 @@ import { momentSort } from '../../../../../utilities/methods/Moment';
 import { RobotsTableColumnsTypeEnum, RobotsTableSortTypeEnum } from './RobotsTable.enum';
 import { RobotsTableBodyInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
-import { RobotsListStyles } from './RobotsTable.style';
+import { RobotsListStyle } from './RobotsTable.style';
 import RobotsTableBodyCell from './RobotsTableBodyCell';
 
 const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const { content, order, orderBy } = props;
-	const classes = RobotsListStyles();
+	const classes = RobotsListStyle();
 
 	const history = useHistory();
 

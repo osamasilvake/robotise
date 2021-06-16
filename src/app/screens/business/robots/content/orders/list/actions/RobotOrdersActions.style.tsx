@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const RobotOrdersActionsStyles = makeStyles((theme: Theme) => ({
+export const RobotOrdersActionsStyle = makeStyles((theme: Theme) => ({
 	sFloatBoxTopSpace: {
 		marginTop: theme.spacing(3)
 	},

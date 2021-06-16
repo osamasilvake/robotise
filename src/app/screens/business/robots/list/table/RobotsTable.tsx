@@ -6,14 +6,14 @@ import { AppConfigService } from '../../../../../services';
 import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 import { RobotsTableHeadOrder, RobotsTableInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
-import { RobotsListStyles } from './RobotsTable.style';
+import { RobotsListStyle } from './RobotsTable.style';
 import RobotsTableBody from './RobotsTableBody';
 import RobotsTableHead from './RobotsTableHead';
 
 const RobotsTable: FC<RobotsTableInterface> = (props) => {
 	const { content } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotsListStyles();
+	const classes = RobotsListStyle();
 
 	const [order, setOrder] = useState<RobotsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotsTableColumnsTypeEnum>(

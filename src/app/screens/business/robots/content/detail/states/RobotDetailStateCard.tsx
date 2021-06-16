@@ -2,14 +2,14 @@ import { Card, CardContent, Icon, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 
-import { CardStyles } from '../../../../../../utilities/styles/Card.style';
+import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailStateCardInterface } from './RobotDetailStates.interface';
-import { RobotDetailStatesStyles } from './RobotDetailStates.style';
+import { RobotDetailStatesStyle } from './RobotDetailStates.style';
 
 const RobotDetailStateCard: FC<RobotDetailStateCardInterface> = (props) => {
 	const { ...rest } = props;
-	const cardClasses = CardStyles();
-	const classes = RobotDetailStatesStyles();
+	const cardClasses = CardStyle();
+	const classes = RobotDetailStatesStyle();
 
 	return (
 		<Card variant="elevation" square elevation={1}>

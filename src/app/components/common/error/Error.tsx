@@ -1,13 +1,13 @@
 import { Box } from '@material-ui/core';
 import { FC } from 'react';
 
-import { CenterStyles } from '../../../utilities/styles/Center.style';
+import { CenterStyle } from '../../../utilities/styles/Center.style';
 import { ErrorTypeEnum } from './Error.enum';
 import { ErrorInterface } from './Error.interface';
 
 const Error: FC<ErrorInterface> = (props) => {
 	const { children, error } = props;
-	const centerClasses = CenterStyles();
+	const centerClasses = CenterStyle();
 
 	switch (error) {
 		case ErrorTypeEnum.PAGE_ERROR:

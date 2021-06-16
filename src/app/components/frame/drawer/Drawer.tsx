@@ -23,11 +23,11 @@ import AppBar from '../app-bar/AppBar';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
-import { DrawerStyles } from './Drawer.style';
+import { DrawerStyle } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
 	const { t } = useTranslation(['SIDEBAR', 'TOOLTIPS']);
-	const classes = DrawerStyles();
+	const classes = DrawerStyle();
 
 	const general = useSelector(generalSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);

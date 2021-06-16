@@ -40,12 +40,12 @@ import {
 	DialogCreateEditProductInterface,
 	DialogCreateEditProductPayloadInterface
 } from './SiteProductsTable.interface';
-import { SiteProductsTableStyles } from './SiteProductsTable.style';
+import { SiteProductsTableStyle } from './SiteProductsTable.style';
 
 const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) => {
 	const { product, open, setOpen, type } = props;
 	const { t } = useTranslation(['DIALOG', 'SITES']);
-	const classes = SiteProductsTableStyles();
+	const classes = SiteProductsTableStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);

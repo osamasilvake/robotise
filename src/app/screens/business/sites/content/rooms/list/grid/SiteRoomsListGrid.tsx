@@ -15,18 +15,18 @@ import { useDispatch } from 'react-redux';
 import { AppConfigService } from '../../../../../../../services';
 import { RoomUpdateState } from '../../../../../../../slices/rooms/Rooms.slice';
 import { SiteUpdate } from '../../../../../../../slices/sites/Sites.slice';
-import { CardStyles } from '../../../../../../../utilities/styles/Card.style';
+import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
 import {
 	SiteRoomsListGridGroupAccInterface,
 	SiteRoomsListGridInterface
 } from './SiteRoomsListGrid.interface';
-import { SiteRoomsListGridStyles } from './SiteRoomsListGrid.style';
+import { SiteRoomsListGridStyle } from './SiteRoomsListGrid.style';
 
 const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 	const { siteSingle, active, inactive } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteRoomsListGridStyles();
-	const cardClasses = CardStyles();
+	const classes = SiteRoomsListGridStyle();
+	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 

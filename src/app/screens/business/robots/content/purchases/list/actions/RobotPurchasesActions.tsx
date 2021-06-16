@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { FloatStyles } from '../../../../../../../utilities/styles/Float.style';
+import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
 import { RobotPurchasesActionsInterface } from './RobotPurchasesActions.interface';
 import { RobotPurchasesActionsStyle } from './RobotPurchasesActions.style';
 import RobotPurchasesBilled from './RobotPurchasesBilled';
@@ -13,7 +13,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const { billed, debug, topSpace } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesActionsStyle();
-	const floatStyles = FloatStyles();
+	const floatStyles = FloatStyle();
 
 	return (
 		<Paper

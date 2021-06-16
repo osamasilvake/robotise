@@ -14,11 +14,11 @@ import {
 	RobotDetailCommandsInterface,
 	RobotDetailCommandsPayloadInterface
 } from './RobotDetailCommands.interface';
-import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
+import { RobotDetailCommandsStyle } from './RobotDetailCommands.style';
 
 const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 	const { robotTwins } = props;
-	const classes = RobotDetailCommandsStyles();
+	const classes = RobotDetailCommandsStyle();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);

@@ -2,15 +2,15 @@ import { Box, Link, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CenterStyles } from '../../../utilities/styles/Center.style';
+import { CenterStyle } from '../../../utilities/styles/Center.style';
 import { PageEmptyInterface } from './PageEmpty.interface';
-import { PageEmptyStyles } from './PageEmpty.style';
+import { PageEmptyStyle } from './PageEmpty.style';
 
 const PageEmpty: FC<PageEmptyInterface> = (props) => {
 	const { message } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = PageEmptyStyles();
-	const centerClasses = CenterStyles();
+	const classes = PageEmptyStyle();
+	const centerClasses = CenterStyle();
 
 	return (
 		<Box className={centerClasses.sHFlex}>

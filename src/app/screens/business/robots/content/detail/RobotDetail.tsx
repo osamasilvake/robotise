@@ -17,12 +17,12 @@ import RobotDetailCameras from './cameras/RobotDetailCameras';
 import RobotDetailCommands from './commands/RobotDetailCommands';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailLocation from './location/RobotDetailLocation';
-import { RobotDetailStyles } from './RobotDetail.style';
+import { RobotDetailStyle } from './RobotDetail.style';
 import RobotDetailSafety from './safety/RobotDetailSafety';
 import RobotDetailStates from './states/RobotDetailStates';
 
 const RobotDetail: FC = () => {
-	const classes = RobotDetailStyles();
+	const classes = RobotDetailStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);

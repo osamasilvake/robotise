@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../services';
 
-export const StatusStyles = makeStyles((theme: Theme) => ({
+export const StatusStyle = makeStyles((theme: Theme) => ({
 	sStatus: {
 		borderRadius: theme.typography.pxToRem(2),
 		color: AppConfigService.AppOptions.colors.c7,

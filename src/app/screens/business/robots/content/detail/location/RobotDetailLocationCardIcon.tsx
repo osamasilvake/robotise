@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
 import { RobotDetailLocationCardIconInterface } from './RobotDetailLocation.interface';
-import { RobotDetailLocationStyles } from './RobotDetailLocation.style';
+import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 
 const RobotDetailLocationCardIcon: FC<RobotDetailLocationCardIconInterface> = (props) => {
 	const { pointCoords } = props;
-	const classes = RobotDetailLocationStyles();
+	const classes = RobotDetailLocationStyle();
 
 	return pointCoords ? (
 		<svg

@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 import DialogCreateEditProduct from '../table/DialogCreateEditProduct';
 import { SiteProductCreateEditTypeEnum } from '../table/SiteProductsTable.enum';
-import { SiteProductsActionsStyles } from './SiteProductsActions.style';
+import { SiteProductsActionsStyle } from './SiteProductsActions.style';
 
 const SiteProductsCreateProduct: FC = () => {
 	const { t } = useTranslation('SITES');
-	const classes = SiteProductsActionsStyles();
+	const classes = SiteProductsActionsStyle();
 
 	const [open, setOpen] = useState(false);
 

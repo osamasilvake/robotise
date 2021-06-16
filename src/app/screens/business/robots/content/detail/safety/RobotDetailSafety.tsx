@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 import { RobotDetailSafetyInterface } from './RobotDetailSafety.interface';
-import { RobotDetailSafetyStyles } from './RobotDetailSafety.style';
+import { RobotDetailSafetyStyle } from './RobotDetailSafety.style';
 import RobotDetailSafetySensors from './RobotDetailSensors';
 import RobotDetailSafetySystems from './RobotDetailSystems';
 
 const RobotDetailSafety: FC<RobotDetailSafetyInterface> = (props) => {
 	const { robotTwins } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailSafetyStyles();
+	const classes = RobotDetailSafetyStyle();
 
 	return (
 		<Box className={classes.sStateContainer}>

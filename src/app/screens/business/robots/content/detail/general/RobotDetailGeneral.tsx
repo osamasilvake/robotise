@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import Status from '../../../../../../components/common/status/Status';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { RobotDetailGeneralInterface } from './RobotDetailGeneral.interface';
-import { RobotDetailGeneralStyles } from './RobotDetailGeneral.style';
+import { RobotDetailGeneralStyle } from './RobotDetailGeneral.style';
 
 const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const { robotTwins } = props;
 	const { t } = useTranslation(['ROBOTS', 'TOOLTIPS']);
-	const classes = RobotDetailGeneralStyles();
+	const classes = RobotDetailGeneralStyle();
 
 	return (
 		<Grid container spacing={1}>

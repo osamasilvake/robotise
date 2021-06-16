@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const CardStyles = makeStyles((theme: Theme) => ({
+export const CardStyle = makeStyles((theme: Theme) => ({
 	sCardContent1: {
 		padding: theme.typography.pxToRem(15),
 		'&:last-child': {

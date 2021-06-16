@@ -13,10 +13,10 @@ import { SiteParamsInterface } from '../../Site.interface';
 import SiteRoomsActions from './list/actions/SiteRoomsActions';
 import { SiteRoomsActionsFiltersPayloadInterface } from './list/actions/SiteRoomsActions.interface';
 import SiteRoomsListGrid from './list/grid/SiteRoomsListGrid';
-import { SiteRoomsStyles } from './SiteRooms.style';
+import { SiteRoomsStyle } from './SiteRooms.style';
 
 const SiteRooms: FC = () => {
-	const classes = SiteRoomsStyles();
+	const classes = SiteRoomsStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);

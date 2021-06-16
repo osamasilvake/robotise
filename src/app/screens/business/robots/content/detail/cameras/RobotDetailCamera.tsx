@@ -20,12 +20,12 @@ import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 import { RobotDetailCameraInterface } from './RobotDetailCameras.interface';
-import { RobotDetailCameraStyles } from './RobotDetailCameras.style';
+import { RobotDetailCameraStyle } from './RobotDetailCameras.style';
 
 const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const { robotTwins, cameraType, currentCameraType, setCurrentCameraType } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailCameraStyles();
+	const classes = RobotDetailCameraStyle();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);

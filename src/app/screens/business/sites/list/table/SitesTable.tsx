@@ -6,14 +6,14 @@ import { AppConfigService } from '../../../../../services';
 import { SitesTableColumnsTypeEnum } from './SitesTable.enum';
 import { SitesTableHeadOrder, SitesTableInterface } from './SitesTable.interface';
 import { columns } from './SitesTable.list';
-import { SitesListStyles } from './SitesTable.style';
+import { SitesListStyle } from './SitesTable.style';
 import SitesTableBody from './SitesTableBody';
 import SitesTableHead from './SitesTableHead';
 
 const SitesTable: FC<SitesTableInterface> = (props) => {
 	const { content } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = SitesListStyles();
+	const classes = SitesListStyle();
 
 	const [order, setOrder] = useState<SitesTableHeadOrder>('asc');
 	const [orderBy, setOrderBy] = useState<SitesTableColumnsTypeEnum>(columns[0].id);

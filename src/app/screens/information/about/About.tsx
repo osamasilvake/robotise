@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 import PageHead from '../../../components/content/page-head/PageHead';
 import { AppConfigService } from '../../../services';
-import { AboutStyles } from './About.style';
+import { AboutStyle } from './About.style';
 
 const About: FC = () => {
 	const { t } = useTranslation('ABOUT');
-	const classes = AboutStyles();
+	const classes = AboutStyle();
 
 	return (
 		<Paper elevation={12} component="section" square>

@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import Error from '../../../components/common/error/Error';
 import { ErrorTypeEnum } from '../../../components/common/error/Error.enum';
 import { AppConfigService } from '../../../services';
-import { Error404Styles } from './Error404.style';
+import { Error404Style } from './Error404.style';
 
 const Error404: FC = () => {
 	const { t } = useTranslation('ERRORS');
-	const classes = Error404Styles();
+	const classes = Error404Style();
 
 	return (
 		<Paper elevation={12} component="section" square>

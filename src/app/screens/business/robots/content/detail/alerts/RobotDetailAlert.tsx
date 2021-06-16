@@ -3,13 +3,13 @@ import { FC } from 'react';
 
 import Tooltip from '../../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../../services';
-import { CardStyles } from '../../../../../../utilities/styles/Card.style';
+import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import RobotDetailAlertCard from './RobotDetailAlertCard';
 import { RobotDetailAlertInterface } from './RobotDetailAlerts.interface';
 
 const RobotDetailAlert: FC<RobotDetailAlertInterface> = (props) => {
 	const { alert } = props;
-	const cardClasses = CardStyles();
+	const cardClasses = CardStyle();
 
 	const msMax = AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[1];
 

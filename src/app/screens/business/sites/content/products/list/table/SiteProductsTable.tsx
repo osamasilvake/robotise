@@ -9,14 +9,14 @@ import {
 	SiteProductsTableInterface
 } from './SiteProductsTable.interface';
 import { columns } from './SiteProductsTable.list';
-import { SiteProductsTableStyles } from './SiteProductsTable.style';
+import { SiteProductsTableStyle } from './SiteProductsTable.style';
 import SiteProductsTableBody from './SiteProductsTableBody';
 import SiteProductsTableHead from './SiteProductsTableHead';
 
 const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 	const { content } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = SiteProductsTableStyles();
+	const classes = SiteProductsTableStyle();
 
 	const [order, setOrder] = useState<SiteProductsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<SiteProductsTableColumnsTypeEnum>(

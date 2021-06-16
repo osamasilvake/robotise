@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import Error from '../../common/error/Error';
 import { ErrorTypeEnum } from '../../common/error/Error.enum';
 import { PageErrorInterface } from './PageError.interface';
-import { PageErrorStyles } from './PageError.style';
+import { PageErrorStyle } from './PageError.style';
 
 const PageError: FC<PageErrorInterface> = (props) => {
 	const { message } = props;
 	const { t } = useTranslation('ERRORS');
-	const classes = PageErrorStyles();
+	const classes = PageErrorStyle();
 
 	return (
 		<Error error={ErrorTypeEnum.PAGE_ERROR}>

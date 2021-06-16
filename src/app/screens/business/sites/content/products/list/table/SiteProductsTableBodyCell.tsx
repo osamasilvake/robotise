@@ -22,12 +22,12 @@ import {
 	SiteProductsTableColumnInterface
 } from './SiteProductsTable.interface';
 import { columns } from './SiteProductsTable.list';
-import { SiteProductsTableStyles } from './SiteProductsTable.style';
+import { SiteProductsTableStyle } from './SiteProductsTable.style';
 
 const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props) => {
 	const { column, product } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteProductsTableStyles();
+	const classes = SiteProductsTableStyle();
 
 	const sites = useSelector(sitesSelector);
 

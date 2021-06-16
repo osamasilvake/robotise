@@ -8,12 +8,12 @@ import { PictureOnLoadInterface } from '../../../../../../components/common/pict
 import { RobotLocationMapFetch, robotSelector } from '../../../../../../slices/robots/Robot.slice';
 import { robotLocationImageUrl } from '../../../Robots.url';
 import { RobotDetailLocationCardInterface } from './RobotDetailLocation.interface';
-import { RobotDetailLocationStyles } from './RobotDetailLocation.style';
+import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 import RobotDetailLocationCardIcon from './RobotDetailLocationCardIcon';
 
 const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) => {
 	const { robotTwins, grid } = props;
-	const classes = RobotDetailLocationStyles();
+	const classes = RobotDetailLocationStyle();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);

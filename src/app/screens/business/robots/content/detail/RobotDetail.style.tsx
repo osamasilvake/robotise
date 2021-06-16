@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const RobotDetailStyles = makeStyles((theme: Theme) => ({
+export const RobotDetailStyle = makeStyles((theme: Theme) => ({
 	sBox: {
 		marginTop: theme.spacing(2)
 	}

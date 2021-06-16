@@ -5,11 +5,11 @@ import { FC } from 'react';
 import { AppConfigService } from '../../../services';
 import { useWindow } from '../../../utilities/hooks/window/UseWindow';
 import { TooltipInterface } from './Tooltip.interface';
-import { TooltipStyles } from './Tooltip.style';
+import { TooltipStyle } from './Tooltip.style';
 
 const TooltipCustom: FC<TooltipInterface> = (props) => {
 	const { children, title, hideOnMobile, hideTitleOnMobile, ...rest } = props;
-	const classes = TooltipStyles();
+	const classes = TooltipStyle();
 
 	const cWindow = useWindow();
 

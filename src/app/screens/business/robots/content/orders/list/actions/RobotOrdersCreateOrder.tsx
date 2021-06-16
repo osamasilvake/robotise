@@ -3,11 +3,11 @@ import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import DialogCreateOrder from './DialogCreateOrder';
-import { RobotOrdersActionsStyles } from './RobotOrdersActions.style';
+import { RobotOrdersActionsStyle } from './RobotOrdersActions.style';
 
 const RobotOrdersCreateOrder: FC = () => {
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotOrdersActionsStyles();
+	const classes = RobotOrdersActionsStyle();
 
 	const [open, setOpen] = useState(false);
 

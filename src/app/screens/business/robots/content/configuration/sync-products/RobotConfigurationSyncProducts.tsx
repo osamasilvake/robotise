@@ -5,16 +5,16 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { RobotSyncProducts } from '../../../../../../slices/robots/Robot.slice';
-import { CardStyles } from '../../../../../../utilities/styles/Card.style';
+import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationSyncProductsInterface } from './RobotConfigurationSyncProducts.interface';
-import { RobotConfigurationSyncProductsStyles } from './RobotConfigurationSyncProducts.style';
+import { RobotConfigurationSyncProductsStyle } from './RobotConfigurationSyncProducts.style';
 
 const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface> = (props) => {
 	const { robotTwinsSummary, robot } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotConfigurationSyncProductsStyles();
-	const cardClasses = CardStyles();
+	const classes = RobotConfigurationSyncProductsStyle();
+	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 

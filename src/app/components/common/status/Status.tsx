@@ -4,11 +4,11 @@ import { FC } from 'react';
 
 import { StatusTypeEnum } from './Status.enum';
 import { StatusInterface } from './Status.interface';
-import { StatusStyles } from './Status.style';
+import { StatusStyle } from './Status.style';
 
 const Status: FC<StatusInterface> = (props) => {
 	const { children, small, active, level = -1 } = props;
-	const classes = StatusStyles();
+	const classes = StatusStyle();
 
 	return (
 		<Typography

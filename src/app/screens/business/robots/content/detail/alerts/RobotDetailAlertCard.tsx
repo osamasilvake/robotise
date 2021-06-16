@@ -12,16 +12,16 @@ import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
 import { useWindow } from '../../../../../../utilities/hooks/window/UseWindow';
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
-import { CardStyles } from '../../../../../../utilities/styles/Card.style';
+import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailAlertsTypeEnum } from './RobotDetailAlerts.enum';
 import { RobotDetailAlertCardInterface } from './RobotDetailAlerts.interface';
-import { RobotDetailAlertsStyles } from './RobotDetailAlerts.style';
+import { RobotDetailAlertsStyle } from './RobotDetailAlerts.style';
 
 const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	const { alert } = props;
 	const { t } = useTranslation('TOOLTIPS');
-	const cardClasses = CardStyles();
-	const classes = RobotDetailAlertsStyles();
+	const cardClasses = CardStyle();
+	const classes = RobotDetailAlertsStyle();
 
 	const dispatch = useDispatch();
 

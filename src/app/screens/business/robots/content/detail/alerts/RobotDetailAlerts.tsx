@@ -5,11 +5,11 @@ import { IAlert } from '../../../../../../slices/robots/RobotTwins.slice.interfa
 import RobotDetailAlert from './RobotDetailAlert';
 import { RobotDetailAlertsTypeEnum } from './RobotDetailAlerts.enum';
 import { RobotDetailAlertsInterface } from './RobotDetailAlerts.interface';
-import { RobotDetailAlertsStyles } from './RobotDetailAlerts.style';
+import { RobotDetailAlertsStyle } from './RobotDetailAlerts.style';
 
 const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
 	const { robotTwins } = props;
-	const classes = RobotDetailAlertsStyles();
+	const classes = RobotDetailAlertsStyle();
 
 	/**
 	 * sort by alert level

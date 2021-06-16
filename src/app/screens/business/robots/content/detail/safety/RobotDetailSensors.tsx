@@ -15,12 +15,12 @@ import { useTranslation } from 'react-i18next';
 import { RobotDetailSafetyTypeEnum } from './RobotDetailSafety.enum';
 import { RobotDetailSafetySensorsInterface } from './RobotDetailSafety.interface';
 import { mapSafetyContent } from './RobotDetailSafety.map';
-import { RobotDetailSafetyStyles } from './RobotDetailSafety.style';
+import { RobotDetailSafetyStyle } from './RobotDetailSafety.style';
 
 const RobotDetailSensors: FC<RobotDetailSafetySensorsInterface> = (props) => {
 	const { sensors } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailSafetyStyles();
+	const classes = RobotDetailSafetyStyle();
 
 	const [open, setOpen] = useState(false);
 

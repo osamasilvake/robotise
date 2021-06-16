@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { GeneralChangeLanguage, generalSelector } from '../../../../slices/general/General.slice';
 import { GeneralLanguageTypeEnum } from '../../../../slices/general/General.slice.enum';
-import { LanguageStyles } from './Language.style';
+import { LanguageStyle } from './Language.style';
 
 const Language: FC = () => {
 	const { t } = useTranslation('APPBAR');
-	const classes = LanguageStyles();
+	const classes = LanguageStyle();
 
 	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);

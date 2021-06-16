@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const SiteDetailGeneralStyles = makeStyles((theme: Theme) => ({
+export const SiteDetailGeneralStyle = makeStyles((theme: Theme) => ({
 	sGeneralItemStatusLabel: {
 		display: 'block'
 	},

@@ -2,7 +2,7 @@ import { Box, Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { FloatStyles } from '../../../../../../../utilities/styles/Float.style';
+import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
 import { SiteRoomsActionsInterface } from './SiteRoomsActions.interface';
 import SiteRoomsActiveRooms from './SiteRoomsActiveRooms';
 import SiteRoomsInactiveRooms from './SiteRoomsInactiveRooms';
@@ -10,7 +10,7 @@ import SiteRoomsInactiveRooms from './SiteRoomsInactiveRooms';
 const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
 	const { active, inactive } = props;
 	const { t } = useTranslation('SITES');
-	const floatStyles = FloatStyles();
+	const floatStyles = FloatStyle();
 
 	return (
 		<Paper elevation={2} square className={floatStyles.sFloat1}>

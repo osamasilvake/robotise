@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import RobotDetailState from './RobotDetailState';
 import { RobotDetailStatesInterface } from './RobotDetailStates.interface';
 import { robotStates } from './RobotDetailStates.list';
-import { RobotDetailStatesStyles } from './RobotDetailStates.style';
+import { RobotDetailStatesStyle } from './RobotDetailStates.style';
 
 const RobotDetailStates: FC<RobotDetailStatesInterface> = (props) => {
 	const { robotTwins } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailStatesStyles();
+	const classes = RobotDetailStatesStyle();
 
 	return (
 		<Box className={classes.sStatesContainer}>

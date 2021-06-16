@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const TooltipStyles = makeStyles((theme: Theme) => ({
+export const TooltipStyle = makeStyles((theme: Theme) => ({
 	sTooltip: {
 		padding: 0,
 		textAlign: 'left'

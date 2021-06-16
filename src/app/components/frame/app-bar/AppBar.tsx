@@ -24,13 +24,13 @@ import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
-import { AppBarStyles } from './AppBar.style';
+import { AppBarStyle } from './AppBar.style';
 import Language from './language/Language';
 import ThemePalette from './theme/Theme';
 
 const AppBarCustom: FC = () => {
 	const { t } = useTranslation(['APPBAR', 'TOOLTIPS']);
-	const classes = AppBarStyles();
+	const classes = AppBarStyle();
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);

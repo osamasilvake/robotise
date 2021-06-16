@@ -9,11 +9,11 @@ import { useDebounce } from '../../../utilities/hooks/debounce/UseDebounce';
 import { useWindow } from '../../../utilities/hooks/window/UseWindow';
 import { WindowInterface } from '../../../utilities/hooks/window/UseWindow.interface';
 import { PictureInterface, PictureOnLoadInterface } from './Picture.interface';
-import { PictureStyles } from './Picture.style';
+import { PictureStyle } from './Picture.style';
 
 const Picture: FC<PictureInterface> = (props) => {
 	const { src, alt, fallback, onLoad, fullWidth } = props;
-	const classes = PictureStyles();
+	const classes = PictureStyle();
 
 	const general = useSelector(generalSelector);
 

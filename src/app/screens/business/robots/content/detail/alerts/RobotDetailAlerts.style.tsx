@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../../services';
 
-export const RobotDetailAlertsStyles = makeStyles((theme: Theme) => ({
+export const RobotDetailAlertsStyle = makeStyles((theme: Theme) => ({
 	sAlertsContainer: {
 		marginTop: theme.spacing(4)
 	},

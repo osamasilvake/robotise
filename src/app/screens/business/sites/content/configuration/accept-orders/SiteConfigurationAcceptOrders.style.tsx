@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const SiteConfigurationAcceptOrdersStyles = makeStyles((theme: Theme) => ({
+export const SiteConfigurationAcceptOrdersStyle = makeStyles((theme: Theme) => ({
 	sContent: {
 		position: 'relative'
 	},

@@ -3,12 +3,12 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { RobotDetailLocationInfoInterface } from './RobotDetailLocation.interface';
-import { RobotDetailLocationStyles } from './RobotDetailLocation.style';
+import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 
 const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) => {
 	const { location, grid, showGrid } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailLocationStyles();
+	const classes = RobotDetailLocationStyle();
 
 	/**
 	 * toggle grid lines

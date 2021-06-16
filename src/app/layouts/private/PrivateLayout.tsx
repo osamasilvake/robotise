@@ -8,10 +8,10 @@ import { LoaderTypeEnum } from '../../components/common/loader/Loader.enum';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
 import { generalSelector } from '../../slices/general/General.slice';
-import { PrivateLayoutStyles } from './PrivateLayout.style';
+import { PrivateLayoutStyle } from './PrivateLayout.style';
 
 const PrivateLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
-	const classes = PrivateLayoutStyles();
+	const classes = PrivateLayoutStyle();
 
 	const general = useSelector(generalSelector);
 

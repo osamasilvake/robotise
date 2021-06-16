@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const PageHeadStyles = makeStyles((theme: Theme) => ({
+export const PageHeadStyle = makeStyles((theme: Theme) => ({
 	sTitle: {
 		marginBottom: theme.spacing(0.6)
 	},

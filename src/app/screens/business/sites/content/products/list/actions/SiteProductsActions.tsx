@@ -3,16 +3,16 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { FloatStyles } from '../../../../../../../utilities/styles/Float.style';
+import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
 import { SiteProductsActionsInterface } from './SiteProductsActions.interface';
-import { SiteProductsActionsStyles } from './SiteProductsActions.style';
+import { SiteProductsActionsStyle } from './SiteProductsActions.style';
 import SiteProductsCreateProduct from './SiteProductsCreateProduct';
 
 const SiteProductsActions: FC<SiteProductsActionsInterface> = (props) => {
 	const { topSpace } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteProductsActionsStyles();
-	const floatStyles = FloatStyles();
+	const classes = SiteProductsActionsStyle();
+	const floatStyles = FloatStyle();
 
 	return (
 		<Paper

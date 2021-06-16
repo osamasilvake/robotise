@@ -15,16 +15,16 @@ import { useParams } from 'react-router-dom';
 
 import { SiteAcceptOrders } from '../../../../../../slices/sites/Site.slice';
 import { SiteUpdate } from '../../../../../../slices/sites/Sites.slice';
-import { CardStyles } from '../../../../../../utilities/styles/Card.style';
+import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigurationAcceptOrdersInterface } from './SiteConfigurationAcceptOrders.interface';
-import { SiteConfigurationAcceptOrdersStyles } from './SiteConfigurationAcceptOrders.style';
+import { SiteConfigurationAcceptOrdersStyle } from './SiteConfigurationAcceptOrders.style';
 
 const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> = (props) => {
 	const { sites, site } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteConfigurationAcceptOrdersStyles();
-	const cardClasses = CardStyles();
+	const classes = SiteConfigurationAcceptOrdersStyle();
+	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 

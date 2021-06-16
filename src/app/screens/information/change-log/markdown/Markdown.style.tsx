@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const MarkdownStyles = makeStyles((theme: Theme) => ({
+export const MarkdownStyle = makeStyles((theme: Theme) => ({
 	sCommon: {
 		fontWeight: 500,
 		margin: 0

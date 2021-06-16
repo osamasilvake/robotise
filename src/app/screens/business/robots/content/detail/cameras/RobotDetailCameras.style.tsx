@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const RobotDetailCameraStyles = makeStyles((theme: Theme) => ({
+export const RobotDetailCameraStyle = makeStyles((theme: Theme) => ({
 	sCamerasContainer: {
 		marginTop: theme.spacing(4)
 	},

@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../services';
 
-export const FloatStyles = makeStyles((theme: Theme) => ({
+export const FloatStyle = makeStyles((theme: Theme) => ({
 	sFloat1: {
 		borderLeft: `${theme.typography.pxToRem(5)} solid ${AppConfigService.AppOptions.colors.c9}`,
 		padding: theme.spacing(2),

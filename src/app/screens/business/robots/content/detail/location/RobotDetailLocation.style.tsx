@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../../services';
 
-export const RobotDetailLocationStyles = makeStyles((theme: Theme) => ({
+export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 	sLocationContainer: {
 		marginTop: theme.spacing(4)
 	},

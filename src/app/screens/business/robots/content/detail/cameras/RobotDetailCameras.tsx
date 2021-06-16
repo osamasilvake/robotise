@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import RobotDetailCamera from './RobotDetailCamera';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 import { RobotDetailCamerasInterface } from './RobotDetailCameras.interface';
-import { RobotDetailCameraStyles } from './RobotDetailCameras.style';
+import { RobotDetailCameraStyle } from './RobotDetailCameras.style';
 
 const RobotDetailCameras: FC<RobotDetailCamerasInterface> = (props) => {
 	const { robotTwins } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailCameraStyles();
+	const classes = RobotDetailCameraStyle();
 
 	const [currentCameraType, setCurrentCameraType] = useState(RobotDetailCameraTypeEnum.BASE);
 

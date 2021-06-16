@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 
 import { robotSelector } from '../../../../../slices/robots/Robot.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/robots/RobotTwinsSummary.slice';
-import { RobotConfigurationStyles } from './RobotConfiguration.style';
+import { RobotConfigurationStyle } from './RobotConfiguration.style';
 import RobotConfigurationSyncProducts from './sync-products/RobotConfigurationSyncProducts';
 
 const RobotConfiguration: FC = () => {
-	const classes = RobotConfigurationStyles();
+	const classes = RobotConfigurationStyle();
 
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robot = useSelector(robotSelector);

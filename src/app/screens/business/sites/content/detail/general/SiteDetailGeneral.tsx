@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import Status from '../../../../../../components/common/status/Status';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { SiteDetailGeneralInterface } from './SiteDetailGeneral.interface';
-import { SiteDetailGeneralStyles } from './SiteDetailGeneral.style';
+import { SiteDetailGeneralStyle } from './SiteDetailGeneral.style';
 
 const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 	const { site } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteDetailGeneralStyles();
+	const classes = SiteDetailGeneralStyle();
 
 	return (
 		<Grid container spacing={1}>

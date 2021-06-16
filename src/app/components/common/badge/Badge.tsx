@@ -3,11 +3,11 @@ import { FC } from 'react';
 
 import { BadgeTypeEnum } from './Badge.enum';
 import { BadgeInterface } from './Badge.interface';
-import { BadgeStyles } from './Badge.style';
+import { BadgeStyle } from './Badge.style';
 
 const AppBadge: FC<BadgeInterface> = (props) => {
 	const { children, type, count, color } = props;
-	const classes = BadgeStyles();
+	const classes = BadgeStyle();
 
 	if (type === BadgeTypeEnum.NUMBER) {
 		return (

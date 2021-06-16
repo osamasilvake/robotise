@@ -1,6 +1,6 @@
 import { Theme } from '@material-ui/core';
 
-export const ErrorBoundaryStyles = (theme: Theme) => ({
+export const ErrorBoundaryStyle = (theme: Theme) => ({
 	sTitle: {
 		fontSize: theme.typography.pxToRem(75)
 	},

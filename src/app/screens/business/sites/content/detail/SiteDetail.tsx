@@ -10,10 +10,10 @@ import PageError from '../../../../../components/content/page-error/PageError';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SiteDetailGeneral from './general/SiteDetailGeneral';
-import { SiteDetailStyles } from './SiteDetail.style';
+import { SiteDetailStyle } from './SiteDetail.style';
 
 const SiteDetail: FC = () => {
-	const classes = SiteDetailStyles();
+	const classes = SiteDetailStyle();
 
 	const sites = useSelector(sitesSelector);
 

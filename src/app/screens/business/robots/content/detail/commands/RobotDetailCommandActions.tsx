@@ -16,12 +16,12 @@ import {
 } from './RobotDetailCommands.enum';
 import { RobotDetailCommandActionsInterface } from './RobotDetailCommands.interface';
 import { rotateAngles, translateDistances } from './RobotDetailCommands.list';
-import { RobotDetailCommandsStyles } from './RobotDetailCommands.style';
+import { RobotDetailCommandsStyle } from './RobotDetailCommands.style';
 
 const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props) => {
 	const { robot, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailCommandsStyles();
+	const classes = RobotDetailCommandsStyle();
 
 	const [rotate, setRotate] = useState(rotateAngles[4].value);
 	const [translate, setTranslate] = useState(translateDistances[4].value);

@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 import { strRemoveLastUnderscore } from '../../../../../../utilities/methods/StringUtilities';
 import { RobotDetailLocationInterface } from './RobotDetailLocation.interface';
-import { RobotDetailLocationStyles } from './RobotDetailLocation.style';
+import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 import RobotDetailLocationCard from './RobotDetailLocationCard';
 import RobotDetailLocationInfo from './RobotDetailLocationInfo';
 
 const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 	const { robotTwins } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailLocationStyles();
+	const classes = RobotDetailLocationStyle();
 
 	const [grid, showGrid] = useState(false);
 

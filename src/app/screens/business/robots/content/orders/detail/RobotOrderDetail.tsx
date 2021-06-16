@@ -4,11 +4,12 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
+import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import { OrderFetch, orderSelector } from '../../../../../../slices/orders/Order.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import RobotOrderDetailTable from './RobotOrderDetailTable';
+import RobotOrderTable from './table/RobotOrderTable';
 
 const RobotOrderDetail: FC = () => {
 	const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const RobotOrderDetail: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.content.orders.content.refreshTime
+			AppConfigService.AppOptions.screens.robots.content.orders.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, params.order]);
@@ -45,11 +46,16 @@ const RobotOrderDetail: FC = () => {
 		return <PageError message={order.errors.text} />;
 	}
 
-	// empty
+	// null
 	if (!order.content) {
 		return null;
 	}
 
-	return order ? <RobotOrderDetailTable order={order} /> : null;
+	// empty
+	if (!order.content.updatedAt) {
+		return <PageEmpty message="EMPTY.MESSAGE" />;
+	}
+
+	return order ? <RobotOrderTable order={order} /> : null;
 };
 export default RobotOrderDetail;

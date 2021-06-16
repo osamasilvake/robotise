@@ -1,12 +1,12 @@
-import { SliceOrderInterface } from '../../../../../../slices/orders/Order.slice.interface';
-import { RobotOrderColumnsTypeEnum } from './RobotOrderDetail.enum';
+import { SliceOrderInterface } from '../../../../../../../slices/orders/Order.slice.interface';
+import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 
-export interface RobotOrderDetailInterface {
+export interface RobotOrderTableInterface {
 	order: SliceOrderInterface | null;
 }
 
 export interface RobotOrderTableColumnInterface {
-	id: RobotOrderColumnsTypeEnum;
+	id: RobotOrderTableColumnsTypeEnum;
 	label: string;
 	minWidth?: number;
 	width?: number;

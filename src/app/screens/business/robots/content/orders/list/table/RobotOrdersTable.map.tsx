@@ -1,6 +1,6 @@
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { RobotOrdersTableColumnStatusTypeEnum } from './RobotOrdersTable.enum';
-import { CANCELLABLE_ORDERS } from './RobotOrdersTable.list';
+import { cancellableOrders } from './RobotOrdersTable.list';
 
 /**
  * map status level
@@ -37,5 +37,5 @@ export const mapStatusLevel = (status: string) => {
  */
 export const isOrderCancellable = (status: string) => {
 	const value = status.split('.').pop();
-	return CANCELLABLE_ORDERS.includes(value || '');
+	return cancellableOrders.includes(value || '');
 };

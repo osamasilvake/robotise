@@ -1,4 +1,4 @@
-export interface RobotOrdersFetchListPayloadInterface {
+export interface RobotOrdersListPayloadInterface {
 	robotId: string | undefined;
 	page: number;
 	rowsPerPage: number;

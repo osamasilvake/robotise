@@ -36,7 +36,7 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 ];
 
 // cancellable orders
-export const CANCELLABLE_ORDERS = [
+export const cancellableOrders = [
 	'created',
 	'in_progress:traveling',
 	'in_progress:arrived',

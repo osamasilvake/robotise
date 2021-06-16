@@ -19,12 +19,12 @@ import {
 	RobotOrdersTableColumnInterface
 } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
-import { RobotOrdersTableStyles } from './RobotOrdersTable.style';
+import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 import RobotOrdersTableBodyCell from './RobotOrdersTableBodyCell';
 
 const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
-	const classes = RobotOrdersTableStyles();
+	const classes = RobotOrdersTableStyle();
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
@@ -76,7 +76,7 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 
 	/**
 	 * handle show order detail
-	 * @param robot
+	 * @param order
 	 * @returns
 	 */
 	const handleShowOrderDetail = (order: SOCDataInterface) => () => {

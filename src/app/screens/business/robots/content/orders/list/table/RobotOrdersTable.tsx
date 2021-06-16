@@ -10,14 +10,14 @@ import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interf
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableHeadOrder, RobotOrdersTableInterface } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
-import { RobotOrdersTableStyles } from './RobotOrdersTable.style';
+import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 import RobotOrdersTableBody from './RobotOrdersTableBody';
 import RobotOrdersTableHead from './RobotOrdersTableHead';
 
 const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotOrdersTableStyles();
+	const classes = RobotOrdersTableStyle();
 
 	const dispatch = useDispatch();
 	const orders = useSelector(ordersSelector);

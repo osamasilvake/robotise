@@ -12,19 +12,18 @@ import {
 } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
 import { isOrderCancellable, mapStatusLevel } from './RobotOrdersTable.map';
-import { RobotOrdersTableStyles } from './RobotOrdersTable.style';
+import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 
 const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) => {
 	const { column, order } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotOrdersTableStyles();
+	const classes = RobotOrdersTableStyle();
 
 	const [open, setOpen] = useState(false);
 
 	/**
 	 * open cancel order dialog
-	 * @param order
-	 * @returns
+	 * @param event
 	 */
 	const openCancelOrderDialog = (event: MouseEvent<HTMLDivElement>) => {
 		// stop propagation
@@ -36,7 +35,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 
 	/**
 	 * set cell value
-	 * @param robot
+	 * @param order
 	 * @param column
 	 * @returns
 	 */

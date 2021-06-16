@@ -9,18 +9,18 @@ import {
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Status from '../../../../../../components/common/status/Status';
-import { SOCDataHistoryInterface } from '../../../../../../slices/orders/Orders.slice.interface';
-import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
-import { mapStatusLevel } from '../list/table/RobotOrdersTable.map';
-import { RobotOrderColumnsTypeEnum } from './RobotOrderDetail.enum';
+import Status from '../../../../../../../components/common/status/Status';
+import { SOCDataHistoryInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
+import { momentFormat2 } from '../../../../../../../utilities/methods/Moment';
+import { mapStatusLevel } from '../../list/table/RobotOrdersTable.map';
+import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 import {
-	RobotOrderDetailInterface,
-	RobotOrderTableColumnInterface
-} from './RobotOrderDetail.interface';
-import { columns } from './RobotOrderDetail.list';
+	RobotOrderTableColumnInterface,
+	RobotOrderTableInterface
+} from './RobotOrderTable.interface';
+import { columns } from './RobotOrderTable.list';
 
-const RobotOrderDetailTable: FC<RobotOrderDetailInterface> = (props) => {
+const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 	const { order } = props;
 	const { t } = useTranslation('ROBOTS');
 
@@ -32,7 +32,7 @@ const RobotOrderDetailTable: FC<RobotOrderDetailInterface> = (props) => {
 	 */
 	const setCellValue = (row: SOCDataHistoryInterface, column: RobotOrderTableColumnInterface) => {
 		switch (column.id) {
-			case RobotOrderColumnsTypeEnum.DETAILS:
+			case RobotOrderTableColumnsTypeEnum.DETAILS:
 				return (
 					<Status level={mapStatusLevel(row.details)}>
 						{t(
@@ -43,7 +43,7 @@ const RobotOrderDetailTable: FC<RobotOrderDetailInterface> = (props) => {
 						)}
 					</Status>
 				);
-			case RobotOrderColumnsTypeEnum.CREATED_AT:
+			case RobotOrderTableColumnsTypeEnum.CREATED_AT:
 			default:
 				return momentFormat2(row[column.id]);
 		}
@@ -83,4 +83,4 @@ const RobotOrderDetailTable: FC<RobotOrderDetailInterface> = (props) => {
 		</TableContainer>
 	);
 };
-export default RobotOrderDetailTable;
+export default RobotOrderTable;

@@ -12,19 +12,19 @@ export interface RobotOrdersTableInterface {
 	rowsPerPage: number;
 }
 
-export interface RobotOrdersTableHeadInterface {
-	columns: RobotOrdersTableColumnInterface[];
-	onRequestSort: (event: MouseEvent, property: RobotOrdersTableColumnsTypeEnum) => void;
-	order: RobotOrdersTableHeadOrder;
-	orderBy: RobotOrdersTableColumnsTypeEnum;
-}
-
 export interface RobotOrdersTableColumnInterface {
 	id: RobotOrdersTableColumnsTypeEnum;
 	label: string;
 	minWidth?: number;
 	width?: number;
 	align?: RobotOrdersTableHeadAlignment;
+}
+
+export interface RobotOrdersTableHeadInterface {
+	columns: RobotOrdersTableColumnInterface[];
+	onRequestSort: (event: MouseEvent, property: RobotOrdersTableColumnsTypeEnum) => void;
+	order: RobotOrdersTableHeadOrder;
+	orderBy: RobotOrdersTableColumnsTypeEnum;
 }
 
 export interface RobotOrdersTableBodyInterface {

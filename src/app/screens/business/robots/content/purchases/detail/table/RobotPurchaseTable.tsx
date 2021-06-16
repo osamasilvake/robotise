@@ -14,18 +14,18 @@ import { useTranslation } from 'react-i18next';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataCartInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
-import { RobotPurchaseDetailTableColumnsTypeEnum } from './RobotPurchaseDetailTable.enum';
+import { RobotPurchaseTableColumnsTypeEnum } from './RobotPurchaseTable.enum';
 import {
-	RobotPurchaseDetailTableColumnInterface,
-	RobotPurchaseDetailTableInterface
-} from './RobotPurchaseDetailTable.interface';
-import { columns } from './RobotPurchaseDetailTable.list';
-import { RobotPurchaseDetailTableStyles } from './RobotPurchaseDetailTable.style';
+	RobotPurchaseTableColumnInterface,
+	RobotPurchaseTableInterface
+} from './RobotPurchaseTable.interface';
+import { columns } from './RobotPurchaseTable.list';
+import { RobotPurchaseTableStyle } from './RobotPurchaseTable.style';
 
-const RobotPurchaseDetailTable: FC<RobotPurchaseDetailTableInterface> = (props) => {
+const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchaseDetailTableStyles();
+	const classes = RobotPurchaseTableStyle();
 
 	/**
 	 * set cell value
@@ -33,23 +33,20 @@ const RobotPurchaseDetailTable: FC<RobotPurchaseDetailTableInterface> = (props) 
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (
-		row: SPCDataCartInterface,
-		column: RobotPurchaseDetailTableColumnInterface
-	) => {
+	const setCellValue = (row: SPCDataCartInterface, column: RobotPurchaseTableColumnInterface) => {
 		const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 		const currency = (purchase?.content && purchase.content['currency']) || defaultCurrency;
-		const quantity = Number(row[RobotPurchaseDetailTableColumnsTypeEnum.QUANTITY]);
-		const price = Number(row[RobotPurchaseDetailTableColumnsTypeEnum.PRICE_UNIT]);
+		const quantity = Number(row[RobotPurchaseTableColumnsTypeEnum.QUANTITY]);
+		const price = Number(row[RobotPurchaseTableColumnsTypeEnum.PRICE_UNIT]);
 
 		switch (column.id) {
-			case RobotPurchaseDetailTableColumnsTypeEnum.TITLE:
+			case RobotPurchaseTableColumnsTypeEnum.TITLE:
 				return row[column.id];
-			case RobotPurchaseDetailTableColumnsTypeEnum.QUANTITY:
+			case RobotPurchaseTableColumnsTypeEnum.QUANTITY:
 				return quantity;
-			case RobotPurchaseDetailTableColumnsTypeEnum.PRICE_UNIT:
+			case RobotPurchaseTableColumnsTypeEnum.PRICE_UNIT:
 				return `${currencyFormat(price, currency, i18next.language)}`;
-			case RobotPurchaseDetailTableColumnsTypeEnum.PRICE_TOTAL:
+			case RobotPurchaseTableColumnsTypeEnum.PRICE_TOTAL:
 			default:
 				return `${currencyFormat(quantity * price, currency, i18next.language)}`;
 		}
@@ -60,7 +57,7 @@ const RobotPurchaseDetailTable: FC<RobotPurchaseDetailTableInterface> = (props) 
 			<Table>
 				<TableHead>
 					<TableRow>
-						{columns.map((column: RobotPurchaseDetailTableColumnInterface) => (
+						{columns.map((column: RobotPurchaseTableColumnInterface) => (
 							<TableCell
 								key={column.id}
 								align={column.align}
@@ -77,7 +74,7 @@ const RobotPurchaseDetailTable: FC<RobotPurchaseDetailTableInterface> = (props) 
 				<TableBody>
 					{purchase?.content?.cart.map((row) => (
 						<TableRow key={row.id}>
-							{columns.map((column: RobotPurchaseDetailTableColumnInterface) => (
+							{columns.map((column: RobotPurchaseTableColumnInterface) => (
 								<TableCell key={column.id} align={column.align}>
 									{setCellValue(row, column)}
 								</TableCell>
@@ -112,4 +109,4 @@ const RobotPurchaseDetailTable: FC<RobotPurchaseDetailTableInterface> = (props) 
 		</TableContainer>
 	);
 };
-export default RobotPurchaseDetailTable;
+export default RobotPurchaseTable;

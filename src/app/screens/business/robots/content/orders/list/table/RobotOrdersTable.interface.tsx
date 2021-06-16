@@ -12,14 +12,6 @@ export interface RobotOrdersTableInterface {
 	rowsPerPage: number;
 }
 
-export interface RobotOrdersTableColumnInterface {
-	id: RobotOrdersTableColumnsTypeEnum;
-	label: string;
-	minWidth?: number;
-	width?: number;
-	align?: RobotOrdersTableHeadAlignment;
-}
-
 export interface RobotOrdersTableHeadInterface {
 	columns: RobotOrdersTableColumnInterface[];
 	onRequestSort: (event: MouseEvent, property: RobotOrdersTableColumnsTypeEnum) => void;
@@ -44,6 +36,14 @@ export interface DialogCancelOrderInterface {
 	order: SOCDataInterface;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface RobotOrdersTableColumnInterface {
+	id: RobotOrdersTableColumnsTypeEnum;
+	label: string;
+	minWidth?: number;
+	width?: number;
+	align?: RobotOrdersTableHeadAlignment;
 }
 
 export type RobotOrdersTableHeadOrder = 'asc' | 'desc';

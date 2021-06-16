@@ -11,8 +11,8 @@ import robotsRoutes from '../Robots.routes';
 import RobotConfiguration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
-import RobotOrders from './orders/RobotOrders';
-import RobotPurchases from './purchases/RobotPurchases';
+import RobotOrdersList from './orders/list/RobotOrdersList';
+import RobotPurchasesList from './purchases/RobotPurchasesList';
 
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
@@ -79,10 +79,10 @@ const RobotContent: FC = () => {
 				{value === 1 && <RobotInventory />}
 
 				{/* Orders */}
-				{value === 2 && <RobotOrders />}
+				{value === 2 && <RobotOrdersList />}
 
 				{/* Purchases */}
-				{value === 3 && <RobotPurchases />}
+				{value === 3 && <RobotPurchasesList />}
 
 				{/* Configuration */}
 				{value === 4 && <RobotConfiguration />}

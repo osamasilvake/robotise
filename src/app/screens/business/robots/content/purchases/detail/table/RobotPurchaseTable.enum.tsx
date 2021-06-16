@@ -1,4 +1,4 @@
-export enum RobotPurchaseDetailTableColumnsTypeEnum {
+export enum RobotPurchaseTableColumnsTypeEnum {
 	TITLE = 'title',
 	QUANTITY = 'quantity',
 	PRICE_UNIT = 'price',

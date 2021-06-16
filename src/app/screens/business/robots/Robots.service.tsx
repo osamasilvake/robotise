@@ -7,8 +7,8 @@ import {
 } from './content/detail/commands/RobotDetailCommands.enum';
 import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
 import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
-import { RobotOrdersFetchListPayloadInterface } from './content/orders/RobotOrders.interface';
-import { RobotPurchasesFetchListPayloadInterface } from './content/purchases/RobotPurchases.interface';
+import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
+import { RobotPurchasesListPayloadInterface } from './content/purchases/RobotPurchasesList.interface';
 
 class RobotsService {
 	/**
@@ -131,7 +131,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotOrdersFetch = (payload: RobotOrdersFetchListPayloadInterface) => {
+	robotOrdersFetch = (payload: RobotOrdersListPayloadInterface) => {
 		const url = AppConfigService.AppServices.ROBOT.ORDERS;
 		return HttpClientService.get(url, {
 			params: {
@@ -212,7 +212,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotPurchasesFetch = (payload: RobotPurchasesFetchListPayloadInterface) => {
+	robotPurchasesFetch = (payload: RobotPurchasesListPayloadInterface) => {
 		const url = AppConfigService.AppServices.ROBOT.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {

@@ -17,11 +17,11 @@ import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotPurchasesActions from './list/actions/RobotPurchasesActions';
 import RobotPurchasesTable from './list/table/RobotPurchasesTable';
-import { RobotPurchasesFetchListPayloadInterface } from './RobotPurchases.interface';
-import { RobotPurchasesStyles } from './RobotPurchases.style';
+import { RobotPurchasesListPayloadInterface } from './RobotPurchasesList.interface';
+import { RobotPurchasesListStyle } from './RobotPurchasesList.style';
 
-const RobotPurchases: FC = () => {
-	const classes = RobotPurchasesStyles();
+const RobotPurchasesList: FC = () => {
+	const classes = RobotPurchasesListStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -47,7 +47,7 @@ const RobotPurchases: FC = () => {
 	const cRobotId = params.robot;
 
 	useEffect(() => {
-		const payload: RobotPurchasesFetchListPayloadInterface = {
+		const payload: RobotPurchasesListPayloadInterface = {
 			robotId: cRobotId,
 			page,
 			rowsPerPage,
@@ -192,4 +192,4 @@ const RobotPurchases: FC = () => {
 		</Box>
 	);
 };
-export default RobotPurchases;
+export default RobotPurchasesList;

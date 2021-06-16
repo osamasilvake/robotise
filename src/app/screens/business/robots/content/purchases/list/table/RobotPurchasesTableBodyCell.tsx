@@ -12,13 +12,13 @@ import {
 	RobotPurchasesTableColumnInterface
 } from '../../../purchases/list/table/RobotPurchasesTable.interface';
 import { columns } from './RobotPurchasesTable.list';
-import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
+import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 import TableFieldComment from './TableFieldComment';
 
 const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (props) => {
 	const { purchase, column } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchasesTableStyles();
+	const classes = RobotPurchasesTableStyle();
 
 	const unknown = 'N/A';
 

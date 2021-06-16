@@ -10,12 +10,12 @@ import {
 } from '../../../../../../../slices/purchases/Purchases.slice';
 import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { TableFieldCommentInterface } from './RobotPurchasesTable.interface';
-import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
+import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 
 const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchasesTableStyles();
+	const classes = RobotPurchasesTableStyle();
 
 	const dispatch = useDispatch();
 	const purchases = useSelector(purchasesSelector);

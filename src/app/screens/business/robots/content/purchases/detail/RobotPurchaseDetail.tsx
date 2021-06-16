@@ -9,9 +9,9 @@ import PageError from '../../../../../../components/content/page-error/PageError
 import { AppConfigService } from '../../../../../../services';
 import { PurchaseFetch, purchaseSelector } from '../../../../../../slices/purchases/Purchase.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import RobotPurchaseDetailFoot from './foot/RobotPurchaseDetailFoot';
-import RobotPurchaseDetailHead from './head/RobotPurchaseDetailHead';
-import RobotPurchaseDetailTable from './table/RobotPurchaseDetailTable';
+import RobotPurchaseFoot from './foot/RobotPurchaseFoot';
+import RobotPurchaseHead from './head/RobotPurchaseHead';
+import RobotPurchaseTable from './table/RobotPurchaseTable';
 
 const RobotPurchaseDetail: FC = () => {
 	const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const RobotPurchaseDetail: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.content.purchases.content.refreshTime
+			AppConfigService.AppOptions.screens.robots.content.purchases.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, params.purchase]);
@@ -55,9 +55,9 @@ const RobotPurchaseDetail: FC = () => {
 
 	return purchase ? (
 		<Box>
-			<RobotPurchaseDetailHead purchase={purchase} />
-			<RobotPurchaseDetailTable purchase={purchase} />
-			<RobotPurchaseDetailFoot purchase={purchase} />
+			<RobotPurchaseHead purchase={purchase} />
+			<RobotPurchaseTable purchase={purchase} />
+			<RobotPurchaseFoot purchase={purchase} />
 		</Box>
 	) : null;
 };

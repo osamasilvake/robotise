@@ -16,14 +16,14 @@ import {
 	RobotPurchasesTableInterface
 } from './RobotPurchasesTable.interface';
 import { columns } from './RobotPurchasesTable.list';
-import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
+import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 import RobotPurchasesTableBody from './RobotPurchasesTableBody';
 import RobotPurchasesTableHead from './RobotPurchasesTableHead';
 
 const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotPurchasesTableStyles();
+	const classes = RobotPurchasesTableStyle();
 
 	const dispatch = useDispatch();
 	const purchases = useSelector(purchasesSelector);

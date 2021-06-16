@@ -19,12 +19,12 @@ import {
 	RobotPurchasesTableColumnInterface
 } from './RobotPurchasesTable.interface';
 import { columns } from './RobotPurchasesTable.list';
-import { RobotPurchasesTableStyles } from './RobotPurchasesTable.style';
+import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 import RobotPurchasesTableBodyCell from './RobotPurchasesTableBodyCell';
 
 const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
-	const classes = RobotPurchasesTableStyles();
+	const classes = RobotPurchasesTableStyle();
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();

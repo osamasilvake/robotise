@@ -121,28 +121,30 @@ class AppConfigService extends EnvService {
 							}
 						},
 						inventory: {
-							refreshTime: 10000
-						},
-						orders: {
 							list: {
-								refreshTime: 10000,
-								showPageSizes: true,
-								defaultPageSize: 50,
-								pageSizes: [5, 10, 15, 20, 50, 100]
-							},
-							content: {
 								refreshTime: 10000
 							}
 						},
-						purchases: {
+						orders: {
+							detail: {
+								refreshTime: 10000
+							},
 							list: {
 								refreshTime: 10000,
 								showPageSizes: true,
 								defaultPageSize: 50,
 								pageSizes: [5, 10, 15, 20, 50, 100]
-							},
-							content: {
+							}
+						},
+						purchases: {
+							detail: {
 								refreshTime: 10000
+							},
+							list: {
+								refreshTime: 10000,
+								showPageSizes: true,
+								defaultPageSize: 50,
+								pageSizes: [5, 10, 15, 20, 50, 100]
 							}
 						}
 					}

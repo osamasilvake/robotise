@@ -1,5 +1,5 @@
 import { SlicePurchaseInterface } from '../../../../../../../slices/purchases/Purchase.slice.interface';
 
-export interface RobotPurchaseDetailFootInterface {
+export interface RobotPurchaseFootInterface {
 	purchase: SlicePurchaseInterface | null;
 }

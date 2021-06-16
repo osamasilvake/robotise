@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
-import { RobotPurchaseDetailHeadInterface } from './RobotPurchaseDetailHead.interface';
-import { RobotPurchaseDetailHeadStyles } from './RobotPurchaseDetailHead.style';
+import { RobotPurchaseHeadInterface } from './RobotPurchaseHead.interface';
+import { RobotPurchaseHeadStyle } from './RobotPurchaseHead.style';
 
-const RobotPurchaseDetailHead: FC<RobotPurchaseDetailHeadInterface> = (props) => {
+const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchaseDetailHeadStyles();
+	const classes = RobotPurchaseHeadStyle();
 
 	return (
 		<Box className={classes.sHeadBox}>
@@ -33,4 +33,4 @@ const RobotPurchaseDetailHead: FC<RobotPurchaseDetailHeadInterface> = (props) =>
 		</Box>
 	);
 };
-export default RobotPurchaseDetailHead;
+export default RobotPurchaseHead;

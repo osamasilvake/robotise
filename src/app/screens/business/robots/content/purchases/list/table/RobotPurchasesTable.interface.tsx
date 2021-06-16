@@ -19,14 +19,6 @@ export interface RobotPurchasesTableHeadInterface {
 	orderBy: RobotPurchasesTableColumnsTypeEnum;
 }
 
-export interface RobotPurchasesTableColumnInterface {
-	id: RobotPurchasesTableColumnsTypeEnum;
-	label: string;
-	minWidth?: number;
-	width?: number;
-	align?: RobotPurchasesTableHeadAlignment;
-}
-
 export interface RobotPurchasesTableBodyInterface {
 	content: SPContentInterface | null;
 	order: RobotPurchasesTableHeadOrder;
@@ -42,6 +34,14 @@ export interface RobotPurchasesTableBodyCellInterface {
 
 export interface TableFieldCommentInterface {
 	purchase: SPCDataInterface;
+}
+
+export interface RobotPurchasesTableColumnInterface {
+	id: RobotPurchasesTableColumnsTypeEnum;
+	label: string;
+	minWidth?: number;
+	width?: number;
+	align?: RobotPurchasesTableHeadAlignment;
 }
 
 export type RobotPurchasesTableHeadOrder = 'asc' | 'desc';

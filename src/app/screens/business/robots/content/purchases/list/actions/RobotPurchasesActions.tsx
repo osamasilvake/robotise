@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next';
 
 import { FloatStyles } from '../../../../../../../utilities/styles/Float.style';
 import { RobotPurchasesActionsInterface } from './RobotPurchasesActions.interface';
-import { RobotPurchasesActionsStyles } from './RobotPurchasesActions.style';
+import { RobotPurchasesActionsStyle } from './RobotPurchasesActions.style';
 import RobotPurchasesBilled from './RobotPurchasesBilled';
 import RobotPurchasesDebug from './RobotPurchasesDebug';
 
 const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const { billed, debug, topSpace } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchasesActionsStyles();
+	const classes = RobotPurchasesActionsStyle();
 	const floatStyles = FloatStyles();
 
 	return (

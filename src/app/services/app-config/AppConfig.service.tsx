@@ -121,9 +121,7 @@ class AppConfigService extends EnvService {
 							}
 						},
 						inventory: {
-							list: {
-								refreshTime: 10000
-							}
+							refreshTime: 10000
 						},
 						orders: {
 							detail: {

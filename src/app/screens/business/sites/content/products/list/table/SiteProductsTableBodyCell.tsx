@@ -64,7 +64,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 
 	/**
 	 * set cell value
-	 * @param site
+	 * @param product
 	 * @param column
 	 * @returns
 	 */

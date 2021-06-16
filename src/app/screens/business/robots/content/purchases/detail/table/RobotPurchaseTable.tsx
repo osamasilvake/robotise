@@ -29,7 +29,7 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 
 	/**
 	 * set cell value
-	 * @param lane
+	 * @param row
 	 * @param column
 	 * @returns
 	 */

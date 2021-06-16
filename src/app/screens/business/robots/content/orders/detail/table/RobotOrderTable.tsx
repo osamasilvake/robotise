@@ -26,7 +26,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 
 	/**
 	 * set cell value
-	 * @param lane
+	 * @param row
 	 * @param column
 	 * @returns
 	 */

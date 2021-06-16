@@ -24,7 +24,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 
 	/**
 	 * set cell value
-	 * @param robot
+	 * @param purchase
 	 * @param column
 	 * @returns
 	 */

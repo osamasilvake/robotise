@@ -17,10 +17,10 @@ import { robotTwinsSummarySelector } from '../../../../../slices/robots/RobotTwi
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotInventoryList from './list/RobotInventoryList';
-import { RobotInventoryStyles } from './RobotInventory.style';
+import { RobotInventoryStyle } from './RobotInventory.style';
 
 const RobotInventory: FC = () => {
-	const classes = RobotInventoryStyles();
+	const classes = RobotInventoryStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);

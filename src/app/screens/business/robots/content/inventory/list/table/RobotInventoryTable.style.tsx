@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../../../services';
 
-export const RobotsInventoryTableStyles = makeStyles((theme: Theme) => ({
+export const RobotsInventoryTableStyle = makeStyles((theme: Theme) => ({
 	sTableContainer: {
 		marginBottom: theme.spacing(5)
 	},

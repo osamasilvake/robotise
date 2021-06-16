@@ -79,7 +79,7 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 
 	/**
 	 * handle show purchase detail
-	 * @param robot
+	 * @param purchase
 	 * @returns
 	 */
 	const handleShowPurchaseDetail = (purchase: SPCDataInterface) => () => {

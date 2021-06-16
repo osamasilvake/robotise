@@ -17,14 +17,6 @@ export interface RobotsTableHeadInterface {
 	orderBy: RobotsTableColumnsTypeEnum;
 }
 
-export interface RobotsTableColumnInterface {
-	id: RobotsTableColumnsTypeEnum;
-	label: string;
-	minWidth?: number;
-	width?: number;
-	align?: RobotsTableHeadAlignment;
-}
-
 export interface RobotsTableBodyInterface {
 	content: RTSContentInterface | null;
 	order: RobotsTableHeadOrder;
@@ -34,6 +26,14 @@ export interface RobotsTableBodyInterface {
 export interface RobotsTableBodyCellInterface {
 	column: RobotsTableColumnInterface;
 	robot: RTSContentDataInterface;
+}
+
+export interface RobotsTableColumnInterface {
+	id: RobotsTableColumnsTypeEnum;
+	label: string;
+	minWidth?: number;
+	width?: number;
+	align?: RobotsTableHeadAlignment;
 }
 
 export type RobotsTableHeadOrder = 'asc' | 'desc';

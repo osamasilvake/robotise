@@ -14,14 +14,6 @@ export interface SitesTableHeadInterface {
 	orderBy: SitesTableColumnsTypeEnum;
 }
 
-export interface SitesTableColumnInterface {
-	id: SitesTableColumnsTypeEnum;
-	label: string;
-	minWidth?: number;
-	width?: number;
-	align?: SitesTableHeadAlignment;
-}
-
 export interface SitesTableBodyInterface {
 	content: SSContentInterface | null;
 	order: SitesTableHeadOrder;
@@ -31,6 +23,14 @@ export interface SitesTableBodyInterface {
 export interface SitesTableBodyCellInterface {
 	column: SitesTableColumnInterface;
 	site: ISite;
+}
+
+export interface SitesTableColumnInterface {
+	id: SitesTableColumnsTypeEnum;
+	label: string;
+	minWidth?: number;
+	width?: number;
+	align?: SitesTableHeadAlignment;
 }
 
 export type SitesTableHeadOrder = 'asc' | 'desc';

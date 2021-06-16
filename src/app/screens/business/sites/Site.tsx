@@ -15,14 +15,6 @@ const Site: FC = () => {
 
 	const cSiteName = sites.content?.dataById[params.site]?.title;
 
-	/**
-	 * switch detail page
-	 * @returns
-	 */
-	const switchDetailRoute = () => {
-		return <SiteContent />;
-	};
-
 	return (
 		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
@@ -35,7 +27,7 @@ const Site: FC = () => {
 			/>
 
 			{/* Content */}
-			{switchDetailRoute()}
+			<SiteContent />
 		</Paper>
 	);
 };

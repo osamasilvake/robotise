@@ -20,15 +20,6 @@ export interface SiteProductsTableHeadInterface {
 	orderBy: SiteProductsTableColumnsTypeEnum;
 }
 
-export interface SiteProductsTableColumnInterface {
-	id: SiteProductsTableColumnsTypeEnum;
-	label: string;
-	minWidth?: number;
-	width?: number;
-	align?: SiteProductsTableHeadAlignment;
-	noSort?: boolean;
-}
-
 export interface SiteProductsTableBodyInterface {
 	content: SPContentInterface | null;
 	order: SiteProductsTableHeadOrder;
@@ -66,6 +57,15 @@ export interface DialogDeleteProductInterface {
 	product: SPCDataInterface;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface SiteProductsTableColumnInterface {
+	id: SiteProductsTableColumnsTypeEnum;
+	label: string;
+	minWidth?: number;
+	width?: number;
+	align?: SiteProductsTableHeadAlignment;
+	noSort?: boolean;
 }
 
 export type SiteProductsTableHeadOrder = 'asc' | 'desc';

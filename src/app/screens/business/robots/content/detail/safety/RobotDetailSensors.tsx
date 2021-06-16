@@ -37,12 +37,11 @@ const RobotDetailSensors: FC<RobotDetailSafetySensorsInterface> = (props) => {
 			}>
 			{mappedSensors.map((row) => (
 				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
-					<ListItem>
+					<ListItem className={classes.sListItem}>
 						<ListItemIcon>
 							<Icon>{t(row['icon'])}</Icon>
 						</ListItemIcon>
 						<ListItemText
-							key={String(t(row['proto']))}
 							primary={t(row['proto'])}
 							secondary={row['value'] ? t(row['msg1']) : t(row['msg2'])}
 						/>

@@ -37,12 +37,11 @@ const RobotDetailSystems: FC<RobotDetailSafetySystemsInterface> = (props) => {
 			}>
 			{mappedSystem.map((row) => (
 				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
-					<ListItem key={row.proto}>
+					<ListItem className={classes.sListItem}>
 						<ListItemIcon>
 							<Icon>{t(row['icon'])}</Icon>
 						</ListItemIcon>
 						<ListItemText
-							key={String(t(row['proto']))}
 							primary={t(row['proto'])}
 							secondary={row['value'] ? t(row['msg1']) : t(row['msg2'])}
 						/>

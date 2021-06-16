@@ -15,5 +15,8 @@ export const RobotDetailSafetyStyles = makeStyles((theme: Theme) => ({
 		cursor: 'pointer',
 		display: 'flex',
 		justifyContent: 'space-between'
+	},
+	sListItem: {
+		pointerEvents: 'none'
 	}
 }));

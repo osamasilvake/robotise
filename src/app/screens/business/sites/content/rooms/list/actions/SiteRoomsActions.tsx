@@ -10,10 +10,10 @@ import SiteRoomsInactiveRooms from './SiteRoomsInactiveRooms';
 const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
 	const { active, inactive } = props;
 	const { t } = useTranslation('SITES');
-	const floatStyles = FloatStyle();
+	const floatStyle = FloatStyle();
 
 	return (
-		<Paper elevation={2} square className={floatStyles.sFloat1}>
+		<Paper elevation={2} square className={floatStyle.sFloat1}>
 			<Box>
 				{/* Heading */}
 				<Typography variant="h6" color="textSecondary">

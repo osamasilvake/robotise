@@ -3,14 +3,14 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { AppConfigService } from '../../../services';
 import { randomNum } from '../../../utilities/methods/RandomNum';
 
-export const LoginStyles = makeStyles((theme: Theme) => ({
+export const LoginStyle = makeStyles((theme: Theme) => ({
 	sRoot: {
 		height: '100vh'
 	},
 	sImage: {
 		backgroundImage: `url(${
 			AppConfigService.AppImageURLs.robotise.path +
-			randomNum(1, 4) +
+			randomNum(1, 5) +
 			AppConfigService.AppImageURLs.robotise.format
 		})`,
 		backgroundPosition: 'center',

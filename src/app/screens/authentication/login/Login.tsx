@@ -27,12 +27,12 @@ import {
 	validateEmptyObjProperty
 } from '../../../utilities/methods/ObjectUtilities';
 import { AuthLoginPayloadInterface } from '../Auth.interface';
-import { LoginStyles } from './Login.style';
+import { LoginStyle } from './Login.style';
 import { LoginFormValidation } from './Login.validation';
 
 const Login: FC = () => {
 	const { t } = useTranslation('AUTH');
-	const classes = LoginStyles();
+	const classes = LoginStyle();
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);

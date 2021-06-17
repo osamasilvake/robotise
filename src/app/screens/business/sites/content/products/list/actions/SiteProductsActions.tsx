@@ -12,13 +12,13 @@ const SiteProductsActions: FC<SiteProductsActionsInterface> = (props) => {
 	const { topSpace } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteProductsActionsStyle();
-	const floatStyles = FloatStyle();
+	const floatStyle = FloatStyle();
 
 	return (
 		<Paper
 			elevation={2}
 			square
-			className={clsx(floatStyles.sFloat1, {
+			className={clsx(floatStyle.sFloat1, {
 				[classes.sFloatBoxTopSpace]: topSpace
 			})}>
 			<Box>

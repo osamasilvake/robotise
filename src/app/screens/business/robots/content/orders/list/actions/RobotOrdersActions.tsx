@@ -14,13 +14,13 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 	const { activeOrders, debug, topSpace } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersActionsStyle();
-	const floatStyles = FloatStyle();
+	const floatStyle = FloatStyle();
 
 	return (
 		<Paper
 			elevation={2}
 			square
-			className={clsx(floatStyles.sFloat1, {
+			className={clsx(floatStyle.sFloat1, {
 				[classes.sFloatBoxTopSpace]: topSpace
 			})}>
 			<Box className={classes.sFilterBlock}>

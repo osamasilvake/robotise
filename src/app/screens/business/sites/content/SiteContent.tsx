@@ -7,8 +7,8 @@ import { SiteParamsInterface } from '../Site.interface';
 import sitesRoutes from '../Sites.routes';
 import SiteConfiguration from './configuration/SiteConfiguration';
 import SiteDetail from './detail/SiteDetail';
-import SiteProducts from './products/SiteProducts';
-import SiteRooms from './rooms/SiteRooms';
+import SiteProductsList from './products/list/SiteProductsList';
+import SiteRoomsList from './rooms/list/SiteRoomsList';
 
 const SiteContent: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -54,10 +54,10 @@ const SiteContent: FC = () => {
 				{value === 0 && <SiteDetail />}
 
 				{/* Products */}
-				{value === 1 && <SiteProducts />}
+				{value === 1 && <SiteProductsList />}
 
 				{/* Rooms */}
-				{value === 2 && <SiteRooms />}
+				{value === 2 && <SiteRoomsList />}
 
 				{/* Configuration */}
 				{value === 3 && <SiteConfiguration />}

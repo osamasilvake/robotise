@@ -27,12 +27,12 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 	 * toggle room state
 	 */
 	const toggleRoomState = () => {
-		// dispatch: update state
-		const payload: SiteRoomsActionsFiltersPayloadInterface = {
+		// dispatch: update rooms filters
+		const filters: SiteRoomsActionsFiltersPayloadInterface = {
 			...rooms.content?.filters,
 			active: !active
 		};
-		dispatch(RoomUpdateFilters(siteSingle?.id, payload));
+		dispatch(RoomUpdateFilters(siteSingle?.id, filters));
 	};
 
 	return (

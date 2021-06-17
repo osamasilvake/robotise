@@ -3,20 +3,23 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import Loader from '../../../../../components/common/loader/Loader';
-import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
-import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
-import PageError from '../../../../../components/content/page-error/PageError';
-import { AppConfigService } from '../../../../../services';
-import { ProductsFetchList, productsSelector } from '../../../../../slices/products/Products.slice';
-import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
-import { SiteParamsInterface } from '../../Site.interface';
-import SiteProductsActions from './list/actions/SiteProductsActions';
-import SiteProductsTable from './list/table/SiteProductsTable';
-import { siteProductsStyle } from './SiteProducts.style';
+import Loader from '../../../../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
+import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
+import PageError from '../../../../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../../../../services';
+import {
+	ProductsFetchList,
+	productsSelector
+} from '../../../../../../slices/products/Products.slice';
+import { sitesSelector } from '../../../../../../slices/sites/Sites.slice';
+import { SiteParamsInterface } from '../../../Site.interface';
+import SiteProductsActions from './actions/SiteProductsActions';
+import { siteProductsListStyle } from './SiteProductsList.style';
+import SiteProductsTable from './table/SiteProductsTable';
 
-const SiteProducts: FC = () => {
-	const classes = siteProductsStyle();
+const SiteProductsList: FC = () => {
+	const classes = siteProductsListStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -93,4 +96,4 @@ const SiteProducts: FC = () => {
 		</Box>
 	);
 };
-export default SiteProducts;
+export default SiteProductsList;

@@ -38,7 +38,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 
 	useEffect(() => {
 		if (controlMode === RobotDetailControlModeTypeEnum.ROC_CONTROL) {
-			const payload = {
+			const data = {
 				ready: state.ready,
 				control: true,
 				forward: false,
@@ -47,13 +47,13 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 				translate: false
 			};
 			if (muteSensorBack) {
-				payload.backward = true;
-				payload.rotate = false;
+				data.backward = true;
+				data.rotate = false;
 			} else if (muteSensorFront) {
-				payload.forward = true;
-				payload.rotate = false;
+				data.forward = true;
+				data.rotate = false;
 			}
-			setState(payload);
+			setState(data);
 		} else {
 			setState({
 				ready: state.ready,

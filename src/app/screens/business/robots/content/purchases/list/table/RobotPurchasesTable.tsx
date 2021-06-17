@@ -56,11 +56,11 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const payload: SPCState = {
+		const state: SPCState = {
 			...content?.state,
 			page: newPage
 		};
-		dispatch(PurchaseUpdateState(payload));
+		dispatch(PurchaseUpdateState(state));
 	};
 
 	/**
@@ -69,12 +69,12 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const payload: SPCState = {
+		const state: SPCState = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(PurchaseUpdateState(payload));
+		dispatch(PurchaseUpdateState(state));
 	};
 
 	return (

@@ -19,12 +19,12 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 	 */
 	const toggleActiveOrders = () => {
 		// dispatch: update state
-		const payload: SOCState = {
+		const state: SOCState = {
 			...orders.content?.state,
 			page: 0,
 			activeOrders: !activeOrders
 		};
-		dispatch(OrderUpdateState(payload));
+		dispatch(OrderUpdateState(state));
 	};
 
 	return (

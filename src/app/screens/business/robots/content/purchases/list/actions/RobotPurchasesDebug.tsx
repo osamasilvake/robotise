@@ -22,12 +22,12 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	 */
 	const toggleDebug = () => {
 		// dispatch: update state
-		const payload: SPCState = {
+		const state: SPCState = {
 			...purchases.content?.state,
 			page: 0,
 			debug: !debug
 		};
-		dispatch(PurchaseUpdateState(payload));
+		dispatch(PurchaseUpdateState(state));
 	};
 
 	return (

@@ -3,20 +3,20 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import Loader from '../../../../../components/common/loader/Loader';
-import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
-import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
-import PageError from '../../../../../components/content/page-error/PageError';
-import { roomsSelector, RoomUpdateFilters } from '../../../../../slices/rooms/Rooms.slice';
-import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
-import { SiteParamsInterface } from '../../Site.interface';
-import SiteRoomsActions from './list/actions/SiteRoomsActions';
-import { SiteRoomsActionsFiltersPayloadInterface } from './list/actions/SiteRoomsActions.interface';
-import SiteRoomsListGrid from './list/grid/SiteRoomsListGrid';
-import { SiteRoomsStyle } from './SiteRooms.style';
+import Loader from '../../../../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
+import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
+import PageError from '../../../../../../components/content/page-error/PageError';
+import { roomsSelector, RoomUpdateFilters } from '../../../../../../slices/rooms/Rooms.slice';
+import { sitesSelector } from '../../../../../../slices/sites/Sites.slice';
+import { SiteParamsInterface } from '../../../Site.interface';
+import SiteRoomsActions from './actions/SiteRoomsActions';
+import { SiteRoomsActionsFiltersPayloadInterface } from './actions/SiteRoomsActions.interface';
+import SiteRoomsGrid from './grid/SiteRoomsGrid';
+import { SiteRoomsListStyle } from './SiteRoomsList.style';
 
-const SiteRooms: FC = () => {
-	const classes = SiteRoomsStyle();
+const SiteRoomsList: FC = () => {
+	const classes = SiteRoomsListStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -34,12 +34,12 @@ const SiteRooms: FC = () => {
 	useEffect(() => {
 		// clear filters on site change
 		if (cSiteId !== pSiteId) {
-			// dispatch: update state
-			const payload: SiteRoomsActionsFiltersPayloadInterface = {
+			// dispatch: update rooms filters
+			const filters: SiteRoomsActionsFiltersPayloadInterface = {
 				active: false,
 				inactive: false
 			};
-			dispatch(RoomUpdateFilters(cSiteId, payload));
+			dispatch(RoomUpdateFilters(cSiteId, filters));
 		}
 	}, [dispatch, cSiteId, pSiteId]);
 
@@ -69,8 +69,8 @@ const SiteRooms: FC = () => {
 			<SiteRoomsActions active={active} inactive={inactive} />
 
 			{/* Grid */}
-			<SiteRoomsListGrid siteSingle={siteSingle} active={active} inactive={inactive} />
+			<SiteRoomsGrid siteSingle={siteSingle} active={active} inactive={inactive} />
 		</Box>
 	);
 };
-export default SiteRooms;
+export default SiteRoomsList;

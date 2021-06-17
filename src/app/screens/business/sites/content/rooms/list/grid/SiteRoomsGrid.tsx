@@ -16,21 +16,18 @@ import { AppConfigService } from '../../../../../../../services';
 import { RoomUpdateState } from '../../../../../../../slices/rooms/Rooms.slice';
 import { SiteUpdate } from '../../../../../../../slices/sites/Sites.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
-import {
-	SiteRoomsListGridGroupAccInterface,
-	SiteRoomsListGridInterface
-} from './SiteRoomsListGrid.interface';
-import { SiteRoomsListGridStyle } from './SiteRoomsListGrid.style';
+import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';
+import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
 
-const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
+const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const { siteSingle, active, inactive } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteRoomsListGridStyle();
+	const classes = SiteRoomsGridStyle();
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 
-	const [result, setResult] = useState<SiteRoomsListGridGroupAccInterface | null>(null);
+	const [result, setResult] = useState<SiteRoomsGridGroupAccInterface | null>(null);
 
 	const allRooms = siteSingle.rooms.available;
 	const allWhitelist = siteSingle.rooms.whitelist;
@@ -56,7 +53,7 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 		// group rooms by floor
 		const groupedRooms =
 			sortedRooms &&
-			sortedRooms.reduce((acc: SiteRoomsListGridGroupAccInterface, val) => {
+			sortedRooms.reduce((acc: SiteRoomsGridGroupAccInterface, val) => {
 				const letters = val.length > 3 ? val.substring(0, val.length - 2) : val.charAt(0);
 				if (!acc[letters]) {
 					acc[letters] = [val];
@@ -166,4 +163,4 @@ const SiteRoomsListGrid: FC<SiteRoomsListGridInterface> = (props) => {
 		</>
 	);
 };
-export default SiteRoomsListGrid;
+export default SiteRoomsGrid;

@@ -37,11 +37,11 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 			});
 		} else {
 			// dispatch: update state
-			const payload: SPCState = {
+			const state: SPCState = {
 				...purchases.content?.state,
 				locked: purchase.id
 			};
-			dispatch(PurchaseUpdateState(payload));
+			dispatch(PurchaseUpdateState(state));
 
 			// set value
 			setValue(purchase.comment);
@@ -53,11 +53,11 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	 */
 	const closeEditMode = () => {
 		// dispatch: update state
-		const payload: SPCState = {
+		const state: SPCState = {
 			...purchases.content?.state,
 			locked: ''
 		};
-		dispatch(PurchaseUpdateState(payload));
+		dispatch(PurchaseUpdateState(state));
 	};
 
 	return (

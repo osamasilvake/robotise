@@ -80,11 +80,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					setOpen(false);
 
 					// dispatch: update state
-					const payload: SOCState = {
+					const state: SOCState = {
 						...orders.content?.state,
 						page: 0
 					};
-					dispatch(OrderUpdateState(payload));
+					dispatch(OrderUpdateState(state));
 				});
 		}
 	);

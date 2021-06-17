@@ -19,12 +19,12 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	 */
 	const toggleDebug = () => {
 		// dispatch: update state
-		const payload: SOCState = {
+		const state: SOCState = {
 			...orders.content?.state,
 			page: 0,
 			debug: !debug
 		};
-		dispatch(OrderUpdateState(payload));
+		dispatch(OrderUpdateState(state));
 	};
 
 	return (

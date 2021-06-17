@@ -22,12 +22,12 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	 */
 	const toggleBilled = () => {
 		// dispatch: update state
-		const payload: SPCState = {
+		const state: SPCState = {
 			...purchases.content?.state,
 			page: 0,
 			billed: !billed
 		};
-		dispatch(PurchaseUpdateState(payload));
+		dispatch(PurchaseUpdateState(state));
 	};
 
 	return (

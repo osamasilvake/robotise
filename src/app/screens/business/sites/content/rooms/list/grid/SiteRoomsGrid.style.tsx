@@ -2,7 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../../../../../services';
 
-export const SiteRoomsListGridStyle = makeStyles((theme: Theme) => ({
+export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
 	sFloorLabel: {
 		marginBottom: theme.spacing(1)
 	},

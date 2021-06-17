@@ -49,11 +49,11 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const payload: SOCState = {
+		const state: SOCState = {
 			...content?.state,
 			page: newPage
 		};
-		dispatch(OrderUpdateState(payload));
+		dispatch(OrderUpdateState(state));
 	};
 
 	/**
@@ -62,12 +62,12 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const payload: SOCState = {
+		const state: SOCState = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(OrderUpdateState(payload));
+		dispatch(OrderUpdateState(state));
 	};
 
 	return (

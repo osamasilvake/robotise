@@ -5,7 +5,7 @@ class ChangelogService {
 	 * fetch changelog
 	 */
 	changelogFetch = () => {
-		return HttpClientService.get(AppConfigService.AppServices.COMMON.CHANGE_LOG);
+		return HttpClientService.get(AppConfigService.AppServices.SCREENS.INFORMATION.CHANGE_LOG);
 	};
 }
 const instance = new ChangelogService();

@@ -27,7 +27,7 @@ const Robot: FC = () => {
 	const cPurchaseTarget = purchase.content?.location || undefined;
 
 	const orderDefault = t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
-	const purchaseDefault = t('CONTENT.PURCHASES.CONTENT.ROOM_UNKNOWN');
+	const purchaseDefault = t('CONTENT.PURCHASES.DETAIL.ROOM_UNKNOWN');
 
 	/**
 	 * switch detail page

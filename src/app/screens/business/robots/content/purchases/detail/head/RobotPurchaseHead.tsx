@@ -23,12 +23,12 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 					}
 					small>
 					{purchase?.content?.isBilled
-						? t('CONTENT.PURCHASES.CONTENT.HEAD.BILLED')
-						: t('CONTENT.PURCHASES.CONTENT.HEAD.UN_BILLED')}
+						? t('CONTENT.PURCHASES.DETAIL.HEAD.BILLED')
+						: t('CONTENT.PURCHASES.DETAIL.HEAD.UN_BILLED')}
 				</Status>
 			</Typography>
 			<Typography variant="h6" color="textSecondary">
-				{t(`CONTENT.PURCHASES.CONTENT.HEAD.TITLE`)}
+				{t(`CONTENT.PURCHASES.DETAIL.HEAD.TITLE`)}
 			</Typography>
 		</Box>
 	);

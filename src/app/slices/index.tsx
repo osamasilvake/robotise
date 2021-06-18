@@ -2,6 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { AnyAction, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 
+import alertCodes from './alert-codes/AlertCodes.slice';
 import auth from './auth/Auth.slice';
 import general from './general/General.slice';
 import inventory from './inventory/Inventory.slice';
@@ -21,18 +22,19 @@ import sites from './sites/Sites.slice';
 const combinedReducer = combineReducers({
 	auth,
 	general,
-	site,
 	sites,
+	site,
+	products,
+	rooms,
 	robotTwinsSummary,
 	robotTwins,
 	robot,
-	products,
-	rooms,
 	inventory,
 	orders,
 	order,
 	purchases,
-	purchase
+	purchase,
+	alertCodes
 });
 
 // reducers type

@@ -29,7 +29,7 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 		left: 0,
 		position: 'absolute',
 		right: 0,
-		transition: 'top 1s ease 0s',
+		transition: 'top 2s ease 0s',
 		transitionProperty: 'left, bottom',
 		width: theme.typography.pxToRem(16)
 	},

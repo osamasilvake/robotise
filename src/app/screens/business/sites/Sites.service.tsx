@@ -7,7 +7,7 @@ class SitesService {
 	 * fetch sites
 	 */
 	sitesFetch = () => {
-		return HttpClientService.get(AppConfigService.AppServices.SITE.ALL);
+		return HttpClientService.get(AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL);
 	};
 
 	/**
@@ -16,7 +16,10 @@ class SitesService {
 	 * @returns
 	 */
 	siteFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SITE.SINGLE.replace(':siteId', siteId);
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
+			':siteId',
+			siteId
+		);
 		return HttpClientService.get(url);
 	};
 
@@ -26,7 +29,10 @@ class SitesService {
 	 * @returns
 	 */
 	siteServicePositionsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SITE.SERVICE_POSITIONS.replace(':siteId', siteId);
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS.replace(
+			':siteId',
+			siteId
+		);
 		return HttpClientService.get(url, {
 			params: {
 				'filter[site]': siteId
@@ -40,7 +46,7 @@ class SitesService {
 	 * @returns
 	 */
 	siteProductsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SITE.PRODUCTS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PRODUCTS;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[site]': siteId
@@ -62,7 +68,7 @@ class SitesService {
 		siteId: string,
 		productId: string | undefined
 	) => {
-		const url = AppConfigService.AppServices.SITE.PRODUCTS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PRODUCTS;
 		if (type === SiteProductCreateEditTypeEnum.EDIT) {
 			return HttpClientService.patch(`${url}/${productId}`, {
 				data: {
@@ -94,7 +100,7 @@ class SitesService {
 	 * @returns
 	 */
 	siteProductDelete = (productId: string) => {
-		const url = AppConfigService.AppServices.SITE.PRODUCTS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PRODUCTS;
 		return HttpClientService.delete(`${url}/${productId}`);
 	};
 
@@ -105,7 +111,10 @@ class SitesService {
 	 * @returns
 	 */
 	siteUpdateRoomState = (siteId: string, whitelist: string[]) => {
-		const url = AppConfigService.AppServices.SITE.SINGLE.replace(':siteId', siteId);
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
+			':siteId',
+			siteId
+		);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'sites',
@@ -126,7 +135,10 @@ class SitesService {
 	 * @returns
 	 */
 	siteAcceptOrders = (siteId: string, acceptOrders: boolean) => {
-		const url = AppConfigService.AppServices.SITE.SINGLE.replace(':siteId', siteId);
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
+			':siteId',
+			siteId
+		);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'sites',

@@ -146,6 +146,16 @@ class AppConfigService extends EnvService {
 							}
 						}
 					}
+				},
+				information: {
+					alertCodes: {
+						list: {
+							refreshTime: 25000,
+							showPageSizes: false,
+							defaultPageSize: 10,
+							pageSizes: [5, 10, 15, 20, 50, 100]
+						}
+					}
 				}
 			},
 			regex: {
@@ -167,33 +177,37 @@ class AppConfigService extends EnvService {
 	get AppServices() {
 		return {
 			COMMON: {
-				LOGS: `${this.envAppUrl}/frontend-logs`,
-				CHANGE_LOG
+				LOGS: `${this.envAppUrl}/frontend-logs`
 			},
 			AUTH: {
 				SIGN_IN: `${this.envAppUrl}/auth/${this.envRealm}/login`,
 				AUTO_REFRESH: `${this.envAppUrl}/auth/${this.envRealm}/refresh`
 			},
-			SITE: {
-				ALL: `${this.envAppUrl}/sites`,
-				SINGLE: `${this.envAppUrl}/sites/:siteId`,
-				SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
-				PRODUCTS: `${this.envAppUrl}/products`
-			},
-			ROBOT: {
-				MAPS: `${this.envAppUrl}/maps/:mapId`,
-				COMMANDS: `${this.envAppUrl}/robots/:robot/commands`,
-				INVENTORY: `${this.envAppUrl}/robots/:robot/inventory`,
-				ORDERS: `${this.envAppUrl}/orders`,
-				ORDER: `${this.envAppUrl}/orders/:order`,
-				PURCHASES: `${this.envAppUrl}/order-reports`,
-				PURCHASE: `${this.envAppUrl}/order-reports/:purchase`,
-				SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robot/sync-products`
-			},
-			ROBOT_TWINS: {
-				SUMMARY: `${this.envAppUrl}/robot-twins-summary`,
-				ALL: `${this.envAppUrl}/robot-twins`,
-				SINGLE: `${this.envAppUrl}/robot-twins/:robotTwinId`
+			SCREENS: {
+				BUSINESS: {
+					SITES: {
+						ALL: `${this.envAppUrl}/sites`,
+						SINGLE: `${this.envAppUrl}/sites/:siteId`,
+						PRODUCTS: `${this.envAppUrl}/products`,
+						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`
+					},
+					ROBOTS: {
+						ALL: `${this.envAppUrl}/robot-twins-summary`,
+						SINGLE: `${this.envAppUrl}/robot-twins/:robotTwinId`,
+						INVENTORY: `${this.envAppUrl}/robots/:robot/inventory`,
+						ORDERS: `${this.envAppUrl}/orders`,
+						ORDER: `${this.envAppUrl}/orders/:order`,
+						PURCHASES: `${this.envAppUrl}/order-reports`,
+						PURCHASE: `${this.envAppUrl}/order-reports/:purchase`,
+						MAPS: `${this.envAppUrl}/maps/:mapId`,
+						COMMANDS: `${this.envAppUrl}/robots/:robot/commands`,
+						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robot/sync-products`
+					}
+				},
+				INFORMATION: {
+					ALERT_CODES: `${this.envAppUrl}/active-alert-codes`,
+					CHANGE_LOG
+				}
 			}
 		};
 	}

@@ -1,7 +1,6 @@
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import { RobotPurchasesTableColumnInterface } from './RobotPurchasesTable.interface';
 
-// columns
 export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.TARGET,

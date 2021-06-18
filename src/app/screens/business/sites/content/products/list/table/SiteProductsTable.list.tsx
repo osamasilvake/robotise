@@ -1,7 +1,6 @@
 import { SiteProductsTableColumnsTypeEnum } from './SiteProductsTable.enum';
 import { SiteProductsTableColumnInterface } from './SiteProductsTable.interface';
 
-// columns
 export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.IMAGE,
@@ -41,8 +40,8 @@ export const columns: SiteProductsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SiteProductsTableColumnsTypeEnum.UPDATED,
-		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.UPDATED',
+		id: SiteProductsTableColumnsTypeEnum.UPDATED_AT,
+		label: 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS.UPDATED_AT',
 		minWidth: 200,
 		align: 'left'
 	},

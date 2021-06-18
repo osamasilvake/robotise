@@ -1,13 +1,4 @@
 {
-	"COMMON": {
-		"LOADING": "Loading...",
-		"ROWS_PER_PAGE": "Per Page",
-		"EMPTY": {
-			"TITLE": "Empty 😢",
-			"MESSAGE": "Fetched content is empty!",
-			"LINK": "Reload"
-		}
-	},
 	"META": {
 		"GENERAL": {
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
@@ -31,6 +22,10 @@
 				"TITLE": "Robot Details",
 				"DESCRIPTION": "Robot Details Description"
 			}
+		},
+		"ALERT_CODES": {
+			"TITLE": "Alert Codes",
+			"DESCRIPTION": "Alert Codes Description"
 		},
 		"CHANGE_LOG": {
 			"TITLE": "Change Log",
@@ -163,6 +158,51 @@
 			"LINK": "Reload"
 		}
 	},
+	"APPBAR": {
+		"THEME": {
+			"TITLE": "Theme",
+			"LIGHT": "Light",
+			"DARK": "Dark"
+		},
+		"LANGUAGE": {
+			"TITLE": "Language",
+			"EN": "English",
+			"DE": "Deutsch"
+		},
+		"LOGOUT": "Logout"
+	},
+	"SIDEBAR": {
+		"BUSINESS": {
+			"TITLE": {
+				"MAIN": "Business",
+				"SHORT": "Bus."
+			},
+			"LIST": {
+				"SITES": "Sites",
+				"ROBOTS": "Robots"
+			}
+		},
+		"INFORMATION": {
+			"TITLE": {
+				"MAIN": "Information",
+				"SHORT": "Info"
+			},
+			"LIST": {
+				"ALERT_CODES": "Alert Codes",
+				"CHANGE_LOG": "Change Log",
+				"ABOUT": "About"
+			}
+		}
+	},
+	"COMMON": {
+		"LOADING": "Loading...",
+		"ROWS_PER_PAGE": "Per Page",
+		"EMPTY": {
+			"TITLE": "Empty 😢",
+			"MESSAGE": "Fetched content is empty!",
+			"LINK": "Reload"
+		}
+	},
 	"AUTH": {
 		"LOGIN": {
 			"FIELDS": {
@@ -189,45 +229,6 @@
 				"SIGN_IN": {
 					"LABEL": "Sign In"
 				}
-			}
-		}
-	},
-	"APPBAR": {
-		"THEME": {
-			"TITLE": "Theme",
-			"LIGHT": "Light",
-			"DARK": "Dark"
-		},
-		"LANGUAGE": {
-			"TITLE": "Language",
-			"EN": "English",
-			"DE": "Deutsch"
-		},
-		"LOGOUT": "Logout"
-	},
-	"SIDEBAR": {
-		"BUSINESS": {
-			"TITLE": {
-				"MAIN": "Business",
-				"SHORT": "Bus."
-			},
-			"LIST": {
-				"SITES": {
-					"LABEL": "Sites"
-				},
-				"ROBOTS": {
-					"LABEL": "Robots"
-				}
-			}
-		},
-		"INFORMATION": {
-			"TITLE": {
-				"MAIN": "Information",
-				"SHORT": "Info"
-			},
-			"LIST": {
-				"CHANGE_LOG": "Change Log",
-				"ABOUT": "About"
 			}
 		}
 	},
@@ -335,7 +336,7 @@
 							"LENGTH": "Length (mm)",
 							"WEIGHT": "Weight (g)",
 							"SIZE": "Size",
-							"UPDATED": "Updated",
+							"UPDATED_AT": "Updated",
 							"ACTIONS": "Actions"
 						},
 						"VALUES": {
@@ -693,6 +694,21 @@
 				}
 			},
 			"ORDERS": {
+				"COMMON": {
+					"MODE": {
+						"mini-bar": "Minibar",
+						"room-service": "Room Service",
+						"service-position": "Service Position"
+					}
+				},
+				"DETAIL": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"UPDATED_ON": "Updated On"
+						}
+					}
+				},
 				"LIST": {
 					"ACTIONS": {
 						"HEADINGS": {
@@ -773,24 +789,31 @@
 							}
 						}
 					}
-				},
-				"CONTENT": {
-					"TABLE": {
-						"COLUMNS": {
-							"STATUS": "Status",
-							"UPDATED_ON": "Updated On"
-						}
-					}
-				},
-				"COMMON": {
-					"MODE": {
-						"mini-bar": "Minibar",
-						"room-service": "Room Service",
-						"service-position": "Service Position"
-					}
 				}
 			},
 			"PURCHASES": {
+				"DETAIL": {
+					"ROOM_UNKNOWN": "N/A",
+					"HEAD": {
+						"BILLED": "Billed",
+						"UN_BILLED": "Unbilled",
+						"TITLE": "Products"
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"TITLE": "Title",
+							"QUANTITY": "Quantity",
+							"PRICE_UNIT": "Unit Price",
+							"PRICE_TOTAL": "Total Price"
+						},
+						"VALUES": {
+							"TOTAL": "Total"
+						}
+					},
+					"FOOT": {
+						"NOTE": "Note"
+					}
+				},
 				"LIST": {
 					"ACTIONS": {
 						"HEADINGS": {
@@ -824,28 +847,6 @@
 							"UN_BILLED": "Unbilled"
 						}
 					}
-				},
-				"CONTENT": {
-					"ROOM_UNKNOWN": "N/A",
-					"HEAD": {
-						"BILLED": "Billed",
-						"UN_BILLED": "Unbilled",
-						"TITLE": "Products"
-					},
-					"TABLE": {
-						"COLUMNS": {
-							"TITLE": "Title",
-							"QUANTITY": "Quantity",
-							"PRICE_UNIT": "Unit Price",
-							"PRICE_TOTAL": "Total Price"
-						},
-						"VALUES": {
-							"TOTAL": "Total"
-						}
-					},
-					"FOOT": {
-						"NOTE": "Note"
-					}
 				}
 			},
 			"CONFIGURATION": {
@@ -853,6 +854,19 @@
 					"TITLE": "Sync Products",
 					"EXCERPT": "Sync Products on the robot.",
 					"SYNC": "SYNC"
+				}
+			}
+		}
+	},
+	"ALERT_CODES": {
+		"LIST": {
+			"TABLE": {
+				"COLUMNS": {
+					"DESCRIPTION": "Description",
+					"SYSTEM": "System",
+					"CODE": "Code",
+					"NODE": "Node",
+					"UPDATED_AT": "Updated At"
 				}
 			}
 		}

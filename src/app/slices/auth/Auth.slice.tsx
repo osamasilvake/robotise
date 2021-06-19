@@ -157,6 +157,12 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 
 						// dispatch: failure
 						dispatch(failure(message));
+
+						// clear authentication
+						AuthService.authLogout();
+
+						// dispatch: terminate
+						dispatch(terminate());
 					});
 			}
 		} else {
@@ -174,6 +180,9 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 
 			// clear authentication
 			AuthService.authLogout();
+
+			// dispatch: terminate
+			dispatch(terminate());
 		}
 	} else {
 		// dispatch: trigger message

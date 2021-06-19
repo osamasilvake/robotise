@@ -151,7 +151,7 @@ class AppConfigService extends EnvService {
 					alertCodes: {
 						list: {
 							refreshTime: 25000,
-							showPageSizes: false,
+							showPageSizes: true,
 							defaultPageSize: 10,
 							pageSizes: [5, 10, 15, 20, 50, 100]
 						}

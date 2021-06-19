@@ -31,14 +31,12 @@ const AlertCodesTableBody: FC<AlertCodesTableBodyInterface> = (props) => {
 	const sortTableData = (content: SACContentInterface): SACDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[2].id:
-				type = AlertCodesTableSortTypeEnum.NUMBER;
-				break;
 			case columns[4].id:
 				type = AlertCodesTableSortTypeEnum.DATE;
 				break;
 			case columns[0].id:
 			case columns[1].id:
+			case columns[2].id:
 			case columns[3].id:
 				type = AlertCodesTableSortTypeEnum.STRING;
 				break;
@@ -61,8 +59,6 @@ const AlertCodesTableBody: FC<AlertCodesTableBodyInterface> = (props) => {
 	) => {
 		return (a: SACDataInterface, b: SACDataInterface) => {
 			switch (type) {
-				case AlertCodesTableSortTypeEnum.NUMBER:
-					return Number(a[key]) - Number(b[key]);
 				case AlertCodesTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case AlertCodesTableSortTypeEnum.STRING:

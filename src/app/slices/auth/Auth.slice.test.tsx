@@ -138,7 +138,7 @@ describe('[SLICE] Authentication', () => {
 		store.dispatch(AuthRefreshToken(1));
 
 		// assert
-		const expectedActions = [triggerMessage(message), failure(message)];
+		const expectedActions = [triggerMessage(message), failure(message), terminate()];
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 

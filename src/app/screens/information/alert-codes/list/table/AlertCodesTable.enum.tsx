@@ -8,6 +8,5 @@ export enum AlertCodesTableColumnsTypeEnum {
 
 export enum AlertCodesTableSortTypeEnum {
 	DATE,
-	STRING,
-	NUMBER
+	STRING
 }

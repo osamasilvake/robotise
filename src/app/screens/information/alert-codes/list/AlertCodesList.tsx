@@ -48,18 +48,37 @@ const AlertCodesList: FC = () => {
 			if (condition2 || condition4) {
 				if (condition5) {
 					// dispatch: fetch alert codes
-					dispatch(
-						AlertCodesFetch({
-							...payload,
-							page
-						})
-					);
+					dispatch(AlertCodesFetch(payload));
 
 					// update ref
 					pageRef.current.page = page;
 				}
 			}
 		}
+	}, [dispatch, alertCodes.content, page, rowsPerPage]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			if (alertCodes.content) {
+				// dispatch: fetch purchases
+				dispatch(
+					AlertCodesFetch(
+						{
+							page: 0,
+							rowsPerPage
+						},
+						true
+					)
+				);
+			}
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.information.alertCodes.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
 	}, [dispatch, alertCodes.content, page, rowsPerPage]);
 
 	// loader

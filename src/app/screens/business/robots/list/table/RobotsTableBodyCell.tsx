@@ -22,14 +22,14 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		const value = robot[column.id];
 		if (columns[2].id === column.id) {
 			return (
-				<Status active={robot.isReady}>
-					{robot.isReady ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
+				<Status active={robot.robotIsReady}>
+					{robot.robotIsReady ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
 				</Status>
 			);
 		} else if (columns[3].id === column.id) {
 			return (
-				<Status active={robot.acceptOrders}>
-					{robot.acceptOrders
+				<Status active={robot.siteAcceptOrders}>
+					{robot.siteAcceptOrders
 						? t('LIST.TABLE.VALUES.ACTIVE')
 						: t('LIST.TABLE.VALUES.INACTIVE')}
 				</Status>

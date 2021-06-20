@@ -70,7 +70,11 @@ export const RobotTwinsSummaryFetchList =
 		const robotTwinsSummary = states.robotTwinsSummary;
 
 		// return on busy
-		if (robotTwinsSummary && (robotTwinsSummary.loader || robotTwinsSummary.loading)) {
+		if (
+			robotTwinsSummary &&
+			sites &&
+			(robotTwinsSummary.loader || robotTwinsSummary.loading || sites.loader)
+		) {
 			return;
 		}
 
@@ -128,12 +132,12 @@ const prepareContent = (
 				id: robotTwinSummary.id,
 				robotId: robotTwinSummary.robot.id,
 				robotTitle: robotTwinSummary.robot.name,
-				isReady: robotTwinSummary.robotState.isReady.value,
+				robotIsReady: robotTwinSummary.robotState.isReady.value,
 				updatedAt: robotTwinSummary.updatedAt,
 				siteId: site.id,
 				siteTitle: site.title,
 				siteCurrency: site.currency,
-				acceptOrders: site.acceptOrders,
+				siteAcceptOrders: site.acceptOrders,
 				alerts: {
 					danger: danger.length,
 					warning: warn.length

@@ -16,13 +16,13 @@ export interface RTSContentInterface {
 
 export interface RTSContentDataInterface {
 	id: string;
-	robotTitle: string;
 	robotId: string;
+	robotTitle: string;
+	robotIsReady: boolean;
 	siteId: string;
 	siteTitle: string;
 	siteCurrency: string;
-	isReady: boolean;
-	acceptOrders: boolean;
+	siteAcceptOrders: boolean;
 	updatedAt: Date;
 	alerts: RTSContentAlertsInterface;
 }

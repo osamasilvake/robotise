@@ -18,11 +18,9 @@ const RobotsList: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	useEffect(() => {
-		if (sites.content !== null) {
-			// dispatch: fetch robot twins summary
-			dispatch(RobotTwinsSummaryFetchList(true));
-		}
-	}, [dispatch, sites.content]);
+		// dispatch: fetch robot twins summary
+		dispatch(RobotTwinsSummaryFetchList(true));
+	}, [dispatch]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader) {

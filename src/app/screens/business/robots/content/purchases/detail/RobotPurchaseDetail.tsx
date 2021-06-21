@@ -34,7 +34,7 @@ const RobotPurchaseDetail: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.content.purchases.detail.refreshTime
+			AppConfigService.AppOptions.screens.business.robots.content.purchases.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, params.purchase]);

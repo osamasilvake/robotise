@@ -53,7 +53,7 @@ const SiteProductsList: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.sites.content.products.list.refreshTime
+			AppConfigService.AppOptions.screens.business.sites.content.products.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, products.content, cSiteId]);

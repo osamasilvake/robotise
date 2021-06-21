@@ -11,7 +11,8 @@ const RobotDetailAlert: FC<RobotDetailAlertInterface> = (props) => {
 	const { alert } = props;
 	const cardClasses = CardStyle();
 
-	const msMax = AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[1];
+	const msMax =
+		AppConfigService.AppOptions.screens.business.robots.content.detail.alert.messageSizes[1];
 
 	return (
 		<Grid item xs={12} sm={6} md={4} lg={3}>

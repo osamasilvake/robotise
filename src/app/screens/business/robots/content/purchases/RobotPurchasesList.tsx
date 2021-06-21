@@ -31,7 +31,7 @@ const RobotPurchasesList: FC = () => {
 	const page = purchases.content?.state?.page || 0;
 	const rowsPerPage =
 		purchases.content?.state?.rowsPerPage ||
-		AppConfigService.AppOptions.screens.robots.content.purchases.list.defaultPageSize;
+		AppConfigService.AppOptions.screens.business.robots.content.purchases.list.defaultPageSize;
 	const billed = !!purchases.content?.state?.billed;
 	const debug = !!purchases.content?.state?.debug;
 
@@ -139,7 +139,7 @@ const RobotPurchasesList: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.content.purchases.list.refreshTime
+			AppConfigService.AppOptions.screens.business.robots.content.purchases.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, purchases.content, cRobotId, page, rowsPerPage, billed, debug]);

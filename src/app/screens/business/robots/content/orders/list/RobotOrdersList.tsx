@@ -28,7 +28,7 @@ const RobotOrdersList: FC = () => {
 	const page = orders.content?.state?.page || 0;
 	const rowsPerPage =
 		orders.content?.state?.rowsPerPage ||
-		AppConfigService.AppOptions.screens.robots.content.orders.list.defaultPageSize;
+		AppConfigService.AppOptions.screens.business.robots.content.orders.list.defaultPageSize;
 	const activeOrders = !!orders.content?.state?.activeOrders;
 	const debug = !!orders.content?.state?.debug;
 
@@ -136,7 +136,7 @@ const RobotOrdersList: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.content.orders.list.refreshTime
+			AppConfigService.AppOptions.screens.business.robots.content.orders.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, orders.content, cRobotId, page, rowsPerPage, activeOrders, debug]);

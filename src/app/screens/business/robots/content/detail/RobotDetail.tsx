@@ -56,7 +56,7 @@ const RobotDetail: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.content.detail.refreshTime
+			AppConfigService.AppOptions.screens.business.robots.content.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, robotTwinId, sites.content]);

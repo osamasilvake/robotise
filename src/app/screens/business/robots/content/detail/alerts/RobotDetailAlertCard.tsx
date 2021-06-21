@@ -29,8 +29,9 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 
 	const mobileScreen = AppConfigService.AppOptions.styles.responsive.mobile;
 	const msNormal =
-		AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[0];
-	const msMax = AppConfigService.AppOptions.screens.robots.content.detail.alert.messageSizes[1];
+		AppConfigService.AppOptions.screens.business.robots.content.detail.alert.messageSizes[0];
+	const msMax =
+		AppConfigService.AppOptions.screens.business.robots.content.detail.alert.messageSizes[1];
 
 	/**
 	 * copy to clipboard

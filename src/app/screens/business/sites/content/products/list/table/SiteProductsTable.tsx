@@ -60,14 +60,18 @@ const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.sites.content.products.list.showPageSizes
-						? AppConfigService.AppOptions.screens.sites.content.products.list.pageSizes
+					AppConfigService.AppOptions.screens.business.sites.content.products.list
+						.showPageSizes
+						? AppConfigService.AppOptions.screens.business.sites.content.products.list
+								.pageSizes
 						: []
 				}
 				count={content?.meta.totalDocs || 0}
 				page={0}
 				onPageChange={() => null}
-				rowsPerPage={AppConfigService.AppOptions.screens.sites.list.defaultPageSize}
+				rowsPerPage={
+					AppConfigService.AppOptions.screens.business.sites.list.defaultPageSize
+				}
 				onRowsPerPageChange={() => null}
 			/>
 		</Box>

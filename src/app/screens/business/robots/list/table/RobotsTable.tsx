@@ -57,14 +57,16 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.robots.list.showPageSizes
-						? AppConfigService.AppOptions.screens.robots.list.pageSizes
+					AppConfigService.AppOptions.screens.business.robots.list.showPageSizes
+						? AppConfigService.AppOptions.screens.business.robots.list.pageSizes
 						: []
 				}
 				count={content?.data.length || 0}
 				page={0}
 				onPageChange={() => null}
-				rowsPerPage={AppConfigService.AppOptions.screens.robots.list.defaultPageSize}
+				rowsPerPage={
+					AppConfigService.AppOptions.screens.business.robots.list.defaultPageSize
+				}
 				onRowsPerPageChange={() => null}
 			/>
 		</Box>

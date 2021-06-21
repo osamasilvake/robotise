@@ -79,70 +79,72 @@ class AppConfigService extends EnvService {
 				authentication: {
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
-				sites: {
-					list: {
-						refreshTime: 25000,
-						showPageSizes: false,
-						defaultPageSize: 100,
-						pageSizes: [5, 10, 15, 20, 50, 100]
-					},
-					content: {
-						detail: {
-							refreshTime: 10000
+				business: {
+					sites: {
+						list: {
+							refreshTime: 25000,
+							showPageSizes: false,
+							defaultPageSize: 100,
+							pageSizes: [5, 10, 15, 20, 50, 100]
 						},
-						products: {
-							list: {
-								refreshTime: 10000,
-								showPageSizes: false,
-								defaultPageSize: 50,
-								pageSizes: [5, 10, 15, 20, 50, 100]
+						content: {
+							detail: {
+								refreshTime: 10000
+							},
+							products: {
+								list: {
+									refreshTime: 10000,
+									showPageSizes: false,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
 							}
 						}
-					}
-				},
-				robots: {
-					list: {
-						refreshTime: 25000,
-						showPageSizes: false,
-						defaultPageSize: 100,
-						pageSizes: [5, 10, 15, 20, 50, 100]
 					},
-					content: {
-						detail: {
-							refreshTime: 2000,
-							alert: {
-								messageSizes: [50, 70]
-							},
-							commands: {
-								requestDelay: 4000
-							},
-							camera: {
-								requestDelay: 8000
-							}
+					robots: {
+						list: {
+							refreshTime: 25000,
+							showPageSizes: false,
+							defaultPageSize: 100,
+							pageSizes: [5, 10, 15, 20, 50, 100]
 						},
-						inventory: {
-							refreshTime: 10000
-						},
-						orders: {
+						content: {
 							detail: {
+								refreshTime: 2000,
+								alert: {
+									messageSizes: [50, 70]
+								},
+								commands: {
+									requestDelay: 4000
+								},
+								camera: {
+									requestDelay: 8000
+								}
+							},
+							inventory: {
 								refreshTime: 10000
 							},
-							list: {
-								refreshTime: 10000,
-								showPageSizes: true,
-								defaultPageSize: 50,
-								pageSizes: [5, 10, 15, 20, 50, 100]
-							}
-						},
-						purchases: {
-							detail: {
-								refreshTime: 10000
+							orders: {
+								detail: {
+									refreshTime: 10000
+								},
+								list: {
+									refreshTime: 10000,
+									showPageSizes: true,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
 							},
-							list: {
-								refreshTime: 10000,
-								showPageSizes: true,
-								defaultPageSize: 50,
-								pageSizes: [5, 10, 15, 20, 50, 100]
+							purchases: {
+								detail: {
+									refreshTime: 10000
+								},
+								list: {
+									refreshTime: 10000,
+									showPageSizes: true,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
 							}
 						}
 					}

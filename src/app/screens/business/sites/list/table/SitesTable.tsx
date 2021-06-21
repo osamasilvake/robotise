@@ -55,14 +55,16 @@ const SitesTable: FC<SitesTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.sites.list.showPageSizes
-						? AppConfigService.AppOptions.screens.sites.list.pageSizes
+					AppConfigService.AppOptions.screens.business.sites.list.showPageSizes
+						? AppConfigService.AppOptions.screens.business.sites.list.pageSizes
 						: []
 				}
 				count={content?.meta.totalDocs || 0}
 				page={0}
 				onPageChange={() => null}
-				rowsPerPage={AppConfigService.AppOptions.screens.sites.list.defaultPageSize}
+				rowsPerPage={
+					AppConfigService.AppOptions.screens.business.sites.list.defaultPageSize
+				}
 				onRowsPerPageChange={() => null}
 			/>
 		</Box>

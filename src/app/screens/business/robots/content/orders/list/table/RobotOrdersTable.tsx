@@ -98,8 +98,10 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.robots.content.orders.list.showPageSizes
-						? AppConfigService.AppOptions.screens.robots.content.orders.list.pageSizes
+					AppConfigService.AppOptions.screens.business.robots.content.orders.list
+						.showPageSizes
+						? AppConfigService.AppOptions.screens.business.robots.content.orders.list
+								.pageSizes
 						: []
 				}
 				count={content?.meta.totalDocs || 0}

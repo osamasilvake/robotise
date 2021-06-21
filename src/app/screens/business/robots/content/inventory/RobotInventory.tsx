@@ -74,7 +74,7 @@ const RobotInventory: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.robots.content.inventory.refreshTime
+			AppConfigService.AppOptions.screens.business.robots.content.inventory.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, inventory.content, cRobotId]);

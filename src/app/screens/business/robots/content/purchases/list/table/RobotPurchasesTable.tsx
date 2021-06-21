@@ -105,8 +105,9 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.robots.content.purchases.list.showPageSizes
-						? AppConfigService.AppOptions.screens.robots.content.purchases.list
+					AppConfigService.AppOptions.screens.business.robots.content.purchases.list
+						.showPageSizes
+						? AppConfigService.AppOptions.screens.business.robots.content.purchases.list
 								.pageSizes
 						: []
 				}

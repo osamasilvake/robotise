@@ -45,7 +45,7 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 		// interval
 		const intervalId = window.setInterval(
 			actions,
-			AppConfigService.AppOptions.screens.robots.list.refreshTime
+			AppConfigService.AppOptions.screens.business.robots.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, auth.user, sites.content, robotTwinsSummary.content]);

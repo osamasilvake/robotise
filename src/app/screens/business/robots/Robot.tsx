@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageHead from '../../../components/content/page-head/PageHead';
+import { AppConfigService } from '../../../services';
 import { orderSelector } from '../../../slices/orders/Order.slice';
 import { purchaseSelector } from '../../../slices/purchases/Purchase.slice';
 import { robotTwinsSummarySelector } from '../../../slices/robots/RobotTwinsSummary.slice';
@@ -27,7 +28,7 @@ const Robot: FC = () => {
 	const cPurchaseTarget = purchase.content?.location || undefined;
 
 	const orderDefault = t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
-	const purchaseDefault = t('CONTENT.PURCHASES.DETAIL.ROOM_UNKNOWN');
+	const none = AppConfigService.AppOptions.common.none;
 
 	/**
 	 * switch detail page
@@ -51,7 +52,7 @@ const Robot: FC = () => {
 				labels={{
 					robotName: !robotTwinsSummary.loader ? cRobotName : '',
 					orderTarget: !order.loader ? cOrderTarget || orderDefault : '',
-					purchaseTarget: !purchase.loader ? cPurchaseTarget || purchaseDefault : ''
+					purchaseTarget: !purchase.loader ? cPurchaseTarget || none : ''
 				}}
 			/>
 

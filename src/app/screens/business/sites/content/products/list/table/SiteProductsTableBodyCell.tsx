@@ -36,7 +36,6 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 
 	const params: SiteParamsInterface = useParams();
 	const currency = sites.content?.dataById[params.site]?.currency;
-	const unknown = 'N/A';
 
 	/**
 	 * open create/edit product dialog
@@ -120,7 +119,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 			} else if (columns[6].id === column.id) {
 				return momentFormat1(value);
 			}
-			return t(value) || unknown;
+			return t(value) || AppConfigService.AppOptions.common.none;
 		}
 	};
 

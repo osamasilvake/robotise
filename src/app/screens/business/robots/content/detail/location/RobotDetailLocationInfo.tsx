@@ -2,6 +2,7 @@ import { Box, Checkbox, Grid, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { AppConfigService } from '../../../../../../services';
 import { RobotDetailLocationInfoInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 
@@ -9,13 +10,6 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 	const { location, grid, showGrid } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailLocationStyle();
-
-	/**
-	 * toggle grid lines
-	 */
-	const toggleGridLines = () => {
-		showGrid(!grid);
-	};
 
 	return location ? (
 		<Grid item xs={12} sm={6}>
@@ -31,7 +25,7 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 					color="primary"
 					name="gridLines"
 					checked={grid}
-					onChange={toggleGridLines}
+					onChange={() => showGrid(!grid)}
 				/>
 			</Box>
 			<Box>
@@ -45,7 +39,7 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 					variant="subtitle1"
 					color="textPrimary"
 					className={classes.sLocationInfoValue}>
-					{location.value.mapName}
+					{location.value.mapName || AppConfigService.AppOptions.common.none}
 				</Typography>
 			</Box>
 			<Box>

@@ -2,6 +2,7 @@ import { Card, CardContent, Icon, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import { FC } from 'react';
 
+import { AppConfigService } from '../../../../../../services';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailStateCardInterface } from './RobotDetailStates.interface';
 import { RobotDetailStatesStyle } from './RobotDetailStates.style';
@@ -25,8 +26,8 @@ const RobotDetailStateCard: FC<RobotDetailStateCardInterface> = (props) => {
 				)}
 
 				{/* Value */}
-				<Typography variant="h3" className={classes.sCardContentValue}>
-					{rest.value || 'null'}
+				<Typography variant="h4" className={classes.sCardContentValue}>
+					{rest.value || AppConfigService.AppOptions.common.none}
 				</Typography>
 
 				{/* Date */}

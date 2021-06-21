@@ -52,7 +52,7 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 				</Button>
 
 				{lastSynced && (
-					<Typography variant="body2" color="textSecondary">
+					<Typography variant="body2" color="textSecondary" className={classes.sUpdated}>
 						{momentFormat1(lastSynced)}
 					</Typography>
 				)}

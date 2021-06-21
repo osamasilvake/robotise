@@ -20,8 +20,6 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
 
-	const unknown = 'N/A';
-
 	/**
 	 * set cell value
 	 * @param purchase
@@ -36,7 +34,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 		if (columns[0].id === column.id) {
 			return (
 				<Box>
-					{value || unknown}
+					{value || AppConfigService.AppOptions.common.none}
 					{!purchase['isBilled'] && (
 						<Box component="span" className={classes.sTarget}>
 							<Chip

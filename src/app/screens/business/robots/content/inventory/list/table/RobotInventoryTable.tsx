@@ -38,7 +38,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const currency = robotTwinsSummary.content?.dataById[params.robot]?.siteCurrency;
-	const unknown = 'N/A';
+	const none = AppConfigService.AppOptions.common.none;
 
 	/**
 	 * set cell value
@@ -80,9 +80,9 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 			case RobotInventoryTableColumnsTypeEnum.PRICE:
 				return lane.product && currency
 					? `${currencyFormat(lane.product[column.id], currency, i18next.language)}`
-					: unknown;
+					: none;
 			default:
-				return lane.product ? lane.product[column.id] || unknown : unknown;
+				return lane.product ? lane.product[column.id] || none : none;
 		}
 	};
 

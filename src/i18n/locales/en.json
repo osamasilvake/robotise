@@ -793,7 +793,6 @@
 			},
 			"PURCHASES": {
 				"DETAIL": {
-					"ROOM_UNKNOWN": "N/A",
 					"HEAD": {
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",

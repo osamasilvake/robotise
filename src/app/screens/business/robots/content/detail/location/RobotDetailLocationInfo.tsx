@@ -19,7 +19,7 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 
 	return location ? (
 		<Grid item xs={12} sm={6}>
-			<Box>
+			<Box className={classes.sLocationInfoGridBox}>
 				<Typography
 					variant="body2"
 					color="textSecondary"

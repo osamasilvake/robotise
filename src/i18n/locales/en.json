@@ -76,7 +76,7 @@
 			"ROOMS": {
 				"UPDATE": {
 					"SUCCESS": "Room has been updated successfully!",
-					"ERROR": "Unable to update room state!"	
+					"ERROR": "Unable to update room state!"
 				}
 			},
 			"CONFIGURATION": {
@@ -617,63 +617,63 @@
 							"drawers": {
 								"ICON": "all_inbox",
 								"LABEL": "drawers",
-								"MSG_1": "All drawers are active",
-								"MSG_2": "All drawers are not active"
+								"MSG_1": "Drawers are closed",
+								"MSG_2": "Some drawers are opened"
 							},
 							"fallProtectionBackLeft": {
 								"ICON": "security",
 								"LABEL": "fall_protection_back_left",
-								"MSG_1": "Fall protection back left is enabled",
-								"MSG_2": "Fall protection back left is disabled"
+								"MSG_1": "Fall protection back left is ok",
+								"MSG_2": "Fall protection back left is triggered"
 							},
 							"fallProtectionBackRight": {
 								"ICON": "security",
 								"LABEL": "fall_protection_back_right",
-								"MSG_1": "Fall protection back right is enabled",
-								"MSG_2": "Fall protection back right is disabled"
+								"MSG_1": "Fall protection back right is ok",
+								"MSG_2": "Fall protection back right is triggered"
 							},
 							"fallProtectionFrontLeft": {
 								"ICON": "security",
 								"LABEL": "fall_protection_front_left",
-								"MSG_1": "Fall protection front left is enabled",
-								"MSG_2": "Fall protection front left is disabled"
+								"MSG_1": "Fall protection front left is ok",
+								"MSG_2": "Fall protection front left is triggered"
 							},
 							"fallProtectionFrontRight": {
 								"ICON": "security",
 								"LABEL": "fall_protection_front_right",
-								"MSG_1": "Fall protection front right is enabled",
-								"MSG_2": "Fall protection front right is disabled"
+								"MSG_1": "Fall protection front right is ok",
+								"MSG_2": "Fall protection front right is triggered"
 							},
 							"lidarBottom": {
 								"ICON": "info",
 								"LABEL": "lidar_bottom",
-								"MSG_1": "Lidar bottom is active",
-								"MSG_2": "Lidar bottom is disabled"
+								"MSG_1": "Lidar bottom is ok",
+								"MSG_2": "Lidar bottom is triggered"
 							},
 							"lidarTop": {
 								"ICON": "info",
 								"LABEL": "lidar_top",
-								"MSG_1": "Lidar top is active",
-								"MSG_2": "Lidar top is disabled"
+								"MSG_1": "Lidar top is ok",
+								"MSG_2": "Lidar top is triggered"
 							},
 							"magnetSensorLeft": {
 								"ICON": "settings_remote",
 								"LABEL": "magnet_sensor_left",
-								"MSG_1": "Magnet sensor left is active",
-								"MSG_2": "Magnet sensor left is disabled"
+								"MSG_1": "Magnet sensor left is ok",
+								"MSG_2": "Magnet sensor left is triggered"
 							},
 							"magnetSensorRight": {
 								"ICON": "settings_remote",
 								"LABEL": "magnet_sensor_right",
-								"MSG_1": "Magnet sensor right is active",
-								"MSG_2": "Magnet sensor right is disabled"
+								"MSG_1": "Magnet sensor right is ok",
+								"MSG_2": "Magnet sensor right is triggered"
 							},
 							"safetyEdge": {
 								"ICON": "info",
 								"LABEL": "safety_edge",
-								"MSG_1": "Safety edge is active",
-								"MSG_2": "Safety edge is disabled"
-							}								
+								"MSG_1": "Safety edge is ok",
+								"MSG_2": "Safety edge is triggered"
+							}
 						}
 					}
 				}

@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import clsx from 'clsx';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -37,7 +38,10 @@ const RobotDetailSystems: FC<RobotDetailSafetySystemsInterface> = (props) => {
 			}>
 			{mappedSystem.map((row) => (
 				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
-					<ListItem className={classes.sListItem}>
+					<ListItem
+						className={clsx(classes.sListItem, {
+							[classes.sListItemWarning]: !row.value
+						})}>
 						<ListItemIcon>
 							<Icon>{t(row['icon'])}</Icon>
 						</ListItemIcon>

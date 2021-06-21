@@ -43,7 +43,7 @@ export type AppReducerType = ReturnType<typeof combinedReducer>;
 // root reducer
 let initRootState: AppReducerType | undefined = undefined;
 const rootReducer = (rootState: AppReducerType | undefined, action: AnyAction) => {
-	// terminate the state of a redux store
+	// terminate all states of a redux store except general
 	if (action.type === 'Auth/terminate') {
 		if (rootState && initRootState) {
 			rootState = {

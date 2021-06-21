@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
+
+import { AppConfigService } from '../../../../../../services';
 
 export const RobotDetailSafetyStyle = makeStyles((theme: Theme) => ({
 	sStateContainer: {
@@ -18,5 +20,8 @@ export const RobotDetailSafetyStyle = makeStyles((theme: Theme) => ({
 	},
 	sListItem: {
 		pointerEvents: 'none'
+	},
+	sListItemWarning: {
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)
 	}
 }));

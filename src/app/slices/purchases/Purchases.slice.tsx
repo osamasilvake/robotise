@@ -135,10 +135,11 @@ export const PurchasesFetchList =
  * edit a comment field
  * @param purchaseId
  * @param comment
+ * @param callback
  * @returns
  */
 export const PurchaseEditComment =
-	(purchaseId: string, comment: string) =>
+	(purchaseId: string, comment: string, callback: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -167,6 +168,9 @@ export const PurchaseEditComment =
 						text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
 					};
 					dispatch(triggerMessage(message));
+
+					// callback
+					callback();
 				}
 			})
 			.catch(() => {

@@ -74,10 +74,11 @@ export const RoomUpdateFilters =
  * update room state
  * @param siteId
  * @param whitelist
+ * @param callback
  * @returns
  */
 export const RoomUpdateState =
-	(siteId: string, whitelist: string[]) =>
+	(siteId: string, whitelist: string[], callback: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -102,6 +103,9 @@ export const RoomUpdateState =
 
 				// dispatch: updated
 				dispatch(updated({ ...rooms.content, site: result }));
+
+				// callback
+				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

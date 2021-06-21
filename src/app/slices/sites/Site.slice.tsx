@@ -114,10 +114,11 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
  * accept orders
  * @param siteId
  * @param acceptOrders
+ * @param callback
  * @returns
  */
 export const SiteAcceptOrders =
-	(siteId: string, acceptOrders: boolean) => async (dispatch: Dispatch) => {
+	(siteId: string, acceptOrders: boolean, callback: () => void) => async (dispatch: Dispatch) => {
 		const state = {
 			module: SiteTypeEnum.ACCEPT_ORDERS
 		};
@@ -141,6 +142,9 @@ export const SiteAcceptOrders =
 
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
+
+				// callback
+				callback();
 			})
 			.catch((err) => {
 				// dispatch: trigger message

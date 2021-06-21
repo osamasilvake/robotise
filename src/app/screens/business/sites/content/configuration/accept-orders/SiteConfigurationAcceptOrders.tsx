@@ -36,18 +36,21 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 	 * handle accept orders
 	 */
 	const handleAcceptOrders = () => {
-		Promise.all([dispatch(SiteAcceptOrders(siteId, !siteSingle?.acceptOrders))]).then(() => {
-			const cSite = sites.content?.dataById[siteId];
-			if (cSite) {
-				// dispatch: update site
-				dispatch(
-					SiteUpdate({
-						...cSite,
-						acceptOrders: !siteSingle?.acceptOrders
-					})
-				);
-			}
-		});
+		// dispatch: accept orders
+		dispatch(
+			SiteAcceptOrders(siteId, !siteSingle?.acceptOrders, () => {
+				const cSite = sites.content?.dataById[siteId];
+				if (cSite) {
+					// dispatch: update site
+					dispatch(
+						SiteUpdate({
+							...cSite,
+							acceptOrders: !siteSingle?.acceptOrders
+						})
+					);
+				}
+			})
+		);
 	};
 
 	return (

@@ -65,22 +65,18 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 			async () => {
 				// dispatch: create a product
 				params.site &&
-					Promise.all([
-						dispatch(
-							ProductCreateEdit(
-								{
-									...values,
-									image
-								},
-								type,
-								params.site,
-								product?.id
-							)
+					dispatch(
+						ProductCreateEdit(
+							{
+								...values,
+								image
+							},
+							type,
+							params.site,
+							product?.id,
+							() => setOpen(false)
 						)
-					]).then(() => {
-						// set open
-						setOpen(false);
-					});
+					);
 			}
 		);
 	const [image, setImage] = useState<string>(values?.image);

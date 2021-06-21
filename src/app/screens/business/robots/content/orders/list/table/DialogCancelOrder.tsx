@@ -38,11 +38,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 		!status && setOpen(false);
 
 		// dispatch: cancel an order
-		status &&
-			Promise.all([dispatch(OrderCancel(order))]).then(() => {
-				// set open
-				setOpen(false);
-			});
+		status && dispatch(OrderCancel(order, () => setOpen(false)));
 	};
 
 	return (

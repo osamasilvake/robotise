@@ -73,17 +73,19 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		async () => {
 			// dispatch: create an order
 			siteId &&
-				Promise.all([dispatch(OrderCreate(values, siteId))]).then(() => {
-					// set open
-					setOpen(false);
+				dispatch(
+					OrderCreate(values, siteId, () => {
+						// set open
+						setOpen(false);
 
-					// dispatch: update state
-					const state: SOCState = {
-						...orders.content?.state,
-						page: 0
-					};
-					dispatch(OrderUpdateState(state));
-				});
+						// dispatch: update state
+						const state: SOCState = {
+							...orders.content?.state,
+							page: 0
+						};
+						dispatch(OrderUpdateState(state));
+					})
+				);
 		}
 	);
 

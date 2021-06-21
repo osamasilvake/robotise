@@ -77,20 +77,22 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 			? allWhitelist.filter((r) => r !== room)
 			: [...allWhitelist, room];
 
-		// dispatch: update room
+		// dispatch: update room state
 		if (siteSingle?.id) {
-			Promise.all([dispatch(RoomUpdateState(siteSingle.id, whitelist))]).then(() => {
-				// dispatch: update site
-				dispatch(
-					SiteUpdate({
-						...siteSingle,
-						rooms: {
-							...siteSingle.rooms,
-							whitelist
-						}
-					})
-				);
-			});
+			dispatch(
+				RoomUpdateState(siteSingle.id, whitelist, () => {
+					// dispatch: update site
+					dispatch(
+						SiteUpdate({
+							...siteSingle,
+							rooms: {
+								...siteSingle.rooms,
+								whitelist
+							}
+						})
+					);
+				})
+			);
 		}
 	};
 

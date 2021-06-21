@@ -31,10 +31,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	const toggleEditMode = () => {
 		if (editMode) {
 			// dispatch: edit comment
-			Promise.all([dispatch(PurchaseEditComment(purchase.id, value))]).then(() => {
-				// close edit mode
-				closeEditMode();
-			});
+			dispatch(PurchaseEditComment(purchase.id, value, () => closeEditMode()));
 		} else {
 			// dispatch: update state
 			const state: SPCState = {

@@ -128,6 +128,7 @@ export const ProductsFetchList =
  * @param type
  * @param siteId
  * @param productId
+ * @param callback
  * @returns
  */
 export const ProductCreateEdit =
@@ -135,7 +136,8 @@ export const ProductCreateEdit =
 		payload: DialogCreateEditProductPayloadInterface,
 		type: SiteProductCreateEditTypeEnum,
 		siteId: string,
-		productId: string | undefined
+		productId: string | undefined,
+		callback: () => void
 	) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -167,6 +169,9 @@ export const ProductCreateEdit =
 						}.SUCCESS`
 					};
 					dispatch(triggerMessage(message));
+
+					// callback
+					callback();
 				}
 			})
 			.catch(() => {

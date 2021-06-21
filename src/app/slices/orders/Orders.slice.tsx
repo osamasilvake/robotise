@@ -138,10 +138,11 @@ export const OrdersFetchList =
  * create an order
  * @param payload
  * @param siteId
+ * @param callback
  * @returns
  */
 export const OrderCreate =
-	(payload: DialogCreateOrderPayloadInterface, siteId: string) =>
+	(payload: DialogCreateOrderPayloadInterface, siteId: string, callback: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -170,6 +171,9 @@ export const OrderCreate =
 						text: 'ROBOTS.ORDERS.CREATE.SUCCESS'
 					};
 					dispatch(triggerMessage(message));
+
+					// callback
+					callback();
 				}
 			})
 			.catch(() => {
@@ -190,10 +194,12 @@ export const OrderCreate =
 /**
  * cancel an order
  * @param order
+ * @param callback
  * @returns
  */
 export const OrderCancel =
-	(order: SOCDataInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(order: SOCDataInterface, callback: () => void) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
 		const orders = states.orders;
@@ -221,6 +227,9 @@ export const OrderCancel =
 						text: 'ROBOTS.ORDERS.CANCEL.SUCCESS'
 					};
 					dispatch(triggerMessage(message));
+
+					// callback
+					callback();
 				}
 			})
 			.catch(() => {

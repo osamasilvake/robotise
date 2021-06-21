@@ -5,7 +5,7 @@ import { AppConfigService } from '../../../services';
 import { RobotTwinsSummaryTypeEnum } from '../../../slices/robots/RobotTwinsSummary.enum';
 import {
 	IRobotTwinSummary,
-	RTSContentDataInterface,
+	RTSContentDataByIdInterface,
 	RTSContentTransformDataInterface
 } from '../../../slices/robots/RobotTwinsSummary.slice.interface';
 import { SSContentInterface } from '../../../slices/sites/Sites.slice.interface';
@@ -62,6 +62,9 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 					alerts: {
 						value: data.state.reported.alerts,
 						updatedAt: data.metadata.reported.alerts?.updatedAt
+					},
+					lastSyncedProducts: {
+						updatedAt: data.state.reported.lastSyncedProducts
 					}
 				};
 				return result;
@@ -76,28 +79,29 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	let data = await deserializer.deserialize(payload);
-	const dataById: { [id: string]: RTSContentDataInterface } = {};
+	const dataById: RTSContentDataByIdInterface = {};
 
 	data = data.map((item: RTSContentTransformDataInterface) => {
 		const site = sites.dataById[item.site.id];
-		const danger = item.alerts.value.filter(
-			(f) => f.level === RobotTwinsSummaryTypeEnum.DANGER
-		);
-		const warn = item.alerts.value.filter((f) => f.level === RobotTwinsSummaryTypeEnum.WARNING);
 		const result = {
 			id: item.id,
+			updatedAt: item.updatedAt,
 			robotId: item.robot.id,
 			robotTitle: item.robot.name,
 			robotIsReady: item.robotState.isReady.value,
-			updatedAt: item.updatedAt,
 			siteId: site.id,
 			siteTitle: site.title,
 			siteCurrency: site.currency || AppConfigService.AppOptions.common.defaultCurrency,
 			siteAcceptOrders: site.acceptOrders,
 			alerts: {
-				danger: danger.length,
-				warning: warn.length
-			}
+				danger: item.alerts.value.filter(
+					(f) => f.level === RobotTwinsSummaryTypeEnum.DANGER
+				).length,
+				warning: item.alerts.value.filter(
+					(f) => f.level === RobotTwinsSummaryTypeEnum.WARNING
+				).length
+			},
+			lastSyncedProducts: item.lastSyncedProducts.updatedAt
 		};
 		dataById[item.robot.id] = result;
 		return result;

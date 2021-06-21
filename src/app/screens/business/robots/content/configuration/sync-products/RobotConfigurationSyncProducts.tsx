@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { RobotSyncProducts } from '../../../../../../slices/robots/Robot.slice';
+import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationSyncProductsInterface } from './RobotConfigurationSyncProducts.interface';
@@ -21,6 +22,7 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 	const params: RobotParamsInterface = useParams();
 	const robotId = params.robot;
 	const robotIsReady = robotTwinsSummary.content?.dataById[params.robot]?.robotIsReady;
+	const lastSynced = robotTwinsSummary.content?.dataById[params.robot]?.lastSyncedProducts;
 
 	/**
 	 * handle sync products
@@ -48,6 +50,12 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 					endIcon={robot.syncProducts.loading && <CircularProgress size={20} />}>
 					{t('CONTENT.CONFIGURATION.SYNC_PRODUCTS.SYNC')}
 				</Button>
+
+				{lastSynced && (
+					<Typography variant="body2" color="textSecondary">
+						{momentFormat1(lastSynced)}
+					</Typography>
+				)}
 			</CardContent>
 		</Card>
 	);

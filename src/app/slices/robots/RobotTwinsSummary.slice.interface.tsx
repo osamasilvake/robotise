@@ -16,6 +16,7 @@ export interface RTSContentInterface {
 
 export interface RTSContentDataInterface {
 	id: string;
+	updatedAt: Date;
 	robotId: string;
 	robotTitle: string;
 	robotIsReady: boolean;
@@ -23,8 +24,8 @@ export interface RTSContentDataInterface {
 	siteTitle: string;
 	siteCurrency: string;
 	siteAcceptOrders: boolean;
-	updatedAt: Date;
 	alerts: RTSContentAlertsInterface;
+	lastSyncedProducts: Date;
 }
 
 export interface RTSContentDataByIdInterface {
@@ -57,6 +58,9 @@ export interface RTSContentTransformDataInterface {
 		value: IAlert[];
 		updatedAt: Date;
 	};
+	lastSyncedProducts: {
+		updatedAt: Date;
+	};
 }
 
 export interface IRobotTwinSummary {
@@ -75,6 +79,7 @@ export interface IRobotTwinSummary {
 				isReady: boolean;
 			};
 			alerts: IAlert[];
+			lastSyncedProducts: Date;
 		};
 	};
 	metadata: {

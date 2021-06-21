@@ -18,7 +18,6 @@ import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { SICDrawerLaneInterface } from '../../../../../../../slices/inventory/Inventory.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotInventoryTableColumnsTypeEnum } from './RobotInventoryTable.enum';
@@ -35,14 +34,10 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotsInventoryTableStyle();
 
-	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const params: RobotParamsInterface = useParams();
-	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.site.id;
-	const currency =
-		(siteId && sites.content?.dataById[siteId]?.currency) ||
-		AppConfigService.AppOptions.common.defaultCurrency;
+	const currency = robotTwinsSummary.content?.dataById[params.robot]?.siteCurrency;
 	const unknown = 'N/A';
 
 	/**
@@ -83,7 +78,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 			case RobotInventoryTableColumnsTypeEnum.CAPACITY:
 				return lane[column.id];
 			case RobotInventoryTableColumnsTypeEnum.PRICE:
-				return lane.product
+				return lane.product && currency
 					? `${currencyFormat(lane.product[column.id], currency, i18next.language)}`
 					: unknown;
 			default:

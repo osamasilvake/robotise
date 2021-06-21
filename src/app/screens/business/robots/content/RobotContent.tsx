@@ -26,7 +26,7 @@ const RobotContent: FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const cSiteId = robotTwinsSummary.content?.dataById[params.robot].site.id;
+	const cSiteId = robotTwinsSummary.content?.dataById[params.robot].siteId;
 	const pSiteId = site.servicePositions.content?.site?.id;
 
 	useEffect(() => {

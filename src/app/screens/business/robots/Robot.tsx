@@ -22,7 +22,7 @@ const Robot: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 
-	const cRobotName = robotTwinsSummary.content?.dataById[params.robot]?.robot.name;
+	const cRobotName = robotTwinsSummary.content?.dataById[params.robot]?.robotTitle;
 	const cOrderTarget = order.content?.location || undefined;
 	const cPurchaseTarget = purchase.content?.location || undefined;
 

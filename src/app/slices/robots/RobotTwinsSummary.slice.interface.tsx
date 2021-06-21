@@ -28,7 +28,7 @@ export interface RTSContentDataInterface {
 }
 
 export interface RTSContentDataByIdInterface {
-	[id: string]: RTSContentTransformDataInterface;
+	[id: string]: RTSContentDataInterface;
 }
 
 export interface RTSContentAlertsInterface {

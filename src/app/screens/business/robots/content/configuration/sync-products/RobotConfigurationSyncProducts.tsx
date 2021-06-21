@@ -20,7 +20,7 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 
 	const params: RobotParamsInterface = useParams();
 	const robotId = params.robot;
-	const robotState = robotTwinsSummary.content?.dataById[params.robot]?.robotState;
+	const robotIsReady = robotTwinsSummary.content?.dataById[params.robot]?.robotIsReady;
 
 	/**
 	 * handle sync products
@@ -44,7 +44,7 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 					variant="outlined"
 					className={classes.sButton}
 					onClick={handleSyncProducts}
-					disabled={!robotState?.isReady.value || robot.syncProducts.loading}
+					disabled={!robotIsReady || robot.syncProducts.loading}
 					endIcon={robot.syncProducts.loading && <CircularProgress size={20} />}>
 					{t('CONTENT.CONFIGURATION.SYNC_PRODUCTS.SYNC')}
 				</Button>

@@ -28,7 +28,6 @@ import {
 import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
 import { siteSelector } from '../../../../../../../slices/sites/Site.slice';
-import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { CreateOrderValidation } from './DialogCreateOrder.validation';
@@ -44,7 +43,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
 	const site = useSelector(siteSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
@@ -54,8 +52,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
-	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.site.id;
-	const acceptOrders = siteId && sites.content?.dataById[siteId].acceptOrders;
+	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.siteId;
+	const acceptOrders = robotTwinsSummary.content?.dataById[params.robot]?.siteAcceptOrders;
 
 	const {
 		handleChangeInput,

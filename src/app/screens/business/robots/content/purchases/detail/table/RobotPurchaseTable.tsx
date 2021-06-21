@@ -88,7 +88,7 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 					<TableRow>
 						<TableCell>
 							<Typography variant="h6">
-								{t('CONTENT.PURCHASES.CONTENT.TABLE.VALUES.TOTAL')}
+								{t('CONTENT.PURCHASES.DETAIL.TABLE.VALUES.TOTAL')}
 							</Typography>
 						</TableCell>
 						<TableCell />

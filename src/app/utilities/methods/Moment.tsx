@@ -24,15 +24,6 @@ const momentFormat1 = <T,>(value: T): string => {
  * @returns
  */
 const momentFormat2 = <T,>(value: T): string => {
-	return moment(value).format('DD MMMM YYYY, HH:mm:ss');
-};
-
-/**
- * format 3
- * @param value
- * @returns
- */
-const momentFormat3 = <T,>(value: T): string => {
 	return moment(value).format('DD MMMM, HH:mm:ss');
 };
 
@@ -60,12 +51,4 @@ const momentISOString = (): string => {
 	return moment().toISOString();
 };
 
-export {
-	momentCurrentYear,
-	momentFormat1,
-	momentFormat2,
-	momentFormat3,
-	momentISOString,
-	momentNow,
-	momentSort
-};
+export { momentCurrentYear, momentFormat1, momentFormat2, momentISOString, momentNow, momentSort };

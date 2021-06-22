@@ -11,7 +11,7 @@ import { TriggerMessageInterface } from '../../../../../../components/frame/mess
 import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
 import { useWindow } from '../../../../../../utilities/hooks/window/UseWindow';
-import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailAlertsTypeEnum } from './RobotDetailAlerts.enum';
 import { RobotDetailAlertCardInterface } from './RobotDetailAlerts.interface';
@@ -87,7 +87,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 				</Box>
 
 				{/* Date */}
-				<Typography variant="body2">{momentFormat3(alert.createdAt)}</Typography>
+				<Typography variant="body2">{momentFormat2(alert.createdAt)}</Typography>
 
 				{/* Message */}
 				<Typography

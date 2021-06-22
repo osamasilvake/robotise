@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { SOCDataHistoryInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
-import { momentFormat2 } from '../../../../../../../utilities/methods/Moment';
+import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { mapStatusLevel } from '../../list/table/RobotOrdersTable.map';
 import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 import {
@@ -45,7 +45,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 				);
 			case RobotOrderTableColumnsTypeEnum.CREATED_AT:
 			default:
-				return momentFormat2(row[column.id]);
+				return momentFormat1(row[column.id]);
 		}
 	};
 

@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { strRemoveLastUnderscore } from '../../../../../../utilities/methods/StringUtilities';
 import { RobotDetailLocationInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
@@ -31,7 +31,7 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat3(robotTwins.location.updatedAt)}
+				{momentFormat2(robotTwins.location.updatedAt)}
 			</Typography>
 
 			{/* Grid */}

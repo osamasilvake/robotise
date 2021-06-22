@@ -16,7 +16,7 @@ import {
 	RobotCommandCameraImageRequest,
 	robotSelector
 } from '../../../../../../slices/robots/Robot.slice';
-import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 import { RobotDetailCameraInterface } from './RobotDetailCameras.interface';
@@ -52,7 +52,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 			{/* Date */}
 			{robotTwins.cameras && robotTwins.cameras[cameraType] && (
 				<Typography variant="caption" color="textSecondary">
-					{momentFormat3(robotTwins.cameras[cameraType].imageId.updatedAt)}
+					{momentFormat2(robotTwins.cameras[cameraType].imageId.updatedAt)}
 				</Typography>
 			)}
 

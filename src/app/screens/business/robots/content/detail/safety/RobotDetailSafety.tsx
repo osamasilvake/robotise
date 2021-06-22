@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
+import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { RobotDetailSafetyInterface } from './RobotDetailSafety.interface';
 import { RobotDetailSafetyStyle } from './RobotDetailSafety.style';
 import RobotDetailSafetySensors from './RobotDetailSensors';
@@ -22,7 +22,7 @@ const RobotDetailSafety: FC<RobotDetailSafetyInterface> = (props) => {
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat3(
+				{momentFormat2(
 					robotTwins.safetySystemsState?.updatedAt ||
 						robotTwins.safetySensorsState?.updatedAt
 				)}

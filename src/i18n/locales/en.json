@@ -265,8 +265,7 @@
 						"LABEL": "Accept Orders",
 						"ACTIVE": "Active",
 						"INACTIVE": "Inactive"
-					},
-					"UNKNOWN": "Unknown"
+					}
 				}
 			},
 			"PRODUCTS": {
@@ -390,8 +389,7 @@
 					"ON": "On",
 					"OFF": "Off",
 					"ACTIVE": "Active",
-					"INACTIVE": "Inactive",
-					"UNKNOWN": "Unknown"
+					"INACTIVE": "Inactive"
 				}
 			}
 		},
@@ -415,8 +413,7 @@
 						"LABEL": "Accept Orders",
 						"ACTIVE": "Active",
 						"INACTIVE": "Inactive"
-					},
-					"UNKNOWN": "Unknown"
+					}
 				},
 				"LOCATION": {
 					"TITLE": "Location",
@@ -472,8 +469,7 @@
 									"UNSPECIFIED_FAILURE": "Unspecified failure",
 									"COLD": "Cold",
 									"WATCHDOG_TIMER_EXPIRE": "Watchdog timer expire",
-									"SAFETY_TIMER_EXPIRE": "Safety timer expire",
-									"UNKNOWN": "Unknown"
+									"SAFETY_TIMER_EXPIRE": "Safety timer expire"
 								}
 							},
 							"POWER": {
@@ -482,8 +478,7 @@
 									"CHARGING": "Charging",
 									"DISCHARGING": "Discharging",
 									"NOT_CHARGING": "Not charging",
-									"FULL": "Full",
-									"UNKNOWN": "Unknown"
+									"FULL": "Full"
 								}
 							},
 							"VOLTAGE": "Voltage"
@@ -513,8 +508,7 @@
 								"OPTIONS": {
 									"LIFT_ENTERED": "Entered Lift",
 									"LIFT_LEFT": "Left Lift",
-									"LIFT_LEAVING": "Leaving Lift",
-									"UNKNOWN": "Unknown"
+									"LIFT_LEAVING": "Leaving Lift"
 								}
 							}
 						}

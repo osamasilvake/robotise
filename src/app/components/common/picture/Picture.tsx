@@ -4,10 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
 import { generalSelector } from '../../../slices/general/General.slice';
-import { SliceGeneralInterface } from '../../../slices/general/General.slice.interface';
-import { useDebounce } from '../../../utilities/hooks/debounce/UseDebounce';
 import { useWindow } from '../../../utilities/hooks/window/UseWindow';
-import { WindowInterface } from '../../../utilities/hooks/window/UseWindow.interface';
 import { PictureInterface, PictureOnLoadInterface } from './Picture.interface';
 import { PictureStyle } from './Picture.style';
 
@@ -20,8 +17,6 @@ const Picture: FC<PictureInterface> = (props) => {
 	const [values, setValues] = useState<PictureOnLoadInterface | null>(null);
 	const [image, setImage] = useState(src);
 	const cWindow = useWindow();
-	const debouncedWindow = useDebounce<WindowInterface | undefined>(cWindow, 500);
-	const debouncedGeneral = useDebounce<SliceGeneralInterface>(general, 500);
 
 	const imgRef = useRef<HTMLImageElement>(null);
 
@@ -34,11 +29,13 @@ const Picture: FC<PictureInterface> = (props) => {
 	}, [onLoad, values]);
 
 	useEffect(() => {
-		const target = imgRef.current;
-		if (target && target.naturalWidth && target.clientWidth !== values?.clientWidth) {
-			prepareValues(target);
-		}
-	}, [debouncedWindow, debouncedGeneral, values]);
+		setTimeout(() => {
+			const target = imgRef.current;
+			if (target && target.naturalWidth && target.clientWidth !== values?.clientWidth) {
+				prepareValues(target);
+			}
+		}, 500);
+	}, [values, cWindow, general.openDrawer]);
 
 	/**
 	 * on image load

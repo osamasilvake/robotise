@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../components/common/status/Status';
+import { AppConfigService } from '../../../../../../services';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { SiteDetailGeneralInterface } from './SiteDetailGeneral.interface';
 import { SiteDetailGeneralStyle } from './SiteDetailGeneral.style';
@@ -25,7 +26,7 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 					{t('CONTENT.DETAIL.GENERAL.VENDOR')}
 				</Typography>
 				<Typography variant="body1">
-					{site.elevators?.vendor || t('CONTENT.DETAIL.GENERAL.UNKNOWN')}
+					{site.elevators?.vendor || AppConfigService.AppOptions.common.none}
 				</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>

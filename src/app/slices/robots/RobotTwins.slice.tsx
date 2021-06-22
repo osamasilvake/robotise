@@ -3,7 +3,6 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
-import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeRobotTwins } from '../../utilities/serializers/json-api/RobotTwins.deserialize';
 import { AppReducerType } from '..';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
@@ -57,11 +56,10 @@ export default dataSlice.reducer;
  * fetch robot twins of a robot
  * @param robotTwinId
  * @param refresh
- * @param wait
  * @returns
  */
 export const RobotTwinsFetch =
-	(robotTwinId: string, refresh = false, wait = -1) =>
+	(robotTwinId: string, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -75,9 +73,6 @@ export const RobotTwinsFetch =
 
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
-
-		// wait
-		wait >= 0 && (await timeout(wait));
 
 		return RobotsService.robotTwinFetch(robotTwinId)
 			.then(async (res) => {

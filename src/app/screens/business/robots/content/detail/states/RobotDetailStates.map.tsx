@@ -1,3 +1,4 @@
+import { AppConfigService } from '../../../../../../services';
 import { SRTContentDataInterface } from '../../../../../../slices/robots/RobotTwins.slice.interface';
 import { momentFormat3 } from '../../../../../../utilities/methods/Moment';
 
@@ -65,8 +66,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 						break;
 					case 'unknown':
 					default:
-						powerSupplyStatus.text =
-							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.UNKNOWN';
+						powerSupplyStatus.text = AppConfigService.AppOptions.common.none;
 						powerSupplyStatus.icon = 'power_off';
 				}
 			}
@@ -148,7 +148,7 @@ const powerSupplyHealth = (value: string) => {
 			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.SAFETY_TIMER_EXPIRE';
 		case 'unknown':
 		default:
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.UNKNOWN';
+			return AppConfigService.AppOptions.common.none;
 	}
 };
 
@@ -165,7 +165,7 @@ const activity = (value: string) => {
 		case 'leavingLift':
 			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEAVING';
 		case undefined:
-			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.UNKNOWN';
+			return AppConfigService.AppOptions.common.none;
 		default:
 			return value;
 	}

@@ -64,7 +64,8 @@ class AppConfigService extends EnvService {
 					}
 				},
 				drawer: {
-					width: 250
+					openWidth: 250,
+					closeWidth: 56
 				},
 				table: {
 					contentHeight1: 48 + 70.5 + 24 + 52 - 8,

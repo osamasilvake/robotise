@@ -2,19 +2,20 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import { AppConfigService } from '../../../services';
 
-const drawerWidth = AppConfigService.AppOptions.components.drawer.width;
+const drawerOpenWidth = AppConfigService.AppOptions.components.drawer.openWidth;
+const drawerCloseWidth = AppConfigService.AppOptions.components.drawer.closeWidth;
 export const DrawerStyle = makeStyles((theme: Theme) => ({
 	sDrawer: {
 		flexShrink: 0,
 		whiteSpace: 'nowrap',
-		width: theme.typography.pxToRem(drawerWidth)
+		width: theme.typography.pxToRem(drawerOpenWidth)
 	},
 	sOpen: {
 		transition: theme.transitions.create('width', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen
 		}),
-		width: theme.typography.pxToRem(drawerWidth)
+		width: theme.typography.pxToRem(drawerOpenWidth)
 	},
 	sClose: {
 		overflowX: 'hidden',
@@ -22,7 +23,7 @@ export const DrawerStyle = makeStyles((theme: Theme) => ({
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen
 		}),
-		width: theme.spacing(7)
+		width: theme.typography.pxToRem(drawerCloseWidth)
 	},
 	sListRoot: {
 		height: '100%',

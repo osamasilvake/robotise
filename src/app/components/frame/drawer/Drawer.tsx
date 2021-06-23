@@ -35,10 +35,7 @@ const DrawerCustom: FC = () => {
 	return (
 		<Drawer
 			variant="permanent"
-			className={clsx(classes.sDrawer, {
-				[classes.sOpen]: general.openDrawer,
-				[classes.sClose]: !general.openDrawer
-			})}
+			className={classes.sDrawer}
 			classes={{
 				paper: clsx({
 					[classes.sOpen]: general.openDrawer,

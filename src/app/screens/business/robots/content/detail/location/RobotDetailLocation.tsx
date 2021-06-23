@@ -23,7 +23,7 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 				{t('CONTENT.DETAIL.LOCATION.TITLE')}
 			</Typography>
 
-			{/* Label */}
+			{/* Map Label */}
 			<Typography variant="body1" color="textPrimary">
 				{strRemoveLastUnderscore(robotTwins.location.value.mapName)}
 				{robotTwins.location.value.floor && ` / ${robotTwins.location.value.floor}`}

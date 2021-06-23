@@ -43,6 +43,41 @@
 		},
 		"COPY_CLIPBOARD": "Copy to clipboard"
 	},
+	"UPLOAD": {
+		"IMAGE": {
+			"LABEL": "Upload",
+			"RULES": {
+				"RULE_1": "Supported Filetype: png",
+				"RULE_2": "Maximum Filesize: {{value}}KB",
+				"RULE_3": "Supported Resolution Upto: {{value}}"
+			}
+		}
+	},
+	"DIALOG": {
+		"BUTTONS": {
+			"CANCEL": "Cancel",
+			"CREATE": "Create",
+			"UPDATE": "Update",
+			"CONFIRM": "Confirm"
+		}
+	},
+	"ERRORS": {
+		"E404": {
+			"TITLE": "404",
+			"DESCRIPTION": "Sorry, we couldn't locate your page!",
+			"LINK": "Refresh Page"
+		},
+		"ERROR_BOUNDARY": {
+			"TITLE": "Whoops! 🤭",
+			"DESCRIPTION": "Something bad happened!",
+			"LINK": "Reload"
+		},
+		"PAGE_ERROR": {
+			"TITLE": "Whoops! 🤭",
+			"DESCRIPTION": "Unable to fetch the content!",
+			"LINK": "Reload"
+		}
+	},
 	"MESSAGE": {
 		"COMMON": {
 			"NETWORK": {
@@ -54,7 +89,7 @@
 			}
 		},
 		"AUTH": {
-			"TOKEN_EXPIRED": "Token Got Expired!",
+			"TOKEN_EXPIRED": "Token Expired!",
 			"TOKEN_EMPTY": "No Token Found!",
 			"UNKNOWN": "Unknown"
 		},
@@ -131,31 +166,6 @@
 					"ERROR": "Unable to sync products on GUI!"
 				}
 			}
-		}
-	},
-	"DIALOG": {
-		"BUTTONS": {
-			"CANCEL": "Cancel",
-			"CREATE": "Create",
-			"UPDATE": "Update",
-			"CONFIRM": "Confirm"
-		}
-	},
-	"ERRORS": {
-		"E404": {
-			"TITLE": "404",
-			"DESCRIPTION": "Sorry, we couldn't locate your page!",
-			"LINK": "Refresh Page"
-		},
-		"ERROR_BOUNDARY": {
-			"TITLE": "Whoops! 🤭",
-			"DESCRIPTION": "Something bad happened!",
-			"LINK": "Reload"
-		},
-		"PAGE_ERROR": {
-			"TITLE": "Whoops! 🤭",
-			"DESCRIPTION": "Unable to fetch the content!",
-			"LINK": "Reload"
 		}
 	},
 	"APPBAR": {
@@ -283,14 +293,8 @@
 							},
 							"FIELDS": {
 								"IMAGE": {
-									"LABEL": "Upload",
 									"VALIDATIONS": {
 										"REQUIRED": "Name is required."
-									},
-									"RULES": {
-										"RULE_1": "Supported Filetype: png",
-										"RULE_2": "Maximum Filesize: {{value}}KB",
-										"RULE_3": "Supported Resolution Upto: {{value}}"
 									}
 								},
 								"NAME": {

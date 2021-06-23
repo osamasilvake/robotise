@@ -47,12 +47,6 @@ export interface DialogCreateEditProductPayloadInterface {
 	volume: string;
 }
 
-export interface DialogCreateEditProductImageChangeInterface {
-	validate: boolean;
-	type: number;
-	value: string;
-}
-
 export interface DialogDeleteProductInterface {
 	product: SPCDataInterface;
 	open: boolean;

@@ -47,6 +47,7 @@ const Login: FC = () => {
 			},
 			LoginFormValidation,
 			async () => {
+				// dispatch: login
 				dispatch(AuthLogin(values));
 			}
 		);
@@ -137,7 +138,7 @@ const Login: FC = () => {
 							type="submit"
 							className={classes.sSubmit}
 							disabled={
-								!validateEmptyObj(errors) ||
+								(!!errors && !validateEmptyObj(errors)) ||
 								validateEmptyObjProperty(values) ||
 								auth.loading
 							}

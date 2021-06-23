@@ -9,14 +9,5 @@ export const SiteProductsTableStyle = makeStyles((theme: Theme) => ({
 	},
 	sEditProduct: {
 		marginRight: theme.spacing(0.5)
-	},
-	sImageUpload: {
-		marginTop: theme.spacing(0.5)
-	},
-	sImageInfo: {
-		marginTop: theme.spacing(1)
-	},
-	sImageInvalid: {
-		color: AppConfigService.AppOptions.colors.c12
 	}
 }));

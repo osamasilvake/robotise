@@ -1,8 +1,5 @@
 import {
-	Avatar,
-	Box,
 	Button,
-	Chip,
 	CircularProgress,
 	Dialog,
 	DialogActions,
@@ -11,15 +8,14 @@ import {
 	FormControl,
 	FormHelperText,
 	Grid,
-	TextField,
-	Typography
+	TextField
 } from '@material-ui/core';
-import clsx from 'clsx';
-import { ChangeEvent, FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import UploadImage from '../../../../../../../components/common/upload/UploadImage';
 import { AppConfigService } from '../../../../../../../services';
 import {
 	ProductCreateEdit,
@@ -27,7 +23,6 @@ import {
 } from '../../../../../../../slices/products/Products.slice';
 import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
-import { imageFromInput } from '../../../../../../../utilities/methods/Image';
 import {
 	validateEmptyObj,
 	validateEmptyObjProperty
@@ -36,16 +31,13 @@ import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';
 import { SiteProductCreateEditTypeEnum } from './SiteProductsTable.enum';
 import {
-	DialogCreateEditProductImageChangeInterface,
 	DialogCreateEditProductInterface,
 	DialogCreateEditProductPayloadInterface
 } from './SiteProductsTable.interface';
-import { SiteProductsTableStyle } from './SiteProductsTable.style';
 
 const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) => {
 	const { product, open, setOpen, type } = props;
 	const { t } = useTranslation(['DIALOG', 'SITES']);
-	const classes = SiteProductsTableStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -63,7 +55,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 			},
 			CreateEditProductValidation,
 			async () => {
-				// dispatch: create a product
+				// dispatch: create/edit a product
 				params.site &&
 					dispatch(
 						ProductCreateEdit(
@@ -86,9 +78,6 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 	const currency = sites.content?.dataById[params.site]?.currency || defaultCurrency;
-	const maxSize = AppConfigService.AppOptions.components.uploadImage.maxSize;
-	const maxHeight = AppConfigService.AppOptions.components.uploadImage.maxHeight;
-	const maxWidth = AppConfigService.AppOptions.components.uploadImage.maxWidth;
 
 	/**
 	 * close create/edit dialog
@@ -103,20 +92,6 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 		setOpen(false);
 	};
 
-	/**
-	 * handle image change
-	 * @param event
-	 */
-	const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
-		const image = (await imageFromInput(event)) as DialogCreateEditProductImageChangeInterface;
-		if (image.validate) {
-			setImageError(0);
-			setImage(image.value);
-		} else {
-			setImageError(image.type);
-		}
-	};
-
 	return (
 		<Dialog open={open} onClose={closeCreateEditProductDialog}>
 			<form onSubmit={handleSubmit}>
@@ -128,56 +103,12 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
-							<Box>
-								<Avatar
-									variant="square"
-									src={image || AppConfigService.AppImageURLs.logo.iconOff}
-									alt={AppConfigService.AppImageURLs.logo.name}
-								/>
-
-								<label htmlFor="button-file">
-									<Box display="none">
-										<input
-											accept="image/png"
-											className="hidden"
-											id="button-file"
-											type="file"
-											onChange={handleImageChange}
-										/>
-									</Box>
-									<Chip
-										size="small"
-										label={t(`${commonText}.FIELDS.IMAGE.LABEL`)}
-										color="primary"
-										variant="outlined"
-										clickable
-										className={classes.sImageUpload}
-									/>
-								</label>
-							</Box>
-							<Box className={classes.sImageInfo}>
-								<Typography variant="body2">
-									{t(`${commonText}.FIELDS.IMAGE.RULES.RULE_1`)}
-								</Typography>
-								<Typography
-									variant="body2"
-									className={clsx({
-										[classes.sImageInvalid]: imageError === 1
-									})}>
-									{t(`${commonText}.FIELDS.IMAGE.RULES.RULE_2`, {
-										value: maxSize
-									})}
-								</Typography>
-								<Typography
-									variant="body2"
-									className={clsx({
-										[classes.sImageInvalid]: imageError === 2
-									})}>
-									{t(`${commonText}.FIELDS.IMAGE.RULES.RULE_3`, {
-										value: `${maxWidth}x${maxHeight}`
-									})}
-								</Typography>
-							</Box>
+							<UploadImage
+								image={image}
+								setImage={setImage}
+								imageError={imageError}
+								setImageError={setImageError}
+							/>
 						</Grid>
 
 						<Grid item xs={12} sm={6} md={6}>
@@ -279,7 +210,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						variant="outlined"
 						type="submit"
 						disabled={
-							!validateEmptyObj(errors) ||
+							(errors && !validateEmptyObj(errors)) ||
 							validateEmptyObjProperty({
 								image,
 								name: values.name,

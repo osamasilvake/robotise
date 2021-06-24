@@ -1,7 +1,6 @@
 export interface RobotPurchasesActionsInterface {
 	billed: boolean;
 	debug: boolean;
-	topSpace?: boolean;
 }
 
 export interface RobotPurchasesBilledInterface {

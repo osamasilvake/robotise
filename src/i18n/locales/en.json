@@ -209,7 +209,7 @@
 		"ROWS_PER_PAGE": "Per Page",
 		"EMPTY": {
 			"TITLE": "Empty 😢",
-			"MESSAGE": "Fetched content is empty!",
+			"MESSAGE": "The requested content is empty!",
 			"LINK": "Reload"
 		}
 	},

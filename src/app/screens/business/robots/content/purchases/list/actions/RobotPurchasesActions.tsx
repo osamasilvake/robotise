@@ -1,27 +1,19 @@
 import { Box, Paper, Typography } from '@material-ui/core';
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
 import { RobotPurchasesActionsInterface } from './RobotPurchasesActions.interface';
-import { RobotPurchasesActionsStyle } from './RobotPurchasesActions.style';
 import RobotPurchasesBilled from './RobotPurchasesBilled';
 import RobotPurchasesDebug from './RobotPurchasesDebug';
 
 const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
-	const { billed, debug, topSpace } = props;
+	const { billed, debug } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchasesActionsStyle();
 	const floatStyle = FloatStyle();
 
 	return (
-		<Paper
-			elevation={2}
-			square
-			className={clsx(floatStyle.sFloat1, {
-				[classes.sFloatBoxTopSpace]: topSpace
-			})}>
+		<Paper elevation={2} square className={floatStyle.sFloat1}>
 			<Box>
 				{/* Heading */}
 				<Typography variant="h6" color="textSecondary">

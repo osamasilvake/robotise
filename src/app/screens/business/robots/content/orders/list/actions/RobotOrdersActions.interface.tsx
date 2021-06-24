@@ -5,7 +5,6 @@ import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 export interface RobotOrdersActionsInterface {
 	activeOrders: boolean;
 	debug: boolean;
-	topSpace?: boolean;
 }
 
 export interface RobotOrdersActiveOrdersInterface {

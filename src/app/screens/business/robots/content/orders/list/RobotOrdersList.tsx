@@ -165,12 +165,12 @@ const RobotOrdersList: FC = () => {
 	// empty
 	if (!orders.content.data.length) {
 		return (
-			<Box>
+			<Box className={classes.sBox}>
 				{/* Actions */}
-				<RobotOrdersActions activeOrders={activeOrders} debug={debug} topSpace />
+				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
 
 				{/* Empty */}
-				<PageEmpty message="EMPTY.MESSAGE" />
+				<PageEmpty message="EMPTY.MESSAGE" paddingTop />
 			</Box>
 		);
 	}

@@ -12,6 +12,7 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
+import PageEmpty from '../../../../../../../components/content/page-empty/PageEmpty';
 import { AppConfigService } from '../../../../../../../services';
 import { RoomUpdateState } from '../../../../../../../slices/rooms/Rooms.slice';
 import { SiteUpdate } from '../../../../../../../slices/sites/Sites.slice';
@@ -96,69 +97,71 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 		}
 	};
 
-	return (
+	return result ? (
 		<>
-			{result &&
-				Object.keys(result).map((key, idx) => (
-					<Box key={key}>
-						{/* Floor */}
-						<Typography variant="h2" className={classes.sFloorLabel}>
-							{t('CONTENT.ROOMS.LIST.GRID.FLOOR')} {key}
-						</Typography>
+			{Object.keys(result).map((key, idx) => (
+				<Box key={key}>
+					{/* Floor */}
+					<Typography variant="h2" className={classes.sFloorLabel}>
+						{t('CONTENT.ROOMS.LIST.GRID.FLOOR')} {key}
+					</Typography>
 
-						{/* Grid */}
-						{result[key] && result[key].length > 0 && (
-							<Grid
-								container
-								spacing={1}
-								className={clsx({
-									[classes.sGridContainer]: Object.keys(result).length - 1 !== idx
-								})}>
-								{result[key].map((room) => (
-									<Grid item xs={12} sm={6} md={3} lg={2} key={room}>
-										<Card square elevation={1}>
-											<CardContent
-												className={clsx(
-													classes.sCardContent,
-													cardClasses.sCardContent2,
-													classes.sActive,
-													{
-														[classes.sInactive]:
-															!allWhitelist?.includes(room)
-													}
-												)}>
-												<FormControlLabel
-													className={classes.sToggle}
-													control={
-														<Checkbox
-															name="toggle"
-															checked={!allWhitelist?.includes(room)}
-															onChange={handleRoomToggle(room)}
-															style={{
-																color: AppConfigService.AppOptions
-																	.colors.c15
-															}}
-														/>
-													}
-													label={t('CONTENT.ROOMS.LIST.GRID.BLOCKED')}
-													labelPlacement="start"
-												/>
+					{/* Grid */}
+					{result[key] && result[key].length > 0 && (
+						<Grid
+							container
+							spacing={1}
+							className={clsx({
+								[classes.sGridContainer]: Object.keys(result).length - 1 !== idx
+							})}>
+							{result[key].map((room) => (
+								<Grid item xs={12} sm={6} md={3} lg={2} key={room}>
+									<Card square elevation={1}>
+										<CardContent
+											className={clsx(
+												classes.sCardContent,
+												cardClasses.sCardContent2,
+												classes.sActive,
+												{
+													[classes.sInactive]:
+														!allWhitelist?.includes(room)
+												}
+											)}>
+											<FormControlLabel
+												className={classes.sToggle}
+												control={
+													<Checkbox
+														name="toggle"
+														checked={!allWhitelist?.includes(room)}
+														onChange={handleRoomToggle(room)}
+														style={{
+															color: AppConfigService.AppOptions
+																.colors.c15
+														}}
+													/>
+												}
+												label={t('CONTENT.ROOMS.LIST.GRID.BLOCKED')}
+												labelPlacement="start"
+											/>
 
-												<Box>
-													<Typography variant="body2">
-														{t('CONTENT.ROOMS.LIST.GRID.ROOM')}
-													</Typography>
-													<Typography variant="h4">{room}</Typography>
-												</Box>
-											</CardContent>
-										</Card>
-									</Grid>
-								))}
-							</Grid>
-						)}
-					</Box>
-				))}
+											<Box>
+												<Typography variant="body2">
+													{t('CONTENT.ROOMS.LIST.GRID.ROOM')}
+												</Typography>
+												<Typography variant="h4">{room}</Typography>
+											</Box>
+										</CardContent>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
+					)}
+				</Box>
+			))}
+
+			{/* Empty */}
+			{Object.keys(result).length === 0 && <PageEmpty message="EMPTY.MESSAGE" paddingTop />}
 		</>
-	);
+	) : null;
 };
 export default SiteRoomsGrid;

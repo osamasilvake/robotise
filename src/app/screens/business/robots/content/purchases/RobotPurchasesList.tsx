@@ -168,12 +168,12 @@ const RobotPurchasesList: FC = () => {
 	// empty
 	if (!purchases.content.data.length) {
 		return (
-			<Box>
+			<Box className={classes.sBox}>
 				{/* Actions */}
-				<RobotPurchasesActions billed={billed} debug={debug} topSpace />
+				<RobotPurchasesActions billed={billed} debug={debug} />
 
 				{/* Empty */}
-				<PageEmpty message="EMPTY.MESSAGE" />
+				<PageEmpty message="EMPTY.MESSAGE" paddingTop />
 			</Box>
 		);
 	}

@@ -1,5 +1,4 @@
 import { Box, Divider, Paper, Typography } from '@material-ui/core';
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,18 +10,13 @@ import RobotOrdersCreateOrder from './RobotOrdersCreateOrder';
 import RobotOrdersDebug from './RobotOrdersDebug';
 
 const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
-	const { activeOrders, debug, topSpace } = props;
+	const { activeOrders, debug } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersActionsStyle();
 	const floatStyle = FloatStyle();
 
 	return (
-		<Paper
-			elevation={2}
-			square
-			className={clsx(floatStyle.sFloat1, {
-				[classes.sFloatBoxTopSpace]: topSpace
-			})}>
+		<Paper elevation={2} square className={floatStyle.sFloat1}>
 			<Box className={classes.sFilterBlock}>
 				{/* Heading */}
 				<Typography variant="h6" color="textSecondary">

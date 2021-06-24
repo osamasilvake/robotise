@@ -1,6 +1,9 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 export const PageEmptyStyle = makeStyles((theme: Theme) => ({
+	sBox: {
+		paddingTop: theme.spacing(11)
+	},
 	sTitle: {
 		fontSize: theme.typography.pxToRem(30),
 		marginBottom: theme.spacing(1)

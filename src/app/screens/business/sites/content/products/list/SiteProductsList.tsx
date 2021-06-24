@@ -76,12 +76,12 @@ const SiteProductsList: FC = () => {
 	// empty
 	if (!products.content.data.length) {
 		return (
-			<Box>
+			<Box className={classes.sBox}>
 				{/* Actions */}
-				<SiteProductsActions topSpace />
+				<SiteProductsActions />
 
 				{/* Empty */}
-				<PageEmpty message="EMPTY.MESSAGE" />
+				<PageEmpty message="EMPTY.MESSAGE" paddingTop />
 			</Box>
 		);
 	}

@@ -46,7 +46,7 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 					variant="outlined"
 					className={classes.sButton}
 					onClick={handleSyncProducts}
-					disabled={!robotIsReady || robot.syncProducts.loading}
+					disabled={!robotIsReady || robot.syncProducts.loading || true}
 					endIcon={robot.syncProducts.loading && <CircularProgress size={20} />}>
 					{t('CONTENT.CONFIGURATION.SYNC_PRODUCTS.SYNC')}
 				</Button>

@@ -19,7 +19,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const robot = useSelector(robotSelector);
 
 	const [pointCoords, setPointCoords] = useState({ x: 0, y: 0, yaw: 0 });
-	const [ratio, setRatio] = useState({ x: 0, y: 0, cx: 0, cy: 0, dummy: true });
+	const [ratio, setRatio] = useState({ x: 0, y: 0, cx: 0, cy: 0 });
 
 	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
 	const robotMapName = robot.map.content?.name || '';
@@ -60,8 +60,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 			x: values.clientWidth / values.naturalWidth,
 			y: values.clientHeight / values.naturalHeight,
 			cx: values.clientWidth,
-			cy: values.clientHeight,
-			dummy: values.naturalWidth === 50
+			cy: values.clientHeight
 		});
 	}, []);
 
@@ -78,12 +77,12 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 							src={robotLocationImageUrl(robotTwinsMapName)}
 							alt={robotTwinsMapName}
 							onLoad={onLoad}
-							fullWidth={!ratio.dummy}
+							fullWidth
 						/>
 					</Box>
 
 					{/* Icon */}
-					{!ratio.dummy && <RobotDetailLocationCardIcon pointCoords={pointCoords} />}
+					{robotTwinsMapName && <RobotDetailLocationCardIcon pointCoords={pointCoords} />}
 				</CardContent>
 			</Card>
 		</Grid>

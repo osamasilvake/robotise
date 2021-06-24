@@ -127,26 +127,22 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 															!allWhitelist?.includes(room)
 													}
 												)}>
-												<Box>
-													<FormControlLabel
-														className={classes.sToggle}
-														control={
-															<Checkbox
-																name="toggle"
-																checked={
-																	!allWhitelist?.includes(room)
-																}
-																onChange={handleRoomToggle(room)}
-																style={{
-																	color: AppConfigService
-																		.AppOptions.colors.c15
-																}}
-															/>
-														}
-														label={t('CONTENT.ROOMS.LIST.GRID.BLOCKED')}
-														labelPlacement="start"
-													/>
-												</Box>
+												<FormControlLabel
+													className={classes.sToggle}
+													control={
+														<Checkbox
+															name="toggle"
+															checked={!allWhitelist?.includes(room)}
+															onChange={handleRoomToggle(room)}
+															style={{
+																color: AppConfigService.AppOptions
+																	.colors.c15
+															}}
+														/>
+													}
+													label={t('CONTENT.ROOMS.LIST.GRID.BLOCKED')}
+													labelPlacement="start"
+												/>
 
 												<Box>
 													<Typography variant="body2">

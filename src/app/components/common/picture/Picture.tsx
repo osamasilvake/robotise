@@ -9,15 +9,16 @@ import { PictureInterface, PictureOnLoadInterface } from './Picture.interface';
 import { PictureStyle } from './Picture.style';
 
 const Picture: FC<PictureInterface> = (props) => {
-	const { src, alt, fallback, onLoad, fullWidth } = props;
+	const { src, alt, onLoad, fullWidth } = props;
 	const classes = PictureStyle();
 
 	const general = useSelector(generalSelector);
 
 	const [values, setValues] = useState<PictureOnLoadInterface | null>(null);
 	const [image, setImage] = useState(src);
-	const cWindow = useWindow();
+	const [fallback, setFallback] = useState(false);
 
+	const cWindow = useWindow();
 	const imgRef = useRef<HTMLImageElement>(null);
 
 	useEffect(() => {
@@ -53,20 +54,16 @@ const Picture: FC<PictureInterface> = (props) => {
 	 * @param target
 	 */
 	const prepareValues = (target: PictureOnLoadInterface) => {
+		// set values
 		setValues({
 			naturalWidth: target.naturalWidth,
 			naturalHeight: target.naturalHeight,
 			clientWidth: target.clientWidth,
 			clientHeight: target.clientHeight
 		});
-	};
 
-	/**
-	 * handle on error
-	 * @returns
-	 */
-	const handleError = (fallback: string) => () => {
-		setImage(fallback || AppConfigService.AppImageURLs.logo.iconOff);
+		// set fallback
+		setFallback(target.naturalWidth === 50 && target.naturalHeight === 50);
 	};
 
 	return (
@@ -75,9 +72,10 @@ const Picture: FC<PictureInterface> = (props) => {
 			src={image}
 			alt={alt}
 			onLoad={onImageLoad}
-			onError={handleError(fallback || AppConfigService.AppImageURLs.logo.iconOff)}
+			onError={() => setImage(AppConfigService.AppImageURLs.logo.iconOff)}
 			className={clsx(classes.sImage, {
-				[classes.sImageFullWidth]: fullWidth
+				[classes.sImageFallback]: fallback,
+				[classes.sImageFullWidth]: !fallback && fullWidth
 			})}
 		/>
 	);

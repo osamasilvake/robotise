@@ -53,7 +53,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
 	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.siteId;
-	const acceptOrders = robotTwinsSummary.content?.dataById[params.robot]?.siteAcceptOrders;
 
 	const {
 		handleChangeInput,
@@ -195,8 +194,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								<Checkbox
 									color="primary"
 									name="isDebug"
-									disabled={!acceptOrders || undefined}
-									checked={!acceptOrders || undefined}
 									onChange={handleChangeCheckbox}
 								/>
 							}

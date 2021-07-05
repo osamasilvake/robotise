@@ -34,6 +34,7 @@ export interface SSContentServicePositionsInterface {
 export interface SSContentNotificationTypesInterface {
 	data: {
 		id: string;
+		userId: string;
 		name: string;
 		isActive: boolean;
 		users: string[];
@@ -66,4 +67,10 @@ export interface SSContentNotificationUserInterface {
 	firstName: string;
 	lastName: string;
 	userId: string;
+}
+
+export interface SSContentNotificationPayloadInterface {
+	userId: string;
+	isActive?: boolean;
+	users?: string[];
 }

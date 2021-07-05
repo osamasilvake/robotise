@@ -9,6 +9,7 @@ import { triggerMessage } from '../general/General.slice';
 import { SiteTypeEnum } from './Site.slice.enum';
 import {
 	SliceSiteInterface,
+	SSContentNotificationPayloadInterface,
 	SSContentNotificationTypeInterface,
 	SSContentNotificationUsersInterface
 } from './Site.slice.interface';
@@ -50,6 +51,8 @@ const dataSlice = createSlice({
 				state.servicePositions.loading = true;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = true;
+			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
+				state.notifications.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -64,6 +67,7 @@ const dataSlice = createSlice({
 				state.acceptOrders.errors = null;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
+				state.notifications.loading = false;
 				state.notifications.content = response;
 				state.notifications.errors = null;
 			}
@@ -80,6 +84,7 @@ const dataSlice = createSlice({
 				state.acceptOrders.errors = error;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
+				state.notifications.loading = false;
 				state.notifications.content = null;
 				state.notifications.errors = error;
 			}
@@ -211,12 +216,14 @@ export const SiteNotificationTypesAndUsersFetch =
 
 				// map types and users
 				const result = types.map((type) => {
-					const filtered = users.filter((user) => user.notificationType.id === type.id);
+					const fUsers = users.filter((user) => user.notificationType.id === type.id);
+					const fUser = fUsers && fUsers[0];
 					return {
 						id: type.id,
 						name: type.name,
-						isActive: filtered.length && filtered[0].isActive,
-						users: filtered.length && filtered[0].users.map((u) => u.email)
+						userId: fUser ? fUser.id : '',
+						isActive: fUser ? fUser.isActive : false,
+						users: fUser ? fUser.users.map((u) => u.email) : []
 					};
 				});
 
@@ -226,14 +233,79 @@ export const SiteNotificationTypesAndUsersFetch =
 			.catch((err) => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-site-notifications-error',
+					id: 'fetch-site-notification-types-users-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'COMMON.NOTIFICATIONS.ERROR'
+					text: 'COMMON.NOTIFICATIONS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
 				dispatch(failure({ ...state, error: err }));
+			});
+	};
+
+/**
+ * update notification users
+ * @param payload
+ * @returns
+ */
+export const SiteUpdateNotificationUsers =
+	(payload: SSContentNotificationPayloadInterface) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const site = states.site;
+
+		// module
+		const state = {
+			module: SiteTypeEnum.NOTIFICATIONS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteUpdateNotificationUsers(payload)
+			.then(async (res) => {
+				// deserialize response
+				const user: SSContentNotificationUsersInterface = await deserializeSite(res);
+
+				// map response
+				const result = site.notifications.content?.data.map((item) => {
+					return item.userId === payload.userId
+						? {
+								...item,
+								isActive: user.isActive,
+								users: user.users.map((u) => u.email)
+						  }
+						: item;
+				});
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'fetch-update-notification-users-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'COMMON.NOTIFICATIONS.UPDATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(
+					success({
+						...state,
+						response: { ...site.notifications.content, data: result }
+					})
+				);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'fetch-update-notification-users-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'COMMON.NOTIFICATIONS.UPDATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
 			});
 	};

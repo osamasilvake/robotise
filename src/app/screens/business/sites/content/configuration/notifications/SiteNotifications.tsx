@@ -17,7 +17,10 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
+import { SiteUpdateNotificationUsers } from '../../../../../../slices/sites/Site.slice';
+import { SSContentNotificationPayloadInterface } from '../../../../../../slices/sites/Site.slice.interface';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteNotificationsInterface } from './SiteNotifications.interface';
 import { SiteNotificationsStyle } from './SiteNotifications.style';
@@ -28,11 +31,16 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
 
+	const dispatch = useDispatch();
+
 	/**
 	 * handle notification type
+	 * @param payload
+	 * @returns
 	 */
-	const handleNotificationType = () => {
-		// dispatch: activate notification type
+	const handleNotificationType = (payload: SSContentNotificationPayloadInterface) => () => {
+		// dispatch: update notification users
+		dispatch(SiteUpdateNotificationUsers(payload));
 	};
 
 	return site.notifications?.content ? (
@@ -63,15 +71,17 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 										{site.notifications.content.data.map((item) => (
 											<ListItem key={item.id}>
 												<FormControlLabel
-													disabled={site.notifications.loading}
+													disabled={
+														!item.userId || site.notifications.loading
+													}
 													control={
 														<Switch
 															name={`notification-type-${item.id}`}
 															checked={item.isActive}
-															onChange={handleNotificationType}
+															onChange={handleNotificationType(item)}
 														/>
 													}
-													label=""
+													label={null}
 												/>
 
 												<ListItemText

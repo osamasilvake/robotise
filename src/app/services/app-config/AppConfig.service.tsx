@@ -196,7 +196,8 @@ class AppConfigService extends EnvService {
 						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
 						NOTIFICATION: {
 							TYPES: `${this.envAppUrl}/notification-types`,
-							USERS: `${this.envAppUrl}/notification-users`
+							USERS: `${this.envAppUrl}/notification-users`,
+							USER: `${this.envAppUrl}/notification-users/:userId`
 						}
 					},
 					ROBOTS: {

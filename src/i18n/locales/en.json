@@ -88,7 +88,13 @@
 				"ERROR": "Unable to fetch service positions!"
 			},
 			"NOTIFICATIONS": {
-				"ERROR": "Unable to fetch notification types or users!"
+				"FETCH": {
+					"ERROR": "Unable to fetch notification types or users!"
+				},
+				"UPDATE": {
+					"SUCCESS": "Notification has been updated successfully!",
+					"ERROR": "Unable to update notification!"
+				}
 			}
 		},
 		"AUTH": {

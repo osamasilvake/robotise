@@ -149,6 +149,32 @@ class SitesService {
 			}
 		});
 	};
+
+	/**
+	 * fetch notification types
+	 * @returns
+	 */
+	siteNotificationTypesFetch = () => {
+		return HttpClientService.get(
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.TYPES
+		);
+	};
+
+	/**
+	 * fetch notification users
+	 * @param siteId
+	 * @returns
+	 */
+	siteNotificationUsersFetch = (siteId: string) => {
+		return HttpClientService.get(
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS,
+			{
+				params: {
+					site: siteId
+				}
+			}
+		);
+	};
 }
 const instance = new SitesService();
 export default instance;

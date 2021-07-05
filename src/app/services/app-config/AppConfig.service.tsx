@@ -193,7 +193,11 @@ class AppConfigService extends EnvService {
 						ALL: `${this.envAppUrl}/sites`,
 						SINGLE: `${this.envAppUrl}/sites/:siteId`,
 						PRODUCTS: `${this.envAppUrl}/products`,
-						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`
+						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
+						NOTIFICATION: {
+							TYPES: `${this.envAppUrl}/notification-types`,
+							USERS: `${this.envAppUrl}/notification-users`
+						}
 					},
 					ROBOTS: {
 						ALL: `${this.envAppUrl}/robot-twins-summary`,

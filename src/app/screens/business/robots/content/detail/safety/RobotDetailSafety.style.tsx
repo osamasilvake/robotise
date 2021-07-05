@@ -18,9 +18,6 @@ export const RobotDetailSafetyStyle = makeStyles((theme: Theme) => ({
 		display: 'flex',
 		justifyContent: 'space-between'
 	},
-	sListItem: {
-		pointerEvents: 'none'
-	},
 	sListItemWarning: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)
 	}

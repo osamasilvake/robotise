@@ -86,6 +86,9 @@
 			},
 			"SERVICE_POSITIONS": {
 				"ERROR": "Unable to fetch service positions!"
+			},
+			"NOTIFICATIONS": {
+				"ERROR": "Unable to fetch notification types or users!"
 			}
 		},
 		"AUTH": {
@@ -374,6 +377,9 @@
 					"TITLE": "Accept Orders",
 					"EXCERPT": "Allow robots to accept orders.",
 					"ACTIVE": "Active"
+				},
+				"NOTIFICATIONS": {
+					"TITLE": "Notifications"
 				}
 			}
 		}

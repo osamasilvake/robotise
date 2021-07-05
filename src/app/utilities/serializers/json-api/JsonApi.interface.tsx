@@ -7,6 +7,7 @@ export interface DeserializerExtendedOptions extends DeserializerOptions {
 	orders?: DeserializeRelationship;
 	users?: DeserializeRelationship;
 	activity?: DeserializeRelationship;
+	notificationTypes?: DeserializeRelationship;
 }
 
 export interface DeserializeRelationship {

@@ -44,12 +44,6 @@ const OverridesCustom: Components = {
 	MuiListItem: {
 		styleOverrides: {
 			root: {
-				'&:hover': {
-					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					'& svg, span, p': {
-						color: AppConfigService.AppOptions.colors.c7
-					}
-				},
 				'&.active': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					'& svg, span, p': {

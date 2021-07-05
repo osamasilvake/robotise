@@ -7,7 +7,11 @@ import { deserializeSite } from '../../utilities/serializers/json-api/Site.deser
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import { SiteTypeEnum } from './Site.slice.enum';
-import { SliceSiteInterface } from './Site.slice.interface';
+import {
+	SliceSiteInterface,
+	SSContentNotificationTypeInterface,
+	SSContentNotificationUsersInterface
+} from './Site.slice.interface';
 
 // initial state
 export const initialState: SliceSiteInterface = {
@@ -20,6 +24,12 @@ export const initialState: SliceSiteInterface = {
 		loading: false,
 		content: null,
 		errors: null
+	},
+	notifications: {
+		loader: false,
+		loading: false,
+		content: null,
+		errors: null
 	}
 };
 
@@ -28,6 +38,12 @@ const dataSlice = createSlice({
 	name: 'Site',
 	initialState,
 	reducers: {
+		loader: (state, action) => {
+			const { module } = action.payload;
+			if (module === SiteTypeEnum.NOTIFICATIONS) {
+				state.notifications.loader = true;
+			}
+		},
 		loading: (state, action) => {
 			const { module } = action.payload;
 			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
@@ -46,6 +62,10 @@ const dataSlice = createSlice({
 				state.acceptOrders.loading = false;
 				state.acceptOrders.content = response;
 				state.acceptOrders.errors = null;
+			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
+				state.notifications.loader = false;
+				state.notifications.content = response;
+				state.notifications.errors = null;
 			}
 		},
 		failure: (state, action) => {
@@ -58,6 +78,10 @@ const dataSlice = createSlice({
 				state.acceptOrders.loading = false;
 				state.acceptOrders.content = null;
 				state.acceptOrders.errors = error;
+			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
+				state.notifications.loader = false;
+				state.notifications.content = null;
+				state.notifications.errors = error;
 			}
 		},
 		reset: () => initialState
@@ -65,7 +89,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const siteSelector = (state: AppReducerType) => state['site'];
@@ -86,7 +110,6 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
 	// dispatch: loading
 	dispatch(loading(state));
 
-	// fetch sites list
 	return SitesService.siteServicePositionsFetch(siteId)
 		.then(async (res) => {
 			// deserialize response
@@ -153,6 +176,60 @@ export const SiteAcceptOrders =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, error: err }));
+			});
+	};
+
+/**
+ * fetch notification types and users
+ * @param siteId
+ * @param refresh
+ * @returns
+ */
+export const SiteNotificationTypesAndUsersFetch =
+	(siteId: string, refresh = false) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteTypeEnum.NOTIFICATIONS
+		};
+
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader(state) : loading(state));
+
+		return Promise.all([
+			SitesService.siteNotificationTypesFetch(),
+			SitesService.siteNotificationUsersFetch(siteId)
+		])
+			.then(async (res) => {
+				// deserialize responses
+				const types: SSContentNotificationTypeInterface[] = await deserializeSite(res[0]);
+				const users: SSContentNotificationUsersInterface[] = await deserializeSite(res[1]);
+
+				// map types and users
+				const result = types.map((type) => {
+					const filtered = users.filter((user) => user.notificationType.id === type.id);
+					return {
+						id: type.id,
+						name: type.name,
+						isActive: filtered.length && filtered[0].isActive,
+						users: filtered.length && filtered[0].users.map((u) => u.email)
+					};
+				});
+
+				// dispatch: success
+				dispatch(success({ ...state, response: { data: result, site: { id: siteId } } }));
+			})
+			.catch((err) => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'fetch-site-notifications-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'COMMON.NOTIFICATIONS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

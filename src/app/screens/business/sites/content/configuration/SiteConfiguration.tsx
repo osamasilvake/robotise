@@ -1,35 +1,46 @@
 import { Box, Grid } from '@material-ui/core';
-import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../components/content/page-error/PageError';
-import { siteSelector } from '../../../../../slices/sites/Site.slice';
+import {
+	SiteNotificationTypesAndUsersFetch,
+	siteSelector
+} from '../../../../../slices/sites/Site.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
+import SiteNotifications from './notifications/SiteNotifications';
 import { SiteConfigurationStyle } from './SiteConfiguration.style';
 
 const SiteConfiguration: FC = () => {
 	const classes = SiteConfigurationStyle();
 
+	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 	const site = useSelector(siteSelector);
 
 	const params: SiteParamsInterface = useParams();
 	const siteSingle = sites.content?.dataById[params.site];
+	const siteId = params.site;
+
+	useEffect(() => {
+		// dispatch: fetch notification types and users
+		dispatch(SiteNotificationTypesAndUsersFetch(siteId));
+	}, [dispatch, siteId]);
 
 	// loader
-	if (sites.loader) {
+	if (sites.loader || site.notifications.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (sites.errors) {
-		return <PageError message={sites.errors.text} />;
+	if (sites.errors || site.notifications.errors) {
+		return <PageError message={sites.errors?.text || site.notifications.errors?.text} />;
 	}
 
 	// null
@@ -44,9 +55,15 @@ const SiteConfiguration: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			<Grid container>
+			<Grid container spacing={1}>
 				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<SiteConfigurationAcceptOrders sites={sites} site={site} />
+				</Grid>
+			</Grid>
+
+			<Grid container>
+				<Grid item xs={12}>
+					<SiteNotifications site={site} />
 				</Grid>
 			</Grid>
 		</Box>

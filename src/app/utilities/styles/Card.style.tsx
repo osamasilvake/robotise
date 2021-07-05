@@ -18,5 +18,11 @@ export const CardStyle = makeStyles((theme: Theme) => ({
 		'&:last-child': {
 			paddingBottom: theme.typography.pxToRem(5)
 		}
+	},
+	sCardContent4: {
+		padding: 0,
+		'&:last-child': {
+			paddingBottom: 0
+		}
 	}
 }));

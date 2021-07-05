@@ -39,7 +39,7 @@ const RobotDetailSensors: FC<RobotDetailSafetySensorsInterface> = (props) => {
 			{mappedSensors.map((row) => (
 				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
 					<ListItem
-						className={clsx(classes.sListItem, {
+						className={clsx({
 							[classes.sListItemWarning]: !row.value
 						})}>
 						<ListItemIcon>

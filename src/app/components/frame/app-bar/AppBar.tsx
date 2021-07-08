@@ -10,9 +10,7 @@ import {
 	Tooltip,
 	Typography
 } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import MenuIcon from '@material-ui/icons/Menu';
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import { Close, Menu, PowerSettingsNew } from '@material-ui/icons';
 import i18next from 'i18next';
 import { FC, MouseEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -136,7 +134,7 @@ const AppBarCustom: FC = () => {
 								{/* Logout */}
 								<ListItem button onClick={handleLogout}>
 									<ListItemIcon>
-										<PowerSettingsNewIcon />
+										<PowerSettingsNew />
 									</ListItemIcon>
 									<ListItemText primary={t('LOGOUT')} />
 								</ListItem>
@@ -145,7 +143,7 @@ const AppBarCustom: FC = () => {
 					</Box>
 					<Tooltip title={String(t('TOOLTIPS:DRAWER.CLOSE'))}>
 						<IconButton onClick={handleDrawer(false)}>
-							<CloseIcon />
+							<Close />
 						</IconButton>
 					</Tooltip>
 				</>
@@ -166,7 +164,7 @@ const AppBarCustom: FC = () => {
 					{window && window.innerWidth > mobileScreen && (
 						<Tooltip title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
 							<IconButton onClick={handleDrawer(true)}>
-								<MenuIcon />
+								<Menu />
 							</IconButton>
 						</Tooltip>
 					)}

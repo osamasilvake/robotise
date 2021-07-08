@@ -10,7 +10,7 @@ export const DialogCreateEditNotificationValidation = (
 	values: DialogCreateEditNotificationPayloadInterface,
 	touched: DialogCreateEditNotificationPayloadInterface
 ): DialogCreateEditNotificationPayloadInterface => {
-	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
+	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT.FIELDS';
 	const errors: DialogCreateEditNotificationPayloadInterface = {
 		users: []
 	};
@@ -20,7 +20,7 @@ export const DialogCreateEditNotificationValidation = (
 		// validate
 		if (values.users.length) {
 			errors.users = values.users.map((email) =>
-				email && !validateEmail(email) ? `${common}.EMAIL.VALIDATIONS.REQUIRED` : ''
+				email && !validateEmail(email) ? `${common}.EMAIL.VALIDATIONS.INVALID` : ''
 			);
 		}
 	}

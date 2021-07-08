@@ -1,6 +1,5 @@
 import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import Brightness3Icon from '@material-ui/icons/Brightness3';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import { Brightness3, WbSunny } from '@material-ui/icons';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,9 +36,9 @@ const ThemePalette: FC = () => {
 			)}>
 			<ListItemIcon>
 				{general.themePalette === GeneralThemePaletteTypeEnum.LIGHT ? (
-					<WbSunnyIcon className={classes.sColorThemeLight} />
+					<WbSunny className={classes.sColorThemeLight} />
 				) : (
-					<Brightness3Icon />
+					<Brightness3 />
 				)}
 			</ListItemIcon>
 			<ListItemText

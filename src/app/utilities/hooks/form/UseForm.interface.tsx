@@ -1,9 +1,9 @@
 import { ChangeEvent, FocusEvent, FormEvent } from 'react';
 
 export interface UseFormRetInterface<UseFormEntity> {
-	handleChangeMultipleInputs: (
+	handleChangeStringInputs: (
 		index: number,
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | MultipleInputsTargetInterface,
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | StringInputsTargetInterface,
 		items: string[]
 	) => void;
 	handleChangeInput: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -15,7 +15,7 @@ export interface UseFormRetInterface<UseFormEntity> {
 	errors: null | UseFormEntity;
 }
 
-export interface MultipleInputsTargetInterface {
+export interface StringInputsTargetInterface {
 	target: {
 		name: string;
 		value: string;

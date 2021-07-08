@@ -7,8 +7,7 @@ import {
 	ListItemText,
 	ListSubheader
 } from '@material-ui/core';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import clsx from 'clsx';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';

@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 import {
-	MultipleInputsTargetInterface,
 	SelectInterface,
+	StringInputsTargetInterface,
 	UseFormRetInterface
 } from './UseForm.interface';
 
@@ -23,14 +23,14 @@ export const useForm = <UseFormEntity,>(
 	const [touched, setTouched] = useState(initState);
 
 	/**
-	 * handle change: multiple inputs
+	 * handle change: string inputs
 	 * @param index
 	 * @param event
 	 * @param items
 	 */
-	const handleChangeMultipleInputs = (
+	const handleChangeStringInputs = (
 		index: number,
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | MultipleInputsTargetInterface,
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | StringInputsTargetInterface,
 		items: string[]
 	) => {
 		const { name, value } = event.target;
@@ -133,7 +133,7 @@ export const useForm = <UseFormEntity,>(
 	};
 
 	return {
-		handleChangeMultipleInputs,
+		handleChangeStringInputs,
 		handleChangeInput,
 		handleChangeCheckbox,
 		handleChangeSelect,

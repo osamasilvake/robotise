@@ -10,9 +10,12 @@ import {
 	FormControl,
 	FormControlLabel,
 	FormHelperText,
+	IconButton,
+	InputAdornment,
 	Switch,
 	TextField
 } from '@material-ui/core';
+import { Clear, Email } from '@material-ui/icons';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,8 +39,9 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const site = useSelector(siteSelector);
 
 	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
+	const fieldUsers = 'users';
 
-	const { handleChangeMultipleInputs, handleChangeCheckbox, handleSubmit, values, errors } =
+	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
 		useForm<DialogCreateEditNotificationPayloadInterface>(
 			{
 				userId: notification.userId,
@@ -70,12 +74,12 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 		// add new field
 		list.push('');
 
-		// handle change: multiple inputs
-		handleChangeMultipleInputs(
+		// handle change: string inputs
+		handleChangeStringInputs(
 			index,
 			{
 				target: {
-					name: 'users',
+					name: fieldUsers,
 					value: ''
 				}
 			},
@@ -117,28 +121,50 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							label={t(`${common}.FIELDS.ACTIVE.LABEL`)}
 						/>
 					</Box>
+
 					<Box className={classes.sAddUser}>
-						{values.users &&
-							values.users.map((user, index) => (
-								<FormControl error fullWidth margin="normal" key={index}>
-									<TextField
-										variant="outlined"
-										type="email"
-										name="users"
-										value={user}
-										onChange={(e) =>
-											handleChangeMultipleInputs(index, e, values.users)
-										}
-										label={t(`${common}.FIELDS.EMAIL.LABEL`)}
-										placeholder={t(`${common}.FIELDS.EMAIL.PLACEHOLDER`)}
-									/>
-									{errors?.users && errors.users[index] && (
-										<FormHelperText>
-											{t(`${common}.FIELDS.EMAIL.VALIDATIONS.INVALID`)}
-										</FormHelperText>
-									)}
-								</FormControl>
-							))}
+						{values.users.map((user, index) => (
+							<FormControl error fullWidth margin="normal" key={index}>
+								<TextField
+									variant="outlined"
+									type="email"
+									id={`${fieldUsers}-${index}`}
+									name={fieldUsers}
+									value={user}
+									onChange={(e) =>
+										handleChangeStringInputs(index, e, values.users)
+									}
+									label={t(`${common}.FIELDS.EMAIL.LABEL`)}
+									placeholder={t(`${common}.FIELDS.EMAIL.PLACEHOLDER`)}
+									InputProps={{
+										endAdornment: (
+											<InputAdornment position="end">
+												<IconButton
+													disabled={!user}
+													edge="end"
+													onClick={() =>
+														handleChangeStringInputs(
+															index,
+															{
+																target: {
+																	name: fieldUsers,
+																	value: ''
+																}
+															},
+															values.users
+														)
+													}>
+													{user ? <Clear /> : <Email />}
+												</IconButton>
+											</InputAdornment>
+										)
+									}}
+								/>
+								{errors?.users && errors.users[index] && (
+									<FormHelperText>{t(errors.users[index])}</FormHelperText>
+								)}
+							</FormControl>
+						))}
 
 						<Chip
 							size="small"
@@ -160,7 +186,10 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={site.notifications.loading}
+						disabled={
+							site.notifications.loading ||
+							!!(errors && errors.users.filter((e) => e).length)
+						}
 						endIcon={site.notifications.loading && <CircularProgress size={20} />}>
 						{type === SiteNotificationsCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}
 						{type === SiteNotificationsCreateEditTypeEnum.EDIT && t('BUTTONS.UPDATE')}

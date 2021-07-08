@@ -2,6 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { DialogCreateEditNotificationPayloadInterface } from '../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
@@ -9,7 +10,6 @@ import { triggerMessage } from '../general/General.slice';
 import { SiteTypeEnum } from './Site.slice.enum';
 import {
 	SliceSiteInterface,
-	SSContentNotificationPayloadInterface,
 	SSContentNotificationTypeInterface,
 	SSContentNotificationUsersInterface
 } from './Site.slice.interface';
@@ -246,12 +246,13 @@ export const SiteNotificationTypesAndUsersFetch =
 	};
 
 /**
- * update notification users
+ * update notification
  * @param payload
+ * @param callback
  * @returns
  */
-export const SiteUpdateNotificationUsers =
-	(payload: SSContentNotificationPayloadInterface) =>
+export const SiteUpdateNotification =
+	(payload: DialogCreateEditNotificationPayloadInterface, callback?: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -265,7 +266,7 @@ export const SiteUpdateNotificationUsers =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return SitesService.siteUpdateNotificationUsers(payload)
+		return SitesService.siteUpdateNotification(payload)
 			.then(async (res) => {
 				// deserialize response
 				const user: SSContentNotificationUsersInterface = await deserializeSite(res);
@@ -297,6 +298,9 @@ export const SiteUpdateNotificationUsers =
 						response: { ...site.notifications.content, data: result }
 					})
 				);
+
+				// callback
+				callback && callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

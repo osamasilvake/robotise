@@ -77,7 +77,7 @@ const Login: FC = () => {
 							<TextField
 								required
 								variant="outlined"
-								type="text"
+								type="email"
 								id="email"
 								name="email"
 								error={!!errors?.email}

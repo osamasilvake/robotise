@@ -10,7 +10,7 @@ export const CreateEditProductValidation = (
 	values: DialogCreateEditProductPayloadInterface,
 	touched: DialogCreateEditProductPayloadInterface
 ): DialogCreateEditProductPayloadInterface => {
-	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
+	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
 	const errors: DialogCreateEditProductPayloadInterface = {
 		image: '',
 		name: '',
@@ -24,7 +24,7 @@ export const CreateEditProductValidation = (
 	if (touched.name) {
 		// required
 		if (!values.name) {
-			errors.name = `${commonText}.NAME.VALIDATIONS.REQUIRED`;
+			errors.name = `${common}.NAME.VALIDATIONS.REQUIRED`;
 		}
 	}
 
@@ -32,7 +32,7 @@ export const CreateEditProductValidation = (
 	if (touched.price) {
 		// required
 		if (!values.price) {
-			errors.price = `${commonText}.PRICE.VALIDATIONS.REQUIRED`;
+			errors.price = `${common}.PRICE.VALIDATIONS.REQUIRED`;
 		}
 
 		// max two decimal points
@@ -40,7 +40,7 @@ export const CreateEditProductValidation = (
 			values.price &&
 			!AppConfigService.AppOptions.regex.maxTwoDecimalPoints.test(String(values.price))
 		) {
-			errors.price = `${commonText}.PRICE.VALIDATIONS.INVALID`;
+			errors.price = `${common}.PRICE.VALIDATIONS.INVALID`;
 		}
 	}
 

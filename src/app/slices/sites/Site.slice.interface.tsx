@@ -68,9 +68,3 @@ export interface SSContentNotificationUserInterface {
 	lastName: string;
 	userId: string;
 }
-
-export interface SSContentNotificationPayloadInterface {
-	userId: string;
-	isActive?: boolean;
-	users?: string[];
-}

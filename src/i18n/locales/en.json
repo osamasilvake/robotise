@@ -385,7 +385,30 @@
 					"ACTIVE": "Active"
 				},
 				"NOTIFICATIONS": {
-					"TITLE": "Notifications"
+					"TITLE": "Notifications",
+					"LIST": {
+						"CREATE_EDIT": {
+							"CREATE": {
+								"TITLE": "Create Notification"
+							},
+							"EDIT": {
+								"TITLE": "Edit Notification"
+							},
+							"FIELDS": {
+								"ACTIVE": {
+									"LABEL": "Active"
+								},
+								"EMAIL": {
+									"LABEL": "Email Address",
+									"PLACEHOLDER": "Enter your email Address",
+									"VALIDATIONS": {
+										"INVALID": "Please enter the correct Email format!"
+									}
+								}
+							},
+							"ADD_USER": "Add user"
+						}
+					}
 				}
 			}
 		}

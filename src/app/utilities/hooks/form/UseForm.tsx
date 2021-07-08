@@ -1,6 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import { SelectInterface, UseFormRetInterface } from './UseForm.interface';
+import {
+	MultipleInputsTargetInterface,
+	SelectInterface,
+	UseFormRetInterface
+} from './UseForm.interface';
 
 /**
  * custom hook: useForm
@@ -19,13 +23,32 @@ export const useForm = <UseFormEntity,>(
 	const [touched, setTouched] = useState(initState);
 
 	/**
+	 * handle change: multiple inputs
+	 * @param index
+	 * @param event
+	 * @param items
+	 */
+	const handleChangeMultipleInputs = (
+		index: number,
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | MultipleInputsTargetInterface,
+		items: string[]
+	) => {
+		const { name, value } = event.target;
+		const list = [...items];
+
+		// update target field
+		list[index] = value;
+
+		// set change event values
+		setChangeEventValues(name, list);
+	};
+
+	/**
 	 * handle change: input
 	 * @param event
 	 */
 	const handleChangeInput = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		const { name } = event.target;
-		const value = event.target.value;
-
+		const { name, value } = event.target;
 		if (name) {
 			// set change event values
 			setChangeEventValues(name, value);
@@ -39,7 +62,6 @@ export const useForm = <UseFormEntity,>(
 	const handleChangeCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name } = event.target;
 		const value = event.target.checked;
-
 		if (name) {
 			// set change event values
 			setChangeEventValues(name, value);
@@ -111,6 +133,7 @@ export const useForm = <UseFormEntity,>(
 	};
 
 	return {
+		handleChangeMultipleInputs,
 		handleChangeInput,
 		handleChangeCheckbox,
 		handleChangeSelect,

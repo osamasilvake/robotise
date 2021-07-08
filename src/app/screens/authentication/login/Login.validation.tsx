@@ -23,7 +23,7 @@ export const LoginFormValidation = (
 		}
 
 		// validate
-		if (values.email && !validateEmail(values.email) && touched.email) {
+		if (values.email && !validateEmail(values.email)) {
 			errors.email = 'LOGIN.FIELDS.EMAIL.VALIDATIONS.INVALID';
 		}
 	}

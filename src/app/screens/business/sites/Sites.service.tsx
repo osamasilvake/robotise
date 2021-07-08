@@ -1,5 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
-import { SSContentNotificationPayloadInterface } from '../../../slices/sites/Site.slice.interface';
+import { DialogCreateEditNotificationPayloadInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductPayloadInterface } from './content/products/list/table/SiteProductsTable.interface';
 
@@ -178,22 +178,20 @@ class SitesService {
 	};
 
 	/**
-	 * patch notification users
+	 * update notification
 	 * @param payload
 	 * @returns
 	 */
-	siteUpdateNotificationUsers = (payload: SSContentNotificationPayloadInterface) => {
+	siteUpdateNotification = (payload: DialogCreateEditNotificationPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(
 			':userId',
-			payload.userId
+			payload.userId || ''
 		);
 		return HttpClientService.patch(url, {
 			data: {
 				attributes: {
-					isActive: !payload.isActive,
-					users: payload.users?.map((email) => ({
-						email
-					}))
+					isActive: payload.isActive,
+					users: payload.users?.map((email) => ({ email }))
 				}
 			}
 		});

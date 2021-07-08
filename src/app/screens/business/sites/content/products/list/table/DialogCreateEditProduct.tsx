@@ -75,14 +75,13 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const [imageError, setImageError] = useState(0);
 
 	const params: SiteParamsInterface = useParams();
-	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
+	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 	const currency = sites.content?.dataById[params.site]?.currency || defaultCurrency;
 
 	/**
 	 * close create/edit dialog
-	 * @param status
-	 * @returns
+	 * @param event
 	 */
 	const closeCreateEditProductDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
@@ -96,9 +95,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 		<Dialog open={open} onClose={closeCreateEditProductDialog}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
-					{type === SiteProductCreateEditTypeEnum.CREATE &&
-						t(`${commonText}.CREATE.TITLE`)}
-					{type === SiteProductCreateEditTypeEnum.EDIT && t(`${commonText}.EDIT.TITLE`)}
+					{type === SiteProductCreateEditTypeEnum.CREATE && t(`${common}.CREATE.TITLE`)}
+					{type === SiteProductCreateEditTypeEnum.EDIT && t(`${common}.EDIT.TITLE`)}
 				</DialogTitle>
 				<DialogContent>
 					<Grid container spacing={2}>
@@ -123,8 +121,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.name}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${commonText}.FIELDS.NAME.LABEL`)}
-									placeholder={t(`${commonText}.FIELDS.NAME.PLACEHOLDER`)}
+									label={t(`${common}.FIELDS.NAME.LABEL`)}
+									placeholder={t(`${common}.FIELDS.NAME.PLACEHOLDER`)}
 								/>
 								{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 							</FormControl>
@@ -139,10 +137,10 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.price}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${commonText}.FIELDS.PRICE.LABEL`, {
+									label={t(`${common}.FIELDS.PRICE.LABEL`, {
 										value: currency
 									})}
-									placeholder={t(`${commonText}.FIELDS.PRICE.PLACEHOLDER`)}
+									placeholder={t(`${common}.FIELDS.PRICE.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
 								/>
 								{errors && typeof errors.price === 'string' && (
@@ -161,8 +159,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									value={values?.length}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${commonText}.FIELDS.LENGTH.LABEL`)}
-									placeholder={t(`${commonText}.FIELDS.LENGTH.PLACEHOLDER`)}
+									label={t(`${common}.FIELDS.LENGTH.LABEL`)}
+									placeholder={t(`${common}.FIELDS.LENGTH.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
 								/>
 							</FormControl>
@@ -178,8 +176,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									value={values?.weight}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${commonText}.FIELDS.WEIGHT.LABEL`)}
-									placeholder={t(`${commonText}.FIELDS.WEIGHT.PLACEHOLDER`)}
+									label={t(`${common}.FIELDS.WEIGHT.LABEL`)}
+									placeholder={t(`${common}.FIELDS.WEIGHT.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
 								/>
 							</FormControl>
@@ -195,8 +193,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									value={values?.volume}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${commonText}.FIELDS.SIZE.LABEL`)}
-									placeholder={t(`${commonText}.FIELDS.SIZE.PLACEHOLDER`)}
+									label={t(`${common}.FIELDS.SIZE.LABEL`)}
+									placeholder={t(`${common}.FIELDS.SIZE.PLACEHOLDER`)}
 								/>
 							</FormControl>
 						</Grid>

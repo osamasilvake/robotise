@@ -26,12 +26,16 @@ const SiteConfiguration: FC = () => {
 
 	const params: SiteParamsInterface = useParams();
 	const siteSingle = sites.content?.dataById[params.site];
-	const siteId = params.site;
+
+	const cSiteId = params.site;
+	const pSiteId = site.notifications.content?.site.id;
 
 	useEffect(() => {
-		// dispatch: fetch notification types and users
-		dispatch(SiteNotificationTypesAndUsersFetch(siteId));
-	}, [dispatch, siteId]);
+		if (pSiteId !== cSiteId) {
+			// dispatch: fetch notification types and users
+			dispatch(SiteNotificationTypesAndUsersFetch(cSiteId));
+		}
+	}, [dispatch, pSiteId, cSiteId]);
 
 	// loader
 	if (sites.loader || site.notifications.loader) {

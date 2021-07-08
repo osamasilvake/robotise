@@ -9,5 +9,8 @@ export const SiteNotificationsStyle = makeStyles((theme: Theme) => ({
 	},
 	sListItemHead: {
 		padding: theme.spacing(3)
+	},
+	sAddUser: {
+		marginTop: theme.spacing(1)
 	}
 }));

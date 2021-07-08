@@ -1,5 +1,4 @@
 import {
-	Box,
 	Button,
 	CircularProgress,
 	Dialog,
@@ -25,7 +24,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 	const dispatch = useDispatch();
 	const products = useSelector(productsSelector);
 
-	const commonText = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
+	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
 
 	/**
 	 * delete product
@@ -45,27 +44,25 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 
 	return (
 		<Dialog open={open} onClose={deleteProduct(false)}>
-			<Box onClick={(e) => e.stopPropagation()}>
-				<DialogTitle>{t(`${commonText}.TITLE`)}</DialogTitle>
-				<DialogContent>
-					<DialogContentText>{t(`${commonText}.TEXT`)}</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button
-						variant="outlined"
-						disabled={products.updating}
-						onClick={deleteProduct(false)}>
-						{t('BUTTONS.CANCEL')}
-					</Button>
-					<Button
-						variant="outlined"
-						onClick={deleteProduct(true)}
-						disabled={products.updating || !product.site}
-						endIcon={products.updating && <CircularProgress size={20} />}>
-						{t('BUTTONS.CONFIRM')}
-					</Button>
-				</DialogActions>
-			</Box>
+			<DialogTitle>{t(`${common}.TITLE`)}</DialogTitle>
+			<DialogContent>
+				<DialogContentText>{t(`${common}.TEXT`)}</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button
+					variant="outlined"
+					disabled={products.updating}
+					onClick={deleteProduct(false)}>
+					{t('BUTTONS.CANCEL')}
+				</Button>
+				<Button
+					variant="outlined"
+					onClick={deleteProduct(true)}
+					disabled={products.updating || !product.site}
+					endIcon={products.updating && <CircularProgress size={20} />}>
+					{t('BUTTONS.CONFIRM')}
+				</Button>
+			</DialogActions>
 		</Dialog>
 	);
 };

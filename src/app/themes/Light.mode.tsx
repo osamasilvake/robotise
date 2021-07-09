@@ -1,4 +1,4 @@
-import { ThemeOptions } from '@material-ui/core';
+import { CSSObject, ThemeOptions } from '@material-ui/core';
 
 import { AppConfigService } from '../services';
 import { pxToRem } from '../utilities/methods/PixelsToRem';
@@ -62,7 +62,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				styleOverrides: {
 					...options.components?.MuiPopover?.styleOverrides,
 					paper: {
-						...options.components?.MuiPopover?.styleOverrides?.paper,
+						...(options.components?.MuiPopover?.styleOverrides?.paper as CSSObject),
 						backgroundColor: AppConfigService.AppOptions.colors.c5
 					}
 				}
@@ -108,12 +108,13 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 			MuiTab: {
 				styleOverrides: {
 					textColorPrimary: {
+						...(options.components?.MuiTab?.styleOverrides
+							?.textColorPrimary as CSSObject),
 						'&.Mui-selected': {
 							backgroundColor: AppConfigService.AppOptions.colors.c4,
 							borderTop: `${pxToRem(1)} solid ${
 								AppConfigService.AppOptions.colors.c9
-							}`,
-							color: AppConfigService.AppOptions.colors.c9
+							}`
 						}
 					}
 				}
@@ -136,7 +137,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				styleOverrides: {
 					...options.components?.MuiCardContent?.styleOverrides,
 					root: {
-						...options.components?.MuiCardContent?.styleOverrides?.root,
+						...(options.components?.MuiCardContent?.styleOverrides?.root as CSSObject),
 						backgroundColor: AppConfigService.AppOptions.colors.c5
 					}
 				}
@@ -145,7 +146,7 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				styleOverrides: {
 					...options.components?.MuiIconButton?.styleOverrides,
 					root: {
-						...options.components?.MuiIconButton?.styleOverrides?.root,
+						...(options.components?.MuiIconButton?.styleOverrides?.root as CSSObject),
 						color: AppConfigService.AppOptions.colors.c8
 					}
 				}
@@ -162,7 +163,8 @@ const Light = (options: ThemeOptions): ThemeOptions => {
 				styleOverrides: {
 					...options.components?.MuiOutlinedInput?.styleOverrides,
 					input: {
-						...options.components?.MuiOutlinedInput?.styleOverrides?.input,
+						...(options.components?.MuiOutlinedInput?.styleOverrides
+							?.input as CSSObject),
 						'&:-webkit-autofill': {
 							WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
 								AppConfigService.AppOptions.colors.c4

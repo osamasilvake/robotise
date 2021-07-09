@@ -7,7 +7,7 @@ export const AppBarStyle = makeStyles((theme: Theme) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 		minHeight: theme.spacing(8),
-		padding: theme.spacing(0, 0.5)
+		padding: theme.spacing(0, 1)
 	},
 	sLogoIcon: {
 		width: '100%'

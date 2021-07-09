@@ -3,7 +3,7 @@ import { Variant } from '@material-ui/core/styles/createTypography';
 import clsx from 'clsx';
 import { FC } from 'react';
 
-import { MarkdownHeadingInterface } from './Markdown.interface';
+import { MarkdownHeadingInterface, MarkdownLinkInterface } from './Markdown.interface';
 import { MarkdownStyle } from './Markdown.style';
 
 /**
@@ -84,9 +84,13 @@ const MarkdownParagraph: FC = (props) => {
  * @param props
  */
 const MarkdownLink: FC = (props) => {
-	const { children } = props;
+	const { href, children } = props as MarkdownLinkInterface;
 
-	return <Link underline="hover">{children}</Link>;
+	return (
+		<Link underline="hover" href={href} target="_blank">
+			{children}
+		</Link>
+	);
 };
 
 /**

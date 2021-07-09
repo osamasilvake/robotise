@@ -22,7 +22,10 @@ const PageError: FC<PageErrorInterface> = (props) => {
 					{t(message)}
 				</Typography>
 			)}
-			<Link onClick={() => window.location.reload()} className={classes.sLink}>
+			<Link
+				underline="hover"
+				onClick={() => window.location.reload()}
+				className={classes.sLink}>
 				{t('PAGE_ERROR.LINK')}
 			</Link>
 		</Error>

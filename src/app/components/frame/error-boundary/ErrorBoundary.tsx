@@ -1,4 +1,5 @@
-import { Box, Link, Typography, withStyles } from '@material-ui/core';
+import { Box, Link, Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 import log from 'loglevel';
 import { Component, ErrorInfo } from 'react';
 import { withTranslation } from 'react-i18next';
@@ -50,7 +51,10 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 							className={classes.sDescription}>
 							{t('ERROR_BOUNDARY.DESCRIPTION')}
 						</Typography>
-						<Link onClick={() => window.location.reload()} className={classes.sLink}>
+						<Link
+							underline="hover"
+							onClick={() => window.location.reload()}
+							className={classes.sLink}>
 							{t('ERROR_BOUNDARY.LINK')}
 						</Link>
 					</Error>

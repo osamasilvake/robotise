@@ -8,7 +8,7 @@ stages:
   - Quality
   - Build
   - Publish
-  - Deploy
+  # - Deploy
 
 include:
   - local: .gitlab/ci/variables.yml
@@ -18,4 +18,4 @@ include:
   
   - local: .gitlab/ci/production/build.yml
   - local: .gitlab/ci/production/publish.yml
-  - local: .gitlab/ci/production/deploy.yml
+  # - local: .gitlab/ci/production/deploy.yml

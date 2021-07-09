@@ -80,6 +80,16 @@ const MarkdownParagraph: FC = (props) => {
 };
 
 /**
+ * link
+ * @param props
+ */
+const MarkdownLink: FC = (props) => {
+	const { children } = props;
+
+	return <Link underline="hover">{children}</Link>;
+};
+
+/**
  * list
  * @param props
  */
@@ -115,7 +125,7 @@ export const MarkdownRenderers = {
 	h5: MarkdownHeading,
 	h6: MarkdownHeading,
 	p: MarkdownParagraph,
-	a: Link,
+	a: MarkdownLink,
 	ul: MarkdownList,
 	li: MarkdownListItem
 };

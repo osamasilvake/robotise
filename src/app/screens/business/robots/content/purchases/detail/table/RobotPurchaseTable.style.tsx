@@ -1,4 +1,5 @@
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { alpha } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 import { AppConfigService } from '../../../../../../../services';
 

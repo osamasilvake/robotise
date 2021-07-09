@@ -34,6 +34,13 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
+	MuiTab: {
+		styleOverrides: {
+			textColorPrimary: {
+				minWidth: pxToRem(160)
+			}
+		}
+	},
 	MuiPopover: {
 		styleOverrides: {
 			paper: {

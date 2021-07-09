@@ -26,13 +26,13 @@ const About: FC = () => {
 					<Typography variant="h6">{t('INFO.CONTACT.TITLE')}</Typography>
 					<Typography variant="body1">
 						{t('INFO.CONTACT.TEL.LABEL')}:{' '}
-						<Link href={`tel:${t('INFO.CONTACT.TEL.VALUE')}`}>
+						<Link underline="hover" href={`tel:${t('INFO.CONTACT.TEL.VALUE')}`}>
 							{t('INFO.CONTACT.TEL.VALUE')}
 						</Link>
 					</Typography>
 					<Typography variant="body1">
 						{t('INFO.CONTACT.EMAIL.LABEL')}:{' '}
-						<Link href={`mailto:${t('INFO.CONTACT.EMAIL.VALUE')}`}>
+						<Link underline="hover" href={`mailto:${t('INFO.CONTACT.EMAIL.VALUE')}`}>
 							{t('INFO.CONTACT.EMAIL.VALUE')}
 						</Link>
 					</Typography>

@@ -51,7 +51,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 						onChange={handleNotification(notification)}
 					/>
 				}
-				label={null}
+				label={false}
 			/>
 
 			<ListItemText

@@ -31,7 +31,10 @@ const PageEmpty: FC<PageEmptyInterface> = (props) => {
 			)}
 
 			{/* Link */}
-			<Link onClick={() => window.location.reload()} className={classes.sLink}>
+			<Link
+				underline="hover"
+				onClick={() => window.location.reload()}
+				className={classes.sLink}>
 				{t('EMPTY.LINK')}
 			</Link>
 		</Box>

@@ -1,9 +1,5 @@
-import {
-	createMuiTheme,
-	CssBaseline,
-	MuiThemeProvider,
-	StyledEngineProvider
-} from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
+import { createTheme, StyledEngineProvider, ThemeProvider } from '@material-ui/core/styles';
 import { FC, Suspense, useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
@@ -31,7 +27,7 @@ const App: FC = () => {
 	// change theme
 	const theme = useMemo(
 		() =>
-			createMuiTheme(
+			createTheme(
 				general.themePalette === GeneralThemePaletteTypeEnum.DARK
 					? Dark(Options)
 					: Light(Options)
@@ -40,7 +36,7 @@ const App: FC = () => {
 	);
 
 	return (
-		<MuiThemeProvider theme={theme}>
+		<ThemeProvider theme={theme}>
 			{/* Precedence to makeStyles */}
 			<StyledEngineProvider injectFirst>
 				{/* UI baseline */}
@@ -66,7 +62,7 @@ const App: FC = () => {
 				{/* Listeners: Network */}
 				<Listeners />
 			</StyledEngineProvider>
-		</MuiThemeProvider>
+		</ThemeProvider>
 	);
 };
 export default App;

@@ -12,7 +12,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 		<Typography variant="body2" color="textSecondary" align="center">
 			{!short && (
 				<>
-					<Link href={AppConfigService.envCompanyUrl} target="_blank">
+					<Link underline="hover" href={AppConfigService.envCompanyUrl} target="_blank">
 						{AppConfigService.envCompanyName}
 					</Link>
 					{' © '}

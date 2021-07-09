@@ -25,5 +25,5 @@ test:jest:
     - yarn test:ci
   only:
     - merge_requests
-    - master
+    - development
     - production

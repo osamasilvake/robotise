@@ -9,4 +9,4 @@ variables:
   HELM_REPO_NAME: chartmuseumrobotise
   HELM_CHART_NAME: "$CI_PROJECT_NAME-app-v2"
   HELM_RELEASE_NAME_PROD: "prod-$CI_PROJECT_NAME-app-v2"
-  DOCKER_PROJECT_NAME: "$CI_PROJECT_NAME-app-v2-migration"
+  DOCKER_PROJECT_NAME: "$CI_PROJECT_NAME-app-v2"

@@ -107,75 +107,83 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 						t(`${common}.CREATE.TITLE`)}
 					{type === SiteNotificationsCreateEditTypeEnum.EDIT && t(`${common}.EDIT.TITLE`)}
 				</DialogTitle>
-				<DialogContent>
-					<Box>
-						<FormControlLabel
-							control={
-								<Switch
-									color="primary"
-									name="isActive"
-									checked={values.isActive}
-									onChange={handleChangeCheckbox}
-								/>
-							}
-							label={t(`${common}.FIELDS.ACTIVE.LABEL`)}
-						/>
-					</Box>
 
-					<Box className={classes.sAddUser}>
-						{values.users.map((user, index) => (
-							<FormControl error fullWidth margin="normal" key={index}>
-								<TextField
-									variant="outlined"
-									type="email"
-									id={`${fieldUsers}-${index}`}
-									name={fieldUsers}
-									value={user}
-									onChange={(e) =>
-										handleChangeStringInputs(index, e, values.users)
-									}
-									label={t(`${common}.FIELDS.EMAIL.LABEL`)}
-									placeholder={t(`${common}.FIELDS.EMAIL.PLACEHOLDER`)}
-									InputProps={{
-										endAdornment: (
-											<InputAdornment position="end">
-												<IconButton
-													disabled={!user}
-													edge="end"
-													onClick={() =>
-														handleChangeStringInputs(
-															index,
-															{
-																target: {
-																	name: fieldUsers,
-																	value: ''
-																}
-															},
-															values.users
-														)
-													}>
-													{user ? <Clear /> : <Email />}
-												</IconButton>
-											</InputAdornment>
-										)
-									}}
-								/>
-								{errors?.users && errors.users[index] && (
-									<FormHelperText>{t(errors.users[index])}</FormHelperText>
-								)}
-							</FormControl>
-						))}
+				{type === SiteNotificationsCreateEditTypeEnum.CREATE && (
+					<DialogContent>Hello</DialogContent>
+				)}
 
-						<Chip
-							size="small"
-							label={t(`${common}.ADD_USER`)}
-							color="primary"
-							variant="outlined"
-							clickable
-							onClick={AddUserField}
-						/>
-					</Box>
-				</DialogContent>
+				{type === SiteNotificationsCreateEditTypeEnum.EDIT && (
+					<DialogContent>
+						<Box>
+							<FormControlLabel
+								control={
+									<Switch
+										color="primary"
+										name="isActive"
+										checked={values.isActive}
+										onChange={handleChangeCheckbox}
+									/>
+								}
+								label={t(`${common}.FIELDS.ACTIVE.LABEL`)}
+							/>
+						</Box>
+
+						<Box className={classes.sAddUser}>
+							{values.users.map((user, index) => (
+								<FormControl error fullWidth margin="normal" key={index}>
+									<TextField
+										variant="outlined"
+										type="email"
+										id={`${fieldUsers}-${index}`}
+										name={fieldUsers}
+										value={user}
+										onChange={(e) =>
+											handleChangeStringInputs(index, e, values.users)
+										}
+										label={t(`${common}.FIELDS.EMAIL.LABEL`)}
+										placeholder={t(`${common}.FIELDS.EMAIL.PLACEHOLDER`)}
+										InputProps={{
+											endAdornment: (
+												<InputAdornment position="end">
+													<IconButton
+														disabled={!user}
+														edge="end"
+														onClick={() =>
+															handleChangeStringInputs(
+																index,
+																{
+																	target: {
+																		name: fieldUsers,
+																		value: ''
+																	}
+																},
+																values.users
+															)
+														}>
+														{user ? <Clear /> : <Email />}
+													</IconButton>
+												</InputAdornment>
+											)
+										}}
+									/>
+									{errors?.users && errors.users[index] && (
+										<FormHelperText>{t(errors.users[index])}</FormHelperText>
+									)}
+								</FormControl>
+							))}
+
+							<Chip
+								size="small"
+								label={t(`${common}.ADD_USER`)}
+								color="primary"
+								variant="outlined"
+								clickable
+								onClick={AddUserField}
+							/>
+						</Box>
+					</DialogContent>
+				)}
+
 				<DialogActions>
 					<Button
 						variant="outlined"

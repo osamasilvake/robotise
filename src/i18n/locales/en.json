@@ -445,9 +445,12 @@
 					"SITE": "Site",
 					"VENDOR": "Vendor",
 					"LAST_UPDATED": "Last Updated",
-					"STATUS": "Status",
-					"ON": "On",
-					"OFF": "Off",
+					"CONTROL_MODE": "Control Mode",
+					"STATUS": {
+						"LABEL": "Status",
+						"ON": "On",
+						"OFF": "Off"
+					},
 					"ACCEPT_ORDERS": {
 						"LABEL": "Accept Orders",
 						"ACTIVE": "Active",

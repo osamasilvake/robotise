@@ -10,11 +10,13 @@ import {
 	Typography
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
+import DialogCreateEditNotification from './DialogCreateEditNotification';
 import SiteNotification from './SiteNotification';
+import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import { SiteNotificationsInterface } from './SiteNotifications.interface';
 import { SiteNotificationsStyle } from './SiteNotifications.style';
 
@@ -23,6 +25,8 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const { t } = useTranslation('SITES');
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
+
+	const [open, setOpen] = useState(false);
 
 	return site.notifications?.content ? (
 		<Box className={classes.sBox}>
@@ -37,9 +41,15 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 					<List disablePadding>
 						<ListItem className={classes.sListItemHead}>
 							<ListItemSecondaryAction>
-								<IconButton edge="end">
+								<IconButton edge="end" onClick={() => setOpen(true)}>
 									<AddCircleIcon color="primary" />
 								</IconButton>
+								<DialogCreateEditNotification
+									notification={site.notifications.content.data[0]}
+									type={SiteNotificationsCreateEditTypeEnum.CREATE}
+									open={open}
+									setOpen={setOpen}
+								/>
 							</ListItemSecondaryAction>
 						</ListItem>
 

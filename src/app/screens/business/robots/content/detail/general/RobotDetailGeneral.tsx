@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import { RobotDetailGeneralInterface } from './RobotDetailGeneral.interface';
 import { RobotDetailGeneralStyle } from './RobotDetailGeneral.style';
 
@@ -29,7 +30,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{robotTwins.site.elevator?.vendor || AppConfigService.AppOptions.common.none}
 				</Typography>
 			</Grid>
-			<Grid item xs={12} sm={6} md={4} lg={3}>
+			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography variant="caption" color="textSecondary">
 					{t('CONTENT.DETAIL.GENERAL.LAST_UPDATED')}
 				</Typography>
@@ -40,15 +41,29 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					variant="caption"
 					color="textSecondary"
 					className={classes.sGeneralItemStatusLabel}>
-					{t('CONTENT.DETAIL.GENERAL.STATUS')}
+					{t('CONTENT.DETAIL.GENERAL.STATUS.LABEL')}
 				</Typography>
 				<Status active={robotTwins.robotState.isReady.value}>
 					{robotTwins.robotState.isReady.value
-						? t('CONTENT.DETAIL.GENERAL.ON')
-						: t('CONTENT.DETAIL.GENERAL.OFF')}
+						? t('CONTENT.DETAIL.GENERAL.STATUS.ON')
+						: t('CONTENT.DETAIL.GENERAL.STATUS.OFF')}
 				</Status>
 			</Grid>
-			<Grid item xs={12} sm={6} md={8} lg={2} className={classes.sGeneralLastItem}>
+			<Grid item xs={12} sm={6} md={4} lg={2}>
+				<Typography
+					variant="caption"
+					color="textSecondary"
+					className={classes.sGeneralItemStatusLabel}>
+					{t('CONTENT.DETAIL.GENERAL.CONTROL_MODE')}
+				</Typography>
+				<Status
+					active={
+						robotTwins.controlMode.value === RobotDetailControlModeTypeEnum.AUTONOMOUS
+					}>
+					{robotTwins.controlMode.value}
+				</Status>
+			</Grid>
+			<Grid item xs={12} sm={6} md={4} lg={1} className={classes.sGeneralLastItem}>
 				<Typography
 					variant="caption"
 					color="textSecondary"

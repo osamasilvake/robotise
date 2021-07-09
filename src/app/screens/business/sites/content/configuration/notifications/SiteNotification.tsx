@@ -66,7 +66,6 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 					onClick={() => setOpen(true)}>
 					<EditIcon color={notification.userId ? 'primary' : 'disabled'} />
 				</IconButton>
-
 				{open && (
 					<DialogCreateEditNotification
 						notification={notification}

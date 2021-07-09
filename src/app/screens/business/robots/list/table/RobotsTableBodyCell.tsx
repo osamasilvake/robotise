@@ -1,16 +1,15 @@
-import { TableCell } from '@material-ui/core';
+import { Box, TableCell } from '@material-ui/core';
+import { Check, Close } from '@material-ui/icons';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import Status from '../../../../../components/common/status/Status';
 import { RTSContentDataInterface } from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { RobotDetailControlModeTypeEnum } from '../../content/detail/commands/RobotDetailCommands.enum';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
 
 const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	const { column, robot } = props;
-	const { t } = useTranslation('ROBOTS');
 
 	/**
 	 * set cell value
@@ -22,21 +21,27 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		const value = robot[column.id];
 		if (columns[2].id === column.id) {
 			return (
-				<Status active={robot.robotIsReady}>
-					{robot.robotIsReady ? t('LIST.TABLE.VALUES.ON') : t('LIST.TABLE.VALUES.OFF')}
-				</Status>
+				<Box>{robot.robotIsReady ? <Check color="action" /> : <Close color="error" />}</Box>
 			);
 		} else if (columns[3].id === column.id) {
 			return (
-				<Status active={robot.siteAcceptOrders}>
-					{robot.siteAcceptOrders
-						? t('LIST.TABLE.VALUES.ACTIVE')
-						: t('LIST.TABLE.VALUES.INACTIVE')}
-				</Status>
+				<Box>
+					{robot.robotControlMode === RobotDetailControlModeTypeEnum.AUTONOMOUS ? (
+						<Check color="action" />
+					) : (
+						<Close color="error" />
+					)}
+				</Box>
 			);
 		} else if (columns[4].id === column.id) {
-			return momentFormat1(value);
+			return (
+				<Box>
+					{robot.siteAcceptOrders ? <Check color="action" /> : <Close color="error" />}
+				</Box>
+			);
 		} else if (columns[5].id === column.id) {
+			return momentFormat1(value);
+		} else if (columns[6].id === column.id) {
 			return `${robot.alerts.danger}/${robot.alerts.warning}`;
 		}
 		return value;

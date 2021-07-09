@@ -258,12 +258,8 @@
 					"NAME": "Site",
 					"TIMEZONE": "Timezone",
 					"CURRENCY": "Currency",
-					"ACCEPT_ORDERS": "Accept Orders",
+					"ACCEPT_ORDERS": "Orders",
 					"UPDATED_AT": "Updated At"
-				},
-				"VALUES": {
-					"ACTIVE": "Active",
-					"INACTIVE": "Inactive"
 				}
 			}
 		},
@@ -420,15 +416,10 @@
 					"NAME": "Name",
 					"SITE": "Site",
 					"STATUS": "Status",
-					"ACCEPT_ORDERS": "Accept Orders",
+					"ACCEPT_ORDERS": "Orders",
+					"CONTROL_MODE": "Autonomous",
 					"UPDATED_AT": "Updated At",
 					"ALERTS": "Alerts"
-				},
-				"VALUES": {
-					"ON": "On",
-					"OFF": "Off",
-					"ACTIVE": "Active",
-					"INACTIVE": "Inactive"
 				}
 			}
 		},

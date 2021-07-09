@@ -3,6 +3,7 @@ export enum RobotsTableColumnsTypeEnum {
 	SITE_TITLE = 'siteTitle',
 	STATUS = 'robotIsReady',
 	ACCEPT_ORDER = 'siteAcceptOrders',
+	CONTROL_MODE = 'robotControlMode',
 	UPDATED_AT = 'updatedAt',
 	ALERTS = 'alerts'
 }

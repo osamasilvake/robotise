@@ -59,6 +59,12 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 							updatedAt: data.metadata.reported.robotState.isReady.updatedAt
 						}
 					},
+					status: {
+						controlMode: {
+							value: data.state.reported.status.controlMode,
+							updatedAt: data.metadata.reported.status.controlMode.updatedAt
+						}
+					},
 					alerts: {
 						value: data.state.reported.alerts,
 						updatedAt: data.metadata.reported.alerts?.updatedAt
@@ -89,6 +95,7 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 			robotId: item.robot.id,
 			robotTitle: item.robot.name,
 			robotIsReady: item.robotState.isReady.value,
+			robotControlMode: item.status.controlMode.value,
 			siteId: site.id,
 			siteTitle: site.title,
 			siteCurrency: site.currency || AppConfigService.AppOptions.common.defaultCurrency,

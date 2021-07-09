@@ -20,6 +20,7 @@ export interface RTSContentDataInterface {
 	robotId: string;
 	robotTitle: string;
 	robotIsReady: boolean;
+	robotControlMode: string;
 	siteId: string;
 	siteTitle: string;
 	siteCurrency: string;
@@ -48,15 +49,21 @@ export interface RTSContentTransformDataInterface {
 	site: {
 		id: string;
 	};
+	alerts: {
+		value: IAlert[];
+		updatedAt: Date;
+	};
 	robotState: {
 		isReady: {
 			value: boolean;
 			updatedAt: Date;
 		};
 	};
-	alerts: {
-		value: IAlert[];
-		updatedAt: Date;
+	status: {
+		controlMode: {
+			value: string;
+			updatedAt: Date;
+		};
 	};
 	lastSyncedProducts: {
 		updatedAt: Date;
@@ -75,10 +82,13 @@ export interface IRobotTwinSummary {
 	state: {
 		reported: {
 			name: string;
+			alerts: IAlert[];
 			robotState: {
 				isReady: boolean;
 			};
-			alerts: IAlert[];
+			status: {
+				controlMode: string;
+			};
 			lastSyncedProducts: Date;
 		};
 	};
@@ -87,13 +97,18 @@ export interface IRobotTwinSummary {
 			name: {
 				updatedAt: Date;
 			};
+			alerts: {
+				updatedAt: Date;
+			};
 			robotState: {
 				isReady: {
 					updatedAt: Date;
 				};
 			};
-			alerts: {
-				updatedAt: Date;
+			status: {
+				controlMode: {
+					updatedAt: Date;
+				};
 			};
 		};
 	};

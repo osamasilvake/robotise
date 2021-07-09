@@ -29,14 +29,15 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const sortTableData = (content: RTSContentInterface): RTSContentDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[5].id:
+			case columns[6].id:
 				type = RobotsTableSortTypeEnum.OBJECT_ALERT;
 				break;
-			case columns[4].id:
+			case columns[5].id:
 				type = RobotsTableSortTypeEnum.DATE;
 				break;
 			case columns[2].id:
 			case columns[3].id:
+			case columns[4].id:
 				type = RobotsTableSortTypeEnum.BOOLEAN;
 				break;
 			case columns[0].id:

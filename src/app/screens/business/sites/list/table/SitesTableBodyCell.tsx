@@ -1,8 +1,7 @@
-import { TableCell } from '@material-ui/core';
+import { Box, TableCell } from '@material-ui/core';
+import { Check, Close } from '@material-ui/icons';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import Status from '../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../services';
 import { ISite } from '../../../../../slices/sites/Sites.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
@@ -11,7 +10,6 @@ import { columns } from './SitesTable.list';
 
 const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 	const { column, site } = props;
-	const { t } = useTranslation('SITES');
 
 	/**
 	 * set cell value
@@ -25,11 +23,7 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 			return value || AppConfigService.AppOptions.common.defaultCurrency;
 		} else if (columns[3].id === column.id) {
 			return (
-				<Status active={site.acceptOrders}>
-					{site.acceptOrders
-						? t('LIST.TABLE.VALUES.ACTIVE')
-						: t('LIST.TABLE.VALUES.INACTIVE')}
-				</Status>
+				<Box>{site.acceptOrders ? <Check color="action" /> : <Close color="error" />}</Box>
 			);
 		} else if (columns[4].id === column.id) {
 			return momentFormat1(value);

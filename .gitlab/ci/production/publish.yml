@@ -9,4 +9,4 @@ dev:publish:
     - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$CI_COMMIT_SHORT_SHA"
     - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:latest"
   only:
-    - feature/migration-v2
+    - production

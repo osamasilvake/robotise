@@ -5,8 +5,7 @@ audit:
     - yarn audit
   only:
     - merge_requests
-    - master
-    - production
+    - development
 
 install:
   stage: Initialize

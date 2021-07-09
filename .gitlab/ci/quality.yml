@@ -15,7 +15,7 @@ lint:eslint:
     - yarn lint:es
   only:
     - merge_requests
-    - master
+    - development
     - production
 
 test:jest:

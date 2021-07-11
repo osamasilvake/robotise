@@ -15,8 +15,8 @@ export const columns: RobotsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotsTableColumnsTypeEnum.STATUS,
-		label: 'LIST.TABLE.COLUMNS.STATUS',
+		id: RobotsTableColumnsTypeEnum.ACTIVE,
+		label: 'LIST.TABLE.COLUMNS.ACTIVE',
 		width: 120,
 		align: 'left'
 	},

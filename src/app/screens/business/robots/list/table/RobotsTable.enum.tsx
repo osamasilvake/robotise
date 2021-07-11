@@ -1,7 +1,7 @@
 export enum RobotsTableColumnsTypeEnum {
 	ROBOT_TITLE = 'robotTitle',
 	SITE_TITLE = 'siteTitle',
-	STATUS = 'robotIsReady',
+	ACTIVE = 'robotIsReady',
 	ACCEPT_ORDER = 'siteAcceptOrders',
 	CONTROL_MODE = 'robotControlMode',
 	UPDATED_AT = 'updatedAt',

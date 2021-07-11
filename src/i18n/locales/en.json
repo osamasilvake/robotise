@@ -415,7 +415,7 @@
 				"COLUMNS": {
 					"NAME": "Name",
 					"SITE": "Site",
-					"STATUS": "Status",
+					"ACTIVE": "Active",
 					"ACCEPT_ORDERS": "Orders",
 					"CONTROL_MODE": "Autonomous",
 					"UPDATED_AT": "Updated At",

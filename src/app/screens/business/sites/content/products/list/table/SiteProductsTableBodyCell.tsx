@@ -88,9 +88,12 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 					/>
 
 					<Chip
+						style={{
+							borderColor: AppConfigService.AppOptions.colors.c12,
+							color: AppConfigService.AppOptions.colors.c12
+						}}
 						size="small"
 						label={t(`CONTENT.PRODUCTS.LIST.TABLE.VALUES.DELETE`)}
-						color="secondary"
 						variant="outlined"
 						clickable
 						onClick={openDeleteProductDialog}

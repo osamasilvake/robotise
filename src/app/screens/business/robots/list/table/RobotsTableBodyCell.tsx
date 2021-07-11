@@ -21,13 +21,15 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		const value = robot[column.id];
 		if (columns[2].id === column.id) {
 			return (
-				<Box>{robot.robotIsReady ? <Check color="action" /> : <Close color="error" />}</Box>
+				<Box>
+					{robot.robotIsReady ? <Check color="secondary" /> : <Close color="error" />}
+				</Box>
 			);
 		} else if (columns[3].id === column.id) {
 			return (
 				<Box>
 					{robot.robotControlMode === RobotDetailControlModeTypeEnum.AUTONOMOUS ? (
-						<Check color="action" />
+						<Check color="secondary" />
 					) : (
 						<Close color="error" />
 					)}
@@ -36,7 +38,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		} else if (columns[4].id === column.id) {
 			return (
 				<Box>
-					{robot.siteAcceptOrders ? <Check color="action" /> : <Close color="error" />}
+					{robot.siteAcceptOrders ? <Check color="secondary" /> : <Close color="error" />}
 				</Box>
 			);
 		} else if (columns[5].id === column.id) {

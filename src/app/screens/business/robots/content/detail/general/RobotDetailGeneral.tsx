@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { strRemoveSymbols } from '../../../../../../utilities/methods/StringUtilities';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import { RobotDetailGeneralInterface } from './RobotDetailGeneral.interface';
 import { RobotDetailGeneralStyle } from './RobotDetailGeneral.style';
@@ -60,7 +61,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					active={
 						robotTwins.controlMode.value === RobotDetailControlModeTypeEnum.AUTONOMOUS
 					}>
-					{robotTwins.controlMode.value}
+					{strRemoveSymbols(robotTwins.controlMode.value)}
 				</Status>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={1} className={classes.sGeneralLastItem}>

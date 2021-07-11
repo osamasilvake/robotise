@@ -23,7 +23,9 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 			return value || AppConfigService.AppOptions.common.defaultCurrency;
 		} else if (columns[3].id === column.id) {
 			return (
-				<Box>{site.acceptOrders ? <Check color="action" /> : <Close color="error" />}</Box>
+				<Box>
+					{site.acceptOrders ? <Check color="secondary" /> : <Close color="error" />}
+				</Box>
 			);
 		} else if (columns[4].id === column.id) {
 			return momentFormat1(value);

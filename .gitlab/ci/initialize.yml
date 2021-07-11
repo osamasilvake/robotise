@@ -6,6 +6,7 @@ audit:
   only:
     - merge_requests
     - development
+    - production
 
 install:
   stage: Initialize

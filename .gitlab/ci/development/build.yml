@@ -18,4 +18,4 @@ build:
       - images
     expire_in: 30 minutes
   only:
-    - development
+    - master

@@ -8,13 +8,13 @@ import { RobotSyncProducts } from '../../../../../../slices/robots/Robot.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import { RobotConfigurationSyncProductsInterface } from './RobotConfigurationSyncProducts.interface';
-import { RobotConfigurationSyncProductsStyle } from './RobotConfigurationSyncProducts.style';
+import { SyncProductsInterface } from './SyncProducts.interface';
+import { SyncProductsStyle } from './SyncProducts.style';
 
-const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface> = (props) => {
+const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	const { robotTwinsSummary, robot } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotConfigurationSyncProductsStyle();
+	const classes = SyncProductsStyle();
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
@@ -60,4 +60,4 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 		</Card>
 	);
 };
-export default RobotConfigurationSyncProducts;
+export default SyncProducts;

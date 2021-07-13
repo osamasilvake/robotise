@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
-export const RobotConfigurationSyncProductsStyle = makeStyles((theme: Theme) => ({
+export const SyncProductsStyle = makeStyles((theme: Theme) => ({
 	sButton: {
 		marginTop: theme.spacing(2)
 	},

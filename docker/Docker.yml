@@ -5,6 +5,6 @@ services:
     container_name: roc-prod
     build:
       context: ../
-      dockerfile: docker/Dockerfile.prod
+      dockerfile: docker/Dockerfile
     ports:
       - 3000:3000

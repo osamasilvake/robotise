@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  client_dev:
+  client_local:
     stdin_open: true
-    container_name: roc-dev
+    container_name: roc-local
     build:
       context: ../
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: docker/Dockerfile.local
     volumes:
       - ../:/app
       - ../node_modules:/app/node_modules

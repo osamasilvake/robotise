@@ -1,4 +1,4 @@
-dev:publish:
+publish:
   stage: Publish
   script:
     # publish to GCP container registry

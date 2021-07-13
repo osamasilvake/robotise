@@ -1,4 +1,4 @@
-dev:deploy:
+deploy:
   stage: Deploy
   image: "google/cloud-sdk:latest"
   script:

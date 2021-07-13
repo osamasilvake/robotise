@@ -1,4 +1,4 @@
-dev:build:
+build:
   stage: Build
   before_script:
     - mkdir images

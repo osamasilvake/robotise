@@ -1,4 +1,4 @@
-Q1-prettier:
+q1:prettier:
   stage: Quality
   image: node:15-alpine
   script:
@@ -8,7 +8,7 @@ Q1-prettier:
     - development
     - production
 
-Q2-lint:eslint:
+q2:lint:
   stage: Quality
   image: node:15-alpine
   script:
@@ -18,7 +18,7 @@ Q2-lint:eslint:
     - development
     - production
 
-Q3-test:jest:
+q3:test:
   stage: Quality
   image: node:15-alpine
   script:

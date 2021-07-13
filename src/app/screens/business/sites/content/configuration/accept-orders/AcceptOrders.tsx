@@ -17,13 +17,13 @@ import { SiteAcceptOrders } from '../../../../../../slices/sites/Site.slice';
 import { SiteUpdate } from '../../../../../../slices/sites/Sites.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
-import { SiteConfigurationAcceptOrdersInterface } from './SiteConfigurationAcceptOrders.interface';
-import { SiteConfigurationAcceptOrdersStyle } from './SiteConfigurationAcceptOrders.style';
+import { AcceptOrdersInterface } from './AcceptOrders.interface';
+import { AcceptOrdersStyle } from './AcceptOrders.style';
 
-const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> = (props) => {
+const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	const { sites, site } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteConfigurationAcceptOrdersStyle();
+	const classes = AcceptOrdersStyle();
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
@@ -88,4 +88,4 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 		</Card>
 	);
 };
-export default SiteConfigurationAcceptOrders;
+export default AcceptOrders;

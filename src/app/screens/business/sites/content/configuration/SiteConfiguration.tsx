@@ -13,7 +13,7 @@ import {
 } from '../../../../../slices/sites/Site.slice';
 import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
-import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
+import AcceptOrders from './accept-orders/AcceptOrders';
 import SiteNotifications from './notifications/SiteNotifications';
 import { SiteConfigurationStyle } from './SiteConfiguration.style';
 
@@ -61,7 +61,7 @@ const SiteConfiguration: FC = () => {
 		<Box className={classes.sBox}>
 			<Grid container spacing={1}>
 				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<SiteConfigurationAcceptOrders sites={sites} site={site} />
+					<AcceptOrders sites={sites} site={site} />
 				</Grid>
 			</Grid>
 

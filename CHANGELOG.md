@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.0.0...v2.0.1) (2021-07-13)
+
+
+### Bug Fixes
+
+* Material-ui Migration v5 ([11267e3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/11267e398a0ad4ae875f35db981ec86ee760e5c1))
+* Migration v5 issues ([4015606](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/40156064328ab6f55bc61ad091faabf3d4b0e9fb))
+* Remove change log and craco ([7535124](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7535124c8f76bf866e5fa0d555ee2a6619bca58f))
+* Set secondary color ([ab127f0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ab127f0d4711af22c7e8a1ac19992f966050e9c0))
+* Update add notifcations ([05c8462](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/05c8462abfaf5ef8577ccd3a35f1d5d9421d7568))
+* Update CI/CD ([e6574b9](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e6574b9e59723016e3c2a5f260b8c270f9bec1f1))
+* Update gitlab variables ([3368ae8](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3368ae852ac5c7601a0661e3857b513bea804e8b))
+
 ## [2.0.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v1.3.0...v2.0.0) (2021-07-09)
 
 

@@ -56,7 +56,6 @@ A summary of development workflow involving multiple git branches.
 
 ### Client Packages 
 - [X] [Create React App](https://github.com/facebook/create-react-app)
-- [X] [CRACO](https://github.com/gsoft-inc/craco)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)

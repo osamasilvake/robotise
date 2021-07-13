@@ -30,12 +30,6 @@ const drawerInformationList: DrawerListInterface[] = [
 	},
 	{
 		id: 2,
-		icon: 'assignment',
-		label: 'INFORMATION.LIST.CHANGE_LOG',
-		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.CHANGE_LOG
-	},
-	{
-		id: 3,
 		icon: 'info',
 		label: 'INFORMATION.LIST.ABOUT',
 		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT

@@ -2,7 +2,6 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import ChangeLogService from '../../screens/information/change-log/ChangeLog.service';
 import { AppConfigService, StorageService } from '../../services';
 import { AppReducerType } from '..';
 import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
@@ -23,8 +22,7 @@ export const initialState: SliceGeneralInterface = {
 		show: false,
 		severity: TriggerMessageTypeEnum.INFO,
 		text: 'INIT'
-	},
-	changeLog: ''
+	}
 };
 
 // slice
@@ -44,22 +42,13 @@ const dataSlice = createSlice({
 		triggerMessage: (state, action) => {
 			state.triggerMessage = action.payload;
 		},
-		fetchChangeLog: (state, action) => {
-			state.changeLog = action.payload;
-		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const {
-	setDrawerState,
-	applyThemePalette,
-	changeLanguage,
-	triggerMessage,
-	fetchChangeLog,
-	reset
-} = dataSlice.actions;
+export const { setDrawerState, applyThemePalette, changeLanguage, triggerMessage, reset } =
+	dataSlice.actions;
 
 // selector
 export const generalSelector = (state: AppReducerType) => state['general'];
@@ -114,13 +103,3 @@ export const GeneralTriggerMessage =
 		// dispatch: trigger message
 		dispatch(triggerMessage(message));
 	};
-
-/**
- * fetch changelog
- */
-export const GeneralFetchChangelog = () => async (dispatch: Dispatch) => {
-	return ChangeLogService.changelogFetch().then((res) => {
-		// dispatch: fetch changelog
-		dispatch(fetchChangeLog(JSON.stringify(res)));
-	});
-};

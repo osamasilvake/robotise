@@ -1,6 +1,5 @@
 import appRoutes from '../../routes/app-routes';
 import EnvService from '../env/Env.service';
-import CHANGE_LOG from './../../../../CHANGELOG.md';
 
 class AppConfigService extends EnvService {
 	/**
@@ -219,8 +218,7 @@ class AppConfigService extends EnvService {
 					}
 				},
 				INFORMATION: {
-					ALERT_CODES: `${this.envAppUrl}/active-alert-codes`,
-					CHANGE_LOG
+					ALERT_CODES: `${this.envAppUrl}/active-alert-codes`
 				}
 			}
 		};

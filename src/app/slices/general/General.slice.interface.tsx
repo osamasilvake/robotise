@@ -6,5 +6,4 @@ export interface SliceGeneralInterface {
 	themePalette: GeneralThemePaletteTypeEnum;
 	currentLanguage: GeneralLanguageTypeEnum;
 	triggerMessage: TriggerMessageInterface;
-	changeLog: string;
 }

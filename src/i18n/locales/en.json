@@ -27,10 +27,6 @@
 			"TITLE": "Alert Codes",
 			"DESCRIPTION": "Alert Codes Description"
 		},
-		"CHANGE_LOG": {
-			"TITLE": "Change Log",
-			"DESCRIPTION": "Change Log Description"
-		},
 		"ABOUT": {
 			"TITLE": "About",
 			"DESCRIPTION": "About Description"
@@ -208,7 +204,6 @@
 			},
 			"LIST": {
 				"ALERT_CODES": "Alert Codes",
-				"CHANGE_LOG": "Change Log",
 				"ABOUT": "About"
 			}
 		}

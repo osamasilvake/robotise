@@ -8,10 +8,8 @@ import { AppReducerType } from '..';
 import {
 	applyThemePalette,
 	changeLanguage,
-	fetchChangeLog,
 	GeneralApplyThemePalette,
 	GeneralChangeLanguage,
-	GeneralFetchChangelog,
 	GeneralSetDrawerState,
 	GeneralTriggerMessage,
 	initialState,
@@ -86,20 +84,6 @@ describe('[SLICE] General', () => {
 			.then(() => {
 				// assert
 				const expectedActions = [triggerMessage(message)];
-				expect(store.getActions()).toEqual(expectedActions);
-			})
-			.catch();
-	});
-
-	it('[GeneralFetchChangelog] Fetch changelog', () => {
-		const store = mockStore(initialState);
-
-		// act
-		store
-			.dispatch(GeneralFetchChangelog())
-			.then((res) => {
-				// assert
-				const expectedActions = [fetchChangeLog(JSON.stringify(res))];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();

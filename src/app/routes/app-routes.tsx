@@ -32,7 +32,6 @@ const appRoutes = {
 		},
 		INFORMATION: {
 			ALERT_CODES: '/alert-codes',
-			CHANGE_LOG: '/change-log',
 			ABOUT: '/about-us'
 		}
 	}

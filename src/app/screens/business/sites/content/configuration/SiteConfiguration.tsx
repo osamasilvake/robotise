@@ -43,8 +43,8 @@ const SiteConfiguration: FC = () => {
 	}
 
 	// error
-	if (sites.errors || site.notifications.errors) {
-		return <PageError message={sites.errors?.text || site.notifications.errors?.text} />;
+	if (sites.errors) {
+		return <PageError message={sites.errors?.text} />;
 	}
 
 	// null

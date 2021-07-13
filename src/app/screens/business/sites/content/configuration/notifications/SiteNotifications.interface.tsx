@@ -9,11 +9,11 @@ export interface SiteNotificationsInterface {
 
 export interface SiteNotificationInterface {
 	site: SliceSiteInterface;
-	notification: DialogCreateEditNotificationPayloadInterface;
+	index: number;
 }
 
 export interface DialogCreateEditNotificationInterface {
-	notification: DialogCreateEditNotificationPayloadInterface;
+	index?: number;
 	type: SiteNotificationsCreateEditTypeEnum;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
@@ -22,6 +22,7 @@ export interface DialogCreateEditNotificationInterface {
 export interface DialogCreateEditNotificationPayloadInterface {
 	id?: string;
 	userId?: string;
+	siteId?: string;
 	name?: string;
 	isActive?: boolean;
 	users: string[];

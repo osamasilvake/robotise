@@ -12,11 +12,14 @@ import {
 	FormHelperText,
 	IconButton,
 	InputAdornment,
+	InputLabel,
+	MenuItem,
+	Select,
 	Switch,
 	TextField
 } from '@material-ui/core';
 import { Clear, Email } from '@material-ui/icons';
-import { FC, MouseEvent } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,12 +34,15 @@ import {
 import { SiteNotificationsStyle } from './SiteNotifications.style';
 
 const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = (props) => {
-	const { notification, type, open, setOpen } = props;
+	const { index, type, open, setOpen } = props;
 	const { t } = useTranslation(['DIALOG', 'SITES']);
 	const classes = SiteNotificationsStyle();
 
 	const dispatch = useDispatch();
 	const site = useSelector(siteSelector);
+	const notification = index !== undefined ? site.notifications.content?.data[index] : null;
+
+	const [selected, setSelected] = useState('');
 
 	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
 	const fieldUsers = 'users';
@@ -44,9 +50,9 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
 		useForm<DialogCreateEditNotificationPayloadInterface>(
 			{
-				userId: notification.userId,
-				isActive: notification.isActive,
-				users: notification.users
+				userId: notification?.userId,
+				isActive: notification?.isActive || false,
+				users: notification?.users || []
 			},
 			DialogCreateEditNotificationValidation,
 			async () => {
@@ -55,6 +61,8 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 					SiteUpdateNotification(
 						{
 							...notification,
+							id: !notification ? selected : '',
+							siteId: !notification ? site.notifications.content?.site.id : '',
 							isActive: values.isActive,
 							users: values.users.filter((e) => e)
 						},
@@ -109,7 +117,33 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 				</DialogTitle>
 
 				{type === SiteNotificationsCreateEditTypeEnum.CREATE && (
-					<DialogContent>Hello</DialogContent>
+					<DialogContent>
+						<FormControl variant="outlined" fullWidth margin="normal">
+							<InputLabel id="notification">
+								{t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
+							</InputLabel>
+							<Select
+								labelId="notification"
+								id="notifications"
+								name="notifications"
+								label={t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
+								value={selected}
+								onChange={(event) => setSelected(event.target.value)}>
+								{site.notifications.content?.data.map((notification) => (
+									<MenuItem
+										key={notification.id}
+										value={notification.id}
+										disabled={
+											site.notifications.content?.data.filter(
+												(item) => item.id === notification.id
+											).length === 1
+										}>
+										{notification.name}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+					</DialogContent>
 				)}
 
 				{type === SiteNotificationsCreateEditTypeEnum.EDIT && (
@@ -196,7 +230,9 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 						type="submit"
 						disabled={
 							site.notifications.loading ||
-							!!(errors && errors.users.filter((e) => e).length)
+							(type === SiteNotificationsCreateEditTypeEnum.CREATE && !selected) ||
+							(type === SiteNotificationsCreateEditTypeEnum.EDIT &&
+								!!(errors && errors.users.filter((e) => e).length))
 						}
 						endIcon={site.notifications.loading && <CircularProgress size={20} />}>
 						{type === SiteNotificationsCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}

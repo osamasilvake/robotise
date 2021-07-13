@@ -18,19 +18,16 @@ import {
 export const initialState: SliceSiteInterface = {
 	servicePositions: {
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	},
 	acceptOrders: {
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	},
 	notifications: {
 		loader: false,
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	}
 };
 
@@ -60,33 +57,26 @@ const dataSlice = createSlice({
 			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
 				state.servicePositions.loading = false;
 				state.servicePositions.content = response;
-				state.servicePositions.errors = null;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 				state.acceptOrders.content = response;
-				state.acceptOrders.errors = null;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;
 				state.notifications.content = response;
-				state.notifications.errors = null;
 			}
 		},
 		failure: (state, action) => {
-			const { module, error } = action.payload;
+			const { module } = action.payload;
 			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
 				state.servicePositions.loading = false;
 				state.servicePositions.content = null;
-				state.servicePositions.errors = error;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 				state.acceptOrders.content = null;
-				state.acceptOrders.errors = error;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;
-				state.notifications.content = null;
-				state.notifications.errors = error;
 			}
 		},
 		reset: () => initialState
@@ -121,9 +111,17 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
 			const result = await deserializeSite(res);
 
 			// dispatch: success
-			dispatch(success({ ...state, response: { data: result, site: { id: siteId } } }));
+			dispatch(
+				success({
+					...state,
+					response: {
+						data: result,
+						site: { id: siteId }
+					}
+				})
+			);
 		})
-		.catch((err) => {
+		.catch(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: 'fetch-site-service-positions-error',
@@ -132,9 +130,6 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
 				text: 'COMMON.SERVICE_POSITIONS.ERROR'
 			};
 			dispatch(triggerMessage(message));
-
-			// dispatch: failure
-			dispatch(failure({ ...state, error: err }));
 		});
 };
 
@@ -174,7 +169,7 @@ export const SiteAcceptOrders =
 				// callback
 				callback();
 			})
-			.catch((err) => {
+			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: `site-accept-orders-error`,
@@ -183,9 +178,6 @@ export const SiteAcceptOrders =
 					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR`
 				};
 				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure({ ...state, error: err }));
 			});
 	};
 
@@ -230,7 +222,7 @@ export const SiteNotificationTypesAndUsersFetch =
 				// dispatch: success
 				dispatch(success({ ...state, response: { data: result, site: { id: siteId } } }));
 			})
-			.catch((err) => {
+			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'fetch-site-notification-types-users-error',
@@ -241,7 +233,7 @@ export const SiteNotificationTypesAndUsersFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, error: err }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -311,5 +303,8 @@ export const SiteUpdateNotification =
 					text: 'COMMON.NOTIFICATIONS.UPDATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
 			});
 	};

@@ -183,18 +183,41 @@ class SitesService {
 	 * @returns
 	 */
 	siteUpdateNotification = (payload: DialogCreateEditNotificationPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(
-			':userId',
-			payload.userId || ''
-		);
-		return HttpClientService.patch(url, {
+		const url = payload.siteId
+			? AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS
+			: AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(
+					':userId',
+					payload.userId || ''
+			  );
+
+		const request = {
 			data: {
 				attributes: {
 					isActive: payload.isActive,
 					users: payload.users?.map((email) => ({ email }))
-				}
+				},
+				relationships: payload.siteId
+					? {
+							notificationType: {
+								data: {
+									type: 'notificationTypes',
+									id: payload.id
+								}
+							},
+							site: {
+								data: {
+									type: 'sites',
+									id: payload.siteId
+								}
+							}
+					  }
+					: undefined
 			}
-		});
+		};
+
+		return payload.siteId
+			? HttpClientService.post(url, request)
+			: HttpClientService.patch(url, request);
 	};
 }
 const instance = new SitesService();

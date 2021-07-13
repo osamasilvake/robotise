@@ -1,22 +1,18 @@
-import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { ISite } from './Sites.slice.interface';
 
 export interface SliceSiteInterface {
 	servicePositions: {
 		loading: boolean;
 		content: SSContentServicePositionsInterface | null;
-		errors: TriggerMessageInterface | null;
 	};
 	acceptOrders: {
 		loading: boolean;
 		content: ISite | null;
-		errors: TriggerMessageInterface | null;
 	};
 	notifications: {
 		loader: boolean;
 		loading: boolean;
 		content: SSContentNotificationTypesInterface | null;
-		errors: TriggerMessageInterface | null;
 	};
 }
 

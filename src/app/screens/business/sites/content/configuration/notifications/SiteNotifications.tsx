@@ -10,10 +10,15 @@ import {
 	Typography
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { AppConfigService } from '../../../../../../services';
+import { SiteNotificationTypesAndUsersFetch } from '../../../../../../slices/sites/Site.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
+import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import SiteNotification from './SiteNotification';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
@@ -26,7 +31,29 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
 
+	const dispatch = useDispatch();
+
 	const [open, setOpen] = useState(false);
+
+	const params: SiteParamsInterface = useParams();
+	const cSiteId = params.site;
+
+	useEffect(() => {
+		const executeServices = () => {
+			if (cSiteId) {
+				// dispatch: fetch notification types and users
+				dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+			}
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.business.sites.content.configuration.notifications
+				.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, cSiteId]);
 
 	return site.notifications?.content ? (
 		<Box className={classes.sBox}>
@@ -45,7 +72,6 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 									<AddCircleIcon color="primary" />
 								</IconButton>
 								<DialogCreateEditNotification
-									notification={site.notifications.content.data[0]}
 									type={SiteNotificationsCreateEditTypeEnum.CREATE}
 									open={open}
 									setOpen={setOpen}
@@ -57,11 +83,11 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 							<>
 								<Divider />
 
-								{site.notifications.content.data.map((notification) => (
+								{site.notifications.content.data.map((notification, index) => (
 									<SiteNotification
 										key={notification.id}
 										site={site}
-										notification={notification}
+										index={index}
 									/>
 								))}
 							</>

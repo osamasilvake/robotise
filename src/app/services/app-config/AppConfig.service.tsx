@@ -100,6 +100,11 @@ class AppConfigService extends EnvService {
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
+							},
+							configuration: {
+								notifications: {
+									refreshTime: 10000
+								}
 							}
 						}
 					},

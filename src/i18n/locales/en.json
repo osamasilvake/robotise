@@ -391,6 +391,9 @@
 								"TITLE": "Edit Notification"
 							},
 							"FIELDS": {
+								"NOTIFICATION": {
+									"LABEL": "Notification"
+								},
 								"ACTIVE": {
 									"LABEL": "Active"
 								},

@@ -19,9 +19,10 @@ import {
 } from './SiteNotifications.interface';
 
 const SiteNotification: FC<SiteNotificationInterface> = (props) => {
-	const { site, notification } = props;
+	const { site, index } = props;
 
 	const dispatch = useDispatch();
+	const notification = index !== undefined ? site.notifications.content?.data[index] : null;
 
 	const [open, setOpen] = useState(false);
 
@@ -68,7 +69,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 				</IconButton>
 				{open && (
 					<DialogCreateEditNotification
-						notification={notification}
+						index={index}
 						type={SiteNotificationsCreateEditTypeEnum.EDIT}
 						open={open}
 						setOpen={setOpen}

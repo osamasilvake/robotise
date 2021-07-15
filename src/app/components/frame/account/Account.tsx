@@ -22,13 +22,13 @@ import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
-import { AppBarStyle } from './AppBar.style';
+import { AccountStyle } from './Account.style';
 import Language from './language/Language';
 import ThemePalette from './theme/Theme';
 
-const AppBarCustom: FC = () => {
-	const { t } = useTranslation(['APPBAR', 'TOOLTIPS']);
-	const classes = AppBarStyle();
+const Account: FC = () => {
+	const { t } = useTranslation(['ACCOUNT', 'TOOLTIPS']);
+	const classes = AccountStyle();
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
@@ -173,4 +173,4 @@ const AppBarCustom: FC = () => {
 		</Box>
 	);
 };
-export default AppBarCustom;
+export default Account;

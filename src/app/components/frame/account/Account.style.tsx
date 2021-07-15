@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
-export const AppBarStyle = makeStyles((theme: Theme) => ({
+export const AccountStyle = makeStyles((theme: Theme) => ({
 	sLogoAndCloseIcon: {
 		alignItems: 'center',
 		display: 'flex',

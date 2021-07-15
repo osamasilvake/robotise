@@ -8,7 +8,7 @@ import { GeneralLanguageTypeEnum } from '../../../../slices/general/General.slic
 import { LanguageStyle } from './Language.style';
 
 const Language: FC = () => {
-	const { t } = useTranslation('APPBAR');
+	const { t } = useTranslation('ACCOUNT');
 	const classes = LanguageStyle();
 
 	const dispatch = useDispatch();

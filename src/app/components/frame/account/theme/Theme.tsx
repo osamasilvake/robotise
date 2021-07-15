@@ -12,7 +12,7 @@ import { GeneralThemePaletteTypeEnum } from '../../../../slices/general/General.
 import { ThemePaletteStyle } from './Theme.style';
 
 const ThemePalette: FC = () => {
-	const { t } = useTranslation('APPBAR');
+	const { t } = useTranslation('ACCOUNT');
 	const classes = ThemePaletteStyle();
 
 	const dispatch = useDispatch();

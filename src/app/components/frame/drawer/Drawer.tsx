@@ -19,7 +19,7 @@ import { generalSelector } from '../../../slices/general/General.slice';
 import { robotTwinsSummarySelector } from '../../../slices/robots/RobotTwinsSummary.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
-import AppBar from '../app-bar/AppBar';
+import Account from '../account/Account';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
 import { drawerBusinessList, drawerInformationList } from './Drawer.list';
@@ -42,8 +42,8 @@ const DrawerCustom: FC = () => {
 					[classes.sClose]: !general.openDrawer
 				})
 			}}>
-			{/* Appbar */}
-			<AppBar />
+			{/* Account */}
+			<Account />
 
 			{/* List */}
 			<Box className={classes.sListRoot}>

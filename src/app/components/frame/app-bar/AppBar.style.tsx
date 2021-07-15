@@ -12,6 +12,9 @@ export const AppBarStyle = makeStyles((theme: Theme) => ({
 	sLogoIcon: {
 		width: '100%'
 	},
+	sAccountButton: {
+		borderRadius: theme.typography.pxToRem(2)
+	},
 	sAccountDetail: {
 		margin: theme.spacing(0, 0, 0, 1),
 		textAlign: 'left'

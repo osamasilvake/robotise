@@ -34,20 +34,6 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiTab: {
-		styleOverrides: {
-			textColorPrimary: {
-				minWidth: pxToRem(160)
-			}
-		}
-	},
-	MuiPopover: {
-		styleOverrides: {
-			paper: {
-				borderRadius: 0
-			}
-		}
-	},
 	MuiListItem: {
 		styleOverrides: {
 			root: {
@@ -70,13 +56,6 @@ const OverridesCustom: Components = {
 				'&:last-child': {
 					paddingBottom: 0
 				}
-			}
-		}
-	},
-	MuiChip: {
-		styleOverrides: {
-			root: {
-				transition: 'none'
 			}
 		}
 	},
@@ -171,13 +150,6 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiIconButton: {
-		styleOverrides: {
-			root: {
-				borderRadius: pxToRem(2)
-			}
-		}
-	},
 	MuiAvatar: {
 		styleOverrides: {
 			img: {
@@ -197,16 +169,6 @@ const OverridesCustom: Components = {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					opacity: 0.95
 				}
-			}
-		}
-	},
-	MuiOutlinedInput: {
-		styleOverrides: {
-			root: {
-				borderRadius: pxToRem(2)
-			},
-			input: {
-				filter: 'none'
 			}
 		}
 	}

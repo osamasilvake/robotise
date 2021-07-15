@@ -84,7 +84,7 @@ const AppBarCustom: FC = () => {
 				<>
 					<Box>
 						{/* Account */}
-						<IconButton onClick={handleMenuOpen}>
+						<IconButton onClick={handleMenuOpen} className={classes.sAccountButton}>
 							<Badge type={BadgeTypeEnum.DOT}>
 								<Avatar
 									src={AppConfigService.AppImageURLs.avatar.path}
@@ -92,7 +92,7 @@ const AppBarCustom: FC = () => {
 								/>
 							</Badge>
 							<Box className={classes.sAccountDetail}>
-								<Typography variant="subtitle2">
+								<Typography variant="subtitle2" color="textPrimary">
 									{auth.user?.data.display_name}
 								</Typography>
 								<Typography

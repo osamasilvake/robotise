@@ -1,4 +1,4 @@
-import { CSSObject, ThemeOptions } from '@material-ui/core';
+import { ThemeOptions } from '@material-ui/core';
 
 import { AppConfigService } from '../services';
 import { pxToRem } from '../utilities/methods/PixelsToRem';
@@ -14,7 +14,8 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 			...options.palette,
 			mode: 'dark',
 			background: {
-				default: AppConfigService.AppOptions.colors.c1 // body
+				default: AppConfigService.AppOptions.colors.c1, // body
+				paper: AppConfigService.AppOptions.colors.c2
 			},
 			text: {
 				primary: AppConfigService.AppOptions.colors.c7,
@@ -26,8 +27,10 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 			MuiPaper: {
 				styleOverrides: {
 					root: {
-						backgroundColor: AppConfigService.AppOptions.colors.c1,
 						backgroundImage: 'none'
+					},
+					elevation2: {
+						backgroundColor: AppConfigService.AppOptions.colors.c1
 					},
 					elevation11: {
 						boxShadow: 'none',
@@ -35,35 +38,10 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 						transition: 'none'
 					},
 					elevation12: {
+						backgroundColor: AppConfigService.AppOptions.colors.c1,
 						boxShadow: 'none',
 						padding: pxToRem(20),
 						transition: 'none'
-					}
-				}
-			},
-			MuiAppBar: {
-				styleOverrides: {
-					root: {
-						backgroundColor: AppConfigService.AppOptions.colors.c2,
-						boxShadow: 'none'
-					}
-				}
-			},
-			MuiDrawer: {
-				styleOverrides: {
-					...options.components?.MuiDrawer?.styleOverrides,
-					paper: {
-						backgroundColor: AppConfigService.AppOptions.colors.c2,
-						boxShadow: 'none'
-					}
-				}
-			},
-			MuiPopover: {
-				styleOverrides: {
-					...options.components?.MuiPopover?.styleOverrides,
-					paper: {
-						...(options.components?.MuiPopover?.styleOverrides?.paper as CSSObject),
-						backgroundColor: AppConfigService.AppOptions.colors.c2
 					}
 				}
 			},
@@ -108,21 +86,13 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 			MuiTab: {
 				styleOverrides: {
 					textColorPrimary: {
-						...(options.components?.MuiTab?.styleOverrides
-							?.textColorPrimary as CSSObject),
+						minWidth: pxToRem(150),
 						'&.Mui-selected': {
 							backgroundColor: AppConfigService.AppOptions.colors.c1,
 							borderTop: `${pxToRem(1)} solid ${
 								AppConfigService.AppOptions.colors.c9
 							}`
 						}
-					}
-				}
-			},
-			MuiListSubheader: {
-				styleOverrides: {
-					root: {
-						backgroundColor: AppConfigService.AppOptions.colors.c2
 					}
 				}
 			},
@@ -133,38 +103,10 @@ const Dark = (options: ThemeOptions): ThemeOptions => {
 					}
 				}
 			},
-			MuiCardContent: {
-				styleOverrides: {
-					...options.components?.MuiCardContent?.styleOverrides,
-					root: {
-						...(options.components?.MuiCardContent?.styleOverrides?.root as CSSObject),
-						backgroundColor: AppConfigService.AppOptions.colors.c2
-					}
-				}
-			},
-			MuiIconButton: {
-				styleOverrides: {
-					...options.components?.MuiIconButton?.styleOverrides,
-					root: {
-						...(options.components?.MuiIconButton?.styleOverrides?.root as CSSObject),
-						color: AppConfigService.AppOptions.colors.c7
-					}
-				}
-			},
-			MuiTooltip: {
-				styleOverrides: {
-					tooltip: {
-						backgroundColor: AppConfigService.AppOptions.colors.c5,
-						color: AppConfigService.AppOptions.colors.c8
-					}
-				}
-			},
 			MuiOutlinedInput: {
 				styleOverrides: {
-					...options.components?.MuiOutlinedInput?.styleOverrides,
 					input: {
-						...(options.components?.MuiOutlinedInput?.styleOverrides
-							?.input as CSSObject),
+						filter: 'none',
 						'&:-webkit-autofill': {
 							WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
 								AppConfigService.AppOptions.colors.c1

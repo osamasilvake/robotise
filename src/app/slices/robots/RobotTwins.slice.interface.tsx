@@ -16,6 +16,7 @@ export interface SRTContentDataInterface {
 	robotState: SRTContentRobotStateInterface;
 	alerts: SRTContentAlertsInterface;
 	controlMode: SRTContentControlModeInterface;
+	missionStatus: SRTContentMissionStatusInterface;
 	location?: SRTContentLocationInterface | undefined;
 	cameras?: SRTContentCameraInterface | undefined;
 	batteryState?: SRTContentBatteryStateInterface | undefined;
@@ -56,6 +57,11 @@ export interface SRTContentAlertsInterface {
 
 export interface SRTContentControlModeInterface {
 	value: RobotDetailControlModeTypeEnum;
+	updatedAt: Date;
+}
+
+export interface SRTContentMissionStatusInterface {
+	value: string;
 	updatedAt: Date;
 }
 
@@ -178,6 +184,7 @@ export interface IRobotTwin {
 			};
 			status: {
 				controlMode: RobotDetailControlModeTypeEnum;
+				missionStatus: string;
 				location: {
 					mapName: string;
 					floor: string;
@@ -257,6 +264,9 @@ export interface IRobotTwin {
 			};
 			status: {
 				controlMode: {
+					updatedAt: Date;
+				};
+				missionStatus: {
 					updatedAt: Date;
 				};
 				location: {

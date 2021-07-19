@@ -412,10 +412,10 @@
 			"TABLE": {
 				"COLUMNS": {
 					"NAME": "Name",
-					"SITE": "Site",
 					"ACTIVE": "Active",
 					"ACCEPT_ORDERS": "Orders",
 					"CONTROL_MODE": "Autonomous",
+					"MISSION_STATUS": "Mission",
 					"UPDATED_AT": "Updated At",
 					"ALERTS": "Alerts"
 				}
@@ -797,6 +797,8 @@
 								"in_progress_customer_present": "Customer Present",
 								"finished": "Finished",
 								"rejected": "Rejected",
+								"rejected_already_in_stack": "Rejected: Already in Stack",
+								"rejected_unknown_location": "Rejected: Unknown Location",
 								"error": "Error",
 								"canceled": "Canceled",
 								"cancelRequest": "Cancellation Request"

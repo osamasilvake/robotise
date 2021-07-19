@@ -9,12 +9,6 @@ export const columns: RobotsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotsTableColumnsTypeEnum.SITE_TITLE,
-		label: 'LIST.TABLE.COLUMNS.SITE',
-		minWidth: 170,
-		align: 'left'
-	},
-	{
 		id: RobotsTableColumnsTypeEnum.ACTIVE,
 		label: 'LIST.TABLE.COLUMNS.ACTIVE',
 		width: 120,
@@ -30,6 +24,12 @@ export const columns: RobotsTableColumnInterface[] = [
 		id: RobotsTableColumnsTypeEnum.ACCEPT_ORDER,
 		label: 'LIST.TABLE.COLUMNS.ACCEPT_ORDERS',
 		width: 120,
+		align: 'left'
+	},
+	{
+		id: RobotsTableColumnsTypeEnum.MISSION_STATUS,
+		label: 'LIST.TABLE.COLUMNS.MISSION_STATUS',
+		minWidth: 170,
 		align: 'left'
 	},
 	{

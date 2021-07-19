@@ -22,5 +22,7 @@ export enum RobotOrdersTableColumnStatusTypeEnum {
 	CANCELED = 'canceled',
 	CANCELED_REQUEST = 'cancelRequest',
 	REJECTED = 'rejected',
+	REJECTED_ALREADY_IN_STACK = 'rejected:already_in_stack',
+	REJECTED_UNKNOWN_LOCATION = 'rejected:unknown_location',
 	ERROR = 'error'
 }

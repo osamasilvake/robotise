@@ -20,6 +20,8 @@ export const mapStatusLevel = (status: string) => {
 		case RobotOrdersTableColumnStatusTypeEnum.FINISHED:
 			return StatusTypeEnum.SUCCESS_DARK;
 		case RobotOrdersTableColumnStatusTypeEnum.REJECTED:
+		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_ALREADY_IN_STACK:
+		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_UNKNOWN_LOCATION:
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED:
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_REQUEST:
 		case RobotOrdersTableColumnStatusTypeEnum.ERROR:

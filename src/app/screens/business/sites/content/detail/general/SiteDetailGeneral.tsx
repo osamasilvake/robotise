@@ -41,12 +41,11 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 				</Typography>
 				<Typography variant="body1">{site.timezone}</Typography>
 			</Grid>
-
 			<Grid item xs={12} sm={6} md={8} lg={2} className={classes.sGeneralLastItem}>
 				<Typography
 					variant="caption"
 					color="textSecondary"
-					className={classes.sGeneralLastItemLabel}>
+					className={classes.sGeneralItemLabel}>
 					{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
 				</Typography>
 				<Status active={!!site.acceptOrders}>

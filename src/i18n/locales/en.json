@@ -250,7 +250,7 @@
 		"LIST": {
 			"TABLE": {
 				"COLUMNS": {
-					"NAME": "Site",
+					"NAME": "Name",
 					"TIMEZONE": "Timezone",
 					"CURRENCY": "Currency",
 					"ACCEPT_ORDERS": "Orders",
@@ -432,7 +432,6 @@
 			"DETAIL": {
 				"GENERAL": {
 					"SITE": "Site",
-					"VENDOR": "Vendor",
 					"LAST_UPDATED": "Last Updated",
 					"CONTROL_MODE": "Control Mode",
 					"STATUS": {
@@ -444,7 +443,9 @@
 						"LABEL": "Accept Orders",
 						"ACTIVE": "Active",
 						"INACTIVE": "Inactive"
-					}
+					},
+					"VENDOR": "Vendor",
+					"MISSION": "Mission"
 				},
 				"LOCATION": {
 					"TITLE": "Location",

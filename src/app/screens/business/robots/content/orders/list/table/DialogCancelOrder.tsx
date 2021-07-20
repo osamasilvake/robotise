@@ -57,6 +57,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button
+						color="error"
 						variant="outlined"
 						onClick={cancelOrder(true)}
 						disabled={orders.updating || !order.site}

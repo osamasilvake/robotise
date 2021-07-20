@@ -56,6 +56,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 					{t('BUTTONS.CANCEL')}
 				</Button>
 				<Button
+					color="error"
 					variant="outlined"
 					onClick={deleteProduct(true)}
 					disabled={products.updating || !product.site}

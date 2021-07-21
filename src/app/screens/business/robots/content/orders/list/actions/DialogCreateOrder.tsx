@@ -74,7 +74,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 			siteId &&
 				dispatch(
 					OrderCreate(values, siteId, () => {
-						// set open
+						// close dialog
 						setOpen(false);
 
 						// dispatch: update state

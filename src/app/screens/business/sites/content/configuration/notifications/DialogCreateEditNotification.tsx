@@ -65,7 +65,13 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							users: values.users.filter((e) => e),
 							siteId: !notification ? site.notifications.content?.site.id : ''
 						},
-						() => setOpen(false)
+						() => {
+							// close dialog
+							setOpen(false);
+
+							// reset selected
+							setSelected('');
+						}
 					)
 				);
 			}

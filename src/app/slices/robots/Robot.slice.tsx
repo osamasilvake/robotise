@@ -23,16 +23,13 @@ export const initialState: SliceRobotInterface = {
 		content: null
 	},
 	control: {
-		loading: false,
-		content: null
+		loading: false
 	},
 	camera: {
-		loading: false,
-		content: null
+		loading: false
 	},
 	syncProducts: {
-		loading: false,
-		content: null
+		loading: false
 	}
 };
 
@@ -60,13 +57,10 @@ const dataSlice = createSlice({
 				state.map.content = response;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
-				state.control.content = response;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-				state.camera.content = response;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-				state.syncProducts.content = response;
 			}
 		},
 		failure: (state, action) => {
@@ -156,10 +150,7 @@ export const RobotControlCommandSend =
 		dispatch(loading(state));
 
 		return RobotsService.robotControlCommandSend(robotId, command, option)
-			.then(async (res) => {
-				// deserialize response
-				const result = await deserializeRobot(res);
-
+			.then(async () => {
 				// wait
 				await timeout(3000);
 
@@ -173,7 +164,7 @@ export const RobotControlCommandSend =
 				dispatch(triggerMessage(message));
 
 				// dispatch: success
-				dispatch(success({ ...state, response: result }));
+				dispatch(success(state));
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -206,10 +197,7 @@ export const RobotCommandCameraImageRequest =
 		dispatch(loading(state));
 
 		return RobotsService.robotRequestCameraImage(camera, robotId)
-			.then(async (res) => {
-				// deserialize response
-				const result = await deserializeRobot(res);
-
+			.then(async () => {
 				// wait
 				await timeout(3000);
 
@@ -223,7 +211,7 @@ export const RobotCommandCameraImageRequest =
 				dispatch(triggerMessage(message));
 
 				// dispatch: success
-				dispatch(success({ ...state, response: result }));
+				dispatch(success(state));
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -254,10 +242,7 @@ export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch)
 	dispatch(loading(state));
 
 	return RobotsService.robotSyncProducts(robotId)
-		.then(async (res) => {
-			// deserialize response
-			const result = await deserializeRobot(res);
-
+		.then(async () => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: `robot-sync-products-success`,
@@ -268,7 +253,7 @@ export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch)
 			dispatch(triggerMessage(message));
 
 			// dispatch: success
-			dispatch(success({ ...state, response: result }));
+			dispatch(success(state));
 		})
 		.catch(() => {
 			// dispatch: trigger message

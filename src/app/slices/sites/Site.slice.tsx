@@ -21,8 +21,7 @@ export const initialState: SliceSiteInterface = {
 		content: null
 	},
 	acceptOrders: {
-		loading: false,
-		content: null
+		loading: false
 	},
 	notifications: {
 		loader: false,
@@ -59,7 +58,6 @@ const dataSlice = createSlice({
 				state.servicePositions.content = response;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-				state.acceptOrders.content = response;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;
@@ -73,7 +71,6 @@ const dataSlice = createSlice({
 				state.servicePositions.content = null;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-				state.acceptOrders.content = null;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;
@@ -150,10 +147,7 @@ export const SiteAcceptOrders =
 		dispatch(loading(state));
 
 		return SitesService.siteAcceptOrders(siteId, acceptOrders)
-			.then(async (res) => {
-				// deserialize response
-				const result = await deserializeSite(res);
-
+			.then(async () => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: `site-accept-orders-success`,
@@ -164,7 +158,7 @@ export const SiteAcceptOrders =
 				dispatch(triggerMessage(message));
 
 				// dispatch: success
-				dispatch(success({ ...state, response: result }));
+				dispatch(success(state));
 
 				// callback
 				callback();

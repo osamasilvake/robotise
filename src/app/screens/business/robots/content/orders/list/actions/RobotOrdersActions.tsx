@@ -15,12 +15,14 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 	const classes = RobotOrdersActionsStyle();
 	const floatStyle = FloatStyle();
 
+	const common = 'CONTENT.ORDERS.LIST.ACTIONS.HEADINGS';
+
 	return (
 		<Paper elevation={2} square className={floatStyle.sFloat1}>
 			<Box className={classes.sFilterBlock}>
 				{/* Heading */}
 				<Typography variant="h6" color="textSecondary">
-					{t('CONTENT.ORDERS.LIST.ACTIONS.HEADINGS.FILTERS')}
+					{t(`${common}.FILTERS`)}
 				</Typography>
 
 				{/* Active Orders */}
@@ -35,7 +37,7 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 			<Box className={classes.sActionBlock}>
 				{/* Heading */}
 				<Typography variant="h6" color="textSecondary">
-					{t('CONTENT.ORDERS.LIST.ACTIONS.HEADINGS.ACTIONS')}
+					{t(`${common}.ACTIONS`)}
 				</Typography>
 
 				{/* Create Order */}

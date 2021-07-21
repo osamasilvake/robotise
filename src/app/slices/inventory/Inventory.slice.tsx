@@ -113,24 +113,20 @@ export const InventoryFetchList =
  * @param products
  * @returns
  */
-const addProductsToInventory = (inventory: SIContentInterface, products: SPCDataInterface[]) => {
-	return {
-		...inventory,
-		drawers: [
-			...inventory.drawers.map((drawer: SICDrawerInterface) => {
-				return {
-					...drawer,
-					lanes: drawer.lanes.map((lane: SICDrawerLaneInterface) => {
-						const product = products.find(
-							(p: SPCDataInterface) => p.id === lane.productId
-						);
-						return {
-							...lane,
-							product: product || null
-						};
-					})
-				};
-			})
-		]
-	};
-};
+const addProductsToInventory = (inventory: SIContentInterface, products: SPCDataInterface[]) => ({
+	...inventory,
+	drawers: [
+		...inventory.drawers.map((drawer: SICDrawerInterface) => {
+			return {
+				...drawer,
+				lanes: drawer.lanes.map((lane: SICDrawerLaneInterface) => {
+					const product = products.find((p: SPCDataInterface) => p.id === lane.productId);
+					return {
+						...lane,
+						product: product || null
+					};
+				})
+			};
+		})
+	]
+});

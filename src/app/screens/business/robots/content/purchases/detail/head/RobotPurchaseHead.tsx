@@ -12,6 +12,8 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchaseHeadStyle();
 
+	const common = 'CONTENT.PURCHASES.DETAIL.HEAD';
+
 	return (
 		<Box className={classes.sHeadBox}>
 			<Typography variant="body2" color="textSecondary" className={classes.sHeadBilled}>
@@ -22,13 +24,11 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 							: StatusTypeEnum.INFO
 					}
 					small>
-					{purchase?.content?.isBilled
-						? t('CONTENT.PURCHASES.DETAIL.HEAD.BILLED')
-						: t('CONTENT.PURCHASES.DETAIL.HEAD.UN_BILLED')}
+					{purchase?.content?.isBilled ? t(`${common}.BILLED`) : t(`${common}.UN_BILLED`)}
 				</Status>
 			</Typography>
 			<Typography variant="h6" color="textSecondary">
-				{t(`CONTENT.PURCHASES.DETAIL.HEAD.TITLE`)}
+				{t(`${common}.TITLE`)}
 			</Typography>
 		</Box>
 	);

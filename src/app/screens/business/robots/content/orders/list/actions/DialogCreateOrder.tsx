@@ -51,7 +51,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const [position, setPosition] = useState('');
 
 	const params: RobotParamsInterface = useParams();
-	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
+	const common = 'ROBOTS:CONTENT.ORDERS';
 	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.siteId;
 
 	const {
@@ -103,10 +103,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	return (
 		<Dialog open={open} onClose={closeCreateOrderDialog}>
 			<form onSubmit={handleSubmit}>
-				<DialogTitle>{t(`${common}.TITLE`)}</DialogTitle>
+				<DialogTitle>{t(`${common}.LIST.ACTIONS.CREATE.TITLE`)}</DialogTitle>
 				<DialogContent>
 					<Typography variant="body1" color="textSecondary">
-						{t(`${common}.TEXT`)}
+						{t(`${common}.LIST.ACTIONS.CREATE.TEXT`)}
 					</Typography>
 
 					{values.mode !== RobotOrderModeTypeEnum.SERVICE_POSITION && (
@@ -124,8 +124,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									handleChangeInput(e);
 								}}
 								onBlur={handleBlur}
-								label={t(`${common}.FIELDS.LOCATION.LABEL`)}
-								placeholder={t(`${common}.FIELDS.LOCATION.PLACEHOLDER`)}
+								label={t(`${common}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.LABEL`)}
+								placeholder={t(
+									`${common}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.PLACEHOLDER`
+								)}
 								InputProps={{ inputProps: { min: 0 } }}
 							/>
 							{errors?.location && (
@@ -137,7 +139,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					{values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION && (
 						<FormControl variant="outlined" fullWidth margin="normal">
 							<InputLabel id="service-positions">
-								{t(`${common}.FIELDS.SERVICE_POSITIONS.LABEL`)}
+								{t(`${common}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`)}
 							</InputLabel>
 							<Select
 								required
@@ -149,7 +151,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									setPosition(e.target.value);
 									handleChangeSelect(e);
 								}}
-								label={t(`${common}.FIELDS.SERVICE_POSITIONS.LABEL`)}>
+								label={t(
+									`${common}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
+								)}>
 								{site.servicePositions.content?.data.map((position) => (
 									<MenuItem key={position.id} value={position.location}>
 										{position.name}
@@ -160,7 +164,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					)}
 
 					<FormControl variant="outlined" fullWidth margin="normal">
-						<InputLabel id="order-mode">{t(`${common}.FIELDS.MODE.LABEL`)}</InputLabel>
+						<InputLabel id="order-mode">
+							{t(`${common}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
+						</InputLabel>
 						<Select
 							required
 							labelId="order-mode"
@@ -173,7 +179,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								handleChangeSelect(e);
 							}}
 							onBlur={handleBlur}
-							label={t(`${common}.FIELDS.MODE.LABEL`)}>
+							label={t(`${common}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}>
 							{orderModes().map((mode) => (
 								<MenuItem
 									key={mode}
@@ -182,7 +188,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 										mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
 										site.servicePositions.content?.data.length === 0
 									}>
-									{t(`ROBOTS:CONTENT.ORDERS.COMMON.MODE.${mode}`)}
+									{t(`${common}.COMMON.MODE.${mode}`)}
 								</MenuItem>
 							))}
 						</Select>
@@ -197,7 +203,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									onChange={handleChangeCheckbox}
 								/>
 							}
-							label={t(`${common}.FIELDS.DEBUG.LABEL`)}
+							label={t(`${common}.LIST.ACTIONS.CREATE.FIELDS.DEBUG.LABEL`)}
 						/>
 					</FormControl>
 				</DialogContent>

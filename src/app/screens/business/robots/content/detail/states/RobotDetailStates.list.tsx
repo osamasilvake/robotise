@@ -1,23 +1,24 @@
 import { SRTContentDataInterface } from '../../../../../../slices/robots/RobotTwins.slice.interface';
 
+const common = 'CONTENT.DETAIL.STATES';
 export const robotStates = (robot: SRTContentDataInterface) => [
 	{
-		title: 'CONTENT.DETAIL.STATES.BATTERY.TITLE',
+		title: `${common}.BATTERY.TITLE`,
 		type: 'batteryState',
 		content: robot.batteryState
 	},
 	{
-		title: 'CONTENT.DETAIL.STATES.DOCKING.TITLE',
+		title: `${common}.DOCKING.TITLE`,
 		type: 'dockingState',
 		content: robot.dockingState
 	},
 	{
-		title: 'CONTENT.DETAIL.STATES.JOYSTICK.TITLE',
+		title: `${common}.JOYSTICK.TITLE`,
 		type: 'joystickState',
 		content: robot.joystickState
 	},
 	{
-		title: 'CONTENT.DETAIL.STATES.ACTIVITY.TITLE',
+		title: `${common}.ACTIVITY.TITLE`,
 		type: 'activity',
 		content: robot.activityState
 	}

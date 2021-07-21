@@ -13,17 +13,19 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 	const { t } = useTranslation('SITES');
 	const classes = SiteDetailGeneralStyle();
 
+	const common = 'CONTENT.DETAIL.GENERAL';
+
 	return (
 		<Grid container spacing={1}>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t('CONTENT.DETAIL.GENERAL.SITE')}
+					{t(`${common}.SITE`)}
 				</Typography>
 				<Typography variant="body1">{site.title}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography variant="caption" color="textSecondary">
-					{t('CONTENT.DETAIL.GENERAL.VENDOR')}
+					{t(`${common}.VENDOR`)}
 				</Typography>
 				<Typography variant="body1">
 					{site.elevators?.vendor || AppConfigService.AppOptions.common.none}
@@ -31,13 +33,13 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t('CONTENT.DETAIL.GENERAL.LAST_UPDATED')}
+					{t(`${common}.LAST_UPDATED`)}
 				</Typography>
 				<Typography variant="body1">{momentFormat1(site.updatedAt)}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography variant="caption" color="textSecondary">
-					{t('CONTENT.DETAIL.GENERAL.TIMEZONE')}
+					{t(`${common}.TIMEZONE`)}
 				</Typography>
 				<Typography variant="body1">{site.timezone}</Typography>
 			</Grid>
@@ -46,12 +48,12 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 					variant="caption"
 					color="textSecondary"
 					className={classes.sGeneralItemLabel}>
-					{t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.LABEL')}
+					{t(`${common}.ACCEPT_ORDERS.LABEL`)}
 				</Typography>
 				<Status active={!!site.acceptOrders}>
 					{site.acceptOrders
-						? t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.ACTIVE')
-						: t('CONTENT.DETAIL.GENERAL.ACCEPT_ORDERS.INACTIVE')}
+						? t(`${common}.ACCEPT_ORDERS.ACTIVE`)
+						: t(`${common}.ACCEPT_ORDERS.INACTIVE`)}
 				</Status>
 			</Grid>
 		</Grid>

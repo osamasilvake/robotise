@@ -280,13 +280,11 @@ const updateCreatedEditedProduct = (
 const removeDeletedProduct = (
 	state: SPContentInterface,
 	product: SPCDataInterface
-): SPContentInterface => {
-	return {
-		...state,
-		data: state.data.filter((item) => item.id !== product.id),
-		meta: {
-			...state.meta,
-			totalDocs: state.meta.totalDocs - 1
-		}
-	};
-};
+): SPContentInterface => ({
+	...state,
+	data: state.data.filter((item) => item.id !== product.id),
+	meta: {
+		...state.meta,
+		totalDocs: state.meta.totalDocs - 1
+	}
+});

@@ -287,13 +287,16 @@ const handleMapping = (result: SOContentInterface) => ({
  * @param item
  * @returns
  */
-const mapItem = (item: SOCDataInterface) => ({
-	...item,
-	status: `CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${item.status}`,
-	location: item.location || 'CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION',
-	mode: `CONTENT.ORDERS.COMMON.MODE.${item.mode}`,
-	origin: `CONTENT.ORDERS.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
-});
+const mapItem = (item: SOCDataInterface) => {
+	const common = 'CONTENT.ORDERS';
+	return {
+		...item,
+		status: `${common}.LIST.TABLE.VALUES.STATUS.${item.status}`,
+		location: item.location || `${common}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
+		mode: `${common}.COMMON.MODE.${item.mode}`,
+		origin: `${common}.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
+	};
+};
 
 /**
  * handle refresh and pagination
@@ -342,12 +345,10 @@ const handleRefreshAndPagination = (
 const updateCreatedOrder = (
 	state: SOContentInterface,
 	order: SOCDataInterface
-): SOContentInterface => {
-	return {
-		...state,
-		data: [order, ...state.data]
-	};
-};
+): SOContentInterface => ({
+	...state,
+	data: [order, ...state.data]
+});
 
 /**
  * update canceled order
@@ -358,14 +359,12 @@ const updateCreatedOrder = (
 const updateCanceledOrder = (
 	state: SOContentInterface,
 	order: SOCDataInterface
-): SOContentInterface => {
-	return {
-		...state,
-		data: state.data.map((item) => {
-			if (item.id === order.id) {
-				return order;
-			}
-			return item;
-		})
-	};
-};
+): SOContentInterface => ({
+	...state,
+	data: state.data.map((item) => {
+		if (item.id === order.id) {
+			return order;
+		}
+		return item;
+	})
+});

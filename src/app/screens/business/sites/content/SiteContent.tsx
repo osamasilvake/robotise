@@ -18,6 +18,8 @@ const SiteContent: FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 
+	const common = 'CONTENT.TABS';
+
 	useEffect(() => {
 		const cIndex = sitesRoutes.findIndex(
 			(r) => r.path.replace(':site', params.site) === location.pathname
@@ -42,10 +44,10 @@ const SiteContent: FC = () => {
 		<Box>
 			{/* Tabs */}
 			<Tabs value={value} onChange={handleTabChange} variant="scrollable" textColor="primary">
-				<Tab label={t('CONTENT.TABS.DETAIL')} />
-				<Tab label={t('CONTENT.TABS.PRODUCTS')} />
-				<Tab label={t('CONTENT.TABS.ROOMS')} />
-				<Tab label={t('CONTENT.TABS.CONFIGURATION')} />
+				<Tab label={t(`${common}.DETAIL`)} />
+				<Tab label={t(`${common}.PRODUCTS`)} />
+				<Tab label={t(`${common}.ROOMS`)} />
+				<Tab label={t(`${common}.CONFIGURATION`)} />
 			</Tabs>
 
 			{/* Tab Panel */}

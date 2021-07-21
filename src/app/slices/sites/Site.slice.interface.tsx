@@ -30,11 +30,12 @@ export interface SSContentServicePositionsInterface {
 export interface SSContentNotificationTypesInterface {
 	data: {
 		id: string;
-		userId: string;
-		name: string;
 		isActive: boolean;
 		users: string[];
+		typeId: string;
+		typeName: string;
 	}[];
+	types: SSContentNotificationTypeInterface[];
 	site: {
 		id: string;
 	};

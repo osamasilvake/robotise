@@ -1,5 +1,4 @@
 import {
-	Box,
 	Card,
 	CardContent,
 	Divider,
@@ -38,6 +37,8 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.site;
 
+	const common = 'CONTENT.CONFIGURATION.NOTIFICATIONS';
+
 	useEffect(() => {
 		const executeServices = () => {
 			if (cSiteId) {
@@ -56,46 +57,46 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	}, [dispatch, cSiteId]);
 
 	return site.notifications?.content ? (
-		<Box className={classes.sBox}>
-			{/* Title */}
-			<Typography variant="h6" color="textSecondary" className={classes.sNotificationTitle}>
-				{t('CONTENT.CONFIGURATION.NOTIFICATIONS.TITLE')}
-			</Typography>
+		<Card square elevation={1}>
+			<CardContent className={cardClasses.sCardContent4}>
+				<Typography variant="h6" className={classes.sNotificationTitle}>
+					{t(`${common}.TITLE`)}
+				</Typography>
+				<Typography
+					variant="body2"
+					color="textSecondary"
+					className={classes.sNotificationsExcerpt}>
+					{t(`${common}.EXCERPT`)}
+				</Typography>
 
-			{/* List */}
-			<Card square elevation={1}>
-				<CardContent className={cardClasses.sCardContent4}>
-					<List disablePadding>
-						<ListItem className={classes.sListItemHead}>
-							<ListItemSecondaryAction>
-								<IconButton edge="end" onClick={() => setOpen(true)}>
-									<AddCircleIcon color="primary" />
-								</IconButton>
-								<DialogCreateEditNotification
-									type={SiteNotificationsCreateEditTypeEnum.CREATE}
-									open={open}
-									setOpen={setOpen}
-								/>
-							</ListItemSecondaryAction>
-						</ListItem>
+				<Divider />
 
-						{site.notifications.content.data.length && (
-							<>
-								<Divider />
+				<List disablePadding>
+					<ListItem className={classes.sListItemHead}>
+						<ListItemSecondaryAction>
+							<IconButton edge="end" onClick={() => setOpen(true)}>
+								<AddCircleIcon color="primary" />
+							</IconButton>
+							<DialogCreateEditNotification
+								type={SiteNotificationsCreateEditTypeEnum.CREATE}
+								open={open}
+								setOpen={setOpen}
+							/>
+						</ListItemSecondaryAction>
+					</ListItem>
 
-								{site.notifications.content.data.map((notification, index) => (
-									<SiteNotification
-										key={notification.id}
-										site={site}
-										index={index}
-									/>
-								))}
-							</>
-						)}
-					</List>
-				</CardContent>
-			</Card>
-		</Box>
+					{site.notifications.content.data.length && (
+						<>
+							<Divider />
+
+							{site.notifications.content.data.map((notification, index) => (
+								<SiteNotification key={notification.id} site={site} index={index} />
+							))}
+						</>
+					)}
+				</List>
+			</CardContent>
+		</Card>
 	) : null;
 };
 export default SiteNotifications;

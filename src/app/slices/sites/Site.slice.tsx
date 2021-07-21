@@ -207,20 +207,28 @@ export const SiteNotificationTypesAndUsersFetch =
 				const users: SSContentNotificationUsersInterface[] = await deserializeSite(res[1]);
 
 				// map types and users
-				const result = types.map((type) => {
-					const fUsers = users.filter((user) => user.notificationType.id === type.id);
-					const fUser = fUsers && fUsers[0];
+				const result = users.map((item) => {
+					const type = types.find((type) => type.id === item.notificationType.id);
 					return {
-						id: type.id,
-						name: type.name,
-						userId: fUser ? fUser.id : '',
-						isActive: fUser ? fUser.isActive : false,
-						users: fUser ? fUser.users.map((u) => u.email) : []
+						id: item.id,
+						isActive: item.isActive,
+						users: item.users.map((u) => u.email),
+						typeId: type?.id,
+						typeName: type?.name
 					};
 				});
 
 				// dispatch: success
-				dispatch(success({ ...state, response: { data: result, site: { id: siteId } } }));
+				dispatch(
+					success({
+						...state,
+						response: {
+							data: result,
+							types,
+							site: { id: siteId }
+						}
+					})
+				);
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -265,7 +273,7 @@ export const SiteUpdateNotification =
 
 				// map response
 				const result = site.notifications.content?.data.map((item) => {
-					return item.userId === payload.userId
+					return item.id === payload.id
 						? {
 								...item,
 								isActive: user.isActive,
@@ -287,7 +295,10 @@ export const SiteUpdateNotification =
 				dispatch(
 					success({
 						...state,
-						response: { ...site.notifications.content, data: result }
+						response: {
+							...site.notifications.content,
+							data: result
+						}
 					})
 				);
 

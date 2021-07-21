@@ -50,7 +50,6 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
 		useForm<DialogCreateEditNotificationPayloadInterface>(
 			{
-				userId: notification?.userId,
 				isActive: notification?.isActive || false,
 				users: notification?.users || []
 			},
@@ -61,10 +60,10 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 					SiteUpdateNotification(
 						{
 							...notification,
-							id: !notification ? selected : '',
-							siteId: !notification ? site.notifications.content?.site.id : '',
+							id: !notification ? selected : notification.id,
 							isActive: values.isActive,
-							users: values.users.filter((e) => e)
+							users: values.users.filter((e) => e),
+							siteId: !notification ? site.notifications.content?.site.id : ''
 						},
 						() => setOpen(false)
 					)
@@ -129,16 +128,16 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 								label={t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
 								value={selected}
 								onChange={(event) => setSelected(event.target.value)}>
-								{site.notifications.content?.data.map((notification) => (
+								{site.notifications.content?.types.map((type) => (
 									<MenuItem
-										key={notification.id}
-										value={notification.id}
+										key={type.id}
+										value={type.id}
 										disabled={
 											site.notifications.content?.data.filter(
-												(item) => item.id === notification.id
+												(item) => item.typeId === type.id
 											).length === 1
 										}>
-										{notification.name}
+										{type.name}
 									</MenuItem>
 								))}
 							</Select>

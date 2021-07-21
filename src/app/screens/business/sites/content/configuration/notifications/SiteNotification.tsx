@@ -44,7 +44,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	return notification ? (
 		<ListItem key={notification.id}>
 			<FormControlLabel
-				disabled={!notification.userId || site.notifications.loading}
+				disabled={site.notifications.loading}
 				control={
 					<Switch
 						name={`notification-${notification.id}`}
@@ -56,16 +56,13 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 			/>
 
 			<ListItemText
-				primary={notification.name}
+				primary={notification.typeName}
 				secondary={notification.users.length > 0 && notification.users.join(', ')}
 			/>
 
 			<ListItemSecondaryAction>
-				<IconButton
-					edge="end"
-					disabled={!notification.userId}
-					onClick={() => setOpen(true)}>
-					<EditIcon color={notification.userId ? 'primary' : 'disabled'} />
+				<IconButton edge="end" onClick={() => setOpen(true)}>
+					<EditIcon />
 				</IconButton>
 				{open && (
 					<DialogCreateEditNotification

@@ -116,6 +116,14 @@ const OverridesCustom: Components = {
 					'&.Mui-disabled': {
 						opacity: 0.7
 					}
+				},
+				'&.MuiButton-outlinedError': {
+					borderColor: AppConfigService.AppOptions.colors.c12,
+					color: AppConfigService.AppOptions.colors.c12,
+					'&:hover': {
+						backgroundColor: AppConfigService.AppOptions.colors.c12,
+						color: AppConfigService.AppOptions.colors.c7
+					}
 				}
 			},
 			contained: {

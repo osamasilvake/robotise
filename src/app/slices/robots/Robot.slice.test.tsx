@@ -93,11 +93,7 @@ describe('[SLICE] General', () => {
 			.dispatch(RobotLocationMapFetch(mapId))
 			.then(() => {
 				// assert
-				const expectedActions = [
-					loading(state),
-					triggerMessage(message),
-					failure({ ...state, error: apiResponse })
-				];
+				const expectedActions = [loading(state), triggerMessage(message), failure(state)];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();

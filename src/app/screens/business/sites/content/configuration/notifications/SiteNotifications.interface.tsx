@@ -21,7 +21,6 @@ export interface DialogCreateEditNotificationInterface {
 
 export interface DialogCreateEditNotificationPayloadInterface {
 	id?: string;
-	userId?: string;
 	siteId?: string;
 	name?: string;
 	isActive?: boolean;

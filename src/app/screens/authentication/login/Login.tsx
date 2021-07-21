@@ -28,7 +28,7 @@ import {
 } from '../../../utilities/methods/ObjectUtilities';
 import { AuthLoginPayloadInterface } from '../Auth.interface';
 import { LoginStyle } from './Login.style';
-import { LoginFormValidation } from './Login.validation';
+import { LoginValidation } from './Login.validation';
 
 const Login: FC = () => {
 	const { t } = useTranslation('AUTH');
@@ -45,7 +45,7 @@ const Login: FC = () => {
 				password: '',
 				rememberMe: true
 			},
-			LoginFormValidation,
+			LoginValidation,
 			async () => {
 				// dispatch: login
 				dispatch(AuthLogin(values));

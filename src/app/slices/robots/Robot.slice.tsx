@@ -20,23 +20,19 @@ import { SliceRobotInterface } from './Robot.slice.interface';
 export const initialState: SliceRobotInterface = {
 	map: {
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	},
 	control: {
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	},
 	camera: {
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	},
 	syncProducts: {
 		loading: false,
-		content: null,
-		errors: null
+		content: null
 	}
 };
 
@@ -62,39 +58,27 @@ const dataSlice = createSlice({
 			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
-				state.map.errors = null;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
 				state.control.content = response;
-				state.camera.errors = null;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
 				state.camera.content = response;
-				state.camera.errors = null;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 				state.syncProducts.content = response;
-				state.syncProducts.errors = null;
 			}
 		},
 		failure: (state, action) => {
-			const { module, error } = action.payload;
+			const { module } = action.payload;
 			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
-				state.map.content = null;
-				state.map.errors = error;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
-				state.control.content = null;
-				state.control.errors = error;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-				state.camera.content = null;
-				state.camera.errors = error;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-				state.syncProducts.content = null;
-				state.syncProducts.errors = error;
 			}
 		},
 		reset: () => initialState
@@ -131,7 +115,7 @@ export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatc
 			// dispatch: success
 			dispatch(success({ ...state, response: result }));
 		})
-		.catch((err) => {
+		.catch(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: `robot-map-location-error`,
@@ -142,7 +126,7 @@ export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatc
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure({ ...state, error: err }));
+			dispatch(failure(state));
 		});
 };
 
@@ -200,6 +184,9 @@ export const RobotControlCommandSend =
 					text: `ROBOTS.DETAIL.COMMANDS.ERROR`
 				};
 				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
 			});
 	};
 
@@ -238,7 +225,7 @@ export const RobotCommandCameraImageRequest =
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
 			})
-			.catch((err) => {
+			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: `robot-${camera}-error`,
@@ -249,7 +236,7 @@ export const RobotCommandCameraImageRequest =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, error: err }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -283,7 +270,7 @@ export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch)
 			// dispatch: success
 			dispatch(success({ ...state, response: result }));
 		})
-		.catch((err) => {
+		.catch(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: `robot-sync-products-error`,
@@ -294,6 +281,6 @@ export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch)
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure({ ...state, error: err }));
+			dispatch(failure(state));
 		});
 };

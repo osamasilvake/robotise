@@ -19,7 +19,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 					{momentCurrentYear()}
 					{' • '}
 					{AppConfigService.envAppName}
-					{': '}
+					{' • '}
 				</>
 			)}
 			v{AppConfigService.envAppVersion}

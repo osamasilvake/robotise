@@ -29,6 +29,8 @@ const RobotContent: FC = () => {
 	const cSiteId = robotTwinsSummary.content?.dataById[params.robot].siteId;
 	const pSiteId = site.servicePositions.content?.site?.id;
 
+	const common = 'CONTENT.TABS';
+
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
 			(r) => r.path.replace(':robot', params.robot) === location.pathname
@@ -63,11 +65,11 @@ const RobotContent: FC = () => {
 		<Box>
 			{/* Tabs */}
 			<Tabs value={value} onChange={handleTabChange} variant="scrollable" textColor="primary">
-				<Tab label={t('CONTENT.TABS.DETAIL')} />
-				<Tab label={t('CONTENT.TABS.INVENTORY')} />
-				<Tab label={t('CONTENT.TABS.ORDERS')} />
-				<Tab label={t('CONTENT.TABS.PURCHASES')} />
-				<Tab label={t('CONTENT.TABS.CONFIGURATION')} />
+				<Tab label={t(`${common}.DETAIL`)} />
+				<Tab label={t(`${common}.INVENTORY`)} />
+				<Tab label={t(`${common}.ORDERS`)} />
+				<Tab label={t(`${common}.PURCHASES`)} />
+				<Tab label={t(`${common}.CONFIGURATION`)} />
 			</Tabs>
 
 			{/* Tab Panel */}

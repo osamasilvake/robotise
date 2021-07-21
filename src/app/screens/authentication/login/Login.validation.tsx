@@ -6,10 +6,11 @@ import { AuthLoginPayloadInterface } from '../Auth.interface';
  * @param values
  * @param touched
  */
-export const LoginFormValidation = (
+export const LoginValidation = (
 	values: AuthLoginPayloadInterface,
 	touched: AuthLoginPayloadInterface
 ): AuthLoginPayloadInterface => {
+	const common = 'LOGIN.FIELDS';
 	const errors: AuthLoginPayloadInterface = {
 		email: '',
 		password: ''
@@ -19,12 +20,12 @@ export const LoginFormValidation = (
 	if (touched.email) {
 		// required
 		if (!values.email) {
-			errors.email = 'LOGIN.FIELDS.EMAIL.VALIDATIONS.REQUIRED';
+			errors.email = `${common}.EMAIL.VALIDATIONS.REQUIRED`;
 		}
 
 		// validate
 		if (values.email && !validateEmail(values.email)) {
-			errors.email = 'LOGIN.FIELDS.EMAIL.VALIDATIONS.INVALID';
+			errors.email = `${common}.EMAIL.VALIDATIONS.INVALID`;
 		}
 	}
 

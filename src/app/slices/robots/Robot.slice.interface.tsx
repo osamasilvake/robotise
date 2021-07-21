@@ -1,25 +1,19 @@
-import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-
 export interface SliceRobotInterface {
 	map: {
 		loading: boolean;
 		content: SRContentMapInterface | null;
-		errors: TriggerMessageInterface | null;
 	};
 	control: {
 		loading: boolean;
 		content: SRContentControlInterface | null;
-		errors: TriggerMessageInterface | null;
 	};
 	camera: {
 		loading: boolean;
 		content: SRContentCameraImageInterface | null;
-		errors: TriggerMessageInterface | null;
 	};
 	syncProducts: {
 		loading: boolean;
 		content: SRContentSyncProductsInterface | null;
-		errors: TriggerMessageInterface | null;
 	};
 }
 

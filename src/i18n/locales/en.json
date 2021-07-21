@@ -377,6 +377,7 @@
 				},
 				"NOTIFICATIONS": {
 					"TITLE": "Notifications",
+					"EXCERPT": "Configure notification for specific users.",
 					"LIST": {
 						"CREATE_EDIT": {
 							"CREATE": {
@@ -881,6 +882,39 @@
 					"TITLE": "Sync Products",
 					"EXCERPT": "Sync Products on the robot.",
 					"SYNC": "SYNC"
+				},
+				"ROBOT_CONFIG": {
+					"TITLE": "Robot Config",
+					"EXCERPT": "Change Robot related detail.",
+					"FORM": {
+						"FIELDS": {
+							"NAME": {
+								"LABEL": "Name",
+								"PLACEHOLDER": "Please enter name",
+								"VALIDATIONS": {
+									"REQUIRED": "Name is required."
+								}
+							},
+							"CUSTOMER_NAME": {
+								"LABEL": "Customer Name",
+								"PLACEHOLDER": "Please enter customer name",
+								"VALIDATIONS": {
+									"REQUIRED": "Customer Name is required."
+								}
+							},
+							"CHECKBOXES": {
+								"HIDDEN": {
+									"LABEL": "Hidden"
+								},
+								"ONLINE_CHECK": {
+									"LABEL": "Online Check"
+								}
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
 				}
 			}
 		}

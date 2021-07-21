@@ -9,7 +9,7 @@ class AppConfigService extends EnvService {
 		return {
 			common: {
 				defaultCurrency: 'EUR',
-				none: 'N/A'
+				none: '---'
 			},
 			colors: {
 				c1: '#212629', // dark: 			content

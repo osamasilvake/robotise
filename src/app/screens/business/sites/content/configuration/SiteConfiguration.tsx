@@ -60,14 +60,11 @@ const SiteConfiguration: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			<Grid container spacing={1}>
-				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<AcceptOrders sites={sites} site={site} />
-				</Grid>
-			</Grid>
-
-			<Grid container>
-				<Grid item xs={12}>
+				<Grid item xs={12} md={6}>
 					<SiteNotifications site={site} />
+				</Grid>
+				<Grid item xs={12} md={6}>
+					<AcceptOrders sites={sites} site={site} />
 				</Grid>
 			</Grid>
 		</Box>

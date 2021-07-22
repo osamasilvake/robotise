@@ -18,7 +18,11 @@ class RobotsService {
 	 */
 	robotTwinsSummaryFetch = () => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
-		return HttpClientService.get(url);
+		return HttpClientService.get(url, {
+			params: {
+				'filter[isHidden]': 'true,false'
+			}
+		});
 	};
 
 	/**

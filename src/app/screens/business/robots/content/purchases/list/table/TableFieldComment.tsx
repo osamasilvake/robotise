@@ -25,6 +25,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	const purchaseId = purchases.content?.state?.locked;
 	const editMode = purchase.id === purchaseId;
 
+	const common = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
+
 	/**
 	 * toggle edit mode
 	 */
@@ -67,10 +69,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						type="text"
 						id="field-comment"
 						name="comment"
-						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.FIELD.LABEL')}
-						placeholder={t(
-							'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.FIELD.PLACEHOLDER'
-						)}
+						label={t(`${common}.COMMENT.FIELD.LABEL`)}
+						placeholder={t(`${common}.COMMENT.FIELD.PLACEHOLDER`)}
 						onChange={(event) => setValue(event.target.value)}
 						inputRef={(input) => input && input.focus()}
 						onFocus={(e) =>
@@ -92,7 +92,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CANCEL')}
+						label={t(`${common}.COMMENT.CANCEL`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -106,7 +106,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.CLEAR')}
+						label={t(`${common}.COMMENT.CLEAR`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -119,11 +119,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{/* Edit/Save */}
 				<Chip
 					size="small"
-					label={
-						editMode
-							? t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.SAVE')
-							: t('CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT.EDIT')
-					}
+					label={editMode ? t(`${common}.COMMENT.SAVE`) : t(`${common}.COMMENT.EDIT`)}
 					color="primary"
 					variant="outlined"
 					clickable

@@ -83,7 +83,7 @@ class AppConfigService extends EnvService {
 				business: {
 					sites: {
 						list: {
-							refreshTime: 25000,
+							refreshTime: 15000,
 							showPageSizes: false,
 							defaultPageSize: 100,
 							pageSizes: [5, 10, 15, 20, 50, 100]
@@ -109,7 +109,7 @@ class AppConfigService extends EnvService {
 					},
 					robots: {
 						list: {
-							refreshTime: 25000,
+							refreshTime: 15000,
 							showPageSizes: false,
 							defaultPageSize: 100,
 							pageSizes: [5, 10, 15, 20, 50, 100]
@@ -214,6 +214,7 @@ class AppConfigService extends EnvService {
 						PURCHASE: `${this.envAppUrl}/order-reports/:purchase`,
 						MAPS: `${this.envAppUrl}/maps/:mapId`,
 						COMMANDS: `${this.envAppUrl}/robots/:robot/commands`,
+						ROBOT_CONFIG: `${this.envAppUrl}/robots/:robotId`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robot/sync-products`
 					}
 				},

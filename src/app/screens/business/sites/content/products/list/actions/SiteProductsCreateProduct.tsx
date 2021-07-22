@@ -20,7 +20,7 @@ const SiteProductsCreateProduct: FC = () => {
 		// stop propagation
 		event.stopPropagation();
 
-		// set open
+		// show dialog
 		setOpen(true);
 	};
 

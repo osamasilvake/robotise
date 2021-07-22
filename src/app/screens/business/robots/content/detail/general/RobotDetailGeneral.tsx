@@ -73,10 +73,10 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${common}.VENDOR`)}
+					{t(`${common}.CUSTOMER_NAME`)}
 				</Typography>
 				<Typography variant="body1">
-					{robotTwins.site.elevator?.vendor || AppConfigService.AppOptions.common.none}
+					{robotTwins.robot.customerName || AppConfigService.AppOptions.common.none}
 				</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>

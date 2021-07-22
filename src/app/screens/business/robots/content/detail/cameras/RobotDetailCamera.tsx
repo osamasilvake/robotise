@@ -30,6 +30,8 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
+	const common = 'CONTENT.DETAIL.CAMERAS';
+
 	/**
 	 * request for robot camera image
 	 * @param camera
@@ -46,7 +48,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		<Grid item xs={12} sm={6}>
 			{/* Label */}
 			<Typography variant="body1" color="textPrimary">
-				{t(`CONTENT.DETAIL.CAMERAS.${cameraType}`)}
+				{t(`${common}.${cameraType}`)}
 			</Typography>
 
 			{/* Date */}
@@ -80,7 +82,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 						robot.camera.loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />
 					}>
-					{t('CONTENT.DETAIL.CAMERAS.REQUEST')}
+					{t(`${common}.REQUEST`)}
 				</Button>
 			</Box>
 		</Grid>

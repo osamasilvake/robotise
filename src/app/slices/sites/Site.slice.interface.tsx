@@ -1,5 +1,3 @@
-import { ISite } from './Sites.slice.interface';
-
 export interface SliceSiteInterface {
 	servicePositions: {
 		loading: boolean;
@@ -7,7 +5,6 @@ export interface SliceSiteInterface {
 	};
 	acceptOrders: {
 		loading: boolean;
-		content: ISite | null;
 	};
 	notifications: {
 		loader: boolean;

@@ -2,19 +2,21 @@ import {
 	Button,
 	Card,
 	CardContent,
-	Checkbox,
 	CircularProgress,
 	FormControl,
 	FormControlLabel,
 	FormHelperText,
 	Grid,
+	Switch,
 	TextField,
 	Typography
 } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { RobotUpdateConfig } from '../../../../../../slices/robots/Robot.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,
@@ -27,25 +29,31 @@ import { RobotConfigStyle } from './RobotConfig.style';
 import { RobotConfigValidation } from './RobotConfig.validation';
 
 const RobotConfig: FC<RobotConfigInterface> = (props) => {
-	const { robotTwinsSummary } = props;
+	const { robotTwinsSummary, robot } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigStyle();
 	const cardClasses = CardStyle();
 
+	const dispatch = useDispatch();
+
 	const params: RobotParamsInterface = useParams();
-	const robot = robotTwinsSummary.content?.dataById[params.robot];
+	const robotSingle = robotTwinsSummary.content?.dataById[params.robot];
 
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 
-	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
+	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<RobotConfigPayloadInterface>(
 			{
-				name: robot?.robotTitle || '',
-				customerName: ''
+				name: robotSingle?.robotTitle || '',
+				customerName: robotSingle?.robotCustomerName || '',
+				isHidden: robotSingle?.robotHidden || false
 			},
 			RobotConfigValidation,
 			async () => {
-				console.log('called');
+				if (robotSingle?.robotId) {
+					// dispatch: update robot specific detail
+					dispatch(RobotUpdateConfig(robotSingle.robotId, values));
+				}
 			}
 		);
 
@@ -53,14 +61,11 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 		<Card square elevation={1}>
 			<CardContent className={cardClasses.sCardContent1}>
 				<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
-				<Typography
-					variant="body2"
-					color="textSecondary"
-					className={classes.sRobotConfigExcerpt}>
+				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
 					{t(`${common}.EXCERPT`)}
 				</Typography>
 
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} className={classes.sForm}>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
 							<FormControl error fullWidth>
@@ -99,28 +104,17 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									<FormHelperText>{t(errors.customerName)}</FormHelperText>
 								)}
 							</FormControl>
-							<FormControl fullWidth>
+							<FormControl>
 								<FormControlLabel
 									control={
-										<Checkbox
+										<Switch
 											color="primary"
-											name="isDebug"
-											//onChange={handleChangeCheckbox}
+											name="isHidden"
+											checked={values.isHidden}
+											onChange={handleChangeCheckbox}
 										/>
 									}
 									label={t(`${common}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`)}
-								/>
-							</FormControl>
-							<FormControl fullWidth>
-								<FormControlLabel
-									control={
-										<Checkbox
-											color="primary"
-											name="isDebug"
-											//onChange={handleChangeCheckbox}
-										/>
-									}
-									label={t(`${common}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK.LABEL`)}
 								/>
 							</FormControl>
 						</Grid>
@@ -132,7 +126,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									(!!errors && !validateEmptyObj(errors)) ||
 									validateEmptyObjProperty(values)
 								}
-								endIcon={<CircularProgress size={20} />}>
+								endIcon={
+									robot.robotConfig.loading && <CircularProgress size={20} />
+								}>
 								{t(`${common}.FORM.BUTTONS.UPDATE`)}
 							</Button>
 						</Grid>

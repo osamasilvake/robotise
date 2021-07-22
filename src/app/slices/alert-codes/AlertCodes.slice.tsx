@@ -12,7 +12,6 @@ import { SACContentInterface, SACState, SliceAlertCodesInterface } from './Alert
 export const initialState: SliceAlertCodesInterface = {
 	loader: false,
 	loading: false,
-	updating: false,
 	content: null,
 	errors: null
 };
@@ -28,7 +27,6 @@ const dataSlice = createSlice({
 		loading: (state) => {
 			state.loading = true;
 		},
-
 		success: (state, action) => {
 			state.loader = false;
 			state.loading = false;
@@ -41,23 +39,16 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
-		updating: (state) => {
-			state.updating = true;
-		},
 		updated: (state, action) => {
-			state.updating = false;
 			state.content = action.payload;
 		},
-		updateFailed: (state) => {
-			state.updating = false;
-		},
+
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
-	dataSlice.actions;
+export const { loader, loading, success, failure, updated, reset } = dataSlice.actions;
 
 // selector
 export const alertCodesSelector = (state: AppReducerType) => state['alertCodes'];

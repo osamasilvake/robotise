@@ -40,12 +40,14 @@ const RobotConfiguration: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			<Grid container spacing={1} className={classes.sGridMargin}>
+				<Grid item xs={12} md={3}>
+					<SyncProducts robotTwinsSummary={robotTwinsSummary} robot={robot} />
+				</Grid>
+			</Grid>
 			<Grid container spacing={1}>
 				<Grid item xs={12} md={6}>
-					<RobotConfig robotTwinsSummary={robotTwinsSummary} />
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<SyncProducts robotTwinsSummary={robotTwinsSummary} robot={robot} />
+					<RobotConfig robotTwinsSummary={robotTwinsSummary} robot={robot} />
 				</Grid>
 			</Grid>
 		</Box>

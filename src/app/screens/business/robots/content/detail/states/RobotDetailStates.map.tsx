@@ -12,12 +12,13 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		text: '',
 		icon: ''
 	};
+	const common = 'CONTENT.DETAIL.STATES';
 
 	switch (type) {
 		case 'batteryState.current':
 			return (
 				batteryState && {
-					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.CURRENT',
+					title: `${common}.BATTERY.ITEMS.CURRENT`,
 					value: current(batteryState.properties.current),
 					date: momentFormat2(batteryState.updatedAt),
 					icon: 'flash_auto'
@@ -26,7 +27,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'batteryState.percentage':
 			return (
 				batteryState && {
-					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.PERCENTAGE',
+					title: `${common}.BATTERY.ITEMS.PERCENTAGE`,
 					value: percentage(batteryState.properties.percentage),
 					date: momentFormat2(batteryState.updatedAt),
 					icon: 'battery_charging_full'
@@ -35,7 +36,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'batteryState.powerSupplyHealth':
 			return (
 				batteryState && {
-					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.TITLE',
+					title: `${common}.BATTERY.ITEMS.HEALTH.TITLE`,
 					value: powerSupplyHealth(batteryState.properties.powerSupplyHealth),
 					date: momentFormat2(batteryState.updatedAt),
 					icon: 'healing'
@@ -45,23 +46,19 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			if (batteryState) {
 				switch (batteryState.properties.powerSupplyStatus) {
 					case 'charging':
-						powerSupplyStatus.text =
-							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.CHARGING';
+						powerSupplyStatus.text = `${common}.BATTERY.ITEMS.POWER.OPTIONS.CHARGING`;
 						powerSupplyStatus.icon = 'power';
 						break;
 					case 'discharging':
-						powerSupplyStatus.text =
-							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.DISCHARGING';
+						powerSupplyStatus.text = `${common}.BATTERY.ITEMS.POWER.OPTIONS.DISCHARGING`;
 						powerSupplyStatus.icon = 'power_off';
 						break;
 					case 'not_charging':
-						powerSupplyStatus.text =
-							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.NOT_CHARGING';
+						powerSupplyStatus.text = `${common}.BATTERY.ITEMS.POWER.OPTIONS.NOT_CHARGING`;
 						powerSupplyStatus.icon = 'power_off';
 						break;
 					case 'full':
-						powerSupplyStatus.text =
-							'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.OPTIONS.FULL';
+						powerSupplyStatus.text = `${common}.BATTERY.ITEMS.POWER.OPTIONS.FULL`;
 						powerSupplyStatus.icon = 'power';
 						break;
 					case 'unknown':
@@ -72,7 +69,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 			}
 			return (
 				batteryState && {
-					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.POWER.TITLE',
+					title: `${common}.BATTERY.ITEMS.POWER.TITLE`,
 					value: powerSupplyStatus.text,
 					date: momentFormat2(batteryState.updatedAt),
 					icon: powerSupplyStatus.icon
@@ -81,7 +78,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'batteryState.voltage':
 			return (
 				batteryState && {
-					title: 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.VOLTAGE',
+					title: `${common}.BATTERY.ITEMS.VOLTAGE`,
 					value: voltage(batteryState.properties.voltage),
 					date: momentFormat2(batteryState.updatedAt),
 					icon: 'flash_on'
@@ -90,10 +87,10 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'dockingState.isDocked':
 			return (
 				dockingState && {
-					title: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.STATUS',
+					title: `${common}.DOCKING.ITEMS.STATUS`,
 					value: dockingState.properties.isDocked
-						? 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.DOCKED'
-						: 'CONTENT.DETAIL.STATES.DOCKING.ITEMS.UN_DOCKED',
+						? `${common}.DOCKING.ITEMS.DOCKED`
+						: `${common}.DOCKING.ITEMS.UN_DOCKED`,
 					date: momentFormat2(dockingState.updatedAt),
 					icon: 'dock'
 				}
@@ -101,10 +98,10 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'joystickState.isConnected':
 			return (
 				joystickState && {
-					title: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.STATUS',
+					title: `${common}.JOYSTICK.ITEMS.STATUS`,
 					value: joystickState.properties.isConnected
-						? 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.CONNECTED'
-						: 'CONTENT.DETAIL.STATES.JOYSTICK.ITEMS.NOT_CONNECTED',
+						? `${common}.JOYSTICK.ITEMS.CONNECTED`
+						: `${common}.JOYSTICK.ITEMS.NOT_CONNECTED`,
 					date: momentFormat2(joystickState.updatedAt),
 					icon: 'games'
 				}
@@ -112,7 +109,7 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'activity.latest':
 			return (
 				activityState && {
-					title: 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.TITLE',
+					title: `${common}.ACTIVITY.ITEMS.LATEST.TITLE`,
 					value: activity(activityState.properties.latest),
 					date: momentFormat2(activityState.updatedAt),
 					icon: 'timer'
@@ -129,23 +126,24 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
  * @returns
  */
 const powerSupplyHealth = (value: string) => {
+	const common = 'CONTENT.DETAIL.STATES';
 	switch (value) {
 		case 'good':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.GOOD';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.GOOD`;
 		case 'overheat':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.OVERHEAT';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.OVERHEAT`;
 		case 'dead':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.DEAD';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.DEAD`;
 		case 'overvoltage':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.OVERVOLTAGE';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.OVERVOLTAGE`;
 		case 'unspec_failure':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.UNSPECIFIED_FAILURE';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.UNSPECIFIED_FAILURE`;
 		case 'cold':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.COLD';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.COLD`;
 		case 'watchdog_timer_expire':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.WATCHDOG_TIMER_EXPIRE';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.WATCHDOG_TIMER_EXPIRE`;
 		case 'safety_timer_expire':
-			return 'CONTENT.DETAIL.STATES.BATTERY.ITEMS.HEALTH.OPTIONS.SAFETY_TIMER_EXPIRE';
+			return `${common}.BATTERY.ITEMS.HEALTH.OPTIONS.SAFETY_TIMER_EXPIRE`;
 		case 'unknown':
 		default:
 			return AppConfigService.AppOptions.common.none;
@@ -157,13 +155,14 @@ const powerSupplyHealth = (value: string) => {
  * @param value
  */
 const activity = (value: string) => {
+	const common = 'CONTENT.DETAIL.STATES';
 	switch (value) {
 		case 'enteredLift':
-			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_ENTERED';
+			return `${common}.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_ENTERED`;
 		case 'leftLift':
-			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEFT';
+			return `${common}.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEFT`;
 		case 'leavingLift':
-			return 'CONTENT.DETAIL.STATES.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEAVING';
+			return `${common}.ACTIVITY.ITEMS.LATEST.OPTIONS.LIFT_LEAVING`;
 		case undefined:
 			return AppConfigService.AppOptions.common.none;
 		default:

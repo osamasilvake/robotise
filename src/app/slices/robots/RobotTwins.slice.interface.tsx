@@ -41,6 +41,7 @@ export interface SRTContentSiteInterface {
 export interface SRTContentRobotInterface {
 	id: string;
 	name: string;
+	customerName: string;
 }
 
 export interface SRTContentRobotStateInterface {

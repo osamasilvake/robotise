@@ -30,7 +30,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	 * handle sync products
 	 */
 	const handleSyncProducts = () => {
-		// dispatch: sync products with robot GUI
+		// dispatch: sync products on the robot
 		robotId && dispatch(RobotSyncProducts(robotId));
 	};
 

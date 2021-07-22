@@ -4,7 +4,6 @@ import { JsonApiMeta } from '../../utilities/serializers/json-api/JsonApi.interf
 export interface SliceAlertCodesInterface {
 	loader: boolean;
 	loading: boolean;
-	updating: boolean;
 	content: SACContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

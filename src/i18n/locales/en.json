@@ -166,9 +166,13 @@
 				}
 			},
 			"CONFIGURATION": {
+				"ROBOT_CONFIG": {
+					"SUCCESS": "Robot setting has been updated successfully!",
+					"ERROR": "Unable to configure robot!"
+				},
 				"SYNC_PRODUCTS": {
 					"SUCCESS": "Products has been synchronized successfully!",
-					"ERROR": "Unable to sync products on GUI!"
+					"ERROR": "Unable to sync products on the robot!"
 				}
 			}
 		}
@@ -445,7 +449,7 @@
 						"ACTIVE": "Active",
 						"INACTIVE": "Inactive"
 					},
-					"VENDOR": "Vendor",
+					"CUSTOMER_NAME": "Robot Customer Name",
 					"MISSION": "Mission"
 				},
 				"LOCATION": {
@@ -878,14 +882,9 @@
 				}
 			},
 			"CONFIGURATION": {
-				"SYNC_PRODUCTS": {
-					"TITLE": "Sync Products",
-					"EXCERPT": "Sync Products on the robot.",
-					"SYNC": "SYNC"
-				},
 				"ROBOT_CONFIG": {
 					"TITLE": "Robot Config",
-					"EXCERPT": "Change Robot related detail.",
+					"EXCERPT": "Update Robot specific detail.",
 					"FORM": {
 						"FIELDS": {
 							"NAME": {
@@ -905,9 +904,6 @@
 							"CHECKBOXES": {
 								"HIDDEN": {
 									"LABEL": "Hidden"
-								},
-								"ONLINE_CHECK": {
-									"LABEL": "Online Check"
 								}
 							}
 						},
@@ -915,6 +911,11 @@
 							"UPDATE": "Update"
 						}
 					}
+				},
+				"SYNC_PRODUCTS": {
+					"TITLE": "Sync Products",
+					"EXCERPT": "Sync Products on the robot.",
+					"SYNC": "SYNC"
 				}
 			}
 		}

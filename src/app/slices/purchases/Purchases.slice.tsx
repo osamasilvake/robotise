@@ -257,14 +257,12 @@ const handleRefreshAndPagination = (
 const updateEditedComment = (
 	current: SPContentInterface,
 	purchase: SPCDataInterface
-): SPContentInterface => {
-	return {
-		...current,
-		data: current.data.map((item) => {
-			if (item.id === purchase.id) {
-				return purchase;
-			}
-			return item;
-		})
-	};
-};
+): SPContentInterface => ({
+	...current,
+	data: current.data.map((item) => {
+		if (item.id === purchase.id) {
+			return purchase;
+		}
+		return item;
+	})
+});

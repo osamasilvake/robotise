@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { RobotConfigPayloadInterface } from './content/configuration/robot-config/RobotConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -114,19 +115,6 @@ class RobotsService {
 				}
 			}
 		});
-	};
-
-	/**
-	 * sync products with robot GUI
-	 * @param robotId
-	 * @returns
-	 */
-	robotSyncProducts = (robotId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
-			':robot',
-			robotId
-		);
-		return HttpClientService.post(url);
 	};
 
 	/**
@@ -272,6 +260,45 @@ class RobotsService {
 			purchaseId
 		);
 		return HttpClientService.get(url);
+	};
+
+	/**
+	 * update robot specific detail
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotConfig = (robotId: string, payload: RobotConfigPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ROBOT_CONFIG.replace(
+			':robotId',
+			robotId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'robots',
+				attributes: {
+					name: payload.name,
+					customerName: payload.customerName,
+					configs: {
+						isHidden: payload.isHidden,
+						isOnlineCheckDisabled: false
+					}
+				}
+			}
+		});
+	};
+
+	/**
+	 * sync products on the robot
+	 * @param robotId
+	 * @returns
+	 */
+	robotSyncProducts = (robotId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
+			':robot',
+			robotId
+		);
+		return HttpClientService.post(url);
 	};
 }
 const instance = new RobotsService();

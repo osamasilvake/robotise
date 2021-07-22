@@ -1,13 +1,4 @@
-import {
-	Card,
-	CardContent,
-	Divider,
-	IconButton,
-	List,
-	ListItem,
-	ListItemSecondaryAction,
-	Typography
-} from '@material-ui/core';
+import { Box, Card, CardContent, IconButton, List, Typography } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -57,43 +48,30 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	}, [dispatch, cSiteId]);
 
 	return site.notifications?.content ? (
-		<Card square elevation={1}>
+		<Card square elevation={1} className={classes.sNotificationCard}>
 			<CardContent className={cardClasses.sCardContent4}>
-				<Typography variant="h6" className={classes.sNotificationTitle}>
+				<Typography variant="h6" className={classes.sTitle}>
 					{t(`${common}.TITLE`)}
 				</Typography>
-				<Typography
-					variant="body2"
-					color="textSecondary"
-					className={classes.sNotificationsExcerpt}>
+				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
 					{t(`${common}.EXCERPT`)}
 				</Typography>
 
-				<Divider />
+				<Box className={classes.sCreate}>
+					<IconButton edge="end" onClick={() => setOpen(true)}>
+						<AddCircleIcon color="primary" />
+					</IconButton>
+					<DialogCreateEditNotification
+						type={SiteNotificationsCreateEditTypeEnum.CREATE}
+						open={open}
+						setOpen={setOpen}
+					/>
+				</Box>
 
 				<List disablePadding>
-					<ListItem className={classes.sListItemHead}>
-						<ListItemSecondaryAction>
-							<IconButton edge="end" onClick={() => setOpen(true)}>
-								<AddCircleIcon color="primary" />
-							</IconButton>
-							<DialogCreateEditNotification
-								type={SiteNotificationsCreateEditTypeEnum.CREATE}
-								open={open}
-								setOpen={setOpen}
-							/>
-						</ListItemSecondaryAction>
-					</ListItem>
-
-					{site.notifications.content.data.length && (
-						<>
-							<Divider />
-
-							{site.notifications.content.data.map((notification, index) => (
-								<SiteNotification key={notification.id} site={site} index={index} />
-							))}
-						</>
-					)}
+					{site.notifications.content.data.map((notification, index) => (
+						<SiteNotification key={notification.id} site={site} index={index} />
+					))}
 				</List>
 			</CardContent>
 		</Card>

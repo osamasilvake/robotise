@@ -62,7 +62,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 			<ListItemSecondaryAction>
 				<IconButton edge="end" onClick={() => setOpen(true)}>
-					<EditIcon />
+					<EditIcon color="primary" />
 				</IconButton>
 				{open && (
 					<DialogCreateEditNotification

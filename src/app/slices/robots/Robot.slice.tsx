@@ -2,6 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
+import { RobotConfigPayloadInterface } from '../../screens/business/robots/content/configuration/robot-config/RobotConfig.interface';
 import { RobotDetailCameraTypeEnum } from '../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -28,6 +29,9 @@ export const initialState: SliceRobotInterface = {
 	camera: {
 		loading: false
 	},
+	robotConfig: {
+		loading: false
+	},
 	syncProducts: {
 		loading: false
 	}
@@ -46,6 +50,8 @@ const dataSlice = createSlice({
 				state.control.loading = true;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
+			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+				state.robotConfig.loading = true;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
 			}
@@ -59,6 +65,8 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
+			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 			}
@@ -71,6 +79,8 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
+			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 			}
@@ -229,7 +239,51 @@ export const RobotCommandCameraImageRequest =
 	};
 
 /**
- * sync products with robot GUI
+ * update robot specific detail
+ * @param robotId
+ * @param payload
+ * @returns
+ */
+export const RobotUpdateConfig =
+	(robotId: string, payload: RobotConfigPayloadInterface) => async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.ROBOT_CONFIG
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotConfig(robotId, payload)
+			.then(async () => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-config-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-config-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * sync products on the robot
  * @param robotId
  * @returns
  */

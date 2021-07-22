@@ -42,39 +42,44 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 			}
 		},
 		transform: (data: IRobotTwinSummary) => {
+			const state = data.state.reported;
+			const meta = data.metadata.reported;
+
 			try {
 				const result: RTSContentTransformDataInterface = {
 					id: data.id,
 					updatedAt: data.updatedAt,
 					robot: {
 						id: data.robot.id,
-						name: data.state.reported.name
+						name: state.name,
+						customerName: state.customerName,
+						isHidden: state.isHidden
 					},
 					site: {
 						id: data.site.id
 					},
 					robotState: {
 						isReady: {
-							value: data.state.reported.robotState.isReady,
-							updatedAt: data.metadata.reported.robotState.isReady.updatedAt
+							value: state.robotState.isReady,
+							updatedAt: meta.robotState.isReady.updatedAt
 						}
 					},
 					status: {
 						controlMode: {
-							value: data.state.reported.status.controlMode,
-							updatedAt: data.metadata.reported.status.controlMode.updatedAt
+							value: state.status.controlMode,
+							updatedAt: meta.status.controlMode.updatedAt
 						},
 						missionStatus: {
-							value: data.state.reported.status.missionStatus,
-							updatedAt: data.metadata.reported.status.missionStatus.updatedAt
+							value: state.status.missionStatus,
+							updatedAt: meta.status.missionStatus.updatedAt
 						}
 					},
 					alerts: {
-						value: data.state.reported.alerts,
-						updatedAt: data.metadata.reported.alerts?.updatedAt
+						value: state.alerts,
+						updatedAt: meta.alerts?.updatedAt
 					},
 					lastSyncedProducts: {
-						updatedAt: data.state.reported.lastSyncedProducts
+						updatedAt: state.lastSyncedProducts
 					}
 				};
 				return result;
@@ -101,6 +106,8 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 			robotIsReady: item.robotState.isReady.value,
 			robotControlMode: item.status.controlMode.value,
 			robotMissionStatus: item.status.missionStatus.value,
+			robotCustomerName: item.robot.customerName,
+			robotHidden: item.robot.isHidden,
 			siteId: site.id,
 			siteTitle: site.title,
 			siteCurrency: site.currency || AppConfigService.AppOptions.common.defaultCurrency,

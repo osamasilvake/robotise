@@ -9,6 +9,9 @@ export interface SliceRobotInterface {
 	camera: {
 		loading: boolean;
 	};
+	robotConfig: {
+		loading: boolean;
+	};
 	syncProducts: {
 		loading: boolean;
 	};

@@ -267,6 +267,19 @@ class RobotsService {
 	};
 
 	/**
+	 * sync products on the robot
+	 * @param robotId
+	 * @returns
+	 */
+	robotSyncProducts = (robotId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
+			':robot',
+			robotId
+		);
+		return HttpClientService.post(url);
+	};
+
+	/**
 	 * update robot specific detail
 	 * @param robotId
 	 * @param payload
@@ -290,19 +303,6 @@ class RobotsService {
 				}
 			}
 		});
-	};
-
-	/**
-	 * sync products on the robot
-	 * @param robotId
-	 * @returns
-	 */
-	robotSyncProducts = (robotId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
-			':robot',
-			robotId
-		);
-		return HttpClientService.post(url);
 	};
 }
 const instance = new RobotsService();

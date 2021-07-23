@@ -29,10 +29,10 @@ export const initialState: SliceRobotInterface = {
 	camera: {
 		loading: false
 	},
-	robotConfig: {
+	syncProducts: {
 		loading: false
 	},
-	syncProducts: {
+	robotConfig: {
 		loading: false
 	}
 };
@@ -239,50 +239,6 @@ export const RobotCommandCameraImageRequest =
 	};
 
 /**
- * update robot specific detail
- * @param robotId
- * @param payload
- * @returns
- */
-export const RobotUpdateConfig =
-	(robotId: string, payload: RobotConfigPayloadInterface) => async (dispatch: Dispatch) => {
-		const state = {
-			module: RobotTypeEnum.ROBOT_CONFIG
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return RobotsService.robotConfig(robotId, payload)
-			.then(async () => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: `robot-config-success`,
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.SUCCESS`
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: success
-				dispatch(success(state));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: `robot-config-error`,
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR`
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
  * sync products on the robot
  * @param robotId
  * @returns
@@ -323,3 +279,55 @@ export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch)
 			dispatch(failure(state));
 		});
 };
+
+/**
+ * update robot specific detail
+ * @param robotId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotUpdateConfig =
+	(robotId: string, payload: RobotConfigPayloadInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.ROBOT_CONFIG
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotConfig(robotId, payload)
+			.then(async () => {
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-config-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+
+				// callback
+				callback();
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-config-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};

@@ -17,6 +17,8 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { RobotUpdateConfig } from '../../../../../../slices/robots/Robot.slice';
+import { RobotTwinsFetch } from '../../../../../../slices/robots/RobotTwins.slice';
+import { RobotTwinsSummaryFetchList } from '../../../../../../slices/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,
@@ -52,7 +54,15 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 			async () => {
 				if (robotSingle?.robotId) {
 					// dispatch: update robot specific detail
-					dispatch(RobotUpdateConfig(robotSingle.robotId, values));
+					dispatch(
+						RobotUpdateConfig(robotSingle.robotId, values, () => {
+							// dispatch: fetch robot twins summary
+							dispatch(RobotTwinsSummaryFetchList(true));
+
+							// dispatch: fetch robot twins of a robot
+							dispatch(RobotTwinsFetch(robotSingle.id, true));
+						})
+					);
 				}
 			}
 		);

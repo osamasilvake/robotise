@@ -454,6 +454,7 @@
 				},
 				"LOCATION": {
 					"TITLE": "Location",
+					"FLOOR": "Floor:",
 					"GRID": "Grid"
 				},
 				"COMMANDS": {

@@ -762,7 +762,8 @@
 									"LABEL": "Location",
 									"PLACEHOLDER": "Please enter the Location",
 									"VALIDATIONS": {
-										"REQUIRED": "Please enter the target location."
+										"REQUIRED": "Please enter the target location.",
+										"INVALID": "Location must be valid."
 									}
 								},
 								"SERVICE_POSITIONS": {

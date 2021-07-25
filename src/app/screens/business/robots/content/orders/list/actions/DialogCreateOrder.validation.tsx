@@ -1,3 +1,4 @@
+import { AppConfigService } from '../../../../../../../services';
 import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 import { DialogCreateOrderPayloadInterface } from './RobotOrdersActions.interface';
 
@@ -22,6 +23,11 @@ export const CreateOrderValidation = (
 		// required
 		if (!values.location) {
 			errors.location = `${common}.FIELDS.LOCATION.VALIDATIONS.REQUIRED`;
+		}
+
+		// validate
+		if (!AppConfigService.AppOptions.regex.normalInteger.test(values.location)) {
+			errors.location = `${common}.FIELDS.LOCATION.VALIDATIONS.INVALID`;
 		}
 	}
 

@@ -15,7 +15,7 @@ import {
 	TextField,
 	Typography
 } from '@material-ui/core';
-import { FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -46,9 +46,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const site = useSelector(siteSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
-
-	const [location, setLocation] = useState(0);
-	const [position, setPosition] = useState('');
 
 	const params: RobotParamsInterface = useParams();
 	const common = 'ROBOTS:CONTENT.ORDERS';
@@ -117,12 +114,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								type="number"
 								id="location"
 								name="location"
-								value={location}
+								value={values.location}
 								error={!!errors?.location}
-								onChange={(e) => {
-									setLocation(Number(e.target.value));
-									handleChangeInput(e);
-								}}
+								onChange={(e) => handleChangeInput(e)}
 								onBlur={handleBlur}
 								label={t(`${common}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.LABEL`)}
 								placeholder={t(
@@ -146,11 +140,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								labelId="service-positions"
 								id="service-positions"
 								name="location"
-								value={position}
-								onChange={(e) => {
-									setPosition(e.target.value);
-									handleChangeSelect(e);
-								}}
+								value={values.location}
+								onChange={(e) => handleChangeSelect(e)}
 								label={t(
 									`${common}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
 								)}>
@@ -174,8 +165,12 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							name="mode"
 							value={values.mode}
 							onChange={(e) => {
-								setLocation(0);
-								setPosition('');
+								handleChangeInput({
+									target: {
+										name: 'location',
+										value: ''
+									}
+								});
 								handleChangeSelect(e);
 							}}
 							onBlur={handleBlur}
@@ -214,13 +209,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={
-							orders.updating ||
-							(values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
-								!position) ||
-							(values.mode !== RobotOrderModeTypeEnum.SERVICE_POSITION &&
-								location === 0)
-						}
+						disabled={orders.updating || !values.location}
 						endIcon={orders.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CREATE')}
 					</Button>

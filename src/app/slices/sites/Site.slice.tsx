@@ -4,6 +4,7 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { DialogCreateEditNotificationPayloadInterface } from '../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
+import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
@@ -148,6 +149,12 @@ export const SiteAcceptOrders =
 
 		return SitesService.siteAcceptOrders(siteId, acceptOrders)
 			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(800);
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: `site-accept-orders-success`,
@@ -159,9 +166,6 @@ export const SiteAcceptOrders =
 
 				// dispatch: success
 				dispatch(success(state));
-
-				// callback
-				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

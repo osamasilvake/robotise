@@ -22,9 +22,15 @@ import { Clear, Email } from '@material-ui/icons';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { siteSelector, SiteUpdateNotification } from '../../../../../../slices/sites/Site.slice';
+import {
+	SiteNotificationTypesAndUsersFetch,
+	siteSelector,
+	SiteUpdateNotification
+} from '../../../../../../slices/sites/Site.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { SiteParamsInterface } from '../../../Site.interface';
 import { DialogCreateEditNotificationValidation } from './DialogCreateEditNotification.validation';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {
@@ -42,7 +48,10 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const site = useSelector(siteSelector);
 	const notification = index !== undefined ? site.notifications.content?.data[index] : null;
 
-	const [selected, setSelected] = useState('');
+	const [newNotification, setNewNotification] = useState('');
+
+	const params: SiteParamsInterface = useParams();
+	const cSiteId = params.site;
 
 	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
 	const fieldUsers = 'users';
@@ -59,18 +68,23 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 				dispatch(
 					SiteUpdateNotification(
 						{
-							...notification,
-							id: !notification ? selected : notification.id,
+							id: !notification ? newNotification : notification.id,
 							isActive: values.isActive,
 							users: values.users.filter((e) => e),
-							siteId: !notification ? site.notifications.content?.site.id : ''
+							siteId: !notification ? cSiteId : ''
 						},
 						() => {
 							// close dialog
 							setOpen(false);
 
-							// reset selected
-							setSelected('');
+							// reset new notification
+							setNewNotification('');
+
+							// create notification: refresh list
+							if (index === undefined) {
+								// dispatch: fetch notification types and users
+								dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+							}
 						}
 					)
 				);
@@ -132,8 +146,8 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 								id="notifications"
 								name="notifications"
 								label={t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
-								value={selected}
-								onChange={(event) => setSelected(event.target.value)}>
+								value={newNotification}
+								onChange={(event) => setNewNotification(event.target.value)}>
 								{site.notifications.content?.types.map((type) => (
 									<MenuItem
 										key={type.id}
@@ -235,7 +249,8 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 						type="submit"
 						disabled={
 							site.notifications.loading ||
-							(type === SiteNotificationsCreateEditTypeEnum.CREATE && !selected) ||
+							(type === SiteNotificationsCreateEditTypeEnum.CREATE &&
+								!newNotification) ||
 							(type === SiteNotificationsCreateEditTypeEnum.EDIT &&
 								!!(errors && errors.users.filter((e) => e).length))
 						}

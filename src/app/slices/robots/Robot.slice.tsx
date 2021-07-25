@@ -299,8 +299,11 @@ export const RobotUpdateConfig =
 
 		return RobotsService.robotConfig(robotId, payload)
 			.then(async () => {
+				// callback
+				callback();
+
 				// wait
-				await timeout(1000);
+				await timeout(800);
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
@@ -313,9 +316,6 @@ export const RobotUpdateConfig =
 
 				// dispatch: success
 				dispatch(success(state));
-
-				// callback
-				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

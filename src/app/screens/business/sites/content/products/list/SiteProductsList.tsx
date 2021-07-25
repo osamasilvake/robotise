@@ -27,7 +27,7 @@ const SiteProductsList: FC = () => {
 
 	const params: SiteParamsInterface = useParams();
 	const pSiteId = products.content?.site?.id;
-	const cSiteId = params.site;
+	const cSiteId = params.siteId;
 
 	useEffect(() => {
 		const condition1 = sites.content !== null;

@@ -30,9 +30,9 @@ const RobotInventory: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 	const pRobotId = inventory.content?.robot.id;
-	const cRobotId = params.robot;
+	const cRobotId = params.robotId;
 	const pSiteId = products.content?.site?.id;
-	const cSiteId = robotTwinsSummary.content?.dataById[params.robot]?.siteId;
+	const cSiteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
 
 	useEffect(() => {
 		const condition1 = robotTwinsSummary.content !== null;

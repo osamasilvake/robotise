@@ -23,7 +23,7 @@ const SiteRoomsList: FC = () => {
 	const rooms = useSelector(roomsSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.site];
+	const siteSingle = sites.content?.dataById[params.siteId];
 
 	const cSiteId = siteSingle?.id;
 	const pSiteId = rooms.content?.siteId;

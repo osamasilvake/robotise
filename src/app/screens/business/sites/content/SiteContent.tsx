@@ -22,10 +22,10 @@ const SiteContent: FC = () => {
 
 	useEffect(() => {
 		const cIndex = sitesRoutes.findIndex(
-			(r) => r.path.replace(':site', params.site) === location.pathname
+			(r) => r.path.replace(':siteId', params.siteId) === location.pathname
 		);
 		setValue(cIndex - 1);
-	}, [location.pathname, params.site]);
+	}, [location.pathname, params.siteId]);
 
 	/**
 	 * handle tab change
@@ -34,7 +34,7 @@ const SiteContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = sitesRoutes[value + 1].path.replace(':site', params.site);
+		const url = sitesRoutes[value + 1].path.replace(':siteId', params.siteId);
 
 		// push to history
 		history.push(url);

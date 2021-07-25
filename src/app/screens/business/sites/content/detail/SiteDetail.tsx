@@ -18,7 +18,7 @@ const SiteDetail: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteId = params.site;
+	const siteId = params.siteId;
 	const site = sites.content?.dataById[siteId];
 
 	// loader

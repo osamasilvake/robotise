@@ -4,6 +4,7 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { SiteRoomsActionsFiltersPayloadInterface } from '../../screens/business/sites/content/rooms/list/actions/SiteRoomsActions.interface';
 import SitesService from '../../screens/business/sites/Sites.service';
+import { timeout } from '../../utilities/methods/Timeout';
 import { deserializeSite } from '../../utilities/serializers/json-api/Site.deserialize';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
@@ -89,6 +90,12 @@ export const RoomUpdateState =
 
 		return SitesService.siteUpdateRoomState(siteId, whitelist)
 			.then(async (res) => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
 				// deserialize response
 				const result = await deserializeSite(res);
 
@@ -103,9 +110,6 @@ export const RoomUpdateState =
 
 				// dispatch: updated
 				dispatch(updated({ ...rooms.content, site: result }));
-
-				// callback
-				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

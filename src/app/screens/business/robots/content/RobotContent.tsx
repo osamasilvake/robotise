@@ -26,17 +26,18 @@ const RobotContent: FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const cSiteId = robotTwinsSummary.content?.dataById[params.robot]?.siteId;
+	const cSiteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
 	const pSiteId = site.servicePositions.content?.site?.id;
 
 	const common = 'CONTENT.TABS';
 
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
-			(r) => r.path.replace(':robot', params.robot) === location.pathname
+			(r) => r.path.replace(':robotId', params.robotId) === location.pathname
 		);
+
 		setValue(cIndex - 1);
-	}, [location.pathname, params.robot]);
+	}, [location.pathname, params.robotId]);
 
 	useEffect(() => {
 		const condition1 = site.servicePositions.content === null;
@@ -55,7 +56,7 @@ const RobotContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = robotsRoutes[value + 1].path.replace(':robot', params.robot);
+		const url = robotsRoutes[value + 1].path.replace(':robotId', params.robotId);
 
 		// push to history
 		history.push(url);

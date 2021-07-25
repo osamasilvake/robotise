@@ -49,7 +49,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const common = 'ROBOTS:CONTENT.ORDERS';
-	const siteId = robotTwinsSummary.content?.dataById[params.robot]?.siteId;
+	const siteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
 
 	const {
 		handleChangeInput,

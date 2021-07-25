@@ -29,8 +29,8 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.site];
-	const siteId = params.site;
+	const siteSingle = sites.content?.dataById[params.siteId];
+	const siteId = params.siteId;
 
 	const common = 'CONTENT.CONFIGURATION.ACCEPT_ORDERS';
 

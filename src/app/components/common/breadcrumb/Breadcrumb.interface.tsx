@@ -1,8 +1,8 @@
 export interface BreadcrumbParamsInterface {
-	site?: string;
-	robot?: string;
-	order?: string;
-	purchase?: string;
+	siteId?: string;
+	robotId?: string;
+	orderId?: string;
+	purchaseId?: string;
 }
 
 export interface BreadcrumbInterface {

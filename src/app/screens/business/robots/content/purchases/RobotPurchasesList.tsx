@@ -44,7 +44,7 @@ const RobotPurchasesList: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 	const pRobotId = purchases.content?.state?.robotId;
-	const cRobotId = params.robot;
+	const cRobotId = params.robotId;
 
 	useEffect(() => {
 		const payload: RobotPurchasesListPayloadInterface = {

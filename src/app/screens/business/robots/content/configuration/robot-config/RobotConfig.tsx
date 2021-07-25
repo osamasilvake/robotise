@@ -39,7 +39,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params: RobotParamsInterface = useParams();
-	const robotSingle = robotTwinsSummary.content?.dataById[params.robot];
+	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
 
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 

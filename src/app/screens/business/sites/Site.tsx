@@ -13,7 +13,7 @@ const Site: FC = () => {
 
 	const params: SiteParamsInterface = useParams();
 
-	const cSiteName = sites.content?.dataById[params.site]?.title;
+	const cSiteName = sites.content?.dataById[params.siteId]?.title;
 
 	return (
 		<Paper elevation={12} component="section" square>

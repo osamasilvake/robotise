@@ -69,7 +69,7 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const handleShowSiteDetail = (siteTwins: ISite) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL;
-		const siteLink = url.replace(':site', siteTwins.id);
+		const siteLink = url.replace(':siteId', siteTwins.id);
 
 		// push to history
 		history.push(siteLink);

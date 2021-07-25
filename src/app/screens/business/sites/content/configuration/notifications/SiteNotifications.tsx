@@ -26,7 +26,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const [open, setOpen] = useState(false);
 
 	const params: SiteParamsInterface = useParams();
-	const cSiteId = params.site;
+	const cSiteId = params.siteId;
 
 	const common = 'CONTENT.CONFIGURATION.NOTIFICATIONS';
 

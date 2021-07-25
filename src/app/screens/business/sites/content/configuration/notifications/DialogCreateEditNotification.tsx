@@ -51,7 +51,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const [newNotification, setNewNotification] = useState('');
 
 	const params: SiteParamsInterface = useParams();
-	const cSiteId = params.site;
+	const cSiteId = params.siteId;
 
 	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
 	const fieldUsers = 'users';

@@ -55,7 +55,7 @@ class RobotsService {
 			| number
 	) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
-			':robot',
+			':robotId',
 			robotId
 		);
 
@@ -107,7 +107,7 @@ class RobotsService {
 	 */
 	robotRequestCameraImage = (camera: RobotDetailCameraTypeEnum, robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
-			':robot',
+			':robotId',
 			robotId
 		);
 		return HttpClientService.post(url, {
@@ -127,7 +127,7 @@ class RobotsService {
 	 */
 	robotInventoryFetch = (robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.INVENTORY.replace(
-			':robot',
+			':robotId',
 			robotId
 		);
 		return HttpClientService.get(url);
@@ -211,7 +211,7 @@ class RobotsService {
 	 */
 	robotOrderFetch = (orderId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDER.replace(
-			':order',
+			':orderId',
 			orderId
 		);
 		return HttpClientService.get(url);
@@ -260,7 +260,7 @@ class RobotsService {
 	 */
 	robotPurchaseFetch = (purchaseId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASE.replace(
-			':purchase',
+			':purchaseId',
 			purchaseId
 		);
 		return HttpClientService.get(url);
@@ -273,7 +273,7 @@ class RobotsService {
 	 */
 	robotSyncProducts = (robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
-			':robot',
+			':robotId',
 			robotId
 		);
 		return HttpClientService.post(url);

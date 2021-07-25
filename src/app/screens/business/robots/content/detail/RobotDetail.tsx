@@ -30,9 +30,9 @@ const RobotDetail: FC = () => {
 	const robotTwins = useSelector(robotTwinsSelector);
 
 	const params: RobotParamsInterface = useParams();
-	const cRobotId = params.robot;
+	const cRobotId = params.robotId;
 	const pRobotId = robotTwins.content?.robot.id;
-	const robotTwinId = robotTwinsSummary.content?.dataById[params.robot]?.id;
+	const robotTwinId = robotTwinsSummary.content?.dataById[params.robotId]?.id;
 
 	useEffect(() => {
 		const condition1 = sites.content !== null;

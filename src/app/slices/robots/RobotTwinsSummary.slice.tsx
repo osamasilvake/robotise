@@ -102,17 +102,18 @@ export const RobotTwinsSummaryFetchList =
 						sites.content
 					);
 
-					// state
-					result = {
-						...result,
-						state: filters
-					};
-
 					// count alerts for badge
 					const alerts = countAlerts(result);
 
+					// state
+					result = {
+						...result,
+						alerts,
+						state: filters
+					};
+
 					// dispatch: success
-					dispatch(success({ ...result, alerts }));
+					dispatch(success(result));
 				}
 			})
 			.catch(() => {
@@ -168,7 +169,7 @@ const countAlerts = (payload: RTSContentInterface) => {
 			if (alerts) {
 				acc.danger = acc.danger += alerts.danger;
 				acc.warning = acc.warning += alerts.warning;
-				acc.count = acc.count += 1;
+				acc.count = acc.count += alerts.danger ? 1 : 0;
 			}
 			return acc;
 		},

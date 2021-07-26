@@ -12,7 +12,7 @@ export interface SlicePurchasesInterface {
 export interface SPContentInterface {
 	data: SPCDataInterface[];
 	meta: JsonApiMeta;
-	state?: SPCState;
+	state?: SPCStateInterface;
 }
 
 export interface SPCDataInterface {
@@ -32,7 +32,7 @@ export interface SPCDataInterface {
 	order: SPCOrderInterface;
 }
 
-export interface SPCState {
+export interface SPCStateInterface {
 	robotId?: string;
 	page?: number;
 	rowsPerPage?: number;

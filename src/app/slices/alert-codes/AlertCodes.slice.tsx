@@ -6,7 +6,11 @@ import AlertCodesService from '../../screens/information/alert-codes/AlertCodes.
 import { AlertCodesListPayloadInterface } from '../../screens/information/alert-codes/list/AlertCodesList.interface';
 import { deserializeAlertCodes } from '../../utilities/serializers/json-api/AlertCodes.deserialize';
 import { AppReducerType } from '..';
-import { SACContentInterface, SACState, SliceAlertCodesInterface } from './AlertCodes.interface';
+import {
+	SACContentInterface,
+	SACStateInterface,
+	SliceAlertCodesInterface
+} from './AlertCodes.interface';
 
 // initial state
 export const initialState: SliceAlertCodesInterface = {
@@ -122,7 +126,7 @@ export const AlertCodesFetch =
  * @returns
  */
 export const AlertCodesUpdateState =
-	(state: SACState) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SACStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
 		const alertCodes = states.alertCodes;

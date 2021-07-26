@@ -14,14 +14,17 @@ const PageError: FC<PageErrorInterface> = (props) => {
 
 	return (
 		<Error error={ErrorTypeEnum.PAGE_ERROR}>
+			{/* Title */}
 			<Typography variant="h2" className={classes.sTitle}>
 				{t('PAGE_ERROR.TITLE')}
 			</Typography>
-			{message && (
-				<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
-					{t(message)}
-				</Typography>
-			)}
+
+			{/* Message */}
+			<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
+				{message ? t(message) : t('E404.DESCRIPTION')}
+			</Typography>
+
+			{/* Link */}
 			<Link
 				underline="hover"
 				onClick={() => window.location.reload()}

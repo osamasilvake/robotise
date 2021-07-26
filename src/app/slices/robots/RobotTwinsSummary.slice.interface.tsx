@@ -4,6 +4,7 @@ import { IAlert } from './RobotTwins.slice.interface';
 export interface SliceRobotTwinsSummaryInterface {
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: RTSContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
@@ -12,6 +13,7 @@ export interface RTSContentInterface {
 	data: RTSContentDataInterface[];
 	dataById: RTSContentDataByIdInterface;
 	alerts?: RTSContentAlertsInterface;
+	state?: RTSContentStateInterface;
 }
 
 export interface RTSContentDataInterface {
@@ -24,6 +26,7 @@ export interface RTSContentDataInterface {
 	robotMissionStatus: string;
 	robotCustomerName: string;
 	robotHidden: boolean;
+	robotOnlineCheckDisabled: boolean;
 	siteId: string;
 	siteTitle: string;
 	siteCurrency: string;
@@ -42,6 +45,10 @@ export interface RTSContentAlertsInterface {
 	warning: number;
 }
 
+export interface RTSContentStateInterface {
+	hidden?: boolean;
+}
+
 export interface RTSContentTransformDataInterface {
 	id: string;
 	updatedAt: Date;
@@ -50,6 +57,7 @@ export interface RTSContentTransformDataInterface {
 		name: string;
 		customerName: string;
 		isHidden: boolean;
+		isOnlineCheckDisabled: boolean;
 	};
 	site: {
 		id: string;
@@ -94,6 +102,7 @@ export interface IRobotTwinSummary {
 			customerName: string;
 			lastSyncedProducts: Date;
 			isHidden: boolean;
+			isOnlineCheckDisabled: boolean;
 			alerts: IAlert[];
 			robotState: {
 				isReady: boolean;

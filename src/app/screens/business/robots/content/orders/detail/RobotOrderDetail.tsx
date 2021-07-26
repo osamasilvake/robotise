@@ -19,13 +19,13 @@ const RobotOrderDetail: FC = () => {
 
 	useEffect(() => {
 		// dispatch: fetch order
-		dispatch(OrderFetch(params.order));
-	}, [dispatch, params.order]);
+		dispatch(OrderFetch(params.orderId));
+	}, [dispatch, params.orderId]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			// dispatch: fetch order
-			dispatch(OrderFetch(params.order, true));
+			dispatch(OrderFetch(params.orderId, true));
 		};
 
 		// interval
@@ -34,7 +34,7 @@ const RobotOrderDetail: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.orders.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, params.order]);
+	}, [dispatch, params.orderId]);
 
 	// loader
 	if (order.loader) {

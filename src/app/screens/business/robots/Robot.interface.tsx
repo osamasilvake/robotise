@@ -1,5 +1,5 @@
 export interface RobotParamsInterface {
-	robot: string;
-	order: string;
-	purchase: string;
+	robotId: string;
+	orderId: string;
+	purchaseId: string;
 }

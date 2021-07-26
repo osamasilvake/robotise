@@ -8,7 +8,7 @@ import { cancellableOrders } from './RobotOrdersTable.list';
  * @returns
  */
 export const mapStatusLevel = (status: string) => {
-	const value = status.split('.').pop();
+	const value = status && status.split('.').pop();
 	switch (value) {
 		case RobotOrdersTableColumnStatusTypeEnum.PENDING:
 		case RobotOrdersTableColumnStatusTypeEnum.TIMEOUT:

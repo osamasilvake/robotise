@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import PageEmpty from '../../../../../../../components/content/page-empty/PageEmpty';
 import { AppConfigService } from '../../../../../../../services';
 import { RoomUpdateState } from '../../../../../../../slices/rooms/Rooms.slice';
-import { SiteUpdate } from '../../../../../../../slices/sites/Sites.slice';
+import { SitesFetchList } from '../../../../../../../slices/sites/Sites.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
 import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';
 import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
@@ -84,16 +84,8 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 		if (siteSingle?.id) {
 			dispatch(
 				RoomUpdateState(siteSingle.id, whitelist, () => {
-					// dispatch: update site
-					dispatch(
-						SiteUpdate({
-							...siteSingle,
-							rooms: {
-								...siteSingle.rooms,
-								whitelist
-							}
-						})
-					);
+					// dispatch: fetch sites
+					dispatch(SitesFetchList(true));
 				})
 			);
 		}

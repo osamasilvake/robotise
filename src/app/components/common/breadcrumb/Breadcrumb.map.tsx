@@ -31,30 +31,30 @@ export const breadcrumbs = (
 
 			/**
 			 * params:
-			 * 1. site
-			 * 2. robot
-			 * 3. order
-			 * 4. purchase
+			 * 1. siteId
+			 * 2. robotId
+			 * 3. orderId
+			 * 4. purchaseId
 			 */
-			if (path === params.site) {
+			if (path === params.siteId) {
 				return {
 					text: labels?.siteName || '...',
 					link,
 					isLast: index === paths.length - 1
 				};
-			} else if (path === params.robot) {
+			} else if (path === params.robotId) {
 				return {
 					text: labels?.robotName || '...',
 					link,
 					isLast: index === paths.length - 1
 				};
-			} else if (path === params.order) {
+			} else if (path === params.orderId) {
 				return {
 					text: labels?.orderTarget || '',
 					link,
 					isLast: index === paths.length - 1
 				};
-			} else if (path === params.purchase) {
+			} else if (path === params.purchaseId) {
 				return {
 					text: labels?.purchaseTarget || '',
 					link,

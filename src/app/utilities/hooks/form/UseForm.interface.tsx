@@ -3,10 +3,12 @@ import { ChangeEvent, FocusEvent, FormEvent } from 'react';
 export interface UseFormRetInterface<UseFormEntity> {
 	handleChangeStringInputs: (
 		index: number,
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | StringInputsTargetInterface,
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface,
 		items: string[]
 	) => void;
-	handleChangeInput: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+	handleChangeInput: (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface
+	) => void;
 	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleChangeSelect: (event: ChangeEvent<SelectInterface>) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
@@ -15,7 +17,7 @@ export interface UseFormRetInterface<UseFormEntity> {
 	errors: null | UseFormEntity;
 }
 
-export interface StringInputsTargetInterface {
+export interface TargetInterface {
 	target: {
 		name: string;
 		value: string;

@@ -7,27 +7,27 @@ const appRoutes = {
 		BUSINESS: {
 			SITES: {
 				MAIN: '/sites',
-				DETAIL: '/sites/:site',
+				DETAIL: '/sites/:siteId',
 				PRODUCTS: {
-					MAIN: '/sites/:site/products',
-					DETAIL: '/sites/:site/products/:product'
+					MAIN: '/sites/:siteId/products',
+					DETAIL: '/sites/:siteId/products/:product'
 				},
-				ROOMS: '/sites/:site/rooms',
-				CONFIGURATION: '/sites/:site/configuration'
+				ROOMS: '/sites/:siteId/rooms',
+				CONFIGURATION: '/sites/:siteId/configuration'
 			},
 			ROBOTS: {
 				MAIN: '/robots',
-				DETAIL: '/robots/:robot',
-				INVENTORY: '/robots/:robot/inventory',
+				DETAIL: '/robots/:robotId',
+				INVENTORY: '/robots/:robotId/inventory',
 				ORDERS: {
-					MAIN: '/robots/:robot/orders',
-					DETAIL: '/robots/:robot/orders/:order'
+					MAIN: '/robots/:robotId/orders',
+					DETAIL: '/robots/:robotId/orders/:orderId'
 				},
 				PURCHASES: {
-					MAIN: '/robots/:robot/purchases',
-					DETAIL: '/robots/:robot/purchases/:purchase'
+					MAIN: '/robots/:robotId/purchases',
+					DETAIL: '/robots/:robotId/purchases/:purchaseId'
 				},
-				CONFIGURATION: '/robots/:robot/configuration'
+				CONFIGURATION: '/robots/:robotId/configuration'
 			}
 		},
 		INFORMATION: {

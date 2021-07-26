@@ -35,7 +35,7 @@ export const CreateEditProductValidation = (
 			errors.price = `${common}.PRICE.VALIDATIONS.REQUIRED`;
 		}
 
-		// max two decimal points
+		// validate
 		if (
 			values.price &&
 			!AppConfigService.AppOptions.regex.maxTwoDecimalPoints.test(String(values.price))

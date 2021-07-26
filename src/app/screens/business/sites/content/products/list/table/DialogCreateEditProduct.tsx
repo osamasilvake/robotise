@@ -56,7 +56,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 			CreateEditProductValidation,
 			async () => {
 				// dispatch: create/edit a product
-				params.site &&
+				params.siteId &&
 					dispatch(
 						ProductCreateEdit(
 							{
@@ -64,7 +64,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 								image
 							},
 							type,
-							params.site,
+							params.siteId,
 							product?.id,
 							() => setOpen(false)
 						)
@@ -77,7 +77,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const params: SiteParamsInterface = useParams();
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
-	const currency = sites.content?.dataById[params.site]?.currency || defaultCurrency;
+	const currency = sites.content?.dataById[params.siteId]?.currency || defaultCurrency;
 
 	/**
 	 * close create/edit dialog

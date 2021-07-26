@@ -18,7 +18,7 @@ const SiteDetail: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteId = params.site;
+	const siteId = params.siteId;
 	const site = sites.content?.dataById[siteId];
 
 	// loader
@@ -27,7 +27,7 @@ const SiteDetail: FC = () => {
 	}
 
 	// error
-	if (sites.errors) {
+	if (!site?.id || sites.errors) {
 		return <PageError message={sites.errors?.text} />;
 	}
 
@@ -37,7 +37,7 @@ const SiteDetail: FC = () => {
 	}
 
 	// empty
-	if (!site?.id) {
+	if (!sites.content.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

@@ -1,10 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import {
-	SelectInterface,
-	StringInputsTargetInterface,
-	UseFormRetInterface
-} from './UseForm.interface';
+import { SelectInterface, TargetInterface, UseFormRetInterface } from './UseForm.interface';
 
 /**
  * custom hook: useForm
@@ -30,7 +26,7 @@ export const useForm = <UseFormEntity,>(
 	 */
 	const handleChangeStringInputs = (
 		index: number,
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | StringInputsTargetInterface,
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface,
 		items: string[]
 	) => {
 		const { name, value } = event.target;
@@ -47,7 +43,9 @@ export const useForm = <UseFormEntity,>(
 	 * handle change: input
 	 * @param event
 	 */
-	const handleChangeInput = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+	const handleChangeInput = (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface
+	) => {
 		const { name, value } = event.target;
 		if (name) {
 			// set change event values

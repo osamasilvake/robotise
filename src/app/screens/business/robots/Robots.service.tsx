@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { RTSContentStateInterface } from '../../../slices/robots/RobotTwinsSummary.slice.interface';
 import { RobotConfigPayloadInterface } from './content/configuration/robot-config/RobotConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
@@ -14,13 +15,14 @@ import { RobotPurchasesListPayloadInterface } from './content/purchases/RobotPur
 class RobotsService {
 	/**
 	 * fetch robot twins summary
+	 * @param filters
 	 * @returns
 	 */
-	robotTwinsSummaryFetch = () => {
+	robotTwinsSummaryFetch = (filters: RTSContentStateInterface | undefined) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[isHidden]': 'true,false'
+				'filter[isHidden]': filters?.hidden ? undefined : false
 			}
 		});
 	};
@@ -55,7 +57,7 @@ class RobotsService {
 			| number
 	) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
-			':robot',
+			':robotId',
 			robotId
 		);
 
@@ -107,7 +109,7 @@ class RobotsService {
 	 */
 	robotRequestCameraImage = (camera: RobotDetailCameraTypeEnum, robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
-			':robot',
+			':robotId',
 			robotId
 		);
 		return HttpClientService.post(url, {
@@ -127,7 +129,7 @@ class RobotsService {
 	 */
 	robotInventoryFetch = (robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.INVENTORY.replace(
-			':robot',
+			':robotId',
 			robotId
 		);
 		return HttpClientService.get(url);
@@ -211,7 +213,7 @@ class RobotsService {
 	 */
 	robotOrderFetch = (orderId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDER.replace(
-			':order',
+			':orderId',
 			orderId
 		);
 		return HttpClientService.get(url);
@@ -260,10 +262,23 @@ class RobotsService {
 	 */
 	robotPurchaseFetch = (purchaseId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASE.replace(
-			':purchase',
+			':purchaseId',
 			purchaseId
 		);
 		return HttpClientService.get(url);
+	};
+
+	/**
+	 * sync products on the robot
+	 * @param robotId
+	 * @returns
+	 */
+	robotSyncProducts = (robotId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
+			':robotId',
+			robotId
+		);
+		return HttpClientService.post(url);
 	};
 
 	/**
@@ -285,24 +300,11 @@ class RobotsService {
 					customerName: payload.customerName,
 					configs: {
 						isHidden: payload.isHidden,
-						isOnlineCheckDisabled: false
+						isOnlineCheckDisabled: payload.isOnlineCheckDisabled
 					}
 				}
 			}
 		});
-	};
-
-	/**
-	 * sync products on the robot
-	 * @param robotId
-	 * @returns
-	 */
-	robotSyncProducts = (robotId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
-			':robot',
-			robotId
-		);
-		return HttpClientService.post(url);
 	};
 }
 const instance = new RobotsService();

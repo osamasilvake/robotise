@@ -414,6 +414,14 @@
 	},
 	"ROBOTS": {
 		"LIST": {
+			"ACTIONS": {
+				"HEADINGS": {
+					"FILTERS": "Filters"
+				},
+				"HIDDEN": {
+					"LABEL": "Include hidden robots"
+				}
+			},
 			"TABLE": {
 				"COLUMNS": {
 					"NAME": "Name",
@@ -454,6 +462,7 @@
 				},
 				"LOCATION": {
 					"TITLE": "Location",
+					"FLOOR": "Floor:",
 					"GRID": "Grid"
 				},
 				"COMMANDS": {
@@ -761,7 +770,8 @@
 									"LABEL": "Location",
 									"PLACEHOLDER": "Please enter the Location",
 									"VALIDATIONS": {
-										"REQUIRED": "Please enter the target location."
+										"REQUIRED": "Please enter the target location.",
+										"INVALID": "Location must be valid."
 									}
 								},
 								"SERVICE_POSITIONS": {
@@ -903,7 +913,12 @@
 							},
 							"CHECKBOXES": {
 								"HIDDEN": {
-									"LABEL": "Hidden"
+									"LABEL": "Hidden",
+									"NOTE": "*Whether to show robot in the ROC robots list!"
+								},
+								"ONLINE_CHECK_DISABLED": {
+									"LABEL": "Online Check Disabled",
+									"NOTE": "*Whether robot should send updates to RC: Robots Online Checker channel!"
 								}
 							}
 						},

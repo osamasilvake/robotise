@@ -23,7 +23,7 @@ const Robot: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 
-	const cRobotName = robotTwinsSummary.content?.dataById[params.robot]?.robotTitle;
+	const cRobotName = robotTwinsSummary.content?.dataById[params.robotId]?.robotTitle;
 	const cOrderTarget = order.content?.location || undefined;
 	const cPurchaseTarget = purchase.content?.location || undefined;
 
@@ -35,9 +35,9 @@ const Robot: FC = () => {
 	 * @returns
 	 */
 	const switchDetailRoute = () => {
-		if (params.order) {
+		if (params.orderId) {
 			return <RobotOrderDetail />;
-		} else if (params.purchase) {
+		} else if (params.purchaseId) {
 			return <RobotPurchaseDetail />;
 		}
 		return <RobotContent />;

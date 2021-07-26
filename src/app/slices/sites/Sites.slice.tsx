@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import SitesService from '../../screens/business/sites/Sites.service';
 import { deserializeSites } from '../../utilities/serializers/json-api/Sites.deserialize';
 import { AppReducerType } from '..';
-import { ISite, SliceSitesInterface, SSContentInterface } from './Sites.slice.interface';
+import { SliceSitesInterface } from './Sites.slice.interface';
 
 // initial state
 export const initialState: SliceSitesInterface = {
@@ -92,43 +92,4 @@ export const SitesFetchList =
 				// dispatch: failure
 				dispatch(failure(message));
 			});
-	};
-
-/**
- * Update site
- * @param site
- * @returns
- */
-export const SiteUpdate =
-	(site: ISite) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const sites = states.sites;
-
-		// handle site mapping
-		const result = handleMapping(sites.content, site);
-
-		// dispatch: success
-		dispatch(success(result));
-	};
-
-/**
- * handle site mapping
- * @param sites
- * @param site
- * @returns
- */
-const handleMapping = (sites: SSContentInterface | null, site: ISite) =>
-	sites && {
-		...sites,
-		data: sites.data.map((item) => {
-			if (item.id === site.id) {
-				return site;
-			}
-			return item;
-		}),
-		dataById: {
-			...sites.dataById,
-			[site.id]: site
-		}
 	};

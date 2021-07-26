@@ -11,7 +11,7 @@ export interface SliceAlertCodesInterface {
 export interface SACContentInterface {
 	data: SACDataInterface[];
 	meta: JsonApiMeta;
-	state?: SACState;
+	state?: SACStateInterface;
 }
 
 export interface SACContentDataByIdInterface {
@@ -34,7 +34,7 @@ export interface SACDataInterface {
 	updatedAt: string;
 }
 
-export interface SACState {
+export interface SACStateInterface {
 	page?: number;
 	rowsPerPage?: number;
 }

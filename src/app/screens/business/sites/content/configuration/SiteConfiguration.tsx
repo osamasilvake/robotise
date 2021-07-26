@@ -25,9 +25,9 @@ const SiteConfiguration: FC = () => {
 	const site = useSelector(siteSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.site];
+	const siteSingle = sites.content?.dataById[params.siteId];
 
-	const cSiteId = params.site;
+	const cSiteId = params.siteId;
 	const pSiteId = site.notifications.content?.site.id;
 
 	useEffect(() => {
@@ -43,7 +43,7 @@ const SiteConfiguration: FC = () => {
 	}
 
 	// error
-	if (sites.errors) {
+	if (!siteSingle?.id || sites.errors) {
 		return <PageError message={sites.errors?.text} />;
 	}
 
@@ -53,7 +53,7 @@ const SiteConfiguration: FC = () => {
 	}
 
 	// empty
-	if (!siteSingle?.id) {
+	if (!sites.content.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

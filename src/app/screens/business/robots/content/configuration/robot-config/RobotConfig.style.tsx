@@ -7,5 +7,11 @@ export const RobotConfigStyle = makeStyles((theme: Theme) => ({
 	},
 	sForm: {
 		marginTop: theme.spacing(3)
+	},
+	sFormControlBox: {
+		marginTop: theme.spacing(1)
+	},
+	sFormHelperText: {
+		margin: 0
 	}
 }));

@@ -22,13 +22,13 @@ const RobotPurchaseDetail: FC = () => {
 
 	useEffect(() => {
 		// dispatch: fetch purchase
-		dispatch(PurchaseFetch(params.purchase));
-	}, [dispatch, params.purchase]);
+		dispatch(PurchaseFetch(params.purchaseId));
+	}, [dispatch, params.purchaseId]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			// dispatch: fetch purchase
-			dispatch(PurchaseFetch(params.purchase, true));
+			dispatch(PurchaseFetch(params.purchaseId, true));
 		};
 
 		// interval
@@ -37,7 +37,7 @@ const RobotPurchaseDetail: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.purchases.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, params.purchase]);
+	}, [dispatch, params.purchaseId]);
 
 	// loader
 	if (purchase.loader) {

@@ -8,7 +8,7 @@ import {
 	purchasesSelector,
 	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
-import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+import { SPCStateInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { TableFieldCommentInterface } from './RobotPurchasesTable.interface';
 import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 
@@ -36,7 +36,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 			dispatch(PurchaseEditComment(purchase.id, value, () => closeEditMode()));
 		} else {
 			// dispatch: update state
-			const state: SPCState = {
+			const state: SPCStateInterface = {
 				...purchases.content?.state,
 				locked: purchase.id
 			};
@@ -52,7 +52,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	 */
 	const closeEditMode = () => {
 		// dispatch: update state
-		const state: SPCState = {
+		const state: SPCStateInterface = {
 			...purchases.content?.state,
 			locked: ''
 		};

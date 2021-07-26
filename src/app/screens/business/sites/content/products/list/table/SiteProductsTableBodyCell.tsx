@@ -35,7 +35,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	const [openDelete, setOpenDelete] = useState(false);
 
 	const params: SiteParamsInterface = useParams();
-	const currency = sites.content?.dataById[params.site]?.currency;
+	const currency = sites.content?.dataById[params.siteId]?.currency;
 
 	/**
 	 * open create/edit product dialog

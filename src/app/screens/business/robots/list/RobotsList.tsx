@@ -1,4 +1,5 @@
-import { FC, useEffect } from 'react';
+import { Box } from '@material-ui/core';
+import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../../../components/common/loader/Loader';
@@ -10,6 +11,7 @@ import {
 	robotTwinsSummarySelector
 } from '../../../../slices/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../slices/sites/Sites.slice';
+import RobotsActions from './actions/RobotsActions';
 import RobotsTable from './table/RobotsTable';
 
 const RobotsList: FC = () => {
@@ -17,10 +19,21 @@ const RobotsList: FC = () => {
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
+	const hidden = !!robotTwinsSummary.content?.state?.hidden;
+	const pageRef = useRef({
+		hidden: !!robotTwinsSummary.content?.state?.hidden
+	});
+
 	useEffect(() => {
+		// conditions
+		const condition1 = pageRef.current.hidden === hidden;
+
 		// dispatch: fetch robot twins summary
-		dispatch(RobotTwinsSummaryFetchList(true));
-	}, [dispatch]);
+		dispatch(RobotTwinsSummaryFetchList(condition1));
+
+		// update ref
+		pageRef.current.hidden = hidden;
+	}, [dispatch, hidden]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader) {
@@ -42,6 +55,14 @@ const RobotsList: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return <RobotsTable content={robotTwinsSummary.content} />;
+	return (
+		<Box>
+			{/* Actions */}
+			<RobotsActions hidden={hidden} />
+
+			{/* Table */}
+			<RobotsTable content={robotTwinsSummary.content} />
+		</Box>
+	);
 };
 export default RobotsList;

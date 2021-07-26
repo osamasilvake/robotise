@@ -12,7 +12,7 @@ import {
 	SlicePurchasesInterface,
 	SPCDataInterface,
 	SPContentInterface,
-	SPCState
+	SPCStateInterface
 } from './Purchases.slice.interface';
 
 // initial state
@@ -194,7 +194,7 @@ export const PurchaseEditComment =
  * @returns
  */
 export const PurchaseUpdateState =
-	(state: SPCState) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SPCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
 		const purchases = states.purchases;

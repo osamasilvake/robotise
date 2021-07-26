@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
-import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
+import { SOCStateInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
 
 const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {
@@ -19,7 +19,7 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 	 */
 	const toggleActiveOrders = () => {
 		// dispatch: update state
-		const state: SOCState = {
+		const state: SOCStateInterface = {
 			...orders.content?.state,
 			page: 0,
 			activeOrders: !activeOrders

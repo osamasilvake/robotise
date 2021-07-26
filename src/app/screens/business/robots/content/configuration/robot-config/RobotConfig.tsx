@@ -1,4 +1,5 @@
 import {
+	Box,
 	Button,
 	Card,
 	CardContent,
@@ -14,9 +15,12 @@ import {
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
+import { AppConfigService } from '../../../../../../services';
 import { RobotUpdateConfig } from '../../../../../../slices/robots/Robot.slice';
+import { RobotTwinsFetch } from '../../../../../../slices/robots/RobotTwins.slice';
+import { RobotTwinsSummaryFetchList } from '../../../../../../slices/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,
@@ -37,8 +41,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params: RobotParamsInterface = useParams();
-	const robotSingle = robotTwinsSummary.content?.dataById[params.robot];
+	const history = useHistory();
 
+	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
@@ -46,13 +51,31 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 			{
 				name: robotSingle?.robotTitle || '',
 				customerName: robotSingle?.robotCustomerName || '',
-				isHidden: robotSingle?.robotHidden || false
+				isHidden: robotSingle?.robotHidden || false,
+				isOnlineCheckDisabled: robotSingle?.robotOnlineCheckDisabled || false
 			},
 			RobotConfigValidation,
 			async () => {
 				if (robotSingle?.robotId) {
 					// dispatch: update robot specific detail
-					dispatch(RobotUpdateConfig(robotSingle.robotId, values));
+					dispatch(
+						RobotUpdateConfig(robotSingle.robotId, values, () => {
+							if (!robotTwinsSummary.content?.state?.hidden && values.isHidden) {
+								// prepare link
+								const robotsLink =
+									AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
+
+								// push to history
+								history.push(robotsLink);
+							} else {
+								// dispatch: fetch robot twins summary
+								dispatch(RobotTwinsSummaryFetchList(true));
+
+								// dispatch: fetch robot twins of a robot
+								dispatch(RobotTwinsFetch(robotSingle.id, true));
+							}
+						})
+					);
 				}
 			}
 		);
@@ -104,19 +127,46 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									<FormHelperText>{t(errors.customerName)}</FormHelperText>
 								)}
 							</FormControl>
-							<FormControl>
-								<FormControlLabel
-									control={
-										<Switch
-											color="primary"
-											name="isHidden"
-											checked={values.isHidden}
-											onChange={handleChangeCheckbox}
-										/>
-									}
-									label={t(`${common}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`)}
-								/>
-							</FormControl>
+							<Box>
+								<FormControl>
+									<FormControlLabel
+										control={
+											<Switch
+												color="primary"
+												name="isHidden"
+												checked={values.isHidden}
+												onChange={handleChangeCheckbox}
+											/>
+										}
+										label={t(`${common}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`)}
+									/>
+								</FormControl>
+								<FormHelperText className={classes.sFormHelperText}>
+									{t(`${common}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
+								</FormHelperText>
+							</Box>
+							<Box className={classes.sFormControlBox}>
+								<FormControl>
+									<FormControlLabel
+										control={
+											<Switch
+												color="primary"
+												name="isOnlineCheckDisabled"
+												checked={values.isOnlineCheckDisabled}
+												onChange={handleChangeCheckbox}
+											/>
+										}
+										label={t(
+											`${common}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.LABEL`
+										)}
+									/>
+								</FormControl>
+								<FormHelperText className={classes.sFormHelperText}>
+									{t(
+										`${common}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.NOTE`
+									)}
+								</FormHelperText>
+							</Box>
 						</Grid>
 						<Grid item xs={12}>
 							<Button

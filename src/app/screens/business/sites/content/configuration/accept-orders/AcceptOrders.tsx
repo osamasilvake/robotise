@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { SiteAcceptOrders } from '../../../../../../slices/sites/Site.slice';
-import { SiteUpdate } from '../../../../../../slices/sites/Sites.slice';
+import { SitesFetchList } from '../../../../../../slices/sites/Sites.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { AcceptOrdersInterface } from './AcceptOrders.interface';
@@ -29,8 +29,8 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.site];
-	const siteId = params.site;
+	const siteSingle = sites.content?.dataById[params.siteId];
+	const siteId = params.siteId;
 
 	const common = 'CONTENT.CONFIGURATION.ACCEPT_ORDERS';
 
@@ -43,13 +43,8 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 			SiteAcceptOrders(siteId, !siteSingle?.acceptOrders, () => {
 				const cSite = sites.content?.dataById[siteId];
 				if (cSite) {
-					// dispatch: update site
-					dispatch(
-						SiteUpdate({
-							...cSite,
-							acceptOrders: !siteSingle?.acceptOrders
-						})
-					);
+					// dispatch: fetch sites
+					dispatch(SitesFetchList(true));
 				}
 			})
 		);

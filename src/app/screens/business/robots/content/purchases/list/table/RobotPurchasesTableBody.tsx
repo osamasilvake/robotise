@@ -85,7 +85,9 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 	const handleShowPurchaseDetail = (purchase: SPCDataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL;
-		const robotLink = url.replace(':robot', params.robot).replace(':purchase', purchase.id);
+		const robotLink = url
+			.replace(':robotId', params.robotId)
+			.replace(':purchaseId', purchase.id);
 
 		// push to history
 		history.push(robotLink);

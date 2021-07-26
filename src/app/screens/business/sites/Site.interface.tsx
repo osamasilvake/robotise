@@ -1,3 +1,3 @@
 export interface SiteParamsInterface {
-	site: string;
+	siteId: string;
 }

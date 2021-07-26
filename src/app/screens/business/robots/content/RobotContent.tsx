@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
+import PageError from '../../../../components/content/page-error/PageError';
 import { robotTwinsSummarySelector } from '../../../../slices/robots/RobotTwinsSummary.slice';
 import { siteSelector, SiteServicePositionsFetch } from '../../../../slices/sites/Site.slice';
 import { RobotParamsInterface } from '../Robot.interface';
@@ -26,17 +27,18 @@ const RobotContent: FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const cSiteId = robotTwinsSummary.content?.dataById[params.robot].siteId;
+	const cSiteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
 	const pSiteId = site.servicePositions.content?.site?.id;
 
 	const common = 'CONTENT.TABS';
 
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
-			(r) => r.path.replace(':robot', params.robot) === location.pathname
+			(r) => r.path.replace(':robotId', params.robotId) === location.pathname
 		);
+
 		setValue(cIndex - 1);
-	}, [location.pathname, params.robot]);
+	}, [location.pathname, params.robotId]);
 
 	useEffect(() => {
 		const condition1 = site.servicePositions.content === null;
@@ -55,7 +57,7 @@ const RobotContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = robotsRoutes[value + 1].path.replace(':robot', params.robot);
+		const url = robotsRoutes[value + 1].path.replace(':robotId', params.robotId);
 
 		// push to history
 		history.push(url);
@@ -63,32 +65,41 @@ const RobotContent: FC = () => {
 
 	return value !== -1 ? (
 		<Box>
-			{/* Tabs */}
-			<Tabs value={value} onChange={handleTabChange} variant="scrollable" textColor="primary">
-				<Tab label={t(`${common}.DETAIL`)} />
-				<Tab label={t(`${common}.INVENTORY`)} />
-				<Tab label={t(`${common}.ORDERS`)} />
-				<Tab label={t(`${common}.PURCHASES`)} />
-				<Tab label={t(`${common}.CONFIGURATION`)} />
-			</Tabs>
+			{!!cSiteId && (
+				<>
+					{/* Tabs */}
+					<Tabs
+						value={value}
+						onChange={handleTabChange}
+						variant="scrollable"
+						textColor="primary">
+						<Tab label={t(`${common}.DETAIL`)} />
+						<Tab label={t(`${common}.INVENTORY`)} />
+						<Tab label={t(`${common}.ORDERS`)} />
+						<Tab label={t(`${common}.PURCHASES`)} />
+						<Tab label={t(`${common}.CONFIGURATION`)} />
+					</Tabs>
 
-			{/* Tab Panel */}
-			<Box>
-				{/* Detail */}
-				{value === 0 && <RobotDetail />}
+					{/* Tab Panel */}
+					<Box>
+						{/* Detail */}
+						{value === 0 && <RobotDetail />}
 
-				{/* Inventory */}
-				{value === 1 && <RobotInventory />}
+						{/* Inventory */}
+						{value === 1 && <RobotInventory />}
 
-				{/* Orders */}
-				{value === 2 && <RobotOrdersList />}
+						{/* Orders */}
+						{value === 2 && <RobotOrdersList />}
 
-				{/* Purchases */}
-				{value === 3 && <RobotPurchasesList />}
+						{/* Purchases */}
+						{value === 3 && <RobotPurchasesList />}
 
-				{/* Configuration */}
-				{value === 4 && <RobotConfiguration />}
-			</Box>
+						{/* Configuration */}
+						{value === 4 && <RobotConfiguration />}
+					</Box>
+				</>
+			)}
+			{!cSiteId && robotTwinsSummary.content?.data.length && <PageError />}
 		</Box>
 	) : null;
 };

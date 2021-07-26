@@ -7,7 +7,7 @@ import {
 	purchasesSelector,
 	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
-import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+import { SPCStateInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesBilledInterface } from './RobotPurchasesActions.interface';
 
 const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
@@ -22,7 +22,7 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	 */
 	const toggleBilled = () => {
 		// dispatch: update state
-		const state: SPCState = {
+		const state: SPCStateInterface = {
 			...purchases.content?.state,
 			page: 0,
 			billed: !billed

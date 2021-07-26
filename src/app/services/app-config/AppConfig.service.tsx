@@ -118,7 +118,7 @@ class AppConfigService extends EnvService {
 							detail: {
 								refreshTime: 2000,
 								alert: {
-									messageSizes: [50, 70]
+									messageSizes: [45, 70]
 								},
 								commands: {
 									requestDelay: 4000
@@ -167,7 +167,8 @@ class AppConfigService extends EnvService {
 				}
 			},
 			regex: {
-				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/)
+				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
+				normalInteger: new RegExp(/^\+?([1-9]\d*)$/)
 			}
 		};
 	}
@@ -207,15 +208,15 @@ class AppConfigService extends EnvService {
 					ROBOTS: {
 						ALL: `${this.envAppUrl}/robot-twins-summary`,
 						SINGLE: `${this.envAppUrl}/robot-twins/:robotTwinId`,
-						INVENTORY: `${this.envAppUrl}/robots/:robot/inventory`,
+						INVENTORY: `${this.envAppUrl}/robots/:robotId/inventory`,
 						ORDERS: `${this.envAppUrl}/orders`,
-						ORDER: `${this.envAppUrl}/orders/:order`,
+						ORDER: `${this.envAppUrl}/orders/:orderId`,
 						PURCHASES: `${this.envAppUrl}/order-reports`,
-						PURCHASE: `${this.envAppUrl}/order-reports/:purchase`,
+						PURCHASE: `${this.envAppUrl}/order-reports/:purchaseId`,
 						MAPS: `${this.envAppUrl}/maps/:mapId`,
-						COMMANDS: `${this.envAppUrl}/robots/:robot/commands`,
+						COMMANDS: `${this.envAppUrl}/robots/:robotId/commands`,
 						ROBOT_CONFIG: `${this.envAppUrl}/robots/:robotId`,
-						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robot/sync-products`
+						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`
 					}
 				},
 				INFORMATION: {

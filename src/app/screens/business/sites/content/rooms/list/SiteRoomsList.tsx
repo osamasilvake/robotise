@@ -23,7 +23,7 @@ const SiteRoomsList: FC = () => {
 	const rooms = useSelector(roomsSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.site];
+	const siteSingle = sites.content?.dataById[params.siteId];
 
 	const cSiteId = siteSingle?.id;
 	const pSiteId = rooms.content?.siteId;
@@ -49,8 +49,8 @@ const SiteRoomsList: FC = () => {
 	}
 
 	// error
-	if (sites.errors) {
-		return <PageError message={sites.errors.text} />;
+	if (!siteSingle?.id || sites.errors) {
+		return <PageError message={sites.errors?.text} />;
 	}
 
 	// null
@@ -59,7 +59,7 @@ const SiteRoomsList: FC = () => {
 	}
 
 	// empty
-	if (!siteSingle?.id || !siteSingle?.rooms.available) {
+	if (!siteSingle?.rooms.available) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

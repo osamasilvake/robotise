@@ -51,7 +51,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 								size="small"
 								label={t('CONTENT.ORDERS.LIST.ACTIONS.CANCEL.LABEL')}
 								variant="outlined"
-								clickable
+								color="error"
+								onDelete={openCancelOrderDialog}
 								onClick={openCancelOrderDialog}
 								className={classes.sCancelOrder}
 							/>

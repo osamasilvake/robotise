@@ -16,8 +16,6 @@ export const RobotOrdersTableStyle = makeStyles((theme: Theme) => ({
 		pointerEvents: 'none'
 	},
 	sCancelOrder: {
-		borderColor: AppConfigService.AppOptions.colors.c12,
-		color: AppConfigService.AppOptions.colors.c12,
 		marginLeft: theme.spacing(1)
 	}
 }));

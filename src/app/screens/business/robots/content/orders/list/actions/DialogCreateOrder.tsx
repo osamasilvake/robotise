@@ -25,7 +25,7 @@ import {
 	ordersSelector,
 	OrderUpdateState
 } from '../../../../../../../slices/orders/Orders.slice';
-import { SOCState } from '../../../../../../../slices/orders/Orders.slice.interface';
+import { SOCStateInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
 import { siteSelector } from '../../../../../../../slices/sites/Site.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
@@ -75,7 +75,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						setOpen(false);
 
 						// dispatch: update state
-						const state: SOCState = {
+						const state: SOCStateInterface = {
 							...orders.content?.state,
 							page: 0
 						};

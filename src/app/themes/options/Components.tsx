@@ -118,8 +118,6 @@ const OverridesCustom: Components = {
 					}
 				},
 				'&.MuiButton-outlinedError': {
-					borderColor: AppConfigService.AppOptions.colors.c12,
-					color: AppConfigService.AppOptions.colors.c12,
 					'&:hover': {
 						backgroundColor: AppConfigService.AppOptions.colors.c12,
 						color: AppConfigService.AppOptions.colors.c7

@@ -9,7 +9,7 @@ import {
 	purchasesSelector,
 	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
-import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+import { SPCStateInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import {
 	RobotPurchasesTableHeadOrder,
@@ -56,7 +56,7 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const state: SPCState = {
+		const state: SPCStateInterface = {
 			...content?.state,
 			page: newPage
 		};
@@ -69,7 +69,7 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const state: SPCState = {
+		const state: SPCStateInterface = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value

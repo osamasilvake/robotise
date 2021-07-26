@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { RTSContentStateInterface } from '../../../slices/robots/RobotTwinsSummary.slice.interface';
 import { RobotConfigPayloadInterface } from './content/configuration/robot-config/RobotConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
@@ -14,13 +15,14 @@ import { RobotPurchasesListPayloadInterface } from './content/purchases/RobotPur
 class RobotsService {
 	/**
 	 * fetch robot twins summary
+	 * @param filters
 	 * @returns
 	 */
-	robotTwinsSummaryFetch = () => {
+	robotTwinsSummaryFetch = (filters: RTSContentStateInterface | undefined) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[isHidden]': 'true,false'
+				'filter[isHidden]': filters?.hidden ? undefined : false
 			}
 		});
 	};

@@ -67,7 +67,7 @@ const RobotDetail: FC = () => {
 	}
 
 	// error
-	if (sites.errors || robotTwins.errors) {
+	if (!robotTwinId || sites.errors || robotTwins.errors) {
 		return <PageError message={sites.errors?.text || robotTwins.errors?.text} />;
 	}
 

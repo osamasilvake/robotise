@@ -414,6 +414,14 @@
 	},
 	"ROBOTS": {
 		"LIST": {
+			"ACTIONS": {
+				"HEADINGS": {
+					"FILTERS": "Filters"
+				},
+				"HIDDEN": {
+					"LABEL": "Include hidden robots"
+				}
+			},
 			"TABLE": {
 				"COLUMNS": {
 					"NAME": "Name",

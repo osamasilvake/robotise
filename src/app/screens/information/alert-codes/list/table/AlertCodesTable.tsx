@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
-import { SACState } from '../../../../../slices/alert-codes/AlertCodes.interface';
+import { SACStateInterface } from '../../../../../slices/alert-codes/AlertCodes.interface';
 import {
 	alertCodesSelector,
 	AlertCodesUpdateState
@@ -52,7 +52,7 @@ const AlertCodesTable: FC<AlertCodesTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const state: SACState = {
+		const state: SACStateInterface = {
 			...content?.state,
 			page: newPage
 		};
@@ -65,7 +65,7 @@ const AlertCodesTable: FC<AlertCodesTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const state: SACState = {
+		const state: SACStateInterface = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value

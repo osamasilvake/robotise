@@ -43,7 +43,7 @@ const SiteConfiguration: FC = () => {
 	}
 
 	// error
-	if (sites.errors) {
+	if (!siteSingle?.id || sites.errors) {
 		return <PageError message={sites.errors?.text} />;
 	}
 
@@ -53,7 +53,7 @@ const SiteConfiguration: FC = () => {
 	}
 
 	// empty
-	if (!siteSingle?.id) {
+	if (!sites.content.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

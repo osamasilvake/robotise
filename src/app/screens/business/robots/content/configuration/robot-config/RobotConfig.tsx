@@ -14,8 +14,9 @@ import {
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
+import { AppConfigService } from '../../../../../../services';
 import { RobotUpdateConfig } from '../../../../../../slices/robots/Robot.slice';
 import { RobotTwinsFetch } from '../../../../../../slices/robots/RobotTwins.slice';
 import { RobotTwinsSummaryFetchList } from '../../../../../../slices/robots/RobotTwinsSummary.slice';
@@ -39,8 +40,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params: RobotParamsInterface = useParams();
-	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
+	const history = useHistory();
 
+	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
@@ -56,11 +58,20 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 					// dispatch: update robot specific detail
 					dispatch(
 						RobotUpdateConfig(robotSingle.robotId, values, () => {
-							// dispatch: fetch robot twins summary
-							dispatch(RobotTwinsSummaryFetchList(true));
+							if (!robotTwinsSummary.content?.state?.hidden && values.isHidden) {
+								// prepare link
+								const robotsLink =
+									AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
 
-							// dispatch: fetch robot twins of a robot
-							dispatch(RobotTwinsFetch(robotSingle.id, true));
+								// push to history
+								history.push(robotsLink);
+							} else {
+								// dispatch: fetch robot twins summary
+								dispatch(RobotTwinsSummaryFetchList(true));
+
+								// dispatch: fetch robot twins of a robot
+								dispatch(RobotTwinsFetch(robotSingle.id, true));
+							}
 						})
 					);
 				}

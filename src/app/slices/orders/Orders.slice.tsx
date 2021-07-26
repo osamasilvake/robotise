@@ -13,7 +13,7 @@ import {
 	SliceOrdersInterface,
 	SOCDataInterface,
 	SOContentInterface,
-	SOCState
+	SOCStateInterface
 } from './Orders.slice.interface';
 
 // initial state
@@ -253,7 +253,7 @@ export const OrderCancel =
  * @returns
  */
 export const OrderUpdateState =
-	(state: SOCState) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SOCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
 		const orders = states.orders;

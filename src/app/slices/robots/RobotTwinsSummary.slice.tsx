@@ -7,6 +7,7 @@ import { deserializeRobotTwinsSummary } from '../../utilities/serializers/json-a
 import { AppReducerType } from '..';
 import {
 	RTSContentInterface,
+	RTSContentStateInterface,
 	SliceRobotTwinsSummaryInterface
 } from './RobotTwinsSummary.slice.interface';
 
@@ -14,6 +15,7 @@ import {
 export const initialState: SliceRobotTwinsSummaryInterface = {
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -41,12 +43,23 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
+		updated: (state, action) => {
+			state.updating = false;
+			state.content = action.payload;
+		},
+		updateFailed: (state) => {
+			state.updating = false;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const robotTwinsSummarySelector = (state: AppReducerType) => state['robotTwinsSummary'];
@@ -66,6 +79,7 @@ export const RobotTwinsSummaryFetchList =
 		const states = getState();
 		const sites = states.sites;
 		const robotTwinsSummary = states.robotTwinsSummary;
+		const filters = robotTwinsSummary.content?.state;
 
 		// return on busy
 		if (
@@ -79,11 +93,20 @@ export const RobotTwinsSummaryFetchList =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		return RobotsService.robotTwinsSummaryFetch()
+		return RobotsService.robotTwinsSummaryFetch(filters)
 			.then(async (res) => {
 				if (sites && sites.content) {
 					// deserialize response
-					const result = await deserializeRobotTwinsSummary(res, sites.content);
+					let result: RTSContentInterface = await deserializeRobotTwinsSummary(
+						res,
+						sites.content
+					);
+
+					// state
+					result = {
+						...result,
+						state: filters
+					};
 
 					// count alerts for badge
 					const alerts = countAlerts(result);
@@ -104,6 +127,32 @@ export const RobotTwinsSummaryFetchList =
 				// dispatch: failure
 				dispatch(failure(message));
 			});
+	};
+
+/**
+ * update state
+ * @param state
+ * @returns
+ */
+export const RobotTwinsSummaryUpdateState =
+	(state: RTSContentStateInterface) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const robotTwinsSummary = states.robotTwinsSummary;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		if (robotTwinsSummary && robotTwinsSummary.content) {
+			const result = {
+				...robotTwinsSummary.content,
+				state
+			};
+
+			// dispatch: updated
+			dispatch(updated(result));
+		}
 	};
 
 /**

@@ -12,7 +12,7 @@ export interface SliceOrdersInterface {
 export interface SOContentInterface {
 	data: SOCDataInterface[];
 	meta: JsonApiMeta;
-	state?: SOCState;
+	state?: SOCStateInterface;
 }
 
 export interface SOCDataInterface {
@@ -29,7 +29,7 @@ export interface SOCDataInterface {
 	robot: SOCRobotInterface;
 }
 
-export interface SOCState {
+export interface SOCStateInterface {
 	robotId?: string;
 	page?: number;
 	rowsPerPage?: number;

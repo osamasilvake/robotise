@@ -4,6 +4,7 @@ import { IAlert } from './RobotTwins.slice.interface';
 export interface SliceRobotTwinsSummaryInterface {
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: RTSContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
@@ -12,6 +13,7 @@ export interface RTSContentInterface {
 	data: RTSContentDataInterface[];
 	dataById: RTSContentDataByIdInterface;
 	alerts?: RTSContentAlertsInterface;
+	state?: RTSContentStateInterface;
 }
 
 export interface RTSContentDataInterface {
@@ -40,6 +42,10 @@ export interface RTSContentAlertsInterface {
 	count?: number;
 	danger: number;
 	warning: number;
+}
+
+export interface RTSContentStateInterface {
+	hidden?: boolean;
 }
 
 export interface RTSContentTransformDataInterface {

@@ -7,7 +7,7 @@ import {
 	purchasesSelector,
 	PurchaseUpdateState
 } from '../../../../../../../slices/purchases/Purchases.slice';
-import { SPCState } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+import { SPCStateInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
 import { RobotPurchasesDebugInterface } from './RobotPurchasesActions.interface';
 
 const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
@@ -22,7 +22,7 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	 */
 	const toggleDebug = () => {
 		// dispatch: update state
-		const state: SPCState = {
+		const state: SPCStateInterface = {
 			...purchases.content?.state,
 			page: 0,
 			debug: !debug

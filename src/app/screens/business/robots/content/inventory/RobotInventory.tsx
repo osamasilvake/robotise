@@ -85,7 +85,13 @@ const RobotInventory: FC = () => {
 	}
 
 	// error
-	if (sites.errors || robotTwinsSummary.errors || products.errors || inventory.errors) {
+	if (
+		!cSiteId ||
+		sites.errors ||
+		robotTwinsSummary.errors ||
+		products.errors ||
+		inventory.errors
+	) {
 		return (
 			<PageError
 				message={

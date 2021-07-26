@@ -300,7 +300,7 @@ class RobotsService {
 					customerName: payload.customerName,
 					configs: {
 						isHidden: payload.isHidden,
-						isOnlineCheckDisabled: false
+						isOnlineCheckDisabled: payload.isOnlineCheckDisabled
 					}
 				}
 			}

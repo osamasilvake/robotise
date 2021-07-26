@@ -53,7 +53,8 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 						id: data.robot.id,
 						name: state.name,
 						customerName: state.customerName,
-						isHidden: state.isHidden
+						isHidden: state.isHidden,
+						isOnlineCheckDisabled: state.isOnlineCheckDisabled
 					},
 					site: {
 						id: data.site.id
@@ -108,6 +109,7 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 			robotMissionStatus: item.status.missionStatus.value,
 			robotCustomerName: item.robot.customerName,
 			robotHidden: item.robot.isHidden,
+			robotOnlineCheckDisabled: item.robot.isOnlineCheckDisabled,
 			siteId: site.id,
 			siteTitle: site.title,
 			siteCurrency: site.currency || AppConfigService.AppOptions.common.defaultCurrency,

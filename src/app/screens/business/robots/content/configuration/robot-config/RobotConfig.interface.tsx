@@ -10,4 +10,5 @@ export interface RobotConfigPayloadInterface {
 	name: string;
 	customerName: string;
 	isHidden?: boolean;
+	isOnlineCheckDisabled?: boolean;
 }

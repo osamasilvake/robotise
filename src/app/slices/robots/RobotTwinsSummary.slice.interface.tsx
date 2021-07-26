@@ -26,6 +26,7 @@ export interface RTSContentDataInterface {
 	robotMissionStatus: string;
 	robotCustomerName: string;
 	robotHidden: boolean;
+	robotOnlineCheckDisabled: boolean;
 	siteId: string;
 	siteTitle: string;
 	siteCurrency: string;
@@ -56,6 +57,7 @@ export interface RTSContentTransformDataInterface {
 		name: string;
 		customerName: string;
 		isHidden: boolean;
+		isOnlineCheckDisabled: boolean;
 	};
 	site: {
 		id: string;
@@ -100,6 +102,7 @@ export interface IRobotTwinSummary {
 			customerName: string;
 			lastSyncedProducts: Date;
 			isHidden: boolean;
+			isOnlineCheckDisabled: boolean;
 			alerts: IAlert[];
 			robotState: {
 				isReady: boolean;

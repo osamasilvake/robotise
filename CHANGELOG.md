@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.0.1...v2.1.0) (2021-07-26)
+
+
+### Features
+
+* Add filters to robots list ([053eb9d](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/053eb9db5829994e7fe2896bf406422bf5316113))
+* Add isOnlineCheckDisabled to robot config ([8a30e8c](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/8a30e8cb90b0855507088e5a463ab89344c78eab))
+
+
+### Bug Fixes
+
+* Accept orders and notification refresh list in creation ([e759210](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e759210bd302424ad8ef06fec698ce2901557c3f))
+* Add error color to delete action button ([477b2e8](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/477b2e89c960f524133d394c4d17f0588aa37d0e))
+* Add missing files to gitlab-ci.yml ([1aa9c6d](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/1aa9c6de1ffcfdedf0be9e774a5c661f129b13d1))
+* Add mission status and new order statuses (rejected) ([d559615](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d559615f0a468c70772764e26d6d180a43339a81))
+* Add mission status to robot detail page ([4c318cb](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/4c318cbec3d55ef7699eca038898f48722a34726))
+* Change development to master as push ([7548de7](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7548de72686002ee7bb65cbcb98505169b10b57d))
+* Filter out site and robot slice content ([8fd204b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/8fd204b991e143ce47ab64803e516954fab9324d))
+* Notification type issue ([94db118](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/94db118411c5eb9d85d92d8c051bfddd0853d7f8))
+* Order location field ([ea64966](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ea6496662c4050ece926a58d2086a9dee2ff59d9))
+* Put unique names to ci stages ([f59302b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f59302b412982f115aecf3017de4d937455a6f67))
+* Refactor routes ([279ad23](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/279ad233e65d73af05a548c6fb3c6049b37d6498))
+* Refactor translation and javascript return syntax ([3bdedf6](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3bdedf63ea0b90c245bd473fe436793edd7185fb))
+* Remove react-markdown ([1916351](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/191635140a00553d347d53d39a8cab3f50153c54))
+* Reset selected option on successful create notification ([68669eb](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/68669ebc1c1c11673eaef731ba4859fa61a4806e))
+* Robot config ([5bd7ee6](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/5bd7ee659fb5555dc782e86d314d9d80bd2df8a9))
+* Robot config form ([f2eef86](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f2eef86d00c518b59364fabbde5130d9ffdbab6c))
+* Set hidden filter to robots api ([42dbd5e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/42dbd5e7ec571c7992d5486fc1204f5268e4ff75))
+* Unit test ([ea81484](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ea81484cc21e9bf67205615f093576d2c7857c93))
+* Update development CI/CD jobs ([f119142](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f11914272e96c51a08a5aa5f768d3b156788ecdf))
+* Update site detail general ([a5e00f3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a5e00f39b3d68765eb5e679b836b94153fb3987b))
+
 ### [2.0.1](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.0.0...v2.0.1) (2021-07-13)
 
 

@@ -3,11 +3,9 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FloatStyle } from '../../../../../utilities/styles/Float.style';
-import { RobotsActionsInterface } from './RobotsActions.interface';
 import RobotsHidden from './RobotsHidden';
 
-const RobotsActions: FC<RobotsActionsInterface> = (props) => {
-	const { hidden } = props;
+const RobotsActions: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 	const floatStyle = FloatStyle();
 
@@ -20,7 +18,7 @@ const RobotsActions: FC<RobotsActionsInterface> = (props) => {
 				</Typography>
 
 				{/* Hidden */}
-				<RobotsHidden hidden={hidden} />
+				<RobotsHidden />
 			</Box>
 		</Paper>
 	);

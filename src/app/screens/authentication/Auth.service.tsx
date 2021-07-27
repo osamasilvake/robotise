@@ -105,7 +105,7 @@ class AuthService {
 		// set authorization to headers
 		this.setAuthorizationToHeaders(accessToken);
 
-		// set in storage
+		// storage: JWT access token
 		if (storageType === StorageTypeEnum.PERSISTENT) {
 			StorageService.put(AppConfigService.StorageItems.JWTAccessToken, accessToken);
 		} else {

@@ -25,6 +25,7 @@ const Auth: FC<AuthInterface> = (props) => {
 			'DOMContentLoaded',
 			() => {
 				if (type && isPrivate(type) && !isUser && location.pathname.length > 1) {
+					// storage: intended url
 					StorageService.put(
 						AppConfigService.StorageItems.IntendedURL,
 						location.pathname,

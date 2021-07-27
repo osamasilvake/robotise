@@ -1,3 +1,4 @@
+import { SelectChangeEvent } from '@material-ui/core/Select';
 import { ChangeEvent, FocusEvent, FormEvent } from 'react';
 
 export interface UseFormRetInterface<UseFormEntity> {
@@ -10,7 +11,7 @@ export interface UseFormRetInterface<UseFormEntity> {
 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface
 	) => void;
 	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
-	handleChangeSelect: (event: ChangeEvent<SelectInterface>) => void;
+	handleChangeSelect: (event: SelectChangeEvent) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 	handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
 	values: UseFormEntity;
@@ -22,9 +23,4 @@ export interface TargetInterface {
 		name: string;
 		value: string;
 	};
-}
-
-export interface SelectInterface {
-	name?: string;
-	value: string;
 }

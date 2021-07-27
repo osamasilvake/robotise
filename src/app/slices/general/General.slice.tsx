@@ -64,7 +64,7 @@ export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: 
 	// dispatch: set drawer state
 	dispatch(setDrawerState(drawerState));
 
-	// store it in local_storage
+	// storage: drawer state
 	StorageService.put(AppConfigService.StorageItems.DrawerState, drawerState);
 };
 
@@ -77,7 +77,7 @@ export const GeneralApplyThemePalette =
 		// dispatch: apply theme palette
 		dispatch(applyThemePalette(theme));
 
-		// store it in local_storage
+		// storage: theme palette
 		StorageService.put(AppConfigService.StorageItems.ThemePalette, theme);
 	};
 
@@ -90,7 +90,7 @@ export const GeneralChangeLanguage =
 		// dispatch: change language
 		dispatch(changeLanguage(language));
 
-		// store it in local_storage
+		// storage: change language
 		StorageService.put(AppConfigService.StorageItems.ChangeLanguage, language);
 	};
 

@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import RobotsService from '../../screens/business/robots/Robots.service';
+import { AppConfigService, StorageService } from '../../services';
 import { deserializeRobotTwinsSummary } from '../../utilities/serializers/json-api/RobotTwinsSummary.deserialize';
 import { AppReducerType } from '..';
 import {
@@ -10,6 +11,9 @@ import {
 	RTSContentStateInterface,
 	SliceRobotTwinsSummaryInterface
 } from './RobotTwinsSummary.slice.interface';
+
+// storage item
+const robotsState = StorageService.get(AppConfigService.StorageItems.RobotsState);
 
 // initial state
 export const initialState: SliceRobotTwinsSummaryInterface = {
@@ -79,7 +83,7 @@ export const RobotTwinsSummaryFetchList =
 		const states = getState();
 		const sites = states.sites;
 		const robotTwinsSummary = states.robotTwinsSummary;
-		const filters = robotTwinsSummary.content?.state;
+		const filters = robotTwinsSummary.content?.state || robotsState;
 
 		// return on busy
 		if (
@@ -153,6 +157,9 @@ export const RobotTwinsSummaryUpdateState =
 
 			// dispatch: updated
 			dispatch(updated(result));
+
+			// storage: robots state
+			StorageService.put(AppConfigService.StorageItems.RobotsState, state);
 		}
 	};
 

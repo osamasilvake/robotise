@@ -1,6 +1,7 @@
+import { SelectChangeEvent } from '@material-ui/core/Select';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import { SelectInterface, TargetInterface, UseFormRetInterface } from './UseForm.interface';
+import { TargetInterface, UseFormRetInterface } from './UseForm.interface';
 
 /**
  * custom hook: useForm
@@ -70,7 +71,7 @@ export const useForm = <UseFormEntity,>(
 	 * handle change: select
 	 * @param event
 	 */
-	const handleChangeSelect = (event: ChangeEvent<SelectInterface>) => {
+	const handleChangeSelect = (event: SelectChangeEvent) => {
 		const { name, value } = event.target;
 		if (name && value) {
 			// set change event values

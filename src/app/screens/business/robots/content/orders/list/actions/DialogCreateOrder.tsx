@@ -116,7 +116,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								name="location"
 								value={values.location}
 								error={!!errors?.location}
-								onChange={(e) => handleChangeInput(e)}
+								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								label={t(`${common}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.LABEL`)}
 								placeholder={t(
@@ -141,7 +141,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								id="service-positions"
 								name="location"
 								value={values.location}
-								onChange={(e) => handleChangeSelect(e)}
+								onChange={handleChangeSelect}
 								label={t(
 									`${common}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
 								)}>

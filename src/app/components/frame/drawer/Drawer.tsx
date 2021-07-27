@@ -69,7 +69,7 @@ const DrawerCustom: FC = () => {
 								robotTwinsSummary.content.alerts?.count ? (
 									<Badge
 										type={BadgeTypeEnum.NUMBER}
-										count={robotTwinsSummary.content.alerts?.count}
+										count={robotTwinsSummary.content.alerts.count}
 										color="error">
 										<Icon>{item.icon}</Icon>
 									</Badge>

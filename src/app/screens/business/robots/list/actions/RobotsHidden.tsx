@@ -4,29 +4,30 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
+	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector,
 	RobotTwinsSummaryUpdateState
 } from '../../../../../slices/robots/RobotTwinsSummary.slice';
 import { RTSContentStateInterface } from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
-import { RobotsHiddenInterface } from './RobotsActions.interface';
 
-const RobotsHidden: FC<RobotsHiddenInterface> = (props) => {
-	const { hidden } = props;
+const RobotsHidden: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
 	const dispatch = useDispatch();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+
+	const hidden = !!robotTwinsSummary.content?.state?.hidden;
 
 	/**
 	 * toggle hidden
 	 */
 	const toggleHidden = () => {
 		// dispatch: update state
-		const state: RTSContentStateInterface = {
-			...robotTwinsSummary.content?.state,
-			hidden: !hidden
-		};
+		const state: RTSContentStateInterface = { hidden: !hidden };
 		dispatch(RobotTwinsSummaryUpdateState(state));
+
+		// dispatch: fetch robot twins summary
+		dispatch(RobotTwinsSummaryFetchList());
 	};
 
 	return (

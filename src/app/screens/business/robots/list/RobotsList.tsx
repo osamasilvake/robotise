@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../../../components/common/loader/Loader';
@@ -19,21 +19,10 @@ const RobotsList: FC = () => {
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const hidden = !!robotTwinsSummary.content?.state?.hidden;
-	const pageRef = useRef({
-		hidden: !!robotTwinsSummary.content?.state?.hidden
-	});
-
 	useEffect(() => {
-		// conditions
-		const condition1 = pageRef.current.hidden === hidden;
-
 		// dispatch: fetch robot twins summary
-		dispatch(RobotTwinsSummaryFetchList(condition1));
-
-		// update ref
-		pageRef.current.hidden = hidden;
-	}, [dispatch, hidden]);
+		dispatch(RobotTwinsSummaryFetchList(true));
+	}, [dispatch]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader) {
@@ -58,7 +47,7 @@ const RobotsList: FC = () => {
 	return (
 		<Box>
 			{/* Actions */}
-			<RobotsActions hidden={hidden} />
+			<RobotsActions />
 
 			{/* Table */}
 			<RobotsTable content={robotTwinsSummary.content} />

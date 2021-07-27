@@ -34,7 +34,7 @@ const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
 	return robotTwins.alerts.value && robotTwins.alerts.value.length ? (
 		<Grid container spacing={1} className={classes.sAlertsContainer}>
 			{sortByAlertLevel().map((alert) => (
-				<RobotDetailAlert key={alert.code} alert={alert} />
+				<RobotDetailAlert key={alert.message} alert={alert} />
 			))}
 		</Grid>
 	) : null;

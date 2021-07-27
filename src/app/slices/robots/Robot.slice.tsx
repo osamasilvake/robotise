@@ -303,7 +303,7 @@ export const RobotUpdateConfig =
 				callback();
 
 				// wait
-				await timeout(800);
+				await timeout(1000);
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {

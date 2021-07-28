@@ -1,16 +1,21 @@
-import { Box, TableCell, Typography } from '@material-ui/core';
-import { Check, Close } from '@material-ui/icons';
+import { Box, Card, CardContent, TableCell, Typography } from '@material-ui/core';
+import { Check, Close, InfoOutlined } from '@material-ui/icons';
 import { FC } from 'react';
 
+import Tooltip from '../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../services';
 import { RTSContentDataInterface } from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { CardStyle } from '../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../../content/detail/commands/RobotDetailCommands.enum';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
+import { RobotsListStyle } from './RobotsTable.style';
 
 const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	const { column, robot } = props;
+	const classes = RobotsListStyle();
+	const cardClasses = CardStyle();
 
 	/**
 	 * set cell value
@@ -50,6 +55,32 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 				<Box>
 					{robot.siteAcceptOrders ? <Check color="secondary" /> : <Close color="error" />}
 				</Box>
+			);
+		} else if (columns[4].id === column.id) {
+			const mission = robot['robotMission'];
+			return mission && mission.status ? (
+				<Typography variant="body1" className={classes.sTableRowItemFlex}>
+					{mission.status || AppConfigService.AppOptions.common.none}
+					{mission.description && (
+						<Tooltip
+							title={
+								<Card square elevation={1}>
+									<CardContent className={cardClasses.sCardContent2}>
+										<Typography variant="body2" color="inherit">
+											{mission.description}
+										</Typography>
+									</CardContent>
+								</Card>
+							}>
+							<InfoOutlined
+								fontSize="small"
+								className={classes.sTableRowItemInfoIcon}
+							/>
+						</Tooltip>
+					)}
+				</Typography>
+			) : (
+				AppConfigService.AppOptions.common.none
 			);
 		} else if (columns[5].id === column.id) {
 			return momentFormat1(value);

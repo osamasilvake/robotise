@@ -70,8 +70,9 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 							value: state.status.controlMode,
 							updatedAt: meta.status.controlMode.updatedAt
 						},
-						missionStatus: {
-							value: state.status.missionStatus,
+						mission: {
+							status: state.status.mission?.status || '',
+							description: state.status.mission?.description || '',
 							updatedAt: meta.status.missionStatus.updatedAt
 						}
 					},
@@ -106,7 +107,7 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 			robotTitle: item.robot.name,
 			robotIsReady: item.robotState.isReady.value,
 			robotControlMode: item.status.controlMode.value,
-			robotMissionStatus: item.status.missionStatus.value,
+			robotMission: item.status.mission,
 			robotCustomerName: item.robot.customerName,
 			robotHidden: item.robot.isHidden,
 			robotOnlineCheckDisabled: item.robot.isOnlineCheckDisabled,

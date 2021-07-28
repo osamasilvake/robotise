@@ -6,7 +6,7 @@ export const columns: RobotsTableColumnInterface[] = [
 	{
 		id: RobotsTableColumnsTypeEnum.ROBOT_TITLE,
 		label: `${common}.NAME`,
-		minWidth: 140,
+		minWidth: 200,
 		align: 'left'
 	},
 	{

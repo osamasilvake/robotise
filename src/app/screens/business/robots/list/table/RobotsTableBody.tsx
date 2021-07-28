@@ -32,16 +32,18 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 			case columns[6].id:
 				type = RobotsTableSortTypeEnum.OBJECT_ALERT;
 				break;
+			case columns[4].id:
+				type = RobotsTableSortTypeEnum.OBJECT_MISSION;
+				break;
 			case columns[5].id:
 				type = RobotsTableSortTypeEnum.DATE;
 				break;
 			case columns[1].id:
-			case columns[2].id:
 			case columns[3].id:
 				type = RobotsTableSortTypeEnum.BOOLEAN;
 				break;
 			case columns[0].id:
-			case columns[4].id:
+			case columns[2].id:
 				type = RobotsTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -65,6 +67,8 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 						return a.alerts.danger - b.alerts.danger;
 					}
 					return a.alerts.warning - b.alerts.warning;
+				case RobotsTableSortTypeEnum.OBJECT_MISSION:
+					return a.robotMission.status.localeCompare(b.robotMission.status);
 				case RobotsTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotsTableSortTypeEnum.BOOLEAN:

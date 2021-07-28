@@ -23,7 +23,10 @@ export interface RTSContentDataInterface {
 	robotTitle: string;
 	robotIsReady: boolean;
 	robotControlMode: string;
-	robotMissionStatus: string;
+	robotMission: {
+		status: string;
+		description: string;
+	};
 	robotCustomerName: string;
 	robotHidden: boolean;
 	robotOnlineCheckDisabled: boolean;
@@ -77,8 +80,9 @@ export interface RTSContentTransformDataInterface {
 			value: string;
 			updatedAt: Date;
 		};
-		missionStatus: {
-			value: string;
+		mission: {
+			status: string;
+			description: string;
 			updatedAt: Date;
 		};
 	};
@@ -109,7 +113,10 @@ export interface IRobotTwinSummary {
 			};
 			status: {
 				controlMode: string;
-				missionStatus: string;
+				mission: {
+					status: string;
+					description: string;
+				};
 			};
 		};
 	};

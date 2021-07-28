@@ -62,7 +62,8 @@ export interface SRTContentControlModeInterface {
 }
 
 export interface SRTContentMissionStatusInterface {
-	value: string;
+	status: string;
+	description: string;
 	updatedAt: Date;
 }
 
@@ -185,7 +186,10 @@ export interface IRobotTwin {
 			};
 			status: {
 				controlMode: RobotDetailControlModeTypeEnum;
-				missionStatus: string;
+				mission: {
+					status: string;
+					description: string;
+				};
 				location: {
 					mapName: string;
 					floor: string;

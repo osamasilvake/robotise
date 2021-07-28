@@ -47,7 +47,7 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 				<Typography
 					variant="caption"
 					color="textSecondary"
-					className={classes.sGeneralItemLabel}>
+					className={classes.sGeneralItemBlock}>
 					{t(`${common}.ACCEPT_ORDERS.LABEL`)}
 				</Typography>
 				<Status active={!!site.acceptOrders}>

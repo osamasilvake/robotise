@@ -21,11 +21,8 @@ const RobotDetailAlert: FC<RobotDetailAlertInterface> = (props) => {
 				title={
 					alert.message.length > msMax ? (
 						<Card square elevation={1}>
-							<CardContent>
-								<Typography
-									variant="body2"
-									color="inherit"
-									className={cardClasses.sCardContent2}>
+							<CardContent className={cardClasses.sCardContent2}>
+								<Typography variant="body2" color="inherit">
 									{alert.message}
 								</Typography>
 							</CardContent>

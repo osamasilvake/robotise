@@ -12,7 +12,7 @@ export const TooltipStyle = makeStyles((theme: Theme) => ({
 		}
 	},
 	sTooltipElementCursorZoom: {
-		cursor: 'zoom-in'
+		cursor: 'help'
 	},
 	sTooltipElementCursorDefault: {
 		cursor: 'default'

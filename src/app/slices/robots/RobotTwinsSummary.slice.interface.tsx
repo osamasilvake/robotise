@@ -134,7 +134,7 @@ export interface IRobotTwinSummary {
 				controlMode: {
 					updatedAt: Date;
 				};
-				missionStatus: {
+				mission: {
 					updatedAt: Date;
 				};
 			};

@@ -88,14 +88,14 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{t(`${common}.MISSION`)}
 				</Typography>
 				<Typography variant="body1" className={classes.sGeneralItemFlex}>
-					{robotTwins.missionStatus.status || AppConfigService.AppOptions.common.none}
-					{robotTwins.missionStatus.description && (
+					{robotTwins.mission.status || AppConfigService.AppOptions.common.none}
+					{robotTwins.mission.description && (
 						<Tooltip
 							title={
 								<Card square elevation={1}>
 									<CardContent className={cardClasses.sCardContent2}>
 										<Typography variant="body2" color="inherit">
-											{robotTwins.missionStatus.description}
+											{robotTwins.mission.description}
 										</Typography>
 									</CardContent>
 								</Card>

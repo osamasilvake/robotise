@@ -16,7 +16,7 @@ export interface SRTContentDataInterface {
 	robotState: SRTContentRobotStateInterface;
 	alerts: SRTContentAlertsInterface;
 	controlMode: SRTContentControlModeInterface;
-	missionStatus: SRTContentMissionStatusInterface;
+	mission: SRTContentMissionInterface;
 	location?: SRTContentLocationInterface | undefined;
 	cameras?: SRTContentCameraInterface | undefined;
 	batteryState?: SRTContentBatteryStateInterface | undefined;
@@ -61,7 +61,7 @@ export interface SRTContentControlModeInterface {
 	updatedAt: Date;
 }
 
-export interface SRTContentMissionStatusInterface {
+export interface SRTContentMissionInterface {
 	status: string;
 	description: string;
 	updatedAt: Date;
@@ -271,7 +271,7 @@ export interface IRobotTwin {
 				controlMode: {
 					updatedAt: Date;
 				};
-				missionStatus: {
+				mission: {
 					updatedAt: Date;
 				};
 				location: {

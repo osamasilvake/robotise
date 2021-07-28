@@ -70,10 +70,10 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 						value: state.status.controlMode,
 						updatedAt: meta.status.controlMode.updatedAt
 					},
-					missionStatus: {
+					mission: {
 						status: state.status.mission?.status || '',
 						description: state.status.mission?.description || '',
-						updatedAt: meta.status.missionStatus.updatedAt
+						updatedAt: meta.status.mission?.updatedAt
 					},
 					location: state.status.location && {
 						value: state.status.location,

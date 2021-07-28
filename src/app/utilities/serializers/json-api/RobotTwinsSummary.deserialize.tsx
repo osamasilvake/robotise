@@ -73,7 +73,7 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 						mission: {
 							status: state.status.mission?.status || '',
 							description: state.status.mission?.description || '',
-							updatedAt: meta.status.missionStatus.updatedAt
+							updatedAt: meta.status.mission?.updatedAt
 						}
 					},
 					alerts: {

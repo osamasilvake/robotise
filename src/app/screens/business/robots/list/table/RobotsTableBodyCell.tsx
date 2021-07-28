@@ -59,7 +59,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		} else if (columns[4].id === column.id) {
 			const mission = robot['robotMission'];
 			return mission && mission.status ? (
-				<Typography variant="body1" className={classes.sTableRowItemFlex}>
+				<Box className={classes.sTableRowItemFlex}>
 					{mission.status || AppConfigService.AppOptions.common.none}
 					{mission.description && (
 						<Tooltip
@@ -78,7 +78,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 							/>
 						</Tooltip>
 					)}
-				</Typography>
+				</Box>
 			) : (
 				AppConfigService.AppOptions.common.none
 			);

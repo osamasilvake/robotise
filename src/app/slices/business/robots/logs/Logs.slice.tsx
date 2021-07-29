@@ -6,12 +6,18 @@ import { RobotLogsListPayloadInterface } from '../../../../screens/business/robo
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { deserializeLogs } from './Logs.deserialize';
-import { SLContentInterface, SliceLogsInterface } from './Logs.slice.interface';
+import {
+	SLCDataInterface,
+	SLContentInterface,
+	SLCStateInterface,
+	SliceLogsInterface
+} from './Logs.slice.interface';
 
 // initial state
 export const initialState: SliceLogsInterface = {
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -39,12 +45,23 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
+		updated: (state, action) => {
+			state.updating = false;
+			state.content = action.payload;
+		},
+		updateFailed: (state) => {
+			state.updating = false;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const logsSelector = (state: AppReducerType) => state['logs'];
@@ -85,6 +102,9 @@ export const LogsFetch =
 					state: payload
 				};
 
+				// handle mapping
+				result = handleMapping(result);
+
 				// handle refresh and pagination
 				if (logs && logs.content) {
 					result = handleRefreshAndPagination(
@@ -111,6 +131,54 @@ export const LogsFetch =
 				dispatch(failure(message));
 			});
 	};
+
+/**
+ * update state
+ * @param state
+ * @returns
+ */
+export const LogUpdateState =
+	(state: SLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const logs = states.logs;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		if (logs && logs.content) {
+			const result = {
+				...logs.content,
+				state
+			};
+
+			// dispatch: updated
+			dispatch(updated(result));
+		}
+	};
+
+/**
+ * handle mapping
+ * @param result
+ * @returns
+ */
+const handleMapping = (result: SLContentInterface) => ({
+	...result,
+	data: result.data.map((item) => mapItem(item))
+});
+
+/**
+ * map item
+ * @param item
+ * @returns
+ */
+const mapItem = (item: SLCDataInterface) => {
+	const common = 'CONTENT.LOGS';
+	return {
+		...item,
+		command: `${common}.LIST.TABLE.VALUES.COMMAND.${item.command}`
+	};
+};
 
 /**
  * handle refresh and pagination

@@ -933,6 +933,29 @@
 					"EXCERPT": "Sync Products on the robot.",
 					"SYNC": "SYNC"
 				}
+			},
+			"LOGS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"COMMAND": "Command",
+							"STATUS": "Status",
+							"CREATED": "Created"
+						},
+						"VALUES": {
+							"COMMAND": {
+								"create-order": "Create Order",
+								"set-control-mode": "Set Control Mode",
+								"catch-camera-image": "Catch Camera Image",
+								"cancel-orders": "Cancel Orders",
+								"sync-products": "Sync Products",
+								"remote-control-translate": "Remote Control Translate",
+								"remote-control-rotate": "Remote Control Rotate",
+								"set-mute-sensor-state": "Set Mute Sensor State"
+							}
+						}
+					}
+				}
 			}
 		}
 	},

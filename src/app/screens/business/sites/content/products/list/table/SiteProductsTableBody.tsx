@@ -78,7 +78,7 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 			{content &&
 				content.data &&
 				sortTableData(content).map((product: SPCDataInterface) => (
-					<TableRow key={product.id} tabIndex={-1}>
+					<TableRow key={product.id}>
 						{columns.map((column: SiteProductsTableColumnInterface) => (
 							<SiteProductsTableBodyCell
 								key={column.id}

@@ -14,7 +14,7 @@ import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import RobotConfiguration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
-import RobotInventory from './inventory/RobotInventory';
+import RobotInventoryList from './inventory/list/RobotInventoryList';
 import RobotLogsList from './logs/list/RobotLogsList';
 import RobotOrdersList from './orders/list/RobotOrdersList';
 import RobotPurchasesList from './purchases/list/RobotPurchasesList';
@@ -91,7 +91,7 @@ const RobotContent: FC = () => {
 						{value === 0 && <RobotDetail />}
 
 						{/* Inventory */}
-						{value === 1 && <RobotInventory />}
+						{value === 1 && <RobotInventoryList />}
 
 						{/* Orders */}
 						{value === 2 && <RobotOrdersList />}

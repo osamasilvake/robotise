@@ -4,6 +4,7 @@ import { JsonApiMeta } from '../../../JsonApi.interface';
 export interface SliceLogsInterface {
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: SLContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

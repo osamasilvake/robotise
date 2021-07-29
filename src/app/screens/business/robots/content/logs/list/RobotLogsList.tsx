@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,8 +9,12 @@ import PageError from '../../../../../../components/content/page-error/PageError
 import { AppConfigService } from '../../../../../../services';
 import { LogsFetch, logsSelector } from '../../../../../../slices/business/robots/logs/Logs.slice';
 import { RobotLogsListPayloadInterface } from './RobotLogsList.interface';
+import { RobotLogsListStyle } from './RobotLogsList.style';
+import RobotLogsTable from './table/RobotLogsTable';
 
 const RobotLogsList: FC = () => {
+	const classes = RobotLogsListStyle();
+
 	const dispatch = useDispatch();
 	const logs = useSelector(logsSelector);
 
@@ -53,6 +58,30 @@ const RobotLogsList: FC = () => {
 		}
 	}, [dispatch, logs.content, page, rowsPerPage]);
 
+	useEffect(() => {
+		const executeServices = () => {
+			if (logs.content) {
+				// dispatch: fetch robot commands logs
+				dispatch(
+					LogsFetch(
+						{
+							page: 0,
+							rowsPerPage
+						},
+						true
+					)
+				);
+			}
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.business.robots.content.logs.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, logs.content, page, rowsPerPage]);
+
 	// loader
 	if (logs.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
@@ -73,6 +102,10 @@ const RobotLogsList: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return <>Hello World</>;
+	return (
+		<Box className={classes.sBox}>
+			<RobotLogsTable content={logs.content} page={page} rowsPerPage={rowsPerPage} />
+		</Box>
+	);
 };
 export default RobotLogsList;

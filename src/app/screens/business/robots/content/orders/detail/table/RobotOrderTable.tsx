@@ -70,7 +70,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 
 				<TableBody>
 					{order?.content?.history.map((row) => (
-						<TableRow key={row.createdAt}>
+						<TableRow key={String(row.createdAt)}>
 							{columns.map((column: RobotOrderTableColumnInterface) => (
 								<TableCell key={column.id} align={column.align}>
 									{setCellValue(row, column)}

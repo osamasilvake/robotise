@@ -24,8 +24,8 @@ export interface SPCDataInterface {
 	weight: number;
 	volume: string;
 	price: number;
-	createdAt: string;
-	updatedAt: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 export interface SPCSiteInterface {

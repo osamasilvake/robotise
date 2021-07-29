@@ -22,8 +22,8 @@ export interface SOCDataInterface {
 	status: string;
 	origin: string;
 	isDebug: boolean;
-	updatedAt: string;
-	createdAt: string;
+	updatedAt: Date;
+	createdAt: Date;
 	history: SOCDataHistoryInterface[];
 	site: SOCDataSiteInterface;
 	robot: SOCRobotInterface;
@@ -40,7 +40,7 @@ export interface SOCStateInterface {
 export interface SOCDataHistoryInterface {
 	event: string;
 	details: string;
-	createdAt: string;
+	createdAt: Date;
 }
 
 export interface SOCDataSiteInterface {

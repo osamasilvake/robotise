@@ -108,7 +108,9 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 			);
 		} else {
 			const value = product[column.id];
-			if (typeof value === 'number') {
+			if (columns[6].id === column.id) {
+				return momentFormat1(value);
+			} else if (typeof value === 'number') {
 				if (columns[2].id === column.id) {
 					const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 					return `${currencyFormat(
@@ -118,12 +120,13 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 					)}`;
 				}
 				return value;
-			} else if (columns[0].id === column.id) {
-				return <Avatar variant="square" src={value} alt={product['name']} />;
-			} else if (columns[6].id === column.id) {
-				return momentFormat1(value);
+			} else if (typeof value === 'string') {
+				if (columns[0].id === column.id) {
+					return <Avatar variant="square" src={value} alt={product['name']} />;
+				}
+				return t(value) || AppConfigService.AppOptions.common.none;
 			}
-			return t(value) || AppConfigService.AppOptions.common.none;
+			return value || AppConfigService.AppOptions.common.none;
 		}
 	};
 

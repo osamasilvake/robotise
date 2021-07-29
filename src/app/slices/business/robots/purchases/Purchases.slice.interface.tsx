@@ -23,8 +23,8 @@ export interface SPCDataInterface {
 	isDebug: boolean;
 	location: string;
 	totalPrice: string;
-	createdAt: string;
-	updatedAt: string;
+	createdAt: Date;
+	updatedAt: Date;
 	cart: SPCDataCartInterface[];
 	history: SPCDataHistoryInterface[];
 	site: SPCDataSiteInterface;
@@ -51,7 +51,7 @@ export interface SPCDataCartInterface {
 
 export interface SPCDataHistoryInterface {
 	id: string;
-	createdAt: string;
+	createdAt: Date;
 	type: string;
 	payload: string;
 }

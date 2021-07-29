@@ -23,6 +23,6 @@ export interface SRContentMapInterface {
 	name: string;
 	origin: number[];
 	resolution: number;
-	createdAt: string;
-	updatedAt: string;
+	createdAt: Date;
+	updatedAt: Date;
 }

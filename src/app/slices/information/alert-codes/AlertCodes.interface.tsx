@@ -30,8 +30,8 @@ export interface SACDataInterface {
 	status: string;
 	system: string;
 	level: string;
-	createdAt: string;
-	updatedAt: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 export interface SACStateInterface {

@@ -14,8 +14,8 @@ import { useDispatch } from 'react-redux';
 
 import PageEmpty from '../../../../../../../components/content/page-empty/PageEmpty';
 import { AppConfigService } from '../../../../../../../services';
-import { RoomUpdateState } from '../../../../../../../slices/rooms/Rooms.slice';
-import { SitesFetchList } from '../../../../../../../slices/sites/Sites.slice';
+import { RoomUpdateState } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
 import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';
 import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';

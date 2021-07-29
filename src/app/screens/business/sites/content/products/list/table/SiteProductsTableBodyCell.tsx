@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
-import { SPCDataInterface } from '../../../../../../../slices/products/Products.slice.interface';
-import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
+import { SPCDataInterface } from '../../../../../../../slices/business/sites/products/Products.slice.interface';
+import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { SiteParamsInterface } from '../../../../Site.interface';

@@ -8,9 +8,12 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
-import { OrdersFetchList, ordersSelector } from '../../../../../../slices/orders/Orders.slice';
-import { robotTwinsSummarySelector } from '../../../../../../slices/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../../slices/sites/Sites.slice';
+import {
+	OrdersFetchList,
+	ordersSelector
+} from '../../../../../../slices/business/robots/orders/Orders.slice';
+import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import RobotOrdersActions from './actions/RobotOrdersActions';
 import { RobotOrdersListPayloadInterface } from './RobotOrdersList.interface';

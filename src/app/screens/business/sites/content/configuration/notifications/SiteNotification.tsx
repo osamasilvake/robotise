@@ -10,7 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { SiteUpdateNotification } from '../../../../../../slices/sites/Site.slice';
+import { SiteUpdateNotification } from '../../../../../../slices/business/sites/Site.slice';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {

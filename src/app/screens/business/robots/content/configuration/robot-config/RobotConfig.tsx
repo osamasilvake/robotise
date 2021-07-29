@@ -18,9 +18,9 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { RobotUpdateConfig } from '../../../../../../slices/robots/Robot.slice';
-import { RobotTwinsFetch } from '../../../../../../slices/robots/RobotTwins.slice';
-import { RobotTwinsSummaryFetchList } from '../../../../../../slices/robots/RobotTwinsSummary.slice';
+import { RobotUpdateConfig } from '../../../../../../slices/business/robots/Robot.slice';
+import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
+import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,

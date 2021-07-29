@@ -11,10 +11,13 @@ import { AppConfigService } from '../../../../../services';
 import {
 	InventoryFetchList,
 	inventorySelector
-} from '../../../../../slices/inventory/Inventory.slice';
-import { ProductsFetchList, productsSelector } from '../../../../../slices/products/Products.slice';
-import { robotTwinsSummarySelector } from '../../../../../slices/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
+} from '../../../../../slices/business/robots/inventory/Inventory.slice';
+import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import {
+	ProductsFetchList,
+	productsSelector
+} from '../../../../../slices/business/sites/products/Products.slice';
+import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotInventoryList from './list/RobotInventoryList';
 import { RobotInventoryStyle } from './RobotInventory.style';

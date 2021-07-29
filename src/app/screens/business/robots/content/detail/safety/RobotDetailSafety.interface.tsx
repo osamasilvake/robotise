@@ -2,7 +2,7 @@ import {
 	SRTContentDataInterface,
 	SRTContentSafetySensorsState,
 	SRTContentSafetySystemsState
-} from '../../../../../../slices/robots/RobotTwins.slice.interface';
+} from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
 export interface RobotDetailSafetyInterface {
 	robotTwins: SRTContentDataInterface;

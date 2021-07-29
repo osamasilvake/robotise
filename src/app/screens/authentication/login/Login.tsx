@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Copyright from '../../../components/frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
-import { AuthLogin, authSelector } from '../../../slices/auth/Auth.slice';
+import { AuthLogin, authSelector } from '../../../slices/authentication/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,

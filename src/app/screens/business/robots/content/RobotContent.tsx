@@ -5,15 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import PageError from '../../../../components/content/page-error/PageError';
-import { robotTwinsSummarySelector } from '../../../../slices/robots/RobotTwinsSummary.slice';
-import { siteSelector, SiteServicePositionsFetch } from '../../../../slices/sites/Site.slice';
+import { robotTwinsSummarySelector } from '../../../../slices/business/robots/RobotTwinsSummary.slice';
+import {
+	siteSelector,
+	SiteServicePositionsFetch
+} from '../../../../slices/business/sites/Site.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import RobotConfiguration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventory from './inventory/RobotInventory';
+import RobotLogsList from './logs/list/RobotLogsList';
 import RobotOrdersList from './orders/list/RobotOrdersList';
-import RobotPurchasesList from './purchases/RobotPurchasesList';
+import RobotPurchasesList from './purchases/list/RobotPurchasesList';
 
 const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
@@ -78,6 +82,7 @@ const RobotContent: FC = () => {
 						<Tab label={t(`${common}.ORDERS`)} />
 						<Tab label={t(`${common}.PURCHASES`)} />
 						<Tab label={t(`${common}.CONFIGURATION`)} />
+						<Tab label={t(`${common}.LOGS`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -96,6 +101,9 @@ const RobotContent: FC = () => {
 
 						{/* Configuration */}
 						{value === 4 && <RobotConfiguration />}
+
+						{/* Logs */}
+						{value === 5 && <RobotLogsList />}
 					</Box>
 				</>
 			)}

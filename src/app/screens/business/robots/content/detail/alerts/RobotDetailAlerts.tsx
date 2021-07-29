@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import { FC } from 'react';
 
-import { IAlert } from '../../../../../../slices/robots/RobotTwins.slice.interface';
+import { IAlert } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import RobotDetailAlert from './RobotDetailAlert';
 import { RobotDetailAlertsTypeEnum } from './RobotDetailAlerts.enum';
 import { RobotDetailAlertsInterface } from './RobotDetailAlerts.interface';

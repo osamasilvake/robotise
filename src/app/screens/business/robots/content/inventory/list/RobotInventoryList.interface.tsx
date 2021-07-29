@@ -1,4 +1,4 @@
-import { SIContentInterface } from '../../../../../../slices/inventory/Inventory.slice.interface';
+import { SIContentInterface } from '../../../../../../slices/business/robots/inventory/Inventory.slice.interface';
 
 export interface RobotInventoryListInterface {
 	content: SIContentInterface | null;

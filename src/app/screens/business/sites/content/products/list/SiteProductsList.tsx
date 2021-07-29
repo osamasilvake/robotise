@@ -11,8 +11,8 @@ import { AppConfigService } from '../../../../../../services';
 import {
 	ProductsFetchList,
 	productsSelector
-} from '../../../../../../slices/products/Products.slice';
-import { sitesSelector } from '../../../../../../slices/sites/Sites.slice';
+} from '../../../../../../slices/business/sites/products/Products.slice';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteProductsActions from './actions/SiteProductsActions';
 import { siteProductsListStyle } from './SiteProductsList.style';

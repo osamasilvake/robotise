@@ -3,8 +3,11 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
-import { SOCStateInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
+import {
+	ordersSelector,
+	OrderUpdateState
+} from '../../../../../../../slices/business/robots/orders/Orders.slice';
+import { SOCStateInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface';
 
 const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {

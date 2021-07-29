@@ -1,4 +1,4 @@
-import { SICDrawerInterface } from '../../../../../../../slices/inventory/Inventory.slice.interface';
+import { SICDrawerInterface } from '../../../../../../../slices/business/robots/inventory/Inventory.slice.interface';
 import { RobotInventoryTableColumnsTypeEnum } from './RobotInventoryTable.enum';
 
 export interface RobotInventoryTableInterface {

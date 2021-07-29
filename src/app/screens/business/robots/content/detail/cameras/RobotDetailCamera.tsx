@@ -15,7 +15,7 @@ import Picture from '../../../../../../components/common/picture/Picture';
 import {
 	RobotCommandCameraImageRequest,
 	robotSelector
-} from '../../../../../../slices/robots/Robot.slice';
+} from '../../../../../../slices/business/robots/Robot.slice';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';

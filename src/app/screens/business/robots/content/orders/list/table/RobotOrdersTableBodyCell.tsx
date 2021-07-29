@@ -3,7 +3,7 @@ import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import { SOCDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
+import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import DialogCancelOrder from './DialogCancelOrder';
 import {

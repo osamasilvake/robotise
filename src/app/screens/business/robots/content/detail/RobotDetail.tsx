@@ -8,9 +8,12 @@ import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.e
 import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../services';
-import { RobotTwinsFetch, robotTwinsSelector } from '../../../../../slices/robots/RobotTwins.slice';
-import { robotTwinsSummarySelector } from '../../../../../slices/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
+import {
+	RobotTwinsFetch,
+	robotTwinsSelector
+} from '../../../../../slices/business/robots/RobotTwins.slice';
+import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotDetailAlerts from './alerts/RobotDetailAlerts';
 import RobotDetailCameras from './cameras/RobotDetailCameras';

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import PageError from '../../../../components/content/page-error/PageError';
-import { sitesSelector } from '../../../../slices/sites/Sites.slice';
+import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../Site.interface';
 import sitesRoutes from '../Sites.routes';
 import SiteConfiguration from './configuration/SiteConfiguration';

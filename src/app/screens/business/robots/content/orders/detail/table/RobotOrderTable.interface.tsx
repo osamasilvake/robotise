@@ -1,4 +1,4 @@
-import { SliceOrderInterface } from '../../../../../../../slices/orders/Order.slice.interface';
+import { SliceOrderInterface } from '../../../../../../../slices/business/robots/orders/Order.slice.interface';
 import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 
 export interface RobotOrderTableInterface {

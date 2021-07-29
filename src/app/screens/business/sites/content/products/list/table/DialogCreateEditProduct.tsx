@@ -20,8 +20,8 @@ import { AppConfigService } from '../../../../../../../services';
 import {
 	ProductCreateEdit,
 	productsSelector
-} from '../../../../../../../slices/products/Products.slice';
-import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
+} from '../../../../../../../slices/business/sites/products/Products.slice';
+import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,

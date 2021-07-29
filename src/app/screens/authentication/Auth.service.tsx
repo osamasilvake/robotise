@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 import { AppConfigService, HttpClientService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { momentNow } from '../../utilities/methods/Moment';
-import { serialize } from '../../utilities/serializers/object/Object';
+import { serializeObj } from '../../utilities/methods/ObjectUtilities';
 import { AuthUserRoleTypeEnum } from './Auth.enum';
 import {
 	AuthJWTInterface,
@@ -26,7 +26,7 @@ class AuthService {
 		};
 		return HttpClientService.post(
 			AppConfigService.AppServices.AUTH.SIGN_IN,
-			serialize(request),
+			serializeObj(request),
 			{
 				headers: AppConfigService.AppRequestHeaders.form
 			}
@@ -54,7 +54,7 @@ class AuthService {
 		};
 		return HttpClientService.post(
 			AppConfigService.AppServices.AUTH.AUTO_REFRESH,
-			serialize(request),
+			serializeObj(request),
 			{
 				headers: AppConfigService.AppRequestHeaders.form
 			}

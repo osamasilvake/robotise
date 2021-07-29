@@ -10,8 +10,8 @@ import PageError from '../../../../../components/content/page-error/PageError';
 import {
 	SiteNotificationTypesAndUsersFetch,
 	siteSelector
-} from '../../../../../slices/sites/Site.slice';
-import { sitesSelector } from '../../../../../slices/sites/Sites.slice';
+} from '../../../../../slices/business/sites/Site.slice';
+import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import AcceptOrders from './accept-orders/AcceptOrders';
 import SiteNotifications from './notifications/SiteNotifications';

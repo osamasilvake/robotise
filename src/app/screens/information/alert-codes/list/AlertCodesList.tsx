@@ -9,7 +9,7 @@ import { AppConfigService } from '../../../../services';
 import {
 	AlertCodesFetch,
 	alertCodesSelector
-} from '../../../../slices/alert-codes/AlertCodes.slice';
+} from '../../../../slices/information/alert-codes/AlertCodes.slice';
 import { AlertCodesListPayloadInterface } from './AlertCodesList.interface';
 import AlertCodesTable from './table/AlertCodesTable';
 
@@ -34,7 +34,7 @@ const AlertCodesList: FC = () => {
 		};
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// dispatch: fetch purchases
+			// dispatch: fetch alert codes
 			dispatch(AlertCodesFetch(payload));
 
 			// update ref

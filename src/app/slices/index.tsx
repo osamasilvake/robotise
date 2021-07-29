@@ -1,22 +1,23 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { AnyAction, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 
-import alertCodes from './alert-codes/AlertCodes.slice';
-import auth from './auth/Auth.slice';
+import auth from './authentication/Auth.slice';
+import inventory from './business/robots/inventory/Inventory.slice';
+import logs from './business/robots/logs/Logs.slice';
+import order from './business/robots/orders/Order.slice';
+import orders from './business/robots/orders/Orders.slice';
+import purchase from './business/robots/purchases/Purchase.slice';
+import purchases from './business/robots/purchases/Purchases.slice';
+import robot from './business/robots/Robot.slice';
+import robotTwins from './business/robots/RobotTwins.slice';
+import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
+import products from './business/sites/products/Products.slice';
+import rooms from './business/sites/rooms/Rooms.slice';
+import site from './business/sites/Site.slice';
+import sites from './business/sites/Sites.slice';
 import general from './general/General.slice';
-import inventory from './inventory/Inventory.slice';
-import order from './orders/Order.slice';
-import orders from './orders/Orders.slice';
-import products from './products/Products.slice';
-import purchase from './purchases/Purchase.slice';
-import purchases from './purchases/Purchases.slice';
-import robot from './robots/Robot.slice';
-import robotTwins from './robots/RobotTwins.slice';
-import robotTwinsSummary from './robots/RobotTwinsSummary.slice';
-import rooms from './rooms/Rooms.slice';
-import site from './sites/Site.slice';
-import sites from './sites/Sites.slice';
+import alertCodes from './information/alert-codes/AlertCodes.slice';
 
 // app reducers
 const combinedReducer = combineReducers({
@@ -34,6 +35,7 @@ const combinedReducer = combineReducers({
 	order,
 	purchases,
 	purchase,
+	logs,
 	alertCodes
 });
 
@@ -58,7 +60,12 @@ const rootReducer = (rootState: AppReducerType | undefined, action: AnyAction) =
 // configure store
 export const store = configureStore({
 	reducer: rootReducer,
-	middleware: [...getDefaultMiddleware(), createLogger({ collapsed: true })]
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(
+			createLogger({
+				collapsed: true
+			})
+		)
 });
 
 // store redux initial state

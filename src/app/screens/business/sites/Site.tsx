@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageHead from '../../../components/content/page-head/PageHead';
-import { sitesSelector } from '../../../slices/sites/Sites.slice';
+import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import SiteContent from './content/SiteContent';
 import { SiteParamsInterface } from './Site.interface';
 

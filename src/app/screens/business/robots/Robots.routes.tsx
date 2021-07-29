@@ -49,6 +49,11 @@ const robotsRoutes: RouteInterface[] = [
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION
 	},
+	{
+		component: Robot,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.LOGS
+	},
 
 	/**
 	 * Details

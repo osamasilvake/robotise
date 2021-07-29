@@ -15,8 +15,8 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import { generalSelector } from '../../../slices/general/General.slice';
-import { robotTwinsSummarySelector } from '../../../slices/robots/RobotTwinsSummary.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Account from '../account/Account';

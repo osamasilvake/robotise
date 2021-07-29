@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SliceSiteInterface } from '../../../../../../slices/sites/Site.slice.interface';
+import { SliceSiteInterface } from '../../../../../../slices/business/sites/Site.slice.interface';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 
 export interface SiteNotificationsInterface {

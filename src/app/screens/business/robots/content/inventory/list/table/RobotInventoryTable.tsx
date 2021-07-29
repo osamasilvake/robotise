@@ -16,8 +16,8 @@ import { useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
-import { SICDrawerLaneInterface } from '../../../../../../../slices/inventory/Inventory.slice.interface';
-import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
+import { SICDrawerLaneInterface } from '../../../../../../../slices/business/robots/inventory/Inventory.slice.interface';
+import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotInventoryTableColumnsTypeEnum } from './RobotInventoryTable.enum';

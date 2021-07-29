@@ -28,7 +28,7 @@ import {
 	SiteNotificationTypesAndUsersFetch,
 	siteSelector,
 	SiteUpdateNotification
-} from '../../../../../../slices/sites/Site.slice';
+} from '../../../../../../slices/business/sites/Site.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { DialogCreateEditNotificationValidation } from './DialogCreateEditNotification.validation';

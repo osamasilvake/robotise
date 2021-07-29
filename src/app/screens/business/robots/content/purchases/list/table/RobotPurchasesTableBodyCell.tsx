@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../../../services';
-import { SPCDataInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import {

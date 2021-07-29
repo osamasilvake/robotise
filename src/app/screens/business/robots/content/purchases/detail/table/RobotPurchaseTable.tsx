@@ -12,7 +12,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../../../services';
-import { SPCDataCartInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+import { SPCDataCartInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotPurchaseTableColumnsTypeEnum } from './RobotPurchaseTable.enum';
 import {

@@ -3,7 +3,10 @@ import { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
-import { ISite, SSContentInterface } from '../../../../../slices/sites/Sites.slice.interface';
+import {
+	ISite,
+	SSContentInterface
+} from '../../../../../slices/business/sites/Sites.slice.interface';
 import { momentSort } from '../../../../../utilities/methods/Moment';
 import { SitesTableColumnsTypeEnum, SitesTableSortTypeEnum } from './SitesTable.enum';
 import { SitesTableBodyInterface, SitesTableColumnInterface } from './SitesTable.interface';

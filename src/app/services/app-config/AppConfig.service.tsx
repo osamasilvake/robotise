@@ -151,6 +151,14 @@ class AppConfigService extends EnvService {
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
+							},
+							logs: {
+								list: {
+									refreshTime: 10000,
+									showPageSizes: true,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
 							}
 						}
 					}
@@ -215,7 +223,8 @@ class AppConfigService extends EnvService {
 						PURCHASE: `${this.envAppUrl}/order-reports/:purchaseId`,
 						MAPS: `${this.envAppUrl}/maps/:mapId`,
 						COMMANDS: `${this.envAppUrl}/robots/:robotId/commands`,
-						ROBOT_CONFIG: `${this.envAppUrl}/robots/:robotId`,
+						CONFIG: `${this.envAppUrl}/robots/:robotId`,
+						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`
 					}
 				},

@@ -1,7 +1,7 @@
 import { TableCell } from '@material-ui/core';
 import { FC } from 'react';
 
-import { SACDataInterface } from '../../../../../slices/alert-codes/AlertCodes.interface';
+import { SACDataInterface } from '../../../../../slices/information/alert-codes/AlertCodes.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
 import {
 	AlertCodesTableBodyCellInterface,

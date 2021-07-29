@@ -1,7 +1,7 @@
 import {
 	SRTContentSafetySensorsState,
 	SRTContentSafetySystemsState
-} from '../../../../../../slices/robots/RobotTwins.slice.interface';
+} from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { RobotDetailSafetyTypeEnum } from './RobotDetailSafety.enum';
 
 /**

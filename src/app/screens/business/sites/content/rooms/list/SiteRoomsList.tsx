@@ -7,8 +7,11 @@ import Loader from '../../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
-import { roomsSelector, RoomUpdateFilters } from '../../../../../../slices/rooms/Rooms.slice';
-import { sitesSelector } from '../../../../../../slices/sites/Sites.slice';
+import {
+	roomsSelector,
+	RoomUpdateFilters
+} from '../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteRoomsActions from './actions/SiteRoomsActions';
 import { SiteRoomsActionsFiltersPayloadInterface } from './actions/SiteRoomsActions.interface';

@@ -9,8 +9,8 @@ import PageError from '../../../../components/content/page-error/PageError';
 import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
-} from '../../../../slices/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../slices/sites/Sites.slice';
+} from '../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import RobotsActions from './actions/RobotsActions';
 import RobotsTable from './table/RobotsTable';
 

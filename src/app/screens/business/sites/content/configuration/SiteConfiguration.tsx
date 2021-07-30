@@ -25,7 +25,6 @@ const SiteConfiguration: FC = () => {
 	const site = useSelector(siteSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.siteId];
 
 	const cSiteId = params.siteId;
 	const pSiteId = site.notifications.content?.site.id;
@@ -43,7 +42,7 @@ const SiteConfiguration: FC = () => {
 	}
 
 	// error
-	if (!siteSingle?.id || sites.errors) {
+	if (sites.errors) {
 		return <PageError message={sites.errors?.text} />;
 	}
 

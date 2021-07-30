@@ -13,7 +13,6 @@ import {
 	robotTwinsSelector
 } from '../../../../../slices/business/robots/RobotTwins.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import RobotDetailAlerts from './alerts/RobotDetailAlerts';
 import RobotDetailCameras from './cameras/RobotDetailCameras';
@@ -28,7 +27,6 @@ const RobotDetail: FC = () => {
 	const classes = RobotDetailStyle();
 
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotTwins = useSelector(robotTwinsSelector);
 
@@ -38,19 +36,18 @@ const RobotDetail: FC = () => {
 	const robotTwinId = robotTwinsSummary.content?.dataById[params.robotId]?.id;
 
 	useEffect(() => {
-		const condition1 = sites.content !== null;
-		const condition2 = robotTwins.content === null && cRobotId;
-		const condition3 = robotTwins.content !== null && pRobotId && pRobotId !== cRobotId;
+		const condition1 = robotTwins.content === null && cRobotId;
+		const condition2 = robotTwins.content !== null && pRobotId && pRobotId !== cRobotId;
 
-		if (condition1 && (condition2 || condition3)) {
+		if (condition1 || condition2) {
 			// dispatch: fetch robot twins of a robot
 			robotTwinId && dispatch(RobotTwinsFetch(robotTwinId));
 		}
-	}, [dispatch, sites.content, robotTwins.content, pRobotId, cRobotId, robotTwinId]);
+	}, [dispatch, robotTwins.content, pRobotId, cRobotId, robotTwinId]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (sites.content && robotTwinId) {
+			if (robotTwinId) {
 				// dispatch: fetch robot twins of a robot
 				dispatch(RobotTwinsFetch(robotTwinId, true));
 			}
@@ -62,16 +59,16 @@ const RobotDetail: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, robotTwinId, sites.content]);
+	}, [dispatch, robotTwinId]);
 
 	// loader
-	if (sites.loader || robotTwins.loader) {
+	if (robotTwins.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (!robotTwinId || sites.errors || robotTwins.errors) {
-		return <PageError message={sites.errors?.text || robotTwins.errors?.text} />;
+	if (robotTwins.errors) {
+		return <PageError message={robotTwins.errors?.text} />;
 	}
 
 	// null

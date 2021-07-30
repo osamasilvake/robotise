@@ -12,8 +12,6 @@ import {
 	PurchasesFetchList,
 	purchasesSelector
 } from '../../../../../../slices/business/robots/purchases/Purchases.slice';
-import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import RobotPurchasesActions from './actions/RobotPurchasesActions';
 import { RobotPurchasesListPayloadInterface } from './RobotPurchasesList.interface';
@@ -24,8 +22,6 @@ const RobotPurchasesList: FC = () => {
 	const classes = RobotPurchasesListStyle();
 
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const purchases = useSelector(purchasesSelector);
 
 	const page = purchases.content?.state?.page || 0;
@@ -77,45 +73,32 @@ const RobotPurchasesList: FC = () => {
 			pageRef.current.page = page;
 			pageRef.current.rowsPerPage = rowsPerPage;
 		} else {
-			const condition1 = robotTwinsSummary.content !== null;
-			const condition2 = purchases.content === null;
-			const condition3 = !!(purchases.content !== null && pRobotId && pRobotId !== cRobotId);
+			const condition1 = purchases.content === null;
+			const condition2 = !!(purchases.content !== null && pRobotId && pRobotId !== cRobotId);
 
-			const condition4 = pageRef.current.page !== -1; // page switch back and forth
-			const condition5 = page > pageRef.current.page; // detect next click
+			const condition3 = pageRef.current.page !== -1; // page switch back and forth
+			const condition4 = page > pageRef.current.page; // detect next click
 
-			if (condition1) {
-				if (condition2 || condition3 || condition4) {
-					if (condition3 || condition5) {
-						// dispatch: fetch purchases
-						dispatch(
-							PurchasesFetchList({
-								...payload,
-								page: condition3 ? 0 : page,
-								billed: condition3 ? false : billed,
-								debug: condition3 ? false : debug
-							})
-						);
+			if (condition1 || condition2 || condition3) {
+				if (condition2 || condition4) {
+					// dispatch: fetch purchases
+					dispatch(
+						PurchasesFetchList({
+							...payload,
+							page: condition2 ? 0 : page,
+							billed: condition2 ? false : billed,
+							debug: condition2 ? false : debug
+						})
+					);
 
-						// update ref
-						pageRef.current.page = condition3 ? 0 : page;
-						pageRef.current.billed = condition3 ? false : billed;
-						pageRef.current.debug = condition3 ? false : debug;
-					}
+					// update ref
+					pageRef.current.page = condition2 ? 0 : page;
+					pageRef.current.billed = condition2 ? false : billed;
+					pageRef.current.debug = condition2 ? false : debug;
 				}
 			}
 		}
-	}, [
-		dispatch,
-		robotTwinsSummary.content,
-		purchases.content,
-		pRobotId,
-		cRobotId,
-		rowsPerPage,
-		page,
-		billed,
-		debug
-	]);
+	}, [dispatch, purchases.content, pRobotId, cRobotId, rowsPerPage, page, billed, debug]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -145,19 +128,13 @@ const RobotPurchasesList: FC = () => {
 	}, [dispatch, purchases.content, cRobotId, page, rowsPerPage, billed, debug]);
 
 	// loader
-	if (sites.loader || robotTwinsSummary.loader || purchases.loader) {
+	if (purchases.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (sites.errors || robotTwinsSummary.errors || purchases.errors) {
-		return (
-			<PageError
-				message={
-					sites.errors?.text || robotTwinsSummary.errors?.text || purchases.errors?.text
-				}
-			/>
-		);
+	if (purchases.errors) {
+		return <PageError message={purchases.errors?.text} />;
 	}
 
 	// null

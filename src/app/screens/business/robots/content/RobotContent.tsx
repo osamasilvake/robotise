@@ -10,6 +10,7 @@ import {
 	siteSelector,
 	SiteServicePositionsFetch
 } from '../../../../slices/business/sites/Site.slice';
+import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
 import RobotConfiguration from './configuration/RobotConfiguration';
@@ -23,6 +24,7 @@ const RobotContent: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const site = useSelector(siteSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
@@ -107,7 +109,10 @@ const RobotContent: FC = () => {
 					</Box>
 				</>
 			)}
-			{!cSiteId && robotTwinsSummary.content?.data.length && <PageError />}
+
+			{(!!sites.errors?.id ||
+				(robotTwinsSummary.content && !cSiteId) ||
+				!!robotTwinsSummary.errors?.id) && <PageError />}
 		</Box>
 	) : null;
 };

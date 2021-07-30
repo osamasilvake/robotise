@@ -17,7 +17,6 @@ import {
 	ProductsFetchList,
 	productsSelector
 } from '../../../../../../slices/business/sites/products/Products.slice';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import RobotInventoryHead from './head/RobotInventoryHead';
 import { RobotInventoryListStyle } from './RobotInventoryList.style';
@@ -27,7 +26,6 @@ const RobotInventoryList: FC = () => {
 	const classes = RobotInventoryListStyle();
 
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const products = useSelector(productsSelector);
 	const inventory = useSelector(inventorySelector);
@@ -39,33 +37,23 @@ const RobotInventoryList: FC = () => {
 	const cSiteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
 
 	useEffect(() => {
-		const condition1 = robotTwinsSummary.content !== null;
-		const condition2 = products.content === null;
-		const condition3 = products.content !== null && pSiteId && pSiteId !== cSiteId;
-		const condition4 = inventory.content === null;
-		const condition5 = inventory.content !== null && pRobotId && pRobotId !== cRobotId;
+		const condition1 = products.content === null;
+		const condition2 = products.content !== null && pSiteId && pSiteId !== cSiteId;
+		const condition3 = inventory.content === null;
+		const condition4 = inventory.content !== null && pRobotId && pRobotId !== cRobotId;
 
 		// products
-		if (condition2 || condition3) {
+		if (condition1 || condition2) {
 			// dispatch: fetch products
 			cSiteId && dispatch(ProductsFetchList(cSiteId));
 		}
 
 		// inventory
-		else if (condition1 && (condition4 || condition5)) {
+		else if (condition3 || condition4) {
 			// dispatch: fetch inventory
 			cRobotId && dispatch(InventoryFetchList(cRobotId));
 		}
-	}, [
-		dispatch,
-		robotTwinsSummary.content,
-		products.content,
-		inventory.content,
-		pSiteId,
-		cSiteId,
-		pRobotId,
-		cRobotId
-	]);
+	}, [dispatch, products.content, inventory.content, pSiteId, cSiteId, pRobotId, cRobotId]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -84,28 +72,13 @@ const RobotInventoryList: FC = () => {
 	}, [dispatch, inventory.content, cRobotId]);
 
 	// loader
-	if (sites.loader || robotTwinsSummary.loader || products.loader || inventory.loader) {
+	if (products.loader || inventory.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (
-		!cSiteId ||
-		sites.errors ||
-		robotTwinsSummary.errors ||
-		products.errors ||
-		inventory.errors
-	) {
-		return (
-			<PageError
-				message={
-					sites.errors?.text ||
-					robotTwinsSummary.errors?.text ||
-					products.errors?.text ||
-					inventory.errors?.text
-				}
-			/>
-		);
+	if (products.errors || inventory.errors) {
+		return <PageError message={products.errors?.text || inventory.errors?.text} />;
 	}
 
 	// null

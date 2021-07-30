@@ -1,6 +1,7 @@
 import { Box } from '@material-ui/core';
 import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
@@ -8,6 +9,7 @@ import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import { LogsFetch, logsSelector } from '../../../../../../slices/business/robots/logs/Logs.slice';
+import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotLogsListPayloadInterface } from './RobotLogsList.interface';
 import { RobotLogsListStyle } from './RobotLogsList.style';
 import RobotLogsTable from './table/RobotLogsTable';
@@ -28,8 +30,13 @@ const RobotLogsList: FC = () => {
 		rowsPerPage
 	});
 
+	const params: RobotParamsInterface = useParams();
+	const pRobotId = logs.content?.state?.robotId;
+	const cRobotId = params.robotId;
+
 	useEffect(() => {
 		const payload: RobotLogsListPayloadInterface = {
+			robotId: cRobotId,
 			page,
 			rowsPerPage
 		};
@@ -42,21 +49,28 @@ const RobotLogsList: FC = () => {
 			pageRef.current.page = page;
 			pageRef.current.rowsPerPage = rowsPerPage;
 		} else {
-			const condition2 = logs.content === null;
-			const condition4 = pageRef.current.page !== -1; // page switch back and forth
-			const condition5 = page > pageRef.current.page; // detect next click
+			const condition1 = logs.content === null;
+			const condition2 = !!(logs.content !== null && pRobotId && pRobotId !== cRobotId);
 
-			if (condition2 || condition4) {
-				if (condition5) {
+			const condition3 = pageRef.current.page !== -1; // page switch back and forth
+			const condition4 = page > pageRef.current.page; // detect next click
+
+			if (condition1 || condition2 || condition3) {
+				if (condition2 || condition4) {
 					// dispatch: fetch robot commands logs
-					dispatch(LogsFetch(payload));
+					dispatch(
+						LogsFetch({
+							...payload,
+							page: condition2 ? 0 : page
+						})
+					);
 
 					// update ref
-					pageRef.current.page = page;
+					pageRef.current.page = condition2 ? 0 : page;
 				}
 			}
 		}
-	}, [dispatch, logs.content, page, rowsPerPage]);
+	}, [dispatch, logs.content, cRobotId, pRobotId, page, rowsPerPage]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -65,6 +79,7 @@ const RobotLogsList: FC = () => {
 				dispatch(
 					LogsFetch(
 						{
+							robotId: cRobotId,
 							page: 0,
 							rowsPerPage
 						},
@@ -80,7 +95,7 @@ const RobotLogsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.logs.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, logs.content, page, rowsPerPage]);
+	}, [dispatch, logs.content, cRobotId, page, rowsPerPage]);
 
 	// loader
 	if (logs.loader) {

@@ -317,6 +317,7 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
 		return HttpClientService.get(url, {
 			params: {
+				'filter[robot]': payload.robotId,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}

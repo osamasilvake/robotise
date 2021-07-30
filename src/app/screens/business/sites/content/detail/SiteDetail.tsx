@@ -18,8 +18,7 @@ const SiteDetail: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteId = params.siteId;
-	const site = sites.content?.dataById[siteId];
+	const siteSingle = sites.content?.dataById[params.siteId];
 
 	// loader
 	if (sites.loader) {
@@ -27,7 +26,7 @@ const SiteDetail: FC = () => {
 	}
 
 	// error
-	if (!site?.id || sites.errors) {
+	if (sites.errors) {
 		return <PageError message={sites.errors?.text} />;
 	}
 
@@ -41,10 +40,10 @@ const SiteDetail: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return (
+	return siteSingle?.id ? (
 		<Box className={classes.sBox}>
-			<SiteDetailGeneral site={site} />
+			<SiteDetailGeneral site={siteSingle} />
 		</Box>
-	);
+	) : null;
 };
 export default SiteDetail;

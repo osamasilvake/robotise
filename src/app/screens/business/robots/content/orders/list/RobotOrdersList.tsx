@@ -12,8 +12,6 @@ import {
 	OrdersFetchList,
 	ordersSelector
 } from '../../../../../../slices/business/robots/orders/Orders.slice';
-import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import RobotOrdersActions from './actions/RobotOrdersActions';
 import { RobotOrdersListPayloadInterface } from './RobotOrdersList.interface';
@@ -24,8 +22,6 @@ const RobotOrdersList: FC = () => {
 	const classes = RobotOrdersListStyle();
 
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
 	const page = orders.content?.state?.page || 0;
@@ -77,45 +73,32 @@ const RobotOrdersList: FC = () => {
 			pageRef.current.page = page;
 			pageRef.current.rowsPerPage = rowsPerPage;
 		} else {
-			const condition1 = robotTwinsSummary.content !== null;
-			const condition2 = orders.content === null;
-			const condition3 = !!(orders.content !== null && pRobotId && pRobotId !== cRobotId);
+			const condition1 = orders.content === null;
+			const condition2 = !!(orders.content !== null && pRobotId && pRobotId !== cRobotId);
 
-			const condition4 = pageRef.current.page !== -1; // page switch back and forth
-			const condition5 = page > pageRef.current.page; // detect next click
+			const condition3 = pageRef.current.page !== -1; // page switch back and forth
+			const condition4 = page > pageRef.current.page; // detect next click
 
-			if (condition1) {
-				if (condition2 || condition3 || condition4) {
-					if (condition3 || condition5) {
-						// dispatch: fetch orders
-						dispatch(
-							OrdersFetchList({
-								...payload,
-								page: condition3 ? 0 : page,
-								activeOrders: condition3 ? false : activeOrders,
-								debug: condition3 ? false : debug
-							})
-						);
+			if (condition1 || condition2 || condition3) {
+				if (condition2 || condition4) {
+					// dispatch: fetch orders
+					dispatch(
+						OrdersFetchList({
+							...payload,
+							page: condition2 ? 0 : page,
+							activeOrders: condition2 ? false : activeOrders,
+							debug: condition2 ? false : debug
+						})
+					);
 
-						// update ref
-						pageRef.current.page = condition3 ? 0 : page;
-						pageRef.current.activeOrders = condition3 ? false : activeOrders;
-						pageRef.current.debug = condition3 ? false : debug;
-					}
+					// update ref
+					pageRef.current.page = condition2 ? 0 : page;
+					pageRef.current.activeOrders = condition2 ? false : activeOrders;
+					pageRef.current.debug = condition2 ? false : debug;
 				}
 			}
 		}
-	}, [
-		dispatch,
-		robotTwinsSummary.content,
-		orders.content,
-		pRobotId,
-		cRobotId,
-		rowsPerPage,
-		page,
-		activeOrders,
-		debug
-	]);
+	}, [dispatch, orders.content, pRobotId, cRobotId, rowsPerPage, page, activeOrders, debug]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -145,19 +128,13 @@ const RobotOrdersList: FC = () => {
 	}, [dispatch, orders.content, cRobotId, page, rowsPerPage, activeOrders, debug]);
 
 	// loader
-	if (sites.loader || robotTwinsSummary.loader || orders.loader) {
+	if (orders.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (sites.errors || robotTwinsSummary.errors || orders.errors) {
-		return (
-			<PageError
-				message={
-					sites.errors?.text || robotTwinsSummary.errors?.text || orders.errors?.text
-				}
-			/>
-		);
+	if (orders.errors) {
+		return <PageError message={orders.errors?.text} />;
 	}
 
 	// null

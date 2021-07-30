@@ -79,7 +79,8 @@ const SiteContent: FC = () => {
 					</Box>
 				</>
 			)}
-			{!cSiteId && sites.content?.data.length && <PageError />}
+
+			{((sites.content && !cSiteId) || !!sites.errors?.id) && <PageError />}
 		</Box>
 	) : null;
 };

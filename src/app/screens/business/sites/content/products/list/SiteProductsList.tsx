@@ -12,7 +12,6 @@ import {
 	ProductsFetchList,
 	productsSelector
 } from '../../../../../../slices/business/sites/products/Products.slice';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteProductsActions from './actions/SiteProductsActions';
 import { siteProductsListStyle } from './SiteProductsList.style';
@@ -22,7 +21,6 @@ const SiteProductsList: FC = () => {
 	const classes = siteProductsListStyle();
 
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 
 	const params: SiteParamsInterface = useParams();
@@ -30,17 +28,14 @@ const SiteProductsList: FC = () => {
 	const cSiteId = params.siteId;
 
 	useEffect(() => {
-		const condition1 = sites.content !== null;
-		const condition2 = products.content === null;
-		const condition3 = !!(products.content !== null && pSiteId && pSiteId !== cSiteId);
+		const condition1 = products.content === null;
+		const condition2 = !!(products.content !== null && pSiteId && pSiteId !== cSiteId);
 
-		if (condition1) {
-			if (condition2 || condition3) {
-				// dispatch: fetch products
-				cSiteId && dispatch(ProductsFetchList(cSiteId));
-			}
+		if (condition1 || condition2) {
+			// dispatch: fetch products
+			cSiteId && dispatch(ProductsFetchList(cSiteId));
 		}
-	}, [dispatch, sites.content, products.content, pSiteId, cSiteId]);
+	}, [dispatch, products.content, pSiteId, cSiteId]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -59,13 +54,13 @@ const SiteProductsList: FC = () => {
 	}, [dispatch, products.content, cSiteId]);
 
 	// loader
-	if (sites.loader || products.loader) {
+	if (products.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (sites.errors || products.errors) {
-		return <PageError message={sites.errors?.text || products.errors?.text} />;
+	if (products.errors) {
+		return <PageError message={products.errors?.text} />;
 	}
 
 	// null

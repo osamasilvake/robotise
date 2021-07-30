@@ -27,7 +27,8 @@ export const initialState: SliceSiteInterface = {
 	notifications: {
 		loader: false,
 		loading: false,
-		content: null
+		content: null,
+		errors: null
 	}
 };
 
@@ -66,7 +67,7 @@ const dataSlice = createSlice({
 			}
 		},
 		failure: (state, action) => {
-			const { module } = action.payload;
+			const { module, response } = action.payload;
 			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
 				state.servicePositions.loading = false;
 				state.servicePositions.content = null;
@@ -75,6 +76,7 @@ const dataSlice = createSlice({
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;
+				state.notifications.errors = response;
 			}
 		},
 		reset: () => initialState
@@ -239,7 +241,7 @@ export const SiteNotificationTypesAndUsersFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure(state));
+				dispatch(failure({ ...state, response: message }));
 			});
 	};
 

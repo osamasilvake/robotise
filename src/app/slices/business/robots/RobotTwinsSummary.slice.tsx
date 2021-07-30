@@ -89,7 +89,7 @@ export const RobotTwinsSummaryFetchList =
 		if (
 			robotTwinsSummary &&
 			sites &&
-			(robotTwinsSummary.loader || robotTwinsSummary.loading || sites.loader)
+			(sites.loader || robotTwinsSummary.loader || robotTwinsSummary.loading)
 		) {
 			return;
 		}

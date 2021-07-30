@@ -1,3 +1,5 @@
+import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
+
 export interface SliceSiteInterface {
 	servicePositions: {
 		loading: boolean;
@@ -10,6 +12,7 @@ export interface SliceSiteInterface {
 		loader: boolean;
 		loading: boolean;
 		content: SSContentNotificationTypesInterface | null;
+		errors: TriggerMessageInterface | null;
 	};
 }
 

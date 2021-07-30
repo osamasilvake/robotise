@@ -2,10 +2,6 @@ import { Box, Grid } from '@material-ui/core';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import Loader from '../../../../../components/common/loader/Loader';
-import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
-import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
-import PageError from '../../../../../components/content/page-error/PageError';
 import { robotSelector } from '../../../../../slices/business/robots/Robot.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import RobotConfig from './robot-config/RobotConfig';
@@ -18,26 +14,6 @@ const RobotConfiguration: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robot = useSelector(robotSelector);
 
-	// loader
-	if (robotTwinsSummary.loader) {
-		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
-	}
-
-	// error
-	if (robotTwinsSummary.errors) {
-		return <PageError message={robotTwinsSummary.errors?.text} />;
-	}
-
-	// null
-	if (!robotTwinsSummary.content) {
-		return null;
-	}
-
-	// empty
-	if (!robotTwinsSummary.content.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE" />;
-	}
-
 	return (
 		<Box className={classes.sBox}>
 			<Grid container spacing={1} className={classes.sGridMargin}>
@@ -45,6 +21,7 @@ const RobotConfiguration: FC = () => {
 					<SyncProducts robotTwinsSummary={robotTwinsSummary} robot={robot} />
 				</Grid>
 			</Grid>
+
 			<Grid container spacing={1}>
 				<Grid item xs={12} md={6}>
 					<RobotConfig robotTwinsSummary={robotTwinsSummary} robot={robot} />

@@ -5,8 +5,6 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
-import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
-import PageError from '../../../../../components/content/page-error/PageError';
 import {
 	SiteNotificationTypesAndUsersFetch,
 	siteSelector
@@ -37,37 +35,32 @@ const SiteConfiguration: FC = () => {
 	}, [dispatch, pSiteId, cSiteId]);
 
 	// loader
-	if (sites.loader || site.notifications.loader) {
+	if (site.notifications.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
-	// error
-	if (sites.errors) {
-		return <PageError message={sites.errors?.text} />;
-	}
-
 	// null
-	if (!sites?.content) {
+	if (!site.notifications?.content) {
 		return null;
-	}
-
-	// empty
-	if (!sites.content.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
 	return (
 		<Box className={classes.sBox}>
-			<Grid container spacing={1} className={classes.sGridMargin}>
-				<Grid item xs={12} md={3}>
-					<AcceptOrders sites={sites} site={site} />
+			{sites.content && (
+				<Grid container spacing={1} className={classes.sGridMargin}>
+					<Grid item xs={12} md={3}>
+						<AcceptOrders sites={sites} site={site} />
+					</Grid>
 				</Grid>
-			</Grid>
-			<Grid container spacing={1}>
-				<Grid item xs={12}>
-					<SiteNotifications site={site} />
+			)}
+
+			{site.notifications.content && (
+				<Grid container spacing={1}>
+					<Grid item xs={12}>
+						<SiteNotifications site={site} />
+					</Grid>
 				</Grid>
-			</Grid>
+			)}
 		</Box>
 	);
 };

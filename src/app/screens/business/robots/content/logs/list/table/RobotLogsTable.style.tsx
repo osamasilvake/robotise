@@ -11,5 +11,12 @@ export const RobotLogsTableStyle = makeStyles((theme: Theme) => ({
 	sTablePagination: {
 		opacity: 0.6,
 		pointerEvents: 'none'
+	},
+	sTableHistoryFlex: {
+		display: 'flex'
+	},
+	sTableHistoryIcon: {
+		fontSize: theme.typography.pxToRem(20),
+		marginRight: theme.spacing(0.5)
 	}
 }));

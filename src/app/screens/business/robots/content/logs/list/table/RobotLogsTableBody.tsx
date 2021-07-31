@@ -25,7 +25,7 @@ const RobotLogsTableBody: FC<RobotLogsTableBodyInterface> = (props) => {
 	const sortTableData = (content: SLContentInterface): SLCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[2].id:
+			case columns[3].id:
 				type = RobotLogsTableSortTypeEnum.DATE;
 				break;
 			case columns[0].id:

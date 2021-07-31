@@ -38,6 +38,7 @@ export interface RobotLogsTableColumnInterface {
 	minWidth?: number;
 	width?: number;
 	align?: RobotLogsTableHeadAlignment;
+	noSort?: boolean;
 }
 
 export type RobotLogsTableHeadOrder = 'asc' | 'desc';

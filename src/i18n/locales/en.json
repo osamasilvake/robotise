@@ -940,6 +940,7 @@
 						"COLUMNS": {
 							"COMMAND": "Command",
 							"STATUS": "Status",
+							"HISTORY": "History",
 							"CREATED": "Created"
 						},
 						"VALUES": {

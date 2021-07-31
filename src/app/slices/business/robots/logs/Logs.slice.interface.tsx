@@ -27,6 +27,7 @@ export interface SLCDataInterface {
 export interface SLCDataHistoryInterface {
 	status: string;
 	createdAt: Date;
+	details?: string;
 }
 
 export interface SLCStateInterface {

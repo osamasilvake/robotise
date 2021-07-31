@@ -1,6 +1,7 @@
 export enum RobotLogsTableColumnsTypeEnum {
 	COMMAND = 'command',
 	STATUS = 'status',
+	HISTORY = 'history',
 	CREATED = 'createdAt'
 }
 

@@ -6,14 +6,21 @@ export const columns: RobotLogsTableColumnInterface[] = [
 	{
 		id: RobotLogsTableColumnsTypeEnum.COMMAND,
 		label: `${common}.COMMAND`,
-		minWidth: 200,
+		minWidth: 210,
 		align: 'left'
 	},
 	{
 		id: RobotLogsTableColumnsTypeEnum.STATUS,
 		label: `${common}.STATUS`,
-		minWidth: 200,
+		minWidth: 160,
 		align: 'left'
+	},
+	{
+		id: RobotLogsTableColumnsTypeEnum.HISTORY,
+		label: `${common}.HISTORY`,
+		minWidth: 200,
+		align: 'left',
+		noSort: true
 	},
 	{
 		id: RobotLogsTableColumnsTypeEnum.CREATED,

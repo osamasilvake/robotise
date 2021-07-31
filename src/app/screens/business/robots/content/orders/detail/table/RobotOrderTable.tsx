@@ -10,7 +10,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import { SOCDataHistoryInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
+import { SOCDataHistoryInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { mapStatusLevel } from '../../list/table/RobotOrdersTable.map';
 import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
@@ -70,7 +70,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 
 				<TableBody>
 					{order?.content?.history.map((row) => (
-						<TableRow key={row.createdAt}>
+						<TableRow key={String(row.createdAt)}>
 							{columns.map((column: RobotOrderTableColumnInterface) => (
 								<TableCell key={column.id} align={column.align}>
 									{setCellValue(row, column)}

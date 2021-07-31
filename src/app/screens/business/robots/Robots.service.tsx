@@ -1,5 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
-import { RTSContentStateInterface } from '../../../slices/robots/RobotTwinsSummary.slice.interface';
+import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotConfigPayloadInterface } from './content/configuration/robot-config/RobotConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
@@ -8,9 +8,10 @@ import {
 	RobotDetailControlModeTypeEnum
 } from './content/detail/commands/RobotDetailCommands.enum';
 import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
+import { RobotLogsListPayloadInterface } from './content/logs/list/RobotLogsList.interface';
 import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
-import { RobotPurchasesListPayloadInterface } from './content/purchases/RobotPurchasesList.interface';
+import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
 
 class RobotsService {
 	/**
@@ -288,7 +289,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotConfig = (robotId: string, payload: RobotConfigPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ROBOT_CONFIG.replace(
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
 			':robotId',
 			robotId
 		);
@@ -303,6 +304,22 @@ class RobotsService {
 						isOnlineCheckDisabled: payload.isOnlineCheckDisabled
 					}
 				}
+			}
+		});
+	};
+
+	/**
+	 * fetch robot commands logs
+	 * @param payload
+	 * @returns
+	 */
+	robotRequestCommandsLog = (payload: RobotLogsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[robot]': payload.robotId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};

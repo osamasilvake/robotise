@@ -7,8 +7,8 @@ import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector,
 	RobotTwinsSummaryUpdateState
-} from '../../../../../slices/robots/RobotTwinsSummary.slice';
-import { RTSContentStateInterface } from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
+} from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { RTSContentStateInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 
 const RobotsHidden: FC = () => {
 	const { t } = useTranslation('ROBOTS');

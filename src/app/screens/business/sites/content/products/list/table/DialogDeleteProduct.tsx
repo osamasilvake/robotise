@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	ProductDelete,
 	productsSelector
-} from '../../../../../../../slices/products/Products.slice';
+} from '../../../../../../../slices/business/sites/products/Products.slice';
 import { DialogDeleteProductInterface } from './SiteProductsTable.interface';
 
 const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {

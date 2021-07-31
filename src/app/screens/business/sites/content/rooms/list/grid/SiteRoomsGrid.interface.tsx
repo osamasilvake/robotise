@@ -1,4 +1,4 @@
-import { ISite } from '../../../../../../../slices/sites/Sites.slice.interface';
+import { ISite } from '../../../../../../../slices/business/sites/Sites.slice.interface';
 
 export interface SiteRoomsGridInterface {
 	siteSingle: ISite;

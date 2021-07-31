@@ -24,10 +24,10 @@ import {
 	OrderCreate,
 	ordersSelector,
 	OrderUpdateState
-} from '../../../../../../../slices/orders/Orders.slice';
-import { SOCStateInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
-import { robotTwinsSummarySelector } from '../../../../../../../slices/robots/RobotTwinsSummary.slice';
-import { siteSelector } from '../../../../../../../slices/sites/Site.slice';
+} from '../../../../../../../slices/business/robots/orders/Orders.slice';
+import { SOCStateInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
+import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { siteSelector } from '../../../../../../../slices/business/sites/Site.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { CreateOrderValidation } from './DialogCreateOrder.validation';

@@ -60,7 +60,7 @@
 	"ERRORS": {
 		"E404": {
 			"TITLE": "404",
-			"DESCRIPTION": "Sorry, we couldn't locate your page!",
+			"DESCRIPTION": "Sorry, we couldn't load your request!",
 			"LINK": "Refresh Page"
 		},
 		"ERROR_BOUNDARY": {
@@ -440,7 +440,8 @@
 				"INVENTORY": "INVENTORY",
 				"ORDERS": "ORDERS",
 				"PURCHASES": "PURCHASES",
-				"CONFIGURATION": "CONFIGURATION"
+				"CONFIGURATION": "CONFIGURATION",
+				"LOGS": "LOGS"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -931,6 +932,30 @@
 					"TITLE": "Sync Products",
 					"EXCERPT": "Sync Products on the robot.",
 					"SYNC": "SYNC"
+				}
+			},
+			"LOGS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"COMMAND": "Command",
+							"STATUS": "Status",
+							"HISTORY": "History",
+							"CREATED": "Created"
+						},
+						"VALUES": {
+							"COMMAND": {
+								"create-order": "Create Order",
+								"set-control-mode": "Set Control Mode",
+								"catch-camera-image": "Catch Camera Image",
+								"cancel-orders": "Cancel Orders",
+								"sync-products": "Sync Products",
+								"remote-control-translate": "Remote Control Translate",
+								"remote-control-rotate": "Remote Control Rotate",
+								"set-mute-sensor-state": "Set Mute Sensor State"
+							}
+						}
+					}
 				}
 			}
 		}

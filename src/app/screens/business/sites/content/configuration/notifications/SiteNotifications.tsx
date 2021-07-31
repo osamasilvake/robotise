@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { SiteNotificationTypesAndUsersFetch } from '../../../../../../slices/sites/Site.slice';
+import { SiteNotificationTypesAndUsersFetch } from '../../../../../../slices/business/sites/Site.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';

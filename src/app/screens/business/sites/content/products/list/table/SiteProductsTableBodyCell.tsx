@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
-import { SPCDataInterface } from '../../../../../../../slices/products/Products.slice.interface';
-import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
+import { SPCDataInterface } from '../../../../../../../slices/business/sites/products/Products.slice.interface';
+import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { SiteParamsInterface } from '../../../../Site.interface';
@@ -108,7 +108,9 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 			);
 		} else {
 			const value = product[column.id];
-			if (typeof value === 'number') {
+			if (columns[6].id === column.id) {
+				return momentFormat1(value);
+			} else if (typeof value === 'number') {
 				if (columns[2].id === column.id) {
 					const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 					return `${currencyFormat(
@@ -118,12 +120,13 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 					)}`;
 				}
 				return value;
-			} else if (columns[0].id === column.id) {
-				return <Avatar variant="square" src={value} alt={product['name']} />;
-			} else if (columns[6].id === column.id) {
-				return momentFormat1(value);
+			} else if (typeof value === 'string') {
+				if (columns[0].id === column.id) {
+					return <Avatar variant="square" src={value} alt={product['name']} />;
+				}
+				return t(value) || AppConfigService.AppOptions.common.none;
 			}
-			return t(value) || AppConfigService.AppOptions.common.none;
+			return value || AppConfigService.AppOptions.common.none;
 		}
 	};
 

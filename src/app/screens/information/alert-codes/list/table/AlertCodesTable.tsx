@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
-import { SACStateInterface } from '../../../../../slices/alert-codes/AlertCodes.interface';
+import { SACStateInterface } from '../../../../../slices/information/alert-codes/AlertCodes.interface';
 import {
 	alertCodesSelector,
 	AlertCodesUpdateState
-} from '../../../../../slices/alert-codes/AlertCodes.slice';
+} from '../../../../../slices/information/alert-codes/AlertCodes.slice';
 import { AlertCodesTableColumnsTypeEnum } from './AlertCodesTable.enum';
 import { AlertCodesTableHeadOrder, AlertCodesTableInterface } from './AlertCodesTable.interface';
 import { columns } from './AlertCodesTable.list';

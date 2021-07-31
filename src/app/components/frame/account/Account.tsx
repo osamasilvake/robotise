@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { AppConfigService } from '../../../services';
-import { AuthLogout, authSelector } from '../../../slices/auth/Auth.slice';
+import { AuthLogout, authSelector } from '../../../slices/authentication/Auth.slice';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import Badge from '../../common/badge/Badge';
 import { BadgeTypeEnum } from '../../common/badge/Badge.enum';

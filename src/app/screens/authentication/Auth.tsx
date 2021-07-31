@@ -6,7 +6,7 @@ import Loader from '../../components/common/loader/Loader';
 import { isPrivate } from '../../routes/types';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import { authSelector } from '../../slices/auth/Auth.slice';
+import { authSelector } from '../../slices/authentication/Auth.slice';
 import AuthGuard from './Auth.guard';
 import { AuthInterface } from './Auth.interface';
 

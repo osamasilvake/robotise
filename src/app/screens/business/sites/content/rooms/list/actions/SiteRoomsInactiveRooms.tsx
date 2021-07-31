@@ -4,8 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { roomsSelector, RoomUpdateFilters } from '../../../../../../../slices/rooms/Rooms.slice';
-import { sitesSelector } from '../../../../../../../slices/sites/Sites.slice';
+import {
+	roomsSelector,
+	RoomUpdateFilters
+} from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import {
 	SiteRoomsActionsFiltersPayloadInterface,

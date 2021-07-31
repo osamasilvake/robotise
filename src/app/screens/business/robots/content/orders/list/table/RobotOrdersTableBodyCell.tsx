@@ -3,7 +3,7 @@ import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import { SOCDataInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
+import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import DialogCancelOrder from './DialogCancelOrder';
 import {
@@ -41,30 +41,33 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 */
 	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
 		const value = order[column.id];
-		if (columns[0].id === column.id && typeof value === 'string') {
-			return (
-				<Box>
-					<Status level={mapStatusLevel(value)}>{t(value.replace(':', '_'))}</Status>
-					{isOrderCancellable(value) && (
-						<>
-							<Chip
-								size="small"
-								label={t('CONTENT.ORDERS.LIST.ACTIONS.CANCEL.LABEL')}
-								variant="outlined"
-								color="error"
-								onDelete={openCancelOrderDialog}
-								onClick={openCancelOrderDialog}
-								className={classes.sCancelOrder}
-							/>
-							<DialogCancelOrder order={order} open={open} setOpen={setOpen} />
-						</>
-					)}
-				</Box>
-			);
-		} else if (columns[3].id === column.id) {
+		if (columns[3].id === column.id) {
 			return momentFormat1(value);
+		} else if (typeof value === 'string') {
+			if (columns[0].id === column.id) {
+				return (
+					<Box>
+						<Status level={mapStatusLevel(value)}>{t(value.replace(':', '_'))}</Status>
+						{isOrderCancellable(value) && (
+							<>
+								<Chip
+									size="small"
+									label={t('CONTENT.ORDERS.LIST.ACTIONS.CANCEL.LABEL')}
+									variant="outlined"
+									color="error"
+									onDelete={openCancelOrderDialog}
+									onClick={openCancelOrderDialog}
+									className={classes.sCancelOrder}
+								/>
+								<DialogCancelOrder order={order} open={open} setOpen={setOpen} />
+							</>
+						)}
+					</Box>
+				);
+			}
+			return t(value);
 		}
-		return t(value);
+		return value;
 	};
 
 	return (

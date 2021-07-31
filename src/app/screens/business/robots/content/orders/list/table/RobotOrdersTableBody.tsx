@@ -7,7 +7,7 @@ import { AppConfigService } from '../../../../../../../services';
 import {
 	SOCDataInterface,
 	SOContentInterface
-} from '../../../../../../../slices/orders/Orders.slice.interface';
+} from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { momentSort } from '../../../../../../../utilities/methods/Moment';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import {

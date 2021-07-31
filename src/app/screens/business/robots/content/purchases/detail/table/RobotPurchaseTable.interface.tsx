@@ -1,4 +1,4 @@
-import { SlicePurchaseInterface } from '../../../../../../../slices/purchases/Purchase.slice.interface';
+import { SlicePurchaseInterface } from '../../../../../../../slices/business/robots/purchases/Purchase.slice.interface';
 import { RobotPurchaseTableColumnsTypeEnum } from './RobotPurchaseTable.enum';
 
 export interface RobotPurchaseTableInterface {

@@ -4,12 +4,12 @@ import { Redirect } from 'react-router-dom';
 
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import { AuthRefreshToken, authSelector } from '../../slices/auth/Auth.slice';
+import { AuthRefreshToken, authSelector } from '../../slices/authentication/Auth.slice';
 import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
-} from '../../slices/robots/RobotTwinsSummary.slice';
-import { SitesFetchList, sitesSelector } from '../../slices/sites/Sites.slice';
+} from '../../slices/business/robots/RobotTwinsSummary.slice';
+import { SitesFetchList, sitesSelector } from '../../slices/business/sites/Sites.slice';
 import { AuthInterface } from './Auth.interface';
 
 const AuthGuard: FC<AuthInterface> = (props) => {

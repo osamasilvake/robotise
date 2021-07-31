@@ -5,7 +5,7 @@ import { FC } from 'react';
 import {
 	SACContentInterface,
 	SACDataInterface
-} from '../../../../../slices/alert-codes/AlertCodes.interface';
+} from '../../../../../slices/information/alert-codes/AlertCodes.interface';
 import { momentSort } from '../../../../../utilities/methods/Moment';
 import {
 	AlertCodesTableColumnsTypeEnum,

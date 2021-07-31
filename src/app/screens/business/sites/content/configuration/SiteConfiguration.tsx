@@ -40,7 +40,7 @@ const SiteConfiguration: FC = () => {
 	}
 
 	// null
-	if (!site.notifications?.content) {
+	if (!site.notifications?.content && !site.notifications.errors?.id) {
 		return null;
 	}
 

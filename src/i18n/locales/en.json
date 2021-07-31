@@ -60,7 +60,7 @@
 	"ERRORS": {
 		"E404": {
 			"TITLE": "404",
-			"DESCRIPTION": "Sorry, we couldn't locate your page!",
+			"DESCRIPTION": "Sorry, we couldn't load your request!",
 			"LINK": "Refresh Page"
 		},
 		"ERROR_BOUNDARY": {

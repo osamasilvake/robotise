@@ -3,7 +3,7 @@ import { MouseEvent } from 'react';
 import {
 	RTSContentDataInterface,
 	RTSContentInterface
-} from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
+} from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 
 export interface RobotsTableInterface {

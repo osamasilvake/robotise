@@ -1,4 +1,4 @@
-import { SRTContentDataInterface } from '../../../../../../slices/robots/RobotTwins.slice.interface';
+import { SRTContentDataInterface } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
 const common = 'CONTENT.DETAIL.STATES';
 export const robotStates = (robot: SRTContentDataInterface) => [

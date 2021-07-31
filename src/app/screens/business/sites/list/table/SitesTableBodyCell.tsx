@@ -3,7 +3,7 @@ import { Check, Close } from '@material-ui/icons';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../services';
-import { ISite } from '../../../../../slices/sites/Sites.slice.interface';
+import { ISite } from '../../../../../slices/business/sites/Sites.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
 import { SitesTableBodyCellInterface, SitesTableColumnInterface } from './SitesTable.interface';
 import { columns } from './SitesTable.list';

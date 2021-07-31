@@ -5,7 +5,7 @@ import Loader from '../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
-import { SitesFetchList, sitesSelector } from '../../../../slices/sites/Sites.slice';
+import { SitesFetchList, sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import SitesTable from './table/SitesTable';
 
 const SitesList: FC = () => {

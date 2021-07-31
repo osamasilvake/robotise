@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	purchasesSelector,
 	PurchaseUpdateState
-} from '../../../../../../../slices/purchases/Purchases.slice';
-import { SPCStateInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+} from '../../../../../../../slices/business/robots/purchases/Purchases.slice';
+import { SPCStateInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { RobotPurchasesDebugInterface } from './RobotPurchasesActions.interface';
 
 const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {

@@ -1,6 +1,9 @@
 import { MouseEvent } from 'react';
 
-import { ISite, SSContentInterface } from '../../../../../slices/sites/Sites.slice.interface';
+import {
+	ISite,
+	SSContentInterface
+} from '../../../../../slices/business/sites/Sites.slice.interface';
 import { SitesTableColumnsTypeEnum } from './SitesTable.enum';
 
 export interface SitesTableInterface {

@@ -1,7 +1,7 @@
 import {
 	IAlert,
 	SRTContentDataInterface
-} from '../../../../../../slices/robots/RobotTwins.slice.interface';
+} from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
 export interface RobotDetailAlertsInterface {
 	robotTwins: SRTContentDataInterface;

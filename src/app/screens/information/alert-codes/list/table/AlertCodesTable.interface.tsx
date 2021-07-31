@@ -3,7 +3,7 @@ import { MouseEvent } from 'react';
 import {
 	SACContentInterface,
 	SACDataInterface
-} from '../../../../../slices/alert-codes/AlertCodes.interface';
+} from '../../../../../slices/information/alert-codes/AlertCodes.interface';
 import { AlertCodesTableColumnsTypeEnum } from './AlertCodesTable.enum';
 
 export interface AlertCodesTableInterface {

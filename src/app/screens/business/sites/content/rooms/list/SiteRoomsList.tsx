@@ -3,12 +3,12 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import Loader from '../../../../../../components/common/loader/Loader';
-import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
-import PageError from '../../../../../../components/content/page-error/PageError';
-import { roomsSelector, RoomUpdateFilters } from '../../../../../../slices/rooms/Rooms.slice';
-import { sitesSelector } from '../../../../../../slices/sites/Sites.slice';
+import {
+	roomsSelector,
+	RoomUpdateFilters
+} from '../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteRoomsActions from './actions/SiteRoomsActions';
 import { SiteRoomsActionsFiltersPayloadInterface } from './actions/SiteRoomsActions.interface';
@@ -42,21 +42,6 @@ const SiteRoomsList: FC = () => {
 			dispatch(RoomUpdateFilters(cSiteId, filters));
 		}
 	}, [dispatch, cSiteId, pSiteId]);
-
-	// loader
-	if (sites.loader) {
-		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
-	}
-
-	// error
-	if (!siteSingle?.id || sites.errors) {
-		return <PageError message={sites.errors?.text} />;
-	}
-
-	// null
-	if (!sites?.content) {
-		return null;
-	}
 
 	// empty
 	if (!siteSingle?.rooms.available) {

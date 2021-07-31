@@ -13,7 +13,10 @@ import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { OrderCancel, ordersSelector } from '../../../../../../../slices/orders/Orders.slice';
+import {
+	OrderCancel,
+	ordersSelector
+} from '../../../../../../../slices/business/robots/orders/Orders.slice';
 import { DialogCancelOrderInterface } from './RobotOrdersTable.interface';
 
 const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {

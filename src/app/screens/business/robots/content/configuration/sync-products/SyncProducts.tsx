@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { RobotSyncProducts } from '../../../../../../slices/robots/Robot.slice';
+import { RobotSyncProducts } from '../../../../../../slices/business/robots/Robot.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
@@ -21,8 +21,10 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const robotId = params.robotId;
-	const robotIsReady = robotTwinsSummary.content?.dataById[params.robotId]?.robotIsReady;
-	const lastSynced = robotTwinsSummary.content?.dataById[params.robotId]?.lastSyncedProducts;
+
+	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
+	const robotIsReady = robotSingle?.robotIsReady;
+	const lastSynced = robotSingle?.lastSyncedProducts;
 
 	const common = 'CONTENT.CONFIGURATION.SYNC_PRODUCTS';
 

@@ -13,8 +13,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { SiteAcceptOrders } from '../../../../../../slices/sites/Site.slice';
-import { SitesFetchList } from '../../../../../../slices/sites/Sites.slice';
+import { SiteAcceptOrders } from '../../../../../../slices/business/sites/Site.slice';
+import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { AcceptOrdersInterface } from './AcceptOrders.interface';

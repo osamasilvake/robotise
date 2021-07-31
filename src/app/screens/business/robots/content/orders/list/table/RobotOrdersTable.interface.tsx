@@ -3,7 +3,7 @@ import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import {
 	SOCDataInterface,
 	SOContentInterface
-} from '../../../../../../../slices/orders/Orders.slice.interface';
+} from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 
 export interface RobotOrdersTableInterface {

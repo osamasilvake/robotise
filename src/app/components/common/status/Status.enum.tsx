@@ -5,3 +5,10 @@ export enum StatusTypeEnum {
 	ERROR,
 	INFO
 }
+
+export enum HistoryStatusTypeEnum {
+	SUCCESS_DARK = 'success',
+	SUCCESS_LIGHT = 'secondary',
+	ERROR = 'error',
+	INFO = 'action'
+}

@@ -8,7 +8,10 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
-import { PurchaseFetch, purchaseSelector } from '../../../../../../slices/purchases/Purchase.slice';
+import {
+	PurchaseFetch,
+	purchaseSelector
+} from '../../../../../../slices/business/robots/purchases/Purchase.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import RobotPurchaseFoot from './foot/RobotPurchaseFoot';
 import RobotPurchaseHead from './head/RobotPurchaseHead';

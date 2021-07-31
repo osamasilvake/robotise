@@ -21,7 +21,7 @@ const PageError: FC<PageErrorInterface> = (props) => {
 
 			{/* Message */}
 			<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
-				{message ? t(message) : t('E404.DESCRIPTION')}
+				{message ? t(message) : t('PAGE_ERROR.DESCRIPTION')}
 			</Typography>
 
 			{/* Link */}

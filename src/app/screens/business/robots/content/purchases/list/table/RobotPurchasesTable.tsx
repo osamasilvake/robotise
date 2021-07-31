@@ -8,8 +8,8 @@ import { AppConfigService } from '../../../../../../../services';
 import {
 	purchasesSelector,
 	PurchaseUpdateState
-} from '../../../../../../../slices/purchases/Purchases.slice';
-import { SPCStateInterface } from '../../../../../../../slices/purchases/Purchases.slice.interface';
+} from '../../../../../../../slices/business/robots/purchases/Purchases.slice';
+import { SPCStateInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import {
 	RobotPurchasesTableHeadOrder,

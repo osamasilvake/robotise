@@ -3,7 +3,7 @@ import { Dispatch, MouseEvent, SetStateAction } from 'react';
 import {
 	SPCDataInterface,
 	SPContentInterface
-} from '../../../../../../../slices/products/Products.slice.interface';
+} from '../../../../../../../slices/business/sites/products/Products.slice.interface';
 import {
 	SiteProductCreateEditTypeEnum,
 	SiteProductsTableColumnsTypeEnum

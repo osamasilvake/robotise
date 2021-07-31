@@ -5,8 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
-import { ordersSelector, OrderUpdateState } from '../../../../../../../slices/orders/Orders.slice';
-import { SOCStateInterface } from '../../../../../../../slices/orders/Orders.slice.interface';
+import {
+	ordersSelector,
+	OrderUpdateState
+} from '../../../../../../../slices/business/robots/orders/Orders.slice';
+import { SOCStateInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableHeadOrder, RobotOrdersTableInterface } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';

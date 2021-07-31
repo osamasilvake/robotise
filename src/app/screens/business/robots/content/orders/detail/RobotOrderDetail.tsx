@@ -7,7 +7,10 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
-import { OrderFetch, orderSelector } from '../../../../../../slices/orders/Order.slice';
+import {
+	OrderFetch,
+	orderSelector
+} from '../../../../../../slices/business/robots/orders/Order.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import RobotOrderTable from './table/RobotOrderTable';
 

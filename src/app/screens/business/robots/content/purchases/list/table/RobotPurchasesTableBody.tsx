@@ -7,7 +7,7 @@ import { AppConfigService } from '../../../../../../../services';
 import {
 	SPCDataInterface,
 	SPContentInterface
-} from '../../../../../../../slices/purchases/Purchases.slice.interface';
+} from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { momentSort } from '../../../../../../../utilities/methods/Moment';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import {

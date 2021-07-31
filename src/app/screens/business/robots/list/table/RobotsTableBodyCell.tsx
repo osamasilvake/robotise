@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 import Tooltip from '../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../services';
-import { RTSContentDataInterface } from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
+import { RTSContentDataInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
 import { CardStyle } from '../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../../content/detail/commands/RobotDetailCommands.enum';

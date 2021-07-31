@@ -3,7 +3,7 @@ import { MouseEvent } from 'react';
 import {
 	SPCDataInterface,
 	SPContentInterface
-} from '../../../../../../../slices/purchases/Purchases.slice.interface';
+} from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 
 export interface RobotPurchasesTableInterface {

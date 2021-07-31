@@ -7,7 +7,7 @@ import { AppConfigService } from '../../../../../services';
 import {
 	RTSContentDataInterface,
 	RTSContentInterface
-} from '../../../../../slices/robots/RobotTwinsSummary.slice.interface';
+} from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { momentSort } from '../../../../../utilities/methods/Moment';
 import { RobotsTableColumnsTypeEnum, RobotsTableSortTypeEnum } from './RobotsTable.enum';
 import { RobotsTableBodyInterface, RobotsTableColumnInterface } from './RobotsTable.interface';

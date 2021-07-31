@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
 import { PictureOnLoadInterface } from '../../../../../../components/common/picture/Picture.interface';
-import { RobotLocationMapFetch, robotSelector } from '../../../../../../slices/robots/Robot.slice';
+import {
+	RobotLocationMapFetch,
+	robotSelector
+} from '../../../../../../slices/business/robots/Robot.slice';
 import { robotLocationImageUrl } from '../../../Robots.url';
 import { RobotDetailLocationCardInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';

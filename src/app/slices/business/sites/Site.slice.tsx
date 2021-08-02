@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { DialogCreateEditNotificationPayloadInterface } from '../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
+import { DialogProductsReportPayloadInterface } from '../../../screens/business/sites/content/products/list/actions/SiteProductsActions.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
@@ -29,6 +30,9 @@ export const initialState: SliceSiteInterface = {
 		loading: false,
 		content: null,
 		errors: null
+	},
+	reports: {
+		loading: false
 	}
 };
 
@@ -51,6 +55,8 @@ const dataSlice = createSlice({
 				state.acceptOrders.loading = true;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loading = true;
+			} else if (module === SiteTypeEnum.REPORTS) {
+				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -64,19 +70,23 @@ const dataSlice = createSlice({
 				state.notifications.loader = false;
 				state.notifications.loading = false;
 				state.notifications.content = response;
+			} else if (module === SiteTypeEnum.REPORTS) {
+				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module, response } = action.payload;
 			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
 				state.servicePositions.loading = false;
-				state.servicePositions.content = null;
+				state.servicePositions.content = response;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;
 				state.notifications.errors = response;
+			} else if (module === SiteTypeEnum.REPORTS) {
+				state.reports.loading = false;
 			}
 		},
 		reset: () => initialState
@@ -130,6 +140,9 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
 				text: 'COMMON.SERVICE_POSITIONS.ERROR'
 			};
 			dispatch(triggerMessage(message));
+
+			// dispatch: failure
+			dispatch(failure({ ...state, response: message }));
 		});
 };
 
@@ -178,6 +191,9 @@ export const SiteAcceptOrders =
 					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR`
 				};
 				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
 			});
 	};
 
@@ -312,6 +328,54 @@ export const SiteUpdateNotification =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'COMMON.NOTIFICATIONS.UPDATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
+			});
+	};
+
+/**
+ * generate reports
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const SiteGenerateReports =
+	(payload: DialogProductsReportPayloadInterface, callback: (report: string) => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteTypeEnum.REPORTS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteGenerateReports(payload)
+			.then(async (res) => {
+				// callback
+				callback(res);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-generate-reports-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `COMMON.REPORTS.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-generate-reports-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `COMMON.REPORTS.ERROR`
 				};
 				dispatch(triggerMessage(message));
 

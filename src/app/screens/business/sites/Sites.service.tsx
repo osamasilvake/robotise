@@ -1,5 +1,6 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { DialogCreateEditNotificationPayloadInterface } from './content/configuration/notifications/SiteNotifications.interface';
+import { DialogProductsReportPayloadInterface } from './content/products/list/actions/SiteProductsActions.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductPayloadInterface } from './content/products/list/table/SiteProductsTable.interface';
 
@@ -218,6 +219,21 @@ class SitesService {
 		return payload.siteId
 			? HttpClientService.post(url, request)
 			: HttpClientService.patch(url, request);
+	};
+
+	/**
+	 * generate reports
+	 * @param payload
+	 * @returns
+	 */
+	siteGenerateReports = (payload: DialogProductsReportPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
+		return HttpClientService.get(url, {
+			params: {
+				'createdAt[lte]': payload.from,
+				'createdAt[gte]': payload.to
+			}
+		});
 	};
 }
 const instance = new SitesService();

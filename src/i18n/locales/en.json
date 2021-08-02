@@ -54,7 +54,8 @@
 			"CANCEL": "Cancel",
 			"CREATE": "Create",
 			"UPDATE": "Update",
-			"CONFIRM": "Confirm"
+			"CONFIRM": "Confirm",
+			"GENERATE": "Generate"
 		}
 	},
 	"ERRORS": {
@@ -91,6 +92,10 @@
 					"SUCCESS": "Notification has been updated successfully!",
 					"ERROR": "Unable to update notification!"
 				}
+			},
+			"REPORTS": {
+				"SUCCESS": "Report has been generated successfully!",
+				"ERROR": "Unable to generate Report!"
 			}
 		},
 		"AUTH": {
@@ -285,8 +290,9 @@
 			"PRODUCTS": {
 				"LIST": {
 					"ACTIONS": {
-						"HEADINGS": {
-							"ACTIONS": "Actions"
+						"SPEED_DIAL": {
+							"CREATE_PRODUCT": "Create new Product",
+							"PRODUCTS_REPORT": "Generate Report"
 						},
 						"CREATE_EDIT": {
 							"CREATE": {
@@ -333,6 +339,23 @@
 						"DELETE": {
 							"TITLE": "Delete Product",
 							"TEXT": "Are you sure you want to delete the product?"
+						},
+						"PRODUCTS_REPORT": {
+							"REPORT": {
+								"TITLE": "Products Report",
+								"DOWNLOAD": "Download"
+							},
+							"FIELDS": {
+								"FROM": {
+									"LABEL": "From",
+									"VALIDATIONS": {
+										"EXCEEDS": "From date exceeds To date."
+									}
+								},
+								"TO": {
+									"LABEL": "To"
+								}
+							}
 						}
 					},
 					"TABLE": {

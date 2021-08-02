@@ -72,9 +72,10 @@ const dataSlice = createSlice({
 			}
 		},
 		failure: (state, action) => {
-			const { module } = action.payload;
+			const { module, response } = action.payload;
 			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
+				state.map.content = response;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
@@ -130,7 +131,7 @@ export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatc
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure(state));
+			dispatch(failure({ ...state, response: message }));
 		});
 };
 

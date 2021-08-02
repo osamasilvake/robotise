@@ -211,6 +211,9 @@ class AppConfigService extends EnvService {
 							TYPES: `${this.envAppUrl}/notification-types`,
 							USERS: `${this.envAppUrl}/notification-users`,
 							USER: `${this.envAppUrl}/notification-users/:userId`
+						},
+						REPORTS: {
+							PRODUCTS: `${this.envAppUrl}/product-export`
 						}
 					},
 					ROBOTS: {

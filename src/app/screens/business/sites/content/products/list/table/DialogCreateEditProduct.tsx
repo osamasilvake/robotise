@@ -10,7 +10,7 @@ import {
 	Grid,
 	TextField
 } from '@material-ui/core';
-import { FC, MouseEvent, useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -79,20 +79,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 	const currency = sites.content?.dataById[params.siteId]?.currency || defaultCurrency;
 
-	/**
-	 * close create/edit dialog
-	 * @param event
-	 */
-	const closeCreateEditProductDialog = (event: MouseEvent<HTMLButtonElement>) => {
-		// stop propagation
-		event.stopPropagation();
-
-		// close dialog
-		setOpen(false);
-	};
-
 	return (
-		<Dialog open={open} onClose={closeCreateEditProductDialog}>
+		<Dialog open={open} onClose={() => setOpen(false)}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
 					{type === SiteProductCreateEditTypeEnum.CREATE && t(`${common}.CREATE.TITLE`)}
@@ -201,7 +189,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 					</Grid>
 				</DialogContent>
 				<DialogActions>
-					<Button variant="outlined" onClick={closeCreateEditProductDialog}>
+					<Button variant="outlined" onClick={() => setOpen(false)}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button

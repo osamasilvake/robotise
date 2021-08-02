@@ -1,5 +1,4 @@
 import {
-	Box,
 	Button,
 	CircularProgress,
 	Dialog,
@@ -9,8 +8,10 @@ import {
 	FormControl,
 	FormHelperText,
 	Grid,
-	TextField
+	TextField,
+	Typography
 } from '@material-ui/core';
+import { CloudDownload } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { CSVLink } from 'react-csv';
 import { useTranslation } from 'react-i18next';
@@ -28,10 +29,12 @@ import {
 	DialogProductsReportInterface,
 	DialogProductsReportPayloadInterface
 } from './SiteProductsActions.interface';
+import { SiteProductsActionsStyle } from './SiteProductsActions.style';
 
 const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const classes = SiteProductsActionsStyle();
 
 	const dispatch = useDispatch();
 	const site = useSelector(siteSelector);
@@ -92,16 +95,18 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 						</Grid>
 					</Grid>
 
-					<Box>
-						{report && !site.reports.loading && (
-							<CSVLink
-								data={report}
-								separator={';'}
-								filename={t(`${common}.REPORT.TITLE`)}>
+					{report && !site.reports.loading && (
+						<CSVLink
+							data={report}
+							separator={';'}
+							filename={t(`${common}.REPORT.TITLE`)}
+							className={classes.sDownloadLink}>
+							<CloudDownload className={classes.sDownloadIcon} />
+							<Typography variant="body1">
 								{t(`${common}.REPORT.DOWNLOAD`)}
-							</CSVLink>
-						)}
-					</Box>
+							</Typography>
+						</CSVLink>
+					)}
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={() => setOpen(false)}>

@@ -1,4 +1,5 @@
 import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@material-ui/core';
+import { SettingsOutlined } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -7,9 +8,11 @@ import { SiteProductCreateEditTypeEnum } from '../table/SiteProductsTable.enum';
 import DialogProductsReport from './DialogProductsReport';
 import { SiteProductsActionsSpeedDialTypeEnum } from './SiteProductsActions.enum';
 import { ActionsList } from './SiteProductsActions.map';
+import { SiteProductsActionsStyle } from './SiteProductsActions.style';
 
 const SiteProductsActions: FC = () => {
 	const { t } = useTranslation('SITES');
+	const classes = SiteProductsActionsStyle();
 
 	const [createProduct, setCreateProduct] = useState(false);
 	const [productsReport, setProductsReport] = useState(false);
@@ -30,9 +33,11 @@ const SiteProductsActions: FC = () => {
 	return (
 		<>
 			<SpeedDial
-				ariaLabel="SpeedDial basic example"
-				sx={{ position: 'absolute', bottom: 0, left: 0 }}
-				icon={<SpeedDialIcon />}>
+				ariaLabel="speed-dial-products"
+				className={classes.sSpeedDial}
+				icon={
+					<SpeedDialIcon icon={<SettingsOutlined />} className={classes.sSpeedDialIcon} />
+				}>
 				{ActionsList.map((action) => (
 					<SpeedDialAction
 						key={action.name}

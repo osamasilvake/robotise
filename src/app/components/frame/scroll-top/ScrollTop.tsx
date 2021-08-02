@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { ScrollTopStyle } from './ScrollTop.style';
 
 const ScrollTop: FC = () => {
-	const scrollTopClasses = ScrollTopStyle();
+	const classes = ScrollTopStyle();
 
 	const trigger = useScrollTrigger({
 		target: window,
@@ -31,9 +31,9 @@ const ScrollTop: FC = () => {
 
 	return (
 		<Zoom in={trigger}>
-			<Box onClick={handleScrollToTop} className={scrollTopClasses.sScrollTop}>
-				<Fab size="small">
-					<ArrowUpwardIcon />
+			<Box onClick={handleScrollToTop} className={classes.sScrollTop}>
+				<Fab size="small" color="primary">
+					<ArrowUpwardIcon className={classes.sScrollTopIcon} />
 				</Fab>
 			</Box>
 		</Zoom>

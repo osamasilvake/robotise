@@ -124,10 +124,10 @@ export const ProductsFetchList =
 
 /**
  * create/edit a product
- * @param payload
- * @param type
  * @param siteId
  * @param productId
+ * @param payload
+ * @param type
  * @param callback
  * @returns
  */

@@ -156,11 +156,11 @@ class RobotsService {
 
 	/**
 	 * create an order
-	 * @param payload
 	 * @param siteId
+	 * @param payload
 	 * @returns
 	 */
-	robotOrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: string) => {
+	robotOrderCreate = (siteId: string, payload: DialogCreateOrderPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
 		return HttpClientService.post(url, {
 			data: {
@@ -180,11 +180,11 @@ class RobotsService {
 
 	/**
 	 * cancel an order
-	 * @param ids
 	 * @param siteId
+	 * @param ids
 	 * @returns
 	 */
-	robotOrderCancel = (ids: string[], siteId: string) => {
+	robotOrderCancel = (siteId: string, ids: string[]) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
 		return HttpClientService.patch(url, {
 			data: ids.map((id) => {

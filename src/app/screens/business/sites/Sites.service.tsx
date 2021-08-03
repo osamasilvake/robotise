@@ -58,10 +58,10 @@ class SitesService {
 
 	/**
 	 * create/edit product
-	 * @param payload
-	 * @param type
 	 * @param siteId
 	 * @param productId
+	 * @param payload
+	 * @param type
 	 * @returns
 	 */
 	siteProductCreateEdit = (

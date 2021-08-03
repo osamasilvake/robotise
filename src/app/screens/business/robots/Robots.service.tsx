@@ -310,14 +310,15 @@ class RobotsService {
 
 	/**
 	 * fetch robot commands logs
+	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotRequestCommandsLog = (payload: RobotLogsListPayloadInterface) => {
+	robotRequestCommandsLog = (robotId: string, payload: RobotLogsListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[robot]': payload.robotId,
+				'filter[robot]': robotId,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}

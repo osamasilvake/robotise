@@ -36,14 +36,13 @@ const RobotLogsList: FC = () => {
 
 	useEffect(() => {
 		const payload: RobotLogsListPayloadInterface = {
-			robotId: cRobotId,
 			page,
 			rowsPerPage
 		};
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch robot commands logs
-			dispatch(LogsFetch(payload));
+			dispatch(LogsFetch(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -59,7 +58,7 @@ const RobotLogsList: FC = () => {
 				if (condition2 || condition4) {
 					// dispatch: fetch robot commands logs
 					dispatch(
-						LogsFetch({
+						LogsFetch(cRobotId, {
 							...payload,
 							page: condition2 ? 0 : page
 						})
@@ -78,8 +77,8 @@ const RobotLogsList: FC = () => {
 				// dispatch: fetch robot commands logs
 				dispatch(
 					LogsFetch(
+						cRobotId,
 						{
-							robotId: cRobotId,
 							page: 0,
 							rowsPerPage
 						},

@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import UploadImage from '../../../../../../../components/common/upload/UploadImage';
+import Upload from '../../../../../../../components/common/upload/Upload';
 import { AppConfigService } from '../../../../../../../services';
 import {
 	ProductCreateEdit,
@@ -89,7 +89,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
-							<UploadImage
+							<Upload
 								image={image}
 								setImage={setImage}
 								imageError={imageError}

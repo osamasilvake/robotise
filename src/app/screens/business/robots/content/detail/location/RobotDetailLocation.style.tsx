@@ -30,8 +30,7 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 		left: 0,
 		position: 'absolute',
 		right: 0,
-		transition: 'top 2s ease 0s',
-		transitionProperty: 'left, bottom',
+		transition: 'all 1s ease 0s',
 		width: theme.typography.pxToRem(16)
 	},
 	sLocationInfoGridBox: {

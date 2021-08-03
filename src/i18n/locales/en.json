@@ -58,6 +58,21 @@
 			"GENERATE": "Generate"
 		}
 	},
+	"REPORT": {
+		"TITLE": "Products Report",
+		"DOWNLOAD": "Download",
+		"FIELDS": {
+			"FROM": {
+				"LABEL": "From",
+				"VALIDATIONS": {
+					"EXCEEDS": "From date exceeds To date."
+				}
+			},
+			"TO": {
+				"LABEL": "To"
+			}
+		}
+	},
 	"ERRORS": {
 		"E404": {
 			"TITLE": "404",
@@ -339,24 +354,7 @@
 						"DELETE": {
 							"TITLE": "Delete Product",
 							"TEXT": "Are you sure you want to delete the product?"
-						},
-						"PRODUCTS_REPORT": {
-							"REPORT": {
-								"TITLE": "Products Report",
-								"DOWNLOAD": "Download"
-							},
-							"FIELDS": {
-								"FROM": {
-									"LABEL": "From",
-									"VALIDATIONS": {
-										"EXCEEDS": "From date exceeds To date."
-									}
-								},
-								"TO": {
-									"LABEL": "To"
-								}
-							}
-						}
+						}					
 					},
 					"TABLE": {
 						"COLUMNS": {

@@ -1,9 +1,9 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { DialogCreateEditNotificationPayloadInterface } from '../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
-import { DialogProductsReportPayloadInterface } from '../../../screens/business/sites/content/products/list/actions/SiteProductsActions.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
@@ -344,11 +344,7 @@ export const SiteUpdateNotification =
  * @returns
  */
 export const SiteGenerateReports =
-	(
-		siteId: string,
-		payload: DialogProductsReportPayloadInterface,
-		callback: (report: string) => void
-	) =>
+	(siteId: string, payload: ReportPayloadInterface, callback: (report: string) => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: SiteTypeEnum.REPORTS

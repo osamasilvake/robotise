@@ -2,10 +2,17 @@ import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@material-ui/core';
 import { SettingsOutlined } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import Report from '../../../../../../../components/common/report/Report';
+import {
+	SiteGenerateReports,
+	siteSelector
+} from '../../../../../../../slices/business/sites/Site.slice';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditProduct from '../table/DialogCreateEditProduct';
 import { SiteProductCreateEditTypeEnum } from '../table/SiteProductsTable.enum';
-import DialogProductsReport from './DialogProductsReport';
 import { SiteProductsActionsSpeedDialTypeEnum } from './SiteProductsActions.enum';
 import { ActionsList } from './SiteProductsActions.map';
 import { SiteProductsActionsStyle } from './SiteProductsActions.style';
@@ -14,8 +21,12 @@ const SiteProductsActions: FC = () => {
 	const { t } = useTranslation('SITES');
 	const classes = SiteProductsActionsStyle();
 
+	const site = useSelector(siteSelector);
+
 	const [createProduct, setCreateProduct] = useState(false);
 	const [productsReport, setProductsReport] = useState(false);
+
+	const params: SiteParamsInterface = useParams();
 
 	/**
 	 * handle speed dial actions
@@ -55,8 +66,14 @@ const SiteProductsActions: FC = () => {
 				setOpen={setCreateProduct}
 			/>
 
-			{/* Dialog: Products Report */}
-			<DialogProductsReport open={productsReport} setOpen={setProductsReport} />
+			{/* Dialog: Report */}
+			<Report
+				open={productsReport}
+				setOpen={setProductsReport}
+				id={params.siteId}
+				state={site.reports}
+				GenerateReports={SiteGenerateReports}
+			/>
 		</>
 	);
 };

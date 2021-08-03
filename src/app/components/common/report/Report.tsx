@@ -15,53 +15,40 @@ import { CloudDownload } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { CSVLink } from 'react-csv';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import {
-	SiteGenerateReports,
-	siteSelector
-} from '../../../../../../../slices/business/sites/Site.slice';
-import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
-import { moment30DaysFromToday, momentToday } from '../../../../../../../utilities/methods/Moment';
-import { validateEmptyObj } from '../../../../../../../utilities/methods/ObjectUtilities';
-import { SiteParamsInterface } from '../../../../Site.interface';
-import { ProductsReportValidation } from './DialogProductsReport.validation';
-import {
-	DialogProductsReportInterface,
-	DialogProductsReportPayloadInterface
-} from './SiteProductsActions.interface';
-import { SiteProductsActionsStyle } from './SiteProductsActions.style';
+import { useForm } from '../../../utilities/hooks/form/UseForm';
+import { moment30DaysFromToday, momentToday } from '../../../utilities/methods/Moment';
+import { validateEmptyObj } from '../../../utilities/methods/ObjectUtilities';
+import { ReportInterface, ReportPayloadInterface } from './Report.interface';
+import { ReportStyle } from './Report.style';
+import { ReportValidation } from './Report.validation';
 
-const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
-	const { open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
-	const classes = SiteProductsActionsStyle();
+const Report: FC<ReportInterface> = (props) => {
+	const { open, setOpen, id, state, GenerateReports } = props;
+	const { t } = useTranslation(['DIALOG', 'REPORT']);
+	const classes = ReportStyle();
 
 	const dispatch = useDispatch();
-	const site = useSelector(siteSelector);
 
 	const [report, setReport] = useState('');
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
-		useForm<DialogProductsReportPayloadInterface>(
+		useForm<ReportPayloadInterface>(
 			{
 				from: moment30DaysFromToday(),
 				to: momentToday()
 			},
-			ProductsReportValidation,
+			ReportValidation,
 			async () => {
 				// dispatch: generate reports
-				dispatch(SiteGenerateReports(params.siteId, values, (report) => setReport(report)));
+				dispatch(GenerateReports(id, values, (report) => setReport(report)));
 			}
 		);
-
-	const params: SiteParamsInterface = useParams();
-	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.PRODUCTS_REPORT';
 
 	return (
 		<Dialog open={open} onClose={() => setOpen(false)}>
 			<form onSubmit={handleSubmit}>
-				<DialogTitle>{t(`${common}.REPORT.TITLE`)}</DialogTitle>
+				<DialogTitle>{t('REPORT:TITLE')}</DialogTitle>
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
@@ -70,7 +57,7 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 									variant="outlined"
 									id="from"
 									name="from"
-									label={t(`${common}.FIELDS.FROM.LABEL`)}
+									label={t('REPORT:FIELDS.FROM.LABEL')}
 									type="date"
 									value={values.from}
 									error={!!errors?.from}
@@ -78,7 +65,11 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 									onBlur={handleBlur}
 									InputLabelProps={{ shrink: true }}
 								/>
-								{errors?.from && <FormHelperText>{t(errors.from)}</FormHelperText>}
+								{errors?.from && (
+									<FormHelperText>
+										{t(`REPORT:FIELDS.${errors.from}`)}
+									</FormHelperText>
+								)}
 							</FormControl>
 						</Grid>
 						<Grid item xs={12} sm={6} md={6}>
@@ -87,7 +78,7 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 									variant="outlined"
 									id="to"
 									name="to"
-									label={t(`${common}.FIELDS.TO.LABEL`)}
+									label={t('REPORT:FIELDS.TO.LABEL')}
 									type="date"
 									value={values.to}
 									onChange={handleChangeInput}
@@ -98,16 +89,14 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 						</Grid>
 					</Grid>
 
-					{report && !site.reports.loading && (
+					{report && !state.loading && (
 						<CSVLink
 							data={report}
 							separator={';'}
-							filename={t(`${common}.REPORT.TITLE`)}
+							filename={t('REPORT:TITLE')}
 							className={classes.sDownloadLink}>
 							<CloudDownload className={classes.sDownloadIcon} />
-							<Typography variant="body1">
-								{t(`${common}.REPORT.DOWNLOAD`)}
-							</Typography>
+							<Typography variant="body1">{t('REPORT:DOWNLOAD')}</Typography>
 						</CSVLink>
 					)}
 				</DialogContent>
@@ -118,8 +107,8 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={(!!errors && !validateEmptyObj(errors)) || site.reports.loading}
-						endIcon={site.reports.loading && <CircularProgress size={20} />}>
+						disabled={(!!errors && !validateEmptyObj(errors)) || state.loading}
+						endIcon={state.loading && <CircularProgress size={20} />}>
 						{t('BUTTONS.GENERATE')}
 					</Button>
 				</DialogActions>
@@ -127,4 +116,4 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 		</Dialog>
 	);
 };
-export default DialogProductsReport;
+export default Report;

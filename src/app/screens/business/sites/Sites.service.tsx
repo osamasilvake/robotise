@@ -1,6 +1,6 @@
+import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { DialogCreateEditNotificationPayloadInterface } from './content/configuration/notifications/SiteNotifications.interface';
-import { DialogProductsReportPayloadInterface } from './content/products/list/actions/SiteProductsActions.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductPayloadInterface } from './content/products/list/table/SiteProductsTable.interface';
 
@@ -227,7 +227,7 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	siteGenerateReports = (siteId: string, payload: DialogProductsReportPayloadInterface) => {
+	siteGenerateReports = (siteId: string, payload: ReportPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get(url, {
 			params: {

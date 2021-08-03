@@ -61,7 +61,6 @@ export const breadcrumbs = (
 					isLast: index === paths.length - 1
 				};
 			}
-
 			return {
 				text: strCapitalizeEachLetter(strRemoveSymbols(path)),
 				link,

@@ -133,10 +133,10 @@ export const ProductsFetchList =
  */
 export const ProductCreateEdit =
 	(
-		payload: DialogCreateEditProductPayloadInterface,
-		type: SiteProductCreateEditTypeEnum,
 		siteId: string,
 		productId: string | undefined,
+		payload: DialogCreateEditProductPayloadInterface,
+		type: SiteProductCreateEditTypeEnum,
 		callback: () => void
 	) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
@@ -147,7 +147,7 @@ export const ProductCreateEdit =
 		// dispatch: updating
 		dispatch(updating());
 
-		return SitesService.siteProductCreateEdit(payload, type, siteId, productId)
+		return SitesService.siteProductCreateEdit(siteId, productId, payload, type)
 			.then(async (res) => {
 				// deserialize response
 				let result = await deserializeProduct(res);

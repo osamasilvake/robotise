@@ -59,13 +59,13 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				params.siteId &&
 					dispatch(
 						ProductCreateEdit(
+							params.siteId,
+							product?.id,
 							{
 								...values,
 								image
 							},
 							type,
-							params.siteId,
-							product?.id,
 							() => setOpen(false)
 						)
 					);

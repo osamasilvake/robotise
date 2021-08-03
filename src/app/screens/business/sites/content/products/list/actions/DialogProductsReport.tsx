@@ -16,6 +16,7 @@ import { FC, useState } from 'react';
 import { CSVLink } from 'react-csv';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import {
 	SiteGenerateReports,
@@ -24,6 +25,7 @@ import {
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { moment30DaysFromToday, momentToday } from '../../../../../../../utilities/methods/Moment';
 import { validateEmptyObj } from '../../../../../../../utilities/methods/ObjectUtilities';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import { ProductsReportValidation } from './DialogProductsReport.validation';
 import {
 	DialogProductsReportInterface,
@@ -49,10 +51,11 @@ const DialogProductsReport: FC<DialogProductsReportInterface> = (props) => {
 			ProductsReportValidation,
 			async () => {
 				// dispatch: generate reports
-				dispatch(SiteGenerateReports(values, (report) => setReport(report)));
+				dispatch(SiteGenerateReports(params.siteId, values, (report) => setReport(report)));
 			}
 		);
 
+	const params: SiteParamsInterface = useParams();
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.PRODUCTS_REPORT';
 
 	return (

@@ -338,12 +338,17 @@ export const SiteUpdateNotification =
 
 /**
  * generate reports
+ * @param siteId
  * @param payload
  * @param callback
  * @returns
  */
 export const SiteGenerateReports =
-	(payload: DialogProductsReportPayloadInterface, callback: (report: string) => void) =>
+	(
+		siteId: string,
+		payload: DialogProductsReportPayloadInterface,
+		callback: (report: string) => void
+	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: SiteTypeEnum.REPORTS
@@ -352,7 +357,7 @@ export const SiteGenerateReports =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return SitesService.siteGenerateReports(payload)
+		return SitesService.siteGenerateReports(siteId, payload)
 			.then(async (res) => {
 				// callback
 				callback(res);

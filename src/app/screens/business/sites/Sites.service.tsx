@@ -65,10 +65,10 @@ class SitesService {
 	 * @returns
 	 */
 	siteProductCreateEdit = (
-		payload: DialogCreateEditProductPayloadInterface,
-		type: SiteProductCreateEditTypeEnum,
 		siteId: string,
-		productId: string | undefined
+		productId: string | undefined,
+		payload: DialogCreateEditProductPayloadInterface,
+		type: SiteProductCreateEditTypeEnum
 	) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PRODUCTS;
 		if (type === SiteProductCreateEditTypeEnum.EDIT) {
@@ -223,13 +223,15 @@ class SitesService {
 
 	/**
 	 * generate reports
+	 * @param siteId
 	 * @param payload
 	 * @returns
 	 */
-	siteGenerateReports = (payload: DialogProductsReportPayloadInterface) => {
+	siteGenerateReports = (siteId: string, payload: DialogProductsReportPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get(url, {
 			params: {
+				'filter[site]': siteId,
 				'createdAt[lte]': payload.from,
 				'createdAt[gte]': payload.to
 			}

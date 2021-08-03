@@ -1,8 +1,14 @@
-import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
-export const RobotPurchasesActionsStyle = makeStyles((theme: Theme) => ({
-	sFloatBoxTopSpace: {
-		marginTop: theme.spacing(3)
+import { AppConfigService } from '../../../../../../../services';
+
+export const RobotPurchasesActionsStyle = makeStyles(() => ({
+	sSpeedDial: {
+		position: 'absolute',
+		bottom: 0,
+		left: 0
+	},
+	sSpeedDialIcon: {
+		color: AppConfigService.AppOptions.colors.c7
 	}
 }));

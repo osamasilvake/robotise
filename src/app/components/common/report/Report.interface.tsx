@@ -1,12 +1,16 @@
 import { Dispatch, SetStateAction } from 'react';
 
+import { ReportTypeEnum } from './Report.enum';
+
 export interface ReportInterface {
+	id: ReportTypeEnum;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
-	id: string;
+	filterId: string;
 	state: { loading: boolean };
 	GenerateReports: (
-		id: string,
+		id: ReportTypeEnum,
+		filterId: string,
 		payload: ReportPayloadInterface,
 		callback: (report: string) => void
 	) => void;

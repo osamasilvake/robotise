@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
 import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
@@ -338,13 +339,19 @@ export const SiteUpdateNotification =
 
 /**
  * generate reports
+ * @param id
  * @param siteId
  * @param payload
  * @param callback
  * @returns
  */
 export const SiteGenerateReports =
-	(siteId: string, payload: ReportPayloadInterface, callback: (report: string) => void) =>
+	(
+		_id: ReportTypeEnum,
+		siteId: string,
+		payload: ReportPayloadInterface,
+		callback: (report: string) => void
+	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: SiteTypeEnum.REPORTS

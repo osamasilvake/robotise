@@ -25,7 +25,7 @@ import { ReportStyle } from './Report.style';
 import { ReportValidation } from './Report.validation';
 
 const Report: FC<ReportInterface> = (props) => {
-	const { open, setOpen, id, state, GenerateReports } = props;
+	const { id, open, setOpen, filterId, state, GenerateReports } = props;
 	const { t } = useTranslation(['DIALOG', 'REPORT']);
 	const classes = ReportStyle();
 
@@ -41,7 +41,7 @@ const Report: FC<ReportInterface> = (props) => {
 			ReportValidation,
 			async () => {
 				// dispatch: generate reports
-				dispatch(GenerateReports(id, values, (report) => setReport(report)));
+				dispatch(GenerateReports(id, filterId, values, (report) => setReport(report)));
 			}
 		);
 
@@ -93,7 +93,7 @@ const Report: FC<ReportInterface> = (props) => {
 						<CSVLink
 							data={report}
 							separator={';'}
-							filename={t('REPORT:TITLE')}
+							filename={`${id}-${values.from}-${values.to}`}
 							className={classes.sDownloadLink}>
 							<CloudDownload className={classes.sDownloadIcon} />
 							<Typography variant="body1">{t('REPORT:DOWNLOAD')}</Typography>

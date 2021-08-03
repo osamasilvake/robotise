@@ -228,7 +228,11 @@ class AppConfigService extends EnvService {
 						COMMANDS: `${this.envAppUrl}/robots/:robotId/commands`,
 						CONFIG: `${this.envAppUrl}/robots/:robotId`,
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
-						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`
+						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
+						REPORTS: {
+							ORDERS: `${this.envAppUrl}/order-export`,
+							PURCHASES: `${this.envAppUrl}/order-report-export`
+						}
 					}
 				},
 				INFORMATION: {

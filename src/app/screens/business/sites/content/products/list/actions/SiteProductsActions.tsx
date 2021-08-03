@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Report from '../../../../../../../components/common/report/Report';
+import { ReportTypeEnum } from '../../../../../../../components/common/report/Report.enum';
 import {
 	SiteGenerateReports,
 	siteSelector
@@ -14,7 +15,7 @@ import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditProduct from '../table/DialogCreateEditProduct';
 import { SiteProductCreateEditTypeEnum } from '../table/SiteProductsTable.enum';
 import { SiteProductsActionsSpeedDialTypeEnum } from './SiteProductsActions.enum';
-import { ActionsList } from './SiteProductsActions.map';
+import { productActions } from './SiteProductsActions.map';
 import { SiteProductsActionsStyle } from './SiteProductsActions.style';
 
 const SiteProductsActions: FC = () => {
@@ -49,7 +50,7 @@ const SiteProductsActions: FC = () => {
 				icon={
 					<SpeedDialIcon icon={<SettingsOutlined />} className={classes.sSpeedDialIcon} />
 				}>
-				{ActionsList.map((action) => (
+				{productActions.map((action) => (
 					<SpeedDialAction
 						key={action.name}
 						icon={action.icon}
@@ -68,9 +69,10 @@ const SiteProductsActions: FC = () => {
 
 			{/* Dialog: Report */}
 			<Report
+				id={ReportTypeEnum.PRODUCTS}
 				open={productsReport}
 				setOpen={setProductsReport}
-				id={params.siteId}
+				filterId={params.siteId}
 				state={site.reports}
 				GenerateReports={SiteGenerateReports}
 			/>

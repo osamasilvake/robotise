@@ -2,7 +2,7 @@ import { Add, Assessment } from '@material-ui/icons';
 
 import { SiteProductsActionsSpeedDialTypeEnum } from './SiteProductsActions.enum';
 
-export const ActionsList = [
+export const productActions = [
 	{
 		icon: <Assessment />,
 		name: 'CONTENT.PRODUCTS.LIST.ACTIONS.SPEED_DIAL.PRODUCTS_REPORT',

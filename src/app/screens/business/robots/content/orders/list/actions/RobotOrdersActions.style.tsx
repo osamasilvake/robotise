@@ -1,14 +1,14 @@
-import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
-export const RobotOrdersActionsStyle = makeStyles((theme: Theme) => ({
-	sFilterBlock: {
-		marginBottom: theme.spacing(1)
+import { AppConfigService } from '../../../../../../../services';
+
+export const RobotOrdersActionsStyle = makeStyles(() => ({
+	sSpeedDial: {
+		position: 'absolute',
+		bottom: 0,
+		left: 0
 	},
-	sActionBlock: {
-		marginTop: theme.spacing(1)
-	},
-	sCreateOrder: {
-		marginTop: theme.spacing(1)
+	sSpeedDialIcon: {
+		color: AppConfigService.AppOptions.colors.c7
 	}
 }));

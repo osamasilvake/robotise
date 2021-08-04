@@ -354,7 +354,7 @@ export const RobotUpdateConfig =
  */
 export const RobotGenerateReports =
 	(
-		id: ReportTypeEnum,
+		_id: ReportTypeEnum,
 		robotId: string,
 		payload: ReportPayloadInterface,
 		callback: (report: string) => void
@@ -367,7 +367,7 @@ export const RobotGenerateReports =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return RobotsService.robotGenerateReports(id, robotId, payload)
+		return RobotsService.robotGenerateReports(robotId, payload)
 			.then(async (res) => {
 				// callback
 				callback(res);

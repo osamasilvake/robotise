@@ -772,8 +772,7 @@
 							"DEBUG": "Include Test Orders"
 						},
 						"SPEED_DIAL": {
-							"CREATE_ORDER": "Create new Order",
-							"ORDERS_REPORT": "Generate Report"
+							"CREATE_ORDER": "Create new Order"
 						},
 						"CREATE": {
 							"LABEL": "Create Order",

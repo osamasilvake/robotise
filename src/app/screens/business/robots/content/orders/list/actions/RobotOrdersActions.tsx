@@ -2,17 +2,8 @@ import { Box, Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@material
 import { SettingsOutlined } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-import Report from '../../../../../../../components/common/report/Report';
-import { ReportTypeEnum } from '../../../../../../../components/common/report/Report.enum';
-import {
-	RobotGenerateReports,
-	robotSelector
-} from '../../../../../../../slices/business/robots/Robot.slice';
 import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
-import { RobotParamsInterface } from '../../../../Robot.interface';
 import DialogCreateOrder from './DialogCreateOrder';
 import { RobotOrdersActionsSpeedDialTypeEnum } from './RobotOrdersActions.enum';
 import { RobotOrdersActionsInterface } from './RobotOrdersActions.interface';
@@ -27,12 +18,7 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 	const classes = RobotOrdersActionsStyle();
 	const floatStyle = FloatStyle();
 
-	const robot = useSelector(robotSelector);
-
 	const [createOrder, setCreateOrder] = useState(false);
-	const [ordersReport, setOrdersReport] = useState(false);
-
-	const params: RobotParamsInterface = useParams();
 
 	/**
 	 * handle speed dial actions
@@ -42,8 +28,6 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 	const handleActions = (operation: RobotOrdersActionsSpeedDialTypeEnum) => () => {
 		if (operation === RobotOrdersActionsSpeedDialTypeEnum.CREATE_ORDER) {
 			setCreateOrder(true);
-		} else if (operation === RobotOrdersActionsSpeedDialTypeEnum.ORDERS_REPORT) {
-			setOrdersReport(true);
 		}
 	};
 
@@ -79,16 +63,6 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 
 			{/* Dialog: Create Order */}
 			<DialogCreateOrder open={createOrder} setOpen={setCreateOrder} />
-
-			{/* Dialog: Report */}
-			<Report
-				id={ReportTypeEnum.ORDERS}
-				open={ordersReport}
-				setOpen={setOrdersReport}
-				filterId={params.robotId}
-				state={robot.reports}
-				GenerateReports={RobotGenerateReports}
-			/>
 		</>
 	);
 };

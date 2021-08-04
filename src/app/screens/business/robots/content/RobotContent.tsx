@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
+import Loader from '../../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
 import PageError from '../../../../components/content/page-error/PageError';
 import { robotTwinsSummarySelector } from '../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
@@ -35,6 +37,10 @@ const RobotContent: FC = () => {
 
 	const cSiteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
 	const pSiteId = site.servicePositions.content?.site?.id;
+	const problem =
+		!!sites.errors?.id ||
+		(robotTwinsSummary.content && !cSiteId) ||
+		!!robotTwinsSummary.errors?.id;
 
 	const common = 'CONTENT.TABS';
 
@@ -71,7 +77,16 @@ const RobotContent: FC = () => {
 
 	return value !== -1 ? (
 		<Box>
-			{!!cSiteId && (
+			{/* Loader */}
+			{!problem && (sites.loader || robotTwinsSummary.loader) && (
+				<Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />
+			)}
+
+			{/* Error */}
+			{problem && <PageError />}
+
+			{/* Content */}
+			{!problem && !!cSiteId && (
 				<>
 					{/* Tabs */}
 					<Tabs
@@ -109,10 +124,6 @@ const RobotContent: FC = () => {
 					</Box>
 				</>
 			)}
-
-			{(!!sites.errors?.id ||
-				(robotTwinsSummary.content && !cSiteId) ||
-				!!robotTwinsSummary.errors?.id) && <PageError />}
 		</Box>
 	) : null;
 };

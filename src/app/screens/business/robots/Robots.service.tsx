@@ -1,4 +1,3 @@
-import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
 import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
@@ -329,23 +328,17 @@ class RobotsService {
 
 	/**
 	 * generate reports
-	 * @param id
 	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotGenerateReports = (
-		id: ReportTypeEnum,
-		robotId: string,
-		payload: ReportPayloadInterface
-	) => {
-		const base = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS;
-		const url = id === ReportTypeEnum.ORDERS ? base.ORDERS : base.PURCHASES;
+	robotGenerateReports = (robotId: string, payload: ReportPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,
-				'createdAt[lte]': payload.from,
-				'createdAt[gte]': payload.to
+				'createdAt[gte]': payload.from,
+				'createdAt[lte]': payload.to
 			}
 		});
 	};

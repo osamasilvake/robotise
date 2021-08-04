@@ -1,4 +1,4 @@
-import { Add, Assessment } from '@material-ui/icons';
+import { Add } from '@material-ui/icons';
 
 import {
 	RobotOrderModeTypeEnum,
@@ -9,11 +9,6 @@ import {
  * order actions
  */
 export const orderActions = [
-	{
-		icon: <Assessment />,
-		name: 'CONTENT.ORDERS.LIST.ACTIONS.SPEED_DIAL.ORDERS_REPORT',
-		operation: RobotOrdersActionsSpeedDialTypeEnum.ORDERS_REPORT
-	},
 	{
 		icon: <Add />,
 		name: 'CONTENT.ORDERS.LIST.ACTIONS.SPEED_DIAL.CREATE_ORDER',

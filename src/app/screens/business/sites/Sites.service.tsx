@@ -232,8 +232,8 @@ class SitesService {
 		return HttpClientService.get(url, {
 			params: {
 				'filter[site]': siteId,
-				'createdAt[lte]': payload.from,
-				'createdAt[gte]': payload.to
+				'createdAt[gte]': payload.from,
+				'createdAt[lte]': payload.to
 			}
 		});
 	};

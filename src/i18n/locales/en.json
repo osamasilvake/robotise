@@ -354,7 +354,7 @@
 						"DELETE": {
 							"TITLE": "Delete Product",
 							"TEXT": "Are you sure you want to delete the product?"
-						}					
+						}
 					},
 					"TABLE": {
 						"COLUMNS": {

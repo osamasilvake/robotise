@@ -134,6 +134,16 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
+	MuiButtonBase: {
+		styleOverrides: {
+			root: {
+				'&.MuiSpeedDial-fab': {
+					height: pxToRem(46),
+					width: pxToRem(46)
+				}
+			}
+		}
+	},
 	MuiSwitch: {
 		styleOverrides: {
 			switchBase: {
@@ -163,18 +173,6 @@ const OverridesCustom: Components = {
 			},
 			square: {
 				borderRadius: 0
-			}
-		}
-	},
-	MuiFab: {
-		styleOverrides: {
-			sizeSmall: {
-				backgroundColor: AppConfigService.AppOptions.colors.c9,
-				color: AppConfigService.AppOptions.colors.c7,
-				'&:hover': {
-					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					opacity: 0.95
-				}
 			}
 		}
 	}

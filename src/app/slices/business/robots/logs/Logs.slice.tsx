@@ -71,12 +71,13 @@ export default dataSlice.reducer;
 
 /**
  * fetch robot commands logs
+ * @param robotId
  * @param payload
  * @param refresh
  * @returns
  */
 export const LogsFetch =
-	(payload: RobotLogsListPayloadInterface, refresh = false) =>
+	(robotId: string, payload: RobotLogsListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -91,7 +92,7 @@ export const LogsFetch =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch robot commands logs
-		return RobotsService.robotRequestCommandsLog(payload)
+		return RobotsService.robotRequestCommandsLog(robotId, payload)
 			.then(async (res) => {
 				// deserialize response
 				let result: SLContentInterface = await deserializeLogs(res);

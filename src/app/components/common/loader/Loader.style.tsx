@@ -20,8 +20,5 @@ export const LoaderStyle = makeStyles((theme: Theme) => ({
 		height: theme.spacing(18),
 		margin: `0 auto`,
 		width: theme.spacing(18)
-	},
-	sCircularLoader: {
-		color: AppConfigService.AppOptions.colors.c9
 	}
 }));

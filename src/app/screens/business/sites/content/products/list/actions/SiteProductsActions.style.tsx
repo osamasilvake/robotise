@@ -1,8 +1,14 @@
-import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
-export const SiteProductsActionsStyle = makeStyles((theme: Theme) => ({
-	sCreateProduct: {
-		marginTop: theme.spacing(1)
+import { AppConfigService } from '../../../../../../../services';
+
+export const SiteProductsActionsStyle = makeStyles(() => ({
+	sSpeedDial: {
+		position: 'absolute',
+		bottom: 0,
+		left: 0
+	},
+	sSpeedDialIcon: {
+		color: AppConfigService.AppOptions.colors.c7
 	}
 }));

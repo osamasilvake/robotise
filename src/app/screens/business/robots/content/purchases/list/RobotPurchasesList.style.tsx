@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 
 export const RobotPurchasesListStyle = makeStyles((theme: Theme) => ({
 	sBox: {
-		marginTop: theme.spacing(3)
+		marginTop: theme.spacing(3),
+		position: 'relative'
 	}
 }));

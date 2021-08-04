@@ -1,3 +1,4 @@
+import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotConfigPayloadInterface } from './content/configuration/robot-config/RobotConfig.interface';
@@ -156,11 +157,11 @@ class RobotsService {
 
 	/**
 	 * create an order
-	 * @param payload
 	 * @param siteId
+	 * @param payload
 	 * @returns
 	 */
-	robotOrderCreate = (payload: DialogCreateOrderPayloadInterface, siteId: string) => {
+	robotOrderCreate = (siteId: string, payload: DialogCreateOrderPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
 		return HttpClientService.post(url, {
 			data: {
@@ -180,11 +181,11 @@ class RobotsService {
 
 	/**
 	 * cancel an order
-	 * @param ids
 	 * @param siteId
+	 * @param ids
 	 * @returns
 	 */
-	robotOrderCancel = (ids: string[], siteId: string) => {
+	robotOrderCancel = (siteId: string, ids: string[]) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
 		return HttpClientService.patch(url, {
 			data: ids.map((id) => {
@@ -310,16 +311,34 @@ class RobotsService {
 
 	/**
 	 * fetch robot commands logs
+	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotRequestCommandsLog = (payload: RobotLogsListPayloadInterface) => {
+	robotRequestCommandsLog = (robotId: string, payload: RobotLogsListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[robot]': payload.robotId,
+				'filter[robot]': robotId,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
+	 * generate reports
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotGenerateReports = (robotId: string, payload: ReportPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS.PURCHASES;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[robot]': robotId,
+				'createdAt[gte]': payload.from,
+				'createdAt[lte]': payload.to
 			}
 		});
 	};

@@ -70,7 +70,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 			// dispatch: create an order
 			siteId &&
 				dispatch(
-					OrderCreate(values, siteId, () => {
+					OrderCreate(siteId, values, () => {
 						// close dialog
 						setOpen(false);
 

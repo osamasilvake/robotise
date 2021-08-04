@@ -36,7 +36,7 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 				control={
 					<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
 				}
-				label={t('CONTENT.PURCHASES.LIST.ACTIONS.DEBUG.LABEL')}
+				label={t('CONTENT.PURCHASES.LIST.ACTIONS.FILTERS.DEBUG')}
 			/>
 		</Box>
 	);

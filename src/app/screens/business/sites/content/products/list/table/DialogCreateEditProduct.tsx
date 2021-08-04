@@ -10,12 +10,12 @@ import {
 	Grid,
 	TextField
 } from '@material-ui/core';
-import { FC, MouseEvent, useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import UploadImage from '../../../../../../../components/common/upload/UploadImage';
+import Upload from '../../../../../../../components/common/upload/Upload';
 import { AppConfigService } from '../../../../../../../services';
 import {
 	ProductCreateEdit,
@@ -59,13 +59,13 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				params.siteId &&
 					dispatch(
 						ProductCreateEdit(
+							params.siteId,
+							product?.id,
 							{
 								...values,
 								image
 							},
 							type,
-							params.siteId,
-							product?.id,
 							() => setOpen(false)
 						)
 					);
@@ -79,20 +79,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 	const currency = sites.content?.dataById[params.siteId]?.currency || defaultCurrency;
 
-	/**
-	 * close create/edit dialog
-	 * @param event
-	 */
-	const closeCreateEditProductDialog = (event: MouseEvent<HTMLButtonElement>) => {
-		// stop propagation
-		event.stopPropagation();
-
-		// close dialog
-		setOpen(false);
-	};
-
 	return (
-		<Dialog open={open} onClose={closeCreateEditProductDialog}>
+		<Dialog open={open} onClose={() => setOpen(false)}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
 					{type === SiteProductCreateEditTypeEnum.CREATE && t(`${common}.CREATE.TITLE`)}
@@ -101,7 +89,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
-							<UploadImage
+							<Upload
 								image={image}
 								setImage={setImage}
 								imageError={imageError}
@@ -201,7 +189,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 					</Grid>
 				</DialogContent>
 				<DialogActions>
-					<Button variant="outlined" onClick={closeCreateEditProductDialog}>
+					<Button variant="outlined" onClick={() => setOpen(false)}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button

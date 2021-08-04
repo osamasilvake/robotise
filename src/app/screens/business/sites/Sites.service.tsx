@@ -1,3 +1,4 @@
+import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { DialogCreateEditNotificationPayloadInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
@@ -57,17 +58,17 @@ class SitesService {
 
 	/**
 	 * create/edit product
-	 * @param payload
-	 * @param type
 	 * @param siteId
 	 * @param productId
+	 * @param payload
+	 * @param type
 	 * @returns
 	 */
 	siteProductCreateEdit = (
-		payload: DialogCreateEditProductPayloadInterface,
-		type: SiteProductCreateEditTypeEnum,
 		siteId: string,
-		productId: string | undefined
+		productId: string | undefined,
+		payload: DialogCreateEditProductPayloadInterface,
+		type: SiteProductCreateEditTypeEnum
 	) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PRODUCTS;
 		if (type === SiteProductCreateEditTypeEnum.EDIT) {
@@ -218,6 +219,23 @@ class SitesService {
 		return payload.siteId
 			? HttpClientService.post(url, request)
 			: HttpClientService.patch(url, request);
+	};
+
+	/**
+	 * generate reports
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteGenerateReports = (siteId: string, payload: ReportPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId,
+				'createdAt[gte]': payload.from,
+				'createdAt[lte]': payload.to
+			}
+		});
 	};
 }
 const instance = new SitesService();

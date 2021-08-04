@@ -8,7 +8,7 @@ import { imageFromInput } from '../../../utilities/methods/Image';
 import { UploadImageChangeInterface, UploadImageInterface } from './Upload.interface';
 import { UploadStyle } from './Upload.style';
 
-const UploadImage: FC<UploadImageInterface> = (props) => {
+const Upload: FC<UploadImageInterface> = (props) => {
 	const { image, setImage, imageError, setImageError } = props;
 	const { t } = useTranslation('UPLOAD');
 	const classes = UploadStyle();
@@ -84,4 +84,4 @@ const UploadImage: FC<UploadImageInterface> = (props) => {
 		</Box>
 	);
 };
-export default UploadImage;
+export default Upload;

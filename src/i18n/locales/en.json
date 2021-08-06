@@ -443,7 +443,8 @@
 					"ACTIVE": "Active",
 					"ACCEPT_ORDERS": "Orders",
 					"CONTROL_MODE": "Autonomous",
-					"MISSION_STATUS": "Mission",
+					"BATTERY_PERCENTAGE": "Battery 🔋",
+					"MISSION_STATUS": "Mission 🚀",
 					"UPDATED_AT": "Updated At",
 					"ALERTS": "Alerts"
 				}
@@ -810,7 +811,7 @@
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",
-							"TARGET": "Target",
+							"TARGET": "Target 🎯",
 							"ROBOT": "Robot",
 							"MODE": "Mode",
 							"CREATED": "Created",
@@ -881,7 +882,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
-							"TARGET": "Target",
+							"TARGET": "Target 🎯",
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
 							"COMMENT": "Comment"

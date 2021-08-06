@@ -28,6 +28,12 @@ export const columns: RobotsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE,
+		label: `${common}.BATTERY_PERCENTAGE`,
+		width: 150,
+		align: 'left'
+	},
+	{
 		id: RobotsTableColumnsTypeEnum.MISSION_STATUS,
 		label: `${common}.MISSION_STATUS`,
 		minWidth: 170,

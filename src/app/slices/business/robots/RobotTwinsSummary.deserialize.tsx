@@ -66,6 +66,10 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 						}
 					},
 					status: {
+						batteryState: {
+							value: state.status.batteryState,
+							updatedAt: meta.status.batteryState.updatedAt
+						},
 						controlMode: {
 							value: state.status.controlMode,
 							updatedAt: meta.status.controlMode.updatedAt
@@ -106,6 +110,7 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 			robotId: item.robot.id,
 			robotTitle: item.robot.name,
 			robotIsReady: item.robotState.isReady.value,
+			robotBatteryPercentage: item.status.batteryState.value.percentage,
 			robotControlMode: item.status.controlMode.value,
 			robotMission: item.status.mission,
 			robotCustomerName: item.robot.customerName,

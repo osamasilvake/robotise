@@ -10,6 +10,7 @@ import { CardStyle } from '../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../../content/detail/commands/RobotDetailCommands.enum';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
+import { percentage } from './RobotsTable.map';
 import { RobotsListStyle } from './RobotsTable.style';
 
 const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
@@ -57,6 +58,8 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 				</Box>
 			);
 		} else if (columns[4].id === column.id) {
+			return percentage(Number(value));
+		} else if (columns[5].id === column.id) {
 			const mission = robot['robotMission'];
 			return mission && mission.status ? (
 				<Box className={classes.sTableRowItemFlex}>
@@ -82,9 +85,9 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 			) : (
 				AppConfigService.AppOptions.common.none
 			);
-		} else if (columns[5].id === column.id) {
-			return momentFormat1(value);
 		} else if (columns[6].id === column.id) {
+			return momentFormat1(value);
+		} else if (columns[7].id === column.id) {
 			return `${robot.alerts.danger}/${robot.alerts.warning}`;
 		}
 		return value || AppConfigService.AppOptions.common.none;

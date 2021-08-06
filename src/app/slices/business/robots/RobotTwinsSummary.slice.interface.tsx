@@ -23,6 +23,7 @@ export interface RTSContentDataInterface {
 	robotTitle: string;
 	robotIsReady: boolean;
 	robotControlMode: string;
+	robotBatteryPercentage: number;
 	robotMission: {
 		status: string;
 		description: string;
@@ -76,6 +77,12 @@ export interface RTSContentTransformDataInterface {
 		};
 	};
 	status: {
+		batteryState: {
+			value: {
+				percentage: number;
+			};
+			updatedAt: Date;
+		};
 		controlMode: {
 			value: string;
 			updatedAt: Date;
@@ -112,6 +119,9 @@ export interface IRobotTwinSummary {
 				isReady: boolean;
 			};
 			status: {
+				batteryState: {
+					percentage: number;
+				};
 				controlMode: string;
 				mission: {
 					status: string;
@@ -131,6 +141,9 @@ export interface IRobotTwinSummary {
 				};
 			};
 			status: {
+				batteryState: {
+					updatedAt: Date;
+				};
 				controlMode: {
 					updatedAt: Date;
 				};

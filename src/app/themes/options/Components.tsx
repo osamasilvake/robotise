@@ -140,6 +140,15 @@ const OverridesCustom: Components = {
 				'&.MuiSpeedDial-fab': {
 					height: pxToRem(46),
 					width: pxToRem(46)
+				},
+				'&.MuiSpeedDialAction-fab': {
+					backgroundColor: AppConfigService.AppOptions.colors.c9,
+					color: AppConfigService.AppOptions.colors.c7,
+					transition: 'none',
+					'&:hover': {
+						backgroundColor: AppConfigService.AppOptions.colors.c9,
+						opacity: 0.8
+					}
 				}
 			}
 		}

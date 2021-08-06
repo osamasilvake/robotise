@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
+import Loader from '../../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
 import PageError from '../../../../components/content/page-error/PageError';
 import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../Site.interface';
@@ -24,6 +26,7 @@ const SiteContent: FC = () => {
 	const history = useHistory();
 
 	const cSiteId = sites.content?.dataById[params.siteId]?.id;
+	const problem = !!sites.errors?.id || (sites.content && !cSiteId);
 
 	const common = 'CONTENT.TABS';
 
@@ -49,6 +52,15 @@ const SiteContent: FC = () => {
 
 	return value !== -1 ? (
 		<Box>
+			{/* Loader */}
+			{!problem && sites.loader && (
+				<Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />
+			)}
+
+			{/* Error */}
+			{problem && <PageError />}
+
+			{/* Content */}
 			{!!cSiteId && (
 				<>
 					{/* Tabs */}
@@ -79,8 +91,6 @@ const SiteContent: FC = () => {
 					</Box>
 				</>
 			)}
-
-			{((sites.content && !cSiteId) || !!sites.errors?.id) && <PageError />}
 		</Box>
 	) : null;
 };

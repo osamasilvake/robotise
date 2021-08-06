@@ -42,8 +42,8 @@ const Loader: FC<LoaderInterface> = (props) => {
 							alt={AppConfigService.envCompanyName}
 						/>
 					</Box>
-					<Box className={classes.sCircularLoader}>
-						<CircularProgress color="inherit" />
+					<Box>
+						<CircularProgress color="primary" />
 					</Box>
 				</Box>
 			);

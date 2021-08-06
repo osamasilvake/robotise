@@ -9,5 +9,8 @@ export const ScrollTopStyle = makeStyles((theme: Theme) => ({
 		bottom: theme.spacing(2),
 		right: theme.spacing(2),
 		zIndex: AppConfigService.AppOptions.styles.zIndex.level2
+	},
+	sScrollTopIcon: {
+		color: AppConfigService.AppOptions.colors.c7
 	}
 }));

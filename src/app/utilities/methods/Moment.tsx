@@ -51,4 +51,38 @@ const momentISOString = (): string => {
 	return moment().toISOString();
 };
 
-export { momentCurrentYear, momentFormat1, momentFormat2, momentISOString, momentNow, momentSort };
+/**
+ * today
+ * @returns
+ */
+const momentToday = (): string => {
+	return moment().format('YYYY-MM-DD');
+};
+
+/**
+ * 30 days prior to today
+ * @returns
+ */
+const moment30DaysFromToday = (): string => {
+	return moment().subtract(30, 'days').format('YYYY-MM-DD');
+};
+
+/**
+ * From and to dates difference
+ * @returns
+ */
+const momentFromToDiff = (date1: string, date2: string): boolean => {
+	return moment(date1).diff(moment(date2)) >= 1;
+};
+
+export {
+	moment30DaysFromToday,
+	momentCurrentYear,
+	momentFormat1,
+	momentFormat2,
+	momentFromToDiff,
+	momentISOString,
+	momentNow,
+	momentSort,
+	momentToday
+};

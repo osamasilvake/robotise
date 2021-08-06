@@ -14,6 +14,9 @@ export interface SliceSiteInterface {
 		content: SSContentNotificationTypesInterface | null;
 		errors: TriggerMessageInterface | null;
 	};
+	reports: {
+		loading: boolean;
+	};
 }
 
 export interface SSContentServicePositionsInterface {

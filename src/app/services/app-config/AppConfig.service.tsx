@@ -211,6 +211,9 @@ class AppConfigService extends EnvService {
 							TYPES: `${this.envAppUrl}/notification-types`,
 							USERS: `${this.envAppUrl}/notification-users`,
 							USER: `${this.envAppUrl}/notification-users/:userId`
+						},
+						REPORTS: {
+							PRODUCTS: `${this.envAppUrl}/product-export`
 						}
 					},
 					ROBOTS: {
@@ -225,7 +228,10 @@ class AppConfigService extends EnvService {
 						COMMANDS: `${this.envAppUrl}/robots/:robotId/commands`,
 						CONFIG: `${this.envAppUrl}/robots/:robotId`,
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
-						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`
+						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
+						REPORTS: {
+							PURCHASES: `${this.envAppUrl}/order-report-export`
+						}
 					}
 				},
 				INFORMATION: {

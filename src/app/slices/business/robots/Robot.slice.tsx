@@ -1,5 +1,7 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
+import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { RobotConfigPayloadInterface } from '../../../screens/business/robots/content/configuration/robot-config/RobotConfig.interface';
@@ -34,6 +36,9 @@ export const initialState: SliceRobotInterface = {
 	},
 	robotConfig: {
 		loading: false
+	},
+	reports: {
+		loading: false
 	}
 };
 
@@ -54,6 +59,8 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = true;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
+			} else if (module === RobotTypeEnum.REPORTS) {
+				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -69,12 +76,15 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
+			} else if (module === RobotTypeEnum.REPORTS) {
+				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
-			const { module } = action.payload;
+			const { module, response } = action.payload;
 			if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
+				state.map.content = response;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
@@ -83,6 +93,8 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
+			} else if (module === RobotTypeEnum.REPORTS) {
+				state.reports.loading = false;
 			}
 		},
 		reset: () => initialState
@@ -130,7 +142,7 @@ export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatc
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure(state));
+			dispatch(failure({ ...state, response: message }));
 		});
 };
 
@@ -324,6 +336,61 @@ export const RobotUpdateConfig =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * generate reports
+ * @param id
+ * @param robotId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotGenerateReports =
+	(
+		_id: ReportTypeEnum,
+		robotId: string,
+		payload: ReportPayloadInterface,
+		callback: (report: string) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.REPORTS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotGenerateReports(robotId, payload)
+			.then(async (res) => {
+				// callback
+				callback(res);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-generate-reports-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `COMMON.REPORTS.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-generate-reports-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `COMMON.REPORTS.ERROR`
 				};
 				dispatch(triggerMessage(message));
 

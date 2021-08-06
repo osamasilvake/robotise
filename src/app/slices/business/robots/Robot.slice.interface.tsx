@@ -15,6 +15,9 @@ export interface SliceRobotInterface {
 	robotConfig: {
 		loading: boolean;
 	};
+	reports: {
+		loading: boolean;
+	};
 }
 
 export interface SRContentMapInterface {

@@ -3,6 +3,7 @@ export enum RobotsTableColumnsTypeEnum {
 	ACTIVE = 'robotIsReady',
 	ACCEPT_ORDER = 'siteAcceptOrders',
 	CONTROL_MODE = 'robotControlMode',
+	BATTERY_PERCENTAGE = 'robotBatteryPercentage',
 	MISSION_STATUS = 'robotMission',
 	UPDATED_AT = 'updatedAt',
 	ALERTS = 'alerts'
@@ -13,5 +14,6 @@ export enum RobotsTableSortTypeEnum {
 	STRING,
 	OBJECT_ALERT,
 	OBJECT_MISSION,
-	BOOLEAN
+	BOOLEAN,
+	NUMBER
 }

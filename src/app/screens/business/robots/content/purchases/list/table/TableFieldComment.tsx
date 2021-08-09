@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-	PurchaseEditComment,
+	PurchaseCommentEdit,
 	purchasesSelector,
 	PurchaseUpdateState
 } from '../../../../../../../slices/business/robots/purchases/Purchases.slice';
@@ -32,8 +32,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	 */
 	const toggleEditMode = () => {
 		if (editMode) {
-			// dispatch: edit comment
-			dispatch(PurchaseEditComment(purchase.id, value, () => closeEditMode()));
+			// dispatch: edit a comment field
+			dispatch(PurchaseCommentEdit(purchase.id, value, () => closeEditMode()));
 		} else {
 			// dispatch: update state
 			const state: SPCStateInterface = {

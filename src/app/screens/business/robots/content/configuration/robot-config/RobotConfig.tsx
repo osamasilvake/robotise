@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { RobotUpdateConfig } from '../../../../../../slices/business/robots/Robot.slice';
+import { RobotConfigUpdate } from '../../../../../../slices/business/robots/Robot.slice';
 import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
 import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
@@ -57,9 +57,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 			RobotConfigValidation,
 			async () => {
 				if (robotSingle?.robotId) {
-					// dispatch: update robot specific detail
+					// dispatch: update robot config
 					dispatch(
-						RobotUpdateConfig(robotSingle.robotId, values, () => {
+						RobotConfigUpdate(robotSingle.robotId, values, () => {
 							if (!robotTwinsSummary.content?.state?.hidden && values.isHidden) {
 								// prepare link
 								const robotsLink =

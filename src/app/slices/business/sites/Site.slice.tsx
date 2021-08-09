@@ -345,7 +345,7 @@ export const SiteUpdateNotification =
  * @param callback
  * @returns
  */
-export const SiteGenerateReports =
+export const SiteReportsGenerate =
 	(
 		_id: ReportTypeEnum,
 		siteId: string,
@@ -360,7 +360,7 @@ export const SiteGenerateReports =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return SitesService.siteGenerateReports(siteId, payload)
+		return SitesService.siteReportsGenerate(siteId, payload)
 			.then(async (res) => {
 				// callback
 				callback(res);

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { RobotSyncProducts } from '../../../../../../slices/business/robots/Robot.slice';
+import { RobotProductsSync } from '../../../../../../slices/business/robots/Robot.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
@@ -33,7 +33,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	 */
 	const handleSyncProducts = () => {
 		// dispatch: sync products on the robot
-		robotId && dispatch(RobotSyncProducts(robotId));
+		robotId && dispatch(RobotProductsSync(robotId));
 	};
 
 	return (

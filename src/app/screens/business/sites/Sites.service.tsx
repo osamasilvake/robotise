@@ -227,7 +227,7 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	siteGenerateReports = (siteId: string, payload: ReportPayloadInterface) => {
+	siteReportsGenerate = (siteId: string, payload: ReportPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get(url, {
 			params: {

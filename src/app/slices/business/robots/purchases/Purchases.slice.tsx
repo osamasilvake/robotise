@@ -138,7 +138,7 @@ export const PurchasesFetchList =
  * @param callback
  * @returns
  */
-export const PurchaseEditComment =
+export const PurchaseCommentEdit =
 	(purchaseId: string, comment: string, callback: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -148,7 +148,7 @@ export const PurchaseEditComment =
 		// dispatch: updating
 		dispatch(updating());
 
-		return RobotsService.robotPurchaseEditComment(purchaseId, comment)
+		return RobotsService.robotPurchaseCommentEdit(purchaseId, comment)
 			.then(async (res) => {
 				// deserialize response
 				let result = await deserializePurchase(res);

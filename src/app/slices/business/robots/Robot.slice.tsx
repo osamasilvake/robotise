@@ -213,12 +213,12 @@ export const RobotControlCommandSend =
 	};
 
 /**
- * request robot camera image
+ * request robot camera command
  * @param camera
  * @param robotId
  * @returns
  */
-export const RobotCommandCameraImageRequest =
+export const RobotCameraCommandRequest =
 	(camera: RobotDetailCameraTypeEnum, robotId: string) => async (dispatch: Dispatch) => {
 		const state = {
 			module: RobotTypeEnum.COMMAND_CAMERA
@@ -227,7 +227,7 @@ export const RobotCommandCameraImageRequest =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return RobotsService.robotRequestCameraImage(camera, robotId)
+		return RobotsService.robotCameraCommandRequest(camera, robotId)
 			.then(async () => {
 				// wait
 				await timeout(3000);
@@ -264,7 +264,7 @@ export const RobotCommandCameraImageRequest =
  * @param robotId
  * @returns
  */
-export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch) => {
+export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch) => {
 	const state = {
 		module: RobotTypeEnum.SYNC_PRODUCTS
 	};
@@ -272,7 +272,7 @@ export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch)
 	// dispatch: loading
 	dispatch(loading(state));
 
-	return RobotsService.robotSyncProducts(robotId)
+	return RobotsService.robotProductsSync(robotId)
 		.then(async () => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
@@ -302,13 +302,13 @@ export const RobotSyncProducts = (robotId: string) => async (dispatch: Dispatch)
 };
 
 /**
- * update robot specific detail
+ * update robot config
  * @param robotId
  * @param payload
  * @param callback
  * @returns
  */
-export const RobotUpdateConfig =
+export const RobotConfigUpdate =
 	(robotId: string, payload: RobotConfigPayloadInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
@@ -318,7 +318,7 @@ export const RobotUpdateConfig =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return RobotsService.robotConfig(robotId, payload)
+		return RobotsService.robotConfigUpdate(robotId, payload)
 			.then(async () => {
 				// callback
 				callback();
@@ -361,7 +361,7 @@ export const RobotUpdateConfig =
  * @param callback
  * @returns
  */
-export const RobotGenerateReports =
+export const RobotReportsGenerate =
 	(
 		_id: ReportTypeEnum,
 		robotId: string,
@@ -376,7 +376,7 @@ export const RobotGenerateReports =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return RobotsService.robotGenerateReports(robotId, payload)
+		return RobotsService.robotReportsGenerate(robotId, payload)
 			.then(async (res) => {
 				// callback
 				callback(res);

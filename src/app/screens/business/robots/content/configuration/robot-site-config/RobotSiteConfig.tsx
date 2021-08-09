@@ -51,6 +51,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 			() => ({ siteId: '' }),
 			async () => {
 				// dispatch: update robot site
+				console.log('called', values);
 			}
 		);
 

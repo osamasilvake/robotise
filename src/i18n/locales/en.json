@@ -915,7 +915,7 @@
 				},
 				"ROBOT_CONFIG": {
 					"TITLE": "Configure Robot",
-					"EXCERPT": "Update Robot specific detail.",
+					"EXCERPT": "Update Robot detail.",
 					"FORM": {
 						"FIELDS": {
 							"NAME": {

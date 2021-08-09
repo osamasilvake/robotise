@@ -43,6 +43,19 @@ class RobotsService {
 	};
 
 	/**
+	 * fetch robot map location
+	 * @param mapId
+	 * @returns
+	 */
+	robotLocationMapFetch = (mapId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.MAPS.replace(
+			':mapId',
+			mapId
+		);
+		return HttpClientService.get(url);
+	};
+
+	/**
 	 * send robot control command
 	 * @param robotId
 	 * @param command
@@ -91,25 +104,12 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch robot map location
-	 * @param mapId
-	 * @returns
-	 */
-	robotLocationMapFetch = (mapId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.MAPS.replace(
-			':mapId',
-			mapId
-		);
-		return HttpClientService.get(url);
-	};
-
-	/**
-	 * request robot camera image
+	 * request robot camera command
 	 * @param camera
 	 * @param robotId
 	 * @returns
 	 */
-	robotRequestCameraImage = (camera: RobotDetailCameraTypeEnum, robotId: string) => {
+	robotCameraCommandRequest = (camera: RobotDetailCameraTypeEnum, robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
 			':robotId',
 			robotId
@@ -245,7 +245,7 @@ class RobotsService {
 	 * @param comment
 	 * @returns
 	 */
-	robotPurchaseEditComment = (purchaseId: string, comment: string) => {
+	robotPurchaseCommentEdit = (purchaseId: string, comment: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES;
 		return HttpClientService.patch(`${url}/${purchaseId}`, {
 			data: {
@@ -275,7 +275,7 @@ class RobotsService {
 	 * @param robotId
 	 * @returns
 	 */
-	robotSyncProducts = (robotId: string) => {
+	robotProductsSync = (robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
 			':robotId',
 			robotId
@@ -284,12 +284,12 @@ class RobotsService {
 	};
 
 	/**
-	 * update robot specific detail
+	 * update robot config
 	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotConfig = (robotId: string, payload: RobotConfigPayloadInterface) => {
+	robotConfigUpdate = (robotId: string, payload: RobotConfigPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
 			':robotId',
 			robotId
@@ -310,13 +310,13 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch robot commands logs
+	 * fetch robot logs
 	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotRequestCommandsLog = (robotId: string, payload: RobotLogsListPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
+	robotLogsFetch = (robotId: string, payload: RobotLogsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LOGS;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,
@@ -332,7 +332,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotGenerateReports = (robotId: string, payload: ReportPayloadInterface) => {
+	robotReportsGenerate = (robotId: string, payload: ReportPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {

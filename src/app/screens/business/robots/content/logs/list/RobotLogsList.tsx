@@ -8,7 +8,10 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
-import { LogsFetch, logsSelector } from '../../../../../../slices/business/robots/logs/Logs.slice';
+import {
+	logsSelector,
+	RobotLogsFetch
+} from '../../../../../../slices/business/robots/logs/Logs.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotLogsListPayloadInterface } from './RobotLogsList.interface';
 import { RobotLogsListStyle } from './RobotLogsList.style';
@@ -41,8 +44,8 @@ const RobotLogsList: FC = () => {
 		};
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// dispatch: fetch robot commands logs
-			dispatch(LogsFetch(cRobotId, payload));
+			// dispatch: fetch robot logs
+			dispatch(RobotLogsFetch(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -56,9 +59,9 @@ const RobotLogsList: FC = () => {
 
 			if (condition1 || condition2 || condition3) {
 				if (condition2 || condition4) {
-					// dispatch: fetch robot commands logs
+					// dispatch: fetch robot logs
 					dispatch(
-						LogsFetch(cRobotId, {
+						RobotLogsFetch(cRobotId, {
 							...payload,
 							page: condition2 ? 0 : page
 						})
@@ -74,9 +77,9 @@ const RobotLogsList: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (logs.content) {
-				// dispatch: fetch robot commands logs
+				// dispatch: fetch robot logs
 				dispatch(
-					LogsFetch(
+					RobotLogsFetch(
 						cRobotId,
 						{
 							page: 0,

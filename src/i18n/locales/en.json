@@ -186,13 +186,17 @@
 				}
 			},
 			"CONFIGURATION": {
+				"SYNC_PRODUCTS": {
+					"SUCCESS": "Products has been synchronized successfully!",
+					"ERROR": "Unable to sync products on the robot!"
+				},
 				"ROBOT_CONFIG": {
 					"SUCCESS": "Robot setting has been updated successfully!",
 					"ERROR": "Unable to configure robot!"
 				},
-				"SYNC_PRODUCTS": {
-					"SUCCESS": "Products has been synchronized successfully!",
-					"ERROR": "Unable to sync products on the robot!"
+				"ROBOT_SITE_CONFIG": {
+					"SUCCESS": "Robot setting has been updated successfully!",
+					"ERROR": "Unable to configure robot to a site!"
 				}
 			}
 		}
@@ -904,8 +908,13 @@
 				}
 			},
 			"CONFIGURATION": {
+				"SYNC_PRODUCTS": {
+					"TITLE": "Sync Products",
+					"EXCERPT": "Sync Products on the robot.",
+					"SYNC": "SYNC"
+				},
 				"ROBOT_CONFIG": {
-					"TITLE": "Robot Config",
+					"TITLE": "Configure Robot",
 					"EXCERPT": "Update Robot specific detail.",
 					"FORM": {
 						"FIELDS": {
@@ -939,10 +948,19 @@
 						}
 					}
 				},
-				"SYNC_PRODUCTS": {
-					"TITLE": "Sync Products",
-					"EXCERPT": "Sync Products on the robot.",
-					"SYNC": "SYNC"
+				"ROBOT_SITE_CONFIG": {
+					"TITLE": "Configure Robot SITE",
+					"EXCERPT": "Attach robot to a site.",
+					"FORM": {
+						"FIELDS": {
+							"SITE": {
+								"LABEL": "Site"								
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
 				}
 			},
 			"LOGS": {

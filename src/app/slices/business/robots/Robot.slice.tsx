@@ -37,6 +37,9 @@ export const initialState: SliceRobotInterface = {
 	robotConfig: {
 		loading: false
 	},
+	robotSiteConfig: {
+		loading: false
+	},
 	reports: {
 		loading: false
 	}
@@ -55,10 +58,12 @@ const dataSlice = createSlice({
 				state.control.loading = true;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
-				state.robotConfig.loading = true;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
+			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+				state.robotConfig.loading = true;
+			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+				state.robotSiteConfig.loading = true;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
@@ -72,10 +77,12 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
-				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
+			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+				state.robotConfig.loading = false;
+			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+				state.robotSiteConfig.loading = false;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -89,10 +96,12 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
-				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
+			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+				state.robotConfig.loading = false;
+			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+				state.robotSiteConfig.loading = false;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}

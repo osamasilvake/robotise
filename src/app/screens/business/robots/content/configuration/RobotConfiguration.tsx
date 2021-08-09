@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { robotSelector } from '../../../../../slices/business/robots/Robot.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import RobotConfig from './robot-config/RobotConfig';
+import RobotSiteConfig from './robot-site-config/RobotSiteConfig';
 import { RobotConfigurationStyle } from './RobotConfiguration.style';
 import SyncProducts from './sync-products/SyncProducts';
 
@@ -25,6 +26,9 @@ const RobotConfiguration: FC = () => {
 			<Grid container spacing={1}>
 				<Grid item xs={12} md={6}>
 					<RobotConfig robotTwinsSummary={robotTwinsSummary} robot={robot} />
+				</Grid>
+				<Grid item xs={12} md={6}>
+					<RobotSiteConfig robotTwinsSummary={robotTwinsSummary} robot={robot} />
 				</Grid>
 			</Grid>
 		</Box>

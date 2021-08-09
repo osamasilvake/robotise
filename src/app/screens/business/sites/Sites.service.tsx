@@ -112,7 +112,7 @@ class SitesService {
 	 * @param whitelist
 	 * @returns
 	 */
-	siteUpdateRoomState = (siteId: string, whitelist: string[]) => {
+	siteRoomStateUpdate = (siteId: string, whitelist: string[]) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
 			':siteId',
 			siteId
@@ -136,7 +136,7 @@ class SitesService {
 	 * @param acceptOrders
 	 * @returns
 	 */
-	siteAcceptOrders = (siteId: string, acceptOrders: boolean) => {
+	siteOrdersAccept = (siteId: string, acceptOrders: boolean) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
 			':siteId',
 			siteId
@@ -183,7 +183,7 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	siteUpdateNotification = (payload: DialogCreateEditNotificationPayloadInterface) => {
+	siteNotificationUpdate = (payload: DialogCreateEditNotificationPayloadInterface) => {
 		const url = payload.siteId
 			? AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS
 			: AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(

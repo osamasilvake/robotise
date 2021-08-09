@@ -15,12 +15,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { RobotSiteConfigUpdate } from '../../../../../../slices/business/robots/Robot.slice';
+import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
+import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import {
-	validateEmptyObj,
-	validateEmptyObjProperty
-} from '../../../../../../utilities/methods/ObjectUtilities';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import {
@@ -43,17 +42,26 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';
 
-	const { handleChangeSelect, handleSubmit, values, errors } =
-		useForm<RobotSiteConfigPayloadInterface>(
-			{
-				siteId: robotSingle?.siteId || ''
-			},
-			() => ({ siteId: '' }),
-			async () => {
-				// dispatch: update robot site
-				console.log('called', values);
+	const { handleChangeSelect, handleSubmit, values } = useForm<RobotSiteConfigPayloadInterface>(
+		{
+			siteId: robotSingle?.siteId || ''
+		},
+		() => ({ siteId: '' }),
+		async () => {
+			if (robotSingle?.robotId) {
+				// dispatch: update robot site config
+				dispatch(
+					RobotSiteConfigUpdate(robotSingle.robotId, values, () => {
+						// dispatch: fetch robot twins summary
+						dispatch(RobotTwinsSummaryFetchList(true));
+
+						// dispatch: fetch robot twins of a robot
+						dispatch(RobotTwinsFetch(robotSingle.id, true));
+					})
+				);
 			}
-		);
+		}
+	);
 
 	return (
 		<Card square elevation={1}>
@@ -90,8 +98,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 								variant="outlined"
 								type="submit"
 								disabled={
-									(!!errors && !validateEmptyObj(errors)) ||
-									validateEmptyObjProperty(values) ||
+									!!values.siteId &&
 									sites.content?.dataById[values.siteId]?.id ===
 										robotSingle?.siteId
 								}

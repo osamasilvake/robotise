@@ -2,6 +2,7 @@ import { ReportPayloadInterface } from '../../../components/common/report/Report
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotConfigPayloadInterface } from './content/configuration/robot-config/RobotConfig.interface';
+import { RobotSiteConfigPayloadInterface } from './content/configuration/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -303,6 +304,33 @@ class RobotsService {
 					configs: {
 						isHidden: payload.isHidden,
 						isOnlineCheckDisabled: payload.isOnlineCheckDisabled
+					}
+				}
+			}
+		});
+	};
+
+	/**
+	 * update robot site config
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotSiteConfigUpdate = (robotId: string, payload: RobotSiteConfigPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
+			':robotId',
+			robotId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'robots',
+				id: robotId,
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: payload.siteId
+						}
 					}
 				}
 			}

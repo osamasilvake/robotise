@@ -5,6 +5,7 @@ import { ReportPayloadInterface } from '../../../components/common/report/Report
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { RobotConfigPayloadInterface } from '../../../screens/business/robots/content/configuration/robot-config/RobotConfig.interface';
+import { RobotSiteConfigPayloadInterface } from '../../../screens/business/robots/content/configuration/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -345,6 +346,58 @@ export const RobotConfigUpdate =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * update robot site config
+ * @param robotId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotSiteConfigUpdate =
+	(robotId: string, payload: RobotSiteConfigPayloadInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.ROBOT_SITE_CONFIG
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotSiteConfigUpdate(robotId, payload)
+			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-site-config-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-site-config-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.ERROR`
 				};
 				dispatch(triggerMessage(message));
 

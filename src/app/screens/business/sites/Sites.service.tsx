@@ -1,5 +1,6 @@
 import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
+import { removeEmptyObjProperties } from '../../../utilities/methods/ObjectUtilities';
 import { DialogCreateEditNotificationPayloadInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductPayloadInterface } from './content/products/list/table/SiteProductsTable.interface';
@@ -83,7 +84,7 @@ class SitesService {
 		return HttpClientService.post(url, {
 			data: {
 				type: 'products',
-				attributes: payload,
+				attributes: removeEmptyObjProperties(payload),
 				relationships: {
 					site: {
 						data: {

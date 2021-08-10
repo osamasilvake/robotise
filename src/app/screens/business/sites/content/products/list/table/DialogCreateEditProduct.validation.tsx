@@ -43,26 +43,13 @@ export const CreateEditProductValidation = (
 		}
 	}
 
-	// Length
-	if (touched.length) {
-		// validate
-		if (
-			(!values.length || regexZeroInString.test(String(values.length))) &&
-			(!values.weight || regexZeroInString.test(String(values.weight)))
-		) {
-			errors.length = `${common}.LENGTH.VALIDATIONS.INVALID`;
-		}
-	}
-
-	// Weight
-	if (touched.weight) {
-		// validate
-		if (
-			(!values.length || regexZeroInString.test(String(values.length))) &&
-			(!values.weight || regexZeroInString.test(String(values.weight)))
-		) {
-			errors.weight = `${common}.WEIGHT.VALIDATIONS.INVALID`;
-		}
+	// Length/Weight
+	if (
+		(!values.length || regexZeroInString.test(String(values.length))) &&
+		(!values.weight || regexZeroInString.test(String(values.weight)))
+	) {
+		errors.length = `${common}.LENGTH.VALIDATIONS.INVALID`;
+		errors.weight = `${common}.WEIGHT.VALIDATIONS.INVALID`;
 	}
 
 	return errors;

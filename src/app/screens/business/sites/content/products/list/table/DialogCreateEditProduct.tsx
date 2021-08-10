@@ -59,8 +59,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				image: product?.image || '',
 				name: product?.name || '',
 				price: product?.price || 0,
-				length: product?.length || 40,
-				weight: product?.weight || 80,
+				length: product?.length || '',
+				weight: product?.weight || '',
 				volume: product?.volume || ''
 			},
 			CreateEditProductValidation,

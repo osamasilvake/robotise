@@ -36,6 +36,10 @@ export interface TableFieldCommentInterface {
 	purchase: SPCDataInterface;
 }
 
+export interface TableFieldCommentFormInterface {
+	comment: string;
+}
+
 export interface RobotPurchasesTableColumnInterface {
 	id: RobotPurchasesTableColumnsTypeEnum;
 	label: string;

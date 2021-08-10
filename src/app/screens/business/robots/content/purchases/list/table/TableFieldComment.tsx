@@ -1,5 +1,5 @@
 import { Box, Chip, CircularProgress, FormControl, TextField, Typography } from '@material-ui/core';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,7 +9,11 @@ import {
 	PurchaseUpdateState
 } from '../../../../../../../slices/business/robots/purchases/Purchases.slice';
 import { SPCStateInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
-import { TableFieldCommentInterface } from './RobotPurchasesTable.interface';
+import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+import {
+	TableFieldCommentFormInterface,
+	TableFieldCommentInterface
+} from './RobotPurchasesTable.interface';
 import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 
 const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
@@ -20,32 +24,39 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	const dispatch = useDispatch();
 	const purchases = useSelector(purchasesSelector);
 
-	const [value, setValue] = useState(purchase.comment);
-
 	const purchaseId = purchases.content?.state?.locked;
 	const editMode = purchase.id === purchaseId;
 
 	const common = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
+	const fieldComment = 'comment';
 
-	/**
-	 * toggle edit mode
-	 */
-	const toggleEditMode = () => {
-		if (editMode) {
-			// dispatch: edit a comment field
-			dispatch(PurchaseCommentEdit(purchase.id, value, () => closeEditMode()));
-		} else {
-			// dispatch: update state
-			const state: SPCStateInterface = {
-				...purchases.content?.state,
-				locked: purchase.id
-			};
-			dispatch(PurchaseUpdateState(state));
+	const { handleChangeInput, handleSubmit, values } = useForm<TableFieldCommentFormInterface>(
+		{
+			comment: purchase.comment
+		},
+		() => ({ comment: '' }),
+		async () => {
+			if (editMode) {
+				// dispatch: edit a comment field
+				dispatch(PurchaseCommentEdit(purchase.id, values.comment, () => closeEditMode()));
+			} else {
+				// dispatch: update state
+				const state: SPCStateInterface = {
+					...purchases.content?.state,
+					locked: purchase.id
+				};
+				dispatch(PurchaseUpdateState(state));
 
-			// set value
-			setValue(purchase.comment);
+				// set value
+				handleChangeInput({
+					target: {
+						name: fieldComment,
+						value: purchase.comment
+					}
+				});
+			}
 		}
-	};
+	);
 
 	/**
 	 * close edit mode
@@ -67,11 +78,11 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					<TextField
 						variant="outlined"
 						type="text"
-						id="field-comment"
-						name="comment"
+						id={fieldComment}
+						name={fieldComment}
 						label={t(`${common}.COMMENT.FIELD.LABEL`)}
 						placeholder={t(`${common}.COMMENT.FIELD.PLACEHOLDER`)}
-						onChange={(event) => setValue(event.target.value)}
+						onChange={handleChangeInput}
 						inputRef={(input) => input && input.focus()}
 						onFocus={(e) =>
 							e.currentTarget.setSelectionRange(
@@ -81,7 +92,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						}
 						multiline
 						rows={4}
-						value={value}
+						value={values.comment}
 						className={classes.sCommentTextField}
 					/>
 				</FormControl>
@@ -111,7 +122,14 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						variant="outlined"
 						clickable
 						disabled={purchases.updating}
-						onClick={() => setValue('')}
+						onClick={() =>
+							handleChangeInput({
+								target: {
+									name: fieldComment,
+									value: ''
+								}
+							})
+						}
 						className={classes.sCommentClear}
 					/>
 				)}
@@ -127,7 +145,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						editMode && purchases.updating ? <CircularProgress size={20} /> : undefined
 					}
 					disabled={purchases.updating}
-					onClick={toggleEditMode}
+					onClick={handleSubmit}
 				/>
 
 				{/* Value */}

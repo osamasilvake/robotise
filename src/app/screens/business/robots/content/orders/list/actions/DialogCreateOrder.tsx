@@ -51,6 +51,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const common = 'ROBOTS:CONTENT.ORDERS';
 	const siteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
+	const fieldLocation = 'location';
 
 	const {
 		handleChangeInput,
@@ -113,8 +114,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								required
 								variant="outlined"
 								type="number"
-								id="location"
-								name="location"
+								id={fieldLocation}
+								name={fieldLocation}
 								value={values.location}
 								error={!!errors?.location}
 								onChange={handleChangeInput}
@@ -140,7 +141,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								required
 								labelId="service-positions"
 								id="service-positions"
-								name="location"
+								name={fieldLocation}
 								value={values.location}
 								onChange={handleChangeSelect}
 								label={t(
@@ -168,7 +169,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							onChange={(e) => {
 								handleChangeInput({
 									target: {
-										name: 'location',
+										name: fieldLocation,
 										value: ''
 									}
 								});

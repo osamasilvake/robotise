@@ -43,7 +43,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 
-	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
+	const { handleChangeInput, handleChangeInputNumber, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductPayloadInterface>(
 			{
 				image: product?.image || '',
@@ -71,6 +71,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 					);
 			}
 		);
+
 	const [image, setImage] = useState<string>(values?.image);
 	const [imageError, setImageError] = useState(0);
 
@@ -123,13 +124,13 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									name="price"
 									value={values?.price}
 									error={!!errors?.price}
-									onChange={handleChangeInput}
+									onChange={handleChangeInputNumber}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.PRICE.LABEL`, {
 										value: currency
 									})}
 									placeholder={t(`${common}.FIELDS.PRICE.PLACEHOLDER`)}
-									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
+									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
 								{errors && typeof errors.price === 'string' && (
 									<FormHelperText>{t(errors.price)}</FormHelperText>
@@ -145,11 +146,11 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									id="length"
 									name="length"
 									value={values?.length}
-									onChange={handleChangeInput}
+									onChange={handleChangeInputNumber}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.LENGTH.LABEL`)}
 									placeholder={t(`${common}.FIELDS.LENGTH.PLACEHOLDER`)}
-									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
+									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
 							</FormControl>
 						</Grid>
@@ -162,11 +163,11 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									id="weight"
 									name="weight"
 									value={values?.weight}
-									onChange={handleChangeInput}
+									onChange={handleChangeInputNumber}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.WEIGHT.LABEL`)}
 									placeholder={t(`${common}.FIELDS.WEIGHT.PLACEHOLDER`)}
-									InputProps={{ inputProps: { min: 0, step: '0.01' } }}
+									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
 							</FormControl>
 						</Grid>
@@ -202,6 +203,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 								name: values.name,
 								price: values.price
 							}) ||
+							(!values.length && !values.weight) ||
 							products.updating
 						}
 						endIcon={products.updating && <CircularProgress size={20} />}>

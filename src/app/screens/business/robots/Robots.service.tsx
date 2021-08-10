@@ -225,14 +225,15 @@ class RobotsService {
 
 	/**
 	 * fetch robot purchases
+	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotPurchasesFetch = (payload: RobotPurchasesListPayloadInterface) => {
+	robotPurchasesFetch = (robotId: string, payload: RobotPurchasesListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[robot]': payload.robotId,
+				'filter[robot]': robotId,
 				'filter[isBilled]': payload.billed ? false : undefined,
 				'filter[isDebug]': payload.debug ? undefined : false,
 				'page[number]': payload.page + 1,

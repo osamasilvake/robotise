@@ -44,7 +44,6 @@ const RobotPurchasesList: FC = () => {
 
 	useEffect(() => {
 		const payload: RobotPurchasesListPayloadInterface = {
-			robotId: cRobotId,
 			page,
 			rowsPerPage,
 			billed,
@@ -52,22 +51,22 @@ const RobotPurchasesList: FC = () => {
 		};
 
 		if (pageRef.current.billed !== billed && page === 0) {
-			// dispatch: fetch purchases
-			dispatch(PurchasesFetchList(payload));
+			// dispatch: fetch robot purchases
+			dispatch(PurchasesFetchList(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.billed = billed;
 		} else if (pageRef.current.debug !== debug && page === 0) {
-			// dispatch: fetch purchases
-			dispatch(PurchasesFetchList(payload));
+			// dispatch: fetch robot purchases
+			dispatch(PurchasesFetchList(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.debug = debug;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// dispatch: fetch purchases
-			dispatch(PurchasesFetchList(payload));
+			// dispatch: fetch robot purchases
+			dispatch(PurchasesFetchList(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -81,9 +80,9 @@ const RobotPurchasesList: FC = () => {
 
 			if (condition1 || condition2 || condition3) {
 				if (condition2 || condition4) {
-					// dispatch: fetch purchases
+					// dispatch: fetch robot purchases
 					dispatch(
-						PurchasesFetchList({
+						PurchasesFetchList(cRobotId, {
 							...payload,
 							page: condition2 ? 0 : page,
 							billed: condition2 ? false : billed,
@@ -103,11 +102,11 @@ const RobotPurchasesList: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (purchases.content) {
-				// dispatch: fetch purchases
+				// dispatch: fetch robot purchases
 				dispatch(
 					PurchasesFetchList(
+						cRobotId,
 						{
-							robotId: cRobotId,
 							page: 0,
 							rowsPerPage,
 							billed,

@@ -44,7 +44,6 @@ const RobotOrdersList: FC = () => {
 
 	useEffect(() => {
 		const payload: RobotOrdersListPayloadInterface = {
-			robotId: cRobotId,
 			page,
 			rowsPerPage,
 			activeOrders,
@@ -52,22 +51,22 @@ const RobotOrdersList: FC = () => {
 		};
 
 		if (pageRef.current.activeOrders !== activeOrders && page === 0) {
-			// dispatch: fetch orders
-			dispatch(OrdersFetchList(payload));
+			// dispatch: fetch robot orders
+			dispatch(OrdersFetchList(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.activeOrders = activeOrders;
 		} else if (pageRef.current.debug !== debug && page === 0) {
-			// dispatch: fetch orders
-			dispatch(OrdersFetchList(payload));
+			// dispatch: fetch robot orders
+			dispatch(OrdersFetchList(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.debug = debug;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// dispatch: fetch orders
-			dispatch(OrdersFetchList(payload));
+			// dispatch: fetch robot orders
+			dispatch(OrdersFetchList(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -81,9 +80,9 @@ const RobotOrdersList: FC = () => {
 
 			if (condition1 || condition2 || condition3) {
 				if (condition2 || condition4) {
-					// dispatch: fetch orders
+					// dispatch: fetch robot orders
 					dispatch(
-						OrdersFetchList({
+						OrdersFetchList(cRobotId, {
 							...payload,
 							page: condition2 ? 0 : page,
 							activeOrders: condition2 ? false : activeOrders,
@@ -103,11 +102,11 @@ const RobotOrdersList: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (orders.content) {
-				// dispatch: fetch orders
+				// dispatch: fetch robot orders
 				dispatch(
 					OrdersFetchList(
+						cRobotId,
 						{
-							robotId: cRobotId,
 							page: 0,
 							rowsPerPage,
 							activeOrders,

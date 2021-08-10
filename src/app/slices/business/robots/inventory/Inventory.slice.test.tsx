@@ -51,33 +51,6 @@ describe('[SLICE] Inventory', () => {
 				id: robotId
 			}
 		};
-		/**
-		const mappedResult = {
-			id: 'ffc23dcf-193d-4e5b-9ada-758a6ea37b8a',
-			drawers: [
-				{
-					index: 0,
-					lanes: [
-						{
-							index: 0,
-							status: 'low',
-							capacity: 12,
-							quantity: 0,
-							inCartQuantity: 2,
-							product_id: 'fbee95a4-a7d0-4561-bd5f-3ca55f831053'
-						}
-					],
-					is_empty: false,
-					lane_count: 2,
-					type: 'delivery'
-				}
-			],
-			status: 'low',
-			robot: {
-				id: robotId
-			}
-		};
-		*/
 
 		// mock api once
 		mockedAxios.get.mockResolvedValueOnce({

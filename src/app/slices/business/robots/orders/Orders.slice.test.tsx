@@ -83,7 +83,6 @@ describe('[SLICE] Order', () => {
 				totalPages: 1
 			},
 			state: {
-				robotId,
 				page: 1,
 				rowsPerPage: 50,
 				activeOrders: false,
@@ -91,7 +90,6 @@ describe('[SLICE] Order', () => {
 			}
 		};
 		const payload = {
-			robotId,
 			page: 1,
 			rowsPerPage: 50,
 			activeOrders: false,
@@ -105,7 +103,7 @@ describe('[SLICE] Order', () => {
 
 		// act
 		store
-			.dispatch(OrdersFetchList(payload))
+			.dispatch(OrdersFetchList(robotId, payload))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), success(mappedResult)];
@@ -118,7 +116,6 @@ describe('[SLICE] Order', () => {
 		const store = mockStore(initialState);
 		const robotId = '2ee43036-37e5-46f6-9ccc-8054eb67ec2b';
 		const payload = {
-			robotId,
 			page: 0,
 			rowsPerPage: 50,
 			activeOrders: false,
@@ -137,7 +134,7 @@ describe('[SLICE] Order', () => {
 
 		// act
 		store
-			.dispatch(OrdersFetchList(payload))
+			.dispatch(OrdersFetchList(robotId, payload))
 			.then(() => {
 				// assert
 				const expectedActions = [loader(), failure(message)];

@@ -26,8 +26,8 @@ import { useParams } from 'react-router-dom';
 
 import {
 	SiteNotificationTypesAndUsersFetch,
-	siteSelector,
-	SiteUpdateNotification
+	SiteNotificationUpdate,
+	siteSelector
 } from '../../../../../../slices/business/sites/Site.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -66,7 +66,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 			async () => {
 				// dispatch: update notification
 				dispatch(
-					SiteUpdateNotification(
+					SiteNotificationUpdate(
 						{
 							id: !notification ? newNotification : notification.id,
 							isActive: values.isActive,

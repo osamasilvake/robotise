@@ -73,13 +73,14 @@ export const purchasesSelector = (state: AppReducerType) => state['purchases'];
 export default dataSlice.reducer;
 
 /**
- * fetch purchases
+ * fetch robot purchases
+ * @param robotId
  * @param payload
  * @param refresh
  * @returns
  */
 export const PurchasesFetchList =
-	(payload: RobotPurchasesListPayloadInterface, refresh = false) =>
+	(robotId: string, payload: RobotPurchasesListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -93,7 +94,7 @@ export const PurchasesFetchList =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		return RobotsService.robotPurchasesFetch(payload)
+		return RobotsService.robotPurchasesFetch(robotId, payload)
 			.then(async (res) => {
 				// deserialize response
 				let result: SPContentInterface = await deserializePurchases(res);
@@ -138,7 +139,7 @@ export const PurchasesFetchList =
  * @param callback
  * @returns
  */
-export const PurchaseEditComment =
+export const PurchaseCommentEdit =
 	(purchaseId: string, comment: string, callback: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -148,7 +149,7 @@ export const PurchaseEditComment =
 		// dispatch: updating
 		dispatch(updating());
 
-		return RobotsService.robotPurchaseEditComment(purchaseId, comment)
+		return RobotsService.robotPurchaseCommentEdit(purchaseId, comment)
 			.then(async (res) => {
 				// deserialize response
 				let result = await deserializePurchase(res);

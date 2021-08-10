@@ -1,5 +1,6 @@
 import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
+import { removeEmptyObjProperties } from '../../../utilities/methods/ObjectUtilities';
 import { DialogCreateEditNotificationPayloadInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductPayloadInterface } from './content/products/list/table/SiteProductsTable.interface';
@@ -83,7 +84,7 @@ class SitesService {
 		return HttpClientService.post(url, {
 			data: {
 				type: 'products',
-				attributes: payload,
+				attributes: removeEmptyObjProperties(payload),
 				relationships: {
 					site: {
 						data: {
@@ -112,7 +113,7 @@ class SitesService {
 	 * @param whitelist
 	 * @returns
 	 */
-	siteUpdateRoomState = (siteId: string, whitelist: string[]) => {
+	siteRoomStateUpdate = (siteId: string, whitelist: string[]) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
 			':siteId',
 			siteId
@@ -136,7 +137,7 @@ class SitesService {
 	 * @param acceptOrders
 	 * @returns
 	 */
-	siteAcceptOrders = (siteId: string, acceptOrders: boolean) => {
+	siteOrdersAccept = (siteId: string, acceptOrders: boolean) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
 			':siteId',
 			siteId
@@ -183,7 +184,7 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	siteUpdateNotification = (payload: DialogCreateEditNotificationPayloadInterface) => {
+	siteNotificationUpdate = (payload: DialogCreateEditNotificationPayloadInterface) => {
 		const url = payload.siteId
 			? AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS
 			: AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(
@@ -227,7 +228,7 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	siteGenerateReports = (siteId: string, payload: ReportPayloadInterface) => {
+	siteReportsGenerate = (siteId: string, payload: ReportPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get(url, {
 			params: {

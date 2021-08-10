@@ -10,11 +10,15 @@ import {
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import {
 	ProductDelete,
+	ProductsFetchList,
 	productsSelector
 } from '../../../../../../../slices/business/sites/products/Products.slice';
+import { timeout } from '../../../../../../../utilities/methods/Timeout';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import { DialogDeleteProductInterface } from './SiteProductsTable.interface';
 
 const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
@@ -24,6 +28,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 	const dispatch = useDispatch();
 	const products = useSelector(productsSelector);
 
+	const params: SiteParamsInterface = useParams();
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
 
 	/**
@@ -39,7 +44,19 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 		!status && setOpen(false);
 
 		// dispatch: delete product
-		status && dispatch(ProductDelete(product));
+		status &&
+			dispatch(
+				ProductDelete(product, async () => {
+					// dispatch: fetch products
+					dispatch(ProductsFetchList(params.siteId, true));
+
+					// wait
+					await timeout(2000);
+
+					// close
+					setOpen(false);
+				})
+			);
 	};
 
 	return (

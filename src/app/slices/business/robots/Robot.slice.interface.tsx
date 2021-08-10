@@ -15,6 +15,9 @@ export interface SliceRobotInterface {
 	robotConfig: {
 		loading: boolean;
 	};
+	robotSiteConfig: {
+		loading: boolean;
+	};
 	reports: {
 		loading: boolean;
 	};

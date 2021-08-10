@@ -11,6 +11,8 @@ export const CreateEditProductValidation = (
 	touched: DialogCreateEditProductPayloadInterface
 ): DialogCreateEditProductPayloadInterface => {
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
+	const regexMaxTwoDecimalPoints = AppConfigService.AppOptions.regex.maxTwoDecimalPoints;
+	const regexZeroInString = AppConfigService.AppOptions.regex.zeroInString;
 	const errors: DialogCreateEditProductPayloadInterface = {
 		image: '',
 		name: '',
@@ -36,12 +38,18 @@ export const CreateEditProductValidation = (
 		}
 
 		// validate
-		if (
-			values.price &&
-			!AppConfigService.AppOptions.regex.maxTwoDecimalPoints.test(String(values.price))
-		) {
+		if (values.price && !regexMaxTwoDecimalPoints.test(String(values.price))) {
 			errors.price = `${common}.PRICE.VALIDATIONS.INVALID`;
 		}
+	}
+
+	// Length/Weight
+	if (
+		(!values.length || regexZeroInString.test(String(values.length))) &&
+		(!values.weight || regexZeroInString.test(String(values.weight)))
+	) {
+		errors.length = `${common}.LENGTH.VALIDATIONS.INVALID`;
+		errors.weight = `${common}.WEIGHT.VALIDATIONS.INVALID`;
 	}
 
 	return errors;

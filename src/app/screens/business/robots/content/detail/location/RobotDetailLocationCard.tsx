@@ -21,8 +21,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
-	const [pointCoords, setPointCoords] = useState({ x: 0, y: 0, yaw: 0 });
-	const [ratio, setRatio] = useState({ x: 0, y: 0, cx: 0, cy: 0 });
+	const [pointCoords, setPointCoords] = useState({ x: NaN, y: NaN, yaw: NaN });
+	const [ratio, setRatio] = useState({ x: NaN, y: NaN, cx: NaN, cy: NaN });
 
 	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
 	const robotMapName = robot.map.content?.name || '';
@@ -67,7 +67,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		});
 	}, []);
 
-	return robot.map ? (
+	return robot.map && !robot.map.loading ? (
 		<Grid item sm={12} md={6}>
 			<Card square elevation={1} className={classes.sLocationCard}>
 				<CardContent>
@@ -85,7 +85,9 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 					</Box>
 
 					{/* Icon */}
-					{robotTwinsMapName && <RobotDetailLocationCardIcon pointCoords={pointCoords} />}
+					{robotTwinsMapName && !Number.isNaN(pointCoords.x) && (
+						<RobotDetailLocationCardIcon pointCoords={pointCoords} />
+					)}
 				</CardContent>
 			</Card>
 		</Grid>

@@ -73,13 +73,14 @@ export const ordersSelector = (state: AppReducerType) => state['orders'];
 export default dataSlice.reducer;
 
 /**
- * fetch orders
+ * fetch robot orders
+ * @param robotId
  * @param payload
  * @param refresh
  * @returns
  */
 export const OrdersFetchList =
-	(payload: RobotOrdersListPayloadInterface, refresh = false) =>
+	(robotId: string, payload: RobotOrdersListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -93,7 +94,7 @@ export const OrdersFetchList =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		return RobotsService.robotOrdersFetch(payload)
+		return RobotsService.robotOrdersFetch(robotId, payload)
 			.then(async (res) => {
 				// deserialize response
 				let result: SOContentInterface = await deserializeOrders(res);

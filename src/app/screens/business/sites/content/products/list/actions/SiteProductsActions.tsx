@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import Report from '../../../../../../../components/common/report/Report';
 import { ReportTypeEnum } from '../../../../../../../components/common/report/Report.enum';
 import {
-	SiteGenerateReports,
+	SiteReportsGenerate,
 	siteSelector
 } from '../../../../../../../slices/business/sites/Site.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
@@ -74,7 +74,7 @@ const SiteProductsActions: FC = () => {
 				setOpen={setProductsReport}
 				filterId={params.siteId}
 				state={site.reports}
-				GenerateReports={SiteGenerateReports}
+				GenerateReports={SiteReportsGenerate}
 			/>
 		</>
 	);

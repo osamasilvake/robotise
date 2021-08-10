@@ -94,7 +94,7 @@ class AppConfigService extends EnvService {
 							},
 							products: {
 								list: {
-									refreshTime: 10000,
+									refreshTime: 30000,
 									showPageSizes: false,
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
@@ -176,7 +176,8 @@ class AppConfigService extends EnvService {
 			},
 			regex: {
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
-				normalInteger: new RegExp(/^\+?([1-9]\d*)$/)
+				normalInteger: new RegExp(/^\+?([1-9]\d*)$/),
+				zeroInString: new RegExp(/^0*$/)
 			}
 		};
 	}
@@ -227,7 +228,7 @@ class AppConfigService extends EnvService {
 						MAPS: `${this.envAppUrl}/maps/:mapId`,
 						COMMANDS: `${this.envAppUrl}/robots/:robotId/commands`,
 						CONFIG: `${this.envAppUrl}/robots/:robotId`,
-						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
+						LOGS: `${this.envAppUrl}/robot-commands`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
 						REPORTS: {
 							PURCHASES: `${this.envAppUrl}/order-report-export`

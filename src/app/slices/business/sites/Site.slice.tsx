@@ -154,7 +154,7 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
  * @param callback
  * @returns
  */
-export const SiteAcceptOrders =
+export const SiteOrdersAccept =
 	(siteId: string, acceptOrders: boolean, callback: () => void) => async (dispatch: Dispatch) => {
 		const state = {
 			module: SiteTypeEnum.ACCEPT_ORDERS
@@ -163,7 +163,7 @@ export const SiteAcceptOrders =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return SitesService.siteAcceptOrders(siteId, acceptOrders)
+		return SitesService.siteOrdersAccept(siteId, acceptOrders)
 			.then(async () => {
 				// callback
 				callback();
@@ -268,7 +268,7 @@ export const SiteNotificationTypesAndUsersFetch =
  * @param callback
  * @returns
  */
-export const SiteUpdateNotification =
+export const SiteNotificationUpdate =
 	(payload: DialogCreateEditNotificationPayloadInterface, callback?: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -283,7 +283,7 @@ export const SiteUpdateNotification =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return SitesService.siteUpdateNotification(payload)
+		return SitesService.siteNotificationUpdate(payload)
 			.then(async (res) => {
 				// deserialize response
 				const user: SSContentNotificationUsersInterface = await deserializeSite(res);
@@ -345,7 +345,7 @@ export const SiteUpdateNotification =
  * @param callback
  * @returns
  */
-export const SiteGenerateReports =
+export const SiteReportsGenerate =
 	(
 		_id: ReportTypeEnum,
 		siteId: string,
@@ -360,7 +360,7 @@ export const SiteGenerateReports =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return SitesService.siteGenerateReports(siteId, payload)
+		return SitesService.siteReportsGenerate(siteId, payload)
 			.then(async (res) => {
 				// callback
 				callback(res);

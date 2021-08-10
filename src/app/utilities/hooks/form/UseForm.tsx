@@ -44,14 +44,11 @@ export const useForm = <UseFormEntity,>(
 	 * handle change: input
 	 * @param event
 	 */
-	const handleChangeInput = (
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface
-	) => {
+	const handleChangeInput = (event: ChangeEvent<HTMLInputElement> | TargetInterface) => {
 		const { name, value } = event.target;
-		if (name) {
-			// set change event values
-			setChangeEventValues(name, value);
-		}
+
+		// set change event values
+		name && setChangeEventValues(name, value);
 	};
 
 	/**
@@ -59,12 +56,10 @@ export const useForm = <UseFormEntity,>(
 	 * @param event
 	 */
 	const handleChangeCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
-		const { name } = event.target;
-		const value = event.target.checked;
-		if (name) {
-			// set change event values
-			setChangeEventValues(name, value);
-		}
+		const { name, checked } = event.target;
+
+		// set change event values
+		name && setChangeEventValues(name, checked);
 	};
 
 	/**
@@ -73,10 +68,9 @@ export const useForm = <UseFormEntity,>(
 	 */
 	const handleChangeSelect = (event: SelectChangeEvent) => {
 		const { name, value } = event.target;
-		if (name && value) {
-			// set change event values
-			setChangeEventValues(name, value);
-		}
+
+		// set change event values
+		name && value && setChangeEventValues(name, value);
 	};
 
 	/**
@@ -123,7 +117,7 @@ export const useForm = <UseFormEntity,>(
 	 * handle submit
 	 * @param event
 	 */
-	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement | EventTarget>) => {
 		// prevent default
 		event.preventDefault();
 

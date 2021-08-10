@@ -10,7 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { SiteUpdateNotification } from '../../../../../../slices/business/sites/Site.slice';
+import { SiteNotificationUpdate } from '../../../../../../slices/business/sites/Site.slice';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {
@@ -34,7 +34,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	const handleNotification = (payload: DialogCreateEditNotificationPayloadInterface) => () => {
 		// dispatch: update notification
 		dispatch(
-			SiteUpdateNotification({
+			SiteNotificationUpdate({
 				...payload,
 				isActive: !payload.isActive
 			})

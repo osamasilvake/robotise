@@ -147,7 +147,7 @@ const OverridesCustom: Components = {
 					transition: 'none',
 					'&:hover': {
 						backgroundColor: AppConfigService.AppOptions.colors.c9,
-						opacity: 0.8
+						opacity: 0.95
 					}
 				}
 			}

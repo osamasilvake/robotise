@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
 import {
-	RobotCommandCameraImageRequest,
+	RobotCameraCommandRequest,
 	robotSelector
 } from '../../../../../../slices/business/robots/Robot.slice';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
@@ -40,8 +40,8 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		// set selected camera
 		setCurrentCameraType(camera);
 
-		// dispatch: request robot camera image
-		dispatch(RobotCommandCameraImageRequest(camera, robotTwins.robot.id || ''));
+		// dispatch: request robot camera command
+		dispatch(RobotCameraCommandRequest(camera, robotTwins.robot.id || ''));
 	};
 
 	return (

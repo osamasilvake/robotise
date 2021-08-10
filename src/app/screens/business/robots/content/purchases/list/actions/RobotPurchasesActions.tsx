@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import Report from '../../../../../../../components/common/report/Report';
 import { ReportTypeEnum } from '../../../../../../../components/common/report/Report.enum';
 import {
-	RobotGenerateReports,
+	RobotReportsGenerate,
 	robotSelector
 } from '../../../../../../../slices/business/robots/Robot.slice';
 import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
@@ -80,7 +80,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				setOpen={setPurchasesReport}
 				filterId={params.robotId}
 				state={robot.reports}
-				GenerateReports={RobotGenerateReports}
+				GenerateReports={RobotReportsGenerate}
 			/>
 		</>
 	);

@@ -5,9 +5,9 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { SiteProductCreateEditTypeEnum } from '../../../../screens/business/sites/content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductPayloadInterface } from '../../../../screens/business/sites/content/products/list/table/SiteProductsTable.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
+import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializeProduct } from './Product.deserialize';
 import { deserializeProducts } from './Products.deserialize';
 import {
 	SliceProductsInterface,
@@ -50,9 +50,8 @@ const dataSlice = createSlice({
 		updating: (state) => {
 			state.updating = true;
 		},
-		updated: (state, action) => {
+		updated: (state) => {
 			state.updating = false;
-			state.content = action.payload;
 		},
 		updateFailed: (state) => {
 			state.updating = false;
@@ -85,7 +84,7 @@ export const ProductsFetchList =
 		const products = states.products;
 
 		// return on busy
-		if (products && (products.loader || products.loading || products.updating)) {
+		if (products && (products.loader || products.loading)) {
 			return;
 		}
 
@@ -148,16 +147,19 @@ export const ProductCreateEdit =
 		dispatch(updating());
 
 		return SitesService.siteProductCreateEdit(siteId, productId, payload, type)
-			.then(async (res) => {
-				// deserialize response
-				let result = await deserializeProduct(res);
-
+			.then(async () => {
 				if (products.content) {
-					// update created/edited product
-					result = updateCreatedEditedProduct(products.content, result, type);
+					// wait
+					await timeout(1000);
+
+					// callback
+					callback();
+
+					// wait
+					await timeout(2000);
 
 					// dispatch: updated
-					dispatch(updated(result));
+					dispatch(updated());
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
@@ -169,9 +171,6 @@ export const ProductCreateEdit =
 						}.SUCCESS`
 					};
 					dispatch(triggerMessage(message));
-
-					// callback
-					callback();
 				}
 			})
 			.catch(() => {
@@ -194,10 +193,12 @@ export const ProductCreateEdit =
 /**
  * delete product
  * @param product
+ * @param callback
  * @returns
  */
 export const ProductDelete =
-	(product: SPCDataInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(product: SPCDataInterface, callback: () => void) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
 		const products = states.products;
@@ -208,11 +209,17 @@ export const ProductDelete =
 		return SitesService.siteProductDelete(product.id)
 			.then(async () => {
 				if (products.content) {
-					// remove delete product
-					const result = removeDeletedProduct(products.content, product);
+					// wait
+					await timeout(1000);
+
+					// callback
+					callback();
+
+					// wait
+					await timeout(2000);
 
 					// dispatch: updated
-					dispatch(updated(result));
+					dispatch(updated());
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
@@ -238,53 +245,3 @@ export const ProductDelete =
 				dispatch(updateFailed());
 			});
 	};
-
-/**
- * update created/edited product
- * @param state
- * @param product
- * @param type
- * @returns
- */
-const updateCreatedEditedProduct = (
-	state: SPContentInterface,
-	product: SPCDataInterface,
-	type: SiteProductCreateEditTypeEnum
-): SPContentInterface => {
-	return type === SiteProductCreateEditTypeEnum.CREATE
-		? {
-				...state,
-				data: [product, ...state.data],
-				meta: {
-					...state.meta,
-					totalDocs: state.meta.totalDocs + 1
-				}
-		  }
-		: {
-				...state,
-				data: state.data.map((item) => {
-					if (item.id === product.id) {
-						return product;
-					}
-					return item;
-				})
-		  };
-};
-
-/**
- * remove deleted product
- * @param state
- * @param product
- * @returns
- */
-const removeDeletedProduct = (
-	state: SPContentInterface,
-	product: SPCDataInterface
-): SPContentInterface => ({
-	...state,
-	data: state.data.filter((item) => item.id !== product.id),
-	meta: {
-		...state.meta,
-		totalDocs: state.meta.totalDocs - 1
-	}
-});

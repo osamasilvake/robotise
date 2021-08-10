@@ -78,7 +78,7 @@ export const RoomUpdateFilters =
  * @param callback
  * @returns
  */
-export const RoomUpdateState =
+export const RoomStateUpdate =
 	(siteId: string, whitelist: string[], callback: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -88,7 +88,7 @@ export const RoomUpdateState =
 		// dispatch: loading
 		dispatch(updating());
 
-		return SitesService.siteUpdateRoomState(siteId, whitelist)
+		return SitesService.siteRoomStateUpdate(siteId, whitelist)
 			.then(async (res) => {
 				// callback
 				callback();

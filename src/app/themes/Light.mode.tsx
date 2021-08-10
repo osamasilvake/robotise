@@ -112,6 +112,9 @@ const Light = (options: ThemeOptions): ThemeOptions => ({
 							fontSize: pxToRem(16),
 							fontFamily: AppConfigService.AppOptions.styles.fontFamily.Roboto
 						}
+					},
+					'&::-webkit-calendar-picker-indicator': {
+						filter: 'invert(0.35)'
 					}
 				}
 			}

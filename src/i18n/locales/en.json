@@ -186,13 +186,17 @@
 				}
 			},
 			"CONFIGURATION": {
+				"SYNC_PRODUCTS": {
+					"SUCCESS": "Products has been synchronized successfully!",
+					"ERROR": "Unable to sync products on the robot!"
+				},
 				"ROBOT_CONFIG": {
 					"SUCCESS": "Robot setting has been updated successfully!",
 					"ERROR": "Unable to configure robot!"
 				},
-				"SYNC_PRODUCTS": {
-					"SUCCESS": "Products has been synchronized successfully!",
-					"ERROR": "Unable to sync products on the robot!"
+				"ROBOT_SITE_CONFIG": {
+					"SUCCESS": "Robot setting has been updated successfully!",
+					"ERROR": "Unable to configure robot to a site!"
 				}
 			}
 		}
@@ -248,15 +252,15 @@
 					"LABEL": "Email Address",
 					"PLACEHOLDER": "Enter your email Address",
 					"VALIDATIONS": {
-						"REQUIRED": "Please enter the required email address!",
-						"INVALID": "Please enter the correct Email format!"
+						"REQUIRED": "Enter the required email address!",
+						"INVALID": "Enter the correct Email format!"
 					}
 				},
 				"PASSWORD": {
 					"LABEL": "Password",
 					"PLACEHOLDER": "Enter your password",
 					"VALIDATIONS": {
-						"REQUIRED": "Please enter the required password!"
+						"REQUIRED": "Enter the required password!"
 					}
 				},
 				"REMEMBER_ME": {
@@ -324,14 +328,14 @@
 								},
 								"NAME": {
 									"LABEL": "Name",
-									"PLACEHOLDER": "Please enter name",
+									"PLACEHOLDER": "Enter name",
 									"VALIDATIONS": {
 										"REQUIRED": "Name is required."
 									}
 								},
 								"PRICE": {
 									"LABEL": "Price ({{value}})",
-									"PLACEHOLDER": "Please enter price",
+									"PLACEHOLDER": "Enter price",
 									"VALIDATIONS": {
 										"REQUIRED": "Price is required.",
 										"INVALID": "Max 2 decimal points allowed."
@@ -339,15 +343,21 @@
 								},
 								"LENGTH": {
 									"LABEL": "Length (mm)",
-									"PLACEHOLDER": "Please enter length"
+									"PLACEHOLDER": "Enter length",
+									"VALIDATIONS": {
+										"INVALID": "Length/Weight both empty."
+									}
 								},
 								"WEIGHT": {
 									"LABEL": "Weight (g)",
-									"PLACEHOLDER": "Please enter weight"
+									"PLACEHOLDER": "Enter weight",
+									"VALIDATIONS": {
+										"INVALID": "Length/Weight both empty."
+									}
 								},
 								"SIZE": {
 									"LABEL": "Size",
-									"PLACEHOLDER": "Please enter size"
+									"PLACEHOLDER": "Enter size"
 								}
 							}
 						},
@@ -419,7 +429,7 @@
 									"LABEL": "Email Address",
 									"PLACEHOLDER": "Enter your email Address",
 									"VALIDATIONS": {
-										"INVALID": "Please enter the correct Email format!"
+										"INVALID": "Enter the correct Email format!"
 									}
 								}
 							},
@@ -782,9 +792,9 @@
 							"FIELDS": {
 								"LOCATION": {
 									"LABEL": "Location",
-									"PLACEHOLDER": "Please enter the Location",
+									"PLACEHOLDER": "Enter Location",
 									"VALIDATIONS": {
-										"REQUIRED": "Please enter the target location.",
+										"REQUIRED": "Enter target location.",
 										"INVALID": "Location must be valid."
 									}
 								},
@@ -904,21 +914,26 @@
 				}
 			},
 			"CONFIGURATION": {
+				"SYNC_PRODUCTS": {
+					"TITLE": "Sync Products",
+					"EXCERPT": "Sync Products on the robot.",
+					"SYNC": "SYNC"
+				},
 				"ROBOT_CONFIG": {
-					"TITLE": "Robot Config",
-					"EXCERPT": "Update Robot specific detail.",
+					"TITLE": "Configure Robot",
+					"EXCERPT": "Update Robot detail.",
 					"FORM": {
 						"FIELDS": {
 							"NAME": {
 								"LABEL": "Name",
-								"PLACEHOLDER": "Please enter name",
+								"PLACEHOLDER": "Enter robot name",
 								"VALIDATIONS": {
 									"REQUIRED": "Name is required."
 								}
 							},
 							"CUSTOMER_NAME": {
 								"LABEL": "Customer Name",
-								"PLACEHOLDER": "Please enter customer name",
+								"PLACEHOLDER": "Enter customer robot name",
 								"VALIDATIONS": {
 									"REQUIRED": "Customer Name is required."
 								}
@@ -939,10 +954,19 @@
 						}
 					}
 				},
-				"SYNC_PRODUCTS": {
-					"TITLE": "Sync Products",
-					"EXCERPT": "Sync Products on the robot.",
-					"SYNC": "SYNC"
+				"ROBOT_SITE_CONFIG": {
+					"TITLE": "Configure Robot SITE",
+					"EXCERPT": "Attach robot to a site.",
+					"FORM": {
+						"FIELDS": {
+							"SITE": {
+								"LABEL": "Site"
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
 				}
 			},
 			"LOGS": {

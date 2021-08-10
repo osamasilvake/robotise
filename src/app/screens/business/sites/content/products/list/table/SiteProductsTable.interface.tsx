@@ -42,8 +42,8 @@ export interface DialogCreateEditProductPayloadInterface {
 	image: string;
 	name: string;
 	price: number | string;
-	length: number | string;
-	weight: number | string;
+	length: number | string | null;
+	weight: number | string | null;
 	volume: string;
 }
 

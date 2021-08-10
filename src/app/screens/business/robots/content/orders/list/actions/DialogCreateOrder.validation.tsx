@@ -12,6 +12,7 @@ export const CreateOrderValidation = (
 	touched: DialogCreateOrderPayloadInterface
 ): DialogCreateOrderPayloadInterface => {
 	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
+	const regexNormalInteger = AppConfigService.AppOptions.regex.normalInteger;
 	const errors: DialogCreateOrderPayloadInterface = {
 		isDebug: false,
 		location: '',
@@ -26,7 +27,7 @@ export const CreateOrderValidation = (
 		}
 
 		// validate
-		if (!AppConfigService.AppOptions.regex.normalInteger.test(values.location)) {
+		if (!regexNormalInteger.test(values.location)) {
 			errors.location = `${common}.FIELDS.LOCATION.VALIDATIONS.INVALID`;
 		}
 	}

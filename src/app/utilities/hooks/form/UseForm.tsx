@@ -52,17 +52,6 @@ export const useForm = <UseFormEntity,>(
 	};
 
 	/**
-	 * handle change: input number
-	 * @param event
-	 */
-	const handleChangeInputNumber = (event: ChangeEvent<HTMLInputElement>) => {
-		const { name, valueAsNumber } = event.target;
-
-		// set change event values
-		name && setChangeEventValues(name, valueAsNumber || 0);
-	};
-
-	/**
 	 * handle change: checkbox
 	 * @param event
 	 */
@@ -139,7 +128,6 @@ export const useForm = <UseFormEntity,>(
 	return {
 		handleChangeStringInputs,
 		handleChangeInput,
-		handleChangeInputNumber,
 		handleChangeCheckbox,
 		handleChangeSelect,
 		handleBlur,

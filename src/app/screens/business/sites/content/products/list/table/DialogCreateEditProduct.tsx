@@ -19,6 +19,7 @@ import Upload from '../../../../../../../components/common/upload/Upload';
 import { AppConfigService } from '../../../../../../../services';
 import {
 	ProductCreateEdit,
+	ProductsFetchList,
 	productsSelector
 } from '../../../../../../../slices/business/sites/products/Products.slice';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
@@ -27,6 +28,7 @@ import {
 	validateEmptyObj,
 	validateEmptyObjProperty
 } from '../../../../../../../utilities/methods/ObjectUtilities';
+import { timeout } from '../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';
 import { SiteProductCreateEditTypeEnum } from './SiteProductsTable.enum';
@@ -43,14 +45,22 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 
-	const { handleChangeInput, handleChangeInputNumber, handleBlur, handleSubmit, values, errors } =
+	const [image, setImage] = useState<string>(product?.image || '');
+	const [imageError, setImageError] = useState(0);
+
+	const params: SiteParamsInterface = useParams();
+	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
+	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
+	const currency = sites.content?.dataById[params.siteId]?.currency || defaultCurrency;
+
+	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductPayloadInterface>(
 			{
 				image: product?.image || '',
 				name: product?.name || '',
 				price: product?.price || 0,
-				length: product?.length || 0,
-				weight: product?.weight || 0,
+				length: product?.length || 40,
+				weight: product?.weight || 80,
 				volume: product?.volume || ''
 			},
 			CreateEditProductValidation,
@@ -63,22 +73,25 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							product?.id,
 							{
 								...values,
+								length: values.length || null,
+								weight: values.weight || null,
 								image
 							},
 							type,
-							() => setOpen(false)
+							async () => {
+								// dispatch: fetch products
+								dispatch(ProductsFetchList(params.siteId, true));
+
+								// wait
+								await timeout(2000);
+
+								// close
+								setOpen(false);
+							}
 						)
 					);
 			}
 		);
-
-	const [image, setImage] = useState<string>(values?.image);
-	const [imageError, setImageError] = useState(0);
-
-	const params: SiteParamsInterface = useParams();
-	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
-	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
-	const currency = sites.content?.dataById[params.siteId]?.currency || defaultCurrency;
 
 	return (
 		<Dialog open={open} onClose={() => setOpen(false)}>
@@ -124,7 +137,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									name="price"
 									value={values?.price}
 									error={!!errors?.price}
-									onChange={handleChangeInputNumber}
+									onChange={handleChangeInput}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.PRICE.LABEL`, {
 										value: currency
@@ -146,12 +159,15 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									id="length"
 									name="length"
 									value={values?.length}
-									onChange={handleChangeInputNumber}
+									onChange={handleChangeInput}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.LENGTH.LABEL`)}
 									placeholder={t(`${common}.FIELDS.LENGTH.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
+								{errors && typeof errors.length === 'string' && (
+									<FormHelperText>{t(errors.length)}</FormHelperText>
+								)}
 							</FormControl>
 						</Grid>
 
@@ -163,12 +179,15 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									id="weight"
 									name="weight"
 									value={values?.weight}
-									onChange={handleChangeInputNumber}
+									onChange={handleChangeInput}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.WEIGHT.LABEL`)}
 									placeholder={t(`${common}.FIELDS.WEIGHT.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
+								{errors && typeof errors.weight === 'string' && (
+									<FormHelperText>{t(errors.weight)}</FormHelperText>
+								)}
 							</FormControl>
 						</Grid>
 
@@ -203,7 +222,6 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 								name: values.name,
 								price: values.price
 							}) ||
-							(!values.length && !values.weight) ||
 							products.updating
 						}
 						endIcon={products.updating && <CircularProgress size={20} />}>

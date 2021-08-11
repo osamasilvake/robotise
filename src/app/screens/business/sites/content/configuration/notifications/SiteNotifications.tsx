@@ -59,7 +59,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 
 				<Box className={classes.sCreate}>
 					<Tooltip
-						placement="top"
+						placement="left"
 						title={String(t('TOOLTIPS:NOTIFICATION.ADD'))}
 						onClick={() => setOpen(true)}>
 						<IconButton edge="end">

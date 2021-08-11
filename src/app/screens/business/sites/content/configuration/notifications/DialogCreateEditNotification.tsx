@@ -74,17 +74,14 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							siteId: !notification ? cSiteId : ''
 						},
 						() => {
-							// close dialog
-							setOpen(false);
+							// dispatch: fetch notification types and users
+							dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
 
 							// reset new notification
 							setNewNotification('');
 
-							// create notification: refresh list
-							if (index === undefined) {
-								// dispatch: fetch notification types and users
-								dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
-							}
+							// close dialog
+							setOpen(false);
 						}
 					)
 				);

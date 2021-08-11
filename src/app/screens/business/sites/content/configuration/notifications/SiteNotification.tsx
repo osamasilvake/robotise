@@ -11,8 +11,13 @@ import EditIcon from '@material-ui/icons/Edit';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { SiteNotificationUpdate } from '../../../../../../slices/business/sites/Site.slice';
+import {
+	SiteNotificationTypesAndUsersFetch,
+	SiteNotificationUpdate
+} from '../../../../../../slices/business/sites/Site.slice';
+import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {
@@ -29,6 +34,9 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
+	const params: SiteParamsInterface = useParams();
+	const cSiteId = params.siteId;
+
 	/**
 	 * handle notification
 	 * @param payload
@@ -37,10 +45,16 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	const handleNotification = (payload: DialogCreateEditNotificationPayloadInterface) => () => {
 		// dispatch: update notification
 		dispatch(
-			SiteNotificationUpdate({
-				...payload,
-				isActive: !payload.isActive
-			})
+			SiteNotificationUpdate(
+				{
+					...payload,
+					isActive: !payload.isActive
+				},
+				() => {
+					// dispatch: fetch notification types and users
+					dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+				}
+			)
 		);
 	};
 
@@ -65,13 +79,14 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 			<ListItemSecondaryAction>
 				<Tooltip
-					placement="top"
+					placement="left"
 					title={String(t('NOTIFICATION.EDIT'))}
 					onClick={() => setOpen(true)}>
 					<IconButton edge="end">
 						<EditIcon color="primary" />
 					</IconButton>
 				</Tooltip>
+
 				{open && (
 					<DialogCreateEditNotification
 						index={index}

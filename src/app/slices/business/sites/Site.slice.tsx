@@ -79,7 +79,7 @@ const dataSlice = createSlice({
 			const { module, response } = action.payload;
 			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
 				state.servicePositions.loading = false;
-				state.servicePositions.content = response;
+				state.servicePositions.content = null;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
@@ -143,7 +143,7 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure({ ...state, response: message }));
+			dispatch(failure(state));
 		});
 };
 
@@ -269,12 +269,8 @@ export const SiteNotificationTypesAndUsersFetch =
  * @returns
  */
 export const SiteNotificationUpdate =
-	(payload: DialogCreateEditNotificationPayloadInterface, callback?: () => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const site = states.site;
-
+	(payload: DialogCreateEditNotificationPayloadInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
 		// module
 		const state = {
 			module: SiteTypeEnum.NOTIFICATIONS
@@ -284,20 +280,12 @@ export const SiteNotificationUpdate =
 		dispatch(loading(state));
 
 		return SitesService.siteNotificationUpdate(payload)
-			.then(async (res) => {
-				// deserialize response
-				const user: SSContentNotificationUsersInterface = await deserializeSite(res);
+			.then(async () => {
+				// wait
+				await timeout(1000);
 
-				// map response
-				const result = site.notifications.content?.data.map((item) => {
-					return item.id === payload.id
-						? {
-								...item,
-								isActive: user.isActive,
-								users: user.users.map((u) => u.email)
-						  }
-						: item;
-				});
+				// callback
+				callback();
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
@@ -307,20 +295,6 @@ export const SiteNotificationUpdate =
 					text: 'COMMON.NOTIFICATIONS.UPDATE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
-
-				// dispatch: success
-				dispatch(
-					success({
-						...state,
-						response: {
-							...site.notifications.content,
-							data: result
-						}
-					})
-				);
-
-				// callback
-				callback && callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

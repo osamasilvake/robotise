@@ -6,6 +6,9 @@ export const SiteConfigurationStyle = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(3)
 	},
 	sGridMarginBottom: {
-		marginBottom: theme.spacing(3)
+		marginBottom: theme.spacing(3),
+		[theme.breakpoints.down('md')]: {
+			marginBottom: theme.spacing(1)
+		}
 	}
 }));

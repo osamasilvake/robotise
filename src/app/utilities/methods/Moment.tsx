@@ -5,9 +5,7 @@ import moment from 'moment';
  * @param value
  * @returns
  */
-const momentSort = <T,>(value: T): moment.Moment => {
-	return moment(value);
-};
+const momentSort = <T,>(value: T): moment.Moment => moment(value);
 
 /**
  * format 1

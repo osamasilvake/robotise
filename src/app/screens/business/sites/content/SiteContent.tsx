@@ -25,17 +25,18 @@ const SiteContent: FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const cSiteId = sites.content?.dataById[params.siteId]?.id;
+	const cSiteId = params.siteId;
+	const siteSingle = sites.content?.dataById[cSiteId];
 	const problem = !!sites.errors?.id || (sites.content && !cSiteId);
 
 	const common = 'CONTENT.TABS';
 
 	useEffect(() => {
 		const cIndex = sitesRoutes.findIndex(
-			(r) => r.path.replace(':siteId', params.siteId) === location.pathname
+			(r) => r.path.replace(':siteId', cSiteId) === location.pathname
 		);
 		setValue(cIndex - 1);
-	}, [location.pathname, params.siteId]);
+	}, [location.pathname, cSiteId]);
 
 	/**
 	 * handle tab change
@@ -44,7 +45,7 @@ const SiteContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = sitesRoutes[value + 1].path.replace(':siteId', params.siteId);
+		const url = sitesRoutes[value + 1].path.replace(':siteId', cSiteId);
 
 		// push to history
 		history.push(url);
@@ -61,7 +62,7 @@ const SiteContent: FC = () => {
 			{problem && <PageError />}
 
 			{/* Content */}
-			{!!cSiteId && (
+			{!!siteSingle?.id && (
 				<>
 					{/* Tabs */}
 					<Tabs

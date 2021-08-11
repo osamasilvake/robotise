@@ -29,6 +29,8 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
 
+	const cRobotId = params.robotId;
+
 	/**
 	 * sort table data
 	 * @param content
@@ -82,7 +84,7 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const handleShowOrderDetail = (order: SOCDataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL;
-		const robotLink = url.replace(':robotId', params.robotId).replace(':orderId', order.id);
+		const robotLink = url.replace(':robotId', cRobotId).replace(':orderId', order.id);
 
 		// push to history
 		history.push(robotLink);

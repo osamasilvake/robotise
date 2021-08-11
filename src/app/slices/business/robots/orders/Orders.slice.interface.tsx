@@ -30,7 +30,7 @@ export interface SOCDataInterface {
 }
 
 export interface SOCStateInterface {
-	robotId?: string;
+	pRobotId?: string;
 	page?: number;
 	rowsPerPage?: number;
 	activeOrders?: boolean;

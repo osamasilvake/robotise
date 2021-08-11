@@ -15,7 +15,8 @@ const SiteDetail: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.siteId];
+	const cSiteId = params.siteId;
+	const siteSingle = sites.content?.dataById[cSiteId];
 
 	// empty
 	if (!sites.content?.data.length) {

@@ -37,7 +37,11 @@
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"
 		},
-		"COPY_CLIPBOARD": "Copy to clipboard"
+		"COPY_CLIPBOARD": "Copy to clipboard",
+		"NOTIFICATION": {
+			"ADD": "Add Notification",
+			"EDIT": "Edit Notification"
+		}
 	},
 	"UPLOAD": {
 		"IMAGE": {

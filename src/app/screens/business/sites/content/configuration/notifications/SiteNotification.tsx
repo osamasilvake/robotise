@@ -4,10 +4,12 @@ import {
 	ListItem,
 	ListItemSecondaryAction,
 	ListItemText,
-	Switch
+	Switch,
+	Tooltip
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { SiteNotificationUpdate } from '../../../../../../slices/business/sites/Site.slice';
@@ -20,6 +22,7 @@ import {
 
 const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	const { site, index } = props;
+	const { t } = useTranslation('TOOLTIPS');
 
 	const dispatch = useDispatch();
 	const notification = index !== undefined ? site.notifications.content?.data[index] : null;
@@ -61,9 +64,14 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 			/>
 
 			<ListItemSecondaryAction>
-				<IconButton edge="end" onClick={() => setOpen(true)}>
-					<EditIcon color="primary" />
-				</IconButton>
+				<Tooltip
+					placement="top"
+					title={String(t('NOTIFICATION.EDIT'))}
+					onClick={() => setOpen(true)}>
+					<IconButton edge="end">
+						<EditIcon color="primary" />
+					</IconButton>
+				</Tooltip>
 				{open && (
 					<DialogCreateEditNotification
 						index={index}

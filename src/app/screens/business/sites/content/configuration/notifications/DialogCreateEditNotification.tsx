@@ -59,7 +59,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
 		useForm<DialogCreateEditNotificationPayloadInterface>(
 			{
-				isActive: notification?.isActive || false,
+				isActive: !!notification?.isActive,
 				users: notification?.users || []
 			},
 			DialogCreateEditNotificationValidation,

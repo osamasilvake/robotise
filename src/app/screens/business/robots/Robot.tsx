@@ -23,7 +23,8 @@ const Robot: FC = () => {
 
 	const params: RobotParamsInterface = useParams();
 
-	const cRobotName = robotTwinsSummary.content?.dataById[params.robotId]?.robotTitle;
+	const cRobotId = params.robotId;
+	const cRobotName = robotTwinsSummary.content?.dataById[cRobotId]?.robotTitle;
 	const cOrderTarget = order.content?.location || undefined;
 	const cPurchaseTarget = purchase.content?.location || undefined;
 
@@ -31,10 +32,10 @@ const Robot: FC = () => {
 	const none = AppConfigService.AppOptions.common.none;
 
 	/**
-	 * switch detail page
+	 * robot detail routes
 	 * @returns
 	 */
-	const switchDetailRoute = () => {
+	const robotDetailRoutes = () => {
 		if (params.orderId) {
 			return <RobotOrderDetail />;
 		} else if (params.purchaseId) {
@@ -57,7 +58,7 @@ const Robot: FC = () => {
 			/>
 
 			{/* Content */}
-			{switchDetailRoute()}
+			{robotDetailRoutes()}
 		</Paper>
 	);
 };

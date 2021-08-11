@@ -31,6 +31,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const [purchasesReport, setPurchasesReport] = useState(false);
 
 	const params: RobotParamsInterface = useParams();
+	const cRobotId = params.robotId;
 
 	/**
 	 * handle speed dial actions
@@ -78,7 +79,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				id={ReportTypeEnum.PURCHASES}
 				open={purchasesReport}
 				setOpen={setPurchasesReport}
-				filterId={params.robotId}
+				filterId={cRobotId}
 				state={robot.reports}
 				GenerateReports={RobotReportsGenerate}
 			/>

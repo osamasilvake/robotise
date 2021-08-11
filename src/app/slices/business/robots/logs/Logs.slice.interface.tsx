@@ -31,7 +31,7 @@ export interface SLCDataHistoryInterface {
 }
 
 export interface SLCStateInterface {
-	robotId?: string;
+	pRobotId?: string;
 	page?: number;
 	rowsPerPage?: number;
 }

@@ -24,7 +24,8 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 	const rooms = useSelector(roomsSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.siteId];
+	const cSiteId = params.siteId;
+	const siteSingle = sites.content?.dataById[cSiteId];
 
 	/**
 	 * toggle room state

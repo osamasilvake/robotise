@@ -39,11 +39,12 @@ const RobotPurchasesList: FC = () => {
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = purchases.content?.state?.robotId;
+	const pRobotId = purchases.content?.state?.pRobotId;
 	const cRobotId = params.robotId;
 
 	useEffect(() => {
 		const payload: RobotPurchasesListPayloadInterface = {
+			pRobotId: cRobotId,
 			page,
 			rowsPerPage,
 			billed,

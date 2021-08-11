@@ -34,7 +34,7 @@ const RobotInventoryList: FC = () => {
 	const pRobotId = inventory.content?.robot.id;
 	const cRobotId = params.robotId;
 	const pSiteId = products.content?.site?.id;
-	const cSiteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 
 	useEffect(() => {
 		const condition1 = products.content === null;

@@ -33,7 +33,7 @@ const RobotDetail: FC = () => {
 	const params: RobotParamsInterface = useParams();
 	const cRobotId = params.robotId;
 	const pRobotId = robotTwins.content?.robot.id;
-	const robotTwinId = robotTwinsSummary.content?.dataById[params.robotId]?.id;
+	const robotTwinId = robotTwinsSummary.content?.dataById[cRobotId]?.id;
 
 	useEffect(() => {
 		const condition1 = robotTwins.content === null && cRobotId;

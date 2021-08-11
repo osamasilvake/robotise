@@ -28,6 +28,7 @@ const SiteProductsActions: FC = () => {
 	const [productsReport, setProductsReport] = useState(false);
 
 	const params: SiteParamsInterface = useParams();
+	const cSiteId = params.siteId;
 
 	/**
 	 * handle speed dial actions
@@ -72,7 +73,7 @@ const SiteProductsActions: FC = () => {
 				id={ReportTypeEnum.PRODUCTS}
 				open={productsReport}
 				setOpen={setProductsReport}
-				filterId={params.siteId}
+				filterId={cSiteId}
 				state={site.reports}
 				GenerateReports={SiteReportsGenerate}
 			/>

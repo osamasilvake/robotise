@@ -34,11 +34,12 @@ const RobotLogsList: FC = () => {
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = logs.content?.state?.robotId;
+	const pRobotId = logs.content?.state?.pRobotId;
 	const cRobotId = params.robotId;
 
 	useEffect(() => {
 		const payload: RobotLogsListPayloadInterface = {
+			pRobotId: cRobotId,
 			page,
 			rowsPerPage
 		};

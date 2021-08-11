@@ -39,7 +39,8 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 
-	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
+	const cRobotId = params.robotId;
+	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';
 
 	const { handleChangeSelect, handleSubmit, values } = useForm<RobotSiteConfigPayloadInterface>(

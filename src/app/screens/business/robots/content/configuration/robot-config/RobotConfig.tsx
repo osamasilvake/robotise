@@ -43,7 +43,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
 
-	const robotSingle = robotTwinsSummary.content?.dataById[params.robotId];
+	const cRobotId = params.robotId;
+	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
@@ -51,8 +52,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 			{
 				name: robotSingle?.robotTitle || '',
 				customerName: robotSingle?.robotCustomerName || '',
-				isHidden: robotSingle?.robotHidden || false,
-				isOnlineCheckDisabled: robotSingle?.robotOnlineCheckDisabled || false
+				isHidden: !!robotSingle?.robotHidden,
+				isOnlineCheckDisabled: !!robotSingle?.robotOnlineCheckDisabled
 			},
 			RobotConfigValidation,
 			async () => {

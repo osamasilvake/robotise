@@ -29,8 +29,8 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params: SiteParamsInterface = useParams();
-	const siteSingle = sites.content?.dataById[params.siteId];
-	const siteId = params.siteId;
+	const cSiteId = params.siteId;
+	const siteSingle = sites.content?.dataById[cSiteId];
 
 	const common = 'CONTENT.CONFIGURATION.ACCEPT_ORDERS';
 
@@ -40,8 +40,8 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	const handleAcceptOrders = () => {
 		// dispatch: accept orders
 		dispatch(
-			SiteOrdersAccept(siteId, !siteSingle?.acceptOrders, () => {
-				const cSite = sites.content?.dataById[siteId];
+			SiteOrdersAccept(cSiteId, !siteSingle?.acceptOrders, () => {
+				const cSite = sites.content?.dataById[cSiteId];
 				if (cSite) {
 					// dispatch: fetch sites
 					dispatch(SitesFetchList(true));

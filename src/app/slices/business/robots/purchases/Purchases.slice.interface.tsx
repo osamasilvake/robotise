@@ -33,7 +33,7 @@ export interface SPCDataInterface {
 }
 
 export interface SPCStateInterface {
-	robotId?: string;
+	pRobotId?: string;
 	page?: number;
 	rowsPerPage?: number;
 	billed?: boolean;

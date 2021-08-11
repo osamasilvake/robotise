@@ -13,7 +13,8 @@ const Site: FC = () => {
 
 	const params: SiteParamsInterface = useParams();
 
-	const cSiteName = sites.content?.dataById[params.siteId]?.title;
+	const cSiteId = params.siteId;
+	const cSiteName = sites.content?.dataById[cSiteId]?.title;
 
 	return (
 		<Paper elevation={12} component="section" square>
@@ -21,9 +22,7 @@ const Site: FC = () => {
 			<PageHead
 				title="SITES.SITE.TITLE"
 				description="SITES.SITE.DESCRIPTION"
-				labels={{
-					siteName: !sites.loader ? cSiteName : ''
-				}}
+				labels={{ siteName: !sites.loader ? cSiteName : '' }}
 			/>
 
 			{/* Content */}

@@ -39,11 +39,12 @@ const RobotOrdersList: FC = () => {
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = orders.content?.state?.robotId;
+	const pRobotId = orders.content?.state?.pRobotId;
 	const cRobotId = params.robotId;
 
 	useEffect(() => {
 		const payload: RobotOrdersListPayloadInterface = {
+			pRobotId: cRobotId,
 			page,
 			rowsPerPage,
 			activeOrders,

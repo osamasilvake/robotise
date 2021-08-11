@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, IconButton, List, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, IconButton, List, Tooltip, Typography } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,7 +17,7 @@ import { SiteNotificationsStyle } from './SiteNotifications.style';
 
 const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const { site } = props;
-	const { t } = useTranslation('SITES');
+	const { t } = useTranslation(['SITES', 'TOOLTIPS']);
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
 
@@ -58,9 +58,14 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 				</Typography>
 
 				<Box className={classes.sCreate}>
-					<IconButton edge="end" onClick={() => setOpen(true)}>
-						<AddCircleIcon color="primary" />
-					</IconButton>
+					<Tooltip
+						placement="top"
+						title={String(t('TOOLTIPS:NOTIFICATION.ADD'))}
+						onClick={() => setOpen(true)}>
+						<IconButton edge="end">
+							<AddCircleIcon color="primary" />
+						</IconButton>
+					</Tooltip>
 					<DialogCreateEditNotification
 						type={SiteNotificationsCreateEditTypeEnum.CREATE}
 						open={open}

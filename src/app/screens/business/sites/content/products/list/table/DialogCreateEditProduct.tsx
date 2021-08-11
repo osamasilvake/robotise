@@ -49,16 +49,17 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const [imageError, setImageError] = useState(0);
 
 	const params: SiteParamsInterface = useParams();
-	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
+	const cSiteId = params.siteId;
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
-	const currency = sites.content?.dataById[params.siteId]?.currency || defaultCurrency;
+	const currency = sites.content?.dataById[cSiteId]?.currency || defaultCurrency;
+	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductPayloadInterface>(
 			{
 				image: product?.image || '',
 				name: product?.name || '',
-				price: product?.price || 0,
+				price: product?.price || '',
 				length: product?.length || '',
 				weight: product?.weight || '',
 				volume: product?.volume || ''
@@ -66,10 +67,10 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 			CreateEditProductValidation,
 			async () => {
 				// dispatch: create/edit a product
-				params.siteId &&
+				cSiteId &&
 					dispatch(
 						ProductCreateEdit(
-							params.siteId,
+							cSiteId,
 							product?.id,
 							{
 								...values,
@@ -80,12 +81,12 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							type,
 							async () => {
 								// dispatch: fetch products
-								dispatch(ProductsFetchList(params.siteId, true));
+								dispatch(ProductsFetchList(cSiteId, true));
 
 								// wait
 								await timeout(2000);
 
-								// close
+								// close dialog
 								setOpen(false);
 							}
 						)

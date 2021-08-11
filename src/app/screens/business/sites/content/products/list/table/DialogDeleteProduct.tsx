@@ -29,6 +29,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 	const products = useSelector(productsSelector);
 
 	const params: SiteParamsInterface = useParams();
+	const cSiteId = params.siteId;
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
 
 	/**
@@ -48,12 +49,12 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 			dispatch(
 				ProductDelete(product, async () => {
 					// dispatch: fetch products
-					dispatch(ProductsFetchList(params.siteId, true));
+					dispatch(ProductsFetchList(cSiteId, true));
 
 					// wait
 					await timeout(2000);
 
-					// close
+					// close dialog
 					setOpen(false);
 				})
 			);

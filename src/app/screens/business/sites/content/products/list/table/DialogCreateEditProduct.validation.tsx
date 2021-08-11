@@ -16,9 +16,9 @@ export const CreateEditProductValidation = (
 	const errors: DialogCreateEditProductPayloadInterface = {
 		image: '',
 		name: '',
-		price: 0,
-		length: 0,
-		weight: 0,
+		price: '',
+		length: '',
+		weight: '',
 		volume: ''
 	};
 

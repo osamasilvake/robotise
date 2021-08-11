@@ -50,7 +50,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 
 	const common = 'ROBOTS:CONTENT.ORDERS';
-	const siteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
+	const cRobotId = params.robotId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const fieldLocation = 'location';
 
 	const {
@@ -70,9 +71,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		CreateOrderValidation,
 		async () => {
 			// dispatch: create an order
-			siteId &&
+			cSiteId &&
 				dispatch(
-					OrderCreate(siteId, values, () => {
+					OrderCreate(cSiteId, values, () => {
 						// close dialog
 						setOpen(false);
 

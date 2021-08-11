@@ -35,7 +35,8 @@ const RobotContent: FC = () => {
 	const location = useLocation();
 	const history = useHistory();
 
-	const cSiteId = robotTwinsSummary.content?.dataById[params.robotId]?.siteId;
+	const cRobotId = params.robotId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const pSiteId = site.servicePositions.content?.site?.id;
 	const problem =
 		!!sites.errors?.id ||
@@ -46,11 +47,11 @@ const RobotContent: FC = () => {
 
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
-			(r) => r.path.replace(':robotId', params.robotId) === location.pathname
+			(r) => r.path.replace(':robotId', cRobotId) === location.pathname
 		);
 
 		setValue(cIndex - 1);
-	}, [location.pathname, params.robotId]);
+	}, [location.pathname, cRobotId]);
 
 	useEffect(() => {
 		const condition1 = site.servicePositions.content === null;
@@ -69,7 +70,7 @@ const RobotContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = robotsRoutes[value + 1].path.replace(':robotId', params.robotId);
+		const url = robotsRoutes[value + 1].path.replace(':robotId', cRobotId);
 
 		// push to history
 		history.push(url);

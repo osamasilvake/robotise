@@ -44,23 +44,23 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const history = useHistory();
 
 	const cRobotId = params.robotId;
-	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
+	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<RobotConfigPayloadInterface>(
 			{
-				name: robotSingle?.robotTitle || '',
-				customerName: robotSingle?.robotCustomerName || '',
-				isHidden: !!robotSingle?.robotHidden,
-				isOnlineCheckDisabled: !!robotSingle?.robotOnlineCheckDisabled
+				name: robotTwinsSingle?.robotTitle || '',
+				customerName: robotTwinsSingle?.robotCustomerName || '',
+				isHidden: !!robotTwinsSingle?.robotHidden,
+				isOnlineCheckDisabled: !!robotTwinsSingle?.robotOnlineCheckDisabled
 			},
 			RobotConfigValidation,
 			async () => {
-				if (robotSingle?.robotId) {
+				if (robotTwinsSingle) {
 					// dispatch: update robot config
 					dispatch(
-						RobotConfigUpdate(robotSingle.robotId, values, () => {
+						RobotConfigUpdate(cRobotId, values, () => {
 							if (!robotTwinsSummary.content?.state?.hidden && values.isHidden) {
 								// prepare link
 								const robotsLink =
@@ -73,7 +73,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								dispatch(RobotTwinsSummaryFetchList(true));
 
 								// dispatch: fetch robot twins of a robot
-								dispatch(RobotTwinsFetch(robotSingle.id, true));
+								dispatch(RobotTwinsFetch(robotTwinsSingle.id, true));
 							}
 						})
 					);

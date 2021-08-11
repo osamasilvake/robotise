@@ -2,6 +2,7 @@ import { ReportPayloadInterface } from '../../../components/common/report/Report
 import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/ObjectUtilities';
 import { DialogCreateEditNotificationPayloadInterface } from './content/configuration/notifications/SiteNotifications.interface';
+import { SiteRobotConfigPayloadInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductPayloadInterface } from './content/products/list/table/SiteProductsTable.interface';
 
@@ -24,23 +25,6 @@ class SitesService {
 			siteId
 		);
 		return HttpClientService.get(url);
-	};
-
-	/**
-	 * fetch service positions
-	 * @param siteId
-	 * @returns
-	 */
-	siteServicePositionsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS.replace(
-			':siteId',
-			siteId
-		);
-		return HttpClientService.get(url, {
-			params: {
-				'filter[site]': siteId
-			}
-		});
 	};
 
 	/**
@@ -154,6 +138,36 @@ class SitesService {
 	};
 
 	/**
+	 * update site robot config
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteRobotConfigUpdate = (siteId: string, payload: SiteRobotConfigPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIG.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				id: siteId,
+				attributes: {},
+				relationships: {
+					robots: {
+						data: [
+							{
+								type: 'robots',
+								id: payload.robotId
+							}
+						]
+					}
+				}
+			}
+		});
+	};
+
+	/**
 	 * fetch notification types
 	 * @returns
 	 */
@@ -235,6 +249,23 @@ class SitesService {
 				'filter[site]': siteId,
 				'createdAt[gte]': payload.from,
 				'createdAt[lte]': payload.to
+			}
+		});
+	};
+
+	/**
+	 * fetch service positions
+	 * @param siteId
+	 * @returns
+	 */
+	siteServicePositionsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
 			}
 		});
 	};

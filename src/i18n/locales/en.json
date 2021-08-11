@@ -103,15 +103,6 @@
 			"SERVICE_POSITIONS": {
 				"ERROR": "Unable to fetch service positions!"
 			},
-			"NOTIFICATIONS": {
-				"FETCH": {
-					"ERROR": "Unable to fetch notification types or users!"
-				},
-				"UPDATE": {
-					"SUCCESS": "Notification has been updated successfully!",
-					"ERROR": "Unable to update notification!"
-				}
-			},
 			"REPORTS": {
 				"SUCCESS": "Report has been generated successfully!",
 				"ERROR": "Unable to generate Report!"
@@ -147,6 +138,19 @@
 				"ACCEPT_ORDERS": {
 					"SUCCESS": "Settings has been updated successfully!",
 					"ERROR": "Unable to update the settings!"
+				},
+				"SITE_ROBOT_CONFIG": {
+					"SUCCESS": "Settings has been updated successfully!",
+					"ERROR": "Unable to update the settings!"
+				},
+				"NOTIFICATIONS": {
+					"FETCH": {
+						"ERROR": "Unable to fetch notification types or users!"
+					},
+					"UPDATE": {
+						"SUCCESS": "Notification has been updated successfully!",
+						"ERROR": "Unable to update notification!"
+					}
 				}
 			}
 		},
@@ -410,6 +414,20 @@
 					"TITLE": "Accept Orders",
 					"EXCERPT": "Allow robots to accept orders.",
 					"ACTIVE": "Active"
+				},
+				"SITE_ROBOT_CONFIG": {
+					"TITLE": "Configure Site ROBOT",
+					"EXCERPT": "Update Site ROBOT detail.",
+					"FORM": {
+						"FIELDS": {
+							"SITE": {
+								"LABEL": "Robot to accept order"
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
 				},
 				"NOTIFICATIONS": {
 					"TITLE": "Notifications",
@@ -960,11 +978,11 @@
 				},
 				"ROBOT_SITE_CONFIG": {
 					"TITLE": "Configure Robot SITE",
-					"EXCERPT": "Attach robot to a site.",
+					"EXCERPT": "Update Robot SITE detail.",
 					"FORM": {
 						"FIELDS": {
 							"SITE": {
-								"LABEL": "Site"
+								"LABEL": "Attach robot to a site"
 							}
 						},
 						"BUTTONS": {

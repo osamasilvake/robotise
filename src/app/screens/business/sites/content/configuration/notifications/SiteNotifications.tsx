@@ -48,7 +48,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	}, [dispatch, cSiteId]);
 
 	return site.notifications?.content ? (
-		<Card square elevation={1} className={classes.sNotificationCard}>
+		<Card square elevation={1} className={classes.sCard}>
 			<CardContent className={cardClasses.sCardContent4}>
 				<Typography variant="h6" className={classes.sTitle}>
 					{t(`${common}.TITLE`)}

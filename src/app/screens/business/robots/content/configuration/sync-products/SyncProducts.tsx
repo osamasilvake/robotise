@@ -22,9 +22,9 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 	const cRobotId = params.robotId;
 
-	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
-	const robotIsReady = robotSingle?.robotIsReady;
-	const lastSynced = robotSingle?.lastSyncedProducts;
+	const robotTwinSingle = robotTwinsSummary.content?.dataById[cRobotId];
+	const robotIsReady = robotTwinSingle?.robotIsReady;
+	const lastSynced = robotTwinSingle?.lastSyncedProducts;
 
 	const common = 'CONTENT.CONFIGURATION.SYNC_PRODUCTS';
 

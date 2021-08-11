@@ -5,6 +5,7 @@ import { ReportPayloadInterface } from '../../../components/common/report/Report
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { DialogCreateEditNotificationPayloadInterface } from '../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
+import { SiteRobotConfigPayloadInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
@@ -24,6 +25,9 @@ export const initialState: SliceSiteInterface = {
 		content: null
 	},
 	acceptOrders: {
+		loading: false
+	},
+	siteRobotConfig: {
 		loading: false
 	},
 	notifications: {
@@ -199,6 +203,50 @@ export const SiteOrdersAccept =
 	};
 
 /**
+ * update site robot config
+ * @param siteId
+ * @param payload
+ * @returns
+ */
+export const SiteRobotConfigUpdate =
+	(siteId: string, payload: SiteRobotConfigPayloadInterface) => async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteTypeEnum.SITE_ROBOT_CONFIG
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteRobotConfigUpdate(siteId, payload)
+			.then(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-robot-config-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-robot-config-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
  * fetch notification types and users
  * @param siteId
  * @param refresh
@@ -253,7 +301,7 @@ export const SiteNotificationTypesAndUsersFetch =
 					id: 'fetch-site-notification-types-users-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'COMMON.NOTIFICATIONS.FETCH.ERROR'
+					text: 'SITES.CONFIGURATION.NOTIFICATIONS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -292,7 +340,7 @@ export const SiteNotificationUpdate =
 					id: 'fetch-update-notification-users-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'COMMON.NOTIFICATIONS.UPDATE.SUCCESS'
+					text: 'SITES.CONFIGURATION.NOTIFICATIONS.UPDATE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 			})
@@ -302,7 +350,7 @@ export const SiteNotificationUpdate =
 					id: 'fetch-update-notification-users-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'COMMON.NOTIFICATIONS.UPDATE.ERROR'
+					text: 'SITES.CONFIGURATION.NOTIFICATIONS.UPDATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

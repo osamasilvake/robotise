@@ -5,7 +5,7 @@ export const SiteConfigurationStyle = makeStyles((theme: Theme) => ({
 	sBox: {
 		marginTop: theme.spacing(3)
 	},
-	sGridMargin: {
+	sGridMarginBottom: {
 		marginBottom: theme.spacing(3)
 	}
 }));

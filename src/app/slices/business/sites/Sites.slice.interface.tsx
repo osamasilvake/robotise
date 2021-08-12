@@ -26,11 +26,9 @@ export interface ISite {
 	acceptOrders: boolean;
 	createdAt: Date;
 	updatedAt: Date;
-	robots?: string[];
-	elevators?: {
-		vendor?: string;
-		buildingId?: string;
-		deviceId?: string;
+	rooms: {
+		available: string[];
+		whitelist: string[];
 	};
 	serviceTime: {
 		startTimeLocal: string;
@@ -39,14 +37,18 @@ export interface ISite {
 		holidaysSets?: string[];
 		holidaysExtra?: string[];
 	};
-	rooms: {
-		available: string[];
-		whitelist: string[];
-	};
 	phone?: {
 		technicianPhone?: string;
 		callerPhonePrefix?: string;
 	};
+	elevators?: {
+		vendor?: string;
+		buildingId?: string;
+		deviceId?: string;
+	};
+	robots: {
+		id: string;
+	}[];
 }
 
 type Day = 'Mo' | 'Tu' | 'We' | 'Th' | 'Fr' | 'Sa' | 'Su';

@@ -421,7 +421,8 @@
 					"FORM": {
 						"FIELDS": {
 							"SITE": {
-								"LABEL": "Robot to accept order"
+								"LABEL": "Robot to accept order",
+								"NOTE": "*Attached robot is hidden!"
 							}
 						},
 						"BUTTONS": {

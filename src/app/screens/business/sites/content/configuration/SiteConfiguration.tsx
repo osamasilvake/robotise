@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
-import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	SiteNotificationTypesAndUsersFetch,
 	siteSelector
@@ -23,7 +22,6 @@ const SiteConfiguration: FC = () => {
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 	const site = useSelector(siteSelector);
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const params: SiteParamsInterface = useParams();
 
@@ -49,25 +47,15 @@ const SiteConfiguration: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			{sites.content && (
-				<Grid container spacing={1} className={classes.sGridMarginBottom}>
-					<Grid item xs={12} md={3}>
-						<AcceptOrders sites={sites} site={site} />
-					</Grid>
+			<Grid container spacing={1} className={classes.sGridMarginBottom}>
+				<Grid item xs={12} md={3}>
+					<AcceptOrders sites={sites} site={site} />
 				</Grid>
-			)}
+			</Grid>
 
 			<Grid container spacing={1}>
-				{robotTwinsSummary.content && (
-					<Grid item xs={12} md={6}>
-						<SiteRobotConfig site={site} />
-					</Grid>
-				)}
-				{site.notifications.content && (
-					<Grid item xs={12} md={6}>
-						<SiteNotifications site={site} />
-					</Grid>
-				)}
+				<SiteRobotConfig sites={sites} site={site} />
+				<SiteNotifications site={site} />
 			</Grid>
 		</Box>
 	);

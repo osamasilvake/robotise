@@ -207,7 +207,7 @@ class AppConfigService extends EnvService {
 						ALL: `${this.envAppUrl}/sites`,
 						SINGLE: `${this.envAppUrl}/sites/:siteId`,
 						PRODUCTS: `${this.envAppUrl}/products`,
-						CONFIG: `${this.envAppUrl}/site/:siteId`,
+						CONFIG: `${this.envAppUrl}/sites/:siteId`,
 						NOTIFICATION: {
 							TYPES: `${this.envAppUrl}/notification-types`,
 							USERS: `${this.envAppUrl}/notification-users`,

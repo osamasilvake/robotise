@@ -1,6 +1,8 @@
 import Link from '@material-ui/core/Link';
 import ReactDOMServer from 'react-dom/server';
 
+import { AppConfigService } from '../../services';
+
 /**
  * remove special characters from string
  * @param str
@@ -20,14 +22,18 @@ export const strCapitalizeEachLetter = (str: string) => {
 };
 
 /**
- * convert url to link
+ * convert to links
  * @param text
  * @returns {*}
  */
-export const strConvertUrlsToLinks = (text: string) => {
+export const strToLinks = (text: string) => {
 	const link = (link: string, additional?: string, mail?: boolean) =>
 		ReactDOMServer.renderToString(
-			<Link underline="hover" href={mail ? `mailto:${link}` : link} target="_blank">
+			<Link
+				underline="hover"
+				href={additional ? `http://${link}` : mail ? `mailto:${link}` : link}
+				target="_blank"
+				sx={{ color: AppConfigService.AppOptions.colors.c9 }}>
 				{additional ? `${additional}${link}` : link}
 			</Link>
 		);

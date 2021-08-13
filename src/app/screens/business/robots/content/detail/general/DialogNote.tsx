@@ -7,7 +7,6 @@ import {
 	DialogContentText,
 	DialogTitle,
 	FormControl,
-	FormHelperText,
 	TextField
 } from '@material-ui/core';
 import { FC } from 'react';
@@ -33,8 +32,9 @@ const DialogNote: FC<NoteInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 	const cRobotId = params.robotId;
 	const common = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
+	const fieldNote = 'note';
 
-	const { handleChangeInput, handleSubmit, values, errors } = useForm<NoteFormInterface>(
+	const { handleChangeInput, handleSubmit, values } = useForm<NoteFormInterface>(
 		{
 			note: note || ''
 		},
@@ -56,11 +56,10 @@ const DialogNote: FC<NoteInterface> = (props) => {
 							multiline
 							variant="outlined"
 							type="text"
-							id="note"
-							name="note"
+							id={fieldNote}
+							name={fieldNote}
 							rows={4}
 							value={values.note}
-							error={!!errors?.note}
 							onChange={handleChangeInput}
 							inputProps={{ maxLength: 2000 }}
 							inputRef={(input) => input && input.focus()}
@@ -73,12 +72,23 @@ const DialogNote: FC<NoteInterface> = (props) => {
 							label={t(`${common}.FIELDS.LABEL`)}
 							placeholder={t(`${common}.FIELDS.PLACEHOLDER`)}
 						/>
-						{errors?.note && <FormHelperText>{t(errors.note)}</FormHelperText>}
 					</FormControl>
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={() => setOpen(false)}>
 						{t('BUTTONS.CANCEL')}
+					</Button>
+					<Button
+						variant="outlined"
+						onClick={() =>
+							handleChangeInput({
+								target: {
+									name: fieldNote,
+									value: ''
+								}
+							})
+						}>
+						{t('BUTTONS.CLEAR')}
 					</Button>
 					<Button
 						variant="outlined"

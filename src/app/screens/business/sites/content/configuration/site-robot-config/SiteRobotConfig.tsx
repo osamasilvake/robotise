@@ -22,8 +22,8 @@ import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import {
-	SiteRobotConfigInterface,
-	SiteRobotConfigPayloadInterface
+	SiteRobotConfigFormInterface,
+	SiteRobotConfigInterface
 } from './SiteRobotConfig.interface';
 import { SiteRobotConfigStyle } from './SiteRobotConfig.style';
 
@@ -43,7 +43,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 
 	const common = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
 
-	const { handleChangeSelect, handleSubmit, values } = useForm<SiteRobotConfigPayloadInterface>(
+	const { handleChangeSelect, handleSubmit, values } = useForm<SiteRobotConfigFormInterface>(
 		{
 			robotId: ''
 		},

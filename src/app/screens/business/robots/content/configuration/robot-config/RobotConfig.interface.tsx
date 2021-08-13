@@ -6,7 +6,7 @@ export interface RobotConfigInterface {
 	robot: SliceRobotInterface;
 }
 
-export interface RobotConfigPayloadInterface {
+export interface RobotConfigFormInterface {
 	name: string;
 	customerName: string;
 	isHidden?: boolean;

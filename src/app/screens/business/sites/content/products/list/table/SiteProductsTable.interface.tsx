@@ -38,7 +38,7 @@ export interface DialogCreateEditProductInterface {
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export interface DialogCreateEditProductPayloadInterface {
+export interface DialogCreateEditProductFormInterface {
 	image: string;
 	name: string;
 	price: number | string;

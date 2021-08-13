@@ -6,6 +6,6 @@ export interface RobotSiteConfigInterface {
 	robot: SliceRobotInterface;
 }
 
-export interface RobotSiteConfigPayloadInterface {
+export interface RobotSiteConfigFormInterface {
 	siteId: string;
 }

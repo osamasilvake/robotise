@@ -8,7 +8,7 @@ import {
 	Tooltip,
 	Typography
 } from '@material-ui/core';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { AddCircle } from '@material-ui/icons';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -73,7 +73,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 							title={String(t('TOOLTIPS:NOTIFICATION.ADD'))}
 							onClick={() => setOpen(true)}>
 							<IconButton edge="end">
-								<AddCircleIcon color="primary" />
+								<AddCircle color="primary" />
 							</IconButton>
 						</Tooltip>
 						<DialogCreateEditNotification

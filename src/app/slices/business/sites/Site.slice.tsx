@@ -1,11 +1,11 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
-import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
+import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { DialogCreateEditNotificationPayloadInterface } from '../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
-import { SiteRobotConfigPayloadInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
+import { DialogCreateEditNotificationFormInterface } from '../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
+import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
@@ -209,7 +209,7 @@ export const SiteOrdersAccept =
  * @returns
  */
 export const SiteRobotConfigUpdate =
-	(siteId: string, payload: SiteRobotConfigPayloadInterface) => async (dispatch: Dispatch) => {
+	(siteId: string, payload: SiteRobotConfigFormInterface) => async (dispatch: Dispatch) => {
 		const state = {
 			module: SiteTypeEnum.SITE_ROBOT_CONFIG
 		};
@@ -317,7 +317,7 @@ export const SiteNotificationTypesAndUsersFetch =
  * @returns
  */
 export const SiteNotificationUpdate =
-	(payload: DialogCreateEditNotificationPayloadInterface, callback: () => void) =>
+	(payload: DialogCreateEditNotificationFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		// module
 		const state = {
@@ -371,7 +371,7 @@ export const SiteReportsGenerate =
 	(
 		_id: ReportTypeEnum,
 		siteId: string,
-		payload: ReportPayloadInterface,
+		payload: ReportFormInterface,
 		callback: (report: string) => void
 	) =>
 	async (dispatch: Dispatch) => {

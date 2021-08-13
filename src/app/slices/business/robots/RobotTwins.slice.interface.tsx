@@ -42,6 +42,7 @@ export interface SRTContentRobotInterface {
 	id: string;
 	name: string;
 	customerName: string;
+	note: string;
 }
 
 export interface SRTContentRobotStateInterface {
@@ -175,6 +176,7 @@ export interface IRobotTwin {
 		reported: {
 			name: string;
 			customerName: string;
+			note: string;
 			robotState: {
 				isReady: boolean;
 			};
@@ -250,6 +252,9 @@ export interface IRobotTwin {
 				updatedAt: Date;
 			};
 			customerName: {
+				updatedAt: Date;
+			};
+			note: {
 				updatedAt: Date;
 			};
 			robotState: {

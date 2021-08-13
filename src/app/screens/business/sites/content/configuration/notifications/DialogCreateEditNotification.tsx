@@ -34,8 +34,8 @@ import { SiteParamsInterface } from '../../../Site.interface';
 import { DialogCreateEditNotificationValidation } from './DialogCreateEditNotification.validation';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {
-	DialogCreateEditNotificationInterface,
-	DialogCreateEditNotificationPayloadInterface
+	DialogCreateEditNotificationFormInterface,
+	DialogCreateEditNotificationInterface
 } from './SiteNotifications.interface';
 import { SiteNotificationsStyle } from './SiteNotifications.style';
 
@@ -57,7 +57,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const fieldUsers = 'users';
 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
-		useForm<DialogCreateEditNotificationPayloadInterface>(
+		useForm<DialogCreateEditNotificationFormInterface>(
 			{
 				isActive: !!notification?.isActive,
 				users: notification?.users || []

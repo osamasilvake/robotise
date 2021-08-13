@@ -1,5 +1,5 @@
 import { AppConfigService } from '../../../../../../../services';
-import { DialogCreateEditProductPayloadInterface } from './SiteProductsTable.interface';
+import { DialogCreateEditProductFormInterface } from './SiteProductsTable.interface';
 
 /**
  * create/edit product validation
@@ -7,13 +7,13 @@ import { DialogCreateEditProductPayloadInterface } from './SiteProductsTable.int
  * @param touched
  */
 export const CreateEditProductValidation = (
-	values: DialogCreateEditProductPayloadInterface,
-	touched: DialogCreateEditProductPayloadInterface
-): DialogCreateEditProductPayloadInterface => {
+	values: DialogCreateEditProductFormInterface,
+	touched: DialogCreateEditProductFormInterface
+): DialogCreateEditProductFormInterface => {
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
 	const regexMaxTwoDecimalPoints = AppConfigService.AppOptions.regex.maxTwoDecimalPoints;
 	const regexZeroInString = AppConfigService.AppOptions.regex.zeroInString;
-	const errors: DialogCreateEditProductPayloadInterface = {
+	const errors: DialogCreateEditProductFormInterface = {
 		image: '',
 		name: '',
 		price: '',

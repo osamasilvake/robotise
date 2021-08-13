@@ -1,5 +1,5 @@
 import { validateEmail } from '../../../utilities/methods/Validations';
-import { AuthLoginPayloadInterface } from '../Auth.interface';
+import { AuthLoginFormInterface } from '../Auth.interface';
 
 /**
  * login form validation
@@ -7,11 +7,11 @@ import { AuthLoginPayloadInterface } from '../Auth.interface';
  * @param touched
  */
 export const LoginValidation = (
-	values: AuthLoginPayloadInterface,
-	touched: AuthLoginPayloadInterface
-): AuthLoginPayloadInterface => {
+	values: AuthLoginFormInterface,
+	touched: AuthLoginFormInterface
+): AuthLoginFormInterface => {
 	const common = 'LOGIN.FIELDS';
-	const errors: AuthLoginPayloadInterface = {
+	const errors: AuthLoginFormInterface = {
 		email: '',
 		password: ''
 	};

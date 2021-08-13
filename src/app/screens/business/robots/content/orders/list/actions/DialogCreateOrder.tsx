@@ -33,8 +33,8 @@ import { RobotParamsInterface } from '../../../../Robot.interface';
 import { CreateOrderValidation } from './DialogCreateOrder.validation';
 import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 import {
-	DialogCreateOrderInterface,
-	DialogCreateOrderPayloadInterface
+	DialogCreateOrderFormInterface,
+	DialogCreateOrderInterface
 } from './RobotOrdersActions.interface';
 import { orderModes } from './RobotOrdersActions.map';
 
@@ -62,7 +62,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		handleSubmit,
 		values,
 		errors
-	} = useForm<DialogCreateOrderPayloadInterface>(
+	} = useForm<DialogCreateOrderFormInterface>(
 		{
 			isDebug: false,
 			location: '',

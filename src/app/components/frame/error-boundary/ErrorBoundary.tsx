@@ -52,6 +52,7 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 							{t('ERROR_BOUNDARY.DESCRIPTION')}
 						</Typography>
 						<Link
+							component="button"
 							underline="hover"
 							onClick={() => window.location.reload()}
 							className={classes.sLink}>

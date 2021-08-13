@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import {
-	AuthLoginPayloadInterface,
+	AuthLoginFormInterface,
 	AuthUserDetailInterface
 } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
@@ -77,7 +77,7 @@ export default dataSlice.reducer;
  * login
  * @param payload
  */
-export const AuthLogin = (payload: AuthLoginPayloadInterface) => async (dispatch: Dispatch) => {
+export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: Dispatch) => {
 	// dispatch: loading
 	dispatch(loading());
 

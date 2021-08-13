@@ -23,8 +23,8 @@ import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import {
-	RobotSiteConfigInterface,
-	RobotSiteConfigPayloadInterface
+	RobotSiteConfigFormInterface,
+	RobotSiteConfigInterface
 } from './RobotSiteConfig.interface';
 import { RobotSiteConfigStyle } from './RobotSiteConfig.style';
 
@@ -43,7 +43,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';
 
-	const { handleChangeSelect, handleSubmit, values } = useForm<RobotSiteConfigPayloadInterface>(
+	const { handleChangeSelect, handleSubmit, values } = useForm<RobotSiteConfigFormInterface>(
 		{
 			siteId: robotTwinsSingle?.siteId || ''
 		},

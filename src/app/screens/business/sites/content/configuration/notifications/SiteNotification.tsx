@@ -7,7 +7,7 @@ import {
 	Switch,
 	Tooltip
 } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
+import { Edit } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -21,7 +21,7 @@ import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {
-	DialogCreateEditNotificationPayloadInterface,
+	DialogCreateEditNotificationFormInterface,
 	SiteNotificationInterface
 } from './SiteNotifications.interface';
 
@@ -42,7 +42,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	 * @param payload
 	 * @returns
 	 */
-	const handleNotification = (payload: DialogCreateEditNotificationPayloadInterface) => () => {
+	const handleNotification = (payload: DialogCreateEditNotificationFormInterface) => () => {
 		// dispatch: update notification
 		dispatch(
 			SiteNotificationUpdate(
@@ -83,7 +83,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 					title={String(t('NOTIFICATION.EDIT'))}
 					onClick={() => setOpen(true)}>
 					<IconButton edge="end">
-						<EditIcon color="primary" />
+						<Edit color="primary" />
 					</IconButton>
 				</Tooltip>
 

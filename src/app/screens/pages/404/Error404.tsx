@@ -1,7 +1,6 @@
-import { Paper, Typography } from '@material-ui/core';
+import { Link, Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
 import Error from '../../../components/common/error/Error';
 import { ErrorTypeEnum } from '../../../components/common/error/Error.enum';
@@ -21,7 +20,10 @@ const Error404: FC = () => {
 				<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
 					{t('E404.DESCRIPTION')}
 				</Typography>
-				<Link to={AppConfigService.AppRoutes.HOME} className={classes.sLink}>
+				<Link
+					href={AppConfigService.AppRoutes.HOME}
+					underline="hover"
+					className={classes.sLink}>
 					{t('E404.LINK')}
 				</Link>
 			</Error>

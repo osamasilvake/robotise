@@ -1,4 +1,4 @@
-import { RobotConfigPayloadInterface } from './RobotConfig.interface';
+import { RobotConfigFormInterface } from './RobotConfig.interface';
 
 /**
  * robot config validation
@@ -6,11 +6,11 @@ import { RobotConfigPayloadInterface } from './RobotConfig.interface';
  * @param touched
  */
 export const RobotConfigValidation = (
-	values: RobotConfigPayloadInterface,
-	touched: RobotConfigPayloadInterface
-): RobotConfigPayloadInterface => {
+	values: RobotConfigFormInterface,
+	touched: RobotConfigFormInterface
+): RobotConfigFormInterface => {
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG.FORM.FIELDS';
-	const errors: RobotConfigPayloadInterface = {
+	const errors: RobotConfigFormInterface = {
 		name: '',
 		customerName: ''
 	};

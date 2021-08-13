@@ -1,17 +1,18 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
-import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
+import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { RobotConfigPayloadInterface } from '../../../screens/business/robots/content/configuration/robot-config/RobotConfig.interface';
-import { RobotSiteConfigPayloadInterface } from '../../../screens/business/robots/content/configuration/robot-site-config/RobotSiteConfig.interface';
+import { RobotConfigFormInterface } from '../../../screens/business/robots/content/configuration/robot-config/RobotConfig.interface';
+import { RobotSiteConfigFormInterface } from '../../../screens/business/robots/content/configuration/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
 	RobotDetailCommandsTypeEnum,
 	RobotDetailControlModeTypeEnum
 } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
+import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
@@ -22,6 +23,9 @@ import { SliceRobotInterface } from './Robot.slice.interface';
 
 // initial state
 export const initialState: SliceRobotInterface = {
+	note: {
+		loading: false
+	},
 	map: {
 		loading: false,
 		content: null
@@ -53,7 +57,9 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.NOTE) {
+				state.note.loading = true;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = true;
@@ -71,7 +77,9 @@ const dataSlice = createSlice({
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.NOTE) {
+				state.note.loading = false;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
@@ -90,7 +98,9 @@ const dataSlice = createSlice({
 		},
 		failure: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.MAP) {
+			if (module === RobotTypeEnum.NOTE) {
+				state.note.loading = false;
+			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
@@ -119,6 +129,58 @@ export const robotSelector = (state: AppReducerType) => state['robot'];
 
 // reducer
 export default dataSlice.reducer;
+
+/**
+ * update note field
+ * @param robotId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotNoteUpdate =
+	(robotId: string, payload: NoteFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.NOTE
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotNoteUpdate(robotId, payload)
+			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-note-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `ROBOTS.DETAIL.NOTE.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-note-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.DETAIL.NOTE.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
 
 /**
  * fetch robot map location
@@ -310,7 +372,7 @@ export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch)
  * @returns
  */
 export const RobotConfigUpdate =
-	(robotId: string, payload: RobotConfigPayloadInterface, callback: () => void) =>
+	(robotId: string, payload: RobotConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: RobotTypeEnum.ROBOT_CONFIG
@@ -362,7 +424,7 @@ export const RobotConfigUpdate =
  * @returns
  */
 export const RobotSiteConfigUpdate =
-	(robotId: string, payload: RobotSiteConfigPayloadInterface, callback: () => void) =>
+	(robotId: string, payload: RobotSiteConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: RobotTypeEnum.ROBOT_SITE_CONFIG
@@ -418,7 +480,7 @@ export const RobotReportsGenerate =
 	(
 		_id: ReportTypeEnum,
 		robotId: string,
-		payload: ReportPayloadInterface,
+		payload: ReportFormInterface,
 		callback: (report: string) => void
 	) =>
 	async (dispatch: Dispatch) => {

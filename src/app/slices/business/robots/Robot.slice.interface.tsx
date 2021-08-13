@@ -1,4 +1,7 @@
 export interface SliceRobotInterface {
+	note: {
+		loading: boolean;
+	};
 	map: {
 		loading: boolean;
 		content: SRContentMapInterface | null;

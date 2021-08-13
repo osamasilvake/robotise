@@ -8,7 +8,7 @@ import { serializeObj } from '../../utilities/methods/ObjectUtilities';
 import { AuthUserRoleTypeEnum } from './Auth.enum';
 import {
 	AuthJWTInterface,
-	AuthLoginPayloadInterface,
+	AuthLoginFormInterface,
 	AuthUserDetailInterface
 } from './Auth.interface';
 
@@ -17,7 +17,7 @@ class AuthService {
 	 * login user
 	 * @param payload
 	 */
-	authLogin = (payload: AuthLoginPayloadInterface) => {
+	authLogin = (payload: AuthLoginFormInterface) => {
 		const request = {
 			username: payload.email,
 			password: payload.password,

@@ -19,7 +19,7 @@ export interface DialogCreateEditNotificationInterface {
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export interface DialogCreateEditNotificationPayloadInterface {
+export interface DialogCreateEditNotificationFormInterface {
 	id?: string;
 	name?: string;
 	isActive?: boolean;

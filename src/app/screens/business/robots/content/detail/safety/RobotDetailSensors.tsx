@@ -1,12 +1,4 @@
-import {
-	Collapse,
-	Icon,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-	ListSubheader
-} from '@material-ui/core';
+import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import clsx from 'clsx';
 import { FC, useState } from 'react';
@@ -27,14 +19,11 @@ const RobotDetailSensors: FC<RobotDetailSafetySensorsInterface> = (props) => {
 	const mappedSensors = sensors && mapSafetyContent(sensors, RobotDetailSafetyTypeEnum.SENSORS);
 
 	return mappedSensors ? (
-		<List
-			className={classes.sList}
-			subheader={
-				<ListSubheader className={classes.sListSubheader} onClick={() => setOpen(!open)}>
-					{t('CONTENT.DETAIL.SAFETY.SENSORS.TITLE')}
-					{open ? <ExpandLess /> : <ExpandMore />}
-				</ListSubheader>
-			}>
+		<List component="nav" className={classes.sList}>
+			<ListItem button selected onClick={() => setOpen(!open)}>
+				<ListItemText primary={t('CONTENT.DETAIL.SAFETY.SENSORS.TITLE')} />
+				{open ? <ExpandLess /> : <ExpandMore />}
+			</ListItem>
 			{mappedSensors.map((row) => (
 				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
 					<ListItem

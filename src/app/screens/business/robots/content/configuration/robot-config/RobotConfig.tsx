@@ -28,7 +28,7 @@ import {
 } from '../../../../../../utilities/methods/ObjectUtilities';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import { RobotConfigInterface, RobotConfigPayloadInterface } from './RobotConfig.interface';
+import { RobotConfigFormInterface, RobotConfigInterface } from './RobotConfig.interface';
 import { RobotConfigStyle } from './RobotConfig.style';
 import { RobotConfigValidation } from './RobotConfig.validation';
 
@@ -48,7 +48,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
-		useForm<RobotConfigPayloadInterface>(
+		useForm<RobotConfigFormInterface>(
 			{
 				name: robotTwinsSingle?.robotTitle || '',
 				customerName: robotTwinsSingle?.robotCustomerName || '',

@@ -23,8 +23,8 @@ import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import {
-	RobotSiteConfigInterface,
-	RobotSiteConfigPayloadInterface
+	RobotSiteConfigFormInterface,
+	RobotSiteConfigInterface
 } from './RobotSiteConfig.interface';
 import { RobotSiteConfigStyle } from './RobotSiteConfig.style';
 
@@ -40,24 +40,24 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 
 	const cRobotId = params.robotId;
-	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
+	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';
 
-	const { handleChangeSelect, handleSubmit, values } = useForm<RobotSiteConfigPayloadInterface>(
+	const { handleChangeSelect, handleSubmit, values } = useForm<RobotSiteConfigFormInterface>(
 		{
-			siteId: robotSingle?.siteId || ''
+			siteId: robotTwinsSingle?.siteId || ''
 		},
 		() => ({ siteId: '' }),
 		async () => {
-			if (robotSingle?.robotId) {
+			if (robotTwinsSingle) {
 				// dispatch: update robot site config
 				dispatch(
-					RobotSiteConfigUpdate(robotSingle.robotId, values, () => {
+					RobotSiteConfigUpdate(cRobotId, values, () => {
 						// dispatch: fetch robot twins summary
 						dispatch(RobotTwinsSummaryFetchList(true));
 
 						// dispatch: fetch robot twins of a robot
-						dispatch(RobotTwinsFetch(robotSingle.id, true));
+						dispatch(RobotTwinsFetch(robotTwinsSingle.id, true));
 					})
 				);
 			}
@@ -101,7 +101,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 								disabled={
 									!!values.siteId &&
 									sites.content?.dataById[values.siteId]?.id ===
-										robotSingle?.siteId
+										robotTwinsSingle?.siteId
 								}
 								endIcon={
 									robot.robotSiteConfig.loading && <CircularProgress size={20} />

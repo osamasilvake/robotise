@@ -1,5 +1,5 @@
 import { momentFromToDiff } from '../../../utilities/methods/Moment';
-import { ReportPayloadInterface } from './Report.interface';
+import { ReportFormInterface } from './Report.interface';
 
 /**
  * report validation
@@ -7,10 +7,10 @@ import { ReportPayloadInterface } from './Report.interface';
  * @param touched
  */
 export const ReportValidation = (
-	values: ReportPayloadInterface,
-	touched: ReportPayloadInterface
-): ReportPayloadInterface => {
-	const errors: ReportPayloadInterface = {
+	values: ReportFormInterface,
+	touched: ReportFormInterface
+): ReportFormInterface => {
+	const errors: ReportFormInterface = {
 		from: '',
 		to: ''
 	};

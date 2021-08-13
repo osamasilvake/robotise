@@ -1,5 +1,5 @@
 import { Box, Fab, useScrollTrigger, Zoom } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import { ArrowUpward } from '@material-ui/icons';
 import { FC } from 'react';
 
 import { ScrollTopStyle } from './ScrollTop.style';
@@ -33,7 +33,7 @@ const ScrollTop: FC = () => {
 		<Zoom in={trigger}>
 			<Box onClick={handleScrollToTop} className={classes.sScrollTop}>
 				<Fab size="small" color="primary">
-					<ArrowUpwardIcon className={classes.sScrollTopIcon} />
+					<ArrowUpward className={classes.sScrollTopIcon} />
 				</Fab>
 			</Box>
 		</Zoom>

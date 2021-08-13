@@ -26,6 +26,7 @@ const PageError: FC<PageErrorInterface> = (props) => {
 
 			{/* Link */}
 			<Link
+				component="button"
 				underline="hover"
 				onClick={() => window.location.reload()}
 				className={classes.sLink}>

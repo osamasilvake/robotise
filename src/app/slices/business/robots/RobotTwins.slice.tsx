@@ -119,7 +119,8 @@ const prepareContent = (
 		robot: {
 			id: robotTwins.robot.id,
 			name: robotTwins.robot.name,
-			customerName: robotTwins.robot.customerName
+			customerName: robotTwins.robot.customerName,
+			note: robotTwins.robot.note
 		},
 		site: {
 			...robotTwins.site,

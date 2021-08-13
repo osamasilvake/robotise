@@ -111,9 +111,9 @@ export interface IRobotTwinSummary {
 		reported: {
 			name: string;
 			customerName: string;
-			lastSyncedProducts: Date;
 			isHidden: boolean;
 			isOnlineCheckDisabled: boolean;
+			lastSyncedProducts: Date;
 			alerts: IAlert[];
 			robotState: {
 				isReady: boolean;

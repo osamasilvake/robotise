@@ -1,8 +1,8 @@
-import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
+import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
-import { RobotConfigPayloadInterface } from './content/configuration/robot-config/RobotConfig.interface';
-import { RobotSiteConfigPayloadInterface } from './content/configuration/robot-site-config/RobotSiteConfig.interface';
+import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
+import { RobotSiteConfigFormInterface } from './content/configuration/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -10,8 +10,9 @@ import {
 	RobotDetailControlModeTypeEnum
 } from './content/detail/commands/RobotDetailCommands.enum';
 import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
+import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.interface';
 import { RobotLogsListPayloadInterface } from './content/logs/list/RobotLogsList.interface';
-import { DialogCreateOrderPayloadInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
+import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
 import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
 
@@ -41,6 +42,27 @@ class RobotsService {
 			robotTwinId
 		);
 		return HttpClientService.get(url);
+	};
+
+	/**
+	 * update note field
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotNoteUpdate = (robotId: string, payload: NoteFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
+			':robotId',
+			robotId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'robots',
+				attributes: {
+					note: payload.note
+				}
+			}
+		});
 	};
 
 	/**
@@ -163,7 +185,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotOrderCreate = (siteId: string, payload: DialogCreateOrderPayloadInterface) => {
+	robotOrderCreate = (siteId: string, payload: DialogCreateOrderFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
 		return HttpClientService.post(url, {
 			data: {
@@ -292,7 +314,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotConfigUpdate = (robotId: string, payload: RobotConfigPayloadInterface) => {
+	robotConfigUpdate = (robotId: string, payload: RobotConfigFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
 			':robotId',
 			robotId
@@ -318,7 +340,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotSiteConfigUpdate = (robotId: string, payload: RobotSiteConfigPayloadInterface) => {
+	robotSiteConfigUpdate = (robotId: string, payload: RobotSiteConfigFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
 			':robotId',
 			robotId
@@ -362,7 +384,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotReportsGenerate = (robotId: string, payload: ReportPayloadInterface) => {
+	robotReportsGenerate = (robotId: string, payload: ReportFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS.PURCHASES;
 		return HttpClientService.get(url, {
 			params: {

@@ -94,7 +94,7 @@ class AppConfigService extends EnvService {
 							},
 							products: {
 								list: {
-									refreshTime: 30000,
+									refreshTime: 20000,
 									showPageSizes: false,
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
@@ -102,7 +102,7 @@ class AppConfigService extends EnvService {
 							},
 							configuration: {
 								notifications: {
-									refreshTime: 10000
+									refreshTime: 20000
 								}
 							}
 						}
@@ -207,7 +207,7 @@ class AppConfigService extends EnvService {
 						ALL: `${this.envAppUrl}/sites`,
 						SINGLE: `${this.envAppUrl}/sites/:siteId`,
 						PRODUCTS: `${this.envAppUrl}/products`,
-						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
+						CONFIG: `${this.envAppUrl}/sites/:siteId`,
 						NOTIFICATION: {
 							TYPES: `${this.envAppUrl}/notification-types`,
 							USERS: `${this.envAppUrl}/notification-users`,
@@ -215,7 +215,8 @@ class AppConfigService extends EnvService {
 						},
 						REPORTS: {
 							PRODUCTS: `${this.envAppUrl}/product-export`
-						}
+						},
+						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`
 					},
 					ROBOTS: {
 						ALL: `${this.envAppUrl}/robot-twins-summary`,

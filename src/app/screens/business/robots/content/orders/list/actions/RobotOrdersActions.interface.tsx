@@ -20,7 +20,7 @@ export interface DialogCreateOrderInterface {
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export interface DialogCreateOrderPayloadInterface {
+export interface DialogCreateOrderFormInterface {
 	isDebug: boolean;
 	location: string;
 	mode: RobotOrderModeTypeEnum;

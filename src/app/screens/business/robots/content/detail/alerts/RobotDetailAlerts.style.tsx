@@ -21,11 +21,8 @@ export const RobotDetailAlertsStyle = makeStyles((theme: Theme) => ({
 	},
 	sCardContentIcons: {
 		position: 'absolute',
-		right: theme.typography.pxToRem(5),
-		top: theme.typography.pxToRem(5)
-	},
-	sCardContentIcon: {
-		cursor: 'pointer'
+		right: 0,
+		top: 0
 	},
 	sCardContentMessage: {
 		fontWeight: 400,

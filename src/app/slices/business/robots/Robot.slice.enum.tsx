@@ -1,4 +1,5 @@
 export enum RobotTypeEnum {
+	NOTE,
 	MAP,
 	ROC_CONTROL,
 	COMMAND_CAMERA,

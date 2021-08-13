@@ -2,21 +2,34 @@ import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
 export const RobotDetailGeneralStyle = makeStyles((theme: Theme) => ({
-	sGeneralItemBlock: {
+	sGridItemBlock: {
 		display: 'block'
 	},
-	sGeneralItemFlex: {
+	sGridItemFlex: {
 		alignItems: 'center',
 		display: 'flex'
 	},
-	sGeneralItemInfoIcon: {
+	sGridItemInfoIcon: {
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
 	},
-	sGeneralLastRowItem: {
+	sGridLastRowItem: {
 		textAlign: 'right',
 		[theme.breakpoints.down('lg')]: {
 			textAlign: 'left'
 		}
+	},
+	sNoteGrid: {
+		position: 'relative'
+	},
+	sNoteEditIconButton: {
+		position: 'absolute',
+		top: theme.spacing(0.5)
+	},
+	sNoteEditIcon: {
+		fontSize: theme.spacing(2)
+	},
+	sNote: {
+		whiteSpace: 'pre-wrap'
 	}
 }));

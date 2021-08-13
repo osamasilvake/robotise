@@ -33,8 +33,8 @@ import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';
 import { SiteProductCreateEditTypeEnum } from './SiteProductsTable.enum';
 import {
-	DialogCreateEditProductInterface,
-	DialogCreateEditProductPayloadInterface
+	DialogCreateEditProductFormInterface,
+	DialogCreateEditProductInterface
 } from './SiteProductsTable.interface';
 
 const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) => {
@@ -55,7 +55,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
-		useForm<DialogCreateEditProductPayloadInterface>(
+		useForm<DialogCreateEditProductFormInterface>(
 			{
 				image: product?.image || '',
 				name: product?.name || '',

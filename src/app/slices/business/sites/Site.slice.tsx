@@ -1,10 +1,11 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
-import { ReportPayloadInterface } from '../../../components/common/report/Report.interface';
+import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { DialogCreateEditNotificationPayloadInterface } from '../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
+import { DialogCreateEditNotificationFormInterface } from '../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
+import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
@@ -24,6 +25,9 @@ export const initialState: SliceSiteInterface = {
 		content: null
 	},
 	acceptOrders: {
+		loading: false
+	},
+	siteRobotConfig: {
 		loading: false
 	},
 	notifications: {
@@ -79,7 +83,7 @@ const dataSlice = createSlice({
 			const { module, response } = action.payload;
 			if (module === SiteTypeEnum.SERVICE_POSITIONS) {
 				state.servicePositions.loading = false;
-				state.servicePositions.content = response;
+				state.servicePositions.content = null;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
@@ -143,7 +147,7 @@ export const SiteServicePositionsFetch = (siteId: string) => async (dispatch: Di
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure({ ...state, response: message }));
+			dispatch(failure(state));
 		});
 };
 
@@ -190,6 +194,50 @@ export const SiteOrdersAccept =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * update site robot config
+ * @param siteId
+ * @param payload
+ * @returns
+ */
+export const SiteRobotConfigUpdate =
+	(siteId: string, payload: SiteRobotConfigFormInterface) => async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteTypeEnum.SITE_ROBOT_CONFIG
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteRobotConfigUpdate(siteId, payload)
+			.then(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-robot-config-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-robot-config-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR`
 				};
 				dispatch(triggerMessage(message));
 
@@ -253,7 +301,7 @@ export const SiteNotificationTypesAndUsersFetch =
 					id: 'fetch-site-notification-types-users-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'COMMON.NOTIFICATIONS.FETCH.ERROR'
+					text: 'SITES.CONFIGURATION.NOTIFICATIONS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -269,12 +317,8 @@ export const SiteNotificationTypesAndUsersFetch =
  * @returns
  */
 export const SiteNotificationUpdate =
-	(payload: DialogCreateEditNotificationPayloadInterface, callback?: () => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const site = states.site;
-
+	(payload: DialogCreateEditNotificationFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
 		// module
 		const state = {
 			module: SiteTypeEnum.NOTIFICATIONS
@@ -284,43 +328,21 @@ export const SiteNotificationUpdate =
 		dispatch(loading(state));
 
 		return SitesService.siteNotificationUpdate(payload)
-			.then(async (res) => {
-				// deserialize response
-				const user: SSContentNotificationUsersInterface = await deserializeSite(res);
+			.then(async () => {
+				// wait
+				await timeout(1000);
 
-				// map response
-				const result = site.notifications.content?.data.map((item) => {
-					return item.id === payload.id
-						? {
-								...item,
-								isActive: user.isActive,
-								users: user.users.map((u) => u.email)
-						  }
-						: item;
-				});
+				// callback
+				callback();
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'fetch-update-notification-users-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'COMMON.NOTIFICATIONS.UPDATE.SUCCESS'
+					text: 'SITES.CONFIGURATION.NOTIFICATIONS.UPDATE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
-
-				// dispatch: success
-				dispatch(
-					success({
-						...state,
-						response: {
-							...site.notifications.content,
-							data: result
-						}
-					})
-				);
-
-				// callback
-				callback && callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -328,7 +350,7 @@ export const SiteNotificationUpdate =
 					id: 'fetch-update-notification-users-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'COMMON.NOTIFICATIONS.UPDATE.ERROR'
+					text: 'SITES.CONFIGURATION.NOTIFICATIONS.UPDATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -349,7 +371,7 @@ export const SiteReportsGenerate =
 	(
 		_id: ReportTypeEnum,
 		siteId: string,
-		payload: ReportPayloadInterface,
+		payload: ReportFormInterface,
 		callback: (report: string) => void
 	) =>
 	async (dispatch: Dispatch) => {

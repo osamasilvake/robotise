@@ -13,6 +13,7 @@ import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice'
 import { SiteParamsInterface } from '../../Site.interface';
 import AcceptOrders from './accept-orders/AcceptOrders';
 import SiteNotifications from './notifications/SiteNotifications';
+import SiteRobotConfig from './site-robot-config/SiteRobotConfig';
 import { SiteConfigurationStyle } from './SiteConfiguration.style';
 
 const SiteConfiguration: FC = () => {
@@ -46,21 +47,16 @@ const SiteConfiguration: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			{sites.content && (
-				<Grid container spacing={1} className={classes.sGridMargin}>
-					<Grid item xs={12} md={3}>
-						<AcceptOrders sites={sites} site={site} />
-					</Grid>
+			<Grid container spacing={1} className={classes.sGridMarginBottom}>
+				<Grid item xs={12} md={3}>
+					<AcceptOrders sites={sites} site={site} />
 				</Grid>
-			)}
+			</Grid>
 
-			{site.notifications.content && (
-				<Grid container spacing={1}>
-					<Grid item xs={12}>
-						<SiteNotifications site={site} />
-					</Grid>
-				</Grid>
-			)}
+			<Grid container spacing={1}>
+				<SiteRobotConfig sites={sites} site={site} />
+				<SiteNotifications site={site} />
+			</Grid>
 		</Box>
 	);
 };

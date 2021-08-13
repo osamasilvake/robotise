@@ -2,7 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { DialogCreateOrderPayloadInterface } from '../../../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
+import { DialogCreateOrderFormInterface } from '../../../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from '../../../../screens/business/robots/content/orders/list/RobotOrdersList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
@@ -143,7 +143,7 @@ export const OrdersFetchList =
  * @returns
  */
 export const OrderCreate =
-	(siteId: string, payload: DialogCreateOrderPayloadInterface, callback: () => void) =>
+	(siteId: string, payload: DialogCreateOrderFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

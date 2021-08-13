@@ -7,16 +7,21 @@ import {
 	Switch,
 	Tooltip
 } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
+import { Edit } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { SiteNotificationUpdate } from '../../../../../../slices/business/sites/Site.slice';
+import {
+	SiteNotificationTypesAndUsersFetch,
+	SiteNotificationUpdate
+} from '../../../../../../slices/business/sites/Site.slice';
+import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {
-	DialogCreateEditNotificationPayloadInterface,
+	DialogCreateEditNotificationFormInterface,
 	SiteNotificationInterface
 } from './SiteNotifications.interface';
 
@@ -29,18 +34,27 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
+	const params: SiteParamsInterface = useParams();
+	const cSiteId = params.siteId;
+
 	/**
 	 * handle notification
 	 * @param payload
 	 * @returns
 	 */
-	const handleNotification = (payload: DialogCreateEditNotificationPayloadInterface) => () => {
+	const handleNotification = (payload: DialogCreateEditNotificationFormInterface) => () => {
 		// dispatch: update notification
 		dispatch(
-			SiteNotificationUpdate({
-				...payload,
-				isActive: !payload.isActive
-			})
+			SiteNotificationUpdate(
+				{
+					...payload,
+					isActive: !payload.isActive
+				},
+				() => {
+					// dispatch: fetch notification types and users
+					dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+				}
+			)
 		);
 	};
 
@@ -65,13 +79,14 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 			<ListItemSecondaryAction>
 				<Tooltip
-					placement="top"
+					placement="left"
 					title={String(t('NOTIFICATION.EDIT'))}
 					onClick={() => setOpen(true)}>
 					<IconButton edge="end">
-						<EditIcon color="primary" />
+						<Edit color="primary" />
 					</IconButton>
 				</Tooltip>
+
 				{open && (
 					<DialogCreateEditNotification
 						index={index}

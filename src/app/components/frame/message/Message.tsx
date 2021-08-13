@@ -1,5 +1,5 @@
 import { Alert, IconButton, Slide, Snackbar, SnackbarOrigin } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { Close } from '@material-ui/icons';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -46,7 +46,7 @@ const Message: FC = () => {
 				elevation={3}
 				action={
 					<IconButton size="small" color="inherit" onClick={handleCloseMessage}>
-						<CloseIcon fontSize="small" />
+						<Close fontSize="small" />
 					</IconButton>
 				}
 				severity={general.triggerMessage.severity}>

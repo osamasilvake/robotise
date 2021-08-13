@@ -127,7 +127,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					}}
 					className={classes.sNote}
 				/>
-				<DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />
+				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
 			</Grid>
 		</Grid>
 	);

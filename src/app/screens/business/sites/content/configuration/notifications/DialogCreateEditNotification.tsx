@@ -34,8 +34,8 @@ import { SiteParamsInterface } from '../../../Site.interface';
 import { DialogCreateEditNotificationValidation } from './DialogCreateEditNotification.validation';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 import {
-	DialogCreateEditNotificationInterface,
-	DialogCreateEditNotificationPayloadInterface
+	DialogCreateEditNotificationFormInterface,
+	DialogCreateEditNotificationInterface
 } from './SiteNotifications.interface';
 import { SiteNotificationsStyle } from './SiteNotifications.style';
 
@@ -57,7 +57,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const fieldUsers = 'users';
 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
-		useForm<DialogCreateEditNotificationPayloadInterface>(
+		useForm<DialogCreateEditNotificationFormInterface>(
 			{
 				isActive: !!notification?.isActive,
 				users: notification?.users || []
@@ -74,17 +74,14 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							siteId: !notification ? cSiteId : ''
 						},
 						() => {
-							// close dialog
-							setOpen(false);
+							// dispatch: fetch notification types and users
+							dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
 
 							// reset new notification
 							setNewNotification('');
 
-							// create notification: refresh list
-							if (index === undefined) {
-								// dispatch: fetch notification types and users
-								dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
-							}
+							// close dialog
+							setOpen(false);
 						}
 					)
 				);

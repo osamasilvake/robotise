@@ -2,6 +2,59 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.1.0...v2.2.0) (2021-08-13)
+
+
+### Features
+
+* Add battery percentage to robot list ([649fd9b](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/649fd9b54606855c0531e5383c61e67bf55853a2))
+* Add clear text button for note ([62a5bca](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/62a5bcac45955c2d2ef21094d7b6a0fda1c8eff3))
+* Add logs to robot page ([dbcf218](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/dbcf218dfaad3d5f525653345ba1ba4fe8f30515))
+* Add note field in robot detail page ([61cabd2](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/61cabd2b455cda0b95e09e104b08abb912e036ec))
+* Add report to products ([e9843fe](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e9843fec961bce76f2a8c264bd6c29f2f99bdfad))
+* Add reports to purchase page ([73f4930](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/73f4930c54c1bf0af2fe2984a7edb93a25f85317))
+* Add robot site config ([a453e03](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a453e033b97a800a4e23bd82014400e4d7ed463f))
+* Add robot site config redux slices ([f14206f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f14206fa20816567cf53e3b14fb8982cba1e208c))
+* Add site robot config ([02acb93](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/02acb931a2bf2c6b7912fb39f9d343a83166b28e))
+* Preserve robot filter state in local storage ([6af9a38](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/6af9a382925fdceaea0ade833aadc227c0b3d86c))
+
+
+### Bug Fixes
+
+* Add history to logs ([f9f52a4](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f9f52a4636268329fbe2ba6ef5befb71b200a10c))
+* Add loader to site content ([ca8c462](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ca8c4626872ed31a279463294aaf7f5e4be2078e))
+* Add report common component ([ec0fd6a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ec0fd6af5d84cde81c6c10e7138f16fd56c58f9e))
+* Add siteId filter to products report ([6f575f5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/6f575f59f6799c8c630d0805e2adffd4a2ae632c))
+* Adjust configuration grid spacing for tablet and mobile ([a9701b6](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a9701b6d4adabd668e1ee865b35247f0b945b56f))
+* Alert counts on sidebar ([31bdf92](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/31bdf927202feebb2820ff4392b698535e51519b))
+* Change cursor zoomin to help ([69679c3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/69679c3ca9e8d56aea8f62565566c8b49e7cd87d))
+* Font size row cell robots list ([cebf363](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/cebf363ac73585a5179f4818d13fc17e94ae8a84))
+* Handle empty case for note field ([e3d9a39](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e3d9a399fdd888774b0fbba22b65d5862935367f))
+* Improve notifications + fix service position on fail ([9bce5f4](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9bce5f4db8bb91a147736d20b64431b3a28c0a7d))
+* Improve str to links function ([3fae1b3](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3fae1b3e9f2a0ac58d1ffe877088656d5ec7dbd4))
+* Improve useForm, update purchase comment to useForm hook ([b3a47ce](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/b3a47ce8e1fc26cc5cf987957ceb26c719dade30))
+* Logs, separate robotId from payload ([54d2446](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/54d244674d125c921d0b438ebc1b86ab6992609b))
+* Map icon ([f342e6d](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f342e6d22318811d2d72dd88d74261b49766904c))
+* Mission status on robot list and detail page ([a4f4cb0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/a4f4cb0c45fbb0288a14a1a6953d8ceef80ca141))
+* Mission status refactor ([6121e3f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/6121e3f3c0e70d3cec598f5ee8c30ddf3f1a1622))
+* Note field ([f1d9355](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f1d9355aaf5a2574a881743c02a01c794fdcc100))
+* Orders, Purchases and Logs list page ([3a10701](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/3a107014bf34a1aba793a6f0d919397afef79104))
+* Placement of function params ([d212ec7](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d212ec7aedccafc61fb3b916994d751270c623e9))
+* Pretty en.json ([1ee20e5](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/1ee20e57d1fbedec4e3bbeedfdc2138b8bcad9b0))
+* Remove order report ([cfc808d](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/cfc808de0f5aefa57768e3d0a14b4f660fac1470))
+* Remove unnecessary conditions ([e1f9c19](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/e1f9c19ab85e15c63320a761e2e71eecbf40b83d))
+* Remove unused checks ([8330efe](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/8330efe4193512f322c73f1b978f2fd99935f482))
+* Robot map unit test ([7316ea6](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7316ea605a38301439ec67ac280a9c6914d28084))
+* Select typings material ui v5 beta 2 ([d98095a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/d98095a8991ae28a2f9c5a6f8418025678da7d4b))
+* Site robot config cors issue ([cd0efa2](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/cd0efa23898c1c140ed2c0665391c41939f99fe4))
+* Sites unit test ([5dc6e9e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/5dc6e9ef3e8ac25f675404c987c0503bc0a42d1f))
+* Small error improvements ([09a685a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/09a685afd79194b2539bd8bd76816afa1714a7d8))
+* Speed dial action opacity and date icon ([536dfd0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/536dfd0c39820d0aff1de10a68697b2a58fffd8b))
+* Type createdAt and updatedAt from string to Date ([f3289ca](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/f3289ca6ebec1ce7b6d88c0b37226dc410a84e28))
+* Update product validation ([cc7ccd7](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/cc7ccd7d0170615773f0f7091703e07eae0a97a6))
+* Update products page ([9dc5590](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/9dc55901f725646f5a10ef205999ec50f3c8acae))
+* Update speed dial on products ([221569a](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/221569ade283c1dcbfe5e0f0caf731adff70c943))
+
 ## [2.1.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.0.1...v2.1.0) (2021-07-26)
 
 

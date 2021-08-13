@@ -11,12 +11,12 @@ export interface ReportInterface {
 	GenerateReports: (
 		id: ReportTypeEnum,
 		filterId: string,
-		payload: ReportPayloadInterface,
+		payload: ReportFormInterface,
 		callback: (report: string) => void
 	) => void;
 }
 
-export interface ReportPayloadInterface {
+export interface ReportFormInterface {
 	from: string;
 	to: string;
 }

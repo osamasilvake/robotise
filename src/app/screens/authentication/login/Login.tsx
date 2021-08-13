@@ -26,7 +26,7 @@ import {
 	validateEmptyObj,
 	validateEmptyObjProperty
 } from '../../../utilities/methods/ObjectUtilities';
-import { AuthLoginPayloadInterface } from '../Auth.interface';
+import { AuthLoginFormInterface } from '../Auth.interface';
 import { LoginStyle } from './Login.style';
 import { LoginValidation } from './Login.validation';
 
@@ -39,7 +39,7 @@ const Login: FC = () => {
 
 	const [showPassword, setShowPassword] = useState(false);
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
-		useForm<AuthLoginPayloadInterface>(
+		useForm<AuthLoginFormInterface>(
 			{
 				email: '',
 				password: '',

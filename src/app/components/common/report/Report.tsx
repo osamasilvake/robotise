@@ -20,7 +20,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { moment30DaysFromToday, momentToday } from '../../../utilities/methods/Moment';
 import { validateEmptyObj } from '../../../utilities/methods/ObjectUtilities';
-import { ReportInterface, ReportPayloadInterface } from './Report.interface';
+import { ReportFormInterface, ReportInterface } from './Report.interface';
 import { ReportStyle } from './Report.style';
 import { ReportValidation } from './Report.validation';
 
@@ -33,7 +33,7 @@ const Report: FC<ReportInterface> = (props) => {
 
 	const [report, setReport] = useState('');
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
-		useForm<ReportPayloadInterface>(
+		useForm<ReportFormInterface>(
 			{
 				from: moment30DaysFromToday(),
 				to: momentToday()

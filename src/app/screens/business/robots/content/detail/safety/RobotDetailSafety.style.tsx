@@ -11,13 +11,7 @@ export const RobotDetailSafetyStyle = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(0.5)
 	},
 	sList: {
-		paddingBottom: 0
-	},
-	sListSubheader: {
-		alignItems: 'center',
-		cursor: 'pointer',
-		display: 'flex',
-		justifyContent: 'space-between'
+		padding: 0
 	},
 	sListItemWarning: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)

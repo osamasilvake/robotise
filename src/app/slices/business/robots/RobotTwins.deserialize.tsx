@@ -48,7 +48,8 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 					robot: {
 						id: data.robot.id,
 						name: state.name,
-						customerName: state.customerName
+						customerName: state.customerName,
+						note: state.note
 					},
 					site: {
 						id: data.site.id

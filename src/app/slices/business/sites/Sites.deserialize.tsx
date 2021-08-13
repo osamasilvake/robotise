@@ -1,6 +1,10 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { JsonApiResponse } from '../../JsonApi.interface';
+import {
+	DeserializeRelationshipProperties,
+	DeserializerExtendedOptions,
+	JsonApiResponse
+} from '../../JsonApi.interface';
 import { ISite } from './Sites.slice.interface';
 
 /**
@@ -9,9 +13,17 @@ import { ISite } from './Sites.slice.interface';
  * @returns
  */
 export const deserializeSites = async <T extends JsonApiResponse>(payload: T) => {
-	const deserializer = new JSONAPIDeserializer.Deserializer({
-		keyForAttribute: 'camelCase'
-	});
+	const options: DeserializerExtendedOptions = {
+		keyForAttribute: 'camelCase',
+		robots: {
+			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+				return {
+					id: relationship.id
+				};
+			}
+		}
+	};
+	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
 	const dataById = data.reduce((acc: { [x: string]: ISite }, item: ISite) => {
 		acc[item.id] = item;

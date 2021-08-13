@@ -1,5 +1,5 @@
 import { validateEmail } from '../../../../../../utilities/methods/Validations';
-import { DialogCreateEditNotificationPayloadInterface } from './SiteNotifications.interface';
+import { DialogCreateEditNotificationFormInterface } from './SiteNotifications.interface';
 
 /**
  * create/edit notification validation
@@ -7,11 +7,11 @@ import { DialogCreateEditNotificationPayloadInterface } from './SiteNotification
  * @param touched
  */
 export const DialogCreateEditNotificationValidation = (
-	values: DialogCreateEditNotificationPayloadInterface,
-	touched: DialogCreateEditNotificationPayloadInterface
-): DialogCreateEditNotificationPayloadInterface => {
+	values: DialogCreateEditNotificationFormInterface,
+	touched: DialogCreateEditNotificationFormInterface
+): DialogCreateEditNotificationFormInterface => {
 	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT.FIELDS';
-	const errors: DialogCreateEditNotificationPayloadInterface = {
+	const errors: DialogCreateEditNotificationFormInterface = {
 		users: []
 	};
 

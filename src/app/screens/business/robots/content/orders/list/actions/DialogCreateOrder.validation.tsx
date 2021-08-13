@@ -1,6 +1,6 @@
 import { AppConfigService } from '../../../../../../../services';
 import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
-import { DialogCreateOrderPayloadInterface } from './RobotOrdersActions.interface';
+import { DialogCreateOrderFormInterface } from './RobotOrdersActions.interface';
 
 /**
  * create order validation
@@ -8,12 +8,12 @@ import { DialogCreateOrderPayloadInterface } from './RobotOrdersActions.interfac
  * @param touched
  */
 export const CreateOrderValidation = (
-	values: DialogCreateOrderPayloadInterface,
-	touched: DialogCreateOrderPayloadInterface
-): DialogCreateOrderPayloadInterface => {
+	values: DialogCreateOrderFormInterface,
+	touched: DialogCreateOrderFormInterface
+): DialogCreateOrderFormInterface => {
 	const common = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
 	const regexNormalInteger = AppConfigService.AppOptions.regex.normalInteger;
-	const errors: DialogCreateOrderPayloadInterface = {
+	const errors: DialogCreateOrderFormInterface = {
 		isDebug: false,
 		location: '',
 		mode: RobotOrderModeTypeEnum.MINI_BAR

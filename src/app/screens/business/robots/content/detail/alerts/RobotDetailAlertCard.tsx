@@ -1,6 +1,6 @@
-import { Box, Card, CardContent, Tooltip, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, IconButton, Tooltip, Typography } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import { FileCopy } from '@material-ui/icons';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -80,9 +80,10 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 					<Tooltip
 						placement="top"
 						title={String(t('COPY_CLIPBOARD'))}
-						onClick={handleCopyToClipboard(alert.code, alert.message)}
-						className={classes.sCardContentIcon}>
-						<FileCopyIcon fontSize="small" />
+						onClick={handleCopyToClipboard(alert.code, alert.message)}>
+						<IconButton color="inherit">
+							<FileCopy fontSize="small" />
+						</IconButton>
 					</Tooltip>
 				</Box>
 

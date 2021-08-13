@@ -8,6 +8,9 @@ export interface SliceSiteInterface {
 	acceptOrders: {
 		loading: boolean;
 	};
+	siteRobotConfig: {
+		loading: boolean;
+	};
 	notifications: {
 		loader: boolean;
 		loading: boolean;

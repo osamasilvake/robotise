@@ -5,7 +5,10 @@ export const SiteConfigurationStyle = makeStyles((theme: Theme) => ({
 	sBox: {
 		marginTop: theme.spacing(3)
 	},
-	sGridMargin: {
-		marginBottom: theme.spacing(3)
+	sGridMarginBottom: {
+		marginBottom: theme.spacing(3),
+		[theme.breakpoints.down('md')]: {
+			marginBottom: theme.spacing(1)
+		}
 	}
 }));

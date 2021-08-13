@@ -59,7 +59,7 @@ export interface realmAccessInterface {
 }
 
 // login: user request
-export interface AuthLoginPayloadInterface {
+export interface AuthLoginFormInterface {
 	email: string;
 	password: string;
 	rememberMe?: boolean;

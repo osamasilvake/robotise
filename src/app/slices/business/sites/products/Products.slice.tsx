@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { SiteProductCreateEditTypeEnum } from '../../../../screens/business/sites/content/products/list/table/SiteProductsTable.enum';
-import { DialogCreateEditProductPayloadInterface } from '../../../../screens/business/sites/content/products/list/table/SiteProductsTable.interface';
+import { DialogCreateEditProductFormInterface } from '../../../../screens/business/sites/content/products/list/table/SiteProductsTable.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
@@ -134,7 +134,7 @@ export const ProductCreateEdit =
 	(
 		siteId: string,
 		productId: string | undefined,
-		payload: DialogCreateEditProductPayloadInterface,
+		payload: DialogCreateEditProductFormInterface,
 		type: SiteProductCreateEditTypeEnum,
 		callback: () => void
 	) =>

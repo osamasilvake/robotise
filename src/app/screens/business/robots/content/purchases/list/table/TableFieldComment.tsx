@@ -27,7 +27,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	const purchaseId = purchases.content?.state?.locked;
 	const editMode = purchase.id === purchaseId;
 
-	const common = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
+	const common = 'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT';
 	const fieldComment = 'comment';
 
 	const { handleChangeInput, handleSubmit, values } = useForm<TableFieldCommentFormInterface>(
@@ -76,12 +76,13 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 			{editMode && (
 				<FormControl fullWidth>
 					<TextField
+						multiline
 						variant="outlined"
 						type="text"
 						id={fieldComment}
 						name={fieldComment}
-						label={t(`${common}.COMMENT.FIELD.LABEL`)}
-						placeholder={t(`${common}.COMMENT.FIELD.PLACEHOLDER`)}
+						rows={4}
+						value={values.comment}
 						onChange={handleChangeInput}
 						inputRef={(input) => input && input.focus()}
 						onFocus={(e) =>
@@ -90,9 +91,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 								e.currentTarget.value.length
 							)
 						}
-						multiline
-						rows={4}
-						value={values.comment}
+						label={t(`${common}.FIELDS.LABEL`)}
+						placeholder={t(`${common}.FIELDS.PLACEHOLDER`)}
 						className={classes.sCommentTextField}
 					/>
 				</FormControl>
@@ -103,7 +103,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t(`${common}.COMMENT.CANCEL`)}
+						label={t(`${common}.CANCEL`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -117,7 +117,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t(`${common}.COMMENT.CLEAR`)}
+						label={t(`${common}.CLEAR`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -137,7 +137,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{/* Edit/Save */}
 				<Chip
 					size="small"
-					label={editMode ? t(`${common}.COMMENT.SAVE`) : t(`${common}.COMMENT.EDIT`)}
+					label={editMode ? t(`${common}.SAVE`) : t(`${common}.EDIT`)}
 					color="primary"
 					variant="outlined"
 					clickable

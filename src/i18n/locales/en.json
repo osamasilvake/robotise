@@ -56,6 +56,7 @@
 	"DIALOG": {
 		"BUTTONS": {
 			"CANCEL": "Cancel",
+			"CLEAR": "Clear",
 			"CREATE": "Create",
 			"UPDATE": "Update",
 			"CONFIRM": "Confirm",
@@ -103,15 +104,6 @@
 			"SERVICE_POSITIONS": {
 				"ERROR": "Unable to fetch service positions!"
 			},
-			"NOTIFICATIONS": {
-				"FETCH": {
-					"ERROR": "Unable to fetch notification types or users!"
-				},
-				"UPDATE": {
-					"SUCCESS": "Notification has been updated successfully!",
-					"ERROR": "Unable to update notification!"
-				}
-			},
 			"REPORTS": {
 				"SUCCESS": "Report has been generated successfully!",
 				"ERROR": "Unable to generate Report!"
@@ -147,6 +139,19 @@
 				"ACCEPT_ORDERS": {
 					"SUCCESS": "Settings has been updated successfully!",
 					"ERROR": "Unable to update the settings!"
+				},
+				"SITE_ROBOT_CONFIG": {
+					"SUCCESS": "Settings has been updated successfully!",
+					"ERROR": "Unable to update the settings!"
+				},
+				"NOTIFICATIONS": {
+					"FETCH": {
+						"ERROR": "Unable to fetch notification types or users!"
+					},
+					"UPDATE": {
+						"SUCCESS": "Notification has been updated successfully!",
+						"ERROR": "Unable to update notification!"
+					}
 				}
 			}
 		},
@@ -154,6 +159,10 @@
 			"DETAIL": {
 				"ALERTS": {
 					"CLIPBOARD": "Message copied to clipboard!"
+				},
+				"NOTE": {
+					"SUCCESS": "Note has been updated successfully!",
+					"ERROR": "Unable to update note!"
 				},
 				"MAP": {
 					"ERROR": "Failed to load map location!"
@@ -411,6 +420,21 @@
 					"EXCERPT": "Allow robots to accept orders.",
 					"ACTIVE": "Active"
 				},
+				"SITE_ROBOT_CONFIG": {
+					"TITLE": "Configure Site ROBOT",
+					"EXCERPT": "Update Site ROBOT detail.",
+					"FORM": {
+						"FIELDS": {
+							"SITE": {
+								"LABEL": "Robot to accept order",
+								"NOTE": "*Attached robot is hidden!"
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
+				},
 				"NOTIFICATIONS": {
 					"TITLE": "Notifications",
 					"EXCERPT": "Configure notification for specific users.",
@@ -489,7 +513,15 @@
 						"INACTIVE": "Inactive"
 					},
 					"CUSTOMER_NAME": "Robot Customer Name",
-					"MISSION": "Mission"
+					"MISSION": "Mission",
+					"NOTE": {
+						"TITLE": "Note",
+						"EXCERPT": "Note field should not exceed more than 2000 characters.",
+						"FIELDS": {
+							"LABEL": "Note",
+							"PLACEHOLDER": "Enter Note Description"
+						}
+					}
 				},
 				"LOCATION": {
 					"TITLE": "Location",
@@ -907,7 +939,7 @@
 								"SAVE": "Save",
 								"CLEAR": "Clear",
 								"CANCEL": "Cancel",
-								"FIELD": {
+								"FIELDS": {
 									"LABEL": "Comment",
 									"PLACEHOLDER": "Enter a comment"
 								}
@@ -960,11 +992,11 @@
 				},
 				"ROBOT_SITE_CONFIG": {
 					"TITLE": "Configure Robot SITE",
-					"EXCERPT": "Attach robot to a site.",
+					"EXCERPT": "Update Robot SITE detail.",
 					"FORM": {
 						"FIELDS": {
 							"SITE": {
-								"LABEL": "Site"
+								"LABEL": "Attach robot to a site"
 							}
 						},
 						"BUTTONS": {

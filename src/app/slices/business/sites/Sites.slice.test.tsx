@@ -19,7 +19,7 @@ const mockStore = createMockStore<SliceSitesInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Sites', () => {
 	it('[SitesFetchList] Creates loading and success actions on successful fetch request', () => {
-		// store
+		const robotId = '4c00971b-d127-4a46-9a34-400019f2c463';
 		const store = mockStore(initialState);
 		const apiResponse = {
 			data: [
@@ -36,7 +36,7 @@ describe('[SLICE] Sites', () => {
 						robots: {
 							data: [
 								{
-									id: '4c00971b-d127-4a46-9a34-400019f2c463',
+									id: robotId,
 									type: 'robots'
 								}
 							]
@@ -63,7 +63,11 @@ describe('[SLICE] Sites', () => {
 					title: 'Cliniserve / Portalklinik',
 					updatedAt: '2021-03-18T13:00:03.175Z',
 					id: 'd190585d-9e8b-43a9-94fc-141c0ca7d78e',
-					robots: [null]
+					robots: [
+						{
+							id: robotId
+						}
+					]
 				}
 			],
 			dataById: {
@@ -74,7 +78,11 @@ describe('[SLICE] Sites', () => {
 					title: 'Cliniserve / Portalklinik',
 					updatedAt: '2021-03-18T13:00:03.175Z',
 					id: 'd190585d-9e8b-43a9-94fc-141c0ca7d78e',
-					robots: [null]
+					robots: [
+						{
+							id: robotId
+						}
+					]
 				}
 			},
 			meta: {

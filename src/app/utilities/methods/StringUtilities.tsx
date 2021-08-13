@@ -40,7 +40,7 @@ export const strConvertUrlsToLinks = (text: string) => {
 	const replacePattern2 = /(^|[^/])(www\.[\S]+(\b|$))/gim;
 	replacedText = replacedText.replace(replacePattern2, link('$2', '$1'));
 
-	// change email addresses to "mailto::" links
+	// change email addresses to "mailto:" links
 	const replacePattern3 = /(([a-zA-Z0-9\-_.])+@[a-zA-Z_]+?(\.[a-zA-Z]{2,6})+)/gim;
 	replacedText = replacedText.replace(replacePattern3, link('$1', '', true));
 

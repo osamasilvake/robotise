@@ -27,14 +27,14 @@ export const strCapitalizeEachLetter = (str: string) => {
  * @returns {*}
  */
 export const strToLinks = (text: string) => {
-	const link = (link: string, additional?: string, mail?: boolean) =>
+	const link = (link: string, additional?: boolean, mail?: boolean) =>
 		ReactDOMServer.renderToString(
 			<Link
 				underline="hover"
 				href={additional ? `http://${link}` : mail ? `mailto:${link}` : link}
 				target="_blank"
 				sx={{ color: AppConfigService.AppOptions.colors.c9 }}>
-				{additional ? `${additional}${link}` : link}
+				{link}
 			</Link>
 		);
 
@@ -42,13 +42,13 @@ export const strToLinks = (text: string) => {
 	const replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gim;
 	let replacedText = text.replace(replacePattern1, link('$1'));
 
-	// www, without //, re-link the ones done above
-	const replacePattern2 = /(^|[^/])(www\.[\S]+(\b|$))/gim;
-	replacedText = replacedText.replace(replacePattern2, link('$2', '$1'));
+	// www, without //
+	const replacePattern2 = /(www\.[\S]+(\b|$))/gim;
+	replacedText = replacedText.replace(replacePattern2, link('$1', true));
 
 	// change email addresses to "mailto:" links
 	const replacePattern3 = /(([a-zA-Z0-9\-_.])+@[a-zA-Z_]+?(\.[a-zA-Z]{2,6})+)/gim;
-	replacedText = replacedText.replace(replacePattern3, link('$1', '', true));
+	replacedText = replacedText.replace(replacePattern3, link('$1', false, true));
 
 	return replacedText;
 };

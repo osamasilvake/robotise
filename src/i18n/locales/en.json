@@ -515,7 +515,7 @@
 					"MISSION": "Mission",
 					"NOTE": {
 						"TITLE": "Note",
-						"EXCERPT": "Note field should not exceed more than 1000 characters.",
+						"EXCERPT": "Note field should not exceed more than 2000 characters.",
 						"FIELDS": {
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"

@@ -149,11 +149,11 @@ export const RobotNoteUpdate =
 
 		return RobotsService.robotNoteUpdate(robotId, payload)
 			.then(async () => {
-				// callback
-				callback();
-
 				// wait
 				await timeout(1000);
+
+				// callback
+				callback();
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {

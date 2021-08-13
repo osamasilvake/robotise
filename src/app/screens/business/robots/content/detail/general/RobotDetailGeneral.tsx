@@ -8,7 +8,10 @@ import Status from '../../../../../../components/common/status/Status';
 import Tooltip from '../../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../../services';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
-import { strRemoveSymbols } from '../../../../../../utilities/methods/StringUtilities';
+import {
+	strConvertUrlsToLinks,
+	strRemoveSymbols
+} from '../../../../../../utilities/methods/StringUtilities';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import DialogNote from './DialogNote';
@@ -109,17 +112,25 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					)}
 				</Typography>
 			</Grid>
-			<Grid item xs={12} sm={6} md={8} lg={6}>
+			<Grid item xs={12} sm={6} md={8} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.NOTE.TITLE`)}
-				</Typography>
-				<Typography variant="body1">
-					{robotTwins.robot.note || AppConfigService.AppOptions.common.none}
-					<IconButton className={classes.sEditIconButton} onClick={() => setOpen(true)}>
-						<Edit color="primary" className={classes.sEditIcon} />
+					<IconButton
+						className={classes.sNoteEditIconButton}
+						onClick={() => setOpen(true)}>
+						<Edit color="primary" className={classes.sNoteEditIcon} />
 					</IconButton>
-					<DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />
 				</Typography>
+				<Typography
+					variant="body1"
+					dangerouslySetInnerHTML={{
+						__html:
+							strConvertUrlsToLinks(robotTwins.robot.note) ||
+							AppConfigService.AppOptions.common.none
+					}}
+					className={classes.sNote}
+				/>
+				<DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />
 			</Grid>
 		</Grid>
 	);

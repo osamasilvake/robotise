@@ -19,10 +19,17 @@ export const RobotDetailGeneralStyle = makeStyles((theme: Theme) => ({
 			textAlign: 'left'
 		}
 	},
-	sEditIconButton: {
-		marginLeft: theme.spacing(0.5)
+	sNoteGrid: {
+		position: 'relative'
 	},
-	sEditIcon: {
+	sNoteEditIconButton: {
+		position: 'absolute',
+		top: theme.spacing(0.5)
+	},
+	sNoteEditIcon: {
 		fontSize: theme.spacing(2)
+	},
+	sNote: {
+		whiteSpace: 'pre-wrap'
 	}
 }));

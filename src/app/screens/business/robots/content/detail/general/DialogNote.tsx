@@ -62,7 +62,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 							value={values.note}
 							error={!!errors?.note}
 							onChange={handleChangeInput}
-							inputProps={{ maxLength: 1000 }}
+							inputProps={{ maxLength: 2000 }}
 							inputRef={(input) => input && input.focus()}
 							onFocus={(e) =>
 								e.currentTarget.setSelectionRange(

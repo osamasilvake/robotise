@@ -1,14 +1,14 @@
 import { ChangeEvent } from 'react';
 
-import { AppConfigService } from '../../services';
+import { AppConfigService } from '../../../services';
 
 /**
  * fetch image from input
  * @param event
  * @returns
  */
-export const imageFromInput = (event: ChangeEvent<HTMLInputElement>) => {
-	return new Promise((resolve) => {
+export const imageFromInput = (event: ChangeEvent<HTMLInputElement>) =>
+	new Promise((resolve) => {
 		const files = event.target.files;
 		const file = files && files[0];
 		const maxSize = AppConfigService.AppOptions.components.uploadImage.maxSize;
@@ -52,4 +52,3 @@ export const imageFromInput = (event: ChangeEvent<HTMLInputElement>) => {
 			};
 		}
 	});
-};

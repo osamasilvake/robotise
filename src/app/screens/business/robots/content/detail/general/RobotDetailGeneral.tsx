@@ -8,7 +8,7 @@ import Status from '../../../../../../components/common/status/Status';
 import Tooltip from '../../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../../services';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
-import { strRemoveSymbols, strToLinks } from '../../../../../../utilities/methods/StringUtilities';
+import { strRemoveSymbols, strToLinks } from '../../../../../../utilities/methods/String';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import DialogNote from './DialogNote';

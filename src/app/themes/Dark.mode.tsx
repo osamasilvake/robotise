@@ -1,7 +1,7 @@
 import { ThemeOptions } from '@material-ui/core';
 
 import { AppConfigService } from '../services';
-import { pxToRem } from '../utilities/methods/PixelsToRem';
+import { pxToRem } from '../utilities/methods/Number';
 
 /**
  * Dark mode

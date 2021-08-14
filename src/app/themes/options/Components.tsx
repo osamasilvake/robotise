@@ -2,7 +2,7 @@ import { alpha } from '@material-ui/core/styles';
 import { Components } from '@material-ui/core/styles/components';
 
 import { AppConfigService } from '../../services';
-import { pxToRem } from '../../utilities/methods/PixelsToRem';
+import { pxToRem } from '../../utilities/methods/Number';
 
 const OverridesCustom: Components = {
 	MuiCssBaseline: {

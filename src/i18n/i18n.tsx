@@ -17,5 +17,5 @@ i18n.use(initReactI18next)
 	})
 	.then();
 
-// change language-specific features on language change
+// change moment locale on language change
 i18n.on('languageChanged', (language: string) => moment.locale(language));

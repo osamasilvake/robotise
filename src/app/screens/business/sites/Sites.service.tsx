@@ -1,6 +1,6 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
-import { removeEmptyObjProperties } from '../../../utilities/methods/ObjectUtilities';
+import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';

@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
 import { AppConfigService } from '../../../services';
-import { randomNum } from '../../../utilities/methods/RandomNum';
+import { randomNum } from '../../../utilities/methods/Number';
 
 export const LoginStyle = makeStyles((theme: Theme) => ({
 	sRoot: {

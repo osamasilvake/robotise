@@ -175,6 +175,7 @@ class AppConfigService extends EnvService {
 				}
 			},
 			regex: {
+				email: new RegExp(/\S+@\S+\.\S+/),
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
 				normalInteger: new RegExp(/^\+?([1-9]\d*)$/),
 				zeroInString: new RegExp(/^0*$/)

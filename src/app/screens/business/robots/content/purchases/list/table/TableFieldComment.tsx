@@ -1,8 +1,9 @@
-import { Box, Chip, CircularProgress, FormControl, TextField, Typography } from '@material-ui/core';
+import { Box, Chip, CircularProgress, FormControl, TextField } from '@material-ui/core';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ReadMore from '../../../../../../../components/common/read-more/ReadMore';
 import {
 	PurchaseCommentEdit,
 	purchasesSelector,
@@ -146,14 +147,11 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					}
 					disabled={purchases.updating}
 					onClick={handleSubmit}
+					className={classes.sCommentEdit}
 				/>
 
 				{/* Value */}
-				{!editMode && (
-					<Typography variant="body2" className={classes.sCommentValue}>
-						{purchase.comment}
-					</Typography>
-				)}
+				{!editMode && <ReadMore text={purchase.comment} variant="body2" min={250} />}
 			</Box>
 		</Box>
 	);

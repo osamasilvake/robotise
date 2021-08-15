@@ -15,5 +15,4 @@ export interface ErrorBoundaryPropsInterface {
 export interface ErrorBoundaryPropsClassesInterface {
 	sTitle: string;
 	sDescription: string;
-	sLink: string;
 }

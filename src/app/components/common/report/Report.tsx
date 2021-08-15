@@ -96,7 +96,7 @@ const Report: FC<ReportInterface> = (props) => {
 							filename={`${id}_${values.from}_${values.to}`}
 							className={classes.sDownloadLink}>
 							<CloudDownload className={classes.sDownloadIcon} />
-							<Typography variant="body1">{t('REPORT:DOWNLOAD')}</Typography>
+							<Typography>{t('REPORT:DOWNLOAD')}</Typography>
 						</CSVLink>
 					)}
 				</DialogContent>

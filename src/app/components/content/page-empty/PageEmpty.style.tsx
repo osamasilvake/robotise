@@ -13,8 +13,5 @@ export const PageEmptyStyle = makeStyles((theme: Theme) => ({
 		lineHeight: 1.2,
 		margin: `0 auto ${theme.spacing(1)}`,
 		maxWidth: 500
-	},
-	sLink: {
-		fontSize: theme.typography.pxToRem(17)
 	}
 }));

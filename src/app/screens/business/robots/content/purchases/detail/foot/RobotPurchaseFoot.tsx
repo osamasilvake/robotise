@@ -15,7 +15,7 @@ const RobotPurchaseFoot: FC<RobotPurchaseFootInterface> = (props) => {
 			<Typography variant="h6" color="textSecondary">
 				{t('CONTENT.PURCHASES.DETAIL.FOOT.NOTE')}
 			</Typography>
-			<Typography variant="body1">{purchase.content.comment}</Typography>
+			<Typography>{purchase.content.comment}</Typography>
 		</Box>
 	) : null;
 };

@@ -4,11 +4,12 @@ import { Edit } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
 import Tooltip from '../../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../../services';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
-import { strRemoveSymbols, strToLinks } from '../../../../../../utilities/methods/String';
+import { strRemoveSymbols } from '../../../../../../utilities/methods/String';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import DialogNote from './DialogNote';
@@ -31,13 +32,13 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.SITE`)}
 				</Typography>
-				<Typography variant="body1">{robotTwins.site.title}</Typography>
+				<Typography>{robotTwins.site.title}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.LAST_UPDATED`)}
 				</Typography>
-				<Typography variant="body1">{momentFormat1(robotTwins.updatedAt)}</Typography>
+				<Typography>{momentFormat1(robotTwins.updatedAt)}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography
@@ -83,7 +84,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.CUSTOMER_NAME`)}
 				</Typography>
-				<Typography variant="body1">
+				<Typography>
 					{robotTwins.robot.customerName || AppConfigService.AppOptions.common.none}
 				</Typography>
 			</Grid>
@@ -91,7 +92,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.MISSION`)}
 				</Typography>
-				<Typography variant="body1" className={classes.sGridItemFlex}>
+				<Typography className={classes.sGridItemFlex}>
 					{robotTwins.mission.status || AppConfigService.AppOptions.common.none}
 					{robotTwins.mission.description && (
 						<Tooltip
@@ -118,15 +119,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 						<Edit color="primary" className={classes.sNoteEditIcon} />
 					</IconButton>
 				</Typography>
-				<Typography
-					variant="body1"
-					dangerouslySetInnerHTML={{
-						__html:
-							(robotTwins.robot.note && strToLinks(robotTwins.robot.note)) ||
-							AppConfigService.AppOptions.common.none
-					}}
-					className={classes.sNote}
-				/>
+				<ReadMore text={robotTwins.robot.note} />
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
 			</Grid>
 		</Grid>

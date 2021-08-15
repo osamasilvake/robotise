@@ -21,13 +21,13 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.SITE`)}
 				</Typography>
-				<Typography variant="body1">{site.title}</Typography>
+				<Typography>{site.title}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.VENDOR`)}
 				</Typography>
-				<Typography variant="body1">
+				<Typography>
 					{site.elevators?.vendor || AppConfigService.AppOptions.common.none}
 				</Typography>
 			</Grid>
@@ -35,13 +35,13 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.LAST_UPDATED`)}
 				</Typography>
-				<Typography variant="body1">{momentFormat1(site.updatedAt)}</Typography>
+				<Typography>{momentFormat1(site.updatedAt)}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={2}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.TIMEZONE`)}
 				</Typography>
-				<Typography variant="body1">{site.timezone}</Typography>
+				<Typography>{site.timezone}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={8} lg={2} className={classes.sGeneralLastItem}>
 				<Typography

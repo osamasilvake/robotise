@@ -3,18 +3,16 @@ import clsx from 'clsx';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../../services';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailStateCardInterface } from './RobotDetailStates.interface';
 import { RobotDetailStatesStyle } from './RobotDetailStates.style';
 
 const RobotDetailStateCard: FC<RobotDetailStateCardInterface> = (props) => {
 	const { ...rest } = props;
-	const cardClasses = CardStyle();
 	const classes = RobotDetailStatesStyle();
 
 	return (
 		<Card variant="elevation" square elevation={1}>
-			<CardContent className={clsx(cardClasses.sCardContent1, classes.sCardContent)}>
+			<CardContent className={clsx(classes.sCardContent)}>
 				{/* Icon */}
 				{rest.icon && <Icon className={classes.sCardContentIcon}>{rest.icon}</Icon>}
 

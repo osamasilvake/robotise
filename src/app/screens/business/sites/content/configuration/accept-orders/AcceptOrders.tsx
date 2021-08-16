@@ -15,7 +15,6 @@ import { useParams } from 'react-router-dom';
 
 import { SiteOrdersAccept } from '../../../../../../slices/business/sites/Site.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { AcceptOrdersInterface } from './AcceptOrders.interface';
 import { AcceptOrdersStyle } from './AcceptOrders.style';
@@ -24,7 +23,6 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	const { sites, site } = props;
 	const { t } = useTranslation('SITES');
 	const classes = AcceptOrdersStyle();
-	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 
@@ -52,7 +50,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 
 	return (
 		<Card square elevation={1}>
-			<CardContent className={clsx(cardClasses.sCardContent1, classes.sContent)}>
+			<CardContent className={clsx(classes.sContent)}>
 				{site.acceptOrders.loading && (
 					<Box className={classes.sLoader}>
 						<CircularProgress size={20} />

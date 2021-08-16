@@ -114,7 +114,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 										<CardContent
 											className={clsx(
 												classes.sCardContent,
-												cardClasses.sCardContent2,
+												cardClasses.sCardContent1,
 												classes.sActive,
 												{
 													[classes.sInactive]:

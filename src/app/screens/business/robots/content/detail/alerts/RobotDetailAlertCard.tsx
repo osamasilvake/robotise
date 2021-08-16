@@ -12,7 +12,6 @@ import { AppConfigService } from '../../../../../../services';
 import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
 import { useWindow } from '../../../../../../utilities/hooks/window/UseWindow';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailAlertsTypeEnum } from './RobotDetailAlerts.enum';
 import { RobotDetailAlertCardInterface } from './RobotDetailAlerts.interface';
 import { RobotDetailAlertsStyle } from './RobotDetailAlerts.style';
@@ -20,7 +19,6 @@ import { RobotDetailAlertsStyle } from './RobotDetailAlerts.style';
 const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	const { alert } = props;
 	const { t } = useTranslation('TOOLTIPS');
-	const cardClasses = CardStyle();
 	const classes = RobotDetailAlertsStyle();
 
 	const dispatch = useDispatch();
@@ -71,7 +69,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	return (
 		<Card variant="elevation" square elevation={1}>
 			<CardContent
-				className={clsx(cardClasses.sCardContent1, classes.sCardContent, {
+				className={clsx(classes.sCardContent, {
 					[classes.sCardDanger]: alert.level === RobotDetailAlertsTypeEnum.DANGER,
 					[classes.sCardWarning]: alert.level === RobotDetailAlertsTypeEnum.WARNING
 				})}>

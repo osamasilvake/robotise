@@ -58,6 +58,8 @@ const dataSlice = createSlice({
 				state.servicePositions.loading = true;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = true;
+			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
+				state.siteRobotConfig.loading = true;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loading = true;
 			} else if (module === SiteTypeEnum.REPORTS) {
@@ -71,6 +73,8 @@ const dataSlice = createSlice({
 				state.servicePositions.content = response;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
+			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
+				state.siteRobotConfig.loading = false;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;
@@ -86,6 +90,8 @@ const dataSlice = createSlice({
 				state.servicePositions.content = null;
 			} else if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
+			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
+				state.siteRobotConfig.loading = false;
 			} else if (module === SiteTypeEnum.NOTIFICATIONS) {
 				state.notifications.loader = false;
 				state.notifications.loading = false;

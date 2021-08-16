@@ -102,10 +102,6 @@
 	},
 	"MESSAGE": {
 		"COMMON": {
-			"NETWORK": {
-				"ONLINE": "Network connection is established!",
-				"OFFLINE": "Network connection is offline!"
-			},
 			"SERVICE_POSITIONS": {
 				"ERROR": "Unable to fetch service positions!"
 			},

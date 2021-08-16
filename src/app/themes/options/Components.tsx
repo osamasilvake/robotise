@@ -42,25 +42,6 @@ const OverridesCustom: Components = {
 					'& svg, span, p': {
 						color: AppConfigService.AppOptions.colors.c7
 					}
-				},
-				'&.Mui-selected': {
-					'&:hover': {
-						backgroundColor: AppConfigService.AppOptions.colors.c9,
-						color: AppConfigService.AppOptions.colors.c7
-					}
-				}
-			},
-			button: {
-				transition: 'none'
-			}
-		}
-	},
-	MuiCardContent: {
-		styleOverrides: {
-			root: {
-				padding: 0,
-				'&:last-child': {
-					paddingBottom: 0
 				}
 			}
 		}
@@ -167,6 +148,15 @@ const OverridesCustom: Components = {
 			},
 			square: {
 				borderRadius: 0
+			}
+		}
+	},
+	MuiCardContent: {
+		styleOverrides: {
+			root: {
+				'&:last-child': {
+					paddingBottom: pxToRem(16)
+				}
 			}
 		}
 	}

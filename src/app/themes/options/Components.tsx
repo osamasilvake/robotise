@@ -150,6 +150,15 @@ const OverridesCustom: Components = {
 				borderRadius: 0
 			}
 		}
+	},
+	MuiCardContent: {
+		styleOverrides: {
+			root: {
+				'&:last-child': {
+					paddingBottom: pxToRem(16)
+				}
+			}
+		}
 	}
 };
 export default OverridesCustom;

@@ -17,6 +17,7 @@ import {
 	robotSelector
 } from '../../../../../../slices/business/robots/Robot.slice';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
+import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
 import { RobotDetailCameraInterface } from './RobotDetailCameras.interface';
@@ -26,6 +27,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const { robotTwins, cameraType, currentCameraType, setCurrentCameraType } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCameraStyle();
+	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
@@ -58,7 +60,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 
 			{/* Card Picture */}
 			<Card square elevation={1} className={classes.sCameraCard}>
-				<CardContent>
+				<CardContent className={cardClasses.sCardContent0}>
 					<Picture
 						src={robotCameraImageUrl(
 							robotTwins.cameras &&

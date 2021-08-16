@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import Loader from './components/common/loader/Loader';
 import Meta from './components/common/meta/Meta';
 import ErrorBoundary from './components/frame/error-boundary/ErrorBoundary';
-import Listeners from './components/frame/listeners/Listeners';
 import Message from './components/frame/message/Message';
 import ScrollTop from './components/frame/scroll-top/ScrollTop';
 import Routes from './routes/Routes';
@@ -58,9 +57,6 @@ const App: FC = () => {
 
 				{/* Scroll-Top */}
 				<ScrollTop />
-
-				{/* Listeners: Network */}
-				<Listeners />
 			</StyledEngineProvider>
 		</ThemeProvider>
 	);

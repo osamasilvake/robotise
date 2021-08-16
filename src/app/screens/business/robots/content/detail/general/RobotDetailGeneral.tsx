@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, IconButton, Typography } from '@material-ui/core';
+import { Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
 import { InfoOutlined } from '@material-ui/icons';
 import { Edit } from '@material-ui/icons';
 import { FC, useState } from 'react';
@@ -6,11 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
-import Tooltip from '../../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../../services';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { strRemoveSymbols } from '../../../../../../utilities/methods/String';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import DialogNote from './DialogNote';
 import { RobotDetailGeneralInterface } from './RobotDetailGeneral.interface';
@@ -20,7 +18,6 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const { robotTwins } = props;
 	const { t } = useTranslation(['ROBOTS', 'TOOLTIPS']);
 	const classes = RobotDetailGeneralStyle();
-	const cardClasses = CardStyle();
 
 	const [open, setOpen] = useState(false);
 
@@ -95,16 +92,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography className={classes.sGridItemFlex}>
 					{robotTwins.mission.status || AppConfigService.AppOptions.common.none}
 					{robotTwins.mission.description && (
-						<Tooltip
-							title={
-								<Card square elevation={1}>
-									<CardContent className={cardClasses.sCardContent2}>
-										<Typography variant="body2" color="inherit">
-											{robotTwins.mission.description}
-										</Typography>
-									</CardContent>
-								</Card>
-							}>
+						<Tooltip title={robotTwins.mission.description}>
 							<InfoOutlined fontSize="small" className={classes.sGridItemInfoIcon} />
 						</Tooltip>
 					)}
@@ -113,11 +101,16 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			<Grid item xs={12} sm={6} md={8} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.NOTE.TITLE`)}
-					<IconButton
-						className={classes.sNoteEditIconButton}
+					<Tooltip
+						placement="right"
+						title={String(t('TOOLTIPS:EDIT'))}
 						onClick={() => setOpen(true)}>
-						<Edit color="primary" className={classes.sNoteEditIcon} />
-					</IconButton>
+						<IconButton
+							className={classes.sNoteEditIconButton}
+							onClick={() => setOpen(true)}>
+							<Edit color="primary" className={classes.sNoteEditIcon} />
+						</IconButton>
+					</Tooltip>
 				</Typography>
 				<ReadMore text={robotTwins.robot.note} />
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}

@@ -7,6 +7,7 @@ import {
 	DialogContentText,
 	DialogTitle,
 	FormControl,
+	FormHelperText,
 	TextField
 } from '@material-ui/core';
 import { FC } from 'react';
@@ -33,6 +34,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 	const cRobotId = params.robotId;
 	const common = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
 	const fieldNote = 'note';
+	const maxLength = 2000;
 
 	const { handleChangeInput, handleSubmit, values } = useForm<NoteFormInterface>(
 		{
@@ -51,17 +53,17 @@ const DialogNote: FC<NoteInterface> = (props) => {
 				<DialogTitle>{t(`${common}.TITLE`)}</DialogTitle>
 				<DialogContent>
 					<DialogContentText>{t(`${common}.EXCERPT`)}</DialogContentText>
-					<FormControl error fullWidth margin="normal">
+					<FormControl fullWidth margin="normal">
 						<TextField
 							multiline
 							variant="outlined"
 							type="text"
 							id={fieldNote}
 							name={fieldNote}
-							rows={4}
+							rows={6}
 							value={values.note}
 							onChange={handleChangeInput}
-							inputProps={{ maxLength: 2000 }}
+							inputProps={{ maxLength }}
 							inputRef={(input) => input && input.focus()}
 							onFocus={(e) =>
 								e.currentTarget.setSelectionRange(
@@ -72,6 +74,9 @@ const DialogNote: FC<NoteInterface> = (props) => {
 							label={t(`${common}.FIELDS.LABEL`)}
 							placeholder={t(`${common}.FIELDS.PLACEHOLDER`)}
 						/>
+						<FormHelperText error={values.note.length === maxLength}>
+							{t(`${common}.NOTE`, { value: values.note.length })}
+						</FormHelperText>
 					</FormControl>
 				</DialogContent>
 				<DialogActions>

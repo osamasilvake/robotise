@@ -1,12 +1,10 @@
-import { Box, Card, CardContent, TableCell, Typography } from '@material-ui/core';
+import { Box, TableCell, Tooltip, Typography } from '@material-ui/core';
 import { Check, Close, InfoOutlined } from '@material-ui/icons';
 import { FC } from 'react';
 
-import Tooltip from '../../../../../components/common/tooltip/Tooltip';
 import { AppConfigService } from '../../../../../services';
 import { RTSContentDataInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
-import { CardStyle } from '../../../../../utilities/styles/Card.style';
 import { RobotDetailControlModeTypeEnum } from '../../content/detail/commands/RobotDetailCommands.enum';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
@@ -16,7 +14,6 @@ import { RobotsListStyle } from './RobotsTable.style';
 const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	const { column, robot } = props;
 	const classes = RobotsListStyle();
-	const cardClasses = CardStyle();
 
 	/**
 	 * set cell value
@@ -65,16 +62,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 				<Box className={classes.sTableRowItemFlex}>
 					{mission.status || AppConfigService.AppOptions.common.none}
 					{mission.description && (
-						<Tooltip
-							title={
-								<Card square elevation={1}>
-									<CardContent className={cardClasses.sCardContent2}>
-										<Typography variant="body2" color="inherit">
-											{mission.description}
-										</Typography>
-									</CardContent>
-								</Card>
-							}>
+						<Tooltip title={mission.description}>
 							<InfoOutlined
 								fontSize="small"
 								className={classes.sTableRowItemInfoIcon}

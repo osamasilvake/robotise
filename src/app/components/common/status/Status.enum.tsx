@@ -10,5 +10,5 @@ export enum HistoryStatusTypeEnum {
 	SUCCESS_DARK = 'success',
 	SUCCESS_LIGHT = 'secondary',
 	ERROR = 'error',
-	INFO = 'action'
+	INFO = 'inherit'
 }

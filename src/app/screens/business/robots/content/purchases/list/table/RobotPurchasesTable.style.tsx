@@ -27,8 +27,7 @@ export const RobotPurchasesTableStyle = makeStyles((theme: Theme) => ({
 	sCommentClear: {
 		marginRight: theme.spacing(0.5)
 	},
-	sCommentValue: {
-		marginTop: theme.spacing(0.5),
-		whiteSpace: 'pre-wrap'
+	sCommentEdit: {
+		marginBottom: theme.spacing(0.5)
 	}
 }));

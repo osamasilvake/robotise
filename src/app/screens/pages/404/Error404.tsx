@@ -17,13 +17,10 @@ const Error404: FC = () => {
 				<Typography variant="h1" className={classes.sTitle}>
 					{t('E404.TITLE')}
 				</Typography>
-				<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
+				<Typography color="textSecondary" className={classes.sDescription}>
 					{t('E404.DESCRIPTION')}
 				</Typography>
-				<Link
-					href={AppConfigService.AppRoutes.HOME}
-					underline="hover"
-					className={classes.sLink}>
+				<Link href={AppConfigService.AppRoutes.HOME} underline="hover">
 					{t('E404.LINK')}
 				</Link>
 			</Error>

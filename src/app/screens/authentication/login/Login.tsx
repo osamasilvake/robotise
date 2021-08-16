@@ -22,10 +22,7 @@ import Copyright from '../../../components/frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
 import { AuthLogin, authSelector } from '../../../slices/authentication/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
-import {
-	validateEmptyObj,
-	validateEmptyObjProperty
-} from '../../../utilities/methods/ObjectUtilities';
+import { validateEmptyObj, validateEmptyObjProperty } from '../../../utilities/methods/Object';
 import { AuthLoginFormInterface } from '../Auth.interface';
 import { LoginStyle } from './Login.style';
 import { LoginValidation } from './Login.validation';

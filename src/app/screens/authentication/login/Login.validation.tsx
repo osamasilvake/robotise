@@ -1,8 +1,8 @@
-import { validateEmail } from '../../../utilities/methods/Validations';
+import { AppConfigService } from '../../../services';
 import { AuthLoginFormInterface } from '../Auth.interface';
 
 /**
- * login form validation
+ * login validation
  * @param values
  * @param touched
  */
@@ -11,6 +11,7 @@ export const LoginValidation = (
 	touched: AuthLoginFormInterface
 ): AuthLoginFormInterface => {
 	const common = 'LOGIN.FIELDS';
+	const regexEmail = AppConfigService.AppOptions.regex.email;
 	const errors: AuthLoginFormInterface = {
 		email: '',
 		password: ''
@@ -24,7 +25,7 @@ export const LoginValidation = (
 		}
 
 		// validate
-		if (values.email && !validateEmail(values.email)) {
+		if (values.email && !regexEmail.test(values.email)) {
 			errors.email = `${common}.EMAIL.VALIDATIONS.INVALID`;
 		}
 	}

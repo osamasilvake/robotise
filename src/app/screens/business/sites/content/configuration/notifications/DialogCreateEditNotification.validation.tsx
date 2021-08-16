@@ -1,4 +1,4 @@
-import { validateEmail } from '../../../../../../utilities/methods/Validations';
+import { AppConfigService } from '../../../../../../services';
 import { DialogCreateEditNotificationFormInterface } from './SiteNotifications.interface';
 
 /**
@@ -11,6 +11,7 @@ export const DialogCreateEditNotificationValidation = (
 	touched: DialogCreateEditNotificationFormInterface
 ): DialogCreateEditNotificationFormInterface => {
 	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT.FIELDS';
+	const regexEmail = AppConfigService.AppOptions.regex.email;
 	const errors: DialogCreateEditNotificationFormInterface = {
 		users: []
 	};
@@ -20,7 +21,7 @@ export const DialogCreateEditNotificationValidation = (
 		// validate
 		if (values.users.length) {
 			errors.users = values.users.map((email) =>
-				email && !validateEmail(email) ? `${common}.EMAIL.VALIDATIONS.INVALID` : ''
+				email && !regexEmail.test(email) ? `${common}.EMAIL.VALIDATIONS.INVALID` : ''
 			);
 		}
 	}

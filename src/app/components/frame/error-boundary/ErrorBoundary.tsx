@@ -45,17 +45,14 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 						<Typography variant="h1" className={classes.sTitle}>
 							{t('ERROR_BOUNDARY.TITLE')}
 						</Typography>
-						<Typography
-							variant="body1"
-							color="textSecondary"
-							className={classes.sDescription}>
+						<Typography color="textSecondary" className={classes.sDescription}>
 							{t('ERROR_BOUNDARY.DESCRIPTION')}
 						</Typography>
 						<Link
 							component="button"
+							variant="body1"
 							underline="hover"
-							onClick={() => window.location.reload()}
-							className={classes.sLink}>
+							onClick={() => window.location.reload()}>
 							{t('ERROR_BOUNDARY.LINK')}
 						</Link>
 					</Error>

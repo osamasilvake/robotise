@@ -4,7 +4,7 @@ import { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../services';
-import { imageFromInput } from '../../../utilities/methods/Image';
+import { imageFromInput } from '../picture/Image';
 import { UploadImageChangeInterface, UploadImageInterface } from './Upload.interface';
 import { UploadStyle } from './Upload.style';
 

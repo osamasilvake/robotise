@@ -47,9 +47,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	return (
 		<Grid item xs={12} sm={6}>
 			{/* Label */}
-			<Typography variant="body1" color="textPrimary">
-				{t(`${common}.${cameraType}`)}
-			</Typography>
+			<Typography color="textPrimary">{t(`${common}.${cameraType}`)}</Typography>
 
 			{/* Date */}
 			{robotTwins.cameras && robotTwins.cameras[cameraType] && (

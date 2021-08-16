@@ -105,7 +105,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>{t(`${common}.LIST.ACTIONS.CREATE.TITLE`)}</DialogTitle>
 				<DialogContent>
-					<Typography variant="body1" color="textSecondary">
+					<Typography color="textSecondary">
 						{t(`${common}.LIST.ACTIONS.CREATE.TEXT`)}
 					</Typography>
 

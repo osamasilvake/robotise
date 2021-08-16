@@ -20,16 +20,16 @@ const PageError: FC<PageErrorInterface> = (props) => {
 			</Typography>
 
 			{/* Message */}
-			<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
+			<Typography color="textSecondary" className={classes.sDescription}>
 				{message ? t(message) : t('PAGE_ERROR.DESCRIPTION')}
 			</Typography>
 
 			{/* Link */}
 			<Link
 				component="button"
+				variant="body1"
 				underline="hover"
-				onClick={() => window.location.reload()}
-				className={classes.sLink}>
+				onClick={() => window.location.reload()}>
 				{t('PAGE_ERROR.LINK')}
 			</Link>
 		</Error>

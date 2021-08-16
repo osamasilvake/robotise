@@ -26,7 +26,7 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 
 			{/* Map Label */}
 			{robotTwins.location.value.floor && (
-				<Typography variant="body1" color="textPrimary">
+				<Typography color="textPrimary">
 					{t(`${common}.FLOOR`)} {robotTwins.location.value.floor}
 				</Typography>
 			)}

@@ -94,7 +94,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 				<Typography
 					variant={adjustAlertMessageSize(alert.message)}
 					className={classes.sCardContentMessage}>
-					{!(cWindow.innerWidth <= mobileScreen) && alert.message.length > msMax
+					{cWindow.innerWidth > mobileScreen && alert.message.length > msMax
 						? `${alert.message.substr(0, msMax)} ...`
 						: alert.message}
 				</Typography>

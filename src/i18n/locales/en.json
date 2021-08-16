@@ -33,11 +33,12 @@
 		}
 	},
 	"TOOLTIPS": {
+		"EDIT": "Edit",
+		"COPY_CLIPBOARD": "Copy to clipboard",
 		"DRAWER": {
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"
 		},
-		"COPY_CLIPBOARD": "Copy to clipboard",
 		"NOTIFICATION": {
 			"ADD": "Add Notification",
 			"EDIT": "Edit Notification"
@@ -62,6 +63,10 @@
 			"CONFIRM": "Confirm",
 			"GENERATE": "Generate"
 		}
+	},
+	"READ_MORE": {
+		"SHOW_MORE": "Show More",
+		"SHOW_LESS": "Show Less"
 	},
 	"REPORT": {
 		"TITLE": "Generate Report",
@@ -516,7 +521,8 @@
 					"MISSION": "Mission",
 					"NOTE": {
 						"TITLE": "Note",
-						"EXCERPT": "Note field should not exceed more than 2000 characters.",
+						"EXCERPT": "Provide important and relevant information about the particular robot.",
+						"NOTE": "Maximum limit {{value}}/2000.",
 						"FIELDS": {
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"

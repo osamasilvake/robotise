@@ -23,6 +23,7 @@ export const RobotDetailGeneralStyle = makeStyles((theme: Theme) => ({
 		position: 'relative'
 	},
 	sNoteEditIconButton: {
+		left: theme.spacing(5),
 		position: 'absolute',
 		top: theme.spacing(0.5)
 	},

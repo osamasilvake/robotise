@@ -79,27 +79,6 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiDialogTitle: {
-		styleOverrides: {
-			root: {
-				padding: `${pxToRem(15)} ${pxToRem(20)}`
-			}
-		}
-	},
-	MuiDialogContent: {
-		styleOverrides: {
-			root: {
-				padding: `${pxToRem(0)} ${pxToRem(20)} ${pxToRem(5)}`
-			}
-		}
-	},
-	MuiDialogActions: {
-		styleOverrides: {
-			root: {
-				padding: `${pxToRem(10)} ${pxToRem(20)}`
-			}
-		}
-	},
 	MuiButton: {
 		styleOverrides: {
 			root: {

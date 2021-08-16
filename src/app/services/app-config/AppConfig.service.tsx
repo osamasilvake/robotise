@@ -74,6 +74,9 @@ class AppConfigService extends EnvService {
 					maxSize: 500,
 					maxHeight: 220,
 					maxWidth: 220
+				},
+				readMore: {
+					min: 150
 				}
 			},
 			screens: {

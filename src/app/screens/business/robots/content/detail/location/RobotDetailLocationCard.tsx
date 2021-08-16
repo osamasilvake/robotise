@@ -9,6 +9,7 @@ import {
 	RobotLocationMapFetch,
 	robotSelector
 } from '../../../../../../slices/business/robots/Robot.slice';
+import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotLocationImageUrl } from '../../../Robots.url';
 import { RobotDetailLocationCardInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
@@ -17,6 +18,7 @@ import RobotDetailLocationCardIcon from './RobotDetailLocationCardIcon';
 const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) => {
 	const { robotTwins, grid } = props;
 	const classes = RobotDetailLocationStyle();
+	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
@@ -70,7 +72,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	return robot.map && !robot.map.loading ? (
 		<Grid item sm={12} md={6}>
 			<Card square elevation={1} className={classes.sLocationCard}>
-				<CardContent>
+				<CardContent className={cardClasses.sCardContent0}>
 					{/* Picture */}
 					<Box
 						className={clsx({

@@ -26,7 +26,6 @@ import {
 	validateEmptyObj,
 	validateEmptyObjProperty
 } from '../../../../../../utilities/methods/Object';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigFormInterface, RobotConfigInterface } from './RobotConfig.interface';
 import { RobotConfigStyle } from './RobotConfig.style';
@@ -36,7 +35,6 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const { robotTwinsSummary, robot } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigStyle();
-	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 
@@ -83,7 +81,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 
 	return (
 		<Card square elevation={1}>
-			<CardContent className={cardClasses.sCardContent1}>
+			<CardContent>
 				<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
 					{t(`${common}.EXCERPT`)}

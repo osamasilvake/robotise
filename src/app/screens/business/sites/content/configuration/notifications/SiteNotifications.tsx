@@ -59,7 +59,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	return site.notifications?.content?.data.length ? (
 		<Grid item xs={12} md={6}>
 			<Card square elevation={1} className={classes.sCard}>
-				<CardContent className={cardClasses.sCardContent4}>
+				<CardContent className={cardClasses.sCardContent0}>
 					<Typography variant="h6" className={classes.sTitle}>
 						{t(`${common}.TITLE`)}
 					</Typography>

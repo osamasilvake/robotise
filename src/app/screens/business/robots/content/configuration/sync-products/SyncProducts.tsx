@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 import { RobotProductsSync } from '../../../../../../slices/business/robots/Robot.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { SyncProductsInterface } from './SyncProducts.interface';
 import { SyncProductsStyle } from './SyncProducts.style';
@@ -15,7 +14,6 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	const { robotTwinsSummary, robot } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = SyncProductsStyle();
-	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 
@@ -38,7 +36,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 
 	return (
 		<Card square elevation={1}>
-			<CardContent className={cardClasses.sCardContent1}>
+			<CardContent>
 				<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary">
 					{t(`${common}.EXCERPT`)}

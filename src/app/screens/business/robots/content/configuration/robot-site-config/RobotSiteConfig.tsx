@@ -20,7 +20,6 @@ import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotT
 import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import {
 	RobotSiteConfigFormInterface,
@@ -32,7 +31,6 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const { robotTwinsSummary, robot } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotSiteConfigStyle();
-	const cardClasses = CardStyle();
 
 	const sites = useSelector(sitesSelector);
 	const dispatch = useDispatch();
@@ -66,7 +64,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 
 	return (
 		<Card square elevation={1}>
-			<CardContent className={cardClasses.sCardContent1}>
+			<CardContent>
 				<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
 					{t(`${common}.EXCERPT`)}

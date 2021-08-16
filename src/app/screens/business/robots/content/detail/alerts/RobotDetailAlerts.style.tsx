@@ -8,7 +8,7 @@ export const RobotDetailAlertsStyle = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(4)
 	},
 	sCardContent: {
-		minHeight: 135,
+		minHeight: 145,
 		position: 'relative'
 	},
 	sCardDanger: {

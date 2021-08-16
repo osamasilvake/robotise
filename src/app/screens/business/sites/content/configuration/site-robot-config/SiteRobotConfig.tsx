@@ -19,7 +19,6 @@ import { useParams } from 'react-router-dom';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { SiteRobotConfigUpdate } from '../../../../../../slices/business/sites/Site.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import {
 	SiteRobotConfigFormInterface,
@@ -31,7 +30,6 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const { sites, site } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteRobotConfigStyle();
-	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
@@ -57,7 +55,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	return robotTwinsSummary.content?.data.length ? (
 		<Grid item xs={12} md={6}>
 			<Card square elevation={1}>
-				<CardContent className={cardClasses.sCardContent1}>
+				<CardContent>
 					<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
 					<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
 						{t(`${common}.EXCERPT`)}

@@ -1,5 +1,6 @@
 import { Box, Link, Typography } from '@material-ui/core';
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../services';
 import { strToLinks } from '../../../utilities/methods/String';
@@ -7,7 +8,12 @@ import { ReadMoreInterface } from './ReadMore.interface';
 import { ReadMoreStyle } from './ReadMore.style';
 
 const ReadMore: FC<ReadMoreInterface> = (props) => {
-	const { text, variant = 'body1', min = 250 } = props;
+	const {
+		text,
+		variant = 'body1',
+		min = AppConfigService.AppOptions.components.readMore.min
+	} = props;
+	const { t } = useTranslation('READ_MORE');
 	const classes = ReadMoreStyle();
 
 	const [readMore, setReadMore] = useState(false);
@@ -32,7 +38,7 @@ const ReadMore: FC<ReadMoreInterface> = (props) => {
 					variant={variant}
 					underline="hover"
 					onClick={() => setReadMore(!readMore)}>
-					{!readMore ? 'Show More' : 'Show Less'}
+					{!readMore ? t('SHOW_MORE') : t('SHOW_LESS')}
 				</Link>
 			)}
 		</Box>

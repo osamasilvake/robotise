@@ -13,7 +13,10 @@ export const RobotLogsTableStyle = makeStyles((theme: Theme) => ({
 		pointerEvents: 'none'
 	},
 	sTableHistoryFlex: {
-		display: 'flex'
+		display: 'flex',
+		'&:not(:last-child)': {
+			marginBottom: theme.spacing(0.5)
+		}
 	},
 	sTableHistoryIcon: {
 		fontSize: theme.typography.pxToRem(20),

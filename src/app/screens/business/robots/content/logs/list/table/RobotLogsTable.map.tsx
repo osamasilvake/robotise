@@ -50,7 +50,7 @@ export const mapHistoryStatusLevel = (status: string) => {
 		default:
 			return {
 				color: HistoryStatusTypeEnum.INFO,
-				icon: 'info'
+				icon: 'info_outlined'
 			};
 	}
 };

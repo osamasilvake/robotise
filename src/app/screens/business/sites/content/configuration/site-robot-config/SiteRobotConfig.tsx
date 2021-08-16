@@ -94,7 +94,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 								<Button
 									variant="outlined"
 									type="submit"
-									disabled={!values.robotId}
+									disabled={site.siteRobotConfig.loading || !values.robotId}
 									endIcon={
 										site.siteRobotConfig.loading && (
 											<CircularProgress size={20} />

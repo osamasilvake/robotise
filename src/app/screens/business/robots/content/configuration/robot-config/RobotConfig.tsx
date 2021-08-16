@@ -172,6 +172,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								variant="outlined"
 								type="submit"
 								disabled={
+									robot.robotConfig.loading ||
 									(!!errors && !validateEmptyObj(errors)) ||
 									validateEmptyObjProperty(values)
 								}

@@ -42,16 +42,7 @@ const OverridesCustom: Components = {
 					'& svg, span, p': {
 						color: AppConfigService.AppOptions.colors.c7
 					}
-				},
-				'&.Mui-selected': {
-					'&:hover': {
-						backgroundColor: AppConfigService.AppOptions.colors.c9,
-						color: AppConfigService.AppOptions.colors.c7
-					}
 				}
-			},
-			button: {
-				transition: 'none'
 			}
 		}
 	},

@@ -25,7 +25,7 @@ const PageEmpty: FC<PageEmptyInterface> = (props) => {
 
 			{/* Message */}
 			{message && (
-				<Typography variant="body1" color="textSecondary" className={classes.sDescription}>
+				<Typography color="textSecondary" className={classes.sDescription}>
 					{t(message)}
 				</Typography>
 			)}
@@ -33,9 +33,9 @@ const PageEmpty: FC<PageEmptyInterface> = (props) => {
 			{/* Link */}
 			<Link
 				component="button"
+				variant="body1"
 				underline="hover"
-				onClick={() => window.location.reload()}
-				className={classes.sLink}>
+				onClick={() => window.location.reload()}>
 				{t('EMPTY.LINK')}
 			</Link>
 		</Box>

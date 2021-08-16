@@ -1,8 +1,5 @@
 import { AppConfigService } from '../../../services';
-import {
-	strCapitalizeEachLetter,
-	strRemoveSymbols
-} from '../../../utilities/methods/StringUtilities';
+import { strCapitalizeEachLetter, strRemoveSymbols } from '../../../utilities/methods/String';
 import {
 	BreadcrumbLabelsInterface,
 	BreadcrumbLinksInterface,

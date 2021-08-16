@@ -19,7 +19,7 @@ import { useDispatch } from 'react-redux';
 
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { moment30DaysFromToday, momentToday } from '../../../utilities/methods/Moment';
-import { validateEmptyObj } from '../../../utilities/methods/ObjectUtilities';
+import { validateEmptyObj } from '../../../utilities/methods/Object';
 import { ReportFormInterface, ReportInterface } from './Report.interface';
 import { ReportStyle } from './Report.style';
 import { ReportValidation } from './Report.validation';
@@ -96,7 +96,7 @@ const Report: FC<ReportInterface> = (props) => {
 							filename={`${id}_${values.from}_${values.to}`}
 							className={classes.sDownloadLink}>
 							<CloudDownload className={classes.sDownloadIcon} />
-							<Typography variant="body1">{t('REPORT:DOWNLOAD')}</Typography>
+							<Typography>{t('REPORT:DOWNLOAD')}</Typography>
 						</CSVLink>
 					)}
 				</DialogContent>

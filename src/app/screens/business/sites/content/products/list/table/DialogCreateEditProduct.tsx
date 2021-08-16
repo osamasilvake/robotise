@@ -27,7 +27,7 @@ import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,
 	validateEmptyObjProperty
-} from '../../../../../../../utilities/methods/ObjectUtilities';
+} from '../../../../../../../utilities/methods/Object';
 import { timeout } from '../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';

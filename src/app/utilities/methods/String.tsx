@@ -22,7 +22,7 @@ export const strCapitalizeEachLetter = (str: string) => {
 };
 
 /**
- * convert to links
+ * convert string links to link elements
  * @param text
  * @returns {*}
  */

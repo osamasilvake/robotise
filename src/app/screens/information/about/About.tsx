@@ -19,18 +19,18 @@ const About: FC = () => {
 			<Grid container>
 				<Grid item xs={12} md={6}>
 					<Typography variant="h6">{AppConfigService.envCompanyName}</Typography>
-					<Typography variant="body1">{t('INFO.ADDRESS')}</Typography>
-					<Typography variant="body1">{t('INFO.POSTAL_CITY')}</Typography>
-					<Typography variant="body1">{t('INFO.OWNER')}</Typography>
+					<Typography>{t('INFO.ADDRESS')}</Typography>
+					<Typography>{t('INFO.POSTAL_CITY')}</Typography>
+					<Typography>{t('INFO.OWNER')}</Typography>
 					<br />
 					<Typography variant="h6">{t('INFO.CONTACT.TITLE')}</Typography>
-					<Typography variant="body1">
+					<Typography>
 						{t('INFO.CONTACT.TEL.LABEL')}:{' '}
 						<Link underline="hover" href={`tel:${t('INFO.CONTACT.TEL.VALUE')}`}>
 							{t('INFO.CONTACT.TEL.VALUE')}
 						</Link>
 					</Typography>
-					<Typography variant="body1">
+					<Typography>
 						{t('INFO.CONTACT.EMAIL.LABEL')}:{' '}
 						<Link underline="hover" href={`mailto:${t('INFO.CONTACT.EMAIL.VALUE')}`}>
 							{t('INFO.CONTACT.EMAIL.VALUE')}
@@ -38,10 +38,10 @@ const About: FC = () => {
 					</Typography>
 					<br />
 					<Typography variant="h6">{t('INFO.REGISTRY.TITLE')}</Typography>
-					<Typography variant="body1">
+					<Typography>
 						{t('INFO.REGISTRY.COURT.LABEL')}: {t('INFO.REGISTRY.COURT.VALUE')}
 					</Typography>
-					<Typography variant="body1">
+					<Typography>
 						{t('INFO.REGISTRY.REG_NO.LABEL')}: {t('INFO.REGISTRY.REG_NO.VALUE')}
 					</Typography>
 				</Grid>
@@ -60,16 +60,16 @@ const About: FC = () => {
 
 			<Box>
 				<Typography variant="h6">{t('SERVICES.JEEVES.TITLE')}</Typography>
-				<Typography variant="body1">{t('SERVICES.JEEVES.DESCRIPTION')}</Typography>
+				<Typography>{t('SERVICES.JEEVES.DESCRIPTION')}</Typography>
 				<br />
 				<Typography variant="h6">{t('SERVICES.RB_130.TITLE')}</Typography>
-				<Typography variant="body1">{t('SERVICES.RB_130.DESCRIPTION')}</Typography>
+				<Typography>{t('SERVICES.RB_130.DESCRIPTION')}</Typography>
 				<br />
 				<Typography variant="h6">{t('SERVICES.SAFETY_MEASURES.TITLE')}</Typography>
-				<Typography variant="body1">{t('SERVICES.SAFETY_MEASURES.DESCRIPTION')}</Typography>
+				<Typography>{t('SERVICES.SAFETY_MEASURES.DESCRIPTION')}</Typography>
 				<br />
 				<Typography variant="h6">{t('SERVICES.ELEVATOR.TITLE')}</Typography>
-				<Typography variant="body1">{t('SERVICES.ELEVATOR.DESCRIPTION')}</Typography>
+				<Typography>{t('SERVICES.ELEVATOR.DESCRIPTION')}</Typography>
 			</Box>
 		</Paper>
 	);

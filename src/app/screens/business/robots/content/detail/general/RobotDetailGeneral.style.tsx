@@ -28,8 +28,5 @@ export const RobotDetailGeneralStyle = makeStyles((theme: Theme) => ({
 	},
 	sNoteEditIcon: {
 		fontSize: theme.spacing(2)
-	},
-	sNote: {
-		whiteSpace: 'pre-wrap'
 	}
 }));

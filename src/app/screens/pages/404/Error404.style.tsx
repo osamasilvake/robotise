@@ -10,8 +10,5 @@ export const Error404Style = makeStyles((theme: Theme) => ({
 		lineHeight: 1.2,
 		margin: `0 auto ${theme.spacing(1.5)}`,
 		maxWidth: 500
-	},
-	sLink: {
-		fontSize: theme.typography.pxToRem(17)
 	}
 }));

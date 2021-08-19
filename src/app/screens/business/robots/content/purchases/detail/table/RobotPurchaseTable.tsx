@@ -35,7 +35,7 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 	 */
 	const setCellValue = (row: SPCDataCartInterface, column: RobotPurchaseTableColumnInterface) => {
 		const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
-		const currency = (purchase?.content && purchase.content['currency']) || defaultCurrency;
+		const currency = (purchase?.content && purchase.content.currency) || defaultCurrency;
 		const quantity = Number(row[RobotPurchaseTableColumnsTypeEnum.QUANTITY]);
 		const price = Number(row[RobotPurchaseTableColumnsTypeEnum.PRICE_UNIT]);
 
@@ -97,7 +97,7 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 							<Typography variant="h6">
 								{`${currencyFormat(
 									Number(purchase?.content?.totalPrice),
-									(purchase?.content && purchase.content['currency']) ||
+									(purchase?.content && purchase.content.currency) ||
 										AppConfigService.AppOptions.common.defaultCurrency,
 									i18next.language
 								)}`}

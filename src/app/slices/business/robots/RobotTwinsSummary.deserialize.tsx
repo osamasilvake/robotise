@@ -53,17 +53,25 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 						id: data.robot.id,
 						name: state.name,
 						customerName: state.customerName,
+						note: state.note,
 						isHidden: state.isHidden,
-						isOnlineCheckDisabled: state.isOnlineCheckDisabled
+						isOnlineCheckDisabled: state.isOnlineCheckDisabled,
+						alerts: {
+							value: state.alerts,
+							updatedAt: meta.alerts?.updatedAt
+						},
+						robotState: {
+							isReady: {
+								value: state.robotState.isReady,
+								updatedAt: meta.robotState.isReady.updatedAt
+							}
+						},
+						lastSyncedProducts: {
+							updatedAt: state.lastSyncedProducts
+						}
 					},
 					site: {
 						id: data.site.id
-					},
-					robotState: {
-						isReady: {
-							value: state.robotState.isReady,
-							updatedAt: meta.robotState.isReady.updatedAt
-						}
 					},
 					status: {
 						batteryState: {
@@ -79,13 +87,6 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 							description: state.status.mission?.description || '',
 							updatedAt: meta.status.mission?.updatedAt
 						}
-					},
-					alerts: {
-						value: state.alerts,
-						updatedAt: meta.alerts?.updatedAt
-					},
-					lastSyncedProducts: {
-						updatedAt: state.lastSyncedProducts
 					}
 				};
 				return result;
@@ -109,26 +110,27 @@ export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
 			updatedAt: item.updatedAt,
 			robotId: item.robot.id,
 			robotTitle: item.robot.name,
-			robotIsReady: item.robotState.isReady.value,
+			robotIsReady: item.robot.robotState.isReady.value,
 			robotBatteryPercentage: item.status.batteryState.value.percentage,
 			robotControlMode: item.status.controlMode.value,
 			robotMission: item.status.mission,
 			robotCustomerName: item.robot.customerName,
+			robotNote: item.robot.note,
 			robotHidden: item.robot.isHidden,
 			robotOnlineCheckDisabled: item.robot.isOnlineCheckDisabled,
-			siteId: site.id,
-			siteTitle: site.title,
-			siteCurrency: site.currency || AppConfigService.AppOptions.common.defaultCurrency,
-			siteAcceptOrders: site.acceptOrders,
-			alerts: {
-				danger: item.alerts.value.filter(
+			robotLastSyncedProducts: item.robot.lastSyncedProducts.updatedAt,
+			robotAlerts: {
+				danger: item.robot.alerts.value.filter(
 					(f) => f.level === RobotTwinsSummaryTypeEnum.DANGER
 				).length,
-				warning: item.alerts.value.filter(
+				warning: item.robot.alerts.value.filter(
 					(f) => f.level === RobotTwinsSummaryTypeEnum.WARNING
 				).length
 			},
-			lastSyncedProducts: item.lastSyncedProducts.updatedAt
+			siteId: site.id,
+			siteTitle: site.title,
+			siteCurrency: site.currency || AppConfigService.AppOptions.common.defaultCurrency,
+			siteAcceptOrders: site.acceptOrders
 		};
 		dataById[item.robot.id] = result;
 		return result;

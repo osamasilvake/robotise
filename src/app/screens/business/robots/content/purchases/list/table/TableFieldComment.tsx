@@ -72,7 +72,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	};
 
 	return (
-		<Box onClick={(event) => event.stopPropagation()}>
+		<Box onClick={(e) => e.stopPropagation()}>
 			{/* Input */}
 			{editMode && (
 				<FormControl fullWidth>

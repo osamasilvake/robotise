@@ -35,7 +35,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			return (
 				<Box>
 					{value || AppConfigService.AppOptions.common.none}
-					{!purchase['isBilled'] && (
+					{!purchase.isBilled && (
 						<Box component="span" className={classes.sTarget}>
 							<Chip
 								size="small"
@@ -52,7 +52,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			return price > 0
 				? `${currencyFormat(
 						price,
-						purchase['currency'] || AppConfigService.AppOptions.common.defaultCurrency,
+						purchase.currency || AppConfigService.AppOptions.common.defaultCurrency,
 						i18next.language
 				  )}`
 				: 0;

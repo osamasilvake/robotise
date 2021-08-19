@@ -123,7 +123,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				return value;
 			} else if (typeof value === 'string') {
 				if (columns[0].id === column.id) {
-					return <Avatar variant="square" src={value} alt={product['name']} />;
+					return <Avatar variant="square" src={value} alt={product.name} />;
 				}
 				return t(value) || AppConfigService.AppOptions.common.none;
 			}

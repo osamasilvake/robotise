@@ -75,7 +75,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 					/>
 				);
 			case RobotInventoryTableColumnsTypeEnum.QUANTITY:
-				return <Status level={mapStatusLevel(lane['status'])}>{lane[column.id]}</Status>;
+				return <Status level={mapStatusLevel(lane.status)}>{lane[column.id]}</Status>;
 			case RobotInventoryTableColumnsTypeEnum.CAPACITY:
 				return lane[column.id];
 			case RobotInventoryTableColumnsTypeEnum.PRICE:

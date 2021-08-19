@@ -101,18 +101,16 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			<Grid item xs={12} sm={6} md={8} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${common}.NOTE.TITLE`)}
-					{false && (
-						<Tooltip
-							placement="right"
-							title={String(t('TOOLTIPS:EDIT'))}
+					<Tooltip
+						placement="right"
+						title={String(t('TOOLTIPS:EDIT'))}
+						onClick={() => setOpen(true)}>
+						<IconButton
+							className={classes.sNoteEditIconButton}
 							onClick={() => setOpen(true)}>
-							<IconButton
-								className={classes.sNoteEditIconButton}
-								onClick={() => setOpen(true)}>
-								<Edit color="primary" className={classes.sNoteEditIcon} />
-							</IconButton>
-						</Tooltip>
-					)}
+							<Edit color="primary" className={classes.sNoteEditIcon} />
+						</IconButton>
+					</Tooltip>
 				</Typography>
 				<ReadMore text={robotTwins.robot.note} />
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}

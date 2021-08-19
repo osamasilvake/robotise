@@ -6,7 +6,7 @@ export enum RobotsTableColumnsTypeEnum {
 	BATTERY_PERCENTAGE = 'robotBatteryPercentage',
 	MISSION_STATUS = 'robotMission',
 	UPDATED_AT = 'updatedAt',
-	ALERTS = 'alerts'
+	ALERTS = 'robotAlerts'
 }
 
 export enum RobotsTableSortTypeEnum {

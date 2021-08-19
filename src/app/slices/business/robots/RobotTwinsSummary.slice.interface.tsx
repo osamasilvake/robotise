@@ -24,19 +24,17 @@ export interface RTSContentDataInterface {
 	robotIsReady: boolean;
 	robotControlMode: string;
 	robotBatteryPercentage: number;
-	robotMission: {
-		status: string;
-		description: string;
-	};
+	robotMission: { status: string; description: string };
 	robotCustomerName: string;
+	robotNote: string;
 	robotHidden: boolean;
 	robotOnlineCheckDisabled: boolean;
+	robotAlerts: RTSContentAlertsInterface;
+	robotLastSyncedProducts: Date;
 	siteId: string;
 	siteTitle: string;
 	siteCurrency: string;
 	siteAcceptOrders: boolean;
-	alerts: RTSContentAlertsInterface;
-	lastSyncedProducts: Date;
 }
 
 export interface RTSContentDataByIdInterface {
@@ -60,21 +58,25 @@ export interface RTSContentTransformDataInterface {
 		id: string;
 		name: string;
 		customerName: string;
+		note: string;
 		isHidden: boolean;
 		isOnlineCheckDisabled: boolean;
+		alerts: {
+			value: IAlert[];
+			updatedAt: Date;
+		};
+		lastSyncedProducts: {
+			updatedAt: Date;
+		};
+		robotState: {
+			isReady: {
+				value: boolean;
+				updatedAt: Date;
+			};
+		};
 	};
 	site: {
 		id: string;
-	};
-	alerts: {
-		value: IAlert[];
-		updatedAt: Date;
-	};
-	robotState: {
-		isReady: {
-			value: boolean;
-			updatedAt: Date;
-		};
 	};
 	status: {
 		batteryState: {
@@ -93,35 +95,25 @@ export interface RTSContentTransformDataInterface {
 			updatedAt: Date;
 		};
 	};
-	lastSyncedProducts: {
-		updatedAt: Date;
-	};
 }
 
 export interface IRobotTwinSummary {
 	id: string;
-	robot: {
-		id: string;
-	};
-	site: {
-		id: string;
-	};
 	updatedAt: Date;
+	robot: { id: string };
+	site: { id: string };
 	state: {
 		reported: {
-			name: string;
+			alerts: IAlert[];
 			customerName: string;
 			isHidden: boolean;
 			isOnlineCheckDisabled: boolean;
 			lastSyncedProducts: Date;
-			alerts: IAlert[];
-			robotState: {
-				isReady: boolean;
-			};
+			name: string;
+			note: string;
+			robotState: { isReady: boolean };
 			status: {
-				batteryState: {
-					percentage: number;
-				};
+				batteryState: { percentage: number };
 				controlMode: string;
 				mission: {
 					status: string;
@@ -135,6 +127,12 @@ export interface IRobotTwinSummary {
 			alerts: {
 				updatedAt: Date;
 			};
+			lastSyncedProducts: {
+				updatedAt: Date;
+			};
+			name: {
+				updatedAt: Date;
+			};
 			robotState: {
 				isReady: {
 					updatedAt: Date;
@@ -145,6 +143,9 @@ export interface IRobotTwinSummary {
 					updatedAt: Date;
 				};
 				controlMode: {
+					updatedAt: Date;
+				};
+				location: {
 					updatedAt: Date;
 				};
 				mission: {

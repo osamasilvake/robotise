@@ -15,11 +15,13 @@ export const RobotsListStyle = makeStyles((theme: Theme) => ({
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c12, 0.15)
 	},
 	sTableRowItemFlex: {
-		alignItems: 'center',
 		display: 'flex'
 	},
-	sTableRowItemInfoIcon: {
+	sTableRowItemIcon: {
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
+	},
+	sTableRowItemIconComment: {
+		marginTop: theme.spacing(-1)
 	}
 }));

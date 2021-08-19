@@ -31,11 +31,11 @@ const RobotDetailSystems: FC<RobotDetailSafetySystemsInterface> = (props) => {
 							[classes.sListItemWarning]: !row.value
 						})}>
 						<ListItemIcon>
-							<Icon>{t(row['icon'])}</Icon>
+							<Icon>{t(row.icon)}</Icon>
 						</ListItemIcon>
 						<ListItemText
-							primary={t(row['proto'])}
-							secondary={row['value'] ? t(row['msg1']) : t(row['msg2'])}
+							primary={t(row.proto)}
+							secondary={row.value ? t(row.msg1) : t(row.msg2)}
 						/>
 					</ListItem>
 				</Collapse>

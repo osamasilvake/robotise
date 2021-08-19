@@ -18,6 +18,10 @@ export const RobotsListStyle = makeStyles((theme: Theme) => ({
 		display: 'flex'
 	},
 	sTableRowItemIcon: {
+		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
+	},
+	sTableRowItemIconComment: {
+		marginTop: theme.spacing(-1)
 	}
 }));

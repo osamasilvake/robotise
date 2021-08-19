@@ -1,5 +1,6 @@
 import { Box, TableCell, Tooltip, Typography } from '@material-ui/core';
 import { ChatOutlined, Check, Close, InfoOutlined } from '@material-ui/icons';
+import clsx from 'clsx';
 import { FC } from 'react';
 
 import ReadMore from '../../../../../components/common/read-more/ReadMore';
@@ -41,7 +42,10 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 								leaveDelay={800}>
 								<ChatOutlined
 									fontSize="small"
-									className={classes.sTableRowItemIcon}
+									className={clsx(
+										classes.sTableRowItemIcon,
+										classes.sTableRowItemIconComment
+									)}
 								/>
 							</Tooltip>
 						)}

@@ -172,7 +172,7 @@ const countAlerts = (payload: RTSContentInterface) => {
 	return Object.keys(payload.dataById).reduce(
 		(acc, key) => {
 			const robotTwins = payload.dataById[key];
-			const alerts = robotTwins.alerts;
+			const alerts = robotTwins.robotAlerts;
 			if (alerts) {
 				acc.danger = acc.danger += alerts.danger;
 				acc.warning = acc.warning += alerts.warning;

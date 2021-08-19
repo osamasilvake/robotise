@@ -22,7 +22,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 
 	const robotTwinSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const robotIsReady = robotTwinSingle?.robotIsReady;
-	const lastSynced = robotTwinSingle?.lastSyncedProducts;
+	const lastSynced = robotTwinSingle?.robotLastSyncedProducts;
 
 	const common = 'CONTENT.CONFIGURATION.SYNC_PRODUCTS';
 

@@ -10,8 +10,9 @@ import { ReadMoreStyle } from './ReadMore.style';
 const ReadMore: FC<ReadMoreInterface> = (props) => {
 	const {
 		text,
+		min = AppConfigService.AppOptions.components.readMore.min,
 		variant = 'body1',
-		min = AppConfigService.AppOptions.components.readMore.min
+		display
 	} = props;
 	const { t } = useTranslation('READ_MORE');
 	const classes = ReadMoreStyle();
@@ -23,10 +24,11 @@ const ReadMore: FC<ReadMoreInterface> = (props) => {
 	const sText = text && strToLinks(parseText);
 
 	return text ? (
-		<Box>
+		<Box onClick={(e) => e.stopPropagation()}>
 			{/* Text */}
 			<Typography
 				variant={variant}
+				display={display}
 				dangerouslySetInnerHTML={{ __html: sText }}
 				className={classes.sText}
 			/>
@@ -36,6 +38,7 @@ const ReadMore: FC<ReadMoreInterface> = (props) => {
 				<Link
 					component="button"
 					variant={variant}
+					display={display}
 					underline="hover"
 					onClick={() => setReadMore(!readMore)}>
 					{!readMore ? t('SHOW_MORE') : t('SHOW_LESS')}

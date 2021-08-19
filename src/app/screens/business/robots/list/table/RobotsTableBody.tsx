@@ -66,10 +66,10 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		return (a: RTSContentDataInterface, b: RTSContentDataInterface) => {
 			switch (type) {
 				case RobotsTableSortTypeEnum.OBJECT_ALERT:
-					if (a.alerts.danger || b.alerts.danger) {
-						return a.alerts.danger - b.alerts.danger;
+					if (a.robotAlerts.danger || b.robotAlerts.danger) {
+						return a.robotAlerts.danger - b.robotAlerts.danger;
 					}
-					return a.alerts.warning - b.alerts.warning;
+					return a.robotAlerts.warning - b.robotAlerts.warning;
 				case RobotsTableSortTypeEnum.OBJECT_MISSION:
 					return a.robotMission.status.localeCompare(b.robotMission.status);
 				case RobotsTableSortTypeEnum.NUMBER:
@@ -110,8 +110,8 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 						tabIndex={-1}
 						onClick={handleShowRobotDetail(robotTwins)}
 						className={clsx({
-							[classes.sTableRowWarning]: !!robotTwins.alerts.warning,
-							[classes.sTableRowDanger]: !!robotTwins.alerts.danger
+							[classes.sTableRowWarning]: !!robotTwins.robotAlerts.warning,
+							[classes.sTableRowDanger]: !!robotTwins.robotAlerts.danger
 						})}>
 						{columns.map((column: RobotsTableColumnInterface) => (
 							<RobotsTableBodyCell

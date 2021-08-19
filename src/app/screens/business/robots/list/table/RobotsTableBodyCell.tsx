@@ -1,7 +1,8 @@
 import { Box, TableCell, Tooltip, Typography } from '@material-ui/core';
-import { Check, Close, InfoOutlined } from '@material-ui/icons';
+import { ChatOutlined, Check, Close, InfoOutlined } from '@material-ui/icons';
 import { FC } from 'react';
 
+import ReadMore from '../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../services';
 import { RTSContentDataInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
@@ -26,9 +27,27 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		if (columns[0].id === column.id) {
 			return (
 				<Box>
-					{value}
+					<Typography variant="body2">
+						{value}
+						{robot.robotNote && (
+							<Tooltip
+								title={
+									<ReadMore
+										text={robot.robotNote}
+										variant="caption"
+										display="block"
+									/>
+								}
+								leaveDelay={800}>
+								<ChatOutlined
+									fontSize="small"
+									className={classes.sTableRowItemIcon}
+								/>
+							</Tooltip>
+						)}
+					</Typography>
 					<Typography variant="body2" color="textSecondary">
-						{robot['siteTitle']}
+						{robot.siteTitle}
 					</Typography>
 				</Box>
 			);
@@ -57,16 +76,13 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		} else if (columns[4].id === column.id) {
 			return percentage(Number(value));
 		} else if (columns[5].id === column.id) {
-			const mission = robot['robotMission'];
+			const mission = robot.robotMission;
 			return mission && mission.status ? (
 				<Box className={classes.sTableRowItemFlex}>
 					{mission.status || AppConfigService.AppOptions.common.none}
 					{mission.description && (
 						<Tooltip title={mission.description}>
-							<InfoOutlined
-								fontSize="small"
-								className={classes.sTableRowItemInfoIcon}
-							/>
+							<InfoOutlined fontSize="small" className={classes.sTableRowItemIcon} />
 						</Tooltip>
 					)}
 				</Box>
@@ -76,7 +92,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		} else if (columns[6].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[7].id === column.id) {
-			return `${robot.alerts.danger}/${robot.alerts.warning}`;
+			return `${robot.robotAlerts.danger}/${robot.robotAlerts.warning}`;
 		}
 		return value || AppConfigService.AppOptions.common.none;
 	};

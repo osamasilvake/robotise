@@ -8,6 +8,7 @@ class AppConfigService extends EnvService {
 	get AppOptions() {
 		return {
 			common: {
+				alertDocsUrl: this.envAlertDocsUrl,
 				defaultCurrency: 'EUR',
 				none: '---'
 			},

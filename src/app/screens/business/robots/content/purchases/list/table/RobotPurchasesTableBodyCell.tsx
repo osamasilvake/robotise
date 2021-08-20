@@ -1,12 +1,14 @@
-import { Box, Chip, TableCell } from '@material-ui/core';
+import { Box, Chip, Link, TableCell } from '@material-ui/core';
 import i18next from 'i18next';
-import { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
+import { RobotParamsInterface } from '../../../../Robot.interface';
 import {
 	RobotPurchasesTableBodyCellInterface,
 	RobotPurchasesTableColumnInterface
@@ -19,6 +21,28 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	const { purchase, column } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
+
+	const params: RobotParamsInterface = useParams();
+	const history = useHistory();
+
+	const cRobotId = params.robotId;
+
+	/**
+	 * handle show order detail
+	 * @param orderId
+	 * @returns
+	 */
+	const handleShowOrderDetail = (orderId: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+		// stop propagation
+		event.stopPropagation();
+
+		// prepare link
+		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL;
+		const robotLink = url.replace(':robotId', cRobotId).replace(':orderId', orderId);
+
+		// push to history
+		history.push(robotLink);
+	};
 
 	/**
 	 * set cell value
@@ -58,8 +82,18 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 				: 0;
 		} else if (columns[3].id === column.id) {
 			return <TableFieldComment purchase={purchase} />;
+		} else if (columns[4].id === column.id && purchase.order?.id) {
+			return (
+				<Link
+					component="button"
+					variant="body1"
+					underline="hover"
+					onClick={handleShowOrderDetail(purchase.order.id)}>
+					{t('CONTENT.PURCHASES.LIST.TABLE.VALUES.ORDER_STATUS')}
+				</Link>
+			);
 		}
-		return value;
+		return value || AppConfigService.AppOptions.common.none;
 	};
 
 	return (

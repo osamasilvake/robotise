@@ -35,7 +35,7 @@
 	"TOOLTIPS": {
 		"EDIT": "Edit",
 		"COPY_CLIPBOARD": "Copy to clipboard",
-		"ALERT_LINK": "Show more detail",
+		"ALERT_DOCS_LINK": "Show more detail",
 		"DRAWER": {
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"

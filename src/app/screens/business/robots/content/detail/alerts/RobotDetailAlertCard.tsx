@@ -52,11 +52,11 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	};
 
 	/**
-	 * show alert detail
+	 * show alert docs detail
 	 * @param code
 	 * @returns
 	 */
-	const handleShowAlertDetail = (code: string) => () => {
+	const handleShowAlertDocsDetail = (code: string) => () => {
 		const link = `${AppConfigService.AppOptions.common.alertDocsUrl}#${code}`;
 		window.open(link);
 	};
@@ -95,8 +95,8 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 					</Tooltip>
 					<Tooltip
 						placement="top"
-						title={String(t('ALERT_LINK'))}
-						onClick={handleShowAlertDetail(alert.code)}>
+						title={String(t('ALERT_DOCS_LINK'))}
+						onClick={handleShowAlertDocsDetail(alert.code)}>
 						<IconButton color="inherit">
 							<OpenInNew fontSize="small" />
 						</IconButton>

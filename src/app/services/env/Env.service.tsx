@@ -24,20 +24,6 @@ class EnvService {
 	}
 
 	/**
-	 * company name
-	 */
-	get envCompanyName() {
-		return process.env.REACT_APP_COMPANY_NAME;
-	}
-
-	/**
-	 * company url
-	 */
-	get envCompanyUrl() {
-		return process.env.REACT_APP_COMPANY_URL || '';
-	}
-
-	/**
 	 * api base URL
 	 */
 	get envBaseURL() {
@@ -59,10 +45,10 @@ class EnvService {
 	}
 
 	/**
-	 * app name
+	 * app version
 	 */
-	get envAppName() {
-		return process.env.REACT_APP_NAME?.toUpperCase() || '';
+	get envAppVersion() {
+		return process.env.REACT_APP_VERSION || '';
 	}
 
 	/**
@@ -73,10 +59,31 @@ class EnvService {
 	}
 
 	/**
-	 * app version
+	 * app name
 	 */
-	get envAppVersion() {
-		return process.env.REACT_APP_VERSION || '';
+	get envAppName() {
+		return process.env.REACT_APP_NAME?.toUpperCase() || '';
+	}
+
+	/**
+	 * company name
+	 */
+	get envCompanyName() {
+		return process.env.REACT_APP_COMPANY_NAME;
+	}
+
+	/**
+	 * company url
+	 */
+	get envCompanyUrl() {
+		return process.env.REACT_APP_COMPANY_URL || '';
+	}
+
+	/**
+	 * alert docs url
+	 */
+	get envAlertDocsUrl() {
+		return process.env.REACT_APP_ALERT_DOCS_URL || '';
 	}
 }
 export default EnvService;

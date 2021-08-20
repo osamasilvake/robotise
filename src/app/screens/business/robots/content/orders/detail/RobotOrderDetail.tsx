@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -12,6 +13,7 @@ import {
 	orderSelector
 } from '../../../../../../slices/business/robots/orders/Order.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
+import RobotOrderFoot from './foot/RobotOrderFoot';
 import RobotOrderTable from './table/RobotOrderTable';
 
 const RobotOrderDetail: FC = () => {
@@ -19,16 +21,17 @@ const RobotOrderDetail: FC = () => {
 	const order = useSelector(orderSelector);
 
 	const params: RobotParamsInterface = useParams();
+	const orderId = params.orderId;
 
 	useEffect(() => {
 		// dispatch: fetch order
-		dispatch(OrderFetch(params.orderId));
-	}, [dispatch, params.orderId]);
+		dispatch(OrderFetch(orderId));
+	}, [dispatch, orderId]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			// dispatch: fetch order
-			dispatch(OrderFetch(params.orderId, true));
+			dispatch(OrderFetch(orderId, true));
 		};
 
 		// interval
@@ -37,7 +40,7 @@ const RobotOrderDetail: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.orders.detail.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, params.orderId]);
+	}, [dispatch, orderId]);
 
 	// loader
 	if (order.loader) {
@@ -59,6 +62,14 @@ const RobotOrderDetail: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return order ? <RobotOrderTable order={order} /> : null;
+	return order ? (
+		<Box>
+			{/* Table */}
+			<RobotOrderTable order={order} />
+
+			{/* Foot */}
+			<RobotOrderFoot order={order} />
+		</Box>
+	) : null;
 };
 export default RobotOrderDetail;

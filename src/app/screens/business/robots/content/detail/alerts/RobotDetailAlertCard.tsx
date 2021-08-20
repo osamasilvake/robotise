@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, IconButton, Tooltip, Typography } from '@material-ui/core';
 import { Variant } from '@material-ui/core/styles/createTypography';
-import { FileCopy } from '@material-ui/icons';
+import { FileCopy, OpenInNew } from '@material-ui/icons';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,22 +33,32 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 
 	/**
 	 * copy to clipboard
-	 * @param id
+	 * @param code
 	 * @param text
 	 * @returns
 	 */
-	const handleCopyToClipboard = (id: string, text: string) => () => {
+	const handleCopyToClipboard = (code: string, text: string) => () => {
 		// copy message
 		navigator.clipboard.writeText(text);
 
 		// dispatch: trigger message
 		const message: TriggerMessageInterface = {
-			id,
+			id: code,
 			show: true,
 			severity: TriggerMessageTypeEnum.SUCCESS,
 			text: 'ROBOTS.DETAIL.ALERTS.CLIPBOARD'
 		};
 		dispatch(GeneralTriggerMessage(message));
+	};
+
+	/**
+	 * show alert docs detail
+	 * @param code
+	 * @returns
+	 */
+	const handleShowAlertDocsDetail = (code: string) => () => {
+		const link = `${AppConfigService.AppOptions.common.alertDocsUrl}#${code}`;
+		window.open(link);
 	};
 
 	/**
@@ -77,10 +87,18 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 				<Box className={classes.sCardContentIcons}>
 					<Tooltip
 						placement="top"
-						title={String(t('COPY_CLIPBOARD'))}
+						title={String(t('ALERTS.COPY_CLIPBOARD'))}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}>
 						<IconButton color="inherit">
 							<FileCopy fontSize="small" />
+						</IconButton>
+					</Tooltip>
+					<Tooltip
+						placement="top"
+						title={String(t('ALERTS.DOCS_LINK'))}
+						onClick={handleShowAlertDocsDetail(alert.code)}>
+						<IconButton color="inherit">
+							<OpenInNew fontSize="small" />
 						</IconButton>
 					</Tooltip>
 				</Box>

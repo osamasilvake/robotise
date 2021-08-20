@@ -46,6 +46,7 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 			case columns[1].id:
 			case columns[2].id:
 			case columns[4].id:
+			case columns[5].id:
 				type = RobotOrdersTableSortTypeEnum.STRING;
 				break;
 			default:

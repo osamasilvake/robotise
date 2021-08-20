@@ -293,7 +293,10 @@ const mapItem = (item: SOCDataInterface) => {
 	return {
 		...item,
 		status: `${common}.LIST.TABLE.VALUES.STATUS.${item.status}`,
-		location: item.location || `${common}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
+		location:
+			item.location?.length <= 4
+				? item.location
+				: `${common}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
 		mode: `${common}.COMMON.MODE.${item.mode}`,
 		origin: `${common}.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
 	};

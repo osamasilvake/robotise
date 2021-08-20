@@ -6,13 +6,13 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.TARGET,
 		label: `${common}.TARGET`,
-		minWidth: 180,
+		minWidth: 150,
 		align: 'left'
 	},
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.CREATED,
 		label: `${common}.CREATED`,
-		minWidth: 250,
+		minWidth: 200,
 		align: 'left'
 	},
 	{
@@ -24,7 +24,13 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.COMMENT,
 		label: `${common}.COMMENT`,
-		minWidth: 450,
+		minWidth: 300,
 		align: 'left'
+	},
+	{
+		id: RobotPurchasesTableColumnsTypeEnum.ORDER_STATUS,
+		label: `${common}.ORDER_STATUS`,
+		minWidth: 150,
+		align: 'right'
 	}
 ];

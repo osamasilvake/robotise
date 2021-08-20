@@ -2,8 +2,9 @@ export enum RobotOrdersTableColumnsTypeEnum {
 	STATUS = 'status',
 	TARGET = 'location',
 	MODE = 'mode',
+	CREATED = 'createdAt',
 	ORIGIN = 'origin',
-	CREATED = 'createdAt'
+	PURCHASE_REPORT = 'orderReport'
 }
 
 export enum RobotOrdersTableSortTypeEnum {

@@ -27,6 +27,13 @@ export const deserializeOrder = async <T extends JsonApiResponse>(payload: T) =>
 					id: relationship.id
 				};
 			}
+		},
+		orderReports: {
+			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+				return {
+					id: relationship.id
+				};
+			}
 		}
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);

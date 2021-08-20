@@ -34,7 +34,10 @@
 	},
 	"TOOLTIPS": {
 		"EDIT": "Edit",
-		"COPY_CLIPBOARD": "Copy to clipboard",
+		"ALERTS": {
+			"COPY_CLIPBOARD": "Copy to clipboard",
+			"DOCS_LINK": "Show more detail"
+		},
 		"DRAWER": {
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"
@@ -812,6 +815,14 @@
 							"STATUS": "Status",
 							"UPDATED_ON": "Updated On"
 						}
+					},
+					"FOOT": {
+						"PURCHASE": {
+							"LINK": {
+								"TITLE": "Purchase Report",
+								"TEXT": "Detail"
+							}
+						}
 					}
 				},
 				"LIST": {
@@ -863,7 +874,8 @@
 							"ROBOT": "Robot",
 							"MODE": "Mode",
 							"CREATED": "Created",
-							"ORIGIN": "Origin"
+							"ORIGIN": "Origin",
+							"PURCHASE_REPORT": "Purchase Report"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -891,7 +903,8 @@
 								"api-connect": "API Connect",
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
-							}
+							},
+							"PURCHASE_REPORT": "Detail"
 						}
 					}
 				}
@@ -915,7 +928,13 @@
 						}
 					},
 					"FOOT": {
-						"NOTE": "Note"
+						"NOTE": "Note",
+						"ORDER": {
+							"LINK": {
+								"TITLE": "Order Status",
+								"TEXT": "Detail"
+							}
+						}
 					}
 				},
 				"LIST": {
@@ -933,7 +952,8 @@
 							"TARGET": "Target 🎯",
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
-							"COMMENT": "Comment"
+							"COMMENT": "Comment",
+							"ORDER_STATUS": "Order Status"
 						},
 						"VALUES": {
 							"COMMENT": {
@@ -946,7 +966,8 @@
 									"PLACEHOLDER": "Enter a comment"
 								}
 							},
-							"UN_BILLED": "Unbilled"
+							"UN_BILLED": "Unbilled",
+							"ORDER_STATUS": "Detail"
 						}
 					}
 				}

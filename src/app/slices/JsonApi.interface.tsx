@@ -5,6 +5,7 @@ export interface DeserializerExtendedOptions extends DeserializerOptions {
 	robotTwins?: DeserializeRelationship;
 	robots?: DeserializeRelationship;
 	orders?: DeserializeRelationship;
+	orderReports?: DeserializeRelationship;
 	users?: DeserializeRelationship;
 	activity?: DeserializeRelationship;
 	notificationTypes?: DeserializeRelationship;

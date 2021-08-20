@@ -12,7 +12,7 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 	{
 		id: RobotOrdersTableColumnsTypeEnum.TARGET,
 		label: `${common}.TARGET`,
-		minWidth: 170,
+		minWidth: 150,
 		align: 'left'
 	},
 	{
@@ -31,6 +31,12 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 		id: RobotOrdersTableColumnsTypeEnum.ORIGIN,
 		label: `${common}.ORIGIN`,
 		minWidth: 170,
+		align: 'left'
+	},
+	{
+		id: RobotOrdersTableColumnsTypeEnum.PURCHASE_REPORT,
+		label: `${common}.PURCHASE_REPORT`,
+		minWidth: 150,
 		align: 'right'
 	}
 ];

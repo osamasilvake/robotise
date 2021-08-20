@@ -76,7 +76,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 					variant="body1"
 					underline="hover"
 					onClick={handleShowPurchaseDetail(order.orderReport.id)}>
-					{t('CONTENT.ORDERS.DETAIL.FOOT.PURCHASE.LINK.TEXT')}
+					{t('CONTENT.ORDERS.LIST.TABLE.VALUES.PURCHASE_REPORT')}
 				</Link>
 			);
 		} else if (typeof value === 'string') {

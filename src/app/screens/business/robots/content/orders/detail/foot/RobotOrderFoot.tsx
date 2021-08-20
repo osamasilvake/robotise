@@ -33,7 +33,7 @@ const RobotOrderFoot: FC<RobotOrderFootInterface> = (props) => {
 	};
 
 	return order?.content?.orderReport ? (
-		<Box className={classes.sLinkTitle}>
+		<Box className={classes.sFootBox}>
 			<Typography variant="h6" color="textSecondary">
 				{t('CONTENT.ORDERS.DETAIL.FOOT.PURCHASE.LINK.TITLE')}
 			</Typography>

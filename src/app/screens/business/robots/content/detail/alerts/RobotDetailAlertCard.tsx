@@ -87,7 +87,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 				<Box className={classes.sCardContentIcons}>
 					<Tooltip
 						placement="top"
-						title={String(t('COPY_CLIPBOARD'))}
+						title={String(t('ALERTS.COPY_CLIPBOARD'))}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}>
 						<IconButton color="inherit">
 							<FileCopy fontSize="small" />
@@ -95,7 +95,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 					</Tooltip>
 					<Tooltip
 						placement="top"
-						title={String(t('ALERT_DOCS_LINK'))}
+						title={String(t('ALERTS.DOCS_LINK'))}
 						onClick={handleShowAlertDocsDetail(alert.code)}>
 						<IconButton color="inherit">
 							<OpenInNew fontSize="small" />

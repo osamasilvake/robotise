@@ -14,6 +14,13 @@ import {
 export const deserializeOrder = async <T extends JsonApiResponse>(payload: T) => {
 	const options: DeserializerExtendedOptions = {
 		keyForAttribute: 'camelCase',
+		orderReports: {
+			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+				return {
+					id: relationship.id
+				};
+			}
+		},
 		sites: {
 			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
 				return {

@@ -812,6 +812,14 @@
 							"STATUS": "Status",
 							"UPDATED_ON": "Updated On"
 						}
+					},
+					"FOOT": {
+						"PURCHASE": {
+							"LINK": {
+								"TITLE": "Purchase Report",
+								"TEXT": "See detail"
+							}
+						}
 					}
 				},
 				"LIST": {
@@ -863,7 +871,8 @@
 							"ROBOT": "Robot",
 							"MODE": "Mode",
 							"CREATED": "Created",
-							"ORIGIN": "Origin"
+							"ORIGIN": "Origin",
+							"PURCHASE_REPORT": "Purchase Report"
 						},
 						"VALUES": {
 							"STATUS": {

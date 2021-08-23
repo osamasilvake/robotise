@@ -116,7 +116,6 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							<FormControl error fullWidth margin="normal">
 								<TextField
 									required
-									variant="outlined"
 									type="string"
 									id="name"
 									name="name"
@@ -132,7 +131,6 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							<FormControl error fullWidth margin="normal">
 								<TextField
 									required
-									variant="outlined"
 									type="number"
 									id="price"
 									name="price"
@@ -140,9 +138,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.price}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FIELDS.PRICE.LABEL`, {
-										value: currency
-									})}
+									label={t(`${common}.FIELDS.PRICE.LABEL`, { value: currency })}
 									placeholder={t(`${common}.FIELDS.PRICE.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
@@ -155,11 +151,11 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						<Grid item xs={12} sm={4} md={4}>
 							<FormControl error fullWidth>
 								<TextField
-									variant="outlined"
 									type="number"
 									id="length"
 									name="length"
 									value={values?.length}
+									error={!!errors?.length}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.LENGTH.LABEL`)}
@@ -175,11 +171,11 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						<Grid item xs={12} sm={4} md={4}>
 							<FormControl error fullWidth>
 								<TextField
-									variant="outlined"
 									type="number"
 									id="weight"
 									name="weight"
 									value={values?.weight}
+									error={!!errors?.weight}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
 									label={t(`${common}.FIELDS.WEIGHT.LABEL`)}
@@ -193,9 +189,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						</Grid>
 
 						<Grid item xs={12} sm={4} md={4}>
-							<FormControl error fullWidth>
+							<FormControl fullWidth>
 								<TextField
-									variant="outlined"
 									type="string"
 									id="volume"
 									name="volume"

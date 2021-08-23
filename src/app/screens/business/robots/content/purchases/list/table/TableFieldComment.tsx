@@ -27,7 +27,6 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 
 	const purchaseId = purchases.content?.state?.locked;
 	const editMode = purchase.id === purchaseId;
-
 	const common = 'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT';
 	const fieldComment = 'comment';
 
@@ -78,7 +77,6 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				<FormControl fullWidth>
 					<TextField
 						multiline
-						variant="outlined"
 						type="text"
 						id={fieldComment}
 						name={fieldComment}

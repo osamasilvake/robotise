@@ -54,7 +54,6 @@ const Report: FC<ReportInterface> = (props) => {
 						<Grid item xs={12} sm={6} md={6}>
 							<FormControl error fullWidth margin="normal">
 								<TextField
-									variant="outlined"
 									id="from"
 									name="from"
 									label={t('REPORT:FIELDS.FROM.LABEL')}
@@ -75,7 +74,6 @@ const Report: FC<ReportInterface> = (props) => {
 						<Grid item xs={12} sm={6} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
-									variant="outlined"
 									id="to"
 									name="to"
 									label={t('REPORT:FIELDS.TO.LABEL')}

@@ -38,7 +38,6 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const cSiteRobot = sites.content?.dataById[cSiteId].robots[0];
 	const attachedRobot = robotTwinsSummary.content?.dataById[cSiteRobot?.id || ''];
-
 	const common = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
 
 	const { handleChangeSelect, handleSubmit, values } = useForm<SiteRobotConfigFormInterface>(
@@ -64,8 +63,8 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 					<form onSubmit={handleSubmit} className={classes.sForm}>
 						<Grid container spacing={3}>
 							<Grid item xs={12}>
-								<FormControl variant="outlined" fullWidth>
-									<InputLabel id="notification">
+								<FormControl error fullWidth>
+									<InputLabel id="robotId" error={!attachedRobot}>
 										{t(`${common}.FORM.FIELDS.SITE.LABEL`)}
 									</InputLabel>
 									<Select
@@ -74,6 +73,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 										name="robotId"
 										label={t(`${common}.FORM.FIELDS.SITE.LABEL`)}
 										value={values.robotId}
+										error={!attachedRobot}
 										onChange={handleChangeSelect}>
 										{robotTwinsSummary.content?.data
 											.filter((robot) => robot.siteId === cSiteId)
@@ -84,12 +84,13 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 											))}
 									</Select>
 									{!attachedRobot && (
-										<FormHelperText error>
+										<FormHelperText>
 											{t(`${common}.FORM.FIELDS.SITE.NOTE`)}
 										</FormHelperText>
 									)}
 								</FormControl>
 							</Grid>
+
 							<Grid item xs={12}>
 								<Button
 									variant="outlined"

@@ -56,12 +56,12 @@ const DialogNote: FC<NoteInterface> = (props) => {
 					<FormControl fullWidth margin="normal">
 						<TextField
 							multiline
-							variant="outlined"
 							type="text"
 							id={fieldNote}
 							name={fieldNote}
 							rows={6}
 							value={values.note}
+							error={values.note.length === maxLength}
 							onChange={handleChangeInput}
 							inputProps={{ maxLength }}
 							inputRef={(input) => input && input.focus()}

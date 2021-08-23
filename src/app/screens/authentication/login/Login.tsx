@@ -73,7 +73,6 @@ const Login: FC = () => {
 						<FormControl error fullWidth margin="normal">
 							<TextField
 								required
-								variant="outlined"
 								type="email"
 								id="email"
 								name="email"
@@ -90,7 +89,6 @@ const Login: FC = () => {
 						<FormControl error fullWidth margin="normal">
 							<TextField
 								required
-								variant="outlined"
 								type={showPassword ? 'text' : 'password'}
 								id="password"
 								name="password"

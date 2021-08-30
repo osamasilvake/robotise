@@ -12,7 +12,6 @@ export const CreateEditProductValidation = (
 ): DialogCreateEditProductFormInterface => {
 	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
 	const regexMaxTwoDecimalPoints = AppConfigService.AppOptions.regex.maxTwoDecimalPoints;
-	const regexZeroInString = AppConfigService.AppOptions.regex.zeroInString;
 	const errors: DialogCreateEditProductFormInterface = {
 		image: '',
 		name: '',
@@ -45,8 +44,8 @@ export const CreateEditProductValidation = (
 
 	// Length/Weight
 	if (
-		(!values.length || regexZeroInString.test(String(values.length))) &&
-		(!values.weight || regexZeroInString.test(String(values.weight)))
+		(!values.length || Number(values.length) <= 0) &&
+		(!values.weight || Number(values.weight) <= 0)
 	) {
 		errors.length = `${common}.LENGTH.VALIDATIONS.INVALID`;
 		errors.weight = `${common}.WEIGHT.VALIDATIONS.INVALID`;

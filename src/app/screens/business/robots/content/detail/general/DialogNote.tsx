@@ -10,6 +10,7 @@ import {
 	FormHelperText,
 	TextField
 } from '@material-ui/core';
+import DOMPurify from 'dompurify';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,8 +43,11 @@ const DialogNote: FC<NoteInterface> = (props) => {
 		},
 		() => ({ note: '' }),
 		async () => {
+			// sanitize text
+			const note = DOMPurify.sanitize(values.note);
+
 			// dispatch: update note field
-			dispatch(RobotNoteUpdate(cRobotId, values, () => setOpen(false)));
+			dispatch(RobotNoteUpdate(cRobotId, { note }, () => setOpen(false)));
 		}
 	);
 

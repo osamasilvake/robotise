@@ -17,12 +17,12 @@ export const mapSafetyContent = (
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
-		const common = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
 		return {
-			icon: `${common}.${key}.ICON`,
-			label: `${common}.${key}.LABEL`,
-			msg1: `${common}.${key}.MSG_1`,
-			msg2: `${common}.${key}.MSG_2`,
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
+			msg1: `${translation}.${key}.MSG_1`,
+			msg2: `${translation}.${key}.MSG_2`,
 			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value)
 		};
 	});
@@ -38,11 +38,11 @@ export const mapComputerInfo = (
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
-		const common = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
 		const none = AppConfigService.AppOptions.common.none;
 		return {
-			icon: `${common}.${key}.ICON`,
-			label: `${common}.${key}.LABEL`,
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
 			value: Object.entries(value).map(([ky, val]) => ({
 				key: Number.isInteger(Number(ky)) ? `idx: ${ky}` : ky,
 				value: Array.isArray(val)

@@ -28,7 +28,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 
 	const purchaseId = purchases.content?.state?.locked;
 	const editMode = purchase.id === purchaseId;
-	const common = 'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT';
+	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT';
 	const fieldComment = 'comment';
 
 	const { handleChangeInput, handleSubmit, values } = useForm<TableFieldCommentFormInterface>(
@@ -94,8 +94,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 								e.currentTarget.value.length
 							)
 						}
-						label={t(`${common}.FIELDS.LABEL`)}
-						placeholder={t(`${common}.FIELDS.PLACEHOLDER`)}
+						label={t(`${translation}.FIELDS.LABEL`)}
+						placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
 						className={classes.sCommentTextField}
 					/>
 				</FormControl>
@@ -106,7 +106,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t(`${common}.CANCEL`)}
+						label={t(`${translation}.CANCEL`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -120,7 +120,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t(`${common}.CLEAR`)}
+						label={t(`${translation}.CLEAR`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -140,7 +140,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{/* Edit/Save */}
 				<Chip
 					size="small"
-					label={editMode ? t(`${common}.SAVE`) : t(`${common}.EDIT`)}
+					label={editMode ? t(`${translation}.SAVE`) : t(`${translation}.EDIT`)}
 					color="primary"
 					variant="outlined"
 					clickable

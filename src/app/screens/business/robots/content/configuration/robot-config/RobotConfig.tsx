@@ -43,7 +43,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 
 	const cRobotId = params.robotId;
 	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
-	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
+	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIG';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<RobotConfigFormInterface>(
@@ -82,9 +82,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	return (
 		<Card square elevation={1}>
 			<CardContent>
-				<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
+				<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
-					{t(`${common}.EXCERPT`)}
+					{t(`${translation}.EXCERPT`)}
 				</Typography>
 
 				<form onSubmit={handleSubmit} className={classes.sForm}>
@@ -100,8 +100,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									error={!!errors?.name}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FORM.FIELDS.NAME.LABEL`)}
-									placeholder={t(`${common}.FORM.FIELDS.NAME.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.NAME.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.NAME.PLACEHOLDER`)}
 								/>
 								{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 							</FormControl>
@@ -115,9 +115,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									error={!!errors?.customerName}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FORM.FIELDS.CUSTOMER_NAME.LABEL`)}
+									label={t(`${translation}.FORM.FIELDS.CUSTOMER_NAME.LABEL`)}
 									placeholder={t(
-										`${common}.FORM.FIELDS.CUSTOMER_NAME.PLACEHOLDER`
+										`${translation}.FORM.FIELDS.CUSTOMER_NAME.PLACEHOLDER`
 									)}
 								/>
 								{errors?.customerName && (
@@ -135,11 +135,13 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 												onChange={handleChangeCheckbox}
 											/>
 										}
-										label={t(`${common}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`)}
+										label={t(
+											`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`
+										)}
 									/>
 								</FormControl>
 								<FormHelperText className={classes.sFormHelperText}>
-									{t(`${common}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
+									{t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
 								</FormHelperText>
 							</Box>
 							<Box className={classes.sFormControlBox}>
@@ -154,13 +156,13 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 											/>
 										}
 										label={t(
-											`${common}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.LABEL`
+											`${translation}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.LABEL`
 										)}
 									/>
 								</FormControl>
 								<FormHelperText className={classes.sFormHelperText}>
 									{t(
-										`${common}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.NOTE`
+										`${translation}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.NOTE`
 									)}
 								</FormHelperText>
 							</Box>
@@ -177,7 +179,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								endIcon={
 									robot.robotConfig.loading && <CircularProgress size={20} />
 								}>
-								{t(`${common}.FORM.BUTTONS.UPDATE`)}
+								{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 							</Button>
 						</Grid>
 					</Grid>

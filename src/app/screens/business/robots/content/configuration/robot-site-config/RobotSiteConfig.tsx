@@ -38,7 +38,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const params: RobotParamsInterface = useParams();
 	const cRobotId = params.robotId;
 	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
-	const common = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';
+	const translation = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';
 
 	const { handleChangeSelect, handleSubmit, values } = useForm<RobotSiteConfigFormInterface>(
 		{
@@ -64,9 +64,9 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	return (
 		<Card square elevation={1}>
 			<CardContent>
-				<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
+				<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
-					{t(`${common}.EXCERPT`)}
+					{t(`${translation}.EXCERPT`)}
 				</Typography>
 
 				<form onSubmit={handleSubmit} className={classes.sForm}>
@@ -74,13 +74,13 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 						<Grid item xs={12}>
 							<FormControl fullWidth>
 								<InputLabel id="notification">
-									{t(`${common}.FORM.FIELDS.SITE.LABEL`)}
+									{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 								</InputLabel>
 								<Select
 									labelId="siteId"
 									id="siteId"
 									name="siteId"
-									label={t(`${common}.FORM.FIELDS.SITE.LABEL`)}
+									label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 									value={values.siteId}
 									onChange={handleChangeSelect}>
 									{sites.content?.data.map((site) => (
@@ -104,7 +104,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 								endIcon={
 									robot.robotSiteConfig.loading && <CircularProgress size={20} />
 								}>
-								{t(`${common}.FORM.BUTTONS.UPDATE`)}
+								{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 							</Button>
 						</Grid>
 					</Grid>

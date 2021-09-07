@@ -39,6 +39,7 @@ export const mapComputerInfo = (
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
 		const common = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const none = AppConfigService.AppOptions.common.none;
 		return {
 			icon: `${common}.${key}.ICON`,
 			label: `${common}.${key}.LABEL`,
@@ -48,9 +49,7 @@ export const mapComputerInfo = (
 					? val.join(', ')
 					: typeof val === 'object'
 					? Object.entries(val)
-							.map(
-								([k, v]) => `${k}: ${v || AppConfigService.AppOptions.common.none}`
-							)
+							.map(([k, v]) => `${k}: ${v || none}`)
 							.join(', ')
 					: val
 			}))

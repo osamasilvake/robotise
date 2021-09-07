@@ -1,10 +1,11 @@
 import {
+	SRTContentComputerInfoState,
 	SRTContentDataInterface,
 	SRTContentSafetySensorsState,
 	SRTContentSafetySystemsState
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
-export interface RobotDetailSafetyInterface {
+export interface RobotDetailInformationInterface {
 	robotTwins: SRTContentDataInterface;
 }
 
@@ -14,4 +15,8 @@ export interface RobotDetailSafetySensorsInterface {
 
 export interface RobotDetailSafetySystemsInterface {
 	systems?: SRTContentSafetySystemsState | undefined;
+}
+
+export interface RobotDetailComputerInfoInterface {
+	computerInfo?: SRTContentComputerInfoState | undefined;
 }

@@ -4,28 +4,29 @@ import clsx from 'clsx';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RobotDetailSafetyTypeEnum } from './RobotDetailSafety.enum';
-import { RobotDetailSafetySystemsInterface } from './RobotDetailSafety.interface';
-import { mapSafetyContent } from './RobotDetailSafety.map';
-import { RobotDetailSafetyStyle } from './RobotDetailSafety.style';
+import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
+import { RobotDetailSafetySystemsInterface } from './RobotDetailInformation.interface';
+import { mapSafetyContent } from './RobotDetailInformation.map';
+import { RobotDetailInformationStyle } from './RobotDetailInformation.style';
 
-const RobotDetailSystems: FC<RobotDetailSafetySystemsInterface> = (props) => {
+const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) => {
 	const { systems } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailSafetyStyle();
+	const classes = RobotDetailInformationStyle();
 
 	const [open, setOpen] = useState(false);
 
-	const mappedSystem = systems && mapSafetyContent(systems, RobotDetailSafetyTypeEnum.SYSTEMS);
+	const mappedSystem =
+		systems && mapSafetyContent(systems, RobotDetailInformationTypeEnum.SYSTEMS);
 
 	return mappedSystem ? (
 		<List className={classes.sList}>
 			<ListItem button selected onClick={() => setOpen(!open)}>
-				<ListItemText primary={t('CONTENT.DETAIL.SAFETY.SYSTEMS.TITLE')} />
+				<ListItemText primary={t('CONTENT.DETAIL.INFORMATION.SAFETY_SYSTEMS.TITLE')} />
 				{open ? <ExpandLess /> : <ExpandMore />}
 			</ListItem>
 			{mappedSystem.map((row) => (
-				<Collapse key={row.proto} in={open} timeout="auto" unmountOnExit>
+				<Collapse key={row.label} in={open} timeout="auto" unmountOnExit>
 					<ListItem
 						className={clsx({
 							[classes.sListItemWarning]: !row.value
@@ -34,7 +35,7 @@ const RobotDetailSystems: FC<RobotDetailSafetySystemsInterface> = (props) => {
 							<Icon>{t(row.icon)}</Icon>
 						</ListItemIcon>
 						<ListItemText
-							primary={t(row.proto)}
+							primary={t(row.label)}
 							secondary={row.value ? t(row.msg1) : t(row.msg2)}
 						/>
 					</ListItem>
@@ -43,4 +44,4 @@ const RobotDetailSystems: FC<RobotDetailSafetySystemsInterface> = (props) => {
 		</List>
 	) : null;
 };
-export default RobotDetailSystems;
+export default RobotDetailSafetySystems;

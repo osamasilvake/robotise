@@ -42,20 +42,17 @@ export const mapComputerInfo = (
 		return {
 			icon: `${common}.${key}.ICON`,
 			label: `${common}.${key}.LABEL`,
-			value: Object.entries(value).map(([key, val]) => {
-				return {
-					key: Number.isInteger(Number(key)) ? `Index: ${key}` : key,
-					value: Array.isArray(val)
-						? val.join(', ')
-						: typeof val === 'object'
-						? Object.entries(val)
-								.map(
-									([k, v]) =>
-										`${k}: ${v || AppConfigService.AppOptions.common.none}`
-								)
-								.join(', ')
-						: val
-				};
-			})
+			value: Object.entries(value).map(([k, val]) => ({
+				key: Number.isInteger(Number(k)) ? `idx: ${k}` : k,
+				value: Array.isArray(val)
+					? val.join(', ')
+					: typeof val === 'object'
+					? Object.entries(val)
+							.map(
+								([k, v]) => `${k}: ${v || AppConfigService.AppOptions.common.none}`
+							)
+							.join(', ')
+					: val
+			}))
 		};
 	});

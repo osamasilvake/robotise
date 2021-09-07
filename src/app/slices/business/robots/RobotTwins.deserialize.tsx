@@ -120,7 +120,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 						},
 						updatedAt: meta.activity?.updatedAt
 					},
-					safetySensorsState: state.status.safetySensors && {
+					safetySensors: state.status.safetySensors && {
 						properties: {
 							drawers: state.status.safetySensors.drawers,
 							fallProtectionBackLeft:
@@ -139,7 +139,7 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 						},
 						updatedAt: meta.status.safetySensors.updatedAt
 					},
-					safetySystemsState: state.status.safetySystem && {
+					safetySystems: state.status.safetySystem && {
 						properties: {
 							backMutingActive: state.status.safetySystem.backMutingActive,
 							brakeReleasePressed: state.status.safetySystem.brakeReleasePressed,
@@ -158,12 +158,19 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 						},
 						updatedAt: meta.status.safetySystem.updatedAt
 					},
-					computerInfoState: {
+					computerInfo: {
 						properties: {
 							cpuLoad: state.status.computerInfo.cpuLoad,
 							memoryUsage: state.status.computerInfo.memoryUsage,
 							wifiStatus: state.status.computerInfo.wifiStatus,
 							hardDrives: state.status.computerInfo.hardDrives
+						},
+						updatedAt: meta.status.computerInfo.updatedAt
+					},
+					humanPerception: {
+						properties: {
+							legsCloseCount: state.status.humanPerception.legsCloseCount,
+							legsFarCount: state.status.humanPerception.legsFarCount
 						},
 						updatedAt: meta.status.computerInfo.updatedAt
 					}

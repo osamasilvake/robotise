@@ -33,8 +33,8 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 	});
 
 	const controlMode = robotTwins.controlMode.value;
-	const muteSensorBack = robotTwins.safetySystemsState?.properties.backMutingActive;
-	const muteSensorFront = robotTwins.safetySystemsState?.properties.frontMutingActive;
+	const muteSensorBack = robotTwins.safetySystems?.properties.backMutingActive;
+	const muteSensorFront = robotTwins.safetySystems?.properties.frontMutingActive;
 
 	useEffect(() => {
 		if (controlMode === RobotDetailControlModeTypeEnum.ROC_CONTROL) {

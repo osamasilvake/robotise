@@ -1,8 +1,9 @@
 import {
-	SRTContentComputerInfoState,
+	SRTContentComputerInfo,
 	SRTContentDataInterface,
-	SRTContentSafetySensorsState,
-	SRTContentSafetySystemsState
+	SRTContentHumanPerception,
+	SRTContentSafetySensors,
+	SRTContentSafetySystems
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
 export interface RobotDetailInformationInterface {
@@ -10,13 +11,17 @@ export interface RobotDetailInformationInterface {
 }
 
 export interface RobotDetailSafetySensorsInterface {
-	sensors?: SRTContentSafetySensorsState | undefined;
+	sensors?: SRTContentSafetySensors | undefined;
 }
 
 export interface RobotDetailSafetySystemsInterface {
-	systems?: SRTContentSafetySystemsState | undefined;
+	systems?: SRTContentSafetySystems | undefined;
 }
 
 export interface RobotDetailComputerInfoInterface {
-	computerInfo?: SRTContentComputerInfoState | undefined;
+	computerInfo?: SRTContentComputerInfo | undefined;
+}
+
+export interface RobotDetailHumanPerceptionInterface {
+	humanPerception?: SRTContentHumanPerception | undefined;
 }

@@ -1,8 +1,9 @@
 import { AppConfigService } from '../../../../../../services';
 import {
-	SRTContentComputerInfoState,
-	SRTContentSafetySensorsState,
-	SRTContentSafetySystemsState
+	SRTContentComputerInfo,
+	SRTContentHumanPerception,
+	SRTContentSafetySensors,
+	SRTContentSafetySystems
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 
@@ -13,7 +14,7 @@ import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
  * @returns
  */
 export const mapSafetyContent = (
-	data: SRTContentSafetySystemsState | SRTContentSafetySensorsState,
+	data: SRTContentSafetySystems | SRTContentSafetySensors,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
@@ -34,7 +35,7 @@ export const mapSafetyContent = (
  * @returns
  */
 export const mapComputerInfo = (
-	data: SRTContentComputerInfoState,
+	data: SRTContentComputerInfo,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
@@ -53,5 +54,24 @@ export const mapComputerInfo = (
 							.join(', ')
 					: val || none
 			}))
+		};
+	});
+
+/**
+ * map human perception
+ * @param data
+ * @param type
+ * @returns
+ */
+export const mapHumanPerception = (
+	data: SRTContentHumanPerception,
+	type: RobotDetailInformationTypeEnum
+) =>
+	Object.entries(data.properties).map(([key, value]) => {
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		return {
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
+			value
 		};
 	});

@@ -23,9 +23,10 @@ export interface SRTContentDataInterface {
 	dockingState?: SRTContentDockingStateInterface | undefined;
 	joystickState?: SRTContentJoystickState | undefined;
 	activityState?: SRTContentActivityState | undefined;
-	safetySensorsState?: SRTContentSafetySensorsState | undefined;
-	safetySystemsState?: SRTContentSafetySystemsState | undefined;
-	computerInfoState?: SRTContentComputerInfoState | undefined;
+	safetySensors?: SRTContentSafetySensors | undefined;
+	safetySystems?: SRTContentSafetySystems | undefined;
+	computerInfo?: SRTContentComputerInfo | undefined;
+	humanPerception?: SRTContentHumanPerception | undefined;
 }
 
 export interface SRTContentSiteInterface {
@@ -121,7 +122,7 @@ export interface SRTContentActivityState {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySensorsState {
+export interface SRTContentSafetySensors {
 	properties: {
 		drawers: {
 			0: boolean;
@@ -143,7 +144,7 @@ export interface SRTContentSafetySensorsState {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySystemsState {
+export interface SRTContentSafetySystems {
 	properties: {
 		backMutingActive: boolean;
 		brakeReleasePressed: boolean;
@@ -163,7 +164,7 @@ export interface SRTContentSafetySystemsState {
 	updatedAt: Date;
 }
 
-export interface SRTContentComputerInfoState {
+export interface SRTContentComputerInfo {
 	properties: {
 		cpuLoad: {
 			cpu: number[];
@@ -194,6 +195,14 @@ export interface SRTContentComputerInfoState {
 			status: string;
 			mountPoint: string;
 		}[];
+	};
+	updatedAt: Date;
+}
+
+export interface SRTContentHumanPerception {
+	properties: {
+		legsCloseCount: number;
+		legsFarCount: number;
 	};
 	updatedAt: Date;
 }
@@ -309,6 +318,10 @@ export interface IRobotTwin {
 						mountPoint: string;
 					}[];
 				};
+				humanPerception: {
+					legsCloseCount: number;
+					legsFarCount: number;
+				};
 			};
 			activity: string;
 		};
@@ -365,6 +378,9 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 				computerInfo: {
+					updatedAt: Date;
+				};
+				humanPerception: {
 					updatedAt: Date;
 				};
 			};

@@ -804,6 +804,19 @@
 								"LABEL": "Hard Drives"
 							}
 						}
+					},
+					"HUMAN_PERCEPTION": {
+						"TITLE": "Human Perception",
+						"VALUES": {
+							"legsCloseCount": {
+								"ICON": "airline_seat_legroom_reduced",
+								"LABEL": "Legs Close Count"
+							},
+							"legsFarCount": {
+								"ICON": "airline_seat_legroom_extra",
+								"LABEL": "Legs Far Count"
+							}
+						}
 					}
 				}
 			},

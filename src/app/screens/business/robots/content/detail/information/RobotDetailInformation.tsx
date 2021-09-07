@@ -9,6 +9,7 @@ import { RobotDetailInformationInterface } from './RobotDetailInformation.interf
 import { RobotDetailInformationStyle } from './RobotDetailInformation.style';
 import RobotDetailSafetySensors from './RobotDetailSafetySensors';
 import RobotDetailSafetySystems from './RobotDetailSafetySystems';
+import RobotDetailTransitPointStarted from './RobotDetailTransitPointStarted';
 
 const RobotDetailInformation: FC<RobotDetailInformationInterface> = (props) => {
 	const { robotTwins } = props;
@@ -42,6 +43,11 @@ const RobotDetailInformation: FC<RobotDetailInformationInterface> = (props) => {
 				</Grid>
 				<Grid item xs={12} md={6}>
 					<RobotDetailHumanPerception humanPerception={robotTwins.humanPerception} />
+				</Grid>
+				<Grid item xs={12} md={6}>
+					<RobotDetailTransitPointStarted
+						transitPointStarted={robotTwins.transitPointStarted}
+					/>
 				</Grid>
 			</Grid>
 		</Box>

@@ -27,6 +27,7 @@ export interface SRTContentDataInterface {
 	safetySystems?: SRTContentSafetySystems | undefined;
 	computerInfo?: SRTContentComputerInfo | undefined;
 	humanPerception?: SRTContentHumanPerception | undefined;
+	transitPointStarted?: SRTContentTransitPointStarted | undefined;
 }
 
 export interface SRTContentSiteInterface {
@@ -207,6 +208,19 @@ export interface SRTContentHumanPerception {
 	updatedAt: Date;
 }
 
+export interface SRTContentTransitPointStarted {
+	properties: {
+		guiVersion: string;
+		protobufVersion: string;
+		repositories: {
+			branch: string;
+			commit: string;
+			name: string;
+		}[];
+	};
+	updatedAt: Date;
+}
+
 export interface IRobotTwin {
 	id: string;
 	createdAt: Date;
@@ -222,6 +236,7 @@ export interface IRobotTwin {
 			name: string;
 			customerName: string;
 			note: string;
+			activity: string;
 			robotState: {
 				isReady: boolean;
 			};
@@ -233,6 +248,8 @@ export interface IRobotTwin {
 			};
 			status: {
 				controlMode: RobotDetailControlModeTypeEnum;
+				isDocked: boolean;
+				isJoystickConnected: boolean;
 				mission: {
 					status: string;
 					description: string;
@@ -251,8 +268,6 @@ export interface IRobotTwin {
 					powerSupplyHealth: string;
 					voltage: number;
 				};
-				isDocked: boolean;
-				isJoystickConnected: boolean;
 				safetySensors: {
 					drawers: {
 						0: boolean;
@@ -323,7 +338,15 @@ export interface IRobotTwin {
 					legsFarCount: number;
 				};
 			};
-			activity: string;
+			transitPointStarted: {
+				guiVersion: string;
+				protobufVersion: string;
+				repositories: {
+					branch: string;
+					commit: string;
+					name: string;
+				}[];
+			};
 		};
 	};
 	metadata: {
@@ -335,6 +358,9 @@ export interface IRobotTwin {
 				updatedAt: Date;
 			};
 			note: {
+				updatedAt: Date;
+			};
+			activity: {
 				updatedAt: Date;
 			};
 			robotState: {
@@ -356,6 +382,12 @@ export interface IRobotTwin {
 				controlMode: {
 					updatedAt: Date;
 				};
+				isDocked: {
+					updatedAt: Date;
+				};
+				isJoystickConnected: {
+					updatedAt: Date;
+				};
 				mission: {
 					updatedAt: Date;
 				};
@@ -363,12 +395,6 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 				batteryState: {
-					updatedAt: Date;
-				};
-				isDocked: {
-					updatedAt: Date;
-				};
-				isJoystickConnected: {
 					updatedAt: Date;
 				};
 				safetySensors: {
@@ -384,7 +410,7 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 			};
-			activity: {
+			transitPointStarted: {
 				updatedAt: Date;
 			};
 		};

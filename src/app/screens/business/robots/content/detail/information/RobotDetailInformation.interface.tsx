@@ -3,7 +3,8 @@ import {
 	SRTContentDataInterface,
 	SRTContentHumanPerception,
 	SRTContentSafetySensors,
-	SRTContentSafetySystems
+	SRTContentSafetySystems,
+	SRTContentTransitPointStarted
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
 export interface RobotDetailInformationInterface {
@@ -24,4 +25,8 @@ export interface RobotDetailComputerInfoInterface {
 
 export interface RobotDetailHumanPerceptionInterface {
 	humanPerception?: SRTContentHumanPerception | undefined;
+}
+
+export interface RobotDetailTransitPointStartedInterface {
+	transitPointStarted?: SRTContentTransitPointStarted | undefined;
 }

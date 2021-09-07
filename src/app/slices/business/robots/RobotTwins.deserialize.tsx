@@ -173,6 +173,14 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 							legsFarCount: state.status.humanPerception.legsFarCount
 						},
 						updatedAt: meta.status.computerInfo.updatedAt
+					},
+					transitPointStarted: {
+						properties: {
+							guiVersion: state.transitPointStarted.guiVersion,
+							protobufVersion: state.transitPointStarted.protobufVersion,
+							repositories: state.transitPointStarted.repositories
+						},
+						updatedAt: meta.status.computerInfo.updatedAt
 					}
 				};
 				return result;

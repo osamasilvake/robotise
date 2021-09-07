@@ -3,7 +3,8 @@ import {
 	SRTContentComputerInfo,
 	SRTContentHumanPerception,
 	SRTContentSafetySensors,
-	SRTContentSafetySystems
+	SRTContentSafetySystems,
+	SRTContentTransitPointStarted
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 
@@ -73,5 +74,34 @@ export const mapHumanPerception = (
 			icon: `${translation}.${key}.ICON`,
 			label: `${translation}.${key}.LABEL`,
 			value
+		};
+	});
+
+/**
+ * map transit point started
+ * @param data
+ * @param type
+ * @returns
+ */
+export const mapTransitPointStarted = (
+	data: SRTContentTransitPointStarted,
+	type: RobotDetailInformationTypeEnum
+) =>
+	Object.entries(data.properties).map(([key, value]) => {
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const none = AppConfigService.AppOptions.common.none;
+		return {
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
+			value: !Array.isArray(value)
+				? value || none
+				: Object.entries(value).map(([ky, val]) => ({
+						key: `idx: ${ky}`,
+						value: Object.entries(val)
+							.sort()
+							.map(([k, v]) => (Array.isArray(v) ? [k, v.join(', ')] : [k, v]))
+							.map(([k, v]) => `${k}: ${v || none}`)
+							.join(', ')
+				  }))
 		};
 	});

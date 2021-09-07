@@ -817,6 +817,23 @@
 								"LABEL": "Legs Far Count"
 							}
 						}
+					},
+					"TRANSIT_POINT_STARTED": {
+						"TITLE": "Transit Point Started",
+						"VALUES": {
+							"guiVersion": {
+								"ICON": "list_alt",
+								"LABEL": "GUI Version"
+							},
+							"protobufVersion": {
+								"ICON": "list_alt",
+								"LABEL": "Protobuf Version"
+							},
+							"repositories": {
+								"ICON": "dns",
+								"LABEL": "Repositories"
+							}
+						}
 					}
 				}
 			},

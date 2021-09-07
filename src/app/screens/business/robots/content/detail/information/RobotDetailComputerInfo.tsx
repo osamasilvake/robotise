@@ -3,7 +3,6 @@ import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AppConfigService } from '../../../../../../services';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 import { RobotDetailComputerInfoInterface } from './RobotDetailInformation.interface';
 import { mapComputerInfo } from './RobotDetailInformation.map';
@@ -36,10 +35,7 @@ const RobotDetailComputerInfo: FC<RobotDetailComputerInfoInterface> = (props) =>
 					{Object.values(row.value).map((item) => (
 						<ListItem key={item.key} dense>
 							<ListItemIcon />
-							<ListItemText
-								primary={item.key}
-								secondary={item.value || AppConfigService.AppOptions.common.none}
-							/>
+							<ListItemText primary={item.key} secondary={item.value} />
 						</ListItem>
 					))}
 				</Collapse>

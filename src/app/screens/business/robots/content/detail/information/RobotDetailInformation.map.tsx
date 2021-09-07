@@ -43,15 +43,15 @@ export const mapComputerInfo = (
 		return {
 			icon: `${common}.${key}.ICON`,
 			label: `${common}.${key}.LABEL`,
-			value: Object.entries(value).map(([k, val]) => ({
-				key: Number.isInteger(Number(k)) ? `idx: ${k}` : k,
+			value: Object.entries(value).map(([ky, val]) => ({
+				key: Number.isInteger(Number(ky)) ? `idx: ${ky}` : ky,
 				value: Array.isArray(val)
 					? val.join(', ')
 					: typeof val === 'object'
 					? Object.entries(val)
 							.map(([k, v]) => `${k}: ${v || none}`)
 							.join(', ')
-					: val
+					: val || none
 			}))
 		};
 	});

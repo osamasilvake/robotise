@@ -52,7 +52,6 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.siteId;
-
 	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
 	const fieldUsers = 'users';
 
@@ -112,7 +111,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	};
 
 	/**
-	 * close create/edit dialog
+	 * close create/edit notification dialog
 	 * @param event
 	 */
 	const closeCreateEditNotificationDialog = (event: MouseEvent<HTMLButtonElement>) => {
@@ -134,12 +133,12 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 				{type === SiteNotificationsCreateEditTypeEnum.CREATE && (
 					<DialogContent>
-						<FormControl variant="outlined" fullWidth margin="normal">
-							<InputLabel id="notification">
+						<FormControl fullWidth margin="normal">
+							<InputLabel id="notifications">
 								{t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
 							</InputLabel>
 							<Select
-								labelId="notification"
+								labelId="notifications"
 								id="notifications"
 								name="notifications"
 								label={t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
@@ -182,7 +181,6 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							{values.users.map((user, index) => (
 								<FormControl error fullWidth margin="normal" key={index}>
 									<TextField
-										variant="outlined"
 										type="email"
 										id={`${fieldUsers}-${index}`}
 										name={fieldUsers}

@@ -36,7 +36,6 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params: RobotParamsInterface = useParams();
-
 	const cRobotId = params.robotId;
 	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const common = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';
@@ -73,7 +72,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 				<form onSubmit={handleSubmit} className={classes.sForm}>
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
-							<FormControl variant="outlined" fullWidth>
+							<FormControl fullWidth>
 								<InputLabel id="notification">
 									{t(`${common}.FORM.FIELDS.SITE.LABEL`)}
 								</InputLabel>

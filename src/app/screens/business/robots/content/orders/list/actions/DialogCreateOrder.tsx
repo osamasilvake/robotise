@@ -49,9 +49,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 
-	const common = 'ROBOTS:CONTENT.ORDERS';
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
+	const common = 'ROBOTS:CONTENT.ORDERS';
 	const fieldLocation = 'location';
 
 	const {
@@ -113,7 +113,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						<FormControl error fullWidth margin="normal">
 							<TextField
 								required
-								variant="outlined"
 								type="number"
 								id={fieldLocation}
 								name={fieldLocation}
@@ -134,7 +133,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					)}
 
 					{values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION && (
-						<FormControl variant="outlined" fullWidth margin="normal">
+						<FormControl fullWidth margin="normal">
 							<InputLabel id="service-positions">
 								{t(`${common}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`)}
 							</InputLabel>
@@ -157,13 +156,13 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						</FormControl>
 					)}
 
-					<FormControl variant="outlined" fullWidth margin="normal">
-						<InputLabel id="order-mode">
+					<FormControl fullWidth margin="normal">
+						<InputLabel id="mode">
 							{t(`${common}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
 						</InputLabel>
 						<Select
 							required
-							labelId="order-mode"
+							labelId="mode"
 							id="mode"
 							name="mode"
 							value={values.mode}

@@ -25,6 +25,7 @@ export interface SRTContentDataInterface {
 	activityState?: SRTContentActivityState | undefined;
 	safetySensorsState?: SRTContentSafetySensorsState | undefined;
 	safetySystemsState?: SRTContentSafetySystemsState | undefined;
+	computerInfoState?: SRTContentComputerInfoState | undefined;
 }
 
 export interface SRTContentSiteInterface {
@@ -162,6 +163,41 @@ export interface SRTContentSafetySystemsState {
 	updatedAt: Date;
 }
 
+export interface SRTContentComputerInfoState {
+	properties: {
+		cpuLoad: {
+			cpu: number[];
+			average: number;
+		};
+		memoryUsage: {
+			total: number;
+			used: number;
+			free: number;
+			shared: number;
+			cached: number;
+			available: number;
+			swapFree: number;
+			swapTotal: number;
+			swapUsed: number;
+		};
+		wifiStatus: {
+			interface: string;
+			essid: string;
+			signalStrength: number;
+		};
+		hardDrives: {
+			name: string;
+			size: number;
+			used: number;
+			available: number;
+			capacityPercents: number;
+			status: string;
+			mountPoint: string;
+		}[];
+	};
+	updatedAt: Date;
+}
+
 export interface IRobotTwin {
 	id: string;
 	createdAt: Date;
@@ -242,6 +278,37 @@ export interface IRobotTwin {
 					stop0ResetRequired: boolean;
 					stop1ResetRequired: boolean;
 				};
+				computerInfo: {
+					cpuLoad: {
+						cpu: number[];
+						average: number;
+					};
+					memoryUsage: {
+						total: number;
+						used: number;
+						free: number;
+						shared: number;
+						cached: number;
+						available: number;
+						swapFree: number;
+						swapTotal: number;
+						swapUsed: number;
+					};
+					wifiStatus: {
+						interface: string;
+						essid: string;
+						signalStrength: number;
+					};
+					hardDrives: {
+						name: string;
+						size: number;
+						used: number;
+						available: number;
+						capacityPercents: number;
+						status: string;
+						mountPoint: string;
+					}[];
+				};
 			};
 			activity: string;
 		};
@@ -295,6 +362,9 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 				safetySystem: {
+					updatedAt: Date;
+				};
+				computerInfo: {
 					updatedAt: Date;
 				};
 			};

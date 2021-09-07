@@ -43,7 +43,6 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			</Typography>
 			<Box>
 				<FormControl
-					variant="outlined"
 					disabled={
 						!state.ready ||
 						!state.control ||
@@ -87,7 +86,6 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 			</Box>
 			<Box className={classes.sCommandsActionTranslateBox}>
 				<FormControl
-					variant="outlined"
 					disabled={!state.ready || !state.control || robot.control.loading}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="control-translate">{t(`${common}.TRANSLATE.LABEL`)}</InputLabel>

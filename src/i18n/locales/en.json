@@ -628,9 +628,9 @@
 						}
 					}
 				},
-				"SAFETY": {
-					"TITLE": "Safety Information",
-					"SYSTEMS": {
+				"INFORMATION": {
+					"TITLE": "Information",
+					"SAFETY_SYSTEMS": {
 						"TITLE": "Safety Systems",
 						"VALUES": {
 							"backMutingActive": {
@@ -719,7 +719,7 @@
 							}
 						}
 					},
-					"SENSORS": {
+					"SAFETY_SENSORS": {
 						"TITLE": "Safety Sensors",
 						"VALUES": {
 							"drawers": {
@@ -781,6 +781,27 @@
 								"LABEL": "safety_edge",
 								"MSG_1": "Safety edge is ok",
 								"MSG_2": "Safety edge is triggered"
+							}
+						}
+					},
+					"COMPUTER_INFO": {
+						"TITLE": "Computer Info",
+						"VALUES": {
+							"cpuLoad": {
+								"ICON": "hourglass_full",
+								"LABEL": "CPU Load"
+							},
+							"memoryUsage": {
+								"ICON": "memory",
+								"LABEL": "Memory Usage"
+							},
+							"wifiStatus": {
+								"ICON": "wifi",
+								"LABEL": "Wifi Status"
+							},
+							"hardDrives": {
+								"ICON": "save",
+								"LABEL": "Hard Drives"
 							}
 						}
 					}

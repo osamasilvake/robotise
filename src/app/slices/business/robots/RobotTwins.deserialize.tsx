@@ -157,6 +157,15 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 							stop1ResetRequired: state.status.safetySystem.stop1ResetRequired
 						},
 						updatedAt: meta.status.safetySystem.updatedAt
+					},
+					computerInfoState: {
+						properties: {
+							cpuLoad: state.status.computerInfo.cpuLoad,
+							memoryUsage: state.status.computerInfo.memoryUsage,
+							wifiStatus: state.status.computerInfo.wifiStatus,
+							hardDrives: state.status.computerInfo.hardDrives
+						},
+						updatedAt: meta.status.computerInfo.updatedAt
 					}
 				};
 				return result;

@@ -3,21 +3,22 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
-import { RobotDetailSafetyInterface } from './RobotDetailSafety.interface';
-import { RobotDetailSafetyStyle } from './RobotDetailSafety.style';
-import RobotDetailSafetySensors from './RobotDetailSensors';
-import RobotDetailSafetySystems from './RobotDetailSystems';
+import RobotDetailComputerInfo from './RobotDetailComputerInfo';
+import { RobotDetailInformationInterface } from './RobotDetailInformation.interface';
+import { RobotDetailInformationStyle } from './RobotDetailInformation.style';
+import RobotDetailSafetySensors from './RobotDetailSafetySensors';
+import RobotDetailSafetySystems from './RobotDetailSafetySystems';
 
-const RobotDetailSafety: FC<RobotDetailSafetyInterface> = (props) => {
+const RobotDetailInformation: FC<RobotDetailInformationInterface> = (props) => {
 	const { robotTwins } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotDetailSafetyStyle();
+	const classes = RobotDetailInformationStyle();
 
 	return (
 		<Box className={classes.sStateContainer}>
 			{/* Title */}
 			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.DETAIL.SAFETY.TITLE')}
+				{t('CONTENT.DETAIL.INFORMATION.TITLE')}
 			</Typography>
 
 			{/* Date */}
@@ -36,8 +37,11 @@ const RobotDetailSafety: FC<RobotDetailSafetyInterface> = (props) => {
 				<Grid item xs={12} md={6}>
 					<RobotDetailSafetySensors sensors={robotTwins.safetySensorsState} />
 				</Grid>
+				<Grid item xs={12} md={6}>
+					<RobotDetailComputerInfo computerInfo={robotTwins.computerInfoState} />
+				</Grid>
 			</Grid>
 		</Box>
 	);
 };
-export default RobotDetailSafety;
+export default RobotDetailInformation;

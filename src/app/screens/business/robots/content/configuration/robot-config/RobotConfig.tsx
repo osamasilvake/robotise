@@ -93,7 +93,6 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 							<FormControl error fullWidth>
 								<TextField
 									required
-									variant="outlined"
 									type="string"
 									id="name"
 									name="name"
@@ -109,7 +108,6 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 							<FormControl error fullWidth margin="normal">
 								<TextField
 									required
-									variant="outlined"
 									type="string"
 									id="customerName"
 									name="customerName"

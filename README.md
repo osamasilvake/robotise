@@ -54,7 +54,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [standard-version](https://github.com/conventional-changelog/standard-version)
 
 
-### Client Packages 
+### Client Packages
 - [X] [Create React App](https://github.com/facebook/create-react-app)
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
@@ -71,3 +71,4 @@ A summary of development workflow involving multiple git branches.
 - [X] [Moment](https://momentjs.com/)
 - [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [React CSV](https://github.com/react-csv/react-csv)
+- [X] [DOM Purify](https://github.com/cure53/DOMPurify)

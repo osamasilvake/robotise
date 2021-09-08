@@ -5,6 +5,7 @@ export interface UploadImageInterface {
 	setImage: Dispatch<SetStateAction<string>>;
 	imageError: number;
 	setImageError: Dispatch<SetStateAction<number>>;
+	background?: boolean;
 }
 
 export interface UploadImageChangeInterface {

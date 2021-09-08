@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles';
+import { alpha, Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
 import { AppConfigService } from '../../../../../../../services';
@@ -10,5 +10,8 @@ export const SiteProductsTableStyle = makeStyles((theme: Theme) => ({
 	},
 	sEditProduct: {
 		marginRight: theme.spacing(0.5)
+	},
+	sAvatarBackground: {
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c15, 0.7)
 	}
 }));

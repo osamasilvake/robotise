@@ -15,7 +15,7 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyle();
 
-	const common = 'CONTENT.DETAIL.COMMANDS.MUTE';
+	const translation = 'CONTENT.DETAIL.COMMANDS.MUTE';
 
 	return (
 		<Box>
@@ -23,7 +23,7 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 				variant="subtitle2"
 				color="textSecondary"
 				className={classes.sCommandsMuteTitle}>
-				{t(`${common}.TITLE`)}
+				{t(`${translation}.TITLE`)}
 			</Typography>
 			<ButtonGroup
 				color="primary"
@@ -39,7 +39,7 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 						state: RobotDetailCommandsMuteSensorsTypeEnum.FRONT_MUTED
 					})}
 					disabled={state.forward || state.backward}>
-					{t(`${common}.FRONT`)}
+					{t(`${translation}.FRONT`)}
 				</Button>
 
 				{/* Back */}
@@ -52,7 +52,7 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 						state: RobotDetailCommandsMuteSensorsTypeEnum.BACK_MUTED
 					})}
 					disabled={state.forward || state.backward}>
-					{t(`${common}.BACK`)}
+					{t(`${translation}.BACK`)}
 				</Button>
 
 				{/* Nothing */}
@@ -61,7 +61,7 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 						command: RobotDetailCommandsTypeEnum.MUTE_SENSORS,
 						state: RobotDetailCommandsMuteSensorsTypeEnum.NOTHING_MUTED
 					})}>
-					{t(`${common}.UN_MUTE`)}
+					{t(`${translation}.UN_MUTE`)}
 				</Button>
 			</ButtonGroup>
 		</Box>

@@ -1,8 +1,10 @@
 import { AppConfigService } from '../../../../../../services';
 import {
-	SRTContentComputerInfoState,
-	SRTContentSafetySensorsState,
-	SRTContentSafetySystemsState
+	SRTContentComputerInfo,
+	SRTContentHumanPerception,
+	SRTContentSafetySensors,
+	SRTContentSafetySystems,
+	SRTContentTransitPointStarted
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 
@@ -13,16 +15,16 @@ import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
  * @returns
  */
 export const mapSafetyContent = (
-	data: SRTContentSafetySystemsState | SRTContentSafetySensorsState,
+	data: SRTContentSafetySystems | SRTContentSafetySensors,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
-		const common = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
 		return {
-			icon: `${common}.${key}.ICON`,
-			label: `${common}.${key}.LABEL`,
-			msg1: `${common}.${key}.MSG_1`,
-			msg2: `${common}.${key}.MSG_2`,
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
+			msg1: `${translation}.${key}.MSG_1`,
+			msg2: `${translation}.${key}.MSG_2`,
 			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value)
 		};
 	});
@@ -34,25 +36,72 @@ export const mapSafetyContent = (
  * @returns
  */
 export const mapComputerInfo = (
-	data: SRTContentComputerInfoState,
+	data: SRTContentComputerInfo,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
-		const common = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const none = AppConfigService.AppOptions.common.none;
 		return {
-			icon: `${common}.${key}.ICON`,
-			label: `${common}.${key}.LABEL`,
-			value: Object.entries(value).map(([k, val]) => ({
-				key: Number.isInteger(Number(k)) ? `idx: ${k}` : k,
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
+			value: Object.entries(value).map(([ky, val]) => ({
+				key: Number.isInteger(Number(ky)) ? `idx: ${ky}` : ky,
 				value: Array.isArray(val)
 					? val.join(', ')
 					: typeof val === 'object'
 					? Object.entries(val)
-							.map(
-								([k, v]) => `${k}: ${v || AppConfigService.AppOptions.common.none}`
-							)
+							.map(([k, v]) => `${k}: ${v || none}`)
 							.join(', ')
-					: val
+					: val || none
 			}))
+		};
+	});
+
+/**
+ * map human perception
+ * @param data
+ * @param type
+ * @returns
+ */
+export const mapHumanPerception = (
+	data: SRTContentHumanPerception,
+	type: RobotDetailInformationTypeEnum
+) =>
+	Object.entries(data.properties).map(([key, value]) => {
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		return {
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
+			value
+		};
+	});
+
+/**
+ * map transit point started
+ * @param data
+ * @param type
+ * @returns
+ */
+export const mapTransitPointStarted = (
+	data: SRTContentTransitPointStarted,
+	type: RobotDetailInformationTypeEnum
+) =>
+	Object.entries(data.properties).map(([key, value]) => {
+		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const none = AppConfigService.AppOptions.common.none;
+		return {
+			icon: `${translation}.${key}.ICON`,
+			label: `${translation}.${key}.LABEL`,
+			value: !Array.isArray(value)
+				? value || none
+				: Object.entries(value).map(([ky, val]) => ({
+						key: `idx: ${ky}`,
+						value: Object.entries(val)
+							.sort()
+							.map(([k, v]) => (Array.isArray(v) ? [k, v.join(', ')] : [k, v]))
+							.map(([k, v]) => `${k}: ${v || none}`)
+							.join(', ')
+				  }))
 		};
 	});

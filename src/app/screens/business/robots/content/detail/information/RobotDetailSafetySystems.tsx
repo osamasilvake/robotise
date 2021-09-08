@@ -17,7 +17,7 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 	const [open, setOpen] = useState(false);
 
 	const mappedSystem =
-		systems && mapSafetyContent(systems, RobotDetailInformationTypeEnum.SYSTEMS);
+		systems && mapSafetyContent(systems, RobotDetailInformationTypeEnum.SAFETY_SYSTEMS);
 
 	return mappedSystem ? (
 		<List className={classes.sList}>

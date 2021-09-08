@@ -10,7 +10,7 @@ export const LoginValidation = (
 	values: AuthLoginFormInterface,
 	touched: AuthLoginFormInterface
 ): AuthLoginFormInterface => {
-	const common = 'LOGIN.FIELDS';
+	const translation = 'LOGIN.FIELDS';
 	const regexEmail = AppConfigService.AppOptions.regex.email;
 	const errors: AuthLoginFormInterface = {
 		email: '',
@@ -21,12 +21,12 @@ export const LoginValidation = (
 	if (touched.email) {
 		// required
 		if (!values.email) {
-			errors.email = `${common}.EMAIL.VALIDATIONS.REQUIRED`;
+			errors.email = `${translation}.EMAIL.VALIDATIONS.REQUIRED`;
 		}
 
 		// validate
 		if (values.email && !regexEmail.test(values.email)) {
-			errors.email = `${common}.EMAIL.VALIDATIONS.INVALID`;
+			errors.email = `${translation}.EMAIL.VALIDATIONS.INVALID`;
 		}
 	}
 

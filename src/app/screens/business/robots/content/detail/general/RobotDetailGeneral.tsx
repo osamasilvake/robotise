@@ -21,19 +21,19 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
-	const common = 'CONTENT.DETAIL.GENERAL';
+	const translation = 'CONTENT.DETAIL.GENERAL';
 
 	return (
 		<Grid container spacing={1}>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${common}.SITE`)}
+					{t(`${translation}.SITE`)}
 				</Typography>
 				<Typography>{robotTwins.site.title}</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${common}.LAST_UPDATED`)}
+					{t(`${translation}.LAST_UPDATED`)}
 				</Typography>
 				<Typography>{momentFormat1(robotTwins.updatedAt)}</Typography>
 			</Grid>
@@ -42,12 +42,12 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					variant="caption"
 					color="textSecondary"
 					className={classes.sGridItemBlock}>
-					{t(`${common}.STATUS.LABEL`)}
+					{t(`${translation}.STATUS.LABEL`)}
 				</Typography>
 				<Status active={robotTwins.robotState.isReady.value}>
 					{robotTwins.robotState.isReady.value
-						? t(`${common}.STATUS.ON`)
-						: t(`${common}.STATUS.OFF`)}
+						? t(`${translation}.STATUS.ON`)
+						: t(`${translation}.STATUS.OFF`)}
 				</Status>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={2}>
@@ -55,7 +55,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					variant="caption"
 					color="textSecondary"
 					className={classes.sGridItemBlock}>
-					{t(`${common}.CONTROL_MODE`)}
+					{t(`${translation}.CONTROL_MODE`)}
 				</Typography>
 				<Status
 					active={
@@ -69,17 +69,17 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					variant="caption"
 					color="textSecondary"
 					className={classes.sGridItemBlock}>
-					{t(`${common}.ACCEPT_ORDERS.LABEL`)}
+					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
 				</Typography>
 				<Status active={!!robotTwins.site.acceptOrders}>
 					{robotTwins.site.acceptOrders
-						? t(`${common}.ACCEPT_ORDERS.ACTIVE`)
-						: t(`${common}.ACCEPT_ORDERS.INACTIVE`)}
+						? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
+						: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
 				</Status>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${common}.CUSTOMER_NAME`)}
+					{t(`${translation}.CUSTOMER_NAME`)}
 				</Typography>
 				<Typography>
 					{robotTwins.robot.customerName || AppConfigService.AppOptions.common.none}
@@ -87,7 +87,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${common}.MISSION`)}
+					{t(`${translation}.MISSION`)}
 				</Typography>
 				<Typography className={classes.sGridItemFlex}>
 					{robotTwins.mission.status || AppConfigService.AppOptions.common.none}
@@ -100,7 +100,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 			<Grid item xs={12} sm={6} md={8} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${common}.NOTE.TITLE`)}
+					{t(`${translation}.NOTE.TITLE`)}
 					<Tooltip
 						placement="right"
 						title={String(t('TOOLTIPS:EDIT'))}

@@ -4,24 +4,25 @@ import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
-import { RobotDetailComputerInfoInterface } from './RobotDetailInformation.interface';
-import { mapComputerInfo } from './RobotDetailInformation.map';
+import { RobotDetailHumanPerceptionInterface } from './RobotDetailInformation.interface';
+import { mapHumanPerception } from './RobotDetailInformation.map';
 import { RobotDetailInformationStyle } from './RobotDetailInformation.style';
 
-const RobotDetailComputerInfo: FC<RobotDetailComputerInfoInterface> = (props) => {
-	const { computerInfo } = props;
+const RobotDetailHumanPerception: FC<RobotDetailHumanPerceptionInterface> = (props) => {
+	const { humanPerception } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailInformationStyle();
 
 	const [open, setOpen] = useState(false);
 
 	const mappedInfo =
-		computerInfo && mapComputerInfo(computerInfo, RobotDetailInformationTypeEnum.COMPUTER_INFO);
+		humanPerception &&
+		mapHumanPerception(humanPerception, RobotDetailInformationTypeEnum.HUMAN_PERCEPTION);
 
 	return mappedInfo ? (
 		<List className={classes.sList}>
 			<ListItem button selected onClick={() => setOpen(!open)}>
-				<ListItemText primary={t('CONTENT.DETAIL.INFORMATION.COMPUTER_INFO.TITLE')} />
+				<ListItemText primary={t('CONTENT.DETAIL.INFORMATION.HUMAN_PERCEPTION.TITLE')} />
 				{open ? <ExpandLess /> : <ExpandMore />}
 			</ListItem>
 			{mappedInfo.map((row) => (
@@ -30,17 +31,11 @@ const RobotDetailComputerInfo: FC<RobotDetailComputerInfoInterface> = (props) =>
 						<ListItemIcon>
 							<Icon>{t(row.icon)}</Icon>
 						</ListItemIcon>
-						<ListItemText primary={t(row.label)} />
+						<ListItemText primary={t(row.label)} secondary={row.value} />
 					</ListItem>
-					{Object.values(row.value).map((item) => (
-						<ListItem key={item.key} dense>
-							<ListItemIcon />
-							<ListItemText primary={item.key} secondary={item.value} />
-						</ListItem>
-					))}
 				</Collapse>
 			))}
 		</List>
 	) : null;
 };
-export default RobotDetailComputerInfo;
+export default RobotDetailHumanPerception;

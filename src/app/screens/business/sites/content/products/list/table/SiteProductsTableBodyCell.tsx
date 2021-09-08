@@ -70,12 +70,12 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	 */
 	const setCellValue = (product: SPCDataInterface, column: SiteProductsTableColumnInterface) => {
 		if (column.id === SiteProductsTableColumnsTypeEnum.ACTIONS) {
-			const common = 'CONTENT.PRODUCTS.LIST.TABLE.VALUES';
+			const translation = 'CONTENT.PRODUCTS.LIST.TABLE.VALUES';
 			return (
 				<Box>
 					<Chip
 						size="small"
-						label={t(`${common}.EDIT`)}
+						label={t(`${translation}.EDIT`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -95,7 +95,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 							color: AppConfigService.AppOptions.colors.c12
 						}}
 						size="small"
-						label={t(`${common}.DELETE`)}
+						label={t(`${translation}.DELETE`)}
 						variant="outlined"
 						clickable
 						onClick={openDeleteProductDialog}

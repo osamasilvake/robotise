@@ -29,7 +29,7 @@ const SiteContent: FC = () => {
 	const siteSingle = sites.content?.dataById[cSiteId];
 	const problem = !!sites.errors?.id || (sites.content && !cSiteId);
 
-	const common = 'CONTENT.TABS';
+	const translation = 'CONTENT.TABS';
 
 	useEffect(() => {
 		const cIndex = sitesRoutes.findIndex(
@@ -70,10 +70,10 @@ const SiteContent: FC = () => {
 						onChange={handleTabChange}
 						variant="scrollable"
 						textColor="primary">
-						<Tab label={t(`${common}.DETAIL`)} />
-						<Tab label={t(`${common}.PRODUCTS`)} />
-						<Tab label={t(`${common}.ROOMS`)} />
-						<Tab label={t(`${common}.CONFIGURATION`)} />
+						<Tab label={t(`${translation}.DETAIL`)} />
+						<Tab label={t(`${translation}.PRODUCTS`)} />
+						<Tab label={t(`${translation}.ROOMS`)} />
+						<Tab label={t(`${translation}.CONFIGURATION`)} />
 					</Tabs>
 
 					{/* Tab Panel */}

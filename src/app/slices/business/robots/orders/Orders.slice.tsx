@@ -289,16 +289,16 @@ const handleMapping = (result: SOContentInterface) => ({
  * @returns
  */
 const mapItem = (item: SOCDataInterface) => {
-	const common = 'CONTENT.ORDERS';
+	const translation = 'CONTENT.ORDERS';
 	return {
 		...item,
-		status: `${common}.LIST.TABLE.VALUES.STATUS.${item.status}`,
+		status: `${translation}.LIST.TABLE.VALUES.STATUS.${item.status}`,
 		location:
 			item.location?.length <= 4
 				? item.location
-				: `${common}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
-		mode: `${common}.COMMON.MODE.${item.mode}`,
-		origin: `${common}.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
+				: `${translation}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
+		mode: `${translation}.COMMON.MODE.${item.mode}`,
+		origin: `${translation}.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
 	};
 };
 

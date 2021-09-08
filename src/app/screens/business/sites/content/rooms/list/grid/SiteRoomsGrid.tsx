@@ -33,7 +33,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const allRooms = siteSingle.rooms.available;
 	const allWhitelist = siteSingle.rooms.whitelist;
 
-	const common = 'CONTENT.ROOMS.LIST.GRID';
+	const translation = 'CONTENT.ROOMS.LIST.GRID';
 
 	useEffect(() => {
 		const allBlacklist = allRooms?.filter((r) => !allWhitelist?.includes(r));
@@ -97,7 +97,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 				<Box key={key}>
 					{/* Floor */}
 					<Typography variant="h2" className={classes.sFloorLabel}>
-						{t(`${common}.FLOOR`)} {key}
+						{t(`${translation}.FLOOR`)} {key}
 					</Typography>
 
 					{/* Grid */}
@@ -134,13 +134,13 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														}}
 													/>
 												}
-												label={t(`${common}.BLOCKED`)}
+												label={t(`${translation}.BLOCKED`)}
 												labelPlacement="start"
 											/>
 
 											<Box>
 												<Typography variant="body2">
-													{t(`${common}.ROOM`)}
+													{t(`${translation}.ROOM`)}
 												</Typography>
 												<Typography variant="h4">{room}</Typography>
 											</Box>

@@ -15,7 +15,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyle();
 
-	const common = 'CONTENT.DETAIL.COMMANDS.CONTROL';
+	const translation = 'CONTENT.DETAIL.COMMANDS.CONTROL';
 
 	return (
 		<Box>
@@ -24,7 +24,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					variant="h6"
 					color="textSecondary"
 					className={classes.sCommandsControlTitle}>
-					{t(`${common}.TITLE`)}
+					{t(`${translation}.TITLE`)}
 				</Typography>
 
 				{robot.control.loading && (
@@ -46,7 +46,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,
 						state: RobotDetailControlModeTypeEnum.ROC_CONTROL
 					})}>
-					{t(`${common}.STATE.ROC_CONTROL`)}
+					{t(`${translation}.STATE.ROC_CONTROL`)}
 				</Button>
 				<Button
 					className={clsx({
@@ -59,7 +59,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,
 						state: RobotDetailControlModeTypeEnum.AUTONOMOUS
 					})}>
-					{t(`${common}.STATE.AUTONOMOUS`)}
+					{t(`${translation}.STATE.AUTONOMOUS`)}
 				</Button>
 				<Button
 					className={clsx({
@@ -71,7 +71,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,
 						state: RobotDetailControlModeTypeEnum.JOYSTICK
 					})}>
-					{t(`${common}.STATE.JOYSTICK`)}
+					{t(`${translation}.STATE.JOYSTICK`)}
 				</Button>
 			</ButtonGroup>
 		</Box>

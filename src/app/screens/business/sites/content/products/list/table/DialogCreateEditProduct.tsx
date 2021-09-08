@@ -52,7 +52,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const cSiteId = params.siteId;
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 	const currency = sites.content?.dataById[cSiteId]?.currency || defaultCurrency;
-	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
+	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductFormInterface>(
@@ -98,8 +98,9 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 		<Dialog open={open} onClose={() => setOpen(false)}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
-					{type === SiteProductCreateEditTypeEnum.CREATE && t(`${common}.CREATE.TITLE`)}
-					{type === SiteProductCreateEditTypeEnum.EDIT && t(`${common}.EDIT.TITLE`)}
+					{type === SiteProductCreateEditTypeEnum.CREATE &&
+						t(`${translation}.CREATE.TITLE`)}
+					{type === SiteProductCreateEditTypeEnum.EDIT && t(`${translation}.EDIT.TITLE`)}
 				</DialogTitle>
 				<DialogContent>
 					<Grid container spacing={2}>
@@ -123,8 +124,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.name}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FIELDS.NAME.LABEL`)}
-									placeholder={t(`${common}.FIELDS.NAME.PLACEHOLDER`)}
+									label={t(`${translation}.FIELDS.NAME.LABEL`)}
+									placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
 								/>
 								{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 							</FormControl>
@@ -138,8 +139,10 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.price}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FIELDS.PRICE.LABEL`, { value: currency })}
-									placeholder={t(`${common}.FIELDS.PRICE.PLACEHOLDER`)}
+									label={t(`${translation}.FIELDS.PRICE.LABEL`, {
+										value: currency
+									})}
+									placeholder={t(`${translation}.FIELDS.PRICE.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
 								{errors && typeof errors.price === 'string' && (
@@ -158,8 +161,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.length}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FIELDS.LENGTH.LABEL`)}
-									placeholder={t(`${common}.FIELDS.LENGTH.PLACEHOLDER`)}
+									label={t(`${translation}.FIELDS.LENGTH.LABEL`)}
+									placeholder={t(`${translation}.FIELDS.LENGTH.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
 								{errors && typeof errors.length === 'string' && (
@@ -178,8 +181,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									error={!!errors?.weight}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FIELDS.WEIGHT.LABEL`)}
-									placeholder={t(`${common}.FIELDS.WEIGHT.PLACEHOLDER`)}
+									label={t(`${translation}.FIELDS.WEIGHT.LABEL`)}
+									placeholder={t(`${translation}.FIELDS.WEIGHT.PLACEHOLDER`)}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
 								{errors && typeof errors.weight === 'string' && (
@@ -197,8 +200,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									value={values?.volume}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${common}.FIELDS.SIZE.LABEL`)}
-									placeholder={t(`${common}.FIELDS.SIZE.PLACEHOLDER`)}
+									label={t(`${translation}.FIELDS.SIZE.LABEL`)}
+									placeholder={t(`${translation}.FIELDS.SIZE.PLACEHOLDER`)}
 								/>
 							</FormControl>
 						</Grid>

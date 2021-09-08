@@ -1,41 +1,41 @@
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableColumnInterface } from './RobotOrdersTable.interface';
 
-const common = 'CONTENT.ORDERS.LIST.TABLE.COLUMNS';
+const translation = 'CONTENT.ORDERS.LIST.TABLE.COLUMNS';
 export const columns: RobotOrdersTableColumnInterface[] = [
 	{
 		id: RobotOrdersTableColumnsTypeEnum.STATUS,
-		label: `${common}.STATUS`,
+		label: `${translation}.STATUS`,
 		minWidth: 200,
 		align: 'left'
 	},
 	{
 		id: RobotOrdersTableColumnsTypeEnum.TARGET,
-		label: `${common}.TARGET`,
+		label: `${translation}.TARGET`,
 		minWidth: 150,
 		align: 'left'
 	},
 	{
 		id: RobotOrdersTableColumnsTypeEnum.MODE,
-		label: `${common}.MODE`,
+		label: `${translation}.MODE`,
 		minWidth: 170,
 		align: 'left'
 	},
 	{
 		id: RobotOrdersTableColumnsTypeEnum.CREATED,
-		label: `${common}.CREATED`,
+		label: `${translation}.CREATED`,
 		minWidth: 200,
 		align: 'left'
 	},
 	{
 		id: RobotOrdersTableColumnsTypeEnum.ORIGIN,
-		label: `${common}.ORIGIN`,
+		label: `${translation}.ORIGIN`,
 		minWidth: 170,
 		align: 'left'
 	},
 	{
 		id: RobotOrdersTableColumnsTypeEnum.PURCHASE_REPORT,
-		label: `${common}.PURCHASE_REPORT`,
+		label: `${translation}.PURCHASE_REPORT`,
 		minWidth: 150,
 		align: 'right'
 	}

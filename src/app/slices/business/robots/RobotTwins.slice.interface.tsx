@@ -23,9 +23,11 @@ export interface SRTContentDataInterface {
 	dockingState?: SRTContentDockingStateInterface | undefined;
 	joystickState?: SRTContentJoystickState | undefined;
 	activityState?: SRTContentActivityState | undefined;
-	safetySensorsState?: SRTContentSafetySensorsState | undefined;
-	safetySystemsState?: SRTContentSafetySystemsState | undefined;
-	computerInfoState?: SRTContentComputerInfoState | undefined;
+	safetySensors?: SRTContentSafetySensors | undefined;
+	safetySystems?: SRTContentSafetySystems | undefined;
+	computerInfo?: SRTContentComputerInfo | undefined;
+	humanPerception?: SRTContentHumanPerception | undefined;
+	transitPointStarted?: SRTContentTransitPointStarted | undefined;
 }
 
 export interface SRTContentSiteInterface {
@@ -121,7 +123,7 @@ export interface SRTContentActivityState {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySensorsState {
+export interface SRTContentSafetySensors {
 	properties: {
 		drawers: {
 			0: boolean;
@@ -143,7 +145,7 @@ export interface SRTContentSafetySensorsState {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySystemsState {
+export interface SRTContentSafetySystems {
 	properties: {
 		backMutingActive: boolean;
 		brakeReleasePressed: boolean;
@@ -163,7 +165,7 @@ export interface SRTContentSafetySystemsState {
 	updatedAt: Date;
 }
 
-export interface SRTContentComputerInfoState {
+export interface SRTContentComputerInfo {
 	properties: {
 		cpuLoad: {
 			cpu: number[];
@@ -198,6 +200,27 @@ export interface SRTContentComputerInfoState {
 	updatedAt: Date;
 }
 
+export interface SRTContentHumanPerception {
+	properties: {
+		legsCloseCount: number;
+		legsFarCount: number;
+	};
+	updatedAt: Date;
+}
+
+export interface SRTContentTransitPointStarted {
+	properties: {
+		guiVersion: string;
+		protobufVersion: string;
+		repositories: {
+			branch: string;
+			commit: string;
+			name: string;
+		}[];
+	};
+	updatedAt: Date;
+}
+
 export interface IRobotTwin {
 	id: string;
 	createdAt: Date;
@@ -213,6 +236,7 @@ export interface IRobotTwin {
 			name: string;
 			customerName: string;
 			note: string;
+			activity: string;
 			robotState: {
 				isReady: boolean;
 			};
@@ -224,6 +248,8 @@ export interface IRobotTwin {
 			};
 			status: {
 				controlMode: RobotDetailControlModeTypeEnum;
+				isDocked: boolean;
+				isJoystickConnected: boolean;
 				mission: {
 					status: string;
 					description: string;
@@ -242,8 +268,6 @@ export interface IRobotTwin {
 					powerSupplyHealth: string;
 					voltage: number;
 				};
-				isDocked: boolean;
-				isJoystickConnected: boolean;
 				safetySensors: {
 					drawers: {
 						0: boolean;
@@ -309,8 +333,20 @@ export interface IRobotTwin {
 						mountPoint: string;
 					}[];
 				};
+				humanPerception: {
+					legsCloseCount: number;
+					legsFarCount: number;
+				};
 			};
-			activity: string;
+			transitPointStarted: {
+				guiVersion: string;
+				protobufVersion: string;
+				repositories: {
+					branch: string;
+					commit: string;
+					name: string;
+				}[];
+			};
 		};
 	};
 	metadata: {
@@ -322,6 +358,9 @@ export interface IRobotTwin {
 				updatedAt: Date;
 			};
 			note: {
+				updatedAt: Date;
+			};
+			activity: {
 				updatedAt: Date;
 			};
 			robotState: {
@@ -343,6 +382,12 @@ export interface IRobotTwin {
 				controlMode: {
 					updatedAt: Date;
 				};
+				isDocked: {
+					updatedAt: Date;
+				};
+				isJoystickConnected: {
+					updatedAt: Date;
+				};
 				mission: {
 					updatedAt: Date;
 				};
@@ -350,12 +395,6 @@ export interface IRobotTwin {
 					updatedAt: Date;
 				};
 				batteryState: {
-					updatedAt: Date;
-				};
-				isDocked: {
-					updatedAt: Date;
-				};
-				isJoystickConnected: {
 					updatedAt: Date;
 				};
 				safetySensors: {
@@ -367,8 +406,11 @@ export interface IRobotTwin {
 				computerInfo: {
 					updatedAt: Date;
 				};
+				humanPerception: {
+					updatedAt: Date;
+				};
 			};
-			activity: {
+			transitPointStarted: {
 				updatedAt: Date;
 			};
 		};

@@ -30,7 +30,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.siteId;
-	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
+	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
 
 	/**
 	 * delete product
@@ -62,9 +62,9 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 
 	return (
 		<Dialog open={open} onClose={deleteProduct(false)}>
-			<DialogTitle>{t(`${common}.TITLE`)}</DialogTitle>
+			<DialogTitle>{t(`${translation}.TITLE`)}</DialogTitle>
 			<DialogContent>
-				<DialogContentText>{t(`${common}.TEXT`)}</DialogContentText>
+				<DialogContentText>{t(`${translation}.TEXT`)}</DialogContentText>
 			</DialogContent>
 			<DialogActions>
 				<Button

@@ -804,6 +804,36 @@
 								"LABEL": "Hard Drives"
 							}
 						}
+					},
+					"HUMAN_PERCEPTION": {
+						"TITLE": "Human Perception",
+						"VALUES": {
+							"legsCloseCount": {
+								"ICON": "airline_seat_legroom_reduced",
+								"LABEL": "Legs Close Count"
+							},
+							"legsFarCount": {
+								"ICON": "airline_seat_legroom_extra",
+								"LABEL": "Legs Far Count"
+							}
+						}
+					},
+					"TRANSIT_POINT_STARTED": {
+						"TITLE": "Transit Point Started",
+						"VALUES": {
+							"guiVersion": {
+								"ICON": "list_alt",
+								"LABEL": "GUI Version"
+							},
+							"protobufVersion": {
+								"ICON": "list_alt",
+								"LABEL": "Protobuf Version"
+							},
+							"repositories": {
+								"ICON": "dns",
+								"LABEL": "Repositories"
+							}
+						}
 					}
 				}
 			},

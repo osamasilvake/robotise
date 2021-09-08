@@ -9,7 +9,7 @@ export const RobotConfigValidation = (
 	values: RobotConfigFormInterface,
 	touched: RobotConfigFormInterface
 ): RobotConfigFormInterface => {
-	const common = 'CONTENT.CONFIGURATION.ROBOT_CONFIG.FORM.FIELDS';
+	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIG.FORM.FIELDS';
 	const errors: RobotConfigFormInterface = {
 		name: '',
 		customerName: ''
@@ -19,7 +19,7 @@ export const RobotConfigValidation = (
 	if (touched.name) {
 		// required
 		if (!values.name) {
-			errors.name = `${common}.NAME.VALIDATIONS.REQUIRED`;
+			errors.name = `${translation}.NAME.VALIDATIONS.REQUIRED`;
 		}
 	}
 
@@ -27,7 +27,7 @@ export const RobotConfigValidation = (
 	if (touched.customerName) {
 		// required
 		if (!values.customerName) {
-			errors.customerName = `${common}.CUSTOMER_NAME.VALIDATIONS.REQUIRED`;
+			errors.customerName = `${translation}.CUSTOMER_NAME.VALIDATIONS.REQUIRED`;
 		}
 	}
 

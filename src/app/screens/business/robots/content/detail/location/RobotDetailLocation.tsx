@@ -15,19 +15,19 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 
 	const [grid, showGrid] = useState(false);
 
-	const common = 'CONTENT.DETAIL.LOCATION';
+	const translation = 'CONTENT.DETAIL.LOCATION';
 
 	return robotTwins.location ? (
 		<Box className={classes.sLocationContainer}>
 			{/* Title */}
 			<Typography variant="h6" color="textSecondary" className={classes.sLocationTitle}>
-				{t(`${common}.TITLE`)}
+				{t(`${translation}.TITLE`)}
 			</Typography>
 
 			{/* Map Label */}
 			{robotTwins.location.value.floor && (
 				<Typography color="textPrimary">
-					{t(`${common}.FLOOR`)} {robotTwins.location.value.floor}
+					{t(`${translation}.FLOOR`)} {robotTwins.location.value.floor}
 				</Typography>
 			)}
 

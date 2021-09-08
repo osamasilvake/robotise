@@ -37,7 +37,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.siteId;
 
-	const common = 'CONTENT.CONFIGURATION.NOTIFICATIONS';
+	const translation = 'CONTENT.CONFIGURATION.NOTIFICATIONS';
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -61,10 +61,10 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 			<Card square elevation={1} className={classes.sCard}>
 				<CardContent className={cardClasses.sCardContent0}>
 					<Typography variant="h6" className={classes.sTitle}>
-						{t(`${common}.TITLE`)}
+						{t(`${translation}.TITLE`)}
 					</Typography>
 					<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
-						{t(`${common}.EXCERPT`)}
+						{t(`${translation}.EXCERPT`)}
 					</Typography>
 
 					<Box className={classes.sCreate}>

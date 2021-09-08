@@ -33,7 +33,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const cRobotId = params.robotId;
-	const common = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
+	const translation = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
 	const fieldNote = 'note';
 	const maxLength = 2000;
 
@@ -54,9 +54,9 @@ const DialogNote: FC<NoteInterface> = (props) => {
 	return (
 		<Dialog open={open} onClose={() => setOpen(false)}>
 			<form onSubmit={handleSubmit}>
-				<DialogTitle>{t(`${common}.TITLE`)}</DialogTitle>
+				<DialogTitle>{t(`${translation}.TITLE`)}</DialogTitle>
 				<DialogContent>
-					<DialogContentText>{t(`${common}.EXCERPT`)}</DialogContentText>
+					<DialogContentText>{t(`${translation}.EXCERPT`)}</DialogContentText>
 					<FormControl fullWidth margin="normal">
 						<TextField
 							multiline
@@ -75,11 +75,11 @@ const DialogNote: FC<NoteInterface> = (props) => {
 									e.currentTarget.value.length
 								)
 							}
-							label={t(`${common}.FIELDS.LABEL`)}
-							placeholder={t(`${common}.FIELDS.PLACEHOLDER`)}
+							label={t(`${translation}.FIELDS.LABEL`)}
+							placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
 						/>
 						<FormHelperText error={values.note.length === maxLength}>
-							{t(`${common}.NOTE`, { value: values.note.length })}
+							{t(`${translation}.NOTE`, { value: values.note.length })}
 						</FormHelperText>
 					</FormControl>
 				</DialogContent>

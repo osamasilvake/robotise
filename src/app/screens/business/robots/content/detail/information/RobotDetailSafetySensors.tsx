@@ -17,7 +17,7 @@ const RobotDetailSafetySensors: FC<RobotDetailSafetySensorsInterface> = (props) 
 	const [open, setOpen] = useState(false);
 
 	const mappedSensors =
-		sensors && mapSafetyContent(sensors, RobotDetailInformationTypeEnum.SENSORS);
+		sensors && mapSafetyContent(sensors, RobotDetailInformationTypeEnum.SAFETY_SENSORS);
 
 	return mappedSensors ? (
 		<List component="nav" className={classes.sList}>

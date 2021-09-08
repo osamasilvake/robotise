@@ -42,7 +42,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 
 	const { handleChangeSelect, handleSubmit, values } = useForm<SiteRobotConfigFormInterface>(
 		{
-			robotId: ''
+			robotId: attachedRobot?.robotId || ''
 		},
 		() => ({ robotId: '' }),
 		async () => {

@@ -1,4 +1,5 @@
 import { Avatar, Box, Chip, TableCell } from '@material-ui/core';
+import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -123,7 +124,16 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				return value;
 			} else if (typeof value === 'string') {
 				if (columns[0].id === column.id) {
-					return <Avatar variant="square" src={value} alt={product.name} />;
+					return (
+						<Avatar
+							variant="square"
+							src={value}
+							alt={product.name}
+							className={clsx({
+								[classes.sAvatarBackground]: product.price === 1
+							})}
+						/>
+					);
 				}
 				return t(value) || AppConfigService.AppOptions.common.none;
 			}

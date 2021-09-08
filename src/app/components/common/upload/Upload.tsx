@@ -9,7 +9,7 @@ import { UploadImageChangeInterface, UploadImageInterface } from './Upload.inter
 import { UploadStyle } from './Upload.style';
 
 const Upload: FC<UploadImageInterface> = (props) => {
-	const { image, setImage, imageError, setImageError } = props;
+	const { image, setImage, imageError, setImageError, background } = props;
 	const { t } = useTranslation('UPLOAD');
 	const classes = UploadStyle();
 
@@ -38,6 +38,7 @@ const Upload: FC<UploadImageInterface> = (props) => {
 					variant="square"
 					src={image || AppConfigService.AppImageURLs.logo.iconOff}
 					alt={AppConfigService.AppImageURLs.logo.name}
+					className={clsx({ [classes.sImageBackground]: background })}
 				/>
 
 				<label htmlFor="button-file">

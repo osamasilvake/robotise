@@ -431,7 +431,7 @@
 						"FIELDS": {
 							"SITE": {
 								"LABEL": "Robot to accept order",
-								"NOTE": "*Attached robot is hidden!"
+								"NOTE": "*Either Attached robot is hidden or No robot is assigned to the site!"
 							}
 						},
 						"BUTTONS": {

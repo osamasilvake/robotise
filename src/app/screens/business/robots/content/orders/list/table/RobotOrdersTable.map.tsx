@@ -11,7 +11,8 @@ export const mapStatusLevel = (status: string) => {
 	const value = status && status.split('.').pop();
 	switch (value) {
 		case RobotOrdersTableColumnStatusTypeEnum.PENDING:
-		case RobotOrdersTableColumnStatusTypeEnum.TIMEOUT:
+		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_TIMEOUT_CUSTOMER_NOT_PRESENT:
+		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_TIMEOUT_DURING_INTERACTION:
 			return StatusTypeEnum.WARN;
 		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
 		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:

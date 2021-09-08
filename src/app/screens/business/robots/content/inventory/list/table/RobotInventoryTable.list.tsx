@@ -1,41 +1,41 @@
 import { RobotInventoryTableColumnsTypeEnum } from './RobotInventoryTable.enum';
 import { RobotInventoryTableColumnInterface } from './RobotInventoryTable.interface';
 
-const common = 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS';
+const translation = 'CONTENT.INVENTORY.DRAWERS.TABLE.COLUMNS';
 export const columns: RobotInventoryTableColumnInterface[] = [
 	{
 		id: RobotInventoryTableColumnsTypeEnum.IMAGE,
-		label: `${common}.IMAGE`,
+		label: `${translation}.IMAGE`,
 		width: 100,
 		align: 'left'
 	},
 	{
 		id: RobotInventoryTableColumnsTypeEnum.NAME,
-		label: `${common}.NAME`,
+		label: `${translation}.NAME`,
 		minWidth: 170,
 		align: 'left'
 	},
 	{
 		id: RobotInventoryTableColumnsTypeEnum.SIZE,
-		label: `${common}.SIZE`,
+		label: `${translation}.SIZE`,
 		width: 150,
 		align: 'center'
 	},
 	{
 		id: RobotInventoryTableColumnsTypeEnum.QUANTITY,
-		label: `${common}.QUANTITY`,
+		label: `${translation}.QUANTITY`,
 		width: 150,
 		align: 'center'
 	},
 	{
 		id: RobotInventoryTableColumnsTypeEnum.CAPACITY,
-		label: `${common}.CAPACITY`,
+		label: `${translation}.CAPACITY`,
 		width: 150,
 		align: 'center'
 	},
 	{
 		id: RobotInventoryTableColumnsTypeEnum.PRICE,
-		label: `${common}.PRICE`,
+		label: `${translation}.PRICE`,
 		width: 125,
 		align: 'right'
 	}

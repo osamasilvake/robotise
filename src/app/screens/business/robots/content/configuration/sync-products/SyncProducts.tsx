@@ -24,7 +24,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	const robotIsReady = robotTwinSingle?.robotIsReady;
 	const lastSynced = robotTwinSingle?.robotLastSyncedProducts;
 
-	const common = 'CONTENT.CONFIGURATION.SYNC_PRODUCTS';
+	const translation = 'CONTENT.CONFIGURATION.SYNC_PRODUCTS';
 
 	/**
 	 * handle sync products
@@ -37,9 +37,9 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	return (
 		<Card square elevation={1}>
 			<CardContent>
-				<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
+				<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary">
-					{t(`${common}.EXCERPT`)}
+					{t(`${translation}.EXCERPT`)}
 				</Typography>
 
 				<Button
@@ -48,7 +48,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 					onClick={handleSyncProducts}
 					disabled={!robotIsReady || robot.syncProducts.loading}
 					endIcon={robot.syncProducts.loading && <CircularProgress size={20} />}>
-					{t(`${common}.SYNC`)}
+					{t(`${translation}.SYNC`)}
 				</Button>
 
 				{lastSynced && (

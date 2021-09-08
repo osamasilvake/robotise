@@ -1,4 +1,5 @@
 import { Box, Chip, CircularProgress, FormControl, TextField } from '@material-ui/core';
+import DOMPurify from 'dompurify';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,8 +28,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 
 	const purchaseId = purchases.content?.state?.locked;
 	const editMode = purchase.id === purchaseId;
-
-	const common = 'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT';
+	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT';
 	const fieldComment = 'comment';
 
 	const { handleChangeInput, handleSubmit, values } = useForm<TableFieldCommentFormInterface>(
@@ -38,8 +38,11 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 		() => ({ comment: '' }),
 		async () => {
 			if (editMode) {
+				// sanitize text
+				const comment = DOMPurify.sanitize(values.comment);
+
 				// dispatch: edit a comment field
-				dispatch(PurchaseCommentEdit(purchase.id, values.comment, () => closeEditMode()));
+				dispatch(PurchaseCommentEdit(purchase.id, comment, () => closeEditMode()));
 			} else {
 				// dispatch: update state
 				const state: SPCStateInterface = {
@@ -78,7 +81,6 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				<FormControl fullWidth>
 					<TextField
 						multiline
-						variant="outlined"
 						type="text"
 						id={fieldComment}
 						name={fieldComment}
@@ -92,8 +94,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 								e.currentTarget.value.length
 							)
 						}
-						label={t(`${common}.FIELDS.LABEL`)}
-						placeholder={t(`${common}.FIELDS.PLACEHOLDER`)}
+						label={t(`${translation}.FIELDS.LABEL`)}
+						placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
 						className={classes.sCommentTextField}
 					/>
 				</FormControl>
@@ -104,7 +106,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t(`${common}.CANCEL`)}
+						label={t(`${translation}.CANCEL`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -118,7 +120,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{editMode && (
 					<Chip
 						size="small"
-						label={t(`${common}.CLEAR`)}
+						label={t(`${translation}.CLEAR`)}
 						color="primary"
 						variant="outlined"
 						clickable
@@ -138,7 +140,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 				{/* Edit/Save */}
 				<Chip
 					size="small"
-					label={editMode ? t(`${common}.SAVE`) : t(`${common}.EDIT`)}
+					label={editMode ? t(`${translation}.SAVE`) : t(`${translation}.EDIT`)}
 					color="primary"
 					variant="outlined"
 					clickable

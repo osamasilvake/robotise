@@ -32,7 +32,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
-	const common = 'CONTENT.DETAIL.CAMERAS';
+	const translation = 'CONTENT.DETAIL.CAMERAS';
 
 	/**
 	 * request for robot camera image
@@ -49,7 +49,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	return (
 		<Grid item xs={12} sm={6}>
 			{/* Label */}
-			<Typography color="textPrimary">{t(`${common}.${cameraType}`)}</Typography>
+			<Typography color="textPrimary">{t(`${translation}.${cameraType}`)}</Typography>
 
 			{/* Date */}
 			{robotTwins.cameras && robotTwins.cameras[cameraType] && (
@@ -82,7 +82,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 						robot.camera.loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />
 					}>
-					{t(`${common}.REQUEST`)}
+					{t(`${translation}.REQUEST`)}
 				</Button>
 			</Box>
 		</Grid>

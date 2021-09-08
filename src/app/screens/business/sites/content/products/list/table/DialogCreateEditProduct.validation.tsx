@@ -10,9 +10,8 @@ export const CreateEditProductValidation = (
 	values: DialogCreateEditProductFormInterface,
 	touched: DialogCreateEditProductFormInterface
 ): DialogCreateEditProductFormInterface => {
-	const common = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
+	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
 	const regexMaxTwoDecimalPoints = AppConfigService.AppOptions.regex.maxTwoDecimalPoints;
-	const regexZeroInString = AppConfigService.AppOptions.regex.zeroInString;
 	const errors: DialogCreateEditProductFormInterface = {
 		image: '',
 		name: '',
@@ -26,7 +25,7 @@ export const CreateEditProductValidation = (
 	if (touched.name) {
 		// required
 		if (!values.name) {
-			errors.name = `${common}.NAME.VALIDATIONS.REQUIRED`;
+			errors.name = `${translation}.NAME.VALIDATIONS.REQUIRED`;
 		}
 	}
 
@@ -34,22 +33,22 @@ export const CreateEditProductValidation = (
 	if (touched.price) {
 		// required
 		if (!values.price) {
-			errors.price = `${common}.PRICE.VALIDATIONS.REQUIRED`;
+			errors.price = `${translation}.PRICE.VALIDATIONS.REQUIRED`;
 		}
 
 		// validate
 		if (values.price && !regexMaxTwoDecimalPoints.test(String(values.price))) {
-			errors.price = `${common}.PRICE.VALIDATIONS.INVALID`;
+			errors.price = `${translation}.PRICE.VALIDATIONS.INVALID`;
 		}
 	}
 
 	// Length/Weight
 	if (
-		(!values.length || regexZeroInString.test(String(values.length))) &&
-		(!values.weight || regexZeroInString.test(String(values.weight)))
+		(!values.length || Number(values.length) <= 0) &&
+		(!values.weight || Number(values.weight) <= 0)
 	) {
-		errors.length = `${common}.LENGTH.VALIDATIONS.INVALID`;
-		errors.weight = `${common}.WEIGHT.VALIDATIONS.INVALID`;
+		errors.length = `${translation}.LENGTH.VALIDATIONS.INVALID`;
+		errors.weight = `${translation}.WEIGHT.VALIDATIONS.INVALID`;
 	}
 
 	return errors;

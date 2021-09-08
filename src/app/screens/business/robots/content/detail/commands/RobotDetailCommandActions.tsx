@@ -26,7 +26,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 	const [rotate, setRotate] = useState(rotateAngles[4].value);
 	const [translate, setTranslate] = useState(translateDistances[4].value);
 
-	const common = 'CONTENT.DETAIL.COMMANDS.ACTIONS';
+	const translation = 'CONTENT.DETAIL.COMMANDS.ACTIONS';
 
 	useEffect(() => {
 		setRotate(rotateAngles[4].value);
@@ -39,11 +39,10 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				variant="subtitle2"
 				color="textSecondary"
 				className={classes.sCommandsActionTitle}>
-				{t(`${common}.TITLE`)}
+				{t(`${translation}.TITLE`)}
 			</Typography>
 			<Box>
 				<FormControl
-					variant="outlined"
 					disabled={
 						!state.ready ||
 						!state.control ||
@@ -52,12 +51,12 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						robot.control.loading
 					}
 					className={classes.sCommandsActionSelect}>
-					<InputLabel id="control-rotate">{t(`${common}.ROTATE.LABEL`)}</InputLabel>
+					<InputLabel id="control-rotate">{t(`${translation}.ROTATE.LABEL`)}</InputLabel>
 					<Select
 						labelId="control-rotate"
 						id="rotate"
 						name="rotate"
-						label={t(`${common}.ROTATE.LABEL`)}
+						label={t(`${translation}.ROTATE.LABEL`)}
 						value={rotate}
 						onChange={(event) => setRotate(event.target.value)}>
 						{rotateAngles.map((angle) => (
@@ -82,20 +81,21 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						command: RobotDetailCommandsTypeEnum.ROTATE,
 						state: Number(rotate)
 					})}>
-					{t(`${common}.ROTATE.BUTTON`)}
+					{t(`${translation}.ROTATE.BUTTON`)}
 				</Button>
 			</Box>
 			<Box className={classes.sCommandsActionTranslateBox}>
 				<FormControl
-					variant="outlined"
 					disabled={!state.ready || !state.control || robot.control.loading}
 					className={classes.sCommandsActionSelect}>
-					<InputLabel id="control-translate">{t(`${common}.TRANSLATE.LABEL`)}</InputLabel>
+					<InputLabel id="control-translate">
+						{t(`${translation}.TRANSLATE.LABEL`)}
+					</InputLabel>
 					<Select
 						labelId="control-translate"
 						id="translate"
 						name="translate"
-						label={t(`${common}.TRANSLATE.LABEL`)}
+						label={t(`${translation}.TRANSLATE.LABEL`)}
 						value={translate}
 						onChange={(event) => setTranslate(event.target.value)}>
 						{translateDistances.map((distance) => (
@@ -128,7 +128,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						command: RobotDetailCommandsTypeEnum.TRANSLATE,
 						state: Number(translate)
 					})}>
-					{t(`${common}.TRANSLATE.BUTTON`)}
+					{t(`${translation}.TRANSLATE.BUTTON`)}
 				</Button>
 			</Box>
 		</Box>

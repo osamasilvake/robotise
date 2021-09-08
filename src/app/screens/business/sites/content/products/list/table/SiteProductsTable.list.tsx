@@ -1,54 +1,54 @@
 import { SiteProductsTableColumnsTypeEnum } from './SiteProductsTable.enum';
 import { SiteProductsTableColumnInterface } from './SiteProductsTable.interface';
 
-const common = 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS';
+const translation = 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS';
 export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.IMAGE,
-		label: `${common}.IMAGE`,
+		label: `${translation}.IMAGE`,
 		minWidth: 80,
 		align: 'left',
 		noSort: true
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.NAME,
-		label: `${common}.NAME`,
+		label: `${translation}.NAME`,
 		minWidth: 200,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.PRICE,
-		label: `${common}.PRICE`,
+		label: `${translation}.PRICE`,
 		minWidth: 110,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.LENGTH,
-		label: `${common}.LENGTH`,
+		label: `${translation}.LENGTH`,
 		minWidth: 145,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.WEIGHT,
-		label: `${common}.WEIGHT`,
+		label: `${translation}.WEIGHT`,
 		minWidth: 125,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.SIZE,
-		label: `${common}.SIZE`,
+		label: `${translation}.SIZE`,
 		minWidth: 100,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.UPDATED_AT,
-		label: `${common}.UPDATED_AT`,
+		label: `${translation}.UPDATED_AT`,
 		minWidth: 200,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.ACTIONS,
-		label: `${common}.ACTIONS`,
+		label: `${translation}.ACTIONS`,
 		minWidth: 145,
 		align: 'right'
 	}

@@ -43,7 +43,7 @@ const RobotContent: FC = () => {
 		(robotTwinsSummary.content && !cSiteId) ||
 		!!robotTwinsSummary.errors?.id;
 
-	const common = 'CONTENT.TABS';
+	const translation = 'CONTENT.TABS';
 
 	useEffect(() => {
 		const cIndex = robotsRoutes.findIndex(
@@ -95,12 +95,12 @@ const RobotContent: FC = () => {
 						onChange={handleTabChange}
 						variant="scrollable"
 						textColor="primary">
-						<Tab label={t(`${common}.DETAIL`)} />
-						<Tab label={t(`${common}.INVENTORY`)} />
-						<Tab label={t(`${common}.ORDERS`)} />
-						<Tab label={t(`${common}.PURCHASES`)} />
-						<Tab label={t(`${common}.CONFIGURATION`)} />
-						<Tab label={t(`${common}.LOGS`)} />
+						<Tab label={t(`${translation}.DETAIL`)} />
+						<Tab label={t(`${translation}.INVENTORY`)} />
+						<Tab label={t(`${translation}.ORDERS`)} />
+						<Tab label={t(`${translation}.PURCHASES`)} />
+						<Tab label={t(`${translation}.CONFIGURATION`)} />
+						<Tab label={t(`${translation}.LOGS`)} />
 					</Tabs>
 
 					{/* Tab Panel */}

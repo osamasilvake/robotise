@@ -174,10 +174,10 @@ const handleMapping = (result: SLContentInterface) => ({
  * @returns
  */
 const mapItem = (item: SLCDataInterface) => {
-	const common = 'CONTENT.LOGS';
+	const translation = 'CONTENT.LOGS';
 	return {
 		...item,
-		command: `${common}.LIST.TABLE.VALUES.COMMAND.${item.command}`
+		command: `${translation}.LIST.TABLE.VALUES.COMMAND.${item.command}`
 	};
 };
 

@@ -23,8 +23,11 @@ export interface SRTContentDataInterface {
 	dockingState?: SRTContentDockingStateInterface | undefined;
 	joystickState?: SRTContentJoystickState | undefined;
 	activityState?: SRTContentActivityState | undefined;
-	safetySensorsState?: SRTContentSafetySensorsState | undefined;
-	safetySystemsState?: SRTContentSafetySystemsState | undefined;
+	safetySensors?: SRTContentSafetySensors | undefined;
+	safetySystems?: SRTContentSafetySystems | undefined;
+	computerInfo?: SRTContentComputerInfo | undefined;
+	humanPerception?: SRTContentHumanPerception | undefined;
+	transitPointStarted?: SRTContentTransitPointStarted | undefined;
 }
 
 export interface SRTContentSiteInterface {
@@ -120,7 +123,7 @@ export interface SRTContentActivityState {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySensorsState {
+export interface SRTContentSafetySensors {
 	properties: {
 		drawers: {
 			0: boolean;
@@ -142,7 +145,7 @@ export interface SRTContentSafetySensorsState {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySystemsState {
+export interface SRTContentSafetySystems {
 	properties: {
 		backMutingActive: boolean;
 		brakeReleasePressed: boolean;
@@ -162,6 +165,62 @@ export interface SRTContentSafetySystemsState {
 	updatedAt: Date;
 }
 
+export interface SRTContentComputerInfo {
+	properties: {
+		cpuLoad: {
+			cpu: number[];
+			average: number;
+		};
+		memoryUsage: {
+			total: number;
+			used: number;
+			free: number;
+			shared: number;
+			cached: number;
+			available: number;
+			swapFree: number;
+			swapTotal: number;
+			swapUsed: number;
+		};
+		wifiStatus: {
+			interface: string;
+			essid: string;
+			signalStrength: number;
+		};
+		hardDrives: {
+			name: string;
+			size: number;
+			used: number;
+			available: number;
+			capacityPercents: number;
+			status: string;
+			mountPoint: string;
+		}[];
+	};
+	updatedAt: Date;
+}
+
+export interface SRTContentHumanPerception {
+	properties: {
+		legsCloseCount: number;
+		legsFarCount: number;
+	};
+	updatedAt: Date;
+}
+
+export interface SRTContentTransitPointStarted {
+	properties: {
+		guiVersion: string;
+		protobufVersion: string;
+		repositories: {
+			branch: string;
+			commit: string;
+			name: string;
+		}[];
+	};
+	updatedAt: Date;
+}
+
 export interface IRobotTwin {
 	id: string;
 	createdAt: Date;
@@ -177,6 +236,7 @@ export interface IRobotTwin {
 			name: string;
 			customerName: string;
 			note: string;
+			activity: string;
 			robotState: {
 				isReady: boolean;
 			};
@@ -188,6 +248,8 @@ export interface IRobotTwin {
 			};
 			status: {
 				controlMode: RobotDetailControlModeTypeEnum;
+				isDocked: boolean;
+				isJoystickConnected: boolean;
 				mission: {
 					status: string;
 					description: string;
@@ -206,8 +268,6 @@ export interface IRobotTwin {
 					powerSupplyHealth: string;
 					voltage: number;
 				};
-				isDocked: boolean;
-				isJoystickConnected: boolean;
 				safetySensors: {
 					drawers: {
 						0: boolean;
@@ -242,8 +302,51 @@ export interface IRobotTwin {
 					stop0ResetRequired: boolean;
 					stop1ResetRequired: boolean;
 				};
+				computerInfo: {
+					cpuLoad: {
+						cpu: number[];
+						average: number;
+					};
+					memoryUsage: {
+						total: number;
+						used: number;
+						free: number;
+						shared: number;
+						cached: number;
+						available: number;
+						swapFree: number;
+						swapTotal: number;
+						swapUsed: number;
+					};
+					wifiStatus: {
+						interface: string;
+						essid: string;
+						signalStrength: number;
+					};
+					hardDrives: {
+						name: string;
+						size: number;
+						used: number;
+						available: number;
+						capacityPercents: number;
+						status: string;
+						mountPoint: string;
+					}[];
+				};
+				humanPerception: {
+					legsCloseCount: number;
+					legsFarCount: number;
+				};
 			};
-			activity: string;
+			transitPointStarted: {
+				guiVersion: string;
+				protobufVersion: string;
+				repositories: {
+					branch: string;
+					commit: string;
+					name: string;
+				}[];
+			};
 		};
 	};
 	metadata: {
@@ -255,6 +358,9 @@ export interface IRobotTwin {
 				updatedAt: Date;
 			};
 			note: {
+				updatedAt: Date;
+			};
+			activity: {
 				updatedAt: Date;
 			};
 			robotState: {
@@ -276,6 +382,12 @@ export interface IRobotTwin {
 				controlMode: {
 					updatedAt: Date;
 				};
+				isDocked: {
+					updatedAt: Date;
+				};
+				isJoystickConnected: {
+					updatedAt: Date;
+				};
 				mission: {
 					updatedAt: Date;
 				};
@@ -285,20 +397,20 @@ export interface IRobotTwin {
 				batteryState: {
 					updatedAt: Date;
 				};
-				isDocked: {
-					updatedAt: Date;
-				};
-				isJoystickConnected: {
-					updatedAt: Date;
-				};
 				safetySensors: {
 					updatedAt: Date;
 				};
 				safetySystem: {
 					updatedAt: Date;
 				};
+				computerInfo: {
+					updatedAt: Date;
+				};
+				humanPerception: {
+					updatedAt: Date;
+				};
 			};
-			activity: {
+			transitPointStarted: {
 				updatedAt: Date;
 			};
 		};

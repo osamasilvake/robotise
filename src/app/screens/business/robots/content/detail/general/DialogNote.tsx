@@ -10,6 +10,7 @@ import {
 	FormHelperText,
 	TextField
 } from '@material-ui/core';
+import DOMPurify from 'dompurify';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,7 +33,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 
 	const params: RobotParamsInterface = useParams();
 	const cRobotId = params.robotId;
-	const common = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
+	const translation = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
 	const fieldNote = 'note';
 	const maxLength = 2000;
 
@@ -42,26 +43,29 @@ const DialogNote: FC<NoteInterface> = (props) => {
 		},
 		() => ({ note: '' }),
 		async () => {
+			// sanitize text
+			const note = DOMPurify.sanitize(values.note);
+
 			// dispatch: update note field
-			dispatch(RobotNoteUpdate(cRobotId, values, () => setOpen(false)));
+			dispatch(RobotNoteUpdate(cRobotId, { note }, () => setOpen(false)));
 		}
 	);
 
 	return (
 		<Dialog open={open} onClose={() => setOpen(false)}>
 			<form onSubmit={handleSubmit}>
-				<DialogTitle>{t(`${common}.TITLE`)}</DialogTitle>
+				<DialogTitle>{t(`${translation}.TITLE`)}</DialogTitle>
 				<DialogContent>
-					<DialogContentText>{t(`${common}.EXCERPT`)}</DialogContentText>
+					<DialogContentText>{t(`${translation}.EXCERPT`)}</DialogContentText>
 					<FormControl fullWidth margin="normal">
 						<TextField
 							multiline
-							variant="outlined"
 							type="text"
 							id={fieldNote}
 							name={fieldNote}
 							rows={6}
 							value={values.note}
+							error={values.note.length === maxLength}
 							onChange={handleChangeInput}
 							inputProps={{ maxLength }}
 							inputRef={(input) => input && input.focus()}
@@ -71,11 +75,11 @@ const DialogNote: FC<NoteInterface> = (props) => {
 									e.currentTarget.value.length
 								)
 							}
-							label={t(`${common}.FIELDS.LABEL`)}
-							placeholder={t(`${common}.FIELDS.PLACEHOLDER`)}
+							label={t(`${translation}.FIELDS.LABEL`)}
+							placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
 						/>
 						<FormHelperText error={values.note.length === maxLength}>
-							{t(`${common}.NOTE`, { value: values.note.length })}
+							{t(`${translation}.NOTE`, { value: values.note.length })}
 						</FormHelperText>
 					</FormControl>
 				</DialogContent>

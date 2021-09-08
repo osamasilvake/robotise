@@ -52,8 +52,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.siteId;
-
-	const common = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
+	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
 	const fieldUsers = 'users';
 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
@@ -112,7 +111,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	};
 
 	/**
-	 * close create/edit dialog
+	 * close create/edit notification dialog
 	 * @param event
 	 */
 	const closeCreateEditNotificationDialog = (event: MouseEvent<HTMLButtonElement>) => {
@@ -128,21 +127,22 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
 					{type === SiteNotificationsCreateEditTypeEnum.CREATE &&
-						t(`${common}.CREATE.TITLE`)}
-					{type === SiteNotificationsCreateEditTypeEnum.EDIT && t(`${common}.EDIT.TITLE`)}
+						t(`${translation}.CREATE.TITLE`)}
+					{type === SiteNotificationsCreateEditTypeEnum.EDIT &&
+						t(`${translation}.EDIT.TITLE`)}
 				</DialogTitle>
 
 				{type === SiteNotificationsCreateEditTypeEnum.CREATE && (
 					<DialogContent>
-						<FormControl variant="outlined" fullWidth margin="normal">
-							<InputLabel id="notification">
-								{t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
+						<FormControl fullWidth margin="normal">
+							<InputLabel id="notifications">
+								{t(`${translation}.FIELDS.NOTIFICATION.LABEL`)}
 							</InputLabel>
 							<Select
-								labelId="notification"
+								labelId="notifications"
 								id="notifications"
 								name="notifications"
-								label={t(`${common}.FIELDS.NOTIFICATION.LABEL`)}
+								label={t(`${translation}.FIELDS.NOTIFICATION.LABEL`)}
 								value={newNotification}
 								onChange={(event) => setNewNotification(event.target.value)}>
 								{site.notifications.content?.types.map((type) => (
@@ -174,7 +174,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 										onChange={handleChangeCheckbox}
 									/>
 								}
-								label={t(`${common}.FIELDS.ACTIVE.LABEL`)}
+								label={t(`${translation}.FIELDS.ACTIVE.LABEL`)}
 							/>
 						</Box>
 
@@ -182,7 +182,6 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							{values.users.map((user, index) => (
 								<FormControl error fullWidth margin="normal" key={index}>
 									<TextField
-										variant="outlined"
 										type="email"
 										id={`${fieldUsers}-${index}`}
 										name={fieldUsers}
@@ -190,8 +189,8 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 										onChange={(e) =>
 											handleChangeStringInputs(index, e, values.users)
 										}
-										label={t(`${common}.FIELDS.EMAIL.LABEL`)}
-										placeholder={t(`${common}.FIELDS.EMAIL.PLACEHOLDER`)}
+										label={t(`${translation}.FIELDS.EMAIL.LABEL`)}
+										placeholder={t(`${translation}.FIELDS.EMAIL.PLACEHOLDER`)}
 										InputProps={{
 											endAdornment: (
 												<InputAdornment position="end">
@@ -224,7 +223,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 							<Chip
 								size="small"
-								label={t(`${common}.ADD_USER`)}
+								label={t(`${translation}.ADD_USER`)}
 								color="primary"
 								variant="outlined"
 								clickable

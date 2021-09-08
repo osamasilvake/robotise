@@ -38,8 +38,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const cSiteRobot = sites.content?.dataById[cSiteId].robots[0];
 	const attachedRobot = robotTwinsSummary.content?.dataById[cSiteRobot?.id || ''];
-
-	const common = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
+	const translation = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
 
 	const { handleChangeSelect, handleSubmit, values } = useForm<SiteRobotConfigFormInterface>(
 		{
@@ -56,24 +55,25 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 		<Grid item xs={12} md={6}>
 			<Card square elevation={1}>
 				<CardContent>
-					<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
+					<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
 					<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
-						{t(`${common}.EXCERPT`)}
+						{t(`${translation}.EXCERPT`)}
 					</Typography>
 
 					<form onSubmit={handleSubmit} className={classes.sForm}>
 						<Grid container spacing={3}>
 							<Grid item xs={12}>
-								<FormControl variant="outlined" fullWidth>
-									<InputLabel id="notification">
-										{t(`${common}.FORM.FIELDS.SITE.LABEL`)}
+								<FormControl error fullWidth>
+									<InputLabel id="robotId" error={!attachedRobot}>
+										{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 									</InputLabel>
 									<Select
 										labelId="robotId"
 										id="robotId"
 										name="robotId"
-										label={t(`${common}.FORM.FIELDS.SITE.LABEL`)}
+										label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 										value={values.robotId}
+										error={!attachedRobot}
 										onChange={handleChangeSelect}>
 										{robotTwinsSummary.content?.data
 											.filter((robot) => robot.siteId === cSiteId)
@@ -84,12 +84,13 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 											))}
 									</Select>
 									{!attachedRobot && (
-										<FormHelperText error>
-											{t(`${common}.FORM.FIELDS.SITE.NOTE`)}
+										<FormHelperText>
+											{t(`${translation}.FORM.FIELDS.SITE.NOTE`)}
 										</FormHelperText>
 									)}
 								</FormControl>
 							</Grid>
+
 							<Grid item xs={12}>
 								<Button
 									variant="outlined"
@@ -100,7 +101,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 											<CircularProgress size={20} />
 										)
 									}>
-									{t(`${common}.FORM.BUTTONS.UPDATE`)}
+									{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 								</Button>
 							</Grid>
 						</Grid>

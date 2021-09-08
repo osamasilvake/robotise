@@ -30,7 +30,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 
-	const common = 'CONTENT.CONFIGURATION.ACCEPT_ORDERS';
+	const translation = 'CONTENT.CONFIGURATION.ACCEPT_ORDERS';
 
 	/**
 	 * handle accept orders
@@ -58,9 +58,9 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 				)}
 
 				<Box>
-					<Typography variant="h6">{t(`${common}.TITLE`)}</Typography>
+					<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
 					<Typography variant="body2" color="textSecondary">
-						{t(`${common}.EXCERPT`)}
+						{t(`${translation}.EXCERPT`)}
 					</Typography>
 				</Box>
 
@@ -74,7 +74,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 								onChange={handleAcceptOrders}
 							/>
 						}
-						label={t(`${common}.ACTIVE`)}
+						label={t(`${translation}.ACTIVE`)}
 					/>
 				</Box>
 			</CardContent>

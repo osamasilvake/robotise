@@ -57,12 +57,9 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 					<Avatar
 						variant="square"
 						className={clsx(classes.sImage, {
-							[classes.sImageBg]:
+							[classes.sImageBackground]:
 								lane.product &&
-								lane.product[RobotInventoryTableColumnsTypeEnum.PRICE] === 1 &&
-								lane[RobotInventoryTableColumnsTypeEnum.QUANTITY] === 0 &&
-								lane[RobotInventoryTableColumnsTypeEnum.QUANTITY] ===
-									lane[RobotInventoryTableColumnsTypeEnum.CAPACITY]
+								lane.product[RobotInventoryTableColumnsTypeEnum.PRICE] === 1
 						})}
 						src={
 							(lane.product && lane.product[column.id]) ||

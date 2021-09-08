@@ -110,6 +110,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 								setImage={setImage}
 								imageError={imageError}
 								setImageError={setImageError}
+								background={product?.price === 1}
 							/>
 						</Grid>
 

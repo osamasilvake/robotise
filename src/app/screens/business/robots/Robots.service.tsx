@@ -389,8 +389,8 @@ class RobotsService {
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,
-				'createdAt[gte]': payload.from,
-				'createdAt[lte]': payload.to
+				'filter[createdAt][gte]': payload.from,
+				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

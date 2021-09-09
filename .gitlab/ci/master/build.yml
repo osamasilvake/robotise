@@ -16,5 +16,7 @@ dev:build:
     paths:
       - images
     expire_in: 30 minutes
+  environment:
+    name: development
   only:
     - master

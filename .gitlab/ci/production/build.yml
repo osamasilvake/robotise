@@ -16,5 +16,7 @@ prod:build:
     paths:
       - images
     expire_in: 30 minutes
+  environment:
+    name: production
   only:
     - production

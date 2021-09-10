@@ -52,7 +52,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.siteId;
-	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
+	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.CREATE_EDIT';
 	const fieldUsers = 'users';
 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
@@ -111,10 +111,10 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	};
 
 	/**
-	 * close create/edit notification dialog
+	 * close dialog
 	 * @param event
 	 */
-	const closeCreateEditNotificationDialog = (event: MouseEvent<HTMLButtonElement>) => {
+	const closeDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -123,7 +123,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	};
 
 	return (
-		<Dialog open={open} onClose={closeCreateEditNotificationDialog} fullWidth>
+		<Dialog open={open} onClose={closeDialog} fullWidth>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
 					{type === SiteNotificationsCreateEditTypeEnum.CREATE &&
@@ -237,7 +237,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 					<Button
 						variant="outlined"
 						disabled={site.notifications.loading}
-						onClick={closeCreateEditNotificationDialog}>
+						onClick={closeDialog}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button

@@ -1,10 +1,6 @@
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 
 export interface SliceSiteInterface {
-	servicePositions: {
-		loading: boolean;
-		content: SSContentServicePositionsInterface | null;
-	};
 	acceptOrders: {
 		loading: boolean;
 	};
@@ -19,17 +15,6 @@ export interface SliceSiteInterface {
 	};
 	reports: {
 		loading: boolean;
-	};
-}
-
-export interface SSContentServicePositionsInterface {
-	data: {
-		id: string;
-		name: string;
-		location: string;
-	}[];
-	site: {
-		id: string;
 	};
 }
 

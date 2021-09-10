@@ -9,9 +9,9 @@ import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum
 import PageError from '../../../../components/content/page-error/PageError';
 import { robotTwinsSummarySelector } from '../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
-	siteSelector,
-	SiteServicePositionsFetch
-} from '../../../../slices/business/sites/Site.slice';
+	ServicePositionsFetch,
+	servicePositionsSelector
+} from '../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
@@ -27,7 +27,7 @@ const RobotContent: FC = () => {
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
-	const site = useSelector(siteSelector);
+	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const [value, setValue] = useState(-1);
@@ -37,7 +37,7 @@ const RobotContent: FC = () => {
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
-	const pSiteId = site.servicePositions.content?.site?.id;
+	const pSiteId = servicePositions.content?.site?.id;
 	const problem =
 		!!sites.errors?.id ||
 		(robotTwinsSummary.content && !cSiteId) ||
@@ -54,14 +54,14 @@ const RobotContent: FC = () => {
 	}, [location.pathname, cRobotId]);
 
 	useEffect(() => {
-		const condition1 = site.servicePositions.content === null;
-		const condition2 = site.servicePositions.content !== null && cSiteId !== pSiteId;
+		const condition1 = servicePositions.content === null;
+		const condition2 = servicePositions.content !== null && cSiteId !== pSiteId;
 
 		if (condition1 || condition2) {
-			// dispatch: fetch site service positions
-			cSiteId && dispatch(SiteServicePositionsFetch(cSiteId));
+			// dispatch: fetch service positions
+			cSiteId && dispatch(ServicePositionsFetch(cSiteId, true));
 		}
-	}, [dispatch, pSiteId, cSiteId, site.servicePositions.content]);
+	}, [dispatch, pSiteId, cSiteId, servicePositions.content]);
 
 	/**
 	 * handle tab change

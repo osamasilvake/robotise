@@ -13,10 +13,10 @@ export interface SiteNotificationInterface {
 }
 
 export interface DialogCreateEditNotificationInterface {
-	index?: number;
 	type: SiteNotificationsCreateEditTypeEnum;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
+	index?: number;
 }
 
 export interface DialogCreateEditNotificationFormInterface {

@@ -6,19 +6,19 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { SiteNotificationTypesAndUsersFetch } from '../../../../../../slices/business/sites/Site.slice';
+import { ServicePositionsFetch } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
-import DialogCreateEditNotification from './DialogCreateEditNotification';
-import SiteNotification from './SiteNotification';
-import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
-import { SiteNotificationsInterface } from './SiteNotifications.interface';
-import { SiteNotificationsStyle } from './SiteNotifications.style';
+import DialogCreateEditServicePosition from './DialogCreateEditServicePosition';
+import SiteServicePosition from './SiteServicePosition';
+import { SiteServicePositionsCreateEditTypeEnum } from './SiteServicePositions.enum';
+import { SiteServicePositionsInterface } from './SiteServicePositions.interface';
+import { SiteServicePositionsStyle } from './SiteServicePositions.style';
 
-const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
-	const { site } = props;
+const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
+	const { servicePositions } = props;
 	const { t } = useTranslation(['SITES', 'TOOLTIPS']);
-	const classes = SiteNotificationsStyle();
+	const classes = SiteServicePositionsStyle();
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
@@ -28,26 +28,26 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.siteId;
 
-	const translation = 'CONTENT.CONFIGURATION.NOTIFICATIONS';
+	const translation = 'CONTENT.CONFIGURATION.SERVICE_POSITIONS';
 
 	useEffect(() => {
 		const executeServices = () => {
 			if (cSiteId) {
-				// dispatch: fetch notification types and users
-				dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+				// dispatch: fetch service positions
+				dispatch(ServicePositionsFetch(cSiteId, true));
 			}
 		};
 
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.business.sites.content.configuration.notifications
-				.refreshTime
+			AppConfigService.AppOptions.screens.business.sites.content.configuration
+				.servicePositions.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, cSiteId]);
 
-	return site.notifications?.content?.data.length ? (
+	return servicePositions?.content?.data.length ? (
 		<Card square elevation={1} className={classes.sCard}>
 			<CardContent className={cardClasses.sCardContent0}>
 				<Typography variant="h6" className={classes.sTitle}>
@@ -60,26 +60,30 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 				<Box className={classes.sCreate}>
 					<Tooltip
 						placement="left"
-						title={String(t('TOOLTIPS:NOTIFICATION.ADD'))}
+						title={String(t('TOOLTIPS:SERVICE_POSITIONS.ADD'))}
 						onClick={() => setOpen(true)}>
 						<IconButton edge="end">
 							<AddCircle color="primary" />
 						</IconButton>
 					</Tooltip>
-					<DialogCreateEditNotification
-						type={SiteNotificationsCreateEditTypeEnum.CREATE}
+					<DialogCreateEditServicePosition
+						type={SiteServicePositionsCreateEditTypeEnum.CREATE}
 						open={open}
 						setOpen={setOpen}
 					/>
 				</Box>
 
 				<List disablePadding>
-					{site.notifications.content.data.map((notification, index) => (
-						<SiteNotification key={notification.id} site={site} index={index} />
+					{servicePositions.content.data.map((servicePosition, index) => (
+						<SiteServicePosition
+							key={servicePosition.id}
+							servicePosition={servicePosition}
+							index={index}
+						/>
 					))}
 				</List>
 			</CardContent>
 		</Card>
 	) : null;
 };
-export default SiteNotifications;
+export default SiteServicePositions;

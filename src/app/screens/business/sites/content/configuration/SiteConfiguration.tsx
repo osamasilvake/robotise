@@ -7,13 +7,14 @@ import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
+	notificationsSelector,
+	NotificationTypesAndUsersFetch
+} from '../../../../../slices/business/sites/configuration/Notifications.slice';
+import {
 	ServicePositionsFetch,
 	servicePositionsSelector
 } from '../../../../../slices/business/sites/configuration/ServicePositions.slice';
-import {
-	SiteNotificationTypesAndUsersFetch,
-	siteSelector
-} from '../../../../../slices/business/sites/Site.slice';
+import { siteSelector } from '../../../../../slices/business/sites/Site.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import AcceptOrders from './accept-orders/AcceptOrders';
@@ -28,19 +29,20 @@ const SiteConfiguration: FC = () => {
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 	const site = useSelector(siteSelector);
+	const notifications = useSelector(notificationsSelector);
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const params: SiteParamsInterface = useParams();
 
 	const cSiteId = params.siteId;
-	const pNotificationSiteId = site.notifications.content?.site.id;
+	const pNotificationSiteId = notifications.content?.site.id;
 	const pServicePositionSiteId = servicePositions.content?.site.id;
 
 	useEffect(() => {
 		if (pNotificationSiteId !== cSiteId) {
 			// dispatch: fetch notification types and users
-			dispatch(SiteNotificationTypesAndUsersFetch(cSiteId));
+			dispatch(NotificationTypesAndUsersFetch(cSiteId));
 		}
 	}, [dispatch, pNotificationSiteId, cSiteId]);
 
@@ -54,7 +56,7 @@ const SiteConfiguration: FC = () => {
 	// loader
 	if (
 		sites.loader ||
-		site.notifications.loader ||
+		notifications.loader ||
 		servicePositions.loader ||
 		robotTwinsSummary.loader
 	) {
@@ -63,7 +65,7 @@ const SiteConfiguration: FC = () => {
 
 	// null
 	if (
-		(!site.notifications?.content && !site.notifications.errors?.id) ||
+		(notifications.content && notifications.errors?.id) ||
 		(servicePositions.content && servicePositions.errors?.id)
 	) {
 		return null;
@@ -84,9 +86,11 @@ const SiteConfiguration: FC = () => {
 			</Grid>
 
 			<Grid container spacing={1}>
-				<Grid item xs={12} md={6}>
-					<SiteNotifications site={site} />
-				</Grid>
+				{!!notifications.content?.data.length && (
+					<Grid item xs={12} md={6}>
+						<SiteNotifications notifications={notifications} />
+					</Grid>
+				)}
 
 				{!!servicePositions.content?.data.length && (
 					<Grid item xs={12} md={6}>

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { SiteNotificationTypesAndUsersFetch } from '../../../../../../slices/business/sites/Site.slice';
+import { NotificationTypesAndUsersFetch } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
@@ -16,7 +16,7 @@ import { SiteNotificationsInterface } from './SiteNotifications.interface';
 import { SiteNotificationsStyle } from './SiteNotifications.style';
 
 const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
-	const { site } = props;
+	const { notifications } = props;
 	const { t } = useTranslation(['SITES', 'TOOLTIPS']);
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
@@ -34,7 +34,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 		const executeServices = () => {
 			if (cSiteId) {
 				// dispatch: fetch notification types and users
-				dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+				dispatch(NotificationTypesAndUsersFetch(cSiteId, true));
 			}
 		};
 
@@ -47,7 +47,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, cSiteId]);
 
-	return site.notifications?.content?.data.length ? (
+	return (
 		<Card square elevation={1} className={classes.sCard}>
 			<CardContent className={cardClasses.sCardContent0}>
 				<Typography variant="h6" className={classes.sTitle}>
@@ -74,12 +74,17 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 				</Box>
 
 				<List disablePadding>
-					{site.notifications.content.data.map((notification, index) => (
-						<SiteNotification key={notification.id} site={site} index={index} />
+					{notifications?.content?.data.map((notification, index) => (
+						<SiteNotification
+							key={notification.id}
+							notifications={notifications}
+							notification={notification}
+							index={index}
+						/>
 					))}
 				</List>
 			</CardContent>
 		</Card>
-	) : null;
+	);
 };
 export default SiteNotifications;

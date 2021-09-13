@@ -47,7 +47,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, cSiteId]);
 
-	return servicePositions?.content?.data.length ? (
+	return (
 		<Card square elevation={1} className={classes.sCard}>
 			<CardContent className={cardClasses.sCardContent0}>
 				<Typography variant="h6" className={classes.sTitle}>
@@ -74,7 +74,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 				</Box>
 
 				<List disablePadding>
-					{servicePositions.content.data.map((servicePosition, index) => (
+					{servicePositions?.content?.data.map((servicePosition, index) => (
 						<SiteServicePosition
 							key={servicePosition.id}
 							servicePosition={servicePosition}
@@ -84,6 +84,6 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 				</List>
 			</CardContent>
 		</Card>
-	) : null;
+	);
 };
 export default SiteServicePositions;

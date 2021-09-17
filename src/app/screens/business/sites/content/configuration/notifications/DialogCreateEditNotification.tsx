@@ -25,10 +25,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-	SiteNotificationTypesAndUsersFetch,
-	SiteNotificationUpdate,
-	siteSelector
-} from '../../../../../../slices/business/sites/Site.slice';
+	notificationsSelector,
+	NotificationTypesAndUsersFetch,
+	NotificationUpdate
+} from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { DialogCreateEditNotificationValidation } from './DialogCreateEditNotification.validation';
@@ -45,14 +45,15 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const classes = SiteNotificationsStyle();
 
 	const dispatch = useDispatch();
-	const site = useSelector(siteSelector);
-	const notification = index !== undefined ? site.notifications.content?.data[index] : null;
+	const notifications = useSelector(notificationsSelector);
 
 	const [newNotification, setNewNotification] = useState('');
 
 	const params: SiteParamsInterface = useParams();
 	const cSiteId = params.siteId;
-	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.LIST.CREATE_EDIT';
+
+	const notification = index !== undefined ? notifications.content?.data[index] : null;
+	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.CREATE_EDIT';
 	const fieldUsers = 'users';
 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
@@ -65,7 +66,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 			async () => {
 				// dispatch: update notification
 				dispatch(
-					SiteNotificationUpdate(
+					NotificationUpdate(
 						{
 							id: !notification ? newNotification : notification.id,
 							isActive: values.isActive,
@@ -74,7 +75,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 						},
 						() => {
 							// dispatch: fetch notification types and users
-							dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+							dispatch(NotificationTypesAndUsersFetch(cSiteId, true));
 
 							// reset new notification
 							setNewNotification('');
@@ -111,10 +112,10 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	};
 
 	/**
-	 * close create/edit notification dialog
+	 * close dialog
 	 * @param event
 	 */
-	const closeCreateEditNotificationDialog = (event: MouseEvent<HTMLButtonElement>) => {
+	const closeDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -123,7 +124,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	};
 
 	return (
-		<Dialog open={open} onClose={closeCreateEditNotificationDialog} fullWidth>
+		<Dialog open={open} onClose={closeDialog} fullWidth>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
 					{type === SiteNotificationsCreateEditTypeEnum.CREATE &&
@@ -145,12 +146,12 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 								label={t(`${translation}.FIELDS.NOTIFICATION.LABEL`)}
 								value={newNotification}
 								onChange={(event) => setNewNotification(event.target.value)}>
-								{site.notifications.content?.types.map((type) => (
+								{notifications.content?.types.map((type) => (
 									<MenuItem
 										key={type.id}
 										value={type.id}
 										disabled={
-											site.notifications.content?.data.filter(
+											notifications.content?.data.filter(
 												(item) => item.typeId === type.id
 											).length === 1
 										}>
@@ -236,21 +237,21 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 				<DialogActions>
 					<Button
 						variant="outlined"
-						disabled={site.notifications.loading}
-						onClick={closeCreateEditNotificationDialog}>
+						disabled={notifications.updating}
+						onClick={closeDialog}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
 						disabled={
-							site.notifications.loading ||
+							notifications.updating ||
 							(type === SiteNotificationsCreateEditTypeEnum.CREATE &&
 								!newNotification) ||
 							(type === SiteNotificationsCreateEditTypeEnum.EDIT &&
 								!!(errors && errors.users.filter((e) => e).length))
 						}
-						endIcon={site.notifications.loading && <CircularProgress size={20} />}>
+						endIcon={notifications.updating && <CircularProgress size={20} />}>
 						{type === SiteNotificationsCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}
 						{type === SiteNotificationsCreateEditTypeEnum.EDIT && t('BUTTONS.UPDATE')}
 					</Button>

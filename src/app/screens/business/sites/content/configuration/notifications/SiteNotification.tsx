@@ -14,9 +14,9 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-	SiteNotificationTypesAndUsersFetch,
-	SiteNotificationUpdate
-} from '../../../../../../slices/business/sites/Site.slice';
+	NotificationTypesAndUsersFetch,
+	NotificationUpdate
+} from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
@@ -26,11 +26,10 @@ import {
 } from './SiteNotifications.interface';
 
 const SiteNotification: FC<SiteNotificationInterface> = (props) => {
-	const { site, index } = props;
+	const { notifications, notification, index } = props;
 	const { t } = useTranslation('TOOLTIPS');
 
 	const dispatch = useDispatch();
-	const notification = index !== undefined ? site.notifications.content?.data[index] : null;
 
 	const [open, setOpen] = useState(false);
 
@@ -45,14 +44,14 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	const handleNotification = (payload: DialogCreateEditNotificationFormInterface) => () => {
 		// dispatch: update notification
 		dispatch(
-			SiteNotificationUpdate(
+			NotificationUpdate(
 				{
 					...payload,
 					isActive: !payload.isActive
 				},
 				() => {
 					// dispatch: fetch notification types and users
-					dispatch(SiteNotificationTypesAndUsersFetch(cSiteId, true));
+					dispatch(NotificationTypesAndUsersFetch(cSiteId, true));
 				}
 			)
 		);
@@ -61,7 +60,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	return notification ? (
 		<ListItem key={notification.id}>
 			<FormControlLabel
-				disabled={site.notifications.loading}
+				disabled={notifications.updating}
 				control={
 					<Switch
 						name={`notification-${notification.id}`}

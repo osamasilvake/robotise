@@ -45,6 +45,11 @@
 		"NOTIFICATION": {
 			"ADD": "Add Notification",
 			"EDIT": "Edit Notification"
+		},
+		"SERVICE_POSITIONS": {
+			"ADD": "Add Service Position",
+			"EDIT": "Edit Service Position",
+			"DELETE": "Delete Service Position"
 		}
 	},
 	"UPLOAD": {
@@ -105,9 +110,6 @@
 	},
 	"MESSAGE": {
 		"COMMON": {
-			"SERVICE_POSITIONS": {
-				"ERROR": "Unable to fetch service positions!"
-			},
 			"REPORTS": {
 				"SUCCESS": "Report has been generated successfully!",
 				"ERROR": "Unable to generate Report!"
@@ -155,6 +157,23 @@
 					"UPDATE": {
 						"SUCCESS": "Notification has been updated successfully!",
 						"ERROR": "Unable to update notification!"
+					}
+				},
+				"SERVICE_POSITIONS": {
+					"FETCH": {
+						"ERROR": "Unable to fetch service positions!"
+					},
+					"CREATE": {
+						"SUCCESS": "Service position has been created successfully!",
+						"ERROR": "Unable to create service position!"
+					},
+					"EDIT": {
+						"SUCCESS": "Service position has been updated successfully!",
+						"ERROR": "Unable to update service position!"
+					},
+					"DELETE": {
+						"SUCCESS": "Service position has been deleted successfully!",
+						"ERROR": "Unable to delete service position!"
 					}
 				}
 			}
@@ -442,31 +461,61 @@
 				"NOTIFICATIONS": {
 					"TITLE": "Notifications",
 					"EXCERPT": "Configure notification for specific users.",
-					"LIST": {
-						"CREATE_EDIT": {
-							"CREATE": {
-								"TITLE": "Create Notification"
+					"CREATE_EDIT": {
+						"CREATE": {
+							"TITLE": "Create Notification"
+						},
+						"EDIT": {
+							"TITLE": "Edit Notification"
+						},
+						"FIELDS": {
+							"NOTIFICATION": {
+								"LABEL": "Notification"
 							},
-							"EDIT": {
-								"TITLE": "Edit Notification"
+							"ACTIVE": {
+								"LABEL": "Active"
 							},
-							"FIELDS": {
-								"NOTIFICATION": {
-									"LABEL": "Notification"
-								},
-								"ACTIVE": {
-									"LABEL": "Active"
-								},
-								"EMAIL": {
-									"LABEL": "Email Address",
-									"PLACEHOLDER": "Enter your email Address",
-									"VALIDATIONS": {
-										"INVALID": "Enter the correct Email format!"
-									}
+							"EMAIL": {
+								"LABEL": "Email Address",
+								"PLACEHOLDER": "Enter your email Address",
+								"VALIDATIONS": {
+									"INVALID": "Enter the correct Email format!"
+								}
+							}
+						},
+						"ADD_USER": "Add user"
+					}
+				},
+				"SERVICE_POSITIONS": {
+					"TITLE": "Service Positions",
+					"EXCERPT": "Configure site specific service positions.",
+					"CREATE_EDIT": {
+						"CREATE": {
+							"TITLE": "Create Service Position"
+						},
+						"EDIT": {
+							"TITLE": "Edit Service Position"
+						},
+						"FIELDS": {
+							"NAME": {
+								"LABEL": "Name",
+								"PLACEHOLDER": "Enter name",
+								"VALIDATIONS": {
+									"REQUIRED": "Name is required."
 								}
 							},
-							"ADD_USER": "Add user"
+							"LOCATION": {
+								"LABEL": "Location",
+								"PLACEHOLDER": "Enter location",
+								"VALIDATIONS": {
+									"REQUIRED": "Location is required."
+								}
+							}
 						}
+					},
+					"DELETE": {
+						"TITLE": "Delete Service Position",
+						"TEXT": "Are you sure you want to delete the service position?"
 					}
 				}
 			}

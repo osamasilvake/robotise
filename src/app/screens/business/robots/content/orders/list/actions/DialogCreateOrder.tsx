@@ -27,7 +27,7 @@ import {
 } from '../../../../../../../slices/business/robots/orders/Orders.slice';
 import { SOCStateInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { siteSelector } from '../../../../../../../slices/business/sites/Site.slice';
+import { servicePositionsSelector } from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { CreateOrderValidation } from './DialogCreateOrder.validation';
@@ -43,7 +43,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
 	const dispatch = useDispatch();
-	const site = useSelector(siteSelector);
+	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
@@ -89,10 +89,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	);
 
 	/**
-	 * close create order dialog
+	 * close dialog
 	 * @param event
 	 */
-	const closeCreateOrderDialog = (event: MouseEvent<HTMLButtonElement>) => {
+	const closeDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -101,7 +101,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	};
 
 	return (
-		<Dialog open={open} onClose={closeCreateOrderDialog}>
+		<Dialog open={open} onClose={closeDialog}>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>{t(`${translation}.LIST.ACTIONS.CREATE.TITLE`)}</DialogTitle>
 				<DialogContent>
@@ -151,7 +151,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								label={t(
 									`${translation}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
 								)}>
-								{site.servicePositions.content?.data.map((position) => (
+								{servicePositions.content?.data.map((position) => (
 									<MenuItem key={position.id} value={position.location}>
 										{position.name}
 									</MenuItem>
@@ -187,7 +187,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									value={mode}
 									disabled={
 										mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
-										site.servicePositions.content?.data.length === 0
+										servicePositions.content?.data.length === 0
 									}>
 									{t(`${translation}.COMMON.MODE.${mode}`)}
 								</MenuItem>
@@ -209,7 +209,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					</FormControl>
 				</DialogContent>
 				<DialogActions>
-					<Button variant="outlined" onClick={closeCreateOrderDialog}>
+					<Button variant="outlined" onClick={closeDialog}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button

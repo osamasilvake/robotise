@@ -2,6 +2,8 @@ import { ReportFormInterface } from '../../../components/common/report/Report.in
 import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
+import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
+import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
@@ -247,8 +249,8 @@ class SitesService {
 		return HttpClientService.get(url, {
 			params: {
 				'filter[site]': siteId,
-				'createdAt[gte]': payload.from,
-				'createdAt[lte]': payload.to
+				'filter[createdAt][gte]': payload.from,
+				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};
@@ -268,6 +270,51 @@ class SitesService {
 				'filter[site]': siteId
 			}
 		});
+	};
+
+	/**
+	 * create/edit service position
+	 * @param siteId
+	 * @param payload
+	 * @param type
+	 * @returns
+	 */
+	siteServicePositionCreateEdit = (
+		siteId: string,
+		payload: DialogCreateEditServicePositionFormInterface,
+		type: SiteServicePositionsCreateEditTypeEnum
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS;
+		const request = {
+			data: {
+				attributes: {
+					name: payload.name,
+					location: payload.location
+				},
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: siteId
+						}
+					}
+				}
+			}
+		};
+
+		return type === SiteServicePositionsCreateEditTypeEnum.CREATE
+			? HttpClientService.post(url, request)
+			: HttpClientService.patch(`${url}/${payload.id}`, request);
+	};
+
+	/**
+	 * delete service position
+	 * @param servicePositionId
+	 * @returns
+	 */
+	siteServicePositionDelete = (servicePositionId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS;
+		return HttpClientService.delete(`${url}/${servicePositionId}`);
 	};
 }
 const instance = new SitesService();

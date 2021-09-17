@@ -72,3 +72,26 @@ A summary of development workflow involving multiple git branches.
 - [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [React CSV](https://github.com/react-csv/react-csv)
 - [X] [DOM Purify](https://github.com/cure53/DOMPurify)
+
+
+## ENV (Environment)
+* `.env`                  = common environment variables
+* `.env.development`      = development environment variables (use with `yarn start`)
+* `.env.production`       = production environment variables (use with `yarn build`)
+
+##### Gitlab and Docker Process:
+* Create development and production environments on Gitlab ROC repository.
+* Add variables for development and production environment on Gitlab ROC repository. 
+* Add environment property on development and production CI/CD Jobs.
+```
+environment:
+  name: development/production
+```
+* Set the following variables on CI/CD build jobs:
+```
+--build-arg REACT_APP_AUTH_BASE_URL \
+--build-arg REACT_APP_AUTH_REALM \
+--build-arg REACT_APP_API_BASE_URL \
+--build-arg REACT_APP_API_VERSION
+```
+* Set Dockerfile with ARG (arguments).

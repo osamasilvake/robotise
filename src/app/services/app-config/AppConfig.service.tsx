@@ -107,6 +107,9 @@ class AppConfigService extends EnvService {
 							configuration: {
 								notifications: {
 									refreshTime: 20000
+								},
+								servicePositions: {
+									refreshTime: 20000
 								}
 							}
 						}

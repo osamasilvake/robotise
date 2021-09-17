@@ -1,22 +1,26 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SliceSiteInterface } from '../../../../../../slices/business/sites/Site.slice.interface';
+import {
+	SliceNotificationsInterface,
+	SNContentNotificationTypesDataInterface
+} from '../../../../../../slices/business/sites/configuration/Notifications.slice.interface';
 import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
 
 export interface SiteNotificationsInterface {
-	site: SliceSiteInterface;
+	notifications: SliceNotificationsInterface;
 }
 
 export interface SiteNotificationInterface {
-	site: SliceSiteInterface;
+	notifications: SliceNotificationsInterface;
+	notification: SNContentNotificationTypesDataInterface;
 	index: number;
 }
 
 export interface DialogCreateEditNotificationInterface {
-	index?: number;
 	type: SiteNotificationsCreateEditTypeEnum;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
+	index?: number;
 }
 
 export interface DialogCreateEditNotificationFormInterface {

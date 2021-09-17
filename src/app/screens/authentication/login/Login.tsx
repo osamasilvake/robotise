@@ -129,6 +129,7 @@ const Login: FC = () => {
 						/>
 
 						<Button
+							fullWidth
 							variant="contained"
 							type="submit"
 							className={classes.sSubmit}
@@ -137,7 +138,6 @@ const Login: FC = () => {
 								validateEmptyObjProperty(values) ||
 								auth.loading
 							}
-							fullWidth
 							endIcon={auth.loading && <CircularProgress size={20} />}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>

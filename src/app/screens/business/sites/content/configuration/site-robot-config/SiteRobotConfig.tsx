@@ -52,63 +52,59 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	);
 
 	return robotTwinsSummary.content?.data.length ? (
-		<Grid item xs={12} md={6}>
-			<Card square elevation={1}>
-				<CardContent>
-					<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
-					<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
-						{t(`${translation}.EXCERPT`)}
-					</Typography>
+		<Card square elevation={1}>
+			<CardContent>
+				<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
+				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
+					{t(`${translation}.EXCERPT`)}
+				</Typography>
 
-					<form onSubmit={handleSubmit} className={classes.sForm}>
-						<Grid container spacing={3}>
-							<Grid item xs={12}>
-								<FormControl error fullWidth>
-									<InputLabel id="robotId" error={!attachedRobot}>
-										{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
-									</InputLabel>
-									<Select
-										labelId="robotId"
-										id="robotId"
-										name="robotId"
-										label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
-										value={values.robotId}
-										error={!attachedRobot}
-										onChange={handleChangeSelect}>
-										{robotTwinsSummary.content?.data
-											.filter((robot) => robot.siteId === cSiteId)
-											.map((robot) => (
-												<MenuItem key={robot.robotId} value={robot.robotId}>
-													{robot.robotTitle}
-												</MenuItem>
-											))}
-									</Select>
-									{!attachedRobot && (
-										<FormHelperText>
-											{t(`${translation}.FORM.FIELDS.SITE.NOTE`)}
-										</FormHelperText>
-									)}
-								</FormControl>
-							</Grid>
-
-							<Grid item xs={12}>
-								<Button
-									variant="outlined"
-									type="submit"
-									disabled={site.siteRobotConfig.loading || !values.robotId}
-									endIcon={
-										site.siteRobotConfig.loading && (
-											<CircularProgress size={20} />
-										)
-									}>
-									{t(`${translation}.FORM.BUTTONS.UPDATE`)}
-								</Button>
-							</Grid>
+				<form onSubmit={handleSubmit} className={classes.sForm}>
+					<Grid container spacing={3}>
+						<Grid item xs={12}>
+							<FormControl error fullWidth>
+								<InputLabel id="robotId" error={!attachedRobot}>
+									{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
+								</InputLabel>
+								<Select
+									labelId="robotId"
+									id="robotId"
+									name="robotId"
+									label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
+									value={values.robotId}
+									error={!attachedRobot}
+									onChange={handleChangeSelect}>
+									{robotTwinsSummary.content?.data
+										.filter((robot) => robot.siteId === cSiteId)
+										.map((robot) => (
+											<MenuItem key={robot.robotId} value={robot.robotId}>
+												{robot.robotTitle}
+											</MenuItem>
+										))}
+								</Select>
+								{!attachedRobot && (
+									<FormHelperText>
+										{t(`${translation}.FORM.FIELDS.SITE.NOTE`)}
+									</FormHelperText>
+								)}
+							</FormControl>
 						</Grid>
-					</form>
-				</CardContent>
-			</Card>
-		</Grid>
+
+						<Grid item xs={12}>
+							<Button
+								variant="outlined"
+								type="submit"
+								disabled={site.siteRobotConfig.loading || !values.robotId}
+								endIcon={
+									site.siteRobotConfig.loading && <CircularProgress size={20} />
+								}>
+								{t(`${translation}.FORM.BUTTONS.UPDATE`)}
+							</Button>
+						</Grid>
+					</Grid>
+				</form>
+			</CardContent>
+		</Card>
 	) : null;
 };
 export default SiteRobotConfig;

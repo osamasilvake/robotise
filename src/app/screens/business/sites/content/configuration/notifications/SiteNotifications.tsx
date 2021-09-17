@@ -73,16 +73,18 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 					/>
 				</Box>
 
-				<List disablePadding>
-					{notifications?.content?.data.map((notification, index) => (
-						<SiteNotification
-							key={notification.id}
-							notifications={notifications}
-							notification={notification}
-							index={index}
-						/>
-					))}
-				</List>
+				{!!notifications.content?.data.length && (
+					<List disablePadding>
+						{notifications.content.data.map((notification, index) => (
+							<SiteNotification
+								key={notification.id}
+								notifications={notifications}
+								notification={notification}
+								index={index}
+							/>
+						))}
+					</List>
+				)}
 			</CardContent>
 		</Card>
 	);

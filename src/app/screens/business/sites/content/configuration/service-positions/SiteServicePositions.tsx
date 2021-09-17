@@ -73,15 +73,17 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 					/>
 				</Box>
 
-				<List disablePadding>
-					{servicePositions?.content?.data.map((servicePosition, index) => (
-						<SiteServicePosition
-							key={servicePosition.id}
-							servicePosition={servicePosition}
-							index={index}
-						/>
-					))}
-				</List>
+				{!!servicePositions.content?.data.length && (
+					<List disablePadding>
+						{servicePositions.content.data.map((servicePosition, index) => (
+							<SiteServicePosition
+								key={servicePosition.id}
+								servicePosition={servicePosition}
+								index={index}
+							/>
+						))}
+					</List>
+				)}
 			</CardContent>
 		</Card>
 	);

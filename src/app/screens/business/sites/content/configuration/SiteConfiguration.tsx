@@ -86,17 +86,13 @@ const SiteConfiguration: FC = () => {
 			</Grid>
 
 			<Grid container spacing={1}>
-				{!!notifications.content?.data.length && (
-					<Grid item xs={12} md={6}>
-						<SiteNotifications notifications={notifications} />
-					</Grid>
-				)}
+				<Grid item xs={12} md={6}>
+					<SiteNotifications notifications={notifications} />
+				</Grid>
 
-				{!!servicePositions.content?.data.length && (
-					<Grid item xs={12} md={6}>
-						<SiteServicePositions servicePositions={servicePositions} />
-					</Grid>
-				)}
+				<Grid item xs={12} md={6}>
+					<SiteServicePositions servicePositions={servicePositions} />
+				</Grid>
 			</Grid>
 		</Box>
 	);

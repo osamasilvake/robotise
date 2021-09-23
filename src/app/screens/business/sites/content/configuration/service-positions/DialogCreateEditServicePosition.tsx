@@ -8,7 +8,7 @@ import {
 	FormControl,
 	FormHelperText,
 	TextField
-} from '@material-ui/core';
+} from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

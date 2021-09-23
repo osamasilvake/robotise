@@ -6,7 +6,7 @@ import {
 	FormControlLabel,
 	Grid,
 	Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import clsx from 'clsx';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';

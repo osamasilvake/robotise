@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
+import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useParams } from 'react-router-dom';

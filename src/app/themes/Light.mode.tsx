@@ -1,4 +1,4 @@
-import { ThemeOptions } from '@material-ui/core';
+import { ThemeOptions } from '@mui/material';
 
 import { AppConfigService } from '../services';
 import { pxToRem } from '../utilities/methods/Number';
@@ -26,7 +26,7 @@ const Light = (options: ThemeOptions): ThemeOptions => ({
 		MuiPaper: {
 			styleOverrides: {
 				root: {
-					backgroundImage: 'none'
+					backgroundImage: 'unset'
 				},
 				elevation2: {
 					backgroundColor: AppConfigService.AppOptions.colors.c4

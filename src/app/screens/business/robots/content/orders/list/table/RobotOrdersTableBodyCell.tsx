@@ -1,4 +1,4 @@
-import { Box, Chip, Link, TableCell } from '@material-ui/core';
+import { Box, Chip, Link, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';

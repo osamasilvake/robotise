@@ -1,5 +1,5 @@
-import { Box, TableCell } from '@material-ui/core';
-import { Check, Close } from '@material-ui/icons';
+import { Check, Close } from '@mui/icons-material';
+import { Box, TableCell } from '@mui/material';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../services';

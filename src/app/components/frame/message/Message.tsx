@@ -1,5 +1,5 @@
-import { Alert, IconButton, Slide, Snackbar, SnackbarOrigin } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
+import { Close } from '@mui/icons-material';
+import { Alert, IconButton, Slide, Snackbar, SnackbarOrigin } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

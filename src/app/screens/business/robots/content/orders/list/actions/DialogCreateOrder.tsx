@@ -14,7 +14,7 @@ import {
 	Select,
 	TextField,
 	Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -195,18 +195,16 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						</Select>
 					</FormControl>
 
-					<FormControl>
-						<FormControlLabel
-							control={
-								<Checkbox
-									color="primary"
-									name="isDebug"
-									onChange={handleChangeCheckbox}
-								/>
-							}
-							label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.DEBUG.LABEL`)}
-						/>
-					</FormControl>
+					<FormControlLabel
+						control={
+							<Checkbox
+								color="primary"
+								name="isDebug"
+								onChange={handleChangeCheckbox}
+							/>
+						}
+						label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.DEBUG.LABEL`)}
+					/>
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={closeDialog}>

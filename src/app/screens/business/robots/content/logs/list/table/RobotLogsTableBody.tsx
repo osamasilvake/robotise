@@ -1,4 +1,4 @@
-import { TableBody, TableRow } from '@material-ui/core';
+import { TableBody, TableRow } from '@mui/material';
 import { FC } from 'react';
 
 import {

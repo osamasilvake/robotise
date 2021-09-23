@@ -1,4 +1,4 @@
-import { Avatar, Box, Chip, Typography } from '@material-ui/core';
+import { Avatar, Box, Chip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';

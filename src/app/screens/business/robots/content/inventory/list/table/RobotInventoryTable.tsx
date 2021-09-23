@@ -6,7 +6,7 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow
-} from '@material-ui/core';
+} from '@mui/material';
 import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC } from 'react';

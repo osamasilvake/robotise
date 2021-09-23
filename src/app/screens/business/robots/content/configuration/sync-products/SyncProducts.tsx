@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CircularProgress, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, CircularProgress, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';

@@ -1,4 +1,4 @@
-import { TableCell, TableHead, TableRow, TableSortLabel } from '@material-ui/core';
+import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 

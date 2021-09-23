@@ -1,5 +1,5 @@
-import { Box, TableCell, Tooltip, Typography } from '@material-ui/core';
-import { ChatOutlined, Check, Close, InfoOutlined } from '@material-ui/icons';
+import { ChatOutlined, Check, Close, InfoOutlined } from '@mui/icons-material';
+import { Box, TableCell, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 

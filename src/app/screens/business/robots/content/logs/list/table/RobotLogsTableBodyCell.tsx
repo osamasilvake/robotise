@@ -1,4 +1,4 @@
-import { Box, Icon, TableCell } from '@material-ui/core';
+import { Box, Icon, TableCell } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 

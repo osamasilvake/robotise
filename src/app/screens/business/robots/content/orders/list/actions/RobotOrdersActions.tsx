@@ -1,5 +1,5 @@
-import { Box, Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@material-ui/core';
-import { SettingsOutlined } from '@material-ui/icons';
+import { SettingsOutlined } from '@mui/icons-material';
+import { Box, Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

@@ -1,4 +1,4 @@
-import { Box, CardMedia, Divider, Grid, Link, Paper, Typography } from '@material-ui/core';
+import { Box, CardMedia, Divider, Grid, Link, Paper, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 

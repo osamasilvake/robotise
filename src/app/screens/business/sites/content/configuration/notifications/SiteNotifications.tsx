@@ -1,5 +1,5 @@
-import { Box, Card, CardContent, IconButton, List, Tooltip, Typography } from '@material-ui/core';
-import { AddCircle } from '@material-ui/icons';
+import { AddCircle } from '@mui/icons-material';
+import { Box, Card, CardContent, IconButton, List, Tooltip, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';

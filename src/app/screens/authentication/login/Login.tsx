@@ -1,3 +1,4 @@
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
 	Avatar,
 	Box,
@@ -12,8 +13,7 @@ import {
 	InputAdornment,
 	Paper,
 	TextField
-} from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

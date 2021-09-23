@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs } from '@material-ui/core';
+import { Box, Tab, Tabs } from '@mui/material';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,5 +1,4 @@
-import { alpha } from '@material-ui/core/styles';
-import { Components } from '@material-ui/core/styles/components';
+import { alpha, Components } from '@mui/material/styles';
 
 import { AppConfigService } from '../../services';
 import { pxToRem } from '../../utilities/methods/Number';

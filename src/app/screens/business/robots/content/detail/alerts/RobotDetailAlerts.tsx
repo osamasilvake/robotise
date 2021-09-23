@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { FC } from 'react';
 
 import { IAlert } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';

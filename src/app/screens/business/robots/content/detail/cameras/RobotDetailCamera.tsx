@@ -1,12 +1,4 @@
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	CircularProgress,
-	Grid,
-	Typography
-} from '@material-ui/core';
+import { Box, Button, Card, CardContent, CircularProgress, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

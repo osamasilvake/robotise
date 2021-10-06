@@ -17,7 +17,7 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 			{breadcrumbs(params, labels).map((item) => (
 				<Box key={item.text}>
 					{!item.isLast && item.link && (
-						<Link underline="hover" component={RouterLink} to={item.link}>
+						<Link component={RouterLink} to={item.link} underline="hover">
 							{t(item.text)}
 						</Link>
 					)}

@@ -1,36 +1,36 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { JsonApiMeta } from '../../../JsonApi.interface';
 
-export interface SliceLogsInterface {
+export interface SliceCommandsLogInterface {
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;
-	content: SLContentInterface | null;
+	content: CLContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SLContentInterface {
-	data: SLCDataInterface[];
+export interface CLContentInterface {
+	data: CLCDataInterface[];
 	meta: JsonApiMeta;
-	state?: SLCStateInterface;
+	state?: CLCStateInterface;
 }
 
-export interface SLCDataInterface {
+export interface CLCDataInterface {
 	id: string;
 	command: string;
 	status: string;
 	updatedAt: Date;
 	createdAt: Date;
-	history: SLCDataHistoryInterface[];
+	history: CLCDataHistoryInterface[];
 }
 
-export interface SLCDataHistoryInterface {
+export interface CLCDataHistoryInterface {
 	status: string;
 	createdAt: Date;
 	details?: string;
 }
 
-export interface SLCStateInterface {
+export interface CLCStateInterface {
 	pRobotId?: string;
 	page?: number;
 	rowsPerPage?: number;

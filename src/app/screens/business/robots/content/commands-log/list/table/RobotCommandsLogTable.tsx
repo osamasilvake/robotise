@@ -8,25 +8,28 @@ import { AppConfigService } from '../../../../../../../services';
 import {
 	logsSelector,
 	LogUpdateState
-} from '../../../../../../../slices/business/robots/logs/Logs.slice';
-import { SLCStateInterface } from '../../../../../../../slices/business/robots/logs/Logs.slice.interface';
-import { RobotLogsTableColumnsTypeEnum } from './RobotLogsTable.enum';
-import { RobotLogsTableHeadOrder, RobotLogsTableInterface } from './RobotLogsTable.interface';
-import { columns } from './RobotLogsTable.list';
-import { RobotLogsTableStyle } from './RobotLogsTable.style';
-import RobotLogsTableBody from './RobotLogsTableBody';
-import RobotLogsTableHead from './RobotLogsTableHead';
+} from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice';
+import { CLCStateInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
+import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
+import {
+	RobotCommandsLogTableHeadOrder,
+	RobotCommandsLogTableInterface
+} from './RobotCommandsLogTable.interface';
+import { columns } from './RobotCommandsLogTable.list';
+import { RobotCommandsLogTableStyle } from './RobotCommandsLogTable.style';
+import RobotCommandsLogTableBody from './RobotCommandsLogTableBody';
+import RobotCommandsLogTableHead from './RobotCommandsLogTableHead';
 
-const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
+const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotLogsTableStyle();
+	const classes = RobotCommandsLogTableStyle();
 
 	const dispatch = useDispatch();
-	const logs = useSelector(logsSelector);
+	const commandsLog = useSelector(logsSelector);
 
-	const [order, setOrder] = useState<RobotLogsTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<RobotLogsTableColumnsTypeEnum>(
+	const [order, setOrder] = useState<RobotCommandsLogTableHeadOrder>('desc');
+	const [orderBy, setOrderBy] = useState<RobotCommandsLogTableColumnsTypeEnum>(
 		columns[columns.length - 1].id
 	);
 
@@ -35,7 +38,10 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 	 * @param _event
 	 * @param property
 	 */
-	const handleRequestSort = (_event: MouseEvent, property: RobotLogsTableColumnsTypeEnum) => {
+	const handleRequestSort = (
+		_event: MouseEvent,
+		property: RobotCommandsLogTableColumnsTypeEnum
+	) => {
 		const isAsc = orderBy === property && order === 'asc';
 
 		// set order
@@ -52,7 +58,7 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const state: SLCStateInterface = {
+		const state: CLCStateInterface = {
 			...content?.state,
 			page: newPage
 		};
@@ -65,7 +71,7 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const state: SLCStateInterface = {
+		const state: CLCStateInterface = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value
@@ -78,7 +84,7 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 			<TableContainer className={classes.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
-					<RobotLogsTableHead
+					<RobotCommandsLogTableHead
 						order={order}
 						orderBy={orderBy}
 						onRequestSort={handleRequestSort}
@@ -86,7 +92,7 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 					/>
 
 					{/* Body */}
-					<RobotLogsTableBody
+					<RobotCommandsLogTableBody
 						content={content}
 						order={order}
 						orderBy={orderBy}
@@ -101,10 +107,10 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.business.robots.content.logs.list
+					AppConfigService.AppOptions.screens.business.robots.content.commandsLog.list
 						.showPageSizes
-						? AppConfigService.AppOptions.screens.business.robots.content.logs.list
-								.pageSizes
+						? AppConfigService.AppOptions.screens.business.robots.content.commandsLog
+								.list.pageSizes
 						: []
 				}
 				count={content?.meta.totalDocs || 0}
@@ -113,10 +119,10 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 				className={clsx({
-					[classes.sTablePagination]: logs.loading
+					[classes.sTablePagination]: commandsLog.loading
 				})}
 			/>
 		</Box>
 	);
 };
-export default RobotLogsTable;
+export default RobotCommandsLogTable;

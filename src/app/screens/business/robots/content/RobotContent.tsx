@@ -15,10 +15,10 @@ import {
 import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
+import RobotCommandsLogList from './commands-log/list/RobotCommandsLogList';
 import RobotConfiguration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
 import RobotInventoryList from './inventory/list/RobotInventoryList';
-import RobotLogsList from './logs/list/RobotLogsList';
 import RobotOrdersList from './orders/list/RobotOrdersList';
 import RobotPurchasesList from './purchases/list/RobotPurchasesList';
 
@@ -100,7 +100,7 @@ const RobotContent: FC = () => {
 						<Tab label={t(`${translation}.ORDERS`)} />
 						<Tab label={t(`${translation}.PURCHASES`)} />
 						<Tab label={t(`${translation}.CONFIGURATION`)} />
-						<Tab label={t(`${translation}.LOGS`)} />
+						<Tab label={t(`${translation}.COMMANDS_LOGS`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -120,8 +120,8 @@ const RobotContent: FC = () => {
 						{/* Configuration */}
 						{value === 4 && <RobotConfiguration />}
 
-						{/* Logs */}
-						{value === 5 && <RobotLogsList />}
+						{/* Commands Log */}
+						{value === 5 && <RobotCommandsLogList />}
 					</Box>
 				</>
 			)}

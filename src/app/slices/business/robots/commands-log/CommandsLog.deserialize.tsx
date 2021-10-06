@@ -7,11 +7,11 @@ import {
 } from '../../../JsonApi.interface';
 
 /**
- * deserialize logs
+ * deserialize commands log
  * @param payload
  * @returns
  */
-export const deserializeLogs = async <T extends JsonApiResponse>(payload: T) => {
+export const deserializeCommandsLog = async <T extends JsonApiResponse>(payload: T) => {
 	const options: DeserializerExtendedOptions = {
 		keyForAttribute: 'camelCase',
 		robots: {

@@ -2,19 +2,19 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { RobotLogsListPayloadInterface } from '../../../../screens/business/robots/content/logs/list/RobotLogsList.interface';
+import { RobotCommandsLogListPayloadInterface } from '../../../../screens/business/robots/content/commands-log/list/RobotCommandsLogList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { deserializeLogs } from './Logs.deserialize';
+import { deserializeCommandsLog } from './CommandsLog.deserialize';
 import {
-	SLCDataInterface,
-	SLContentInterface,
-	SLCStateInterface,
-	SliceLogsInterface
-} from './Logs.slice.interface';
+	CLCDataInterface,
+	CLContentInterface,
+	CLCStateInterface,
+	SliceCommandsLogInterface
+} from './CommandsLog.slice.interface';
 
 // initial state
-export const initialState: SliceLogsInterface = {
+export const initialState: SliceCommandsLogInterface = {
 	loader: false,
 	loading: false,
 	updating: false,
@@ -24,7 +24,7 @@ export const initialState: SliceLogsInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Logs',
+	name: 'Commands Log',
 	initialState,
 	reducers: {
 		loader: (state) => {
@@ -64,38 +64,38 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const logsSelector = (state: AppReducerType) => state['logs'];
+export const logsSelector = (state: AppReducerType) => state['commandsLog'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch robot logs
+ * fetch robot commands log
  * @param robotId
  * @param payload
  * @param refresh
  * @returns
  */
-export const RobotLogsFetch =
-	(robotId: string, payload: RobotLogsListPayloadInterface, refresh = false) =>
+export const RobotCommandsLogFetch =
+	(robotId: string, payload: RobotCommandsLogListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const logs = states.logs;
+		const commandsLog = states.commandsLog;
 
 		// return on busy
-		if (logs && (logs.loader || logs.loading)) {
+		if (commandsLog && (commandsLog.loader || commandsLog.loading)) {
 			return;
 		}
 
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		// fetch robot logs
-		return RobotsService.robotLogsFetch(robotId, payload)
+		// fetch robot commands log
+		return RobotsService.robotCommandsLogFetch(robotId, payload)
 			.then(async (res) => {
 				// deserialize response
-				let result: SLContentInterface = await deserializeLogs(res);
+				let result: CLContentInterface = await deserializeCommandsLog(res);
 
 				// state
 				result = {
@@ -107,9 +107,9 @@ export const RobotLogsFetch =
 				result = handleMapping(result);
 
 				// handle refresh and pagination
-				if (logs && logs.content) {
+				if (commandsLog && commandsLog.content) {
 					result = handleRefreshAndPagination(
-						logs.content,
+						commandsLog.content,
 						result,
 						refresh,
 						payload.rowsPerPage
@@ -122,7 +122,7 @@ export const RobotLogsFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-logs-error',
+					id: 'fetch-commands-log-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -139,17 +139,17 @@ export const RobotLogsFetch =
  * @returns
  */
 export const LogUpdateState =
-	(state: SLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: CLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const logs = states.logs;
+		const commandsLog = states.commandsLog;
 
 		// dispatch: updating
 		dispatch(updating());
 
-		if (logs && logs.content) {
+		if (commandsLog && commandsLog.content) {
 			const result = {
-				...logs.content,
+				...commandsLog.content,
 				state
 			};
 
@@ -163,7 +163,7 @@ export const LogUpdateState =
  * @param result
  * @returns
  */
-const handleMapping = (result: SLContentInterface) => ({
+const handleMapping = (result: CLContentInterface) => ({
 	...result,
 	data: result.data.map((item) => mapItem(item))
 });
@@ -173,8 +173,8 @@ const handleMapping = (result: SLContentInterface) => ({
  * @param item
  * @returns
  */
-const mapItem = (item: SLCDataInterface) => {
-	const translation = 'CONTENT.LOGS';
+const mapItem = (item: CLCDataInterface) => {
+	const translation = 'CONTENT.COMMANDS_LOGS';
 	return {
 		...item,
 		command: `${translation}.LIST.TABLE.VALUES.COMMAND.${item.command}`
@@ -190,8 +190,8 @@ const mapItem = (item: SLCDataInterface) => {
  * @returns
  */
 const handleRefreshAndPagination = (
-	current: SLContentInterface,
-	result: SLContentInterface,
+	current: CLContentInterface,
+	result: CLContentInterface,
 	refresh: boolean,
 	rowsPerPage: number
 ) => {

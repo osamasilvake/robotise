@@ -28,7 +28,7 @@ const appRoutes = {
 					DETAIL: '/robots/:robotId/purchases/:purchaseId'
 				},
 				CONFIGURATION: '/robots/:robotId/configuration',
-				LOGS: '/robots/:robotId/logs'
+				COMMANDS_LOG: '/robots/:robotId/commands-log'
 			}
 		},
 		INFORMATION: {

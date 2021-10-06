@@ -4,22 +4,22 @@ import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import {
-	SLCDataHistoryInterface,
-	SLCDataInterface
-} from '../../../../../../../slices/business/robots/logs/Logs.slice.interface';
+	CLCDataHistoryInterface,
+	CLCDataInterface
+} from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
+import { mapHistoryStatusLevel, mapStatusLevel } from './RobotCommandLogTable.map';
 import {
-	RobotLogsTableBodyCellInterface,
-	RobotLogsTableColumnInterface
-} from './RobotLogsTable.interface';
-import { columns } from './RobotLogsTable.list';
-import { mapHistoryStatusLevel, mapStatusLevel } from './RobotLogsTable.map';
-import { RobotLogsTableStyle } from './RobotLogsTable.style';
+	RobotCommandsLogTableBodyCellInterface,
+	RobotCommandsLogTableColumnInterface
+} from './RobotCommandsLogTable.interface';
+import { columns } from './RobotCommandsLogTable.list';
+import { RobotCommandsLogTableStyle } from './RobotCommandsLogTable.style';
 
-const RobotLogsTableBodyCell: FC<RobotLogsTableBodyCellInterface> = (props) => {
+const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> = (props) => {
 	const { column, log } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotLogsTableStyle();
+	const classes = RobotCommandsLogTableStyle();
 
 	/**
 	 * set cell value
@@ -27,16 +27,16 @@ const RobotLogsTableBodyCell: FC<RobotLogsTableBodyCellInterface> = (props) => {
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (log: SLCDataInterface, column: RobotLogsTableColumnInterface) => {
+	const setCellValue = (log: CLCDataInterface, column: RobotCommandsLogTableColumnInterface) => {
 		const value = log[column.id];
 		if (columns[3].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[2].id === column.id) {
-			const history = value as SLCDataHistoryInterface[];
+			const history = value as CLCDataHistoryInterface[];
 			return (
 				<Box>
-					{history.map((item) => (
-						<Box key={item.status} className={classes.sTableHistoryFlex}>
+					{history.map((item, index) => (
+						<Box key={index} className={classes.sTableHistoryFlex}>
 							<Icon
 								color={mapHistoryStatusLevel(item.status).color}
 								className={classes.sTableHistoryIcon}>
@@ -63,4 +63,4 @@ const RobotLogsTableBodyCell: FC<RobotLogsTableBodyCellInterface> = (props) => {
 		</TableCell>
 	);
 };
-export default RobotLogsTableBodyCell;
+export default RobotCommandsLogTableBodyCell;

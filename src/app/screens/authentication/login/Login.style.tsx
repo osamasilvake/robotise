@@ -36,5 +36,8 @@ export const LoginStyle = makeStyles((theme: Theme) => ({
 	},
 	sSubmit: {
 		margin: theme.spacing(3, 0, 2)
+	},
+	sForgetPassword: {
+		textAlign: 'center'
 	}
 }));

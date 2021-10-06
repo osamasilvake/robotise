@@ -85,5 +85,12 @@ class EnvService {
 	get envAlertDocsUrl() {
 		return process.env.REACT_APP_ALERT_DOCS_URL || '';
 	}
+
+	/**
+	 * reset password url
+	 */
+	get envResetPasswordUrl() {
+		return process.env.REACT_APP_AUTH_RESET_PASSWORD || '';
+	}
 }
 export default EnvService;

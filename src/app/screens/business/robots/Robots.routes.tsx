@@ -52,7 +52,7 @@ const robotsRoutes: RouteInterface[] = [
 	{
 		component: Robot,
 		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.LOGS
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOG
 	},
 
 	/**

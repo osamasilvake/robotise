@@ -2,7 +2,7 @@ import {
 	HistoryStatusTypeEnum,
 	StatusTypeEnum
 } from '../../../../../../../components/common/status/Status.enum';
-import { RobotLogsTableColumnStatusTypeEnum } from './RobotLogsTable.enum';
+import { RobotCommandsLogTableColumnStatusTypeEnum } from './RobotCommandsLogTable.enum';
 
 /**
  * map status level
@@ -12,12 +12,12 @@ import { RobotLogsTableColumnStatusTypeEnum } from './RobotLogsTable.enum';
 export const mapStatusLevel = (status: string) => {
 	const value = status && status.split('.').pop();
 	switch (value) {
-		case RobotLogsTableColumnStatusTypeEnum.PROGRESS:
+		case RobotCommandsLogTableColumnStatusTypeEnum.PROGRESS:
 			return StatusTypeEnum.SUCCESS_LIGHT;
-		case RobotLogsTableColumnStatusTypeEnum.SUCCESS:
+		case RobotCommandsLogTableColumnStatusTypeEnum.SUCCESS:
 			return StatusTypeEnum.SUCCESS_DARK;
-		case RobotLogsTableColumnStatusTypeEnum.REJECTED:
-		case RobotLogsTableColumnStatusTypeEnum.FAILED:
+		case RobotCommandsLogTableColumnStatusTypeEnum.REJECTED:
+		case RobotCommandsLogTableColumnStatusTypeEnum.FAILED:
 			return StatusTypeEnum.ERROR;
 		default:
 			return StatusTypeEnum.INFO;
@@ -31,18 +31,18 @@ export const mapStatusLevel = (status: string) => {
  */
 export const mapHistoryStatusLevel = (status: string) => {
 	switch (status) {
-		case RobotLogsTableColumnStatusTypeEnum.PROGRESS:
+		case RobotCommandsLogTableColumnStatusTypeEnum.PROGRESS:
 			return {
 				color: HistoryStatusTypeEnum.SUCCESS_LIGHT,
 				icon: 'cached_outlined'
 			};
-		case RobotLogsTableColumnStatusTypeEnum.SUCCESS:
+		case RobotCommandsLogTableColumnStatusTypeEnum.SUCCESS:
 			return {
 				color: HistoryStatusTypeEnum.SUCCESS_DARK,
 				icon: 'check_outlined'
 			};
-		case RobotLogsTableColumnStatusTypeEnum.REJECTED:
-		case RobotLogsTableColumnStatusTypeEnum.FAILED:
+		case RobotCommandsLogTableColumnStatusTypeEnum.REJECTED:
+		case RobotCommandsLogTableColumnStatusTypeEnum.FAILED:
 			return {
 				color: HistoryStatusTypeEnum.ERROR,
 				icon: 'cancel_outlined'

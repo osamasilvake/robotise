@@ -10,59 +10,64 @@ import PageError from '../../../../../../components/content/page-error/PageError
 import { AppConfigService } from '../../../../../../services';
 import {
 	logsSelector,
-	RobotLogsFetch
-} from '../../../../../../slices/business/robots/logs/Logs.slice';
+	RobotCommandsLogFetch
+} from '../../../../../../slices/business/robots/commands-log/CommandsLog.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import { RobotLogsListPayloadInterface } from './RobotLogsList.interface';
-import { RobotLogsListStyle } from './RobotLogsList.style';
-import RobotLogsTable from './table/RobotLogsTable';
+import { RobotCommandsLogListPayloadInterface } from './RobotCommandsLogList.interface';
+import { RobotCommandsLogListStyle } from './RobotCommandsLogList.style';
+import RobotCommandsLogTable from './table/RobotCommandsLogTable';
 
-const RobotLogsList: FC = () => {
-	const classes = RobotLogsListStyle();
+const RobotCommandsLogList: FC = () => {
+	const classes = RobotCommandsLogListStyle();
 
 	const dispatch = useDispatch();
-	const logs = useSelector(logsSelector);
+	const commandsLog = useSelector(logsSelector);
 
-	const page = logs.content?.state?.page || 0;
+	const page = commandsLog.content?.state?.page || 0;
 	const rowsPerPage =
-		logs.content?.state?.rowsPerPage ||
-		AppConfigService.AppOptions.screens.business.robots.content.logs.list.defaultPageSize;
+		commandsLog.content?.state?.rowsPerPage ||
+		AppConfigService.AppOptions.screens.business.robots.content.commandsLog.list
+			.defaultPageSize;
 
 	const pageRef = useRef({
-		page: (logs.content?.meta?.page || 0) - 1,
+		page: (commandsLog.content?.meta?.page || 0) - 1,
 		rowsPerPage
 	});
 
 	const params: RobotParamsInterface = useParams();
-	const pRobotId = logs.content?.state?.pRobotId;
+	const pRobotId = commandsLog.content?.state?.pRobotId;
 	const cRobotId = params.robotId;
 
 	useEffect(() => {
-		const payload: RobotLogsListPayloadInterface = {
+		const payload: RobotCommandsLogListPayloadInterface = {
 			pRobotId: cRobotId,
 			page,
 			rowsPerPage
 		};
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// dispatch: fetch robot logs
-			dispatch(RobotLogsFetch(cRobotId, payload));
+			// dispatch: fetch robot commands log
+			dispatch(RobotCommandsLogFetch(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.rowsPerPage = rowsPerPage;
 		} else {
-			const condition1 = logs.content === null;
-			const condition2 = !!(logs.content !== null && pRobotId && pRobotId !== cRobotId);
+			const condition1 = commandsLog.content === null;
+			const condition2 = !!(
+				commandsLog.content !== null &&
+				pRobotId &&
+				pRobotId !== cRobotId
+			);
 
 			const condition3 = pageRef.current.page !== -1; // page switch back and forth
 			const condition4 = page > pageRef.current.page; // detect next click
 
 			if (condition1 || condition2 || condition3) {
 				if (condition2 || condition4) {
-					// dispatch: fetch robot logs
+					// dispatch: fetch robot commands log
 					dispatch(
-						RobotLogsFetch(cRobotId, {
+						RobotCommandsLogFetch(cRobotId, {
 							...payload,
 							page: condition2 ? 0 : page
 						})
@@ -73,14 +78,14 @@ const RobotLogsList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, logs.content, cRobotId, pRobotId, page, rowsPerPage]);
+	}, [dispatch, commandsLog.content, cRobotId, pRobotId, page, rowsPerPage]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (logs.content) {
-				// dispatch: fetch robot logs
+			if (commandsLog.content) {
+				// dispatch: fetch robot commands log
 				dispatch(
-					RobotLogsFetch(
+					RobotCommandsLogFetch(
 						cRobotId,
 						{
 							page: 0,
@@ -95,35 +100,39 @@ const RobotLogsList: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.business.robots.content.logs.list.refreshTime
+			AppConfigService.AppOptions.screens.business.robots.content.commandsLog.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, logs.content, cRobotId, page, rowsPerPage]);
+	}, [dispatch, commandsLog.content, cRobotId, page, rowsPerPage]);
 
 	// loader
-	if (logs.loader) {
+	if (commandsLog.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (logs.errors) {
-		return <PageError message={logs.errors?.text} />;
+	if (commandsLog.errors) {
+		return <PageError message={commandsLog.errors?.text} />;
 	}
 
 	// null
-	if (!logs.content) {
+	if (!commandsLog.content) {
 		return null;
 	}
 
 	// empty
-	if (!logs.content.data.length) {
+	if (!commandsLog.content.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
 	return (
 		<Box className={classes.sBox}>
-			<RobotLogsTable content={logs.content} page={page} rowsPerPage={rowsPerPage} />
+			<RobotCommandsLogTable
+				content={commandsLog.content}
+				page={page}
+				rowsPerPage={rowsPerPage}
+			/>
 		</Box>
 	);
 };
-export default RobotLogsList;
+export default RobotCommandsLogList;

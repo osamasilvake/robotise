@@ -307,7 +307,8 @@
 				"SIGN_IN": {
 					"LABEL": "Sign In"
 				}
-			}
+			},
+			"FORGET_PASSWORD": "Forgot Your Password?"
 		}
 	},
 	"SITES": {
@@ -548,7 +549,7 @@
 				"ORDERS": "ORDERS",
 				"PURCHASES": "PURCHASES",
 				"CONFIGURATION": "CONFIGURATION",
-				"LOGS": "LOGS"
+				"COMMANDS_LOGS": "COMMANDS LOG"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -1129,7 +1130,7 @@
 					}
 				}
 			},
-			"LOGS": {
+			"COMMANDS_LOGS": {
 				"LIST": {
 					"TABLE": {
 						"COLUMNS": {

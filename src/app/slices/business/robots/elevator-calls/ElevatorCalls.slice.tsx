@@ -5,16 +5,15 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { RobotCommandsLogListPayloadInterface } from '../../../../screens/business/robots/content/commands-log/list/RobotCommandsLogList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { deserializeCommandsLog } from './CommandsLog.deserialize';
+import { deserializeElevatorCalls } from './ElevatorCalls.deserialize';
 import {
-	CLCDataInterface,
-	CLContentInterface,
-	CLCStateInterface,
-	SliceCommandsLogInterface
-} from './CommandsLog.slice.interface';
+	ECContentInterface,
+	ECCStateInterface,
+	SliceElevatorCallsInterface
+} from './ElevatorCalls.slice.interface';
 
 // initial state
-export const initialState: SliceCommandsLogInterface = {
+export const initialState: SliceElevatorCallsInterface = {
 	loader: false,
 	loading: false,
 	updating: false,
@@ -24,7 +23,7 @@ export const initialState: SliceCommandsLogInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Commands Log',
+	name: 'Elevator Calls',
 	initialState,
 	reducers: {
 		loader: (state) => {
@@ -64,38 +63,38 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const commandsLogSelector = (state: AppReducerType) => state['commandsLog'];
+export const elevatorCallsSelector = (state: AppReducerType) => state['elevatorCalls'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch robot commands log
+ * fetch robot elevator calls
  * @param robotId
  * @param payload
  * @param refresh
  * @returns
  */
-export const RobotCommandsLogFetch =
+export const RobotElevatorCallsFetch =
 	(robotId: string, payload: RobotCommandsLogListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const commandsLog = states.commandsLog;
+		const elevatorCalls = states.elevatorCalls;
 
 		// return on busy
-		if (commandsLog && (commandsLog.loader || commandsLog.loading)) {
+		if (elevatorCalls && (elevatorCalls.loader || elevatorCalls.loading)) {
 			return;
 		}
 
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		// fetch robot commands log
-		return RobotsService.robotCommandsLogFetch(robotId, payload)
+		// fetch robot elevator calls
+		return RobotsService.robotElevatorCallsFetch(robotId, payload)
 			.then(async (res) => {
 				// deserialize response
-				let result: CLContentInterface = await deserializeCommandsLog(res);
+				let result: ECContentInterface = await deserializeElevatorCalls(res);
 
 				// state
 				result = {
@@ -103,13 +102,10 @@ export const RobotCommandsLogFetch =
 					state: payload
 				};
 
-				// handle mapping
-				result = handleMapping(result);
-
 				// handle refresh and pagination
-				if (commandsLog && commandsLog.content) {
+				if (elevatorCalls && elevatorCalls.content) {
 					result = handleRefreshAndPagination(
-						commandsLog.content,
+						elevatorCalls.content,
 						result,
 						refresh,
 						payload.rowsPerPage
@@ -122,7 +118,7 @@ export const RobotCommandsLogFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-commands-log-error',
+					id: 'fetch-elevator-calls-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -138,18 +134,18 @@ export const RobotCommandsLogFetch =
  * @param state
  * @returns
  */
-export const LogUpdateState =
-	(state: CLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const ElevatorCallsUpdateState =
+	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const commandsLog = states.commandsLog;
+		const elevatorCalls = states.elevatorCalls;
 
 		// dispatch: updating
 		dispatch(updating());
 
-		if (commandsLog && commandsLog.content) {
+		if (elevatorCalls && elevatorCalls.content) {
 			const result = {
-				...commandsLog.content,
+				...elevatorCalls.content,
 				state
 			};
 
@@ -157,29 +153,6 @@ export const LogUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle mapping
- * @param result
- * @returns
- */
-const handleMapping = (result: CLContentInterface) => ({
-	...result,
-	data: result.data.map((item) => mapItem(item))
-});
-
-/**
- * map item
- * @param item
- * @returns
- */
-const mapItem = (item: CLCDataInterface) => {
-	const translation = 'CONTENT.COMMANDS_LOGS';
-	return {
-		...item,
-		command: `${translation}.LIST.TABLE.VALUES.COMMAND.${item.command}`
-	};
-};
 
 /**
  * handle refresh and pagination
@@ -190,8 +163,8 @@ const mapItem = (item: CLCDataInterface) => {
  * @returns
  */
 const handleRefreshAndPagination = (
-	current: CLContentInterface,
-	result: CLContentInterface,
+	current: ECContentInterface,
+	result: ECContentInterface,
 	refresh: boolean,
 	rowsPerPage: number
 ) => {

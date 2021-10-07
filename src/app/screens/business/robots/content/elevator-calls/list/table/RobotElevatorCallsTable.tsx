@@ -6,30 +6,30 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
 import {
-	commandsLogSelector,
-	LogUpdateState
-} from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice';
-import { CLCStateInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
-import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
+	elevatorCallsSelector,
+	ElevatorCallsUpdateState
+} from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
+import { ECCStateInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
+import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
 import {
-	RobotCommandsLogTableHeadOrder,
-	RobotCommandsLogTableInterface
-} from './RobotCommandsLogTable.interface';
-import { columns } from './RobotCommandsLogTable.list';
-import { RobotCommandsLogTableStyle } from './RobotCommandsLogTable.style';
-import RobotCommandsLogTableBody from './RobotCommandsLogTableBody';
-import RobotCommandsLogTableHead from './RobotCommandsLogTableHead';
+	RobotElevatorCallsTableHeadOrder,
+	RobotElevatorCallsTableInterface
+} from './RobotElevatorCallsTable.interface';
+import { columns } from './RobotElevatorCallsTable.list';
+import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
+import RobotElevatorCallsTableBody from './RobotElevatorCallsTableBody';
+import RobotElevatorCallsTableHead from './RobotElevatorCallsTableHead';
 
-const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
+const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) => {
 	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotCommandsLogTableStyle();
+	const classes = RobotElevatorCallsTableStyle();
 
 	const dispatch = useDispatch();
-	const commandsLog = useSelector(commandsLogSelector);
+	const elevatorCalls = useSelector(elevatorCallsSelector);
 
-	const [order, setOrder] = useState<RobotCommandsLogTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<RobotCommandsLogTableColumnsTypeEnum>(
+	const [order, setOrder] = useState<RobotElevatorCallsTableHeadOrder>('desc');
+	const [orderBy, setOrderBy] = useState<RobotElevatorCallsTableColumnsTypeEnum>(
 		columns[columns.length - 1].id
 	);
 
@@ -40,7 +40,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	 */
 	const handleRequestSort = (
 		_event: MouseEvent,
-		property: RobotCommandsLogTableColumnsTypeEnum
+		property: RobotElevatorCallsTableColumnsTypeEnum
 	) => {
 		const isAsc = orderBy === property && order === 'asc';
 
@@ -58,11 +58,11 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const state: CLCStateInterface = {
+		const state: ECCStateInterface = {
 			...content?.state,
 			page: newPage
 		};
-		dispatch(LogUpdateState(state));
+		dispatch(ElevatorCallsUpdateState(state));
 	};
 
 	/**
@@ -71,12 +71,12 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const state: CLCStateInterface = {
+		const state: ECCStateInterface = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(LogUpdateState(state));
+		dispatch(ElevatorCallsUpdateState(state));
 	};
 
 	return (
@@ -84,7 +84,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 			<TableContainer className={classes.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
-					<RobotCommandsLogTableHead
+					<RobotElevatorCallsTableHead
 						order={order}
 						orderBy={orderBy}
 						onRequestSort={handleRequestSort}
@@ -92,7 +92,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 					/>
 
 					{/* Body */}
-					<RobotCommandsLogTableBody
+					<RobotElevatorCallsTableBody
 						content={content}
 						order={order}
 						orderBy={orderBy}
@@ -107,9 +107,9 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.business.robots.content.commandsLog.list
+					AppConfigService.AppOptions.screens.business.robots.content.elevatorCalls.list
 						.showPageSizes
-						? AppConfigService.AppOptions.screens.business.robots.content.commandsLog
+						? AppConfigService.AppOptions.screens.business.robots.content.elevatorCalls
 								.list.pageSizes
 						: []
 				}
@@ -119,10 +119,10 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 				className={clsx({
-					[classes.sTablePagination]: commandsLog.loading
+					[classes.sTablePagination]: elevatorCalls.loading
 				})}
 			/>
 		</Box>
 	);
 };
-export default RobotCommandsLogTable;
+export default RobotElevatorCallsTable;

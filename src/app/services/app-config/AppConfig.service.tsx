@@ -166,6 +166,14 @@ class AppConfigService extends EnvService {
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
+							},
+							elevatorCalls: {
+								list: {
+									refreshTime: 10000,
+									showPageSizes: true,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
 							}
 						}
 					}
@@ -237,6 +245,7 @@ class AppConfigService extends EnvService {
 						COMMANDS: `${this.envAppUrl}/robots/:robotId/commands`,
 						CONFIG: `${this.envAppUrl}/robots/:robotId`,
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
+						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
 						REPORTS: {
 							PURCHASES: `${this.envAppUrl}/order-report-export`

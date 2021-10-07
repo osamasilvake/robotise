@@ -4,6 +4,7 @@ import { createLogger } from 'redux-logger';
 
 import auth from './authentication/Auth.slice';
 import commandsLog from './business/robots/commands-log/CommandsLog.slice';
+import elevatorCalls from './business/robots/elevator-calls/ElevatorCalls.slice';
 import inventory from './business/robots/inventory/Inventory.slice';
 import order from './business/robots/orders/Order.slice';
 import orders from './business/robots/orders/Orders.slice';
@@ -40,6 +41,7 @@ const combinedReducer = combineReducers({
 	purchases,
 	purchase,
 	commandsLog,
+	elevatorCalls,
 	alertCodes
 });
 

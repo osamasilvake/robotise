@@ -549,7 +549,8 @@
 				"ORDERS": "ORDERS",
 				"PURCHASES": "PURCHASES",
 				"CONFIGURATION": "CONFIGURATION",
-				"COMMANDS_LOGS": "COMMANDS LOG"
+				"COMMANDS_LOGS": "COMMANDS LOG",
+				"ELEVATOR_CALLS": "ELEVATOR CALLS"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -1150,6 +1151,21 @@
 								"remote-control-rotate": "Remote Control Rotate",
 								"set-mute-sensor-state": "Set Mute Sensor State"
 							}
+						}
+					}
+				}
+			},
+			"ELEVATOR_CALLS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"CALL_TYPE": "Call Type",
+							"VENDOR": "Vendor",
+							"HISTORY": "History",
+							"SRC_AREA_ID": "SRC ID",
+							"DST_AREA_ID": "DST ID",
+							"CREATED": "Created"
 						}
 					}
 				}

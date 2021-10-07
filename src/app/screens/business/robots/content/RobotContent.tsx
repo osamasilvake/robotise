@@ -18,6 +18,7 @@ import robotsRoutes from '../Robots.routes';
 import RobotCommandsLogList from './commands-log/list/RobotCommandsLogList';
 import RobotConfiguration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
+import RobotElevatorCallsList from './elevator-calls/list/RobotElevatorCallsList';
 import RobotInventoryList from './inventory/list/RobotInventoryList';
 import RobotOrdersList from './orders/list/RobotOrdersList';
 import RobotPurchasesList from './purchases/list/RobotPurchasesList';
@@ -101,6 +102,7 @@ const RobotContent: FC = () => {
 						<Tab label={t(`${translation}.PURCHASES`)} />
 						<Tab label={t(`${translation}.CONFIGURATION`)} />
 						<Tab label={t(`${translation}.COMMANDS_LOGS`)} />
+						<Tab label={t(`${translation}.ELEVATOR_CALLS`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -122,6 +124,9 @@ const RobotContent: FC = () => {
 
 						{/* Commands Log */}
 						{value === 5 && <RobotCommandsLogList />}
+
+						{/* Elevator Calls */}
+						{value === 6 && <RobotElevatorCallsList />}
 					</Box>
 				</>
 			)}

@@ -379,6 +379,23 @@ class RobotsService {
 	};
 
 	/**
+	 * fetch robot elevator calls
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotElevatorCallsFetch = (robotId: string, payload: RobotCommandsLogListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[robot]': robotId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
 	 * generate reports
 	 * @param robotId
 	 * @param payload

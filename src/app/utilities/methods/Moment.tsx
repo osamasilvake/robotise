@@ -26,6 +26,15 @@ const momentFormat2 = <T,>(value: T): string => {
 };
 
 /**
+ * format 3
+ * @param value
+ * @returns
+ */
+const momentFormat3 = <T,>(value: T): string => {
+	return moment(value).format('HH:mm:ss');
+};
+
+/**
  * Date.now()
  * @returns
  */
@@ -78,6 +87,7 @@ export {
 	momentCurrentYear,
 	momentFormat1,
 	momentFormat2,
+	momentFormat3,
 	momentFromToDiff,
 	momentISOString,
 	momentNow,

@@ -138,7 +138,7 @@ export const RobotCommandsLogFetch =
  * @param state
  * @returns
  */
-export const LogUpdateState =
+export const RobotCommandsLogUpdateState =
 	(state: CLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

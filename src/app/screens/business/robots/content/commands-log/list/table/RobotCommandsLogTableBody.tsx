@@ -69,13 +69,13 @@ const RobotCommandsLogTableBody: FC<RobotCommandsLogTableBodyInterface> = (props
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((log: CLCDataInterface) => (
-						<TableRow key={log.id}>
+					.map((commandLog: CLCDataInterface) => (
+						<TableRow key={commandLog.id}>
 							{columns.map((column: RobotCommandsLogTableColumnInterface) => (
 								<RobotCommandsLogTableBodyCell
 									key={column.id}
 									column={column}
-									log={log}
+									commandLog={commandLog}
 								/>
 							))}
 						</TableRow>

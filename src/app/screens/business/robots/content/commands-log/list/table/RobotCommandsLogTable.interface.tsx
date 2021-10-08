@@ -29,7 +29,7 @@ export interface RobotCommandsLogTableBodyInterface {
 
 export interface RobotCommandsLogTableBodyCellInterface {
 	column: RobotCommandsLogTableColumnInterface;
-	log: CLCDataInterface;
+	commandLog: CLCDataInterface;
 }
 
 export interface RobotCommandsLogTableColumnInterface {

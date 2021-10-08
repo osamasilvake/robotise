@@ -7,6 +7,7 @@ import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { deserializeElevatorCalls } from './ElevatorCalls.deserialize';
 import {
+	ECCDataInterface,
 	ECContentInterface,
 	ECCStateInterface,
 	SliceElevatorCallsInterface
@@ -102,6 +103,9 @@ export const RobotElevatorCallsFetch =
 					state: payload
 				};
 
+				// handle mapping
+				result = handleMapping(result);
+
 				// handle refresh and pagination
 				if (elevatorCalls && elevatorCalls.content) {
 					result = handleRefreshAndPagination(
@@ -134,7 +138,7 @@ export const RobotElevatorCallsFetch =
  * @param state
  * @returns
  */
-export const ElevatorCallsUpdateState =
+export const RobotElevatorCallsUpdateState =
 	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -153,6 +157,32 @@ export const ElevatorCallsUpdateState =
 			dispatch(updated(result));
 		}
 	};
+
+/**
+ * handle mapping
+ * @param result
+ * @returns
+ */
+const handleMapping = (result: ECContentInterface) => ({
+	...result,
+	data: result.data.map((item) => mapItem(item))
+});
+
+/**
+ * map item
+ * @param item
+ * @returns
+ */
+const mapItem = (item: ECCDataInterface) => {
+	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES.HISTORY';
+	return {
+		...item,
+		history: item.history.map((h) => ({
+			...h,
+			event: `${translation}.EVENT.${h.event}`
+		}))
+	};
+};
 
 /**
  * handle refresh and pagination

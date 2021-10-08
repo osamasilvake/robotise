@@ -1166,6 +1166,18 @@
 							"SRC_AREA_ID": "SRC ID",
 							"DST_AREA_ID": "DST ID",
 							"CREATED": "Created"
+						},
+						"VALUES": {
+							"HISTORY": {
+								"EVENT": {
+									"elevator.event.gotCallStatus": "Got Call Status",
+									"elevator.event.gotLiftId": "Got Lift ID",
+									"elevator.event.gotStatus": "Got Status",
+									"robot.event.enteredLift": "Entered Lift",
+									"robot.event.leftLift": "Left Lift",
+									"elevator.event.error": "Error"
+								}
+							}
 						}
 					}
 				}

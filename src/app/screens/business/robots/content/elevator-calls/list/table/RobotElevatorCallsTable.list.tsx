@@ -12,25 +12,25 @@ export const columns: RobotElevatorCallsTableColumnInterface[] = [
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.CALL_TYPE,
 		label: `${translation}.CALL_TYPE`,
-		minWidth: 130,
+		minWidth: 120,
 		align: 'left'
 	},
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.SRC_AREA_ID,
 		label: `${translation}.SRC_AREA_ID`,
-		minWidth: 100,
+		minWidth: 110,
 		align: 'left'
 	},
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.DST_AREA_ID,
 		label: `${translation}.DST_AREA_ID`,
-		minWidth: 100,
+		minWidth: 110,
 		align: 'left'
 	},
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.HISTORY,
 		label: `${translation}.HISTORY`,
-		minWidth: 390,
+		minWidth: 350,
 		align: 'left',
 		noSort: true
 	},

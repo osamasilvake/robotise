@@ -1,4 +1,4 @@
-import { Box, TableCell, Typography } from '@mui/material';
+import { Box, Icon, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -8,13 +8,13 @@ import {
 	ECCDataHistoryInterface,
 	ECCDataInterface
 } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
-import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
+import { momentFormat1, momentFormat3 } from '../../../../../../../utilities/methods/Moment';
 import {
 	RobotElevatorCallsTableBodyCellInterface,
 	RobotElevatorCallsTableColumnInterface
 } from './RobotElevatorCallsTable.interface';
 import { columns } from './RobotElevatorCallsTable.list';
-import { mapStatusLevel } from './RobotElevatorCallsTable.map';
+import { mapHistoryEventType, mapStatusLevel } from './RobotElevatorCallsTable.map';
 import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
 
 const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterface> = (props) => {
@@ -41,15 +41,23 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 				<Box>
 					{history.map((item, index) => (
 						<Box key={index} className={classes.sTableHistoryFlex}>
-							<Typography variant="body2">{item.event}:</Typography>
-							<Typography variant="body2" className={classes.sHistoryDetail}>
+							<Icon
+								color={mapHistoryEventType(t(item.event)).color}
+								className={classes.sTableHistoryIcon}>
+								{mapHistoryEventType(t(item.event)).icon}
+							</Icon>
+							<Typography variant="body2" className={classes.sHistoryEvent}>
+								{t(item.event)}:
+							</Typography>
+							<Typography variant="body2" className={classes.sHistoryDetails}>
 								{item.details || AppConfigService.AppOptions.common.none}
 							</Typography>
 							<Typography variant="caption" color="textSecondary">
-								{momentFormat1(item.createdAt)}
+								({momentFormat3(item.createdAt)})
 							</Typography>
 						</Box>
 					))}
+					{!history.length && AppConfigService.AppOptions.common.none}
 				</Box>
 			);
 		} else if (typeof value === 'string') {

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppConfigService } from '../../../../../../../services';
 import {
 	elevatorCallsSelector,
-	ElevatorCallsUpdateState
+	RobotElevatorCallsUpdateState
 } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { ECCStateInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
@@ -62,7 +62,7 @@ const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) =>
 			...content?.state,
 			page: newPage
 		};
-		dispatch(ElevatorCallsUpdateState(state));
+		dispatch(RobotElevatorCallsUpdateState(state));
 	};
 
 	/**
@@ -76,7 +76,7 @@ const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) =>
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(ElevatorCallsUpdateState(state));
+		dispatch(RobotElevatorCallsUpdateState(state));
 	};
 
 	return (

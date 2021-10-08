@@ -14,13 +14,12 @@ export enum RobotElevatorCallsTableSortTypeEnum {
 }
 
 export enum RobotElevatorCallsTableColumnStatusTypeEnum {
-	PROGRESS = 'progress',
+	PROGRESS = 'in_progress',
 	CREATED = 'created',
-	SUCCESS = 'succeed',
+	SUCCESS = 'successful',
 	FAILED = 'failed'
 }
 
-export enum RobotElevatorCallsTableColumnCallTypeEnum {
-	NORMAL = 'normal',
-	TRAPPED = 'trapped'
+export enum RobotElevatorCallsTableColumnHistoryEventTypeEnum {
+	ERROR = 'error'
 }

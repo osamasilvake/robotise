@@ -8,27 +8,30 @@ import {
 	CLCDataInterface
 } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
-import { mapHistoryStatusLevel, mapStatusLevel } from './RobotCommandLogTable.map';
 import {
 	RobotCommandsLogTableBodyCellInterface,
 	RobotCommandsLogTableColumnInterface
 } from './RobotCommandsLogTable.interface';
 import { columns } from './RobotCommandsLogTable.list';
+import { mapHistoryStatusLevel, mapStatusLevel } from './RobotCommandsLogTable.map';
 import { RobotCommandsLogTableStyle } from './RobotCommandsLogTable.style';
 
 const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> = (props) => {
-	const { column, log } = props;
+	const { column, commandLog } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotCommandsLogTableStyle();
 
 	/**
 	 * set cell value
-	 * @param log
+	 * @param commandLog
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (log: CLCDataInterface, column: RobotCommandsLogTableColumnInterface) => {
-		const value = log[column.id];
+	const setCellValue = (
+		commandLog: CLCDataInterface,
+		column: RobotCommandsLogTableColumnInterface
+	) => {
+		const value = commandLog[column.id];
 		if (columns[3].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[2].id === column.id) {
@@ -59,7 +62,7 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(log, column)}
+			{setCellValue(commandLog, column)}
 		</TableCell>
 	);
 };

@@ -14,7 +14,7 @@ import {
 	RobotOrdersTableColumnInterface
 } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
-import { isOrderCancellable, mapOrder, mapStatusLevel } from './RobotOrdersTable.map';
+import { isOrderCancellable, mapOrder, mapStatus } from './RobotOrdersTable.map';
 import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 
 const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) => {
@@ -83,7 +83,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 			if (columns[0].id === column.id) {
 				return (
 					<Box>
-						<Status level={mapStatusLevel(value)}>{t(value.replace(':', '_'))}</Status>
+						<Status level={mapStatus(value)}>{t(value.replace(':', '_'))}</Status>
 						{isOrderCancellable(value) && (
 							<>
 								<Chip

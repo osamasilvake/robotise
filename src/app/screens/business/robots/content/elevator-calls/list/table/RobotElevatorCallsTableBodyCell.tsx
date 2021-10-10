@@ -14,7 +14,7 @@ import {
 	RobotElevatorCallsTableColumnInterface
 } from './RobotElevatorCallsTable.interface';
 import { columns } from './RobotElevatorCallsTable.list';
-import { mapHistoryEventType, mapStatusLevel } from './RobotElevatorCallsTable.map';
+import { mapHistoryEventType, mapStatus } from './RobotElevatorCallsTable.map';
 import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
 
 const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterface> = (props) => {
@@ -62,7 +62,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 			);
 		} else if (typeof value === 'string') {
 			if (columns[0].id === column.id) {
-				return <Status level={mapStatusLevel(value)}>{t(value)}</Status>;
+				return <Status level={mapStatus(value)}>{t(value)}</Status>;
 			}
 			return t(value);
 		}

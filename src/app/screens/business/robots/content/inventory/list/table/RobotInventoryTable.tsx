@@ -26,7 +26,7 @@ import {
 	RobotInventoryTableInterface
 } from './RobotInventoryTable.interface';
 import { columns } from './RobotInventoryTable.list';
-import { mapStatusLevel } from './RobotInventoryTable.map';
+import { mapStatus } from './RobotInventoryTable.map';
 import { RobotsInventoryTableStyle } from './RobotInventoryTable.style';
 
 const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
@@ -72,7 +72,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 					/>
 				);
 			case RobotInventoryTableColumnsTypeEnum.QUANTITY:
-				return <Status level={mapStatusLevel(lane.status)}>{lane[column.id]}</Status>;
+				return <Status level={mapStatus(lane.status)}>{lane[column.id]}</Status>;
 			case RobotInventoryTableColumnsTypeEnum.CAPACITY:
 				return lane[column.id];
 			case RobotInventoryTableColumnsTypeEnum.PRICE:

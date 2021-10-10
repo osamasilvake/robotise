@@ -25,11 +25,11 @@ export const mapElevatorCall = (elevatorCall: ECCDataInterface) => {
 };
 
 /**
- * map status level
+ * map status
  * @param status
  * @returns
  */
-export const mapStatusLevel = (status: string) => {
+export const mapStatus = (status: string) => {
 	const value = status && status.split('.').pop();
 	switch (value) {
 		case RobotElevatorCallsTableColumnStatusTypeEnum.PROGRESS:

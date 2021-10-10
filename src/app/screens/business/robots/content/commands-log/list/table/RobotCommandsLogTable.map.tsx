@@ -19,11 +19,11 @@ export const mapCommandLog = (commandLog: CLCDataInterface) => {
 };
 
 /**
- * map status level
+ * map status
  * @param status
  * @returns
  */
-export const mapStatusLevel = (status: string) => {
+export const mapStatus = (status: string) => {
 	const value = status && status.split('.').pop();
 	switch (value) {
 		case RobotCommandsLogTableColumnStatusTypeEnum.PROGRESS:
@@ -39,11 +39,11 @@ export const mapStatusLevel = (status: string) => {
 };
 
 /**
- * map history status level
+ * map history status
  * @param status
  * @returns
  */
-export const mapHistoryStatusLevel = (status: string) => {
+export const mapHistoryStatus = (status: string) => {
 	switch (status) {
 		case RobotCommandsLogTableColumnStatusTypeEnum.PROGRESS:
 			return {

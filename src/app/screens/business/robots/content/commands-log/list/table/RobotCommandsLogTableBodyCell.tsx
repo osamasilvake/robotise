@@ -13,7 +13,7 @@ import {
 	RobotCommandsLogTableColumnInterface
 } from './RobotCommandsLogTable.interface';
 import { columns } from './RobotCommandsLogTable.list';
-import { mapCommandLog, mapHistoryStatusLevel, mapStatusLevel } from './RobotCommandsLogTable.map';
+import { mapCommandLog, mapHistoryStatus, mapStatus } from './RobotCommandsLogTable.map';
 import { RobotCommandsLogTableStyle } from './RobotCommandsLogTable.style';
 
 const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> = (props) => {
@@ -39,9 +39,9 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 					{history.map((item, index) => (
 						<Box key={index} className={classes.sTableHistoryFlex}>
 							<Icon
-								color={mapHistoryStatusLevel(item.status).color}
+								color={mapHistoryStatus(item.status).color}
 								className={classes.sTableHistoryIcon}>
-								{mapHistoryStatusLevel(item.status).icon}
+								{mapHistoryStatus(item.status).icon}
 							</Icon>
 							{item.status}
 							{item.details && <>: {item.details}</>}
@@ -53,7 +53,7 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 			return momentFormat1(value);
 		} else if (typeof value === 'string') {
 			if (columns[1].id === column.id) {
-				return <Status level={mapStatusLevel(value)}>{t(value)}</Status>;
+				return <Status level={mapStatus(value)}>{t(value)}</Status>;
 			}
 			return t(value);
 		}

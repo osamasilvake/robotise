@@ -13,7 +13,7 @@ import {
 	RobotCommandsLogTableColumnInterface
 } from './RobotCommandsLogTable.interface';
 import { columns } from './RobotCommandsLogTable.list';
-import { mapHistoryStatusLevel, mapStatusLevel } from './RobotCommandsLogTable.map';
+import { mapCommandLog, mapHistoryStatusLevel, mapStatusLevel } from './RobotCommandsLogTable.map';
 import { RobotCommandsLogTableStyle } from './RobotCommandsLogTable.style';
 
 const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> = (props) => {
@@ -31,10 +31,8 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 		commandLog: CLCDataInterface,
 		column: RobotCommandsLogTableColumnInterface
 	) => {
-		const value = commandLog[column.id];
-		if (columns[3].id === column.id) {
-			return momentFormat1(value);
-		} else if (columns[2].id === column.id) {
+		const value = mapCommandLog(commandLog)[column.id];
+		if (columns[2].id === column.id) {
 			const history = value as CLCDataHistoryInterface[];
 			return (
 				<Box>
@@ -51,6 +49,8 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 					))}
 				</Box>
 			);
+		} else if (columns[3].id === column.id) {
+			return momentFormat1(value);
 		} else if (typeof value === 'string') {
 			if (columns[1].id === column.id) {
 				return <Status level={mapStatusLevel(value)}>{t(value)}</Status>;

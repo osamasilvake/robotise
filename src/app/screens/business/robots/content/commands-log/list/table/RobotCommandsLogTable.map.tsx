@@ -2,7 +2,21 @@ import {
 	HistoryStatusTypeEnum,
 	StatusTypeEnum
 } from '../../../../../../../components/common/status/Status.enum';
+import { CLCDataInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
 import { RobotCommandsLogTableColumnStatusTypeEnum } from './RobotCommandsLogTable.enum';
+
+/**
+ * map command log
+ * @param commandLog
+ * @returns
+ */
+export const mapCommandLog = (commandLog: CLCDataInterface) => {
+	const translation = 'CONTENT.COMMANDS_LOGS.LIST.TABLE.VALUES';
+	return {
+		...commandLog,
+		command: `${translation}.COMMAND.${commandLog.command}`
+	};
+};
 
 /**
  * map status level

@@ -7,7 +7,6 @@ import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { deserializeCommandsLog } from './CommandsLog.deserialize';
 import {
-	CLCDataInterface,
 	CLContentInterface,
 	CLCStateInterface,
 	SliceCommandsLogInterface
@@ -103,9 +102,6 @@ export const RobotCommandsLogFetch =
 					state: payload
 				};
 
-				// handle mapping
-				result = handleMapping(result);
-
 				// handle refresh and pagination
 				if (commandsLog && commandsLog.content) {
 					result = handleRefreshAndPagination(
@@ -157,29 +153,6 @@ export const RobotCommandsLogUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle mapping
- * @param result
- * @returns
- */
-const handleMapping = (result: CLContentInterface) => ({
-	...result,
-	data: result.data.map((item) => mapItem(item))
-});
-
-/**
- * map item
- * @param item
- * @returns
- */
-const mapItem = (item: CLCDataInterface) => {
-	const translation = 'CONTENT.COMMANDS_LOGS';
-	return {
-		...item,
-		command: `${translation}.LIST.TABLE.VALUES.COMMAND.${item.command}`
-	};
-};
 
 /**
  * handle refresh and pagination

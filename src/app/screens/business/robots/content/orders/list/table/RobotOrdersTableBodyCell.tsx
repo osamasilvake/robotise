@@ -14,7 +14,7 @@ import {
 	RobotOrdersTableColumnInterface
 } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
-import { isOrderCancellable, mapStatusLevel } from './RobotOrdersTable.map';
+import { isOrderCancellable, mapOrder, mapStatusLevel } from './RobotOrdersTable.map';
 import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 
 const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) => {
@@ -66,7 +66,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 * @returns
 	 */
 	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
-		const value = order[column.id];
+		const value = mapOrder(order)[column.id];
 		if (columns[3].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[5].id === column.id && order.orderReport?.id) {

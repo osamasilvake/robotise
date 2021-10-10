@@ -1,6 +1,26 @@
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
+import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { RobotOrdersTableColumnStatusTypeEnum } from './RobotOrdersTable.enum';
 import { cancellableOrders } from './RobotOrdersTable.list';
+
+/**
+ * map order
+ * @param order
+ * @returns
+ */
+export const mapOrder = (order: SOCDataInterface) => {
+	const translation = 'CONTENT.ORDERS';
+	return {
+		...order,
+		status: `${translation}.LIST.TABLE.VALUES.STATUS.${order.status}`,
+		location:
+			order.location?.length <= 4
+				? order.location
+				: `${translation}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
+		mode: `${translation}.COMMON.MODE.${order.mode}`,
+		origin: `${translation}.LIST.TABLE.VALUES.ORIGIN.${order.origin}`
+	};
+};
 
 /**
  * map status level

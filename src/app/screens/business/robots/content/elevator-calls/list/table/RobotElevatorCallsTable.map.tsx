@@ -2,10 +2,27 @@ import {
 	HistoryStatusTypeEnum,
 	StatusTypeEnum
 } from '../../../../../../../components/common/status/Status.enum';
+import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import {
 	RobotElevatorCallsTableColumnHistoryEventTypeEnum,
 	RobotElevatorCallsTableColumnStatusTypeEnum
 } from './RobotElevatorCallsTable.enum';
+
+/**
+ * map elevator call
+ * @param elevatorCall
+ * @returns
+ */
+export const mapElevatorCall = (elevatorCall: ECCDataInterface) => {
+	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES';
+	return {
+		...elevatorCall,
+		history: elevatorCall.history.map((item) => ({
+			...item,
+			event: `${translation}.HISTORY.EVENT.${item.event}`
+		}))
+	};
+};
 
 /**
  * map status level

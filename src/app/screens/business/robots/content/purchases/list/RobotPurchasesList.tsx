@@ -44,7 +44,6 @@ const RobotPurchasesList: FC = () => {
 
 	useEffect(() => {
 		const payload: RobotPurchasesListPayloadInterface = {
-			pRobotId: cRobotId,
 			page,
 			rowsPerPage,
 			billed,

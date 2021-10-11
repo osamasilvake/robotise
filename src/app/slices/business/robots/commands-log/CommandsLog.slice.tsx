@@ -99,7 +99,10 @@ export const RobotCommandsLogFetch =
 				// state
 				result = {
 					...result,
-					state: payload
+					state: {
+						...payload,
+						pRobotId: robotId
+					}
 				};
 
 				// handle refresh and pagination

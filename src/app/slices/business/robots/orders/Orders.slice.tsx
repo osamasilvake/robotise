@@ -102,7 +102,10 @@ export const OrdersFetchList =
 				// state
 				result = {
 					...result,
-					state: payload
+					state: {
+						...payload,
+						pRobotId: robotId
+					}
 				};
 
 				// handle refresh and pagination

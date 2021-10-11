@@ -2,7 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { RobotCommandsLogListPayloadInterface } from '../../../../screens/business/robots/content/commands-log/list/RobotCommandsLogList.interface';
+import { RobotElevatorCallsListPayloadInterface } from '../../../../screens/business/robots/content/elevator-calls/list/RobotElevatorCallsList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { deserializeElevatorCalls } from './ElevatorCalls.deserialize';
@@ -76,7 +76,7 @@ export default dataSlice.reducer;
  * @returns
  */
 export const RobotElevatorCallsFetch =
-	(robotId: string, payload: RobotCommandsLogListPayloadInterface, refresh = false) =>
+	(robotId: string, payload: RobotElevatorCallsListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -99,7 +99,10 @@ export const RobotElevatorCallsFetch =
 				// state
 				result = {
 					...result,
-					state: payload
+					state: {
+						...payload,
+						pRobotId: robotId
+					}
 				};
 
 				// handle refresh and pagination

@@ -1,3 +1,4 @@
+import { CloudDownload } from '@mui/icons-material';
 import {
 	Button,
 	CircularProgress,
@@ -10,8 +11,7 @@ import {
 	Grid,
 	TextField,
 	Typography
-} from '@material-ui/core';
-import { CloudDownload } from '@material-ui/icons';
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { CSVLink } from 'react-csv';
 import { useTranslation } from 'react-i18next';

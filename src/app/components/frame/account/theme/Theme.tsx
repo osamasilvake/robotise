@@ -1,5 +1,5 @@
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Brightness3, WbSunny } from '@material-ui/icons';
+import { Brightness3, WbSunny } from '@mui/icons-material';
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

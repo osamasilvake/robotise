@@ -1,6 +1,6 @@
-import { Box, Card, CardContent, IconButton, Tooltip, Typography } from '@material-ui/core';
-import { Variant } from '@material-ui/core/styles/createTypography';
-import { FileCopy, OpenInNew } from '@material-ui/icons';
+import { FileCopy, OpenInNew } from '@mui/icons-material';
+import { Box, Card, CardContent, IconButton, Tooltip, Typography } from '@mui/material';
+import { Variant } from '@mui/material/styles/createTypography';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';

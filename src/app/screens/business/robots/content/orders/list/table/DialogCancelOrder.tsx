@@ -8,7 +8,7 @@ import {
 	DialogContent,
 	DialogContentText,
 	DialogTitle
-} from '@material-ui/core';
+} from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

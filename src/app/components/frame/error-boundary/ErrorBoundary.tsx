@@ -1,5 +1,5 @@
-import { Box, Link, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import { Box, Link, Typography } from '@mui/material';
+import { withStyles } from '@mui/styles';
 import log from 'loglevel';
 import { Component, ErrorInfo } from 'react';
 import { withTranslation } from 'react-i18next';

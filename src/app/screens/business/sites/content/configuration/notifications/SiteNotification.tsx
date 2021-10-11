@@ -1,3 +1,4 @@
+import { Edit } from '@mui/icons-material';
 import {
 	FormControlLabel,
 	IconButton,
@@ -6,8 +7,7 @@ import {
 	ListItemText,
 	Switch,
 	Tooltip
-} from '@material-ui/core';
-import { Edit } from '@material-ui/icons';
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';

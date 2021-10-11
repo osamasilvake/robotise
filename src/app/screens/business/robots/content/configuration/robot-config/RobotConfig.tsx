@@ -11,7 +11,7 @@ import {
 	Switch,
 	TextField,
 	Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -125,41 +125,33 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								)}
 							</FormControl>
 							<Box>
-								<FormControl>
-									<FormControlLabel
-										control={
-											<Switch
-												color="primary"
-												name="isHidden"
-												checked={values.isHidden}
-												onChange={handleChangeCheckbox}
-											/>
-										}
-										label={t(
-											`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`
-										)}
-									/>
-								</FormControl>
+								<FormControlLabel
+									control={
+										<Switch
+											name="isHidden"
+											checked={values.isHidden}
+											onChange={handleChangeCheckbox}
+										/>
+									}
+									label={t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`)}
+								/>
 								<FormHelperText className={classes.sFormHelperText}>
 									{t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
 								</FormHelperText>
 							</Box>
 							<Box className={classes.sFormControlBox}>
-								<FormControl>
-									<FormControlLabel
-										control={
-											<Switch
-												color="primary"
-												name="isOnlineCheckDisabled"
-												checked={values.isOnlineCheckDisabled}
-												onChange={handleChangeCheckbox}
-											/>
-										}
-										label={t(
-											`${translation}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.LABEL`
-										)}
-									/>
-								</FormControl>
+								<FormControlLabel
+									control={
+										<Switch
+											name="isOnlineCheckDisabled"
+											checked={values.isOnlineCheckDisabled}
+											onChange={handleChangeCheckbox}
+										/>
+									}
+									label={t(
+										`${translation}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.LABEL`
+									)}
+								/>
 								<FormHelperText className={classes.sFormHelperText}>
 									{t(
 										`${translation}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.NOTE`

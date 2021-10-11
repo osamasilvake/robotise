@@ -1,4 +1,4 @@
-import { SelectChangeEvent } from '@material-ui/core/Select';
+import { SelectChangeEvent } from '@mui/material/Select';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { TargetInterface, UseFormRetInterface } from './UseForm.interface';

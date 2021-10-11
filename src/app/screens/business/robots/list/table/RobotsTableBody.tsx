@@ -1,4 +1,4 @@
-import { TableBody, TableRow } from '@material-ui/core';
+import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useHistory } from 'react-router-dom';

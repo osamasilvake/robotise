@@ -9,7 +9,7 @@ import {
 	FormHelperText,
 	Grid,
 	TextField
-} from '@material-ui/core';
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

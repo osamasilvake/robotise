@@ -1,18 +1,11 @@
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow
-} from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { SOCDataHistoryInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
-import { mapStatusLevel } from '../../list/table/RobotOrdersTable.map';
+import { mapStatus } from '../../list/table/RobotOrdersTable.map';
 import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 import {
 	RobotOrderTableColumnInterface,
@@ -34,7 +27,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 		switch (column.id) {
 			case RobotOrderTableColumnsTypeEnum.DETAILS:
 				return (
-					<Status level={mapStatusLevel(row.details)}>
+					<Status level={mapStatus(row.details)}>
 						{t(
 							`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id].replace(
 								':',

@@ -1,4 +1,4 @@
-import { Box, Chip, Link, TableCell } from '@material-ui/core';
+import { Box, Chip, Link, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
@@ -14,7 +14,7 @@ import {
 	RobotOrdersTableColumnInterface
 } from './RobotOrdersTable.interface';
 import { columns } from './RobotOrdersTable.list';
-import { isOrderCancellable, mapStatusLevel } from './RobotOrdersTable.map';
+import { isOrderCancellable, mapOrder, mapStatus } from './RobotOrdersTable.map';
 import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 
 const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) => {
@@ -66,7 +66,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 * @returns
 	 */
 	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
-		const value = order[column.id];
+		const value = mapOrder(order)[column.id];
 		if (columns[3].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[5].id === column.id && order.orderReport?.id) {
@@ -83,7 +83,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 			if (columns[0].id === column.id) {
 				return (
 					<Box>
-						<Status level={mapStatusLevel(value)}>{t(value.replace(':', '_'))}</Status>
+						<Status level={mapStatus(value)}>{t(value.replace(':', '_'))}</Status>
 						{isOrderCancellable(value) && (
 							<>
 								<Chip

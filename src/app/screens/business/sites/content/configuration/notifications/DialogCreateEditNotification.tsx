@@ -1,3 +1,4 @@
+import { Clear, Email } from '@mui/icons-material';
 import {
 	Box,
 	Button,
@@ -17,8 +18,7 @@ import {
 	Select,
 	Switch,
 	TextField
-} from '@material-ui/core';
-import { Clear, Email } from '@material-ui/icons';
+} from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -169,7 +169,6 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							<FormControlLabel
 								control={
 									<Switch
-										color="primary"
 										name="isActive"
 										checked={values.isActive}
 										onChange={handleChangeCheckbox}

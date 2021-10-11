@@ -1,11 +1,11 @@
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { RobotInventoryTableStatusTypeEnum } from './RobotInventoryTable.enum';
 /**
- * map status level
+ * map status
  * @param status
  * @returns
  */
-export const mapStatusLevel = (status: string) => {
+export const mapStatus = (status: string) => {
 	switch (status) {
 		case RobotInventoryTableStatusTypeEnum.HIGH:
 			return StatusTypeEnum.SUCCESS_LIGHT;

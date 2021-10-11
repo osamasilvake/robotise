@@ -1,3 +1,4 @@
+import { Close, Menu, PowerSettingsNew } from '@mui/icons-material';
 import {
 	Avatar,
 	Box,
@@ -9,8 +10,7 @@ import {
 	Popover,
 	Tooltip,
 	Typography
-} from '@material-ui/core';
-import { Close, Menu, PowerSettingsNew } from '@material-ui/icons';
+} from '@mui/material';
 import i18next from 'i18next';
 import { FC, MouseEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';

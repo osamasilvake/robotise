@@ -1,3 +1,4 @@
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
 	Avatar,
 	Box,
@@ -10,10 +11,10 @@ import {
 	Grid,
 	IconButton,
 	InputAdornment,
+	Link,
 	Paper,
 	TextField
-} from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -141,6 +142,19 @@ const Login: FC = () => {
 							endIcon={auth.loading && <CircularProgress size={20} />}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
+
+						<Box className={classes.sForgetPassword}>
+							<Link
+								underline="always"
+								variant="body2"
+								href={AppConfigService.envResetPasswordUrl.replace(
+									':realm',
+									AppConfigService.envRealm
+								)}
+								target="_blank">
+								{t('LOGIN.FORGET_PASSWORD')}
+							</Link>
+						</Box>
 
 						<Box mt={5}>
 							<Copyright />

@@ -1,4 +1,4 @@
-import { Add, Assessment } from '@material-ui/icons';
+import { Add, Assessment } from '@mui/icons-material';
 
 import { SiteProductsActionsSpeedDialTypeEnum } from './SiteProductsActions.enum';
 

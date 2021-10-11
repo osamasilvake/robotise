@@ -1,6 +1,7 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
+import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
 import { RobotSiteConfigFormInterface } from './content/configuration/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
@@ -11,7 +12,6 @@ import {
 } from './content/detail/commands/RobotDetailCommands.enum';
 import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
 import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.interface';
-import { RobotLogsListPayloadInterface } from './content/logs/list/RobotLogsList.interface';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
 import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
@@ -362,13 +362,30 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch robot logs
+	 * fetch robot commands log
 	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotLogsFetch = (robotId: string, payload: RobotLogsListPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LOGS;
+	robotCommandsLogFetch = (robotId: string, payload: RobotCommandsLogListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[robot]': robotId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
+	 * fetch robot elevator calls
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotElevatorCallsFetch = (robotId: string, payload: RobotCommandsLogListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[robot]': robotId,

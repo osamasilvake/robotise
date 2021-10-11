@@ -24,7 +24,7 @@ export const breadcrumbs = (
 			isLast: false
 		},
 		...paths.map((path, index) => {
-			const link = '/' + paths.slice(0, index + 1).join('/');
+			const link = `/${paths.slice(0, index + 1).join('/')}`;
 
 			/**
 			 * params:

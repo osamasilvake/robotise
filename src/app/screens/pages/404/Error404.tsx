@@ -1,4 +1,4 @@
-import { Link, Paper, Typography } from '@material-ui/core';
+import { Link, Paper, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -20,7 +20,7 @@ const Error404: FC = () => {
 				<Typography color="textSecondary" className={classes.sDescription}>
 					{t('E404.DESCRIPTION')}
 				</Typography>
-				<Link href={AppConfigService.AppRoutes.HOME} underline="hover">
+				<Link underline="hover" href={AppConfigService.AppRoutes.HOME}>
 					{t('E404.LINK')}
 				</Link>
 			</Error>

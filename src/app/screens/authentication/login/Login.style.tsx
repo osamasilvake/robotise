@@ -1,5 +1,5 @@
-import { Theme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
+import { Theme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 
 import { AppConfigService } from '../../../services';
 import { randomNum } from '../../../utilities/methods/Number';
@@ -36,5 +36,8 @@ export const LoginStyle = makeStyles((theme: Theme) => ({
 	},
 	sSubmit: {
 		margin: theme.spacing(3, 0, 2)
+	},
+	sForgetPassword: {
+		textAlign: 'center'
 	}
 }));

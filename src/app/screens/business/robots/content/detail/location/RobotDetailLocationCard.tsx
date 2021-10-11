@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Grid } from '@material-ui/core';
+import { Box, Card, CardContent, Grid } from '@mui/material';
 import clsx from 'clsx';
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

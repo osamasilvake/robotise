@@ -1,4 +1,4 @@
-import { Assessment } from '@material-ui/icons';
+import { Assessment } from '@mui/icons-material';
 
 import { RobotPurchasesActionsSpeedDialTypeEnum } from './RobotPurchasesActions.enum';
 

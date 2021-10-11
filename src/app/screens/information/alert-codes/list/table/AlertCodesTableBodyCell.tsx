@@ -1,4 +1,4 @@
-import { TableCell } from '@material-ui/core';
+import { TableCell } from '@mui/material';
 import { FC } from 'react';
 
 import { SACDataInterface } from '../../../../../slices/information/alert-codes/AlertCodes.interface';

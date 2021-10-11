@@ -1,4 +1,4 @@
-import { Box, Chip, CircularProgress, FormControl, TextField } from '@material-ui/core';
+import { Box, Chip, CircularProgress, FormControl, TextField } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';

@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, CircularProgress, Typography } from '@material-ui/core';
+import { Box, Button, ButtonGroup, CircularProgress, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';

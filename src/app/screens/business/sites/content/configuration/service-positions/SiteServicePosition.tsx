@@ -1,11 +1,11 @@
+import { Delete, Edit } from '@mui/icons-material';
 import {
 	IconButton,
 	ListItem,
 	ListItemSecondaryAction,
 	ListItemText,
 	Tooltip
-} from '@material-ui/core';
-import { Delete, Edit } from '@material-ui/icons';
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

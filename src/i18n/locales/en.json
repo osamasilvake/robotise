@@ -307,7 +307,8 @@
 				"SIGN_IN": {
 					"LABEL": "Sign In"
 				}
-			}
+			},
+			"FORGET_PASSWORD": "Forgot Your Password?"
 		}
 	},
 	"SITES": {
@@ -548,7 +549,8 @@
 				"ORDERS": "ORDERS",
 				"PURCHASES": "PURCHASES",
 				"CONFIGURATION": "CONFIGURATION",
-				"LOGS": "LOGS"
+				"COMMANDS_LOGS": "COMMANDS LOG",
+				"ELEVATOR_CALLS": "ELEVATOR CALLS"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -1129,7 +1131,7 @@
 					}
 				}
 			},
-			"LOGS": {
+			"COMMANDS_LOGS": {
 				"LIST": {
 					"TABLE": {
 						"COLUMNS": {
@@ -1148,6 +1150,33 @@
 								"remote-control-translate": "Remote Control Translate",
 								"remote-control-rotate": "Remote Control Rotate",
 								"set-mute-sensor-state": "Set Mute Sensor State"
+							}
+						}
+					}
+				}
+			},
+			"ELEVATOR_CALLS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"CALL_TYPE": "Call Type",
+							"VENDOR": "Vendor",
+							"HISTORY": "History",
+							"SRC_AREA_ID": "SRC ID",
+							"DST_AREA_ID": "DST ID",
+							"CREATED": "Created"
+						},
+						"VALUES": {
+							"HISTORY": {
+								"EVENT": {
+									"elevator.event.gotCallStatus": "Got Call Status",
+									"elevator.event.gotLiftId": "Got Lift ID",
+									"elevator.event.gotStatus": "Got Status",
+									"robot.event.enteredLift": "Entered Lift",
+									"robot.event.leftLift": "Left Lift",
+									"elevator.event.error": "Error"
+								}
 							}
 						}
 					}

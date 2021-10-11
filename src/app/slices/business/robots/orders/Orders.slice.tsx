@@ -105,9 +105,6 @@ export const OrdersFetchList =
 					state: payload
 				};
 
-				// handle mapping
-				result = handleMapping(result);
-
 				// handle refresh and pagination
 				if (orders && orders.content) {
 					result = handleRefreshAndPagination(
@@ -159,7 +156,7 @@ export const OrderCreate =
 
 				if (orders.content) {
 					// update created order
-					result = updateCreatedOrder(orders.content, mapItem(result));
+					result = updateCreatedOrder(orders.content, result);
 
 					// dispatch: updated
 					dispatch(updated(result));
@@ -214,8 +211,8 @@ export const OrderCancel =
 				let result = await deserializeOrders(res);
 
 				if (orders.content) {
-					// update created order
-					result = updateCanceledOrder(orders.content, mapItem(result.data[0]));
+					// update canceled order
+					result = updateCanceledOrder(orders.content, result.data[0]);
 
 					// dispatch: updated
 					dispatch(updated(result));
@@ -272,35 +269,6 @@ export const OrderUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle mapping
- * @param result
- * @returns
- */
-const handleMapping = (result: SOContentInterface) => ({
-	...result,
-	data: result.data.map((item) => mapItem(item))
-});
-
-/**
- * map item
- * @param item
- * @returns
- */
-const mapItem = (item: SOCDataInterface) => {
-	const translation = 'CONTENT.ORDERS';
-	return {
-		...item,
-		status: `${translation}.LIST.TABLE.VALUES.STATUS.${item.status}`,
-		location:
-			item.location?.length <= 4
-				? item.location
-				: `${translation}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
-		mode: `${translation}.COMMON.MODE.${item.mode}`,
-		origin: `${translation}.LIST.TABLE.VALUES.ORIGIN.${item.origin}`
-	};
-};
 
 /**
  * handle refresh and pagination

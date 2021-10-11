@@ -1,4 +1,4 @@
-import { Link, Typography } from '@material-ui/core';
+import { Link, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 

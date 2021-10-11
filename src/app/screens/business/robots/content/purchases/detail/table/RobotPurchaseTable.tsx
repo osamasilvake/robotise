@@ -6,7 +6,7 @@ import {
 	TableHead,
 	TableRow,
 	Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';

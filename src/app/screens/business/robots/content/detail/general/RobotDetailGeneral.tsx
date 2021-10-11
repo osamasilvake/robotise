@@ -1,6 +1,5 @@
-import { Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
-import { InfoOutlined } from '@material-ui/icons';
-import { Edit } from '@material-ui/icons';
+import { Edit, InfoOutlined } from '@mui/icons-material';
+import { Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

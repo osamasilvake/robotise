@@ -1,4 +1,4 @@
-import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
+import { Box, Table, TableContainer, TablePagination } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

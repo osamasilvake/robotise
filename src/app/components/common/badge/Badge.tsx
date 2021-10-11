@@ -1,4 +1,4 @@
-import { Badge } from '@material-ui/core';
+import { Badge } from '@mui/material';
 import { FC } from 'react';
 
 import { BadgeTypeEnum } from './Badge.enum';

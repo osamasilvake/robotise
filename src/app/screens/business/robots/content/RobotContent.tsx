@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs } from '@material-ui/core';
+import { Box, Tab, Tabs } from '@mui/material';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,10 +15,11 @@ import {
 import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import { RobotParamsInterface } from '../Robot.interface';
 import robotsRoutes from '../Robots.routes';
+import RobotCommandsLogList from './commands-log/list/RobotCommandsLogList';
 import RobotConfiguration from './configuration/RobotConfiguration';
 import RobotDetail from './detail/RobotDetail';
+import RobotElevatorCallsList from './elevator-calls/list/RobotElevatorCallsList';
 import RobotInventoryList from './inventory/list/RobotInventoryList';
-import RobotLogsList from './logs/list/RobotLogsList';
 import RobotOrdersList from './orders/list/RobotOrdersList';
 import RobotPurchasesList from './purchases/list/RobotPurchasesList';
 
@@ -100,7 +101,8 @@ const RobotContent: FC = () => {
 						<Tab label={t(`${translation}.ORDERS`)} />
 						<Tab label={t(`${translation}.PURCHASES`)} />
 						<Tab label={t(`${translation}.CONFIGURATION`)} />
-						<Tab label={t(`${translation}.LOGS`)} />
+						<Tab label={t(`${translation}.COMMANDS_LOGS`)} />
+						<Tab label={t(`${translation}.ELEVATOR_CALLS`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -120,8 +122,11 @@ const RobotContent: FC = () => {
 						{/* Configuration */}
 						{value === 4 && <RobotConfiguration />}
 
-						{/* Logs */}
-						{value === 5 && <RobotLogsList />}
+						{/* Commands Log */}
+						{value === 5 && <RobotCommandsLogList />}
+
+						{/* Elevator Calls */}
+						{value === 6 && <RobotElevatorCallsList />}
 					</Box>
 				</>
 			)}

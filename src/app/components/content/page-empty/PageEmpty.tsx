@@ -1,4 +1,4 @@
-import { Box, Link, Typography } from '@material-ui/core';
+import { Box, Link, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';

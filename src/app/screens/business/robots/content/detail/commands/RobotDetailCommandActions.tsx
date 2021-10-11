@@ -1,12 +1,4 @@
-import {
-	Box,
-	Button,
-	FormControl,
-	InputLabel,
-	MenuItem,
-	Select,
-	Typography
-} from '@material-ui/core';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

@@ -3,8 +3,9 @@ import { AnyAction, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 
 import auth from './authentication/Auth.slice';
+import commandsLog from './business/robots/commands-log/CommandsLog.slice';
+import elevatorCalls from './business/robots/elevator-calls/ElevatorCalls.slice';
 import inventory from './business/robots/inventory/Inventory.slice';
-import logs from './business/robots/logs/Logs.slice';
 import order from './business/robots/orders/Order.slice';
 import orders from './business/robots/orders/Orders.slice';
 import purchase from './business/robots/purchases/Purchase.slice';
@@ -39,7 +40,8 @@ const combinedReducer = combineReducers({
 	order,
 	purchases,
 	purchase,
-	logs,
+	commandsLog,
+	elevatorCalls,
 	alertCodes
 });
 

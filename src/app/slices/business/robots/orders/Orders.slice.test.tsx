@@ -19,7 +19,6 @@ const mockStore = createMockStore<SliceOrdersInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Order', () => {
 	it('[OrdersFetchList] Creates loading and success actions on successful fetch request', () => {
-		const translation = 'CONTENT.ORDERS';
 		const store = mockStore(initialState);
 		const siteId = '10549e17-3f9a-4a01-9fde-20b953a180ed';
 		const robotId = '2ee43036-37e5-46f6-9ccc-8054eb67ec2b';
@@ -59,10 +58,10 @@ describe('[SLICE] Order', () => {
 			data: [
 				{
 					id: orderId,
-					mode: `${translation}.COMMON.MODE.mini-bar`,
-					origin: `${translation}.LIST.TABLE.VALUES.ORIGIN.phone`,
+					mode: `mini-bar`,
+					origin: `phone`,
 					location: '661',
-					status: `${translation}.LIST.TABLE.VALUES.STATUS.finished`,
+					status: `finished`,
 					createdAt: '2021-04-22T08:31:44.884Z',
 					updatedAt: '2021-04-22T08:38:02.172Z',
 					site: {

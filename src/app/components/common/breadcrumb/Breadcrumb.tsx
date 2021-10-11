@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Link, Typography } from '@material-ui/core';
+import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useParams } from 'react-router-dom';
@@ -17,7 +17,7 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 			{breadcrumbs(params, labels).map((item) => (
 				<Box key={item.text}>
 					{!item.isLast && item.link && (
-						<Link underline="hover" component={RouterLink} to={item.link}>
+						<Link component={RouterLink} to={item.link} underline="hover">
 							{t(item.text)}
 						</Link>
 					)}

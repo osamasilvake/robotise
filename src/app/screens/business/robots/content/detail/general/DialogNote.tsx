@@ -9,7 +9,7 @@ import {
 	FormControl,
 	FormHelperText,
 	TextField
-} from '@material-ui/core';
+} from '@mui/material';
 import DOMPurify from 'dompurify';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';

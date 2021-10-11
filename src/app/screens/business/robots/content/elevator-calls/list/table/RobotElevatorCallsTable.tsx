@@ -1,4 +1,4 @@
-import { Box, Table, TableContainer, TablePagination } from '@material-ui/core';
+import { Box, Table, TableContainer, TablePagination } from '@mui/material';
 import clsx from 'clsx';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,27 +6,30 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
 import {
-	logsSelector,
-	LogUpdateState
-} from '../../../../../../../slices/business/robots/logs/Logs.slice';
-import { SLCStateInterface } from '../../../../../../../slices/business/robots/logs/Logs.slice.interface';
-import { RobotLogsTableColumnsTypeEnum } from './RobotLogsTable.enum';
-import { RobotLogsTableHeadOrder, RobotLogsTableInterface } from './RobotLogsTable.interface';
-import { columns } from './RobotLogsTable.list';
-import { RobotLogsTableStyle } from './RobotLogsTable.style';
-import RobotLogsTableBody from './RobotLogsTableBody';
-import RobotLogsTableHead from './RobotLogsTableHead';
+	elevatorCallsSelector,
+	RobotElevatorCallsUpdateState
+} from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
+import { ECCStateInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
+import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
+import {
+	RobotElevatorCallsTableHeadOrder,
+	RobotElevatorCallsTableInterface
+} from './RobotElevatorCallsTable.interface';
+import { columns } from './RobotElevatorCallsTable.list';
+import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
+import RobotElevatorCallsTableBody from './RobotElevatorCallsTableBody';
+import RobotElevatorCallsTableHead from './RobotElevatorCallsTableHead';
 
-const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
+const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) => {
 	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotLogsTableStyle();
+	const classes = RobotElevatorCallsTableStyle();
 
 	const dispatch = useDispatch();
-	const logs = useSelector(logsSelector);
+	const elevatorCalls = useSelector(elevatorCallsSelector);
 
-	const [order, setOrder] = useState<RobotLogsTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<RobotLogsTableColumnsTypeEnum>(
+	const [order, setOrder] = useState<RobotElevatorCallsTableHeadOrder>('desc');
+	const [orderBy, setOrderBy] = useState<RobotElevatorCallsTableColumnsTypeEnum>(
 		columns[columns.length - 1].id
 	);
 
@@ -35,7 +38,10 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 	 * @param _event
 	 * @param property
 	 */
-	const handleRequestSort = (_event: MouseEvent, property: RobotLogsTableColumnsTypeEnum) => {
+	const handleRequestSort = (
+		_event: MouseEvent,
+		property: RobotElevatorCallsTableColumnsTypeEnum
+	) => {
 		const isAsc = orderBy === property && order === 'asc';
 
 		// set order
@@ -52,11 +58,11 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const state: SLCStateInterface = {
+		const state: ECCStateInterface = {
 			...content?.state,
 			page: newPage
 		};
-		dispatch(LogUpdateState(state));
+		dispatch(RobotElevatorCallsUpdateState(state));
 	};
 
 	/**
@@ -65,12 +71,12 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const state: SLCStateInterface = {
+		const state: ECCStateInterface = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(LogUpdateState(state));
+		dispatch(RobotElevatorCallsUpdateState(state));
 	};
 
 	return (
@@ -78,7 +84,7 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 			<TableContainer className={classes.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
-					<RobotLogsTableHead
+					<RobotElevatorCallsTableHead
 						order={order}
 						orderBy={orderBy}
 						onRequestSort={handleRequestSort}
@@ -86,7 +92,7 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 					/>
 
 					{/* Body */}
-					<RobotLogsTableBody
+					<RobotElevatorCallsTableBody
 						content={content}
 						order={order}
 						orderBy={orderBy}
@@ -101,10 +107,10 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.business.robots.content.logs.list
+					AppConfigService.AppOptions.screens.business.robots.content.elevatorCalls.list
 						.showPageSizes
-						? AppConfigService.AppOptions.screens.business.robots.content.logs.list
-								.pageSizes
+						? AppConfigService.AppOptions.screens.business.robots.content.elevatorCalls
+								.list.pageSizes
 						: []
 				}
 				count={content?.meta.totalDocs || 0}
@@ -113,10 +119,10 @@ const RobotLogsTable: FC<RobotLogsTableInterface> = (props) => {
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 				className={clsx({
-					[classes.sTablePagination]: logs.loading
+					[classes.sTablePagination]: elevatorCalls.loading
 				})}
 			/>
 		</Box>
 	);
 };
-export default RobotLogsTable;
+export default RobotElevatorCallsTable;

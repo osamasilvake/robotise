@@ -1,4 +1,4 @@
-import { Card, CardContent, Icon, Typography } from '@material-ui/core';
+import { Card, CardContent, Icon, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 

@@ -6,7 +6,7 @@ import {
 	FormControlLabel,
 	Switch,
 	Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -69,7 +69,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 						disabled={site.acceptOrders.loading}
 						control={
 							<Switch
-								name="accept-orders"
+								name="acceptOrders"
 								checked={!!siteSingle?.acceptOrders}
 								onChange={handleAcceptOrders}
 							/>

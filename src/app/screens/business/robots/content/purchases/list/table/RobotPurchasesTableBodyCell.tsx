@@ -1,4 +1,4 @@
-import { Box, Chip, Link, TableCell } from '@material-ui/core';
+import { Box, Chip, Link, TableCell } from '@mui/material';
 import i18next from 'i18next';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';

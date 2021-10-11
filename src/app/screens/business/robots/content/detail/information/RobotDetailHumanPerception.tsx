@@ -1,5 +1,5 @@
-import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

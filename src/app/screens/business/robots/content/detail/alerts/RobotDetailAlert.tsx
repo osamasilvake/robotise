@@ -1,4 +1,4 @@
-import { Box, Grid, Tooltip } from '@material-ui/core';
+import { Box, Grid, Tooltip } from '@mui/material';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../../services';

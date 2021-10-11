@@ -1,5 +1,4 @@
-import { CssBaseline } from '@material-ui/core';
-import { createTheme, StyledEngineProvider, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
 import { FC, Suspense, useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';

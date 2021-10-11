@@ -1,14 +1,14 @@
-import { TableCell, TableHead, TableRow, TableSortLabel } from '@material-ui/core';
+import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RobotLogsTableColumnsTypeEnum } from './RobotLogsTable.enum';
+import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
 import {
-	RobotLogsTableColumnInterface,
-	RobotLogsTableHeadInterface
-} from './RobotLogsTable.interface';
+	RobotCommandsLogTableColumnInterface,
+	RobotCommandsLogTableHeadInterface
+} from './RobotCommandsLogTable.interface';
 
-const RobotLogsTableHead: FC<RobotLogsTableHeadInterface> = (props) => {
+const RobotCommandsLogTableHead: FC<RobotCommandsLogTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;
 	const { t } = useTranslation('ROBOTS');
 
@@ -17,14 +17,15 @@ const RobotLogsTableHead: FC<RobotLogsTableHeadInterface> = (props) => {
 	 * @param property
 	 * @returns
 	 */
-	const handleSortRequest = (property: RobotLogsTableColumnsTypeEnum) => (event: MouseEvent) => {
-		onRequestSort(event, property);
-	};
+	const handleSortRequest =
+		(property: RobotCommandsLogTableColumnsTypeEnum) => (event: MouseEvent) => {
+			onRequestSort(event, property);
+		};
 
 	return (
 		<TableHead>
 			<TableRow>
-				{columns.map((column: RobotLogsTableColumnInterface) => (
+				{columns.map((column: RobotCommandsLogTableColumnInterface) => (
 					<TableCell
 						key={column.id}
 						align={column.align}
@@ -46,4 +47,4 @@ const RobotLogsTableHead: FC<RobotLogsTableHeadInterface> = (props) => {
 		</TableHead>
 	);
 };
-export default RobotLogsTableHead;
+export default RobotCommandsLogTableHead;

@@ -1,4 +1,4 @@
-import { Avatar, Box, Chip, TableCell } from '@material-ui/core';
+import { Avatar, Box, Chip, TableCell } from '@mui/material';
 import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC, MouseEvent, useState } from 'react';

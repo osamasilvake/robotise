@@ -1,4 +1,4 @@
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';

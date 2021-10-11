@@ -8,7 +8,7 @@ import {
 	ListItemIcon,
 	ListItemText,
 	ListSubheader
-} from '@material-ui/core';
+} from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';

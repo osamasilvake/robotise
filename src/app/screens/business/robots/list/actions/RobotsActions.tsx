@@ -1,4 +1,4 @@
-import { Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 import { FC } from 'react';
 
 import { FloatStyle } from '../../../../../utilities/styles/Float.style';

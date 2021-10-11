@@ -14,8 +14,8 @@ export enum RobotElevatorCallsTableSortTypeEnum {
 }
 
 export enum RobotElevatorCallsTableColumnStatusTypeEnum {
-	PROGRESS = 'in_progress',
 	CREATED = 'created',
+	PROGRESS = 'in_progress',
 	SUCCESS = 'successful',
 	FAILED = 'failed'
 }

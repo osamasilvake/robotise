@@ -14,7 +14,7 @@ import {
 	RobotElevatorCallsTableColumnInterface
 } from './RobotElevatorCallsTable.interface';
 import { columns } from './RobotElevatorCallsTable.list';
-import { mapHistoryEventType, mapStatus } from './RobotElevatorCallsTable.map';
+import { mapElevatorCall, mapHistoryEventType, mapStatus } from './RobotElevatorCallsTable.map';
 import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
 
 const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterface> = (props) => {
@@ -32,7 +32,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 		elevatorCall: ECCDataInterface,
 		column: RobotElevatorCallsTableColumnInterface
 	) => {
-		const value = elevatorCall[column.id];
+		const value = mapElevatorCall(elevatorCall)[column.id];
 		if (columns[5].id === column.id) {
 			return momentFormat1(value);
 		} else if (columns[4].id === column.id) {

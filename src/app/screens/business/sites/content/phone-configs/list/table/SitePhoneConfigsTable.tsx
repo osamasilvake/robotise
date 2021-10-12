@@ -6,32 +6,30 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
 import {
-	commandsLogSelector,
-	RobotCommandsLogUpdateState
-} from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice';
-import { CLCStateInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
-import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
+	phoneConfigsSelector,
+	SitePhoneConfigsUpdateState
+} from '../../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
+import { PCCStateInterface } from '../../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
+import { SitePhoneConfigsTableColumnsTypeEnum } from './SitePhoneConfigsTable.enum';
 import {
-	RobotCommandsLogTableHeadOrder,
-	RobotCommandsLogTableInterface
-} from './RobotCommandsLogTable.interface';
-import { columns } from './RobotCommandsLogTable.list';
-import { RobotCommandsLogTableStyle } from './RobotCommandsLogTable.style';
-import RobotCommandsLogTableBody from './RobotCommandsLogTableBody';
-import RobotCommandsLogTableHead from './RobotCommandsLogTableHead';
+	SitePhoneConfigsTableHeadOrder,
+	SitePhoneConfigsTableInterface
+} from './SitePhoneConfigsTable.interface';
+import { columns } from './SitePhoneConfigsTable.list';
+import { SitePhoneConfigsTableStyle } from './SitePhoneConfigsTable.style';
+import SitePhoneConfigsTableBody from './SitePhoneConfigsTableBody';
+import SitePhoneConfigsTableHead from './SitePhoneConfigsTableHead';
 
-const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
+const SitePhoneConfigsTable: FC<SitePhoneConfigsTableInterface> = (props) => {
 	const { content, page, rowsPerPage } = props;
 	const { t } = useTranslation('COMMON');
-	const classes = RobotCommandsLogTableStyle();
+	const classes = SitePhoneConfigsTableStyle();
 
 	const dispatch = useDispatch();
-	const commandsLog = useSelector(commandsLogSelector);
+	const phoneConfigs = useSelector(phoneConfigsSelector);
 
-	const [order, setOrder] = useState<RobotCommandsLogTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<RobotCommandsLogTableColumnsTypeEnum>(
-		columns[columns.length - 1].id
-	);
+	const [order, setOrder] = useState<SitePhoneConfigsTableHeadOrder>('desc');
+	const [orderBy, setOrderBy] = useState<SitePhoneConfigsTableColumnsTypeEnum>(columns[0].id);
 
 	/**
 	 * handle sort request
@@ -40,7 +38,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	 */
 	const handleRequestSort = (
 		_event: MouseEvent,
-		property: RobotCommandsLogTableColumnsTypeEnum
+		property: SitePhoneConfigsTableColumnsTypeEnum
 	) => {
 		const isAsc = orderBy === property && order === 'asc';
 
@@ -58,11 +56,11 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const state: CLCStateInterface = {
+		const state: PCCStateInterface = {
 			...content?.state,
 			page: newPage
 		};
-		dispatch(RobotCommandsLogUpdateState(state));
+		dispatch(SitePhoneConfigsUpdateState(state));
 	};
 
 	/**
@@ -71,12 +69,12 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const state: CLCStateInterface = {
+		const state: PCCStateInterface = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(RobotCommandsLogUpdateState(state));
+		dispatch(SitePhoneConfigsUpdateState(state));
 	};
 
 	return (
@@ -84,7 +82,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 			<TableContainer className={classes.sTableMaxHeight}>
 				<Table stickyHeader>
 					{/* Head */}
-					<RobotCommandsLogTableHead
+					<SitePhoneConfigsTableHead
 						order={order}
 						orderBy={orderBy}
 						onRequestSort={handleRequestSort}
@@ -92,7 +90,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 					/>
 
 					{/* Body */}
-					<RobotCommandsLogTableBody
+					<SitePhoneConfigsTableBody
 						content={content}
 						order={order}
 						orderBy={orderBy}
@@ -107,9 +105,9 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.business.robots.content.commandsLog.list
+					AppConfigService.AppOptions.screens.business.sites.content.phoneConfigs.list
 						.showPageSizes
-						? AppConfigService.AppOptions.screens.business.robots.content.commandsLog
+						? AppConfigService.AppOptions.screens.business.sites.content.phoneConfigs
 								.list.pageSizes
 						: []
 				}
@@ -119,10 +117,10 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 				className={clsx({
-					[classes.sTablePagination]: commandsLog.loading
+					[classes.sTablePagination]: phoneConfigs.loading
 				})}
 			/>
 		</Box>
 	);
 };
-export default RobotCommandsLogTable;
+export default SitePhoneConfigsTable;

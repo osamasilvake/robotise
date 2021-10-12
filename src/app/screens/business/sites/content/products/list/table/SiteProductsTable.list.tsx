@@ -50,6 +50,7 @@ export const columns: SiteProductsTableColumnInterface[] = [
 		id: SiteProductsTableColumnsTypeEnum.ACTIONS,
 		label: `${translation}.ACTIONS`,
 		minWidth: 145,
-		align: 'right'
+		align: 'right',
+		noSort: true
 	}
 ];

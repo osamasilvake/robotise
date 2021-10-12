@@ -59,7 +59,7 @@ const SitesTable: FC<SitesTableInterface> = (props) => {
 						? AppConfigService.AppOptions.screens.business.sites.list.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={0}
 				onPageChange={() => null}
 				rowsPerPage={

@@ -39,14 +39,14 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 	const sortTableData = (content: SPContentInterface): SPCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[3].id:
+			case columns[2].id:
 				type = RobotPurchasesTableSortTypeEnum.NUMBER;
 				break;
 			case columns[1].id:
 				type = RobotPurchasesTableSortTypeEnum.DATE;
 				break;
 			case columns[0].id:
-			case columns[2].id:
+			case columns[3].id:
 				type = RobotPurchasesTableSortTypeEnum.STRING;
 				break;
 			default:

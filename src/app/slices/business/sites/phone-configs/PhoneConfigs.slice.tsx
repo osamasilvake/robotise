@@ -1,28 +1,29 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import AlertCodesService from '../../../screens/information/alert-codes/AlertCodes.service';
-import { AlertCodesListPayloadInterface } from '../../../screens/information/alert-codes/list/AlertCodesList.interface';
-import { AppReducerType } from '../..';
-import { deserializeAlertCodes } from './AlertCodes.deserialize';
+import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
+import { SitePhoneConfigsListPayloadInterface } from '../../../../screens/business/sites/content/phone-configs/list/SitePhoneConfigsList.interface';
+import SitesService from '../../../../screens/business/sites/Sites.service';
+import { AppReducerType } from '../../..';
+import { deserializePhoneConfigs } from './PhoneConfigs.deserialize';
 import {
-	SACContentInterface,
-	SACStateInterface,
-	SliceAlertCodesInterface
-} from './AlertCodes.interface';
+	PCContentInterface,
+	PCCStateInterface,
+	SlicePhoneConfigsInterface
+} from './PhoneConfigs.slice.interface';
 
 // initial state
-export const initialState: SliceAlertCodesInterface = {
+export const initialState: SlicePhoneConfigsInterface = {
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
 
 // slice
 const dataSlice = createSlice({
-	name: 'Alert Codes',
+	name: 'Phone Configs',
 	initialState,
 	reducers: {
 		loader: (state) => {
@@ -43,60 +44,71 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
 		updated: (state, action) => {
+			state.updating = false;
 			state.content = action.payload;
 		},
-
+		updateFailed: (state) => {
+			state.updating = false;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updated, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
-export const alertCodesSelector = (state: AppReducerType) => state['alertCodes'];
+export const phoneConfigsSelector = (state: AppReducerType) => state['phoneConfigs'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch alert codes
+ * fetch site phone configs
+ * @param siteId
  * @param payload
  * @param refresh
  * @returns
  */
-export const AlertCodesFetch =
-	(payload: AlertCodesListPayloadInterface, refresh = false) =>
+export const SitePhoneConfigsFetch =
+	(siteId: string, payload: SitePhoneConfigsListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const alertCodes = states.alertCodes;
+		const phoneConfigs = states.phoneConfigs;
 
 		// return on busy
-		if (alertCodes && (alertCodes.loader || alertCodes.loading)) {
+		if (phoneConfigs && (phoneConfigs.loader || phoneConfigs.loading)) {
 			return;
 		}
 
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		// fetch alert codes
-		return AlertCodesService.alertCodesFetch(payload)
+		// fetch site phone configs
+		return SitesService.sitePhoneConfigsFetch(siteId, payload)
 			.then(async (res) => {
 				// deserialize response
-				let result: SACContentInterface = await deserializeAlertCodes(res);
+				let result: PCContentInterface = await deserializePhoneConfigs(res);
 
 				// state
 				result = {
 					...result,
-					state: payload
+					state: {
+						...payload,
+						pSiteId: siteId
+					}
 				};
 
 				// handle refresh and pagination
-				if (alertCodes && alertCodes.content) {
+				if (phoneConfigs && phoneConfigs.content) {
 					result = handleRefreshAndPagination(
-						alertCodes.content,
+						phoneConfigs.content,
 						result,
 						refresh,
 						payload.rowsPerPage
@@ -109,7 +121,7 @@ export const AlertCodesFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-alert-codes-error',
+					id: 'fetch-phone-configs-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -125,15 +137,18 @@ export const AlertCodesFetch =
  * @param state
  * @returns
  */
-export const AlertCodesUpdateState =
-	(state: SACStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const SitePhoneConfigsUpdateState =
+	(state: PCCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const alertCodes = states.alertCodes;
+		const phoneConfigs = states.phoneConfigs;
 
-		if (alertCodes && alertCodes.content) {
+		// dispatch: updating
+		dispatch(updating());
+
+		if (phoneConfigs && phoneConfigs.content) {
 			const result = {
-				...alertCodes.content,
+				...phoneConfigs.content,
 				state
 			};
 
@@ -151,8 +166,8 @@ export const AlertCodesUpdateState =
  * @returns
  */
 const handleRefreshAndPagination = (
-	current: SACContentInterface,
-	result: SACContentInterface,
+	current: PCContentInterface,
+	result: PCContentInterface,
 	refresh: boolean,
 	rowsPerPage: number
 ) => {

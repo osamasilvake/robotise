@@ -12,6 +12,7 @@ import { SiteParamsInterface } from '../Site.interface';
 import sitesRoutes from '../Sites.routes';
 import SiteConfiguration from './configuration/SiteConfiguration';
 import SiteDetail from './detail/SiteDetail';
+import SitePhoneConfigsList from './phone-configs/list/SitePhoneConfigsList';
 import SiteProductsList from './products/list/SiteProductsList';
 import SiteRoomsList from './rooms/list/SiteRoomsList';
 
@@ -74,6 +75,7 @@ const SiteContent: FC = () => {
 						<Tab label={t(`${translation}.PRODUCTS`)} />
 						<Tab label={t(`${translation}.ROOMS`)} />
 						<Tab label={t(`${translation}.CONFIGURATION`)} />
+						<Tab label={t(`${translation}.PHONE_CONFIGS`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -89,6 +91,9 @@ const SiteContent: FC = () => {
 
 						{/* Configuration */}
 						{value === 3 && <SiteConfiguration />}
+
+						{/* Phone Configs */}
+						{value === 4 && <SitePhoneConfigsList />}
 					</Box>
 				</>
 			)}

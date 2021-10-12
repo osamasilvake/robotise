@@ -113,7 +113,7 @@ const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) =>
 								.list.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

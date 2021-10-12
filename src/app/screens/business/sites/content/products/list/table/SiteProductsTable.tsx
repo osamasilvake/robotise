@@ -66,7 +66,7 @@ const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 								.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={0}
 				onPageChange={() => null}
 				rowsPerPage={

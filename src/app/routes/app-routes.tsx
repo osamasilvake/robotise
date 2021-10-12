@@ -13,7 +13,8 @@ const appRoutes = {
 					DETAIL: '/sites/:siteId/products/:product'
 				},
 				ROOMS: '/sites/:siteId/rooms',
-				CONFIGURATION: '/sites/:siteId/configuration'
+				CONFIGURATION: '/sites/:siteId/configuration',
+				PHONE_CONFIGS: '/sites/:siteId/phone-configs'
 			},
 			ROBOTS: {
 				MAIN: '/robots',

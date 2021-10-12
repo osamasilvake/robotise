@@ -111,6 +111,14 @@ class AppConfigService extends EnvService {
 								servicePositions: {
 									refreshTime: 20000
 								}
+							},
+							phoneConfigs: {
+								list: {
+									refreshTime: 10000,
+									showPageSizes: true,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
 							}
 						}
 					},
@@ -228,10 +236,11 @@ class AppConfigService extends EnvService {
 							USERS: `${this.envAppUrl}/notification-users`,
 							USER: `${this.envAppUrl}/notification-users/:userId`
 						},
+						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
+						PHONE_CONFIGS: `${this.envAppUrl}/phone-dispatcher-configs`,
 						REPORTS: {
 							PRODUCTS: `${this.envAppUrl}/product-export`
-						},
-						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`
+						}
 					},
 					ROBOTS: {
 						ALL: `${this.envAppUrl}/robot-twins-summary`,

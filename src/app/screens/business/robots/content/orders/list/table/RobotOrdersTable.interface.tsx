@@ -44,6 +44,7 @@ export interface RobotOrdersTableColumnInterface {
 	minWidth?: number;
 	width?: number;
 	align?: RobotOrdersTableHeadAlignment;
+	noSort?: boolean;
 }
 
 export type RobotOrdersTableHeadOrder = 'asc' | 'desc';

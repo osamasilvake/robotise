@@ -328,7 +328,8 @@
 				"DETAIL": "DETAIL",
 				"PRODUCTS": "PRODUCTS",
 				"ROOMS": "ROOMS",
-				"CONFIGURATION": "CONFIGURATION"
+				"CONFIGURATION": "CONFIGURATION",
+				"PHONE_CONFIGS": "PHONE CONFIGS"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -517,6 +518,42 @@
 					"DELETE": {
 						"TITLE": "Delete Service Position",
 						"TEXT": "Are you sure you want to delete the service position?"
+					}
+				}
+			},
+			"PHONE_CONFIGS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"NAME": "Name",
+							"PREFIXES": "Prefixes",
+							"FROM": "From",
+							"TECHNICIAN": "Technician",
+							"WORKFLOW": "Workflow",
+							"MESSAGES": "Messages",
+							"MODE": "Mode"
+						},
+						"VALUES": {
+							"MODE": {
+								"mini-bar": "Minibar",
+								"room-service": "Room Service",
+								"service-position": "Service Position"
+							},
+							"WORKFLOW": {
+								"with-confirmation": "With Confirmation",
+								"without-confirmation": "Without Confirmation"
+							},
+							"MESSAGES": {
+								"welcome": "Welcome",
+								"confirmed": "Confirmed",
+								"welcomeNoConfirmation": "Welcome No Confirmation",
+								"orderAtTargetPosition": "Order at Target Position",
+								"rejectHoliday": "Reject Holiday",
+								"rejectOutOfWorkingTime": "Reject Out Of Working Time",
+								"rejectRoomNotServed": "Reject Room Not Served",
+								"rejectGeneric": "Reject Generic"
+							}
+						}
 					}
 				}
 			}

@@ -105,7 +105,7 @@ const AlertCodesTable: FC<AlertCodesTableInterface> = (props) => {
 						? AppConfigService.AppOptions.screens.information.alertCodes.list.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

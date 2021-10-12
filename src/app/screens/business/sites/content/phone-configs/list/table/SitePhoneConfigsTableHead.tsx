@@ -2,15 +2,15 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
+import { SitePhoneConfigsTableColumnsTypeEnum } from './SitePhoneConfigsTable.enum';
 import {
-	RobotPurchasesTableColumnInterface,
-	RobotPurchasesTableHeadInterface
-} from './RobotPurchasesTable.interface';
+	SitePhoneConfigsTableColumnInterface,
+	SitePhoneConfigsTableHeadInterface
+} from './SitePhoneConfigsTable.interface';
 
-const RobotPurchasesTableHead: FC<RobotPurchasesTableHeadInterface> = (props) => {
+const SitePhoneConfigsTableHead: FC<SitePhoneConfigsTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('SITES');
 
 	/**
 	 * handle sort request
@@ -18,14 +18,14 @@ const RobotPurchasesTableHead: FC<RobotPurchasesTableHeadInterface> = (props) =>
 	 * @returns
 	 */
 	const handleSortRequest =
-		(property: RobotPurchasesTableColumnsTypeEnum) => (event: MouseEvent) => {
+		(property: SitePhoneConfigsTableColumnsTypeEnum) => (event: MouseEvent) => {
 			onRequestSort(event, property);
 		};
 
 	return (
 		<TableHead>
 			<TableRow>
-				{columns.map((column: RobotPurchasesTableColumnInterface) => (
+				{columns.map((column: SitePhoneConfigsTableColumnInterface) => (
 					<TableCell
 						key={column.id}
 						align={column.align}
@@ -47,4 +47,4 @@ const RobotPurchasesTableHead: FC<RobotPurchasesTableHeadInterface> = (props) =>
 		</TableHead>
 	);
 };
-export default RobotPurchasesTableHead;
+export default SitePhoneConfigsTableHead;

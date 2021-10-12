@@ -85,7 +85,8 @@ describe('[SLICE] Order', () => {
 				page: 1,
 				rowsPerPage: 50,
 				activeOrders: false,
-				debug: false
+				debug: false,
+				pRobotId: robotId
 			}
 		};
 		const payload = {

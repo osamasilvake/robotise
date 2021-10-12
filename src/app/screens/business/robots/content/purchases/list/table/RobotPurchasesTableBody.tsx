@@ -69,7 +69,7 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
 			switch (type) {
 				case RobotPurchasesTableSortTypeEnum.NUMBER:
-					return Number(a[key]) - Number(b[key]);
+					return a[key] && b[key] ? Number(a[key]) - Number(b[key]) : a[key] ? 1 : -1;
 				case RobotPurchasesTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotPurchasesTableSortTypeEnum.STRING:

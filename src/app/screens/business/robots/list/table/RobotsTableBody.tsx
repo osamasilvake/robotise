@@ -29,24 +29,24 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const sortTableData = (content: RTSContentInterface): RTSContentDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[7].id:
+			case RobotsTableColumnsTypeEnum.ALERTS:
 				type = RobotsTableSortTypeEnum.OBJECT_ALERT;
 				break;
-			case columns[5].id:
+			case RobotsTableColumnsTypeEnum.MISSION_STATUS:
 				type = RobotsTableSortTypeEnum.OBJECT_MISSION;
 				break;
-			case columns[4].id:
+			case RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE:
 				type = RobotsTableSortTypeEnum.NUMBER;
 				break;
-			case columns[6].id:
+			case RobotsTableColumnsTypeEnum.UPDATED_AT:
 				type = RobotsTableSortTypeEnum.DATE;
 				break;
-			case columns[1].id:
-			case columns[3].id:
+			case RobotsTableColumnsTypeEnum.ACTIVE:
+			case RobotsTableColumnsTypeEnum.CONTROL_MODE:
+			case RobotsTableColumnsTypeEnum.ACCEPT_ORDER:
 				type = RobotsTableSortTypeEnum.BOOLEAN;
 				break;
-			case columns[0].id:
-			case columns[2].id:
+			case RobotsTableColumnsTypeEnum.ROBOT_TITLE:
 				type = RobotsTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -80,7 +80,11 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 					return a[key] ? -1 : 1;
 				case RobotsTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

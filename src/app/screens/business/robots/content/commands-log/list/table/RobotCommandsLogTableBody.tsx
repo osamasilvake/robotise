@@ -28,11 +28,11 @@ const RobotCommandsLogTableBody: FC<RobotCommandsLogTableBodyInterface> = (props
 	const sortTableData = (content: CLContentInterface): CLCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[3].id:
+			case RobotCommandsLogTableColumnsTypeEnum.CREATED:
 				type = RobotCommandsLogTableSortTypeEnum.DATE;
 				break;
-			case columns[0].id:
-			case columns[1].id:
+			case RobotCommandsLogTableColumnsTypeEnum.COMMAND:
+			case RobotCommandsLogTableColumnsTypeEnum.STATUS:
 				type = RobotCommandsLogTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -58,7 +58,11 @@ const RobotCommandsLogTableBody: FC<RobotCommandsLogTableBodyInterface> = (props
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotCommandsLogTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

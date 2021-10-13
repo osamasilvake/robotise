@@ -4,11 +4,11 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { PCCDataInterface } from '../../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
+import { SitePhoneConfigsTableColumnsTypeEnum } from './SitePhoneConfigsTable.enum';
 import {
 	SitePhoneConfigsTableBodyCellInterface,
 	SitePhoneConfigsTableColumnInterface
 } from './SitePhoneConfigsTable.interface';
-import { columns } from './SitePhoneConfigsTable.list';
 import { mapPhoneConfig } from './SitePhoneConfigsTable.map';
 import { SitePhoneConfigsTableStyle } from './SitePhoneConfigsTable.style';
 
@@ -28,7 +28,10 @@ const SitePhoneConfigsTableBodyCell: FC<SitePhoneConfigsTableBodyCellInterface> 
 		column: SitePhoneConfigsTableColumnInterface
 	) => {
 		const value = mapPhoneConfig(phoneConfig)[column.id];
-		if (typeof value === 'object') {
+		if (
+			typeof value === 'object' &&
+			SitePhoneConfigsTableColumnsTypeEnum.MESSAGES === column.id
+		) {
 			return value.map((item) => (
 				<Box key={item.key} className={classes.sMessages}>
 					<VolumeUp fontSize="small" />
@@ -38,7 +41,7 @@ const SitePhoneConfigsTableBodyCell: FC<SitePhoneConfigsTableBodyCellInterface> 
 				</Box>
 			));
 		} else if (typeof value === 'string') {
-			if (columns[2].id === column.id || columns[3].id === column.id) {
+			if (SitePhoneConfigsTableColumnsTypeEnum.FROM === column.id) {
 				return (
 					<Link underline="hover" href={`tel:${t(value)}`}>
 						{t(value)}

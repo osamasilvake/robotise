@@ -8,8 +8,8 @@ import { AppConfigService } from '../../../../../services';
 import { RTSContentDataInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
 import { RobotDetailControlModeTypeEnum } from '../../content/detail/commands/RobotDetailCommands.enum';
+import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
-import { columns } from './RobotsTable.list';
 import { percentage } from './RobotsTable.map';
 import { RobotsListStyle } from './RobotsTable.style';
 
@@ -25,7 +25,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	 */
 	const setCellValue = (robot: RTSContentDataInterface, column: RobotsTableColumnInterface) => {
 		const value = robot[column.id];
-		if (columns[0].id === column.id) {
+		if (RobotsTableColumnsTypeEnum.ROBOT_TITLE === column.id) {
 			return (
 				<Box>
 					<Typography variant="body2">
@@ -55,13 +55,13 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 					</Typography>
 				</Box>
 			);
-		} else if (columns[1].id === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.ACTIVE === column.id) {
 			return (
 				<Box>
 					{robot.robotIsReady ? <Check color="secondary" /> : <Close color="error" />}
 				</Box>
 			);
-		} else if (columns[2].id === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.CONTROL_MODE === column.id) {
 			return (
 				<Box>
 					{robot.robotControlMode === RobotDetailControlModeTypeEnum.AUTONOMOUS ? (
@@ -71,15 +71,15 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 					)}
 				</Box>
 			);
-		} else if (columns[3].id === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.ACCEPT_ORDER === column.id) {
 			return (
 				<Box>
 					{robot.siteAcceptOrders ? <Check color="secondary" /> : <Close color="error" />}
 				</Box>
 			);
-		} else if (columns[4].id === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE === column.id) {
 			return percentage(Number(value));
-		} else if (columns[5].id === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.MISSION_STATUS === column.id) {
 			const mission = robot.robotMission;
 			return mission && mission.status ? (
 				<Box className={classes.sTableRowItemFlex}>
@@ -93,9 +93,9 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 			) : (
 				AppConfigService.AppOptions.common.none
 			);
-		} else if (columns[6].id === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.UPDATED_AT === column.id) {
 			return momentFormat1(value);
-		} else if (columns[7].id === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.ALERTS === column.id) {
 			return `${robot.robotAlerts.danger}/${robot.robotAlerts.warning}`;
 		}
 		return value || AppConfigService.AppOptions.common.none;

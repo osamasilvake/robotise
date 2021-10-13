@@ -4,12 +4,6 @@ import { SitePhoneConfigsTableColumnInterface } from './SitePhoneConfigsTable.in
 const translation = 'CONTENT.PHONE_CONFIGS.LIST.TABLE.COLUMNS';
 export const columns: SitePhoneConfigsTableColumnInterface[] = [
 	{
-		id: SitePhoneConfigsTableColumnsTypeEnum.NAME,
-		label: `${translation}.NAME`,
-		minWidth: 140,
-		align: 'left'
-	},
-	{
 		id: SitePhoneConfigsTableColumnsTypeEnum.PREFIXES,
 		label: `${translation}.PREFIXES`,
 		minWidth: 120,
@@ -19,13 +13,6 @@ export const columns: SitePhoneConfigsTableColumnInterface[] = [
 	{
 		id: SitePhoneConfigsTableColumnsTypeEnum.FROM,
 		label: `${translation}.FROM`,
-		minWidth: 120,
-		align: 'left',
-		noSort: true
-	},
-	{
-		id: SitePhoneConfigsTableColumnsTypeEnum.TECHNICIAN,
-		label: `${translation}.TECHNICIAN`,
 		minWidth: 120,
 		align: 'left',
 		noSort: true

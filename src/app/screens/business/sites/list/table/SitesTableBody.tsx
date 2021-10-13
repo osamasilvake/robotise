@@ -26,15 +26,15 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const sortTableData = (content: SSContentInterface): ISite[] => {
 		let type;
 		switch (orderBy) {
-			case columns[4].id:
+			case SitesTableColumnsTypeEnum.UPDATED_AT:
 				type = SitesTableSortTypeEnum.DATE;
 				break;
-			case columns[3].id:
+			case SitesTableColumnsTypeEnum.ACCEPT_ORDER:
 				type = SitesTableSortTypeEnum.BOOLEAN;
 				break;
-			case columns[0].id:
-			case columns[1].id:
-			case columns[2].id:
+			case SitesTableColumnsTypeEnum.SITE_TITLE:
+			case SitesTableColumnsTypeEnum.TIMEZONE:
+			case SitesTableColumnsTypeEnum.CURRENCY:
 				type = SitesTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -59,7 +59,11 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 					return a[key] ? -1 : 1;
 				case SitesTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

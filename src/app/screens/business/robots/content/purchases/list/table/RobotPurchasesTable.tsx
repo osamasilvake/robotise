@@ -29,7 +29,9 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	const purchases = useSelector(purchasesSelector);
 
 	const [order, setOrder] = useState<RobotPurchasesTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<RobotPurchasesTableColumnsTypeEnum>(columns[1].id);
+	const [orderBy, setOrderBy] = useState<RobotPurchasesTableColumnsTypeEnum>(
+		RobotPurchasesTableColumnsTypeEnum.CREATED
+	);
 
 	/**
 	 * handle sort request

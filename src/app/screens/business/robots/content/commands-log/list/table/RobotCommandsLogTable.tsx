@@ -30,7 +30,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<RobotCommandsLogTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotCommandsLogTableColumnsTypeEnum>(
-		columns[columns.length - 1].id
+		RobotCommandsLogTableColumnsTypeEnum.CREATED
 	);
 
 	/**

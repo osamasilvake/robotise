@@ -13,7 +13,7 @@ import {
 	RobotPurchasesTableBodyCellInterface,
 	RobotPurchasesTableColumnInterface
 } from '../../../purchases/list/table/RobotPurchasesTable.interface';
-import { columns } from './RobotPurchasesTable.list';
+import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 import TableFieldComment from './TableFieldComment';
 
@@ -55,7 +55,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 		column: RobotPurchasesTableColumnInterface
 	) => {
 		const value = purchase[column.id];
-		if (columns[0].id === column.id) {
+		if (RobotPurchasesTableColumnsTypeEnum.TARGET === column.id) {
 			return (
 				<Box>
 					{value || AppConfigService.AppOptions.common.none}
@@ -63,15 +63,15 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						<Box component="span" className={classes.sTarget}>
 							<Chip
 								size="small"
-								label={t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.UN_BILLED`)}
+								label={t(`CONTENT.PURCHASES.LIST.TABLE.VALUES.TARGET.UN_BILLED`)}
 							/>
 						</Box>
 					)}
 				</Box>
 			);
-		} else if (columns[1].id === column.id) {
+		} else if (RobotPurchasesTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
-		} else if (columns[2].id === column.id) {
+		} else if (RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE === column.id) {
 			const price = Number(value);
 			return price > 0
 				? `${currencyFormat(
@@ -80,9 +80,12 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						i18next.language
 				  )}`
 				: 0;
-		} else if (columns[3].id === column.id) {
+		} else if (RobotPurchasesTableColumnsTypeEnum.COMMENT === column.id) {
 			return <TableFieldComment purchase={purchase} />;
-		} else if (columns[4].id === column.id && purchase.order?.id) {
+		} else if (
+			RobotPurchasesTableColumnsTypeEnum.ORDER_STATUS === column.id &&
+			purchase.order?.id
+		) {
 			return (
 				<Link
 					component="button"

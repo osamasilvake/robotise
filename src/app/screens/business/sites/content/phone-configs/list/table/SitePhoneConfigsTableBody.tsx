@@ -27,14 +27,7 @@ const SitePhoneConfigsTableBody: FC<SitePhoneConfigsTableBodyInterface> = (props
 	const sortTableData = (content: PCContentInterface): PCCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[1].id:
-				type = SitePhoneConfigsTableSortTypeEnum.ARRAY_STRING;
-				break;
-			case columns[0].id:
-			case columns[2].id:
-			case columns[3].id:
-			case columns[4].id:
-			case columns[6].id:
+			case SitePhoneConfigsTableColumnsTypeEnum.WORKFLOW:
 				type = SitePhoneConfigsTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -58,7 +51,11 @@ const SitePhoneConfigsTableBody: FC<SitePhoneConfigsTableBodyInterface> = (props
 			switch (type) {
 				case SitePhoneConfigsTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

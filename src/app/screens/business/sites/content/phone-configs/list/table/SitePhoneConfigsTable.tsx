@@ -29,7 +29,9 @@ const SitePhoneConfigsTable: FC<SitePhoneConfigsTableInterface> = (props) => {
 	const phoneConfigs = useSelector(phoneConfigsSelector);
 
 	const [order, setOrder] = useState<SitePhoneConfigsTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<SitePhoneConfigsTableColumnsTypeEnum>(columns[0].id);
+	const [orderBy, setOrderBy] = useState<SitePhoneConfigsTableColumnsTypeEnum>(
+		SitePhoneConfigsTableColumnsTypeEnum.MODE
+	);
 
 	/**
 	 * handle sort request

@@ -39,14 +39,14 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 	const sortTableData = (content: SPContentInterface): SPCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[2].id:
+			case RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE:
 				type = RobotPurchasesTableSortTypeEnum.NUMBER;
 				break;
-			case columns[1].id:
+			case RobotPurchasesTableColumnsTypeEnum.CREATED:
 				type = RobotPurchasesTableSortTypeEnum.DATE;
 				break;
-			case columns[0].id:
-			case columns[3].id:
+			case RobotPurchasesTableColumnsTypeEnum.TARGET:
+			case RobotPurchasesTableColumnsTypeEnum.COMMENT:
 				type = RobotPurchasesTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -74,7 +74,11 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotPurchasesTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

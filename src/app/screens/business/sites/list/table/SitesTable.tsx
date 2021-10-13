@@ -16,7 +16,9 @@ const SitesTable: FC<SitesTableInterface> = (props) => {
 	const classes = SitesListStyle();
 
 	const [order, setOrder] = useState<SitesTableHeadOrder>('asc');
-	const [orderBy, setOrderBy] = useState<SitesTableColumnsTypeEnum>(columns[0].id);
+	const [orderBy, setOrderBy] = useState<SitesTableColumnsTypeEnum>(
+		SitesTableColumnsTypeEnum.SITE_TITLE
+	);
 
 	/**
 	 * handle sort request

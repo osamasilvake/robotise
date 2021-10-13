@@ -30,7 +30,7 @@ const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) =>
 
 	const [order, setOrder] = useState<RobotElevatorCallsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotElevatorCallsTableColumnsTypeEnum>(
-		columns[columns.length - 1].id
+		RobotElevatorCallsTableColumnsTypeEnum.CREATED
 	);
 
 	/**

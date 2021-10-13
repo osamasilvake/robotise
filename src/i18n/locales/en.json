@@ -525,10 +525,8 @@
 				"LIST": {
 					"TABLE": {
 						"COLUMNS": {
-							"NAME": "Name",
 							"PREFIXES": "Prefixes",
 							"FROM": "From",
-							"TECHNICIAN": "Technician",
 							"WORKFLOW": "Workflow",
 							"MESSAGES": "Messages",
 							"MODE": "Mode"
@@ -1106,7 +1104,9 @@
 									"PLACEHOLDER": "Enter a comment"
 								}
 							},
-							"UN_BILLED": "Unbilled",
+							"TARGET": {
+								"UN_BILLED": "Unbilled"
+							},
 							"ORDER_STATUS": "Detail"
 						}
 					}

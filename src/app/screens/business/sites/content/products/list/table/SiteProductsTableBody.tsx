@@ -28,16 +28,16 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 	const sortTableData = (content: SPContentInterface): SPCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[2].id:
-			case columns[3].id:
-			case columns[4].id:
+			case SiteProductsTableColumnsTypeEnum.PRICE:
+			case SiteProductsTableColumnsTypeEnum.LENGTH:
+			case SiteProductsTableColumnsTypeEnum.WEIGHT:
 				type = SiteProductsTableSortTypeEnum.NUMBER;
 				break;
-			case columns[6].id:
+			case SiteProductsTableColumnsTypeEnum.UPDATED_AT:
 				type = SiteProductsTableSortTypeEnum.DATE;
 				break;
-			case columns[1].id:
-			case columns[5].id:
+			case SiteProductsTableColumnsTypeEnum.NAME:
+			case SiteProductsTableColumnsTypeEnum.SIZE:
 				type = SiteProductsTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -66,7 +66,11 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 						return momentSort(a[key]).diff(momentSort(b[key]));
 					case SiteProductsTableSortTypeEnum.STRING:
 					default:
-						return String(a[key]).localeCompare(String(b[key]));
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
 				}
 			}
 			return 1;

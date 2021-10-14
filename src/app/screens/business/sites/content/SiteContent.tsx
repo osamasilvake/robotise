@@ -12,7 +12,7 @@ import { SiteParamsInterface } from '../Site.interface';
 import sitesRoutes from '../Sites.routes';
 import SiteConfiguration from './configuration/SiteConfiguration';
 import SiteDetail from './detail/SiteDetail';
-import SitePhoneConfigsList from './phone-configs/list/SitePhoneConfigsList';
+import SitePhoneConfigsList from './phone-configs/detail/SitePhoneConfigsDetail';
 import SiteProductsList from './products/list/SiteProductsList';
 import SiteRoomsList from './rooms/list/SiteRoomsList';
 
@@ -67,6 +67,7 @@ const SiteContent: FC = () => {
 				<>
 					{/* Tabs */}
 					<Tabs
+						allowScrollButtonsMobile
 						value={value}
 						onChange={handleTabChange}
 						variant="scrollable"

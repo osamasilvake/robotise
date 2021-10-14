@@ -522,36 +522,42 @@
 				}
 			},
 			"PHONE_CONFIGS": {
-				"LIST": {
-					"TABLE": {
-						"COLUMNS": {
-							"PREFIXES": "Prefixes",
-							"FROM": "From",
-							"WORKFLOW": "Workflow",
-							"MESSAGES": "Messages",
-							"MODE": "Mode"
-						},
-						"VALUES": {
-							"MODE": {
-								"mini-bar": "Minibar",
-								"room-service": "Room Service",
-								"service-position": "Service Position"
-							},
-							"WORKFLOW": {
-								"with-confirmation": "With Confirmation",
-								"without-confirmation": "Without Confirmation"
-							},
-							"MESSAGES": {
-								"welcome": "Welcome",
-								"confirmed": "Confirmed",
-								"welcomeNoConfirmation": "Welcome No Confirmation",
-								"orderAtTargetPosition": "Order at Target Position",
-								"rejectHoliday": "Reject Holiday",
-								"rejectOutOfWorkingTime": "Reject Out Of Working Time",
-								"rejectRoomNotServed": "Reject Room Not Served",
-								"rejectGeneric": "Reject Generic"
-							}
+				"GENERAL": {
+					"MODE": {
+						"LABEL": "Mode",
+						"ITEMS": {
+							"mini-bar": "Minibar",
+							"room-service": "Room Service",
+							"service-position": "Service Position"
 						}
+					},
+					"PREFIXES": "Prefixes",
+					"FROM": "From",
+					"WORKFLOW": {
+						"LABEL": "Workflow",
+						"ITEMS": {
+							"with-confirmation": "With Confirmation",
+							"without-confirmation": "Without Confirmation"
+						},
+						"NOTES": {
+							"with-confirmation": "Press 1 to make Jeeves to come to your room.",
+							"without-confirmation": "Just call short dial number, without pressing one."
+						}
+					},
+					"ROOMS_MAPPING": "Rooms Mapping",
+					"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback"
+				},
+				"AUDIO": {
+					"TITLE": "Audio Messages",
+					"MESSAGES": {
+						"welcome": "Welcome",
+						"confirmed": "Confirmed",
+						"welcomeNoConfirmation": "Welcome No Confirmation",
+						"orderAtTargetPosition": "Order at Target Position",
+						"rejectHoliday": "Reject Holiday",
+						"rejectOutOfWorkingTime": "Reject Out Of Working Time",
+						"rejectRoomNotServed": "Reject Room Not Served",
+						"rejectGeneric": "Reject Generic"
 					}
 				}
 			}

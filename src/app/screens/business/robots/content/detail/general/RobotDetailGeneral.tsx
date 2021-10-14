@@ -1,5 +1,6 @@
 import { Edit, InfoOutlined } from '@mui/icons-material';
 import { Grid, IconButton, Tooltip, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -24,58 +25,67 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 
 	return (
 		<Grid container spacing={1}>
+			{/* Site */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.SITE`)}
 				</Typography>
 				<Typography>{robotTwins.site.title}</Typography>
 			</Grid>
+
+			{/* Last Updated */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.LAST_UPDATED`)}
 				</Typography>
 				<Typography>{momentFormat1(robotTwins.updatedAt)}</Typography>
 			</Grid>
+
+			{/* Status */}
 			<Grid item xs={12} sm={6} md={4} lg={2}>
-				<Typography
-					variant="caption"
-					color="textSecondary"
-					className={classes.sGridItemBlock}>
+				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.STATUS.LABEL`)}
 				</Typography>
-				<Status active={robotTwins.robotState.isReady.value}>
-					{robotTwins.robotState.isReady.value
-						? t(`${translation}.STATUS.ON`)
-						: t(`${translation}.STATUS.OFF`)}
-				</Status>
+				<Box>
+					<Status active={robotTwins.robotState.isReady.value}>
+						{robotTwins.robotState.isReady.value
+							? t(`${translation}.STATUS.ON`)
+							: t(`${translation}.STATUS.OFF`)}
+					</Status>
+				</Box>
 			</Grid>
+
+			{/* Control Mode */}
 			<Grid item xs={12} sm={6} md={4} lg={2}>
-				<Typography
-					variant="caption"
-					color="textSecondary"
-					className={classes.sGridItemBlock}>
+				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.CONTROL_MODE`)}
 				</Typography>
-				<Status
-					active={
-						robotTwins.controlMode.value === RobotDetailControlModeTypeEnum.AUTONOMOUS
-					}>
-					{strRemoveSymbols(robotTwins.controlMode.value)}
-				</Status>
+				<Box>
+					<Status
+						active={
+							robotTwins.controlMode.value ===
+							RobotDetailControlModeTypeEnum.AUTONOMOUS
+						}>
+						{strRemoveSymbols(robotTwins.controlMode.value)}
+					</Status>
+				</Box>
 			</Grid>
+
+			{/* Accept Orders */}
 			<Grid item xs={12} sm={6} md={4} lg={2} className={classes.sGridLastRowItem}>
-				<Typography
-					variant="caption"
-					color="textSecondary"
-					className={classes.sGridItemBlock}>
+				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
 				</Typography>
-				<Status active={!!robotTwins.site.acceptOrders}>
-					{robotTwins.site.acceptOrders
-						? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
-						: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
-				</Status>
+				<Box>
+					<Status active={!!robotTwins.site.acceptOrders}>
+						{robotTwins.site.acceptOrders
+							? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
+							: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
+					</Status>
+				</Box>
 			</Grid>
+
+			{/* Customer Name */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.CUSTOMER_NAME`)}
@@ -84,6 +94,8 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{robotTwins.robot.customerName || AppConfigService.AppOptions.common.none}
 				</Typography>
 			</Grid>
+
+			{/* Mission */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.MISSION`)}
@@ -97,6 +109,8 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					)}
 				</Typography>
 			</Grid>
+
+			{/* Note */}
 			<Grid item xs={12} sm={6} md={8} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.NOTE.TITLE`)}

@@ -12,7 +12,6 @@ export interface SlicePhoneConfigsInterface {
 export interface PCContentInterface {
 	data: PCCDataInterface[];
 	meta: JsonApiMeta;
-	state?: PCCStateInterface;
 }
 
 export interface PCCDataInterface {
@@ -23,7 +22,12 @@ export interface PCCDataInterface {
 	mode: string;
 	workflow: string;
 	disableRoomsCallback: string[];
+	roomsMapping: PCCDataRoomsMappingInterface;
 	messages: PCCDataMessagesInterface;
+}
+
+export interface PCCDataRoomsMappingInterface {
+	[key: number]: string;
 }
 
 export interface PCCDataMessagesInterface {
@@ -35,10 +39,4 @@ export interface PCCDataMessagesInterface {
 	rejectOutOfWorkingTime: string;
 	rejectRoomNotServed: string;
 	rejectGeneric: string;
-}
-
-export interface PCCStateInterface {
-	pSiteId?: string;
-	page?: number;
-	rowsPerPage?: number;
 }

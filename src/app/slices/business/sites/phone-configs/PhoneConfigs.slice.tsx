@@ -2,15 +2,10 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { SitePhoneConfigsListPayloadInterface } from '../../../../screens/business/sites/content/phone-configs/list/SitePhoneConfigsList.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../../..';
 import { deserializePhoneConfigs } from './PhoneConfigs.deserialize';
-import {
-	PCContentInterface,
-	PCCStateInterface,
-	SlicePhoneConfigsInterface
-} from './PhoneConfigs.slice.interface';
+import { PCContentInterface, SlicePhoneConfigsInterface } from './PhoneConfigs.slice.interface';
 
 // initial state
 export const initialState: SlicePhoneConfigsInterface = {
@@ -71,12 +66,11 @@ export default dataSlice.reducer;
 /**
  * fetch site phone configs
  * @param siteId
- * @param payload
  * @param refresh
  * @returns
  */
 export const SitePhoneConfigsFetch =
-	(siteId: string, payload: SitePhoneConfigsListPayloadInterface, refresh = false) =>
+	(siteId: string, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
@@ -91,29 +85,10 @@ export const SitePhoneConfigsFetch =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch site phone configs
-		return SitesService.sitePhoneConfigsFetch(siteId, payload)
+		return SitesService.sitePhoneConfigsFetch(siteId)
 			.then(async (res) => {
 				// deserialize response
-				let result: PCContentInterface = await deserializePhoneConfigs(res);
-
-				// state
-				result = {
-					...result,
-					state: {
-						...payload,
-						pSiteId: siteId
-					}
-				};
-
-				// handle refresh and pagination
-				if (phoneConfigs && phoneConfigs.content) {
-					result = handleRefreshAndPagination(
-						phoneConfigs.content,
-						result,
-						refresh,
-						payload.rowsPerPage
-					);
-				}
+				const result: PCContentInterface = await deserializePhoneConfigs(res);
 
 				// dispatch: success
 				dispatch(success(result));
@@ -131,66 +106,3 @@ export const SitePhoneConfigsFetch =
 				dispatch(failure(message));
 			});
 	};
-
-/**
- * update state
- * @param state
- * @returns
- */
-export const SitePhoneConfigsUpdateState =
-	(state: PCCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const phoneConfigs = states.phoneConfigs;
-
-		// dispatch: updating
-		dispatch(updating());
-
-		if (phoneConfigs && phoneConfigs.content) {
-			const result = {
-				...phoneConfigs.content,
-				state
-			};
-
-			// dispatch: updated
-			dispatch(updated(result));
-		}
-	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: PCContentInterface,
-	result: PCContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};

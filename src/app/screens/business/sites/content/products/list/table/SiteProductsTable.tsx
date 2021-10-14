@@ -20,7 +20,7 @@ const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<SiteProductsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<SiteProductsTableColumnsTypeEnum>(
-		columns[columns.length - 2].id
+		SiteProductsTableColumnsTypeEnum.UPDATED_AT
 	);
 
 	/**
@@ -66,7 +66,7 @@ const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 								.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={0}
 				onPageChange={() => null}
 				rowsPerPage={

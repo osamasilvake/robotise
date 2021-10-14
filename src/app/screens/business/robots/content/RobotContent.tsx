@@ -92,6 +92,7 @@ const RobotContent: FC = () => {
 				<>
 					{/* Tabs */}
 					<Tabs
+						allowScrollButtonsMobile
 						value={value}
 						onChange={handleTabChange}
 						variant="scrollable"

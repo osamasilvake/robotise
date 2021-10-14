@@ -29,7 +29,9 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	const purchases = useSelector(purchasesSelector);
 
 	const [order, setOrder] = useState<RobotPurchasesTableHeadOrder>('desc');
-	const [orderBy, setOrderBy] = useState<RobotPurchasesTableColumnsTypeEnum>(columns[1].id);
+	const [orderBy, setOrderBy] = useState<RobotPurchasesTableColumnsTypeEnum>(
+		RobotPurchasesTableColumnsTypeEnum.CREATED
+	);
 
 	/**
 	 * handle sort request
@@ -111,7 +113,7 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 								.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

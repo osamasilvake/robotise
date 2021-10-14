@@ -27,7 +27,7 @@ const AlertCodesTable: FC<AlertCodesTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<AlertCodesTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<AlertCodesTableColumnsTypeEnum>(
-		columns[columns.length - 1].id
+		AlertCodesTableColumnsTypeEnum.UPDATED_AT
 	);
 
 	/**
@@ -105,7 +105,7 @@ const AlertCodesTable: FC<AlertCodesTableInterface> = (props) => {
 						? AppConfigService.AppOptions.screens.information.alertCodes.list.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

@@ -316,6 +316,20 @@ class SitesService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS;
 		return HttpClientService.delete(`${url}/${servicePositionId}`);
 	};
+
+	/**
+	 * fetch site phone configs
+	 * @param siteId
+	 * @returns
+	 */
+	sitePhoneConfigsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
 }
 const instance = new SitesService();
 export default instance;

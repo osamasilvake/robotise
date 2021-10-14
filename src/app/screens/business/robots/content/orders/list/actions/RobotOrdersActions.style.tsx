@@ -4,9 +4,8 @@ import { AppConfigService } from '../../../../../../../services';
 
 export const RobotOrdersActionsStyle = makeStyles(() => ({
 	sSpeedDial: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0
+		position: 'fixed',
+		bottom: 25
 	},
 	sSpeedDialIcon: {
 		color: AppConfigService.AppOptions.colors.c7

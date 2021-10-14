@@ -5,8 +5,8 @@ import { FC } from 'react';
 import { AppConfigService } from '../../../../../services';
 import { ISite } from '../../../../../slices/business/sites/Sites.slice.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { SitesTableColumnsTypeEnum } from './SitesTable.enum';
 import { SitesTableBodyCellInterface, SitesTableColumnInterface } from './SitesTable.interface';
-import { columns } from './SitesTable.list';
 
 const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 	const { column, site } = props;
@@ -19,15 +19,15 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 	 */
 	const setCellValue = (site: ISite, column: SitesTableColumnInterface) => {
 		const value = site[column.id];
-		if (columns[2].id === column.id) {
+		if (SitesTableColumnsTypeEnum.CURRENCY === column.id) {
 			return value || AppConfigService.AppOptions.common.defaultCurrency;
-		} else if (columns[3].id === column.id) {
+		} else if (SitesTableColumnsTypeEnum.ACCEPT_ORDER === column.id) {
 			return (
 				<Box>
 					{site.acceptOrders ? <Check color="secondary" /> : <Close color="error" />}
 				</Box>
 			);
-		} else if (columns[4].id === column.id) {
+		} else if (SitesTableColumnsTypeEnum.UPDATED_AT === column.id) {
 			return momentFormat1(value);
 		}
 		return value;

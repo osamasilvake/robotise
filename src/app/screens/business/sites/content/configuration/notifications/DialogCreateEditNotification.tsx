@@ -180,7 +180,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 						<Box className={classes.sAddUser}>
 							{values.users.map((user, index) => (
-								<FormControl error fullWidth margin="normal" key={index}>
+								<FormControl key={index} error fullWidth margin="normal">
 									<TextField
 										type="email"
 										id={`${fieldUsers}-${index}`}

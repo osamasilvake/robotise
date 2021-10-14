@@ -9,11 +9,11 @@ import {
 	ECCDataInterface
 } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import { momentFormat1, momentFormat3 } from '../../../../../../../utilities/methods/Moment';
+import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
 import {
 	RobotElevatorCallsTableBodyCellInterface,
 	RobotElevatorCallsTableColumnInterface
 } from './RobotElevatorCallsTable.interface';
-import { columns } from './RobotElevatorCallsTable.list';
 import { mapElevatorCall, mapHistoryEventType, mapStatus } from './RobotElevatorCallsTable.map';
 import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
 
@@ -33,9 +33,9 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 		column: RobotElevatorCallsTableColumnInterface
 	) => {
 		const value = mapElevatorCall(elevatorCall)[column.id];
-		if (columns[5].id === column.id) {
+		if (RobotElevatorCallsTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
-		} else if (columns[4].id === column.id) {
+		} else if (RobotElevatorCallsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = value as ECCDataHistoryInterface[];
 			return (
 				<Box>
@@ -61,7 +61,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 				</Box>
 			);
 		} else if (typeof value === 'string') {
-			if (columns[0].id === column.id) {
+			if (RobotElevatorCallsTableColumnsTypeEnum.STATUS === column.id) {
 				return <Status level={mapStatus(value)}>{t(value)}</Status>;
 			}
 			return t(value);

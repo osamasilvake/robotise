@@ -30,7 +30,7 @@ const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) =>
 
 	const [order, setOrder] = useState<RobotElevatorCallsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotElevatorCallsTableColumnsTypeEnum>(
-		columns[columns.length - 1].id
+		RobotElevatorCallsTableColumnsTypeEnum.CREATED
 	);
 
 	/**
@@ -113,7 +113,7 @@ const RobotElevatorCallsTable: FC<RobotElevatorCallsTableInterface> = (props) =>
 								.list.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

@@ -18,7 +18,7 @@ export const columns: RobotCommandsLogTableColumnInterface[] = [
 	{
 		id: RobotCommandsLogTableColumnsTypeEnum.HISTORY,
 		label: `${translation}.HISTORY`,
-		minWidth: 200,
+		minWidth: 250,
 		align: 'left',
 		noSort: true
 	},

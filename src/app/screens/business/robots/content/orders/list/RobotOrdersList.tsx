@@ -44,7 +44,6 @@ const RobotOrdersList: FC = () => {
 
 	useEffect(() => {
 		const payload: RobotOrdersListPayloadInterface = {
-			pRobotId: cRobotId,
 			page,
 			rowsPerPage,
 			activeOrders,

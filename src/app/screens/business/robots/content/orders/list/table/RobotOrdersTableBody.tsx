@@ -39,14 +39,13 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const sortTableData = (content: SOContentInterface): SOCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[3].id:
+			case RobotOrdersTableColumnsTypeEnum.CREATED:
 				type = RobotOrdersTableSortTypeEnum.DATE;
 				break;
-			case columns[0].id:
-			case columns[1].id:
-			case columns[2].id:
-			case columns[4].id:
-			case columns[5].id:
+			case RobotOrdersTableColumnsTypeEnum.STATUS:
+			case RobotOrdersTableColumnsTypeEnum.TARGET:
+			case RobotOrdersTableColumnsTypeEnum.MODE:
+			case RobotOrdersTableColumnsTypeEnum.ORIGIN:
 				type = RobotOrdersTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -72,7 +71,11 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotOrdersTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

@@ -31,6 +31,7 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 		id: RobotPurchasesTableColumnsTypeEnum.ORDER_STATUS,
 		label: `${translation}.ORDER_STATUS`,
 		minWidth: 150,
-		align: 'right'
+		align: 'right',
+		noSort: true
 	}
 ];

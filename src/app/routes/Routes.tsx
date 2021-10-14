@@ -14,9 +14,9 @@ const Routes: FC = () => {
 					const { routes: appRoutes, template, type } = routesTemplate;
 					return appRoutes.map((appRoute) => (
 						<Route
+							key={appRoute.path}
 							exact={appRoute.exact}
 							path={appRoute.path}
-							key={appRoute.path}
 							render={(route) => (
 								<Auth
 									appRoute={appRoute}

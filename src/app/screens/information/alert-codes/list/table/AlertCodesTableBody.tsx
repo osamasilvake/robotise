@@ -31,13 +31,13 @@ const AlertCodesTableBody: FC<AlertCodesTableBodyInterface> = (props) => {
 	const sortTableData = (content: SACContentInterface): SACDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[4].id:
+			case AlertCodesTableColumnsTypeEnum.UPDATED_AT:
 				type = AlertCodesTableSortTypeEnum.DATE;
 				break;
-			case columns[0].id:
-			case columns[1].id:
-			case columns[2].id:
-			case columns[3].id:
+			case AlertCodesTableColumnsTypeEnum.DESCRIPTION:
+			case AlertCodesTableColumnsTypeEnum.SYSTEM:
+			case AlertCodesTableColumnsTypeEnum.CODE:
+			case AlertCodesTableColumnsTypeEnum.NODE:
 				type = AlertCodesTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -63,7 +63,11 @@ const AlertCodesTableBody: FC<AlertCodesTableBodyInterface> = (props) => {
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case AlertCodesTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

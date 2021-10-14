@@ -2,9 +2,6 @@ import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 export const RobotDetailGeneralStyle = makeStyles((theme: Theme) => ({
-	sGridItemBlock: {
-		display: 'block'
-	},
 	sGridItemFlex: {
 		alignItems: 'center',
 		display: 'flex'

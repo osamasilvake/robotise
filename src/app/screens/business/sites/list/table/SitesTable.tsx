@@ -16,7 +16,9 @@ const SitesTable: FC<SitesTableInterface> = (props) => {
 	const classes = SitesListStyle();
 
 	const [order, setOrder] = useState<SitesTableHeadOrder>('asc');
-	const [orderBy, setOrderBy] = useState<SitesTableColumnsTypeEnum>(columns[0].id);
+	const [orderBy, setOrderBy] = useState<SitesTableColumnsTypeEnum>(
+		SitesTableColumnsTypeEnum.SITE_TITLE
+	);
 
 	/**
 	 * handle sort request
@@ -59,7 +61,7 @@ const SitesTable: FC<SitesTableInterface> = (props) => {
 						? AppConfigService.AppOptions.screens.business.sites.list.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={0}
 				onPageChange={() => null}
 				rowsPerPage={

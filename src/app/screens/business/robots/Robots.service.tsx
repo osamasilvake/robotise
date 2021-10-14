@@ -12,6 +12,7 @@ import {
 } from './content/detail/commands/RobotDetailCommands.enum';
 import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
 import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.interface';
+import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls/list/RobotElevatorCallsList.interface';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
 import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
@@ -384,7 +385,10 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotElevatorCallsFetch = (robotId: string, payload: RobotCommandsLogListPayloadInterface) => {
+	robotElevatorCallsFetch = (
+		robotId: string,
+		payload: RobotElevatorCallsListPayloadInterface
+	) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
 		return HttpClientService.get(url, {
 			params: {

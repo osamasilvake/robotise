@@ -40,7 +40,6 @@ const RobotCommandsLogList: FC = () => {
 
 	useEffect(() => {
 		const payload: RobotCommandsLogListPayloadInterface = {
-			pRobotId: cRobotId,
 			page,
 			rowsPerPage
 		};

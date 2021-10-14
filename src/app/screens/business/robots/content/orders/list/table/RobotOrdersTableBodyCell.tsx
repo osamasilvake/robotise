@@ -9,11 +9,11 @@ import { SOCDataInterface } from '../../../../../../../slices/business/robots/or
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import DialogCancelOrder from './DialogCancelOrder';
+import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import {
 	RobotOrdersTableBodyCellInterface,
 	RobotOrdersTableColumnInterface
 } from './RobotOrdersTable.interface';
-import { columns } from './RobotOrdersTable.list';
 import { isOrderCancellable, mapOrder, mapStatus } from './RobotOrdersTable.map';
 import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 
@@ -67,9 +67,12 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 */
 	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
 		const value = mapOrder(order)[column.id];
-		if (columns[3].id === column.id) {
+		if (RobotOrdersTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
-		} else if (columns[5].id === column.id && order.orderReport?.id) {
+		} else if (
+			RobotOrdersTableColumnsTypeEnum.PURCHASE_REPORT === column.id &&
+			order.orderReport?.id
+		) {
 			return (
 				<Link
 					component="button"
@@ -80,7 +83,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 				</Link>
 			);
 		} else if (typeof value === 'string') {
-			if (columns[0].id === column.id) {
+			if (RobotOrdersTableColumnsTypeEnum.STATUS === column.id) {
 				return (
 					<Box>
 						<Status level={mapStatus(value)}>{t(value.replace(':', '_'))}</Status>

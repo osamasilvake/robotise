@@ -27,7 +27,7 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<RobotOrdersTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotOrdersTableColumnsTypeEnum>(
-		columns[columns.length - 3].id
+		RobotOrdersTableColumnsTypeEnum.CREATED
 	);
 
 	/**
@@ -107,7 +107,7 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 								.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

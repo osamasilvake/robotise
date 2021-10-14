@@ -109,7 +109,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 								[classes.sGridContainer]: Object.keys(result).length - 1 !== idx
 							})}>
 							{result[key].map((room) => (
-								<Grid item xs={12} sm={6} md={3} lg={2} key={room}>
+								<Grid item key={room} xs={12} sm={6} md={3} lg={2}>
 									<Card square elevation={1}>
 										<CardContent
 											className={clsx(

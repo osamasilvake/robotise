@@ -102,7 +102,10 @@ export const PurchasesFetchList =
 				// state
 				result = {
 					...result,
-					state: payload
+					state: {
+						...payload,
+						pRobotId: robotId
+					}
 				};
 
 				// handle refresh and pagination
@@ -230,13 +233,13 @@ const handleRefreshAndPagination = (
 		return {
 			...current,
 			data: [...result.data, ...dataItems],
-			meta: {
+			meta: current.meta && {
 				...current.meta,
 				totalDocs: result.meta.totalDocs,
 				totalPages: result.meta.totalPages
 			}
 		};
-	} else if (result.meta.page > 1) {
+	} else if (result?.meta?.page > 1) {
 		return {
 			...current,
 			meta: {

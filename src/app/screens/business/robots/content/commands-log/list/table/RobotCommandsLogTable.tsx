@@ -30,7 +30,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<RobotCommandsLogTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotCommandsLogTableColumnsTypeEnum>(
-		columns[columns.length - 1].id
+		RobotCommandsLogTableColumnsTypeEnum.CREATED
 	);
 
 	/**
@@ -113,7 +113,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 								.list.pageSizes
 						: []
 				}
-				count={content?.meta.totalDocs || 0}
+				count={content?.meta?.totalDocs || 0}
 				page={page}
 				onPageChange={handleChangePage}
 				rowsPerPage={rowsPerPage}

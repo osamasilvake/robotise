@@ -22,7 +22,6 @@ import {
 	SiteProductsTableBodyCellInterface,
 	SiteProductsTableColumnInterface
 } from './SiteProductsTable.interface';
-import { columns } from './SiteProductsTable.list';
 import { SiteProductsTableStyle } from './SiteProductsTable.style';
 
 const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props) => {
@@ -110,10 +109,10 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 			);
 		} else {
 			const value = product[column.id];
-			if (columns[6].id === column.id) {
+			if (SiteProductsTableColumnsTypeEnum.UPDATED_AT === column.id) {
 				return momentFormat1(value);
 			} else if (typeof value === 'number') {
-				if (columns[2].id === column.id) {
+				if (SiteProductsTableColumnsTypeEnum.PRICE === column.id) {
 					const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 					return `${currencyFormat(
 						value,
@@ -123,7 +122,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				}
 				return value;
 			} else if (typeof value === 'string') {
-				if (columns[0].id === column.id) {
+				if (SiteProductsTableColumnsTypeEnum.IMAGE === column.id) {
 					return (
 						<Avatar
 							variant="square"

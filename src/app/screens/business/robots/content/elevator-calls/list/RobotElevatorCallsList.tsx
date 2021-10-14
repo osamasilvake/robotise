@@ -40,7 +40,6 @@ const RobotElevatorCallsList: FC = () => {
 
 	useEffect(() => {
 		const payload: RobotElevatorCallsListPayloadInterface = {
-			pRobotId: cRobotId,
 			page,
 			rowsPerPage
 		};

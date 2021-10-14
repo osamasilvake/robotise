@@ -28,14 +28,13 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 	const sortTableData = (content: ECContentInterface): ECCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case columns[5].id:
+			case RobotElevatorCallsTableColumnsTypeEnum.CREATED:
 				type = RobotElevatorCallsTableSortTypeEnum.DATE;
 				break;
-			case columns[0].id:
-			case columns[1].id:
-			case columns[2].id:
-			case columns[3].id:
-			case columns[4].id:
+			case RobotElevatorCallsTableColumnsTypeEnum.STATUS:
+			case RobotElevatorCallsTableColumnsTypeEnum.CALL_TYPE:
+			case RobotElevatorCallsTableColumnsTypeEnum.SRC_AREA_ID:
+			case RobotElevatorCallsTableColumnsTypeEnum.DST_AREA_ID:
 				type = RobotElevatorCallsTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -61,7 +60,11 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotElevatorCallsTableSortTypeEnum.STRING:
 				default:
-					return String(a[key]).localeCompare(String(b[key]));
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
 		};
 	};

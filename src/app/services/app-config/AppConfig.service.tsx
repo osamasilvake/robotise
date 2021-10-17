@@ -104,14 +104,7 @@ class AppConfigService extends EnvService {
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
 							},
-							configuration: {
-								notifications: {
-									refreshTime: 20000
-								},
-								servicePositions: {
-									refreshTime: 20000
-								}
-							},
+
 							phoneConfigs: {
 								list: {
 									refreshTime: 10000,
@@ -126,6 +119,14 @@ class AppConfigService extends EnvService {
 									showPageSizes: true,
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
+							},
+							configuration: {
+								notifications: {
+									refreshTime: 20000
+								},
+								servicePositions: {
+									refreshTime: 20000
 								}
 							}
 						}

@@ -76,9 +76,9 @@ const SiteContent: FC = () => {
 						<Tab label={t(`${translation}.DETAIL`)} />
 						<Tab label={t(`${translation}.PRODUCTS`)} />
 						<Tab label={t(`${translation}.ROOMS`)} />
-						<Tab label={t(`${translation}.CONFIGURATION`)} />
 						<Tab label={t(`${translation}.PHONE_CONFIGS`)} />
 						<Tab label={t(`${translation}.PHONE_CALLS`)} />
+						<Tab label={t(`${translation}.CONFIGURATION`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -92,14 +92,14 @@ const SiteContent: FC = () => {
 						{/* Rooms */}
 						{value === 2 && <SiteRoomsList />}
 
-						{/* Configuration */}
-						{value === 3 && <SiteConfiguration />}
-
 						{/* Phone Configs */}
-						{value === 4 && <SitePhoneConfigsList />}
+						{value === 3 && <SitePhoneConfigsList />}
 
 						{/* Phone Calls */}
-						{value === 5 && <SitePhoneCallsList />}
+						{value === 4 && <SitePhoneCallsList />}
+
+						{/* Configuration */}
+						{value === 5 && <SiteConfiguration />}
 					</Box>
 				</>
 			)}

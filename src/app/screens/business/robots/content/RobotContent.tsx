@@ -101,9 +101,9 @@ const RobotContent: FC = () => {
 						<Tab label={t(`${translation}.INVENTORY`)} />
 						<Tab label={t(`${translation}.ORDERS`)} />
 						<Tab label={t(`${translation}.PURCHASES`)} />
-						<Tab label={t(`${translation}.CONFIGURATION`)} />
 						<Tab label={t(`${translation}.COMMANDS_LOGS`)} />
 						<Tab label={t(`${translation}.ELEVATOR_CALLS`)} />
+						<Tab label={t(`${translation}.CONFIGURATION`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -120,14 +120,14 @@ const RobotContent: FC = () => {
 						{/* Purchases */}
 						{value === 3 && <RobotPurchasesList />}
 
-						{/* Configuration */}
-						{value === 4 && <RobotConfiguration />}
-
 						{/* Commands Log */}
-						{value === 5 && <RobotCommandsLogList />}
+						{value === 4 && <RobotCommandsLogList />}
 
 						{/* Elevator Calls */}
-						{value === 6 && <RobotElevatorCallsList />}
+						{value === 5 && <RobotElevatorCallsList />}
+
+						{/* Configuration */}
+						{value === 6 && <RobotConfiguration />}
 					</Box>
 				</>
 			)}

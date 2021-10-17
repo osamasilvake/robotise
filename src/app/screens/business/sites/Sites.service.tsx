@@ -118,6 +118,34 @@ class SitesService {
 	};
 
 	/**
+	 * fetch site phone configs
+	 * @param siteId
+	 * @returns
+	 */
+	sitePhoneConfigsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * fetch site phone calls
+	 * @param siteId
+	 * @returns
+	 */
+	sitePhoneCallsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
 	 * accept orders
 	 * @param siteId
 	 * @param acceptOrders
@@ -239,23 +267,6 @@ class SitesService {
 	};
 
 	/**
-	 * generate reports
-	 * @param siteId
-	 * @param payload
-	 * @returns
-	 */
-	siteReportsGenerate = (siteId: string, payload: ReportFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
-		return HttpClientService.get(url, {
-			params: {
-				'filter[site]': siteId,
-				'filter[createdAt][gte]': payload.from,
-				'filter[createdAt][lte]': payload.to
-			}
-		});
-	};
-
-	/**
 	 * fetch site service positions
 	 * @param siteId
 	 * @returns
@@ -318,29 +329,18 @@ class SitesService {
 	};
 
 	/**
-	 * fetch site phone configs
+	 * generate reports
 	 * @param siteId
+	 * @param payload
 	 * @returns
 	 */
-	sitePhoneConfigsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
+	siteReportsGenerate = (siteId: string, payload: ReportFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[site]': siteId
-			}
-		});
-	};
-
-	/**
-	 * fetch site phone calls
-	 * @param siteId
-	 * @returns
-	 */
-	sitePhoneCallsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
-		return HttpClientService.get(url, {
-			params: {
-				'filter[site]': siteId
+				'filter[site]': siteId,
+				'filter[createdAt][gte]': payload.from,
+				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

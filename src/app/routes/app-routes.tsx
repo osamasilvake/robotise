@@ -13,9 +13,9 @@ const appRoutes = {
 					DETAIL: '/sites/:siteId/products/:product'
 				},
 				ROOMS: '/sites/:siteId/rooms',
-				CONFIGURATION: '/sites/:siteId/configuration',
 				PHONE_CONFIGS: '/sites/:siteId/phone-configs',
-				PHONE_CALLS: '/sites/:siteId/phone-calls'
+				PHONE_CALLS: '/sites/:siteId/phone-calls',
+				CONFIGURATION: '/sites/:siteId/configuration'
 			},
 			ROBOTS: {
 				MAIN: '/robots',
@@ -29,9 +29,9 @@ const appRoutes = {
 					MAIN: '/robots/:robotId/purchases',
 					DETAIL: '/robots/:robotId/purchases/:purchaseId'
 				},
-				CONFIGURATION: '/robots/:robotId/configuration',
 				COMMANDS_LOG: '/robots/:robotId/commands-log',
-				ELEVATOR_CALLS: '/robots/:robotId/elevator-calls'
+				ELEVATOR_CALLS: '/robots/:robotId/elevator-calls',
+				CONFIGURATION: '/robots/:robotId/configuration'
 			}
 		},
 		INFORMATION: {

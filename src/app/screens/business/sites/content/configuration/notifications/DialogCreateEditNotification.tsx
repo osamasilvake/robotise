@@ -26,7 +26,7 @@ import { useParams } from 'react-router-dom';
 
 import {
 	notificationsSelector,
-	NotificationTypesAndUsersFetch,
+	NotificationTypesAndUsersFetchList,
 	NotificationUpdate
 } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
@@ -74,8 +74,8 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 							siteId: !notification ? cSiteId : ''
 						},
 						() => {
-							// dispatch: fetch notification types and users
-							dispatch(NotificationTypesAndUsersFetch(cSiteId, true));
+							// dispatch: fetch site notification types and users
+							dispatch(NotificationTypesAndUsersFetchList(cSiteId, true));
 
 							// reset new notification
 							setNewNotification('');

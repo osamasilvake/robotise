@@ -4,7 +4,6 @@ import { JsonApiMeta } from '../../../JsonApi.interface';
 export interface SlicePhoneConfigsInterface {
 	loader: boolean;
 	loading: boolean;
-	updating: boolean;
 	content: PCContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

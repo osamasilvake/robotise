@@ -24,13 +24,13 @@ const RobotOrderDetail: FC = () => {
 	const orderId = params.orderId;
 
 	useEffect(() => {
-		// dispatch: fetch order
+		// dispatch: fetch robot order
 		dispatch(OrderFetch(orderId));
 	}, [dispatch, orderId]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			// dispatch: fetch order
+			// dispatch: fetch robot order
 			dispatch(OrderFetch(orderId, true));
 		};
 

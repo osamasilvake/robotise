@@ -80,7 +80,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							},
 							type,
 							async () => {
-								// dispatch: fetch products
+								// dispatch: fetch site products
 								dispatch(ProductsFetchList(cSiteId, true));
 
 								// wait

@@ -12,6 +12,7 @@ import { SiteParamsInterface } from '../Site.interface';
 import sitesRoutes from '../Sites.routes';
 import SiteConfiguration from './configuration/SiteConfiguration';
 import SiteDetail from './detail/SiteDetail';
+import SitePhoneCallsList from './phone-calls/list/SitePhoneCallsList';
 import SitePhoneConfigsList from './phone-configs/detail/SitePhoneConfigsDetail';
 import SiteProductsList from './products/list/SiteProductsList';
 import SiteRoomsList from './rooms/list/SiteRoomsList';
@@ -77,6 +78,7 @@ const SiteContent: FC = () => {
 						<Tab label={t(`${translation}.ROOMS`)} />
 						<Tab label={t(`${translation}.CONFIGURATION`)} />
 						<Tab label={t(`${translation}.PHONE_CONFIGS`)} />
+						<Tab label={t(`${translation}.PHONE_CALLS`)} />
 					</Tabs>
 
 					{/* Tab Panel */}
@@ -95,6 +97,9 @@ const SiteContent: FC = () => {
 
 						{/* Phone Configs */}
 						{value === 4 && <SitePhoneConfigsList />}
+
+						{/* Phone Calls */}
+						{value === 5 && <SitePhoneCallsList />}
 					</Box>
 				</>
 			)}

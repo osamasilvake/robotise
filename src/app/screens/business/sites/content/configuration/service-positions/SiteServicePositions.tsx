@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { ServicePositionsFetch } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+import { ServicePositionsFetchList } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditServicePosition from './DialogCreateEditServicePosition';
@@ -33,8 +33,8 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (cSiteId) {
-				// dispatch: fetch service positions
-				dispatch(ServicePositionsFetch(cSiteId, true));
+				// dispatch: fetch site service positions
+				dispatch(ServicePositionsFetchList(cSiteId, true));
 			}
 		};
 

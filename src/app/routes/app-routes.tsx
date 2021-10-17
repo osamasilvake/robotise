@@ -14,7 +14,8 @@ const appRoutes = {
 				},
 				ROOMS: '/sites/:siteId/rooms',
 				CONFIGURATION: '/sites/:siteId/configuration',
-				PHONE_CONFIGS: '/sites/:siteId/phone-configs'
+				PHONE_CONFIGS: '/sites/:siteId/phone-configs',
+				PHONE_CALLS: '/sites/:siteId/phone-calls'
 			},
 			ROBOTS: {
 				MAIN: '/robots',

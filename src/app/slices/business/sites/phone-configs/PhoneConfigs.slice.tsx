@@ -11,7 +11,6 @@ import { PCContentInterface, SlicePhoneConfigsInterface } from './PhoneConfigs.s
 export const initialState: SlicePhoneConfigsInterface = {
 	loader: false,
 	loading: false,
-	updating: false,
 	content: null,
 	errors: null
 };
@@ -39,23 +38,12 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
-		updating: (state) => {
-			state.updating = true;
-		},
-		updated: (state, action) => {
-			state.updating = false;
-			state.content = action.payload;
-		},
-		updateFailed: (state) => {
-			state.updating = false;
-		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
-	dataSlice.actions;
+export const { loader, loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const phoneConfigsSelector = (state: AppReducerType) => state['phoneConfigs'];

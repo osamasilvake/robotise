@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { NotificationTypesAndUsersFetch } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
+import { NotificationTypesAndUsersFetchList } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
@@ -33,8 +33,8 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (cSiteId) {
-				// dispatch: fetch notification types and users
-				dispatch(NotificationTypesAndUsersFetch(cSiteId, true));
+				// dispatch: fetch site notification types and users
+				dispatch(NotificationTypesAndUsersFetchList(cSiteId, true));
 			}
 		};
 

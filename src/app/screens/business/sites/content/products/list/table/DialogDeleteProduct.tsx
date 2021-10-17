@@ -48,7 +48,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 		status &&
 			dispatch(
 				ProductDelete(product, async () => {
-					// dispatch: fetch products
+					// dispatch: fetch site products
 					dispatch(ProductsFetchList(cSiteId, true));
 
 					// wait

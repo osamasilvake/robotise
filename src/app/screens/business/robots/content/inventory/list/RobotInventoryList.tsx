@@ -33,7 +33,7 @@ const RobotInventoryList: FC = () => {
 	const params: RobotParamsInterface = useParams();
 	const pRobotId = inventory.content?.robot.id;
 	const cRobotId = params.robotId;
-	const pSiteId = products.content?.site?.id;
+	const pSiteId = products.content?.state?.pSiteId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 
 	useEffect(() => {
@@ -44,13 +44,13 @@ const RobotInventoryList: FC = () => {
 
 		// products
 		if (condition1 || condition2) {
-			// dispatch: fetch products
+			// dispatch: fetch site products
 			cSiteId && dispatch(ProductsFetchList(cSiteId));
 		}
 
 		// inventory
 		else if (condition3 || condition4) {
-			// dispatch: fetch inventory
+			// dispatch: fetch robot inventory
 			cRobotId && dispatch(InventoryFetchList(cRobotId));
 		}
 	}, [dispatch, products.content, inventory.content, pSiteId, cSiteId, pRobotId, cRobotId]);
@@ -58,7 +58,7 @@ const RobotInventoryList: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (inventory.content && cRobotId) {
-				// dispatch: fetch inventory
+				// dispatch: fetch robot inventory
 				dispatch(InventoryFetchList(cRobotId, true));
 			}
 		};

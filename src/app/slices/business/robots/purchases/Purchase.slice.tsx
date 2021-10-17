@@ -52,7 +52,7 @@ export const purchaseSelector = (state: AppReducerType) => state['purchase'];
 export default dataSlice.reducer;
 
 /**
- * fetch purchase
+ * fetch robot purchase
  * @param purchaseId
  * @param refresh
  * @returns

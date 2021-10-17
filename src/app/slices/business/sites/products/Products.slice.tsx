@@ -71,7 +71,7 @@ export const productsSelector = (state: AppReducerType) => state['products'];
 export default dataSlice.reducer;
 
 /**
- * fetch products
+ * fetch site products
  * @param siteId
  * @param refresh
  * @returns
@@ -99,8 +99,8 @@ export const ProductsFetchList =
 				// prepare content
 				result = {
 					...result,
-					site: {
-						id: siteId
+					state: {
+						pSiteId: siteId
 					}
 				};
 

@@ -119,6 +119,14 @@ class AppConfigService extends EnvService {
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
+							},
+							phoneCalls: {
+								list: {
+									refreshTime: 10000,
+									showPageSizes: true,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
 							}
 						}
 					},
@@ -238,6 +246,7 @@ class AppConfigService extends EnvService {
 						},
 						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
 						PHONE_CONFIGS: `${this.envAppUrl}/phone-dispatcher-configs`,
+						PHONE_CALLS: `${this.envAppUrl}/inbound-calls`,
 						REPORTS: {
 							PRODUCTS: `${this.envAppUrl}/product-export`
 						}

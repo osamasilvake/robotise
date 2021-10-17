@@ -54,16 +54,12 @@ const dataSlice = createSlice({
 			state.updating = false;
 			state.content = action.payload;
 		},
-		updateFailed: (state) => {
-			state.updating = false;
-		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
-	dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const robotTwinsSummarySelector = (state: AppReducerType) => state['robotTwinsSummary'];

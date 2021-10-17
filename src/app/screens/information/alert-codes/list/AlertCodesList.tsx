@@ -7,7 +7,7 @@ import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
 import {
-	AlertCodesFetch,
+	AlertCodesFetchList,
 	alertCodesSelector
 } from '../../../../slices/information/alert-codes/AlertCodes.slice';
 import { AlertCodesListPayloadInterface } from './AlertCodesList.interface';
@@ -35,7 +35,7 @@ const AlertCodesList: FC = () => {
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch alert codes
-			dispatch(AlertCodesFetch(payload));
+			dispatch(AlertCodesFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -48,7 +48,7 @@ const AlertCodesList: FC = () => {
 			if (condition2 || condition4) {
 				if (condition5) {
 					// dispatch: fetch alert codes
-					dispatch(AlertCodesFetch(payload));
+					dispatch(AlertCodesFetchList(payload));
 
 					// update ref
 					pageRef.current.page = page;
@@ -60,9 +60,9 @@ const AlertCodesList: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (alertCodes.content) {
-				// dispatch: fetch purchases
+				// dispatch: fetch alert codes
 				dispatch(
-					AlertCodesFetch(
+					AlertCodesFetchList(
 						{
 							page: 0,
 							rowsPerPage

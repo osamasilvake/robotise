@@ -197,7 +197,7 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 				{tracks.map((track, idx) => (
 					<ListItem
 						disablePadding
-						key={track.src}
+						key={track.primary}
 						onClick={() =>
 							trackIndex === idx ? setIsPlaying(!isPlaying) : setTrackIndex(idx)
 						}>

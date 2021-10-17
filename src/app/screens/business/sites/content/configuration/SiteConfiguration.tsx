@@ -8,10 +8,10 @@ import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.e
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	notificationsSelector,
-	NotificationTypesAndUsersFetch
+	NotificationTypesAndUsersFetchList
 } from '../../../../../slices/business/sites/configuration/Notifications.slice';
 import {
-	ServicePositionsFetch,
+	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { siteSelector } from '../../../../../slices/business/sites/Site.slice';
@@ -41,15 +41,15 @@ const SiteConfiguration: FC = () => {
 
 	useEffect(() => {
 		if (pNotificationSiteId !== cSiteId) {
-			// dispatch: fetch notification types and users
-			dispatch(NotificationTypesAndUsersFetch(cSiteId));
+			// dispatch: fetch site notification types and users
+			dispatch(NotificationTypesAndUsersFetchList(cSiteId));
 		}
 	}, [dispatch, pNotificationSiteId, cSiteId]);
 
 	useEffect(() => {
 		if (pServicePositionSiteId !== cSiteId) {
-			// dispatch: fetch service positions
-			dispatch(ServicePositionsFetch(cSiteId));
+			// dispatch: fetch site service positions
+			dispatch(ServicePositionsFetchList(cSiteId));
 		}
 	}, [dispatch, pServicePositionSiteId, cSiteId]);
 

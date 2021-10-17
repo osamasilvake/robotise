@@ -30,7 +30,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch products
+	 * fetch site products
 	 * @param siteId
 	 * @returns
 	 */
@@ -170,7 +170,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch notification types
+	 * fetch site notification types
 	 * @returns
 	 */
 	siteNotificationTypesFetch = () => {
@@ -180,7 +180,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch notification users
+	 * fetch site notification users
 	 * @param siteId
 	 * @returns
 	 */
@@ -256,7 +256,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch service positions
+	 * fetch site service positions
 	 * @param siteId
 	 * @returns
 	 */
@@ -324,6 +324,20 @@ class SitesService {
 	 */
 	sitePhoneConfigsFetch = (siteId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * fetch site phone calls
+	 * @param siteId
+	 * @returns
+	 */
+	sitePhoneCallsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
 		return HttpClientService.get(url, {
 			params: {
 				'filter[site]': siteId

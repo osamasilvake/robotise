@@ -48,6 +48,11 @@ const sitesRoutes: RouteInterface[] = [
 		component: Site,
 		exact: true,
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PHONE_CONFIGS
+	},
+	{
+		component: Site,
+		exact: true,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PHONE_CALLS
 	}
 ];
 export default sitesRoutes;

@@ -35,7 +35,7 @@ const SitePhoneConfigsDetail: FC = () => {
 		const executeServices = () => {
 			if (phoneConfigs.content) {
 				// dispatch: fetch site phone configs
-				//dispatch(SitePhoneConfigsFetch(cSiteId, true));
+				dispatch(SitePhoneConfigsFetch(cSiteId, true));
 			}
 		};
 

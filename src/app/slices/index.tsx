@@ -15,6 +15,7 @@ import robotTwins from './business/robots/RobotTwins.slice';
 import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
 import notifications from './business/sites/configuration/Notifications.slice';
 import servicePositions from './business/sites/configuration/ServicePositions.slice';
+import phoneCalls from './business/sites/phone-calls/PhoneCalls.slice';
 import phoneConfigs from './business/sites/phone-configs/PhoneConfigs.slice';
 import products from './business/sites/products/Products.slice';
 import rooms from './business/sites/rooms/Rooms.slice';
@@ -34,6 +35,7 @@ const combinedReducer = combineReducers({
 	notifications,
 	servicePositions,
 	phoneConfigs,
+	phoneCalls,
 	robotTwinsSummary,
 	robotTwins,
 	robot,

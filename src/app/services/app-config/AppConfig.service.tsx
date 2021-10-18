@@ -82,6 +82,7 @@ class AppConfigService extends EnvService {
 			},
 			screens: {
 				authentication: {
+					refreshTime: 5000,
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
 				business: {

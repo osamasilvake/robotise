@@ -38,7 +38,7 @@ describe('[SLICE] Inventory', () => {
 				}
 			],
 			site: {
-				id: '10549e17-3f9a-4a01-9fde-20b953a180ed'
+				id: siteId
 			},
 			meta: {
 				hasNextPage: false,
@@ -63,9 +63,6 @@ describe('[SLICE] Inventory', () => {
 					volume: '80g'
 				}
 			],
-			site: {
-				id: '10549e17-3f9a-4a01-9fde-20b953a180ed'
-			},
 			meta: {
 				hasNextPage: false,
 				hasPrevPage: false,
@@ -74,6 +71,9 @@ describe('[SLICE] Inventory', () => {
 				prevPage: null,
 				totalDocs: 11,
 				totalPages: 1
+			},
+			state: {
+				pSiteId: siteId
 			}
 		};
 

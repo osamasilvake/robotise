@@ -87,7 +87,7 @@ class AppConfigService extends EnvService {
 				business: {
 					sites: {
 						list: {
-							refreshTime: 15000,
+							refreshTime: 10000,
 							showPageSizes: false,
 							defaultPageSize: 100,
 							pageSizes: [5, 10, 15, 20, 50, 100]
@@ -104,7 +104,6 @@ class AppConfigService extends EnvService {
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
 							},
-
 							phoneConfigs: {
 								list: {
 									refreshTime: 10000,
@@ -133,7 +132,7 @@ class AppConfigService extends EnvService {
 					},
 					robots: {
 						list: {
-							refreshTime: 15000,
+							refreshTime: 10000,
 							showPageSizes: false,
 							defaultPageSize: 100,
 							pageSizes: [5, 10, 15, 20, 50, 100]

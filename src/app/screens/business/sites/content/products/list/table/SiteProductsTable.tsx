@@ -70,7 +70,8 @@ const SiteProductsTable: FC<SiteProductsTableInterface> = (props) => {
 				page={0}
 				onPageChange={() => null}
 				rowsPerPage={
-					AppConfigService.AppOptions.screens.business.sites.list.defaultPageSize
+					AppConfigService.AppOptions.screens.business.sites.content.products.list
+						.defaultPageSize
 				}
 				onRowsPerPageChange={() => null}
 			/>

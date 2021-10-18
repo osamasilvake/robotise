@@ -82,11 +82,7 @@ export const RobotTwinsSummaryFetchList =
 		const filters = robotTwinsSummary.content?.state || robotsState;
 
 		// return on busy
-		if (
-			robotTwinsSummary &&
-			sites &&
-			(sites.loader || robotTwinsSummary.loader || robotTwinsSummary.loading)
-		) {
+		if (robotTwinsSummary && (robotTwinsSummary.loader || robotTwinsSummary.loading)) {
 			return;
 		}
 

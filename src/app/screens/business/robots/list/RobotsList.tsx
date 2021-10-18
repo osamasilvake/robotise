@@ -6,6 +6,7 @@ import Loader from '../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../../services';
 import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
@@ -21,8 +22,22 @@ const RobotsList: FC = () => {
 
 	useEffect(() => {
 		// dispatch: fetch robot twins summary
-		dispatch(RobotTwinsSummaryFetchList(true));
-	}, [dispatch]);
+		sites.content && dispatch(RobotTwinsSummaryFetchList(true));
+	}, [dispatch, sites.content]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch robot twins summary
+			sites.content && dispatch(RobotTwinsSummaryFetchList(true));
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.business.robots.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, sites.content]);
 
 	// loader
 	if (sites.loader || robotTwinsSummary.loader) {

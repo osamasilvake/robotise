@@ -32,22 +32,14 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 			auth?.user && dispatch(AuthRefreshToken(auth.user.exp));
 
 			// dispatch: fetch sites
-			(!sites.content || robotTwinsSummary.content) &&
-				dispatch(SitesFetchList(!!sites.content));
+			!sites.content && dispatch(SitesFetchList());
 
 			// dispatch: fetch robot twins summary
-			sites.content && dispatch(RobotTwinsSummaryFetchList(!!robotTwinsSummary.content));
+			sites.content && !robotTwinsSummary.content && dispatch(RobotTwinsSummaryFetchList());
 		};
 
 		// init
 		!robotTwinsSummary.content && actions();
-
-		// interval
-		const intervalId = window.setInterval(
-			actions,
-			AppConfigService.AppOptions.screens.business.robots.list.refreshTime
-		);
-		return () => window.clearInterval(intervalId);
 	}, [dispatch, auth.user, sites.content, robotTwinsSummary.content]);
 
 	/**

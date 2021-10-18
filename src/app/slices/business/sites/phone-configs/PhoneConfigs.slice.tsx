@@ -57,7 +57,7 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const SitePhoneConfigsFetch =
+export const PhoneConfigsFetch =
 	(siteId: string, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states

@@ -9,8 +9,8 @@ import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import {
-	phoneConfigsSelector,
-	SitePhoneConfigsFetch
+	PhoneConfigsFetch,
+	phoneConfigsSelector
 } from '../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SitePhoneConfigsAudioMessages from './audio-messages/SitePhoneConfigsAudioMessages';
@@ -28,14 +28,14 @@ const SitePhoneConfigsDetail: FC = () => {
 
 	useEffect(() => {
 		// dispatch: fetch site phone configs
-		dispatch(SitePhoneConfigsFetch(cSiteId));
+		dispatch(PhoneConfigsFetch(cSiteId));
 	}, [dispatch, cSiteId]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			if (phoneConfigs.content) {
 				// dispatch: fetch site phone configs
-				dispatch(SitePhoneConfigsFetch(cSiteId, true));
+				dispatch(PhoneConfigsFetch(cSiteId, true));
 			}
 		};
 

@@ -50,7 +50,7 @@ export const mapStatus = (status: string) => {
  * @returns
  */
 export const mapHistoryEventType = (event: string) => {
-	switch (event.toLowerCase()) {
+	switch (event) {
 		case RobotElevatorCallsTableColumnHistoryEventTypeEnum.ERROR:
 			return {
 				color: HistoryStatusTypeEnum.ERROR,

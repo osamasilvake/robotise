@@ -71,7 +71,7 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const SitePhoneCallsFetchList =
+export const PhoneCallsFetchList =
 	(siteId: string, payload: SitePhoneCallsListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -87,7 +87,7 @@ export const SitePhoneCallsFetchList =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch site phone calls
-		return SitesService.sitePhoneCallsFetch(siteId)
+		return SitesService.sitePhoneCallsFetch(siteId, payload)
 			.then(async (res) => {
 				// deserialize response
 				let result: PCContentInterface = await deserializePhoneCalls(res);
@@ -133,7 +133,7 @@ export const SitePhoneCallsFetchList =
  * @param state
  * @returns
  */
-export const SitePhoneCallsUpdateState =
+export const PhoneCallsUpdateState =
 	(state: PCCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

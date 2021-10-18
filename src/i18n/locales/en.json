@@ -480,6 +480,52 @@
 					}
 				}
 			},
+			"PHONE_CALLS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"ROOM": "Room",
+							"STATUS": "Status",
+							"MODE": "Mode",
+							"FROM": "From",
+							"WORKFLOW": "Workflow",
+							"HISTORY": "History",
+							"UPDATED_AT": "Updated At"
+						},
+						"VALUES": {
+							"STATUS": {
+								"approved": "Approved",
+								"confirmed": "Confirmed",
+								"orderAssigned": "Order Assigned",
+								"rejected": "Rejected"
+							},
+							"MODE": {
+								"mini-bar": "Minibar",
+								"room-service": "Room Service",
+								"service-position": "Service Position"
+							},
+							"WORKFLOW": {
+								"ITEMS": {
+									"with-confirmation": "With Confirmation",
+									"without-confirmation": "Without Confirmation"
+								},
+								"NOTES": {
+									"with-confirmation": "Press 1 to make Jeeves to come to your room.",
+									"without-confirmation": "Just call short dial number, without pressing one."
+								}
+							},
+							"HISTORY": {
+								"EVENT": {
+									"approved": "Approved",
+									"confirmed": "Confirmed",
+									"orderAssigned": "Order Assigned",
+									"rejected": "Rejected"
+								}
+							}
+						}
+					}
+				}
+			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
 					"TITLE": "Accept Orders",
@@ -1138,6 +1184,15 @@
 								"remote-control-translate": "Remote Control Translate",
 								"remote-control-rotate": "Remote Control Rotate",
 								"set-mute-sensor-state": "Set Mute Sensor State"
+							},
+							"HISTORY": {
+								"STATUS": {
+									"created": "Created",
+									"progress": "Progress",
+									"succeed": "Succeed",
+									"failed": "Failed",
+									"rejected": "Rejected"
+								}
 							}
 						}
 					}

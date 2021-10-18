@@ -5,6 +5,7 @@ import { DialogCreateEditNotificationFormInterface } from './content/configurati
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
+import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 
@@ -134,13 +135,16 @@ class SitesService {
 	/**
 	 * fetch site phone calls
 	 * @param siteId
+	 * @param payload
 	 * @returns
 	 */
-	sitePhoneCallsFetch = (siteId: string) => {
+	sitePhoneCallsFetch = (siteId: string, payload: SitePhoneCallsListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[site]': siteId
+				'filter[site]': siteId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};

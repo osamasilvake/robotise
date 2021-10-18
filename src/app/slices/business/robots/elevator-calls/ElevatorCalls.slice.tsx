@@ -71,7 +71,7 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const RobotElevatorCallsFetchList =
+export const ElevatorCallsFetchList =
 	(robotId: string, payload: RobotElevatorCallsListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -133,7 +133,7 @@ export const RobotElevatorCallsFetchList =
  * @param state
  * @returns
  */
-export const RobotElevatorCallsUpdateState =
+export const ElevatorCallsUpdateState =
 	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

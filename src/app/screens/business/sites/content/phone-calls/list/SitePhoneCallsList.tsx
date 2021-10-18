@@ -9,12 +9,13 @@ import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import {
-	phoneCallsSelector,
-	SitePhoneCallsFetchList
+	PhoneCallsFetchList,
+	phoneCallsSelector
 } from '../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SitePhoneCallsListPayloadInterface } from './SitePhoneCallsList.interface';
 import { SitePhoneCallsListStyle } from './SitePhoneCallsList.style';
+import SitePhoneCallsTable from './table/SitePhoneCallsTable';
 
 const SitePhoneCallsList: FC = () => {
 	const classes = SitePhoneCallsListStyle();
@@ -44,7 +45,7 @@ const SitePhoneCallsList: FC = () => {
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch site phone calls
-			dispatch(SitePhoneCallsFetchList(cSiteId, payload));
+			dispatch(PhoneCallsFetchList(cSiteId, payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -60,7 +61,7 @@ const SitePhoneCallsList: FC = () => {
 				if (condition2 || condition4) {
 					// dispatch: fetch site phone calls
 					dispatch(
-						SitePhoneCallsFetchList(cSiteId, {
+						PhoneCallsFetchList(cSiteId, {
 							...payload,
 							page: condition2 ? 0 : page
 						})
@@ -78,7 +79,7 @@ const SitePhoneCallsList: FC = () => {
 			if (phoneCalls.content) {
 				// dispatch: fetch site phone calls
 				dispatch(
-					SitePhoneCallsFetchList(
+					PhoneCallsFetchList(
 						cSiteId,
 						{
 							page: 0,
@@ -118,6 +119,14 @@ const SitePhoneCallsList: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return <Box className={classes.sBox}>Hello</Box>;
+	return (
+		<Box className={classes.sBox}>
+			<SitePhoneCallsTable
+				content={phoneCalls.content}
+				page={page}
+				rowsPerPage={rowsPerPage}
+			/>
+		</Box>
+	);
 };
 export default SitePhoneCallsList;

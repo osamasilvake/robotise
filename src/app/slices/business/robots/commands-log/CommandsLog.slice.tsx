@@ -71,7 +71,7 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const RobotCommandsLogFetchList =
+export const CommandsLogFetchList =
 	(robotId: string, payload: RobotCommandsLogListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -133,7 +133,7 @@ export const RobotCommandsLogFetchList =
  * @param state
  * @returns
  */
-export const RobotCommandsLogUpdateState =
+export const CommandsLogUpdateState =
 	(state: CLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

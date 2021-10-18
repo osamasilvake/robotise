@@ -31,9 +31,11 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 		commandLog: CLCDataInterface,
 		column: RobotCommandsLogTableColumnInterface
 	) => {
-		const value = mapCommandLog(commandLog)[column.id];
+		const mappedCommandLog = mapCommandLog(commandLog);
+		const value = mappedCommandLog[column.id];
 		if (RobotCommandsLogTableColumnsTypeEnum.HISTORY === column.id) {
-			const history = value as CLCDataHistoryInterface[];
+			const history = commandLog[column.id] as CLCDataHistoryInterface[];
+			const historyMapped = value as CLCDataHistoryInterface[];
 			return (
 				<Box>
 					{history.map((item, index) => (
@@ -43,7 +45,7 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 								className={classes.sTableHistoryIcon}>
 								{mapHistoryStatus(item.status).icon}
 							</Icon>
-							{item.status}
+							{t(historyMapped[index].status)}
 							{item.details && <>: {item.details}</>}
 						</Box>
 					))}

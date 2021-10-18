@@ -27,6 +27,7 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 	const [trackIndex, setTrackIndex] = useState(0);
 	const [trackProgress, setTrackProgress] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(false);
+	const [duration, setDuration] = useState(0);
 
 	const { primary, secondary, src } = tracks[trackIndex];
 
@@ -34,8 +35,6 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 	const intervalRef = useRef(0);
 	const isReady = useRef(false);
 	const playRef = useRef<Promise<void> | null>(null);
-
-	const { duration } = audioRef.current;
 
 	/**
 	 * start timer
@@ -68,6 +67,10 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 		// set audio
 		audioRef.current = new Audio(src);
 
+		// set duration
+		const handleDuration = () => setDuration(audioRef.current.duration);
+		audioRef.current.addEventListener('durationchange', handleDuration);
+
 		// set track progress
 		setTrackProgress(audioRef.current.currentTime);
 
@@ -83,6 +86,8 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 		} else {
 			isReady.current = true;
 		}
+
+		return () => audioRef.current.removeEventListener('durationchange', handleDuration);
 	}, [src, startTimer]);
 
 	useEffect(() => {

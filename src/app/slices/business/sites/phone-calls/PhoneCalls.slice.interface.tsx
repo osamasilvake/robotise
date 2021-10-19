@@ -26,17 +26,12 @@ export interface PCCDataInterface {
 	updatedAt: Date;
 	createdAt: Date;
 	history: PCCDataHistoryInterface[];
-	notes?: PCCDataNotesInterface;
 }
 
 export interface PCCDataHistoryInterface {
 	event: string;
 	createdAt: Date;
 	details?: string;
-}
-
-export interface PCCDataNotesInterface {
-	workflow: string;
 }
 
 export interface PCCStateInterface {

@@ -1,5 +1,4 @@
-import { InfoOutlined } from '@mui/icons-material';
-import { Box, Icon, Link, TableCell, Tooltip, Typography } from '@mui/material';
+import { Box, Icon, Link, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -52,9 +51,11 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 							<Typography variant="body2" className={classes.sHistoryEvent}>
 								{t(historyMapped[index].event)}:
 							</Typography>
-							<Typography variant="body2" className={classes.sHistoryDetails}>
-								{item.details || AppConfigService.AppOptions.common.none}
-							</Typography>
+							{item.details && (
+								<Typography variant="body2" className={classes.sHistoryDetails}>
+									{item.details}
+								</Typography>
+							)}
 							<Typography variant="caption" color="textSecondary">
 								({momentFormat3(item.createdAt)})
 							</Typography>
@@ -71,18 +72,6 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 					<Link underline="hover" href={`tel:${value}`}>
 						{value}
 					</Link>
-				);
-			} else if (SitePhoneCallsTableColumnsTypeEnum.WORKFLOW === column.id) {
-				return (
-					<Box className={classes.sTableWorkflowFlex}>
-						{t(value)}
-						<Tooltip title={String(t(mappedPhoneCall.notes.workflow || ''))}>
-							<InfoOutlined
-								fontSize="small"
-								className={classes.sTableWorkflowInfoIcon}
-							/>
-						</Tooltip>
-					</Box>
 				);
 			}
 			return t(value);

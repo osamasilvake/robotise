@@ -28,12 +28,6 @@ export const columns: SitePhoneCallsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SitePhoneCallsTableColumnsTypeEnum.WORKFLOW,
-		label: `${translation}.WORKFLOW`,
-		minWidth: 140,
-		align: 'left'
-	},
-	{
 		id: SitePhoneCallsTableColumnsTypeEnum.HISTORY,
 		label: `${translation}.HISTORY`,
 		minWidth: 250,

@@ -12,14 +12,6 @@ export const SitePhoneCallsTableStyle = makeStyles((theme: Theme) => ({
 		opacity: 0.6,
 		pointerEvents: 'none'
 	},
-	sTableWorkflowFlex: {
-		alignItems: 'center',
-		display: 'flex'
-	},
-	sTableWorkflowInfoIcon: {
-		cursor: 'help',
-		marginLeft: theme.spacing(0.5)
-	},
 	sTableHistoryFlex: {
 		alignItems: 'center',
 		display: 'flex',

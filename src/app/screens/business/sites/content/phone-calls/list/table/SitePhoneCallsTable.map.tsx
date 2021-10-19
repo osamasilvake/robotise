@@ -16,14 +16,10 @@ export const mapPhoneCall = (phoneCall: PCCDataInterface) => {
 		...phoneCall,
 		status: `${translation}.STATUS.${phoneCall.status}`,
 		mode: `${translation}.MODE.${phoneCall.mode}`,
-		workflow: `${translation}.WORKFLOW.ITEMS.${phoneCall.workflow}`,
 		history: phoneCall.history.map((item) => ({
 			...item,
 			event: `${translation}.HISTORY.EVENT.${item.event}`
-		})),
-		notes: {
-			workflow: `${translation}.WORKFLOW.NOTES.${phoneCall.workflow}`
-		}
+		}))
 	};
 };
 

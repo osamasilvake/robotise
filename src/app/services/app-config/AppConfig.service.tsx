@@ -302,13 +302,13 @@ class AppConfigService extends EnvService {
 				iconOff: '/assets/svg/logos/robotise-icon-off.svg',
 				name: '/assets/svg/logos/robotise-name.svg'
 			},
+			avatar: {
+				path: '/assets/svg/avatars/avatar.svg',
+				name: 'avatar'
+			},
 			robotise: {
 				format: '.jpg',
 				path: '/assets/images/robotise/'
-			},
-			avatar: {
-				name: 'avatar',
-				path: '/assets/svg/avatars/avatar.svg'
 			}
 		};
 	}

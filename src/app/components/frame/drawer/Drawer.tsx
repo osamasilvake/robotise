@@ -1,4 +1,5 @@
 import {
+	Badge,
 	Box,
 	Divider,
 	Drawer,
@@ -17,8 +18,6 @@ import { NavLink } from 'react-router-dom';
 
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import { generalSelector } from '../../../slices/general/General.slice';
-import Badge from '../../common/badge/Badge';
-import { BadgeTypeEnum } from '../../common/badge/Badge.enum';
 import Account from '../account/Account';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
@@ -68,8 +67,7 @@ const DrawerCustom: FC = () => {
 								robotTwinsSummary.content &&
 								robotTwinsSummary.content.alerts?.count ? (
 									<Badge
-										type={BadgeTypeEnum.NUMBER}
-										count={robotTwinsSummary.content.alerts.count}
+										badgeContent={robotTwinsSummary.content.alerts.count}
 										color="error">
 										<Icon>{item.icon}</Icon>
 									</Badge>

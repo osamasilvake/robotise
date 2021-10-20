@@ -202,6 +202,8 @@ export interface SRTContentComputerInfo {
 
 export interface SRTContentHumanPerception {
 	properties: {
+		legsClose: HLocation[];
+		legsFar: HLocation[];
 		legsCloseCount: number;
 		legsFarCount: number;
 	};
@@ -254,13 +256,7 @@ export interface IRobotTwin {
 					status: string;
 					description: string;
 				};
-				location: {
-					mapName: string;
-					floor: string;
-					x: number;
-					y: number;
-					yaw: number;
-				};
+				location: ILocation;
 				batteryState: {
 					current: number;
 					percentage: number;
@@ -334,6 +330,8 @@ export interface IRobotTwin {
 					}[];
 				};
 				humanPerception: {
+					legsClose: HLocation[];
+					legsFar: HLocation[];
 					legsCloseCount: number;
 					legsFarCount: number;
 				};
@@ -445,4 +443,9 @@ export interface ILocation {
 	x: number;
 	y: number;
 	yaw: number;
+}
+
+export interface HLocation {
+	x: number;
+	y: number;
 }

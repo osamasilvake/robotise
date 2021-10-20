@@ -169,6 +169,8 @@ export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: 
 					},
 					humanPerception: {
 						properties: {
+							legsClose: state.status.humanPerception.legsClose,
+							legsFar: state.status.humanPerception.legsFar,
 							legsCloseCount: state.status.humanPerception.legsCloseCount,
 							legsFarCount: state.status.humanPerception.legsFarCount
 						},

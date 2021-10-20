@@ -76,7 +76,15 @@ export const PhoneConfigsFetch =
 		return SitesService.sitePhoneConfigsFetch(siteId)
 			.then(async (res) => {
 				// deserialize response
-				const result: PCContentInterface = await deserializePhoneConfigs(res);
+				let result: PCContentInterface = await deserializePhoneConfigs(res);
+
+				// state
+				result = {
+					...result,
+					state: {
+						pSiteId: siteId
+					}
+				};
 
 				// dispatch: success
 				dispatch(success(result));

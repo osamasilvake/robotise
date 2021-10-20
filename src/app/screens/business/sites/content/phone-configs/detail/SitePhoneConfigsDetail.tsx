@@ -24,12 +24,18 @@ const SitePhoneConfigsDetail: FC = () => {
 	const phoneConfigs = useSelector(phoneConfigsSelector);
 
 	const params: SiteParamsInterface = useParams();
+	const pSiteId = phoneConfigs.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 
 	useEffect(() => {
-		// dispatch: fetch site phone configs
-		dispatch(PhoneConfigsFetch(cSiteId));
-	}, [dispatch, cSiteId]);
+		const condition1 = phoneConfigs.content === null;
+		const condition2 = !!(phoneConfigs.content !== null && pSiteId && pSiteId !== cSiteId);
+
+		if (condition1 || condition2) {
+			// dispatch: fetch site phone configs
+			dispatch(PhoneConfigsFetch(cSiteId));
+		}
+	}, [dispatch, phoneConfigs.content, pSiteId, cSiteId]);
 
 	useEffect(() => {
 		const executeServices = () => {

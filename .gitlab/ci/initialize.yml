@@ -10,4 +10,5 @@ install:
   only:
     - merge_requests
     - master
+    - pre-production
     - production

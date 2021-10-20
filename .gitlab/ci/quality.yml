@@ -6,6 +6,7 @@ prettier:
   only:
     - merge_requests
     - master
+    - pre-production
     - production
 
 lint:
@@ -16,6 +17,7 @@ lint:
   only:
     - merge_requests
     - master
+    - pre-production
     - production
 
 test:
@@ -26,4 +28,5 @@ test:
   only:
     - merge_requests
     - master
+    - pre-production
     - production

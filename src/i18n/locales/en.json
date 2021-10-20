@@ -328,8 +328,9 @@
 				"DETAIL": "DETAIL",
 				"PRODUCTS": "PRODUCTS",
 				"ROOMS": "ROOMS",
-				"CONFIGURATION": "CONFIGURATION",
-				"PHONE_CONFIGS": "PHONE CONFIGS"
+				"PHONE_CONFIGS": "PHONE CONFIGS",
+				"PHONE_CALLS": "PHONE CALLS",
+				"CONFIGURATION": "CONFIGURATION"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -439,6 +440,81 @@
 					}
 				}
 			},
+			"PHONE_CONFIGS": {
+				"GENERAL": {
+					"MODE": {
+						"LABEL": "Mode",
+						"ITEMS": {
+							"mini-bar": "Minibar",
+							"room-service": "Room Service",
+							"service-position": "Service Position"
+						}
+					},
+					"PREFIXES": "Prefixes",
+					"FROM": "From",
+					"WORKFLOW": {
+						"LABEL": "Workflow",
+						"ITEMS": {
+							"with-confirmation": "With Confirmation",
+							"without-confirmation": "Without Confirmation"
+						},
+						"NOTES": {
+							"with-confirmation": "Press 1 to make Jeeves to come to your room.",
+							"without-confirmation": "Just call short dial number, without pressing one."
+						}
+					},
+					"ROOMS_MAPPING": "Rooms Mapping",
+					"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback"
+				},
+				"AUDIO": {
+					"TITLE": "Audio Messages",
+					"MESSAGES": {
+						"welcome": "Welcome",
+						"confirmed": "Confirmed",
+						"welcomeNoConfirmation": "Welcome No Confirmation",
+						"orderAtTargetPosition": "Order at Target Position",
+						"rejectHoliday": "Reject Holiday",
+						"rejectOutOfWorkingTime": "Reject Out Of Working Time",
+						"rejectRoomNotServed": "Reject Room Not Served",
+						"rejectGeneric": "Reject Generic"
+					}
+				}
+			},
+			"PHONE_CALLS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"ROOM": "Room",
+							"STATUS": "Status",
+							"MODE": "Mode",
+							"FROM": "From",
+							"HISTORY": "History",
+							"UPDATED_AT": "Updated At"
+						},
+						"VALUES": {
+							"STATUS": {
+								"approved": "Approved",
+								"confirmed": "Confirmed",
+								"orderAssigned": "Order Assigned",
+								"rejected": "Rejected"
+							},
+							"MODE": {
+								"mini-bar": "Minibar",
+								"room-service": "Room Service",
+								"service-position": "Service Position"
+							},
+							"HISTORY": {
+								"EVENT": {
+									"approved": "Approved",
+									"confirmed": "Confirmed",
+									"orderAssigned": "Order Assigned",
+									"rejected": "Rejected"
+								}
+							}
+						}
+					}
+				}
+			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
 					"TITLE": "Accept Orders",
@@ -520,46 +596,6 @@
 						"TEXT": "Are you sure you want to delete the service position?"
 					}
 				}
-			},
-			"PHONE_CONFIGS": {
-				"GENERAL": {
-					"MODE": {
-						"LABEL": "Mode",
-						"ITEMS": {
-							"mini-bar": "Minibar",
-							"room-service": "Room Service",
-							"service-position": "Service Position"
-						}
-					},
-					"PREFIXES": "Prefixes",
-					"FROM": "From",
-					"WORKFLOW": {
-						"LABEL": "Workflow",
-						"ITEMS": {
-							"with-confirmation": "With Confirmation",
-							"without-confirmation": "Without Confirmation"
-						},
-						"NOTES": {
-							"with-confirmation": "Press 1 to make Jeeves to come to your room.",
-							"without-confirmation": "Just call short dial number, without pressing one."
-						}
-					},
-					"ROOMS_MAPPING": "Rooms Mapping",
-					"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback"
-				},
-				"AUDIO": {
-					"TITLE": "Audio Messages",
-					"MESSAGES": {
-						"welcome": "Welcome",
-						"confirmed": "Confirmed",
-						"welcomeNoConfirmation": "Welcome No Confirmation",
-						"orderAtTargetPosition": "Order at Target Position",
-						"rejectHoliday": "Reject Holiday",
-						"rejectOutOfWorkingTime": "Reject Out Of Working Time",
-						"rejectRoomNotServed": "Reject Room Not Served",
-						"rejectGeneric": "Reject Generic"
-					}
-				}
 			}
 		}
 	},
@@ -589,9 +625,9 @@
 				"INVENTORY": "INVENTORY",
 				"ORDERS": "ORDERS",
 				"PURCHASES": "PURCHASES",
-				"CONFIGURATION": "CONFIGURATION",
 				"COMMANDS_LOGS": "COMMANDS LOG",
-				"ELEVATOR_CALLS": "ELEVATOR CALLS"
+				"ELEVATOR_CALLS": "ELEVATOR CALLS",
+				"CONFIGURATION": "CONFIGURATION"
 			},
 			"DETAIL": {
 				"GENERAL": {
@@ -623,7 +659,13 @@
 				"LOCATION": {
 					"TITLE": "Location",
 					"FLOOR": "Floor:",
-					"GRID": "Grid"
+					"GRID": "Grid",
+					"MAP": {
+						"HUMAN_PERCEPTION": {
+							"LEG_CLOSE": "Someone is very close to the robot!",
+							"LEG_FAR": "Someone is nearby to the robot!"
+						}
+					}
 				},
 				"COMMANDS": {
 					"CONTROL": {
@@ -900,6 +942,14 @@
 					"HUMAN_PERCEPTION": {
 						"TITLE": "Human Perception",
 						"VALUES": {
+							"legsClose": {
+								"ICON": "airline_seat_legroom_reduced",
+								"LABEL": "Legs Close"
+							},
+							"legsFar": {
+								"ICON": "airline_seat_legroom_extra",
+								"LABEL": "Legs Far"
+							},
 							"legsCloseCount": {
 								"ICON": "airline_seat_legroom_reduced",
 								"LABEL": "Legs Close Count"
@@ -1118,6 +1168,66 @@
 					}
 				}
 			},
+			"COMMANDS_LOGS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"COMMAND": "Command",
+							"STATUS": "Status",
+							"HISTORY": "History",
+							"CREATED": "Created"
+						},
+						"VALUES": {
+							"COMMAND": {
+								"create-order": "Create Order",
+								"set-control-mode": "Set Control Mode",
+								"catch-camera-image": "Catch Camera Image",
+								"cancel-orders": "Cancel Orders",
+								"sync-products": "Sync Products",
+								"remote-control-translate": "Remote Control Translate",
+								"remote-control-rotate": "Remote Control Rotate",
+								"set-mute-sensor-state": "Set Mute Sensor State"
+							},
+							"HISTORY": {
+								"STATUS": {
+									"created": "Created",
+									"progress": "Progress",
+									"succeed": "Succeed",
+									"failed": "Failed",
+									"rejected": "Rejected"
+								}
+							}
+						}
+					}
+				}
+			},
+			"ELEVATOR_CALLS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"CALL_TYPE": "Call Type",
+							"VENDOR": "Vendor",
+							"HISTORY": "History",
+							"SRC_AREA_ID": "SRC ID",
+							"DST_AREA_ID": "DST ID",
+							"CREATED": "Created"
+						},
+						"VALUES": {
+							"HISTORY": {
+								"EVENT": {
+									"elevator.event.gotCallStatus": "Got Call Status",
+									"elevator.event.gotLiftId": "Got Lift ID",
+									"elevator.event.gotStatus": "Got Status",
+									"robot.event.enteredLift": "Entered Lift",
+									"robot.event.leftLift": "Left Lift",
+									"elevator.event.error": "Error"
+								}
+							}
+						}
+					}
+				}
+			},
 			"CONFIGURATION": {
 				"SYNC_PRODUCTS": {
 					"TITLE": "Sync Products",
@@ -1170,57 +1280,6 @@
 						},
 						"BUTTONS": {
 							"UPDATE": "Update"
-						}
-					}
-				}
-			},
-			"COMMANDS_LOGS": {
-				"LIST": {
-					"TABLE": {
-						"COLUMNS": {
-							"COMMAND": "Command",
-							"STATUS": "Status",
-							"HISTORY": "History",
-							"CREATED": "Created"
-						},
-						"VALUES": {
-							"COMMAND": {
-								"create-order": "Create Order",
-								"set-control-mode": "Set Control Mode",
-								"catch-camera-image": "Catch Camera Image",
-								"cancel-orders": "Cancel Orders",
-								"sync-products": "Sync Products",
-								"remote-control-translate": "Remote Control Translate",
-								"remote-control-rotate": "Remote Control Rotate",
-								"set-mute-sensor-state": "Set Mute Sensor State"
-							}
-						}
-					}
-				}
-			},
-			"ELEVATOR_CALLS": {
-				"LIST": {
-					"TABLE": {
-						"COLUMNS": {
-							"STATUS": "Status",
-							"CALL_TYPE": "Call Type",
-							"VENDOR": "Vendor",
-							"HISTORY": "History",
-							"SRC_AREA_ID": "SRC ID",
-							"DST_AREA_ID": "DST ID",
-							"CREATED": "Created"
-						},
-						"VALUES": {
-							"HISTORY": {
-								"EVENT": {
-									"elevator.event.gotCallStatus": "Got Call Status",
-									"elevator.event.gotLiftId": "Got Lift ID",
-									"elevator.event.gotStatus": "Got Status",
-									"robot.event.enteredLift": "Entered Lift",
-									"robot.event.leftLift": "Left Lift",
-									"elevator.event.error": "Error"
-								}
-							}
 						}
 					}
 				}

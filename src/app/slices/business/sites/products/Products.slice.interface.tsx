@@ -12,7 +12,7 @@ export interface SliceProductsInterface {
 export interface SPContentInterface {
 	data: SPCDataInterface[];
 	meta: JsonApiMeta;
-	site?: SPCSiteInterface;
+	state?: SPCStateInterface;
 }
 
 export interface SPCDataInterface {
@@ -30,4 +30,8 @@ export interface SPCDataInterface {
 
 export interface SPCSiteInterface {
 	id: string;
+}
+
+export interface SPCStateInterface {
+	pSiteId?: string;
 }

@@ -70,10 +70,19 @@ export const mapHumanPerception = (
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
 		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const none = AppConfigService.AppOptions.common.none;
 		return {
 			icon: `${translation}.${key}.ICON`,
 			label: `${translation}.${key}.LABEL`,
-			value
+			value: !Array.isArray(value)
+				? value
+				: value.length
+				? value.map((val) =>
+						Object.entries(val)
+							.map(([k, v]) => `${k}: ${v || none}`)
+							.join(', ')
+				  )
+				: none
 		};
 	});
 

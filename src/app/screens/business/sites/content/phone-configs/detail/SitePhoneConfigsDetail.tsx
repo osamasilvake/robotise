@@ -9,8 +9,8 @@ import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import {
-	phoneConfigsSelector,
-	SitePhoneConfigsFetch
+	PhoneConfigsFetch,
+	phoneConfigsSelector
 } from '../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SitePhoneConfigsAudioMessages from './audio-messages/SitePhoneConfigsAudioMessages';
@@ -24,18 +24,24 @@ const SitePhoneConfigsDetail: FC = () => {
 	const phoneConfigs = useSelector(phoneConfigsSelector);
 
 	const params: SiteParamsInterface = useParams();
+	const pSiteId = phoneConfigs.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 
 	useEffect(() => {
-		// dispatch: fetch site phone configs
-		dispatch(SitePhoneConfigsFetch(cSiteId));
-	}, [dispatch, cSiteId]);
+		const condition1 = phoneConfigs.content === null;
+		const condition2 = !!(phoneConfigs.content !== null && pSiteId && pSiteId !== cSiteId);
+
+		if (condition1 || condition2) {
+			// dispatch: fetch site phone configs
+			dispatch(PhoneConfigsFetch(cSiteId));
+		}
+	}, [dispatch, phoneConfigs.content, pSiteId, cSiteId]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			if (phoneConfigs.content) {
 				// dispatch: fetch site phone configs
-				//dispatch(SitePhoneConfigsFetch(cSiteId, true));
+				dispatch(PhoneConfigsFetch(cSiteId, true));
 			}
 		};
 

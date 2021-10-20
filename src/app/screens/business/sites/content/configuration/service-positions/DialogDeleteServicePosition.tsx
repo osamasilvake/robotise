@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-	ServicePositionsFetch,
+	ServicePositionsFetchList,
 	servicePositionsSelector,
 	SiteServicePositionDelete
 } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
@@ -47,8 +47,8 @@ const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (p
 		status &&
 			dispatch(
 				SiteServicePositionDelete(servicePosition, () => {
-					// dispatch: fetch service positions
-					dispatch(ServicePositionsFetch(cSiteId, true));
+					// dispatch: fetch site service positions
+					dispatch(ServicePositionsFetchList(cSiteId, true));
 
 					// close dialog
 					setOpen(false);

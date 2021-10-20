@@ -4,7 +4,6 @@ import { JsonApiMeta } from '../../../JsonApi.interface';
 export interface SlicePhoneConfigsInterface {
 	loader: boolean;
 	loading: boolean;
-	updating: boolean;
 	content: PCContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
@@ -12,6 +11,7 @@ export interface SlicePhoneConfigsInterface {
 export interface PCContentInterface {
 	data: PCCDataInterface[];
 	meta: JsonApiMeta;
+	state?: PCCStateInterface;
 }
 
 export interface PCCDataInterface {
@@ -39,4 +39,8 @@ export interface PCCDataMessagesInterface {
 	rejectOutOfWorkingTime: string;
 	rejectRoomNotServed: string;
 	rejectGeneric: string;
+}
+
+export interface PCCStateInterface {
+	pSiteId?: string;
 }

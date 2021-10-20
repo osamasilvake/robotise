@@ -9,8 +9,8 @@ import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import {
-	elevatorCallsSelector,
-	RobotElevatorCallsFetch
+	ElevatorCallsFetchList,
+	elevatorCallsSelector
 } from '../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotElevatorCallsListPayloadInterface } from './RobotElevatorCallsList.interface';
@@ -46,7 +46,7 @@ const RobotElevatorCallsList: FC = () => {
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch robot elevator calls
-			dispatch(RobotElevatorCallsFetch(cRobotId, payload));
+			dispatch(ElevatorCallsFetchList(cRobotId, payload));
 
 			// update ref
 			pageRef.current.page = page;
@@ -66,7 +66,7 @@ const RobotElevatorCallsList: FC = () => {
 				if (condition2 || condition4) {
 					// dispatch: fetch robot elevator calls
 					dispatch(
-						RobotElevatorCallsFetch(cRobotId, {
+						ElevatorCallsFetchList(cRobotId, {
 							...payload,
 							page: condition2 ? 0 : page
 						})
@@ -84,7 +84,7 @@ const RobotElevatorCallsList: FC = () => {
 			if (elevatorCalls.content) {
 				// dispatch: fetch robot elevator calls
 				dispatch(
-					RobotElevatorCallsFetch(
+					ElevatorCallsFetchList(
 						cRobotId,
 						{
 							page: 0,

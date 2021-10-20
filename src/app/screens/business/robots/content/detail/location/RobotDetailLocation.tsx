@@ -18,9 +18,9 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 	const translation = 'CONTENT.DETAIL.LOCATION';
 
 	return robotTwins.location ? (
-		<Box className={classes.sLocationContainer}>
+		<Box className={classes.sContainer}>
 			{/* Title */}
-			<Typography variant="h6" color="textSecondary" className={classes.sLocationTitle}>
+			<Typography variant="h6" color="textSecondary" className={classes.sTitle}>
 				{t(`${translation}.TITLE`)}
 			</Typography>
 

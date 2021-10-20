@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-	NotificationTypesAndUsersFetch,
+	NotificationTypesAndUsersFetchList,
 	NotificationUpdate
 } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -50,8 +50,8 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 					isActive: !payload.isActive
 				},
 				() => {
-					// dispatch: fetch notification types and users
-					dispatch(NotificationTypesAndUsersFetch(cSiteId, true));
+					// dispatch: fetch site notification types and users
+					dispatch(NotificationTypesAndUsersFetchList(cSiteId, true));
 				}
 			)
 		);

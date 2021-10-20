@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppConfigService } from '../../../../../../../services';
 import {
 	commandsLogSelector,
-	RobotCommandsLogUpdateState
+	CommandsLogUpdateState
 } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice';
 import { CLCStateInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
 import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
@@ -62,7 +62,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 			...content?.state,
 			page: newPage
 		};
-		dispatch(RobotCommandsLogUpdateState(state));
+		dispatch(CommandsLogUpdateState(state));
 	};
 
 	/**
@@ -76,7 +76,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(RobotCommandsLogUpdateState(state));
+		dispatch(CommandsLogUpdateState(state));
 	};
 
 	return (

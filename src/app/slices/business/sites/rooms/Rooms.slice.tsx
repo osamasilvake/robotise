@@ -121,7 +121,7 @@ export const RoomStateUpdate =
 				};
 				dispatch(triggerMessage(message));
 
-				// dispatch: updateFailed
+				// dispatch: update failed
 				dispatch(updateFailed());
 			});
 	};

@@ -5,6 +5,7 @@ import Loader from '../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../../services';
 import { SitesFetchList, sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import SitesTable from './table/SitesTable';
 
@@ -15,6 +16,20 @@ const SitesList: FC = () => {
 	useEffect(() => {
 		// dispatch: fetch sites
 		dispatch(SitesFetchList(true));
+	}, [dispatch]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch sites
+			dispatch(SitesFetchList(true));
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.business.sites.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
 	}, [dispatch]);
 
 	// loader

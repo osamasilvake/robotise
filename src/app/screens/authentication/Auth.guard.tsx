@@ -24,30 +24,34 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 		/**
 		 * actions
 		 * 1. validate and refresh access_token
-		 * 2. load and refresh sites
-		 * 3. load and refresh robot-twins summary
 		 */
 		const actions = () => {
 			// dispatch: requests a new token before it expires
 			auth?.user && dispatch(AuthRefreshToken(auth.user.exp));
-
-			// dispatch: fetch sites
-			(!sites.content || robotTwinsSummary.content) &&
-				dispatch(SitesFetchList(!!sites.content));
-
-			// dispatch: fetch robot twins summary
-			sites.content && dispatch(RobotTwinsSummaryFetchList(!!robotTwinsSummary.content));
 		};
-
-		// init
-		!robotTwinsSummary.content && actions();
 
 		// interval
 		const intervalId = window.setInterval(
 			actions,
-			AppConfigService.AppOptions.screens.business.robots.list.refreshTime
+			AppConfigService.AppOptions.screens.authentication.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
+	}, [dispatch, auth.user]);
+
+	useEffect(() => {
+		/**
+		 * actions
+		 * 1. load and refresh sites
+		 * 2. load and refresh robot-twins summary
+		 */
+		const actions = () => {
+			// dispatch: fetch sites
+			!sites.content && dispatch(SitesFetchList());
+
+			// dispatch: fetch robot twins summary
+			sites.content && !robotTwinsSummary.content && dispatch(RobotTwinsSummaryFetchList());
+		};
+		!robotTwinsSummary.content && actions();
 	}, [dispatch, auth.user, sites.content, robotTwinsSummary.content]);
 
 	/**

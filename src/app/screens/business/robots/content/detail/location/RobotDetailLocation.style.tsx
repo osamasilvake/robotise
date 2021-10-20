@@ -4,17 +4,17 @@ import { makeStyles } from '@mui/styles';
 import { AppConfigService } from '../../../../../../services';
 
 export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
-	sLocationContainer: {
+	sContainer: {
 		marginTop: theme.spacing(4)
 	},
-	sLocationTitle: {
+	sTitle: {
 		marginBottom: theme.spacing(1)
 	},
-	sLocationCard: {
+	sCard: {
 		marginTop: theme.spacing(1),
 		position: 'relative'
 	},
-	sLocationCardGridLines: {
+	sCardGridLines: {
 		'&::before': {
 			backgroundImage:
 				'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAAHlBMVEUAAABkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGSH0mEbAAAACnRSTlMAzDPDPPPYnGMw2CgMzQAAAChJREFUKM9jgAPOAgZMwGIwKkhXQSUY0BCCMxkEYUAsEM4cjI4fwYIAf2QMNbUsZjcAAAAASUVORK5CYII=)',
@@ -25,7 +25,7 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 			width: '100%'
 		}
 	},
-	sLocationCardIcon: {
+	sCardRobotIcon: {
 		bottom: 0,
 		fill: AppConfigService.AppOptions.colors.c12,
 		left: 0,
@@ -33,10 +33,20 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 		transition: 'bottom 1s, left 1s, transform 0.2s',
 		width: theme.typography.pxToRem(16)
 	},
-	sLocationInfoGridBox: {
+	sCardHumanTooltip: {
+		cursor: 'help'
+	},
+	sCardHumanIcon: {
+		bottom: 0,
+		height: theme.typography.pxToRem(8),
+		left: 0,
+		position: 'absolute',
+		width: theme.typography.pxToRem(8)
+	},
+	sInfoGridBox: {
 		marginBottom: theme.spacing(-0.6)
 	},
-	sLocationInfoLabel: {
+	sInfoLabel: {
 		display: 'inline-block',
 		fontWeight: 500,
 		width: theme.typography.pxToRem(70),
@@ -44,10 +54,10 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 			marginLeft: theme.spacing(0.65)
 		}
 	},
-	sLocationInfoValue: {
+	sInfoValue: {
 		display: 'inline-block'
 	},
-	sLocationInfoCheckbox: {
+	sInfoCheckbox: {
 		marginLeft: theme.spacing(-1.5)
 	}
 }));

@@ -21,5 +21,5 @@ export enum RobotElevatorCallsTableColumnStatusTypeEnum {
 }
 
 export enum RobotElevatorCallsTableColumnHistoryEventTypeEnum {
-	ERROR = 'error'
+	ERROR = 'elevator.event.error'
 }

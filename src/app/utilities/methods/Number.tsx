@@ -4,7 +4,7 @@
  * @param max
  * @returns
  */
-export const randomNum = (min: number, max: number): number => {
+const randomNum = (min: number, max: number): number => {
 	min = Math.ceil(min);
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -17,7 +17,7 @@ export const randomNum = (min: number, max: number): number => {
  * @param language
  * @returns
  */
-export const currencyFormat = (value: number, currency: string, language: string) => {
+const currencyFormat = (value: number, currency: string, language: string) => {
 	const formatter = new Intl.NumberFormat(language, {
 		style: 'currency',
 		currency
@@ -30,6 +30,8 @@ export const currencyFormat = (value: number, currency: string, language: string
  * @param size
  * @returns
  */
-export const pxToRem = (size: number): string => {
+const pxToRem = (size: number): string => {
 	return `${(size / 16) * 1}rem`;
 };
+
+export { currencyFormat, pxToRem, randomNum };

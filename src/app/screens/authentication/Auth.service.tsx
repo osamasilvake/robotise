@@ -1,8 +1,8 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
 
 import { AppConfigService, HttpClientService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
+import { jwtDecode } from '../../utilities/methods/Decode';
 import { momentNow } from '../../utilities/methods/Moment';
 import { serializeObj } from '../../utilities/methods/Object';
 import { AuthUserRoleTypeEnum } from './Auth.enum';

@@ -1,4 +1,4 @@
-prod:publish:
+pre-prod:publish:
   stage: Publish
   script:
     # publish to GCP container registry

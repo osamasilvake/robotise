@@ -1,4 +1,4 @@
-prod:build:
+pre-prod:build:
   stage: Build
   before_script:
     - mkdir images

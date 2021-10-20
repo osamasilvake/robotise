@@ -1,4 +1,4 @@
-prod:deploy:
+pre-prod:deploy:
   stage: Deploy
   image: "google/cloud-sdk:latest"
   script:

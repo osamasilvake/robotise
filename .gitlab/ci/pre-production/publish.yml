@@ -1,0 +1,14 @@
+prod:publish:
+  stage: Publish
+  script:
+    # publish to GCP container registry
+    - docker load -i images/release.tar
+    - cat $GCP_CR_SERVICE_ACCOUNT_KEY | docker login -u _json_key --password-stdin "https://$GCP_CONTAINER_REGISTRY_HOSTNAME"
+    - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$CI_COMMIT_SHORT_SHA"
+    - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:latest"
+    - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$CI_COMMIT_SHORT_SHA"
+    - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:latest"
+  environment:
+    name: production
+  only:
+    - pre-production

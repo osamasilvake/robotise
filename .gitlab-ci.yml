@@ -20,6 +20,10 @@ include:
   - local: .gitlab/ci/master/publish.yml
   - local: .gitlab/ci/master/deploy.yml
 
+  - local: .gitlab/ci/pre-production/build.yml
+  - local: .gitlab/ci/pre-production/publish.yml
+  - local: .gitlab/ci/pre-production/deploy.yml
+
   - local: .gitlab/ci/production/build.yml
   - local: .gitlab/ci/production/publish.yml
   - local: .gitlab/ci/production/deploy.yml

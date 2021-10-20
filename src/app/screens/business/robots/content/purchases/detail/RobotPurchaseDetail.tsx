@@ -24,13 +24,13 @@ const RobotPurchaseDetail: FC = () => {
 	const params: RobotParamsInterface = useParams();
 
 	useEffect(() => {
-		// dispatch: fetch purchase
+		// dispatch: fetch robot purchase
 		dispatch(PurchaseFetch(params.purchaseId));
 	}, [dispatch, params.purchaseId]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			// dispatch: fetch purchase
+			// dispatch: fetch robot purchase
 			dispatch(PurchaseFetch(params.purchaseId, true));
 		};
 

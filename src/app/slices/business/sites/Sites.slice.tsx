@@ -71,7 +71,7 @@ export const SitesFetchList =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		// fetch sites list
+		// fetch sites
 		return SitesService.sitesFetch()
 			.then(async (res) => {
 				// deserialize response

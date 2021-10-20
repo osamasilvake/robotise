@@ -32,11 +32,13 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 		elevatorCall: ECCDataInterface,
 		column: RobotElevatorCallsTableColumnInterface
 	) => {
-		const value = mapElevatorCall(elevatorCall)[column.id];
+		const mappedElevatorCall = mapElevatorCall(elevatorCall);
+		const value = mappedElevatorCall[column.id];
 		if (RobotElevatorCallsTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
 		} else if (RobotElevatorCallsTableColumnsTypeEnum.HISTORY === column.id) {
-			const history = value as ECCDataHistoryInterface[];
+			const history = elevatorCall[column.id] as ECCDataHistoryInterface[];
+			const historyMapped = value as ECCDataHistoryInterface[];
 			return (
 				<Box>
 					{history.map((item, index) => (
@@ -47,7 +49,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 								{mapHistoryEventType(t(item.event)).icon}
 							</Icon>
 							<Typography variant="body2" className={classes.sHistoryEvent}>
-								{t(item.event)}:
+								{t(historyMapped[index].event)}:
 							</Typography>
 							<Typography variant="body2" className={classes.sHistoryDetails}>
 								{item.details || AppConfigService.AppOptions.common.none}

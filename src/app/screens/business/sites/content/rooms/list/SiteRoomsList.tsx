@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
+import { AppConfigService } from '../../../../../../services';
 import {
 	roomsSelector,
 	RoomUpdateFilters
 } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
+import { SitesFetchList, sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteRoomsActions from './actions/SiteRoomsActions';
 import { SiteRoomsActionsFiltersPayloadInterface } from './actions/SiteRoomsActions.interface';
@@ -31,6 +32,20 @@ const SiteRoomsList: FC = () => {
 
 	const active = cSiteId === pSiteId && !!rooms.content?.filters.active;
 	const inactive = cSiteId === pSiteId && !!rooms.content?.filters.inactive;
+
+	useEffect(() => {
+		const executeServices = () => {
+			// dispatch: fetch sites
+			dispatch(SitesFetchList(true));
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.business.sites.list.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch]);
 
 	useEffect(() => {
 		// clear filters on site change

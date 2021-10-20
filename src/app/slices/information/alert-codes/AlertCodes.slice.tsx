@@ -66,7 +66,7 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const AlertCodesFetch =
+export const AlertCodesFetchList =
 	(payload: AlertCodesListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states

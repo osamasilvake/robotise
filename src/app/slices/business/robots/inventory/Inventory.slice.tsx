@@ -58,7 +58,7 @@ export const inventorySelector = (state: AppReducerType) => state['inventory'];
 export default dataSlice.reducer;
 
 /**
- * fetch inventory
+ * fetch robot inventory
  * @param robotId
  * @param refresh
  * @returns

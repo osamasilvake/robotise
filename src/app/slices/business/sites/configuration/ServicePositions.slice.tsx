@@ -70,12 +70,12 @@ export const servicePositionsSelector = (state: AppReducerType) => state['servic
 export default dataSlice.reducer;
 
 /**
- * fetch service positions
+ * fetch site service positions
  * @param siteId
  * @param refresh
  * @returns
  */
-export const ServicePositionsFetch =
+export const ServicePositionsFetchList =
 	(siteId: string, refresh = false) =>
 	async (dispatch: Dispatch) => {
 		// dispatch: loader/loading
@@ -164,7 +164,7 @@ export const ServicePositionCreateEdit =
 				};
 				dispatch(triggerMessage(message));
 
-				// dispatch: updateFailed
+				// dispatch: update failed
 				dispatch(updateFailed());
 			});
 	};
@@ -211,7 +211,7 @@ export const SiteServicePositionDelete =
 				};
 				dispatch(triggerMessage(message));
 
-				// dispatch: updateFailed
+				// dispatch: update failed
 				dispatch(updateFailed());
 			});
 	};

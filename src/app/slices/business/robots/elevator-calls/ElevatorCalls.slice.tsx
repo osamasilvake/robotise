@@ -51,16 +51,12 @@ const dataSlice = createSlice({
 			state.updating = false;
 			state.content = action.payload;
 		},
-		updateFailed: (state) => {
-			state.updating = false;
-		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
-	dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const elevatorCallsSelector = (state: AppReducerType) => state['elevatorCalls'];
@@ -75,7 +71,7 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const RobotElevatorCallsFetch =
+export const ElevatorCallsFetchList =
 	(robotId: string, payload: RobotElevatorCallsListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -137,7 +133,7 @@ export const RobotElevatorCallsFetch =
  * @param state
  * @returns
  */
-export const RobotElevatorCallsUpdateState =
+export const ElevatorCallsUpdateState =
 	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

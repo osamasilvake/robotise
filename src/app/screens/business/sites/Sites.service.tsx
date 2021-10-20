@@ -5,6 +5,7 @@ import { DialogCreateEditNotificationFormInterface } from './content/configurati
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
+import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 
@@ -30,7 +31,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch products
+	 * fetch site products
 	 * @param siteId
 	 * @returns
 	 */
@@ -118,6 +119,37 @@ class SitesService {
 	};
 
 	/**
+	 * fetch site phone configs
+	 * @param siteId
+	 * @returns
+	 */
+	sitePhoneConfigsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * fetch site phone calls
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	sitePhoneCallsFetch = (siteId: string, payload: SitePhoneCallsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
+		return HttpClientService.get(url, {
+			params: {
+				'filter[site]': siteId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
 	 * accept orders
 	 * @param siteId
 	 * @param acceptOrders
@@ -170,7 +202,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch notification types
+	 * fetch site notification types
 	 * @returns
 	 */
 	siteNotificationTypesFetch = () => {
@@ -180,7 +212,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch notification users
+	 * fetch site notification users
 	 * @param siteId
 	 * @returns
 	 */
@@ -239,24 +271,7 @@ class SitesService {
 	};
 
 	/**
-	 * generate reports
-	 * @param siteId
-	 * @param payload
-	 * @returns
-	 */
-	siteReportsGenerate = (siteId: string, payload: ReportFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
-		return HttpClientService.get(url, {
-			params: {
-				'filter[site]': siteId,
-				'filter[createdAt][gte]': payload.from,
-				'filter[createdAt][lte]': payload.to
-			}
-		});
-	};
-
-	/**
-	 * fetch service positions
+	 * fetch site service positions
 	 * @param siteId
 	 * @returns
 	 */
@@ -318,15 +333,18 @@ class SitesService {
 	};
 
 	/**
-	 * fetch site phone configs
+	 * generate reports
 	 * @param siteId
+	 * @param payload
 	 * @returns
 	 */
-	sitePhoneConfigsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
+	siteReportsGenerate = (siteId: string, payload: ReportFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get(url, {
 			params: {
-				'filter[site]': siteId
+				'filter[site]': siteId,
+				'filter[createdAt][gte]': payload.from,
+				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

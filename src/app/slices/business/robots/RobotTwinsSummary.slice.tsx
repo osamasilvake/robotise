@@ -54,16 +54,12 @@ const dataSlice = createSlice({
 			state.updating = false;
 			state.content = action.payload;
 		},
-		updateFailed: (state) => {
-			state.updating = false;
-		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
-	dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const robotTwinsSummarySelector = (state: AppReducerType) => state['robotTwinsSummary'];
@@ -86,11 +82,7 @@ export const RobotTwinsSummaryFetchList =
 		const filters = robotTwinsSummary.content?.state || robotsState;
 
 		// return on busy
-		if (
-			robotTwinsSummary &&
-			sites &&
-			(sites.loader || robotTwinsSummary.loader || robotTwinsSummary.loading)
-		) {
+		if (robotTwinsSummary && (robotTwinsSummary.loader || robotTwinsSummary.loading)) {
 			return;
 		}
 

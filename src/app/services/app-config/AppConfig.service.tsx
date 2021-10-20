@@ -82,12 +82,13 @@ class AppConfigService extends EnvService {
 			},
 			screens: {
 				authentication: {
+					refreshTime: 5000,
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
 				business: {
 					sites: {
 						list: {
-							refreshTime: 15000,
+							refreshTime: 10000,
 							showPageSizes: false,
 							defaultPageSize: 100,
 							pageSizes: [5, 10, 15, 20, 50, 100]
@@ -104,14 +105,6 @@ class AppConfigService extends EnvService {
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
 							},
-							configuration: {
-								notifications: {
-									refreshTime: 20000
-								},
-								servicePositions: {
-									refreshTime: 20000
-								}
-							},
 							phoneConfigs: {
 								list: {
 									refreshTime: 10000,
@@ -119,12 +112,28 @@ class AppConfigService extends EnvService {
 									defaultPageSize: 50,
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
+							},
+							phoneCalls: {
+								list: {
+									refreshTime: 10000,
+									showPageSizes: true,
+									defaultPageSize: 50,
+									pageSizes: [5, 10, 15, 20, 50, 100]
+								}
+							},
+							configuration: {
+								notifications: {
+									refreshTime: 20000
+								},
+								servicePositions: {
+									refreshTime: 20000
+								}
 							}
 						}
 					},
 					robots: {
 						list: {
-							refreshTime: 15000,
+							refreshTime: 10000,
 							showPageSizes: false,
 							defaultPageSize: 100,
 							pageSizes: [5, 10, 15, 20, 50, 100]
@@ -238,6 +247,7 @@ class AppConfigService extends EnvService {
 						},
 						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
 						PHONE_CONFIGS: `${this.envAppUrl}/phone-dispatcher-configs`,
+						PHONE_CALLS: `${this.envAppUrl}/inbound-calls`,
 						REPORTS: {
 							PRODUCTS: `${this.envAppUrl}/product-export`
 						}
@@ -292,13 +302,13 @@ class AppConfigService extends EnvService {
 				iconOff: '/assets/svg/logos/robotise-icon-off.svg',
 				name: '/assets/svg/logos/robotise-name.svg'
 			},
+			avatar: {
+				path: '/assets/svg/avatars/avatar.svg',
+				name: 'avatar'
+			},
 			robotise: {
 				format: '.jpg',
 				path: '/assets/images/robotise/'
-			},
-			avatar: {
-				name: 'avatar',
-				path: '/assets/svg/avatars/avatar.svg'
 			}
 		};
 	}

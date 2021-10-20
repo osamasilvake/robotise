@@ -54,7 +54,7 @@ export const orderSelector = (state: AppReducerType) => state['order'];
 export default dataSlice.reducer;
 
 /**
- * fetch order
+ * fetch robot order
  * @param orderId
  * @param refresh
  * @returns

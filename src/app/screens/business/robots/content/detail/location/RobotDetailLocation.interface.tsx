@@ -4,6 +4,7 @@ import {
 	SRTContentDataInterface,
 	SRTContentLocationInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
+import { RobotDetailLocationHumanLegTypeEnum } from './RobotDetailLocation.enum';
 
 export interface RobotDetailLocationInterface {
 	robotTwins: SRTContentDataInterface;
@@ -20,12 +21,22 @@ export interface RobotDetailLocationInfoInterface {
 	showGrid: Dispatch<SetStateAction<boolean>>;
 }
 
-export interface RobotDetailLocationCardIconInterface {
-	pointCoords: PointCoords;
+export interface RobotDetailLocationCardRobotIconInterface {
+	robotCoords: RobotDetailLocationCardRobotIconCoords;
 }
 
-export interface PointCoords {
+export interface RobotDetailLocationCardRobotIconCoords {
 	x: number;
 	y: number;
 	yaw: number;
+}
+
+export interface RobotDetailLocationCardHumanIconInterface {
+	humanCoords: RobotDetailLocationCardHumanIconCoords[];
+}
+
+export interface RobotDetailLocationCardHumanIconCoords {
+	x: number;
+	y: number;
+	type: RobotDetailLocationHumanLegTypeEnum;
 }

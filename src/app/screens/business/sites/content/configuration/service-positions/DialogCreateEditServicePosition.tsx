@@ -16,7 +16,7 @@ import { useParams } from 'react-router-dom';
 
 import {
 	ServicePositionCreateEdit,
-	ServicePositionsFetch,
+	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
@@ -61,8 +61,8 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 							? SiteServicePositionsCreateEditTypeEnum.EDIT
 							: SiteServicePositionsCreateEditTypeEnum.CREATE,
 						() => {
-							// dispatch: fetch service positions
-							dispatch(ServicePositionsFetch(cSiteId, true));
+							// dispatch: fetch site service positions
+							dispatch(ServicePositionsFetchList(cSiteId, true));
 
 							// close dialog
 							setOpen(false);

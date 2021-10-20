@@ -66,7 +66,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 * @returns
 	 */
 	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
-		const value = mapOrder(order)[column.id];
+		const mappedOrder = mapOrder(order);
+		const value = mappedOrder[column.id];
 		if (RobotOrdersTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
 		} else if (

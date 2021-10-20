@@ -70,12 +70,12 @@ export const notificationsSelector = (state: AppReducerType) => state['notificat
 export default dataSlice.reducer;
 
 /**
- * fetch notification types and users
+ * fetch site notification types and users
  * @param siteId
  * @param refresh
  * @returns
  */
-export const NotificationTypesAndUsersFetch =
+export const NotificationTypesAndUsersFetchList =
 	(siteId: string, refresh = false) =>
 	async (dispatch: Dispatch) => {
 		// dispatch: loader/loading
@@ -172,7 +172,7 @@ export const NotificationUpdate =
 				};
 				dispatch(triggerMessage(message));
 
-				// dispatch: updateFailed
+				// dispatch: update failed
 				dispatch(updateFailed());
 			});
 	};

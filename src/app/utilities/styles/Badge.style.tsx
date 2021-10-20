@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-import { AppConfigService } from '../../../services';
+import { AppConfigService } from '../../services';
 
 export const BadgeStyle = makeStyles((theme: Theme) => ({
 	sDot: {
@@ -19,6 +19,14 @@ export const BadgeStyle = makeStyles((theme: Theme) => ({
 			top: 0,
 			width: '100%'
 		}
+	},
+	sRed: {
+		backgroundColor: AppConfigService.AppOptions.colors.c12,
+		color: AppConfigService.AppOptions.colors.c12
+	},
+	sOrange: {
+		backgroundColor: AppConfigService.AppOptions.colors.c14,
+		color: AppConfigService.AppOptions.colors.c14
 	},
 	'@keyframes ripple': {
 		'0%': {

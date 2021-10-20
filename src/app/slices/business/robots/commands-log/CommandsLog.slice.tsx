@@ -51,16 +51,12 @@ const dataSlice = createSlice({
 			state.updating = false;
 			state.content = action.payload;
 		},
-		updateFailed: (state) => {
-			state.updating = false;
-		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
-	dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const commandsLogSelector = (state: AppReducerType) => state['commandsLog'];
@@ -75,7 +71,7 @@ export default dataSlice.reducer;
  * @param refresh
  * @returns
  */
-export const RobotCommandsLogFetch =
+export const CommandsLogFetchList =
 	(robotId: string, payload: RobotCommandsLogListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -137,7 +133,7 @@ export const RobotCommandsLogFetch =
  * @param state
  * @returns
  */
-export const RobotCommandsLogUpdateState =
+export const CommandsLogUpdateState =
 	(state: CLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

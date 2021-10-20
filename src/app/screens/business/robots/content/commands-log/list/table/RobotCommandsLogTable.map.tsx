@@ -14,7 +14,11 @@ export const mapCommandLog = (commandLog: CLCDataInterface) => {
 	const translation = 'CONTENT.COMMANDS_LOGS.LIST.TABLE.VALUES';
 	return {
 		...commandLog,
-		command: `${translation}.COMMAND.${commandLog.command}`
+		command: `${translation}.COMMAND.${commandLog.command}`,
+		history: commandLog.history.map((item) => ({
+			...item,
+			status: `${translation}.HISTORY.STATUS.${item.status}`
+		}))
 	};
 };
 

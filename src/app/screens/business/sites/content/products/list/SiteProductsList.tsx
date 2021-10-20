@@ -24,7 +24,7 @@ const SiteProductsList: FC = () => {
 	const products = useSelector(productsSelector);
 
 	const params: SiteParamsInterface = useParams();
-	const pSiteId = products.content?.site?.id;
+	const pSiteId = products.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 
 	useEffect(() => {
@@ -32,7 +32,7 @@ const SiteProductsList: FC = () => {
 		const condition2 = !!(products.content !== null && pSiteId && pSiteId !== cSiteId);
 
 		if (condition1 || condition2) {
-			// dispatch: fetch products
+			// dispatch: fetch site products
 			cSiteId && dispatch(ProductsFetchList(cSiteId));
 		}
 	}, [dispatch, products.content, pSiteId, cSiteId]);
@@ -40,7 +40,7 @@ const SiteProductsList: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (products.content) {
-				// dispatch: fetch products
+				// dispatch: fetch site products
 				cSiteId && dispatch(ProductsFetchList(cSiteId, true));
 			}
 		};

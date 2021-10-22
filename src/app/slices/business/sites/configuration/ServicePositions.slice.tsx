@@ -11,7 +11,7 @@ import { triggerMessage } from '../../../general/General.slice';
 import { deserializeServicePositions } from './ServicePositions.deserialize';
 import {
 	SliceServicePositionsInterface,
-	SSContentServicePositionDataInterface
+	SSCDataInterface
 } from './ServicePositions.slice.interface';
 
 // initial state
@@ -176,8 +176,7 @@ export const ServicePositionCreateEdit =
  * @returns
  */
 export const SiteServicePositionDelete =
-	(servicePosition: SSContentServicePositionDataInterface, callback: () => void) =>
-	async (dispatch: Dispatch) => {
+	(servicePosition: SSCDataInterface, callback: () => void) => async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
 

@@ -1,5 +1,6 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
+import { SRContentMapInterface } from '../../../slices/business/robots/Robot.slice.interface';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
@@ -16,6 +17,21 @@ import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
 import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
+import {
+	RobotCommandLogsAxiosGetInterface,
+	RobotElevatorCallsAxiosGetInterface,
+	RobotInventoryAxiosGetInterface,
+	RobotOrderAxiosGetInterface,
+	RobotOrderCancelAxiosPatchRequestInterface,
+	RobotOrderCancelAxiosPatchResponseInterface,
+	RobotOrderCreateAxiosPostRequestInterface,
+	RobotOrderCreateAxiosPostResponseInterface,
+	RobotOrdersAxiosGetInterface,
+	RobotPurchaseAxiosGetInterface,
+	RobotPurchasesAxiosGetInterface,
+	RobotTwinsAxiosGetInterface,
+	RobotTwinSummaryAxiosGetInterface
+} from './Robots.interface';
 
 class RobotsService {
 	/**
@@ -25,7 +41,7 @@ class RobotsService {
 	 */
 	robotTwinsSummaryFetch = (filters: RTSContentStateInterface | undefined) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<RobotTwinSummaryAxiosGetInterface>(url, {
 			params: {
 				'filter[isHidden]': filters?.hidden ? undefined : false
 			}
@@ -42,7 +58,7 @@ class RobotsService {
 			':robotTwinId',
 			robotTwinId
 		);
-		return HttpClientService.get(url);
+		return HttpClientService.get<RobotTwinsAxiosGetInterface>(url);
 	};
 
 	/**
@@ -71,12 +87,12 @@ class RobotsService {
 	 * @param mapId
 	 * @returns
 	 */
-	robotLocationMapFetch = (mapId: string) => {
+	robotMapLocationFetch = (mapId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.MAPS.replace(
 			':mapId',
 			mapId
 		);
-		return HttpClientService.get(url);
+		return HttpClientService.get<SRContentMapInterface>(url);
 	};
 
 	/**
@@ -158,7 +174,7 @@ class RobotsService {
 			':robotId',
 			robotId
 		);
-		return HttpClientService.get(url);
+		return HttpClientService.get<RobotInventoryAxiosGetInterface>(url);
 	};
 
 	/**
@@ -169,7 +185,7 @@ class RobotsService {
 	 */
 	robotOrdersFetch = (robotId: string, payload: RobotOrdersListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<RobotOrdersAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
 				'filter[active]': payload.activeOrders || undefined,
@@ -188,7 +204,10 @@ class RobotsService {
 	 */
 	robotOrderCreate = (siteId: string, payload: DialogCreateOrderFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
-		return HttpClientService.post(url, {
+		return HttpClientService.post<
+			RobotOrderCreateAxiosPostRequestInterface,
+			RobotOrderCreateAxiosPostResponseInterface
+		>(url, {
 			data: {
 				type: 'orders',
 				attributes: payload,
@@ -212,24 +231,25 @@ class RobotsService {
 	 */
 	robotOrderCancel = (siteId: string, ids: string[]) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
-		return HttpClientService.patch(url, {
-			data: ids.map((id) => {
-				return {
-					id,
-					type: 'orders',
-					attributes: {
-						status: 'cancelRequest'
-					},
-					relationships: {
-						site: {
-							data: {
-								type: 'sites',
-								id: siteId
-							}
+		return HttpClientService.patch<
+			RobotOrderCancelAxiosPatchRequestInterface,
+			RobotOrderCancelAxiosPatchResponseInterface
+		>(url, {
+			data: ids.map((id) => ({
+				id,
+				type: 'orders',
+				attributes: {
+					status: 'cancelRequest'
+				},
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: siteId
 						}
 					}
-				};
-			})
+				}
+			}))
 		});
 	};
 
@@ -243,7 +263,7 @@ class RobotsService {
 			':orderId',
 			orderId
 		);
-		return HttpClientService.get(url);
+		return HttpClientService.get<RobotOrderAxiosGetInterface>(url);
 	};
 
 	/**
@@ -254,7 +274,7 @@ class RobotsService {
 	 */
 	robotPurchasesFetch = (robotId: string, payload: RobotPurchasesListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<RobotPurchasesAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
 				'filter[isBilled]': payload.billed ? false : undefined,
@@ -293,7 +313,7 @@ class RobotsService {
 			':purchaseId',
 			purchaseId
 		);
-		return HttpClientService.get(url);
+		return HttpClientService.get<RobotPurchaseAxiosGetInterface>(url);
 	};
 
 	/**
@@ -370,7 +390,7 @@ class RobotsService {
 	 */
 	robotCommandsLogFetch = (robotId: string, payload: RobotCommandsLogListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<RobotCommandLogsAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
 				'page[number]': payload.page + 1,
@@ -390,7 +410,7 @@ class RobotsService {
 		payload: RobotElevatorCallsListPayloadInterface
 	) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<RobotElevatorCallsAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
 				'page[number]': payload.page + 1,
@@ -407,7 +427,7 @@ class RobotsService {
 	 */
 	robotReportsGenerate = (robotId: string, payload: ReportFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS.PURCHASES;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<string>(url, {
 			params: {
 				'filter[robot]': robotId,
 				'filter[createdAt][gte]': payload.from,

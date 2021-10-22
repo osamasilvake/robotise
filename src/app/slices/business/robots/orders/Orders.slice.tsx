@@ -211,11 +211,11 @@ export const OrderCancel =
 		return RobotsService.robotOrderCancel(order.site.id, [order.id])
 			.then(async (res) => {
 				// deserialize response
-				let result = await deserializeOrders(res);
+				let result = await deserializeOrder(res);
 
 				if (orders.content) {
 					// update canceled order
-					result = updateCanceledOrder(orders.content, result.data[0]);
+					result = updateCanceledOrder(orders.content, result[0]);
 
 					// dispatch: updated
 					dispatch(updated(result));

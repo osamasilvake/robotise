@@ -1,6 +1,6 @@
 prettier:
   stage: Quality
-  image: node:15-alpine
+  image: node:16-alpine
   script:
     - yarn pretty:check
   only:
@@ -11,7 +11,7 @@ prettier:
 
 lint:
   stage: Quality
-  image: node:15-alpine
+  image: node:16-alpine
   script:
     - yarn lint:es
   only:
@@ -22,7 +22,7 @@ lint:
 
 test:
   stage: Quality
-  image: node:15-alpine
+  image: node:16-alpine
   script:
     - yarn test:ci
   only:

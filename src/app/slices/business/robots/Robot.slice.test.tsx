@@ -7,7 +7,7 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { failure, initialState, loading, RobotLocationMapFetch, success } from './Robot.slice';
+import { failure, initialState, loading, RobotMapLocationFetch, success } from './Robot.slice';
 import { RobotTypeEnum } from './Robot.slice.enum';
 import { SliceRobotInterface } from './Robot.slice.interface';
 
@@ -59,7 +59,7 @@ describe('[SLICE] General', () => {
 
 		// act
 		store
-			.dispatch(RobotLocationMapFetch(mapId))
+			.dispatch(RobotMapLocationFetch(mapId))
 			.then(() => {
 				// assert
 				const expectedActions = [
@@ -90,7 +90,7 @@ describe('[SLICE] General', () => {
 
 		// act
 		store
-			.dispatch(RobotLocationMapFetch(mapId))
+			.dispatch(RobotMapLocationFetch(mapId))
 			.then(() => {
 				// assert
 				const expectedActions = [

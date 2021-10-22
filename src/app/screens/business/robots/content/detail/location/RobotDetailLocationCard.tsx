@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Picture from '../../../../../../components/common/picture/Picture';
 import { PictureOnLoadInterface } from '../../../../../../components/common/picture/Picture.interface';
 import {
-	RobotLocationMapFetch,
+	RobotMapLocationFetch,
 	robotSelector
 } from '../../../../../../slices/business/robots/Robot.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
@@ -38,7 +38,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	useEffect(() => {
 		if (robotTwinsMapName !== robotMapName) {
 			// dispatch: fetch robot map location
-			dispatch(RobotLocationMapFetch(robotTwinsMapName));
+			dispatch(RobotMapLocationFetch(robotTwinsMapName));
 		}
 	}, [dispatch, robotTwinsMapName, robotMapName]);
 

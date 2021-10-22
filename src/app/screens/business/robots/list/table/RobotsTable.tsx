@@ -17,7 +17,7 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<RobotsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<RobotsTableColumnsTypeEnum>(
-		RobotsTableColumnsTypeEnum.UPDATED_AT
+		RobotsTableColumnsTypeEnum.ALERTS
 	);
 
 	/**

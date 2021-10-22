@@ -1,6 +1,6 @@
 install:
   stage: Initialize
-  image: node:15-alpine
+  image: node:16-alpine
   script:
     - yarn install
   artifacts:
@@ -10,4 +10,5 @@ install:
   only:
     - merge_requests
     - master
+    - pre-production
     - production

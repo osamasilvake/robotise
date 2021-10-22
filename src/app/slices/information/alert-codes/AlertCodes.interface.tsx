@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { JsonApiMeta } from '../../JsonApi.interface';
+import { JsonApiResponse } from '../../JsonApi.interface';
 
 export interface SliceAlertCodesInterface {
 	loader: boolean;
@@ -8,9 +8,8 @@ export interface SliceAlertCodesInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SACContentInterface {
+export interface SACContentInterface extends JsonApiResponse {
 	data: SACDataInterface[];
-	meta: JsonApiMeta;
 	state?: SACStateInterface;
 }
 

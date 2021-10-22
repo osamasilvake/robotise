@@ -1,5 +1,5 @@
 # node image
-FROM node:15-alpine
+FROM node:16-alpine
 
 # directory within the virtualized docker environment
 WORKDIR /app

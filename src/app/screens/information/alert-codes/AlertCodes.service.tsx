@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { AlertCodesAxiosGetInterface } from './AlertCodes.interface';
 import { AlertCodesListPayloadInterface } from './list/AlertCodesList.interface';
 
 class AlertCodesService {
@@ -9,7 +10,7 @@ class AlertCodesService {
 	 */
 	alertCodesFetch = (payload: AlertCodesListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.INFORMATION.ALERT_CODES;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<AlertCodesAxiosGetInterface>(url, {
 			params: {
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage

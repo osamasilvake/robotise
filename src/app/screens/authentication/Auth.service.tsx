@@ -2,15 +2,15 @@ import axios from 'axios';
 
 import { AppConfigService, HttpClientService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
+import {
+	AuthJWTInterface,
+	AuthUserInterface
+} from '../../slices/authentication/Auth.slice.interface';
 import { jwtDecode } from '../../utilities/methods/Decode';
 import { momentNow } from '../../utilities/methods/Moment';
 import { serializeObj } from '../../utilities/methods/Object';
 import { AuthUserRoleTypeEnum } from './Auth.enum';
-import {
-	AuthJWTInterface,
-	AuthLoginFormInterface,
-	AuthUserDetailInterface
-} from './Auth.interface';
+import { AuthAxiosPostResponseInterface, AuthLoginFormInterface } from './Auth.interface';
 
 class AuthService {
 	/**
@@ -24,7 +24,7 @@ class AuthService {
 			grant_type: 'password',
 			client_id: 'roc-app'
 		};
-		return HttpClientService.post(
+		return HttpClientService.post<string, AuthAxiosPostResponseInterface>(
 			AppConfigService.AppServices.AUTH.SIGN_IN,
 			serializeObj(request),
 			{
@@ -52,7 +52,7 @@ class AuthService {
 			access_token: this.getAccessToken(),
 			client_id: 'roc-app'
 		};
-		return HttpClientService.post(
+		return HttpClientService.post<string, AuthAxiosPostResponseInterface>(
 			AppConfigService.AppServices.AUTH.AUTO_REFRESH,
 			serializeObj(request),
 			{
@@ -65,7 +65,7 @@ class AuthService {
 	 * fetch user info from decoded token
 	 * @param accessToken
 	 */
-	authUserDetail = (accessToken: string): AuthUserDetailInterface => {
+	authUserDetail = (accessToken: string): AuthUserInterface => {
 		const decoded: AuthJWTInterface = jwtDecode(accessToken);
 		return {
 			realm_access: decoded.realm_access,

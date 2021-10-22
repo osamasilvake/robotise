@@ -8,26 +8,26 @@ import { SiteRobotConfigFormInterface } from './content/configuration/site-robot
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
+import {
+	SiteNotificationTypesAxiosGetInterface,
+	SiteNotificationUsersAxiosGetInterface,
+	SitePhoneCallsAxiosGetInterface,
+	SitePhoneConfigsAxiosGetInterface,
+	SiteProductsAxiosGetInterface,
+	SiteRoomsAxiosPatchRequestInterface,
+	SiteRoomsAxiosPatchResponseInterface,
+	SitesAxiosGetInterface,
+	SiteServicePositionsAxiosGetInterface
+} from './Sites.interface';
 
 class SitesService {
 	/**
 	 * fetch sites
 	 */
 	sitesFetch = () => {
-		return HttpClientService.get(AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL);
-	};
-
-	/**
-	 * fetch site
-	 * @param siteId
-	 * @returns
-	 */
-	siteFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
-			':siteId',
-			siteId
+		return HttpClientService.get<SitesAxiosGetInterface>(
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL
 		);
-		return HttpClientService.get(url);
 	};
 
 	/**
@@ -37,7 +37,7 @@ class SitesService {
 	 */
 	siteProductsFetch = (siteId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PRODUCTS;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<SiteProductsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId
 			}
@@ -105,7 +105,10 @@ class SitesService {
 			':siteId',
 			siteId
 		);
-		return HttpClientService.patch(url, {
+		return HttpClientService.patch<
+			SiteRoomsAxiosPatchRequestInterface,
+			SiteRoomsAxiosPatchResponseInterface
+		>(url, {
 			data: {
 				type: 'sites',
 				id: siteId,
@@ -125,7 +128,7 @@ class SitesService {
 	 */
 	sitePhoneConfigsFetch = (siteId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<SitePhoneConfigsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId
 			}
@@ -140,7 +143,7 @@ class SitesService {
 	 */
 	sitePhoneCallsFetch = (siteId: string, payload: SitePhoneCallsListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<SitePhoneCallsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId,
 				'page[number]': payload.page + 1,
@@ -206,7 +209,7 @@ class SitesService {
 	 * @returns
 	 */
 	siteNotificationTypesFetch = () => {
-		return HttpClientService.get(
+		return HttpClientService.get<SiteNotificationTypesAxiosGetInterface>(
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.TYPES
 		);
 	};
@@ -217,7 +220,7 @@ class SitesService {
 	 * @returns
 	 */
 	siteNotificationUsersFetch = (siteId: string) => {
-		return HttpClientService.get(
+		return HttpClientService.get<SiteNotificationUsersAxiosGetInterface>(
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS,
 			{
 				params: {
@@ -280,7 +283,7 @@ class SitesService {
 			':siteId',
 			siteId
 		);
-		return HttpClientService.get(url, {
+		return HttpClientService.get<SiteServicePositionsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId
 			}
@@ -340,7 +343,7 @@ class SitesService {
 	 */
 	siteReportsGenerate = (siteId: string, payload: ReportFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
-		return HttpClientService.get(url, {
+		return HttpClientService.get<string>(url, {
 			params: {
 				'filter[site]': siteId,
 				'filter[createdAt][gte]': payload.from,

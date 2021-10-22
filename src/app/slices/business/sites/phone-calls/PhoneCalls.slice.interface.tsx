@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { JsonApiMeta } from '../../../JsonApi.interface';
+import { JsonApiResponse } from '../../../JsonApi.interface';
 
 export interface SlicePhoneCallsInterface {
 	loader: boolean;
@@ -9,9 +9,8 @@ export interface SlicePhoneCallsInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface PCContentInterface {
+export interface PCContentInterface extends JsonApiResponse {
 	data: PCCDataInterface[];
-	meta: JsonApiMeta;
 	state?: PCCStateInterface;
 }
 

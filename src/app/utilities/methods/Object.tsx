@@ -3,7 +3,7 @@
  * @param obj
  * @returns
  */
-export const serializeObj = <T,>(obj: T): string => {
+const serializeObj = <T,>(obj: T): string => {
 	return Object.entries(obj)
 		.map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
 		.join('&');
@@ -14,7 +14,7 @@ export const serializeObj = <T,>(obj: T): string => {
  * @param obj
  * @returns
  */
-export const validateEmptyObj = <T,>(obj: T): boolean => {
+const validateEmptyObj = <T,>(obj: T): boolean => {
 	return obj && Object.values(obj).every((x) => x === null || x === '' || x === 0);
 };
 
@@ -23,7 +23,7 @@ export const validateEmptyObj = <T,>(obj: T): boolean => {
  * @param obj
  * @returns
  */
-export const validateEmptyObjProperty = <T,>(obj: T): boolean => {
+const validateEmptyObjProperty = <T,>(obj: T): boolean => {
 	return obj && Object.values(obj).some((x) => x === null || x === '' || x === 0);
 };
 
@@ -32,8 +32,10 @@ export const validateEmptyObjProperty = <T,>(obj: T): boolean => {
  * @param obj
  * @returns
  */
-export const removeEmptyObjProperties = <T,>(obj: T) => {
+const removeEmptyObjProperties = <T,>(obj: T) => {
 	return Object.entries(obj)
 		.filter(([, v]) => v !== null)
 		.reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
 };
+
+export { removeEmptyObjProperties, serializeObj, validateEmptyObj, validateEmptyObjProperty };

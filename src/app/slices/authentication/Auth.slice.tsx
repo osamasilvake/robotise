@@ -2,17 +2,14 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import {
-	AuthLoginFormInterface,
-	AuthUserDetailInterface
-} from '../../screens/authentication/Auth.interface';
+import { AuthLoginFormInterface } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { momentNow } from '../../utilities/methods/Moment';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
-import { SliceAuthInterface } from './Auth.slice.interface';
+import { AuthUserInterface, SliceAuthInterface } from './Auth.slice.interface';
 
 // storage items
 const user = AuthService.getAccessToken()
@@ -90,7 +87,7 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 			);
 
 			// decode user detail from access token
-			const user: AuthUserDetailInterface = AuthService.authUserDetail(res.access_token);
+			const user: AuthUserInterface = AuthService.authUserDetail(res.access_token);
 
 			// dispatch: success
 			dispatch(success(user));
@@ -138,7 +135,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						);
 
 						// decode user detail from access token
-						const user: AuthUserDetailInterface = AuthService.authUserDetail(
+						const user: AuthUserInterface = AuthService.authUserDetail(
 							res.access_token
 						);
 

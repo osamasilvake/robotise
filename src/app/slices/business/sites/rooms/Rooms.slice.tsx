@@ -85,7 +85,7 @@ export const RoomStateUpdate =
 		const states = getState();
 		const rooms = states.rooms;
 
-		// dispatch: loading
+		// dispatch: updating
 		dispatch(updating());
 
 		return SitesService.siteRoomStateUpdate(siteId, whitelist)

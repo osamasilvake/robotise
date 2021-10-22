@@ -65,7 +65,6 @@ A summary of development workflow involving multiple git branches.
 - [X] [clsx](https://github.com/lukeed/clsx/)
 - [X] [Axios](https://github.com/axios/axios/)
 - [X] [JSON-API Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer/)
-- [X] [JWT Decode](https://jwt.io/)
 - [X] [loglevel](https://github.com/pimterry/loglevel)
 - [X] [i18n](https://www.i18next.com/)
 - [X] [Moment](https://momentjs.com/)

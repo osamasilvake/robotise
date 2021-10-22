@@ -1,29 +1,32 @@
 prettier:
   stage: Quality
-  image: node:15-alpine
+  image: node:16-alpine
   script:
     - yarn pretty:check
   only:
     - merge_requests
     - master
+    - pre-production
     - production
 
 lint:
   stage: Quality
-  image: node:15-alpine
+  image: node:16-alpine
   script:
     - yarn lint:es
   only:
     - merge_requests
     - master
+    - pre-production
     - production
 
 test:
   stage: Quality
-  image: node:15-alpine
+  image: node:16-alpine
   script:
     - yarn test:ci
   only:
     - merge_requests
     - master
+    - pre-production
     - production

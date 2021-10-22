@@ -8,7 +8,7 @@ import { AppConfigService } from '../../services';
  * @param str
  * @returns
  */
-export const strRemoveSymbols = (str: string) => {
+const strRemoveSymbols = (str: string) => {
 	return str.replaceAll(/[-_]/gi, ' ');
 };
 
@@ -17,7 +17,7 @@ export const strRemoveSymbols = (str: string) => {
  * @param str
  * @returns
  */
-export const strCapitalizeEachLetter = (str: string) => {
+const strCapitalizeEachLetter = (str: string) => {
 	return str.toLowerCase().replace(/\b[a-z]/g, (letter: string) => letter.toUpperCase());
 };
 
@@ -26,7 +26,7 @@ export const strCapitalizeEachLetter = (str: string) => {
  * @param text
  * @returns {*}
  */
-export const strToLinks = (text: string) => {
+const strToLinks = (text: string) => {
 	const link = (link: string, additional?: boolean, mail?: boolean) =>
 		ReactDOMServer.renderToString(
 			<Link
@@ -52,3 +52,5 @@ export const strToLinks = (text: string) => {
 
 	return replacedText;
 };
+
+export { strCapitalizeEachLetter, strRemoveSymbols, strToLinks };

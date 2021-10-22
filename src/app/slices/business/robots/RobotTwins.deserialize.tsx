@@ -4,8 +4,7 @@ import log from 'loglevel';
 import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	DeserializeRelationshipProperties,
-	DeserializerExtendedOptions,
-	JsonApiResponse
+	DeserializerExtendedOptions
 } from '../../JsonApi.interface';
 import { IRobotTwin, SRTContentDataInterface } from './RobotTwins.slice.interface';
 
@@ -14,7 +13,7 @@ import { IRobotTwin, SRTContentDataInterface } from './RobotTwins.slice.interfac
  * @param payload
  * @returns
  */
-export const deserializeRobotTwins = async <T extends JsonApiResponse>(payload: T) => {
+export const deserializeRobotTwins = async <T,>(payload: T) => {
 	const options: DeserializerExtendedOptions = {
 		keyForAttribute: 'camelCase',
 		robots: {

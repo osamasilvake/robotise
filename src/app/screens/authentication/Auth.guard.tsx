@@ -30,6 +30,9 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 			auth?.user && dispatch(AuthRefreshToken(auth.user.exp));
 		};
 
+		// init
+		actions();
+
 		// interval
 		const intervalId = window.setInterval(
 			actions,

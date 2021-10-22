@@ -6,9 +6,9 @@ class HttpClientService {
 	 * @param url
 	 * @param config
 	 */
-	get = async (url: string, config?: AxiosRequestConfig) => {
+	get = async <T,>(url: string, config?: AxiosRequestConfig): Promise<T> => {
 		const resp = await axios.get(url, config);
-		return resp.data;
+		return resp.data as T;
 	};
 
 	/**
@@ -17,9 +17,9 @@ class HttpClientService {
 	 * @param data
 	 * @param config
 	 */
-	post = async <T,>(url: string, data?: T, config?: AxiosRequestConfig) => {
+	post = async <T, K>(url: string, data?: T, config?: AxiosRequestConfig): Promise<K> => {
 		const resp = await axios.post(url, data, config);
-		return resp.data;
+		return resp.data as K;
 	};
 
 	/**
@@ -28,9 +28,9 @@ class HttpClientService {
 	 * @param data
 	 * @param config
 	 */
-	patch = async <T,>(url: string, data: T, config?: AxiosRequestConfig) => {
+	patch = async <T, K>(url: string, data: T, config?: AxiosRequestConfig): Promise<K> => {
 		const resp = await axios.patch(url, data, config);
-		return resp.data;
+		return resp.data as K;
 	};
 
 	/**

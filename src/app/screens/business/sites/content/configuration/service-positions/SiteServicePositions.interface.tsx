@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import {
 	SliceServicePositionsInterface,
-	SSContentServicePositionDataInterface
+	SSCDataInterface
 } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice.interface';
 import { SiteServicePositionsCreateEditTypeEnum } from './SiteServicePositions.enum';
 
@@ -11,7 +11,7 @@ export interface SiteServicePositionsInterface {
 }
 
 export interface SiteServicePositionInterface {
-	servicePosition: SSContentServicePositionDataInterface;
+	servicePosition: SSCDataInterface;
 	index: number;
 }
 
@@ -29,7 +29,7 @@ export interface DialogCreateEditServicePositionFormInterface {
 }
 
 export interface DialogDeleteServicePositionInterface {
-	servicePosition: SSContentServicePositionDataInterface;
+	servicePosition: SSCDataInterface;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }

@@ -187,7 +187,7 @@ export const RobotNoteUpdate =
  * @param mapId
  * @returns
  */
-export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatch) => {
+export const RobotMapLocationFetch = (mapId: string) => async (dispatch: Dispatch) => {
 	const state = {
 		module: RobotTypeEnum.MAP
 	};
@@ -195,7 +195,7 @@ export const RobotLocationMapFetch = (mapId: string) => async (dispatch: Dispatc
 	// dispatch: loading
 	dispatch(loading(state));
 
-	return RobotsService.robotLocationMapFetch(mapId)
+	return RobotsService.robotMapLocationFetch(mapId)
 		.then(async (res) => {
 			// deserialize response
 			const result = await deserializeRobot(res);

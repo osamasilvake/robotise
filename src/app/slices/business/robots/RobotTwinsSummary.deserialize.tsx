@@ -4,8 +4,7 @@ import log from 'loglevel';
 import { AppConfigService } from '../../../services';
 import {
 	DeserializeRelationshipProperties,
-	DeserializerExtendedOptions,
-	JsonApiResponse
+	DeserializerExtendedOptions
 } from '../../JsonApi.interface';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
@@ -21,10 +20,7 @@ import {
  * @param sites
  * @returns
  */
-export const deserializeRobotTwinsSummary = async <T extends JsonApiResponse>(
-	payload: T,
-	sites: SSContentInterface
-) => {
+export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSContentInterface) => {
 	const options: DeserializerExtendedOptions = {
 		keyForAttribute: 'camelCase',
 		robots: {

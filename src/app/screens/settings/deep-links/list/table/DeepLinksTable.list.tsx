@@ -6,13 +6,19 @@ export const columns: DeepLinksTableColumnInterface[] = [
 	{
 		id: DeepLinksTableColumnsTypeEnum.NAME,
 		label: `${translation}.NAME`,
-		minWidth: 100,
+		minWidth: 130,
 		align: 'left'
 	},
 	{
 		id: DeepLinksTableColumnsTypeEnum.DESCRIPTION,
 		label: `${translation}.DESCRIPTION`,
-		minWidth: 250,
+		minWidth: 220,
+		align: 'left'
+	},
+	{
+		id: DeepLinksTableColumnsTypeEnum.KEY,
+		label: `${translation}.KEY`,
+		minWidth: 130,
 		align: 'left'
 	},
 	{

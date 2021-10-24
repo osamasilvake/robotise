@@ -23,6 +23,7 @@ import site from './business/sites/Site.slice';
 import sites from './business/sites/Sites.slice';
 import general from './general/General.slice';
 import alertCodes from './information/alert-codes/AlertCodes.slice';
+import deepLinks from './settings/deep-links/DeepLinks.slice';
 
 // app reducers
 const combinedReducer = combineReducers({
@@ -46,7 +47,8 @@ const combinedReducer = combineReducers({
 	purchase,
 	commandsLog,
 	elevatorCalls,
-	alertCodes
+	alertCodes,
+	deepLinks
 });
 
 // reducers type

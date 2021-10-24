@@ -20,6 +20,16 @@ const drawerBusinessList: DrawerListInterface[] = [
 	}
 ];
 
+const drawerSettingsList: DrawerListInterface[] = [
+	{
+		id: 1,
+		icon: 'link',
+		label: 'SETTINGS.LIST.DEEP_LINKS',
+		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
+		newLine: true
+	}
+];
+
 const drawerInformationList: DrawerListInterface[] = [
 	{
 		id: 1,
@@ -36,4 +46,20 @@ const drawerInformationList: DrawerListInterface[] = [
 	}
 ];
 
-export { drawerBusinessList, drawerInformationList };
+export const DrawersList = [
+	{
+		primary: 'BUSINESS.TITLE.MAIN',
+		secondary: 'BUSINESS.TITLE.SHORT',
+		list: drawerBusinessList
+	},
+	{
+		primary: 'SETTINGS.TITLE.MAIN',
+		secondary: 'SETTINGS.TITLE.SHORT',
+		list: drawerSettingsList
+	},
+	{
+		primary: 'INFORMATION.TITLE.MAIN',
+		secondary: 'INFORMATION.TITLE.SHORT',
+		list: drawerInformationList
+	}
+];

@@ -13,10 +13,6 @@ export interface SACContentInterface extends JsonApiResponse {
 	state?: SACStateInterface;
 }
 
-export interface SACContentDataByIdInterface {
-	[id: string]: SACDataInterface;
-}
-
 export interface SACDataInterface {
 	id: string;
 	alertCode: string;

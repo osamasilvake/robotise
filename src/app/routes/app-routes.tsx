@@ -34,6 +34,9 @@ const appRoutes = {
 				CONFIGURATION: '/robots/:robotId/configuration'
 			}
 		},
+		SETTINGS: {
+			DEEP_LINKS: '/deep-links'
+		},
 		INFORMATION: {
 			ALERT_CODES: '/alert-codes',
 			ABOUT: '/about-us'

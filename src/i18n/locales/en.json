@@ -23,6 +23,10 @@
 				"DESCRIPTION": "Robot Details Description"
 			}
 		},
+		"DEEP_LINKS": {
+			"TITLE": "Deep Links",
+			"DESCRIPTION": "Deep Links Description"
+		},
 		"ALERT_CODES": {
 			"TITLE": "Alert Codes",
 			"DESCRIPTION": "Alert Codes Description"
@@ -269,6 +273,15 @@
 			"LIST": {
 				"ALERT_CODES": "Alert Codes",
 				"ABOUT": "About"
+			}
+		},
+		"SETTINGS": {
+			"TITLE": {
+				"MAIN": "Settings",
+				"SHORT": "Set."
+			},
+			"LIST": {
+				"DEEP_LINKS": "Deep Links"
 			}
 		}
 	},
@@ -1283,6 +1296,21 @@
 						}
 					}
 				}
+			}
+		}
+	},
+	"DEEP_LINKS": {
+		"LIST": {
+			"TABLE": {
+				"COLUMNS": {
+					"NAME": "Name",
+					"DESCRIPTION": "Description",
+					"LINK": "Link",
+					"UPDATED_AT": "Updated At"
+				}
+			},
+			"VALUES": {
+				"LINK": "Link to Kibana"
 			}
 		}
 	},

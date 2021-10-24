@@ -1301,6 +1301,11 @@
 	},
 	"DEEP_LINKS": {
 		"LIST": {
+			"ACTIONS": {
+				"SPEED_DIAL": {
+					"CREATE_LINK": "Create new Link"
+				}
+			},
 			"TABLE": {
 				"COLUMNS": {
 					"NAME": "Name",

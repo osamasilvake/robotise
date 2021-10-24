@@ -1,3 +1,4 @@
+import { Box } from '@mui/system';
 import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,6 +11,7 @@ import {
 	DeepLinksFetchList,
 	deepLinksSelector
 } from '../../../../slices/settings/deep-links/DeepLinks.slice';
+import DeepLinksActions from './actions/DeepLinksActions';
 import { DeepLinksListPayloadInterface } from './DeepLinksList.interface';
 import DeepLinksTable from './table/DeepLinksTable';
 
@@ -101,6 +103,14 @@ const DeepLinksList: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return <DeepLinksTable content={deepLinks.content} page={page} rowsPerPage={rowsPerPage} />;
+	return (
+		<Box>
+			{/* Actions */}
+			<DeepLinksActions />
+
+			{/* Table */}
+			<DeepLinksTable content={deepLinks.content} page={page} rowsPerPage={rowsPerPage} />
+		</Box>
+	);
 };
 export default DeepLinksList;

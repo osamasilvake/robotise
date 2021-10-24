@@ -12,7 +12,7 @@ export const columns: DeepLinksTableColumnInterface[] = [
 	{
 		id: DeepLinksTableColumnsTypeEnum.DESCRIPTION,
 		label: `${translation}.DESCRIPTION`,
-		minWidth: 170,
+		minWidth: 250,
 		align: 'left'
 	},
 	{

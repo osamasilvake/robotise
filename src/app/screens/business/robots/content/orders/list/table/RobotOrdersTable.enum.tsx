@@ -4,7 +4,7 @@ export enum RobotOrdersTableColumnsTypeEnum {
 	MODE = 'mode',
 	CREATED = 'createdAt',
 	ORIGIN = 'origin',
-	LINK_PURCHASE = 'orderReport'
+	PURCHASE_DETAILS = 'orderReport'
 }
 
 export enum RobotOrdersTableSortTypeEnum {

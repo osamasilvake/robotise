@@ -20,7 +20,7 @@ import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
 import { deserializeRobot } from './Robot.deserialize';
 import { RobotTypeEnum } from './Robot.slice.enum';
-import { SliceRobotInterface } from './Robot.slice.interface';
+import { SliceRobotInterface, SRContentItemTrackingInterface } from './Robot.slice.interface';
 
 // initial state
 export const initialState: SliceRobotInterface = {
@@ -482,13 +482,18 @@ export const RobotSiteConfigUpdate =
 	};
 
 /**
- * fetch item tracking link from kibana
+ * fetch item tracking link
  * @param robotId
  * @param payload
+ * @param callback
  * @returns
  */
 export const RobotItemTrackingLinkFetch =
-	(robotId: string, payload: RobotPurchaseItemTrackingPayloadInterface) =>
+	(
+		robotId: string,
+		payload: RobotPurchaseItemTrackingPayloadInterface,
+		callback: (report: SRContentItemTrackingInterface) => void
+	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: RobotTypeEnum.ITEM_TRACKING
@@ -503,15 +508,10 @@ export const RobotItemTrackingLinkFetch =
 		return RobotsService.robotItemTrackingLinkFetch(robotId, payload)
 			.then(async (res) => {
 				// dispatch: success
-				dispatch(
-					success({
-						...state,
-						response: {
-							...res,
-							purchaseId: payload.purchaseId
-						}
-					})
-				);
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
 			})
 			.catch(() => {
 				// dispatch: trigger message

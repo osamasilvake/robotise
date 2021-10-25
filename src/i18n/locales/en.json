@@ -1029,7 +1029,7 @@
 						"PURCHASE": {
 							"LINK": {
 								"TITLE": "Purchase",
-								"TEXT": "Link to Purchase"
+								"TEXT": "Purchase details"
 							}
 						}
 					}
@@ -1084,7 +1084,7 @@
 							"MODE": "Mode",
 							"CREATED": "Created",
 							"ORIGIN": "Origin",
-							"LINK_PURCHASE": "Purchase"
+							"PURCHASE_DETAILS": "Purchase"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -1114,7 +1114,7 @@
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
 							},
-							"LINK_PURCHASE": "Link to Purchase"
+							"PURCHASE_DETAILS": "Purchase details"
 						}
 					}
 				}
@@ -1124,11 +1124,8 @@
 					"HEAD": {
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",
-						"LINK_ORDER": "Link to Order",
-						"ITEM_TRACKING": {
-							"REQUEST": "Item Tracking",
-							"VISIT": "Link to Kibana"
-						},
+						"ORDER_DETAILS": "Order details",
+						"ITEM_TRACKING": "Tracking details",
 						"TITLE": "Products"
 					},
 					"TABLE": {
@@ -1162,7 +1159,7 @@
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
 							"COMMENT": "Comment",
-							"LINK_ORDER": "Order",
+							"ORDER_DETAILS": "Order",
 							"ITEM_TRACKING": "Item Tracking"
 						},
 						"VALUES": {
@@ -1179,11 +1176,8 @@
 							"TARGET": {
 								"UN_BILLED": "Unbilled"
 							},
-							"LINK_ORDER": "Link to Order",
-							"ITEM_TRACKING": {
-								"REQUEST": "Request",
-								"VISIT": "Link to Kibana"
-							}
+							"ORDER_DETAILS": "Order details",
+							"ITEM_TRACKING": "Details"
 						}
 					}
 				}
@@ -1321,9 +1315,6 @@
 					"LINK": "Link",
 					"UPDATED_AT": "Updated At"
 				}
-			},
-			"VALUES": {
-				"LINK": "Link to Kibana"
 			}
 		}
 	},

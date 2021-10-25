@@ -323,7 +323,7 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch item tracking link from kibana
+	 * fetch item tracking link
 	 * @param robotId
 	 * @param payload
 	 * @returns

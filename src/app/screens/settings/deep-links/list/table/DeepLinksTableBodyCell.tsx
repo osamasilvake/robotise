@@ -26,7 +26,6 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 		if (DeepLinksTableColumnsTypeEnum.UPDATED_AT === column.id) {
 			return momentFormat1(value);
 		} else if (DeepLinksTableColumnsTypeEnum.LINK === column.id) {
-			console.log(value);
 			return (
 				<Link underline="hover" variant="body2" href={String(value)} target="_blank">
 					{t('LIST.VALUES.LINK')}

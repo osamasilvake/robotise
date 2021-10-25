@@ -2,18 +2,18 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import AlertCodesService from '../../../screens/information/alert-codes/AlertCodes.service';
-import { AlertCodesListPayloadInterface } from '../../../screens/information/alert-codes/list/AlertCodesList.interface';
+import DeepLinksService from '../../../screens/settings/deep-links/DeepLinks.service';
+import { DeepLinksListPayloadInterface } from '../../../screens/settings/deep-links/list/DeepLinksList.interface';
 import { AppReducerType } from '../..';
-import { deserializeAlertCodes } from './AlertCodes.deserialize';
+import { deserializeDeepLinks } from './DeepLinks.deserialize';
 import {
-	SACContentInterface,
-	SACStateInterface,
-	SliceAlertCodesInterface
-} from './AlertCodes.interface';
+	SDLContentInterface,
+	SDLStateInterface,
+	SliceDeepLinksInterface
+} from './DeepLinks.interface';
 
 // initial state
-export const initialState: SliceAlertCodesInterface = {
+export const initialState: SliceDeepLinksInterface = {
 	loader: false,
 	loading: false,
 	content: null,
@@ -22,7 +22,7 @@ export const initialState: SliceAlertCodesInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Alert Codes',
+	name: 'Deep Links',
 	initialState,
 	reducers: {
 		loader: (state) => {
@@ -54,37 +54,37 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, updated, reset } = dataSlice.actions;
 
 // selector
-export const alertCodesSelector = (state: AppReducerType) => state['alertCodes'];
+export const deepLinksSelector = (state: AppReducerType) => state['deepLinks'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch alert codes
+ * fetch deep links
  * @param payload
  * @param refresh
  * @returns
  */
-export const AlertCodesFetchList =
-	(payload: AlertCodesListPayloadInterface, refresh = false) =>
+export const DeepLinksFetchList =
+	(payload: DeepLinksListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const alertCodes = states.alertCodes;
+		const deepLinks = states.deepLinks;
 
 		// return on busy
-		if (alertCodes && (alertCodes.loader || alertCodes.loading)) {
+		if (deepLinks && (deepLinks.loader || deepLinks.loading)) {
 			return;
 		}
 
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		// fetch alert codes
-		return AlertCodesService.alertCodesFetch(payload)
+		// fetch deep links
+		return DeepLinksService.deepLinksFetch(payload)
 			.then(async (res) => {
 				// deserialize response
-				let result: SACContentInterface = await deserializeAlertCodes(res);
+				let result: SDLContentInterface = await deserializeDeepLinks(res);
 
 				// state
 				result = {
@@ -93,9 +93,9 @@ export const AlertCodesFetchList =
 				};
 
 				// handle refresh and pagination
-				if (alertCodes && alertCodes.content) {
+				if (deepLinks && deepLinks.content) {
 					result = handleRefreshAndPagination(
-						alertCodes.content,
+						deepLinks.content,
 						result,
 						refresh,
 						payload.rowsPerPage
@@ -108,7 +108,7 @@ export const AlertCodesFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-alert-codes-error',
+					id: 'fetch-deep-links-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -124,15 +124,15 @@ export const AlertCodesFetchList =
  * @param state
  * @returns
  */
-export const AlertCodesUpdateState =
-	(state: SACStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const DeepLinksUpdateState =
+	(state: SDLStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const alertCodes = states.alertCodes;
+		const DeepLinks = states.deepLinks;
 
-		if (alertCodes && alertCodes.content) {
+		if (DeepLinks && DeepLinks.content) {
 			const result = {
-				...alertCodes.content,
+				...DeepLinks.content,
 				state
 			};
 
@@ -150,8 +150,8 @@ export const AlertCodesUpdateState =
  * @returns
  */
 const handleRefreshAndPagination = (
-	current: SACContentInterface,
-	result: SACContentInterface,
+	current: SDLContentInterface,
+	result: SDLContentInterface,
 	refresh: boolean,
 	rowsPerPage: number
 ) => {

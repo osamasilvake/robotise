@@ -72,7 +72,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		if (RobotOrdersTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
 		} else if (
-			RobotOrdersTableColumnsTypeEnum.LINK_PURCHASE === column.id &&
+			RobotOrdersTableColumnsTypeEnum.PURCHASE_DETAILS === column.id &&
 			order.orderReport?.id
 		) {
 			return (
@@ -81,7 +81,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 					variant="body2"
 					underline="hover"
 					onClick={handleShowPurchaseDetail(order.orderReport.id)}>
-					{t(`${translation}.TABLE.VALUES.LINK_PURCHASE`)}
+					{t(`${translation}.TABLE.VALUES.PURCHASE_DETAILS`)}
 				</Link>
 			);
 		} else if (typeof value === 'string') {

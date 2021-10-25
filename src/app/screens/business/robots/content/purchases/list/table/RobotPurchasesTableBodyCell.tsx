@@ -53,12 +53,12 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	};
 
 	/**
-	 * request item tracking link
+	 * handle item tracking link
 	 * @param index
 	 * @param purchase
 	 * @returns
 	 */
-	const requestItemTrackingLink =
+	const handleItemTrackingLink =
 		(index: number, purchase: SPCDataInterface) => (event: MouseEvent<HTMLDivElement>) => {
 			// stop propagation
 			event.stopPropagation();
@@ -66,13 +66,18 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			// set index
 			setIdx(index);
 
-			// dispatch: fetch item tracking link from kibana
+			// dispatch: fetch item tracking link
 			dispatch(
-				RobotItemTrackingLinkFetch(cRobotId, {
-					purchaseId: purchase.id,
-					from: moment15MinsFromDate(purchase.createdAt),
-					to: purchase.createdAt
-				})
+				RobotItemTrackingLinkFetch(
+					cRobotId,
+					{
+						from: moment15MinsFromDate(purchase.createdAt),
+						to: purchase.createdAt
+					},
+					(res) => {
+						res.data && window.open(res.data.dlink);
+					}
+				)
 			);
 		};
 
@@ -87,40 +92,21 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 		column: RobotPurchasesTableColumnInterface
 	) => {
 		if (column.id === RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING) {
-			const condition1 = idx === -1 || idx === index;
-			const condition2 = robot.itemTracking.content?.purchaseId === purchase.id;
-			const condition3 = robot.itemTracking.content?.data?.dlink;
-
 			return (
-				<>
-					{!(condition1 && condition2 && condition3) && (
-						<Chip
-							size="small"
-							label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.ITEM_TRACKING.REQUEST')}
-							color="primary"
-							variant="outlined"
-							clickable
-							icon={
-								robot.itemTracking.loading && idx === index ? (
-									<CircularProgress size={20} />
-								) : undefined
-							}
-							disabled={robot.itemTracking.loading}
-							onClick={requestItemTrackingLink(index, purchase)}
-						/>
-					)}
-
-					{!robot.itemTracking.loading && condition1 && condition2 && condition3 && (
-						<Link
-							underline="hover"
-							variant="body2"
-							href={String(condition3)}
-							target="_blank"
-							onClick={(e) => e.stopPropagation()}>
-							{t('CONTENT.PURCHASES.LIST.TABLE.VALUES.ITEM_TRACKING.VISIT')}
-						</Link>
-					)}
-				</>
+				<Chip
+					size="small"
+					label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.ITEM_TRACKING')}
+					color="primary"
+					variant="outlined"
+					clickable
+					icon={
+						robot.itemTracking.loading && idx === index ? (
+							<CircularProgress size={20} />
+						) : undefined
+					}
+					disabled={robot.itemTracking.loading}
+					onClick={handleItemTrackingLink(index, purchase)}
+				/>
 			);
 		} else {
 			const value = purchase[column.id];
@@ -154,7 +140,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			} else if (RobotPurchasesTableColumnsTypeEnum.COMMENT === column.id) {
 				return <TableFieldComment purchase={purchase} />;
 			} else if (
-				RobotPurchasesTableColumnsTypeEnum.LINK_ORDER === column.id &&
+				RobotPurchasesTableColumnsTypeEnum.ORDER_DETAILS === column.id &&
 				purchase.order?.id
 			) {
 				return (
@@ -163,7 +149,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						variant="body2"
 						underline="hover"
 						onClick={handleShowOrderDetail(purchase.order.id)}>
-						{t('CONTENT.PURCHASES.LIST.TABLE.VALUES.LINK_ORDER')}
+						{t('CONTENT.PURCHASES.LIST.TABLE.VALUES.ORDER_DETAILS')}
 					</Link>
 				);
 			}

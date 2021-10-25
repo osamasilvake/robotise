@@ -41,6 +41,7 @@ export interface SRContentMapInterface {
 }
 
 export interface SRContentItemTrackingInterface {
-	data: { dlink: string };
-	purchaseId: string;
+	data: {
+		dlink: string;
+	};
 }

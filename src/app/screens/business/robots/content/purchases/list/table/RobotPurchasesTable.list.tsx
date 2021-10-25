@@ -6,7 +6,7 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.TARGET,
 		label: `${translation}.TARGET`,
-		minWidth: 150,
+		minWidth: 130,
 		align: 'left'
 	},
 	{
@@ -28,16 +28,16 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotPurchasesTableColumnsTypeEnum.LINK_ORDER,
-		label: `${translation}.LINK_ORDER`,
-		minWidth: 150,
+		id: RobotPurchasesTableColumnsTypeEnum.ORDER_DETAILS,
+		label: `${translation}.ORDER_DETAILS`,
+		minWidth: 120,
 		align: 'left',
 		noSort: true
 	},
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING,
 		label: `${translation}.ITEM_TRACKING`,
-		minWidth: 200,
+		minWidth: 150,
 		align: 'right',
 		noSort: true
 	}

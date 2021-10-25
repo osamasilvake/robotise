@@ -6,7 +6,6 @@ export interface RobotPurchasesListPayloadInterface {
 }
 
 export interface RobotPurchaseItemTrackingPayloadInterface {
-	purchaseId: string;
 	from: Date;
 	to: Date;
 }

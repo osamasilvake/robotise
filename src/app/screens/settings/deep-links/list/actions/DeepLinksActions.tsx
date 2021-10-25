@@ -11,7 +11,7 @@ const DeepLinksActions: FC = () => {
 	const { t } = useTranslation('DEEP_LINKS');
 	const classes = DeepLinksActionsStyle();
 
-	const [createLink, setCreateLink] = useState(false);
+	const [, setCreateLink] = useState(false);
 
 	/**
 	 * handle speed dial actions

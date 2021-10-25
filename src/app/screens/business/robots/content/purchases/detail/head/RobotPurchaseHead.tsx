@@ -29,8 +29,6 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 
 	const translation = 'CONTENT.PURCHASES.DETAIL.HEAD';
 	const cRobotId = params.robotId;
-	const condition1 = robot.itemTracking.content?.purchaseId === purchase?.content?.id;
-	const condition2 = robot.itemTracking.content?.data?.dlink;
 
 	/**
 	 * handle show order detail
@@ -50,18 +48,23 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	};
 
 	/**
-	 * request item tracking link
+	 * handle item tracking link
 	 * @returns
 	 */
-	const requestItemTrackingLink = () => {
+	const handleItemTrackingLink = () => {
 		if (purchase && purchase.content) {
-			// dispatch: fetch item tracking link from kibana
+			// dispatch: fetch item tracking link
 			dispatch(
-				RobotItemTrackingLinkFetch(cRobotId, {
-					purchaseId: purchase.content.id,
-					from: moment15MinsFromDate(purchase.content.createdAt),
-					to: purchase.content.createdAt
-				})
+				RobotItemTrackingLinkFetch(
+					cRobotId,
+					{
+						from: moment15MinsFromDate(purchase.content.createdAt),
+						to: purchase.content.createdAt
+					},
+					(res) => {
+						res.data && window.open(res.data.dlink);
+					}
+				)
 			);
 		}
 	};
@@ -86,44 +89,27 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 				{purchase?.content?.order?.id && (
 					<Box>
 						<Link
-							underline="hover"
 							component="button"
 							variant="body2"
 							onClick={handleShowOrderDetail(purchase.content.order.id)}>
-							{t(`${translation}.LINK_ORDER`)}
+							{t(`${translation}.ORDER_DETAILS`)}
 						</Link>
 					</Box>
 				)}
 
 				<Box>
-					<>
-						{!(condition1 && condition2) && (
-							<Chip
-								size="small"
-								label={t(`${translation}.ITEM_TRACKING.REQUEST`)}
-								color="primary"
-								variant="outlined"
-								clickable
-								icon={
-									robot.itemTracking.loading ? (
-										<CircularProgress size={20} />
-									) : undefined
-								}
-								disabled={robot.itemTracking.loading}
-								onClick={requestItemTrackingLink}
-							/>
-						)}
-						{!robot.itemTracking.loading && condition1 && condition2 && (
-							<Link
-								underline="hover"
-								variant="body2"
-								href={String(condition2)}
-								target="_blank"
-								onClick={(e) => e.stopPropagation()}>
-								{t(`${translation}.ITEM_TRACKING.VISIT`)}
-							</Link>
-						)}
-					</>
+					<Chip
+						size="small"
+						label={t(`${translation}.ITEM_TRACKING`)}
+						color="primary"
+						variant="outlined"
+						clickable
+						icon={
+							robot.itemTracking.loading ? <CircularProgress size={20} /> : undefined
+						}
+						disabled={robot.itemTracking.loading}
+						onClick={handleItemTrackingLink}
+					/>
 				</Box>
 			</Stack>
 

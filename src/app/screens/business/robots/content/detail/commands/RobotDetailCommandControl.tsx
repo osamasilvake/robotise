@@ -52,7 +52,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					className={clsx({
 						['selected']:
 							!state.control &&
-							robotTwins.controlMode.value ===
+							robotTwins?.controlMode?.value ===
 								RobotDetailControlModeTypeEnum.AUTONOMOUS
 					})}
 					onClick={sendControlCommand({
@@ -65,7 +65,8 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					className={clsx({
 						['selected']:
 							!state.control &&
-							robotTwins.controlMode.value === RobotDetailControlModeTypeEnum.JOYSTICK
+							robotTwins?.controlMode?.value ===
+								RobotDetailControlModeTypeEnum.JOYSTICK
 					})}
 					onClick={sendControlCommand({
 						command: RobotDetailCommandsTypeEnum.CONTROL_MODE,

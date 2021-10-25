@@ -64,13 +64,13 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 						updatedAt: meta.alerts?.updatedAt
 					},
 					controlMode: {
-						value: state.status.controlMode,
-						updatedAt: meta.status.controlMode.updatedAt
+						value: state.status?.controlMode,
+						updatedAt: meta.status?.controlMode?.updatedAt
 					},
 					mission: {
-						status: state.status.mission?.status || '',
-						description: state.status.mission?.description || '',
-						updatedAt: meta.status.mission?.updatedAt
+						status: state.status?.mission?.status || '',
+						description: state.status?.mission?.description || '',
+						updatedAt: meta.status?.mission?.updatedAt
 					},
 					location: state.status.location && {
 						value: state.status.location,
@@ -101,13 +101,13 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 						},
 						updatedAt: meta.status.batteryState.updatedAt
 					},
-					dockingState: meta.status.isDocked && {
+					dockingState: meta.status?.isDocked && {
 						properties: {
 							isDocked: state.status.isDocked
 						},
 						updatedAt: meta.status.isDocked.updatedAt
 					},
-					joystickState: meta.status.isJoystickConnected && {
+					joystickState: meta.status?.isJoystickConnected && {
 						properties: {
 							isConnected: state.status.isJoystickConnected
 						},
@@ -136,7 +136,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							magnetSensorRight: state.status.safetySensors.magnetSensorRight,
 							safetyEdge: state.status.safetySensors.safetyEdge
 						},
-						updatedAt: meta.status.safetySensors.updatedAt
+						updatedAt: meta.status?.safetySensors?.updatedAt
 					},
 					safetySystems: state.status.safetySystem && {
 						properties: {
@@ -164,7 +164,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							wifiStatus: state.status.computerInfo.wifiStatus,
 							hardDrives: state.status.computerInfo.hardDrives
 						},
-						updatedAt: meta.status.computerInfo.updatedAt
+						updatedAt: meta.status?.computerInfo?.updatedAt
 					},
 					humanPerception: {
 						properties: {
@@ -173,7 +173,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							legsCloseCount: state.status.humanPerception.legsCloseCount,
 							legsFarCount: state.status.humanPerception.legsFarCount
 						},
-						updatedAt: meta.status.computerInfo.updatedAt
+						updatedAt: meta.status?.computerInfo?.updatedAt
 					},
 					transitPointStarted: {
 						properties: {
@@ -181,7 +181,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							protobufVersion: state.transitPointStarted.protobufVersion,
 							repositories: state.transitPointStarted.repositories
 						},
-						updatedAt: meta.status.computerInfo.updatedAt
+						updatedAt: meta.status?.computerInfo?.updatedAt
 					}
 				};
 				return result;

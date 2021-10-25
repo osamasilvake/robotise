@@ -32,7 +32,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 		translate: false
 	});
 
-	const controlMode = robotTwins.controlMode.value;
+	const controlMode = robotTwins?.controlMode?.value;
 	const muteSensorBack = robotTwins.safetySystems?.properties.backMutingActive;
 	const muteSensorFront = robotTwins.safetySystems?.properties.frontMutingActive;
 

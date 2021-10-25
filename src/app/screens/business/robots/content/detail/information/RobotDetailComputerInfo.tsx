@@ -30,14 +30,18 @@ const RobotDetailComputerInfo: FC<RobotDetailComputerInfoInterface> = (props) =>
 						<ListItemIcon>
 							<Icon>{t(row.icon)}</Icon>
 						</ListItemIcon>
-						<ListItemText primary={t(row.label)} />
+						<ListItemText
+							primary={t(row.label)}
+							secondary={!Array.isArray(row.value) && row.value}
+						/>
 					</ListItem>
-					{Object.values(row.value).map((item) => (
-						<ListItem key={item.key} dense>
-							<ListItemIcon />
-							<ListItemText primary={item.key} secondary={item.value} />
-						</ListItem>
-					))}
+					{Array.isArray(row.value) &&
+						row.value.map((item, index) => (
+							<ListItem key={index} dense>
+								<ListItemIcon />
+								<ListItemText primary={item.key} secondary={item.value} />
+							</ListItem>
+						))}
 				</Collapse>
 			))}
 		</List>

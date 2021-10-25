@@ -63,10 +63,11 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Box>
 					<Status
 						active={
-							robotTwins.controlMode.value ===
+							robotTwins?.controlMode?.value ===
 							RobotDetailControlModeTypeEnum.AUTONOMOUS
 						}>
-						{strRemoveSymbols(robotTwins.controlMode.value)}
+						{robotTwins?.controlMode?.value &&
+							strRemoveSymbols(robotTwins.controlMode.value)}
 					</Status>
 				</Box>
 			</Grid>

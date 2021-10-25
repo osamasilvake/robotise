@@ -32,23 +32,33 @@ const RobotDetailInformation: FC<RobotDetailInformationInterface> = (props) => {
 
 			{/* Grid */}
 			<Grid container spacing={1} className={classes.sGridContainer}>
-				<Grid item xs={12} md={6}>
-					<RobotDetailSafetySystems systems={robotTwins.safetySystems} />
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<RobotDetailSafetySensors sensors={robotTwins.safetySensors} />
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<RobotDetailComputerInfo computerInfo={robotTwins.computerInfo} />
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<RobotDetailHumanPerception humanPerception={robotTwins.humanPerception} />
-				</Grid>
-				<Grid item xs={12} md={6}>
-					<RobotDetailTransitPointStarted
-						transitPointStarted={robotTwins.transitPointStarted}
-					/>
-				</Grid>
+				{robotTwins.safetySystems && (
+					<Grid item xs={12} md={6}>
+						<RobotDetailSafetySystems systems={robotTwins.safetySystems} />
+					</Grid>
+				)}
+				{robotTwins.safetySensors && (
+					<Grid item xs={12} md={6}>
+						<RobotDetailSafetySensors sensors={robotTwins.safetySensors} />
+					</Grid>
+				)}
+				{robotTwins.computerInfo && (
+					<Grid item xs={12} md={6}>
+						<RobotDetailComputerInfo computerInfo={robotTwins.computerInfo} />
+					</Grid>
+				)}
+				{robotTwins.humanPerception && (
+					<Grid item xs={12} md={6}>
+						<RobotDetailHumanPerception humanPerception={robotTwins.humanPerception} />
+					</Grid>
+				)}
+				{robotTwins.transitPointStarted && (
+					<Grid item xs={12} md={6}>
+						<RobotDetailTransitPointStarted
+							transitPointStarted={robotTwins.transitPointStarted}
+						/>
+					</Grid>
+				)}
 			</Grid>
 		</Box>
 	);

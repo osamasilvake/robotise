@@ -1,6 +1,6 @@
 import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
@@ -25,6 +25,8 @@ import RobotPurchasesTableBodyCell from './RobotPurchasesTableBodyCell';
 const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
 	const classes = RobotPurchasesTableStyle();
+
+	const [idx, setIdx] = useState(-1);
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
@@ -67,19 +69,22 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 		type: RobotPurchasesTableSortTypeEnum
 	) => {
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
-			switch (type) {
-				case RobotPurchasesTableSortTypeEnum.NUMBER:
-					return a[key] && b[key] ? Number(a[key]) - Number(b[key]) : a[key] ? 1 : -1;
-				case RobotPurchasesTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
-				case RobotPurchasesTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			if (key !== RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING) {
+				switch (type) {
+					case RobotPurchasesTableSortTypeEnum.NUMBER:
+						return a[key] && b[key] ? Number(a[key]) - Number(b[key]) : a[key] ? 1 : -1;
+					case RobotPurchasesTableSortTypeEnum.DATE:
+						return momentSort(a[key]).diff(momentSort(b[key]));
+					case RobotPurchasesTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 
@@ -103,7 +108,7 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((purchase: SPCDataInterface) => (
+					.map((purchase: SPCDataInterface, index: number) => (
 						<TableRow
 							hover={!content.state?.locked && Number(purchase.totalPrice) > 0}
 							key={purchase.id}
@@ -119,6 +124,9 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 							{columns.map((column: RobotPurchasesTableColumnInterface) => (
 								<RobotPurchasesTableBodyCell
 									key={column.id}
+									index={index}
+									idx={idx}
+									setIdx={setIdx}
 									purchase={purchase}
 									column={column}
 								/>

@@ -39,7 +39,7 @@ const RobotOrderFoot: FC<RobotOrderFootInterface> = (props) => {
 			</Typography>
 			<Link
 				component="button"
-				variant="body1"
+				variant="body2"
 				underline="hover"
 				onClick={handleShowPurchaseDetail(order.content.orderReport.id)}>
 				{t('CONTENT.ORDERS.DETAIL.FOOT.PURCHASE.LINK.TEXT')}

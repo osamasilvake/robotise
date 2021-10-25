@@ -60,6 +60,11 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				</FormControl>
 				<Button
 					variant="outlined"
+					className={classes.sCommandsActionButton}
+					onClick={sendControlCommand({
+						command: RobotDetailCommandsTypeEnum.ROTATE,
+						state: Number(rotate)
+					})}
 					disabled={
 						rotate === rotateAngles[4].value ||
 						!state.ready ||
@@ -67,12 +72,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						state.forward ||
 						state.backward ||
 						robot.control.loading
-					}
-					className={classes.sCommandsActionButton}
-					onClick={sendControlCommand({
-						command: RobotDetailCommandsTypeEnum.ROTATE,
-						state: Number(rotate)
-					})}>
+					}>
 					{t(`${translation}.ROTATE.BUTTON`)}
 				</Button>
 			</Box>
@@ -109,17 +109,17 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				</FormControl>
 				<Button
 					variant="outlined"
+					className={classes.sCommandsActionButton}
+					onClick={sendControlCommand({
+						command: RobotDetailCommandsTypeEnum.TRANSLATE,
+						state: Number(translate)
+					})}
 					disabled={
 						translate === translateDistances[4].value ||
 						!state.ready ||
 						!state.control ||
 						robot.control.loading
-					}
-					className={classes.sCommandsActionButton}
-					onClick={sendControlCommand({
-						command: RobotDetailCommandsTypeEnum.TRANSLATE,
-						state: Number(translate)
-					})}>
+					}>
 					{t(`${translation}.TRANSLATE.BUTTON`)}
 				</Button>
 			</Box>

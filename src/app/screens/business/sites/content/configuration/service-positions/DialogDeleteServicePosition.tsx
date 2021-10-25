@@ -65,8 +65,8 @@ const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (p
 			<DialogActions>
 				<Button
 					variant="outlined"
-					disabled={servicePositions.updating}
-					onClick={deleteServicePosition(false)}>
+					onClick={deleteServicePosition(false)}
+					disabled={servicePositions.updating}>
 					{t('BUTTONS.CANCEL')}
 				</Button>
 				<Button

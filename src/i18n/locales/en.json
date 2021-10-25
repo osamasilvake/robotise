@@ -223,6 +223,9 @@
 				"EDIT_COMMENT": {
 					"SUCCESS": "Comment has been updated successfully!",
 					"ERROR": "Unable to edit a comment field!"
+				},
+				"ITEM_TRACKING": {
+					"ERROR": "Failed to fetch item tracking link!"
 				}
 			},
 			"CONFIGURATION": {
@@ -1025,8 +1028,8 @@
 					"FOOT": {
 						"PURCHASE": {
 							"LINK": {
-								"TITLE": "Purchase Report",
-								"TEXT": "Detail"
+								"TITLE": "Purchase",
+								"TEXT": "Link to Purchase"
 							}
 						}
 					}
@@ -1081,7 +1084,7 @@
 							"MODE": "Mode",
 							"CREATED": "Created",
 							"ORIGIN": "Origin",
-							"PURCHASE_REPORT": "Purchase Report"
+							"LINK_PURCHASE": "Purchase"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -1111,7 +1114,7 @@
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
 							},
-							"PURCHASE_REPORT": "Detail"
+							"LINK_PURCHASE": "Link to Purchase"
 						}
 					}
 				}
@@ -1121,6 +1124,11 @@
 					"HEAD": {
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",
+						"LINK_ORDER": "Link to Order",
+						"ITEM_TRACKING": {
+							"REQUEST": "Item Tracking",
+							"VISIT": "Link to Kibana"
+						},
 						"TITLE": "Products"
 					},
 					"TABLE": {
@@ -1135,13 +1143,7 @@
 						}
 					},
 					"FOOT": {
-						"NOTE": "Note",
-						"ORDER": {
-							"LINK": {
-								"TITLE": "Order Status",
-								"TEXT": "Detail"
-							}
-						}
+						"NOTE": "Note"
 					}
 				},
 				"LIST": {
@@ -1160,7 +1162,8 @@
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
 							"COMMENT": "Comment",
-							"ORDER_STATUS": "Order Status"
+							"LINK_ORDER": "Order",
+							"ITEM_TRACKING": "Item Tracking"
 						},
 						"VALUES": {
 							"COMMENT": {
@@ -1176,7 +1179,11 @@
 							"TARGET": {
 								"UN_BILLED": "Unbilled"
 							},
-							"ORDER_STATUS": "Detail"
+							"LINK_ORDER": "Link to Order",
+							"ITEM_TRACKING": {
+								"REQUEST": "Request",
+								"VISIT": "Link to Kibana"
+							}
 						}
 					}
 				}

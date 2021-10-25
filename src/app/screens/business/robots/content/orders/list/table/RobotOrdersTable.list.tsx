@@ -34,8 +34,8 @@ export const columns: RobotOrdersTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotOrdersTableColumnsTypeEnum.PURCHASE_REPORT,
-		label: `${translation}.PURCHASE_REPORT`,
+		id: RobotOrdersTableColumnsTypeEnum.LINK_PURCHASE,
+		label: `${translation}.LINK_PURCHASE`,
 		minWidth: 150,
 		align: 'right',
 		noSort: true

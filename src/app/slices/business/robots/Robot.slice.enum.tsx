@@ -6,5 +6,6 @@ export enum RobotTypeEnum {
 	SYNC_PRODUCTS,
 	ROBOT_CONFIG,
 	ROBOT_SITE_CONFIG,
+	ITEM_TRACKING,
 	REPORTS
 }

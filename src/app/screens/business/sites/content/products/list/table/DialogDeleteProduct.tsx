@@ -69,8 +69,8 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 			<DialogActions>
 				<Button
 					variant="outlined"
-					disabled={products.updating}
-					onClick={deleteProduct(false)}>
+					onClick={deleteProduct(false)}
+					disabled={products.updating}>
 					{t('BUTTONS.CANCEL')}
 				</Button>
 				<Button

@@ -13,6 +13,7 @@ import {
 	RobotDetailControlModeTypeEnum
 } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
+import { RobotPurchaseItemTrackingPayloadInterface } from '../../../screens/business/robots/content/purchases/list/RobotPurchasesList.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
@@ -45,6 +46,10 @@ export const initialState: SliceRobotInterface = {
 	robotSiteConfig: {
 		loading: false
 	},
+	itemTracking: {
+		loading: false,
+		content: null
+	},
 	reports: {
 		loading: false
 	}
@@ -71,6 +76,8 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = true;
 			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = true;
+			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
+				state.itemTracking.loading = true;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
@@ -92,6 +99,9 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
+			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
+				state.itemTracking.loading = false;
+				state.itemTracking.content = response;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -113,6 +123,9 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = false;
 			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
+			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
+				state.itemTracking.loading = false;
+				state.itemTracking.content = response;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -465,6 +478,53 @@ export const RobotSiteConfigUpdate =
 
 				// dispatch: failure
 				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch item tracking link from kibana
+ * @param robotId
+ * @param payload
+ * @returns
+ */
+export const RobotItemTrackingLinkFetch =
+	(robotId: string, payload: RobotPurchaseItemTrackingPayloadInterface) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.ITEM_TRACKING
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotItemTrackingLinkFetch(robotId, payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(
+					success({
+						...state,
+						response: {
+							...res,
+							purchaseId: payload.purchaseId
+						}
+					})
+				);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-item-tracking-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.PURCHASES.ITEM_TRACKING.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
 			});
 	};
 

@@ -3,7 +3,8 @@ export enum RobotPurchasesTableColumnsTypeEnum {
 	CREATED = 'createdAt',
 	TOTAL_PRICE = 'totalPrice',
 	COMMENT = 'comment',
-	ORDER_STATUS = 'order'
+	LINK_ORDER = 'order',
+	ITEM_TRACKING = 'kibana'
 }
 
 export enum RobotPurchasesTableSortTypeEnum {

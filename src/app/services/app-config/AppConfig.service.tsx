@@ -276,6 +276,9 @@ class AppConfigService extends EnvService {
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
 						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
+						LINKS: {
+							ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`
+						},
 						REPORTS: {
 							PURCHASES: `${this.envAppUrl}/order-report-export`
 						}

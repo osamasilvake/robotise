@@ -28,9 +28,16 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotPurchasesTableColumnsTypeEnum.ORDER_STATUS,
-		label: `${translation}.ORDER_STATUS`,
+		id: RobotPurchasesTableColumnsTypeEnum.LINK_ORDER,
+		label: `${translation}.LINK_ORDER`,
 		minWidth: 150,
+		align: 'left',
+		noSort: true
+	},
+	{
+		id: RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING,
+		label: `${translation}.ITEM_TRACKING`,
+		minWidth: 200,
 		align: 'right',
 		noSort: true
 	}

@@ -29,8 +29,6 @@ export interface RobotPurchasesTableBodyInterface {
 
 export interface RobotPurchasesTableBodyCellInterface {
 	index: number;
-	idx: number;
-	setIdx: Dispatch<SetStateAction<number>>;
 	purchase: SPCDataInterface;
 	column: RobotPurchasesTableColumnInterface;
 }

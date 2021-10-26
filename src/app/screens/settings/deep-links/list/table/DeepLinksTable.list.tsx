@@ -22,13 +22,6 @@ export const columns: DeepLinksTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: DeepLinksTableColumnsTypeEnum.LINK,
-		label: `${translation}.LINK`,
-		minWidth: 170,
-		align: 'left',
-		noSort: true
-	},
-	{
 		id: DeepLinksTableColumnsTypeEnum.UPDATED_AT,
 		label: `${translation}.UPDATED_AT`,
 		minWidth: 200,

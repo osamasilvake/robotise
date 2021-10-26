@@ -38,7 +38,6 @@ export interface DeepLinksTableColumnInterface {
 	minWidth?: number;
 	width?: number;
 	align?: DeepLinksTableHeadAlignment;
-	noSort?: boolean;
 }
 
 export type DeepLinksTableHeadOrder = 'asc' | 'desc';

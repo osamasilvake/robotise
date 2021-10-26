@@ -30,6 +30,7 @@ const DeepLinksTableBody: FC<DeepLinksTableBodyInterface> = (props) => {
 				break;
 			case DeepLinksTableColumnsTypeEnum.NAME:
 			case DeepLinksTableColumnsTypeEnum.DESCRIPTION:
+			case DeepLinksTableColumnsTypeEnum.KEY:
 				type = DeepLinksTableSortTypeEnum.STRING;
 				break;
 			default:

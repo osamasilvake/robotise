@@ -2,6 +2,7 @@ import { Box, Chip, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import ReadMore from '../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../services';
 import { SDLDataInterface } from '../../../../../slices/settings/deep-links/DeepLinks.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
@@ -76,6 +77,8 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 			const value = deepLink[column.id];
 			if (DeepLinksTableColumnsTypeEnum.UPDATED_AT === column.id) {
 				return momentFormat1(value);
+			} else if (DeepLinksTableColumnsTypeEnum.DESCRIPTION === column.id) {
+				return <ReadMore text={String(value)} />;
 			}
 			return value || AppConfigService.AppOptions.common.none;
 		}

@@ -82,7 +82,7 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 							<FormControl error fullWidth margin="normal">
 								<TextField
 									required
-									type="string"
+									type="text"
 									id="name"
 									name="name"
 									value={values?.name}
@@ -100,27 +100,7 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 							<FormControl error fullWidth margin="normal">
 								<TextField
 									required
-									type="string"
-									id="description"
-									name="description"
-									value={values?.description}
-									error={!!errors?.description}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
-									label={t(`${translation}.FIELDS.DESCRIPTION.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.DESCRIPTION.PLACEHOLDER`)}
-								/>
-								{errors?.description && (
-									<FormHelperText>{t(errors.description)}</FormHelperText>
-								)}
-							</FormControl>
-						</Grid>
-
-						<Grid item xs={12} sm={6} md={6}>
-							<FormControl error fullWidth>
-								<TextField
-									required
-									type="string"
+									type="text"
 									id="key"
 									name="key"
 									value={values?.key}
@@ -134,11 +114,11 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 							</FormControl>
 						</Grid>
 
-						<Grid item xs={12} sm={6} md={6}>
+						<Grid item xs={12}>
 							<FormControl error fullWidth>
 								<TextField
 									required
-									type="string"
+									type="text"
 									id="link"
 									name="link"
 									value={values?.link}
@@ -149,6 +129,28 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 									placeholder={t(`${translation}.FIELDS.LINK.PLACEHOLDER`)}
 								/>
 								{errors?.link && <FormHelperText>{t(errors.link)}</FormHelperText>}
+							</FormControl>
+						</Grid>
+
+						<Grid item xs={12}>
+							<FormControl error fullWidth margin="dense">
+								<TextField
+									required
+									multiline
+									type="text"
+									id="description"
+									name="description"
+									rows={6}
+									value={values?.description}
+									error={!!errors?.description}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									label={t(`${translation}.FIELDS.DESCRIPTION.LABEL`)}
+									placeholder={t(`${translation}.FIELDS.DESCRIPTION.PLACEHOLDER`)}
+								/>
+								{errors?.description && (
+									<FormHelperText>{t(errors.description)}</FormHelperText>
+								)}
 							</FormControl>
 						</Grid>
 					</Grid>

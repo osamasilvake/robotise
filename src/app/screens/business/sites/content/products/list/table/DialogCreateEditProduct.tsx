@@ -66,7 +66,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 			},
 			CreateEditProductValidation,
 			async () => {
-				// dispatch: create/edit a product
+				// dispatch: create/edit product
 				cSiteId &&
 					dispatch(
 						ProductCreateEdit(

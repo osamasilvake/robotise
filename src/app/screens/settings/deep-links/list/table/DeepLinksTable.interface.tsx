@@ -1,10 +1,10 @@
-import { MouseEvent } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import {
 	SDLContentInterface,
 	SDLDataInterface
 } from '../../../../../slices/settings/deep-links/DeepLinks.interface';
-import { DeepLinksTableColumnsTypeEnum } from './DeepLinksTable.enum';
+import { DeepLinkCreateEditTypeEnum, DeepLinksTableColumnsTypeEnum } from './DeepLinksTable.enum';
 
 export interface DeepLinksTableInterface {
 	content: SDLContentInterface | null;
@@ -32,12 +32,27 @@ export interface DeepLinksTableBodyCellInterface {
 	column: DeepLinksTableColumnInterface;
 }
 
+export interface DialogCreateEditDeepLinkInterface {
+	deepLink?: SDLDataInterface | null;
+	type: DeepLinkCreateEditTypeEnum;
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface DialogCreateEditDeepLinkFormInterface {
+	name: string;
+	description: string;
+	key: string;
+	link: string;
+}
+
 export interface DeepLinksTableColumnInterface {
 	id: DeepLinksTableColumnsTypeEnum;
 	label: string;
 	minWidth?: number;
 	width?: number;
 	align?: DeepLinksTableHeadAlignment;
+	noSort?: boolean;
 }
 
 export type DeepLinksTableHeadOrder = 'asc' | 'desc';

@@ -1,6 +1,8 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { DeepLinksAxiosGetInterface } from './DeepLinks.interface';
 import { DeepLinksListPayloadInterface } from './list/DeepLinksList.interface';
+import { DeepLinkCreateEditTypeEnum } from './list/table/DeepLinksTable.enum';
+import { DialogCreateEditDeepLinkFormInterface } from './list/table/DeepLinksTable.interface';
 
 class DeepLinksService {
 	/**
@@ -14,6 +16,36 @@ class DeepLinksService {
 			params: {
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
+	 * create/edit deep link
+	 * @param deepLinkId
+	 * @param payload
+	 * @param type
+	 * @returns
+	 */
+	siteDeepLinkCreateEdit = (
+		deepLinkId: string | undefined,
+		payload: DialogCreateEditDeepLinkFormInterface,
+		type: DeepLinkCreateEditTypeEnum
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINKS;
+		if (type === DeepLinkCreateEditTypeEnum.EDIT) {
+			return HttpClientService.patch(`${url}/${deepLinkId}`, {
+				data: {
+					type: 'deeplinks',
+					id: deepLinkId,
+					attributes: payload
+				}
+			});
+		}
+		return HttpClientService.post(url, {
+			data: {
+				type: 'deeplinks',
+				attributes: payload
 			}
 		});
 	};

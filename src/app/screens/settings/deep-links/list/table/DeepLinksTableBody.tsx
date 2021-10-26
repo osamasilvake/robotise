@@ -51,17 +51,20 @@ const DeepLinksTableBody: FC<DeepLinksTableBodyInterface> = (props) => {
 		type: DeepLinksTableSortTypeEnum
 	) => {
 		return (a: SDLDataInterface, b: SDLDataInterface) => {
-			switch (type) {
-				case DeepLinksTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
-				case DeepLinksTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			if (key !== DeepLinksTableColumnsTypeEnum.ACTIONS) {
+				switch (type) {
+					case DeepLinksTableSortTypeEnum.DATE:
+						return momentSort(a[key]).diff(momentSort(b[key]));
+					case DeepLinksTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 

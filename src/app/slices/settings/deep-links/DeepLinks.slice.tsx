@@ -4,10 +4,15 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import DeepLinksService from '../../../screens/settings/deep-links/DeepLinks.service';
 import { DeepLinksListPayloadInterface } from '../../../screens/settings/deep-links/list/DeepLinksList.interface';
+import { DeepLinkCreateEditTypeEnum } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.enum';
+import { DialogCreateEditDeepLinkFormInterface } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.interface';
 import { AppReducerType } from '../..';
+import { triggerMessage } from '../../general/General.slice';
+import { deserializeDeepLink } from './DeepLink.deserialize';
 import { deserializeDeepLinks } from './DeepLinks.deserialize';
 import {
 	SDLContentInterface,
+	SDLDataInterface,
 	SDLStateInterface,
 	SliceDeepLinksInterface
 } from './DeepLinks.interface';
@@ -16,6 +21,7 @@ import {
 export const initialState: SliceDeepLinksInterface = {
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -43,15 +49,23 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
 		updated: (state, action) => {
+			state.updating = false;
 			state.content = action.payload;
+		},
+		updateFailed: (state) => {
+			state.updating = false;
 		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updated, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const deepLinksSelector = (state: AppReducerType) => state['deepLinks'];
@@ -120,6 +134,73 @@ export const DeepLinksFetchList =
 	};
 
 /**
+ * create/edit deep link
+ * @param deepLinkId
+ * @param payload
+ * @param type
+ * @param callback
+ * @returns
+ */
+export const DeepLinkCreateEdit =
+	(
+		deepLinkId: string | undefined,
+		payload: DialogCreateEditDeepLinkFormInterface,
+		type: DeepLinkCreateEditTypeEnum,
+		callback: () => void
+	) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const deepLinks = states.deepLinks;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		return DeepLinksService.siteDeepLinkCreateEdit(deepLinkId, payload, type)
+			.then(async (res) => {
+				// deserialize response
+				let result = await deserializeDeepLink(res);
+
+				if (deepLinks.content) {
+					// update created deep link
+					result = updateCreatedDeepLink(deepLinks.content, result);
+
+					// dispatch: updated
+					dispatch(updated(result));
+
+					// dispatch: trigger message
+					const message: TriggerMessageInterface = {
+						id: 'create-update-deep-link-success',
+						show: true,
+						severity: TriggerMessageTypeEnum.SUCCESS,
+						text: `DEEP_LINKS.${
+							type === DeepLinkCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
+						}.SUCCESS`
+					};
+					dispatch(triggerMessage(message));
+
+					// callback
+					callback();
+				}
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'create-update-deep-link-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `DEEP_LINKS.${
+						type === DeepLinkCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
+					}.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * update state
  * @param state
  * @returns
@@ -178,3 +259,17 @@ const handleRefreshAndPagination = (
 	}
 	return result;
 };
+
+/**
+ * update created deep link
+ * @param state
+ * @param deepLink
+ * @returns
+ */
+const updateCreatedDeepLink = (
+	state: SDLContentInterface,
+	deepLink: SDLDataInterface
+): SDLContentInterface => ({
+	...state,
+	data: [deepLink, ...state.data]
+});

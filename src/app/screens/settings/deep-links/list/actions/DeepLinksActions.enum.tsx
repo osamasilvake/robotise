@@ -1,3 +1,3 @@
 export enum DeepLinksActionsSpeedDialTypeEnum {
-	CREATE_LINK
+	CREATE_DEEP_LINK
 }

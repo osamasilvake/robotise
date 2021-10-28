@@ -27,8 +27,8 @@ export interface JsonApiMeta {
 	totalPages: number;
 	hasPrevPage: boolean;
 	hasNextPage: boolean;
-	prevPage: number;
-	nextPage: number;
+	prevPage: number | null;
+	nextPage: number | null;
 	page: number;
 	totalDocs: number;
 }

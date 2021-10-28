@@ -98,7 +98,7 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 					<FormControl error fullWidth margin="normal">
 						<TextField
 							required
-							type="string"
+							type="text"
 							id="name"
 							name="name"
 							value={values?.name}
@@ -113,7 +113,7 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 					<FormControl error fullWidth margin="normal">
 						<TextField
 							required
-							type="string"
+							type="text"
 							id="location"
 							name="location"
 							value={values?.location}

@@ -28,6 +28,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const history = useHistory();
 
 	const cRobotId = params.robotId;
+	const translation = 'CONTENT.ORDERS.LIST';
 
 	/**
 	 * open cancel order dialog
@@ -71,16 +72,16 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		if (RobotOrdersTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
 		} else if (
-			RobotOrdersTableColumnsTypeEnum.PURCHASE_REPORT === column.id &&
+			RobotOrdersTableColumnsTypeEnum.PURCHASE_DETAILS === column.id &&
 			order.orderReport?.id
 		) {
 			return (
 				<Link
 					component="button"
-					variant="body1"
+					variant="body2"
 					underline="hover"
 					onClick={handleShowPurchaseDetail(order.orderReport.id)}>
-					{t('CONTENT.ORDERS.LIST.TABLE.VALUES.PURCHASE_REPORT')}
+					{t(`${translation}.TABLE.VALUES.PURCHASE_DETAILS`)}
 				</Link>
 			);
 		} else if (typeof value === 'string') {
@@ -92,7 +93,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 							<>
 								<Chip
 									size="small"
-									label={t('CONTENT.ORDERS.LIST.ACTIONS.CANCEL.LABEL')}
+									label={t(`${translation}..ACTIONS.CANCEL.LABEL`)}
 									variant="outlined"
 									color="error"
 									onDelete={openCancelOrderDialog}

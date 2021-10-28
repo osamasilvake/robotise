@@ -1,6 +1,9 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
-import { SRContentMapInterface } from '../../../slices/business/robots/Robot.slice.interface';
+import {
+	SRContentItemTrackingInterface,
+	SRContentMapInterface
+} from '../../../slices/business/robots/Robot.slice.interface';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
@@ -16,7 +19,10 @@ import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.i
 import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls/list/RobotElevatorCallsList.interface';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
-import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
+import {
+	RobotPurchaseItemTrackingPayloadInterface,
+	RobotPurchasesListPayloadInterface
+} from './content/purchases/list/RobotPurchasesList.interface';
 import {
 	RobotCommandLogsAxiosGetInterface,
 	RobotElevatorCallsAxiosGetInterface,
@@ -314,6 +320,26 @@ class RobotsService {
 			purchaseId
 		);
 		return HttpClientService.get<RobotPurchaseAxiosGetInterface>(url);
+	};
+
+	/**
+	 * fetch item tracking link
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotItemTrackingLinkFetch = (
+		robotId: string,
+		payload: RobotPurchaseItemTrackingPayloadInterface
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.ITEM_TRACKING;
+		return HttpClientService.get<SRContentItemTrackingInterface>(url, {
+			params: {
+				robot: robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
 	};
 
 	/**

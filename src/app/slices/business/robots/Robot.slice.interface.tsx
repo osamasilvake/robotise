@@ -21,6 +21,10 @@ export interface SliceRobotInterface {
 	robotSiteConfig: {
 		loading: boolean;
 	};
+	itemTracking: {
+		loading: boolean;
+		content: SRContentItemTrackingInterface | null;
+	};
 	reports: {
 		loading: boolean;
 	};
@@ -34,4 +38,10 @@ export interface SRContentMapInterface {
 	resolution: number;
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+export interface SRContentItemTrackingInterface {
+	data: {
+		dlink: string;
+	};
 }

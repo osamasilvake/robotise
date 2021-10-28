@@ -23,6 +23,10 @@
 				"DESCRIPTION": "Robot Details Description"
 			}
 		},
+		"DEEP_LINKS": {
+			"TITLE": "Deep Links",
+			"DESCRIPTION": "Deep Links Description"
+		},
 		"ALERT_CODES": {
 			"TITLE": "Alert Codes",
 			"DESCRIPTION": "Alert Codes Description"
@@ -219,6 +223,9 @@
 				"EDIT_COMMENT": {
 					"SUCCESS": "Comment has been updated successfully!",
 					"ERROR": "Unable to edit a comment field!"
+				},
+				"ITEM_TRACKING": {
+					"ERROR": "Failed to fetch item tracking link!"
 				}
 			},
 			"CONFIGURATION": {
@@ -234,6 +241,20 @@
 					"SUCCESS": "Robot setting has been updated successfully!",
 					"ERROR": "Unable to configure robot to a site!"
 				}
+			}
+		},
+		"DEEP_LINKS": {
+			"CREATE": {
+				"SUCCESS": "Deep link has been created successfully!",
+				"ERROR": "Unable to create a deep link!"
+			},
+			"EDIT": {
+				"SUCCESS": "Deep link has been updated successfully!",
+				"ERROR": "Unable to edit a deep link!"
+			},
+			"DELETE": {
+				"SUCCESS": "Deep link has been deleted successfully!",
+				"ERROR": "Unable to delete a deep link!"
 			}
 		}
 	},
@@ -269,6 +290,15 @@
 			"LIST": {
 				"ALERT_CODES": "Alert Codes",
 				"ABOUT": "About"
+			}
+		},
+		"SETTINGS": {
+			"TITLE": {
+				"MAIN": "Settings",
+				"SHORT": "Set."
+			},
+			"LIST": {
+				"DEEP_LINKS": "Deep Links"
 			}
 		}
 	},
@@ -754,9 +784,9 @@
 							"LATEST": {
 								"TITLE": "Latest",
 								"OPTIONS": {
-									"LIFT_ENTERED": "Entered Lift",
-									"LIFT_LEFT": "Left Lift",
-									"LIFT_LEAVING": "Leaving Lift"
+									"LIFT_ENTERED": "Robot Entered Lift",
+									"LIFT_LEAVING": "Robot Leaving Lift",
+									"LIFT_LEFT": "Robot Left Lift"
 								}
 							}
 						}
@@ -1012,8 +1042,8 @@
 					"FOOT": {
 						"PURCHASE": {
 							"LINK": {
-								"TITLE": "Purchase Report",
-								"TEXT": "Detail"
+								"TITLE": "Purchase",
+								"TEXT": "Purchase details"
 							}
 						}
 					}
@@ -1068,7 +1098,7 @@
 							"MODE": "Mode",
 							"CREATED": "Created",
 							"ORIGIN": "Origin",
-							"PURCHASE_REPORT": "Purchase Report"
+							"PURCHASE_DETAILS": "Purchase"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -1098,7 +1128,7 @@
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
 							},
-							"PURCHASE_REPORT": "Detail"
+							"PURCHASE_DETAILS": "Purchase details"
 						}
 					}
 				}
@@ -1108,6 +1138,8 @@
 					"HEAD": {
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",
+						"ORDER_DETAILS": "Order details",
+						"ITEM_TRACKING": "Tracking details",
 						"TITLE": "Products"
 					},
 					"TABLE": {
@@ -1122,13 +1154,7 @@
 						}
 					},
 					"FOOT": {
-						"NOTE": "Note",
-						"ORDER": {
-							"LINK": {
-								"TITLE": "Order Status",
-								"TEXT": "Detail"
-							}
-						}
+						"NOTE": "Note"
 					}
 				},
 				"LIST": {
@@ -1147,7 +1173,8 @@
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
 							"COMMENT": "Comment",
-							"ORDER_STATUS": "Order Status"
+							"ORDER_DETAILS": "Order",
+							"ITEM_TRACKING": "Item Tracking"
 						},
 						"VALUES": {
 							"COMMENT": {
@@ -1163,7 +1190,8 @@
 							"TARGET": {
 								"UN_BILLED": "Unbilled"
 							},
-							"ORDER_STATUS": "Detail"
+							"ORDER_DETAILS": "Order details",
+							"ITEM_TRACKING": "Tracking details"
 						}
 					}
 				}
@@ -1282,6 +1310,70 @@
 							"UPDATE": "Update"
 						}
 					}
+				}
+			}
+		}
+	},
+	"DEEP_LINKS": {
+		"LIST": {
+			"ACTIONS": {
+				"SPEED_DIAL": {
+					"CREATE_DEEP_LINK": "Create new deep link"
+				},
+				"CREATE_EDIT": {
+					"CREATE": {
+						"TITLE": "Create Deep Link"
+					},
+					"EDIT": {
+						"TITLE": "Edit Deep Link"
+					},
+					"FIELDS": {
+						"NAME": {
+							"LABEL": "Name",
+							"PLACEHOLDER": "Enter name",
+							"VALIDATIONS": {
+								"REQUIRED": "Name is required."
+							}
+						},
+						"DESCRIPTION": {
+							"LABEL": "Description",
+							"PLACEHOLDER": "Enter Description",
+							"VALIDATIONS": {
+								"REQUIRED": "Description is required."
+							}
+						},
+						"KEY": {
+							"LABEL": "Key",
+							"PLACEHOLDER": "Enter Key",
+							"VALIDATIONS": {
+								"REQUIRED": "Key is required."
+							}
+						},
+						"LINK": {
+							"LABEL": "Link",
+							"PLACEHOLDER": "Enter Link",
+							"VALIDATIONS": {
+								"REQUIRED": "Link is required."
+							}
+						}
+					}
+				},
+				"DELETE": {
+					"TITLE": "Delete Deep Link",
+					"TEXT": "Are you sure you want to delete the deep link?"
+				}
+			},
+			"TABLE": {
+				"COLUMNS": {
+					"NAME": "Name",
+					"DESCRIPTION": "Description",
+					"KEY": "Key",
+					"CREATED_AT": "Created At",
+					"ACTIONS": "Actions"
+				},
+				"VALUES": {
+					"EDIT": "Edit",
+					"DELETE": "Delete"
 				}
 			}
 		}

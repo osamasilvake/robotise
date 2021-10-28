@@ -195,6 +195,16 @@ class AppConfigService extends EnvService {
 						}
 					}
 				},
+				settings: {
+					deepLinks: {
+						list: {
+							refreshTime: 25000,
+							showPageSizes: true,
+							defaultPageSize: 50,
+							pageSizes: [5, 10, 15, 20, 50, 100]
+						}
+					}
+				},
 				information: {
 					alertCodes: {
 						list: {
@@ -266,10 +276,16 @@ class AppConfigService extends EnvService {
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
 						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
+						LINKS: {
+							ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`
+						},
 						REPORTS: {
 							PURCHASES: `${this.envAppUrl}/order-report-export`
 						}
 					}
+				},
+				SETTINGS: {
+					DEEP_LINKS: `${this.envAppUrl}/deeplinks`
 				},
 				INFORMATION: {
 					ALERT_CODES: `${this.envAppUrl}/active-alert-codes`

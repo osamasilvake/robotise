@@ -145,7 +145,6 @@ const Login: FC = () => {
 
 						<Box className={classes.sForgetPassword}>
 							<Link
-								underline="always"
 								variant="body2"
 								href={AppConfigService.envResetPasswordUrl.replace(
 									':realm',

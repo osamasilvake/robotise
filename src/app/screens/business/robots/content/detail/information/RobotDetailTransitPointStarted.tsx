@@ -42,7 +42,7 @@ const RobotDetailTransitPointStarted: FC<RobotDetailTransitPointStartedInterface
 						/>
 					</ListItem>
 					{Array.isArray(row.value) &&
-						Object.values(row.value).map((item) => (
+						row.value.map((item) => (
 							<ListItem key={item.key} dense>
 								<ListItemIcon />
 								<ListItemText primary={item.key} secondary={item.value} />

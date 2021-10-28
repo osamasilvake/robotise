@@ -46,7 +46,7 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 
 			{/* Speed Dial */}
 			<SpeedDial
-				ariaLabel="speed-dial-products"
+				ariaLabel="speed-dial-orders"
 				className={classes.sSpeedDial}
 				icon={
 					<SpeedDialIcon icon={<SettingsOutlined />} className={classes.sSpeedDialIcon} />

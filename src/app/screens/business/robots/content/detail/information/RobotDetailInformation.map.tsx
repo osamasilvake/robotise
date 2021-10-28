@@ -39,24 +39,31 @@ export const mapComputerInfo = (
 	data: SRTContentComputerInfo,
 	type: RobotDetailInformationTypeEnum
 ) =>
-	Object.entries(data.properties).map(([key, value]) => {
-		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
-		const none = AppConfigService.AppOptions.common.none;
-		return {
-			icon: `${translation}.${key}.ICON`,
-			label: `${translation}.${key}.LABEL`,
-			value: Object.entries(value).map(([ky, val]) => ({
-				key: Number.isInteger(Number(ky)) ? `idx: ${ky}` : ky,
-				value: Array.isArray(val)
-					? val.join(', ')
-					: typeof val === 'object'
-					? Object.entries(val)
-							.map(([k, v]) => `${k}: ${v || none}`)
-							.join(', ')
-					: val || none
-			}))
-		};
-	});
+	Object.entries(data.properties)
+		.map(([key, val]) => ({ key, val: val || [] }))
+		.map((item) => {
+			const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+			const none = AppConfigService.AppOptions.common.none;
+			const value = (item.val as []).length !== 0 ? item.val : null;
+			return {
+				icon: `${translation}.${item.key}.ICON`,
+				label: `${translation}.${item.key}.LABEL`,
+				value: value
+					? Object.entries(value)
+							.filter(([, val]) => !!val)
+							.map(([k, v]) => ({
+								key: k,
+								value: Array.isArray(v)
+									? v.join(', ') || none
+									: typeof v === 'object'
+									? Object.entries(v)
+											.map(([k, v]) => `${k}: ${v || none}`)
+											.join(', ')
+									: v || none
+							}))
+					: none
+			};
+		});
 
 /**
  * map human perception
@@ -68,23 +75,25 @@ export const mapHumanPerception = (
 	data: SRTContentHumanPerception,
 	type: RobotDetailInformationTypeEnum
 ) =>
-	Object.entries(data.properties).map(([key, value]) => {
-		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
-		const none = AppConfigService.AppOptions.common.none;
-		return {
-			icon: `${translation}.${key}.ICON`,
-			label: `${translation}.${key}.LABEL`,
-			value: !Array.isArray(value)
-				? value
-				: value.length
-				? value.map((val) =>
-						Object.entries(val)
-							.map(([k, v]) => `${k}: ${v || none}`)
-							.join(', ')
-				  )
-				: none
-		};
-	});
+	Object.entries(data.properties)
+		.map(([key, val]) => ({ key, val: val || [] }))
+		.map((item) => {
+			const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+			const none = AppConfigService.AppOptions.common.none;
+			return {
+				icon: `${translation}.${item.key}.ICON`,
+				label: `${translation}.${item.key}.LABEL`,
+				value: !Array.isArray(item.val)
+					? item.val
+					: item.val.length
+					? item.val.map((val) =>
+							Object.entries(val)
+								.map(([k, v]) => `${k}: ${v || none}`)
+								.join(', ')
+					  )
+					: none
+			};
+		});
 
 /**
  * map transit point started
@@ -96,21 +105,28 @@ export const mapTransitPointStarted = (
 	data: SRTContentTransitPointStarted,
 	type: RobotDetailInformationTypeEnum
 ) =>
-	Object.entries(data.properties).map(([key, value]) => {
-		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
-		const none = AppConfigService.AppOptions.common.none;
-		return {
-			icon: `${translation}.${key}.ICON`,
-			label: `${translation}.${key}.LABEL`,
-			value: !Array.isArray(value)
-				? value || none
-				: Object.entries(value).map(([ky, val]) => ({
-						key: `idx: ${ky}`,
-						value: Object.entries(val)
-							.sort()
-							.map(([k, v]) => (Array.isArray(v) ? [k, v.join(', ')] : [k, v]))
-							.map(([k, v]) => `${k}: ${v || none}`)
-							.join(', ')
-				  }))
-		};
-	});
+	Object.entries(data.properties)
+		.map(([key, val]) => ({ key, val: val || [] }))
+		.map((item) => {
+			const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+			const none = AppConfigService.AppOptions.common.none;
+			const value = (item.val as []).length !== 0 ? item.val : null;
+			return {
+				icon: `${translation}.${item.key}.ICON`,
+				label: `${translation}.${item.key}.LABEL`,
+				value: value
+					? typeof value === 'string'
+						? value
+						: Object.entries(value).map(([ky, val]) => ({
+								key: `idx: ${ky}`,
+								value: Object.entries(val)
+									.sort()
+									.map(([k, v]) =>
+										Array.isArray(v) ? [k, v.join(', ')] : [k, v]
+									)
+									.map(([k, v]) => `${k}: ${v || none}`)
+									.join(', ')
+						  }))
+					: none
+			};
+		});

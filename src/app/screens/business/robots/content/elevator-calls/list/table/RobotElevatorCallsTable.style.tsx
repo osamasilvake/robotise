@@ -20,9 +20,6 @@ export const RobotElevatorCallsTableStyle = makeStyles((theme: Theme) => ({
 	sHistoryEvent: {
 		marginRight: theme.spacing(0.5)
 	},
-	sHistoryDetails: {
-		marginRight: theme.spacing(0.8)
-	},
 	sTableHistoryIcon: {
 		fontSize: theme.typography.pxToRem(20),
 		marginRight: theme.spacing(0.5)

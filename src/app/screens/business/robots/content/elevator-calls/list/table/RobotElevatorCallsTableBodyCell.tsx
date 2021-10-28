@@ -54,10 +54,8 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 								{mapHistoryEventType(t(item.event)).icon}
 							</Icon>
 							<Typography variant="body2" className={classes.sHistoryEvent}>
-								{t(historyMapped[index].event)}:
-							</Typography>
-							<Typography variant="body2" className={classes.sHistoryDetails}>
-								{item.details || AppConfigService.AppOptions.common.none}
+								{t(historyMapped[index].event)}
+								{!!item.details && `: ${item.details}`}
 							</Typography>
 							<Typography variant="caption" color="textSecondary">
 								({momentFormat3(item.createdAt)})

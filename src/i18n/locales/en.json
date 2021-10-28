@@ -1247,8 +1247,8 @@
 									"elevator.event.gotCallStatus": "Got Call Status",
 									"elevator.event.gotLiftId": "Got Lift ID",
 									"elevator.event.gotStatus": "Got Status",
-									"robot.event.enteredLift": "Entered Lift",
-									"robot.event.leftLift": "Left Lift",
+									"robot.event.enteredLift": "Robot Entered Lift",
+									"robot.event.leftLift": "Robot Left Lift",
 									"elevator.event.error": "Error"
 								}
 							}

@@ -242,6 +242,20 @@
 					"ERROR": "Unable to configure robot to a site!"
 				}
 			}
+		},
+		"DEEP_LINKS": {
+			"CREATE": {
+				"SUCCESS": "Deep link has been created successfully!",
+				"ERROR": "Unable to create a deep link!"
+			},
+			"EDIT": {
+				"SUCCESS": "Deep link has been updated successfully!",
+				"ERROR": "Unable to edit a deep link!"
+			},
+			"DELETE": {
+				"SUCCESS": "Deep link has been deleted successfully!",
+				"ERROR": "Unable to delete a deep link!"
+			}
 		}
 	},
 	"ACCOUNT": {
@@ -770,9 +784,9 @@
 							"LATEST": {
 								"TITLE": "Latest",
 								"OPTIONS": {
-									"LIFT_ENTERED": "Entered Lift",
-									"LIFT_LEFT": "Left Lift",
-									"LIFT_LEAVING": "Leaving Lift"
+									"LIFT_ENTERED": "Robot Entered Lift",
+									"LIFT_LEAVING": "Robot Leaving Lift",
+									"LIFT_LEFT": "Robot Left Lift"
 								}
 							}
 						}
@@ -1177,7 +1191,7 @@
 								"UN_BILLED": "Unbilled"
 							},
 							"ORDER_DETAILS": "Order details",
-							"ITEM_TRACKING": "Details"
+							"ITEM_TRACKING": "Tracking details"
 						}
 					}
 				}
@@ -1304,7 +1318,49 @@
 		"LIST": {
 			"ACTIONS": {
 				"SPEED_DIAL": {
-					"CREATE_LINK": "Create new Link"
+					"CREATE_DEEP_LINK": "Create new deep link"
+				},
+				"CREATE_EDIT": {
+					"CREATE": {
+						"TITLE": "Create Deep Link"
+					},
+					"EDIT": {
+						"TITLE": "Edit Deep Link"
+					},
+					"FIELDS": {
+						"NAME": {
+							"LABEL": "Name",
+							"PLACEHOLDER": "Enter name",
+							"VALIDATIONS": {
+								"REQUIRED": "Name is required."
+							}
+						},
+						"DESCRIPTION": {
+							"LABEL": "Description",
+							"PLACEHOLDER": "Enter Description",
+							"VALIDATIONS": {
+								"REQUIRED": "Description is required."
+							}
+						},
+						"KEY": {
+							"LABEL": "Key",
+							"PLACEHOLDER": "Enter Key",
+							"VALIDATIONS": {
+								"REQUIRED": "Key is required."
+							}
+						},
+						"LINK": {
+							"LABEL": "Link",
+							"PLACEHOLDER": "Enter Link",
+							"VALIDATIONS": {
+								"REQUIRED": "Link is required."
+							}
+						}
+					}
+				},
+				"DELETE": {
+					"TITLE": "Delete Deep Link",
+					"TEXT": "Are you sure you want to delete the deep link?"
 				}
 			},
 			"TABLE": {
@@ -1312,8 +1368,12 @@
 					"NAME": "Name",
 					"DESCRIPTION": "Description",
 					"KEY": "Key",
-					"LINK": "Link",
-					"UPDATED_AT": "Updated At"
+					"CREATED_AT": "Created At",
+					"ACTIONS": "Actions"
+				},
+				"VALUES": {
+					"EDIT": "Edit",
+					"DELETE": "Delete"
 				}
 			}
 		}

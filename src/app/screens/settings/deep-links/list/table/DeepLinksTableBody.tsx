@@ -25,11 +25,12 @@ const DeepLinksTableBody: FC<DeepLinksTableBodyInterface> = (props) => {
 	const sortTableData = (content: SDLContentInterface): SDLDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case DeepLinksTableColumnsTypeEnum.UPDATED_AT:
+			case DeepLinksTableColumnsTypeEnum.CREATED_AT:
 				type = DeepLinksTableSortTypeEnum.DATE;
 				break;
 			case DeepLinksTableColumnsTypeEnum.NAME:
 			case DeepLinksTableColumnsTypeEnum.DESCRIPTION:
+			case DeepLinksTableColumnsTypeEnum.KEY:
 				type = DeepLinksTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -50,17 +51,20 @@ const DeepLinksTableBody: FC<DeepLinksTableBodyInterface> = (props) => {
 		type: DeepLinksTableSortTypeEnum
 	) => {
 		return (a: SDLDataInterface, b: SDLDataInterface) => {
-			switch (type) {
-				case DeepLinksTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
-				case DeepLinksTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			if (key !== DeepLinksTableColumnsTypeEnum.ACTIONS) {
+				switch (type) {
+					case DeepLinksTableSortTypeEnum.DATE:
+						return momentSort(a[key]).diff(momentSort(b[key]));
+					case DeepLinksTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 

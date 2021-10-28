@@ -4,7 +4,7 @@ export enum RobotPurchasesTableColumnsTypeEnum {
 	TOTAL_PRICE = 'totalPrice',
 	COMMENT = 'comment',
 	ORDER_DETAILS = 'order',
-	ITEM_TRACKING = 'kibana'
+	ITEM_TRACKING = 'itemTracking'
 }
 
 export enum RobotPurchasesTableSortTypeEnum {

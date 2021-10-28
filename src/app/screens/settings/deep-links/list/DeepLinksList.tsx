@@ -14,11 +14,13 @@ import {
 import DeepLinksActions from './actions/DeepLinksActions';
 import { DeepLinksListPayloadInterface } from './DeepLinksList.interface';
 import DeepLinksTable from './table/DeepLinksTable';
+import { DeepLinkResetTypeEnum } from './table/DeepLinksTable.enum';
 
 const DeepLinksList: FC = () => {
 	const dispatch = useDispatch();
 	const deepLinks = useSelector(deepLinksSelector);
 
+	const reset = deepLinks.content?.state?.reset || DeepLinkResetTypeEnum.NA;
 	const page = deepLinks.content?.state?.page || 0;
 	const rowsPerPage =
 		deepLinks.content?.state?.rowsPerPage ||
@@ -82,6 +84,13 @@ const DeepLinksList: FC = () => {
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, deepLinks.content, page, rowsPerPage]);
+
+	useEffect(() => {
+		// reset: create or delete deep link
+		if (reset === DeepLinkResetTypeEnum.RESET) {
+			pageRef.current.page = 0;
+		}
+	}, [reset]);
 
 	// loader
 	if (deepLinks.loader) {

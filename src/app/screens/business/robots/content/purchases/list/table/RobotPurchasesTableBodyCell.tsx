@@ -1,6 +1,6 @@
 import { Box, Chip, CircularProgress, Link, TableCell } from '@mui/material';
 import i18next from 'i18next';
-import { FC, MouseEvent } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -23,17 +23,20 @@ import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 import TableFieldComment from './TableFieldComment';
 
 const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (props) => {
-	const { index, idx, setIdx, purchase, column } = props;
+	const { index, purchase, column } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
+	const [trackingIndex, setTrackingIndex] = useState(-1);
+
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
 
 	const cRobotId = params.robotId;
+	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
 
 	/**
 	 * handle show order detail
@@ -63,8 +66,8 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			// stop propagation
 			event.stopPropagation();
 
-			// set index
-			setIdx(index);
+			// set tracking index
+			setTrackingIndex(index);
 
 			// dispatch: fetch item tracking link
 			dispatch(
@@ -75,7 +78,11 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						to: purchase.createdAt
 					},
 					(res) => {
+						// open link on new tab
 						res.data && window.open(res.data.dlink);
+
+						// reset tracking index
+						setTrackingIndex(-1);
 					}
 				)
 			);
@@ -95,12 +102,12 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			return (
 				<Chip
 					size="small"
-					label={t('CONTENT.PURCHASES.LIST.TABLE.VALUES.ITEM_TRACKING')}
+					label={t(`${translation}.ITEM_TRACKING`)}
 					color="primary"
 					variant="outlined"
 					clickable
 					icon={
-						robot.itemTracking.loading && idx === index ? (
+						robot.itemTracking.loading && trackingIndex === index ? (
 							<CircularProgress size={20} />
 						) : undefined
 					}
@@ -116,12 +123,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						{value || AppConfigService.AppOptions.common.none}
 						{!purchase.isBilled && (
 							<Box component="span" className={classes.sTarget}>
-								<Chip
-									size="small"
-									label={t(
-										`CONTENT.PURCHASES.LIST.TABLE.VALUES.TARGET.UN_BILLED`
-									)}
-								/>
+								<Chip size="small" label={t(`${translation}.TARGET.UN_BILLED`)} />
 							</Box>
 						)}
 					</Box>
@@ -149,7 +151,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						variant="body2"
 						underline="hover"
 						onClick={handleShowOrderDetail(purchase.order.id)}>
-						{t('CONTENT.PURCHASES.LIST.TABLE.VALUES.ORDER_DETAILS')}
+						{t(`${translation}.ORDER_DETAILS`)}
 					</Link>
 				);
 			}

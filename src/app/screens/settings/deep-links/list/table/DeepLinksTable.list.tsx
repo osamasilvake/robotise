@@ -22,16 +22,16 @@ export const columns: DeepLinksTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: DeepLinksTableColumnsTypeEnum.LINK,
-		label: `${translation}.LINK`,
-		minWidth: 170,
-		align: 'left',
-		noSort: true
+		id: DeepLinksTableColumnsTypeEnum.CREATED_AT,
+		label: `${translation}.CREATED_AT`,
+		minWidth: 200,
+		align: 'left'
 	},
 	{
-		id: DeepLinksTableColumnsTypeEnum.UPDATED_AT,
-		label: `${translation}.UPDATED_AT`,
-		minWidth: 200,
-		align: 'right'
+		id: DeepLinksTableColumnsTypeEnum.ACTIONS,
+		label: `${translation}.ACTIONS`,
+		minWidth: 145,
+		align: 'right',
+		noSort: true
 	}
 ];

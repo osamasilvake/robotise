@@ -1,6 +1,6 @@
 import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
@@ -25,8 +25,6 @@ import RobotPurchasesTableBodyCell from './RobotPurchasesTableBodyCell';
 const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
 	const classes = RobotPurchasesTableStyle();
-
-	const [idx, setIdx] = useState(-1);
 
 	const params: RobotParamsInterface = useParams();
 	const history = useHistory();
@@ -125,8 +123,6 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 								<RobotPurchasesTableBodyCell
 									key={column.id}
 									index={index}
-									idx={idx}
-									setIdx={setIdx}
 									purchase={purchase}
 									column={column}
 								/>

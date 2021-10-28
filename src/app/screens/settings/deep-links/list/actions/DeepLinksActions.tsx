@@ -3,6 +3,8 @@ import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { DeepLinkCreateEditTypeEnum } from '../table/DeepLinksTable.enum';
+import DialogCreateEditDeepLink from '../table/DialogCreateEditDeepLink';
 import { DeepLinksActionsSpeedDialTypeEnum } from './DeepLinksActions.enum';
 import { deepLinkActions } from './DeepLinksActions.map';
 import { DeepLinksActionsStyle } from './DeepLinksActions.style';
@@ -11,7 +13,7 @@ const DeepLinksActions: FC = () => {
 	const { t } = useTranslation('DEEP_LINKS');
 	const classes = DeepLinksActionsStyle();
 
-	const [, setCreateLink] = useState(false);
+	const [createDeepLink, setCreateDeepLink] = useState(false);
 
 	/**
 	 * handle speed dial actions
@@ -19,8 +21,8 @@ const DeepLinksActions: FC = () => {
 	 * @returns
 	 */
 	const handleActions = (operation: DeepLinksActionsSpeedDialTypeEnum) => () => {
-		if (operation === DeepLinksActionsSpeedDialTypeEnum.CREATE_LINK) {
-			setCreateLink(true);
+		if (operation === DeepLinksActionsSpeedDialTypeEnum.CREATE_DEEP_LINK) {
+			setCreateDeepLink(true);
 		}
 	};
 
@@ -43,8 +45,12 @@ const DeepLinksActions: FC = () => {
 				))}
 			</SpeedDial>
 
-			{/* Dialog: Create/Edit Link */}
-			{/* <DialogCreateEditLink open={createLink} setOpen={setCreateLink} /> */}
+			{/* Dialog: Create/Edit Deep Link */}
+			<DialogCreateEditDeepLink
+				type={DeepLinkCreateEditTypeEnum.CREATE}
+				open={createDeepLink}
+				setOpen={setCreateDeepLink}
+			/>
 		</>
 	);
 };

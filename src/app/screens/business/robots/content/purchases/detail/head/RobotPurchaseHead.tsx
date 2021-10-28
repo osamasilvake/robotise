@@ -71,7 +71,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 
 	return (
 		<Box className={classes.sBox}>
-			<Stack direction="row" spacing={1} className={classes.sStack}>
+			<Stack spacing={0.5} direction="row" className={classes.sStack}>
 				<Typography variant="body2" color="textSecondary">
 					<Status
 						level={

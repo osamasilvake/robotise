@@ -12,10 +12,7 @@ export const SitePhoneCallsTableStyle = makeStyles((theme: Theme) => ({
 		opacity: 0.6,
 		pointerEvents: 'none'
 	},
-	sTableHistoryFlex: {
-		alignItems: 'center',
-		display: 'flex',
-		flexWrap: 'wrap',
+	sTableHistory: {
 		'&:not(:last-child)': {
 			marginBottom: theme.spacing(0.5)
 		}

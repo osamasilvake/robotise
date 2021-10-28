@@ -9,6 +9,7 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Popover,
+	Stack,
 	Tooltip,
 	Typography
 } from '@mui/material';
@@ -79,13 +80,18 @@ const Account: FC = () => {
 	const handleLogout = () => dispatch(AuthLogout());
 
 	return (
-		<Box className={classes.sLogoAndCloseIcon}>
+		<Stack
+			spacing={0.5}
+			direction="row"
+			alignItems="center"
+			justifyContent="space-between"
+			className={classes.sAccount}>
 			{/* Opened Drawer */}
 			{general.openDrawer && (
 				<>
 					<Box>
 						{/* Account */}
-						<IconButton onClick={handleMenuOpen} className={classes.sAccountButton}>
+						<IconButton onClick={handleMenuOpen} className={classes.sButton}>
 							<Badge
 								variant="dot"
 								overlap="circular"
@@ -99,14 +105,14 @@ const Account: FC = () => {
 									alt={AppConfigService.AppImageURLs.avatar.name}
 								/>
 							</Badge>
-							<Box className={classes.sAccountDetail}>
+							<Box className={classes.sDetail}>
 								<Typography variant="subtitle2" color="textPrimary">
 									{auth.user?.data.display_name}
 								</Typography>
 								<Typography
 									variant="body2"
 									color="textSecondary"
-									className={classes.sAccountDetailSubtitle}>
+									className={classes.sDetailSubtitle}>
 									{auth.user?.data.role}
 								</Typography>
 							</Box>
@@ -163,7 +169,7 @@ const Account: FC = () => {
 					{window && window.innerWidth <= mobileScreen && (
 						<Link to={AppConfigService.AppRoutes.HOME}>
 							<Avatar
-								className={classes.sLogoIcon}
+								className={classes.sAvatar}
 								src={AppConfigService.AppImageURLs.logo.icon}
 								alt={AppConfigService.envCompanyName}
 							/>
@@ -178,7 +184,7 @@ const Account: FC = () => {
 					)}
 				</>
 			)}
-		</Box>
+		</Stack>
 	);
 };
 export default Account;

@@ -14,9 +14,6 @@ export const RobotsListStyle = makeStyles((theme: Theme) => ({
 	sTableRowDanger: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c12, 0.15)
 	},
-	sTableRowItemFlex: {
-		display: 'flex'
-	},
 	sTableRowItemIcon: {
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)

@@ -2,24 +2,21 @@ import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 export const AccountStyle = makeStyles((theme: Theme) => ({
-	sLogoAndCloseIcon: {
-		alignItems: 'center',
-		display: 'flex',
-		justifyContent: 'space-between',
+	sAccount: {
 		minHeight: theme.spacing(8),
 		padding: theme.spacing(0, 1)
 	},
-	sLogoIcon: {
+	sAvatar: {
 		width: '100%'
 	},
-	sAccountButton: {
+	sButton: {
 		borderRadius: theme.typography.pxToRem(2)
 	},
-	sAccountDetail: {
+	sDetail: {
 		margin: theme.spacing(0, 0, 0, 1),
 		textAlign: 'left'
 	},
-	sAccountDetailSubtitle: {
+	sDetailSubtitle: {
 		marginTop: theme.spacing(-0.25)
 	}
 }));

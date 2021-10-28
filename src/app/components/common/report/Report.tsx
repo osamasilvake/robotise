@@ -9,6 +9,7 @@ import {
 	FormControl,
 	FormHelperText,
 	Grid,
+	Stack,
 	TextField,
 	Typography
 } from '@mui/material';
@@ -93,8 +94,10 @@ const Report: FC<ReportInterface> = (props) => {
 							separator={';'}
 							filename={`${id}_${values.from}_${values.to}`}
 							className={classes.sDownloadLink}>
-							<CloudDownload className={classes.sDownloadIcon} />
-							<Typography>{t('REPORT:DOWNLOAD')}</Typography>
+							<Stack spacing={0.5} direction="row" alignItems="center">
+								<CloudDownload className={classes.sDownloadIcon} />
+								<Typography>{t('REPORT:DOWNLOAD')}</Typography>
+							</Stack>
 						</CSVLink>
 					)}
 				</DialogContent>

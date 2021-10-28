@@ -1,5 +1,5 @@
 import { ChatOutlined, Check, Close, InfoOutlined } from '@mui/icons-material';
-import { Box, TableCell, Tooltip, Typography } from '@mui/material';
+import { Box, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 
@@ -82,14 +82,16 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		} else if (RobotsTableColumnsTypeEnum.MISSION_STATUS === column.id) {
 			const mission = robot.robotMission;
 			return mission && mission.status ? (
-				<Box className={classes.sTableRowItemFlex}>
-					{mission.status || AppConfigService.AppOptions.common.none}
+				<Stack spacing={0.5} direction="row" alignItems="center">
+					<Typography>
+						{mission.status || AppConfigService.AppOptions.common.none}
+					</Typography>
 					{mission.description && (
 						<Tooltip title={mission.description}>
 							<InfoOutlined fontSize="small" className={classes.sTableRowItemIcon} />
 						</Tooltip>
 					)}
-				</Box>
+				</Stack>
 			) : (
 				AppConfigService.AppOptions.common.none
 			);

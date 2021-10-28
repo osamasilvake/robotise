@@ -8,7 +8,8 @@ import {
 	ListItem,
 	ListItemIcon,
 	ListItemText,
-	ListSubheader
+	ListSubheader,
+	Stack
 } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -94,9 +95,14 @@ const DrawerCustom: FC = () => {
 			<Divider light />
 
 			{/* Copyrights */}
-			<Box className={classes.sBottomArea}>
+			<Stack
+				spacing={0.5}
+				direction="row"
+				alignItems="center"
+				justifyContent="center"
+				className={classes.sBottomArea}>
 				{general.openDrawer ? <Copyrights /> : <Copyrights short />}
-			</Box>
+			</Stack>
 		</Drawer>
 	);
 };

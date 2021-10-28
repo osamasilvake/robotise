@@ -349,7 +349,7 @@ export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch)
 	dispatch(loading(state));
 
 	return RobotsService.robotProductsSync(robotId)
-		.then(async () => {
+		.then(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: `robot-sync-products-success`,

@@ -14,18 +14,18 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SDLStateInterface } from '../../../../../slices/settings/deep-links/DeepLinks.interface';
+import { AppConfigService } from '../../../../../services';
 import {
 	DeepLinkCreateEdit,
-	deepLinksSelector,
-	DeepLinksUpdateState
+	DeepLinksFetchList,
+	deepLinksSelector
 } from '../../../../../slices/settings/deep-links/DeepLinks.slice';
 import { useForm } from '../../../../../utilities/hooks/form/UseForm';
 import {
 	validateEmptyObj,
 	validateEmptyObjProperty
 } from '../../../../../utilities/methods/Object';
-import { DeepLinkCreateEditTypeEnum } from './DeepLinksTable.enum';
+import { DeepLinkCreateEditTypeEnum, DeepLinkResetTypeEnum } from './DeepLinksTable.enum';
 import {
 	DialogCreateEditDeepLinkFormInterface,
 	DialogCreateEditDeepLinkInterface
@@ -51,19 +51,25 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 			},
 			CreateEditDeepLinkValidation,
 			async () => {
-				console.log('called', values);
 				// dispatch: create/edit deep link
 				dispatch(
-					DeepLinkCreateEdit(deepLink?.id, values, type, async () => {
+					DeepLinkCreateEdit(deepLink?.id, values, type, () => {
 						// close dialog
 						setOpen(false);
 
-						// dispatch: update state
-						const state: SDLStateInterface = {
-							...deepLinks.content?.state,
-							page: 0
-						};
-						dispatch(DeepLinksUpdateState(state));
+						if (type === DeepLinkCreateEditTypeEnum.CREATE) {
+							// dispatch: fetch deep links
+							dispatch(
+								DeepLinksFetchList({
+									page: 0,
+									rowsPerPage:
+										deepLinks.content?.state?.rowsPerPage ||
+										AppConfigService.AppOptions.screens.settings.deepLinks.list
+											.defaultPageSize,
+									reset: DeepLinkResetTypeEnum.RESET
+								})
+							);
+						}
 					})
 				);
 			}

@@ -27,7 +27,7 @@ class DeepLinksService {
 	 * @param type
 	 * @returns
 	 */
-	siteDeepLinkCreateEdit = (
+	deepLinkCreateEdit = (
 		deepLinkId: string | undefined,
 		payload: DialogCreateEditDeepLinkFormInterface,
 		type: DeepLinkCreateEditTypeEnum
@@ -48,6 +48,16 @@ class DeepLinksService {
 				attributes: payload
 			}
 		});
+	};
+
+	/**
+	 * delete deep link
+	 * @param deepLinkId
+	 * @returns
+	 */
+	deepLinkDelete = (deepLinkId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINKS;
+		return HttpClientService.delete(`${url}/${deepLinkId}`);
 	};
 }
 const instance = new DeepLinksService();

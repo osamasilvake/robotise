@@ -25,7 +25,7 @@ const DeepLinksTableBody: FC<DeepLinksTableBodyInterface> = (props) => {
 	const sortTableData = (content: SDLContentInterface): SDLDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case DeepLinksTableColumnsTypeEnum.UPDATED_AT:
+			case DeepLinksTableColumnsTypeEnum.CREATED_AT:
 				type = DeepLinksTableSortTypeEnum.DATE;
 				break;
 			case DeepLinksTableColumnsTypeEnum.NAME:

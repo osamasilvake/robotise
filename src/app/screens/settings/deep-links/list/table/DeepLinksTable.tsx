@@ -10,7 +10,7 @@ import {
 	deepLinksSelector,
 	DeepLinksUpdateState
 } from '../../../../../slices/settings/deep-links/DeepLinks.slice';
-import { DeepLinksTableColumnsTypeEnum } from './DeepLinksTable.enum';
+import { DeepLinkResetTypeEnum, DeepLinksTableColumnsTypeEnum } from './DeepLinksTable.enum';
 import { DeepLinksTableHeadOrder, DeepLinksTableInterface } from './DeepLinksTable.interface';
 import { columns } from './DeepLinksTable.list';
 import { DeepLinksTableStyle } from './DeepLinksTable.style';
@@ -27,7 +27,7 @@ const DeepLinksTable: FC<DeepLinksTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<DeepLinksTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<DeepLinksTableColumnsTypeEnum>(
-		DeepLinksTableColumnsTypeEnum.UPDATED_AT
+		DeepLinksTableColumnsTypeEnum.CREATED_AT
 	);
 
 	/**
@@ -54,7 +54,8 @@ const DeepLinksTable: FC<DeepLinksTableInterface> = (props) => {
 		// dispatch: update state
 		const state: SDLStateInterface = {
 			...content?.state,
-			page: newPage
+			page: newPage,
+			reset: DeepLinkResetTypeEnum.NA
 		};
 		dispatch(DeepLinksUpdateState(state));
 	};
@@ -68,7 +69,8 @@ const DeepLinksTable: FC<DeepLinksTableInterface> = (props) => {
 		const state: SDLStateInterface = {
 			...content?.state,
 			page: 0,
-			rowsPerPage: +event.target.value
+			rowsPerPage: +event.target.value,
+			reset: DeepLinkResetTypeEnum.NA
 		};
 		dispatch(DeepLinksUpdateState(state));
 	};

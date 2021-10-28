@@ -1,4 +1,5 @@
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
+import { DeepLinkResetTypeEnum } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.enum';
 import { JsonApiResponse } from '../../JsonApi.interface';
 
 export interface SliceDeepLinksInterface {
@@ -27,4 +28,5 @@ export interface SDLDataInterface {
 export interface SDLStateInterface {
 	page?: number;
 	rowsPerPage?: number;
+	reset?: DeepLinkResetTypeEnum;
 }

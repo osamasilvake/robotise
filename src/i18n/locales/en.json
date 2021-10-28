@@ -784,9 +784,9 @@
 							"LATEST": {
 								"TITLE": "Latest",
 								"OPTIONS": {
-									"LIFT_ENTERED": "Entered Lift",
-									"LIFT_LEFT": "Left Lift",
-									"LIFT_LEAVING": "Leaving Lift"
+									"LIFT_ENTERED": "Robot Entered Lift",
+									"LIFT_LEAVING": "Robot Leaving Lift",
+									"LIFT_LEFT": "Robot Left Lift"
 								}
 							}
 						}
@@ -1357,6 +1357,10 @@
 							}
 						}
 					}
+				},
+				"DELETE": {
+					"TITLE": "Delete Deep Link",
+					"TEXT": "Are you sure you want to delete the deep link?"
 				}
 			},
 			"TABLE": {
@@ -1364,7 +1368,7 @@
 					"NAME": "Name",
 					"DESCRIPTION": "Description",
 					"KEY": "Key",
-					"UPDATED_AT": "Updated At",
+					"CREATED_AT": "Created At",
 					"ACTIONS": "Actions"
 				},
 				"VALUES": {

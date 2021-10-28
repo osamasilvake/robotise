@@ -4,8 +4,12 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import DeepLinksService from '../../../screens/settings/deep-links/DeepLinks.service';
 import { DeepLinksListPayloadInterface } from '../../../screens/settings/deep-links/list/DeepLinksList.interface';
-import { DeepLinkCreateEditTypeEnum } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.enum';
+import {
+	DeepLinkCreateEditTypeEnum,
+	DeepLinkResetTypeEnum
+} from '../../../screens/settings/deep-links/list/table/DeepLinksTable.enum';
 import { DialogCreateEditDeepLinkFormInterface } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.interface';
+import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
 import { deserializeDeepLink } from './DeepLink.deserialize';
@@ -54,7 +58,9 @@ const dataSlice = createSlice({
 		},
 		updated: (state, action) => {
 			state.updating = false;
-			state.content = action.payload;
+			if (action.payload) {
+				state.content = action.payload;
+			}
 		},
 		updateFailed: (state) => {
 			state.updating = false;
@@ -112,7 +118,8 @@ export const DeepLinksFetchList =
 						deepLinks.content,
 						result,
 						refresh,
-						payload.rowsPerPage
+						payload.rowsPerPage,
+						payload.reset === DeepLinkResetTypeEnum.RESET
 					);
 				}
 
@@ -156,31 +163,47 @@ export const DeepLinkCreateEdit =
 		// dispatch: updating
 		dispatch(updating());
 
-		return DeepLinksService.siteDeepLinkCreateEdit(deepLinkId, payload, type)
+		return DeepLinksService.deepLinkCreateEdit(deepLinkId, payload, type)
 			.then(async (res) => {
 				// deserialize response
 				let result = await deserializeDeepLink(res);
 
+				// trigger message
+				const message: TriggerMessageInterface = {
+					id: 'create-update-deep-link-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `DEEP_LINKS.${
+						type === DeepLinkCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
+					}.SUCCESS`
+				};
+
 				if (deepLinks.content) {
-					// update created deep link
-					result = updateCreatedDeepLink(deepLinks.content, result);
+					if (type === DeepLinkCreateEditTypeEnum.CREATE) {
+						// dispatch: updated
+						dispatch(updated(null));
 
-					// dispatch: updated
-					dispatch(updated(result));
+						// callback
+						callback();
 
-					// dispatch: trigger message
-					const message: TriggerMessageInterface = {
-						id: 'create-update-deep-link-success',
-						show: true,
-						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: `DEEP_LINKS.${
-							type === DeepLinkCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
-						}.SUCCESS`
-					};
-					dispatch(triggerMessage(message));
+						// wait
+						await timeout(1000);
 
-					// callback
-					callback();
+						// dispatch: trigger message
+						dispatch(triggerMessage(message));
+					} else {
+						// update deep link
+						result = updateDeepLink(deepLinks.content, result);
+
+						// dispatch: updated
+						dispatch(updated(result));
+
+						// dispatch: trigger message
+						dispatch(triggerMessage(message));
+
+						// callback
+						callback();
+					}
 				}
 			})
 			.catch(() => {
@@ -192,6 +215,52 @@ export const DeepLinkCreateEdit =
 					text: `DEEP_LINKS.${
 						type === DeepLinkCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
 					}.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
+ * delete deep link
+ * @param deepLink
+ * @param callback
+ * @returns
+ */
+export const DeepLinkDelete =
+	(deepLink: SDLDataInterface, callback: () => void) => async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return DeepLinksService.deepLinkDelete(deepLink.id)
+			.then(async () => {
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'delete-deep-link-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'DEEP_LINKS.DELETE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'delete-deep-link-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'DEEP_LINKS.DELETE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -228,13 +297,15 @@ export const DeepLinksUpdateState =
  * @param result
  * @param refresh
  * @param rowsPerPage
+ * @param reset
  * @returns
  */
 const handleRefreshAndPagination = (
 	current: SDLContentInterface,
 	result: SDLContentInterface,
 	refresh: boolean,
-	rowsPerPage: number
+	rowsPerPage: number,
+	reset: boolean
 ) => {
 	if (refresh) {
 		const dataItems = current.data.slice(rowsPerPage);
@@ -248,6 +319,9 @@ const handleRefreshAndPagination = (
 			}
 		};
 	} else if (result?.meta?.page > 1) {
+		if (reset) {
+			return result;
+		}
 		return {
 			...current,
 			meta: {
@@ -261,15 +335,15 @@ const handleRefreshAndPagination = (
 };
 
 /**
- * update created deep link
+ * update deep link
  * @param state
  * @param deepLink
  * @returns
  */
-const updateCreatedDeepLink = (
+const updateDeepLink = (
 	state: SDLContentInterface,
 	deepLink: SDLDataInterface
 ): SDLContentInterface => ({
 	...state,
-	data: [deepLink, ...state.data]
+	data: state.data.map((item) => (item.id === deepLink.id ? deepLink : item))
 });

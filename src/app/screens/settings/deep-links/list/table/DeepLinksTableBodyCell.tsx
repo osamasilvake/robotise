@@ -13,6 +13,7 @@ import {
 } from './DeepLinksTable.interface';
 import { DeepLinksTableStyle } from './DeepLinksTable.style';
 import DialogCreateEditDeepLink from './DialogCreateEditDeepLink';
+import DialogDeleteDeepLink from './DialogDeleteDeepLink';
 
 const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	const { deepLink, column } = props;
@@ -20,6 +21,7 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	const classes = DeepLinksTableStyle();
 
 	const [openCreateEdit, setOpenCreateEdit] = useState(false);
+	const [openDelete, setOpenDelete] = useState(false);
 
 	/**
 	 * open create/edit deep link dialog
@@ -31,6 +33,18 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 
 		// set create/edit open
 		setOpenCreateEdit(true);
+	};
+
+	/**
+	 * open delete deep link dialog
+	 * @param event
+	 */
+	const openDeleteDeepLinkDialog = (event: MouseEvent<HTMLDivElement>) => {
+		// stop propagation
+		event.stopPropagation();
+
+		// set delete open
+		setOpenDelete(true);
 	};
 
 	/**
@@ -69,16 +83,21 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						label={t(`${translation}.DELETE`)}
 						variant="outlined"
 						clickable
-						onClick={() => null}
+						onClick={openDeleteDeepLinkDialog}
+					/>
+					<DialogDeleteDeepLink
+						deepLink={deepLink}
+						open={openDelete}
+						setOpen={setOpenDelete}
 					/>
 				</Box>
 			);
 		} else {
 			const value = deepLink[column.id];
-			if (DeepLinksTableColumnsTypeEnum.UPDATED_AT === column.id) {
+			if (DeepLinksTableColumnsTypeEnum.CREATED_AT === column.id) {
 				return momentFormat1(value);
 			} else if (DeepLinksTableColumnsTypeEnum.DESCRIPTION === column.id) {
-				return <ReadMore text={String(value)} />;
+				return <ReadMore text={String(value)} variant="body2" />;
 			}
 			return value || AppConfigService.AppOptions.common.none;
 		}

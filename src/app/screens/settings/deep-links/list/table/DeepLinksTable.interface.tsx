@@ -46,6 +46,12 @@ export interface DialogCreateEditDeepLinkFormInterface {
 	link: string;
 }
 
+export interface DialogDeleteDeepLinkInterface {
+	deepLink: SDLDataInterface;
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
 export interface DeepLinksTableColumnInterface {
 	id: DeepLinksTableColumnsTypeEnum;
 	label: string;

@@ -2,7 +2,7 @@ export enum DeepLinksTableColumnsTypeEnum {
 	NAME = 'name',
 	DESCRIPTION = 'description',
 	KEY = 'key',
-	UPDATED_AT = 'updatedAt',
+	CREATED_AT = 'createdAt',
 	ACTIONS = 'actions'
 }
 
@@ -14,4 +14,9 @@ export enum DeepLinksTableSortTypeEnum {
 export enum DeepLinkCreateEditTypeEnum {
 	CREATE,
 	EDIT
+}
+
+export enum DeepLinkResetTypeEnum {
+	RESET = 1,
+	NA = 2
 }

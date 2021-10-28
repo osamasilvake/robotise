@@ -93,7 +93,7 @@ export const DeepLinksFetchList =
 		const deepLinks = states.deepLinks;
 
 		// return on busy
-		if (deepLinks && (deepLinks.loader || deepLinks.loading)) {
+		if (deepLinks && (deepLinks.loader || deepLinks.loading || deepLinks.updating)) {
 			return;
 		}
 

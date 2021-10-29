@@ -21,7 +21,7 @@ import { generalSelector } from '../../../slices/general/General.slice';
 import Account from '../account/Account';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
-import { drawerBusinessList, drawerInformationList } from './Drawer.list';
+import { DrawersList } from './Drawer.list';
 import { DrawerStyle } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
@@ -46,62 +46,49 @@ const DrawerCustom: FC = () => {
 
 			{/* List */}
 			<Box className={classes.sListRoot}>
-				<List
-					disablePadding
-					subheader={
-						<ListSubheader>
-							{(general.openDrawer && t('BUSINESS.TITLE.MAIN')) ||
-								t('BUSINESS.TITLE.SHORT')}
-						</ListSubheader>
-					}>
-					{drawerBusinessList.map((item) => (
-						<ListItem
-							key={item.id}
-							button
-							component={NavLink}
-							to={item.path}
-							exact
-							className={classes.sListItemWithSubtitle}>
-							<ListItemIcon>
-								{item.badge === DrawerListBadgeTypeEnum.ROBOT &&
-								robotTwinsSummary.content &&
-								robotTwinsSummary.content.alerts?.count ? (
-									<Badge
-										badgeContent={robotTwinsSummary.content.alerts.count}
-										color="error">
-										<Icon>{item.icon}</Icon>
-									</Badge>
-								) : (
-									<Icon>{item.icon}</Icon>
-								)}
-							</ListItemIcon>
-							<ListItemText primary={t(item.label)} secondary={item.hint} />
-						</ListItem>
-					))}
-				</List>
-				<List
-					disablePadding
-					subheader={
-						<ListSubheader>
-							{(general.openDrawer && t('INFORMATION.TITLE.MAIN')) ||
-								t('INFORMATION.TITLE.SHORT')}
-						</ListSubheader>
-					}>
-					{drawerInformationList.map((item) => (
-						<ListItem
-							key={item.id}
-							button
-							exact
-							component={NavLink}
-							to={item.path}
-							className={classes.sListItem}>
-							<ListItemIcon>
-								<Icon>{item.icon}</Icon>
-							</ListItemIcon>
-							<ListItemText primary={t(item.label)} />
-						</ListItem>
-					))}
-				</List>
+				{DrawersList.map((item, index) => (
+					<List
+						disablePadding
+						key={index}
+						subheader={
+							<ListSubheader>
+								{(general.openDrawer && t(item.primary)) || t(item.secondary)}
+							</ListSubheader>
+						}>
+						{item.list.map((listItem) => (
+							<ListItem
+								key={listItem.id}
+								button
+								exact
+								component={NavLink}
+								to={listItem.path}
+								className={
+									listItem.hint
+										? classes.sListItemWithSubtitle
+										: classes.sListItem
+								}>
+								<ListItemIcon>
+									{listItem.badge === DrawerListBadgeTypeEnum.ROBOT &&
+									robotTwinsSummary.content &&
+									robotTwinsSummary.content.alerts?.count ? (
+										<Badge
+											badgeContent={robotTwinsSummary.content.alerts.count}
+											color="error">
+											<Icon>{listItem.icon}</Icon>
+										</Badge>
+									) : (
+										<Icon>{listItem.icon}</Icon>
+									)}
+								</ListItemIcon>
+
+								<ListItemText
+									primary={t(listItem.label)}
+									secondary={listItem.hint}
+								/>
+							</ListItem>
+						))}
+					</List>
+				))}
 			</Box>
 
 			<Divider light />

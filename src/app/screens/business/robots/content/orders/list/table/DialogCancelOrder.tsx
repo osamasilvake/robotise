@@ -55,8 +55,8 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 				<DialogActions>
 					<Button
 						variant="outlined"
-						disabled={orders.updating}
-						onClick={cancelOrder(false)}>
+						onClick={cancelOrder(false)}
+						disabled={orders.updating}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button

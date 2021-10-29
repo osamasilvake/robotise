@@ -4,3 +4,8 @@ export interface RobotPurchasesListPayloadInterface {
 	billed: boolean;
 	debug: boolean;
 }
+
+export interface RobotPurchaseItemTrackingPayloadInterface {
+	from: Date;
+	to: Date;
+}

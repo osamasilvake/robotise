@@ -236,8 +236,8 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 				<DialogActions>
 					<Button
 						variant="outlined"
-						disabled={notifications.updating}
-						onClick={closeDialog}>
+						onClick={closeDialog}
+						disabled={notifications.updating}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
 					<Button

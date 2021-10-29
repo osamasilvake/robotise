@@ -28,6 +28,7 @@ export interface RobotPurchasesTableBodyInterface {
 }
 
 export interface RobotPurchasesTableBodyCellInterface {
+	index: number;
 	purchase: SPCDataInterface;
 	column: RobotPurchasesTableColumnInterface;
 }

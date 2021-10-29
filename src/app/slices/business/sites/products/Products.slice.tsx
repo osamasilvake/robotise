@@ -122,7 +122,7 @@ export const ProductsFetchList =
 	};
 
 /**
- * create/edit a product
+ * create/edit product
  * @param siteId
  * @param productId
  * @param payload

@@ -2,36 +2,36 @@ import moment from 'moment';
 
 /**
  * use for sorting
- * @param value
+ * @param date
  * @returns
  */
-const momentSort = <T,>(value: T): moment.Moment => moment(value);
+const momentSort = <T,>(date: T): moment.Moment => moment(date);
 
 /**
  * format 1
- * @param value
+ * @param date
  * @returns
  */
-const momentFormat1 = <T,>(value: T): string => {
-	return moment(value).format('DD MMM YYYY HH:mm:ss');
+const momentFormat1 = <T,>(date: T): string => {
+	return moment(date).format('DD MMM YYYY HH:mm:ss');
 };
 
 /**
  * format 2
- * @param value
+ * @param date
  * @returns
  */
-const momentFormat2 = <T,>(value: T): string => {
-	return moment(value).format('DD MMMM, HH:mm:ss');
+const momentFormat2 = <T,>(date: T): string => {
+	return moment(date).format('DD MMMM, HH:mm:ss');
 };
 
 /**
  * format 3
- * @param value
+ * @param date
  * @returns
  */
-const momentFormat3 = <T,>(value: T): string => {
-	return moment(value).format('HH:mm:ss');
+const momentFormat3 = <T,>(date: T): string => {
+	return moment(date).format('HH:mm:ss');
 };
 
 /**
@@ -75,14 +75,26 @@ const moment30DaysFromToday = (): string => {
 };
 
 /**
- * From and to dates difference
+ * from and to dates difference
+ * @param date1
+ * @param date2
  * @returns
  */
-const momentFromToDiff = (date1: string, date2: string): boolean => {
+const momentFromToDiff = <T,>(date1: T, date2: T): boolean => {
 	return moment(date1).diff(moment(date2)) >= 1;
 };
 
+/**
+ * 30 mins prior to date
+ * @param date
+ * @returns
+ */
+const moment15MinsFromDate = <T,>(date: T): Date => {
+	return moment(date).subtract(15, 'minutes').toDate();
+};
+
 export {
+	moment15MinsFromDate,
 	moment30DaysFromToday,
 	momentCurrentYear,
 	momentFormat1,

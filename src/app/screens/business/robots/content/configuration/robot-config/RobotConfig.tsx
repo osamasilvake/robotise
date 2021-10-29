@@ -93,7 +93,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 							<FormControl error fullWidth>
 								<TextField
 									required
-									type="string"
+									type="text"
 									id="name"
 									name="name"
 									value={values?.name}
@@ -108,7 +108,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 							<FormControl error fullWidth margin="normal">
 								<TextField
 									required
-									type="string"
+									type="text"
 									id="customerName"
 									name="customerName"
 									value={values?.customerName}

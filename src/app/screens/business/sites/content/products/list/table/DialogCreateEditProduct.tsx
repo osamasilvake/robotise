@@ -66,7 +66,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 			},
 			CreateEditProductValidation,
 			async () => {
-				// dispatch: create/edit a product
+				// dispatch: create/edit product
 				cSiteId &&
 					dispatch(
 						ProductCreateEdit(
@@ -118,7 +118,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							<FormControl error fullWidth margin="normal">
 								<TextField
 									required
-									type="string"
+									type="text"
 									id="name"
 									name="name"
 									value={values?.name}
@@ -195,7 +195,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						<Grid item xs={12} sm={4} md={4}>
 							<FormControl fullWidth>
 								<TextField
-									type="string"
+									type="text"
 									id="volume"
 									name="volume"
 									value={values?.volume}

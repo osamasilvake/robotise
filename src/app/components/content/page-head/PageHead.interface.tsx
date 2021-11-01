@@ -3,5 +3,6 @@ import { BreadcrumbLabelsInterface } from '../../common/breadcrumb/Breadcrumb.in
 export interface PageHeadInterface {
 	title: string;
 	description?: string;
+	onlyMeta?: boolean;
 	labels?: BreadcrumbLabelsInterface;
 }

@@ -89,15 +89,11 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 			// planned path coordinates
 			const plannedPathCoords = robotTwins.plannedPath?.properties.points;
 			if (plannedPathCoords?.length) {
-				console.log(plannedPathCoords);
-
-				const plannedPaths = plannedPathCoords.map((point) => ({
+				const plannedPath = plannedPathCoords.map((point) => ({
 					x: (Math.abs(origin[0] - point.xM) / resolution) * ratio.x,
 					y: (Math.abs(origin[1] - point.yM) / resolution) * ratio.y
 				}));
-				console.log(plannedPaths);
-
-				setPlannedPathCoords(plannedPaths);
+				setPlannedPathCoords(plannedPath);
 			}
 		}
 	}, [

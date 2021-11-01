@@ -42,7 +42,7 @@ const Report: FC<ReportInterface> = (props) => {
 			ReportValidation,
 			async () => {
 				// dispatch: generate reports
-				dispatch(GenerateReports(id, filterId, values, (report) => setReport(report)));
+				dispatch(GenerateReports(filterId, values, (report) => setReport(report)));
 			}
 		);
 

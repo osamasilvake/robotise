@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Report from '../../../../../../../components/common/report/Report';
-import { ReportTypeEnum } from '../../../../../../../components/common/report/Report.enum';
 import {
 	SiteReportsGenerate,
 	siteSelector
@@ -70,7 +69,7 @@ const SiteProductsActions: FC = () => {
 
 			{/* Dialog: Report */}
 			<Report
-				id={ReportTypeEnum.PRODUCTS}
+				id="products"
 				open={productsReport}
 				setOpen={setProductsReport}
 				filterId={cSiteId}

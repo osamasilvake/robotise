@@ -1,6 +1,5 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
@@ -530,19 +529,13 @@ export const RobotItemTrackingLinkFetch =
 
 /**
  * generate reports
- * @param id
  * @param robotId
  * @param payload
  * @param callback
  * @returns
  */
 export const RobotReportsGenerate =
-	(
-		_id: ReportTypeEnum,
-		robotId: string,
-		payload: ReportFormInterface,
-		callback: (report: string) => void
-	) =>
+	(robotId: string, payload: ReportFormInterface, callback: (report: string) => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: RobotTypeEnum.REPORTS

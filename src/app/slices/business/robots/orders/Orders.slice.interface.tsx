@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { JsonApiResponse } from '../../../JsonApi.interface';
+import { JsonApiResponseInterface } from '../../../JsonApi.interface';
 
 export interface SliceOrdersInterface {
 	loader: boolean;
@@ -9,7 +9,7 @@ export interface SliceOrdersInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SOContentInterface extends JsonApiResponse {
+export interface SOContentInterface extends JsonApiResponseInterface {
 	data: SOCDataInterface[];
 	state?: SOCStateInterface;
 }

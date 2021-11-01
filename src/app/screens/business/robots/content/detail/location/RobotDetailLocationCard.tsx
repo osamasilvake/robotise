@@ -13,11 +13,13 @@ import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotLocationImageUrl } from '../../../Robots.url';
 import { RobotDetailLocationHumanLegTypeEnum } from './RobotDetailLocation.enum';
 import {
-	RobotDetailLocationCardHumanIconCoords,
-	RobotDetailLocationCardInterface
+	RobotDetailLocationCardHumanIconCoordsInterface,
+	RobotDetailLocationCardInterface,
+	RobotDetailLocationCardPlannedPathIconCoordsInterface
 } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 import RobotDetailLocationCardHumanIcons from './RobotDetailLocationCardHumanIcon';
+import RobotDetailLocationCardPlannedPath from './RobotDetailLocationCardPlannedPath';
 import RobotDetailLocationCardRobotIcon from './RobotDetailLocationCardRobotIcon';
 
 const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) => {
@@ -29,7 +31,13 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const robot = useSelector(robotSelector);
 
 	const [robotCoords, setRobotCoords] = useState({ x: NaN, y: NaN, yaw: NaN });
-	const [humanCoords, setHumanCoords] = useState<RobotDetailLocationCardHumanIconCoords[]>([]);
+	const [humanCoords, setHumanCoords] = useState<
+		RobotDetailLocationCardHumanIconCoordsInterface[]
+	>([]);
+	const [plannedPathCoords, setPlannedPathCoords] = useState<
+		RobotDetailLocationCardPlannedPathIconCoordsInterface[]
+	>([]);
+
 	const [ratio, setRatio] = useState({ x: NaN, y: NaN, cx: NaN, cy: NaN });
 
 	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
@@ -44,18 +52,18 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 
 	useEffect(() => {
 		const origin = robot.map.content?.origin;
-		const coordinates = robotTwins.location?.value;
 		const resolution = robot.map.content?.resolution;
 
 		if (origin && resolution && ratio) {
 			// robot coordinates
-			if (coordinates) {
-				const x = (Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x;
-				const y = (Math.abs(origin[1] - coordinates.y) / resolution) * ratio.y;
+			const robotCoords = robotTwins.location?.value;
+			if (robotCoords) {
+				const x = (Math.abs(origin[0] - robotCoords.x) / resolution) * ratio.x;
+				const y = (Math.abs(origin[1] - robotCoords.y) / resolution) * ratio.y;
 				setRobotCoords({
 					x: x > 0 ? x % ratio.cx : x,
 					y: y > 0 ? y % ratio.cy : y,
-					yaw: coordinates.yaw
+					yaw: robotCoords.yaw
 				});
 			}
 
@@ -77,6 +85,20 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 				);
 				setHumanCoords(legsCoords);
 			}
+
+			// planned path coordinates
+			const plannedPathCoords = robotTwins.plannedPath?.properties.points;
+			if (plannedPathCoords?.length) {
+				console.log(plannedPathCoords);
+
+				const plannedPaths = plannedPathCoords.map((point) => ({
+					x: (Math.abs(origin[0] - point.xM) / resolution) * ratio.x,
+					y: (Math.abs(origin[1] - point.yM) / resolution) * ratio.y
+				}));
+				console.log(plannedPaths);
+
+				setPlannedPathCoords(plannedPaths);
+			}
 		}
 	}, [
 		ratio,
@@ -84,7 +106,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		robot.map.content?.resolution,
 		robotTwins.location?.value,
 		robotTwins.humanPerception?.properties.legsClose,
-		robotTwins.humanPerception?.properties.legsFar
+		robotTwins.humanPerception?.properties.legsFar,
+		robotTwins.plannedPath
 	]);
 
 	/**
@@ -122,11 +145,20 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 						<RobotDetailLocationCardRobotIcon robotCoords={robotCoords} />
 					)}
 
-					{/* Human Perception Icons */}
+					{/* Human Icons */}
 					{robotTwinsMapName &&
 						!!humanCoords.length &&
 						!Number.isNaN(humanCoords[0].x) && (
 							<RobotDetailLocationCardHumanIcons humanCoords={humanCoords} />
+						)}
+
+					{/* Planned Path */}
+					{robotTwinsMapName &&
+						!!plannedPathCoords.length &&
+						!Number.isNaN(plannedPathCoords[0].x) && (
+							<RobotDetailLocationCardPlannedPath
+								plannedPathCoords={plannedPathCoords}
+							/>
 						)}
 				</CardContent>
 			</Card>

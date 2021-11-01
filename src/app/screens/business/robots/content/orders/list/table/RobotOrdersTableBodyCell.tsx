@@ -93,7 +93,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 							<>
 								<Chip
 									size="small"
-									label={t(`${translation}..ACTIONS.CANCEL.LABEL`)}
+									label={t(`${translation}.ACTIONS.CANCEL.LABEL`)}
 									variant="outlined"
 									color="error"
 									onDelete={openCancelOrderDialog}

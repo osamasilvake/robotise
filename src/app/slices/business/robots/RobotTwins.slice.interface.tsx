@@ -21,13 +21,14 @@ export interface SRTContentDataInterface {
 	cameras?: SRTContentCameraInterface | undefined;
 	batteryState?: SRTContentBatteryStateInterface | undefined;
 	dockingState?: SRTContentDockingStateInterface | undefined;
-	joystickState?: SRTContentJoystickState | undefined;
-	activityState?: SRTContentActivityState | undefined;
-	safetySensors?: SRTContentSafetySensors | undefined;
-	safetySystems?: SRTContentSafetySystems | undefined;
-	computerInfo?: SRTContentComputerInfo | undefined;
-	humanPerception?: SRTContentHumanPerception | undefined;
-	transitPointStarted?: SRTContentTransitPointStarted | undefined;
+	joystickState?: SRTContentJoystickStateInterface | undefined;
+	activityState?: SRTContentActivityStateInterface | undefined;
+	safetySensors?: SRTContentSafetySensorsInterface | undefined;
+	safetySystems?: SRTContentSafetySystemsInterface | undefined;
+	computerInfo?: SRTContentComputerInfoInterface | undefined;
+	humanPerception?: SRTContentHumanPerceptionInterface | undefined;
+	transitPointStarted?: SRTContentTransitPointStartedInterface | undefined;
+	plannedPath?: SRTContentPlannedPathStartedInterface | undefined;
 }
 
 export interface SRTContentSiteInterface {
@@ -56,7 +57,7 @@ export interface SRTContentRobotStateInterface {
 }
 
 export interface SRTContentAlertsInterface {
-	value: IAlert[];
+	value: IAlertInterface[];
 	updatedAt: Date;
 }
 
@@ -72,7 +73,7 @@ export interface SRTContentMissionInterface {
 }
 
 export interface SRTContentLocationInterface {
-	value: ILocation;
+	value: ILocationInterface;
 	updatedAt: Date;
 }
 
@@ -109,21 +110,21 @@ export interface SRTContentDockingStateInterface {
 	updatedAt: Date;
 }
 
-export interface SRTContentJoystickState {
+export interface SRTContentJoystickStateInterface {
 	properties: {
 		isConnected: boolean;
 	};
 	updatedAt: Date;
 }
 
-export interface SRTContentActivityState {
+export interface SRTContentActivityStateInterface {
 	properties: {
 		latest: string;
 	};
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySensors {
+export interface SRTContentSafetySensorsInterface {
 	properties: {
 		drawers: {
 			0: boolean;
@@ -145,7 +146,7 @@ export interface SRTContentSafetySensors {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySystems {
+export interface SRTContentSafetySystemsInterface {
 	properties: {
 		backMutingActive: boolean;
 		brakeReleasePressed: boolean;
@@ -165,7 +166,7 @@ export interface SRTContentSafetySystems {
 	updatedAt: Date;
 }
 
-export interface SRTContentComputerInfo {
+export interface SRTContentComputerInfoInterface {
 	properties: {
 		cpuLoad: {
 			cpu: number[];
@@ -200,17 +201,17 @@ export interface SRTContentComputerInfo {
 	updatedAt: Date;
 }
 
-export interface SRTContentHumanPerception {
+export interface SRTContentHumanPerceptionInterface {
 	properties: {
-		legsClose: HLocation[];
-		legsFar: HLocation[];
+		legsClose: HLocationInterface[];
+		legsFar: HLocationInterface[];
 		legsCloseCount: number;
 		legsFarCount: number;
 	};
 	updatedAt: Date;
 }
 
-export interface SRTContentTransitPointStarted {
+export interface SRTContentTransitPointStartedInterface {
 	properties: {
 		guiVersion: string;
 		protobufVersion: string;
@@ -223,7 +224,24 @@ export interface SRTContentTransitPointStarted {
 	updatedAt: Date;
 }
 
-export interface IRobotTwin {
+export interface SRTContentPlannedPathStartedInterface {
+	properties: {
+		mapName: string;
+		goal: {
+			position: {
+				xM: number;
+				yM: number;
+			};
+		};
+		points: {
+			xM: number;
+			yM: number;
+		}[];
+	};
+	updatedAt: Date;
+}
+
+export interface IRobotTwinInterface {
 	id: string;
 	createdAt: Date;
 	updatedAt: Date;
@@ -242,7 +260,7 @@ export interface IRobotTwin {
 			robotState: {
 				isReady: boolean;
 			};
-			alerts: IAlert[];
+			alerts: IAlertInterface[];
 			cameras: {
 				[key: string]: {
 					imageId: string;
@@ -256,7 +274,7 @@ export interface IRobotTwin {
 					status: string;
 					description: string;
 				};
-				location: ILocation;
+				location: ILocationInterface;
 				batteryState: {
 					current: number;
 					percentage: number;
@@ -330,8 +348,8 @@ export interface IRobotTwin {
 					}[];
 				};
 				humanPerception: {
-					legsClose: HLocation[];
-					legsFar: HLocation[];
+					legsClose: HLocationInterface[];
+					legsFar: HLocationInterface[];
 					legsCloseCount: number;
 					legsFarCount: number;
 				};
@@ -343,6 +361,19 @@ export interface IRobotTwin {
 					branch: string;
 					commit: string;
 					name: string;
+				}[];
+			};
+			plannedPath: {
+				mapName: string;
+				goal: {
+					position: {
+						xM: number;
+						yM: number;
+					};
+				};
+				points: {
+					xM: number;
+					yM: number;
 				}[];
 			};
 		};
@@ -411,18 +442,21 @@ export interface IRobotTwin {
 			transitPointStarted: {
 				updatedAt: Date;
 			};
+			plannedPath: {
+				updatedAt: Date;
+			};
 		};
 	};
 }
 
-export interface IOrderQueue {
+export interface IOrderQueueInterface {
 	id: string;
 	status: string;
 }
 
-export interface IAlert {
+export interface IAlertInterface {
 	code: string;
-	conditions: IAlertRulesCondition[];
+	conditions: IAlertRulesConditionInterface[];
 	createdAt: Date;
 	level: string;
 	message: string;
@@ -430,14 +464,14 @@ export interface IAlert {
 	updatedAt?: Date;
 }
 
-export interface IAlertRulesCondition {
+export interface IAlertRulesConditionInterface {
 	field: string;
 	condition: string;
 	value: boolean | string | number;
 	currentValue: boolean | string | number;
 }
 
-export interface ILocation {
+export interface ILocationInterface {
 	mapName: string;
 	floor: string;
 	x: number;
@@ -445,7 +479,7 @@ export interface ILocation {
 	yaw: number;
 }
 
-export interface HLocation {
+export interface HLocationInterface {
 	x: number;
 	y: number;
 }

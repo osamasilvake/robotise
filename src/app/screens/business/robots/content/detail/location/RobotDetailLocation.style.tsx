@@ -43,6 +43,14 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 		position: 'absolute',
 		width: theme.typography.pxToRem(8)
 	},
+	sCardPlannedPath: {
+		bottom: 0,
+		height: '100%',
+		left: 0,
+		position: 'absolute',
+		top: 0,
+		width: '100%'
+	},
 	sInfoGridBox: {
 		marginBottom: theme.spacing(-0.6)
 	},

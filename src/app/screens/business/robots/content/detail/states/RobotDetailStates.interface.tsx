@@ -1,9 +1,9 @@
 import {
-	SRTContentActivityState,
+	SRTContentActivityStateInterface,
 	SRTContentBatteryStateInterface,
 	SRTContentDataInterface,
 	SRTContentDockingStateInterface,
-	SRTContentJoystickState
+	SRTContentJoystickStateInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
 export interface RobotDetailStatesInterface {
@@ -21,8 +21,8 @@ export interface RobotDetailStateInfoInterface {
 	content:
 		| SRTContentBatteryStateInterface
 		| SRTContentDockingStateInterface
-		| SRTContentJoystickState
-		| SRTContentActivityState
+		| SRTContentJoystickStateInterface
+		| SRTContentActivityStateInterface
 		| undefined;
 }
 

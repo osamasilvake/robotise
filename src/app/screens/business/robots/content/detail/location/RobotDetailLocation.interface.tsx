@@ -32,11 +32,20 @@ export interface RobotDetailLocationCardRobotIconCoords {
 }
 
 export interface RobotDetailLocationCardHumanIconInterface {
-	humanCoords: RobotDetailLocationCardHumanIconCoords[];
+	humanCoords: RobotDetailLocationCardHumanIconCoordsInterface[];
 }
 
-export interface RobotDetailLocationCardHumanIconCoords {
+export interface RobotDetailLocationCardHumanIconCoordsInterface {
 	x: number;
 	y: number;
 	type: RobotDetailLocationHumanLegTypeEnum;
+}
+
+export interface RobotDetailLocationCardPlannedPathInterface {
+	plannedPathCoords: RobotDetailLocationCardPlannedPathIconCoordsInterface[];
+}
+
+export interface RobotDetailLocationCardPlannedPathIconCoordsInterface {
+	x: number;
+	y: number;
 }

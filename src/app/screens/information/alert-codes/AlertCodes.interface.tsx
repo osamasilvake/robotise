@@ -1,7 +1,7 @@
 import { SACDataInterface } from '../../../slices/information/alert-codes/AlertCodes.interface';
-import { JsonApiResponse } from '../../../slices/JsonApi.interface';
+import { JsonApiResponseInterface } from '../../../slices/JsonApi.interface';
 
-export interface AlertCodesAxiosGetInterface extends JsonApiResponse {
+export interface AlertCodesAxiosGetInterface extends JsonApiResponseInterface {
 	data: {
 		id: string;
 		type: string;

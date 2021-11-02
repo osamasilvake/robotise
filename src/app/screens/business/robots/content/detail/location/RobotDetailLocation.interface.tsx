@@ -43,6 +43,12 @@ export interface RobotDetailLocationCardHumanIconCoordsInterface {
 
 export interface RobotDetailLocationCardPlannedPathInterface {
 	plannedPathCoords: RobotDetailLocationCardPlannedPathIconCoordsInterface[];
+	ratio: {
+		x: number;
+		y: number;
+		cx: number;
+		cy: number;
+	};
 }
 
 export interface RobotDetailLocationCardPlannedPathIconCoordsInterface {

@@ -25,29 +25,25 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 			width: '100%'
 		}
 	},
+	sCardHumanTooltip: {
+		cursor: 'help'
+	},
 	sCardRobotIcon: {
-		bottom: 0,
 		fill: AppConfigService.AppOptions.colors.c12,
-		left: 0,
 		position: 'absolute',
 		transition: 'bottom 1s, left 1s, transform 0.2s',
 		width: theme.typography.pxToRem(16)
 	},
-	sCardHumanTooltip: {
-		cursor: 'help'
-	},
 	sCardHumanIcon: {
-		bottom: 0,
 		height: theme.typography.pxToRem(8),
-		left: 0,
 		position: 'absolute',
 		width: theme.typography.pxToRem(8)
 	},
 	sCardPlannedPath: {
 		bottom: 0,
-		height: '100%',
 		left: 0,
 		position: 'absolute',
+		right: 0,
 		top: 0,
 		width: '100%'
 	},

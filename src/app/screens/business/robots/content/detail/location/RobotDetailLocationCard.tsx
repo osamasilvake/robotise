@@ -136,6 +136,16 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 						/>
 					</Box>
 
+					{/* Planned Path */}
+					{robotTwinsMapName &&
+						!!plannedPathCoords.length &&
+						!Number.isNaN(plannedPathCoords[0].x) && (
+							<RobotDetailLocationCardPlannedPath
+								plannedPathCoords={plannedPathCoords}
+								ratio={ratio}
+							/>
+						)}
+
 					{/* Robot Icon */}
 					{robotTwinsMapName && !Number.isNaN(robotCoords.x) && (
 						<RobotDetailLocationCardRobotIcon robotCoords={robotCoords} />
@@ -146,15 +156,6 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 						!!humanCoords.length &&
 						!Number.isNaN(humanCoords[0].x) && (
 							<RobotDetailLocationCardHumanIcons humanCoords={humanCoords} />
-						)}
-
-					{/* Planned Path */}
-					{robotTwinsMapName &&
-						!!plannedPathCoords.length &&
-						!Number.isNaN(plannedPathCoords[0].x) && (
-							<RobotDetailLocationCardPlannedPath
-								plannedPathCoords={plannedPathCoords}
-							/>
 						)}
 				</CardContent>
 			</Card>

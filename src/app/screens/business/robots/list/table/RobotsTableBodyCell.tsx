@@ -27,6 +27,9 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 			// stop propagation
 			event.stopPropagation();
 
+			// disable menu
+			event.preventDefault();
+
 			// prepare link
 			const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
 			const link = url.replace(':robotId', robot.robotId);

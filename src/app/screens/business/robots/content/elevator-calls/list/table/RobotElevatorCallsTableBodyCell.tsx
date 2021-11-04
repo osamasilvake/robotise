@@ -1,4 +1,4 @@
-import { Box, Icon, TableCell, Typography } from '@mui/material';
+import { Box, Icon, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -42,22 +42,25 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 			return (
 				<Box>
 					{history.map((item, index) => (
-						<Box key={index} className={classes.sTableHistoryFlex}>
+						<Stack
+							key={index}
+							spacing={0.5}
+							direction="row"
+							flexWrap="wrap"
+							className={classes.sTableHistory}>
 							<Icon
 								color={mapHistoryEventType(t(item.event)).color}
 								className={classes.sTableHistoryIcon}>
 								{mapHistoryEventType(t(item.event)).icon}
 							</Icon>
 							<Typography variant="body2" className={classes.sHistoryEvent}>
-								{t(historyMapped[index].event)}:
-							</Typography>
-							<Typography variant="body2" className={classes.sHistoryDetails}>
-								{item.details || AppConfigService.AppOptions.common.none}
+								{t(historyMapped[index].event)}
+								{!!item.details && `: ${item.details}`}
 							</Typography>
 							<Typography variant="caption" color="textSecondary">
 								({momentFormat3(item.createdAt)})
 							</Typography>
-						</Box>
+						</Stack>
 					))}
 					{!history.length && AppConfigService.AppOptions.common.none}
 				</Box>

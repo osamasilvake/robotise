@@ -25,21 +25,30 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 			width: '100%'
 		}
 	},
-	sCardRobotIcon: {
+	sCardHumanTooltip: {
+		cursor: 'help'
+	},
+	sCardPlannedPath: {
 		bottom: 0,
-		fill: AppConfigService.AppOptions.colors.c12,
 		left: 0,
+		position: 'absolute',
+		right: 0,
+		top: 0,
+		width: '100%'
+	},
+	sCardRobotIcon: {
 		position: 'absolute',
 		transition: 'bottom 1s, left 1s, transform 0.2s',
 		width: theme.typography.pxToRem(16)
 	},
-	sCardHumanTooltip: {
-		cursor: 'help'
+	sCardRobotMarker: {
+		fill: AppConfigService.AppOptions.colors.c12
+	},
+	sCardRobotPacMan: {
+		fill: AppConfigService.AppOptions.colors.c9
 	},
 	sCardHumanIcon: {
-		bottom: 0,
 		height: theme.typography.pxToRem(8),
-		left: 0,
 		position: 'absolute',
 		width: theme.typography.pxToRem(8)
 	},
@@ -49,7 +58,7 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 	sInfoLabel: {
 		display: 'inline-block',
 		fontWeight: 500,
-		width: theme.typography.pxToRem(70),
+		width: theme.typography.pxToRem(100),
 		[theme.breakpoints.up('md')]: {
 			marginLeft: theme.spacing(0.65)
 		}

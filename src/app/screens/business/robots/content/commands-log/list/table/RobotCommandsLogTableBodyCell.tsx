@@ -1,4 +1,4 @@
-import { Box, Icon, TableCell } from '@mui/material';
+import { Box, Icon, Stack, TableCell } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -39,7 +39,12 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 			return (
 				<Box>
 					{history.map((item, index) => (
-						<Box key={index} className={classes.sTableHistoryFlex}>
+						<Stack
+							key={index}
+							spacing={0.5}
+							direction="row"
+							alignItems="center"
+							className={classes.sTableHistory}>
 							<Icon
 								color={mapHistoryStatus(item.status).color}
 								className={classes.sTableHistoryIcon}>
@@ -47,7 +52,7 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 							</Icon>
 							{t(historyMapped[index].status)}
 							{item.details && <>: {item.details}</>}
-						</Box>
+						</Stack>
 					))}
 				</Box>
 			);

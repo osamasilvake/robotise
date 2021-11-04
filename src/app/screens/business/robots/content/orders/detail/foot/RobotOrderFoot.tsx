@@ -1,7 +1,7 @@
 import { Box, Link, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -14,23 +14,8 @@ const RobotOrderFoot: FC<RobotOrderFootInterface> = (props) => {
 	const classes = RobotOrderFootStyle();
 
 	const params: RobotParamsInterface = useParams();
-	const history = useHistory();
 
 	const cRobotId = params.robotId;
-
-	/**
-	 * handle show purchase detail
-	 * @param purchaseId
-	 * @returns
-	 */
-	const handleShowPurchaseDetail = (purchaseId: string) => () => {
-		// prepare link
-		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL;
-		const robotLink = url.replace(':robotId', cRobotId).replace(':purchaseId', purchaseId);
-
-		// push to history
-		history.push(robotLink);
-	};
 
 	return order?.content?.orderReport ? (
 		<Box className={classes.sFootBox}>
@@ -38,10 +23,13 @@ const RobotOrderFoot: FC<RobotOrderFootInterface> = (props) => {
 				{t('CONTENT.ORDERS.DETAIL.FOOT.PURCHASE.LINK.TITLE')}
 			</Typography>
 			<Link
-				component="button"
+				component={RouterLink}
 				variant="body2"
 				underline="hover"
-				onClick={handleShowPurchaseDetail(order.content.orderReport.id)}>
+				to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL.replace(
+					':robotId',
+					cRobotId
+				).replace(':purchaseId', order.content.orderReport.id)}>
 				{t('CONTENT.ORDERS.DETAIL.FOOT.PURCHASE.LINK.TEXT')}
 			</Link>
 		</Box>

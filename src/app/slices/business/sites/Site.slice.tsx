@@ -1,6 +1,5 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { ReportTypeEnum } from '../../../components/common/report/Report.enum';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
@@ -170,19 +169,13 @@ export const SiteRobotConfigUpdate =
 
 /**
  * generate reports
- * @param id
  * @param siteId
  * @param payload
  * @param callback
  * @returns
  */
 export const SiteReportsGenerate =
-	(
-		_id: ReportTypeEnum,
-		siteId: string,
-		payload: ReportFormInterface,
-		callback: (report: string) => void
-	) =>
+	(siteId: string, payload: ReportFormInterface, callback: (report: string) => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: SiteTypeEnum.REPORTS

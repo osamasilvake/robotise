@@ -1,10 +1,10 @@
 import { AppConfigService } from '../../../../../../services';
 import {
-	SRTContentComputerInfo,
-	SRTContentHumanPerception,
-	SRTContentSafetySensors,
-	SRTContentSafetySystems,
-	SRTContentTransitPointStarted
+	SRTContentComputerInfoInterface,
+	SRTContentHumanPerceptionInterface,
+	SRTContentSafetySensorsInterface,
+	SRTContentSafetySystemsInterface,
+	SRTContentTransitPointStartedInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 
@@ -15,7 +15,7 @@ import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
  * @returns
  */
 export const mapSafetyContent = (
-	data: SRTContentSafetySystems | SRTContentSafetySensors,
+	data: SRTContentSafetySystemsInterface | SRTContentSafetySensorsInterface,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties).map(([key, value]) => {
@@ -36,7 +36,7 @@ export const mapSafetyContent = (
  * @returns
  */
 export const mapComputerInfo = (
-	data: SRTContentComputerInfo,
+	data: SRTContentComputerInfoInterface,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties)
@@ -72,7 +72,7 @@ export const mapComputerInfo = (
  * @returns
  */
 export const mapHumanPerception = (
-	data: SRTContentHumanPerception,
+	data: SRTContentHumanPerceptionInterface,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties)
@@ -102,7 +102,7 @@ export const mapHumanPerception = (
  * @returns
  */
 export const mapTransitPointStarted = (
-	data: SRTContentTransitPointStarted,
+	data: SRTContentTransitPointStartedInterface,
 	type: RobotDetailInformationTypeEnum
 ) =>
 	Object.entries(data.properties)

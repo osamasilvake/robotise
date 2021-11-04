@@ -1,5 +1,5 @@
 import {
-	IAlert,
+	IAlertInterface,
 	SRTContentDataInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 
@@ -8,9 +8,9 @@ export interface RobotDetailAlertsInterface {
 }
 
 export interface RobotDetailAlertInterface {
-	alert: IAlert;
+	alert: IAlertInterface;
 }
 
 export interface RobotDetailAlertCardInterface {
-	alert: IAlert;
+	alert: IAlertInterface;
 }

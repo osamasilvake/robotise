@@ -88,10 +88,10 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 	const handleShowOrderDetail = (order: SOCDataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL;
-		const robotLink = url.replace(':robotId', cRobotId).replace(':orderId', order.id);
+		const link = url.replace(':robotId', cRobotId).replace(':orderId', order.id);
 
 		// push to history
-		history.push(robotLink);
+		history.push(link);
 	};
 
 	return (

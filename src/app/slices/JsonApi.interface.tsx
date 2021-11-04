@@ -1,29 +1,31 @@
 import { DeserializerOptions } from 'jsonapi-serializer';
 
-export interface DeserializerExtendedOptions extends DeserializerOptions {
-	sites?: DeserializeRelationship;
-	robotTwins?: DeserializeRelationship;
-	robots?: DeserializeRelationship;
-	orders?: DeserializeRelationship;
-	orderReports?: DeserializeRelationship;
-	users?: DeserializeRelationship;
-	activity?: DeserializeRelationship;
-	notificationTypes?: DeserializeRelationship;
+export interface DeserializerExtendedOptionsInterface extends DeserializerOptions {
+	sites?: DeserializeRelationshipInterface;
+	robotTwins?: DeserializeRelationshipInterface;
+	robots?: DeserializeRelationshipInterface;
+	orders?: DeserializeRelationshipInterface;
+	orderReports?: DeserializeRelationshipInterface;
+	users?: DeserializeRelationshipInterface;
+	activity?: DeserializeRelationshipInterface;
+	notificationTypes?: DeserializeRelationshipInterface;
 }
 
-export interface DeserializeRelationship {
-	valueForRelationship(arg: DeserializeRelationshipProperties): DeserializeRelationshipProperties;
+export interface DeserializeRelationshipInterface {
+	valueForRelationship(
+		arg: DeserializeRelationshipPropertiesInterface
+	): DeserializeRelationshipPropertiesInterface;
 }
 
-export interface DeserializeRelationshipProperties {
+export interface DeserializeRelationshipPropertiesInterface {
 	id: string | number;
 }
 
-export interface JsonApiResponse {
-	meta: JsonApiMeta;
+export interface JsonApiResponseInterface {
+	meta: JsonApiMetaInterface;
 }
 
-export interface JsonApiMeta {
+export interface JsonApiMetaInterface {
 	totalPages: number;
 	hasPrevPage: boolean;
 	hasNextPage: boolean;

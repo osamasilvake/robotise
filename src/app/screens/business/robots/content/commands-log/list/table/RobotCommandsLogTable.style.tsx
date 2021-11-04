@@ -12,8 +12,7 @@ export const RobotCommandsLogTableStyle = makeStyles((theme: Theme) => ({
 		opacity: 0.6,
 		pointerEvents: 'none'
 	},
-	sTableHistoryFlex: {
-		display: 'flex',
+	sTableHistory: {
 		'&:not(:last-child)': {
 			marginBottom: theme.spacing(0.5)
 		}

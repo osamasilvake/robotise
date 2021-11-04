@@ -12,19 +12,13 @@ export const RobotElevatorCallsTableStyle = makeStyles((theme: Theme) => ({
 		opacity: 0.6,
 		pointerEvents: 'none'
 	},
-	sTableHistoryFlex: {
-		alignItems: 'center',
-		display: 'flex',
-		flexWrap: 'wrap',
+	sTableHistory: {
 		'&:not(:last-child)': {
 			marginBottom: theme.spacing(0.5)
 		}
 	},
 	sHistoryEvent: {
 		marginRight: theme.spacing(0.5)
-	},
-	sHistoryDetails: {
-		marginRight: theme.spacing(0.8)
 	},
 	sTableHistoryIcon: {
 		fontSize: theme.typography.pxToRem(20),

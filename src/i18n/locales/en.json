@@ -364,7 +364,6 @@
 			},
 			"DETAIL": {
 				"GENERAL": {
-					"SITE": "Site",
 					"VENDOR": "Vendor",
 					"LAST_UPDATED": "Last Updated",
 					"TIMEZONE": "Timezone",

@@ -54,10 +54,10 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 
 			// prepare link
 			const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL;
-			const robotLink = url.replace(':robotId', cRobotId).replace(':purchaseId', purchaseId);
+			const link = url.replace(':robotId', cRobotId).replace(':purchaseId', purchaseId);
 
 			// push to history
-			history.push(robotLink);
+			history.push(link);
 		};
 
 	/**

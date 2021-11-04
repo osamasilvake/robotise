@@ -41,10 +41,10 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL;
-		const robotLink = url.replace(':robotId', cRobotId).replace(':orderId', orderId);
+		const link = url.replace(':robotId', cRobotId).replace(':orderId', orderId);
 
 		// push to history
-		history.push(robotLink);
+		history.push(link);
 	};
 
 	/**

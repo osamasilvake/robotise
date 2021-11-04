@@ -28,17 +28,6 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 	sCardHumanTooltip: {
 		cursor: 'help'
 	},
-	sCardRobotIcon: {
-		fill: AppConfigService.AppOptions.colors.c12,
-		position: 'absolute',
-		transition: 'bottom 1s, left 1s, transform 0.2s',
-		width: theme.typography.pxToRem(16)
-	},
-	sCardHumanIcon: {
-		height: theme.typography.pxToRem(8),
-		position: 'absolute',
-		width: theme.typography.pxToRem(8)
-	},
 	sCardPlannedPath: {
 		bottom: 0,
 		left: 0,
@@ -46,6 +35,17 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 		right: 0,
 		top: 0,
 		width: '100%'
+	},
+	sCardRobotIcon: {
+		fill: AppConfigService.AppOptions.colors.c9,
+		position: 'absolute',
+		transition: 'bottom 1s, left 1s, transform 0.2s',
+		width: theme.typography.pxToRem(12)
+	},
+	sCardHumanIcon: {
+		height: theme.typography.pxToRem(8),
+		position: 'absolute',
+		width: theme.typography.pxToRem(8)
 	},
 	sInfoGridBox: {
 		marginBottom: theme.spacing(-0.6)

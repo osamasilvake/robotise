@@ -23,6 +23,24 @@ export interface RobotDetailLocationInfoInterface {
 
 export interface RobotDetailLocationCardRobotIconInterface {
 	robotCoords: RobotDetailLocationCardRobotIconCoords;
+	goalReached: boolean;
+}
+
+export interface RobotDetailLocationCardRatioInterface {
+	x: number;
+	y: number;
+	cx: number;
+	cy: number;
+}
+
+export interface RobotDetailLocationCardPlannedPathInterface {
+	plannedPathCoords: RobotDetailLocationCardPlannedPathCoordsInterface[];
+	ratio: RobotDetailLocationCardRatioInterface;
+}
+
+export interface RobotDetailLocationCardPlannedPathCoordsInterface {
+	x: number;
+	y: number;
 }
 
 export interface RobotDetailLocationCardRobotIconCoords {
@@ -39,19 +57,4 @@ export interface RobotDetailLocationCardHumanIconCoordsInterface {
 	x: number;
 	y: number;
 	type: RobotDetailLocationHumanLegTypeEnum;
-}
-
-export interface RobotDetailLocationCardPlannedPathInterface {
-	plannedPathCoords: RobotDetailLocationCardPlannedPathIconCoordsInterface[];
-	ratio: {
-		x: number;
-		y: number;
-		cx: number;
-		cy: number;
-	};
-}
-
-export interface RobotDetailLocationCardPlannedPathIconCoordsInterface {
-	x: number;
-	y: number;
 }

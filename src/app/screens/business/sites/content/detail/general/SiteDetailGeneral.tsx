@@ -18,16 +18,8 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 
 	return (
 		<Grid container spacing={1}>
-			{/* Site */}
-			<Grid item xs={12} sm={6} md={4} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.SITE`)}
-				</Typography>
-				<Typography>{site.title}</Typography>
-			</Grid>
-
 			{/* Vendor */}
-			<Grid item xs={12} sm={6} md={4} lg={2}>
+			<Grid item xs={12} sm={6} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.VENDOR`)}
 				</Typography>
@@ -37,7 +29,7 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Last Updated */}
-			<Grid item xs={12} sm={6} md={4} lg={3}>
+			<Grid item xs={12} sm={6} lg={4}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.LAST_UPDATED`)}
 				</Typography>
@@ -45,7 +37,7 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Timezone */}
-			<Grid item xs={12} sm={6} md={4} lg={2}>
+			<Grid item xs={12} sm={6} lg={2}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.TIMEZONE`)}
 				</Typography>
@@ -53,7 +45,7 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Accept Orders */}
-			<Grid item xs={12} sm={6} md={8} lg={2} className={classes.sGeneralLastItem}>
+			<Grid item xs={12} sm={6} lg={3} className={classes.sGeneralLastItem}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
 				</Typography>

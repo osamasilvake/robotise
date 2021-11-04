@@ -1,8 +1,9 @@
 import { Edit, InfoOutlined } from '@mui/icons-material';
-import { Grid, IconButton, Stack, Tooltip, Typography } from '@mui/material';
+import { Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
 import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
@@ -20,8 +21,23 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const classes = RobotDetailGeneralStyle();
 
 	const [open, setOpen] = useState(false);
+	const history = useHistory();
 
 	const translation = 'CONTENT.DETAIL.GENERAL';
+
+	/**
+	 * handle show site detail
+	 * @param siteId
+	 * @returns
+	 */
+	const handleShowSiteDetail = (siteId: string) => () => {
+		// prepare link
+		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL;
+		const siteLink = url.replace(':siteId', siteId);
+
+		// push to history
+		history.push(siteLink);
+	};
 
 	return (
 		<Grid container spacing={1}>
@@ -30,7 +46,15 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.SITE`)}
 				</Typography>
-				<Typography>{robotTwins.site.title}</Typography>
+				<Box>
+					<Link
+						component="button"
+						variant="body1"
+						underline="hover"
+						onClick={handleShowSiteDetail(robotTwins.site.id)}>
+						{robotTwins.site.title}
+					</Link>
+				</Box>
 			</Grid>
 
 			{/* Last Updated */}

@@ -3,7 +3,7 @@ import { Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/materia
 import { Box } from '@mui/system';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
@@ -21,23 +21,8 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const classes = RobotDetailGeneralStyle();
 
 	const [open, setOpen] = useState(false);
-	const history = useHistory();
 
 	const translation = 'CONTENT.DETAIL.GENERAL';
-
-	/**
-	 * handle show site detail
-	 * @param siteId
-	 * @returns
-	 */
-	const handleShowSiteDetail = (siteId: string) => () => {
-		// prepare link
-		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL;
-		const siteLink = url.replace(':siteId', siteId);
-
-		// push to history
-		history.push(siteLink);
-	};
 
 	return (
 		<Grid container spacing={1}>
@@ -48,10 +33,13 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Typography>
 				<Box>
 					<Link
-						component="button"
+						component={RouterLink}
 						variant="body1"
 						underline="hover"
-						onClick={handleShowSiteDetail(robotTwins.site.id)}>
+						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
+							':siteId',
+							robotTwins.site.id
+						)}>
 						{robotTwins.site.title}
 					</Link>
 				</Box>

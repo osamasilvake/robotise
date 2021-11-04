@@ -1,7 +1,8 @@
 import { ChatOutlined, Check, Close, InfoOutlined } from '@mui/icons-material';
 import { Box, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
-import { FC, MouseEvent } from 'react';
+import { FC } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ReadMore from '../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../services';
@@ -18,27 +19,6 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	const classes = RobotsListStyle();
 
 	/**
-	 * handle show robot detail
-	 * @param robot
-	 * @returns
-	 */
-	const handleShowRobotDetail =
-		(robot: RTSContentDataInterface) => (event: MouseEvent<HTMLAnchorElement>) => {
-			// stop propagation
-			event.stopPropagation();
-
-			// disable menu
-			event.preventDefault();
-
-			// prepare link
-			const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
-			const link = url.replace(':robotId', robot.robotId);
-
-			// open in new tab
-			window.open(link);
-		};
-
-	/**
 	 * set cell value
 	 * @param robot
 	 * @param column
@@ -51,10 +31,14 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 				<Box>
 					<Typography variant="body2">
 						<Link
-							component="button"
+							component={RouterLink}
 							variant="body2"
 							underline="hover"
-							onContextMenu={handleShowRobotDetail(robot)}>
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL.replace(
+								':robotId',
+								robot.robotId
+							)}
+							onClick={(e) => e.stopPropagation()}>
 							{robot.robotTitle}
 						</Link>
 						{robot.robotNote && (

@@ -13,7 +13,8 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailLocationStyle();
 
-	const [grid, showGrid] = useState(false);
+	const [grid, setGrid] = useState(false);
+	const [plannedPath, setPlannedPath] = useState(false);
 
 	const translation = 'CONTENT.DETAIL.LOCATION';
 
@@ -39,13 +40,19 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 			{/* Grid */}
 			<Grid container spacing={1}>
 				{/* Card */}
-				<RobotDetailLocationCard robotTwins={robotTwins} grid={grid} />
+				<RobotDetailLocationCard
+					robotTwins={robotTwins}
+					grid={grid}
+					plannedPath={plannedPath}
+				/>
 
 				{/* Info */}
 				<RobotDetailLocationInfo
 					location={robotTwins.location}
 					grid={grid}
-					showGrid={showGrid}
+					setGrid={setGrid}
+					plannedPath={plannedPath}
+					setPlannedPath={setPlannedPath}
 				/>
 			</Grid>
 		</Box>

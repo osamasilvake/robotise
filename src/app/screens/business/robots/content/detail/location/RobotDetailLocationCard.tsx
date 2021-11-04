@@ -24,7 +24,7 @@ import RobotDetailLocationCardPlannedPath from './RobotDetailLocationCardPlanned
 import RobotDetailLocationCardRobotIcon from './RobotDetailLocationCardRobotIcon';
 
 const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) => {
-	const { robotTwins, grid } = props;
+	const { robotTwins, grid, plannedPath } = props;
 	const classes = RobotDetailLocationStyle();
 	const cardClasses = CardStyle();
 
@@ -157,7 +157,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 					{robotTwinsMapName && (
 						<>
 							{/* Planned Path */}
-							{!!plannedPathCoords.length &&
+							{plannedPath &&
+								!!plannedPathCoords.length &&
 								!!plannedPathCoords[0].x &&
 								!goalReached && (
 									<RobotDetailLocationCardPlannedPath
@@ -170,6 +171,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 							{!!robotCoords.x && (
 								<RobotDetailLocationCardRobotIcon
 									robotCoords={robotCoords}
+									plannedPath={plannedPath}
 									goalReached={goalReached}
 								/>
 							)}

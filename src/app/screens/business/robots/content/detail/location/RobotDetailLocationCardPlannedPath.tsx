@@ -33,7 +33,7 @@ const RobotDetailLocationCardPlannedPath: FC<RobotDetailLocationCardPlannedPathI
 					id="flag"
 					viewBox="0 0 24 24"
 					refX="5"
-					refY="18"
+					refY="20"
 					markerUnits="strokeWidth"
 					markerWidth="8"
 					markerHeight="8">

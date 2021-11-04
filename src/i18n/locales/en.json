@@ -364,6 +364,7 @@
 			},
 			"DETAIL": {
 				"GENERAL": {
+					"SITE": "Site",
 					"VENDOR": "Vendor",
 					"LAST_UPDATED": "Last Updated",
 					"TIMEZONE": "Timezone",
@@ -689,6 +690,7 @@
 					"TITLE": "Location",
 					"FLOOR": "Floor:",
 					"GRID": "Grid",
+					"PLANNED_PATH": "Planned Path",
 					"MAP": {
 						"HUMAN_PERCEPTION": {
 							"LEG_CLOSE": "Someone is very close to the robot!",

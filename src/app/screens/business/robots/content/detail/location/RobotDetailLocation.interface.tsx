@@ -13,16 +13,38 @@ export interface RobotDetailLocationInterface {
 export interface RobotDetailLocationCardInterface {
 	robotTwins: SRTContentDataInterface;
 	grid: boolean;
+	plannedPath: boolean;
 }
 
 export interface RobotDetailLocationInfoInterface {
 	location: SRTContentLocationInterface | undefined;
 	grid: boolean;
-	showGrid: Dispatch<SetStateAction<boolean>>;
+	setGrid: Dispatch<SetStateAction<boolean>>;
+	plannedPath: boolean;
+	setPlannedPath: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface RobotDetailLocationCardRobotIconInterface {
 	robotCoords: RobotDetailLocationCardRobotIconCoords;
+	plannedPath: boolean;
+	goalReached: boolean;
+}
+
+export interface RobotDetailLocationCardRatioInterface {
+	x: number;
+	y: number;
+	cx: number;
+	cy: number;
+}
+
+export interface RobotDetailLocationCardPlannedPathInterface {
+	plannedPathCoords: RobotDetailLocationCardPlannedPathCoordsInterface[];
+	ratio: RobotDetailLocationCardRatioInterface;
+}
+
+export interface RobotDetailLocationCardPlannedPathCoordsInterface {
+	x: number;
+	y: number;
 }
 
 export interface RobotDetailLocationCardRobotIconCoords {
@@ -32,10 +54,10 @@ export interface RobotDetailLocationCardRobotIconCoords {
 }
 
 export interface RobotDetailLocationCardHumanIconInterface {
-	humanCoords: RobotDetailLocationCardHumanIconCoords[];
+	humanCoords: RobotDetailLocationCardHumanIconCoordsInterface[];
 }
 
-export interface RobotDetailLocationCardHumanIconCoords {
+export interface RobotDetailLocationCardHumanIconCoordsInterface {
 	x: number;
 	y: number;
 	type: RobotDetailLocationHumanLegTypeEnum;

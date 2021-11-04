@@ -13,24 +13,38 @@ import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotLocationImageUrl } from '../../../Robots.url';
 import { RobotDetailLocationHumanLegTypeEnum } from './RobotDetailLocation.enum';
 import {
-	RobotDetailLocationCardHumanIconCoords,
-	RobotDetailLocationCardInterface
+	RobotDetailLocationCardHumanIconCoordsInterface,
+	RobotDetailLocationCardInterface,
+	RobotDetailLocationCardPlannedPathCoordsInterface,
+	RobotDetailLocationCardRatioInterface
 } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 import RobotDetailLocationCardHumanIcons from './RobotDetailLocationCardHumanIcon';
+import RobotDetailLocationCardPlannedPath from './RobotDetailLocationCardPlannedPath';
 import RobotDetailLocationCardRobotIcon from './RobotDetailLocationCardRobotIcon';
 
 const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) => {
-	const { robotTwins, grid } = props;
+	const { robotTwins, grid, plannedPath } = props;
 	const classes = RobotDetailLocationStyle();
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
-	const [robotCoords, setRobotCoords] = useState({ x: NaN, y: NaN, yaw: NaN });
-	const [humanCoords, setHumanCoords] = useState<RobotDetailLocationCardHumanIconCoords[]>([]);
-	const [ratio, setRatio] = useState({ x: NaN, y: NaN, cx: NaN, cy: NaN });
+	const [ratio, setRatio] = useState<RobotDetailLocationCardRatioInterface>({
+		x: 0,
+		y: 0,
+		cx: 0,
+		cy: 0
+	});
+	const [plannedPathCoords, setPlannedPathCoords] = useState<
+		RobotDetailLocationCardPlannedPathCoordsInterface[]
+	>([]);
+	const [robotCoords, setRobotCoords] = useState({ x: 0, y: 0, yaw: 0 });
+	const [humanCoords, setHumanCoords] = useState<
+		RobotDetailLocationCardHumanIconCoordsInterface[]
+	>([]);
+	const [goalReached, setGoalReached] = useState(false);
 
 	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
 	const robotMapName = robot.map.content?.name || '';
@@ -44,18 +58,29 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 
 	useEffect(() => {
 		const origin = robot.map.content?.origin;
-		const coordinates = robotTwins.location?.value;
 		const resolution = robot.map.content?.resolution;
 
 		if (origin && resolution && ratio) {
+			// planned path coordinates
+			const plannedPathCoords = robotTwins.plannedPath?.properties.points;
+			if (plannedPathCoords?.length) {
+				setPlannedPathCoords(
+					plannedPathCoords.map((point) => ({
+						x: (Math.abs(origin[0] - point.xM) / resolution) * ratio.x,
+						y: (Math.abs(origin[1] - point.yM) / resolution) * ratio.y
+					}))
+				);
+			}
+
 			// robot coordinates
-			if (coordinates) {
-				const x = (Math.abs(origin[0] - coordinates.x) / resolution) * ratio.x;
-				const y = (Math.abs(origin[1] - coordinates.y) / resolution) * ratio.y;
+			const robotCoords = robotTwins.location?.value;
+			if (robotCoords) {
+				const x = (Math.abs(origin[0] - robotCoords.x) / resolution) * ratio.x;
+				const y = (Math.abs(origin[1] - robotCoords.y) / resolution) * ratio.y;
 				setRobotCoords({
 					x: x > 0 ? x % ratio.cx : x,
 					y: y > 0 ? y % ratio.cy : y,
-					yaw: coordinates.yaw
+					yaw: robotCoords.yaw
 				});
 			}
 
@@ -65,26 +90,42 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 				legsFar: robotTwins.humanPerception?.properties.legsFar || []
 			};
 			if (humanCoords) {
-				const legsCoords = [...humanCoords.legsClose, ...humanCoords.legsFar].map(
-					(leg, index) => ({
+				setHumanCoords(
+					[...humanCoords.legsClose, ...humanCoords.legsFar].map((leg, index) => ({
 						x: (Math.abs(origin[0] - leg.x) / resolution) * ratio.x,
 						y: (Math.abs(origin[1] - leg.y) / resolution) * ratio.y,
 						type:
 							humanCoords?.legsClose.length > index
 								? RobotDetailLocationHumanLegTypeEnum.LEG_CLOSE
 								: RobotDetailLocationHumanLegTypeEnum.LEG_FAR
-					})
+					}))
 				);
-				setHumanCoords(legsCoords);
 			}
 		}
 	}, [
 		ratio,
-		robot.map.content?.origin,
-		robot.map.content?.resolution,
+		robot.map.content,
+		robotTwins.plannedPath?.properties.points,
 		robotTwins.location?.value,
 		robotTwins.humanPerception?.properties.legsClose,
 		robotTwins.humanPerception?.properties.legsFar
+	]);
+
+	useEffect(() => {
+		const robot = robotTwins.location?.value;
+		const plannedPath = robotTwins.plannedPath?.properties.points || [];
+		const goal = robotTwins.plannedPath?.properties.goal;
+		const robotGoal = {
+			x: (robot?.x || 0) - (goal?.position.xM || 0),
+			y: (robot?.y || 0) - (goal?.position.yM || 0)
+		};
+		setGoalReached(
+			!plannedPath.length || (Math.abs(robotGoal.x) <= 3 && Math.abs(robotGoal.y) <= 3)
+		);
+	}, [
+		robotTwins.location?.value,
+		robotTwins.plannedPath?.properties.goal,
+		robotTwins.plannedPath?.properties.points
 	]);
 
 	/**
@@ -104,11 +145,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		<Grid item sm={12} md={6}>
 			<Card square elevation={1} className={classes.sCard}>
 				<CardContent className={cardClasses.sCardContent0}>
-					{/* Picture */}
-					<Box
-						className={clsx({
-							[classes.sCardGridLines]: grid
-						})}>
+					<Box className={clsx({ [classes.sCardGridLines]: grid })}>
 						<Picture
 							src={robotLocationImageUrl(robotTwinsMapName)}
 							alt={robotTwinsMapName}
@@ -117,17 +154,34 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 						/>
 					</Box>
 
-					{/* Robot Icon */}
-					{robotTwinsMapName && !Number.isNaN(robotCoords.x) && (
-						<RobotDetailLocationCardRobotIcon robotCoords={robotCoords} />
-					)}
+					{robotTwinsMapName && (
+						<>
+							{/* Planned Path */}
+							{plannedPath &&
+								!!plannedPathCoords.length &&
+								!!plannedPathCoords[0].x &&
+								!goalReached && (
+									<RobotDetailLocationCardPlannedPath
+										plannedPathCoords={plannedPathCoords}
+										ratio={ratio}
+									/>
+								)}
 
-					{/* Human Perception Icons */}
-					{robotTwinsMapName &&
-						!!humanCoords.length &&
-						!Number.isNaN(humanCoords[0].x) && (
-							<RobotDetailLocationCardHumanIcons humanCoords={humanCoords} />
-						)}
+							{/* Robot Icon */}
+							{!!robotCoords.x && (
+								<RobotDetailLocationCardRobotIcon
+									robotCoords={robotCoords}
+									plannedPath={plannedPath}
+									goalReached={goalReached}
+								/>
+							)}
+
+							{/* Human Icons */}
+							{!!humanCoords.length && !!humanCoords[0].x && (
+								<RobotDetailLocationCardHumanIcons humanCoords={humanCoords} />
+							)}
+						</>
+					)}
 				</CardContent>
 			</Card>
 		</Grid>

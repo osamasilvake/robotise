@@ -6,7 +6,7 @@ export enum StatusTypeEnum {
 	INFO
 }
 
-export enum HistoryStatusTypeEnum {
+export enum StatusTypeTextEnum {
 	SUCCESS_DARK = 'success',
 	SUCCESS_LIGHT = 'secondary',
 	ERROR = 'error',

@@ -1,6 +1,6 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { DeserializerExtendedOptions } from '../../JsonApi.interface';
+import { DeserializerExtendedOptionsInterface } from '../../JsonApi.interface';
 
 /**
  * deserialize robot
@@ -8,7 +8,7 @@ import { DeserializerExtendedOptions } from '../../JsonApi.interface';
  * @returns
  */
 export const deserializeRobot = async <T,>(payload: T) => {
-	const options: DeserializerExtendedOptions = {
+	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase'
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);

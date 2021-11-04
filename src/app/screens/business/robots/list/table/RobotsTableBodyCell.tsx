@@ -1,7 +1,8 @@
 import { ChatOutlined, Check, Close, InfoOutlined } from '@mui/icons-material';
-import { Box, TableCell, Tooltip, Typography } from '@mui/material';
+import { Box, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ReadMore from '../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../services';
@@ -29,7 +30,17 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 			return (
 				<Box>
 					<Typography variant="body2">
-						{value}
+						<Link
+							component={RouterLink}
+							variant="body2"
+							underline="hover"
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL.replace(
+								':robotId',
+								robot.robotId
+							)}
+							onClick={(e) => e.stopPropagation()}>
+							{robot.robotTitle}
+						</Link>
 						{robot.robotNote && (
 							<Tooltip
 								title={
@@ -43,8 +54,8 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 								<ChatOutlined
 									fontSize="small"
 									className={clsx(
-										classes.sTableRowItemIcon,
-										classes.sTableRowItemIconComment
+										classes.sTableRowHelpIcon,
+										classes.sTableRowCommentIcon
 									)}
 								/>
 							</Tooltip>
@@ -58,23 +69,31 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		} else if (RobotsTableColumnsTypeEnum.ACTIVE === column.id) {
 			return (
 				<Box>
-					{robot.robotIsReady ? <Check color="secondary" /> : <Close color="error" />}
+					{robot.robotIsReady ? (
+						<Check color="secondary" fontSize="small" />
+					) : (
+						<Close color="error" fontSize="small" />
+					)}
 				</Box>
 			);
 		} else if (RobotsTableColumnsTypeEnum.CONTROL_MODE === column.id) {
 			return (
 				<Box>
 					{robot.robotControlMode === RobotDetailControlModeTypeEnum.AUTONOMOUS ? (
-						<Check color="secondary" />
+						<Check color="secondary" fontSize="small" />
 					) : (
-						<Close color="error" />
+						<Close color="error" fontSize="small" />
 					)}
 				</Box>
 			);
 		} else if (RobotsTableColumnsTypeEnum.ACCEPT_ORDER === column.id) {
 			return (
 				<Box>
-					{robot.siteAcceptOrders ? <Check color="secondary" /> : <Close color="error" />}
+					{robot.siteAcceptOrders ? (
+						<Check color="secondary" fontSize="small" />
+					) : (
+						<Close color="error" fontSize="small" />
+					)}
 				</Box>
 			);
 		} else if (RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE === column.id) {
@@ -82,14 +101,16 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		} else if (RobotsTableColumnsTypeEnum.MISSION_STATUS === column.id) {
 			const mission = robot.robotMission;
 			return mission && mission.status ? (
-				<Box className={classes.sTableRowItemFlex}>
-					{mission.status || AppConfigService.AppOptions.common.none}
+				<Stack spacing={0.5} direction="row" alignItems="center">
+					<Typography variant="body2">
+						{mission.status || AppConfigService.AppOptions.common.none}
+					</Typography>
 					{mission.description && (
 						<Tooltip title={mission.description}>
-							<InfoOutlined fontSize="small" className={classes.sTableRowItemIcon} />
+							<InfoOutlined fontSize="small" className={classes.sTableRowHelpIcon} />
 						</Tooltip>
 					)}
-				</Box>
+				</Stack>
 			) : (
 				AppConfigService.AppOptions.common.none
 			);

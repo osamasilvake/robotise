@@ -1,6 +1,6 @@
 import {
-	HistoryStatusTypeEnum,
-	StatusTypeEnum
+	StatusTypeEnum,
+	StatusTypeTextEnum
 } from '../../../../../../../components/common/status/Status.enum';
 import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import {
@@ -53,12 +53,12 @@ export const mapHistoryEventType = (event: string) => {
 	switch (event) {
 		case RobotElevatorCallsTableColumnHistoryEventTypeEnum.ERROR:
 			return {
-				color: HistoryStatusTypeEnum.ERROR,
+				color: StatusTypeTextEnum.ERROR,
 				icon: 'cancel_outlined'
 			};
 		default:
 			return {
-				color: HistoryStatusTypeEnum.INFO,
+				color: StatusTypeTextEnum.INFO,
 				icon: 'info_outlined'
 			};
 	}

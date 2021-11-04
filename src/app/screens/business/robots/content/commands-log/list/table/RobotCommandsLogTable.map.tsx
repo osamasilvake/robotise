@@ -1,6 +1,6 @@
 import {
-	HistoryStatusTypeEnum,
-	StatusTypeEnum
+	StatusTypeEnum,
+	StatusTypeTextEnum
 } from '../../../../../../../components/common/status/Status.enum';
 import { CLCDataInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
 import { RobotCommandsLogTableColumnStatusTypeEnum } from './RobotCommandsLogTable.enum';
@@ -51,23 +51,23 @@ export const mapHistoryStatus = (status: string) => {
 	switch (status) {
 		case RobotCommandsLogTableColumnStatusTypeEnum.PROGRESS:
 			return {
-				color: HistoryStatusTypeEnum.SUCCESS_LIGHT,
+				color: StatusTypeTextEnum.SUCCESS_LIGHT,
 				icon: 'cached_outlined'
 			};
 		case RobotCommandsLogTableColumnStatusTypeEnum.SUCCESS:
 			return {
-				color: HistoryStatusTypeEnum.SUCCESS_DARK,
+				color: StatusTypeTextEnum.SUCCESS_DARK,
 				icon: 'check_outlined'
 			};
 		case RobotCommandsLogTableColumnStatusTypeEnum.REJECTED:
 		case RobotCommandsLogTableColumnStatusTypeEnum.FAILED:
 			return {
-				color: HistoryStatusTypeEnum.ERROR,
+				color: StatusTypeTextEnum.ERROR,
 				icon: 'cancel_outlined'
 			};
 		default:
 			return {
-				color: HistoryStatusTypeEnum.INFO,
+				color: StatusTypeTextEnum.INFO,
 				icon: 'info_outlined'
 			};
 	}

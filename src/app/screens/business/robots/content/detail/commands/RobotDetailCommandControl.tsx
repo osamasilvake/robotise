@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, CircularProgress, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, CircularProgress, Stack, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,11 +19,12 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 
 	return (
 		<Box>
-			<Box className={classes.sCommandsControlLabel}>
-				<Typography
-					variant="h6"
-					color="textSecondary"
-					className={classes.sCommandsControlTitle}>
+			<Stack
+				spacing={0.5}
+				direction="row"
+				alignItems="center"
+				className={classes.sCommandsControlTitle}>
+				<Typography variant="h6" color="textSecondary">
 					{t(`${translation}.TITLE`)}
 				</Typography>
 
@@ -32,7 +33,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 						{<CircularProgress size={20} />}
 					</Box>
 				)}
-			</Box>
+			</Stack>
 
 			<ButtonGroup
 				color="primary"

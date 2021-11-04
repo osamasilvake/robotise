@@ -21,8 +21,6 @@ export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
 		backgroundColor: AppConfigService.AppOptions.colors.c12
 	},
 	sToggle: {
-		alignItems: 'center',
-		display: 'flex',
 		height: '100%',
 		position: 'absolute',
 		right: theme.spacing(1.25),

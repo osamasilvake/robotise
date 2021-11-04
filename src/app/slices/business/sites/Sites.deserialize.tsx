@@ -1,9 +1,9 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
 import {
-	DeserializeRelationshipProperties,
-	DeserializerExtendedOptions,
-	JsonApiResponse
+	DeserializeRelationshipPropertiesInterface,
+	DeserializerExtendedOptionsInterface,
+	JsonApiResponseInterface
 } from '../../JsonApi.interface';
 import { ISite } from './Sites.slice.interface';
 
@@ -12,11 +12,11 @@ import { ISite } from './Sites.slice.interface';
  * @param payload
  * @returns
  */
-export const deserializeSites = async <T extends JsonApiResponse>(payload: T) => {
-	const options: DeserializerExtendedOptions = {
+export const deserializeSites = async <T extends JsonApiResponseInterface>(payload: T) => {
+	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		robots: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
 				};

@@ -1,5 +1,5 @@
 import { InfoOutlined } from '@mui/icons-material';
-import { Box, Grid, Link, Tooltip, Typography } from '@mui/material';
+import { Box, Grid, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -50,12 +50,12 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.WORKFLOW.LABEL`)}
 				</Typography>
-				<Typography className={classes.sGridItemFlex}>
-					{t(`${translation}.WORKFLOW.ITEMS.${item.workflow}`)}
+				<Stack spacing={0.5} direction="row">
+					<Typography>{t(`${translation}.WORKFLOW.ITEMS.${item.workflow}`)}</Typography>
 					<Tooltip title={String(t(`${translation}.WORKFLOW.NOTES.${item.workflow}`))}>
-						<InfoOutlined fontSize="small" className={classes.sGridItemInfoIcon} />
+						<InfoOutlined fontSize="small" className={classes.sWorkflowInfoIcon} />
 					</Tooltip>
-				</Typography>
+				</Stack>
 			</Grid>
 
 			{/* Rooms Mapping */}

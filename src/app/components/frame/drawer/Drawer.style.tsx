@@ -38,9 +38,6 @@ export const DrawerStyle = makeStyles((theme: Theme) => ({
 		padding: theme.spacing(1, 2)
 	},
 	sBottomArea: {
-		alignItems: 'center',
-		display: 'flex',
-		height: 48,
-		justifyContent: 'center'
+		height: 40
 	}
 }));

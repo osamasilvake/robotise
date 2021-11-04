@@ -1,8 +1,8 @@
 import { Box, Chip, CircularProgress, Link, Stack, Typography } from '@mui/material';
-import { FC, MouseEvent } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
@@ -25,27 +25,9 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	const robot = useSelector(robotSelector);
 
 	const params: RobotParamsInterface = useParams();
-	const history = useHistory();
 
 	const translation = 'CONTENT.PURCHASES.DETAIL.HEAD';
 	const cRobotId = params.robotId;
-
-	/**
-	 * handle show order detail
-	 * @param orderId
-	 * @returns
-	 */
-	const handleShowOrderDetail = (orderId: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-		// stop propagation
-		event.stopPropagation();
-
-		// prepare link
-		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL;
-		const robotLink = url.replace(':robotId', cRobotId).replace(':orderId', orderId);
-
-		// push to history
-		history.push(robotLink);
-	};
 
 	/**
 	 * handle item tracking link
@@ -71,7 +53,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 
 	return (
 		<Box className={classes.sBox}>
-			<Stack direction="row" spacing={1} className={classes.sStack}>
+			<Stack spacing={0.5} direction="row" className={classes.sStack}>
 				<Typography variant="body2" color="textSecondary">
 					<Status
 						level={
@@ -89,9 +71,13 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 				{purchase?.content?.order?.id && (
 					<Box>
 						<Link
-							component="button"
+							component={RouterLink}
 							variant="body2"
-							onClick={handleShowOrderDetail(purchase.content.order.id)}>
+							underline="hover"
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL.replace(
+								':robotId',
+								cRobotId
+							).replace(':orderId', purchase.content.order.id)}>
 							{t(`${translation}.ORDER_DETAILS`)}
 						</Link>
 					</Box>

@@ -1,8 +1,8 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
 import {
-	DeserializeRelationshipProperties,
-	DeserializerExtendedOptions
+	DeserializeRelationshipPropertiesInterface,
+	DeserializerExtendedOptionsInterface
 } from '../../../JsonApi.interface';
 
 /**
@@ -11,10 +11,10 @@ import {
  * @returns
  */
 export const deserializeNotifications = async <T,>(payload: T) => {
-	const options: DeserializerExtendedOptions = {
+	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		notificationTypes: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
 				};

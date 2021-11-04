@@ -3,10 +3,10 @@ import log from 'loglevel';
 
 import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
-	DeserializeRelationshipProperties,
-	DeserializerExtendedOptions
+	DeserializeRelationshipPropertiesInterface,
+	DeserializerExtendedOptionsInterface
 } from '../../JsonApi.interface';
-import { IRobotTwin, SRTContentDataInterface } from './RobotTwins.slice.interface';
+import { IRobotTwinInterface, SRTContentDataInterface } from './RobotTwins.slice.interface';
 
 /**
  * deserialize robot twins
@@ -14,23 +14,23 @@ import { IRobotTwin, SRTContentDataInterface } from './RobotTwins.slice.interfac
  * @returns
  */
 export const deserializeRobotTwins = async <T,>(payload: T) => {
-	const options: DeserializerExtendedOptions = {
+	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		robots: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
 				};
 			}
 		},
 		sites: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
 				};
 			}
 		},
-		transform: (data: IRobotTwin) => {
+		transform: (data: IRobotTwinInterface) => {
 			const state = data.state.reported;
 			const meta = data.metadata.reported;
 			const sCameras = state.cameras;
@@ -182,6 +182,14 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							repositories: state.transitPointStarted.repositories
 						},
 						updatedAt: meta.status?.computerInfo?.updatedAt
+					},
+					plannedPath: {
+						properties: {
+							mapName: state.plannedPath.mapName,
+							goal: state.plannedPath.goal,
+							points: state.plannedPath.points
+						},
+						updatedAt: meta.plannedPath?.updatedAt
 					}
 				};
 				return result;

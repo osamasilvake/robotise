@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { FC } from 'react';
 
-import { IAlert } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
+import { IAlertInterface } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import RobotDetailAlert from './RobotDetailAlert';
 import { RobotDetailAlertsTypeEnum } from './RobotDetailAlerts.enum';
 import { RobotDetailAlertsInterface } from './RobotDetailAlerts.interface';
@@ -15,7 +15,7 @@ const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
 	 * sort by alert level
 	 * @returns
 	 */
-	const sortByAlertLevel = (): IAlert[] => {
+	const sortByAlertLevel = (): IAlertInterface[] => {
 		return robotTwins.alerts.value
 			.map((item) => {
 				switch (item.level) {

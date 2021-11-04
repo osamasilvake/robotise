@@ -38,8 +38,8 @@ const ReadMore: FC<ReadMoreInterface> = (props) => {
 				<Link
 					component="button"
 					variant={variant}
-					display={display}
 					underline="hover"
+					display={display}
 					onClick={() => setReadMore(!readMore)}>
 					{!readMore ? t('SHOW_MORE') : t('SHOW_LESS')}
 				</Link>

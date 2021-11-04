@@ -1,6 +1,6 @@
 import {
-	HistoryStatusTypeEnum,
-	StatusTypeEnum
+	StatusTypeEnum,
+	StatusTypeTextEnum
 } from '../../../../../../../components/common/status/Status.enum';
 import { PCCDataInterface } from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
 import { SitePhoneCallsTableColumnHistoryEventTypeEnum } from './SitePhoneCallsTable.enum';
@@ -51,27 +51,27 @@ export const mapHistoryEventType = (event: string) => {
 	switch (event) {
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.APPROVED:
 			return {
-				color: HistoryStatusTypeEnum.SUCCESS_LIGHT,
+				color: StatusTypeTextEnum.SUCCESS_LIGHT,
 				icon: 'approval'
 			};
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.CONFIRMED:
 			return {
-				color: HistoryStatusTypeEnum.SUCCESS_DARK,
+				color: StatusTypeTextEnum.SUCCESS_DARK,
 				icon: 'check_outlined'
 			};
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.ORDER_ASSIGNED:
 			return {
-				color: HistoryStatusTypeEnum.SUCCESS_DARK,
+				color: StatusTypeTextEnum.SUCCESS_DARK,
 				icon: 'shopping_cart'
 			};
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.REJECTED:
 			return {
-				color: HistoryStatusTypeEnum.ERROR,
+				color: StatusTypeTextEnum.ERROR,
 				icon: 'cancel_outlined'
 			};
 		default:
 			return {
-				color: HistoryStatusTypeEnum.INFO,
+				color: StatusTypeTextEnum.INFO,
 				icon: 'info_outlined'
 			};
 	}

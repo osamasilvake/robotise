@@ -29,8 +29,8 @@ const RobotDetailLocationCardHumanIcon: FC<RobotDetailLocationCardHumanIconInter
 						overlap="circular"
 						style={{
 							color: AppConfigService.AppOptions.colors.c12,
-							bottom: coord.y,
-							left: coord.x
+							left: coord.x,
+							bottom: coord.y
 						}}
 						classes={{
 							badge: clsx(badgeClasses.sDot, {

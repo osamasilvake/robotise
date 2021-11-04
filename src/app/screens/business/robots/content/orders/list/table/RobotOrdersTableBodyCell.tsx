@@ -1,7 +1,7 @@
 import { Box, Chip, Link, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
@@ -25,7 +25,6 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const [open, setOpen] = useState(false);
 
 	const params: RobotParamsInterface = useParams();
-	const history = useHistory();
 
 	const cRobotId = params.robotId;
 	const translation = 'CONTENT.ORDERS.LIST';
@@ -41,24 +40,6 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		// show dialog
 		setOpen(true);
 	};
-
-	/**
-	 * handle show purchase detail
-	 * @param purchaseId
-	 * @returns
-	 */
-	const handleShowPurchaseDetail =
-		(purchaseId: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-			// stop propagation
-			event.stopPropagation();
-
-			// prepare link
-			const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL;
-			const robotLink = url.replace(':robotId', cRobotId).replace(':purchaseId', purchaseId);
-
-			// push to history
-			history.push(robotLink);
-		};
 
 	/**
 	 * set cell value
@@ -77,10 +58,14 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		) {
 			return (
 				<Link
-					component="button"
+					component={RouterLink}
 					variant="body2"
 					underline="hover"
-					onClick={handleShowPurchaseDetail(order.orderReport.id)}>
+					to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL.replace(
+						':robotId',
+						cRobotId
+					).replace(':purchaseId', order.orderReport.id)}
+					onClick={(e) => e.stopPropagation()}>
 					{t(`${translation}.TABLE.VALUES.PURCHASE_DETAILS`)}
 				</Link>
 			);
@@ -93,7 +78,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 							<>
 								<Chip
 									size="small"
-									label={t(`${translation}..ACTIONS.CANCEL.LABEL`)}
+									label={t(`${translation}.ACTIONS.CANCEL.LABEL`)}
 									variant="outlined"
 									color="error"
 									onDelete={openCancelOrderDialog}

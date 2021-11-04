@@ -7,7 +7,7 @@ import { RobotDetailLocationInfoInterface } from './RobotDetailLocation.interfac
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 
 const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) => {
-	const { location, grid, showGrid } = props;
+	const { location, grid, setGrid, plannedPath, setPlannedPath } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailLocationStyle();
 
@@ -22,7 +22,19 @@ const RobotDetailLocationInfo: FC<RobotDetailLocationInfoInterface> = (props) =>
 					color="primary"
 					name="gridLines"
 					checked={grid}
-					onChange={() => showGrid(!grid)}
+					onChange={() => setGrid(!grid)}
+				/>
+			</Box>
+			<Box className={classes.sInfoGridBox}>
+				<Typography variant="body2" color="textSecondary" className={classes.sInfoLabel}>
+					{t('CONTENT.DETAIL.LOCATION.PLANNED_PATH')}:
+				</Typography>
+				<Checkbox
+					className={classes.sInfoCheckbox}
+					color="primary"
+					name="plannedPath"
+					checked={plannedPath}
+					onChange={() => setPlannedPath(!plannedPath)}
 				/>
 			</Box>
 			<Box>

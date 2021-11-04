@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { JsonApiResponse } from '../../../JsonApi.interface';
+import { JsonApiResponseInterface } from '../../../JsonApi.interface';
 
 export interface SliceElevatorCallsInterface {
 	loader: boolean;
@@ -9,7 +9,7 @@ export interface SliceElevatorCallsInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface ECContentInterface extends JsonApiResponse {
+export interface ECContentInterface extends JsonApiResponseInterface {
 	data: ECCDataInterface[];
 	state?: ECCStateInterface;
 }

@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
@@ -33,27 +33,9 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	const [trackingIndex, setTrackingIndex] = useState(-1);
 
 	const params: RobotParamsInterface = useParams();
-	const history = useHistory();
 
 	const cRobotId = params.robotId;
 	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
-
-	/**
-	 * handle show order detail
-	 * @param orderId
-	 * @returns
-	 */
-	const handleShowOrderDetail = (orderId: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-		// stop propagation
-		event.stopPropagation();
-
-		// prepare link
-		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL;
-		const robotLink = url.replace(':robotId', cRobotId).replace(':orderId', orderId);
-
-		// push to history
-		history.push(robotLink);
-	};
 
 	/**
 	 * handle item tracking link
@@ -147,10 +129,14 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			) {
 				return (
 					<Link
-						component="button"
+						component={RouterLink}
 						variant="body2"
 						underline="hover"
-						onClick={handleShowOrderDetail(purchase.order.id)}>
+						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL.replace(
+							':robotId',
+							cRobotId
+						).replace(':orderId', purchase.order.id)}
+						onClick={(e) => e.stopPropagation()}>
 						{t(`${translation}.ORDER_DETAILS`)}
 					</Link>
 				);

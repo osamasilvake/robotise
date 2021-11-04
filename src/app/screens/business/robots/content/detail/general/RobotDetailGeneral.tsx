@@ -1,8 +1,9 @@
 import { Edit, InfoOutlined } from '@mui/icons-material';
-import { Grid, IconButton, Tooltip, Typography } from '@mui/material';
+import { Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
@@ -30,7 +31,18 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.SITE`)}
 				</Typography>
-				<Typography>{robotTwins.site.title}</Typography>
+				<Box>
+					<Link
+						component={RouterLink}
+						variant="body1"
+						underline="hover"
+						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
+							':siteId',
+							robotTwins.site.id
+						)}>
+						{robotTwins.site.title}
+					</Link>
+				</Box>
 			</Grid>
 
 			{/* Last Updated */}
@@ -101,14 +113,16 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.MISSION`)}
 				</Typography>
-				<Typography className={classes.sGridItemFlex}>
-					{robotTwins.mission.status || AppConfigService.AppOptions.common.none}
+				<Stack spacing={0.5} direction="row" alignItems="center">
+					<Typography>
+						{robotTwins.mission.status || AppConfigService.AppOptions.common.none}
+					</Typography>
 					{robotTwins.mission.description && (
 						<Tooltip title={robotTwins.mission.description}>
 							<InfoOutlined fontSize="small" className={classes.sGridItemInfoIcon} />
 						</Tooltip>
 					)}
-				</Typography>
+				</Stack>
 			</Grid>
 
 			{/* Note */}

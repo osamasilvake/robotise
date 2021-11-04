@@ -3,13 +3,13 @@ import log from 'loglevel';
 
 import { AppConfigService } from '../../../services';
 import {
-	DeserializeRelationshipProperties,
-	DeserializerExtendedOptions
+	DeserializeRelationshipPropertiesInterface,
+	DeserializerExtendedOptionsInterface
 } from '../../JsonApi.interface';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
 import {
-	IRobotTwinSummary,
+	IRobotTwinSummaryInterface,
 	RTSContentDataByIdInterface,
 	RTSContentTransformDataInterface
 } from './RobotTwinsSummary.slice.interface';
@@ -21,23 +21,23 @@ import {
  * @returns
  */
 export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSContentInterface) => {
-	const options: DeserializerExtendedOptions = {
+	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		robots: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
 				};
 			}
 		},
 		sites: {
-			valueForRelationship: (relationship: DeserializeRelationshipProperties) => {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
 				};
 			}
 		},
-		transform: (data: IRobotTwinSummary) => {
+		transform: (data: IRobotTwinSummaryInterface) => {
 			const state = data.state.reported;
 			const meta = data.metadata.reported;
 

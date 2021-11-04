@@ -6,7 +6,7 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.TARGET,
 		label: `${translation}.TARGET`,
-		minWidth: 130,
+		minWidth: 140,
 		align: 'left'
 	},
 	{

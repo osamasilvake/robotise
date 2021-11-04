@@ -379,8 +379,8 @@
 				"LIST": {
 					"ACTIONS": {
 						"SPEED_DIAL": {
-							"CREATE_PRODUCT": "Create new Product",
-							"PRODUCTS_REPORT": "Generate Report"
+							"PRODUCTS_REPORT": "Generate Report",
+							"CREATE_PRODUCT": "Create new Product"
 						},
 						"CREATE_EDIT": {
 							"CREATE": {
@@ -690,6 +690,7 @@
 					"TITLE": "Location",
 					"FLOOR": "Floor:",
 					"GRID": "Grid",
+					"PLANNED_PATH": "Planned Path",
 					"MAP": {
 						"HUMAN_PERCEPTION": {
 							"LEG_CLOSE": "Someone is very close to the robot!",
@@ -1247,8 +1248,8 @@
 									"elevator.event.gotCallStatus": "Got Call Status",
 									"elevator.event.gotLiftId": "Got Lift ID",
 									"elevator.event.gotStatus": "Got Status",
-									"robot.event.enteredLift": "Entered Lift",
-									"robot.event.leftLift": "Left Lift",
+									"robot.event.enteredLift": "Robot Entered Lift",
+									"robot.event.leftLift": "Robot Left Lift",
 									"elevator.event.error": "Error"
 								}
 							}

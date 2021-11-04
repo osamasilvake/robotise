@@ -1,9 +1,8 @@
-import { Avatar, Box, CircularProgress, LinearProgress, Typography } from '@mui/material';
+import { Avatar, Box, CircularProgress, LinearProgress, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../services';
-import { CenterStyle } from '../../../utilities/styles/Center.style';
 import { LoaderTypeEnum } from './Loader.enum';
 import { LoaderInterface } from './Loader.interface';
 import { LoaderStyle } from './Loader.style';
@@ -11,7 +10,6 @@ import { LoaderStyle } from './Loader.style';
 const Loader: FC<LoaderInterface> = (props) => {
 	const { loader, spinnerText } = props;
 	const { t } = useTranslation('COMMON');
-	const centerClasses = CenterStyle();
 	const classes = LoaderStyle();
 
 	switch (loader) {
@@ -34,7 +32,7 @@ const Loader: FC<LoaderInterface> = (props) => {
 		case LoaderTypeEnum.APP_LOADER:
 		default:
 			return (
-				<Box className={centerClasses.sVHFlex}>
+				<Stack spacing={0.5} alignItems="center" justifyContent="center" height="100vh">
 					<Box className={classes.sCircularAvatar}>
 						<Avatar
 							className={classes.sAvatar}
@@ -45,7 +43,7 @@ const Loader: FC<LoaderInterface> = (props) => {
 					<Box>
 						<CircularProgress color="primary" />
 					</Box>
-				</Box>
+				</Stack>
 			);
 	}
 };

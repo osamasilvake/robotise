@@ -8,7 +8,7 @@ import { PageHeadInterface } from './PageHead.interface';
 import { PageHeadStyle } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
-	const { title, description, labels } = props;
+	const { title, description, onlyMeta, labels } = props;
 	const { t } = useTranslation('META');
 	const classes = PageHeadStyle();
 
@@ -20,18 +20,22 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 				description={(description && t(description)) || t('GENERAL.DESCRIPTION')}
 			/>
 
-			{/* Title */}
-			<Typography variant="h1" className={classes.sTitle}>
-				{t(title)}
-			</Typography>
+			{!onlyMeta && (
+				<>
+					{/* Title */}
+					<Typography variant="h1" className={classes.sTitle}>
+						{t(title)}
+					</Typography>
 
-			{/* Breadcrumb */}
-			<Breadcrumb labels={labels || null} />
+					{/* Breadcrumb */}
+					<Breadcrumb labels={labels || null} />
 
-			{/* Divider */}
-			<Box className={classes.sDivider}>
-				<Divider light />
-			</Box>
+					{/* Divider */}
+					<Box className={classes.sDivider}>
+						<Divider light />
+					</Box>
+				</>
+			)}
 		</Box>
 	);
 };

@@ -14,14 +14,14 @@ export const RobotsListStyle = makeStyles((theme: Theme) => ({
 	sTableRowDanger: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c12, 0.15)
 	},
-	sTableRowItemFlex: {
-		display: 'flex'
+	sTableColumnTitle: {
+		lineHeight: 0
 	},
-	sTableRowItemIcon: {
+	sTableRowHelpIcon: {
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
 	},
-	sTableRowItemIconComment: {
+	sTableRowCommentIcon: {
 		marginTop: theme.spacing(-1)
 	}
 }));

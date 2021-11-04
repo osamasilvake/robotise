@@ -19,8 +19,7 @@ export const LoginStyle = makeStyles((theme: Theme) => ({
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover'
 	},
-	sPaper: {
-		flexDirection: 'column',
+	sBox: {
 		margin: theme.spacing(14, 4, 4)
 	},
 	sAvatar: {

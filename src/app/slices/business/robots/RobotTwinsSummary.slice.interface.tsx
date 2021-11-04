@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { IAlert } from './RobotTwins.slice.interface';
+import { IAlertInterface } from './RobotTwins.slice.interface';
 
 export interface SliceRobotTwinsSummaryInterface {
 	loader: boolean;
@@ -62,7 +62,7 @@ export interface RTSContentTransformDataInterface {
 		isHidden: boolean;
 		isOnlineCheckDisabled: boolean;
 		alerts: {
-			value: IAlert[];
+			value: IAlertInterface[];
 			updatedAt: Date;
 		};
 		lastSyncedProducts: {
@@ -97,14 +97,14 @@ export interface RTSContentTransformDataInterface {
 	};
 }
 
-export interface IRobotTwinSummary {
+export interface IRobotTwinSummaryInterface {
 	id: string;
 	updatedAt: Date;
 	robot: { id: string };
 	site: { id: string };
 	state: {
 		reported: {
-			alerts: IAlert[];
+			alerts: IAlertInterface[];
 			customerName: string;
 			isHidden: boolean;
 			isOnlineCheckDisabled: boolean;

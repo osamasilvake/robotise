@@ -47,10 +47,10 @@ const SiteContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = sitesRoutes[value + 1].path.replace(':siteId', cSiteId);
+		const link = sitesRoutes[value + 1].path.replace(':siteId', cSiteId);
 
 		// navigate
-		navigate(url);
+		navigate(link);
 	};
 
 	return value !== -1 ? (

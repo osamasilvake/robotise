@@ -71,9 +71,9 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 				StorageTypeEnum.SESSION
 			)
 		);
-		return <Navigate replace to={intendedUrl || defaultUrl} />;
+		return <Navigate to={intendedUrl || defaultUrl} />;
 	}
-	const Template = route.template ? route.template : template;
+	const Template = route.template || template;
 	return <Template Component={route.component} />;
 };
 export default AuthGuard;

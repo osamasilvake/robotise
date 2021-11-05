@@ -71,10 +71,10 @@ const RobotContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = robotsRoutes[value + 1].path.replace(':robotId', cRobotId);
+		const link = robotsRoutes[value + 1].path.replace(':robotId', cRobotId);
 
 		// navigate
-		navigate(url);
+		navigate(link);
 	};
 
 	return value !== -1 ? (

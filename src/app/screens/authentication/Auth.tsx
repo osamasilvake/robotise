@@ -49,9 +49,9 @@ const Auth: FC<AuthInterface> = (props) => {
 		return <Loader />;
 	} else if (!isUser) {
 		if (type && isPrivate(type) && route.path !== AppConfigService.AppRoutes.AUTH.LOGIN) {
-			return <Navigate replace to={AppConfigService.AppRoutes.AUTH.LOGIN} />;
+			return <Navigate to={AppConfigService.AppRoutes.AUTH.LOGIN} />;
 		}
-		const Template = route.template ? route.template : template;
+		const Template = route.template || template;
 		return <Template Component={route.component} />;
 	}
 	return <AuthGuard template={template} route={route} type={type} />;

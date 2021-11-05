@@ -365,7 +365,7 @@
 			"DETAIL": {
 				"GENERAL": {
 					"SITE": "Site",
-					"VENDOR": "Vendor",
+					"ELEVATOR_VENDOR": "Elevator Vendor",
 					"LAST_UPDATED": "Last Updated",
 					"TIMEZONE": "Timezone",
 					"ACCEPT_ORDERS": {
@@ -1236,10 +1236,9 @@
 						"COLUMNS": {
 							"STATUS": "Status",
 							"CALL_TYPE": "Call Type",
-							"VENDOR": "Vendor",
-							"HISTORY": "History",
 							"SRC_AREA_ID": "SRC ID",
 							"DST_AREA_ID": "DST ID",
+							"HISTORY": "History",
 							"CREATED": "Created"
 						},
 						"VALUES": {

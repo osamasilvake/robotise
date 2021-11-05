@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageHead from '../../../components/content/page-head/PageHead';
+import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import SiteContent from './content/SiteContent';
 import { SiteParamsInterface } from './Site.interface';
@@ -15,6 +16,7 @@ const Site: FC = () => {
 
 	const cSiteId = params.siteId;
 	const cSiteName = sites.content?.dataById[cSiteId]?.title;
+	const dots = AppConfigService.AppOptions.common.dots;
 
 	return (
 		<Paper elevation={12} component="section" square>
@@ -22,7 +24,7 @@ const Site: FC = () => {
 			<PageHead
 				title="SITES.SITE.TITLE"
 				description="SITES.SITE.DESCRIPTION"
-				labels={{ siteName: !sites.loader ? cSiteName : '' }}
+				labels={[!sites.loader ? cSiteName || dots : dots]}
 			/>
 
 			{/* Content */}

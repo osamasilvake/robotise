@@ -29,7 +29,21 @@ const Robot: FC = () => {
 	const cPurchaseTarget = purchase.content?.location || undefined;
 
 	const orderDefault = t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
-	const none = AppConfigService.AppOptions.common.none;
+	const dots = AppConfigService.AppOptions.common.dots;
+
+	/**
+	 * create breadcrumb labels
+	 * @returns
+	 */
+	const breadcrumbLabels = () =>
+		Object.keys(params).map((key) => {
+			if (key === 'robotId') {
+				return !robotTwinsSummary.loader ? cRobotName || dots : dots;
+			} else if (key === 'orderId') {
+				return !order.loader ? cOrderTarget || orderDefault : dots;
+			}
+			return !purchase.loader ? cPurchaseTarget || dots : dots;
+		});
 
 	/**
 	 * robot detail routes
@@ -50,11 +64,7 @@ const Robot: FC = () => {
 			<PageHead
 				title="ROBOTS.ROBOT.TITLE"
 				description="ROBOTS.ROBOT.DESCRIPTION"
-				labels={{
-					robotName: !robotTwinsSummary.loader ? cRobotName : '',
-					orderTarget: !order.loader ? cOrderTarget || orderDefault : '',
-					purchaseTarget: !purchase.loader ? cPurchaseTarget || none : ''
-				}}
+				labels={breadcrumbLabels()}
 			/>
 
 			{/* Content */}

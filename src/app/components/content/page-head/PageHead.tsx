@@ -28,7 +28,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 					</Typography>
 
 					{/* Breadcrumb */}
-					<Breadcrumb labels={labels || null} />
+					<Breadcrumb labels={labels} />
 
 					{/* Divider */}
 					<Box className={classes.sDivider}>

@@ -1,6 +1,5 @@
 export enum RobotElevatorCallsTableColumnsTypeEnum {
 	STATUS = 'status',
-	VENDOR = 'vendor',
 	CALL_TYPE = 'callType',
 	SRC_AREA_ID = 'srcAreaId',
 	DST_AREA_ID = 'dstAreaId',

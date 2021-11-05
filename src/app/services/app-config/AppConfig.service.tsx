@@ -10,7 +10,8 @@ class AppConfigService extends EnvService {
 			common: {
 				alertDocsUrl: this.envAlertDocsUrl,
 				defaultCurrency: 'EUR',
-				none: '---'
+				none: '---',
+				dots: '...'
 			},
 			colors: {
 				c1: '#212629', // dark: 			content
@@ -219,7 +220,7 @@ class AppConfigService extends EnvService {
 			regex: {
 				email: new RegExp(/\S+@\S+\.\S+/),
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
-				normalInteger: new RegExp(/^\+?([1-9]\d*)$/)
+				integer: new RegExp(/^\+?([1-9]\d*)$/)
 			}
 		};
 	}

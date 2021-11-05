@@ -16,43 +16,36 @@ const sitesRoutes: RouteInterface[] = [
 	 * Main
 	 */
 	{
-		component: Sites,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN,
+		component: Sites
 	},
 
 	/**
 	 * Tabs
 	 */
 	{
-		component: Site,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL,
+		component: Site
 	},
 	{
-		component: Site,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PRODUCTS.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PRODUCTS.MAIN,
+		component: Site
 	},
 	{
-		component: Site,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.ROOMS
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.ROOMS,
+		component: Site
 	},
 	{
-		component: Site,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PHONE_CONFIGS
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PHONE_CONFIGS,
+		component: Site
 	},
 	{
-		component: Site,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PHONE_CALLS
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PHONE_CALLS,
+		component: Site
 	},
 	{
-		component: Site,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.CONFIGURATION
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.CONFIGURATION,
+		component: Site
 	}
 ];
 export default sitesRoutes;

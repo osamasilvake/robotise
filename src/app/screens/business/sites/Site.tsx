@@ -12,7 +12,7 @@ import { SiteParamsInterface } from './Site.interface';
 const Site: FC = () => {
 	const sites = useSelector(sitesSelector);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
 	const cSiteName = sites.content?.dataById[cSiteId]?.title;

@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import Loader from '../../components/common/loader/Loader';
 import { isPrivate } from '../../routes/types';
@@ -11,7 +11,7 @@ import AuthGuard from './Auth.guard';
 import { AuthInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = (props) => {
-	const { appRoute, template, route, type } = props;
+	const { route, template, type } = props;
 
 	const auth = useSelector(authSelector);
 
@@ -48,12 +48,12 @@ const Auth: FC<AuthInterface> = (props) => {
 	if (auth.loader) {
 		return <Loader />;
 	} else if (!isUser) {
-		if (type && isPrivate(type) && appRoute.path !== AppConfigService.AppRoutes.AUTH.LOGIN) {
-			return <Redirect to={AppConfigService.AppRoutes.AUTH.LOGIN} />;
+		if (type && isPrivate(type) && route.path !== AppConfigService.AppRoutes.AUTH.LOGIN) {
+			return <Navigate replace to={AppConfigService.AppRoutes.AUTH.LOGIN} />;
 		}
-		const Layout = appRoute.template ? appRoute.template : template;
-		return <Layout Component={appRoute.component} route={route} />;
+		const Template = route.template ? route.template : template;
+		return <Template Component={route.component} />;
 	}
-	return <AuthGuard appRoute={appRoute} template={template} route={route} type={type} />;
+	return <AuthGuard template={template} route={route} type={type} />;
 };
 export default Auth;

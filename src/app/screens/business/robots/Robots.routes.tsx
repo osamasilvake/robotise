@@ -16,62 +16,52 @@ const robotsRoutes: RouteInterface[] = [
 	 * Main
 	 */
 	{
-		component: Robots,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN,
+		component: Robots
 	},
 
 	/**
 	 * Tabs
 	 */
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.INVENTORY
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.INVENTORY,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.MAIN,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.MAIN,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOG
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOG,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION,
+		component: Robot
 	},
 
 	/**
 	 * Details
 	 */
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL,
+		component: Robot
 	}
 ];
 export default robotsRoutes;

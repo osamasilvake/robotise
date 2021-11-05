@@ -1,7 +1,7 @@
 import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
 import {
@@ -19,7 +19,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const { content, order, orderBy } = props;
 	const classes = RobotsListStyle();
 
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	/**
 	 * sort table data
@@ -99,8 +99,8 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL;
 		const link = url.replace(':robotId', robotTwins.robotId);
 
-		// push to history
-		history.push(link);
+		// navigate
+		navigate(link);
 	};
 
 	return (

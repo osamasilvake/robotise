@@ -24,7 +24,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 
 	const [open, setOpen] = useState(false);
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 	const translation = 'CONTENT.ORDERS.LIST';

@@ -34,7 +34,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	const [openCreateEdit, setOpenCreateEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const currency = sites.content?.dataById[cSiteId]?.currency;
 

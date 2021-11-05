@@ -7,9 +7,8 @@ const Login = lazy(() => import('./login/Login'));
 
 const authRoutes: RouteInterface[] = [
 	{
-		component: Login,
-		exact: true,
-		path: AppConfigService.AppRoutes.AUTH.LOGIN
+		path: AppConfigService.AppRoutes.AUTH.LOGIN,
+		component: Login
 	}
 ];
 export default authRoutes;

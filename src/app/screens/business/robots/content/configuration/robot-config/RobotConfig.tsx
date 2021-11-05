@@ -15,7 +15,7 @@ import {
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
 import { RobotConfigUpdate } from '../../../../../../slices/business/robots/Robot.slice';
@@ -38,8 +38,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 
 	const dispatch = useDispatch();
 
-	const params: RobotParamsInterface = useParams();
-	const history = useHistory();
+	const params = useParams() as RobotParamsInterface;
+	const navigate = useNavigate();
 
 	const cRobotId = params.robotId;
 	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
@@ -61,11 +61,11 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 						RobotConfigUpdate(cRobotId, values, () => {
 							if (!robotTwinsSummary.content?.state?.hidden && values.isHidden) {
 								// prepare link
-								const robotsLink =
+								const link =
 									AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
 
-								// push to history
-								history.push(robotsLink);
+								// navigate
+								navigate(link);
 							} else {
 								// dispatch: fetch robot twins summary
 								dispatch(RobotTwinsSummaryFetchList(true));

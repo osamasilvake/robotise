@@ -2,7 +2,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Loader from '../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
@@ -23,9 +23,9 @@ const SiteContent: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	const [value, setValue] = useState(-1);
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const location = useLocation();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
@@ -49,8 +49,8 @@ const SiteContent: FC = () => {
 		// prepare link
 		const url = sitesRoutes[value + 1].path.replace(':siteId', cSiteId);
 
-		// push to history
-		history.push(url);
+		// navigate
+		navigate(url);
 	};
 
 	return value !== -1 ? (

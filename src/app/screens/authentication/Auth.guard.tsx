@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
@@ -13,7 +13,7 @@ import { SitesFetchList, sitesSelector } from '../../slices/business/sites/Sites
 import { AuthInterface } from './Auth.interface';
 
 const AuthGuard: FC<AuthInterface> = (props) => {
-	const { appRoute, template, route } = props;
+	const { route, template } = props;
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
@@ -22,8 +22,7 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 
 	useEffect(() => {
 		/**
-		 * actions
-		 * 1. validate and refresh access_token
+		 * validate and refresh access_token
 		 */
 		const actions = () => {
 			// dispatch: requests a new token before it expires
@@ -60,10 +59,10 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 	/**
 	 * authentication state
 	 *
-	 * login:		Robots
+	 * login:		Intended URL
 	 * others:		Route
 	 */
-	if (appRoute.path === AppConfigService.AppRoutes.AUTH.LOGIN) {
+	if (route.path === AppConfigService.AppRoutes.AUTH.LOGIN) {
 		const intendedUrl = StorageService.get(AppConfigService.StorageItems.IntendedURL);
 		const defaultUrl = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
 		setTimeout(() =>
@@ -72,9 +71,9 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 				StorageTypeEnum.SESSION
 			)
 		);
-		return <Redirect to={intendedUrl || defaultUrl} />;
+		return <Navigate replace to={intendedUrl || defaultUrl} />;
 	}
-	const Layout = appRoute.template ? appRoute.template : template;
-	return <Layout Component={appRoute.component} route={route} />;
+	const Template = route.template ? route.template : template;
+	return <Template Component={route.component} />;
 };
 export default AuthGuard;

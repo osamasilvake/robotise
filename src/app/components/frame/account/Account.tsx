@@ -113,7 +113,7 @@ const Account: FC = () => {
 									variant="body2"
 									color="textSecondary"
 									className={classes.sDetailSubtitle}>
-									{auth.user?.data.role}
+									Robotise
 								</Typography>
 							</Box>
 						</IconButton>

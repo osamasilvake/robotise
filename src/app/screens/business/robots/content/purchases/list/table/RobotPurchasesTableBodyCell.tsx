@@ -32,7 +32,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 
 	const [trackingIndex, setTrackingIndex] = useState(-1);
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';

@@ -34,7 +34,7 @@ const RobotCommandsLogList: FC = () => {
 		rowsPerPage
 	});
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 	const pRobotId = commandsLog.content?.state?.pRobotId;
 	const cRobotId = params.robotId;
 

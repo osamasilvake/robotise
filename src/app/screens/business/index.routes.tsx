@@ -9,9 +9,8 @@ const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 
 const businessRoutes: RouteInterface[] = [
 	{
-		component: Dashboard,
-		exact: true,
-		path: AppConfigService.AppRoutes.HOME
+		path: AppConfigService.AppRoutes.HOME,
+		component: Dashboard
 	},
 	...sitesRoutes,
 	...robotsRoutes

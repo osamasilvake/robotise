@@ -2,7 +2,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Loader from '../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
@@ -32,9 +32,9 @@ const RobotContent: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const [value, setValue] = useState(-1);
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 	const location = useLocation();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
@@ -73,8 +73,8 @@ const RobotContent: FC = () => {
 		// prepare link
 		const url = robotsRoutes[value + 1].path.replace(':robotId', cRobotId);
 
-		// push to history
-		history.push(url);
+		// navigate
+		navigate(url);
 	};
 
 	return value !== -1 ? (

@@ -24,7 +24,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 
 	const translation = 'CONTENT.PURCHASES.DETAIL.HEAD';
 	const cRobotId = params.robotId;

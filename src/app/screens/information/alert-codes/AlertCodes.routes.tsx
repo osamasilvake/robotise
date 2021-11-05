@@ -7,9 +7,8 @@ const AlertCodes = lazy(() => import('./AlertCodes'));
 
 const alertCodesRoutes: RouteInterface[] = [
 	{
-		component: AlertCodes,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES
+		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES,
+		component: AlertCodes
 	}
 ];
 export default alertCodesRoutes;

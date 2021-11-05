@@ -1,26 +1,19 @@
-import { FC, ReactNode } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { FC } from 'react';
 
 import { RouteTypeEnum } from './Routes.enum';
 
-export interface RouteTemplateInterface {
+export interface RouteInterface {
+	path: string;
+	component: FC;
+	template?: FC<LayoutPageInterface>;
+}
+
+export interface RoutesTemplateInterface {
 	routes: RouteInterface[];
 	template: FC<LayoutPageInterface>;
 	type: RouteTypeEnum;
 }
 
-export interface RouteInterface {
-	exact?: boolean;
-	path: string;
-	component: FC<PageInterface>;
-	template?: FC<LayoutPageInterface>;
-}
-
 export interface LayoutPageInterface {
-	Component: FC<PageInterface>;
-	route: RouteComponentProps<ReactNode>;
-}
-
-export interface PageInterface<T = ReactNode> {
-	route: RouteComponentProps<T>;
+	Component: FC;
 }

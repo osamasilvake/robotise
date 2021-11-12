@@ -174,7 +174,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 										onChange={handleChangeCheckbox}
 									/>
 								}
-								label={t(`${translation}.FIELDS.ACTIVE.LABEL`)}
+								label={t<string>(`${translation}.FIELDS.ACTIVE.LABEL`)}
 							/>
 						</Box>
 

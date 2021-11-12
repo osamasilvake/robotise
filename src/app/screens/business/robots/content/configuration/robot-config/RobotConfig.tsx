@@ -133,7 +133,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 											onChange={handleChangeCheckbox}
 										/>
 									}
-									label={t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`)}
+									label={t<string>(
+										`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`
+									)}
 								/>
 								<FormHelperText className={classes.sFormHelperText}>
 									{t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
@@ -148,7 +150,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 											onChange={handleChangeCheckbox}
 										/>
 									}
-									label={t(
+									label={t<string>(
 										`${translation}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.LABEL`
 									)}
 								/>

@@ -49,7 +49,7 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 					onChange={toggleRoomState}
 				/>
 			}
-			label={t('CONTENT.ROOMS.LIST.ACTIONS.ACTIVE.LABEL')}
+			label={t<string>('CONTENT.ROOMS.LIST.ACTIONS.ACTIVE.LABEL')}
 		/>
 	);
 };

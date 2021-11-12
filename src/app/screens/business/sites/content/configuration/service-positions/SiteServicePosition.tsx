@@ -28,7 +28,7 @@ const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
 			<ListItemSecondaryAction>
 				<Tooltip
 					placement="left"
-					title={String(t('SERVICE_POSITIONS.EDIT'))}
+					title={t<string>('SERVICE_POSITIONS.EDIT')}
 					onClick={() => setOpenCreateEdit(true)}>
 					<IconButton edge="end">
 						<Edit color="primary" />
@@ -45,7 +45,7 @@ const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
 
 				<Tooltip
 					placement="left"
-					title={String(t('SERVICE_POSITIONS.DELETE'))}
+					title={t<string>('SERVICE_POSITIONS.DELETE')}
 					onClick={() => setOpenDelete(true)}>
 					<IconButton edge="end">
 						<Delete color="error" />

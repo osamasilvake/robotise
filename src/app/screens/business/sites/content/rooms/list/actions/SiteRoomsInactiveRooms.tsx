@@ -49,7 +49,7 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 					onChange={toggleRoomState}
 				/>
 			}
-			label={t('CONTENT.ROOMS.LIST.ACTIONS.INACTIVE.LABEL')}
+			label={t<string>('CONTENT.ROOMS.LIST.ACTIONS.INACTIVE.LABEL')}
 		/>
 	);
 };

@@ -131,7 +131,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{t(`${translation}.NOTE.TITLE`)}
 					<Tooltip
 						placement="right"
-						title={String(t('TOOLTIPS:EDIT'))}
+						title={t<string>('TOOLTIPS:EDIT')}
 						onClick={() => setOpen(true)}>
 						<IconButton
 							className={classes.sNoteEditIconButton}

@@ -74,7 +74,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 								onChange={handleAcceptOrders}
 							/>
 						}
-						label={t(`${translation}.ACTIVE`)}
+						label={t<string>(`${translation}.ACTIVE`)}
 					/>
 				</Box>
 			</CardContent>

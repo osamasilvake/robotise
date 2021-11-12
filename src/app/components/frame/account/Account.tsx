@@ -155,7 +155,7 @@ const Account: FC = () => {
 							</List>
 						</Popover>
 					</Box>
-					<Tooltip title={String(t('TOOLTIPS:DRAWER.CLOSE'))}>
+					<Tooltip title={t<string>('TOOLTIPS:DRAWER.CLOSE')}>
 						<IconButton onClick={handleDrawer(false)}>
 							<Close />
 						</IconButton>
@@ -176,7 +176,7 @@ const Account: FC = () => {
 						</Link>
 					)}
 					{window && window.innerWidth > mobileScreen && (
-						<Tooltip title={String(t('TOOLTIPS:DRAWER.OPEN'))}>
+						<Tooltip title={t<string>('TOOLTIPS:DRAWER.OPEN')}>
 							<IconButton onClick={handleDrawer(true)}>
 								<Menu />
 							</IconButton>

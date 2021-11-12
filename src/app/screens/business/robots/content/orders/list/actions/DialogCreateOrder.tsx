@@ -203,7 +203,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								onChange={handleChangeCheckbox}
 							/>
 						}
-						label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.DEBUG.LABEL`)}
+						label={t<string>(`${translation}.LIST.ACTIONS.CREATE.FIELDS.DEBUG.LABEL`)}
 					/>
 				</DialogContent>
 				<DialogActions>

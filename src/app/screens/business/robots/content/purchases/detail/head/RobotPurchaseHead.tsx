@@ -1,9 +1,10 @@
-import { Box, Chip, CircularProgress, Link, Stack, Typography } from '@mui/material';
+import { Box, Link, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
+import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
 import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
@@ -21,35 +22,12 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchaseHeadStyle();
 
-	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
 
 	const params = useParams() as RobotParamsInterface;
 
 	const translation = 'CONTENT.PURCHASES.DETAIL.HEAD';
 	const cRobotId = params.robotId;
-
-	/**
-	 * handle item tracking link
-	 * @returns
-	 */
-	const handleItemTrackingLink = () => {
-		if (purchase && purchase.content) {
-			// dispatch: fetch item tracking link
-			dispatch(
-				RobotItemTrackingLinkFetch(
-					cRobotId,
-					{
-						from: moment15MinsFromDate(purchase.content.createdAt),
-						to: purchase.content.createdAt
-					},
-					(res) => {
-						res.data && window.open(res.data.dlink);
-					}
-				)
-			);
-		}
-	};
 
 	return (
 		<Box className={classes.sBox}>
@@ -84,18 +62,19 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 				)}
 
 				<Box>
-					<Chip
-						size="small"
-						label={t(`${translation}.ITEM_TRACKING`)}
-						color="primary"
-						variant="outlined"
-						clickable
-						icon={
-							robot.itemTracking.loading ? <CircularProgress size={20} /> : undefined
-						}
-						disabled={robot.itemTracking.loading}
-						onClick={handleItemTrackingLink}
-					/>
+					{purchase && purchase.content && (
+						<ExternalLink
+							text={t(`${translation}.ITEM_TRACKING`)}
+							payload={{
+								robotId: cRobotId,
+								from: moment15MinsFromDate(purchase.content.createdAt),
+								to: purchase.content.createdAt
+							}}
+							FetchExternalLink={RobotItemTrackingLinkFetch}
+							showIcon={robot.itemTracking.loading}
+							disabled={robot.itemTracking.loading}
+						/>
+					)}
 				</Box>
 			</Stack>
 

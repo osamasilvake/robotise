@@ -3,13 +3,20 @@ import { Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/materia
 import { Box } from '@mui/system';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
+import ExternalLink from '../../../../../../components/common/external-link/ExternalLink';
 import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
+import {
+	RobotAuditLogsLinkFetch,
+	robotSelector
+} from '../../../../../../slices/business/robots/Robot.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { strRemoveSymbols } from '../../../../../../utilities/methods/String';
+import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import DialogNote from './DialogNote';
 import { RobotDetailGeneralInterface } from './RobotDetailGeneral.interface';
@@ -20,8 +27,13 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const { t } = useTranslation(['ROBOTS', 'TOOLTIPS']);
 	const classes = RobotDetailGeneralStyle();
 
+	const robot = useSelector(robotSelector);
+
 	const [open, setOpen] = useState(false);
 
+	const params = useParams() as RobotParamsInterface;
+
+	const cRobotId = params.robotId;
 	const translation = 'CONTENT.DETAIL.GENERAL';
 
 	return (
@@ -128,7 +140,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			{/* Note */}
 			<Grid item xs={12} sm={6} md={8} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.NOTE.TITLE`)}
+					{t(`${translation}.NOTE.LABEL`)}
 					<Tooltip
 						placement="right"
 						title={t<string>('TOOLTIPS:EDIT')}
@@ -142,6 +154,26 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Typography>
 				<ReadMore text={robotTwins.robot.note} />
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
+			</Grid>
+
+			{/* Deep Link: Audit Logs */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.AUDIT_LOGS.LABEL`)}
+				</Typography>
+				<Box>
+					<ExternalLink
+						text={t(`${translation}.AUDIT_LOGS.TEXT`)}
+						payload={{
+							robotId: cRobotId,
+							from: 'now-7d',
+							to: 'now'
+						}}
+						FetchExternalLink={RobotAuditLogsLinkFetch}
+						showIcon={robot.auditLogs.loading}
+						disabled={robot.auditLogs.loading}
+					/>
+				</Box>
 			</Grid>
 		</Grid>
 	);

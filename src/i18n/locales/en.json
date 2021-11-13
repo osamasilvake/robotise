@@ -224,6 +224,9 @@
 					"SUCCESS": "Comment has been updated successfully!",
 					"ERROR": "Unable to edit a comment field!"
 				},
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
+				},
 				"ITEM_TRACKING": {
 					"ERROR": "Failed to fetch item tracking link!"
 				}
@@ -677,13 +680,17 @@
 					"CUSTOMER_NAME": "Robot Customer Name",
 					"MISSION": "Mission",
 					"NOTE": {
-						"TITLE": "Note",
+						"LABEL": "Note",
 						"EXCERPT": "Provide important and relevant information about the particular robot.",
 						"NOTE": "Maximum limit {{value}}/2000.",
 						"FIELDS": {
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"
 						}
+					},
+					"AUDIT_LOGS": {
+						"LABEL": "Audit Logs",
+						"TEXT": "Audit details"
 					}
 				},
 				"LOCATION": {

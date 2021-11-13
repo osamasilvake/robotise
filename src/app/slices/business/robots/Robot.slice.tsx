@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { ExternalLinkPayloadInterface } from '../../../components/common/external-link/ExternalLink.interface';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
@@ -12,14 +13,13 @@ import {
 	RobotDetailControlModeTypeEnum
 } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
-import { RobotPurchaseItemTrackingPayloadInterface } from '../../../screens/business/robots/content/purchases/list/RobotPurchasesList.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
 import { deserializeRobot } from './Robot.deserialize';
 import { RobotTypeEnum } from './Robot.slice.enum';
-import { SliceRobotInterface, SRContentItemTrackingInterface } from './Robot.slice.interface';
+import { SliceRobotInterface, SRContentDeepLinkInterface } from './Robot.slice.interface';
 
 // initial state
 export const initialState: SliceRobotInterface = {
@@ -45,6 +45,10 @@ export const initialState: SliceRobotInterface = {
 	robotSiteConfig: {
 		loading: false
 	},
+	auditLogs: {
+		loading: false,
+		content: null
+	},
 	itemTracking: {
 		loading: false,
 		content: null
@@ -63,6 +67,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = true;
+			} else if (module === RobotTypeEnum.AUDIT_LOGS) {
+				state.auditLogs.loading = true;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
@@ -85,6 +91,9 @@ const dataSlice = createSlice({
 			const { module, response } = action.payload;
 			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = false;
+			} else if (module === RobotTypeEnum.AUDIT_LOGS) {
+				state.auditLogs.loading = false;
+				state.auditLogs.content = response;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
@@ -109,6 +118,9 @@ const dataSlice = createSlice({
 			const { module, response } = action.payload;
 			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = false;
+			} else if (module === RobotTypeEnum.AUDIT_LOGS) {
+				state.auditLogs.loading = false;
+				state.auditLogs.content = response;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
@@ -191,6 +203,51 @@ export const RobotNoteUpdate =
 
 				// dispatch: failure
 				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch audit logs link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotAuditLogsLinkFetch =
+	(
+		payload: ExternalLinkPayloadInterface,
+		callback: (report: SRContentDeepLinkInterface) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.AUDIT_LOGS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotAuditLogsLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-audit-logs-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.PURCHASES.AUDIT_LOGS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
 			});
 	};
 
@@ -482,16 +539,14 @@ export const RobotSiteConfigUpdate =
 
 /**
  * fetch item tracking link
- * @param robotId
  * @param payload
  * @param callback
  * @returns
  */
 export const RobotItemTrackingLinkFetch =
 	(
-		robotId: string,
-		payload: RobotPurchaseItemTrackingPayloadInterface,
-		callback: (report: SRContentItemTrackingInterface) => void
+		payload: ExternalLinkPayloadInterface,
+		callback: (report: SRContentDeepLinkInterface) => void
 	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
@@ -504,7 +559,7 @@ export const RobotItemTrackingLinkFetch =
 		// wait
 		await timeout(1000);
 
-		return RobotsService.robotItemTrackingLinkFetch(robotId, payload)
+		return RobotsService.robotItemTrackingLinkFetch(payload)
 			.then(async (res) => {
 				// dispatch: success
 				dispatch(success({ ...state, response: res }));

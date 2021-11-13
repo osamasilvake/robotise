@@ -1,10 +1,11 @@
-import { Box, Chip, CircularProgress, Link, TableCell } from '@mui/material';
+import { Box, Chip, Link, TableCell } from '@mui/material';
 import i18next from 'i18next';
-import { FC, MouseEvent, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
+import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import {
@@ -27,48 +28,12 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
 
-	const dispatch = useDispatch();
 	const robot = useSelector(robotSelector);
-
-	const [trackingIndex, setTrackingIndex] = useState(-1);
 
 	const params = useParams() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
-
-	/**
-	 * handle item tracking link
-	 * @param index
-	 * @param purchase
-	 * @returns
-	 */
-	const handleItemTrackingLink =
-		(index: number, purchase: SPCDataInterface) => (event: MouseEvent<HTMLDivElement>) => {
-			// stop propagation
-			event.stopPropagation();
-
-			// set tracking index
-			setTrackingIndex(index);
-
-			// dispatch: fetch item tracking link
-			dispatch(
-				RobotItemTrackingLinkFetch(
-					cRobotId,
-					{
-						from: moment15MinsFromDate(purchase.createdAt),
-						to: purchase.createdAt
-					},
-					(res) => {
-						// open link on new tab
-						res.data && window.open(res.data.dlink);
-
-						// reset tracking index
-						setTrackingIndex(-1);
-					}
-				)
-			);
-		};
 
 	/**
 	 * set cell value
@@ -82,19 +47,17 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	) => {
 		if (column.id === RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING) {
 			return (
-				<Chip
-					size="small"
-					label={t(`${translation}.ITEM_TRACKING`)}
-					color="primary"
-					variant="outlined"
-					clickable
-					icon={
-						robot.itemTracking.loading && trackingIndex === index ? (
-							<CircularProgress size={20} />
-						) : undefined
-					}
+				<ExternalLink
+					index={index}
+					text={t(`${translation}.ITEM_TRACKING`)}
+					payload={{
+						robotId: cRobotId,
+						from: moment15MinsFromDate(purchase.createdAt),
+						to: purchase.createdAt
+					}}
+					FetchExternalLink={RobotItemTrackingLinkFetch}
+					showIcon={robot.itemTracking.loading}
 					disabled={robot.itemTracking.loading}
-					onClick={handleItemTrackingLink(index, purchase)}
 				/>
 			);
 		} else {

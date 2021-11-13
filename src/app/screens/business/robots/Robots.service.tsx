@@ -1,7 +1,8 @@
+import { ExternalLinkPayloadInterface } from '../../../components/common/external-link/ExternalLink.interface';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import {
-	SRContentItemTrackingInterface,
+	SRContentDeepLinkInterface,
 	SRContentMapInterface
 } from '../../../slices/business/robots/Robot.slice.interface';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
@@ -19,10 +20,7 @@ import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.i
 import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls/list/RobotElevatorCallsList.interface';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
-import {
-	RobotPurchaseItemTrackingPayloadInterface,
-	RobotPurchasesListPayloadInterface
-} from './content/purchases/list/RobotPurchasesList.interface';
+import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
 import {
 	RobotCommandLogsAxiosGetInterface,
 	RobotElevatorCallsAxiosGetInterface,
@@ -84,6 +82,22 @@ class RobotsService {
 				attributes: {
 					note: payload.note
 				}
+			}
+		});
+	};
+
+	/**
+	 * fetch audit logs link
+	 * @param payload
+	 * @returns
+	 */
+	robotAuditLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.AUDIT_LOGS;
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
 			}
 		});
 	};
@@ -324,18 +338,14 @@ class RobotsService {
 
 	/**
 	 * fetch item tracking link
-	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotItemTrackingLinkFetch = (
-		robotId: string,
-		payload: RobotPurchaseItemTrackingPayloadInterface
-	) => {
+	robotItemTrackingLinkFetch = (payload: ExternalLinkPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.ITEM_TRACKING;
-		return HttpClientService.get<SRContentItemTrackingInterface>(url, {
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
 			params: {
-				robot: robotId,
+				robot: payload.robotId,
 				from: payload.from,
 				to: payload.to
 			}

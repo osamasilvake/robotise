@@ -456,6 +456,22 @@ class RobotsService {
 	};
 
 	/**
+	 * fetch elevator logs link
+	 * @param payload
+	 * @returns
+	 */
+	robotElevatorLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.ELEVATOR_LOGS;
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
+			params: {
+				elevator_vendor: payload.vendor,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * generate reports
 	 * @param robotId
 	 * @param payload

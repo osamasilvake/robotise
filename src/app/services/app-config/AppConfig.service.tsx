@@ -278,8 +278,9 @@ class AppConfigService extends EnvService {
 						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
 						LINKS: {
+							AUDIT_LOGS: `${this.envAppUrl}/deeplinks-request/audit-logs-robot-site`,
 							ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`,
-							AUDIT_LOGS: `${this.envAppUrl}/deeplinks-request/audit-logs-robot-site`
+							ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`
 						},
 						REPORTS: {
 							PURCHASES: `${this.envAppUrl}/order-report-export`

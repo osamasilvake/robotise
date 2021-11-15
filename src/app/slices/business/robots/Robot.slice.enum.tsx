@@ -8,5 +8,6 @@ export enum RobotTypeEnum {
 	ROBOT_CONFIG,
 	ROBOT_SITE_CONFIG,
 	ITEM_TRACKING,
+	ELEVATOR_LOGS,
 	REPORTS
 }

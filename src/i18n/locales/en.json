@@ -191,6 +191,9 @@
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
 				},
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
+				},
 				"MAP": {
 					"ERROR": "Failed to load map location!"
 				},
@@ -224,11 +227,13 @@
 					"SUCCESS": "Comment has been updated successfully!",
 					"ERROR": "Unable to edit a comment field!"
 				},
-				"AUDIT_LOGS": {
-					"ERROR": "Failed to fetch audit logs link!"
-				},
 				"ITEM_TRACKING": {
 					"ERROR": "Failed to fetch item tracking link!"
+				}
+			},
+			"ELEVATOR_CALLS": {
+				"ELEVATOR_LOGS": {
+					"ERROR": "Failed to fetch elevator logs link!"
 				}
 			},
 			"CONFIGURATION": {
@@ -1246,7 +1251,8 @@
 							"SRC_AREA_ID": "SRC ID",
 							"DST_AREA_ID": "DST ID",
 							"HISTORY": "History",
-							"CREATED": "Created"
+							"CREATED": "Created",
+							"ELEVATOR_LOGS": "Elevator Logs"
 						},
 						"VALUES": {
 							"HISTORY": {
@@ -1258,7 +1264,8 @@
 									"robot.event.leftLift": "Robot Left Lift",
 									"elevator.event.error": "Error"
 								}
-							}
+							},
+							"ELEVATOR_LOGS": "Elevator details"
 						}
 					}
 				}

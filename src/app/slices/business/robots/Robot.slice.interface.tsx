@@ -29,6 +29,10 @@ export interface SliceRobotInterface {
 		loading: boolean;
 		content: SRContentDeepLinkInterface | null;
 	};
+	elevatorLogs: {
+		loading: boolean;
+		content: SRContentDeepLinkInterface | null;
+	};
 	reports: {
 		loading: boolean;
 	};

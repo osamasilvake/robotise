@@ -38,6 +38,12 @@ export const columns: RobotElevatorCallsTableColumnInterface[] = [
 		id: RobotElevatorCallsTableColumnsTypeEnum.CREATED,
 		label: `${translation}.CREATED`,
 		minWidth: 200,
+		align: 'left'
+	},
+	{
+		id: RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS,
+		label: `${translation}.ELEVATOR_LOGS`,
+		minWidth: 150,
 		align: 'right'
 	}
 ];

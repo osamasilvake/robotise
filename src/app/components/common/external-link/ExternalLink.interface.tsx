@@ -13,6 +13,7 @@ export interface ExternalLinkInterface {
 export interface ExternalLinkPayloadInterface {
 	siteId?: string;
 	robotId?: string;
+	vendor?: string;
 	from: Date | string;
 	to: Date | string;
 }

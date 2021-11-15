@@ -53,6 +53,10 @@ export const initialState: SliceRobotInterface = {
 		loading: false,
 		content: null
 	},
+	elevatorLogs: {
+		loading: false,
+		content: null
+	},
 	reports: {
 		loading: false
 	}
@@ -83,6 +87,8 @@ const dataSlice = createSlice({
 				state.robotSiteConfig.loading = true;
 			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = true;
+			} else if (module === RobotTypeEnum.ELEVATOR_LOGS) {
+				state.elevatorLogs.loading = true;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
@@ -110,6 +116,9 @@ const dataSlice = createSlice({
 			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = response;
+			} else if (module === RobotTypeEnum.ELEVATOR_LOGS) {
+				state.elevatorLogs.loading = false;
+				state.elevatorLogs.content = response;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -137,6 +146,9 @@ const dataSlice = createSlice({
 			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = response;
+			} else if (module === RobotTypeEnum.ELEVATOR_LOGS) {
+				state.elevatorLogs.loading = false;
+				state.elevatorLogs.content = response;
 			} else if (module === RobotTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -242,7 +254,7 @@ export const RobotAuditLogsLinkFetch =
 					id: `robot-audit-logs-error`,
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.PURCHASES.AUDIT_LOGS.ERROR`
+					text: `ROBOTS.DETAIL.AUDIT_LOGS.ERROR`
 				};
 				dispatch(triggerMessage(message));
 
@@ -574,6 +586,51 @@ export const RobotItemTrackingLinkFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.PURCHASES.ITEM_TRACKING.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
+			});
+	};
+
+/**
+ * fetch elevator logs link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotElevatorLogsLinkFetch =
+	(
+		payload: ExternalLinkPayloadInterface,
+		callback: (report: SRContentDeepLinkInterface) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.ELEVATOR_LOGS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotElevatorLogsLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-elevator-logs-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.ELEVATOR_CALLS.ELEVATOR_LOGS.ERROR`
 				};
 				dispatch(triggerMessage(message));
 

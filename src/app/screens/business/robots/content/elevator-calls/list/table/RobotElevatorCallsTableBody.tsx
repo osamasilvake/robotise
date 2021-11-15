@@ -55,17 +55,20 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 		type: RobotElevatorCallsTableSortTypeEnum
 	) => {
 		return (a: ECCDataInterface, b: ECCDataInterface) => {
-			switch (type) {
-				case RobotElevatorCallsTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
-				case RobotElevatorCallsTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			if (key !== RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
+				switch (type) {
+					case RobotElevatorCallsTableSortTypeEnum.DATE:
+						return momentSort(a[key]).diff(momentSort(b[key]));
+					case RobotElevatorCallsTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 
@@ -75,11 +78,12 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((elevatorCall: ECCDataInterface, index) => (
+					.map((elevatorCall: ECCDataInterface, index: number) => (
 						<TableRow key={index}>
 							{columns.map((column: RobotElevatorCallsTableColumnInterface) => (
 								<RobotElevatorCallsTableBodyCell
 									key={column.id}
+									index={index}
 									column={column}
 									elevatorCall={elevatorCall}
 								/>

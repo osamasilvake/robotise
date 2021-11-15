@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { momentDaysPriorToToday } from '../../../utilities/methods/Moment';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
 import { GeneralEmailsAxiosGetInterface } from './General.interface';
 
@@ -13,7 +14,8 @@ class GeneralService {
 		return HttpClientService.get<GeneralEmailsAxiosGetInterface>(url, {
 			params: {
 				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage
+				'page[size]': payload.rowsPerPage,
+				'filter[createdAt][gte]': momentDaysPriorToToday(7)
 			}
 		});
 	};

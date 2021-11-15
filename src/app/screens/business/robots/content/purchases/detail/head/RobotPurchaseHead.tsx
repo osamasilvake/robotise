@@ -12,7 +12,7 @@ import {
 	RobotItemTrackingLinkFetch,
 	robotSelector
 } from '../../../../../../../slices/business/robots/Robot.slice';
-import { moment15MinsFromDate } from '../../../../../../../utilities/methods/Moment';
+import { momentMinsPriorToDate } from '../../../../../../../utilities/methods/Moment';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchaseHeadInterface } from './RobotPurchaseHead.interface';
 import { RobotPurchaseHeadStyle } from './RobotPurchaseHead.style';
@@ -67,7 +67,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 							text={t(`${translation}.ITEM_TRACKING`)}
 							payload={{
 								robotId: cRobotId,
-								from: moment15MinsFromDate(purchase.content.createdAt),
+								from: momentMinsPriorToDate(purchase.content.createdAt, 15),
 								to: purchase.content.createdAt
 							}}
 							FetchExternalLink={RobotItemTrackingLinkFetch}

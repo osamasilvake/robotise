@@ -12,7 +12,10 @@ import {
 	RobotItemTrackingLinkFetch,
 	robotSelector
 } from '../../../../../../../slices/business/robots/Robot.slice';
-import { moment15MinsFromDate, momentFormat1 } from '../../../../../../../utilities/methods/Moment';
+import {
+	momentFormat1,
+	momentMinsPriorToDate
+} from '../../../../../../../utilities/methods/Moment';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import {
@@ -52,7 +55,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					text={t(`${translation}.ITEM_TRACKING`)}
 					payload={{
 						robotId: cRobotId,
-						from: moment15MinsFromDate(purchase.createdAt),
+						from: momentMinsPriorToDate(purchase.createdAt, 15),
 						to: purchase.createdAt
 					}}
 					FetchExternalLink={RobotItemTrackingLinkFetch}

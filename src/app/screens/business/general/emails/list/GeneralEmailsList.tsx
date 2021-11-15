@@ -52,7 +52,7 @@ const GeneralEmailsList: FC = () => {
 
 			if (condition1 || condition2) {
 				if (condition3) {
-					// dispatch: fetch robot elevator calls
+					// dispatch: fetch emails
 					dispatch(EmailsFetchList(payload));
 
 					// update ref
@@ -65,7 +65,7 @@ const GeneralEmailsList: FC = () => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (emails.content) {
-				// dispatch: fetch robot elevator calls
+				// dispatch: fetch emails
 				dispatch(
 					EmailsFetchList(
 						{

@@ -1,6 +1,6 @@
 export enum GeneralEmailsTableColumnsTypeEnum {
-	FROM = 'from',
 	RECIPIENT = 'recipient',
+	FROM = 'from',
 	SUBJECT = 'subject',
 	CONTENT = 'content',
 	NOTIFICATION_CODE = 'notificationCode',
@@ -9,6 +9,7 @@ export enum GeneralEmailsTableColumnsTypeEnum {
 }
 
 export enum GeneralEmailsTableSortTypeEnum {
+	OBJECT_FROM,
 	DATE,
 	STRING
 }

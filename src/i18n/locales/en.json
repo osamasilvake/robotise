@@ -363,8 +363,20 @@
 			"LIST": {
 				"TABLE": {
 					"COLUMNS": {
+						"RECIPIENT": "Recipient",
+						"FROM": "From",
 						"SUBJECT": "Subject",
+						"CONTENT": "Content",
+						"NOTIFICATION_CODE": "Notification Code",
 						"CREATED": "Created"
+					},
+					"VALUES": {
+						"NOTIFICATION_CODE": {
+							"emergency-brake-pressed": "Emergency Brake Pressed",
+							"new-purchase": "New Purchase",
+							"order-no-person-interaction": "Order no person Interaction",
+							"low-rating-alert": "Low Rating Alert"
+						}
 					}
 				}
 			}

@@ -93,7 +93,8 @@ export const EmailsFetchList =
 
 				// state
 				result = {
-					...result
+					...result,
+					state: payload
 				};
 
 				// handle refresh and pagination

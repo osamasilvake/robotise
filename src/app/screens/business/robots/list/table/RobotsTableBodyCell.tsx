@@ -29,7 +29,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 		if (RobotsTableColumnsTypeEnum.ROBOT_TITLE === column.id) {
 			return (
 				<Box>
-					<Typography variant="body2">
+					<Stack direction="row" alignItems="center">
 						<Link
 							component={RouterLink}
 							variant="body2"
@@ -60,7 +60,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 								/>
 							</Tooltip>
 						)}
-					</Typography>
+					</Stack>
 					<Typography variant="body2" color="textSecondary">
 						{robot.siteTitle}
 					</Typography>

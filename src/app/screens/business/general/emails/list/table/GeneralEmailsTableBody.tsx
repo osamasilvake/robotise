@@ -28,10 +28,15 @@ const GeneralEmailsTableBody: FC<GeneralEmailsTableBodyInterface> = (props) => {
 	const sortTableData = (content: SEContentInterface): SECDataInterface[] => {
 		let type;
 		switch (orderBy) {
+			case GeneralEmailsTableColumnsTypeEnum.FROM:
+				type = GeneralEmailsTableSortTypeEnum.OBJECT_FROM;
+				break;
 			case GeneralEmailsTableColumnsTypeEnum.CREATED:
 				type = GeneralEmailsTableSortTypeEnum.DATE;
 				break;
+			case GeneralEmailsTableColumnsTypeEnum.RECIPIENT:
 			case GeneralEmailsTableColumnsTypeEnum.SUBJECT:
+			case GeneralEmailsTableColumnsTypeEnum.CONTENT:
 				type = GeneralEmailsTableSortTypeEnum.STRING;
 				break;
 			default:
@@ -53,6 +58,12 @@ const GeneralEmailsTableBody: FC<GeneralEmailsTableBodyInterface> = (props) => {
 	) => {
 		return (a: SECDataInterface, b: SECDataInterface) => {
 			switch (type) {
+				case GeneralEmailsTableSortTypeEnum.OBJECT_FROM:
+					return a.from.name && b.from.name
+						? String(a.from.name).localeCompare(String(b.from.name))
+						: a.from.name
+						? 1
+						: -1;
 				case GeneralEmailsTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case GeneralEmailsTableSortTypeEnum.STRING:

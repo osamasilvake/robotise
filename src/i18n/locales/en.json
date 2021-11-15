@@ -1,11 +1,15 @@
 {
 	"META": {
-		"GENERAL": {
+		"COMMON": {
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
 		},
 		"DASHBOARD": {
 			"TITLE": "Dashboard",
 			"DESCRIPTION": "Dashboard Description"
+		},
+		"GENERAL": {
+			"TITLE": "General",
+			"DESCRIPTION": "General Description"
 		},
 		"SITES": {
 			"TITLE": "Sites",
@@ -286,6 +290,7 @@
 				"SHORT": "Bus."
 			},
 			"LIST": {
+				"GENERAL": "General",
 				"SITES": "Sites",
 				"ROBOTS": "Robots"
 			}
@@ -349,6 +354,22 @@
 			"FORGET_PASSWORD": "Forgot Your Password?"
 		}
 	},
+	"GENERAL": {
+		"TABS": {
+			"COMMON": "Common",
+			"EMAILS": "EMAILS"
+		},
+		"EMAILS": {
+			"LIST": {
+				"TABLE": {
+					"COLUMNS": {
+						"SUBJECT": "Subject",
+						"CREATED": "Created"
+					}
+				}
+			}
+		}
+	},
 	"SITES": {
 		"LIST": {
 			"TABLE": {
@@ -357,7 +378,7 @@
 					"TIMEZONE": "Timezone",
 					"CURRENCY": "Currency",
 					"ACCEPT_ORDERS": "Orders",
-					"UPDATED_AT": "Updated At"
+					"UPDATED": "Updated"
 				}
 			}
 		},
@@ -451,7 +472,7 @@
 							"LENGTH": "Length (mm)",
 							"WEIGHT": "Weight (g)",
 							"SIZE": "Size",
-							"UPDATED_AT": "Updated",
+							"UPDATED": "Updated",
 							"ACTIONS": "Actions"
 						},
 						"VALUES": {
@@ -527,7 +548,7 @@
 							"MODE": "Mode",
 							"FROM": "From",
 							"HISTORY": "History",
-							"UPDATED_AT": "Updated At"
+							"UPDATED": "Updated"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -652,7 +673,7 @@
 					"CONTROL_MODE": "Autonomous",
 					"BATTERY_PERCENTAGE": "Battery 🔋",
 					"MISSION_STATUS": "Mission 🚀",
-					"UPDATED_AT": "Updated At",
+					"UPDATED": "Updated",
 					"ALERTS": "Alerts"
 				}
 			}
@@ -1049,7 +1070,7 @@
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",
-							"UPDATED_ON": "Updated On"
+							"CREATED": "Created"
 						}
 					},
 					"FOOT": {
@@ -1382,7 +1403,7 @@
 					"NAME": "Name",
 					"DESCRIPTION": "Description",
 					"KEY": "Key",
-					"CREATED_AT": "Created At",
+					"CREATED": "Created",
 					"ACTIONS": "Actions"
 				},
 				"VALUES": {
@@ -1400,7 +1421,7 @@
 					"SYSTEM": "System",
 					"CODE": "Code",
 					"NODE": "Node",
-					"UPDATED_AT": "Updated At"
+					"UPDATED": "Updated"
 				}
 			}
 		}

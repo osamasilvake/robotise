@@ -87,6 +87,16 @@ class AppConfigService extends EnvService {
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
 				business: {
+					general: {
+						emails: {
+							list: {
+								refreshTime: 10000,
+								showPageSizes: true,
+								defaultPageSize: 50,
+								pageSizes: [5, 10, 15, 20, 50, 100]
+							}
+						}
+					},
 					sites: {
 						list: {
 							refreshTime: 10000,
@@ -246,6 +256,9 @@ class AppConfigService extends EnvService {
 			},
 			SCREENS: {
 				BUSINESS: {
+					GENERAL: {
+						EMAILS: `${this.envAppUrl}/emails`
+					},
 					SITES: {
 						ALL: `${this.envAppUrl}/sites`,
 						SINGLE: `${this.envAppUrl}/sites/:siteId`,

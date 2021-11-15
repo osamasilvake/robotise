@@ -34,8 +34,8 @@ export const columns: SitePhoneCallsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SitePhoneCallsTableColumnsTypeEnum.UPDATED_AT,
-		label: `${translation}.UPDATED_AT`,
+		id: SitePhoneCallsTableColumnsTypeEnum.UPDATED,
+		label: `${translation}.UPDATED`,
 		minWidth: 180,
 		align: 'right'
 	}

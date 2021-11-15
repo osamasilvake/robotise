@@ -30,7 +30,7 @@ const SitePhoneCallsTable: FC<SitePhoneCallsTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<SitePhoneCallsTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<SitePhoneCallsTableColumnsTypeEnum>(
-		SitePhoneCallsTableColumnsTypeEnum.UPDATED_AT
+		SitePhoneCallsTableColumnsTypeEnum.UPDATED
 	);
 
 	/**

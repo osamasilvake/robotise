@@ -3,6 +3,7 @@ import { AnyAction, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 
 import auth from './authentication/Auth.slice';
+import emails from './business/general/emails/Emails.slice';
 import commandsLog from './business/robots/commands-log/CommandsLog.slice';
 import elevatorCalls from './business/robots/elevator-calls/ElevatorCalls.slice';
 import inventory from './business/robots/inventory/Inventory.slice';
@@ -29,6 +30,7 @@ import deepLinks from './settings/deep-links/DeepLinks.slice';
 const combinedReducer = combineReducers({
 	auth,
 	general,
+	emails,
 	sites,
 	site,
 	products,

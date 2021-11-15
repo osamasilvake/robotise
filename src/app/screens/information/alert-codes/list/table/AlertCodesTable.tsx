@@ -27,7 +27,7 @@ const AlertCodesTable: FC<AlertCodesTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<AlertCodesTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<AlertCodesTableColumnsTypeEnum>(
-		AlertCodesTableColumnsTypeEnum.UPDATED_AT
+		AlertCodesTableColumnsTypeEnum.UPDATED
 	);
 
 	/**

@@ -34,7 +34,7 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 	) => {
 		const mappedPhoneCall = mapPhoneCall(phoneCall);
 		const value = mappedPhoneCall[column.id];
-		if (SitePhoneCallsTableColumnsTypeEnum.UPDATED_AT === column.id) {
+		if (SitePhoneCallsTableColumnsTypeEnum.UPDATED === column.id) {
 			return momentFormat1(value);
 		} else if (SitePhoneCallsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = phoneCall[column.id] as PCCDataHistoryInterface[];

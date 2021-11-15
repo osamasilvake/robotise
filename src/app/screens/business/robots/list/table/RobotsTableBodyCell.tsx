@@ -114,7 +114,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 			) : (
 				AppConfigService.AppOptions.common.none
 			);
-		} else if (RobotsTableColumnsTypeEnum.UPDATED_AT === column.id) {
+		} else if (RobotsTableColumnsTypeEnum.UPDATED === column.id) {
 			return momentFormat1(value);
 		} else if (RobotsTableColumnsTypeEnum.ALERTS === column.id) {
 			return `${robot.robotAlerts.danger}/${robot.robotAlerts.warning}`;

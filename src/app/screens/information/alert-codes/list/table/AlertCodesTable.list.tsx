@@ -28,8 +28,8 @@ export const columns: AlertCodesTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: AlertCodesTableColumnsTypeEnum.UPDATED_AT,
-		label: `${translation}.UPDATED_AT`,
+		id: AlertCodesTableColumnsTypeEnum.UPDATED,
+		label: `${translation}.UPDATED`,
 		minWidth: 200,
 		align: 'right'
 	}

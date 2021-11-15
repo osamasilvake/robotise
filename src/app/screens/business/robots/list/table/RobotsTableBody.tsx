@@ -38,7 +38,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 			case RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE:
 				type = RobotsTableSortTypeEnum.NUMBER;
 				break;
-			case RobotsTableColumnsTypeEnum.UPDATED_AT:
+			case RobotsTableColumnsTypeEnum.UPDATED:
 				type = RobotsTableSortTypeEnum.DATE;
 				break;
 			case RobotsTableColumnsTypeEnum.ACTIVE:

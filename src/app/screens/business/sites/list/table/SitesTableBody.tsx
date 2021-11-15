@@ -26,7 +26,7 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const sortTableData = (content: SSContentInterface): ISite[] => {
 		let type;
 		switch (orderBy) {
-			case SitesTableColumnsTypeEnum.UPDATED_AT:
+			case SitesTableColumnsTypeEnum.UPDATED:
 				type = SitesTableSortTypeEnum.DATE;
 				break;
 			case SitesTableColumnsTypeEnum.ACCEPT_ORDER:

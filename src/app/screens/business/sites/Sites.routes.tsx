@@ -8,7 +8,7 @@ const Sites = lazy(() => import('./Sites'));
 
 /**
  * NOTE:
- * the site tabs are shown based on the sitesRoutes objects
+ * the tabs are shown based on the routes object
  * therefore, changing the sequence of objects will make tabs malfunction.
  */
 const sitesRoutes: RouteInterface[] = [

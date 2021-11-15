@@ -5,13 +5,20 @@ import { DrawerListInterface } from './Drawer.interface';
 const drawerBusinessList: DrawerListInterface[] = [
 	{
 		id: 1,
+		icon: 'apps',
+		label: 'BUSINESS.LIST.GENERAL',
+		hint: '📥',
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN
+	},
+	{
+		id: 2,
 		icon: 'apartment',
 		label: 'BUSINESS.LIST.SITES',
 		hint: '🏢  🍔  🛌🏻  ⚙️',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN
 	},
 	{
-		id: 2,
+		id: 3,
 		icon: 'android',
 		label: 'BUSINESS.LIST.ROBOTS',
 		hint: '🤖  🗄  📦  🛒  ⚙️',

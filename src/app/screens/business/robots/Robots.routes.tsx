@@ -8,7 +8,7 @@ const Robots = lazy(() => import('./Robots'));
 
 /**
  * NOTE:
- * the robot tabs are shown based on the robotsRoutes objects
+ * the tabs are shown based on the routes object
  * therefore, changing the sequence of objects will make tabs malfunction.
  */
 const robotsRoutes: RouteInterface[] = [

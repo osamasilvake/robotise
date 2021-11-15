@@ -94,7 +94,7 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 			);
 		} else {
 			const value = deepLink[column.id];
-			if (DeepLinksTableColumnsTypeEnum.CREATED_AT === column.id) {
+			if (DeepLinksTableColumnsTypeEnum.CREATED === column.id) {
 				return momentFormat1(value);
 			} else if (DeepLinksTableColumnsTypeEnum.DESCRIPTION === column.id) {
 				return <ReadMore text={String(value)} variant="body2" />;

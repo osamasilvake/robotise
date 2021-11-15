@@ -27,7 +27,7 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 					{site.acceptOrders ? <Check color="secondary" /> : <Close color="error" />}
 				</Box>
 			);
-		} else if (SitesTableColumnsTypeEnum.UPDATED_AT === column.id) {
+		} else if (SitesTableColumnsTypeEnum.UPDATED === column.id) {
 			return momentFormat1(value);
 		}
 		return value;

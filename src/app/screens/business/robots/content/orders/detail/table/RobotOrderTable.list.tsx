@@ -10,8 +10,8 @@ export const columns: RobotOrderTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotOrderTableColumnsTypeEnum.CREATED_AT,
-		label: `${translation}.UPDATED_ON`,
+		id: RobotOrderTableColumnsTypeEnum.CREATED,
+		label: `${translation}.CREATED`,
 		minWidth: 170,
 		align: 'left'
 	}

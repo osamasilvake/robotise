@@ -109,7 +109,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 			);
 		} else {
 			const value = product[column.id];
-			if (SiteProductsTableColumnsTypeEnum.UPDATED_AT === column.id) {
+			if (SiteProductsTableColumnsTypeEnum.UPDATED === column.id) {
 				return momentFormat1(value);
 			} else if (typeof value === 'number') {
 				if (SiteProductsTableColumnsTypeEnum.PRICE === column.id) {

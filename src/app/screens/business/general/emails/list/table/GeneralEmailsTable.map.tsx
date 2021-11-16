@@ -27,15 +27,20 @@ export const mapEmail = (email: SECDataInterface) => {
 
 /**
  * map history event type
- * @param status
+ * @param event
  * @returns
  */
 export const mapHistoryEventType = (event: string) => {
 	switch (event) {
-		case GeneralEmailsTableColumnHistoryEventTypeEnum.ERROR:
+		case GeneralEmailsTableColumnHistoryEventTypeEnum.PROCESSED:
 			return {
-				color: StatusTypeTextEnum.ERROR,
-				icon: 'cancel_outlined'
+				color: StatusTypeTextEnum.SUCCESS_LIGHT,
+				icon: 'cached_outlined'
+			};
+		case GeneralEmailsTableColumnHistoryEventTypeEnum.DELIVERED:
+			return {
+				color: StatusTypeTextEnum.SUCCESS_DARK,
+				icon: 'check_outlined'
 			};
 		default:
 			return {

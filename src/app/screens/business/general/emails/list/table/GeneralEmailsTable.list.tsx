@@ -28,6 +28,13 @@ export const columns: GeneralEmailsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: GeneralEmailsTableColumnsTypeEnum.HISTORY,
+		label: `${translation}.HISTORY`,
+		minWidth: 300,
+		align: 'left',
+		noSort: true
+	},
+	{
 		id: GeneralEmailsTableColumnsTypeEnum.NOTIFICATION_CODE,
 		label: `${translation}.NOTIFICATION_CODE`,
 		minWidth: 200,

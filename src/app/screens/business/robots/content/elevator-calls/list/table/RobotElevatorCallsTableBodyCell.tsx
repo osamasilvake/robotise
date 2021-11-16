@@ -6,10 +6,7 @@ import { useSelector } from 'react-redux';
 import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
-import {
-	ECCDataHistoryInterface,
-	ECCDataInterface
-} from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
+import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import {
 	RobotElevatorLogsLinkFetch,
 	robotSelector
@@ -63,8 +60,8 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 			if (RobotElevatorCallsTableColumnsTypeEnum.CREATED === column.id) {
 				return momentFormat1(value);
 			} else if (RobotElevatorCallsTableColumnsTypeEnum.HISTORY === column.id) {
-				const history = elevatorCall[column.id] as ECCDataHistoryInterface[];
-				const historyMapped = value as ECCDataHistoryInterface[];
+				const history = elevatorCall.history;
+				const historyMapped = mappedElevatorCall.history;
 				return (
 					<Box>
 						{history.map((item, index) => (

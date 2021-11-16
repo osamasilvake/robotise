@@ -3,8 +3,8 @@ export enum GeneralEmailsTableColumnsTypeEnum {
 	FROM = 'from',
 	SUBJECT = 'subject',
 	CONTENT = 'content',
-	NOTIFICATION_CODE = 'notificationCode',
 	HISTORY = 'history',
+	NOTIFICATION_CODE = 'notificationCode',
 	CREATED = 'createdAt'
 }
 
@@ -15,5 +15,7 @@ export enum GeneralEmailsTableSortTypeEnum {
 }
 
 export enum GeneralEmailsTableColumnHistoryEventTypeEnum {
-	ERROR = 'elevator.event.error'
+	CREATED = 'created',
+	PROCESSED = 'processed',
+	DELIVERED = 'delivered'
 }

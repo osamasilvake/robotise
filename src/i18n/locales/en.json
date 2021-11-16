@@ -367,10 +367,18 @@
 						"FROM": "From",
 						"SUBJECT": "Subject",
 						"CONTENT": "Content",
+						"HISTORY": "History",
 						"NOTIFICATION_CODE": "Notification Code",
 						"CREATED": "Created"
 					},
 					"VALUES": {
+						"HISTORY": {
+							"EVENT": {
+								"created": "Created",
+								"processed": "Processed",
+								"delivered": "Delivered"
+							}
+						},
 						"NOTIFICATION_CODE": {
 							"emergency-brake-pressed": "Emergency Brake Pressed",
 							"new-purchase": "New Purchase",

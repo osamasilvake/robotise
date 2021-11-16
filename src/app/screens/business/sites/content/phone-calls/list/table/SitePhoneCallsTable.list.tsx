@@ -31,7 +31,8 @@ export const columns: SitePhoneCallsTableColumnInterface[] = [
 		id: SitePhoneCallsTableColumnsTypeEnum.HISTORY,
 		label: `${translation}.HISTORY`,
 		minWidth: 250,
-		align: 'left'
+		align: 'left',
+		noSort: true
 	},
 	{
 		id: SitePhoneCallsTableColumnsTypeEnum.UPDATED,

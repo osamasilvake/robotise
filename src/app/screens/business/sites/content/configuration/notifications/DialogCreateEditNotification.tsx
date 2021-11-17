@@ -49,7 +49,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 	const [newNotification, setNewNotification] = useState('');
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	const notification = index !== undefined ? notifications.content?.data[index] : null;
@@ -174,7 +174,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 										onChange={handleChangeCheckbox}
 									/>
 								}
-								label={t(`${translation}.FIELDS.ACTIVE.LABEL`)}
+								label={t<string>(`${translation}.FIELDS.ACTIVE.LABEL`)}
 							/>
 						</Box>
 

@@ -41,7 +41,7 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 						onChange={toggleBilled}
 					/>
 				}
-				label={t('CONTENT.PURCHASES.LIST.ACTIONS.FILTERS.BILLED')}
+				label={t<string>('CONTENT.PURCHASES.LIST.ACTIONS.FILTERS.BILLED')}
 			/>
 		</Box>
 	);

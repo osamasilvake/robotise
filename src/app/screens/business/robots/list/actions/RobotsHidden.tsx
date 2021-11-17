@@ -41,7 +41,7 @@ const RobotsHidden: FC = () => {
 						onChange={toggleHidden}
 					/>
 				}
-				label={t('LIST.ACTIONS.FILTERS.HIDDEN')}
+				label={t<string>('LIST.ACTIONS.FILTERS.HIDDEN')}
 			/>
 		</Box>
 	);

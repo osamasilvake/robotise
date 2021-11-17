@@ -5,7 +5,7 @@ import {
 	Drawer,
 	Icon,
 	List,
-	ListItem,
+	ListItemButton,
 	ListItemIcon,
 	ListItemText,
 	ListSubheader,
@@ -49,7 +49,6 @@ const DrawerCustom: FC = () => {
 			<Box className={classes.sListRoot}>
 				{DrawersList.map((item, index) => (
 					<List
-						disablePadding
 						key={index}
 						subheader={
 							<ListSubheader>
@@ -57,10 +56,9 @@ const DrawerCustom: FC = () => {
 							</ListSubheader>
 						}>
 						{item.list.map((listItem) => (
-							<ListItem
+							<ListItemButton
+								disableRipple
 								key={listItem.id}
-								button
-								exact
 								component={NavLink}
 								to={listItem.path}
 								className={
@@ -81,12 +79,11 @@ const DrawerCustom: FC = () => {
 										<Icon>{listItem.icon}</Icon>
 									)}
 								</ListItemIcon>
-
 								<ListItemText
 									primary={t(listItem.label)}
 									secondary={listItem.hint}
 								/>
-							</ListItem>
+							</ListItemButton>
 						))}
 					</List>
 				))}

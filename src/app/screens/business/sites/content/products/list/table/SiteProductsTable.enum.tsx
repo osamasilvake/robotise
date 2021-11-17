@@ -5,7 +5,7 @@ export enum SiteProductsTableColumnsTypeEnum {
 	LENGTH = 'length',
 	SIZE = 'volume',
 	WEIGHT = 'weight',
-	UPDATED_AT = 'updatedAt',
+	UPDATED = 'updatedAt',
 	ACTIONS = 'actions'
 }
 

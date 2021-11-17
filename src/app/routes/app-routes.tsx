@@ -5,6 +5,13 @@ const appRoutes = {
 	},
 	SCREENS: {
 		BUSINESS: {
+			GENERAL: {
+				MAIN: '/general',
+				EMAILS: {
+					MAIN: '/general/emails',
+					DETAIL: '/general/emails/:emailId'
+				}
+			},
 			SITES: {
 				MAIN: '/sites',
 				DETAIL: '/sites/:siteId',

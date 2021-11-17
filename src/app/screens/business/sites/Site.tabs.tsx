@@ -2,30 +2,30 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import Loader from '../../../../components/common/loader/Loader';
-import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
-import PageError from '../../../../components/content/page-error/PageError';
-import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
-import { SiteParamsInterface } from '../Site.interface';
-import sitesRoutes from '../Sites.routes';
-import SiteConfiguration from './configuration/SiteConfiguration';
-import SiteDetail from './detail/SiteDetail';
-import SitePhoneCallsList from './phone-calls/list/SitePhoneCallsList';
-import SitePhoneConfigsList from './phone-configs/detail/SitePhoneConfigsDetail';
-import SiteProductsList from './products/list/SiteProductsList';
-import SiteRoomsList from './rooms/list/SiteRoomsList';
+import Loader from '../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../components/common/loader/Loader.enum';
+import PageError from '../../../components/content/page-error/PageError';
+import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
+import SiteConfiguration from './content/configuration/SiteConfiguration';
+import SiteDetail from './content/detail/SiteDetail';
+import SitePhoneCallsList from './content/phone-calls/list/SitePhoneCallsList';
+import SitePhoneConfigsList from './content/phone-configs/detail/SitePhoneConfigsDetail';
+import SiteProductsList from './content/products/list/SiteProductsList';
+import SiteRoomsList from './content/rooms/list/SiteRoomsList';
+import { SiteParamsInterface } from './Site.interface';
+import sitesRoutes from './Sites.routes';
 
-const SiteContent: FC = () => {
+const SiteTabs: FC = () => {
 	const { t } = useTranslation('SITES');
 
 	const sites = useSelector(sitesSelector);
 
 	const [value, setValue] = useState(-1);
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const location = useLocation();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
@@ -47,10 +47,10 @@ const SiteContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = sitesRoutes[value + 1].path.replace(':siteId', cSiteId);
+		const link = sitesRoutes[value + 1].path.replace(':siteId', cSiteId);
 
-		// push to history
-		history.push(url);
+		// navigate
+		navigate(link);
 	};
 
 	return value !== -1 ? (
@@ -106,4 +106,4 @@ const SiteContent: FC = () => {
 		</Box>
 	) : null;
 };
-export default SiteContent;
+export default SiteTabs;

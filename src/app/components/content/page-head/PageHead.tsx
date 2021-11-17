@@ -17,7 +17,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 			{/* Meta */}
 			<Meta
 				title={t(title)}
-				description={(description && t(description)) || t('GENERAL.DESCRIPTION')}
+				description={(description && t(description)) || t('COMMON.DESCRIPTION')}
 			/>
 
 			{!onlyMeta && (
@@ -28,7 +28,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 					</Typography>
 
 					{/* Breadcrumb */}
-					<Breadcrumb labels={labels || null} />
+					<Breadcrumb labels={labels} />
 
 					{/* Divider */}
 					<Box className={classes.sDivider}>

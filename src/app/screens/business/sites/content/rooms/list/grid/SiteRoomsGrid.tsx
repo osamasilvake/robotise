@@ -134,7 +134,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														}}
 													/>
 												}
-												label={t(`${translation}.BLOCKED`)}
+												label={t<string>(`${translation}.BLOCKED`)}
 												labelPlacement="start"
 											/>
 

@@ -35,7 +35,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const sites = useSelector(sitesSelector);
 	const dispatch = useDispatch();
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 	const cRobotId = params.robotId;
 	const robotTwinsSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_SITE_CONFIG';

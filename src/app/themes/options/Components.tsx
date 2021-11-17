@@ -33,9 +33,10 @@ const OverridesCustom: Components = {
 			}
 		}
 	},
-	MuiListItem: {
+	MuiListItemButton: {
 		styleOverrides: {
 			root: {
+				transition: 'none',
 				'&.active': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					'& svg, span, p': {

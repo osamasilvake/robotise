@@ -1,5 +1,6 @@
 export enum RobotTypeEnum {
 	NOTE,
+	AUDIT_LOGS,
 	MAP,
 	ROC_CONTROL,
 	COMMAND_CAMERA,
@@ -7,5 +8,6 @@ export enum RobotTypeEnum {
 	ROBOT_CONFIG,
 	ROBOT_SITE_CONFIG,
 	ITEM_TRACKING,
+	ELEVATOR_LOGS,
 	REPORTS
 }

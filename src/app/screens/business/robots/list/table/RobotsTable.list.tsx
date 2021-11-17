@@ -30,7 +30,7 @@ export const columns: RobotsTableColumnInterface[] = [
 	{
 		id: RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE,
 		label: `${translation}.BATTERY_PERCENTAGE`,
-		width: 150,
+		minWidth: 130,
 		align: 'left'
 	},
 	{
@@ -40,8 +40,8 @@ export const columns: RobotsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: RobotsTableColumnsTypeEnum.UPDATED_AT,
-		label: `${translation}.UPDATED_AT`,
+		id: RobotsTableColumnsTypeEnum.UPDATED,
+		label: `${translation}.UPDATED`,
 		minWidth: 180,
 		align: 'left'
 	},

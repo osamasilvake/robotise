@@ -25,7 +25,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	const translation = 'CONTENT.CONFIGURATION.SERVICE_POSITIONS';
@@ -60,7 +60,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 				<Box className={classes.sCreate}>
 					<Tooltip
 						placement="left"
-						title={String(t('TOOLTIPS:SERVICE_POSITIONS.ADD'))}
+						title={t<string>('TOOLTIPS:SERVICE_POSITIONS.ADD')}
 						onClick={() => setOpen(true)}>
 						<IconButton edge="end">
 							<AddCircle color="primary" />

@@ -1,0 +1,76 @@
+import { Icon, Stack, TableCell } from '@mui/material';
+import { Box } from '@mui/system';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
+import Status from '../../../../../../components/common/status/Status';
+import { SECDataInterface } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
+import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { GeneralEmailsTableColumnsTypeEnum } from './GeneralEmailsTable.enum';
+import {
+	GeneralEmailsTableBodyCellInterface,
+	GeneralEmailsTableColumnInterface
+} from './GeneralEmailsTable.interface';
+import { mapEmail, mapHistoryEventType, mapStatus } from './GeneralEmailsTable.map';
+import { GeneralEmailsTableStyle } from './GeneralEmailsTable.style';
+
+const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (props) => {
+	const { column, email } = props;
+	const { t } = useTranslation('GENERAL');
+	const classes = GeneralEmailsTableStyle();
+
+	const sites = useSelector(sitesSelector);
+
+	/**
+	 * set cell value
+	 * @param email
+	 * @param column
+	 * @returns
+	 */
+	const setCellValue = (email: SECDataInterface, column: GeneralEmailsTableColumnInterface) => {
+		const mappedEmail = mapEmail(email);
+		const value = mappedEmail[column.id];
+		if (GeneralEmailsTableColumnsTypeEnum.CREATED === column.id) {
+			return momentFormat1(value);
+		} else if (GeneralEmailsTableColumnsTypeEnum.SITE === column.id && sites.content) {
+			return sites.content.dataById[email.site?.id].title;
+		} else if (GeneralEmailsTableColumnsTypeEnum.HISTORY === column.id) {
+			const history = email.history;
+			const historyMapped = mappedEmail.history;
+			return (
+				<Box>
+					{history.map((item, index) => (
+						<Stack
+							key={index}
+							spacing={0.5}
+							direction="row"
+							className={classes.sTableHistory}>
+							<Icon
+								color={mapHistoryEventType(item.event).color}
+								className={classes.sTableHistoryIcon}>
+								{mapHistoryEventType(item.event).icon}
+							</Icon>
+							{t(historyMapped[index].event)}
+							{item.reason && <>: {item.reason}</>}
+						</Stack>
+					))}
+				</Box>
+			);
+		} else if (typeof value === 'string') {
+			if (GeneralEmailsTableColumnsTypeEnum.STATUS === column.id) {
+				return <Status level={mapStatus(value)}>{t(value)}</Status>;
+			}
+			return t(value);
+		}
+		return value;
+	};
+
+	return (
+		<TableCell key={column.id} align={column.align}>
+			{setCellValue(email, column)}
+		</TableCell>
+	);
+};
+export default GeneralEmailsTableBodyCell;

@@ -33,7 +33,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	/**
@@ -68,7 +68,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 						onChange={handleNotification(notification)}
 					/>
 				}
-				label={false}
+				label={''}
 			/>
 
 			<ListItemText
@@ -79,7 +79,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 			<ListItemSecondaryAction>
 				<Tooltip
 					placement="left"
-					title={String(t('NOTIFICATION.EDIT'))}
+					title={t<string>('NOTIFICATION.EDIT')}
 					onClick={() => setOpen(true)}>
 					<IconButton edge="end">
 						<Edit color="primary" />

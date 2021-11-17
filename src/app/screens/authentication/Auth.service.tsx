@@ -9,7 +9,6 @@ import {
 import { jwtDecode } from '../../utilities/methods/Decode';
 import { momentNow } from '../../utilities/methods/Moment';
 import { serializeObj } from '../../utilities/methods/Object';
-import { AuthUserRoleTypeEnum } from './Auth.enum';
 import { AuthAxiosPostResponseInterface, AuthLoginFormInterface } from './Auth.interface';
 
 class AuthService {
@@ -74,8 +73,7 @@ class AuthService {
 				display_name: decoded.name,
 				given_name: decoded.given_name,
 				family_name: decoded.family_name,
-				email: decoded.email,
-				role: AuthUserRoleTypeEnum.ADMIN
+				email: decoded.email
 			},
 			iat: decoded.iat,
 			exp: decoded.exp,

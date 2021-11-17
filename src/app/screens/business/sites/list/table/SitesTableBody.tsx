@@ -1,6 +1,6 @@
 import { TableBody, TableRow } from '@mui/material';
 import { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
 import {
@@ -16,7 +16,7 @@ import SitesTableBodyCell from './SitesTableBodyCell';
 const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const { content, order, orderBy } = props;
 
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	/**
 	 * sort table data
@@ -26,7 +26,7 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const sortTableData = (content: SSContentInterface): ISite[] => {
 		let type;
 		switch (orderBy) {
-			case SitesTableColumnsTypeEnum.UPDATED_AT:
+			case SitesTableColumnsTypeEnum.UPDATED:
 				type = SitesTableSortTypeEnum.DATE;
 				break;
 			case SitesTableColumnsTypeEnum.ACCEPT_ORDER:
@@ -70,16 +70,16 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 
 	/**
 	 * handle show site detail
-	 * @param site
+	 * @param siteTwins
 	 * @returns
 	 */
 	const handleShowSiteDetail = (siteTwins: ISite) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL;
-		const siteLink = url.replace(':siteId', siteTwins.id);
+		const link = url.replace(':siteId', siteTwins.id);
 
-		// push to history
-		history.push(siteLink);
+		// navigate
+		navigate(link);
 	};
 
 	return (

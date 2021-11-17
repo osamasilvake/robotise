@@ -67,11 +67,22 @@ const momentToday = (): string => {
 };
 
 /**
- * 30 days prior to today
+ * days prior to today
+ * @param days
  * @returns
  */
-const moment30DaysFromToday = (): string => {
-	return moment().subtract(30, 'days').format('YYYY-MM-DD');
+const momentDaysPriorToToday = (days: number): string => {
+	return moment().subtract(days, 'days').format('YYYY-MM-DD');
+};
+
+/**
+ * mins prior to date
+ * @param date
+ * @param mins
+ * @returns
+ */
+const momentMinsPriorToDate = <T,>(date: T, mins: number): Date => {
+	return moment(date).subtract(mins, 'minutes').toDate();
 };
 
 /**
@@ -84,24 +95,15 @@ const momentFromToDiff = <T,>(date1: T, date2: T): boolean => {
 	return moment(date1).diff(moment(date2)) >= 1;
 };
 
-/**
- * 30 mins prior to date
- * @param date
- * @returns
- */
-const moment15MinsFromDate = <T,>(date: T): Date => {
-	return moment(date).subtract(15, 'minutes').toDate();
-};
-
 export {
-	moment15MinsFromDate,
-	moment30DaysFromToday,
 	momentCurrentYear,
+	momentDaysPriorToToday,
 	momentFormat1,
 	momentFormat2,
 	momentFormat3,
 	momentFromToDiff,
 	momentISOString,
+	momentMinsPriorToDate,
 	momentNow,
 	momentSort,
 	momentToday

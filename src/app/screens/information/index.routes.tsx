@@ -9,9 +9,8 @@ const About = lazy(() => import('./about/About'));
 const informationRoutes: RouteInterface[] = [
 	...alertCodesRoutes,
 	{
-		component: About,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT
+		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT,
+		component: About
 	}
 ];
 export default informationRoutes;

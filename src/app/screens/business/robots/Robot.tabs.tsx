@@ -2,28 +2,28 @@ import { Box, Tab, Tabs } from '@mui/material';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import Loader from '../../../../components/common/loader/Loader';
-import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum';
-import PageError from '../../../../components/content/page-error/PageError';
-import { robotTwinsSummarySelector } from '../../../../slices/business/robots/RobotTwinsSummary.slice';
+import Loader from '../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../components/common/loader/Loader.enum';
+import PageError from '../../../components/content/page-error/PageError';
+import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
-} from '../../../../slices/business/sites/configuration/ServicePositions.slice';
-import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
-import { RobotParamsInterface } from '../Robot.interface';
-import robotsRoutes from '../Robots.routes';
-import RobotCommandsLogList from './commands-log/list/RobotCommandsLogList';
-import RobotConfiguration from './configuration/RobotConfiguration';
-import RobotDetail from './detail/RobotDetail';
-import RobotElevatorCallsList from './elevator-calls/list/RobotElevatorCallsList';
-import RobotInventoryList from './inventory/list/RobotInventoryList';
-import RobotOrdersList from './orders/list/RobotOrdersList';
-import RobotPurchasesList from './purchases/list/RobotPurchasesList';
+} from '../../../slices/business/sites/configuration/ServicePositions.slice';
+import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
+import RobotCommandsLogList from './content/commands-log/list/RobotCommandsLogList';
+import RobotConfiguration from './content/configuration/RobotConfiguration';
+import RobotDetail from './content/detail/RobotDetail';
+import RobotElevatorCallsList from './content/elevator-calls/list/RobotElevatorCallsList';
+import RobotInventoryList from './content/inventory/list/RobotInventoryList';
+import RobotOrdersList from './content/orders/list/RobotOrdersList';
+import RobotPurchasesList from './content/purchases/list/RobotPurchasesList';
+import { RobotParamsInterface } from './Robot.interface';
+import robotsRoutes from './Robots.routes';
 
-const RobotContent: FC = () => {
+const RobotTabs: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
 	const dispatch = useDispatch();
@@ -32,9 +32,9 @@ const RobotContent: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const [value, setValue] = useState(-1);
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 	const location = useLocation();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
@@ -71,10 +71,10 @@ const RobotContent: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const url = robotsRoutes[value + 1].path.replace(':robotId', cRobotId);
+		const link = robotsRoutes[value + 1].path.replace(':robotId', cRobotId);
 
-		// push to history
-		history.push(url);
+		// navigate
+		navigate(link);
 	};
 
 	return value !== -1 ? (
@@ -134,4 +134,4 @@ const RobotContent: FC = () => {
 		</Box>
 	) : null;
 };
-export default RobotContent;
+export default RobotTabs;

@@ -9,6 +9,7 @@ const Dashboard: FC = () => {
 			{/* Page Head */}
 			<PageHead onlyMeta title="DASHBOARD.TITLE" description="DASHBOARD.DESCRIPTION" />
 
+			{/* Content */}
 			<Typography variant="h1">Dashboard</Typography>
 		</Paper>
 	);

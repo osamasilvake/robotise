@@ -3,7 +3,7 @@ export enum SitesTableColumnsTypeEnum {
 	TIMEZONE = 'timezone',
 	CURRENCY = 'currency',
 	ACCEPT_ORDER = 'acceptOrders',
-	UPDATED_AT = 'updatedAt'
+	UPDATED = 'updatedAt'
 }
 
 export enum SitesTableSortTypeEnum {

@@ -35,7 +35,7 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 	const dispatch = useDispatch();
 	const servicePositions = useSelector(servicePositionsSelector);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	const servicePosition = index !== undefined ? servicePositions.content?.data[index] : null;

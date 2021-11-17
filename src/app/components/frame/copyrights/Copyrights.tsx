@@ -1,4 +1,4 @@
-import { Link, Typography } from '@mui/material';
+import { Link, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../services';
@@ -9,21 +9,31 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 	const { short } = props;
 
 	return (
-		<Typography variant="body2" color="textSecondary" align="center">
+		<>
 			{!short && (
-				<>
-					<Link underline="hover" href={AppConfigService.envCompanyUrl} target="_blank">
+				<Stack direction="row" spacing={0.5} justifyContent="center">
+					<Link
+						variant="body2"
+						underline="hover"
+						href={AppConfigService.envCompanyUrl}
+						target="_blank">
 						{AppConfigService.envCompanyName}
 					</Link>
-					{' © '}
-					{momentCurrentYear()}
-					{' • '}
-					{AppConfigService.envAppName}
-					{' • '}
-				</>
+					<Typography variant="body2" color="textSecondary">
+						{' © '}
+						{momentCurrentYear()}
+						{' • '}
+						{AppConfigService.envAppName}
+						{' • '}v{AppConfigService.envAppVersion}
+					</Typography>
+				</Stack>
 			)}
-			v{AppConfigService.envAppVersion}
-		</Typography>
+			{short && (
+				<Typography variant="body2" color="textSecondary">
+					v{AppConfigService.envAppVersion}
+				</Typography>
+			)}
+		</>
 	);
 };
 export default Copyright;

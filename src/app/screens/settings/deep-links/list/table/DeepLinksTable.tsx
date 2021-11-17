@@ -27,7 +27,7 @@ const DeepLinksTable: FC<DeepLinksTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<DeepLinksTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<DeepLinksTableColumnsTypeEnum>(
-		DeepLinksTableColumnsTypeEnum.CREATED_AT
+		DeepLinksTableColumnsTypeEnum.CREATED
 	);
 
 	/**

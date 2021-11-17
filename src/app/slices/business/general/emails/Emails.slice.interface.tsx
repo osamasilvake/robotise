@@ -44,4 +44,6 @@ export interface SECDataHistoryInterface {
 export interface SECStateInterface {
 	page?: number;
 	rowsPerPage?: number;
+	siteId?: string;
+	delivered?: boolean;
 }

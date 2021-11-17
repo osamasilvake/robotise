@@ -355,38 +355,49 @@
 		}
 	},
 	"GENERAL": {
-		"TABS": {
-			"COMMON": "Common",
-			"EMAILS": "EMAILS"
-		},
-		"EMAILS": {
-			"DETAIL": {
-				"BREADCRUMB_LABEL": "Order",
-				"TO": "To"
+		"CONTENT": {
+			"TABS": {
+				"COMMON": "Common",
+				"EMAILS": "EMAILS"
 			},
-			"LIST": {
-				"TABLE": {
-					"COLUMNS": {
-						"SITE": "Site",
-						"STATUS": "Status",
-						"HISTORY": "History",
-						"NOTIFICATION_CODE": "Notification Code",
-						"CREATED": "Created"
+			"EMAILS": {
+				"DETAIL": {
+					"BREADCRUMB_LABEL": "Order",
+					"TO": "To"
+				},
+				"LIST": {
+					"ACTIONS": {
+						"FILTERS": {
+							"SITE": {
+								"ALL_SITES": "All Sites",
+								"LABEL": "Sites"
+							},
+							"DELIVERED": "Include all emails"
+						}
 					},
-					"VALUES": {
-						"HISTORY": {
-							"EVENT": {
-								"created": "Created",
-								"processed": "Processed",
-								"delivered": "Delivered",
-								"bounce": "Bounce"
-							}
+					"TABLE": {
+						"COLUMNS": {
+							"SITE": "Site",
+							"STATUS": "Status",
+							"HISTORY": "History",
+							"NOTIFICATION_CODE": "Notification Code",
+							"CREATED": "Created"
 						},
-						"NOTIFICATION_CODE": {
-							"emergency-brake-pressed": "Emergency Brake Pressed",
-							"new-purchase": "New Purchase",
-							"order-no-person-interaction": "Order no person Interaction",
-							"low-rating-alert": "Low Rating Alert"
+						"VALUES": {
+							"HISTORY": {
+								"EVENT": {
+									"created": "Created",
+									"processed": "Processed",
+									"delivered": "Delivered",
+									"bounce": "Bounce"
+								}
+							},
+							"NOTIFICATION_CODE": {
+								"emergency-brake-pressed": "Emergency Brake Pressed",
+								"new-purchase": "New Purchase",
+								"order-no-person-interaction": "Order no person Interaction",
+								"low-rating-alert": "Low Rating Alert"
+							}
 						}
 					}
 				}

@@ -13,7 +13,7 @@ const GenTabs: FC = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const translation = 'TABS';
+	const translation = 'CONTENT.TABS';
 
 	useEffect(() => {
 		const cIndex = generalRoutes.findIndex((r) => r.path === location.pathname);

@@ -11,6 +11,7 @@ import {
 	EmailsFetchList,
 	emailsSelector
 } from '../../../../../slices/business/general/emails/Emails.slice';
+import GeneralEmailsActions from './actions/GeneralEmailsActions';
 import { GeneralEmailsListPayloadInterface } from './GeneralEmailsList.interface';
 import { GeneralEmailsListStyle } from './GeneralEmailsList.style';
 import GeneralEmailsTable from './table/GeneralEmailsTable';
@@ -25,19 +26,39 @@ const GeneralEmailsList: FC = () => {
 	const rowsPerPage =
 		emails.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.business.general.emails.list.defaultPageSize;
+	const siteId = emails.content?.state?.siteId;
+	const delivered = !!emails.content?.state?.delivered;
 
 	const pageRef = useRef({
 		page: (emails.content?.meta?.page || 0) - 1,
-		rowsPerPage
+		rowsPerPage,
+		siteId,
+		delivered
 	});
 
 	useEffect(() => {
 		const payload: GeneralEmailsListPayloadInterface = {
 			page,
-			rowsPerPage
+			rowsPerPage,
+			siteId,
+			delivered
 		};
 
-		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
+		if (pageRef.current.siteId !== siteId && page === 0) {
+			// dispatch: fetch emails
+			dispatch(EmailsFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.siteId = siteId;
+		} else if (pageRef.current.delivered !== delivered && page === 0) {
+			// dispatch: fetch emails
+			dispatch(EmailsFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.delivered = delivered;
+		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch emails
 			dispatch(EmailsFetchList(payload));
 
@@ -60,7 +81,7 @@ const GeneralEmailsList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, emails.content, page, rowsPerPage]);
+	}, [dispatch, emails.content, page, rowsPerPage, siteId, delivered]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -70,7 +91,9 @@ const GeneralEmailsList: FC = () => {
 					EmailsFetchList(
 						{
 							page: 0,
-							rowsPerPage
+							rowsPerPage,
+							siteId,
+							delivered
 						},
 						true
 					)
@@ -84,7 +107,7 @@ const GeneralEmailsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.emails.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, emails.content, page, rowsPerPage]);
+	}, [dispatch, emails.content, page, rowsPerPage, siteId, delivered]);
 
 	// loader
 	if (emails.loader) {
@@ -103,11 +126,23 @@ const GeneralEmailsList: FC = () => {
 
 	// empty
 	if (!emails.content.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE" />;
+		return (
+			<Box className={classes.sBox}>
+				{/* Actions */}
+				<GeneralEmailsActions siteId={siteId} delivered={delivered} />
+
+				{/* Empty */}
+				<PageEmpty message="EMPTY.MESSAGE" paddingTop />
+			</Box>
+		);
 	}
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Actions */}
+			<GeneralEmailsActions siteId={siteId} delivered={delivered} />
+
+			{/* Table */}
 			<GeneralEmailsTable content={emails.content} page={page} rowsPerPage={rowsPerPage} />
 		</Box>
 	);

@@ -1,7 +1,7 @@
 import { GeneralEmailsTableColumnsTypeEnum } from './GeneralEmailsTable.enum';
 import { GeneralEmailsTableColumnInterface } from './GeneralEmailsTable.interface';
 
-const translation = 'EMAILS.LIST.TABLE.COLUMNS';
+const translation = 'CONTENT.EMAILS.LIST.TABLE.COLUMNS';
 export const columns: GeneralEmailsTableColumnInterface[] = [
 	{
 		id: GeneralEmailsTableColumnsTypeEnum.SITE,

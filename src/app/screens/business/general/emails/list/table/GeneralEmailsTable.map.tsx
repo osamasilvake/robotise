@@ -12,7 +12,7 @@ import { GeneralEmailsTableColumnHistoryEventTypeEnum } from './GeneralEmailsTab
  * @returns
  */
 export const mapEmail = (email: SECDataInterface) => {
-	const translation = 'EMAILS.LIST.TABLE.VALUES';
+	const translation = 'CONTENT.EMAILS.LIST.TABLE.VALUES';
 	const none = AppConfigService.AppOptions.common.none;
 	return {
 		...email,

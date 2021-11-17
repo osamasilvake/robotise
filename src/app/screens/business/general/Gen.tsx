@@ -18,7 +18,7 @@ const Gen: FC = () => {
 
 	const params = useParams() as GenParamsInterface;
 
-	const translation = 'EMAILS.DETAIL';
+	const translation = 'CONTENT.EMAILS.DETAIL';
 	const dots = AppConfigService.AppOptions.common.dots;
 
 	/**

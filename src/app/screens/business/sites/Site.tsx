@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom';
 import PageHead from '../../../components/content/page-head/PageHead';
 import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
-import SiteContent from './content/SiteContent';
 import { SiteParamsInterface } from './Site.interface';
+import SiteTabs from './Site.tabs';
 
 const Site: FC = () => {
 	const sites = useSelector(sitesSelector);
@@ -28,7 +28,7 @@ const Site: FC = () => {
 			/>
 
 			{/* Content */}
-			<SiteContent />
+			<SiteTabs />
 		</Paper>
 	);
 };

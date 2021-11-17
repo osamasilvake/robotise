@@ -1,4 +1,7 @@
-import { StatusTypeTextEnum } from '../../../../../../components/common/status/Status.enum';
+import {
+	StatusTypeEnum,
+	StatusTypeTextEnum
+} from '../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../services';
 import { SECDataInterface } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
 import { GeneralEmailsTableColumnHistoryEventTypeEnum } from './GeneralEmailsTable.enum';
@@ -26,6 +29,25 @@ export const mapEmail = (email: SECDataInterface) => {
 };
 
 /**
+ * map status
+ * @param status
+ * @returns
+ */
+export const mapStatus = (status: string) => {
+	const value = status && status.split('.').pop();
+	switch (value) {
+		case GeneralEmailsTableColumnHistoryEventTypeEnum.PROCESSED:
+			return StatusTypeEnum.SUCCESS_LIGHT;
+		case GeneralEmailsTableColumnHistoryEventTypeEnum.DELIVERED:
+			return StatusTypeEnum.SUCCESS_DARK;
+		case GeneralEmailsTableColumnHistoryEventTypeEnum.BOUNCE:
+			return StatusTypeEnum.ERROR;
+		default:
+			return StatusTypeEnum.INFO;
+	}
+};
+
+/**
  * map history event type
  * @param event
  * @returns
@@ -41,6 +63,11 @@ export const mapHistoryEventType = (event: string) => {
 			return {
 				color: StatusTypeTextEnum.SUCCESS_DARK,
 				icon: 'check_outlined'
+			};
+		case GeneralEmailsTableColumnHistoryEventTypeEnum.BOUNCE:
+			return {
+				color: StatusTypeTextEnum.ERROR,
+				icon: 'cancel_outlined'
 			};
 		default:
 			return {

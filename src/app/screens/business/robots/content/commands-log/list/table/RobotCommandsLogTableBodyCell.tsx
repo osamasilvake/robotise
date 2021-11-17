@@ -40,7 +40,6 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 							key={index}
 							spacing={0.5}
 							direction="row"
-							alignItems="center"
 							className={classes.sTableHistory}>
 							<Icon
 								color={mapHistoryStatus(item.status).color}

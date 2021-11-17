@@ -137,25 +137,6 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Stack>
 			</Grid>
 
-			{/* Note */}
-			<Grid item xs={12} sm={6} md={8} lg={6} className={classes.sNoteGrid}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.NOTE.LABEL`)}
-					<Tooltip
-						placement="right"
-						title={t<string>('TOOLTIPS:EDIT')}
-						onClick={() => setOpen(true)}>
-						<IconButton
-							className={classes.sNoteEditIconButton}
-							onClick={() => setOpen(true)}>
-							<Edit color="primary" className={classes.sNoteEditIcon} />
-						</IconButton>
-					</Tooltip>
-				</Typography>
-				<ReadMore text={robotTwins.robot.note} />
-				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
-			</Grid>
-
 			{/* Deep Link: Audit Logs */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
@@ -174,6 +155,25 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 						disabled={robot.auditLogs.loading}
 					/>
 				</Box>
+			</Grid>
+
+			{/* Note */}
+			<Grid item xs={12} className={classes.sNoteGrid}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.NOTE.LABEL`)}
+					<Tooltip
+						placement="right"
+						title={t<string>('TOOLTIPS:EDIT')}
+						onClick={() => setOpen(true)}>
+						<IconButton
+							className={classes.sNoteEditIconButton}
+							onClick={() => setOpen(true)}>
+							<Edit color="primary" className={classes.sNoteEditIcon} />
+						</IconButton>
+					</Tooltip>
+				</Typography>
+				<ReadMore text={robotTwins.robot.note} />
+				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
 			</Grid>
 		</Grid>
 	);

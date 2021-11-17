@@ -1,3 +1,4 @@
+import { OpenInNew } from '@mui/icons-material';
 import { Chip, CircularProgress } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -43,8 +44,10 @@ const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 			clickable
 			icon={
 				showIcon && (!index || (index && index === trackingIndex)) ? (
-					<CircularProgress size={20} />
-				) : undefined
+					<CircularProgress size={18} />
+				) : (
+					<OpenInNew />
+				)
 			}
 			disabled={disabled}
 			onClick={handleExternalLink}

@@ -11,7 +11,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 	return (
 		<>
 			{!short && (
-				<Stack direction="row" spacing={0.5}>
+				<Stack direction="row" spacing={0.5} justifyContent="center">
 					<Link
 						variant="body2"
 						underline="hover"

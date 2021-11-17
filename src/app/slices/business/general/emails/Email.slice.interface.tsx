@@ -1,8 +1,8 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { SPCDataInterface } from './Purchases.slice.interface';
+import { SECDataInterface } from './Emails.slice.interface';
 
-export interface SlicePurchaseInterface {
+export interface SliceEmailInterface {
 	loader: boolean;
-	content: SPCDataInterface | null;
+	content: SECDataInterface | null;
 	errors: TriggerMessageInterface | null;
 }

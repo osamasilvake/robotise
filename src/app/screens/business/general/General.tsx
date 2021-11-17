@@ -2,7 +2,7 @@ import { Paper } from '@mui/material';
 import { FC } from 'react';
 
 import PageHead from '../../../components/content/page-head/PageHead';
-import GeneralContent from './GeneralContent';
+import GenTabs from './Gen.tabs';
 
 const General: FC = () => {
 	return (
@@ -11,7 +11,7 @@ const General: FC = () => {
 			<PageHead title="GENERAL.TITLE" description="GENERAL.DESCRIPTION" />
 
 			{/* Content */}
-			<GeneralContent />
+			<GenTabs />
 		</Paper>
 	);
 };

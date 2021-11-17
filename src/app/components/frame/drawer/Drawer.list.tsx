@@ -7,7 +7,7 @@ const drawerBusinessList: DrawerListInterface[] = [
 		id: 1,
 		icon: 'apps',
 		label: 'BUSINESS.LIST.GENERAL',
-		hint: '📥',
+		hint: '📮',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN
 	},
 	{

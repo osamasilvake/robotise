@@ -39,7 +39,7 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 			return (
 				<Box>
 					{history.map((item, index) => (
-						<Stack key={index} spacing={0.5} direction="row" flexWrap="wrap">
+						<Stack key={index} spacing={0.5} direction="row">
 							<Icon
 								color={mapHistoryEventType(t(item.event)).color}
 								className={classes.sTableHistoryIcon}>

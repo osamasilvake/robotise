@@ -1,7 +1,7 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { momentDaysPriorToToday } from '../../../utilities/methods/Moment';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
-import { GeneralEmailsAxiosGetInterface } from './General.interface';
+import { GeneralEmailAxiosGetInterface, GeneralEmailsAxiosGetInterface } from './General.interface';
 
 class GeneralService {
 	/**
@@ -18,6 +18,19 @@ class GeneralService {
 				'filter[createdAt][gte]': momentDaysPriorToToday(7)
 			}
 		});
+	};
+
+	/**
+	 * fetch email
+	 * @param emailId
+	 * @returns
+	 */
+	generalEmailFetch = (emailId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.EMAIL.replace(
+			':emailId',
+			emailId
+		);
+		return HttpClientService.get<GeneralEmailAxiosGetInterface>(url);
 	};
 }
 const instance = new GeneralService();

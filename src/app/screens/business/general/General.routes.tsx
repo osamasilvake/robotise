@@ -2,6 +2,7 @@ import { lazy } from 'react';
 
 import { RouteInterface } from '../../../routes/Routes.interfaces';
 import { AppConfigService } from '../../../services';
+import Gen from './Gen';
 
 const General = lazy(() => import('./General'));
 
@@ -23,8 +24,16 @@ const generalRoutes: RouteInterface[] = [
 	 * Tabs
 	 */
 	{
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS.MAIN,
 		component: General
+	},
+
+	/**
+	 * Details
+	 */
+	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS.DETAIL,
+		component: Gen
 	}
 ];
 export default generalRoutes;

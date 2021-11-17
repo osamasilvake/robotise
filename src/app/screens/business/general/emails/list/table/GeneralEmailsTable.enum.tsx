@@ -1,21 +1,20 @@
 export enum GeneralEmailsTableColumnsTypeEnum {
-	RECIPIENT = 'recipient',
-	FROM = 'from',
-	SUBJECT = 'subject',
-	CONTENT = 'content',
+	SITE = 'site',
+	STATUS = 'status',
 	HISTORY = 'history',
 	NOTIFICATION_CODE = 'notificationCode',
 	CREATED = 'createdAt'
 }
 
 export enum GeneralEmailsTableSortTypeEnum {
-	OBJECT_FROM,
 	DATE,
-	STRING
+	STRING,
+	STRING_SITE
 }
 
 export enum GeneralEmailsTableColumnHistoryEventTypeEnum {
 	CREATED = 'created',
 	PROCESSED = 'processed',
-	DELIVERED = 'delivered'
+	DELIVERED = 'delivered',
+	BOUNCE = 'bounce'
 }

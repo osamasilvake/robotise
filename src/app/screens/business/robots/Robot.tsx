@@ -11,8 +11,8 @@ import { purchaseSelector } from '../../../slices/business/robots/purchases/Purc
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import RobotOrderDetail from './content/orders/detail/RobotOrderDetail';
 import RobotPurchaseDetail from './content/purchases/detail/RobotPurchaseDetail';
-import RobotContent from './content/RobotContent';
 import { RobotParamsInterface } from './Robot.interface';
+import RobotTabs from './Robot.tabs';
 
 const Robot: FC = () => {
 	const { t } = useTranslation('ROBOTS');
@@ -25,10 +25,8 @@ const Robot: FC = () => {
 
 	const cRobotId = params.robotId;
 	const cRobotName = robotTwinsSummary.content?.dataById[cRobotId]?.robotTitle;
-	const cOrderTarget = order.content?.location || undefined;
-	const cPurchaseTarget = purchase.content?.location || undefined;
 
-	const orderDefault = t('CONTENT.ORDERS.LIST.TABLE.VALUES.TARGET.RECEPTION');
+	const translation = 'CONTENT';
 	const dots = AppConfigService.AppOptions.common.dots;
 
 	/**
@@ -40,9 +38,13 @@ const Robot: FC = () => {
 			if (key === 'robotId') {
 				return !robotTwinsSummary.loader ? cRobotName || dots : dots;
 			} else if (key === 'orderId') {
-				return !order.loader ? cOrderTarget || orderDefault : dots;
+				return !order.loader
+					? t(`${translation}.ORDERS.LIST.DETAIL.BREADCRUMB_LABEL`)
+					: dots;
 			}
-			return !purchase.loader ? cPurchaseTarget || dots : dots;
+			return !purchase.loader
+				? t(`${translation}.PURCHASES.LIST.DETAIL.BREADCRUMB_LABEL`)
+				: dots;
 		});
 
 	/**
@@ -55,7 +57,7 @@ const Robot: FC = () => {
 		} else if (params.purchaseId) {
 			return <RobotPurchaseDetail />;
 		}
-		return <RobotContent />;
+		return <RobotTabs />;
 	};
 
 	return (

@@ -70,7 +70,7 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 
 	/**
 	 * handle show site detail
-	 * @param site
+	 * @param siteTwins
 	 * @returns
 	 */
 	const handleShowSiteDetail = (siteTwins: ISite) => () => {

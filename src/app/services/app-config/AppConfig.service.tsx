@@ -177,9 +177,6 @@ class AppConfigService extends EnvService {
 								}
 							},
 							purchases: {
-								detail: {
-									refreshTime: 10000
-								},
 								list: {
 									refreshTime: 10000,
 									showPageSizes: true,
@@ -257,7 +254,8 @@ class AppConfigService extends EnvService {
 			SCREENS: {
 				BUSINESS: {
 					GENERAL: {
-						EMAILS: `${this.envAppUrl}/emails`
+						EMAILS: `${this.envAppUrl}/emails`,
+						EMAIL: `${this.envAppUrl}/emails/:emailId`
 					},
 					SITES: {
 						ALL: `${this.envAppUrl}/sites`,

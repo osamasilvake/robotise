@@ -24,8 +24,10 @@ export interface SECDataInterface {
 	bcc: string[];
 	history: SECDataHistoryInterface[];
 	notificationCode: string;
+	status: string;
 	createdAt: Date;
 	updatedAt: Date;
+	site: { id: string };
 }
 
 export interface SECDataFromInterface {

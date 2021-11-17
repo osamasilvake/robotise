@@ -31,7 +31,11 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 
 	return (
 		<Box className={classes.sBox}>
-			<Stack spacing={0.5} direction="row" className={classes.sStack}>
+			<Stack
+				spacing={0.5}
+				direction="row"
+				justifyContent="space-between"
+				className={classes.sStack}>
 				<Typography variant="body2" color="textSecondary">
 					<Status
 						level={
@@ -46,36 +50,38 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 					</Status>
 				</Typography>
 
-				{purchase?.content?.order?.id && (
-					<Box>
-						<Link
-							component={RouterLink}
-							variant="body2"
-							underline="hover"
-							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL.replace(
-								':robotId',
-								cRobotId
-							).replace(':orderId', purchase.content.order.id)}>
-							{t(`${translation}.ORDER_DETAILS`)}
-						</Link>
-					</Box>
-				)}
-
-				<Box>
-					{purchase && purchase.content && (
-						<ExternalLink
-							text={t(`${translation}.ITEM_TRACKING`)}
-							payload={{
-								robotId: cRobotId,
-								from: momentMinsPriorToDate(purchase.content.createdAt, 15),
-								to: purchase.content.createdAt
-							}}
-							FetchExternalLink={RobotItemTrackingLinkFetch}
-							showIcon={robot.itemTracking.loading}
-							disabled={robot.itemTracking.loading}
-						/>
+				<Stack spacing={1.5} direction="row">
+					{purchase?.content?.order?.id && (
+						<Box>
+							<Link
+								component={RouterLink}
+								variant="body2"
+								underline="hover"
+								to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL.replace(
+									':robotId',
+									cRobotId
+								).replace(':orderId', purchase.content.order.id)}>
+								{t(`${translation}.ORDER_DETAILS`)}
+							</Link>
+						</Box>
 					)}
-				</Box>
+
+					<Box>
+						{purchase && purchase.content && (
+							<ExternalLink
+								text={t(`${translation}.ITEM_TRACKING`)}
+								payload={{
+									robotId: cRobotId,
+									from: momentMinsPriorToDate(purchase.content.createdAt, 15),
+									to: purchase.content.createdAt
+								}}
+								FetchExternalLink={RobotItemTrackingLinkFetch}
+								showIcon={robot.itemTracking.loading}
+								disabled={robot.itemTracking.loading}
+							/>
+						)}
+					</Box>
+				</Stack>
 			</Stack>
 
 			<Typography variant="h6" color="textSecondary">

@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import GeneralEmailsList from './emails/list/GeneralEmailsList';
 import generalRoutes from './General.routes';
 
-const GeneralContent: FC = () => {
+const GenTabs: FC = () => {
 	const { t } = useTranslation('GENERAL');
 
 	const [value, setValue] = useState(-1);
@@ -57,4 +57,4 @@ const GeneralContent: FC = () => {
 		</Box>
 	) : null;
 };
-export default GeneralContent;
+export default GenTabs;

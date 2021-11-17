@@ -2,13 +2,13 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import RobotsService from '../../../../screens/business/robots/Robots.service';
+import GeneralService from '../../../../screens/business/general/General.service';
 import { AppReducerType } from '../../..';
-import { deserializePurchase } from './Purchase.deserialize';
-import { SlicePurchaseInterface } from './Purchase.slice.interface';
+import { deserializeEmail } from './Email.deserialize';
+import { SliceEmailInterface } from './Email.slice.interface';
 
 // initial state
-export const initialState: SlicePurchaseInterface = {
+export const initialState: SliceEmailInterface = {
 	loader: false,
 	content: null,
 	errors: null
@@ -16,7 +16,7 @@ export const initialState: SlicePurchaseInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Purchase',
+	name: 'Email',
 	initialState,
 	reducers: {
 		loader: (state) => {
@@ -40,34 +40,34 @@ const dataSlice = createSlice({
 export const { loader, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const purchaseSelector = (state: AppReducerType) => state['purchase'];
+export const emailSelector = (state: AppReducerType) => state['email'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch robot purchase
- * @param purchaseId
+ * fetch email
+ * @param emailId
  * @returns
  */
-export const PurchaseFetch =
-	(purchaseId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+export const EmailFetch =
+	(emailId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const purchase = states.purchase;
+		const email = states.email;
 
 		// return on busy
-		if (purchase && purchase.loader) {
+		if (email && email.loader) {
 			return;
 		}
 
 		// dispatch: loader
 		dispatch(loader());
 
-		return RobotsService.robotPurchaseFetch(purchaseId)
+		return GeneralService.generalEmailFetch(emailId)
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializePurchase(res);
+				const result = await deserializeEmail(res);
 
 				// dispatch: success
 				dispatch(success(result));
@@ -75,7 +75,7 @@ export const PurchaseFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-purchase-error',
+					id: 'fetch-email-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'

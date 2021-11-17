@@ -69,7 +69,6 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 								key={index}
 								spacing={0.5}
 								direction="row"
-								flexWrap="wrap"
 								className={classes.sTableHistory}>
 								<Icon
 									color={mapHistoryEventType(t(item.event)).color}

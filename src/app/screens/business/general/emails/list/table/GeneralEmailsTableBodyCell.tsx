@@ -1,23 +1,27 @@
-import { Icon, Link, Stack, TableCell, Typography } from '@mui/material';
+import { Icon, Stack, TableCell } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
-import ReadMore from '../../../../../../components/common/read-more/ReadMore';
+import Status from '../../../../../../components/common/status/Status';
 import { SECDataInterface } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { GeneralEmailsTableColumnsTypeEnum } from './GeneralEmailsTable.enum';
 import {
 	GeneralEmailsTableBodyCellInterface,
 	GeneralEmailsTableColumnInterface
 } from './GeneralEmailsTable.interface';
-import { mapEmail, mapHistoryEventType } from './GeneralEmailsTable.map';
+import { mapEmail, mapHistoryEventType, mapStatus } from './GeneralEmailsTable.map';
 import { GeneralEmailsTableStyle } from './GeneralEmailsTable.style';
 
 const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (props) => {
 	const { column, email } = props;
 	const { t } = useTranslation('GENERAL');
 	const classes = GeneralEmailsTableStyle();
+
+	const sites = useSelector(sitesSelector);
 
 	/**
 	 * set cell value
@@ -30,35 +34,8 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 		const value = mappedEmail[column.id];
 		if (GeneralEmailsTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
-		} else if (GeneralEmailsTableColumnsTypeEnum.RECIPIENT === column.id) {
-			return (
-				<Box>
-					<Link underline="hover" href={`mailto:${value}`}>
-						{value}
-					</Link>
-					{email.cc && email.cc.length > 0 && (
-						<Typography variant="body2" color="textSecondary">
-							{email.cc.join(', ')}
-						</Typography>
-					)}
-					{email.bcc && email.bcc.length > 0 && (
-						<Typography variant="body2" color="textSecondary">
-							{email.bcc.join(', ')}
-						</Typography>
-					)}
-				</Box>
-			);
-		} else if (GeneralEmailsTableColumnsTypeEnum.FROM === column.id) {
-			return (
-				<Box>
-					<Typography variant="body2">{email.from.name}</Typography>
-					<Link underline="hover" href={`mailto:${email.from.email}`}>
-						{email.from.email}
-					</Link>
-				</Box>
-			);
-		} else if (GeneralEmailsTableColumnsTypeEnum.CONTENT === column.id) {
-			return <ReadMore text={String(value)} variant="body2" />;
+		} else if (GeneralEmailsTableColumnsTypeEnum.SITE === column.id && sites.content) {
+			return sites.content.dataById[email.site?.id].title;
 		} else if (GeneralEmailsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = email.history;
 			const historyMapped = mappedEmail.history;
@@ -69,7 +46,6 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 							key={index}
 							spacing={0.5}
 							direction="row"
-							alignItems="center"
 							className={classes.sTableHistory}>
 							<Icon
 								color={mapHistoryEventType(item.event).color}
@@ -83,6 +59,9 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 				</Box>
 			);
 		} else if (typeof value === 'string') {
+			if (GeneralEmailsTableColumnsTypeEnum.STATUS === column.id) {
+				return <Status level={mapStatus(value)}>{t(value)}</Status>;
+			}
 			return t(value);
 		}
 		return value;

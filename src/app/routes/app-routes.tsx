@@ -7,7 +7,10 @@ const appRoutes = {
 		BUSINESS: {
 			GENERAL: {
 				MAIN: '/general',
-				EMAILS: '/general/emails'
+				EMAILS: {
+					MAIN: '/general/emails',
+					DETAIL: '/general/emails/:emailId'
+				}
 			},
 			SITES: {
 				MAIN: '/sites',

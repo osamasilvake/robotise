@@ -360,13 +360,15 @@
 			"EMAILS": "EMAILS"
 		},
 		"EMAILS": {
+			"DETAIL": {
+				"BREADCRUMB_LABEL": "Order",
+				"TO": "To"
+			},
 			"LIST": {
 				"TABLE": {
 					"COLUMNS": {
-						"RECIPIENT": "Recipient",
-						"FROM": "From",
-						"SUBJECT": "Subject",
-						"CONTENT": "Content",
+						"SITE": "Site",
+						"STATUS": "Status",
 						"HISTORY": "History",
 						"NOTIFICATION_CODE": "Notification Code",
 						"CREATED": "Created"
@@ -376,7 +378,8 @@
 							"EVENT": {
 								"created": "Created",
 								"processed": "Processed",
-								"delivered": "Delivered"
+								"delivered": "Delivered",
+								"bounce": "Bounce"
 							}
 						},
 						"NOTIFICATION_CODE": {
@@ -1087,6 +1090,7 @@
 					}
 				},
 				"DETAIL": {
+					"BREADCRUMB_LABEL": "Order",
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",
@@ -1189,6 +1193,7 @@
 			},
 			"PURCHASES": {
 				"DETAIL": {
+					"BREADCRUMB_LABEL": "Purchase",
 					"HEAD": {
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",

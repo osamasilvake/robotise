@@ -91,7 +91,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 
 	/**
 	 * handle show robot detail
-	 * @param robot
+	 * @param robotTwins
 	 * @returns
 	 */
 	const handleShowRobotDetail = (robotTwins: RTSContentDataInterface) => () => {

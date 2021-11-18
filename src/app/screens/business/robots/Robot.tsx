@@ -15,7 +15,7 @@ import { RobotParamsInterface } from './Robot.interface';
 import RobotTabs from './Robot.tabs';
 
 const Robot: FC = () => {
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('BREADCRUMB');
 
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const order = useSelector(orderSelector);
@@ -26,7 +26,6 @@ const Robot: FC = () => {
 	const cRobotId = params.robotId;
 	const cRobotName = robotTwinsSummary.content?.dataById[cRobotId]?.robotTitle;
 
-	const translation = 'CONTENT';
 	const dots = AppConfigService.AppOptions.common.dots;
 
 	/**
@@ -38,13 +37,9 @@ const Robot: FC = () => {
 			if (key === 'robotId') {
 				return !robotTwinsSummary.loader ? cRobotName || dots : dots;
 			} else if (key === 'orderId') {
-				return !order.loader
-					? t(`${translation}.ORDERS.LIST.DETAIL.BREADCRUMB_LABEL`)
-					: dots;
+				return !order.loader ? t('ORDER') : dots;
 			}
-			return !purchase.loader
-				? t(`${translation}.PURCHASES.LIST.DETAIL.BREADCRUMB_LABEL`)
-				: dots;
+			return !purchase.loader ? t('PURCHASE') : dots;
 		});
 
 	/**

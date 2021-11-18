@@ -1,6 +1,7 @@
 export enum GeneralEmailsTableColumnsTypeEnum {
-	SITE = 'site',
+	RECIPIENT = 'recipient',
 	STATUS = 'status',
+	SITE = 'site',
 	HISTORY = 'history',
 	NOTIFICATION_CODE = 'notificationCode',
 	CREATED = 'createdAt'

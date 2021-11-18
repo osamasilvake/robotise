@@ -8,6 +8,9 @@ export const GeneralEmailsTableStyle = makeStyles((theme: Theme) => ({
 	sBlock2: {
 		marginBottom: theme.spacing(1.5)
 	},
+	sError: {
+		marginBottom: theme.spacing(2)
+	},
 	sFrom: {
 		marginBottom: theme.spacing(-0.4)
 	},

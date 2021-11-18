@@ -4,15 +4,21 @@ import { GeneralEmailsTableColumnInterface } from './GeneralEmailsTable.interfac
 const translation = 'CONTENT.EMAILS.LIST.TABLE.COLUMNS';
 export const columns: GeneralEmailsTableColumnInterface[] = [
 	{
-		id: GeneralEmailsTableColumnsTypeEnum.SITE,
-		label: `${translation}.SITE`,
-		minWidth: 200,
+		id: GeneralEmailsTableColumnsTypeEnum.RECIPIENT,
+		label: `${translation}.RECIPIENT`,
+		minWidth: 120,
 		align: 'left'
 	},
 	{
 		id: GeneralEmailsTableColumnsTypeEnum.STATUS,
 		label: `${translation}.STATUS`,
 		minWidth: 120,
+		align: 'left'
+	},
+	{
+		id: GeneralEmailsTableColumnsTypeEnum.SITE,
+		label: `${translation}.SITE`,
+		minWidth: 170,
 		align: 'left'
 	},
 	{
@@ -25,7 +31,7 @@ export const columns: GeneralEmailsTableColumnInterface[] = [
 	{
 		id: GeneralEmailsTableColumnsTypeEnum.NOTIFICATION_CODE,
 		label: `${translation}.NOTIFICATION_CODE`,
-		minWidth: 220,
+		minWidth: 200,
 		align: 'left'
 	},
 	{

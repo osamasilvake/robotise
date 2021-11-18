@@ -40,7 +40,17 @@
 			"DESCRIPTION": "About Description"
 		}
 	},
-	"TOOLTIPS": {
+	"DIALOG": {
+		"BUTTONS": {
+			"CANCEL": "Cancel",
+			"CLEAR": "Clear",
+			"CREATE": "Create",
+			"UPDATE": "Update",
+			"CONFIRM": "Confirm",
+			"GENERATE": "Generate"
+		}
+	},
+	"TOOLTIP": {
 		"EDIT": "Edit",
 		"ALERTS": {
 			"COPY_CLIPBOARD": "Copy to clipboard",
@@ -60,6 +70,11 @@
 			"DELETE": "Delete Service Position"
 		}
 	},
+	"BREADCRUMB": {
+		"EMAIL": "Email",
+		"ORDER": "Order",
+		"PURCHASE": "Purchase"
+	},
 	"UPLOAD": {
 		"IMAGE": {
 			"LABEL": "Upload",
@@ -68,16 +83,6 @@
 				"RULE_2": "Maximum Filesize: {{value}}KB",
 				"RULE_3": "Supported Resolution Upto: {{value}}"
 			}
-		}
-	},
-	"DIALOG": {
-		"BUTTONS": {
-			"CANCEL": "Cancel",
-			"CLEAR": "Clear",
-			"CREATE": "Create",
-			"UPDATE": "Update",
-			"CONFIRM": "Confirm",
-			"GENERATE": "Generate"
 		}
 	},
 	"READ_MORE": {
@@ -118,6 +123,7 @@
 	},
 	"MESSAGE": {
 		"COMMON": {
+			"COPY_TO_CLIPBOARD": "Message copied to clipboard!",
 			"REPORTS": {
 				"SUCCESS": "Report has been generated successfully!",
 				"ERROR": "Unable to generate Report!"
@@ -188,9 +194,6 @@
 		},
 		"ROBOTS": {
 			"DETAIL": {
-				"ALERTS": {
-					"CLIPBOARD": "Message copied to clipboard!"
-				},
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
@@ -362,7 +365,7 @@
 			},
 			"EMAILS": {
 				"DETAIL": {
-					"BREADCRUMB_LABEL": "Order",
+					"COPY": "Copy",
 					"TO": "To"
 				},
 				"LIST": {
@@ -377,8 +380,9 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
-							"SITE": "Site",
+							"RECIPIENT": "Recipient",
 							"STATUS": "Status",
+							"SITE": "Site",
 							"HISTORY": "History",
 							"NOTIFICATION_CODE": "Notification Code",
 							"CREATED": "Created"
@@ -1101,7 +1105,6 @@
 					}
 				},
 				"DETAIL": {
-					"BREADCRUMB_LABEL": "Order",
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",
@@ -1204,7 +1207,6 @@
 			},
 			"PURCHASES": {
 				"DETAIL": {
-					"BREADCRUMB_LABEL": "Purchase",
 					"HEAD": {
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",

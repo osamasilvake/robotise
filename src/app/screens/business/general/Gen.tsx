@@ -12,13 +12,12 @@ import { GenParamsInterface } from './Gen.interface';
 import GenTabs from './Gen.tabs';
 
 const Gen: FC = () => {
-	const { t } = useTranslation('GENERAL');
+	const { t } = useTranslation('BREADCRUMB');
 
 	const email = useSelector(emailSelector);
 
 	const params = useParams() as GenParamsInterface;
 
-	const translation = 'CONTENT.EMAILS.DETAIL';
 	const dots = AppConfigService.AppOptions.common.dots;
 
 	/**
@@ -28,7 +27,7 @@ const Gen: FC = () => {
 	const breadcrumbLabels = () =>
 		Object.keys(params).map((key) => {
 			if (key === 'emailId') {
-				return !email.loader ? t(`${translation}.DETAIL.BREADCRUMB_LABEL`) : dots;
+				return !email.loader ? t('EMAIL') : dots;
 			}
 			return '';
 		});

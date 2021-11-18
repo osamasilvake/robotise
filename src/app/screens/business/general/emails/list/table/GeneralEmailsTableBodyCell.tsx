@@ -1,4 +1,4 @@
-import { Icon, Stack, TableCell } from '@mui/material';
+import { Icon, Link, Stack, TableCell } from '@mui/material';
 import { Box } from '@mui/system';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -59,7 +59,19 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 				</Box>
 			);
 		} else if (typeof value === 'string') {
-			if (GeneralEmailsTableColumnsTypeEnum.STATUS === column.id) {
+			if (GeneralEmailsTableColumnsTypeEnum.RECIPIENT === column.id) {
+				const name = value && value.split('@') && value.split('@')[0];
+				return (
+					<Link
+						variant="body2"
+						underline="hover"
+						href={`mailto:${value}`}
+						target="_blank"
+						onClick={(e) => e.stopPropagation()}>
+						{name}
+					</Link>
+				);
+			} else if (GeneralEmailsTableColumnsTypeEnum.STATUS === column.id) {
 				return <Status level={mapStatus(value)}>{t(value)}</Status>;
 			}
 			return t(value);

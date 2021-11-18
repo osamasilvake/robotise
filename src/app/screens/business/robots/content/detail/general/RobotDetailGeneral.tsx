@@ -24,7 +24,7 @@ import { RobotDetailGeneralStyle } from './RobotDetailGeneral.style';
 
 const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const { robotTwins } = props;
-	const { t } = useTranslation(['ROBOTS', 'TOOLTIPS']);
+	const { t } = useTranslation(['ROBOTS', 'TOOLTIP']);
 	const classes = RobotDetailGeneralStyle();
 
 	const robot = useSelector(robotSelector);
@@ -163,7 +163,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{t(`${translation}.NOTE.LABEL`)}
 					<Tooltip
 						placement="right"
-						title={t<string>('TOOLTIPS:EDIT')}
+						title={t<string>('TOOLTIP:EDIT')}
 						onClick={() => setOpen(true)}>
 						<IconButton
 							className={classes.sNoteEditIconButton}

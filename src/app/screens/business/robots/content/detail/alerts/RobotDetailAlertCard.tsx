@@ -18,7 +18,7 @@ import { RobotDetailAlertsStyle } from './RobotDetailAlerts.style';
 
 const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	const { alert } = props;
-	const { t } = useTranslation('TOOLTIPS');
+	const { t } = useTranslation('TOOLTIP');
 	const classes = RobotDetailAlertsStyle();
 
 	const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 			id: code,
 			show: true,
 			severity: TriggerMessageTypeEnum.SUCCESS,
-			text: 'ROBOTS.DETAIL.ALERTS.CLIPBOARD'
+			text: 'COMMON.COPY_TO_CLIPBOARD'
 		};
 		dispatch(GeneralTriggerMessage(message));
 	};

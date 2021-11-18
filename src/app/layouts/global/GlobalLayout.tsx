@@ -3,10 +3,12 @@ import { FC } from 'react';
 
 import { LayoutPageInterface } from '../../routes/Routes.interfaces';
 
-const GlobalLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
+const GlobalLayout: FC<LayoutPageInterface> = (props) => {
+	const { Component } = props;
+
 	return (
 		<Box component="main">
-			<Component route={route} />
+			<Component />
 		</Box>
 	);
 };

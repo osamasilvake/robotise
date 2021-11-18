@@ -1,19 +1,5 @@
-export interface BreadcrumbParamsInterface {
-	siteId?: string;
-	robotId?: string;
-	orderId?: string;
-	purchaseId?: string;
-}
-
 export interface BreadcrumbInterface {
-	labels: BreadcrumbLabelsInterface | null;
-}
-
-export interface BreadcrumbLabelsInterface {
-	siteName?: string;
-	robotName?: string;
-	orderTarget?: string;
-	purchaseTarget?: string;
+	labels: string[] | undefined;
 }
 
 export interface BreadcrumbLinksInterface {

@@ -101,7 +101,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 					</Typography>
 
 					{/* Grid */}
-					{result[key] && result[key].length > 0 && (
+					{result[key] && result[key].length && (
 						<Grid
 							container
 							spacing={1}
@@ -134,7 +134,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														}}
 													/>
 												}
-												label={t(`${translation}.BLOCKED`)}
+												label={t<string>(`${translation}.BLOCKED`)}
 												labelPlacement="start"
 											/>
 

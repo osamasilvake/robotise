@@ -2,7 +2,7 @@ export enum DeepLinksTableColumnsTypeEnum {
 	NAME = 'name',
 	DESCRIPTION = 'description',
 	KEY = 'key',
-	CREATED_AT = 'createdAt',
+	CREATED = 'createdAt',
 	ACTIONS = 'actions'
 }
 

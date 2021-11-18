@@ -3,10 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
-import {
-	CLCDataHistoryInterface,
-	CLCDataInterface
-} from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
+import { CLCDataInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
 import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
 import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
 import {
@@ -34,8 +31,8 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 		const mappedCommandLog = mapCommandLog(commandLog);
 		const value = mappedCommandLog[column.id];
 		if (RobotCommandsLogTableColumnsTypeEnum.HISTORY === column.id) {
-			const history = commandLog[column.id] as CLCDataHistoryInterface[];
-			const historyMapped = value as CLCDataHistoryInterface[];
+			const history = commandLog.history;
+			const historyMapped = mappedCommandLog.history;
 			return (
 				<Box>
 					{history.map((item, index) => (
@@ -43,7 +40,6 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 							key={index}
 							spacing={0.5}
 							direction="row"
-							alignItems="center"
 							className={classes.sTableHistory}>
 							<Icon
 								color={mapHistoryStatus(item.status).color}

@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,14 +31,12 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	};
 
 	return (
-		<Box>
-			<FormControlLabel
-				control={
-					<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
-				}
-				label={t('CONTENT.PURCHASES.LIST.ACTIONS.FILTERS.DEBUG')}
-			/>
-		</Box>
+		<FormControlLabel
+			control={
+				<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
+			}
+			label={t<string>('CONTENT.PURCHASES.LIST.ACTIONS.FILTERS.DEBUG')}
+		/>
 	);
 };
 export default RobotPurchasesDebug;

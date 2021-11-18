@@ -18,10 +18,10 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 
 	return (
 		<Grid container spacing={1}>
-			{/* Vendor */}
+			{/* Elevator Vendor */}
 			<Grid item xs={12} sm={6} lg={3}>
 				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.VENDOR`)}
+					{t(`${translation}.ELEVATOR_VENDOR`)}
 				</Typography>
 				<Typography>
 					{site.elevators?.vendor || AppConfigService.AppOptions.common.none}

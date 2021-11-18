@@ -41,8 +41,8 @@ export const columns: SiteProductsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SiteProductsTableColumnsTypeEnum.UPDATED_AT,
-		label: `${translation}.UPDATED_AT`,
+		id: SiteProductsTableColumnsTypeEnum.UPDATED,
+		label: `${translation}.UPDATED`,
 		minWidth: 200,
 		align: 'left'
 	},

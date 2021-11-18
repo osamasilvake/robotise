@@ -5,7 +5,7 @@ export enum RobotsTableColumnsTypeEnum {
 	CONTROL_MODE = 'robotControlMode',
 	BATTERY_PERCENTAGE = 'robotBatteryPercentage',
 	MISSION_STATUS = 'robotMission',
-	UPDATED_AT = 'updatedAt',
+	UPDATED = 'updatedAt',
 	ALERTS = 'robotAlerts'
 }
 

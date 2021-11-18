@@ -23,7 +23,7 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 	const sites = useSelector(sitesSelector);
 	const rooms = useSelector(roomsSelector);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 
@@ -49,7 +49,7 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 					onChange={toggleRoomState}
 				/>
 			}
-			label={t('CONTENT.ROOMS.LIST.ACTIONS.ACTIVE.LABEL')}
+			label={t<string>('CONTENT.ROOMS.LIST.ACTIONS.ACTIVE.LABEL')}
 		/>
 	);
 };

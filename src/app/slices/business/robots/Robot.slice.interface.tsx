@@ -2,6 +2,10 @@ export interface SliceRobotInterface {
 	note: {
 		loading: boolean;
 	};
+	auditLogs: {
+		loading: boolean;
+		content: SRContentDeepLinkInterface | null;
+	};
 	map: {
 		loading: boolean;
 		content: SRContentMapInterface | null;
@@ -23,7 +27,11 @@ export interface SliceRobotInterface {
 	};
 	itemTracking: {
 		loading: boolean;
-		content: SRContentItemTrackingInterface | null;
+		content: SRContentDeepLinkInterface | null;
+	};
+	elevatorLogs: {
+		loading: boolean;
+		content: SRContentDeepLinkInterface | null;
 	};
 	reports: {
 		loading: boolean;
@@ -40,7 +48,7 @@ export interface SRContentMapInterface {
 	updatedAt: Date;
 }
 
-export interface SRContentItemTrackingInterface {
+export interface SRContentDeepLinkInterface {
 	data: {
 		dlink: string;
 	};

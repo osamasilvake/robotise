@@ -27,7 +27,7 @@ const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (p
 	const dispatch = useDispatch();
 	const servicePositions = useSelector(servicePositionsSelector);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const translation = 'SITES:CONTENT.CONFIGURATION.SERVICE_POSITIONS.DELETE';
 

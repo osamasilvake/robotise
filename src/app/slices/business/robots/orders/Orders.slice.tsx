@@ -124,7 +124,7 @@ export const OrdersFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-orders-error',
+					id: 'orders-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -166,7 +166,7 @@ export const OrderCreate =
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'create-order-success',
+						id: 'order-create-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: 'ROBOTS.ORDERS.CREATE.SUCCESS'
@@ -180,7 +180,7 @@ export const OrderCreate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-order-error',
+					id: 'order-create-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ORDERS.CREATE.ERROR'
@@ -222,7 +222,7 @@ export const OrderCancel =
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'cancel-order-success',
+						id: 'order-cancel-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: 'ROBOTS.ORDERS.CANCEL.SUCCESS'
@@ -236,7 +236,7 @@ export const OrderCancel =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'cancel-order-error',
+					id: 'order-cancel-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ORDERS.CANCEL.ERROR'

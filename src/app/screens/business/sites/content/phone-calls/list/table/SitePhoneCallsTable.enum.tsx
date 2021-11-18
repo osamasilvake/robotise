@@ -4,7 +4,7 @@ export enum SitePhoneCallsTableColumnsTypeEnum {
 	MODE = 'mode',
 	FROM = 'from',
 	HISTORY = 'history',
-	UPDATED_AT = 'updatedAt'
+	UPDATED = 'updatedAt'
 }
 
 export enum SitePhoneCallsTableSortTypeEnum {

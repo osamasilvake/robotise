@@ -7,7 +7,6 @@ import Loader from '../../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
-import { AppConfigService } from '../../../../../../services';
 import {
 	PurchaseFetch,
 	purchaseSelector
@@ -21,25 +20,11 @@ const RobotPurchaseDetail: FC = () => {
 	const dispatch = useDispatch();
 	const purchase = useSelector(purchaseSelector);
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 
 	useEffect(() => {
 		// dispatch: fetch robot purchase
 		dispatch(PurchaseFetch(params.purchaseId));
-	}, [dispatch, params.purchaseId]);
-
-	useEffect(() => {
-		const executeServices = () => {
-			// dispatch: fetch robot purchase
-			dispatch(PurchaseFetch(params.purchaseId, true));
-		};
-
-		// interval
-		const intervalId = window.setInterval(
-			executeServices,
-			AppConfigService.AppOptions.screens.business.robots.content.purchases.detail.refreshTime
-		);
-		return () => window.clearInterval(intervalId);
 	}, [dispatch, params.purchaseId]);
 
 	// loader

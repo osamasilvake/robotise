@@ -44,7 +44,6 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const [humanCoords, setHumanCoords] = useState<
 		RobotDetailLocationCardHumanIconCoordsInterface[]
 	>([]);
-	const [goalReached, setGoalReached] = useState(false);
 
 	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
 	const robotMapName = robot.map.content?.name || '';
@@ -111,23 +110,6 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		robotTwins.humanPerception?.properties.legsFar
 	]);
 
-	useEffect(() => {
-		const robot = robotTwins.location?.value;
-		const plannedPath = robotTwins.plannedPath?.properties.points || [];
-		const goal = robotTwins.plannedPath?.properties.goal;
-		const robotGoal = {
-			x: (robot?.x || 0) - (goal?.position.xM || 0),
-			y: (robot?.y || 0) - (goal?.position.yM || 0)
-		};
-		setGoalReached(
-			!plannedPath.length || (Math.abs(robotGoal.x) <= 3 && Math.abs(robotGoal.y) <= 3)
-		);
-	}, [
-		robotTwins.location?.value,
-		robotTwins.plannedPath?.properties.goal,
-		robotTwins.plannedPath?.properties.points
-	]);
-
 	/**
 	 * on image load
 	 * @param values
@@ -159,8 +141,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 							{/* Planned Path */}
 							{plannedPath &&
 								!!plannedPathCoords.length &&
-								!!plannedPathCoords[0].x &&
-								!goalReached && (
+								!!plannedPathCoords[0].x && (
 									<RobotDetailLocationCardPlannedPath
 										plannedPathCoords={plannedPathCoords}
 										ratio={ratio}
@@ -172,7 +153,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 								<RobotDetailLocationCardRobotIcon
 									robotCoords={robotCoords}
 									plannedPath={plannedPath}
-									goalReached={goalReached}
+									activePoints={!!plannedPathCoords.length}
 								/>
 							)}
 

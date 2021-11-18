@@ -97,7 +97,7 @@ export const ServicePositionsFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-service-positions-error',
+					id: 'service-positions-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SERVICE_POSITIONS.FETCH.ERROR'
@@ -138,7 +138,7 @@ export const ServicePositionCreateEdit =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-edit-service-position-success',
+					id: 'service-positions-create-edit-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text:
@@ -154,7 +154,7 @@ export const ServicePositionCreateEdit =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-edit-service-position-error',
+					id: 'service-positions-create-edit-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text:
@@ -190,7 +190,7 @@ export const SiteServicePositionDelete =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'delete-service-position-success',
+					id: 'service-positions-delete-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.SERVICE_POSITIONS.DELETE.SUCCESS'
@@ -203,7 +203,7 @@ export const SiteServicePositionDelete =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'delete-service-position-error',
+					id: 'service-positions-delete-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SERVICE_POSITIONS.DELETE.ERROR'

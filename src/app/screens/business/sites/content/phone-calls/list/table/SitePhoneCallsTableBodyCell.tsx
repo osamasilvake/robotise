@@ -4,10 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
-import {
-	PCCDataHistoryInterface,
-	PCCDataInterface
-} from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
+import { PCCDataInterface } from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
 import { momentFormat1, momentFormat3 } from '../../../../../../../utilities/methods/Moment';
 import { SitePhoneCallsTableColumnsTypeEnum } from './SitePhoneCallsTable.enum';
 import {
@@ -34,15 +31,15 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 	) => {
 		const mappedPhoneCall = mapPhoneCall(phoneCall);
 		const value = mappedPhoneCall[column.id];
-		if (SitePhoneCallsTableColumnsTypeEnum.UPDATED_AT === column.id) {
+		if (SitePhoneCallsTableColumnsTypeEnum.UPDATED === column.id) {
 			return momentFormat1(value);
 		} else if (SitePhoneCallsTableColumnsTypeEnum.HISTORY === column.id) {
-			const history = phoneCall[column.id] as PCCDataHistoryInterface[];
-			const historyMapped = value as PCCDataHistoryInterface[];
+			const history = phoneCall.history;
+			const historyMapped = mappedPhoneCall.history;
 			return (
 				<Box>
 					{history.map((item, index) => (
-						<Stack key={index} spacing={0.5} direction="row" flexWrap="wrap">
+						<Stack key={index} spacing={0.5} direction="row">
 							<Icon
 								color={mapHistoryEventType(t(item.event)).color}
 								className={classes.sTableHistoryIcon}>

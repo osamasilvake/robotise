@@ -26,7 +26,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 
 	const dispatch = useDispatch();
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 
@@ -74,7 +74,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 								onChange={handleAcceptOrders}
 							/>
 						}
-						label={t(`${translation}.ACTIVE`)}
+						label={t<string>(`${translation}.ACTIVE`)}
 					/>
 				</Box>
 			</CardContent>

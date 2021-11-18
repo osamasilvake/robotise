@@ -1,13 +1,11 @@
-import { FC, ReactNode } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { FC } from 'react';
 
 import { RouteTypeEnum } from '../../routes/Routes.enum';
 import { LayoutPageInterface, RouteInterface } from '../../routes/Routes.interfaces';
 
-export interface AuthInterface<T = ReactNode> {
-	appRoute: RouteInterface;
+export interface AuthInterface {
+	route: RouteInterface;
 	template: FC<LayoutPageInterface>;
-	route: RouteComponentProps<T>;
 	type?: RouteTypeEnum;
 }
 

@@ -6,7 +6,7 @@ export const columns: RobotElevatorCallsTableColumnInterface[] = [
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.STATUS,
 		label: `${translation}.STATUS`,
-		minWidth: 140,
+		minWidth: 130,
 		align: 'left'
 	},
 	{
@@ -30,7 +30,7 @@ export const columns: RobotElevatorCallsTableColumnInterface[] = [
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.HISTORY,
 		label: `${translation}.HISTORY`,
-		minWidth: 350,
+		minWidth: 330,
 		align: 'left',
 		noSort: true
 	},
@@ -38,6 +38,12 @@ export const columns: RobotElevatorCallsTableColumnInterface[] = [
 		id: RobotElevatorCallsTableColumnsTypeEnum.CREATED,
 		label: `${translation}.CREATED`,
 		minWidth: 200,
+		align: 'left'
+	},
+	{
+		id: RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS,
+		label: `${translation}.ELEVATOR_LOGS`,
+		minWidth: 150,
 		align: 'right'
 	}
 ];

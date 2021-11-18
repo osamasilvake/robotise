@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,19 +31,12 @@ const RobotsHidden: FC = () => {
 	};
 
 	return (
-		<Box>
-			<FormControlLabel
-				control={
-					<Checkbox
-						color="primary"
-						name="hidden"
-						checked={hidden}
-						onChange={toggleHidden}
-					/>
-				}
-				label={t('LIST.ACTIONS.FILTERS.HIDDEN')}
-			/>
-		</Box>
+		<FormControlLabel
+			control={
+				<Checkbox color="primary" name="hidden" checked={hidden} onChange={toggleHidden} />
+			}
+			label={t<string>('LIST.ACTIONS.FILTERS.HIDDEN')}
+		/>
 	);
 };
 export default RobotsHidden;

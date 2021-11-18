@@ -85,7 +85,7 @@ describe('[SLICE] Authentication', () => {
 		// mock api once
 		const response = new Error('invalid credentials');
 		const message: TriggerMessageInterface = {
-			id: 'login-error',
+			id: 'auth-login-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: response.message
@@ -106,7 +106,7 @@ describe('[SLICE] Authentication', () => {
 	it('[AuthRefreshToken] Create failure action on empty access token', () => {
 		const store = mockStore(initialState);
 		const message: TriggerMessageInterface = {
-			id: 'token-empty-warn',
+			id: 'auth-token-empty-warn',
 			show: true,
 			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.TOKEN_EMPTY'
@@ -124,7 +124,7 @@ describe('[SLICE] Authentication', () => {
 	it('[AuthRefreshToken] Creates failure and triggerMessage actions on expired access token', () => {
 		const store = mockStore(initialState);
 		const message: TriggerMessageInterface = {
-			id: 'token-expired-error',
+			id: 'auth-token-expired-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: 'AUTH.TOKEN_EXPIRED'

@@ -23,7 +23,7 @@ const SiteProductsList: FC = () => {
 	const dispatch = useDispatch();
 	const products = useSelector(productsSelector);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const pSiteId = products.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 

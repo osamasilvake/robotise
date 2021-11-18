@@ -1,5 +1,4 @@
 import {
-	Box,
 	Button,
 	Card,
 	CardContent,
@@ -124,7 +123,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									<FormHelperText>{t(errors.customerName)}</FormHelperText>
 								)}
 							</FormControl>
-							<Box>
+							<FormControl>
 								<FormControlLabel
 									control={
 										<Switch
@@ -140,8 +139,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								<FormHelperText className={classes.sFormHelperText}>
 									{t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
 								</FormHelperText>
-							</Box>
-							<Box className={classes.sFormControlBox}>
+							</FormControl>
+							<FormControl className={classes.sFormControlBox}>
 								<FormControlLabel
 									control={
 										<Switch
@@ -159,7 +158,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 										`${translation}.FORM.FIELDS.CHECKBOXES.ONLINE_CHECK_DISABLED.NOTE`
 									)}
 								</FormHelperText>
-							</Box>
+							</FormControl>
 						</Grid>
 						<Grid item xs={12}>
 							<Button

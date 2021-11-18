@@ -43,6 +43,7 @@ const GeneralEmailsTableBody: FC<GeneralEmailsTableBodyInterface> = (props) => {
 			case GeneralEmailsTableColumnsTypeEnum.CREATED:
 				type = GeneralEmailsTableSortTypeEnum.DATE;
 				break;
+			case GeneralEmailsTableColumnsTypeEnum.RECIPIENT:
 			case GeneralEmailsTableColumnsTypeEnum.STATUS:
 			case GeneralEmailsTableColumnsTypeEnum.NOTIFICATION_CODE:
 				type = GeneralEmailsTableSortTypeEnum.STRING;

@@ -16,7 +16,7 @@ import { SiteServicePositionInterface } from './SiteServicePositions.interface';
 
 const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
 	const { servicePosition, index } = props;
-	const { t } = useTranslation('TOOLTIPS');
+	const { t } = useTranslation('TOOLTIP');
 
 	const [openCreateEdit, setOpenCreateEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);

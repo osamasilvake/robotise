@@ -27,7 +27,7 @@ import {
 
 const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	const { notifications, notification, index } = props;
-	const { t } = useTranslation('TOOLTIPS');
+	const { t } = useTranslation('TOOLTIP');
 
 	const dispatch = useDispatch();
 
@@ -73,7 +73,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 			<ListItemText
 				primary={notification.typeName}
-				secondary={notification.users.length > 0 && notification.users.join(', ')}
+				secondary={notification.users.join(', ')}
 			/>
 
 			<ListItemSecondaryAction>

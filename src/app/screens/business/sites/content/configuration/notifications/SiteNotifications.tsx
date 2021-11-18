@@ -17,7 +17,7 @@ import { SiteNotificationsStyle } from './SiteNotifications.style';
 
 const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const { notifications } = props;
-	const { t } = useTranslation(['SITES', 'TOOLTIPS']);
+	const { t } = useTranslation(['SITES', 'TOOLTIP']);
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
 
@@ -60,7 +60,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 				<Box className={classes.sCreate}>
 					<Tooltip
 						placement="left"
-						title={t<string>('TOOLTIPS:NOTIFICATION.ADD')}
+						title={t<string>('TOOLTIP:NOTIFICATION.ADD')}
 						onClick={() => setOpen(true)}>
 						<IconButton edge="end">
 							<AddCircle color="primary" />

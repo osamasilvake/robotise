@@ -101,7 +101,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 					</Typography>
 
 					{/* Grid */}
-					{result[key] && result[key].length > 0 && (
+					{result[key] && result[key].length && (
 						<Grid
 							container
 							spacing={1}

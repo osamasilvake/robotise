@@ -26,7 +26,7 @@ import { DrawersList } from './Drawer.list';
 import { DrawerStyle } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
-	const { t } = useTranslation(['SIDEBAR', 'TOOLTIPS']);
+	const { t } = useTranslation(['SIDEBAR', 'TOOLTIP']);
 	const classes = DrawerStyle();
 
 	const general = useSelector(generalSelector);

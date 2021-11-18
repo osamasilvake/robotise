@@ -28,7 +28,7 @@ import Language from './language/Language';
 import ThemePalette from './theme/Theme';
 
 const Account: FC = () => {
-	const { t } = useTranslation(['ACCOUNT', 'TOOLTIPS']);
+	const { t } = useTranslation(['ACCOUNT', 'TOOLTIP']);
 	const classes = AccountStyle();
 	const badgeClasses = BadgeStyle();
 
@@ -155,7 +155,7 @@ const Account: FC = () => {
 							</List>
 						</Popover>
 					</Box>
-					<Tooltip title={t<string>('TOOLTIPS:DRAWER.CLOSE')}>
+					<Tooltip title={t<string>('TOOLTIP:DRAWER.CLOSE')}>
 						<IconButton onClick={handleDrawer(false)}>
 							<Close />
 						</IconButton>
@@ -176,7 +176,7 @@ const Account: FC = () => {
 						</Link>
 					)}
 					{window && window.innerWidth > mobileScreen && (
-						<Tooltip title={t<string>('TOOLTIPS:DRAWER.OPEN')}>
+						<Tooltip title={t<string>('TOOLTIP:DRAWER.OPEN')}>
 							<IconButton onClick={handleDrawer(true)}>
 								<Menu />
 							</IconButton>

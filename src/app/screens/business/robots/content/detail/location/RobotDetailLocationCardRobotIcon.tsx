@@ -5,7 +5,7 @@ import { RobotDetailLocationCardRobotIconInterface } from './RobotDetailLocation
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 
 const RobotDetailLocationCardRobotIcon: FC<RobotDetailLocationCardRobotIconInterface> = (props) => {
-	const { robotCoords, plannedPath, goalReached } = props;
+	const { robotCoords, plannedPath, activePoints } = props;
 	const classes = RobotDetailLocationStyle();
 
 	const rotation = robotCoords.yaw < 0 ? Math.abs(robotCoords.yaw) : -(robotCoords.yaw + 10);
@@ -26,7 +26,7 @@ const RobotDetailLocationCardRobotIcon: FC<RobotDetailLocationCardRobotIconInter
 		<g>
 			<g>
 				<path d="M64,0a64,64,0,0,1,64,64H0A64,64,0,0,1,64,0Z" />
-				{!goalReached && (
+				{activePoints && (
 					<animateTransform
 						attributeName="transform"
 						type="rotate"
@@ -38,7 +38,7 @@ const RobotDetailLocationCardRobotIcon: FC<RobotDetailLocationCardRobotIconInter
 			</g>
 			<g>
 				<path d="M64,128A64,64,0,0,1,0,64H128A64,64,0,0,1,64,128Z" />
-				{!goalReached && (
+				{activePoints && (
 					<animateTransform
 						attributeName="transform"
 						type="rotate"

@@ -165,18 +165,16 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 				{type === SiteNotificationsCreateEditTypeEnum.EDIT && (
 					<DialogContent>
-						<Box>
-							<FormControlLabel
-								control={
-									<Switch
-										name="isActive"
-										checked={values.isActive}
-										onChange={handleChangeCheckbox}
-									/>
-								}
-								label={t<string>(`${translation}.FIELDS.ACTIVE.LABEL`)}
-							/>
-						</Box>
+						<FormControlLabel
+							control={
+								<Switch
+									name="isActive"
+									checked={values.isActive}
+									onChange={handleChangeCheckbox}
+								/>
+							}
+							label={t<string>(`${translation}.FIELDS.ACTIVE.LABEL`)}
+						/>
 
 						<Box className={classes.sAddUser}>
 							{values.users.map((user, index) => (

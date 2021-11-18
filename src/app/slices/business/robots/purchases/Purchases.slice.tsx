@@ -124,7 +124,7 @@ export const PurchasesFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-purchases-error',
+					id: 'purchases-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -166,7 +166,7 @@ export const PurchaseCommentEdit =
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'edit-comment-success',
+						id: 'purchases-comment-edit-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
@@ -180,7 +180,7 @@ export const PurchaseCommentEdit =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'edit-comment-error',
+					id: 'purchases-comment-edit-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.PURCHASES.EDIT_COMMENT.ERROR'

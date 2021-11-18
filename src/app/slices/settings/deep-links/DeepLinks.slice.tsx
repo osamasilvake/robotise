@@ -129,7 +129,7 @@ export const DeepLinksFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-deep-links-error',
+					id: 'deep-links-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -170,7 +170,7 @@ export const DeepLinkCreateEdit =
 
 				// trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-update-deep-link-success',
+					id: 'deep-links-create-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: `DEEP_LINKS.${
@@ -209,7 +209,7 @@ export const DeepLinkCreateEdit =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-update-deep-link-error',
+					id: 'deep-links-create-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `DEEP_LINKS.${
@@ -247,7 +247,7 @@ export const DeepLinkDelete =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'delete-deep-link-success',
+					id: 'deep-links-delete-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'DEEP_LINKS.DELETE.SUCCESS'
@@ -257,7 +257,7 @@ export const DeepLinkDelete =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'delete-deep-link-error',
+					id: 'deep-links-delete-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.DELETE.ERROR'

@@ -95,7 +95,7 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 		.catch((err) => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: 'login-error',
+				id: 'auth-login-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: (err && (err.error_description || err.message)) || 'AUTH.UNKNOWN'
@@ -145,7 +145,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 					.catch((err) => {
 						// dispatch: trigger message
 						const message: TriggerMessageInterface = {
-							id: 'auto-refresh-error',
+							id: 'auto-token-refresh-error',
 							show: true,
 							severity: TriggerMessageTypeEnum.ERROR,
 							text: err && err.error_description
@@ -165,7 +165,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 		} else {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: 'token-expired-error',
+				id: 'auth-token-expired-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'AUTH.TOKEN_EXPIRED'
@@ -184,7 +184,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	} else {
 		// dispatch: trigger message
 		const message: TriggerMessageInterface = {
-			id: 'token-empty-warn',
+			id: 'auth-token-empty-warn',
 			show: true,
 			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.TOKEN_EMPTY'

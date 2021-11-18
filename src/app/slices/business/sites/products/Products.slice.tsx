@@ -110,7 +110,7 @@ export const ProductsFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-products-error',
+					id: 'products-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -163,7 +163,7 @@ export const ProductCreateEdit =
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'create-update-product-success',
+						id: 'products-create-update-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: `SITES.PRODUCTS.${
@@ -176,7 +176,7 @@ export const ProductCreateEdit =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-update-product-error',
+					id: 'products-create-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `SITES.PRODUCTS.${
@@ -223,7 +223,7 @@ export const ProductDelete =
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'delete-product-success',
+						id: 'products-delete-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: 'SITES.PRODUCTS.DELETE.SUCCESS'
@@ -234,7 +234,7 @@ export const ProductDelete =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'delete-product-error',
+					id: 'products-delete-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.PRODUCTS.DELETE.ERROR'

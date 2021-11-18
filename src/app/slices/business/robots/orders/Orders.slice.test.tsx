@@ -125,7 +125,7 @@ describe('[SLICE] Order', () => {
 		// mock api once
 		const apiResponse = new Error('PAGE_ERROR.DESCRIPTION');
 		const message: TriggerMessageInterface = {
-			id: 'fetch-orders-error',
+			id: 'orders-fetch-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
 			text: 'PAGE_ERROR.DESCRIPTION'

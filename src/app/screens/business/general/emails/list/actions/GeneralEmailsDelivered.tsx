@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,19 +31,17 @@ const GeneralEmailDelivered: FC<GeneralEmailsDeliveredInterface> = (props) => {
 	};
 
 	return (
-		<Box>
-			<FormControlLabel
-				control={
-					<Checkbox
-						color="primary"
-						name="delivered"
-						checked={delivered}
-						onChange={toggleDelivered}
-					/>
-				}
-				label={t<string>('CONTENT.EMAILS.LIST.ACTIONS.FILTERS.DELIVERED')}
-			/>
-		</Box>
+		<FormControlLabel
+			control={
+				<Checkbox
+					color="primary"
+					name="delivered"
+					checked={delivered}
+					onChange={toggleDelivered}
+				/>
+			}
+			label={t<string>('CONTENT.EMAILS.LIST.ACTIONS.FILTERS.DELIVERED')}
+		/>
 	);
 };
 export default GeneralEmailDelivered;

@@ -10,10 +10,12 @@ import {
 import { SECStateInterface } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { GeneralEmailsSiteInterface } from './GeneralEmailsActions.interface';
+import { GeneralEmailsActionsStyle } from './GeneralEmailsActions.style';
 
 const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
-	const { siteId = 'd' } = props;
+	const { siteId } = props;
 	const { t } = useTranslation('GENERAL');
+	const classes = GeneralEmailsActionsStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -63,6 +65,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 			renderInput={(params) => (
 				<TextField {...params} label={t(`${translation}.SITE.LABEL`)} />
 			)}
+			className={classes.sSite}
 		/>
 	) : null;
 };

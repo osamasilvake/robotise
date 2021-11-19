@@ -10,10 +10,10 @@ import { momentNow } from '../../utilities/methods/Moment';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import { AuthUserInterface, SliceAuthInterface } from './Auth.slice.interface';
-import { authUserDetail } from './Auth.slice.map';
+import { mapUserDetail } from './Auth.slice.map';
 
 // storage items
-const user = AuthService.getAccessToken() ? authUserDetail(AuthService.getAccessToken()) : null;
+const user = AuthService.getAccessToken() ? mapUserDetail(AuthService.getAccessToken()) : null;
 if (user) {
 	// set authorization to headers
 	AuthService.setAuthorizationToHeaders(AuthService.getAccessToken());
@@ -85,8 +85,8 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 				payload.rememberMe ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
 			);
 
-			// decode user detail from access token
-			const user: AuthUserInterface = authUserDetail(res.access_token);
+			// parse and map user info from access token
+			const user: AuthUserInterface = mapUserDetail(res.access_token);
 
 			// dispatch: success
 			dispatch(success(user));
@@ -133,8 +133,8 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 							isLocal ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
 						);
 
-						// decode user detail from access token
-						const user: AuthUserInterface = authUserDetail(res.access_token);
+						// parse and map user info from access token
+						const user: AuthUserInterface = mapUserDetail(res.access_token);
 
 						// dispatch: success
 						dispatch(success(user));

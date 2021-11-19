@@ -6,12 +6,12 @@ import {
 } from './Inventory.slice.interface';
 
 /**
- * add products to inventory
+ * map products to inventory
  * @param inventory
  * @param products
  * @returns
  */
-export const addProductsToInventory = (
+export const mapProductsToInventory = (
 	inventory: SIContentInterface,
 	products: SPCDataInterface[]
 ) => ({

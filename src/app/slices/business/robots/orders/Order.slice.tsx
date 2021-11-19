@@ -6,7 +6,7 @@ import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { deserializeOrder } from './Order.slice.deserialize';
 import { SliceOrderInterface } from './Order.slice.interface';
-import { prepareContent } from './Order.slice.map';
+import { mapOrder } from './Order.slice.map';
 
 // initial state
 export const initialState: SliceOrderInterface = {
@@ -79,7 +79,7 @@ export const OrderFetch =
 				const order = await deserializeOrder(res);
 
 				// prepare order content
-				const result = prepareContent(order);
+				const result = mapOrder(order);
 
 				// dispatch: success
 				dispatch(success(result));

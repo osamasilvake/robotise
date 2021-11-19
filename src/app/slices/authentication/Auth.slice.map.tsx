@@ -2,10 +2,10 @@ import { jwtDecode } from '../../utilities/methods/Decode';
 import { AuthJWTInterface, AuthUserInterface } from './Auth.slice.interface';
 
 /**
- * fetch user info from decoded token
+ * parse and map user info from access token
  * @param accessToken
  */
-export const authUserDetail = (accessToken: string): AuthUserInterface => {
+export const mapUserDetail = (accessToken: string): AuthUserInterface => {
 	const decoded: AuthJWTInterface = jwtDecode(accessToken);
 	return {
 		realm_access: decoded.realm_access,

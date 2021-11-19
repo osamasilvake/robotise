@@ -1,12 +1,12 @@
 import { RTSContentInterface } from './RobotTwinsSummary.slice.interface';
 
 /**
- * count robots alerts
+ * map robots alerts count
  * @param payload
  * @returns
  */
-export const countRobotsAlerts = (payload: RTSContentInterface) => {
-	return Object.keys(payload.dataById).reduce(
+export const mapRobotsAlertsCount = (payload: RTSContentInterface) =>
+	Object.keys(payload.dataById).reduce(
 		(acc, key) => {
 			const robotTwins = payload.dataById[key];
 			const alerts = robotTwins.robotAlerts;
@@ -19,4 +19,3 @@ export const countRobotsAlerts = (payload: RTSContentInterface) => {
 		},
 		{ count: 0, danger: 0, warning: 0 }
 	);
-};

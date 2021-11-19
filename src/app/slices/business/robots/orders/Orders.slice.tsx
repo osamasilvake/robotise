@@ -16,7 +16,7 @@ import {
 	SOContentInterface,
 	SOCStateInterface
 } from './Orders.slice.interface';
-import { updateCanceledOrder, updateCreatedOrder } from './Orders.slice.map';
+import { mapCanceledOrder, mapCreatedOrder } from './Orders.slice.map';
 
 // initial state
 export const initialState: SliceOrdersInterface = {
@@ -160,8 +160,8 @@ export const OrderCreate =
 				let result = await deserializeOrder(res);
 
 				if (orders.content) {
-					// update created order
-					result = updateCreatedOrder(orders.content, result);
+					// map created order
+					result = mapCreatedOrder(orders.content, result);
 
 					// dispatch: updated
 					dispatch(updated(result));
@@ -216,8 +216,8 @@ export const OrderCancel =
 				let result = await deserializeOrder(res);
 
 				if (orders.content) {
-					// update canceled order
-					result = updateCanceledOrder(orders.content, result[0]);
+					// map canceled order
+					result = mapCanceledOrder(orders.content, result[0]);
 
 					// dispatch: updated
 					dispatch(updated(result));

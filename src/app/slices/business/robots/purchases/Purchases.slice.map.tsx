@@ -1,12 +1,12 @@
 import { SPCDataInterface, SPContentInterface } from './Purchases.slice.interface';
 
 /**
- * update edited comment
+ * map edited comment
  * @param state
  * @param purchase
  * @returns
  */
-export const updateEditedComment = (
+export const mapEditedComment = (
 	state: SPContentInterface,
 	purchase: SPCDataInterface
 ): SPContentInterface => ({

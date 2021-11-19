@@ -22,7 +22,7 @@ import {
 	terminate
 } from './Auth.slice';
 import { SliceAuthInterface } from './Auth.slice.interface';
-import { authUserDetail } from './Auth.slice.map';
+import { mapUserDetail } from './Auth.slice.map';
 
 // mock axios
 jest.mock('axios');
@@ -67,7 +67,7 @@ describe('[SLICE] Authentication', () => {
 			.dispatch(AuthLogin(request))
 			.then(() => {
 				// assert
-				const expectedActions = [loading(), success(authUserDetail(accessToken))];
+				const expectedActions = [loading(), success(mapUserDetail(accessToken))];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();
@@ -155,7 +155,7 @@ describe('[SLICE] Authentication', () => {
 			.dispatch(AuthRefreshToken(1))
 			.then(() => {
 				// assert
-				const expectedActions = [success(authUserDetail(accessToken))];
+				const expectedActions = [success(mapUserDetail(accessToken))];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();

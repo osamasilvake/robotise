@@ -14,7 +14,7 @@ import {
 	SPContentInterface,
 	SPCStateInterface
 } from './Purchases.slice.interface';
-import { updateEditedComment } from './Purchases.slice.map';
+import { mapEditedComment } from './Purchases.slice.map';
 
 // initial state
 export const initialState: SlicePurchasesInterface = {
@@ -159,8 +159,8 @@ export const PurchaseCommentEdit =
 				let result = await deserializePurchase(res);
 
 				if (purchases.content) {
-					// update edited comment
-					result = updateEditedComment(purchases.content, result);
+					// map edited comment
+					result = mapEditedComment(purchases.content, result);
 
 					// dispatch: updated
 					dispatch(updated(result));

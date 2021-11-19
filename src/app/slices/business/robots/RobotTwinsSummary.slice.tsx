@@ -11,7 +11,7 @@ import {
 	RTSContentStateInterface,
 	SliceRobotTwinsSummaryInterface
 } from './RobotTwinsSummary.slice.interface';
-import { countRobotsAlerts } from './RobotTwinsSummary.slice.map';
+import { mapRobotsAlertsCount } from './RobotTwinsSummary.slice.map';
 
 // storage item
 const robotsState = StorageService.get(AppConfigService.StorageItems.RobotsState);
@@ -99,8 +99,8 @@ export const RobotTwinsSummaryFetchList =
 						sites.content
 					);
 
-					// count alerts for badge
-					const alerts = countRobotsAlerts(result);
+					// map robots alerts count
+					const alerts = mapRobotsAlertsCount(result);
 
 					// state
 					result = {

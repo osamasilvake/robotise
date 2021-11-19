@@ -6,7 +6,7 @@ import RobotsService from '../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../..';
 import { deserializeRobotTwins } from './RobotTwins.slice.deserialize';
 import { SliceRobotTwinsInterface } from './RobotTwins.slice.interface';
-import { prepareRobotTwinsContent } from './RobotTwins.slice.map';
+import { mapRobotTwins } from './RobotTwins.slice.map';
 
 // initial state
 export const initialState: SliceRobotTwinsInterface = {
@@ -81,8 +81,8 @@ export const RobotTwinsFetch =
 
 				// prepare robot twins content
 				if (sites && sites.content) {
-					// prepare robot twins content
-					const result = prepareRobotTwinsContent(sites.content, robotTwins);
+					// map robot twins
+					const result = mapRobotTwins(sites.content, robotTwins);
 
 					// dispatch: success
 					dispatch(success(result));

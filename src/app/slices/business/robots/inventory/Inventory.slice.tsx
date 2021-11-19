@@ -6,7 +6,7 @@ import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { deserializeInventory } from './Inventory.slice.deserialize';
 import { SliceInventoryInterface } from './Inventory.slice.interface';
-import { addProductsToInventory } from './Inventory.slice.map';
+import { mapProductsToInventory } from './Inventory.slice.map';
 
 // initial state
 export const initialState: SliceInventoryInterface = {
@@ -81,8 +81,8 @@ export const InventoryFetchList =
 
 				// prepare inventory content
 				if (products && products.content) {
-					// add products to inventory
-					const result = addProductsToInventory(inventory, products.content.data);
+					// map products to inventory
+					const result = mapProductsToInventory(inventory, products.content.data);
 
 					// dispatch: success
 					dispatch(success(result));

@@ -2,11 +2,11 @@ import { OrderHistoryTypeEnum } from './Order.slice.enum';
 import { SOCDataInterface } from './Orders.slice.interface';
 
 /**
- * prepare order content
+ * map order
  * @param result
  * @returns
  */
-export const prepareContent = (result: SOCDataInterface) => {
+export const mapOrder = (result: SOCDataInterface) => {
 	if (result.history) {
 		return {
 			...result,

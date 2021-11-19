@@ -2,12 +2,12 @@ import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { SRTContentDataInterface } from './RobotTwins.slice.interface';
 
 /**
- * prepare robot twins content
+ * map robot twins
  * @param sites
  * @param robotTwins
  * @returns
  */
-export const prepareRobotTwinsContent = (
+export const mapRobotTwins = (
 	sites: SSContentInterface,
 	robotTwins: SRTContentDataInterface
 ): SRTContentDataInterface => {

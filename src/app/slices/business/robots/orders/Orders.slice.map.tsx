@@ -1,12 +1,12 @@
 import { SOCDataInterface, SOContentInterface } from './Orders.slice.interface';
 
 /**
- * update created order
+ * map created order
  * @param state
  * @param order
  * @returns
  */
-export const updateCreatedOrder = (
+export const mapCreatedOrder = (
 	state: SOContentInterface,
 	order: SOCDataInterface
 ): SOContentInterface => ({
@@ -15,12 +15,12 @@ export const updateCreatedOrder = (
 });
 
 /**
- * update canceled order
+ * map canceled order
  * @param state
  * @param order
  * @returns
  */
-export const updateCanceledOrder = (
+export const mapCanceledOrder = (
 	state: SOContentInterface,
 	order: SOCDataInterface
 ): SOContentInterface => ({

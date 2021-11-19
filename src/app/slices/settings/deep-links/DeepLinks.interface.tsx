@@ -1,6 +1,6 @@
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { DeepLinkResetTypeEnum } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.enum';
-import { JsonApiResponseInterface } from '../../JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
 
 export interface SliceDeepLinksInterface {
 	loader: boolean;
@@ -10,7 +10,7 @@ export interface SliceDeepLinksInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SDLContentInterface extends JsonApiResponseInterface {
+export interface SDLContentInterface extends JsonAPIResponseInterface {
 	data: SDLDataInterface[];
 	state?: SDLStateInterface;
 }

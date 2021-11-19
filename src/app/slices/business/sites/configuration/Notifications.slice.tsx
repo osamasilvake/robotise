@@ -7,7 +7,7 @@ import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializeNotifications } from './Notifications.deserialize';
+import { deserializeNotifications } from './Notifications.slice.deserialize';
 import {
 	SliceNotificationsInterface,
 	SNContentNotificationTypeInterface,

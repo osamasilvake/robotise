@@ -3,15 +3,15 @@ import JSONAPIDeserializer from 'jsonapi-serializer';
 import {
 	DeserializeRelationshipPropertiesInterface,
 	DeserializerExtendedOptionsInterface,
-	JsonApiResponseInterface
-} from '../../../JsonApi.interface';
+	JsonAPIResponseInterface
+} from '../../../JsonAPI.interface';
 
 /**
  * deserialize elevator calls
  * @param payload
  * @returns
  */
-export const deserializeElevatorCalls = async <T extends JsonApiResponseInterface>(payload: T) => {
+export const deserializeElevatorCalls = async <T extends JsonAPIResponseInterface>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		robots: {

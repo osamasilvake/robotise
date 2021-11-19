@@ -7,14 +7,16 @@ import { RobotOrdersListPayloadInterface } from '../../../../screens/business/ro
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializeOrder } from './Order.deserialize';
-import { deserializeOrders } from './Orders.deserialize';
+import { handleRefreshAndPagination } from '../../../Slices.map';
+import { deserializeOrder } from './Order.slice.deserialize';
+import { deserializeOrders } from './Orders.slice.deserialize';
 import {
 	SliceOrdersInterface,
 	SOCDataInterface,
 	SOContentInterface,
 	SOCStateInterface
 } from './Orders.slice.interface';
+import { updateCanceledOrder, updateCreatedOrder } from './Orders.slice.map';
 
 // initial state
 export const initialState: SliceOrdersInterface = {
@@ -272,74 +274,3 @@ export const OrderUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: SOContentInterface,
-	result: SOContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};
-
-/**
- * update created order
- * @param state
- * @param order
- * @returns
- */
-const updateCreatedOrder = (
-	state: SOContentInterface,
-	order: SOCDataInterface
-): SOContentInterface => ({
-	...state,
-	data: [order, ...state.data]
-});
-
-/**
- * update canceled order
- * @param state
- * @param order
- * @returns
- */
-const updateCanceledOrder = (
-	state: SOContentInterface,
-	order: SOCDataInterface
-): SOContentInterface => ({
-	...state,
-	data: state.data.map((item) => {
-		if (item.id === order.id) {
-			return order;
-		}
-		return item;
-	})
-});

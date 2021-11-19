@@ -8,7 +8,7 @@ import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializeServicePositions } from './ServicePositions.deserialize';
+import { deserializeServicePositions } from './ServicePositions.slice.deserialize';
 import {
 	SliceServicePositionsInterface,
 	SSCDataInterface

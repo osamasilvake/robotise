@@ -2,32 +2,20 @@ import JSONAPIDeserializer from 'jsonapi-serializer';
 
 import {
 	DeserializeRelationshipPropertiesInterface,
-	DeserializerExtendedOptionsInterface
-} from '../../../JsonApi.interface';
+	DeserializerExtendedOptionsInterface,
+	JsonAPIResponseInterface
+} from '../../JsonAPI.interface';
+import { ISite } from './Sites.slice.interface';
 
 /**
- * deserialize order
+ * deserialize sites
  * @param payload
  * @returns
  */
-export const deserializeOrder = async <T,>(payload: T) => {
+export const deserializeSites = async <T extends JsonAPIResponseInterface>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
-		sites: {
-			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
-				return {
-					id: relationship.id
-				};
-			}
-		},
 		robots: {
-			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
-				return {
-					id: relationship.id
-				};
-			}
-		},
-		orderReports: {
 			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
@@ -37,5 +25,10 @@ export const deserializeOrder = async <T,>(payload: T) => {
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-	return data;
+	const dataById = data.reduce((acc: { [x: string]: ISite }, item: ISite) => {
+		acc[item.id] = item;
+		return acc;
+	}, {});
+
+	return { data, dataById, meta: payload.meta };
 };

@@ -1,13 +1,13 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { JsonApiResponseInterface } from '../../JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
 
 /**
- * deserialize alert codes
+ * deserialize deep links
  * @param payload
  * @returns
  */
-export const deserializeAlertCodes = async <T extends JsonApiResponseInterface>(payload: T) => {
+export const deserializeDeepLinks = async <T extends JsonAPIResponseInterface>(payload: T) => {
 	const deserializer = new JSONAPIDeserializer.Deserializer({
 		keyForAttribute: 'camelCase'
 	});

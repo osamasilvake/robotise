@@ -7,9 +7,9 @@ import { PCCDataInterface as PCCDataAliasInterface } from '../../../slices/busin
 import { PCCDataInterface } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
 import { SPCDataInterface } from '../../../slices/business/sites/products/Products.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
-import { JsonApiResponseInterface } from '../../../slices/JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../../slices/JsonAPI.interface';
 
-export interface SitesAxiosGetInterface extends JsonApiResponseInterface {
+export interface SitesAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -17,7 +17,7 @@ export interface SitesAxiosGetInterface extends JsonApiResponseInterface {
 	}[];
 }
 
-export interface SiteProductsAxiosGetInterface extends JsonApiResponseInterface {
+export interface SiteProductsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -45,7 +45,7 @@ export interface SiteRoomsAxiosPatchResponseInterface {
 	};
 }
 
-export interface SitePhoneConfigsAxiosGetInterface extends JsonApiResponseInterface {
+export interface SitePhoneConfigsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -53,7 +53,7 @@ export interface SitePhoneConfigsAxiosGetInterface extends JsonApiResponseInterf
 	}[];
 }
 
-export interface SitePhoneCallsAxiosGetInterface extends JsonApiResponseInterface {
+export interface SitePhoneCallsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -77,7 +77,7 @@ export interface SiteNotificationUsersAxiosGetInterface {
 	}[];
 }
 
-export interface SiteServicePositionsAxiosGetInterface extends JsonApiResponseInterface {
+export interface SiteServicePositionsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;

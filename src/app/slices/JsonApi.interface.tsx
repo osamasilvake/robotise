@@ -21,7 +21,7 @@ export interface DeserializeRelationshipPropertiesInterface {
 	id: string | number;
 }
 
-export interface JsonApiResponseInterface {
+export interface JsonAPIResponseInterface {
 	meta: JsonApiMetaInterface;
 }
 

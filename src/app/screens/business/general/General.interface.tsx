@@ -1,7 +1,7 @@
 import { SECDataInterface } from '../../../slices/business/general/emails/Emails.slice.interface';
-import { JsonApiResponseInterface } from '../../../slices/JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../../slices/JsonAPI.interface';
 
-export interface GeneralEmailsAxiosGetInterface extends JsonApiResponseInterface {
+export interface GeneralEmailsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;

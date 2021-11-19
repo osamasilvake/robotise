@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { JsonApiResponseInterface } from '../../../JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SliceEmailsInterface {
 	loader: boolean;
@@ -9,7 +9,7 @@ export interface SliceEmailsInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SEContentInterface extends JsonApiResponseInterface {
+export interface SEContentInterface extends JsonAPIResponseInterface {
 	data: SECDataInterface[];
 	state?: SECStateInterface;
 }

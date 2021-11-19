@@ -1,7 +1,5 @@
-import { alpha, Theme } from '@mui/material/styles';
+import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
-
-import { AppConfigService } from '../../../../../../services';
 
 export const RobotDetailInformationStyle = makeStyles((theme: Theme) => ({
 	sStateContainer: {
@@ -12,8 +10,5 @@ export const RobotDetailInformationStyle = makeStyles((theme: Theme) => ({
 	},
 	sList: {
 		padding: 0
-	},
-	sListItemWarning: {
-		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)
 	}
 }));

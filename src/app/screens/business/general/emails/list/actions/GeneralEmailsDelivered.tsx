@@ -18,9 +18,9 @@ const GeneralEmailDelivered: FC<GeneralEmailsDeliveredInterface> = (props) => {
 	const emails = useSelector(emailsSelector);
 
 	/**
-	 * toggle delivered
+	 * handle delivered
 	 */
-	const toggleDelivered = () => {
+	const handleDelivered = () => {
 		// dispatch: update state
 		const state: SECStateInterface = {
 			...emails.content?.state,
@@ -37,7 +37,7 @@ const GeneralEmailDelivered: FC<GeneralEmailsDeliveredInterface> = (props) => {
 					color="primary"
 					name="delivered"
 					checked={delivered}
-					onChange={toggleDelivered}
+					onChange={handleDelivered}
 				/>
 			}
 			label={t<string>('CONTENT.EMAILS.LIST.ACTIONS.FILTERS.DELIVERED')}

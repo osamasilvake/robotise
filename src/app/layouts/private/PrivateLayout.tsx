@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Loader from '../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../components/common/loader/Loader.enum';
 import Drawer from '../../components/frame/drawer/Drawer';
-import { LayoutPageInterface } from '../../routes/Routes.interfaces';
+import { LayoutPageInterface } from '../../routes/Routes.interface';
 import { generalSelector } from '../../slices/general/General.slice';
 import { PrivateLayoutStyle } from './PrivateLayout.style';
 

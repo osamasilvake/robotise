@@ -1,5 +1,5 @@
 import pagesRoutes from '../../screens/pages/index.routes';
-import { RouteInterface } from '../Routes.interfaces';
+import { RoutesInterface } from '../Routes.interface';
 
-const routes: RouteInterface[] = [...pagesRoutes];
+const routes: RoutesInterface[] = [...pagesRoutes];
 export default routes;

@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { RouteInterface } from '../../../routes/Routes.interfaces';
+import { RoutesInterface } from '../../../routes/Routes.interface';
 import { AppConfigService } from '../../../services';
 import Site from './Site';
 
@@ -11,7 +11,7 @@ const Sites = lazy(() => import('./Sites'));
  * the tabs are shown based on the routes object
  * therefore, changing the sequence of objects will make tabs malfunction.
  */
-const sitesRoutes: RouteInterface[] = [
+const sitesRoutes: RoutesInterface[] = [
 	/**
 	 * Main
 	 */

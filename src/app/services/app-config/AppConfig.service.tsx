@@ -1,4 +1,4 @@
-import appRoutes from '../../routes/app-routes';
+import appRoutes from '../../routes/Routes.path';
 import EnvService from '../env/Env.service';
 
 class AppConfigService extends EnvService {

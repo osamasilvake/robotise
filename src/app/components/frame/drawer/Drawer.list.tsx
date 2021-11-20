@@ -33,7 +33,7 @@ const drawerSettingsList: DrawerListInterface[] = [
 		icon: 'link',
 		label: 'SETTINGS.LIST.DEEP_LINKS',
 		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
-		newLine: true
+		scope: true
 	}
 ];
 
@@ -42,8 +42,7 @@ const drawerInformationList: DrawerListInterface[] = [
 		id: 1,
 		icon: 'access_alarm',
 		label: 'INFORMATION.LIST.ALERT_CODES',
-		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES,
-		newLine: true
+		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES
 	},
 	{
 		id: 2,

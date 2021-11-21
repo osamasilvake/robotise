@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { AppConfigService } from '../../../services';
 import { generalSelector } from '../../../slices/general/General.slice';
 import { useWindow } from '../../../utilities/hooks/window/UseWindow';
+import { timeout } from '../../../utilities/methods/Timeout';
 import { PictureInterface, PictureOnLoadInterface } from './Picture.interface';
 import { PictureStyle } from './Picture.style';
 
@@ -30,12 +31,17 @@ const Picture: FC<PictureInterface> = (props) => {
 	}, [onLoad, values]);
 
 	useEffect(() => {
-		setTimeout(() => {
+		const rerender = async () => {
+			// wait
+			await timeout(500);
+
+			// set values
 			const target = imgRef.current;
 			if (target && target.naturalWidth && target.clientWidth !== values?.clientWidth) {
 				prepareValues(target);
 			}
-		}, 500);
+		};
+		rerender();
 	}, [values, cWindow, general.openDrawer]);
 
 	/**

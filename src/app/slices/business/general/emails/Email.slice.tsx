@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import GeneralService from '../../../../screens/business/general/General.service';
 import { AppReducerType } from '../../..';
-import { deserializeEmail } from './Email.deserialize';
+import { deserializeEmail } from './Email.slice.deserialize';
 import { SliceEmailInterface } from './Email.slice.interface';
 
 // initial state

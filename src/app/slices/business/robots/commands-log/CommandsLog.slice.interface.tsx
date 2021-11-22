@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { JsonApiResponseInterface } from '../../../JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SliceCommandsLogInterface {
 	loader: boolean;
@@ -9,7 +9,7 @@ export interface SliceCommandsLogInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface CLContentInterface extends JsonApiResponseInterface {
+export interface CLContentInterface extends JsonAPIResponseInterface {
 	data: CLCDataInterface[];
 	state?: CLCStateInterface;
 }

@@ -1,11 +1,11 @@
 import { lazy } from 'react';
 
-import { RouteInterface } from '../../routes/Routes.interfaces';
+import { RoutesInterface } from '../../routes/Routes.interface';
 import { AppConfigService } from '../../services';
 
 const Login = lazy(() => import('./login/Login'));
 
-const authRoutes: RouteInterface[] = [
+const authRoutes: RoutesInterface[] = [
 	{
 		path: AppConfigService.AppRoutes.AUTH.LOGIN,
 		component: Login

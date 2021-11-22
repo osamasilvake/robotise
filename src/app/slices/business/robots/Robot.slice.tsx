@@ -17,7 +17,7 @@ import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { deserializeRobot } from './Robot.deserialize';
+import { deserializeRobot } from './Robot.slice.deserialize';
 import { RobotTypeEnum } from './Robot.slice.enum';
 import { SliceRobotInterface, SRContentDeepLinkInterface } from './Robot.slice.interface';
 

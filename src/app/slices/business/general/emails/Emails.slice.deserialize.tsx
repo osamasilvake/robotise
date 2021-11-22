@@ -2,32 +2,19 @@ import JSONAPIDeserializer from 'jsonapi-serializer';
 
 import {
 	DeserializeRelationshipPropertiesInterface,
-	DeserializerExtendedOptionsInterface
-} from '../../../JsonApi.interface';
+	DeserializerExtendedOptionsInterface,
+	JsonAPIResponseInterface
+} from '../../../JsonAPI.interface';
 
 /**
- * deserialize purchase
+ * deserialize emails
  * @param payload
  * @returns
  */
-export const deserializePurchase = async <T,>(payload: T) => {
+export const deserializeEmails = async <T extends JsonAPIResponseInterface>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		sites: {
-			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
-				return {
-					id: relationship.id
-				};
-			}
-		},
-		robots: {
-			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
-				return {
-					id: relationship.id
-				};
-			}
-		},
-		orders: {
 			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
 				return {
 					id: relationship.id
@@ -37,5 +24,6 @@ export const deserializePurchase = async <T,>(payload: T) => {
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-	return data;
+
+	return { data, meta: payload.meta };
 };

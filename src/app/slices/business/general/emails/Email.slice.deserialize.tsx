@@ -2,16 +2,15 @@ import JSONAPIDeserializer from 'jsonapi-serializer';
 
 import {
 	DeserializeRelationshipPropertiesInterface,
-	DeserializerExtendedOptionsInterface,
-	JsonApiResponseInterface
-} from '../../../JsonApi.interface';
+	DeserializerExtendedOptionsInterface
+} from '../../../JsonAPI.interface';
 
 /**
- * deserialize products
+ * deserialize email
  * @param payload
  * @returns
  */
-export const deserializeProducts = async <T extends JsonApiResponseInterface>(payload: T) => {
+export const deserializeEmail = async <T,>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		sites: {
@@ -24,6 +23,5 @@ export const deserializeProducts = async <T extends JsonApiResponseInterface>(pa
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-
-	return { data, meta: payload.meta };
+	return data;
 };

@@ -18,9 +18,9 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	const orders = useSelector(ordersSelector);
 
 	/**
-	 * toggle debug
+	 * handle debug
 	 */
-	const toggleDebug = () => {
+	const handleDebug = () => {
 		// dispatch: update state
 		const state: SOCStateInterface = {
 			...orders.content?.state,
@@ -33,7 +33,7 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	return (
 		<FormControlLabel
 			control={
-				<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
+				<Checkbox color="primary" name="debug" checked={debug} onChange={handleDebug} />
 			}
 			label={t<string>('CONTENT.ORDERS.LIST.ACTIONS.FILTERS.DEBUG')}
 		/>

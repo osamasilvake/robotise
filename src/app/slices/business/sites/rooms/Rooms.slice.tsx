@@ -7,7 +7,7 @@ import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializeSite } from '../Site.deserialize';
+import { deserializeSite } from '../Site.slice.deserialize';
 import { SliceRoomsInterface } from './Rooms.slice.interface';
 
 // initial state

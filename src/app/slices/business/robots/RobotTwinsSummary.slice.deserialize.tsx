@@ -5,7 +5,7 @@ import { AppConfigService } from '../../../services';
 import {
 	DeserializeRelationshipPropertiesInterface,
 	DeserializerExtendedOptionsInterface
-} from '../../JsonApi.interface';
+} from '../../JsonAPI.interface';
 import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
 import {

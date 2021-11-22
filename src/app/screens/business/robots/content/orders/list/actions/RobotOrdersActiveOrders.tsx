@@ -18,9 +18,9 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 	const orders = useSelector(ordersSelector);
 
 	/**
-	 * toggle active orders
+	 * handle active orders
 	 */
-	const toggleActiveOrders = () => {
+	const handleActiveOrders = () => {
 		// dispatch: update state
 		const state: SOCStateInterface = {
 			...orders.content?.state,
@@ -37,7 +37,7 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 					color="primary"
 					name="activeOrders"
 					checked={activeOrders}
-					onChange={toggleActiveOrders}
+					onChange={handleActiveOrders}
 				/>
 			}
 			label={t<string>('CONTENT.ORDERS.LIST.ACTIONS.FILTERS.ACTIVE_ORDERS')}

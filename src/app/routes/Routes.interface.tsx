@@ -2,14 +2,15 @@ import { FC } from 'react';
 
 import { RouteTypeEnum } from './Routes.enum';
 
-export interface RouteInterface {
+export interface RoutesInterface {
 	path: string;
 	component: FC;
 	template?: FC<LayoutPageInterface>;
+	scope?: boolean;
 }
 
 export interface RoutesTemplateInterface {
-	routes: RouteInterface[];
+	routes: RoutesInterface[];
 	template: FC<LayoutPageInterface>;
 	type: RouteTypeEnum;
 }

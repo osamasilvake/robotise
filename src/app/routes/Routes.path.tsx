@@ -42,7 +42,7 @@ const appRoutes = {
 			}
 		},
 		SETTINGS: {
-			DEEP_LINKS: '/deep-links'
+			DEEP_LINKS: '/deeplinks'
 		},
 		INFORMATION: {
 			ALERT_CODES: '/alert-codes',

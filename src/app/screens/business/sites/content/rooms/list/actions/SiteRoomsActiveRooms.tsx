@@ -28,9 +28,9 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 	const siteSingle = sites.content?.dataById[cSiteId];
 
 	/**
-	 * toggle room state
+	 * handle room state
 	 */
-	const toggleRoomState = () => {
+	const handleRoomState = () => {
 		// dispatch: update rooms filters
 		const filters: SiteRoomsActionsFiltersPayloadInterface = {
 			...rooms.content?.filters,
@@ -46,7 +46,7 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 					color="primary"
 					name="activeOrders"
 					checked={active}
-					onChange={toggleRoomState}
+					onChange={handleRoomState}
 				/>
 			}
 			label={t<string>('CONTENT.ROOMS.LIST.ACTIONS.ACTIVE.LABEL')}

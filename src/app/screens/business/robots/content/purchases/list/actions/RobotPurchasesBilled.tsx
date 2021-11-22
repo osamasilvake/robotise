@@ -18,9 +18,9 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 	const purchases = useSelector(purchasesSelector);
 
 	/**
-	 * toggle billed
+	 * handle billed
 	 */
-	const toggleBilled = () => {
+	const handleBilled = () => {
 		// dispatch: update state
 		const state: SPCStateInterface = {
 			...purchases.content?.state,
@@ -38,7 +38,7 @@ const RobotPurchasesBilled: FC<RobotPurchasesBilledInterface> = (props) => {
 						color="primary"
 						name="billed"
 						checked={billed}
-						onChange={toggleBilled}
+						onChange={handleBilled}
 					/>
 				}
 				label={t<string>('CONTENT.PURCHASES.LIST.ACTIONS.FILTERS.BILLED')}

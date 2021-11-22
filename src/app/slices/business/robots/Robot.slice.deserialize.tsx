@@ -1,6 +1,6 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { DeserializerExtendedOptionsInterface } from '../../JsonApi.interface';
+import { DeserializerExtendedOptionsInterface } from '../../JsonAPI.interface';
 
 /**
  * deserialize robot

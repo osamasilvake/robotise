@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../..';
-import { deserializeSites } from './Sites.deserialize';
+import { deserializeSites } from './Sites.slice.deserialize';
 import { SliceSitesInterface } from './Sites.slice.interface';
 
 // initial state

@@ -5,7 +5,8 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { SitePhoneCallsListPayloadInterface } from '../../../../screens/business/sites/content/phone-calls/list/SitePhoneCallsList.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../../..';
-import { deserializePhoneCalls } from './PhoneCalls.deserialize';
+import { handleRefreshAndPagination } from '../../../Slices.map';
+import { deserializePhoneCalls } from './PhoneCalls.slice.deserialize';
 import {
 	PCContentInterface,
 	PCCStateInterface,
@@ -152,41 +153,3 @@ export const PhoneCallsUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: PCContentInterface,
-	result: PCContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};

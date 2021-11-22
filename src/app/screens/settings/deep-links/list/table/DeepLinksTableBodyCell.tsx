@@ -1,11 +1,15 @@
 import { Box, Chip, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import ReadMore from '../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../services';
+import { authSelector } from '../../../../../slices/authentication/Auth.slice';
 import { SDLDataInterface } from '../../../../../slices/settings/deep-links/DeepLinks.interface';
 import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { AuthScopeTypeEnum } from '../../../../authentication/Auth.enum';
+import { validateScope } from '../../../../authentication/Auth.scope';
 import { DeepLinkCreateEditTypeEnum, DeepLinksTableColumnsTypeEnum } from './DeepLinksTable.enum';
 import {
 	DeepLinksTableBodyCellInterface,
@@ -20,8 +24,12 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	const { t } = useTranslation('DEEP_LINKS');
 	const classes = DeepLinksTableStyle();
 
+	const auth = useSelector(authSelector);
+
 	const [openCreateEdit, setOpenCreateEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
+
+	const scope = auth.user?.scope;
 
 	/**
 	 * open create/edit deep link dialog
@@ -64,6 +72,13 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						color="primary"
 						variant="outlined"
 						clickable
+						disabled={
+							!validateScope(
+								scope,
+								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
+								AuthScopeTypeEnum.WRITE
+							)
+						}
 						onClick={openCreateEditDeepLinkDialog}
 						className={classes.sEditDeepLink}
 					/>
@@ -83,6 +98,13 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						label={t(`${translation}.DELETE`)}
 						variant="outlined"
 						clickable
+						disabled={
+							!validateScope(
+								scope,
+								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
+								AuthScopeTypeEnum.WRITE
+							)
+						}
 						onClick={openDeleteDeepLinkDialog}
 					/>
 					<DialogDeleteDeepLink

@@ -46,7 +46,7 @@ export const mapStatus = (status: string) => {
 
 /**
  * map history event type
- * @param status
+ * @param event
  * @returns
  */
 export const mapHistoryEventType = (event: string) => {

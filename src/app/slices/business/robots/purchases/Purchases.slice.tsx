@@ -6,14 +6,15 @@ import { RobotPurchasesListPayloadInterface } from '../../../../screens/business
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializePurchase } from './Purchase.deserialize';
-import { deserializePurchases } from './Purchases.deserialize';
+import { handleRefreshAndPagination } from '../../../Slices.map';
+import { deserializePurchase } from './Purchase.slice.deserialize';
+import { deserializePurchases } from './Purchases.slice.deserialize';
 import {
 	SlicePurchasesInterface,
-	SPCDataInterface,
 	SPContentInterface,
 	SPCStateInterface
 } from './Purchases.slice.interface';
+import { mapEditedComment } from './Purchases.slice.map';
 
 // initial state
 export const initialState: SlicePurchasesInterface = {
@@ -124,7 +125,7 @@ export const PurchasesFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-purchases-error',
+					id: 'purchases-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -158,15 +159,15 @@ export const PurchaseCommentEdit =
 				let result = await deserializePurchase(res);
 
 				if (purchases.content) {
-					// update edited comment
-					result = updateEditedComment(purchases.content, result);
+					// map edited comment
+					result = mapEditedComment(purchases.content, result);
 
 					// dispatch: updated
 					dispatch(updated(result));
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'edit-comment-success',
+						id: 'purchases-comment-edit-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
@@ -180,7 +181,7 @@ export const PurchaseCommentEdit =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'edit-comment-error',
+					id: 'purchases-comment-edit-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.PURCHASES.EDIT_COMMENT.ERROR'
@@ -213,60 +214,3 @@ export const PurchaseUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: SPContentInterface,
-	result: SPContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};
-
-/**
- * update edited comment
- * @param state
- * @param purchase
- * @returns
- */
-const updateEditedComment = (
-	state: SPContentInterface,
-	purchase: SPCDataInterface
-): SPContentInterface => ({
-	...state,
-	data: state.data.map((item) => {
-		if (item.id === purchase.id) {
-			return purchase;
-		}
-		return item;
-	})
-});

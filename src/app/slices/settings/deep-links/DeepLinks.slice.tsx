@@ -12,14 +12,15 @@ import { DialogCreateEditDeepLinkFormInterface } from '../../../screens/settings
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { deserializeDeepLink } from './DeepLink.deserialize';
-import { deserializeDeepLinks } from './DeepLinks.deserialize';
+import { handleRefreshAndPagination } from '../../Slices.map';
+import { deserializeDeepLink } from './DeepLink.slice.deserialize';
 import {
 	SDLContentInterface,
 	SDLDataInterface,
 	SDLStateInterface,
 	SliceDeepLinksInterface
 } from './DeepLinks.interface';
+import { deserializeDeepLinks } from './DeepLinks.slice.deserialize';
 
 // initial state
 export const initialState: SliceDeepLinksInterface = {
@@ -129,7 +130,7 @@ export const DeepLinksFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-deep-links-error',
+					id: 'deep-links-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -170,7 +171,7 @@ export const DeepLinkCreateEdit =
 
 				// trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-update-deep-link-success',
+					id: 'deep-links-create-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: `DEEP_LINKS.${
@@ -209,7 +210,7 @@ export const DeepLinkCreateEdit =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-update-deep-link-error',
+					id: 'deep-links-create-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `DEEP_LINKS.${
@@ -247,7 +248,7 @@ export const DeepLinkDelete =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'delete-deep-link-success',
+					id: 'deep-links-delete-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'DEEP_LINKS.DELETE.SUCCESS'
@@ -257,7 +258,7 @@ export const DeepLinkDelete =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'delete-deep-link-error',
+					id: 'deep-links-delete-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.DELETE.ERROR'
@@ -290,49 +291,6 @@ export const DeepLinksUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @param reset
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: SDLContentInterface,
-	result: SDLContentInterface,
-	refresh: boolean,
-	rowsPerPage: number,
-	reset: boolean
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		if (reset) {
-			return result;
-		}
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};
 
 /**
  * update deep link

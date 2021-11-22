@@ -45,7 +45,6 @@ export interface AuthUserDataInterface {
 	given_name: string;
 	family_name: string;
 	email: string;
-	role: string;
 }
 
 export interface AuthRealmAccessInterface {

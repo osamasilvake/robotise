@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../..';
-import { deserializeSites } from './Sites.deserialize';
+import { deserializeSites } from './Sites.slice.deserialize';
 import { SliceSitesInterface } from './Sites.slice.interface';
 
 // initial state
@@ -83,7 +83,7 @@ export const SitesFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-sites-error',
+					id: 'sites-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'

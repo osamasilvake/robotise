@@ -5,7 +5,8 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { RobotCommandsLogListPayloadInterface } from '../../../../screens/business/robots/content/commands-log/list/RobotCommandsLogList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { deserializeCommandsLog } from './CommandsLog.deserialize';
+import { handleRefreshAndPagination } from '../../../Slices.map';
+import { deserializeCommandsLog } from './CommandsLog.slice.deserialize';
 import {
 	CLContentInterface,
 	CLCStateInterface,
@@ -117,7 +118,7 @@ export const CommandsLogFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-commands-log-error',
+					id: 'commands-log-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -152,41 +153,3 @@ export const CommandsLogUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: CLContentInterface,
-	result: CLContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};

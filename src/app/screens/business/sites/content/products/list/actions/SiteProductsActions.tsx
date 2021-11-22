@@ -26,7 +26,7 @@ const SiteProductsActions: FC = () => {
 	const [createProduct, setCreateProduct] = useState(false);
 	const [productsReport, setProductsReport] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	/**

@@ -12,7 +12,7 @@ export const CreateOrderValidation = (
 	touched: DialogCreateOrderFormInterface
 ): DialogCreateOrderFormInterface => {
 	const translation = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
-	const regexNormalInteger = AppConfigService.AppOptions.regex.normalInteger;
+	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const errors: DialogCreateOrderFormInterface = {
 		isDebug: false,
 		location: '',
@@ -27,7 +27,7 @@ export const CreateOrderValidation = (
 		}
 
 		// validate
-		if (!regexNormalInteger.test(values.location)) {
+		if (!regexInteger.test(values.location)) {
 			errors.location = `${translation}.FIELDS.LOCATION.VALIDATIONS.INVALID`;
 		}
 	}

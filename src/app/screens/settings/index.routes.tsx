@@ -1,5 +1,5 @@
-import { RouteInterface } from '../../routes/Routes.interfaces';
+import { RoutesInterface } from '../../routes/Routes.interface';
 import deepLinksRoutes from './deep-links/DeepLinks.routes';
 
-const settingsRoutes: RouteInterface[] = [...deepLinksRoutes];
+const settingsRoutes: RoutesInterface[] = [...deepLinksRoutes];
 export default settingsRoutes;

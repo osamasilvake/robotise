@@ -1,5 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { JsonApiResponseInterface } from '../../../JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SlicePurchasesInterface {
 	loader: boolean;
@@ -9,7 +9,7 @@ export interface SlicePurchasesInterface {
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SPContentInterface extends JsonApiResponseInterface {
+export interface SPContentInterface extends JsonAPIResponseInterface {
 	data: SPCDataInterface[];
 	state?: SPCStateInterface;
 }

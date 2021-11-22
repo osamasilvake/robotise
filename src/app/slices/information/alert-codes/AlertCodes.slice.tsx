@@ -5,12 +5,13 @@ import { TriggerMessageInterface } from '../../../components/frame/message/Messa
 import AlertCodesService from '../../../screens/information/alert-codes/AlertCodes.service';
 import { AlertCodesListPayloadInterface } from '../../../screens/information/alert-codes/list/AlertCodesList.interface';
 import { AppReducerType } from '../..';
-import { deserializeAlertCodes } from './AlertCodes.deserialize';
+import { handleRefreshAndPagination } from '../../Slices.map';
 import {
 	SACContentInterface,
 	SACStateInterface,
 	SliceAlertCodesInterface
 } from './AlertCodes.interface';
+import { deserializeAlertCodes } from './AlertCodes.slice.deserialize';
 
 // initial state
 export const initialState: SliceAlertCodesInterface = {
@@ -108,7 +109,7 @@ export const AlertCodesFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-alert-codes-error',
+					id: 'alert-codes-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -140,41 +141,3 @@ export const AlertCodesUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: SACContentInterface,
-	result: SACContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};

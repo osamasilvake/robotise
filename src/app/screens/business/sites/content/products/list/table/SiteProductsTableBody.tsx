@@ -33,7 +33,7 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 			case SiteProductsTableColumnsTypeEnum.WEIGHT:
 				type = SiteProductsTableSortTypeEnum.NUMBER;
 				break;
-			case SiteProductsTableColumnsTypeEnum.UPDATED_AT:
+			case SiteProductsTableColumnsTypeEnum.UPDATED:
 				type = SiteProductsTableSortTypeEnum.DATE;
 				break;
 			case SiteProductsTableColumnsTypeEnum.NAME:

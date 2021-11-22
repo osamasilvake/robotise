@@ -17,7 +17,7 @@ import { SiteNotificationsStyle } from './SiteNotifications.style';
 
 const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const { notifications } = props;
-	const { t } = useTranslation(['SITES', 'TOOLTIPS']);
+	const { t } = useTranslation(['SITES', 'TOOLTIP']);
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
 
@@ -25,7 +25,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	const translation = 'CONTENT.CONFIGURATION.NOTIFICATIONS';
@@ -60,7 +60,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 				<Box className={classes.sCreate}>
 					<Tooltip
 						placement="left"
-						title={String(t('TOOLTIPS:NOTIFICATION.ADD'))}
+						title={t<string>('TOOLTIP:NOTIFICATION.ADD')}
 						onClick={() => setOpen(true)}>
 						<IconButton edge="end">
 							<AddCircle color="primary" />

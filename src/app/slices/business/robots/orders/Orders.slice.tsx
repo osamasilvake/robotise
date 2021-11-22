@@ -7,14 +7,16 @@ import { RobotOrdersListPayloadInterface } from '../../../../screens/business/ro
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializeOrder } from './Order.deserialize';
-import { deserializeOrders } from './Orders.deserialize';
+import { handleRefreshAndPagination } from '../../../Slices.map';
+import { deserializeOrder } from './Order.slice.deserialize';
+import { deserializeOrders } from './Orders.slice.deserialize';
 import {
 	SliceOrdersInterface,
 	SOCDataInterface,
 	SOContentInterface,
 	SOCStateInterface
 } from './Orders.slice.interface';
+import { mapCanceledOrder, mapCreatedOrder } from './Orders.slice.map';
 
 // initial state
 export const initialState: SliceOrdersInterface = {
@@ -124,7 +126,7 @@ export const OrdersFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-orders-error',
+					id: 'orders-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -158,15 +160,15 @@ export const OrderCreate =
 				let result = await deserializeOrder(res);
 
 				if (orders.content) {
-					// update created order
-					result = updateCreatedOrder(orders.content, result);
+					// map created order
+					result = mapCreatedOrder(orders.content, result);
 
 					// dispatch: updated
 					dispatch(updated(result));
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'create-order-success',
+						id: 'order-create-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: 'ROBOTS.ORDERS.CREATE.SUCCESS'
@@ -180,7 +182,7 @@ export const OrderCreate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'create-order-error',
+					id: 'order-create-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ORDERS.CREATE.ERROR'
@@ -214,15 +216,15 @@ export const OrderCancel =
 				let result = await deserializeOrder(res);
 
 				if (orders.content) {
-					// update canceled order
-					result = updateCanceledOrder(orders.content, result[0]);
+					// map canceled order
+					result = mapCanceledOrder(orders.content, result[0]);
 
 					// dispatch: updated
 					dispatch(updated(result));
 
 					// dispatch: trigger message
 					const message: TriggerMessageInterface = {
-						id: 'cancel-order-success',
+						id: 'order-cancel-success',
 						show: true,
 						severity: TriggerMessageTypeEnum.SUCCESS,
 						text: 'ROBOTS.ORDERS.CANCEL.SUCCESS'
@@ -236,7 +238,7 @@ export const OrderCancel =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'cancel-order-error',
+					id: 'order-cancel-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ORDERS.CANCEL.ERROR'
@@ -272,74 +274,3 @@ export const OrderUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: SOContentInterface,
-	result: SOContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};
-
-/**
- * update created order
- * @param state
- * @param order
- * @returns
- */
-const updateCreatedOrder = (
-	state: SOContentInterface,
-	order: SOCDataInterface
-): SOContentInterface => ({
-	...state,
-	data: [order, ...state.data]
-});
-
-/**
- * update canceled order
- * @param state
- * @param order
- * @returns
- */
-const updateCanceledOrder = (
-	state: SOContentInterface,
-	order: SOCDataInterface
-): SOContentInterface => ({
-	...state,
-	data: state.data.map((item) => {
-		if (item.id === order.id) {
-			return order;
-		}
-		return item;
-	})
-});

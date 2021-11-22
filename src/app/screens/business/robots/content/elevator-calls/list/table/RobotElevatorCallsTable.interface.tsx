@@ -28,6 +28,7 @@ export interface RobotElevatorCallsTableBodyInterface {
 }
 
 export interface RobotElevatorCallsTableBodyCellInterface {
+	index: number;
 	column: RobotElevatorCallsTableColumnInterface;
 	elevatorCall: ECCDataInterface;
 }

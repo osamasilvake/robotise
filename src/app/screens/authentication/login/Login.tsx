@@ -126,7 +126,7 @@ const Login: FC = () => {
 									onChange={handleChangeCheckbox}
 								/>
 							}
-							label={t('LOGIN.FIELDS.REMEMBER_ME.LABEL')}
+							label={t<string>('LOGIN.FIELDS.REMEMBER_ME.LABEL')}
 						/>
 
 						<Button

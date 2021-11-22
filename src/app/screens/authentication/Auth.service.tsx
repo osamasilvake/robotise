@@ -2,19 +2,15 @@ import axios from 'axios';
 
 import { AppConfigService, HttpClientService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import {
-	AuthJWTInterface,
-	AuthUserInterface
-} from '../../slices/authentication/Auth.slice.interface';
+import { AuthJWTInterface } from '../../slices/authentication/Auth.slice.interface';
 import { jwtDecode } from '../../utilities/methods/Decode';
 import { momentNow } from '../../utilities/methods/Moment';
 import { serializeObj } from '../../utilities/methods/Object';
-import { AuthUserRoleTypeEnum } from './Auth.enum';
 import { AuthAxiosPostResponseInterface, AuthLoginFormInterface } from './Auth.interface';
 
 class AuthService {
 	/**
-	 * login user
+	 * login
 	 * @param payload
 	 */
 	authLogin = (payload: AuthLoginFormInterface) => {
@@ -34,7 +30,7 @@ class AuthService {
 	};
 
 	/**
-	 * validate auth token
+	 * validate token
 	 * @param accessToken
 	 */
 	authTokenValid = (accessToken: string) => {
@@ -45,7 +41,7 @@ class AuthService {
 	};
 
 	/**
-	 * requests a new token
+	 * request new token
 	 */
 	authRequestNewToken = () => {
 		const request = {
@@ -59,34 +55,6 @@ class AuthService {
 				headers: AppConfigService.AppRequestHeaders.form
 			}
 		);
-	};
-
-	/**
-	 * fetch user info from decoded token
-	 * @param accessToken
-	 */
-	authUserDetail = (accessToken: string): AuthUserInterface => {
-		const decoded: AuthJWTInterface = jwtDecode(accessToken);
-		return {
-			realm_access: decoded.realm_access,
-			data: {
-				user_id: decoded.user_id,
-				display_name: decoded.name,
-				given_name: decoded.given_name,
-				family_name: decoded.family_name,
-				email: decoded.email,
-				role: AuthUserRoleTypeEnum.ADMIN
-			},
-			iat: decoded.iat,
-			exp: decoded.exp,
-			iss: decoded.iss,
-			typ: decoded.typ,
-			azp: decoded.azp,
-			jti: decoded.jti,
-			session_state: decoded.session_state,
-			scope: decoded.scope,
-			email_verified: decoded.email_verified
-		};
 	};
 
 	/**

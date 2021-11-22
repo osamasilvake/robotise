@@ -1,12 +1,12 @@
 import GlobalLayout from '../layouts/global/GlobalLayout';
 import PrivateLayout from '../layouts/private/PrivateLayout';
 import { RouteTypeEnum } from './Routes.enum';
-import { RouteTemplateInterface } from './Routes.interfaces';
+import { RoutesTemplateInterface } from './Routes.interface';
 import privateRoutes from './types/private';
 import publicRoutes from './types/public';
 import sessionRoutes from './types/session';
 
-const routesTemplate: RouteTemplateInterface[] = [
+const routesTemplate: RoutesTemplateInterface[] = [
 	{
 		routes: publicRoutes,
 		template: GlobalLayout,

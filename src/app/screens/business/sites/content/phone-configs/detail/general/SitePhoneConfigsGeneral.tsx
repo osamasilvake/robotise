@@ -52,7 +52,7 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				</Typography>
 				<Stack spacing={0.5} direction="row">
 					<Typography>{t(`${translation}.WORKFLOW.ITEMS.${item.workflow}`)}</Typography>
-					<Tooltip title={String(t(`${translation}.WORKFLOW.NOTES.${item.workflow}`))}>
+					<Tooltip title={t<string>(`${translation}.WORKFLOW.NOTES.${item.workflow}`)}>
 						<InfoOutlined fontSize="small" className={classes.sWorkflowInfoIcon} />
 					</Tooltip>
 				</Stack>

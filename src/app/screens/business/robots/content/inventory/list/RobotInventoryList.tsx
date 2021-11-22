@@ -30,7 +30,7 @@ const RobotInventoryList: FC = () => {
 	const products = useSelector(productsSelector);
 	const inventory = useSelector(inventorySelector);
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 	const pRobotId = inventory.content?.robot.id;
 	const cRobotId = params.robotId;
 	const pSiteId = products.content?.state?.pSiteId;

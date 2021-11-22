@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,9 +18,9 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	const orders = useSelector(ordersSelector);
 
 	/**
-	 * toggle debug
+	 * handle debug
 	 */
-	const toggleDebug = () => {
+	const handleDebug = () => {
 		// dispatch: update state
 		const state: SOCStateInterface = {
 			...orders.content?.state,
@@ -31,14 +31,12 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	};
 
 	return (
-		<Box>
-			<FormControlLabel
-				control={
-					<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
-				}
-				label={t('CONTENT.ORDERS.LIST.ACTIONS.FILTERS.DEBUG')}
-			/>
-		</Box>
+		<FormControlLabel
+			control={
+				<Checkbox color="primary" name="debug" checked={debug} onChange={handleDebug} />
+			}
+			label={t<string>('CONTENT.ORDERS.LIST.ACTIONS.FILTERS.DEBUG')}
+		/>
 	);
 };
 export default RobotOrdersDebug;

@@ -1,6 +1,5 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import clsx from 'clsx';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -27,10 +26,7 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 			</ListItem>
 			{mappedSystem.map((row) => (
 				<Collapse key={row.label} in={open} timeout="auto" unmountOnExit>
-					<ListItem
-						className={clsx({
-							[classes.sListItemWarning]: !row.value
-						})}>
+					<ListItem>
 						<ListItemIcon>
 							<Icon>{t(row.icon)}</Icon>
 						</ListItemIcon>

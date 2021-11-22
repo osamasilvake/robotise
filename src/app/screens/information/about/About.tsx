@@ -1,4 +1,4 @@
-import { Box, CardMedia, Divider, Grid, Link, Paper, Typography } from '@mui/material';
+import { Box, CardMedia, Divider, Grid, Link, Paper, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -24,18 +24,18 @@ const About: FC = () => {
 					<Typography>{t('INFO.OWNER')}</Typography>
 					<br />
 					<Typography variant="h6">{t('INFO.CONTACT.TITLE')}</Typography>
-					<Typography>
-						{t('INFO.CONTACT.TEL.LABEL')}:{' '}
+					<Stack direction="row" spacing={0.5}>
+						<Typography>{t('INFO.CONTACT.TEL.LABEL')}: </Typography>
 						<Link underline="hover" href={`tel:${t('INFO.CONTACT.TEL.VALUE')}`}>
 							{t('INFO.CONTACT.TEL.VALUE')}
 						</Link>
-					</Typography>
-					<Typography>
-						{t('INFO.CONTACT.EMAIL.LABEL')}:{' '}
+					</Stack>
+					<Stack direction="row" spacing={0.5}>
+						<Typography>{t('INFO.CONTACT.EMAIL.LABEL')}: </Typography>
 						<Link underline="hover" href={`mailto:${t('INFO.CONTACT.EMAIL.VALUE')}`}>
 							{t('INFO.CONTACT.EMAIL.VALUE')}
 						</Link>
-					</Typography>
+					</Stack>
 					<br />
 					<Typography variant="h6">{t('INFO.REGISTRY.TITLE')}</Typography>
 					<Typography>

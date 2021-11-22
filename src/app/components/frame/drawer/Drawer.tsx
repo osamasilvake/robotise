@@ -5,7 +5,7 @@ import {
 	Drawer,
 	Icon,
 	List,
-	ListItem,
+	ListItemButton,
 	ListItemIcon,
 	ListItemText,
 	ListSubheader,
@@ -17,6 +17,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { AuthScopeTypeEnum } from '../../../screens/authentication/Auth.enum';
+import { validateScope } from '../../../screens/authentication/Auth.scope';
+import { authSelector } from '../../../slices/authentication/Auth.slice';
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import { generalSelector } from '../../../slices/general/General.slice';
 import Account from '../account/Account';
@@ -26,11 +29,14 @@ import { DrawersList } from './Drawer.list';
 import { DrawerStyle } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
-	const { t } = useTranslation(['SIDEBAR', 'TOOLTIPS']);
+	const { t } = useTranslation(['SIDEBAR', 'TOOLTIP']);
 	const classes = DrawerStyle();
 
+	const auth = useSelector(authSelector);
 	const general = useSelector(generalSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+
+	const scope = auth.user?.scope;
 
 	return (
 		<Drawer
@@ -49,7 +55,6 @@ const DrawerCustom: FC = () => {
 			<Box className={classes.sListRoot}>
 				{DrawersList.map((item, index) => (
 					<List
-						disablePadding
 						key={index}
 						subheader={
 							<ListSubheader>
@@ -57,12 +62,15 @@ const DrawerCustom: FC = () => {
 							</ListSubheader>
 						}>
 						{item.list.map((listItem) => (
-							<ListItem
+							<ListItemButton
+								disableRipple
 								key={listItem.id}
-								button
-								exact
 								component={NavLink}
 								to={listItem.path}
+								disabled={
+									listItem.scope &&
+									!validateScope(scope, listItem.path, AuthScopeTypeEnum.READ)
+								}
 								className={
 									listItem.hint
 										? classes.sListItemWithSubtitle
@@ -81,12 +89,11 @@ const DrawerCustom: FC = () => {
 										<Icon>{listItem.icon}</Icon>
 									)}
 								</ListItemIcon>
-
 								<ListItemText
 									primary={t(listItem.label)}
 									secondary={listItem.hint}
 								/>
-							</ListItem>
+							</ListItemButton>
 						))}
 					</List>
 				))}

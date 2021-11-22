@@ -1,7 +1,7 @@
 import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import {
@@ -26,8 +26,8 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 	const { content, order, orderBy, page, rowsPerPage } = props;
 	const classes = RobotPurchasesTableStyle();
 
-	const params: RobotParamsInterface = useParams();
-	const history = useHistory();
+	const params = useParams() as RobotParamsInterface;
+	const navigate = useNavigate();
 
 	const cRobotId = params.robotId;
 
@@ -96,8 +96,8 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL;
 		const link = url.replace(':robotId', cRobotId).replace(':purchaseId', purchase.id);
 
-		// push to history
-		history.push(link);
+		// navigate
+		navigate(link);
 	};
 
 	return (

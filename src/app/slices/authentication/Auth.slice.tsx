@@ -10,11 +10,10 @@ import { momentNow } from '../../utilities/methods/Moment';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import { AuthUserInterface, SliceAuthInterface } from './Auth.slice.interface';
+import { mapUserDetail } from './Auth.slice.map';
 
 // storage items
-const user = AuthService.getAccessToken()
-	? AuthService.authUserDetail(AuthService.getAccessToken())
-	: null;
+const user = AuthService.getAccessToken() ? mapUserDetail(AuthService.getAccessToken()) : null;
 if (user) {
 	// set authorization to headers
 	AuthService.setAuthorizationToHeaders(AuthService.getAccessToken());
@@ -86,8 +85,8 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 				payload.rememberMe ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
 			);
 
-			// decode user detail from access token
-			const user: AuthUserInterface = AuthService.authUserDetail(res.access_token);
+			// parse and map user info from access token
+			const user: AuthUserInterface = mapUserDetail(res.access_token);
 
 			// dispatch: success
 			dispatch(success(user));
@@ -95,7 +94,7 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 		.catch((err) => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: 'login-error',
+				id: 'auth-login-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: (err && (err.error_description || err.message)) || 'AUTH.UNKNOWN'
@@ -134,10 +133,8 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 							isLocal ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
 						);
 
-						// decode user detail from access token
-						const user: AuthUserInterface = AuthService.authUserDetail(
-							res.access_token
-						);
+						// parse and map user info from access token
+						const user: AuthUserInterface = mapUserDetail(res.access_token);
 
 						// dispatch: success
 						dispatch(success(user));
@@ -145,7 +142,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 					.catch((err) => {
 						// dispatch: trigger message
 						const message: TriggerMessageInterface = {
-							id: 'auto-refresh-error',
+							id: 'auto-token-refresh-error',
 							show: true,
 							severity: TriggerMessageTypeEnum.ERROR,
 							text: err && err.error_description
@@ -165,7 +162,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 		} else {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: 'token-expired-error',
+				id: 'auth-token-expired-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'AUTH.TOKEN_EXPIRED'
@@ -184,7 +181,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	} else {
 		// dispatch: trigger message
 		const message: TriggerMessageInterface = {
-			id: 'token-empty-warn',
+			id: 'auth-token-empty-warn',
 			show: true,
 			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.TOKEN_EMPTY'

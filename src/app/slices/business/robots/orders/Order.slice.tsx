@@ -4,10 +4,9 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { deserializeOrder } from './Order.deserialize';
-import { OrderHistoryTypeEnum } from './Order.slice.enum';
+import { deserializeOrder } from './Order.slice.deserialize';
 import { SliceOrderInterface } from './Order.slice.interface';
-import { SOCDataInterface } from './Orders.slice.interface';
+import { mapOrder } from './Order.slice.map';
 
 // initial state
 export const initialState: SliceOrderInterface = {
@@ -80,7 +79,7 @@ export const OrderFetch =
 				const order = await deserializeOrder(res);
 
 				// prepare order content
-				const result = prepareContent(order);
+				const result = mapOrder(order);
 
 				// dispatch: success
 				dispatch(success(result));
@@ -88,7 +87,7 @@ export const OrderFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-order-error',
+					id: 'order-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -98,18 +97,3 @@ export const OrderFetch =
 				dispatch(failure(message));
 			});
 	};
-
-/**
- * prepare order content
- * @param result
- * @returns
- */
-const prepareContent = (result: SOCDataInterface) => {
-	if (result.history) {
-		return {
-			...result,
-			history: result.history.filter((item) => item.event === OrderHistoryTypeEnum.GOT_STATUS)
-		};
-	}
-	return result;
-};

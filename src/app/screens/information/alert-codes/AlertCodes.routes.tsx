@@ -1,15 +1,14 @@
 import { lazy } from 'react';
 
-import { RouteInterface } from '../../../routes/Routes.interfaces';
+import { RoutesInterface } from '../../../routes/Routes.interface';
 import { AppConfigService } from '../../../services';
 
 const AlertCodes = lazy(() => import('./AlertCodes'));
 
-const alertCodesRoutes: RouteInterface[] = [
+const alertCodesRoutes: RoutesInterface[] = [
 	{
-		component: AlertCodes,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES
+		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES,
+		component: AlertCodes
 	}
 ];
 export default alertCodesRoutes;

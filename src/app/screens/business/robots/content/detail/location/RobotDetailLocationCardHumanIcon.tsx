@@ -22,7 +22,7 @@ const RobotDetailLocationCardHumanIcon: FC<RobotDetailLocationCardHumanIconInter
 			{humanCoords.map((coord, index) => (
 				<Tooltip
 					key={index}
-					title={String(t(`${translation}.${coord.type}`))}
+					title={t<string>(`${translation}.${coord.type}`)}
 					className={classes.sCardHumanTooltip}>
 					<Badge
 						variant="dot"

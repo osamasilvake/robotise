@@ -4,9 +4,9 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../..';
-import { SSContentInterface } from '../sites/Sites.slice.interface';
-import { deserializeRobotTwins } from './RobotTwins.deserialize';
-import { SliceRobotTwinsInterface, SRTContentDataInterface } from './RobotTwins.slice.interface';
+import { deserializeRobotTwins } from './RobotTwins.slice.deserialize';
+import { SliceRobotTwinsInterface } from './RobotTwins.slice.interface';
+import { mapRobotTwins } from './RobotTwins.slice.map';
 
 // initial state
 export const initialState: SliceRobotTwinsInterface = {
@@ -81,8 +81,8 @@ export const RobotTwinsFetch =
 
 				// prepare robot twins content
 				if (sites && sites.content) {
-					// prepare robot twins content
-					const result = prepareContent(sites.content, robotTwins);
+					// map robot twins
+					const result = mapRobotTwins(sites.content, robotTwins);
 
 					// dispatch: success
 					dispatch(success(result));
@@ -91,7 +91,7 @@ export const RobotTwinsFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-rb-error',
+					id: 'rb-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -101,32 +101,3 @@ export const RobotTwinsFetch =
 				dispatch(failure(message));
 			});
 	};
-
-/**
- * prepare robot twins content
- * @param sites
- * @param robotTwins
- * @returns
- */
-const prepareContent = (
-	sites: SSContentInterface,
-	robotTwins: SRTContentDataInterface
-): SRTContentDataInterface => {
-	const site = sites.dataById[robotTwins.site.id];
-	return {
-		...robotTwins,
-		id: robotTwins.id,
-		robot: {
-			id: robotTwins.robot.id,
-			name: robotTwins.robot.name,
-			customerName: robotTwins.robot.customerName,
-			note: robotTwins.robot.note
-		},
-		site: {
-			...robotTwins.site,
-			title: site.title,
-			acceptOrders: site.acceptOrders,
-			elevator: site.elevators
-		}
-	};
-};

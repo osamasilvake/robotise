@@ -1,3 +1,4 @@
-export enum AuthUserRoleTypeEnum {
-	ADMIN = 'Admin'
+export enum AuthScopeTypeEnum {
+	READ = 'read',
+	WRITE = 'write'
 }

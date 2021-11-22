@@ -34,7 +34,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	const [openCreateEdit, setOpenCreateEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const currency = sites.content?.dataById[cSiteId]?.currency;
 
@@ -109,7 +109,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 			);
 		} else {
 			const value = product[column.id];
-			if (SiteProductsTableColumnsTypeEnum.UPDATED_AT === column.id) {
+			if (SiteProductsTableColumnsTypeEnum.UPDATED === column.id) {
 				return momentFormat1(value);
 			} else if (typeof value === 'number') {
 				if (SiteProductsTableColumnsTypeEnum.PRICE === column.id) {

@@ -28,8 +28,8 @@ export const columns: SitesTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SitesTableColumnsTypeEnum.UPDATED_AT,
-		label: `${translation}.UPDATED_AT`,
+		id: SitesTableColumnsTypeEnum.UPDATED,
+		label: `${translation}.UPDATED`,
 		minWidth: 180,
 		align: 'right'
 	}

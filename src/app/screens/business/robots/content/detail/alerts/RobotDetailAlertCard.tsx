@@ -18,7 +18,7 @@ import { RobotDetailAlertsStyle } from './RobotDetailAlerts.style';
 
 const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	const { alert } = props;
-	const { t } = useTranslation('TOOLTIPS');
+	const { t } = useTranslation('TOOLTIP');
 	const classes = RobotDetailAlertsStyle();
 
 	const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 			id: code,
 			show: true,
 			severity: TriggerMessageTypeEnum.SUCCESS,
-			text: 'ROBOTS.DETAIL.ALERTS.CLIPBOARD'
+			text: 'COMMON.COPY_TO_CLIPBOARD'
 		};
 		dispatch(GeneralTriggerMessage(message));
 	};
@@ -87,7 +87,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 				<Box className={classes.sCardContentIcons}>
 					<Tooltip
 						placement="top"
-						title={String(t('ALERTS.COPY_CLIPBOARD'))}
+						title={t<string>('ALERTS.COPY_CLIPBOARD')}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}>
 						<IconButton color="inherit">
 							<FileCopy fontSize="small" />
@@ -95,7 +95,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 					</Tooltip>
 					<Tooltip
 						placement="top"
-						title={String(t('ALERTS.DOCS_LINK'))}
+						title={t<string>('ALERTS.DOCS_LINK')}
 						onClick={handleShowAlertDocsDetail(alert.code)}>
 						<IconButton color="inherit">
 							<OpenInNew fontSize="small" />

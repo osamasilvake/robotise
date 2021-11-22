@@ -23,14 +23,14 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 	const sites = useSelector(sitesSelector);
 	const rooms = useSelector(roomsSelector);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 
 	/**
-	 * toggle room state
+	 * handle room state
 	 */
-	const toggleRoomState = () => {
+	const handleRoomState = () => {
 		// dispatch: update rooms filters
 		const filters: SiteRoomsActionsFiltersPayloadInterface = {
 			...rooms.content?.filters,
@@ -46,10 +46,10 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 					color="primary"
 					name="activeOrders"
 					checked={inactive}
-					onChange={toggleRoomState}
+					onChange={handleRoomState}
 				/>
 			}
-			label={t('CONTENT.ROOMS.LIST.ACTIONS.INACTIVE.LABEL')}
+			label={t<string>('CONTENT.ROOMS.LIST.ACTIONS.INACTIVE.LABEL')}
 		/>
 	);
 };

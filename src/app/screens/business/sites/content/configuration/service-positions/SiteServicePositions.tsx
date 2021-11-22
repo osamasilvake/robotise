@@ -17,7 +17,7 @@ import { SiteServicePositionsStyle } from './SiteServicePositions.style';
 
 const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 	const { servicePositions } = props;
-	const { t } = useTranslation(['SITES', 'TOOLTIPS']);
+	const { t } = useTranslation(['SITES', 'TOOLTIP']);
 	const classes = SiteServicePositionsStyle();
 	const cardClasses = CardStyle();
 
@@ -25,7 +25,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	const translation = 'CONTENT.CONFIGURATION.SERVICE_POSITIONS';
@@ -60,7 +60,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 				<Box className={classes.sCreate}>
 					<Tooltip
 						placement="left"
-						title={String(t('TOOLTIPS:SERVICE_POSITIONS.ADD'))}
+						title={t<string>('TOOLTIP:SERVICE_POSITIONS.ADD')}
 						onClick={() => setOpen(true)}>
 						<IconButton edge="end">
 							<AddCircle color="primary" />

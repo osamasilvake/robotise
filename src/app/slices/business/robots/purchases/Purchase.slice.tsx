@@ -4,13 +4,12 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { deserializePurchase } from './Purchase.deserialize';
+import { deserializePurchase } from './Purchase.slice.deserialize';
 import { SlicePurchaseInterface } from './Purchase.slice.interface';
 
 // initial state
 export const initialState: SlicePurchaseInterface = {
 	loader: false,
-	loading: false,
 	content: null,
 	errors: null
 };
@@ -23,18 +22,13 @@ const dataSlice = createSlice({
 		loader: (state) => {
 			state.loader = true;
 		},
-		loading: (state) => {
-			state.loading = true;
-		},
 		success: (state, action) => {
 			state.loader = false;
-			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
 			state.loader = false;
-			state.loading = false;
 			state.content = null;
 			state.errors = action.payload;
 		},
@@ -43,7 +37,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const purchaseSelector = (state: AppReducerType) => state['purchase'];
@@ -54,23 +48,21 @@ export default dataSlice.reducer;
 /**
  * fetch robot purchase
  * @param purchaseId
- * @param refresh
  * @returns
  */
 export const PurchaseFetch =
-	(purchaseId: string, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(purchaseId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
 		const purchase = states.purchase;
 
 		// return on busy
-		if (purchase && (purchase.loader || purchase.loading)) {
+		if (purchase && purchase.loader) {
 			return;
 		}
 
-		// dispatch: loader/loading
-		dispatch(!refresh ? loader() : loading());
+		// dispatch: loader
+		dispatch(loader());
 
 		return RobotsService.robotPurchaseFetch(purchaseId)
 			.then(async (res) => {
@@ -83,7 +75,7 @@ export const PurchaseFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-purchase-error',
+					id: 'purchase-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'

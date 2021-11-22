@@ -1,11 +1,15 @@
 {
 	"META": {
-		"GENERAL": {
+		"COMMON": {
 			"DESCRIPTION": "An application to manage and monitor Robots on different Sites."
 		},
 		"DASHBOARD": {
 			"TITLE": "Dashboard",
 			"DESCRIPTION": "Dashboard Description"
+		},
+		"GENERAL": {
+			"TITLE": "General",
+			"DESCRIPTION": "General Description"
 		},
 		"SITES": {
 			"TITLE": "Sites",
@@ -36,7 +40,17 @@
 			"DESCRIPTION": "About Description"
 		}
 	},
-	"TOOLTIPS": {
+	"DIALOG": {
+		"BUTTONS": {
+			"CANCEL": "Cancel",
+			"CLEAR": "Clear",
+			"CREATE": "Create",
+			"UPDATE": "Update",
+			"CONFIRM": "Confirm",
+			"GENERATE": "Generate"
+		}
+	},
+	"TOOLTIP": {
 		"EDIT": "Edit",
 		"ALERTS": {
 			"COPY_CLIPBOARD": "Copy to clipboard",
@@ -56,6 +70,11 @@
 			"DELETE": "Delete Service Position"
 		}
 	},
+	"BREADCRUMB": {
+		"EMAIL": "Email",
+		"ORDER": "Order",
+		"PURCHASE": "Purchase"
+	},
 	"UPLOAD": {
 		"IMAGE": {
 			"LABEL": "Upload",
@@ -64,16 +83,6 @@
 				"RULE_2": "Maximum Filesize: {{value}}KB",
 				"RULE_3": "Supported Resolution Upto: {{value}}"
 			}
-		}
-	},
-	"DIALOG": {
-		"BUTTONS": {
-			"CANCEL": "Cancel",
-			"CLEAR": "Clear",
-			"CREATE": "Create",
-			"UPDATE": "Update",
-			"CONFIRM": "Confirm",
-			"GENERATE": "Generate"
 		}
 	},
 	"READ_MORE": {
@@ -114,6 +123,7 @@
 	},
 	"MESSAGE": {
 		"COMMON": {
+			"COPY_TO_CLIPBOARD": "Message copied to clipboard!",
 			"REPORTS": {
 				"SUCCESS": "Report has been generated successfully!",
 				"ERROR": "Unable to generate Report!"
@@ -184,12 +194,12 @@
 		},
 		"ROBOTS": {
 			"DETAIL": {
-				"ALERTS": {
-					"CLIPBOARD": "Message copied to clipboard!"
-				},
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
+				},
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
 				},
 				"MAP": {
 					"ERROR": "Failed to load map location!"
@@ -226,6 +236,11 @@
 				},
 				"ITEM_TRACKING": {
 					"ERROR": "Failed to fetch item tracking link!"
+				}
+			},
+			"ELEVATOR_CALLS": {
+				"ELEVATOR_LOGS": {
+					"ERROR": "Failed to fetch elevator logs link!"
 				}
 			},
 			"CONFIGURATION": {
@@ -278,6 +293,7 @@
 				"SHORT": "Bus."
 			},
 			"LIST": {
+				"GENERAL": "General",
 				"SITES": "Sites",
 				"ROBOTS": "Robots"
 			}
@@ -341,6 +357,57 @@
 			"FORGET_PASSWORD": "Forgot Your Password?"
 		}
 	},
+	"GENERAL": {
+		"CONTENT": {
+			"TABS": {
+				"COMMON": "Common",
+				"EMAILS": "EMAILS"
+			},
+			"EMAILS": {
+				"DETAIL": {
+					"COPY": "Copy",
+					"TO": "To"
+				},
+				"LIST": {
+					"ACTIONS": {
+						"FILTERS": {
+							"SITE": {
+								"ALL_SITES": "All Sites",
+								"LABEL": "Sites"
+							},
+							"DELIVERED": "Include all emails"
+						}
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"RECIPIENT": "Recipient",
+							"STATUS": "Status",
+							"SITE": "Site",
+							"HISTORY": "History",
+							"NOTIFICATION_CODE": "Notification Code",
+							"CREATED": "Created"
+						},
+						"VALUES": {
+							"HISTORY": {
+								"EVENT": {
+									"created": "Created",
+									"processed": "Processed",
+									"delivered": "Delivered",
+									"bounce": "Bounce"
+								}
+							},
+							"NOTIFICATION_CODE": {
+								"emergency-brake-pressed": "Emergency Brake Pressed",
+								"new-purchase": "New Purchase",
+								"order-no-person-interaction": "Order no person Interaction",
+								"low-rating-alert": "Low Rating Alert"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
 	"SITES": {
 		"LIST": {
 			"TABLE": {
@@ -349,7 +416,7 @@
 					"TIMEZONE": "Timezone",
 					"CURRENCY": "Currency",
 					"ACCEPT_ORDERS": "Orders",
-					"UPDATED_AT": "Updated At"
+					"UPDATED": "Updated"
 				}
 			}
 		},
@@ -365,7 +432,7 @@
 			"DETAIL": {
 				"GENERAL": {
 					"SITE": "Site",
-					"VENDOR": "Vendor",
+					"ELEVATOR_VENDOR": "Elevator Vendor",
 					"LAST_UPDATED": "Last Updated",
 					"TIMEZONE": "Timezone",
 					"ACCEPT_ORDERS": {
@@ -443,7 +510,7 @@
 							"LENGTH": "Length (mm)",
 							"WEIGHT": "Weight (g)",
 							"SIZE": "Size",
-							"UPDATED_AT": "Updated",
+							"UPDATED": "Updated",
 							"ACTIONS": "Actions"
 						},
 						"VALUES": {
@@ -519,7 +586,7 @@
 							"MODE": "Mode",
 							"FROM": "From",
 							"HISTORY": "History",
-							"UPDATED_AT": "Updated At"
+							"UPDATED": "Updated"
 						},
 						"VALUES": {
 							"STATUS": {
@@ -644,7 +711,7 @@
 					"CONTROL_MODE": "Autonomous",
 					"BATTERY_PERCENTAGE": "Battery 🔋",
 					"MISSION_STATUS": "Mission 🚀",
-					"UPDATED_AT": "Updated At",
+					"UPDATED": "Updated",
 					"ALERTS": "Alerts"
 				}
 			}
@@ -677,13 +744,17 @@
 					"CUSTOMER_NAME": "Robot Customer Name",
 					"MISSION": "Mission",
 					"NOTE": {
-						"TITLE": "Note",
+						"LABEL": "Note",
 						"EXCERPT": "Provide important and relevant information about the particular robot.",
 						"NOTE": "Maximum limit {{value}}/2000.",
 						"FIELDS": {
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"
 						}
+					},
+					"AUDIT_LOGS": {
+						"LABEL": "Audit Logs",
+						"TEXT": "Audit details"
 					}
 				},
 				"LOCATION": {
@@ -1037,7 +1108,7 @@
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",
-							"UPDATED_ON": "Updated On"
+							"CREATED": "Created"
 						}
 					},
 					"FOOT": {
@@ -1236,11 +1307,11 @@
 						"COLUMNS": {
 							"STATUS": "Status",
 							"CALL_TYPE": "Call Type",
-							"VENDOR": "Vendor",
-							"HISTORY": "History",
 							"SRC_AREA_ID": "SRC ID",
 							"DST_AREA_ID": "DST ID",
-							"CREATED": "Created"
+							"HISTORY": "History",
+							"CREATED": "Created",
+							"ELEVATOR_LOGS": "Elevator Logs"
 						},
 						"VALUES": {
 							"HISTORY": {
@@ -1252,7 +1323,8 @@
 									"robot.event.leftLift": "Robot Left Lift",
 									"elevator.event.error": "Error"
 								}
-							}
+							},
+							"ELEVATOR_LOGS": "Elevator details"
 						}
 					}
 				}
@@ -1369,7 +1441,7 @@
 					"NAME": "Name",
 					"DESCRIPTION": "Description",
 					"KEY": "Key",
-					"CREATED_AT": "Created At",
+					"CREATED": "Created",
 					"ACTIONS": "Actions"
 				},
 				"VALUES": {
@@ -1387,7 +1459,7 @@
 					"SYSTEM": "System",
 					"CODE": "Code",
 					"NODE": "Node",
-					"UPDATED_AT": "Updated At"
+					"UPDATED": "Updated"
 				}
 			}
 		}

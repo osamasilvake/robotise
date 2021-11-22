@@ -27,13 +27,13 @@ import {
 
 const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	const { notifications, notification, index } = props;
-	const { t } = useTranslation('TOOLTIPS');
+	const { t } = useTranslation('TOOLTIP');
 
 	const dispatch = useDispatch();
 
 	const [open, setOpen] = useState(false);
 
-	const params: SiteParamsInterface = useParams();
+	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	/**
@@ -68,18 +68,18 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 						onChange={handleNotification(notification)}
 					/>
 				}
-				label={false}
+				label={''}
 			/>
 
 			<ListItemText
 				primary={notification.typeName}
-				secondary={notification.users.length > 0 && notification.users.join(', ')}
+				secondary={notification.users.join(', ')}
 			/>
 
 			<ListItemSecondaryAction>
 				<Tooltip
 					placement="left"
-					title={String(t('NOTIFICATION.EDIT'))}
+					title={t<string>('NOTIFICATION.EDIT')}
 					onClick={() => setOpen(true)}>
 					<IconButton edge="end">
 						<Edit color="primary" />

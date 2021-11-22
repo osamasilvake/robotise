@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { RouteInterface } from '../../../routes/Routes.interfaces';
+import { RoutesInterface } from '../../../routes/Routes.interface';
 import { AppConfigService } from '../../../services';
 import Robot from './Robot';
 
@@ -8,70 +8,60 @@ const Robots = lazy(() => import('./Robots'));
 
 /**
  * NOTE:
- * the robot tabs are shown based on the robotsRoutes objects
+ * the tabs are shown based on the routes object
  * therefore, changing the sequence of objects will make tabs malfunction.
  */
-const robotsRoutes: RouteInterface[] = [
+const robotsRoutes: RoutesInterface[] = [
 	/**
 	 * Main
 	 */
 	{
-		component: Robots,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN,
+		component: Robots
 	},
 
 	/**
 	 * Tabs
 	 */
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.INVENTORY
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.INVENTORY,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.MAIN,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.MAIN,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOG
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOG,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION,
+		component: Robot
 	},
 
 	/**
 	 * Details
 	 */
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ORDERS.DETAIL,
+		component: Robot
 	},
 	{
-		component: Robot,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL,
+		component: Robot
 	}
 ];
 export default robotsRoutes;

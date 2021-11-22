@@ -1,17 +1,16 @@
 import { lazy } from 'react';
 
-import { RouteInterface } from '../../routes/Routes.interfaces';
+import { RoutesInterface } from '../../routes/Routes.interface';
 import { AppConfigService } from '../../services';
 import alertCodesRoutes from './alert-codes/AlertCodes.routes';
 
 const About = lazy(() => import('./about/About'));
 
-const informationRoutes: RouteInterface[] = [
+const informationRoutes: RoutesInterface[] = [
 	...alertCodesRoutes,
 	{
-		component: About,
-		exact: true,
-		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT
+		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT,
+		component: About
 	}
 ];
 export default informationRoutes;

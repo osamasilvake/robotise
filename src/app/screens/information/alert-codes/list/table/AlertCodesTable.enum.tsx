@@ -3,7 +3,7 @@ export enum AlertCodesTableColumnsTypeEnum {
 	SYSTEM = 'system',
 	CODE = 'alertCode',
 	NODE = 'node',
-	UPDATED_AT = 'updatedAt'
+	UPDATED = 'updatedAt'
 }
 
 export enum AlertCodesTableSortTypeEnum {

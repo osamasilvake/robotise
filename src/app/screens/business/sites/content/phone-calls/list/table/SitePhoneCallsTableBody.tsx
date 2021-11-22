@@ -28,7 +28,7 @@ const SitePhoneCallsTableBody: FC<SitePhoneCallsTableBodyInterface> = (props) =>
 	const sortTableData = (content: PCContentInterface): PCCDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case SitePhoneCallsTableColumnsTypeEnum.UPDATED_AT:
+			case SitePhoneCallsTableColumnsTypeEnum.UPDATED:
 				type = SitePhoneCallsTableSortTypeEnum.DATE;
 				break;
 			case SitePhoneCallsTableColumnsTypeEnum.ROOM:

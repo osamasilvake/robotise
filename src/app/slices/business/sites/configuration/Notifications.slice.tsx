@@ -7,7 +7,7 @@ import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
-import { deserializeNotifications } from './Notifications.deserialize';
+import { deserializeNotifications } from './Notifications.slice.deserialize';
 import {
 	SliceNotificationsInterface,
 	SNContentNotificationTypeInterface,
@@ -118,7 +118,7 @@ export const NotificationTypesAndUsersFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-notification-types-users-error',
+					id: 'notifications-types-users-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.NOTIFICATIONS.FETCH.ERROR'
@@ -152,7 +152,7 @@ export const NotificationUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-update-notification-users-success',
+					id: 'notifications-users-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.NOTIFICATIONS.UPDATE.SUCCESS'
@@ -165,7 +165,7 @@ export const NotificationUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'fetch-update-notification-users-error',
+					id: 'notifications-users-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.NOTIFICATIONS.UPDATE.ERROR'

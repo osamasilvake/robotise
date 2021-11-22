@@ -122,9 +122,9 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 	/**
 	 * set next track
 	 */
-	const toNextTrack = useCallback(() => {
+	const toNextTrack = () => {
 		setTrackIndex(trackIndex < tracks.length - 1 ? trackIndex + 1 : 0);
-	}, [trackIndex, tracks.length]);
+	};
 
 	/**
 	 * on scrub

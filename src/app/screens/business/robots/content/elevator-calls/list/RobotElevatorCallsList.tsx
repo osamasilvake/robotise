@@ -34,7 +34,7 @@ const RobotElevatorCallsList: FC = () => {
 		rowsPerPage
 	});
 
-	const params: RobotParamsInterface = useParams();
+	const params = useParams() as RobotParamsInterface;
 	const pRobotId = elevatorCalls.content?.state?.pRobotId;
 	const cRobotId = params.robotId;
 

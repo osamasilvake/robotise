@@ -27,7 +27,7 @@ export interface RobotDetailLocationInfoInterface {
 export interface RobotDetailLocationCardRobotIconInterface {
 	robotCoords: RobotDetailLocationCardRobotIconCoords;
 	plannedPath: boolean;
-	goalReached: boolean;
+	activePoints: boolean;
 }
 
 export interface RobotDetailLocationCardRatioInterface {

@@ -1,12 +1,14 @@
 import { Box } from '@mui/material';
 import { FC } from 'react';
 
-import { LayoutPageInterface } from '../../routes/Routes.interfaces';
+import { LayoutPageInterface } from '../../routes/Routes.interface';
 
-const GlobalLayout: FC<LayoutPageInterface> = ({ Component, route }: LayoutPageInterface) => {
+const GlobalLayout: FC<LayoutPageInterface> = (props) => {
+	const { Component } = props;
+
 	return (
 		<Box component="main">
-			<Component route={route} />
+			<Component />
 		</Box>
 	);
 };

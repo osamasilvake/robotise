@@ -1,36 +1,37 @@
 import { FC } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import GlobalLayout from '../layouts/global/GlobalLayout';
 import Auth from '../screens/authentication/Auth';
-import Error404 from '../screens/pages/404/Error404';
-import routesTemplates from './Routes.template';
+import { AuthScopeTypeEnum } from '../screens/authentication/Auth.enum';
+import { validateScope } from '../screens/authentication/Auth.scope';
+import { authSelector } from '../slices/authentication/Auth.slice';
+import routesTemplate from './Routes.template';
 
-const Routes: FC = () => {
+const RoutesCustom: FC = () => {
+	const auth = useSelector(authSelector);
+
 	return (
 		<BrowserRouter>
-			<Switch>
-				{routesTemplates.map((routesTemplate) => {
-					const { routes: appRoutes, template, type } = routesTemplate;
-					return appRoutes.map((appRoute) => (
-						<Route
-							key={appRoute.path}
-							exact={appRoute.exact}
-							path={appRoute.path}
-							render={(route) => (
-								<Auth
-									appRoute={appRoute}
-									template={template}
-									route={route}
-									type={type}
-								/>
-							)}
-						/>
-					));
+			<Routes>
+				{routesTemplate.map((item) => {
+					const { template, routes, type } = item;
+					const scope = auth.user?.scope;
+					return routes
+						.filter(
+							(r) =>
+								!(r.scope && !validateScope(scope, r.path, AuthScopeTypeEnum.READ))
+						)
+						.map((route) => (
+							<Route
+								key={route.path}
+								path={route.path}
+								element={<Auth template={template} route={route} type={type} />}
+							/>
+						));
 				})}
-				<Route render={(route) => <GlobalLayout Component={Error404} route={route} />} />
-			</Switch>
+			</Routes>
 		</BrowserRouter>
 	);
 };
-export default Routes;
+export default RoutesCustom;

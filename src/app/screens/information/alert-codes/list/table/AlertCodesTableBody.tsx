@@ -31,7 +31,7 @@ const AlertCodesTableBody: FC<AlertCodesTableBodyInterface> = (props) => {
 	const sortTableData = (content: SACContentInterface): SACDataInterface[] => {
 		let type;
 		switch (orderBy) {
-			case AlertCodesTableColumnsTypeEnum.UPDATED_AT:
+			case AlertCodesTableColumnsTypeEnum.UPDATED:
 				type = AlertCodesTableSortTypeEnum.DATE;
 				break;
 			case AlertCodesTableColumnsTypeEnum.DESCRIPTION:

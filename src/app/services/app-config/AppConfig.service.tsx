@@ -1,4 +1,4 @@
-import appRoutes from '../../routes/app-routes';
+import appRoutes from '../../routes/Routes.path';
 import EnvService from '../env/Env.service';
 
 class AppConfigService extends EnvService {
@@ -10,7 +10,8 @@ class AppConfigService extends EnvService {
 			common: {
 				alertDocsUrl: this.envAlertDocsUrl,
 				defaultCurrency: 'EUR',
-				none: '---'
+				none: '---',
+				dots: '...'
 			},
 			colors: {
 				c1: '#212629', // dark: 			content
@@ -86,6 +87,16 @@ class AppConfigService extends EnvService {
 					validateBeforeExpiry: 2 * 60 * 1000 // 2 minutes before expiry
 				},
 				business: {
+					general: {
+						emails: {
+							list: {
+								refreshTime: 10000,
+								showPageSizes: true,
+								defaultPageSize: 50,
+								pageSizes: [5, 10, 15, 20, 50, 100]
+							}
+						}
+					},
 					sites: {
 						list: {
 							refreshTime: 10000,
@@ -166,9 +177,6 @@ class AppConfigService extends EnvService {
 								}
 							},
 							purchases: {
-								detail: {
-									refreshTime: 10000
-								},
 								list: {
 									refreshTime: 10000,
 									showPageSizes: true,
@@ -219,7 +227,7 @@ class AppConfigService extends EnvService {
 			regex: {
 				email: new RegExp(/\S+@\S+\.\S+/),
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
-				normalInteger: new RegExp(/^\+?([1-9]\d*)$/)
+				integer: new RegExp(/^\+?([1-9]\d*)$/)
 			}
 		};
 	}
@@ -245,6 +253,10 @@ class AppConfigService extends EnvService {
 			},
 			SCREENS: {
 				BUSINESS: {
+					GENERAL: {
+						EMAILS: `${this.envAppUrl}/emails`,
+						EMAIL: `${this.envAppUrl}/emails/:emailId`
+					},
 					SITES: {
 						ALL: `${this.envAppUrl}/sites`,
 						SINGLE: `${this.envAppUrl}/sites/:siteId`,
@@ -277,7 +289,9 @@ class AppConfigService extends EnvService {
 						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
 						LINKS: {
-							ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`
+							AUDIT_LOGS: `${this.envAppUrl}/deeplinks-request/audit-logs-robot-site`,
+							ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`,
+							ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`
 						},
 						REPORTS: {
 							PURCHASES: `${this.envAppUrl}/order-report-export`

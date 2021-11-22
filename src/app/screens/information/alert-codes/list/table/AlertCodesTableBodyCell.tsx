@@ -21,7 +21,7 @@ const AlertCodesTableBodyCell: FC<AlertCodesTableBodyCellInterface> = (props) =>
 	 */
 	const setCellValue = (alertCode: SACDataInterface, column: AlertCodesTableColumnInterface) => {
 		const value = alertCode[column.id];
-		if (AlertCodesTableColumnsTypeEnum.UPDATED_AT === column.id) {
+		if (AlertCodesTableColumnsTypeEnum.UPDATED === column.id) {
 			return momentFormat1(value);
 		}
 		return value || AppConfigService.AppOptions.common.none;

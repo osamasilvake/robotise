@@ -107,11 +107,7 @@ const Dark = (options: ThemeOptions): ThemeOptions => ({
 					'&:-webkit-autofill': {
 						WebkitBoxShadow: `0 0 0 ${pxToRem(1000)} ${
 							AppConfigService.AppOptions.colors.c1
-						} inset`,
-						'&::first-line': {
-							fontSize: pxToRem(16),
-							fontFamily: AppConfigService.AppOptions.styles.fontFamily.Roboto
-						}
+						} inset`
 					},
 					'&::-webkit-calendar-picker-indicator': {
 						filter: 'invert(0.55)'

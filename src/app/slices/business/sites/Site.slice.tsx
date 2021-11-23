@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
+import { SiteConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
@@ -14,6 +15,9 @@ import { SliceSiteInterface } from './Site.slice.interface';
 // initial state
 export const initialState: SliceSiteInterface = {
 	acceptOrders: {
+		loading: false
+	},
+	siteConfig: {
 		loading: false
 	},
 	siteRobotConfig: {
@@ -33,6 +37,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = true;
+			} else if (module === SiteTypeEnum.SITE_CONFIG) {
+				state.siteConfig.loading = true;
 			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = true;
 			} else if (module === SiteTypeEnum.REPORTS) {
@@ -43,6 +49,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
+			} else if (module === SiteTypeEnum.SITE_CONFIG) {
+				state.siteConfig.loading = false;
 			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
 			} else if (module === SiteTypeEnum.REPORTS) {
@@ -53,6 +61,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
+			} else if (module === SiteTypeEnum.SITE_CONFIG) {
+				state.siteConfig.loading = false;
 			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
 			} else if (module === SiteTypeEnum.REPORTS) {
@@ -115,6 +125,58 @@ export const SiteOrdersAccept =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * update site config
+ * @param siteId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const SiteConfigUpdate =
+	(siteId: string, payload: SiteConfigFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteTypeEnum.SITE_CONFIG
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteConfigUpdate(siteId, payload)
+			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-config-success`,
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `SITES.CONFIGURATION.SITE_CONFIG.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `site-config-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `SITES.CONFIGURATION.SITE_CONFIG.ERROR`
 				};
 				dispatch(triggerMessage(message));
 

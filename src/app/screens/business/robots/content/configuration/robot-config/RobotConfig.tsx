@@ -86,7 +86,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 					{t(`${translation}.EXCERPT`)}
 				</Typography>
 
-				<form onSubmit={handleSubmit} className={classes.sForm}>
+				<form onSubmit={handleSubmit}>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
 							<FormControl error fullWidth>

@@ -404,6 +404,96 @@ export const RobotCameraCommandRequest =
 	};
 
 /**
+ * fetch item tracking link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotItemTrackingLinkFetch =
+	(
+		payload: ExternalLinkPayloadInterface,
+		callback: (report: SRContentDeepLinkInterface) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.ITEM_TRACKING
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotItemTrackingLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-item-tracking-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.PURCHASES.ITEM_TRACKING.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
+			});
+	};
+
+/**
+ * fetch elevator logs link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotElevatorLogsLinkFetch =
+	(
+		payload: ExternalLinkPayloadInterface,
+		callback: (report: SRContentDeepLinkInterface) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.ELEVATOR_LOGS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotElevatorLogsLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-elevator-logs-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.ELEVATOR_CALLS.ELEVATOR_LOGS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
+			});
+	};
+
+/**
  * sync products on the robot
  * @param robotId
  * @returns
@@ -546,96 +636,6 @@ export const RobotSiteConfigUpdate =
 
 				// dispatch: failure
 				dispatch(failure(state));
-			});
-	};
-
-/**
- * fetch item tracking link
- * @param payload
- * @param callback
- * @returns
- */
-export const RobotItemTrackingLinkFetch =
-	(
-		payload: ExternalLinkPayloadInterface,
-		callback: (report: SRContentDeepLinkInterface) => void
-	) =>
-	async (dispatch: Dispatch) => {
-		const state = {
-			module: RobotTypeEnum.ITEM_TRACKING
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		// wait
-		await timeout(1000);
-
-		return RobotsService.robotItemTrackingLinkFetch(payload)
-			.then(async (res) => {
-				// dispatch: success
-				dispatch(success({ ...state, response: res }));
-
-				// callback
-				callback(res);
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: `robot-item-tracking-error`,
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.PURCHASES.ITEM_TRACKING.ERROR`
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
-			});
-	};
-
-/**
- * fetch elevator logs link
- * @param payload
- * @param callback
- * @returns
- */
-export const RobotElevatorLogsLinkFetch =
-	(
-		payload: ExternalLinkPayloadInterface,
-		callback: (report: SRContentDeepLinkInterface) => void
-	) =>
-	async (dispatch: Dispatch) => {
-		const state = {
-			module: RobotTypeEnum.ELEVATOR_LOGS
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		// wait
-		await timeout(1000);
-
-		return RobotsService.robotElevatorLogsLinkFetch(payload)
-			.then(async (res) => {
-				// dispatch: success
-				dispatch(success({ ...state, response: res }));
-
-				// callback
-				callback(res);
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: `robot-elevator-logs-error`,
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.ELEVATOR_CALLS.ELEVATOR_LOGS.ERROR`
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
 			});
 	};
 

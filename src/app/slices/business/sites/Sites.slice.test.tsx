@@ -29,7 +29,8 @@ describe('[SLICE] Sites', () => {
 						createdAt: '2021-03-16T14:58:41.982Z',
 						timezone: 'Europe/Berlin',
 						title: 'Cliniserve / Portalklinik',
-						updatedAt: '2021-03-18T13:00:03.175Z'
+						updatedAt: '2021-03-18T13:00:03.175Z',
+						isHidden: false
 					},
 					id: 'd190585d-9e8b-43a9-94fc-141c0ca7d78e',
 					relationships: {
@@ -62,6 +63,7 @@ describe('[SLICE] Sites', () => {
 					timezone: 'Europe/Berlin',
 					title: 'Cliniserve / Portalklinik',
 					updatedAt: '2021-03-18T13:00:03.175Z',
+					isHidden: false,
 					id: 'd190585d-9e8b-43a9-94fc-141c0ca7d78e',
 					robots: [
 						{

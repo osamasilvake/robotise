@@ -4,6 +4,7 @@ import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
+import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
@@ -169,6 +170,29 @@ class SitesService {
 				id: siteId,
 				attributes: {
 					acceptOrders
+				}
+			}
+		});
+	};
+
+	/**
+	 * update site config
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteConfigUpdate = (siteId: string, payload: SiteConfigFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIG.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				attributes: {
+					configs: {
+						isHidden: payload.isHidden
+					}
 				}
 			}
 		});

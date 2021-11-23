@@ -157,12 +157,16 @@
 			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
-					"SUCCESS": "Settings has been updated successfully!",
-					"ERROR": "Unable to update the settings!"
+					"SUCCESS": "Site Setting has been updated successfully!",
+					"ERROR": "Unable to update accept orders!"
+				},
+				"SITE_CONFIG": {
+					"SUCCESS": "Site setting has been updated successfully!",
+					"ERROR": "Unable to configure site!"
 				},
 				"SITE_ROBOT_CONFIG": {
-					"SUCCESS": "Settings has been updated successfully!",
-					"ERROR": "Unable to update the settings!"
+					"SUCCESS": "Site setting has been updated successfully!",
+					"ERROR": "Unable to configure site robot!"
 				},
 				"NOTIFICATIONS": {
 					"FETCH": {
@@ -617,6 +621,23 @@
 					"TITLE": "Accept Orders",
 					"EXCERPT": "Allow robots to accept orders.",
 					"ACTIVE": "Active"
+				},
+				"SITE_CONFIG": {
+					"TITLE": "Configure Site",
+					"EXCERPT": "Update Site detail.",
+					"FORM": {
+						"FIELDS": {
+							"CHECKBOXES": {
+								"HIDDEN": {
+									"LABEL": "Hide Site",
+									"NOTE": "*Whether to show site in the ROC sites list!"
+								}
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
 				},
 				"SITE_ROBOT_CONFIG": {
 					"TITLE": "Configure Site ROBOT",

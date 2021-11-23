@@ -414,6 +414,11 @@
 	},
 	"SITES": {
 		"LIST": {
+			"ACTIONS": {
+				"FILTERS": {
+					"HIDDEN": "Include hidden sites"
+				}
+			},
 			"TABLE": {
 				"COLUMNS": {
 					"NAME": "Name",

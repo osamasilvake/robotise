@@ -318,6 +318,7 @@ class AppConfigService extends EnvService {
 			ChangeLanguage: 'robotise_change_language',
 			DrawerState: 'robotise_drawer_state',
 			IntendedURL: 'robotise_intended_url',
+			SitesState: 'robotise_sites_state',
 			RobotsState: 'robotise_robots_state'
 		};
 	}

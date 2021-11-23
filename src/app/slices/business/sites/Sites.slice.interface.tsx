@@ -4,6 +4,7 @@ import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
 export interface SliceSitesInterface {
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: SSContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

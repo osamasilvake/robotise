@@ -35,7 +35,7 @@ const Login: FC = () => {
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
 
-	const buttonClicked = useRef(false);
+	const focus = useRef(false);
 	const [showPassword, setShowPassword] = useState(false);
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<AuthLoginFormInterface>(
@@ -81,6 +81,7 @@ const Login: FC = () => {
 								error={!!errors?.email}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
+								onFocus={() => (focus.current = true)}
 								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
 								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								InputLabelProps={{ shrink: true }}
@@ -97,6 +98,7 @@ const Login: FC = () => {
 								error={!!errors?.password}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
+								onFocus={() => (focus.current = true)}
 								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
 								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
 								InputLabelProps={{ shrink: true }}
@@ -136,13 +138,13 @@ const Login: FC = () => {
 							type="submit"
 							className={classes.sSubmit}
 							disabled={
-								!!buttonClicked.current &&
+								focus.current &&
 								((!!errors && !validateEmptyObj(errors)) ||
 									validateEmptyObjProperty(values) ||
 									auth.loading)
 							}
 							endIcon={auth.loading && <CircularProgress size={20} />}
-							onClick={() => (buttonClicked.current = true)}>
+							onClick={() => (focus.current = true)}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
 

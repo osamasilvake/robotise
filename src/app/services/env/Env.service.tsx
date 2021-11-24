@@ -34,21 +34,21 @@ class EnvService {
 	 * api version
 	 */
 	get envApiVersion() {
-		return process.env.REACT_APP_API_VERSION || '';
+		return `${process.env.REACT_APP_API_VERSION}`;
 	}
 
 	/**
 	 * auth realm
 	 */
 	get envRealm() {
-		return process.env.REACT_APP_AUTH_REALM || '';
+		return `${process.env.REACT_APP_AUTH_REALM}`;
 	}
 
 	/**
 	 * app version
 	 */
 	get envAppVersion() {
-		return process.env.REACT_APP_VERSION || '';
+		return `${process.env.REACT_APP_VERSION}`;
 	}
 
 	/**
@@ -62,7 +62,7 @@ class EnvService {
 	 * app name
 	 */
 	get envAppName() {
-		return process.env.REACT_APP_NAME?.toUpperCase() || '';
+		return `${process.env.REACT_APP_NAME?.toUpperCase()}`;
 	}
 
 	/**
@@ -76,21 +76,21 @@ class EnvService {
 	 * company url
 	 */
 	get envCompanyUrl() {
-		return process.env.REACT_APP_COMPANY_URL || '';
+		return `${process.env.REACT_APP_COMPANY_URL}`;
 	}
 
 	/**
 	 * alert docs url
 	 */
 	get envAlertDocsUrl() {
-		return process.env.REACT_APP_ALERT_DOCS_URL || '';
+		return `${process.env.REACT_APP_ALERT_DOCS_URL}`;
 	}
 
 	/**
 	 * reset password url
 	 */
 	get envResetPasswordUrl() {
-		return process.env.REACT_APP_AUTH_RESET_PASSWORD || '';
+		return `${process.env.REACT_APP_AUTH_RESET_PASSWORD}`;
 	}
 }
 export default EnvService;

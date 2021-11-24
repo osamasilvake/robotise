@@ -3,14 +3,23 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
+import { AppConfigService, StorageService } from '../../../services';
 import { AppReducerType } from '../..';
-import { deserializeSites } from './Sites.deserialize';
-import { SliceSitesInterface } from './Sites.slice.interface';
+import { deserializeSites } from './Sites.slice.deserialize';
+import {
+	SliceSitesInterface,
+	SSContentInterface,
+	SSContentStateInterface
+} from './Sites.slice.interface';
+
+// storage item
+const sitesState = StorageService.get(AppConfigService.StorageItems.SitesState);
 
 // initial state
 export const initialState: SliceSitesInterface = {
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -38,12 +47,19 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
+		updated: (state, action) => {
+			state.updating = false;
+			state.content = action.payload;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const sitesSelector = (state: AppReducerType) => state['sites'];
@@ -62,6 +78,7 @@ export const SitesFetchList =
 		// states
 		const states = getState();
 		const sites = states.sites;
+		const filters = sites.content?.state || sitesState;
 
 		// return on busy
 		if (sites && (sites.loader || sites.loading)) {
@@ -72,10 +89,16 @@ export const SitesFetchList =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch sites
-		return SitesService.sitesFetch()
+		return SitesService.sitesFetch(filters)
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializeSites(res);
+				let result: SSContentInterface = await deserializeSites(res);
+
+				// state
+				result = {
+					...result,
+					state: filters
+				};
 
 				// dispatch: success
 				dispatch(success(result));
@@ -92,4 +115,33 @@ export const SitesFetchList =
 				// dispatch: failure
 				dispatch(failure(message));
 			});
+	};
+
+/**
+ * update state
+ * @param state
+ * @returns
+ */
+export const SitesUpdateState =
+	(state: SSContentStateInterface) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const sites = states.sites;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		if (sites && sites.content) {
+			const result = {
+				...sites.content,
+				state
+			};
+
+			// dispatch: updated
+			dispatch(updated(result));
+
+			// storage: sites state
+			StorageService.put(AppConfigService.StorageItems.SitesState, state);
+		}
 	};

@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { deserializePurchase } from './Purchase.deserialize';
+import { deserializePurchase } from './Purchase.slice.deserialize';
 import { SlicePurchaseInterface } from './Purchase.slice.interface';
 
 // initial state

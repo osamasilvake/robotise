@@ -1,4 +1,4 @@
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 import { FC, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -37,7 +37,10 @@ const DeepLinksList: FC = () => {
 			rowsPerPage
 		};
 
-		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
+		// reset page: create or delete deep link
+		if (reset === DeepLinkResetTypeEnum.RESET) {
+			pageRef.current.page = 0;
+		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch deep links
 			dispatch(DeepLinksFetchList(payload));
 
@@ -59,7 +62,7 @@ const DeepLinksList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, deepLinks.content, page, rowsPerPage]);
+	}, [dispatch, deepLinks.content, page, rowsPerPage, reset]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -84,13 +87,6 @@ const DeepLinksList: FC = () => {
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, deepLinks.content, page, rowsPerPage]);
-
-	useEffect(() => {
-		// reset: create or delete deep link
-		if (reset === DeepLinkResetTypeEnum.RESET) {
-			pageRef.current.page = 0;
-		}
-	}, [reset]);
 
 	// loader
 	if (deepLinks.loader) {

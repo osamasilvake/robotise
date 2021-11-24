@@ -4,14 +4,9 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { SPCDataInterface } from '../../sites/products/Products.slice.interface';
-import { deserializeInventory } from './Inventory.deserialize';
-import {
-	SICDrawerInterface,
-	SICDrawerLaneInterface,
-	SIContentInterface,
-	SliceInventoryInterface
-} from './Inventory.slice.interface';
+import { deserializeInventory } from './Inventory.slice.deserialize';
+import { SliceInventoryInterface } from './Inventory.slice.interface';
+import { mapProductsToInventory } from './Inventory.slice.map';
 
 // initial state
 export const initialState: SliceInventoryInterface = {
@@ -86,8 +81,8 @@ export const InventoryFetchList =
 
 				// prepare inventory content
 				if (products && products.content) {
-					// add products to inventory
-					const result = addProductsToInventory(inventory, products.content.data);
+					// map products to inventory
+					const result = mapProductsToInventory(inventory, products.content.data);
 
 					// dispatch: success
 					dispatch(success(result));
@@ -106,27 +101,3 @@ export const InventoryFetchList =
 				dispatch(failure(message));
 			});
 	};
-
-/**
- * add products to inventory
- * @param inventory
- * @param products
- * @returns
- */
-const addProductsToInventory = (inventory: SIContentInterface, products: SPCDataInterface[]) => ({
-	...inventory,
-	drawers: [
-		...inventory.drawers.map((drawer: SICDrawerInterface) => {
-			return {
-				...drawer,
-				lanes: drawer.lanes.map((lane: SICDrawerLaneInterface) => {
-					const product = products.find((p: SPCDataInterface) => p.id === lane.productId);
-					return {
-						...lane,
-						product: product || null
-					};
-				})
-			};
-		})
-	]
-});

@@ -18,9 +18,9 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	const purchases = useSelector(purchasesSelector);
 
 	/**
-	 * toggle debug
+	 * handle debug
 	 */
-	const toggleDebug = () => {
+	const handleDebug = () => {
 		// dispatch: update state
 		const state: SPCStateInterface = {
 			...purchases.content?.state,
@@ -33,7 +33,7 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	return (
 		<FormControlLabel
 			control={
-				<Checkbox color="primary" name="debug" checked={debug} onChange={toggleDebug} />
+				<Checkbox color="primary" name="debug" checked={debug} onChange={handleDebug} />
 			}
 			label={t<string>('CONTENT.PURCHASES.LIST.ACTIONS.FILTERS.DEBUG')}
 		/>

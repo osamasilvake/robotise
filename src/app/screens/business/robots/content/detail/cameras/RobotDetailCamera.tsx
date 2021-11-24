@@ -35,7 +35,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 		setCurrentCameraType(camera);
 
 		// dispatch: request robot camera command
-		dispatch(RobotCameraCommandRequest(camera, robotTwins.robot.id || ''));
+		dispatch(RobotCameraCommandRequest(camera, `${robotTwins.robot.id}`));
 	};
 
 	return (

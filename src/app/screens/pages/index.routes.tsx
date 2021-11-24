@@ -1,7 +1,7 @@
-import { RouteInterface } from '../../routes/Routes.interfaces';
+import { RoutesInterface } from '../../routes/Routes.interface';
 import Error404 from './404/Error404';
 
-const pagesRoutes: RouteInterface[] = [
+const pagesRoutes: RoutesInterface[] = [
 	{
 		path: '*',
 		component: Error404

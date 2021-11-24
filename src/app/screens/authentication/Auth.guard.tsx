@@ -1,9 +1,8 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
-import { AppConfigService, StorageService } from '../../services';
-import { StorageTypeEnum } from '../../services/storage/Storage.enum';
+import { AppConfigService } from '../../services';
 import { AuthRefreshToken, authSelector } from '../../slices/authentication/Auth.slice';
 import {
 	RobotTwinsSummaryFetchList,
@@ -19,6 +18,8 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 	const auth = useSelector(authSelector);
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+
+	const location = useLocation();
 
 	useEffect(() => {
 		/**
@@ -63,15 +64,8 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 	 * others:		Route
 	 */
 	if (route.path === AppConfigService.AppRoutes.AUTH.LOGIN) {
-		const intendedUrl = StorageService.get(AppConfigService.StorageItems.IntendedURL);
 		const defaultUrl = AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
-		setTimeout(() =>
-			StorageService.remove(
-				AppConfigService.StorageItems.IntendedURL,
-				StorageTypeEnum.SESSION
-			)
-		);
-		return <Navigate to={intendedUrl || defaultUrl} />;
+		return <Navigate to={location.state?.intendedUrl || defaultUrl} />;
 	}
 	const Template = route.template || template;
 	return <Template Component={route.component} />;

@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,6 +8,7 @@ import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
 import { SitesFetchList, sitesSelector } from '../../../../slices/business/sites/Sites.slice';
+import SitesActions from './actions/SitesActions';
 import SitesTable from './table/SitesTable';
 
 const SitesList: FC = () => {
@@ -52,6 +54,14 @@ const SitesList: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return <SitesTable content={sites.content} />;
+	return (
+		<Box>
+			{/* Actions */}
+			<SitesActions />
+
+			{/* Table */}
+			<SitesTable content={sites.content} />
+		</Box>
+	);
 };
 export default SitesList;

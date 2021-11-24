@@ -20,7 +20,7 @@ export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
 	sInactive: {
 		backgroundColor: AppConfigService.AppOptions.colors.c12
 	},
-	sToggle: {
+	sCheckbox: {
 		height: '100%',
 		position: 'absolute',
 		right: theme.spacing(1.25),

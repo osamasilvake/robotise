@@ -19,9 +19,9 @@ const RobotsHidden: FC = () => {
 	const hidden = !!robotTwinsSummary.content?.state?.hidden;
 
 	/**
-	 * toggle hidden
+	 * handle hidden
 	 */
-	const toggleHidden = () => {
+	const handleHidden = () => {
 		// dispatch: update state
 		const state: RTSContentStateInterface = { hidden: !hidden };
 		dispatch(RobotTwinsSummaryUpdateState(state));
@@ -33,7 +33,7 @@ const RobotsHidden: FC = () => {
 	return (
 		<FormControlLabel
 			control={
-				<Checkbox color="primary" name="hidden" checked={hidden} onChange={toggleHidden} />
+				<Checkbox color="primary" name="hidden" checked={hidden} onChange={handleHidden} />
 			}
 			label={t<string>('LIST.ACTIONS.FILTERS.HIDDEN')}
 		/>

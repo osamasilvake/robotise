@@ -1,20 +1,26 @@
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { JsonApiResponseInterface } from '../../JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
 
 export interface SliceSitesInterface {
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: SSContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SSContentInterface extends JsonApiResponseInterface {
+export interface SSContentInterface extends JsonAPIResponseInterface {
 	data: ISite[];
 	dataById: SSContentDataByIdInterface;
+	state?: SSContentStateInterface;
 }
 
 export interface SSContentDataByIdInterface {
 	[id: string]: ISite;
+}
+
+export interface SSContentStateInterface {
+	hidden?: boolean;
 }
 
 export interface ISite {
@@ -25,6 +31,9 @@ export interface ISite {
 	acceptOrders: boolean;
 	createdAt: Date;
 	updatedAt: Date;
+	configs: {
+		isHidden: boolean;
+	};
 	rooms: {
 		available: string[];
 		whitelist: string[];

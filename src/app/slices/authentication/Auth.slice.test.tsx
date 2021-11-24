@@ -22,6 +22,7 @@ import {
 	terminate
 } from './Auth.slice';
 import { SliceAuthInterface } from './Auth.slice.interface';
+import { mapUserDetail } from './Auth.slice.map';
 
 // mock axios
 jest.mock('axios');
@@ -49,7 +50,7 @@ describe('[SLICE] Authentication', () => {
 		const store = mockStore(initialState);
 		const response = accessToken;
 		const request: AuthLoginFormInterface = {
-			email: 'imran.khan@robotise.eu',
+			email: 'fakeEmail@robotise.eu',
 			password: 'fakePassword',
 			rememberMe: true
 		};
@@ -66,10 +67,7 @@ describe('[SLICE] Authentication', () => {
 			.dispatch(AuthLogin(request))
 			.then(() => {
 				// assert
-				const expectedActions = [
-					loading(),
-					success(AuthService.authUserDetail(accessToken))
-				];
+				const expectedActions = [loading(), success(mapUserDetail(accessToken))];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();
@@ -78,7 +76,7 @@ describe('[SLICE] Authentication', () => {
 	it('[AuthLogin] Creates loading and failure actions when login fails', () => {
 		const store = mockStore(initialState);
 		const request = {
-			email: 'imran.khan@robotise.eu',
+			email: 'fakeEmail@robotise.eu',
 			password: 'fakePassword'
 		};
 
@@ -157,7 +155,7 @@ describe('[SLICE] Authentication', () => {
 			.dispatch(AuthRefreshToken(1))
 			.then(() => {
 				// assert
-				const expectedActions = [success(AuthService.authUserDetail(accessToken))];
+				const expectedActions = [success(mapUserDetail(accessToken))];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();

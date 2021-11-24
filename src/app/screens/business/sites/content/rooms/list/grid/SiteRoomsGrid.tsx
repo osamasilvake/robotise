@@ -71,11 +71,11 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	}, [allRooms, allWhitelist, active, inactive]);
 
 	/**
-	 * handle room toggle
+	 * handle room state
 	 * @param room
 	 * @returns
 	 */
-	const handleRoomToggle = (room: string) => (event: ChangeEvent<HTMLInputElement>) => {
+	const handleRoomState = (room: string) => (event: ChangeEvent<HTMLInputElement>) => {
 		const whitelist = event.target.checked
 			? allWhitelist.filter((r) => r !== room)
 			: [...allWhitelist, room];
@@ -122,12 +122,12 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 												}
 											)}>
 											<FormControlLabel
-												className={classes.sToggle}
+												className={classes.sCheckbox}
 												control={
 													<Checkbox
-														name="toggle"
+														name="room"
 														checked={!allWhitelist?.includes(room)}
-														onChange={handleRoomToggle(room)}
+														onChange={handleRoomState(room)}
 														style={{
 															color: AppConfigService.AppOptions
 																.colors.c15

@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../../..';
-import { deserializePhoneConfigs } from './PhoneConfigs.deserialize';
+import { deserializePhoneConfigs } from './PhoneConfigs.slice.deserialize';
 import { PCContentInterface, SlicePhoneConfigsInterface } from './PhoneConfigs.slice.interface';
 
 // initial state

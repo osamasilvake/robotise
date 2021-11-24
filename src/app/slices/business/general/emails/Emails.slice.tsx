@@ -5,7 +5,8 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { GeneralEmailsListPayloadInterface } from '../../../../screens/business/general/emails/list/GeneralEmailsList.interface';
 import GeneralService from '../../../../screens/business/general/General.service';
 import { AppReducerType } from '../../..';
-import { deserializeEmails } from './Emails.deserialize';
+import { handleRefreshAndPagination } from '../../../Slices.map';
+import { deserializeEmails } from './Emails.slice.deserialize';
 import {
 	SEContentInterface,
 	SECStateInterface,
@@ -148,41 +149,3 @@ export const EmailsUpdateState =
 			dispatch(updated(result));
 		}
 	};
-
-/**
- * handle refresh and pagination
- * @param current
- * @param result
- * @param refresh
- * @param rowsPerPage
- * @returns
- */
-const handleRefreshAndPagination = (
-	current: SEContentInterface,
-	result: SEContentInterface,
-	refresh: boolean,
-	rowsPerPage: number
-) => {
-	if (refresh) {
-		const dataItems = current.data.slice(rowsPerPage);
-		return {
-			...current,
-			data: [...result.data, ...dataItems],
-			meta: current.meta && {
-				...current.meta,
-				totalDocs: result.meta.totalDocs,
-				totalPages: result.meta.totalPages
-			}
-		};
-	} else if (result?.meta?.page > 1) {
-		return {
-			...current,
-			meta: {
-				...current.meta,
-				...result.meta
-			},
-			data: [...current.data, ...result.data]
-		};
-	}
-	return result;
-};

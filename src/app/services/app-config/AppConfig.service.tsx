@@ -1,4 +1,4 @@
-import appRoutes from '../../routes/app-routes';
+import appRoutes from '../../routes/Routes.path';
 import EnvService from '../env/Env.service';
 
 class AppConfigService extends EnvService {
@@ -227,7 +227,8 @@ class AppConfigService extends EnvService {
 			regex: {
 				email: new RegExp(/\S+@\S+\.\S+/),
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
-				integer: new RegExp(/^\+?([1-9]\d*)$/)
+				integer: new RegExp(/^\+?([1-9]\d*)$/),
+				skipLastSlashes: new RegExp(/\/+$/)
 			}
 		};
 	}
@@ -290,6 +291,8 @@ class AppConfigService extends EnvService {
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
 						LINKS: {
 							AUDIT_LOGS: `${this.envAppUrl}/deeplinks-request/audit-logs-robot-site`,
+							BATTERY: `${this.envAppUrl}/deeplinks-request/robot-battery-dashboard`,
+							TEMPERATURE: `${this.envAppUrl}/deeplinks-request/robot-temperature`,
 							ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`,
 							ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`
 						},
@@ -318,6 +321,7 @@ class AppConfigService extends EnvService {
 			ChangeLanguage: 'robotise_change_language',
 			DrawerState: 'robotise_drawer_state',
 			IntendedURL: 'robotise_intended_url',
+			SitesState: 'robotise_sites_state',
 			RobotsState: 'robotise_robots_state'
 		};
 	}

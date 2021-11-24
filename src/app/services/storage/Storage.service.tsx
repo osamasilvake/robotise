@@ -41,7 +41,7 @@ class StorageService {
 				break;
 
 			default: {
-				const value = sessionStorage.getItem(key) || localStorage.getItem(key) || '';
+				const value = `${sessionStorage.getItem(key) || localStorage.getItem(key)}`;
 				return value ? JSON.parse(value) : value;
 			}
 		}

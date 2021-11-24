@@ -6,7 +6,7 @@ import { SPCDataInterface } from '../../../slices/business/robots/purchases/Purc
 import { SRContentMapInterface } from '../../../slices/business/robots/Robot.slice.interface';
 import { IRobotTwinInterface } from '../../../slices/business/robots/RobotTwins.slice.interface';
 import { IRobotTwinSummaryInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
-import { JsonApiResponseInterface } from '../../../slices/JsonApi.interface';
+import { JsonAPIResponseInterface } from '../../../slices/JsonAPI.interface';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 
 export interface RobotTwinSummaryAxiosGetInterface {
@@ -44,7 +44,7 @@ export interface RobotInventoryAxiosGetInterface {
 	};
 }
 
-export interface RobotOrdersAxiosGetInterface extends JsonApiResponseInterface {
+export interface RobotOrdersAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -109,7 +109,7 @@ export interface RobotOrderAxiosGetInterface {
 	};
 }
 
-export interface RobotPurchasesAxiosGetInterface extends JsonApiResponseInterface {
+export interface RobotPurchasesAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -125,7 +125,7 @@ export interface RobotPurchaseAxiosGetInterface {
 	};
 }
 
-export interface RobotCommandLogsAxiosGetInterface extends JsonApiResponseInterface {
+export interface RobotCommandLogsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -133,7 +133,7 @@ export interface RobotCommandLogsAxiosGetInterface extends JsonApiResponseInterf
 	}[];
 }
 
-export interface RobotElevatorCallsAxiosGetInterface extends JsonApiResponseInterface {
+export interface RobotElevatorCallsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;
 		type: string;

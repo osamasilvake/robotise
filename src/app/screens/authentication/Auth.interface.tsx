@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
 import { RouteTypeEnum } from '../../routes/Routes.enum';
-import { LayoutPageInterface, RouteInterface } from '../../routes/Routes.interfaces';
+import { LayoutPageInterface, RoutesInterface } from '../../routes/Routes.interface';
 
 export interface AuthInterface {
-	route: RouteInterface;
+	route: RoutesInterface;
 	template: FC<LayoutPageInterface>;
 	type?: RouteTypeEnum;
 }

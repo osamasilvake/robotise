@@ -1,5 +1,4 @@
-import { Icon, Link, Stack, TableCell } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Icon, Link, Stack, TableCell } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';

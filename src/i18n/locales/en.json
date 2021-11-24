@@ -72,6 +72,9 @@
 			"ADD": "Add Service Position",
 			"EDIT": "Edit Service Position",
 			"DELETE": "Delete Service Position"
+		},
+		"DEEPLINKS": {
+			"BATTERY": "Battery Deep Link"
 		}
 	},
 	"BREADCRUMB": {
@@ -202,12 +205,12 @@
 		},
 		"ROBOTS": {
 			"DETAIL": {
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
+				},
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
-				},
-				"AUDIT_LOGS": {
-					"ERROR": "Failed to fetch audit logs link!"
 				},
 				"MAP": {
 					"ERROR": "Failed to load map location!"
@@ -225,6 +228,9 @@
 						"SUCCESS": "Base camera image was requested!",
 						"ERROR": "Failed to request base camera image!"
 					}
+				},
+				"BATTERY": {
+					"ERROR": "Failed to fetch battery link!"
 				}
 			},
 			"ORDERS": {
@@ -838,7 +844,10 @@
 						"TITLE": "Battery:",
 						"ITEMS": {
 							"CURRENT": "Current",
-							"PERCENTAGE": "Percentage",
+							"PERCENTAGE": {
+								"TITLE": "Percentage",
+								"LINK": "Battery"
+							},
 							"HEALTH": {
 								"TITLE": "Power Supply Health",
 								"OPTIONS": {

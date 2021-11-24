@@ -1,10 +1,10 @@
 export interface SliceRobotInterface {
-	note: {
-		loading: boolean;
-	};
 	auditLogs: {
 		loading: boolean;
 		content: SRContentDeepLinkInterface | null;
+	};
+	note: {
+		loading: boolean;
 	};
 	map: {
 		loading: boolean;
@@ -16,14 +16,9 @@ export interface SliceRobotInterface {
 	camera: {
 		loading: boolean;
 	};
-	syncProducts: {
+	battery: {
 		loading: boolean;
-	};
-	robotConfig: {
-		loading: boolean;
-	};
-	robotSiteConfig: {
-		loading: boolean;
+		content: SRContentDeepLinkInterface | null;
 	};
 	itemTracking: {
 		loading: boolean;
@@ -33,8 +28,23 @@ export interface SliceRobotInterface {
 		loading: boolean;
 		content: SRContentDeepLinkInterface | null;
 	};
+	syncProducts: {
+		loading: boolean;
+	};
+	robotConfig: {
+		loading: boolean;
+	};
+	robotSiteConfig: {
+		loading: boolean;
+	};
 	reports: {
 		loading: boolean;
+	};
+}
+
+export interface SRContentDeepLinkInterface {
+	data: {
+		dlink: string;
 	};
 }
 
@@ -46,10 +56,4 @@ export interface SRContentMapInterface {
 	resolution: number;
 	createdAt: Date;
 	updatedAt: Date;
-}
-
-export interface SRContentDeepLinkInterface {
-	data: {
-		dlink: string;
-	};
 }

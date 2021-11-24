@@ -1,6 +1,5 @@
 import { Grid } from '@mui/material';
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import RobotDetailStateCard from './RobotDetailStateCard';
 import { RobotDetailStateInterface } from './RobotDetailStates.interface';
@@ -8,7 +7,6 @@ import { mapRobotStates } from './RobotDetailStates.map';
 
 const RobotDetailState: FC<RobotDetailStateInterface> = (props) => {
 	const { robotTwins, state } = props;
-	const { t } = useTranslation('ROBOTS');
 
 	return state && state.content ? (
 		<>
@@ -17,12 +15,7 @@ const RobotDetailState: FC<RobotDetailStateInterface> = (props) => {
 				return (
 					mappedResult && (
 						<Grid key={property} item xs={12} sm={6} md={4} lg={3}>
-							<RobotDetailStateCard
-								icon={mappedResult?.icon}
-								title={`${t(state.title)} ${t(mappedResult.title)}`}
-								value={t(mappedResult.value)}
-								date={mappedResult.date}
-							/>
+							<RobotDetailStateCard title={state.title} item={mappedResult} />
 						</Grid>
 					)
 				);

@@ -1,5 +1,8 @@
+import { ExternalLinkTypeEnum } from './ExternalLink.enum';
+
 export interface ExternalLinkInterface {
 	index?: number;
+	type?: ExternalLinkTypeEnum;
 	text: string;
 	payload: ExternalLinkPayloadInterface;
 	FetchExternalLink: (

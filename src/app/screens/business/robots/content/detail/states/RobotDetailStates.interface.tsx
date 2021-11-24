@@ -27,8 +27,16 @@ export interface RobotDetailStateInfoInterface {
 }
 
 export interface RobotDetailStateCardInterface {
-	title: string | undefined;
-	value: string | undefined;
-	date: string | undefined;
-	icon?: string | undefined;
+	title: string;
+	item: {
+		title: string | undefined;
+		value: string | undefined;
+		date: string | undefined;
+		icon?: string | undefined;
+		link?: {
+			label: string;
+			action: any;
+			tooltip?: string;
+		};
+	};
 }

@@ -68,8 +68,8 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 						updatedAt: meta.status?.controlMode?.updatedAt
 					},
 					mission: {
-						status: state.status?.mission?.status || '',
-						description: state.status?.mission?.description || '',
+						status: `${state.status?.mission?.status}`,
+						description: `${state.status?.mission?.description}`,
 						updatedAt: meta.status?.mission?.updatedAt
 					},
 					location: state.status.location && {

@@ -272,7 +272,7 @@ class SitesService {
 			? AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS
 			: AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(
 					':userId',
-					payload.id || ''
+					`${payload.id}`
 			  );
 
 		const request = {

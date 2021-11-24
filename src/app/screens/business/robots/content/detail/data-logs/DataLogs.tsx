@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../components/common/external-link/ExternalLink';
 import {
-	RobotAuditLogsLinkFetch,
 	robotSelector,
 	RobotTemperatureLinkFetch
 } from '../../../../../../slices/business/robots/Robot.slice';

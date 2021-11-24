@@ -47,8 +47,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<RobotConfigFormInterface>(
 			{
-				name: robotTwinsSingle?.robotTitle || '',
-				customerName: robotTwinsSingle?.robotCustomerName || '',
+				name: `${robotTwinsSingle?.robotTitle}`,
+				customerName: `${robotTwinsSingle?.robotCustomerName}`,
 				isHidden: !!robotTwinsSingle?.robotHidden,
 				isOnlineCheckDisabled: !!robotTwinsSingle?.robotOnlineCheckDisabled
 			},

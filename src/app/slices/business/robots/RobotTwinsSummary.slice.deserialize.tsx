@@ -79,8 +79,8 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSCont
 							updatedAt: meta.status.controlMode.updatedAt
 						},
 						mission: {
-							status: state.status.mission?.status || '',
-							description: state.status.mission?.description || '',
+							status: `${state.status.mission?.status}`,
+							description: `${state.status.mission?.description}`,
 							updatedAt: meta.status.mission?.updatedAt
 						}
 					}

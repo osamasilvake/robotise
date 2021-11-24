@@ -9,7 +9,11 @@
 		},
 		"GENERAL": {
 			"TITLE": "General",
-			"DESCRIPTION": "General Description"
+			"DESCRIPTION": "General Description",
+			"GEN": {
+				"TITLE": "Gen Details",
+				"DESCRIPTION": "Gen Details Description"
+			}
 		},
 		"SITES": {
 			"TITLE": "Sites",
@@ -68,6 +72,9 @@
 			"ADD": "Add Service Position",
 			"EDIT": "Edit Service Position",
 			"DELETE": "Delete Service Position"
+		},
+		"DEEPLINKS": {
+			"BATTERY": "Battery Deep Link"
 		}
 	},
 	"BREADCRUMB": {
@@ -157,12 +164,16 @@
 			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
-					"SUCCESS": "Settings has been updated successfully!",
-					"ERROR": "Unable to update the settings!"
+					"SUCCESS": "Site Setting has been updated successfully!",
+					"ERROR": "Unable to update accept orders!"
+				},
+				"SITE_CONFIG": {
+					"SUCCESS": "Site setting has been updated successfully!",
+					"ERROR": "Unable to configure site!"
 				},
 				"SITE_ROBOT_CONFIG": {
-					"SUCCESS": "Settings has been updated successfully!",
-					"ERROR": "Unable to update the settings!"
+					"SUCCESS": "Site setting has been updated successfully!",
+					"ERROR": "Unable to configure site robot!"
 				},
 				"NOTIFICATIONS": {
 					"FETCH": {
@@ -194,12 +205,12 @@
 		},
 		"ROBOTS": {
 			"DETAIL": {
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
+				},
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
-				},
-				"AUDIT_LOGS": {
-					"ERROR": "Failed to fetch audit logs link!"
 				},
 				"MAP": {
 					"ERROR": "Failed to load map location!"
@@ -217,6 +228,12 @@
 						"SUCCESS": "Base camera image was requested!",
 						"ERROR": "Failed to request base camera image!"
 					}
+				},
+				"BATTERY": {
+					"ERROR": "Failed to fetch battery link!"
+				},
+				"TEMPERATURE": {
+					"ERROR": "Failed to fetch temperature link!"
 				}
 			},
 			"ORDERS": {
@@ -410,6 +427,11 @@
 	},
 	"SITES": {
 		"LIST": {
+			"ACTIONS": {
+				"FILTERS": {
+					"HIDDEN": "Include hidden sites"
+				}
+			},
 			"TABLE": {
 				"COLUMNS": {
 					"NAME": "Name",
@@ -618,6 +640,23 @@
 					"EXCERPT": "Allow robots to accept orders.",
 					"ACTIVE": "Active"
 				},
+				"SITE_CONFIG": {
+					"TITLE": "Configure Site",
+					"EXCERPT": "Update Site detail.",
+					"FORM": {
+						"FIELDS": {
+							"CHECKBOXES": {
+								"HIDDEN": {
+									"LABEL": "Hide Site",
+									"NOTE": "*Whether to show site in the ROC sites list!"
+								}
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
+				},
 				"SITE_ROBOT_CONFIG": {
 					"TITLE": "Configure Site ROBOT",
 					"EXCERPT": "Update Site ROBOT detail.",
@@ -808,7 +847,10 @@
 						"TITLE": "Battery:",
 						"ITEMS": {
 							"CURRENT": "Current",
-							"PERCENTAGE": "Percentage",
+							"PERCENTAGE": {
+								"TITLE": "Percentage",
+								"LINK": "Battery"
+							},
 							"HEALTH": {
 								"TITLE": "Power Supply Health",
 								"OPTIONS": {
@@ -1078,6 +1120,13 @@
 								"LABEL": "Repositories"
 							}
 						}
+					}
+				},
+				"DATA_LOGS": {
+					"TITLE": "Data Logs",
+					"TEMPERATURE": {
+						"LABEL": "Temperature",
+						"TEXT": "Temperature details"
 					}
 				}
 			},

@@ -39,7 +39,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 
 	const { handleChangeInput, handleSubmit, values } = useForm<NoteFormInterface>(
 		{
-			note: note || ''
+			note: `${note}`
 		},
 		() => ({ note: '' }),
 		async () => {

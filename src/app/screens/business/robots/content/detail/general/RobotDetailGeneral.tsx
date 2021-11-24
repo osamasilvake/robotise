@@ -1,6 +1,5 @@
 import { Edit, InfoOutlined } from '@mui/icons-material';
-import { Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';

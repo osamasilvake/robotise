@@ -5,8 +5,6 @@
 ## Releasing
 A summary of development workflow involving multiple git branches.
 
-* Run `yarn audit` in the _root_ and _client_ (fix and commit)
-  
 * Stage modified files: `git add .`
 
 * Push _feature branch_ to remote: `git push origin <feature-branch>`
@@ -21,7 +19,7 @@ A summary of development workflow involving multiple git branches.
 
 * Create Tag: `git push --follow-tags origin master`
 
-* Create a `merge request` from Gitlab to have all changes on the `production` branch
+* Create a `merge request` from Gitlab to have all changes on the `pre-production` or `production` branch
 
 * Move to _feature branch_ and continue with the new _features_ and _bugfixes_.
 

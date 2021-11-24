@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../components/common/loader/Loader.enum';
 import PageError from '../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import SiteConfiguration from './content/configuration/SiteConfiguration';
 import SiteDetail from './content/detail/SiteDetail';
@@ -34,9 +35,10 @@ const SiteTabs: FC = () => {
 	const translation = 'CONTENT.TABS';
 
 	useEffect(() => {
-		const cIndex = sitesRoutes.findIndex(
-			(r) => r.path.replace(':siteId', cSiteId) === location.pathname
-		);
+		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
+		const cPath = location.pathname.replace(skipLastSlashes, '');
+		const cIndex = sitesRoutes.findIndex((r) => r.path.replace(':siteId', cSiteId) === cPath);
+
 		setValue(cIndex - 1);
 	}, [location.pathname, cSiteId]);
 

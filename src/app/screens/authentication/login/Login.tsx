@@ -15,7 +15,7 @@ import {
 	Paper,
 	TextField
 } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,6 +35,7 @@ const Login: FC = () => {
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
 
+	const focus = useRef(false);
 	const [showPassword, setShowPassword] = useState(false);
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<AuthLoginFormInterface>(
@@ -80,6 +81,7 @@ const Login: FC = () => {
 								error={!!errors?.email}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
+								onFocus={() => (focus.current = true)}
 								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
 								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								InputLabelProps={{ shrink: true }}
@@ -96,6 +98,7 @@ const Login: FC = () => {
 								error={!!errors?.password}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
+								onFocus={() => (focus.current = true)}
 								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
 								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
 								InputLabelProps={{ shrink: true }}
@@ -135,11 +138,13 @@ const Login: FC = () => {
 							type="submit"
 							className={classes.sSubmit}
 							disabled={
-								(!!errors && !validateEmptyObj(errors)) ||
-								validateEmptyObjProperty(values) ||
-								auth.loading
+								focus.current &&
+								((!!errors && !validateEmptyObj(errors)) ||
+									validateEmptyObjProperty(values) ||
+									auth.loading)
 							}
-							endIcon={auth.loading && <CircularProgress size={20} />}>
+							endIcon={auth.loading && <CircularProgress size={20} />}
+							onClick={() => (focus.current = true)}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
 

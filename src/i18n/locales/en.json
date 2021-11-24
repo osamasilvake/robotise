@@ -231,6 +231,9 @@
 				},
 				"BATTERY": {
 					"ERROR": "Failed to fetch battery link!"
+				},
+				"TEMPERATURE": {
+					"ERROR": "Failed to fetch temperature link!"
 				}
 			},
 			"ORDERS": {
@@ -1117,6 +1120,13 @@
 								"LABEL": "Repositories"
 							}
 						}
+					}
+				},
+				"DATA_LOGS": {
+					"TITLE": "Data Logs",
+					"TEMPERATURE": {
+						"LABEL": "Temperature",
+						"TEXT": "Temperature details"
 					}
 				}
 			},

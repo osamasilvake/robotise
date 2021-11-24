@@ -44,6 +44,10 @@ export const initialState: SliceRobotInterface = {
 		loading: false,
 		content: null
 	},
+	temperature: {
+		loading: false,
+		content: null
+	},
 	itemTracking: {
 		loading: false,
 		content: null
@@ -85,6 +89,8 @@ const dataSlice = createSlice({
 				state.camera.loading = true;
 			} else if (module === RobotTypeEnum.BATTERY) {
 				state.battery.loading = true;
+			} else if (module === RobotTypeEnum.TEMPERATURE) {
+				state.temperature.loading = true;
 			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = true;
 			} else if (module === RobotTypeEnum.ELEVATOR_LOGS) {
@@ -116,6 +122,9 @@ const dataSlice = createSlice({
 			} else if (module === RobotTypeEnum.BATTERY) {
 				state.battery.loading = false;
 				state.battery.content = response;
+			} else if (module === RobotTypeEnum.TEMPERATURE) {
+				state.temperature.loading = false;
+				state.temperature.content = response;
 			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = response;
@@ -149,6 +158,9 @@ const dataSlice = createSlice({
 			} else if (module === RobotTypeEnum.BATTERY) {
 				state.battery.loading = false;
 				state.battery.content = response;
+			} else if (module === RobotTypeEnum.TEMPERATURE) {
+				state.temperature.loading = false;
+				state.temperature.content = response;
 			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = response;
@@ -452,6 +464,51 @@ export const RobotBatteryLinkFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.DETAIL.BATTERY.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
+			});
+	};
+
+/**
+ * fetch temperature link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotTemperatureLinkFetch =
+	(
+		payload: ExternalLinkPayloadInterface,
+		callback: (report: SRContentDeepLinkInterface) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.TEMPERATURE
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotTemperatureLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-temperature-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.DETAIL.TEMPERATURE.ERROR`
 				};
 				dispatch(triggerMessage(message));
 

@@ -20,6 +20,10 @@ export interface SliceRobotInterface {
 		loading: boolean;
 		content: SRContentDeepLinkInterface | null;
 	};
+	temperature: {
+		loading: boolean;
+		content: SRContentDeepLinkInterface | null;
+	};
 	itemTracking: {
 		loading: boolean;
 		content: SRContentDeepLinkInterface | null;

@@ -202,6 +202,22 @@ class RobotsService {
 	};
 
 	/**
+	 * fetch temperature link
+	 * @param payload
+	 * @returns
+	 */
+	robotTemperatureLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.TEMPERATURE;
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * fetch robot inventory
 	 * @param robotId
 	 */

@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../components/common/loader/Loader.enum';
 import PageError from '../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import GeneralEmailsList from './emails/list/GeneralEmailsList';
 import generalRoutes from './General.routes';
@@ -25,7 +26,9 @@ const GenTabs: FC = () => {
 	const translation = 'CONTENT.TABS';
 
 	useEffect(() => {
-		const cIndex = generalRoutes.findIndex((r) => r.path === location.pathname);
+		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
+		const cPath = location.pathname.replace(skipLastSlashes, '');
+		const cIndex = generalRoutes.findIndex((r) => r.path === cPath);
 
 		setValue(cIndex);
 	}, [location.pathname]);

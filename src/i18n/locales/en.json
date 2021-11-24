@@ -9,7 +9,11 @@
 		},
 		"GENERAL": {
 			"TITLE": "General",
-			"DESCRIPTION": "General Description"
+			"DESCRIPTION": "General Description",
+			"GEN": {
+				"TITLE": "Gen Details",
+				"DESCRIPTION": "Gen Details Description"
+			}
 		},
 		"SITES": {
 			"TITLE": "Sites",

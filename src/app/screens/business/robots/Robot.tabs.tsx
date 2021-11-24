@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../components/common/loader/Loader.enum';
 import PageError from '../../../components/content/page-error/PageError';
+import { AppConfigService } from '../../../services';
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	ServicePositionsFetchList,
@@ -47,14 +48,6 @@ const RobotTabs: FC = () => {
 	const translation = 'CONTENT.TABS';
 
 	useEffect(() => {
-		const cIndex = robotsRoutes.findIndex(
-			(r) => r.path.replace(':robotId', cRobotId) === location.pathname
-		);
-
-		setValue(cIndex - 1);
-	}, [location.pathname, cRobotId]);
-
-	useEffect(() => {
 		const condition1 = servicePositions.content === null;
 		const condition2 = servicePositions.content !== null && cSiteId !== pSiteId;
 
@@ -63,6 +56,16 @@ const RobotTabs: FC = () => {
 			cSiteId && dispatch(ServicePositionsFetchList(cSiteId, true));
 		}
 	}, [dispatch, pSiteId, cSiteId, servicePositions.content]);
+
+	useEffect(() => {
+		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
+		const cPath = location.pathname.replace(skipLastSlashes, '');
+		const cIndex = robotsRoutes.findIndex(
+			(r) => r.path.replace(':robotId', cRobotId) === cPath
+		);
+
+		setValue(cIndex - 1);
+	}, [location.pathname, cRobotId]);
 
 	/**
 	 * handle tab change

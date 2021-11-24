@@ -15,7 +15,7 @@ import {
 	Paper,
 	TextField
 } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,6 +35,7 @@ const Login: FC = () => {
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
 
+	const buttonClicked = useRef(false);
 	const [showPassword, setShowPassword] = useState(false);
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<AuthLoginFormInterface>(
@@ -135,11 +136,13 @@ const Login: FC = () => {
 							type="submit"
 							className={classes.sSubmit}
 							disabled={
-								(!!errors && !validateEmptyObj(errors)) ||
-								validateEmptyObjProperty(values) ||
-								auth.loading
+								!!buttonClicked.current &&
+								((!!errors && !validateEmptyObj(errors)) ||
+									validateEmptyObjProperty(values) ||
+									auth.loading)
 							}
-							endIcon={auth.loading && <CircularProgress size={20} />}>
+							endIcon={auth.loading && <CircularProgress size={20} />}
+							onClick={() => (buttonClicked.current = true)}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
 

@@ -47,8 +47,8 @@ const Gen: FC = () => {
 		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
 			<PageHead
-				title="ROBOTS.ROBOT.TITLE"
-				description="ROBOTS.ROBOT.DESCRIPTION"
+				title="GENERAL.GEN.TITLE"
+				description="GENERAL.GEN.DESCRIPTION"
 				labels={breadcrumbLabels()}
 			/>
 

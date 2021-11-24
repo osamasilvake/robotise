@@ -50,7 +50,7 @@ describe('[SLICE] Authentication', () => {
 		const store = mockStore(initialState);
 		const response = accessToken;
 		const request: AuthLoginFormInterface = {
-			email: 'imran.khan@robotise.eu',
+			email: 'fakeEmail@robotise.eu',
 			password: 'fakePassword',
 			rememberMe: true
 		};
@@ -76,7 +76,7 @@ describe('[SLICE] Authentication', () => {
 	it('[AuthLogin] Creates loading and failure actions when login fails', () => {
 		const store = mockStore(initialState);
 		const request = {
-			email: 'imran.khan@robotise.eu',
+			email: 'fakeEmail@robotise.eu',
 			password: 'fakePassword'
 		};
 

@@ -20,6 +20,7 @@ import { SiteParamsInterface } from '../../Site.interface';
 import AcceptOrders from './accept-orders/AcceptOrders';
 import SiteNotifications from './notifications/SiteNotifications';
 import SiteServicePositions from './service-positions/SiteServicePositions';
+import SiteConfig from './site-config/SiteConfig';
 import SiteRobotConfig from './site-robot-config/SiteRobotConfig';
 import { SiteConfigurationStyle } from './SiteConfiguration.style';
 
@@ -80,6 +81,9 @@ const SiteConfiguration: FC = () => {
 			</Grid>
 
 			<Grid container spacing={1} className={classes.sGridMarginBottom}>
+				<Grid item xs={12} md={6}>
+					<SiteConfig sites={sites} site={site} />
+				</Grid>
 				<Grid item xs={12} md={6}>
 					<SiteRobotConfig sites={sites} site={site} />
 				</Grid>

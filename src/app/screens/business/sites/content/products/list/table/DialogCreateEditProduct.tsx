@@ -45,7 +45,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 
-	const [image, setImage] = useState<string>(product?.image || '');
+	const [image, setImage] = useState<string>(`${product?.image}`);
 	const [imageError, setImageError] = useState(0);
 
 	const params = useParams() as SiteParamsInterface;
@@ -57,12 +57,12 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductFormInterface>(
 			{
-				image: product?.image || '',
-				name: product?.name || '',
-				price: product?.price || '',
-				length: product?.length || '',
-				weight: product?.weight || '',
-				volume: product?.volume || ''
+				image: `${product?.image}`,
+				name: `${product?.name}`,
+				price: `${product?.price}`,
+				length: `${product?.length}`,
+				weight: `${product?.weight}`,
+				volume: `${product?.volume}`
 			},
 			CreateEditProductValidation,
 			async () => {

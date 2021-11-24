@@ -1,9 +1,11 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
+import { SSContentStateInterface } from '../../../slices/business/sites/Sites.slice.interface';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
+import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
@@ -23,10 +25,17 @@ import {
 class SitesService {
 	/**
 	 * fetch sites
+	 * @param filters
+	 * @returns
 	 */
-	sitesFetch = () => {
+	sitesFetch = (filters: SSContentStateInterface | undefined) => {
 		return HttpClientService.get<SitesAxiosGetInterface>(
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL,
+			{
+				params: {
+					'filter[isHidden]': filters?.hidden ? undefined : false
+				}
+			}
 		);
 	};
 
@@ -175,6 +184,29 @@ class SitesService {
 	};
 
 	/**
+	 * update site config
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteConfigUpdate = (siteId: string, payload: SiteConfigFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIG.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				attributes: {
+					configs: {
+						isHidden: payload.isHidden
+					}
+				}
+			}
+		});
+	};
+
+	/**
 	 * update site robot config
 	 * @param siteId
 	 * @param payload
@@ -240,7 +272,7 @@ class SitesService {
 			? AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS
 			: AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(
 					':userId',
-					payload.id || ''
+					`${payload.id}`
 			  );
 
 		const request = {

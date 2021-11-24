@@ -9,7 +9,10 @@ import {
 } from '../../../../../../slices/business/general/emails/Emails.slice';
 import { SECStateInterface } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
-import { GeneralEmailsSiteInterface } from './GeneralEmailsActions.interface';
+import {
+	GeneralEmailsSiteComboBoxInterface,
+	GeneralEmailsSiteInterface
+} from './GeneralEmailsActions.interface';
 import { GeneralEmailsActionsStyle } from './GeneralEmailsActions.style';
 
 const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
@@ -21,7 +24,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	const sites = useSelector(sitesSelector);
 	const emails = useSelector(emailsSelector);
 
-	const [sitesList, setSitesList] = useState<{ id: string; label: string }[]>([]);
+	const [sitesList, setSitesList] = useState<GeneralEmailsSiteComboBoxInterface[]>([]);
 
 	const translation = 'CONTENT.EMAILS.LIST.ACTIONS.FILTERS';
 

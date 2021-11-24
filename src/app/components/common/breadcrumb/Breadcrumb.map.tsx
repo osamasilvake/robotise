@@ -7,7 +7,8 @@ import { BreadcrumbLinksInterface } from './Breadcrumb.interface';
  * @returns
  */
 export const breadcrumbs = (): BreadcrumbLinksInterface[] => {
-	const paths = window.location.href.split('/').slice(3);
+	const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
+	const paths = window.location.href.replace(skipLastSlashes, '').split('/').slice(3);
 	return [
 		{
 			text: 'DASHBOARD.TITLE',

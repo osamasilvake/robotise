@@ -1,4 +1,8 @@
 import {
+	ExternalLinkCallbackResponseInterface,
+	ExternalLinkPayloadInterface
+} from '../../../../../../components/common/external-link/ExternalLink.interface';
+import {
 	SRTContentActivityStateInterface,
 	SRTContentBatteryStateInterface,
 	SRTContentDataInterface,
@@ -27,8 +31,19 @@ export interface RobotDetailStateInfoInterface {
 }
 
 export interface RobotDetailStateCardInterface {
-	title: string | undefined;
-	value: string | undefined;
-	date: string | undefined;
-	icon?: string | undefined;
+	title: string;
+	item: {
+		title: string | undefined;
+		value: string | undefined;
+		date: string | undefined;
+		icon?: string | undefined;
+		link?: {
+			label: string;
+			action: (
+				payload: ExternalLinkPayloadInterface,
+				callback: (res: ExternalLinkCallbackResponseInterface) => void
+			) => void;
+			tooltip?: string;
+		};
+	};
 }

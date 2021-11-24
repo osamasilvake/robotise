@@ -1,4 +1,5 @@
 import { AppConfigService } from '../../../../../../services';
+import { RobotBatteryLinkFetch } from '../../../../../../slices/business/robots/Robot.slice';
 import { SRTContentDataInterface } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 
@@ -27,10 +28,15 @@ export const mapRobotStates = (type: string, robot: SRTContentDataInterface) => 
 		case 'batteryState.percentage':
 			return (
 				batteryState && {
-					title: `${translation}.BATTERY.ITEMS.PERCENTAGE`,
+					title: `${translation}.BATTERY.ITEMS.PERCENTAGE.TITLE`,
 					value: percentage(batteryState.properties.percentage),
 					date: momentFormat2(batteryState.updatedAt),
-					icon: 'battery_charging_full'
+					icon: 'battery_charging_full',
+					link: {
+						label: `${translation}.BATTERY.ITEMS.PERCENTAGE.LINK`,
+						action: RobotBatteryLinkFetch,
+						tooltip: 'DEEPLINKS.BATTERY'
+					}
 				}
 			);
 		case 'batteryState.powerSupplyHealth':

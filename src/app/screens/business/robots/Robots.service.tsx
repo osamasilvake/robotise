@@ -66,6 +66,22 @@ class RobotsService {
 	};
 
 	/**
+	 * fetch audit logs link
+	 * @param payload
+	 * @returns
+	 */
+	robotAuditLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.AUDIT_LOGS;
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * update note field
 	 * @param robotId
 	 * @param payload
@@ -82,22 +98,6 @@ class RobotsService {
 				attributes: {
 					note: payload.note
 				}
-			}
-		});
-	};
-
-	/**
-	 * fetch audit logs link
-	 * @param payload
-	 * @returns
-	 */
-	robotAuditLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.AUDIT_LOGS;
-		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
-			params: {
-				robot: payload.robotId,
-				from: payload.from,
-				to: payload.to
 			}
 		});
 	};
@@ -181,6 +181,38 @@ class RobotsService {
 					options: { camera },
 					command: 'catch-camera-image'
 				}
+			}
+		});
+	};
+
+	/**
+	 * fetch battery link
+	 * @param payload
+	 * @returns
+	 */
+	robotBatteryLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.BATTERY;
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
+	 * fetch temperature link
+	 * @param payload
+	 * @returns
+	 */
+	robotTemperatureLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.TEMPERATURE;
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
 			}
 		});
 	};
@@ -353,6 +385,59 @@ class RobotsService {
 	};
 
 	/**
+	 * fetch robot commands log
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotCommandsLogFetch = (robotId: string, payload: RobotCommandsLogListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
+		return HttpClientService.get<RobotCommandLogsAxiosGetInterface>(url, {
+			params: {
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage,
+				'filter[robot]': robotId
+			}
+		});
+	};
+
+	/**
+	 * fetch robot elevator calls
+	 * @param robotId
+	 * @param payload
+	 * @returns
+	 */
+	robotElevatorCallsFetch = (
+		robotId: string,
+		payload: RobotElevatorCallsListPayloadInterface
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
+		return HttpClientService.get<RobotElevatorCallsAxiosGetInterface>(url, {
+			params: {
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage,
+				'filter[robot]': robotId
+			}
+		});
+	};
+
+	/**
+	 * fetch elevator logs link
+	 * @param payload
+	 * @returns
+	 */
+	robotElevatorLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.ELEVATOR_LOGS;
+		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
+			params: {
+				elevator_vendor: payload.vendor,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * sync products on the robot
 	 * @param robotId
 	 * @returns
@@ -414,59 +499,6 @@ class RobotsService {
 						}
 					}
 				}
-			}
-		});
-	};
-
-	/**
-	 * fetch robot commands log
-	 * @param robotId
-	 * @param payload
-	 * @returns
-	 */
-	robotCommandsLogFetch = (robotId: string, payload: RobotCommandsLogListPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
-		return HttpClientService.get<RobotCommandLogsAxiosGetInterface>(url, {
-			params: {
-				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
-				'filter[robot]': robotId
-			}
-		});
-	};
-
-	/**
-	 * fetch robot elevator calls
-	 * @param robotId
-	 * @param payload
-	 * @returns
-	 */
-	robotElevatorCallsFetch = (
-		robotId: string,
-		payload: RobotElevatorCallsListPayloadInterface
-	) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
-		return HttpClientService.get<RobotElevatorCallsAxiosGetInterface>(url, {
-			params: {
-				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
-				'filter[robot]': robotId
-			}
-		});
-	};
-
-	/**
-	 * fetch elevator logs link
-	 * @param payload
-	 * @returns
-	 */
-	robotElevatorLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.ELEVATOR_LOGS;
-		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
-			params: {
-				elevator_vendor: payload.vendor,
-				from: payload.from,
-				to: payload.to
 			}
 		});
 	};

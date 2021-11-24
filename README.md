@@ -5,8 +5,6 @@
 ## Releasing
 A summary of development workflow involving multiple git branches.
 
-* Run `yarn audit` in the _root_ and _client_ (fix and commit)
-  
 * Stage modified files: `git add .`
 
 * Push _feature branch_ to remote: `git push origin <feature-branch>`

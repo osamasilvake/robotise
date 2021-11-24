@@ -17,6 +17,7 @@ import { RobotParamsInterface } from '../../Robot.interface';
 import RobotDetailAlerts from './alerts/RobotDetailAlerts';
 import RobotDetailCameras from './cameras/RobotDetailCameras';
 import RobotDetailCommands from './commands/RobotDetailCommands';
+import RobotDetailDataLogs from './data-logs/DataLogs';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailInformation from './information/RobotDetailInformation';
 import RobotDetailLocation from './location/RobotDetailLocation';
@@ -90,6 +91,7 @@ const RobotDetail: FC = () => {
 			<RobotDetailCameras robotTwins={robotTwins.content} />
 			<RobotDetailStates robotTwins={robotTwins.content} />
 			<RobotDetailInformation robotTwins={robotTwins.content} />
+			<RobotDetailDataLogs />
 		</Box>
 	);
 };

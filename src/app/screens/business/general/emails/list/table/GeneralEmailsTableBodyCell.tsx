@@ -1,5 +1,4 @@
-import { Icon, Link, Stack, TableCell } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Icon, Link, Stack, TableCell } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -35,7 +34,7 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 		if (GeneralEmailsTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
 		} else if (GeneralEmailsTableColumnsTypeEnum.SITE === column.id && sites.content) {
-			return sites.content.dataById[email.site?.id].title;
+			return sites.content?.dataById[email.site?.id].title;
 		} else if (GeneralEmailsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = email.history;
 			const historyMapped = mappedEmail.history;

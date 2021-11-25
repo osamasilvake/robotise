@@ -10,7 +10,6 @@ import {
 	DialogTitle,
 	FormControl,
 	FormControlLabel,
-	FormHelperText,
 	IconButton,
 	InputAdornment,
 	InputLabel,
@@ -178,17 +177,22 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 						<Box className={classes.sAddUser}>
 							{values.users.map((user, index) => (
-								<FormControl key={index} error fullWidth margin="normal">
+								<FormControl key={index} fullWidth margin="normal">
 									<TextField
 										type="email"
 										id={`${fieldUsers}-${index}`}
 										name={fieldUsers}
+										label={t(`${translation}.FIELDS.EMAIL.LABEL`)}
+										placeholder={t(`${translation}.FIELDS.EMAIL.PLACEHOLDER`)}
 										value={user}
 										onChange={(e) =>
 											handleChangeStringInputs(index, e, values.users)
 										}
-										label={t(`${translation}.FIELDS.EMAIL.LABEL`)}
-										placeholder={t(`${translation}.FIELDS.EMAIL.PLACEHOLDER`)}
+										helperText={
+											errors?.users &&
+											errors.users[index] &&
+											t(errors.users[index])
+										}
 										InputProps={{
 											endAdornment: (
 												<InputAdornment position="end">
@@ -213,9 +217,6 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 											)
 										}}
 									/>
-									{errors?.users && errors.users[index] && (
-										<FormHelperText>{t(errors.users[index])}</FormHelperText>
-									)}
 								</FormControl>
 							))}
 

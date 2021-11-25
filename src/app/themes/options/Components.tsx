@@ -3,7 +3,7 @@ import { alpha, Components } from '@mui/material/styles';
 import { AppConfigService } from '../../services';
 import { pxToRem } from '../../utilities/methods/Number';
 
-const OverridesCustom: Components = {
+const ComponentsCustom: Components = {
 	MuiCssBaseline: {
 		styleOverrides: {
 			body: {
@@ -43,13 +43,6 @@ const OverridesCustom: Components = {
 						color: AppConfigService.AppOptions.colors.c7
 					}
 				}
-			}
-		}
-	},
-	MuiFormControl: {
-		styleOverrides: {
-			fullWidth: {
-				display: 'flex'
 			}
 		}
 	},
@@ -161,4 +154,4 @@ const OverridesCustom: Components = {
 		}
 	}
 };
-export default OverridesCustom;
+export default ComponentsCustom;

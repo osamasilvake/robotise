@@ -85,17 +85,17 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						id={fieldComment}
 						name={fieldComment}
 						rows={4}
+						label={t(`${translation}.FIELDS.LABEL`)}
+						placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
 						value={values.comment}
 						onChange={handleChangeInput}
-						inputRef={(input) => input && input.focus()}
 						onFocus={(e) =>
 							e.currentTarget.setSelectionRange(
 								e.currentTarget.value.length,
 								e.currentTarget.value.length
 							)
 						}
-						label={t(`${translation}.FIELDS.LABEL`)}
-						placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
+						inputRef={(input) => input && input.focus()}
 						className={classes.sCommentTextField}
 					/>
 				</FormControl>

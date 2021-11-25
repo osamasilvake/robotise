@@ -3,7 +3,7 @@ import { alpha, Components } from '@mui/material/styles';
 import { AppConfigService } from '../../services';
 import { pxToRem } from '../../utilities/methods/Number';
 
-const OverridesCustom: Components = {
+const ComponentsCustom: Components = {
 	MuiCssBaseline: {
 		styleOverrides: {
 			body: {
@@ -50,6 +50,13 @@ const OverridesCustom: Components = {
 		styleOverrides: {
 			fullWidth: {
 				display: 'flex'
+			}
+		}
+	},
+	MuiFormHelperText: {
+		styleOverrides: {
+			root: {
+				marginLeft: 0
 			}
 		}
 	},
@@ -154,4 +161,4 @@ const OverridesCustom: Components = {
 		}
 	}
 };
-export default OverridesCustom;
+export default ComponentsCustom;

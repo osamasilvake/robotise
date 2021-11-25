@@ -15,11 +15,9 @@ export const deserializePhoneConfigs = async <T extends JsonAPIResponseInterface
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		sites: {
-			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
-				return {
-					id: relationship.id
-				};
-			}
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => ({
+				id: relationship.id
+			})
 		}
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);

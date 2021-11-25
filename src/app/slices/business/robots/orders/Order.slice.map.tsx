@@ -6,12 +6,12 @@ import { SOCDataInterface } from './Orders.slice.interface';
  * @param result
  * @returns
  */
-export const mapOrder = (result: SOCDataInterface) => {
-	if (result.history) {
-		return {
-			...result,
-			history: result.history.filter((item) => item.event === OrderHistoryTypeEnum.GOT_STATUS)
-		};
-	}
-	return result;
-};
+export const mapOrder = (result: SOCDataInterface) =>
+	result.history
+		? {
+				...result,
+				history: result.history.filter(
+					(item) => item.event === OrderHistoryTypeEnum.GOT_STATUS
+				)
+		  }
+		: result;

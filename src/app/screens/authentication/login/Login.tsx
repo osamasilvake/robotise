@@ -7,7 +7,6 @@ import {
 	CircularProgress,
 	FormControl,
 	FormControlLabel,
-	FormHelperText,
 	Grid,
 	IconButton,
 	InputAdornment,
@@ -72,35 +71,36 @@ const Login: FC = () => {
 						alt={AppConfigService.envCompanyName}
 					/>
 					<form className={classes.sForm} onSubmit={handleSubmit}>
-						<FormControl error fullWidth margin="normal">
+						<FormControl fullWidth>
 							<TextField
 								required
 								type="email"
 								id="email"
 								name="email"
-								error={!!errors?.email}
+								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
+								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								onFocus={() => (focus.current = true)}
-								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
-								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
+								error={!!errors?.email}
+								helperText={errors?.email && t(errors.email)}
 								InputLabelProps={{ shrink: true }}
 							/>
-							{errors?.email && <FormHelperText>{t(errors.email)}</FormHelperText>}
 						</FormControl>
 
-						<FormControl error fullWidth margin="normal">
+						<FormControl fullWidth margin="normal">
 							<TextField
 								required
 								type={showPassword ? 'text' : 'password'}
 								id="password"
 								name="password"
-								error={!!errors?.password}
+								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
+								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								onFocus={() => (focus.current = true)}
-								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
-								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
+								error={!!errors?.password}
+								helperText={errors?.password && t(errors.password)}
 								InputLabelProps={{ shrink: true }}
 								InputProps={{
 									endAdornment: (
@@ -114,9 +114,6 @@ const Login: FC = () => {
 									)
 								}}
 							/>
-							{errors?.password && (
-								<FormHelperText>{t(errors.password)}</FormHelperText>
-							)}
 						</FormControl>
 
 						<FormControlLabel

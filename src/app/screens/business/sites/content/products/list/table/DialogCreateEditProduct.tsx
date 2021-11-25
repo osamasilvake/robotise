@@ -6,7 +6,6 @@ import {
 	DialogContent,
 	DialogTitle,
 	FormControl,
-	FormHelperText,
 	Grid,
 	TextField
 } from '@mui/material';
@@ -45,7 +44,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 
-	const [image, setImage] = useState<string>(`${product?.image}`);
+	const [image, setImage] = useState<string>(product?.image || '');
 	const [imageError, setImageError] = useState(0);
 
 	const params = useParams() as SiteParamsInterface;
@@ -57,12 +56,12 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductFormInterface>(
 			{
-				image: `${product?.image}`,
-				name: `${product?.name}`,
-				price: `${product?.price}`,
-				length: `${product?.length}`,
-				weight: `${product?.weight}`,
-				volume: `${product?.volume}`
+				image: product?.image || '',
+				name: product?.name || '',
+				price: product?.price || '',
+				length: product?.length || '',
+				weight: product?.weight || '',
+				volume: product?.volume || ''
 			},
 			CreateEditProductValidation,
 			async () => {
@@ -115,80 +114,86 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						</Grid>
 
 						<Grid item xs={12} sm={6} md={6}>
-							<FormControl error fullWidth margin="normal">
+							<FormControl fullWidth margin="normal">
 								<TextField
 									required
 									type="text"
 									id="name"
 									name="name"
-									value={values?.name}
-									error={!!errors?.name}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.NAME.LABEL`)}
 									placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
+									value={values?.name}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.name}
+									helperText={errors?.name && t(errors.name)}
 								/>
-								{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 							</FormControl>
-							<FormControl error fullWidth margin="normal">
+							<FormControl fullWidth margin="normal">
 								<TextField
 									required
 									type="number"
 									id="price"
 									name="price"
-									value={values?.price}
-									error={!!errors?.price}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.PRICE.LABEL`, {
 										value: currency
 									})}
 									placeholder={t(`${translation}.FIELDS.PRICE.PLACEHOLDER`)}
+									value={values?.price}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.price}
+									helperText={
+										errors &&
+										typeof errors.price === 'string' &&
+										t(errors.price)
+									}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
-								{errors && typeof errors.price === 'string' && (
-									<FormHelperText>{t(errors.price)}</FormHelperText>
-								)}
 							</FormControl>
 						</Grid>
 
 						<Grid item xs={12} sm={4} md={4}>
-							<FormControl error fullWidth>
+							<FormControl fullWidth>
 								<TextField
 									type="number"
 									id="length"
 									name="length"
-									value={values?.length}
-									error={!!errors?.length}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.LENGTH.LABEL`)}
 									placeholder={t(`${translation}.FIELDS.LENGTH.PLACEHOLDER`)}
+									value={values?.length}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.length}
+									helperText={
+										errors &&
+										typeof errors.length === 'string' &&
+										t(errors.length)
+									}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
-								{errors && typeof errors.length === 'string' && (
-									<FormHelperText>{t(errors.length)}</FormHelperText>
-								)}
 							</FormControl>
 						</Grid>
 
 						<Grid item xs={12} sm={4} md={4}>
-							<FormControl error fullWidth>
+							<FormControl fullWidth>
 								<TextField
 									type="number"
 									id="weight"
 									name="weight"
-									value={values?.weight}
-									error={!!errors?.weight}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.WEIGHT.LABEL`)}
 									placeholder={t(`${translation}.FIELDS.WEIGHT.PLACEHOLDER`)}
+									value={values?.weight}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.weight}
+									helperText={
+										errors &&
+										typeof errors.weight === 'string' &&
+										t(errors.weight)
+									}
 									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
 								/>
-								{errors && typeof errors.weight === 'string' && (
-									<FormHelperText>{t(errors.weight)}</FormHelperText>
-								)}
 							</FormControl>
 						</Grid>
 
@@ -198,11 +203,11 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									type="text"
 									id="volume"
 									name="volume"
+									label={t(`${translation}.FIELDS.SIZE.LABEL`)}
+									placeholder={t(`${translation}.FIELDS.SIZE.PLACEHOLDER`)}
 									value={values?.volume}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									label={t(`${translation}.FIELDS.SIZE.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.SIZE.PLACEHOLDER`)}
 								/>
 							</FormControl>
 						</Grid>

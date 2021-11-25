@@ -60,5 +60,5 @@ export const mapStatus = (status: string) => {
  */
 export const isOrderCancellable = (status: string) => {
 	const value = status.split('.').pop();
-	return cancellableOrders.includes(`${value}`);
+	return cancellableOrders.includes(value || '');
 };

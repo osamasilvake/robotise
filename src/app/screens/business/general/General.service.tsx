@@ -17,7 +17,7 @@ class GeneralService {
 				'page[size]': payload.rowsPerPage,
 				'filter[site]': payload.siteId,
 				'filter[status][ne]': !payload.delivered ? 'delivered' : undefined,
-				'filter[createdAt][gte]': momentDaysPriorToToday(7)
+				'filter[createdAt][gte]': momentDaysPriorToToday(30)
 			}
 		});
 	};

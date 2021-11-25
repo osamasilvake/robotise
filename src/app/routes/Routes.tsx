@@ -16,11 +16,16 @@ const RoutesCustom: FC = () => {
 			<Routes>
 				{routesTemplate.map((item) => {
 					const { template, routes, type } = item;
+					const isUser = !!(auth.user && auth.user.data.user_id);
 					const scope = auth.user?.scope;
 					return routes
 						.filter(
 							(r) =>
-								!(r.scope && !validateScope(scope, r.path, AuthScopeTypeEnum.READ))
+								!(
+									isUser &&
+									r.scope &&
+									!validateScope(scope, r.path, AuthScopeTypeEnum.READ)
+								)
 						)
 						.map((route) => (
 							<Route

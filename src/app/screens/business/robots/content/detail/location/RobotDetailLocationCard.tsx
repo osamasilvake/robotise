@@ -45,8 +45,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		RobotDetailLocationCardHumanIconCoordsInterface[]
 	>([]);
 
-	const robotTwinsMapName = `${robotTwins.location?.value.mapName}`;
-	const robotMapName = `${robot.map.content?.name}`;
+	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
+	const robotMapName = robot.map.content?.name || '';
 
 	useEffect(() => {
 		if (robotTwinsMapName !== robotMapName) {

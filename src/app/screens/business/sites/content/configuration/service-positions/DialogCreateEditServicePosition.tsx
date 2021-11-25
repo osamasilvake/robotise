@@ -44,8 +44,8 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditServicePositionFormInterface>(
 			{
-				name: `${servicePosition?.name}`,
-				location: `${servicePosition?.location}`
+				name: servicePosition?.name || '',
+				location: servicePosition?.location || ''
 			},
 			DialogCreateEditServicePositionValidation,
 			async () => {

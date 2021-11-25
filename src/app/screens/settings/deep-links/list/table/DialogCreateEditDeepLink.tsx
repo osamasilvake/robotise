@@ -44,10 +44,10 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditDeepLinkFormInterface>(
 			{
-				name: `${deepLink?.name}`,
-				description: `${deepLink?.description}`,
-				key: `${deepLink?.key}`,
-				link: `${deepLink?.link}`
+				name: deepLink?.name || '',
+				description: deepLink?.description || '',
+				key: deepLink?.key || '',
+				link: deepLink?.link || ''
 			},
 			CreateEditDeepLinkValidation,
 			async () => {

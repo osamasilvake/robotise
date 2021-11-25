@@ -10,7 +10,7 @@ export const SiteServicePositionsStyle = makeStyles((theme: Theme) => ({
 		paddingLeft: theme.spacing(2)
 	},
 	sExcerpt: {
-		marginBottom: theme.spacing(1),
+		marginBottom: theme.spacing(2),
 		paddingLeft: theme.spacing(2)
 	},
 	sCreate: {

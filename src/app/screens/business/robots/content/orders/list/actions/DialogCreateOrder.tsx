@@ -8,7 +8,6 @@ import {
 	DialogTitle,
 	FormControl,
 	FormControlLabel,
-	FormHelperText,
 	InputLabel,
 	MenuItem,
 	Select,
@@ -110,27 +109,25 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					</Typography>
 
 					{values.mode !== RobotOrderModeTypeEnum.SERVICE_POSITION && (
-						<FormControl error fullWidth margin="normal">
+						<FormControl fullWidth margin="normal">
 							<TextField
 								required
 								type="number"
 								id={fieldLocation}
 								name={fieldLocation}
-								value={values.location}
-								error={!!errors?.location}
-								onChange={handleChangeInput}
-								onBlur={handleBlur}
 								label={t(
 									`${translation}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.LABEL`
 								)}
 								placeholder={t(
 									`${translation}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.PLACEHOLDER`
 								)}
+								value={values.location}
+								onChange={handleChangeInput}
+								onBlur={handleBlur}
+								error={!!errors?.location}
+								helperText={errors?.location && t(errors.location)}
 								InputProps={{ inputProps: { min: 0 } }}
 							/>
-							{errors?.location && (
-								<FormHelperText>{t(errors.location)}</FormHelperText>
-							)}
 						</FormControl>
 					)}
 
@@ -146,11 +143,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								labelId="service-positions"
 								id="service-positions"
 								name={fieldLocation}
-								value={values.location}
-								onChange={handleChangeSelect}
 								label={t(
 									`${translation}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
-								)}>
+								)}
+								value={values.location}
+								onChange={handleChangeSelect}>
 								{servicePositions.content?.data.map((position) => (
 									<MenuItem key={position.id} value={position.location}>
 										{position.name}
@@ -169,6 +166,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							labelId="mode"
 							id="mode"
 							name="mode"
+							label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
 							value={values.mode}
 							onChange={(e) => {
 								handleChangeInput({
@@ -179,8 +177,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								});
 								handleChangeSelect(e);
 							}}
-							onBlur={handleBlur}
-							label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}>
+							onBlur={handleBlur}>
 							{orderModes().map((mode) => (
 								<MenuItem
 									key={mode}

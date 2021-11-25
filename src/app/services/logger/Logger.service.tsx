@@ -57,17 +57,15 @@ class LoggerService {
 	 * create the error log
 	 * @param log
 	 */
-	createErrorLog = (log: AxiosError): LogErrorInterface => {
-		return {
-			name: log.name,
-			message: log.message,
-			stacktrace: `${log.stack}`,
-			method: `${log.config.method}`,
-			status: log.response?.status || 0,
-			payload: JSON.stringify(log.response?.data),
-			url: `${log.config.url}`
-		};
-	};
+	createErrorLog = (log: AxiosError): LogErrorInterface => ({
+		name: log.name,
+		message: log.message,
+		stacktrace: log.stack || '',
+		method: log.config.method || '',
+		status: log.response?.status || 0,
+		payload: JSON.stringify(log.response?.data),
+		url: log.config.url || ''
+	});
 }
 const instance = new LoggerService();
 export default instance;

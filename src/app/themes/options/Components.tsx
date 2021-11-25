@@ -46,13 +46,6 @@ const ComponentsCustom: Components = {
 			}
 		}
 	},
-	MuiFormControl: {
-		styleOverrides: {
-			fullWidth: {
-				display: 'flex'
-			}
-		}
-	},
 	MuiFormHelperText: {
 		styleOverrides: {
 			root: {

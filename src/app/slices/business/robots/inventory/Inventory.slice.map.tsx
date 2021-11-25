@@ -17,17 +17,15 @@ export const mapProductsToInventory = (
 ) => ({
 	...inventory,
 	drawers: [
-		...inventory.drawers.map((drawer: SICDrawerInterface) => {
-			return {
-				...drawer,
-				lanes: drawer.lanes.map((lane: SICDrawerLaneInterface) => {
-					const product = products.find((p: SPCDataInterface) => p.id === lane.productId);
-					return {
-						...lane,
-						product: product || null
-					};
-				})
-			};
-		})
+		...inventory.drawers.map((drawer: SICDrawerInterface) => ({
+			...drawer,
+			lanes: drawer.lanes.map((lane: SICDrawerLaneInterface) => {
+				const product = products.find((p: SPCDataInterface) => p.id === lane.productId);
+				return {
+					...lane,
+					product: product || null
+				};
+			})
+		}))
 	]
 });

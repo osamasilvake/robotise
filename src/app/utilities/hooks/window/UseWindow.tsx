@@ -11,11 +11,9 @@ export const useWindow = (): WindowInterface => {
 	 * get window
 	 * @returns
 	 */
-	const getWindow = () => {
-		return {
-			innerWidth: window.innerWidth
-		};
-	};
+	const getWindow = () => ({
+		innerWidth: window.innerWidth
+	});
 
 	const [value, setValue] = useState<WindowInterface>(getWindow());
 

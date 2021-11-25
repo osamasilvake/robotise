@@ -5,22 +5,20 @@ import { PCCDataInterface } from '../../../../../../../slices/business/sites/pho
  * @param phoneConfig
  * @returns
  */
-export const mapPhoneConfig = (phoneConfig: PCCDataInterface) => {
-	return {
-		...phoneConfig,
-		prefixes: phoneConfig.prefixes.join(', '),
-		disableRoomsCallback: phoneConfig.disableRoomsCallback.join(', '),
-		roomsMapping:
-			phoneConfig.roomsMapping &&
-			Object.entries(phoneConfig.roomsMapping).map(([key, value]) => ({
-				key,
-				value
-			})),
-		messages:
-			phoneConfig.messages &&
-			Object.entries(phoneConfig.messages).map(([key, value]) => ({
-				key,
-				value
-			}))
-	};
-};
+export const mapPhoneConfig = (phoneConfig: PCCDataInterface) => ({
+	...phoneConfig,
+	prefixes: phoneConfig.prefixes.join(', '),
+	disableRoomsCallback: phoneConfig.disableRoomsCallback.join(', '),
+	roomsMapping:
+		phoneConfig.roomsMapping &&
+		Object.entries(phoneConfig.roomsMapping).map(([key, value]) => ({
+			key,
+			value
+		})),
+	messages:
+		phoneConfig.messages &&
+		Object.entries(phoneConfig.messages).map(([key, value]) => ({
+			key,
+			value
+		}))
+});

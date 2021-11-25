@@ -72,8 +72,8 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 									name="robotId"
 									label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 									value={values.robotId}
-									error={!attachedRobot}
-									onChange={handleChangeSelect}>
+									onChange={handleChangeSelect}
+									error={!attachedRobot}>
 									{robotTwinsSummary.content?.data
 										.filter((robot) => robot.siteId === cSiteId)
 										.map((robot) => (

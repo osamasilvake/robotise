@@ -89,39 +89,37 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 				<form onSubmit={handleSubmit}>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
-							<FormControl error fullWidth>
+							<FormControl fullWidth>
 								<TextField
 									required
 									type="text"
 									id="name"
 									name="name"
-									value={values?.name}
-									error={!!errors?.name}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FORM.FIELDS.NAME.LABEL`)}
 									placeholder={t(`${translation}.FORM.FIELDS.NAME.PLACEHOLDER`)}
+									value={values?.name}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.name}
+									helperText={errors?.name && t(errors.name)}
 								/>
-								{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 							</FormControl>
-							<FormControl error fullWidth margin="normal">
+							<FormControl fullWidth margin="normal">
 								<TextField
 									required
 									type="text"
 									id="customerName"
 									name="customerName"
-									value={values?.customerName}
-									error={!!errors?.customerName}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FORM.FIELDS.CUSTOMER_NAME.LABEL`)}
 									placeholder={t(
 										`${translation}.FORM.FIELDS.CUSTOMER_NAME.PLACEHOLDER`
 									)}
+									value={values?.customerName}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.customerName}
+									helperText={errors?.customerName && t(errors.customerName)}
 								/>
-								{errors?.customerName && (
-									<FormHelperText>{t(errors.customerName)}</FormHelperText>
-								)}
 							</FormControl>
 							<FormControl>
 								<FormControlLabel

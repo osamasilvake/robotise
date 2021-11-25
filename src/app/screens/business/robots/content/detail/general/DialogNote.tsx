@@ -7,7 +7,6 @@ import {
 	DialogContentText,
 	DialogTitle,
 	FormControl,
-	FormHelperText,
 	TextField
 } from '@mui/material';
 import DOMPurify from 'dompurify';
@@ -64,23 +63,24 @@ const DialogNote: FC<NoteInterface> = (props) => {
 							id={fieldNote}
 							name={fieldNote}
 							rows={6}
+							label={t(`${translation}.FIELDS.LABEL`)}
+							placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
 							value={values.note}
-							error={values.note.length === maxLength}
 							onChange={handleChangeInput}
-							inputProps={{ maxLength }}
-							inputRef={(input) => input && input.focus()}
 							onFocus={(e) =>
 								e.currentTarget.setSelectionRange(
 									e.currentTarget.value.length,
 									e.currentTarget.value.length
 								)
 							}
-							label={t(`${translation}.FIELDS.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
+							error={values.note.length === maxLength}
+							helperText={
+								values.note.length === maxLength &&
+								t(`${translation}.NOTE`, { value: values.note.length })
+							}
+							inputProps={{ maxLength }}
+							inputRef={(input) => input && input.focus()}
 						/>
-						<FormHelperText error={values.note.length === maxLength}>
-							{t(`${translation}.NOTE`, { value: values.note.length })}
-						</FormHelperText>
 					</FormControl>
 				</DialogContent>
 				<DialogActions>

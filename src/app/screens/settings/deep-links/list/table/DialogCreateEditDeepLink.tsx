@@ -6,7 +6,6 @@ import {
 	DialogContent,
 	DialogTitle,
 	FormControl,
-	FormHelperText,
 	Grid,
 	TextField
 } from '@mui/material';
@@ -85,61 +84,61 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
-							<FormControl error fullWidth margin="normal">
+							<FormControl fullWidth margin="normal">
 								<TextField
 									required
 									type="text"
 									id="name"
 									name="name"
-									value={values?.name}
-									error={!!errors?.name}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.NAME.LABEL`)}
 									placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
+									value={values?.name}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.name}
+									helperText={errors?.name && t(errors.name)}
 								/>
-								{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 							</FormControl>
 						</Grid>
 
 						<Grid item xs={12} sm={6} md={6}>
-							<FormControl error fullWidth margin="normal">
+							<FormControl fullWidth margin="normal">
 								<TextField
 									required
 									type="text"
 									id="key"
 									name="key"
-									value={values?.key}
-									error={!!errors?.key}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.KEY.LABEL`)}
 									placeholder={t(`${translation}.FIELDS.KEY.PLACEHOLDER`)}
+									value={values?.key}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.key}
+									helperText={errors?.key && t(errors.key)}
 								/>
-								{errors?.key && <FormHelperText>{t(errors.key)}</FormHelperText>}
 							</FormControl>
 						</Grid>
 
 						<Grid item xs={12}>
-							<FormControl error fullWidth>
+							<FormControl fullWidth>
 								<TextField
 									required
 									type="text"
 									id="link"
 									name="link"
-									value={values?.link}
-									error={!!errors?.link}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.LINK.LABEL`)}
 									placeholder={t(`${translation}.FIELDS.LINK.PLACEHOLDER`)}
+									value={values?.link}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.link}
+									helperText={errors?.link && t(errors.link)}
 								/>
-								{errors?.link && <FormHelperText>{t(errors.link)}</FormHelperText>}
 							</FormControl>
 						</Grid>
 
 						<Grid item xs={12}>
-							<FormControl error fullWidth margin="dense">
+							<FormControl fullWidth margin="dense">
 								<TextField
 									required
 									multiline
@@ -147,16 +146,14 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 									id="description"
 									name="description"
 									rows={6}
-									value={values?.description}
-									error={!!errors?.description}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
 									label={t(`${translation}.FIELDS.DESCRIPTION.LABEL`)}
 									placeholder={t(`${translation}.FIELDS.DESCRIPTION.PLACEHOLDER`)}
+									value={values?.description}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.description}
+									helperText={errors?.description && t(errors.description)}
 								/>
-								{errors?.description && (
-									<FormHelperText>{t(errors.description)}</FormHelperText>
-								)}
 							</FormControl>
 						</Grid>
 					</Grid>

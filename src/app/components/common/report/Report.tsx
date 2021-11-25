@@ -7,7 +7,6 @@ import {
 	DialogContent,
 	DialogTitle,
 	FormControl,
-	FormHelperText,
 	Grid,
 	Stack,
 	TextField,
@@ -53,32 +52,28 @@ const Report: FC<ReportInterface> = (props) => {
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
-							<FormControl error fullWidth margin="normal">
+							<FormControl fullWidth margin="normal">
 								<TextField
+									type="date"
 									id="from"
 									name="from"
 									label={t('REPORT:FIELDS.FROM.LABEL')}
-									type="date"
 									value={values.from}
-									error={!!errors?.from}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
+									error={!!errors?.from}
+									helperText={errors?.from && t(`REPORT:FIELDS.${errors.from}`)}
 									InputLabelProps={{ shrink: true }}
 								/>
-								{errors?.from && (
-									<FormHelperText>
-										{t(`REPORT:FIELDS.${errors.from}`)}
-									</FormHelperText>
-								)}
 							</FormControl>
 						</Grid>
 						<Grid item xs={12} sm={6} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
+									type="date"
 									id="to"
 									name="to"
 									label={t('REPORT:FIELDS.TO.LABEL')}
-									type="date"
 									value={values.to}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}

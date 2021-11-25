@@ -6,7 +6,6 @@ import {
 	DialogContent,
 	DialogTitle,
 	FormControl,
-	FormHelperText,
 	TextField
 } from '@mui/material';
 import { FC, MouseEvent } from 'react';
@@ -95,35 +94,35 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 				</DialogTitle>
 
 				<DialogContent>
-					<FormControl error fullWidth margin="normal">
+					<FormControl fullWidth margin="normal">
 						<TextField
 							required
 							type="text"
 							id="name"
 							name="name"
-							value={values?.name}
-							error={!!errors?.name}
-							onChange={handleChangeInput}
-							onBlur={handleBlur}
 							label={t(`${translation}.FIELDS.NAME.LABEL`)}
 							placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
+							value={values?.name}
+							onChange={handleChangeInput}
+							onBlur={handleBlur}
+							error={!!errors?.name}
+							helperText={errors?.name && t(errors.name)}
 						/>
-						{errors?.name && <FormHelperText>{t(errors.name)}</FormHelperText>}
 					</FormControl>
-					<FormControl error fullWidth margin="normal">
+					<FormControl fullWidth margin="normal">
 						<TextField
 							required
 							type="text"
 							id="location"
 							name="location"
-							value={values?.location}
-							error={!!errors?.location}
-							onChange={handleChangeInput}
-							onBlur={handleBlur}
 							label={t(`${translation}.FIELDS.LOCATION.LABEL`)}
 							placeholder={t(`${translation}.FIELDS.LOCATION.PLACEHOLDER`)}
+							value={values?.location}
+							onChange={handleChangeInput}
+							onBlur={handleBlur}
+							error={!!errors?.location}
+							helperText={errors?.location && t(errors.location)}
 						/>
-						{errors?.location && <FormHelperText>{t(errors.location)}</FormHelperText>}
 					</FormControl>
 				</DialogContent>
 

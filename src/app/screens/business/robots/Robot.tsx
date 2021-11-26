@@ -59,7 +59,7 @@ const Robot: FC = () => {
 		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
 			<PageHead
-				title="ROBOTS.ROBOT.LABEL"
+				title="ROBOTS.ROBOT.TITLE"
 				description="ROBOTS.ROBOT.DESCRIPTION"
 				labels={breadcrumbLabels()}
 			/>

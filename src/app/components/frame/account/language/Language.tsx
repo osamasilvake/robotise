@@ -1,4 +1,4 @@
-import { ListItem, ListItemText } from '@mui/material';
+import { ListItemButton, ListItemText } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,9 +23,8 @@ const Language: FC = () => {
 		dispatch(GeneralChangeLanguage(language));
 
 	return (
-		<ListItem
+		<ListItemButton
 			disabled
-			button
 			divider
 			onClick={handleLanguage(
 				general.currentLanguage === GeneralLanguageTypeEnum.EN
@@ -46,7 +45,7 @@ const Language: FC = () => {
 						: t('LANGUAGE.DE')
 				}
 			/>
-		</ListItem>
+		</ListItemButton>
 	);
 };
 export default Language;

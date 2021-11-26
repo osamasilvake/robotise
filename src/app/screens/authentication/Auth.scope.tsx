@@ -11,4 +11,8 @@ export const validateScope = (
 	scope: string | undefined,
 	link: string,
 	type: AuthScopeTypeEnum
-): boolean => !!scope?.includes(`${link.substring(1)}:${type}`);
+): boolean => {
+	const afterLastSlash = link.split('/').pop();
+	const attachTypeToValue = `${afterLastSlash}:${type}`;
+	return !!scope?.includes(attachTypeToValue);
+};

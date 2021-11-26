@@ -42,7 +42,7 @@ const ThemePalette: FC = () => {
 				)}
 			</ListItemIcon>
 			<ListItemText
-				primary={t('THEME.TITLE')}
+				primary={t('THEME.LABEL')}
 				secondary={
 					general.themePalette === GeneralThemePaletteTypeEnum.LIGHT
 						? t('THEME.LIGHT')

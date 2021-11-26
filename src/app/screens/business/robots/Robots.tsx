@@ -8,7 +8,7 @@ const Robots: FC = () => {
 	return (
 		<Paper elevation={12} component="section" square>
 			{/* Page Head */}
-			<PageHead title="ROBOTS.TITLE" description="ROBOTS.DESCRIPTION" />
+			<PageHead title="ROBOTS.LABEL" description="ROBOTS.DESCRIPTION" />
 
 			{/* List */}
 			<RobotsList />

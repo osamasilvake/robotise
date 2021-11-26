@@ -289,12 +289,12 @@
 	},
 	"ACCOUNT": {
 		"THEME": {
-			"TITLE": "Theme",
+			"LABEL": "Theme",
 			"LIGHT": "Light",
 			"DARK": "Dark"
 		},
 		"LANGUAGE": {
-			"TITLE": "Language",
+			"LABEL": "Language",
 			"EN": "English",
 			"DE": "Deutsch"
 		},

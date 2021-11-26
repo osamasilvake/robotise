@@ -31,10 +31,10 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	useEffect(() => {
 		sites.content &&
 			setSitesList([
-				{ id: '', title: t(`${translation}.SITE.ALL_SITES`) },
+				{ id: '', label: t(`${translation}.SITE.ALL_SITES`) },
 				...sites.content?.data.map((site) => ({
 					id: site.id,
-					title: site.title
+					label: site.title
 				}))
 			]);
 	}, [sites.content, sites.content?.data, t]);

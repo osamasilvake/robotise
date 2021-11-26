@@ -9,7 +9,7 @@ export interface GeneralEmailsSiteInterface {
 
 export interface GeneralEmailsSiteComboBoxInterface {
 	id: string;
-	title: string;
+	label: string;
 }
 
 export interface GeneralEmailsDeliveredInterface {

@@ -72,9 +72,6 @@
 			"ADD": "Add Service Position",
 			"EDIT": "Edit Service Position",
 			"DELETE": "Delete Service Position"
-		},
-		"DEEPLINKS": {
-			"BATTERY": "Battery Deep Link"
 		}
 	},
 	"BREADCRUMB": {
@@ -205,9 +202,6 @@
 		},
 		"ROBOTS": {
 			"DETAIL": {
-				"AUDIT_LOGS": {
-					"ERROR": "Failed to fetch audit logs link!"
-				},
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
@@ -228,6 +222,9 @@
 						"SUCCESS": "Base camera image was requested!",
 						"ERROR": "Failed to request base camera image!"
 					}
+				},
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
 				},
 				"BATTERY": {
 					"ERROR": "Failed to fetch battery link!"
@@ -790,10 +787,6 @@
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"
 						}
-					},
-					"AUDIT_LOGS": {
-						"LABEL": "Audit Logs",
-						"TEXT": "Audit details"
 					}
 				},
 				"LOCATION": {
@@ -847,10 +840,7 @@
 						"TITLE": "Battery:",
 						"ITEMS": {
 							"CURRENT": "Current",
-							"PERCENTAGE": {
-								"TITLE": "Percentage",
-								"LINK": "Battery"
-							},
+							"PERCENTAGE": "Percentage",
 							"HEALTH": {
 								"TITLE": "Power Supply Health",
 								"OPTIONS": {
@@ -1124,6 +1114,14 @@
 				},
 				"DATA_LOGS": {
 					"TITLE": "Data Logs",
+					"AUDIT_LOGS": {
+						"LABEL": "Audit Logs",
+						"TEXT": "Audit logs details"
+					},
+					"BATTERY": {
+						"LABEL": "Battery",
+						"TEXT": "Battery details"
+					},
 					"TEMPERATURE": {
 						"LABEL": "Temperature",
 						"TEXT": "Temperature details"

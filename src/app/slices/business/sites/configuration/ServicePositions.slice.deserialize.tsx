@@ -17,11 +17,9 @@ export const deserializeServicePositions = async <T extends JsonAPIResponseInter
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		sites: {
-			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => {
-				return {
-					id: relationship.id
-				};
-			}
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => ({
+				id: relationship.id
+			})
 		}
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);

@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../components/common/external-link/ExternalLink';
 import {
+	RobotAuditLogsLinkFetch,
+	RobotBatteryLinkFetch,
 	robotSelector,
 	RobotTemperatureLinkFetch
 } from '../../../../../../slices/business/robots/Robot.slice';
@@ -31,6 +33,46 @@ const RobotDetailDataLogs: FC = () => {
 			</Typography>
 
 			<Grid container spacing={1}>
+				{/* Deep Link: Audit Logs */}
+				<Grid item xs={12} sm={6} md={4} lg={3}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.AUDIT_LOGS.LABEL`)}
+					</Typography>
+					<Box>
+						<ExternalLink
+							text={t(`${translation}.AUDIT_LOGS.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-7d',
+								to: 'now'
+							}}
+							FetchExternalLink={RobotAuditLogsLinkFetch}
+							showIcon={robot.auditLogs.loading}
+							disabled={robot.auditLogs.loading}
+						/>
+					</Box>
+				</Grid>
+
+				{/* Deep Link: Battery */}
+				<Grid item xs={12} sm={6} md={4} lg={3}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.BATTERY.LABEL`)}
+					</Typography>
+					<Box>
+						<ExternalLink
+							text={t(`${translation}.BATTERY.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-1d',
+								to: 'now'
+							}}
+							FetchExternalLink={RobotBatteryLinkFetch}
+							showIcon={robot.battery.loading}
+							disabled={robot.battery.loading}
+						/>
+					</Box>
+				</Grid>
+
 				{/* Deep Link: Temperature */}
 				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<Typography variant="caption" color="textSecondary">

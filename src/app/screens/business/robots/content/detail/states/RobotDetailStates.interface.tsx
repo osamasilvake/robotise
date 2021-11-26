@@ -37,13 +37,5 @@ export interface RobotDetailStateCardInterface {
 		value: string | undefined;
 		date: string | undefined;
 		icon?: string | undefined;
-		link?: {
-			label: string;
-			action: (
-				payload: ExternalLinkPayloadInterface,
-				callback: (res: ExternalLinkCallbackResponseInterface) => void
-			) => void;
-			tooltip?: string;
-		};
 	};
 }

@@ -31,11 +31,8 @@ export const DrawerStyle = makeStyles((theme: Theme) => ({
 		overflowX: 'hidden',
 		overflowY: 'auto'
 	},
-	sListItemWithSubtitle: {
+	sListItemHint: {
 		padding: theme.spacing(0, 2)
-	},
-	sListItem: {
-		padding: theme.spacing(1, 2)
 	},
 	sBottomArea: {
 		height: 40

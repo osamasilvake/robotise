@@ -46,7 +46,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	 */
 	const handleSite = (
 		_event: SyntheticEvent<Element, Event>,
-		option: { id: string; label: string } | null
+		option: GeneralEmailsSiteComboBoxInterface | null
 	) => {
 		// dispatch: update state
 		const state: SECStateInterface = {

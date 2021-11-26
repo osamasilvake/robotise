@@ -19,9 +19,6 @@ export const RobotDetailStatesStyle = makeStyles((theme: Theme) => ({
 		right: theme.spacing(0.5),
 		top: theme.spacing(0.5)
 	},
-	sCardContentIconExternal: {
-		marginTop: theme.spacing(-0.5)
-	},
 	sCardContentValue: {
 		margin: theme.spacing(1, 0)
 	}

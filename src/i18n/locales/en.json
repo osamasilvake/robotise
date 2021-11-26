@@ -1116,15 +1116,15 @@
 					"TITLE": "Data Logs",
 					"AUDIT_LOGS": {
 						"LABEL": "Audit Logs",
-						"TEXT": "Audit logs details"
+						"TEXT": "Link"
 					},
 					"BATTERY": {
 						"LABEL": "Battery",
-						"TEXT": "Battery details"
+						"TEXT": "Link"
 					},
 					"TEMPERATURE": {
 						"LABEL": "Temperature",
-						"TEXT": "Temperature details"
+						"TEXT": "Link"
 					}
 				}
 			},

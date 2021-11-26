@@ -31,10 +31,10 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	useEffect(() => {
 		sites.content &&
 			setSitesList([
-				{ id: '', label: t(`${translation}.SITE.ALL_SITES`) },
+				{ id: '', title: t(`${translation}.SITE.ALL_SITES`) },
 				...sites.content?.data.map((site) => ({
 					id: site.id,
-					label: site.title
+					title: site.title
 				}))
 			]);
 	}, [sites.content, sites.content?.data, t]);
@@ -46,7 +46,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	 */
 	const handleSite = (
 		_event: SyntheticEvent<Element, Event>,
-		option: { id: string; label: string } | null
+		option: GeneralEmailsSiteComboBoxInterface | null
 	) => {
 		// dispatch: update state
 		const state: SECStateInterface = {

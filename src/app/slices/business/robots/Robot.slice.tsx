@@ -23,10 +23,6 @@ import { SliceRobotInterface, SRContentDeepLinkInterface } from './Robot.slice.i
 
 // initial state
 export const initialState: SliceRobotInterface = {
-	auditLogs: {
-		loading: false,
-		content: null
-	},
 	note: {
 		loading: false
 	},
@@ -39,6 +35,10 @@ export const initialState: SliceRobotInterface = {
 	},
 	camera: {
 		loading: false
+	},
+	auditLogs: {
+		loading: false,
+		content: null
 	},
 	battery: {
 		loading: false,
@@ -77,9 +77,7 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.AUDIT_LOGS) {
-				state.auditLogs.loading = true;
-			} else if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = true;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
@@ -87,6 +85,8 @@ const dataSlice = createSlice({
 				state.control.loading = true;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
+			} else if (module === RobotTypeEnum.AUDIT_LOGS) {
+				state.auditLogs.loading = true;
 			} else if (module === RobotTypeEnum.BATTERY) {
 				state.battery.loading = true;
 			} else if (module === RobotTypeEnum.TEMPERATURE) {
@@ -107,10 +107,7 @@ const dataSlice = createSlice({
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.AUDIT_LOGS) {
-				state.auditLogs.loading = false;
-				state.auditLogs.content = response;
-			} else if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = false;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
@@ -119,6 +116,9 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
+			} else if (module === RobotTypeEnum.AUDIT_LOGS) {
+				state.auditLogs.loading = false;
+				state.auditLogs.content = response;
 			} else if (module === RobotTypeEnum.BATTERY) {
 				state.battery.loading = false;
 				state.battery.content = response;
@@ -143,10 +143,7 @@ const dataSlice = createSlice({
 		},
 		failure: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.AUDIT_LOGS) {
-				state.auditLogs.loading = false;
-				state.auditLogs.content = response;
-			} else if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = false;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
@@ -155,6 +152,9 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
+			} else if (module === RobotTypeEnum.AUDIT_LOGS) {
+				state.auditLogs.loading = false;
+				state.auditLogs.content = response;
 			} else if (module === RobotTypeEnum.BATTERY) {
 				state.battery.loading = false;
 				state.battery.content = response;
@@ -189,51 +189,6 @@ export const robotSelector = (state: AppReducerType) => state['robot'];
 
 // reducer
 export default dataSlice.reducer;
-
-/**
- * fetch audit logs link
- * @param payload
- * @param callback
- * @returns
- */
-export const RobotAuditLogsLinkFetch =
-	(
-		payload: ExternalLinkPayloadInterface,
-		callback: (report: SRContentDeepLinkInterface) => void
-	) =>
-	async (dispatch: Dispatch) => {
-		const state = {
-			module: RobotTypeEnum.AUDIT_LOGS
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		// wait
-		await timeout(1000);
-
-		return RobotsService.robotAuditLogsLinkFetch(payload)
-			.then(async (res) => {
-				// dispatch: success
-				dispatch(success({ ...state, response: res }));
-
-				// callback
-				callback(res);
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: `robot-audit-logs-error`,
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.AUDIT_LOGS.ERROR`
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
-			});
-	};
 
 /**
  * update note field
@@ -424,6 +379,51 @@ export const RobotCameraCommandRequest =
 
 				// dispatch: failure
 				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch audit logs link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotAuditLogsLinkFetch =
+	(
+		payload: ExternalLinkPayloadInterface,
+		callback: (report: SRContentDeepLinkInterface) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotTypeEnum.AUDIT_LOGS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotAuditLogsLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-audit-logs-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.DETAIL.AUDIT_LOGS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
 			});
 	};
 

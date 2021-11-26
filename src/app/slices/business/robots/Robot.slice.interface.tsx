@@ -1,8 +1,4 @@
 export interface SliceRobotInterface {
-	auditLogs: {
-		loading: boolean;
-		content: SRContentDeepLinkInterface | null;
-	};
 	note: {
 		loading: boolean;
 	};
@@ -15,6 +11,10 @@ export interface SliceRobotInterface {
 	};
 	camera: {
 		loading: boolean;
+	};
+	auditLogs: {
+		loading: boolean;
+		content: SRContentDeepLinkInterface | null;
 	};
 	battery: {
 		loading: boolean;

@@ -53,46 +53,39 @@ const DrawerCustom: FC = () => {
 
 			{/* List */}
 			<Box className={classes.sListRoot}>
-				{DrawersList.map((item, index) => (
+				{DrawersList.map((root, index) => (
 					<List
 						key={index}
 						subheader={
 							<ListSubheader>
-								{(general.openDrawer && t(item.primary)) || t(item.secondary)}
+								{(general.openDrawer && t(root.primary)) || t(root.secondary)}
 							</ListSubheader>
 						}>
-						{item.list.map((listItem) => (
+						{root.list.map((item) => (
 							<ListItemButton
 								disableRipple
-								key={listItem.id}
+								key={item.id}
 								component={NavLink}
-								to={listItem.path}
+								to={item.path}
 								disabled={
-									listItem.scope &&
-									!validateScope(scope, listItem.path, AuthScopeTypeEnum.READ)
+									item.scope &&
+									!validateScope(scope, item.path, AuthScopeTypeEnum.READ)
 								}
-								className={
-									listItem.hint
-										? classes.sListItemWithSubtitle
-										: classes.sListItem
-								}>
+								className={clsx({ [classes.sListItemHint]: item.hint })}>
 								<ListItemIcon>
-									{listItem.badge === DrawerListBadgeTypeEnum.ROBOT &&
+									{item.badge === DrawerListBadgeTypeEnum.ROBOT &&
 									robotTwinsSummary.content &&
 									robotTwinsSummary.content.alerts?.count ? (
 										<Badge
 											badgeContent={robotTwinsSummary.content.alerts.count}
 											color="error">
-											<Icon>{listItem.icon}</Icon>
+											<Icon>{item.icon}</Icon>
 										</Badge>
 									) : (
-										<Icon>{listItem.icon}</Icon>
+										<Icon>{item.icon}</Icon>
 									)}
 								</ListItemIcon>
-								<ListItemText
-									primary={t(listItem.label)}
-									secondary={listItem.hint}
-								/>
+								<ListItemText primary={t(item.label)} secondary={item.hint} />
 							</ListItemButton>
 						))}
 					</List>

@@ -39,7 +39,7 @@ const Language: FC = () => {
 				).toUpperCase()}
 			</ListItemText>
 			<ListItemText
-				primary={t('LANGUAGE.TITLE')}
+				primary={t('LANGUAGE.LABEL')}
 				secondary={
 					general.currentLanguage === GeneralLanguageTypeEnum.EN
 						? t('LANGUAGE.EN')

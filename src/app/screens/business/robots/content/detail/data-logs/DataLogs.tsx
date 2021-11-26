@@ -34,11 +34,11 @@ const RobotDetailDataLogs: FC = () => {
 
 			<Grid container spacing={1}>
 				{/* Deep Link: Audit Logs */}
-				<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Grid item xs={12} sm={6} md={4} lg={2}>
 					<Typography variant="caption" color="textSecondary">
 						{t(`${translation}.AUDIT_LOGS.LABEL`)}
 					</Typography>
-					<Box>
+					<Box className={classes.sContent}>
 						<ExternalLink
 							text={t(`${translation}.AUDIT_LOGS.TEXT`)}
 							payload={{
@@ -54,11 +54,11 @@ const RobotDetailDataLogs: FC = () => {
 				</Grid>
 
 				{/* Deep Link: Battery */}
-				<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Grid item xs={12} sm={6} md={4} lg={2}>
 					<Typography variant="caption" color="textSecondary">
 						{t(`${translation}.BATTERY.LABEL`)}
 					</Typography>
-					<Box>
+					<Box className={classes.sContent}>
 						<ExternalLink
 							text={t(`${translation}.BATTERY.TEXT`)}
 							payload={{
@@ -74,11 +74,11 @@ const RobotDetailDataLogs: FC = () => {
 				</Grid>
 
 				{/* Deep Link: Temperature */}
-				<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Grid item xs={12} sm={6} md={4} lg={2}>
 					<Typography variant="caption" color="textSecondary">
 						{t(`${translation}.TEMPERATURE.LABEL`)}
 					</Typography>
-					<Box>
+					<Box className={classes.sContent}>
 						<ExternalLink
 							text={t(`${translation}.TEMPERATURE.TEXT`)}
 							payload={{

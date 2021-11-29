@@ -4,21 +4,18 @@ import { DrawerListInterface } from './Drawer.interface';
 
 const drawerBusinessList: DrawerListInterface[] = [
 	{
-		id: 1,
 		icon: 'apps',
 		label: 'BUSINESS.LIST.GENERAL',
 		hint: '📮',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN
 	},
 	{
-		id: 2,
 		icon: 'apartment',
 		label: 'BUSINESS.LIST.SITES',
 		hint: '🏢  🍔  🛌🏻  ⚙️',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN
 	},
 	{
-		id: 3,
 		icon: 'android',
 		label: 'BUSINESS.LIST.ROBOTS',
 		hint: '🤖  🗄  📦  🛒  ⚙️',
@@ -29,7 +26,6 @@ const drawerBusinessList: DrawerListInterface[] = [
 
 const drawerSettingsList: DrawerListInterface[] = [
 	{
-		id: 1,
 		icon: 'link',
 		label: 'SETTINGS.LIST.DEEP_LINKS',
 		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
@@ -39,13 +35,11 @@ const drawerSettingsList: DrawerListInterface[] = [
 
 const drawerInformationList: DrawerListInterface[] = [
 	{
-		id: 1,
 		icon: 'access_alarm',
 		label: 'INFORMATION.LIST.ALERT_CODES',
 		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES
 	},
 	{
-		id: 2,
 		icon: 'info',
 		label: 'INFORMATION.LIST.ABOUT',
 		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT

@@ -2,17 +2,19 @@ import { AuthScopeTypeEnum } from './Auth.enum';
 
 /**
  * validate scope
- * @param scope
- * @param link
- * @param type
+ * @param authScope
+ * @param authScopeType
+ * @param itemLink
+ * @param itemScope
  * @returns
  */
 export const validateScope = (
-	scope: string | undefined,
-	link: string,
-	type: AuthScopeTypeEnum
+	authScope: string | undefined,
+	authScopeType: AuthScopeTypeEnum,
+	itemLink: string,
+	itemScope = false
 ): boolean => {
-	const afterLastSlash = link.split('/').pop();
-	const attachTypeToValue = `${afterLastSlash}:${type}`;
-	return !!scope?.includes(attachTypeToValue);
+	const afterLastSlash = itemLink.split('/').pop();
+	const attachTypeToValue = `${afterLastSlash}:${authScopeType}`;
+	return itemScope ? !!authScope?.includes(attachTypeToValue) : true;
 };

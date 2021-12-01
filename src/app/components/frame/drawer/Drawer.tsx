@@ -73,7 +73,7 @@ const DrawerCustom: FC = () => {
 									)
 								}
 								className={clsx({ [classes.sListItemHint]: item.hint })}>
-								<ListItemIcon>
+								<ListItemIcon className={classes.sListItemIcon}>
 									{item.badge === DrawerListBadgeTypeEnum.ROBOT &&
 									robotTwinsSummary.content &&
 									robotTwinsSummary.content.alerts?.count ? (

@@ -180,12 +180,18 @@
 					"ERROR": "Unable to configure site robot!"
 				},
 				"NOTIFICATIONS": {
+					"FETCH": {
+						"ERROR": "Unable to fetch notification types or users!"
+					},
 					"UPDATE": {
 						"SUCCESS": "Notification has been updated successfully!",
 						"ERROR": "Unable to update notification!"
 					}
 				},
 				"SERVICE_POSITIONS": {
+					"FETCH": {
+						"ERROR": "Unable to fetch service positions!"
+					},
 					"CREATE": {
 						"SUCCESS": "Service position has been created successfully!",
 						"ERROR": "Unable to create service position!"

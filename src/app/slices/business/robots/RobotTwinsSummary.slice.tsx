@@ -80,7 +80,7 @@ export const RobotTwinsSummaryFetchList =
 		const states = getState();
 		const sites = states.sites;
 		const robotTwinsSummary = states.robotTwinsSummary;
-		const filters = robotTwinsSummary.content?.state || robotsState;
+		const state = robotTwinsSummary.content?.state || robotsState;
 
 		// return on busy
 		if (robotTwinsSummary && (robotTwinsSummary.loader || robotTwinsSummary.loading)) {
@@ -90,7 +90,7 @@ export const RobotTwinsSummaryFetchList =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		return RobotsService.robotTwinsSummaryFetch(filters)
+		return RobotsService.robotTwinsSummaryFetch(state)
 			.then(async (res) => {
 				if (sites && sites.content) {
 					// deserialize response
@@ -106,7 +106,7 @@ export const RobotTwinsSummaryFetchList =
 					result = {
 						...result,
 						alerts,
-						state: filters
+						state
 					};
 
 					// dispatch: success

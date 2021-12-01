@@ -9,7 +9,7 @@ import { deserializeSites } from './Sites.slice.deserialize';
 import {
 	SliceSitesInterface,
 	SSContentInterface,
-	SSContentStateInterface
+	SSCStateInterface
 } from './Sites.slice.interface';
 
 // storage item
@@ -78,7 +78,7 @@ export const SitesFetchList =
 		// states
 		const states = getState();
 		const sites = states.sites;
-		const filters = sites.content?.state || sitesState;
+		const state = sites.content?.state || sitesState;
 
 		// return on busy
 		if (sites && (sites.loader || sites.loading)) {
@@ -89,7 +89,7 @@ export const SitesFetchList =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch sites
-		return SitesService.sitesFetch(filters)
+		return SitesService.sitesFetch(state)
 			.then(async (res) => {
 				// deserialize response
 				let result: SSContentInterface = await deserializeSites(res);
@@ -97,7 +97,7 @@ export const SitesFetchList =
 				// state
 				result = {
 					...result,
-					state: filters
+					state
 				};
 
 				// dispatch: success
@@ -123,8 +123,7 @@ export const SitesFetchList =
  * @returns
  */
 export const SitesUpdateState =
-	(state: SSContentStateInterface) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SSCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
 		const sites = states.sites;

@@ -40,14 +40,14 @@ import {
 class RobotsService {
 	/**
 	 * fetch robot twins summary
-	 * @param filters
+	 * @param state
 	 * @returns
 	 */
-	robotTwinsSummaryFetch = (filters: RTSContentStateInterface | undefined) => {
+	robotTwinsSummaryFetch = (state: RTSContentStateInterface | undefined) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
 		return HttpClientService.get<RobotTwinSummaryAxiosGetInterface>(url, {
 			params: {
-				'filter[isHidden]': filters?.hidden ? undefined : false
+				'filter[isHidden]': state?.hidden ? undefined : false
 			}
 		});
 	};

@@ -154,9 +154,12 @@ class SitesService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
 		return HttpClientService.get<SitePhoneCallsAxiosGetInterface>(url, {
 			params: {
+				'filter[site]': siteId,
 				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
-				'filter[site]': siteId
+				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
 			}
 		});
 	};
@@ -377,9 +380,9 @@ class SitesService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get<string>(url, {
 			params: {
+				'filter[site]': siteId,
 				'filter[createdAt][gte]': payload.from,
-				'filter[createdAt][lte]': payload.to,
-				'filter[site]': siteId
+				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

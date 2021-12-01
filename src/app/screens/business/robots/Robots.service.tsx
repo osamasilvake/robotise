@@ -239,11 +239,11 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
 		return HttpClientService.get<RobotOrdersAxiosGetInterface>(url, {
 			params: {
-				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
 				'filter[robot]': robotId,
 				'filter[active]': payload.activeOrders || undefined,
-				'filter[isDebug]': payload.debug ? undefined : false
+				'filter[isDebug]': payload.debug ? undefined : false,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};
@@ -328,11 +328,11 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES;
 		return HttpClientService.get<RobotPurchasesAxiosGetInterface>(url, {
 			params: {
-				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
 				'filter[robot]': robotId,
 				'filter[isBilled]': payload.billed ? false : undefined,
-				'filter[isDebug]': payload.debug ? undefined : false
+				'filter[isDebug]': payload.debug ? undefined : false,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};
@@ -394,9 +394,9 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOGS;
 		return HttpClientService.get<RobotCommandLogsAxiosGetInterface>(url, {
 			params: {
+				'filter[robot]': robotId,
 				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
-				'filter[robot]': robotId
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};
@@ -414,9 +414,9 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
 		return HttpClientService.get<RobotElevatorCallsAxiosGetInterface>(url, {
 			params: {
+				'filter[robot]': robotId,
 				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
-				'filter[robot]': robotId
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};
@@ -513,9 +513,9 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS.PURCHASES;
 		return HttpClientService.get<string>(url, {
 			params: {
+				'filter[robot]': robotId,
 				'filter[createdAt][gte]': payload.from,
-				'filter[createdAt][lte]': payload.to,
-				'filter[robot]': robotId
+				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

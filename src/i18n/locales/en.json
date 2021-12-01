@@ -159,6 +159,13 @@
 					"ERROR": "Unable to update room state!"
 				}
 			},
+			"STATISTICS": {
+				"WIFI_HEATMAP": {
+					"FETCH": {
+						"ERROR": "Unable to fetch wifi heatmap data!"
+					}
+				}
+			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
 					"SUCCESS": "Site Setting has been updated successfully!",
@@ -446,6 +453,7 @@
 				"ROOMS": "ROOMS",
 				"PHONE_CONFIGS": "PHONE CONFIGS",
 				"PHONE_CALLS": "PHONE CALLS",
+				"STATISTICS": "STATISTICS",
 				"CONFIGURATION": "CONFIGURATION"
 			},
 			"DETAIL": {

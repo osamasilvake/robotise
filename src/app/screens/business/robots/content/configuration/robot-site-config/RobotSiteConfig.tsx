@@ -12,13 +12,12 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { RobotSiteConfigUpdate } from '../../../../../../slices/business/robots/Robot.slice';
 import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
 import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import {
@@ -28,11 +27,10 @@ import {
 import { RobotSiteConfigStyle } from './RobotSiteConfig.style';
 
 const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
-	const { robotTwinsSummary, robot } = props;
+	const { sites, robotTwinsSummary, robot } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotSiteConfigStyle();
 
-	const sites = useSelector(sitesSelector);
 	const dispatch = useDispatch();
 
 	const params = useParams() as RobotParamsInterface;

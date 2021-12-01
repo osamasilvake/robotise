@@ -13,10 +13,9 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { SiteRobotConfigUpdate } from '../../../../../../slices/business/sites/Site.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -27,12 +26,11 @@ import {
 import { SiteRobotConfigStyle } from './SiteRobotConfig.style';
 
 const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
-	const { sites, site } = props;
+	const { sites, site, robotTwinsSummary } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteRobotConfigStyle();
 
 	const dispatch = useDispatch();
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const params = useParams() as SiteParamsInterface;
 	const cSiteId = params.siteId;

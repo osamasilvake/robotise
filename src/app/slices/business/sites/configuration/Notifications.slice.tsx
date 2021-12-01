@@ -121,7 +121,7 @@ export const NotificationTypesAndUsersFetchList =
 					id: 'notifications-types-users-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'PAGE_ERROR.DESCRIPTION'
+					text: 'SITES.CONFIGURATION.NOTIFICATIONS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

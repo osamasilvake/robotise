@@ -104,7 +104,7 @@ export const ServicePositionsFetchList =
 					id: 'service-positions-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'PAGE_ERROR.DESCRIPTION'
+					text: 'SITES.CONFIGURATION.SERVICE_POSITIONS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

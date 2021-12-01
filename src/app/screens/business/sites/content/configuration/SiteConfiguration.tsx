@@ -38,7 +38,7 @@ const SiteConfiguration: FC = () => {
 
 	const cSiteId = params.siteId;
 	const pNotificationSiteId = notifications.content?.site.id;
-	const pServicePositionSiteId = servicePositions.content?.site.id;
+	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
 
 	useEffect(() => {
 		if (pNotificationSiteId !== cSiteId) {

@@ -66,7 +66,10 @@ export const RoomUpdateFilters =
 			updated({
 				...rooms.content,
 				filters,
-				siteId
+				state: {
+					...rooms.content?.state,
+					pSiteId: siteId
+				}
 			})
 		);
 	};

@@ -39,7 +39,7 @@ const RobotTabs: FC = () => {
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
-	const pSiteId = servicePositions.content?.site?.id;
+	const pSiteId = servicePositions.content?.state?.pSiteId;
 	const problem =
 		!!sites.errors?.id ||
 		(robotTwinsSummary.content && !cSiteId) ||

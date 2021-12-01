@@ -11,7 +11,8 @@ import { triggerMessage } from '../../../general/General.slice';
 import { deserializeServicePositions } from './ServicePositions.slice.deserialize';
 import {
 	SliceServicePositionsInterface,
-	SSCDataInterface
+	SSCDataInterface,
+	SSContentInterface
 } from './ServicePositions.slice.interface';
 
 // initial state
@@ -84,13 +85,16 @@ export const ServicePositionsFetchList =
 		return SitesService.siteServicePositionsFetch(siteId)
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializeServicePositions(res);
+				const result: SSContentInterface = await deserializeServicePositions(res);
 
 				// dispatch: success
 				dispatch(
 					success({
 						...result,
-						site: { id: siteId }
+						state: {
+							...result.state,
+							pSiteId: siteId
+						}
 					})
 				);
 			})

@@ -1,10 +1,7 @@
 import { ExternalLinkPayloadInterface } from '../../../components/common/external-link/ExternalLink.interface';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
-import {
-	SRContentDeepLinkInterface,
-	SRContentMapInterface
-} from '../../../slices/business/robots/Robot.slice.interface';
+import { SRContentDeepLinkInterface } from '../../../slices/business/robots/Robot.slice.interface';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
@@ -107,12 +104,12 @@ class RobotsService {
 	 * @param mapId
 	 * @returns
 	 */
-	robotMapLocationFetch = (mapId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.MAPS.replace(
+	robotMapFetch = (mapId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.MAP.replace(
 			':mapId',
 			mapId
 		);
-		return HttpClientService.get<SRContentMapInterface>(url);
+		return HttpClientService.get<RobotMapAxiosGetInterface>(url);
 	};
 
 	/**

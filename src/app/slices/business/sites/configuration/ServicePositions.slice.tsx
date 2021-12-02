@@ -92,7 +92,6 @@ export const ServicePositionsFetchList =
 					success({
 						...result,
 						state: {
-							...result.state,
 							pSiteId: siteId
 						}
 					})

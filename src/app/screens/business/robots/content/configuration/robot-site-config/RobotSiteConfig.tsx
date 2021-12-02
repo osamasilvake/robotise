@@ -71,11 +71,11 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<FormControl fullWidth>
-								<InputLabel id="notification">
+								<InputLabel id="label-siteId">
 									{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 								</InputLabel>
 								<Select
-									labelId="siteId"
+									labelId="label-siteId"
 									id="siteId"
 									name="siteId"
 									label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}

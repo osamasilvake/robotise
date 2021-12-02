@@ -133,15 +133,15 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 					{values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION && (
 						<FormControl fullWidth margin="normal">
-							<InputLabel id="service-positions">
+							<InputLabel id="label-service-positions">
 								{t(
 									`${translation}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
 								)}
 							</InputLabel>
 							<Select
 								required
-								labelId="service-positions"
-								id="service-positions"
+								labelId="label-service-positions"
+								id={fieldLocation}
 								name={fieldLocation}
 								label={t(
 									`${translation}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
@@ -158,12 +158,12 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					)}
 
 					<FormControl fullWidth margin="normal">
-						<InputLabel id="mode">
+						<InputLabel id="label-mode">
 							{t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
 						</InputLabel>
 						<Select
 							required
-							labelId="mode"
+							labelId="label-mode"
 							id="mode"
 							name="mode"
 							label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}

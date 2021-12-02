@@ -49,7 +49,7 @@ const RobotTabs: FC = () => {
 
 	useEffect(() => {
 		const condition1 = servicePositions.content === null;
-		const condition2 = servicePositions.content !== null && cSiteId !== pSiteId;
+		const condition2 = servicePositions.content !== null && pSiteId && pSiteId !== cSiteId;
 
 		if (condition1 || condition2) {
 			// dispatch: fetch site service positions

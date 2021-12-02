@@ -61,11 +61,11 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<FormControl error fullWidth>
-								<InputLabel id="robotId" error={!attachedRobot}>
+								<InputLabel id="label-robotId" error={!attachedRobot}>
 									{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 								</InputLabel>
 								<Select
-									labelId="robotId"
+									labelId="label-robotId"
 									id="robotId"
 									name="robotId"
 									label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}

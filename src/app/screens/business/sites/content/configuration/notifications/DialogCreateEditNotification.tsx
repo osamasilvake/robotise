@@ -135,11 +135,11 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 				{type === SiteNotificationsCreateEditTypeEnum.CREATE && (
 					<DialogContent>
 						<FormControl fullWidth margin="normal">
-							<InputLabel id="notifications">
+							<InputLabel id="label-notifications">
 								{t(`${translation}.FIELDS.NOTIFICATION.LABEL`)}
 							</InputLabel>
 							<Select
-								labelId="notifications"
+								labelId="label-notifications"
 								id="notifications"
 								name="notifications"
 								label={t(`${translation}.FIELDS.NOTIFICATION.LABEL`)}

@@ -43,9 +43,9 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						robot.control.loading
 					}
 					className={classes.sCommandsActionSelect}>
-					<InputLabel id="control-rotate">{t(`${translation}.ROTATE.LABEL`)}</InputLabel>
+					<InputLabel id="label-rotate">{t(`${translation}.ROTATE.LABEL`)}</InputLabel>
 					<Select
-						labelId="control-rotate"
+						labelId="label-rotate"
 						id="rotate"
 						name="rotate"
 						label={t(`${translation}.ROTATE.LABEL`)}
@@ -80,11 +80,11 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 				<FormControl
 					disabled={!state.ready || !state.control || robot.control.loading}
 					className={classes.sCommandsActionSelect}>
-					<InputLabel id="control-translate">
+					<InputLabel id="labe-translate">
 						{t(`${translation}.TRANSLATE.LABEL`)}
 					</InputLabel>
 					<Select
-						labelId="control-translate"
+						labelId="labe-translate"
 						id="translate"
 						name="translate"
 						label={t(`${translation}.TRANSLATE.LABEL`)}

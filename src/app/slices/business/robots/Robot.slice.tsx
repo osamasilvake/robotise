@@ -142,31 +142,31 @@ const dataSlice = createSlice({
 			}
 		},
 		failure: (state, action) => {
-			const { module, response } = action.payload;
+			const { module } = action.payload;
 			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = false;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
-				state.map.content = response;
+				state.map.content = null;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
 			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
 			} else if (module === RobotTypeEnum.AUDIT_LOGS) {
 				state.auditLogs.loading = false;
-				state.auditLogs.content = response;
+				state.auditLogs.content = null;
 			} else if (module === RobotTypeEnum.BATTERY) {
 				state.battery.loading = false;
-				state.battery.content = response;
+				state.battery.content = null;
 			} else if (module === RobotTypeEnum.TEMPERATURE) {
 				state.temperature.loading = false;
-				state.temperature.content = response;
+				state.temperature.content = null;
 			} else if (module === RobotTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
-				state.itemTracking.content = response;
+				state.itemTracking.content = null;
 			} else if (module === RobotTypeEnum.ELEVATOR_LOGS) {
 				state.elevatorLogs.loading = false;
-				state.elevatorLogs.content = response;
+				state.elevatorLogs.content = null;
 			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {

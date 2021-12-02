@@ -214,7 +214,7 @@
 					"ERROR": "Unable to update note!"
 				},
 				"MAP": {
-					"ERROR": "Failed to load map location!"
+					"ERROR": "Failed to load map!"
 				},
 				"COMMANDS": {
 					"SUCCESS": "Command has been executed successfully!",

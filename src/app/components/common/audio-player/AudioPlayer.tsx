@@ -7,7 +7,6 @@ import {
 	Grid,
 	IconButton,
 	List,
-	ListItem,
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
@@ -178,7 +177,7 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 							min={0}
 							max={duration || 0}
 							step={0.01}
-							onChange={(_e, v) => onScrub(Number(v))}
+							onChange={(_e, v) => onScrub(+v)}
 							onMouseUp={onScrubEnd}
 							onKeyUp={onScrubEnd}
 						/>
@@ -200,31 +199,28 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 
 			<List dense>
 				{tracks.map((track, idx) => (
-					<ListItem
-						disablePadding
+					<ListItemButton
 						key={track.primary}
 						onClick={() =>
 							trackIndex === idx ? setIsPlaying(!isPlaying) : setTrackIndex(idx)
 						}>
-						<ListItemButton>
-							<ListItemIcon>
-								{isPlaying && trackIndex === idx ? (
-									<IconButton>
-										<PauseCircleOutlined color="primary" />
-									</IconButton>
-								) : (
-									<IconButton>
-										<PlayCircleOutlined color="primary" />
-									</IconButton>
-								)}
-							</ListItemIcon>
-							<ListItemText
-								primary={track.primary}
-								secondary={track.secondary}
-								className={classes.sListItemText}
-							/>
-						</ListItemButton>
-					</ListItem>
+						<ListItemIcon>
+							{isPlaying && trackIndex === idx ? (
+								<IconButton>
+									<PauseCircleOutlined color="primary" />
+								</IconButton>
+							) : (
+								<IconButton>
+									<PlayCircleOutlined color="primary" />
+								</IconButton>
+							)}
+						</ListItemIcon>
+						<ListItemText
+							primary={track.primary}
+							secondary={track.secondary}
+							className={classes.sListItemText}
+						/>
+					</ListItemButton>
 				))}
 			</List>
 		</Card>

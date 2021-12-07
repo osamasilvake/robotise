@@ -38,7 +38,7 @@ const SiteConfiguration: FC = () => {
 
 	const cSiteId = params.siteId;
 	const pNotificationSiteId = notifications.content?.site.id;
-	const pServicePositionSiteId = servicePositions.content?.site.id;
+	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
 
 	useEffect(() => {
 		if (pNotificationSiteId !== cSiteId) {
@@ -55,21 +55,8 @@ const SiteConfiguration: FC = () => {
 	}, [dispatch, pServicePositionSiteId, cSiteId]);
 
 	// loader
-	if (
-		sites.loader ||
-		notifications.loader ||
-		servicePositions.loader ||
-		robotTwinsSummary.loader
-	) {
+	if (robotTwinsSummary.loader || notifications.loader || servicePositions.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
-	}
-
-	// null
-	if (
-		(notifications.content && notifications.errors?.id) ||
-		(servicePositions.content && servicePositions.errors?.id)
-	) {
-		return null;
 	}
 
 	return (
@@ -85,18 +72,26 @@ const SiteConfiguration: FC = () => {
 					<SiteConfig sites={sites} site={site} />
 				</Grid>
 				<Grid item xs={12} md={6}>
-					<SiteRobotConfig sites={sites} site={site} />
+					<SiteRobotConfig
+						sites={sites}
+						site={site}
+						robotTwinsSummary={robotTwinsSummary}
+					/>
 				</Grid>
 			</Grid>
 
 			<Grid container spacing={1}>
-				<Grid item xs={12} md={6}>
-					<SiteNotifications notifications={notifications} />
-				</Grid>
+				{!notifications.errors?.id && (
+					<Grid item xs={12} md={6}>
+						<SiteNotifications notifications={notifications} />
+					</Grid>
+				)}
 
-				<Grid item xs={12} md={6}>
-					<SiteServicePositions servicePositions={servicePositions} />
-				</Grid>
+				{!servicePositions.errors?.id && (
+					<Grid item xs={12} md={6}>
+						<SiteServicePositions servicePositions={servicePositions} />
+					</Grid>
+				)}
 			</Grid>
 		</Box>
 	);

@@ -11,15 +11,15 @@ export interface SliceSitesInterface {
 
 export interface SSContentInterface extends JsonAPIResponseInterface {
 	data: ISite[];
-	dataById: SSContentDataByIdInterface;
-	state?: SSContentStateInterface;
+	dataById: SSCDataByIdInterface;
+	state?: SSCStateInterface;
 }
 
-export interface SSContentDataByIdInterface {
+export interface SSCDataByIdInterface {
 	[id: string]: ISite;
 }
 
-export interface SSContentStateInterface {
+export interface SSCStateInterface {
 	hidden?: boolean;
 }
 

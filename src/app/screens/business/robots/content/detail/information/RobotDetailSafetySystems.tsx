@@ -1,5 +1,13 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+	Collapse,
+	Icon,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -20,10 +28,10 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 
 	return mappedSystem ? (
 		<List className={classes.sList}>
-			<ListItem button selected onClick={() => setOpen(!open)}>
+			<ListItemButton selected onClick={() => setOpen(!open)}>
 				<ListItemText primary={t('CONTENT.DETAIL.INFORMATION.SAFETY_SYSTEMS.TITLE')} />
 				{open ? <ExpandLess /> : <ExpandMore />}
-			</ListItem>
+			</ListItemButton>
 			{mappedSystem.map((row) => (
 				<Collapse key={row.label} in={open} timeout="auto" unmountOnExit>
 					<ListItem>

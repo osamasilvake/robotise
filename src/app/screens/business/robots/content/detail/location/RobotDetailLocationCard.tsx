@@ -5,10 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
 import { PictureOnLoadInterface } from '../../../../../../components/common/picture/Picture.interface';
-import {
-	RobotMapLocationFetch,
-	robotSelector
-} from '../../../../../../slices/business/robots/Robot.slice';
+import { RobotMapFetch, robotSelector } from '../../../../../../slices/business/robots/Robot.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotLocationImageUrl } from '../../../Robots.url';
 import { RobotDetailLocationHumanLegTypeEnum } from './RobotDetailLocation.enum';
@@ -50,8 +47,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 
 	useEffect(() => {
 		if (robotTwinsMapName !== robotMapName) {
-			// dispatch: fetch robot map location
-			dispatch(RobotMapLocationFetch(robotTwinsMapName));
+			// dispatch: fetch robot map
+			dispatch(RobotMapFetch(robotTwinsMapName));
 		}
 	}, [dispatch, robotTwinsMapName, robotMapName]);
 

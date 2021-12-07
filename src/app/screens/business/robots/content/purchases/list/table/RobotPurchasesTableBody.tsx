@@ -70,7 +70,7 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 			if (key !== RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING) {
 				switch (type) {
 					case RobotPurchasesTableSortTypeEnum.NUMBER:
-						return a[key] && b[key] ? Number(a[key]) - Number(b[key]) : a[key] ? 1 : -1;
+						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 					case RobotPurchasesTableSortTypeEnum.DATE:
 						return momentSort(a[key]).diff(momentSort(b[key]));
 					case RobotPurchasesTableSortTypeEnum.STRING:
@@ -108,11 +108,11 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 					.map((purchase: SPCDataInterface, index: number) => (
 						<TableRow
-							hover={!content.state?.locked && Number(purchase.totalPrice) > 0}
+							hover={!content.state?.locked && +purchase.totalPrice > 0}
 							key={purchase.id}
 							tabIndex={-1}
 							onClick={
-								!content.state?.locked && Number(purchase.totalPrice) > 0
+								!content.state?.locked && +purchase.totalPrice > 0
 									? handleShowPurchaseDetail(purchase)
 									: () => null
 							}

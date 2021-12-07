@@ -73,7 +73,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 				case RobotsTableSortTypeEnum.OBJECT_MISSION:
 					return a.robotMission.status.localeCompare(b.robotMission.status);
 				case RobotsTableSortTypeEnum.NUMBER:
-					return a[key] && b[key] ? Number(a[key]) - Number(b[key]) : a[key] ? 1 : -1;
+					return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 				case RobotsTableSortTypeEnum.DATE:
 					return momentSort(a[key]).diff(momentSort(b[key]));
 				case RobotsTableSortTypeEnum.BOOLEAN:

@@ -14,9 +14,10 @@ export interface SRTContentDataInterface {
 	site: SRTContentSiteInterface;
 	robot: SRTContentRobotInterface;
 	robotState: SRTContentRobotStateInterface;
-	alerts: SRTContentAlertsInterface;
 	controlMode: SRTContentControlModeInterface;
 	mission: SRTContentMissionInterface;
+	alerts: SRTContentAlertsInterface;
+	ca?: SRTContentRobotCAInterface;
 	location?: SRTContentLocationInterface | undefined;
 	cameras?: SRTContentCameraInterface | undefined;
 	batteryState?: SRTContentBatteryStateInterface | undefined;
@@ -56,20 +57,27 @@ export interface SRTContentRobotStateInterface {
 	};
 }
 
-export interface SRTContentAlertsInterface {
-	value: IAlertInterface[];
-	updatedAt: Date;
-}
-
 export interface SRTContentControlModeInterface {
 	value: RobotDetailControlModeTypeEnum;
 	updatedAt: Date;
 }
 
 export interface SRTContentMissionInterface {
-	status: string;
-	description: string;
+	value: {
+		status: string;
+		description: string;
+	};
 	updatedAt: Date;
+}
+
+export interface SRTContentAlertsInterface {
+	value: IAlertInterface[];
+	updatedAt: Date;
+}
+
+export interface SRTContentRobotCAInterface {
+	ip: string;
+	username: string;
 }
 
 export interface SRTContentLocationInterface {
@@ -245,10 +253,10 @@ export interface IRobotTwinInterface {
 	id: string;
 	createdAt: Date;
 	updatedAt: Date;
-	robot: {
+	site: {
 		id: string;
 	};
-	site: {
+	robot: {
 		id: string;
 	};
 	state: {
@@ -261,6 +269,10 @@ export interface IRobotTwinInterface {
 				isReady: boolean;
 			};
 			alerts: IAlertInterface[];
+			ca: {
+				ip: string;
+				username: string;
+			};
 			cameras: {
 				[key: string]: {
 					imageId: string;

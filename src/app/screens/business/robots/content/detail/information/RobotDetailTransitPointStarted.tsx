@@ -1,5 +1,13 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Collapse, Icon, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import {
+	Collapse,
+	Icon,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -24,12 +32,12 @@ const RobotDetailTransitPointStarted: FC<RobotDetailTransitPointStartedInterface
 
 	return mappedInfo ? (
 		<List className={classes.sList}>
-			<ListItem button selected onClick={() => setOpen(!open)}>
+			<ListItemButton selected onClick={() => setOpen(!open)}>
 				<ListItemText
 					primary={t('CONTENT.DETAIL.INFORMATION.TRANSIT_POINT_STARTED.TITLE')}
 				/>
 				{open ? <ExpandLess /> : <ExpandMore />}
-			</ListItem>
+			</ListItemButton>
 			{mappedInfo.map((row) => (
 				<Collapse key={row.label} in={open} timeout="auto" unmountOnExit>
 					<ListItem>

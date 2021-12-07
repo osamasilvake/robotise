@@ -47,8 +47,8 @@ const DeepLinksActions: FC = () => {
 				hidden={
 					!validateScope(
 						scope,
-						AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
-						AuthScopeTypeEnum.WRITE
+						AuthScopeTypeEnum.WRITE,
+						AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
 					)
 				}>
 				{deepLinkActions.map((action) => (

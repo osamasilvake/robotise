@@ -13,11 +13,11 @@ class GeneralService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.EMAILS;
 		return HttpClientService.get<GeneralEmailsAxiosGetInterface>(url, {
 			params: {
-				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
 				'filter[site]': payload.siteId,
 				'filter[status][ne]': !payload.delivered ? 'delivered' : undefined,
-				'filter[createdAt][gte]': momentDaysPriorToToday(30)
+				'filter[createdAt][gte]': momentDaysPriorToToday(30),
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
 			}
 		});
 	};

@@ -8,7 +8,7 @@ import {
 	sitesSelector,
 	SitesUpdateState
 } from '../../../../../slices/business/sites/Sites.slice';
-import { SSContentStateInterface } from '../../../../../slices/business/sites/Sites.slice.interface';
+import { SSCStateInterface } from '../../../../../slices/business/sites/Sites.slice.interface';
 
 const SitesHidden: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -23,7 +23,7 @@ const SitesHidden: FC = () => {
 	 */
 	const handleHidden = () => {
 		// dispatch: update state
-		const state: SSContentStateInterface = { hidden: !hidden };
+		const state: SSCStateInterface = { hidden: !hidden };
 		dispatch(SitesUpdateState(state));
 
 		// dispatch: fetch sites

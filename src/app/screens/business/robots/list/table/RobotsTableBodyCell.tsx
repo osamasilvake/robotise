@@ -97,7 +97,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 				</Box>
 			);
 		} else if (RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE === column.id) {
-			return percentage(Number(value));
+			return percentage(+value);
 		} else if (RobotsTableColumnsTypeEnum.MISSION_STATUS === column.id) {
 			const mission = robot.robotMission;
 			return mission && mission.status ? (

@@ -11,7 +11,7 @@ export interface SliceServicePositionsInterface {
 
 export interface SSContentInterface extends JsonAPIResponseInterface {
 	data: SSCDataInterface[];
-	site: { id: string };
+	state?: SSCStateInterface;
 }
 
 export interface SSCDataInterface {
@@ -20,4 +20,8 @@ export interface SSCDataInterface {
 	location: string;
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+export interface SSCStateInterface {
+	pSiteId: string;
 }

@@ -77,7 +77,7 @@
 	"BREADCRUMB": {
 		"EMAIL": "Email",
 		"ORDER": "Order",
-		"PURCHASE": "Purchase"
+		"PURCHASE": "Report"
 	},
 	"UPLOAD": {
 		"IMAGE": {
@@ -159,6 +159,11 @@
 					"ERROR": "Unable to update room state!"
 				}
 			},
+			"STATISTICS": {
+				"WIFI_HEATMAP": {
+					"ERROR": "Unable to fetch wifi heatmap data!"
+				}
+			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
 					"SUCCESS": "Site Setting has been updated successfully!",
@@ -206,8 +211,11 @@
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
 				},
+				"MAPS": {
+					"ERROR": "Failed to load maps!"
+				},
 				"MAP": {
-					"ERROR": "Failed to load map location!"
+					"ERROR": "Failed to load map!"
 				},
 				"COMMANDS": {
 					"SUCCESS": "Command has been executed successfully!",
@@ -446,6 +454,7 @@
 				"ROOMS": "ROOMS",
 				"PHONE_CONFIGS": "PHONE CONFIGS",
 				"PHONE_CALLS": "PHONE CALLS",
+				"STATISTICS": "STATISTICS",
 				"CONFIGURATION": "CONFIGURATION"
 			},
 			"DETAIL": {
@@ -631,6 +640,13 @@
 					}
 				}
 			},
+			"STATISTICS": {
+				"WIFI_HEATMAP": {
+					"TITLE": "WIFI Heatmap",
+					"FLOOR": "Floor",
+					"EMPTY": "Empty"
+				}
+			},
 			"CONFIGURATION": {
 				"ACCEPT_ORDERS": {
 					"TITLE": "Accept Orders",
@@ -779,6 +795,8 @@
 					},
 					"CUSTOMER_NAME": "Robot Customer Name",
 					"MISSION": "Mission",
+					"IP_ADDRESS": "IP Address",
+					"USERNAME": "Username",
 					"NOTE": {
 						"LABEL": "Note",
 						"EXCERPT": "Provide important and relevant information about the particular robot.",

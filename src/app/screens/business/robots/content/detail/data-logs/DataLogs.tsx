@@ -11,6 +11,7 @@ import {
 	robotSelector,
 	RobotTemperatureLinkFetch
 } from '../../../../../../slices/business/robots/Robot.slice';
+import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotDetailDataLogsStyle } from './DataLogs.style';
 
@@ -19,10 +20,12 @@ const RobotDetailDataLogs: FC = () => {
 	const classes = RobotDetailDataLogsStyle();
 
 	const robot = useSelector(robotSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const params = useParams() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const translation = 'CONTENT.DETAIL.DATA_LOGS';
 
 	return (
@@ -42,6 +45,7 @@ const RobotDetailDataLogs: FC = () => {
 						<ExternalLink
 							text={t(`${translation}.AUDIT_LOGS.TEXT`)}
 							payload={{
+								siteId: cSiteId,
 								robotId: cRobotId,
 								from: 'now-7d',
 								to: 'now'

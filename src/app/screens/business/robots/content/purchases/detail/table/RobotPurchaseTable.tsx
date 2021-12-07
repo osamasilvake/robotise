@@ -36,8 +36,8 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 	const setCellValue = (row: SPCDataCartInterface, column: RobotPurchaseTableColumnInterface) => {
 		const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 		const currency = (purchase?.content && purchase.content.currency) || defaultCurrency;
-		const quantity = Number(row[RobotPurchaseTableColumnsTypeEnum.QUANTITY]);
-		const price = Number(row[RobotPurchaseTableColumnsTypeEnum.PRICE_UNIT]);
+		const quantity = +row[RobotPurchaseTableColumnsTypeEnum.QUANTITY];
+		const price = +row[RobotPurchaseTableColumnsTypeEnum.PRICE_UNIT];
 
 		switch (column.id) {
 			case RobotPurchaseTableColumnsTypeEnum.TITLE:
@@ -94,14 +94,16 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 						<TableCell />
 						<TableCell />
 						<TableCell align="right">
-							<Typography variant="h6">
-								{`${currencyFormat(
-									Number(purchase?.content?.totalPrice),
-									(purchase?.content && purchase.content.currency) ||
-										AppConfigService.AppOptions.common.defaultCurrency,
-									i18next.language
-								)}`}
-							</Typography>
+							{purchase?.content?.totalPrice && (
+								<Typography variant="h6">
+									{`${currencyFormat(
+										+purchase.content.totalPrice,
+										(purchase?.content && purchase.content.currency) ||
+											AppConfigService.AppOptions.common.defaultCurrency,
+										i18next.language
+									)}`}
+								</Typography>
+							)}
 						</TableCell>
 					</TableRow>
 				</TableBody>

@@ -7,6 +7,7 @@ import { PCCDataInterface as PCCDataAliasInterface } from '../../../slices/busin
 import { PCCDataInterface } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
 import { SPCDataInterface } from '../../../slices/business/sites/products/Products.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
+import { SWCDataInterface } from '../../../slices/business/sites/statistics/WifiHeatmap.slice.interface';
 import { JsonAPIResponseInterface } from '../../../slices/JsonAPI.interface';
 
 export interface SitesAxiosGetInterface extends JsonAPIResponseInterface {
@@ -50,6 +51,14 @@ export interface SitePhoneConfigsAxiosGetInterface extends JsonAPIResponseInterf
 		id: string;
 		type: string;
 		attributes: PCCDataInterface;
+	}[];
+}
+
+export interface SiteWifiHeatmapAxiosGetInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SWCDataInterface;
 	}[];
 }
 

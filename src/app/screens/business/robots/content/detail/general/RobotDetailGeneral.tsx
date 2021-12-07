@@ -44,6 +44,36 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Box>
 			</Grid>
 
+			{/* Customer Name */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.CUSTOMER_NAME`)}
+				</Typography>
+				<Typography>
+					{robotTwins.robot.customerName || AppConfigService.AppOptions.common.none}
+				</Typography>
+			</Grid>
+
+			{/* Username */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.USERNAME`)}
+				</Typography>
+				<Typography>
+					{robotTwins.ca?.username || AppConfigService.AppOptions.common.none}
+				</Typography>
+			</Grid>
+
+			{/* IP Address */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.IP_ADDRESS`)}
+				</Typography>
+				<Typography>
+					{robotTwins.ca?.ip || AppConfigService.AppOptions.common.none}
+				</Typography>
+			</Grid>
+
 			{/* Last Updated */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
@@ -53,7 +83,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Status */}
-			<Grid item xs={12} sm={6} md={4} lg={2}>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.STATUS.LABEL`)}
 				</Typography>
@@ -67,7 +97,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Control Mode */}
-			<Grid item xs={12} sm={6} md={4} lg={2}>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.CONTROL_MODE`)}
 				</Typography>
@@ -84,7 +114,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Accept Orders */}
-			<Grid item xs={12} sm={6} md={4} lg={2} className={classes.sGridLastRowItem}>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
 				</Typography>
@@ -97,16 +127,6 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Box>
 			</Grid>
 
-			{/* Customer Name */}
-			<Grid item xs={12} sm={6} md={4} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.CUSTOMER_NAME`)}
-				</Typography>
-				<Typography>
-					{robotTwins.robot.customerName || AppConfigService.AppOptions.common.none}
-				</Typography>
-			</Grid>
-
 			{/* Mission */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
@@ -114,10 +134,11 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Typography>
 				<Stack spacing={0.5} direction="row" alignItems="center">
 					<Typography>
-						{robotTwins.mission.status || AppConfigService.AppOptions.common.none}
+						{robotTwins.mission?.value?.status ||
+							AppConfigService.AppOptions.common.none}
 					</Typography>
-					{robotTwins.mission.description && (
-						<Tooltip title={robotTwins.mission.description}>
+					{robotTwins.mission?.value?.description && (
+						<Tooltip title={robotTwins.mission?.value?.description}>
 							<InfoOutlined fontSize="small" className={classes.sGridItemInfoIcon} />
 						</Tooltip>
 					)}
@@ -125,7 +146,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Note */}
-			<Grid item xs={12} sm={6} className={classes.sNoteGrid}>
+			<Grid item xs={12} sm={6} md={4} lg={9} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.NOTE.LABEL`)}
 					<Tooltip

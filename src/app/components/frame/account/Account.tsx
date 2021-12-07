@@ -6,6 +6,7 @@ import {
 	IconButton,
 	List,
 	ListItem,
+	ListItemButton,
 	ListItemIcon,
 	ListItemText,
 	Popover,
@@ -146,12 +147,12 @@ const Account: FC = () => {
 								<Language />
 
 								{/* Logout */}
-								<ListItem button onClick={handleLogout}>
+								<ListItemButton onClick={handleLogout}>
 									<ListItemIcon>
 										<PowerSettingsNew />
 									</ListItemIcon>
 									<ListItemText primary={t('LOGOUT')} />
-								</ListItem>
+								</ListItemButton>
 							</List>
 						</Popover>
 					</Box>

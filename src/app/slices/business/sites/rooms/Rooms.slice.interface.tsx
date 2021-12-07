@@ -10,10 +10,14 @@ export interface SliceRoomsInterface {
 export interface SRContentInterface {
 	site: ISite;
 	filters: SRFiltersInterface;
-	siteId?: string;
+	state?: SRStateInterface;
 }
 
 export interface SRFiltersInterface {
 	active: boolean;
 	inactive: boolean;
+}
+
+export interface SRStateInterface {
+	pSiteId: string;
 }

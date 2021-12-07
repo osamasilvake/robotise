@@ -1,6 +1,6 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
-import { SSContentStateInterface } from '../../../slices/business/sites/Sites.slice.interface';
+import { SSCStateInterface } from '../../../slices/business/sites/Sites.slice.interface';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
@@ -10,6 +10,7 @@ import { SiteRobotConfigFormInterface } from './content/configuration/site-robot
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
+import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
 import {
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
@@ -19,21 +20,22 @@ import {
 	SiteRoomsAxiosPatchRequestInterface,
 	SiteRoomsAxiosPatchResponseInterface,
 	SitesAxiosGetInterface,
-	SiteServicePositionsAxiosGetInterface
+	SiteServicePositionsAxiosGetInterface,
+	SiteWifiHeatmapAxiosGetInterface
 } from './Sites.interface';
 
 class SitesService {
 	/**
 	 * fetch sites
-	 * @param filters
+	 * @param state
 	 * @returns
 	 */
-	sitesFetch = (filters: SSContentStateInterface | undefined) => {
+	sitesFetch = (state: SSCStateInterface | undefined) => {
 		return HttpClientService.get<SitesAxiosGetInterface>(
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL,
 			{
 				params: {
-					'filter[isHidden]': filters?.hidden ? undefined : false
+					'filter[isHidden]': state?.hidden ? undefined : false
 				}
 			}
 		);
@@ -154,9 +156,27 @@ class SitesService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
 		return HttpClientService.get<SitePhoneCallsAxiosGetInterface>(url, {
 			params: {
+				'filter[site]': siteId,
 				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage,
-				'filter[site]': siteId
+				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
+	 * fetch wifi data for heatmap
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteWifiHeatmapDataFetch = (siteId: string, payload: SiteWifiHeatmapPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.STATISTICS.WIFI_HEATMAP;
+		return HttpClientService.get<SiteWifiHeatmapAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId,
+				'filter[floor]': payload.floor,
+				'filter[createdAt][gte]': 'now-7d',
+				'filter[createdAt][lte]': 'now'
 			}
 		});
 	};
@@ -377,9 +397,9 @@ class SitesService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
 		return HttpClientService.get<string>(url, {
 			params: {
+				'filter[site]': siteId,
 				'filter[createdAt][gte]': payload.from,
-				'filter[createdAt][lte]': payload.to,
-				'filter[site]': siteId
+				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

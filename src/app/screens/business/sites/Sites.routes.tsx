@@ -44,6 +44,10 @@ const sitesRoutes: RoutesInterface[] = [
 		component: Site
 	},
 	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.STATISTICS,
+		component: Site
+	},
+	{
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.CONFIGURATION,
 		component: Site
 	}

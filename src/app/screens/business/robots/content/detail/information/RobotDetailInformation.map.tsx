@@ -120,6 +120,7 @@ export const mapTransitPointStarted = (
 						: Object.entries(value).map(([ky, val]) => ({
 								key: `idx: ${ky}`,
 								value: Object.entries(val)
+									.concat()
 									.sort()
 									.map(([k, v]) =>
 										Array.isArray(v) ? [k, v.join(', ')] : [k, v]

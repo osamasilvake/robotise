@@ -8,8 +8,7 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	ListSubheader,
-	Stack
+	ListSubheader
 } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -36,8 +35,6 @@ const DrawerCustom: FC = () => {
 	const general = useSelector(generalSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const scope = auth.user?.scope;
-
 	return (
 		<Drawer
 			variant="permanent"
@@ -61,18 +58,22 @@ const DrawerCustom: FC = () => {
 								{(general.openDrawer && t(root.primary)) || t(root.secondary)}
 							</ListSubheader>
 						}>
-						{root.list.map((item) => (
+						{root.list.map((item, pIdx) => (
 							<ListItemButton
 								disableRipple
-								key={item.id}
+								key={pIdx}
 								component={NavLink}
 								to={item.path}
 								disabled={
-									item.scope &&
-									!validateScope(scope, item.path, AuthScopeTypeEnum.READ)
+									!validateScope(
+										auth.user?.scope,
+										AuthScopeTypeEnum.READ,
+										item.path,
+										item.scope
+									)
 								}
 								className={clsx({ [classes.sListItemHint]: item.hint })}>
-								<ListItemIcon>
+								<ListItemIcon className={classes.sListItemIcon}>
 									{item.badge === DrawerListBadgeTypeEnum.ROBOT &&
 									robotTwinsSummary.content &&
 									robotTwinsSummary.content.alerts?.count ? (
@@ -95,14 +96,7 @@ const DrawerCustom: FC = () => {
 			<Divider light />
 
 			{/* Copyrights */}
-			<Stack
-				spacing={0.5}
-				direction="row"
-				alignItems="center"
-				justifyContent="center"
-				className={classes.sBottomArea}>
-				{general.openDrawer ? <Copyrights /> : <Copyrights short />}
-			</Stack>
+			{general.openDrawer ? <Copyrights /> : <Copyrights short />}
 		</Drawer>
 	);
 };

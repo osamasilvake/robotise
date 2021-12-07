@@ -1,5 +1,5 @@
 import { Brightness3, WbSunny } from '@mui/icons-material';
-import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,8 +27,7 @@ const ThemePalette: FC = () => {
 		dispatch(GeneralApplyThemePalette(theme));
 
 	return (
-		<ListItem
-			button
+		<ListItemButton
 			onClick={handleThemePalette(
 				general.themePalette === GeneralThemePaletteTypeEnum.LIGHT
 					? GeneralThemePaletteTypeEnum.DARK
@@ -49,7 +48,7 @@ const ThemePalette: FC = () => {
 						: t('THEME.DARK')
 				}
 			/>
-		</ListItem>
+		</ListItemButton>
 	);
 };
 export default ThemePalette;

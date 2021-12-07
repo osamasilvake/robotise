@@ -1,15 +1,14 @@
-import { ListItem, ListItemText } from '@mui/material';
+import { Translate } from '@mui/icons-material';
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { GeneralChangeLanguage, generalSelector } from '../../../../slices/general/General.slice';
 import { GeneralLanguageTypeEnum } from '../../../../slices/general/General.slice.enum';
-import { LanguageStyle } from './Language.style';
 
 const Language: FC = () => {
 	const { t } = useTranslation('ACCOUNT');
-	const classes = LanguageStyle();
 
 	const dispatch = useDispatch();
 	const general = useSelector(generalSelector);
@@ -23,21 +22,17 @@ const Language: FC = () => {
 		dispatch(GeneralChangeLanguage(language));
 
 	return (
-		<ListItem
+		<ListItemButton
 			disabled
-			button
 			divider
 			onClick={handleLanguage(
 				general.currentLanguage === GeneralLanguageTypeEnum.EN
 					? GeneralLanguageTypeEnum.DE
 					: GeneralLanguageTypeEnum.EN
 			)}>
-			<ListItemText className={classes.sLanguageText}>
-				{(general.currentLanguage === GeneralLanguageTypeEnum.EN
-					? GeneralLanguageTypeEnum.EN
-					: GeneralLanguageTypeEnum.DE
-				).toUpperCase()}
-			</ListItemText>
+			<ListItemIcon>
+				<Translate />
+			</ListItemIcon>
 			<ListItemText
 				primary={t('LANGUAGE.LABEL')}
 				secondary={
@@ -46,7 +41,7 @@ const Language: FC = () => {
 						: t('LANGUAGE.DE')
 				}
 			/>
-		</ListItem>
+		</ListItemButton>
 	);
 };
 export default Language;

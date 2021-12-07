@@ -87,7 +87,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 				</Typography>
 
 				<form onSubmit={handleSubmit}>
-					<Grid container spacing={2}>
+					<Grid container spacing={1}>
 						<Grid item xs={12}>
 							<FormControl fullWidth>
 								<TextField
@@ -121,6 +121,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									helperText={errors?.customerName && t(errors.customerName)}
 								/>
 							</FormControl>
+						</Grid>
+						<Grid item xs={12}>
 							<FormControl>
 								<FormControlLabel
 									control={
@@ -138,7 +140,9 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									{t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
 								</FormHelperText>
 							</FormControl>
-							<FormControl className={classes.sFormControlBox}>
+						</Grid>
+						<Grid item xs={12}>
+							<FormControl>
 								<FormControlLabel
 									control={
 										<Switch
@@ -158,7 +162,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								</FormHelperText>
 							</FormControl>
 						</Grid>
-						<Grid item xs={12}>
+						<Grid item xs={12} className={classes.sSubmit}>
 							<Button
 								variant="outlined"
 								type="submit"

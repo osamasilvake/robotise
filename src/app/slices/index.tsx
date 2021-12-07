@@ -23,6 +23,7 @@ import products from './business/sites/products/Products.slice';
 import rooms from './business/sites/rooms/Rooms.slice';
 import site from './business/sites/Site.slice';
 import sites from './business/sites/Sites.slice';
+import wifiHeatmap from './business/sites/statistics/WifiHeatmap.slice';
 import general from './general/General.slice';
 import alertCodes from './information/alert-codes/AlertCodes.slice';
 import deepLinks from './settings/deep-links/DeepLinks.slice';
@@ -41,6 +42,7 @@ const combinedReducer = combineReducers({
 	servicePositions,
 	phoneConfigs,
 	phoneCalls,
+	wifiHeatmap,
 	robotTwinsSummary,
 	robotTwins,
 	robot,

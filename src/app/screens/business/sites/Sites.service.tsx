@@ -10,6 +10,7 @@ import { SiteRobotConfigFormInterface } from './content/configuration/site-robot
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
+import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
 import {
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
@@ -19,7 +20,8 @@ import {
 	SiteRoomsAxiosPatchRequestInterface,
 	SiteRoomsAxiosPatchResponseInterface,
 	SitesAxiosGetInterface,
-	SiteServicePositionsAxiosGetInterface
+	SiteServicePositionsAxiosGetInterface,
+	SiteWifiHeatmapAxiosGetInterface
 } from './Sites.interface';
 
 class SitesService {
@@ -160,6 +162,21 @@ class SitesService {
 			}
 		});
 	};
+
+	/**
+	 * fetch wifi data for heatmap
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteWifiHeatmapDataFetch = (siteId: string, payload: SiteWifiHeatmapPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.STATISTICS.WIFI_HEATMAP;
+		return HttpClientService.get<SiteWifiHeatmapAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId,
+				'filter[floor]': payload.floor,
+				'filter[createdAt][gte]': 'now-7d',
+				'filter[createdAt][lte]': 'now'
 			}
 		});
 	};

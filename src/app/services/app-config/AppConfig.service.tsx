@@ -133,6 +133,21 @@ class AppConfigService extends EnvService {
 									pageSizes: [5, 10, 15, 20, 50, 100]
 								}
 							},
+							statistics: {
+								wifiHeatmap: {
+									refreshTime: 20000,
+									config: {
+										radius: 10,
+										maxOpacity: 1,
+										minOpacity: 0.5,
+										blur: 0,
+										gradient: {
+											'0': '#ff3729',
+											'.6': '#2e7d32'
+										}
+									}
+								}
+							},
 							configuration: {
 								notifications: {
 									refreshTime: 20000
@@ -272,6 +287,9 @@ class AppConfigService extends EnvService {
 						SERVICE_POSITIONS: `${this.envAppUrl}/service-positions`,
 						PHONE_CONFIGS: `${this.envAppUrl}/phone-dispatcher-configs`,
 						PHONE_CALLS: `${this.envAppUrl}/inbound-calls`,
+						STATISTICS: {
+							WIFI_HEATMAP: `${this.envAppUrl}/wifi-heatmap`
+						},
 						REPORTS: {
 							PRODUCTS: `${this.envAppUrl}/product-export`
 						}
@@ -284,7 +302,8 @@ class AppConfigService extends EnvService {
 						ORDER: `${this.envAppUrl}/orders/:orderId`,
 						PURCHASES: `${this.envAppUrl}/order-reports`,
 						PURCHASE: `${this.envAppUrl}/order-reports/:purchaseId`,
-						MAPS: `${this.envAppUrl}/maps/:mapId`,
+						MAPS: `${this.envAppUrl}/maps`,
+						MAP: `${this.envAppUrl}/maps/:mapId`,
 						COMMANDS: `${this.envAppUrl}/robots/:robotId/commands`,
 						CONFIG: `${this.envAppUrl}/robots/:robotId`,
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,

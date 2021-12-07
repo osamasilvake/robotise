@@ -69,6 +69,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [React CSV](https://github.com/react-csv/react-csv)
 - [X] [DOM Purify](https://github.com/cure53/DOMPurify)
+- [X] [Heatmap](https://github.com/pa7/heatmap.js)
 
 
 ## ENV (Environment)

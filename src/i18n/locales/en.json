@@ -161,9 +161,7 @@
 			},
 			"STATISTICS": {
 				"WIFI_HEATMAP": {
-					"FETCH": {
-						"ERROR": "Unable to fetch wifi heatmap data!"
-					}
+					"ERROR": "Unable to fetch wifi heatmap data!"
 				}
 			},
 			"CONFIGURATION": {
@@ -212,6 +210,9 @@
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
+				},
+				"MAPS": {
+					"ERROR": "Failed to load maps!"
 				},
 				"MAP": {
 					"ERROR": "Failed to load map!"
@@ -637,6 +638,13 @@
 							}
 						}
 					}
+				}
+			},
+			"STATISTICS": {
+				"WIFI_HEATMAP": {
+					"TITLE": "WIFI Heatmap",
+					"FLOOR": "Floor",
+					"EMPTY": "Empty"
 				}
 			},
 			"CONFIGURATION": {

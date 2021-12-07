@@ -17,14 +17,24 @@ import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { deserializeRobot } from './Robot.slice.deserialize';
+import { deserializeMap, deserializeMaps } from './Robot.slice.deserialize';
 import { RobotTypeEnum } from './Robot.slice.enum';
-import { SliceRobotInterface, SRContentDeepLinkInterface } from './Robot.slice.interface';
+import {
+	SliceRobotInterface,
+	SRContentDeepLinkInterface,
+	SRContentMapsInterface,
+	SRContentMapsStateInterface
+} from './Robot.slice.interface';
 
 // initial state
 export const initialState: SliceRobotInterface = {
 	note: {
 		loading: false
+	},
+	maps: {
+		loading: false,
+		updating: false,
+		content: null
 	},
 	map: {
 		loading: false,
@@ -79,6 +89,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = true;
+			} else if (module === RobotTypeEnum.MAPS) {
+				state.maps.loading = true;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = true;
 			} else if (module === RobotTypeEnum.ROC_CONTROL) {
@@ -109,6 +121,9 @@ const dataSlice = createSlice({
 			const { module, response } = action.payload;
 			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = false;
+			} else if (module === RobotTypeEnum.MAPS) {
+				state.maps.loading = false;
+				state.maps.content = response;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
@@ -145,6 +160,9 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === RobotTypeEnum.NOTE) {
 				state.note.loading = false;
+			} else if (module === RobotTypeEnum.MAPS) {
+				state.maps.loading = false;
+				state.maps.content = null;
 			} else if (module === RobotTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = null;
@@ -177,12 +195,25 @@ const dataSlice = createSlice({
 				state.reports.loading = false;
 			}
 		},
+		updating: (state, action) => {
+			const { module } = action.payload;
+			if (module === RobotTypeEnum.MAPS) {
+				state.maps.updating = true;
+			}
+		},
+		updated: (state, action) => {
+			const { module, response } = action.payload;
+			if (module === RobotTypeEnum.MAPS) {
+				state.maps.updating = false;
+				state.maps.content = response;
+			}
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loading, success, failure, reset } = dataSlice.actions;
+export const { loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const robotSelector = (state: AppReducerType) => state['robot'];
@@ -243,40 +274,138 @@ export const RobotNoteUpdate =
 	};
 
 /**
- * fetch robot map location
+ * fetch robot maps
+ * @param siteId
+ * @param callback
+ * @returns
+ */
+export const RobotMapsFetch =
+	(siteId: string, callback?: (res: SRContentMapsInterface) => void) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		const states = getState();
+		const maps = states.robot.maps;
+		const state = {
+			module: RobotTypeEnum.MAPS
+		};
+
+		// return on busy
+		if (maps && maps.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotMapsFetch(siteId)
+			.then(async (res) => {
+				// deserialize response
+				const result: SRContentMapsInterface = await deserializeMaps(res);
+
+				// dispatch: success
+				dispatch(
+					success({
+						...state,
+						response: {
+							...result,
+							state: {
+								pSiteId: siteId,
+								floor: result?.data[0]?.floor,
+								name: result?.data[0]?.name
+							}
+						}
+					})
+				);
+
+				// callback
+				callback && callback(result);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-maps-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.DETAIL.MAPS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * update state (maps)
+ * @param state
+ * @returns
+ */
+export const RobotMapsUpdateState =
+	(payload: SRContentMapsStateInterface) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const maps = states.robot.maps;
+		const state = {
+			module: RobotTypeEnum.MAPS
+		};
+
+		// dispatch: updating
+		dispatch(updating(state));
+
+		if (maps && maps.content) {
+			const result = {
+				...maps.content,
+				state: payload
+			};
+
+			// dispatch: updated
+			dispatch(updated({ ...state, response: result }));
+		}
+	};
+
+/**
+ * fetch robot map
  * @param mapId
  * @returns
  */
-export const RobotMapLocationFetch = (mapId: string) => async (dispatch: Dispatch) => {
-	const state = {
-		module: RobotTypeEnum.MAP
+export const RobotMapFetch =
+	(mapId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		const states = getState();
+		const map = states.robot.map;
+		const state = {
+			module: RobotTypeEnum.MAP
+		};
+
+		// return on busy
+		if (map && map.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotMapFetch(mapId)
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeMap(res);
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `robot-map-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `ROBOTS.DETAIL.MAP.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
+			});
 	};
-
-	// dispatch: loading
-	dispatch(loading(state));
-
-	return RobotsService.robotMapLocationFetch(mapId)
-		.then(async (res) => {
-			// deserialize response
-			const result = await deserializeRobot(res);
-
-			// dispatch: success
-			dispatch(success({ ...state, response: result }));
-		})
-		.catch(() => {
-			// dispatch: trigger message
-			const message: TriggerMessageInterface = {
-				id: `robot-map-location-error`,
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: `ROBOTS.DETAIL.MAP.ERROR`
-			};
-			dispatch(triggerMessage(message));
-
-			// dispatch: failure
-			dispatch(failure({ ...state, response: message }));
-		});
-};
 
 /**
  * send robot control command

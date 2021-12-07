@@ -22,6 +22,8 @@ import {
 	RobotCommandLogsAxiosGetInterface,
 	RobotElevatorCallsAxiosGetInterface,
 	RobotInventoryAxiosGetInterface,
+	RobotMapAxiosGetInterface,
+	RobotMapsAxiosGetInterface,
 	RobotOrderAxiosGetInterface,
 	RobotOrderCancelAxiosPatchRequestInterface,
 	RobotOrderCancelAxiosPatchResponseInterface,
@@ -100,7 +102,21 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch robot map location
+	 * fetch robot maps
+	 * @param siteId
+	 * @returns
+	 */
+	robotMapsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.MAPS;
+		return HttpClientService.get<RobotMapsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * fetch robot map
 	 * @param mapId
 	 * @returns
 	 */

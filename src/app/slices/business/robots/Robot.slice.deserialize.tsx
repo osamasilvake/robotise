@@ -13,6 +13,7 @@ export const deserializeMaps = async <T,>(payload: T) => {
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
+
 	return { data };
 };
 

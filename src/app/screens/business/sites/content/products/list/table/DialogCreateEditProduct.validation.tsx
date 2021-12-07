@@ -43,10 +43,7 @@ export const CreateEditProductValidation = (
 	}
 
 	// Length/Weight
-	if (
-		(!values.length || Number(values.length) <= 0) &&
-		(!values.weight || Number(values.weight) <= 0)
-	) {
+	if ((!values.length || +values.length <= 0) && (!values.weight || +values.weight <= 0)) {
 		errors.length = `${translation}.LENGTH.VALIDATIONS.INVALID`;
 		errors.weight = `${translation}.WEIGHT.VALIDATIONS.INVALID`;
 	}

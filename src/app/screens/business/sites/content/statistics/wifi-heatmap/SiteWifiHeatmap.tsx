@@ -103,14 +103,11 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 								label={t(`${translation}.FLOOR`)}
 								value={String(floor)}
 								onChange={handleFloor}>
-								{robot.maps.content?.data
-									.concat()
-									.sort((a, b) => a.floor.localeCompare(b.floor))
-									.map((map) => (
-										<MenuItem key={map.name} value={map.floor}>
-											{map.floor}
-										</MenuItem>
-									))}
+								{robot.maps.content?.data.map((map) => (
+									<MenuItem key={map.name} value={map.floor}>
+										{map.floor}
+									</MenuItem>
+								))}
 							</Select>
 						</FormControl>
 					</Grid>

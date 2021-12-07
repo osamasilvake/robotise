@@ -61,7 +61,7 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 			if (key !== SiteProductsTableColumnsTypeEnum.ACTIONS) {
 				switch (type) {
 					case SiteProductsTableSortTypeEnum.NUMBER:
-						return a[key] && b[key] ? Number(a[key]) - Number(b[key]) : a[key] ? 1 : -1;
+						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 					case SiteProductsTableSortTypeEnum.DATE:
 						return momentSort(a[key]).diff(momentSort(b[key]));
 					case SiteProductsTableSortTypeEnum.STRING:

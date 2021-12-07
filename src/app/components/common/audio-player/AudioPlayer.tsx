@@ -177,7 +177,7 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 							min={0}
 							max={duration || 0}
 							step={0.01}
-							onChange={(_e, v) => onScrub(Number(v))}
+							onChange={(_e, v) => onScrub(+v)}
 							onMouseUp={onScrubEnd}
 							onKeyUp={onScrubEnd}
 						/>

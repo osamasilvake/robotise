@@ -73,6 +73,7 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.AUDIT_LOGS;
 		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
 			params: {
+				site: payload.siteId,
 				robot: payload.robotId,
 				from: payload.from,
 				to: payload.to

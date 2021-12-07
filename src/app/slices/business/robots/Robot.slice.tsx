@@ -14,6 +14,7 @@ import {
 } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
+import { AppConfigService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
@@ -299,7 +300,18 @@ export const RobotMapsFetch =
 		return RobotsService.robotMapsFetch(siteId)
 			.then(async (res) => {
 				// deserialize response
-				const result: SRContentMapsInterface = await deserializeMaps(res);
+				let result: SRContentMapsInterface = await deserializeMaps(res);
+
+				// sort
+				result = {
+					...result,
+					data: result.data.concat().sort((a, b) => {
+						const integer = AppConfigService.AppOptions.regex.integer;
+						return a && integer.test(a.floor) && integer.test(b.floor)
+							? +a.floor - +b.floor
+							: a.floor.localeCompare(b.floor);
+					})
+				};
 
 				// dispatch: success
 				dispatch(

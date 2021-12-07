@@ -63,7 +63,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({
 						command: RobotDetailCommandsTypeEnum.ROTATE,
-						state: Number(rotate)
+						state: +rotate
 					})}
 					disabled={
 						rotate === rotateAngles[4].value ||
@@ -112,7 +112,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 					className={classes.sCommandsActionButton}
 					onClick={sendControlCommand({
 						command: RobotDetailCommandsTypeEnum.TRANSLATE,
-						state: Number(translate)
+						state: +translate
 					})}
 					disabled={
 						translate === translateDistances[4].value ||

@@ -77,7 +77,7 @@
 	"BREADCRUMB": {
 		"EMAIL": "Email",
 		"ORDER": "Order",
-		"PURCHASE": "Purchase"
+		"PURCHASE": "Report"
 	},
 	"UPLOAD": {
 		"IMAGE": {
@@ -795,6 +795,8 @@
 					},
 					"CUSTOMER_NAME": "Robot Customer Name",
 					"MISSION": "Mission",
+					"IP_ADDRESS": "IP Address",
+					"USERNAME": "Username",
 					"NOTE": {
 						"LABEL": "Note",
 						"EXCERPT": "Provide important and relevant information about the particular robot.",

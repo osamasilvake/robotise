@@ -13,14 +13,15 @@ const strRemoveSymbols = (str: string) => {
 };
 
 /**
- * capitalize each letter of the string
+ * capitalize first letter of each word and replace camel-case with dash
  * @param str
  * @returns
  */
-const strCapitalizeEachLetter = (str: string) => {
-	return str.toLowerCase().replace(/\b[a-z]/g, (letter: string) => letter.toUpperCase());
-};
-
+const strCapitalLetterAndCamelCaseToDash = (str: string) =>
+	str
+		.replace(/([a-zA-Z])(?=[A-Z])/g, '$1 ')
+		.toLowerCase()
+		.replace(/\b[a-z]/g, (letter: string) => letter.toUpperCase());
 /**
  * convert string links to link elements
  * @param text
@@ -53,4 +54,4 @@ const strToLinks = (text: string) => {
 	return replacedText;
 };
 
-export { strCapitalizeEachLetter, strRemoveSymbols, strToLinks };
+export { strCapitalLetterAndCamelCaseToDash, strRemoveSymbols, strToLinks };

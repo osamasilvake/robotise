@@ -25,7 +25,15 @@ export interface RobotTwinsAxiosGetInterface {
 	};
 }
 
-export interface RobotMapLocationAxiosGetInterface {
+export interface RobotMapsAxiosGetInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SRContentMapInterface;
+	}[];
+}
+
+export interface RobotMapAxiosGetInterface {
 	data: {
 		id: string;
 		type: string;

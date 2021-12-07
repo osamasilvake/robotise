@@ -29,8 +29,6 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	const [openCreateEdit, setOpenCreateEdit] = useState(false);
 	const [openDelete, setOpenDelete] = useState(false);
 
-	const scope = auth.user?.scope;
-
 	/**
 	 * open create/edit deep link dialog
 	 * @param event
@@ -74,9 +72,9 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						clickable
 						disabled={
 							!validateScope(
-								scope,
-								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
-								AuthScopeTypeEnum.WRITE
+								auth.user?.scope,
+								AuthScopeTypeEnum.WRITE,
+								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
 							)
 						}
 						onClick={openCreateEditDeepLinkDialog}
@@ -100,9 +98,9 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						clickable
 						disabled={
 							!validateScope(
-								scope,
-								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
-								AuthScopeTypeEnum.WRITE
+								auth.user?.scope,
+								AuthScopeTypeEnum.WRITE,
+								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
 							)
 						}
 						onClick={openDeleteDeepLinkDialog}

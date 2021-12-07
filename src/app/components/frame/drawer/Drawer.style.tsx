@@ -5,6 +5,7 @@ import { AppConfigService } from '../../../services';
 
 const drawerOpenWidth = AppConfigService.AppOptions.components.drawer.openWidth;
 const drawerCloseWidth = AppConfigService.AppOptions.components.drawer.closeWidth;
+const iconMinWidth = AppConfigService.AppOptions.components.drawer.iconMinWidth;
 export const DrawerStyle = makeStyles((theme: Theme) => ({
 	sDrawer: {
 		flexShrink: 0,
@@ -31,10 +32,10 @@ export const DrawerStyle = makeStyles((theme: Theme) => ({
 		overflowX: 'hidden',
 		overflowY: 'auto'
 	},
+	sListItemIcon: {
+		minWidth: theme.typography.pxToRem(iconMinWidth)
+	},
 	sListItemHint: {
 		padding: theme.spacing(0, 2)
-	},
-	sBottomArea: {
-		height: 40
 	}
 }));

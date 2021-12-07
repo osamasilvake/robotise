@@ -6,12 +6,6 @@ export const RobotDetailGeneralStyle = makeStyles((theme: Theme) => ({
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
 	},
-	sGridLastRowItem: {
-		textAlign: 'right',
-		[theme.breakpoints.down('lg')]: {
-			textAlign: 'left'
-		}
-	},
 	sNoteGrid: {
 		position: 'relative'
 	},

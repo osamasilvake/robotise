@@ -4,12 +4,14 @@ import { FC } from 'react';
 import { AppConfigService } from '../../../services';
 import { momentCurrentYear } from '../../../utilities/methods/Moment';
 import { CopyrightsInterface } from './Copyrights.interface';
+import { CopyrightStyle } from './Copyrights.style';
 
 const Copyright: FC<CopyrightsInterface> = (props) => {
 	const { short } = props;
+	const classes = CopyrightStyle();
 
 	return (
-		<>
+		<Stack alignItems="center" justifyContent="center" className={classes.sCopyright}>
 			{!short && (
 				<Stack direction="row" spacing={0.5} justifyContent="center">
 					<Link
@@ -33,7 +35,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 					v{AppConfigService.envAppVersion}
 				</Typography>
 			)}
-		</>
+		</Stack>
 	);
 };
 export default Copyright;

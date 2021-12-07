@@ -22,6 +22,7 @@ const appRoutes = {
 				ROOMS: '/sites/:siteId/rooms',
 				PHONE_CONFIGS: '/sites/:siteId/phone-configs',
 				PHONE_CALLS: '/sites/:siteId/phone-calls',
+				STATISTICS: '/sites/:siteId/statistics',
 				CONFIGURATION: '/sites/:siteId/configuration'
 			},
 			ROBOTS: {
@@ -33,8 +34,8 @@ const appRoutes = {
 					DETAIL: '/robots/:robotId/orders/:orderId'
 				},
 				PURCHASES: {
-					MAIN: '/robots/:robotId/purchases',
-					DETAIL: '/robots/:robotId/purchases/:purchaseId'
+					MAIN: '/robots/:robotId/orderReports',
+					DETAIL: '/robots/:robotId/orderReports/:purchaseId'
 				},
 				COMMANDS_LOG: '/robots/:robotId/commands-log',
 				ELEVATOR_CALLS: '/robots/:robotId/elevator-calls',

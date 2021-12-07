@@ -40,14 +40,14 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 				const result: SRTContentDataInterface = {
 					id: data.id,
 					updatedAt: data.updatedAt,
+					site: {
+						id: data.site.id
+					},
 					robot: {
 						id: data.robot.id,
 						name: state.name,
 						customerName: state.customerName,
 						note: state.note
-					},
-					site: {
-						id: data.site.id
 					},
 					robotState: {
 						isReady: {
@@ -55,19 +55,19 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							updatedAt: meta.robotState.isReady.updatedAt
 						}
 					},
-					alerts: {
-						value: state.alerts,
-						updatedAt: meta.alerts?.updatedAt
-					},
 					controlMode: {
 						value: state.status?.controlMode,
 						updatedAt: meta.status?.controlMode?.updatedAt
 					},
 					mission: {
-						status: state.status?.mission?.status || '',
-						description: state.status?.mission?.description || '',
+						value: state.status?.mission,
 						updatedAt: meta.status?.mission?.updatedAt
 					},
+					alerts: {
+						value: state.alerts,
+						updatedAt: meta.alerts?.updatedAt
+					},
+					ca: state.ca,
 					location: state.status.location && {
 						value: state.status.location,
 						updatedAt: meta.status.location.updatedAt

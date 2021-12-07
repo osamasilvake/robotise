@@ -26,7 +26,7 @@ const SiteRoomsList: FC = () => {
 	const params = useParams() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
-	const pSiteId = rooms.content?.siteId;
+	const pSiteId = rooms.content?.state?.pSiteId;
 
 	const siteSingle = sites.content?.dataById[cSiteId];
 

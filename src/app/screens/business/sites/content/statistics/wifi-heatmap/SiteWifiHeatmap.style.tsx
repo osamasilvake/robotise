@@ -15,11 +15,12 @@ export const SiteWifiHeatmapStyle = makeStyles((theme: Theme) => ({
 		position: 'relative'
 	},
 	sLegend: {
-		position: 'absolute',
-		left: 0,
-		bottom: 0,
 		backgroundColor: 'white',
-		padding: theme.spacing(0.5)
+		opacity: 0.95,
+		padding: theme.spacing(0.5),
+		position: 'absolute',
+		right: 0,
+		top: 0
 	},
 	sColorBox: {
 		height: theme.typography.pxToRem(20),

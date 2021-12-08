@@ -135,17 +135,7 @@ class AppConfigService extends EnvService {
 							},
 							statistics: {
 								wifiHeatmap: {
-									refreshTime: 20000,
-									config: {
-										radius: 10,
-										maxOpacity: 1,
-										minOpacity: 0.5,
-										blur: 0,
-										gradient: {
-											'0': '#ff3729',
-											'.6': '#2e7d32'
-										}
-									}
+									refreshTime: 20000
 								}
 							},
 							configuration: {

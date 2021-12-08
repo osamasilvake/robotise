@@ -10,5 +10,27 @@ export const SiteWifiHeatmapStyle = makeStyles((theme: Theme) => ({
 	},
 	sMap: {
 		marginTop: theme.spacing(2)
+	},
+	cCard: {
+		position: 'relative'
+	},
+	sLegend: {
+		backgroundColor: 'white',
+		opacity: 0.95,
+		padding: theme.spacing(0.5),
+		position: 'absolute',
+		right: 0,
+		top: 0
+	},
+	sColorBox: {
+		height: theme.typography.pxToRem(20),
+		width: theme.typography.pxToRem(20)
+	},
+	sRectangle: {
+		cursor: 'pointer',
+		height: theme.typography.pxToRem(4),
+		left: 0,
+		position: 'absolute',
+		width: theme.typography.pxToRem(4)
 	}
 }));

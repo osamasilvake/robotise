@@ -18,9 +18,9 @@ import { RobotMapsUpdateState } from '../../../../../../slices/business/robots/R
 import { SRContentMapsStateInterface } from '../../../../../../slices/business/robots/Robot.slice.interface';
 import { WifiHeatmapDataFetch } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
-import SiteHeatmap from './SiteHeatmap';
 import { SiteWifiHeatmapInterface } from './SiteWifiHeatmap.interface';
 import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
+import SiteWifiHeatmapCard from './SiteWifiHeatmapCard';
 
 const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 	const { robot, wifiHeatmap } = props;
@@ -124,8 +124,8 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			{/* Map */}
 			{wifiHeatmap && name && (
 				<Grid container className={classes.sMap}>
-					<Grid item xs={5}>
-						<SiteHeatmap robot={robot} wifiHeatmap={wifiHeatmap} name={name} />
+					<Grid item xs={6}>
+						<SiteWifiHeatmapCard robot={robot} wifiHeatmap={wifiHeatmap} name={name} />
 					</Grid>
 				</Grid>
 			)}

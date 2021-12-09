@@ -15,7 +15,6 @@ export const SiteWifiHeatmapStyle = makeStyles((theme: Theme) => ({
 		position: 'relative'
 	},
 	sLegend: {
-		backgroundColor: 'white',
 		opacity: 0.95,
 		padding: theme.spacing(0.5),
 		position: 'absolute',

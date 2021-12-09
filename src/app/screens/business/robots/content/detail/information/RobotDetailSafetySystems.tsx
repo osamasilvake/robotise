@@ -27,7 +27,6 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 
 	const mappedSystem =
 		systems && mapSafetyContent(systems, RobotDetailInformationTypeEnum.SAFETY_SYSTEMS);
-	const green = alpha(AppConfigService.AppOptions.colors.c10, 0.09);
 	const orange = alpha(AppConfigService.AppOptions.colors.c14, 0.09);
 	const red = alpha(AppConfigService.AppOptions.colors.c12, 0.09);
 
@@ -43,12 +42,12 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 						style={{
 							backgroundColor: row.opposite
 								? !row.value
-									? green
+									? undefined
 									: row.warning
 									? orange
 									: red
 								: row.value
-								? green
+								? undefined
 								: row.warning
 								? orange
 								: red

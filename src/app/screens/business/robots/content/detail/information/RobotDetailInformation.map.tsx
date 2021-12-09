@@ -8,7 +8,7 @@ import {
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 
-const opposites = [
+const safetyOpposites = [
 	'backMutingActive',
 	'brakeReleasePressed',
 	'forceBrakeActive',
@@ -17,7 +17,15 @@ const opposites = [
 	'stop0ResetRequired',
 	'stop1ResetRequired'
 ];
-const warnings = ['backMutingActive', 'brakeReleasePressed', 'frontMutingActive', 'noStop2Trigger'];
+const safetyWarnings = [
+	'backMutingActive',
+	'brakeReleasePressed',
+	'frontMutingActive',
+	'noStop2Trigger',
+	'drawers',
+	'lidarBottom',
+	'lidarTop'
+];
 
 /**
  * map safety content
@@ -37,8 +45,8 @@ export const mapSafetyContent = (
 			msg1: `${translation}.${key}.MSG_1`,
 			msg2: `${translation}.${key}.MSG_2`,
 			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value),
-			opposite: opposites.includes(key),
-			warning: warnings.includes(key)
+			opposite: safetyOpposites.includes(key),
+			warning: safetyWarnings.includes(key)
 		};
 	});
 

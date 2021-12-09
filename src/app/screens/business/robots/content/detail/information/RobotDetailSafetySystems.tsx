@@ -1,5 +1,6 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
+	alpha,
 	Collapse,
 	Icon,
 	List,
@@ -11,6 +12,7 @@ import {
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { AppConfigService } from '../../../../../../services';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 import { RobotDetailSafetySystemsInterface } from './RobotDetailInformation.interface';
 import { mapSafetyContent } from './RobotDetailInformation.map';
@@ -25,6 +27,9 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 
 	const mappedSystem =
 		systems && mapSafetyContent(systems, RobotDetailInformationTypeEnum.SAFETY_SYSTEMS);
+	const green = alpha(AppConfigService.AppOptions.colors.c10, 0.09);
+	const orange = alpha(AppConfigService.AppOptions.colors.c14, 0.09);
+	const red = alpha(AppConfigService.AppOptions.colors.c12, 0.09);
 
 	return mappedSystem ? (
 		<List className={classes.sList}>
@@ -34,7 +39,20 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 			</ListItemButton>
 			{mappedSystem.map((row) => (
 				<Collapse key={row.label} in={open} timeout="auto" unmountOnExit>
-					<ListItem>
+					<ListItem
+						style={{
+							backgroundColor: row.opposite
+								? !row.value
+									? green
+									: row.warning
+									? orange
+									: red
+								: row.value
+								? green
+								: row.warning
+								? orange
+								: red
+						}}>
 						<ListItemIcon>
 							<Icon>{t(row.icon)}</Icon>
 						</ListItemIcon>

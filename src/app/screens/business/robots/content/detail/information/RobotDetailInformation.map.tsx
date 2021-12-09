@@ -8,6 +8,17 @@ import {
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 
+const opposites = [
+	'backMutingActive',
+	'brakeReleasePressed',
+	'forceBrakeActive',
+	'forceStop0Active',
+	'frontMutingActive',
+	'stop0ResetRequired',
+	'stop1ResetRequired'
+];
+const warnings = ['backMutingActive', 'brakeReleasePressed', 'frontMutingActive', 'noStop2Trigger'];
+
 /**
  * map safety content
  * @param data
@@ -25,7 +36,9 @@ export const mapSafetyContent = (
 			label: `${translation}.${key}.LABEL`,
 			msg1: `${translation}.${key}.MSG_1`,
 			msg2: `${translation}.${key}.MSG_2`,
-			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value)
+			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value),
+			opposite: opposites.includes(key),
+			warning: warnings.includes(key)
 		};
 	});
 

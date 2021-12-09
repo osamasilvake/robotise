@@ -1,7 +1,5 @@
-import { ExternalLinkPayloadInterface } from '../../../components/common/external-link/ExternalLink.interface';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
-import { SRContentDeepLinkInterface } from '../../../slices/business/robots/Robot.slice.interface';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
@@ -62,23 +60,6 @@ class RobotsService {
 			robotTwinId
 		);
 		return HttpClientService.get<RobotTwinsAxiosGetInterface>(url);
-	};
-
-	/**
-	 * fetch audit logs link
-	 * @param payload
-	 * @returns
-	 */
-	robotAuditLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.AUDIT_LOGS;
-		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
-			params: {
-				site: payload.siteId,
-				robot: payload.robotId,
-				from: payload.from,
-				to: payload.to
-			}
-		});
 	};
 
 	/**
@@ -195,38 +176,6 @@ class RobotsService {
 					options: { camera },
 					command: 'catch-camera-image'
 				}
-			}
-		});
-	};
-
-	/**
-	 * fetch battery link
-	 * @param payload
-	 * @returns
-	 */
-	robotBatteryLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.BATTERY;
-		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
-			params: {
-				robot: payload.robotId,
-				from: payload.from,
-				to: payload.to
-			}
-		});
-	};
-
-	/**
-	 * fetch temperature link
-	 * @param payload
-	 * @returns
-	 */
-	robotTemperatureLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.TEMPERATURE;
-		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
-			params: {
-				robot: payload.robotId,
-				from: payload.from,
-				to: payload.to
 			}
 		});
 	};
@@ -383,22 +332,6 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch item tracking link
-	 * @param payload
-	 * @returns
-	 */
-	robotItemTrackingLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.ITEM_TRACKING;
-		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
-			params: {
-				robot: payload.robotId,
-				from: payload.from,
-				to: payload.to
-			}
-		});
-	};
-
-	/**
 	 * fetch robot commands log
 	 * @param robotId
 	 * @param payload
@@ -431,22 +364,6 @@ class RobotsService {
 				'filter[robot]': robotId,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
-			}
-		});
-	};
-
-	/**
-	 * fetch elevator logs link
-	 * @param payload
-	 * @returns
-	 */
-	robotElevatorLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.LINKS.ELEVATOR_LOGS;
-		return HttpClientService.get<SRContentDeepLinkInterface>(url, {
-			params: {
-				elevator_vendor: payload.vendor,
-				from: payload.from,
-				to: payload.to
 			}
 		});
 	};

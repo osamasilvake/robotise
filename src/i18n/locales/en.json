@@ -230,15 +230,6 @@
 						"SUCCESS": "Base camera image was requested!",
 						"ERROR": "Failed to request base camera image!"
 					}
-				},
-				"AUDIT_LOGS": {
-					"ERROR": "Failed to fetch audit logs link!"
-				},
-				"BATTERY": {
-					"ERROR": "Failed to fetch battery link!"
-				},
-				"TEMPERATURE": {
-					"ERROR": "Failed to fetch temperature link!"
 				}
 			},
 			"ORDERS": {
@@ -255,14 +246,6 @@
 				"EDIT_COMMENT": {
 					"SUCCESS": "Comment has been updated successfully!",
 					"ERROR": "Unable to edit a comment field!"
-				},
-				"ITEM_TRACKING": {
-					"ERROR": "Failed to fetch item tracking link!"
-				}
-			},
-			"ELEVATOR_CALLS": {
-				"ELEVATOR_LOGS": {
-					"ERROR": "Failed to fetch elevator logs link!"
 				}
 			},
 			"CONFIGURATION": {
@@ -281,6 +264,26 @@
 			}
 		},
 		"DEEP_LINKS": {
+			"FETCH": {
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
+				},
+				"BATTERY": {
+					"ERROR": "Failed to fetch battery link!"
+				},
+				"TEMPERATURE": {
+					"ERROR": "Failed to fetch temperature link!"
+				},
+				"DIAGNOSTICS_LOGS": {
+					"ERROR": "Failed to fetch diagnostics logs link!"
+				},
+				"ITEM_TRACKING": {
+					"ERROR": "Failed to fetch item tracking link!"
+				},
+				"ELEVATOR_LOGS": {
+					"ERROR": "Failed to fetch elevator logs link!"
+				}
+			},
 			"CREATE": {
 				"SUCCESS": "Deep link has been created successfully!",
 				"ERROR": "Unable to create a deep link!"
@@ -1143,6 +1146,10 @@
 					},
 					"TEMPERATURE": {
 						"LABEL": "Temperature",
+						"TEXT": "Link"
+					},
+					"DIAGNOSTICS_LOGS": {
+						"LABEL": "Diagnostics Logs",
 						"TEXT": "Link"
 					}
 				}

@@ -230,15 +230,6 @@
 						"SUCCESS": "Base camera image was requested!",
 						"ERROR": "Failed to request base camera image!"
 					}
-				},
-				"AUDIT_LOGS": {
-					"ERROR": "Failed to fetch audit logs link!"
-				},
-				"BATTERY": {
-					"ERROR": "Failed to fetch battery link!"
-				},
-				"TEMPERATURE": {
-					"ERROR": "Failed to fetch temperature link!"
 				}
 			},
 			"ORDERS": {
@@ -255,14 +246,6 @@
 				"EDIT_COMMENT": {
 					"SUCCESS": "Comment has been updated successfully!",
 					"ERROR": "Unable to edit a comment field!"
-				},
-				"ITEM_TRACKING": {
-					"ERROR": "Failed to fetch item tracking link!"
-				}
-			},
-			"ELEVATOR_CALLS": {
-				"ELEVATOR_LOGS": {
-					"ERROR": "Failed to fetch elevator logs link!"
 				}
 			},
 			"CONFIGURATION": {
@@ -281,6 +264,29 @@
 			}
 		},
 		"DEEP_LINKS": {
+			"FETCH": {
+				"AUDIT_LOGS": {
+					"ERROR": "Failed to fetch audit logs link!"
+				},
+				"BATTERY": {
+					"ERROR": "Failed to fetch battery link!"
+				},
+				"TEMPERATURE": {
+					"ERROR": "Failed to fetch temperature link!"
+				},
+				"DIAGNOSTICS_LOGS": {
+					"ERROR": "Failed to fetch diagnostics logs link!"
+				},
+				"COOLING_UNIT": {
+					"ERROR": "Failed to fetch cooling unit link!"
+				},
+				"ITEM_TRACKING": {
+					"ERROR": "Failed to fetch item tracking link!"
+				},
+				"ELEVATOR_LOGS": {
+					"ERROR": "Failed to fetch elevator logs link!"
+				}
+			},
 			"CREATE": {
 				"SUCCESS": "Deep link has been created successfully!",
 				"ERROR": "Unable to create a deep link!"
@@ -921,88 +927,88 @@
 						"TITLE": "Safety Systems",
 						"VALUES": {
 							"backMutingActive": {
-								"ICON": "volume_mute",
+								"ICON": "info",
 								"LABEL": "back_muting_active",
-								"MSG_1": "Back muting is active",
-								"MSG_2": "Back muting is disabled"
+								"MSG_1": "Back muting is active, the robot may only drive forwards",
+								"MSG_2": "Back muting is inactive"
 							},
 							"brakeReleasePressed": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "brake_release_pressed",
-								"MSG_1": "White button is pressed while emergency is active",
-								"MSG_2": "Current state is fine"
+								"MSG_1": "The brake release button is being pressed",
+								"MSG_2": "The brake release button is not being pressed"
 							},
 							"brakeReleased": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "brake_released",
-								"MSG_1": "Brakes are released",
-								"MSG_2": "Brakes are active"
+								"MSG_1": "Mechanical brakes are released",
+								"MSG_2": "Mechanical brakes are engaged"
 							},
 							"driveTorqueEnabled": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "drive_torque_enabled",
-								"MSG_1": "Drive torque is enabled",
-								"MSG_2": "Drive torque is disabled"
+								"MSG_1": "Motor power is enabled",
+								"MSG_2": "Motor power is disabled"
 							},
 							"estopSwitchReleased": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "estop_switch_released",
-								"MSG_1": "Emergency button is not pressed",
-								"MSG_2": "Emergency button is pressed"
+								"MSG_1": "Emergency stop button is released",
+								"MSG_2": "Emergency stop button is pressed"
 							},
 							"forceBrakeActive": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "force_brake_active",
-								"MSG_1": "Internal",
-								"MSG_2": "Internal"
+								"MSG_1": "Error",
+								"MSG_2": "OK"
 							},
 							"forceStop0Active": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "force_stop0_active",
-								"MSG_1": "Docking activated brakes",
-								"MSG_2": "Current state is fine"
+								"MSG_1": "The robot is forced to brake by software command",
+								"MSG_2": "The robot is not forced to brake by software command"
 							},
 							"frontMutingActive": {
-								"ICON": "volume_mute",
+								"ICON": "info",
 								"LABEL": "front_muting_active",
-								"MSG_1": "Front muting is active",
-								"MSG_2": "Front muting is disabled"
+								"MSG_1": "Front muting is active, the robot may only drive backwards",
+								"MSG_2": "Front muting is inactive"
 							},
 							"noDriveStop": {
-								"ICON": "android",
+								"ICON": "info",
 								"LABEL": "no_drive_stop",
-								"MSG_1": "Safety system is fine",
-								"MSG_2": "Safety System is triggered"
+								"MSG_1": "The robot can drive",
+								"MSG_2": "The robot is braking and won't drive"
 							},
 							"noStop0": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "no_stop0",
-								"MSG_1": "Motion monitoring is fine",
-								"MSG_2": "Motion monitoring error"
+								"MSG_1": "No safe stop 0 is active",
+								"MSG_2": "The robot is stopped after failing to brake or speed limit violation"
 							},
 							"noStop1": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "no_stop1",
-								"MSG_1": "Emergency stop and magnet sensor are fine",
-								"MSG_2": "Emergency stop or magnet sensor triggered"
+								"MSG_1": "No safe stop 1 is active",
+								"MSG_2": "The robot is stopped due to emergency stop or magnet sensor activation"
 							},
 							"noStop2Trigger": {
 								"ICON": "info",
 								"LABEL": "no_stop2_trigger",
-								"MSG_1": "Safety sensor is fine",
-								"MSG_2": "Safety sensor is triggered"
+								"MSG_1": "No sensor is being triggered",
+								"MSG_2": "A sensor is being triggered and stops the robot"
 							},
 							"stop0ResetRequired": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "stop0_reset_required",
-								"MSG_1": "Reset (Blue button pressing) is required",
-								"MSG_2": "Reset (Blue button pressing) is not required"
+								"MSG_1": "The blue button must be pressed after failed braking or over-speed",
+								"MSG_2": "No safe stop 0 can be reset"
 							},
 							"stop1ResetRequired": {
-								"ICON": "new_releases",
+								"ICON": "info",
 								"LABEL": "stop1_reset_required",
-								"MSG_1": "Reset (Blue button pressing) is required",
-								"MSG_2": "Reset (Blue button pressing) is not required"
+								"MSG_1": "The blue button must be pressed after emergency stop or magnet sensor activation",
+								"MSG_2": "No safe stop 1 can be reset"
 							}
 						}
 					},
@@ -1143,6 +1149,14 @@
 					},
 					"TEMPERATURE": {
 						"LABEL": "Temperature",
+						"TEXT": "Link"
+					},
+					"DIAGNOSTICS_LOGS": {
+						"LABEL": "Diagnostics Logs",
+						"TEXT": "Link"
+					},
+					"COOLING_UNIT": {
+						"LABEL": "Cooling Unit",
 						"TEXT": "Link"
 					}
 				}
@@ -1418,6 +1432,20 @@
 								"PLACEHOLDER": "Enter customer robot name",
 								"VALIDATIONS": {
 									"REQUIRED": "Customer Name is required."
+								}
+							},
+							"USERNAME": {
+								"LABEL": "Username",
+								"PLACEHOLDER": "Enter username",
+								"VALIDATIONS": {
+									"REQUIRED": "Username is required."
+								}
+							},
+							"IP_ADDRESS": {
+								"LABEL": "IP Address",
+								"PLACEHOLDER": "Enter IP Address",
+								"VALIDATIONS": {
+									"REQUIRED": "IP Address is required."
 								}
 							},
 							"CHECKBOXES": {

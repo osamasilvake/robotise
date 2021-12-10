@@ -6,7 +6,30 @@ import {
 	SRTContentSafetySystemsInterface,
 	SRTContentTransitPointStartedInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
-import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
+import {
+	RobotDetailInformationTypeEnum,
+	RobotDetailSafetyKeysTypeEnum
+} from './RobotDetailInformation.enum';
+import { RobotDetailSafetyMappedResultInterface } from './RobotDetailInformation.interface';
+
+const safetyOpposites = [
+	RobotDetailSafetyKeysTypeEnum.FRONT_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BACK_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BRAKE_RELEASE_PRESSED,
+	RobotDetailSafetyKeysTypeEnum.FORCE_BRAKE_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.FORCE_STOP0_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.STOP0_RESET_REQUIRED,
+	RobotDetailSafetyKeysTypeEnum.STOP1_RESET_REQUIRED
+];
+const safetyWarnings = [
+	RobotDetailSafetyKeysTypeEnum.FRONT_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BACK_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BRAKE_RELEASE_PRESSED,
+	RobotDetailSafetyKeysTypeEnum.NO_STOP2_TRIGGER,
+	RobotDetailSafetyKeysTypeEnum.DRAWERS,
+	RobotDetailSafetyKeysTypeEnum.LIDAR_TOP,
+	RobotDetailSafetyKeysTypeEnum.LIDAR_BOTTOM
+];
 
 /**
  * map safety content
@@ -17,15 +40,19 @@ import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
 export const mapSafetyContent = (
 	data: SRTContentSafetySystemsInterface | SRTContentSafetySensorsInterface,
 	type: RobotDetailInformationTypeEnum
-) =>
+): RobotDetailSafetyMappedResultInterface[] =>
 	Object.entries(data.properties).map(([key, value]) => {
 		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const ky = key as RobotDetailSafetyKeysTypeEnum;
 		return {
+			key: ky,
 			icon: `${translation}.${key}.ICON`,
 			label: `${translation}.${key}.LABEL`,
 			msg1: `${translation}.${key}.MSG_1`,
 			msg2: `${translation}.${key}.MSG_2`,
-			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value)
+			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value),
+			opposite: safetyOpposites.includes(ky),
+			warning: safetyWarnings.includes(ky)
 		};
 	});
 

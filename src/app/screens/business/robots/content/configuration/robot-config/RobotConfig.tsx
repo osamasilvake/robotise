@@ -49,6 +49,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 			{
 				name: robotTwinsSingle?.robotTitle || '',
 				customerName: robotTwinsSingle?.robotCustomerName || '',
+				username: robotTwinsSingle?.robotUsername || '',
+				ipAddress: robotTwinsSingle?.robotIPAddress || '',
 				isHidden: !!robotTwinsSingle?.robotHidden,
 				isOnlineCheckDisabled: !!robotTwinsSingle?.robotOnlineCheckDisabled
 			},
@@ -119,6 +121,40 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									onBlur={handleBlur}
 									error={!!errors?.customerName}
 									helperText={errors?.customerName && t(errors.customerName)}
+								/>
+							</FormControl>
+							<FormControl fullWidth margin="normal">
+								<TextField
+									required
+									type="text"
+									id="username"
+									name="username"
+									label={t(`${translation}.FORM.FIELDS.USERNAME.LABEL`)}
+									placeholder={t(
+										`${translation}.FORM.FIELDS.USERNAME.PLACEHOLDER`
+									)}
+									value={values?.username}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.username}
+									helperText={errors?.username && t(errors.username)}
+								/>
+							</FormControl>
+							<FormControl fullWidth margin="normal">
+								<TextField
+									required
+									type="text"
+									id="ipAddress"
+									name="ipAddress"
+									label={t(`${translation}.FORM.FIELDS.IP_ADDRESS.LABEL`)}
+									placeholder={t(
+										`${translation}.FORM.FIELDS.IP_ADDRESS.PLACEHOLDER`
+									)}
+									value={values?.ipAddress}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.ipAddress}
+									helperText={errors?.ipAddress && t(errors.ipAddress)}
 								/>
 							</FormControl>
 						</Grid>

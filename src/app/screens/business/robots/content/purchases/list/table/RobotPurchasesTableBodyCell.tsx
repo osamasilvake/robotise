@@ -9,9 +9,9 @@ import ExternalLink from '../../../../../../../components/common/external-link/E
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import {
-	RobotItemTrackingLinkFetch,
-	robotSelector
-} from '../../../../../../../slices/business/robots/Robot.slice';
+	DeepLinkItemTrackingLinkFetch,
+	deepLinkSelector
+} from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import {
 	momentFormat1,
 	momentMinsPriorToDate
@@ -31,7 +31,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
 
-	const robot = useSelector(robotSelector);
+	const deepLink = useSelector(deepLinkSelector);
 
 	const params = useParams() as RobotParamsInterface;
 
@@ -58,9 +58,9 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						from: momentMinsPriorToDate(purchase.createdAt, 15),
 						to: purchase.createdAt
 					}}
-					FetchExternalLink={RobotItemTrackingLinkFetch}
-					showIcon={robot.itemTracking.loading}
-					disabled={robot.itemTracking.loading}
+					FetchExternalLink={DeepLinkItemTrackingLinkFetch}
+					showIcon={deepLink.itemTracking.loading}
+					disabled={deepLink.itemTracking.loading}
 				/>
 			);
 		} else {

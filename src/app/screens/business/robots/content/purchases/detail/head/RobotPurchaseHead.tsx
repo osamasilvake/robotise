@@ -9,9 +9,9 @@ import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
 import {
-	RobotItemTrackingLinkFetch,
-	robotSelector
-} from '../../../../../../../slices/business/robots/Robot.slice';
+	DeepLinkItemTrackingLinkFetch,
+	deepLinkSelector
+} from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { momentMinsPriorToDate } from '../../../../../../../utilities/methods/Moment';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchaseHeadInterface } from './RobotPurchaseHead.interface';
@@ -22,7 +22,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchaseHeadStyle();
 
-	const robot = useSelector(robotSelector);
+	const deepLink = useSelector(deepLinkSelector);
 
 	const params = useParams() as RobotParamsInterface;
 
@@ -75,9 +75,9 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 									from: momentMinsPriorToDate(purchase.content.createdAt, 15),
 									to: purchase.content.createdAt
 								}}
-								FetchExternalLink={RobotItemTrackingLinkFetch}
-								showIcon={robot.itemTracking.loading}
-								disabled={robot.itemTracking.loading}
+								FetchExternalLink={DeepLinkItemTrackingLinkFetch}
+								showIcon={deepLink.itemTracking.loading}
+								disabled={deepLink.itemTracking.loading}
 							/>
 						)}
 					</Box>

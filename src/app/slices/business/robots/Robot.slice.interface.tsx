@@ -17,26 +17,6 @@ export interface SliceRobotInterface {
 	camera: {
 		loading: boolean;
 	};
-	auditLogs: {
-		loading: boolean;
-		content: SRContentDeepLinkInterface | null;
-	};
-	battery: {
-		loading: boolean;
-		content: SRContentDeepLinkInterface | null;
-	};
-	temperature: {
-		loading: boolean;
-		content: SRContentDeepLinkInterface | null;
-	};
-	itemTracking: {
-		loading: boolean;
-		content: SRContentDeepLinkInterface | null;
-	};
-	elevatorLogs: {
-		loading: boolean;
-		content: SRContentDeepLinkInterface | null;
-	};
 	syncProducts: {
 		loading: boolean;
 	};
@@ -48,12 +28,6 @@ export interface SliceRobotInterface {
 	};
 	reports: {
 		loading: boolean;
-	};
-}
-
-export interface SRContentDeepLinkInterface {
-	data: {
-		dlink: string;
 	};
 }
 

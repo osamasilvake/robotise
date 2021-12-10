@@ -12,7 +12,9 @@ export const RobotConfigValidation = (
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIG.FORM.FIELDS';
 	const errors: RobotConfigFormInterface = {
 		name: '',
-		customerName: ''
+		customerName: '',
+		username: '',
+		ipAddress: ''
 	};
 
 	// Name
@@ -28,6 +30,22 @@ export const RobotConfigValidation = (
 		// required
 		if (!values.customerName) {
 			errors.customerName = `${translation}.CUSTOMER_NAME.VALIDATIONS.REQUIRED`;
+		}
+	}
+
+	// Username
+	if (touched.username) {
+		// required
+		if (!values.username) {
+			errors.username = `${translation}.USERNAME.VALIDATIONS.REQUIRED`;
+		}
+	}
+
+	// IP Address
+	if (touched.ipAddress) {
+		// required
+		if (!values.ipAddress) {
+			errors.ipAddress = `${translation}.IP_ADDRESS.VALIDATIONS.REQUIRED`;
 		}
 	}
 

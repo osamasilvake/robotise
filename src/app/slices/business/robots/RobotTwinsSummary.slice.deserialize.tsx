@@ -48,6 +48,7 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSCont
 						note: state.note,
 						isHidden: state.isHidden,
 						isOnlineCheckDisabled: state.isOnlineCheckDisabled,
+						ca: state.ca,
 						alerts: {
 							value: state.alerts,
 							updatedAt: meta.alerts?.updatedAt
@@ -108,6 +109,8 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSCont
 				robotControlMode: item.status.controlMode.value,
 				robotMission: item.status.mission,
 				robotCustomerName: item.robot.customerName,
+				robotUsername: item.robot.ca.username,
+				robotIPAddress: item.robot.ca.ip,
 				robotNote: item.robot.note,
 				robotHidden: item.robot.isHidden,
 				robotOnlineCheckDisabled: item.robot.isOnlineCheckDisabled,

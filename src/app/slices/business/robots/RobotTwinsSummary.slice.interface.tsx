@@ -26,6 +26,8 @@ export interface RTSContentDataInterface {
 	robotBatteryPercentage: number;
 	robotMission: { status: string; description: string };
 	robotCustomerName: string;
+	robotUsername: string;
+	robotIPAddress: string;
 	robotNote: string;
 	robotHidden: boolean;
 	robotOnlineCheckDisabled: boolean;
@@ -51,52 +53,6 @@ export interface RTSContentStateInterface {
 	hidden?: boolean;
 }
 
-export interface RTSContentTransformDataInterface {
-	id: string;
-	updatedAt: Date;
-	robot: {
-		id: string;
-		name: string;
-		customerName: string;
-		note: string;
-		isHidden: boolean;
-		isOnlineCheckDisabled: boolean;
-		alerts: {
-			value: IAlertInterface[];
-			updatedAt: Date;
-		};
-		lastSyncedProducts: {
-			updatedAt: Date;
-		};
-		robotState: {
-			isReady: {
-				value: boolean;
-				updatedAt: Date;
-			};
-		};
-	};
-	site: {
-		id: string;
-	};
-	status: {
-		batteryState: {
-			value: {
-				percentage: number;
-			};
-			updatedAt: Date;
-		};
-		controlMode: {
-			value: string;
-			updatedAt: Date;
-		};
-		mission: {
-			status: string;
-			description: string;
-			updatedAt: Date;
-		};
-	};
-}
-
 export interface IRobotTwinSummaryInterface {
 	id: string;
 	updatedAt: Date;
@@ -112,6 +68,10 @@ export interface IRobotTwinSummaryInterface {
 			name: string;
 			note: string;
 			robotState: { isReady: boolean };
+			ca: {
+				ip: string;
+				username: string;
+			};
 			status: {
 				batteryState: { percentage: number };
 				controlMode: string;
@@ -152,6 +112,56 @@ export interface IRobotTwinSummaryInterface {
 					updatedAt: Date;
 				};
 			};
+		};
+	};
+}
+
+export interface RTSContentTransformDataInterface {
+	id: string;
+	updatedAt: Date;
+	robot: {
+		id: string;
+		name: string;
+		customerName: string;
+		note: string;
+		isHidden: boolean;
+		isOnlineCheckDisabled: boolean;
+		ca: {
+			ip: string;
+			username: string;
+		};
+		alerts: {
+			value: IAlertInterface[];
+			updatedAt: Date;
+		};
+		lastSyncedProducts: {
+			updatedAt: Date;
+		};
+		robotState: {
+			isReady: {
+				value: boolean;
+				updatedAt: Date;
+			};
+		};
+	};
+	site: {
+		id: string;
+	};
+	status: {
+		batteryState: {
+			value: {
+				percentage: number;
+			};
+			updatedAt: Date;
+		};
+		controlMode: {
+			value: string;
+			updatedAt: Date;
+		};
+		mission: {
+			status: string;
+			description: string;
+			updatedAt: Date;
 		};
 	};
 }

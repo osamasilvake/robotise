@@ -1434,6 +1434,20 @@
 									"REQUIRED": "Customer Name is required."
 								}
 							},
+							"USERNAME": {
+								"LABEL": "Username",
+								"PLACEHOLDER": "Enter username",
+								"VALIDATIONS": {
+									"REQUIRED": "Username is required."
+								}
+							},
+							"IP_ADDRESS": {
+								"LABEL": "IP Address",
+								"PLACEHOLDER": "Enter IP Address",
+								"VALIDATIONS": {
+									"REQUIRED": "IP Address is required."
+								}
+							},
 							"CHECKBOXES": {
 								"HIDDEN": {
 									"LABEL": "Hide Robot",

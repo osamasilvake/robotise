@@ -399,6 +399,10 @@ class RobotsService {
 					name: payload.name,
 					customerName: payload.customerName,
 					configs: {
+						ca: {
+							username: payload.username,
+							ip: payload.ipAddress
+						},
 						isHidden: payload.isHidden,
 						isOnlineCheckDisabled: payload.isOnlineCheckDisabled
 					}

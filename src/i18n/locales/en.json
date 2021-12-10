@@ -992,19 +992,19 @@
 							"noStop2Trigger": {
 								"ICON": "info",
 								"LABEL": "no_stop2_trigger",
-								"MSG_1": "No safe stop 0 is active",
+								"MSG_1": "No sensor is being triggered",
 								"MSG_2": "A sensor is being triggered and stops the robot"
 							},
 							"stop0ResetRequired": {
 								"ICON": "info",
 								"LABEL": "stop0_reset_required",
-								"MSG_1": "The blue button must be pressed after emergency stop or magnet sensor activation",
+								"MSG_1": "The blue button must be pressed after failed braking or over-speed",
 								"MSG_2": "No safe stop 0 can be reset"
 							},
 							"stop1ResetRequired": {
 								"ICON": "info",
 								"LABEL": "stop1_reset_required",
-								"MSG_1": "The blue button must be pressed after failed braking",
+								"MSG_1": "The blue button must be pressed after emergency stop or magnet sensor activation",
 								"MSG_2": "No safe stop 1 can be reset"
 							}
 						}

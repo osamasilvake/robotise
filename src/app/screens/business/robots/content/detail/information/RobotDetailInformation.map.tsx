@@ -6,25 +6,29 @@ import {
 	SRTContentSafetySystemsInterface,
 	SRTContentTransitPointStartedInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
-import { RobotDetailInformationTypeEnum } from './RobotDetailInformation.enum';
+import {
+	RobotDetailInformationTypeEnum,
+	RobotDetailSafetySystemKeysTypeEnum
+} from './RobotDetailInformation.enum';
+import { RobotDetailSafetyMappedResultInterface } from './RobotDetailInformation.interface';
 
 const safetyOpposites = [
-	'backMutingActive',
-	'brakeReleasePressed',
-	'forceBrakeActive',
-	'forceStop0Active',
-	'frontMutingActive',
-	'stop0ResetRequired',
-	'stop1ResetRequired'
+	RobotDetailSafetySystemKeysTypeEnum.FRONT_MUTING_ACTIVE,
+	RobotDetailSafetySystemKeysTypeEnum.BACK_MUTING_ACTIVE,
+	RobotDetailSafetySystemKeysTypeEnum.BRAKE_RELEASE_PRESSED,
+	RobotDetailSafetySystemKeysTypeEnum.FORCE_BRAKE_ACTIVE,
+	RobotDetailSafetySystemKeysTypeEnum.FORCE_STOP0_ACTIVE,
+	RobotDetailSafetySystemKeysTypeEnum.STOP0_RESET_REQUIRED,
+	RobotDetailSafetySystemKeysTypeEnum.STOP1_RESET_REQUIRED
 ];
 const safetyWarnings = [
-	'backMutingActive',
-	'brakeReleasePressed',
-	'frontMutingActive',
-	'noStop2Trigger',
-	'drawers',
-	'lidarBottom',
-	'lidarTop'
+	RobotDetailSafetySystemKeysTypeEnum.FRONT_MUTING_ACTIVE,
+	RobotDetailSafetySystemKeysTypeEnum.BACK_MUTING_ACTIVE,
+	RobotDetailSafetySystemKeysTypeEnum.BRAKE_RELEASE_PRESSED,
+	RobotDetailSafetySystemKeysTypeEnum.NO_STOP2_TRIGGER,
+	RobotDetailSafetySystemKeysTypeEnum.DRAWERS,
+	RobotDetailSafetySystemKeysTypeEnum.LIDAR_TOP,
+	RobotDetailSafetySystemKeysTypeEnum.LIDAR_BOTTOM
 ];
 
 /**
@@ -36,17 +40,19 @@ const safetyWarnings = [
 export const mapSafetyContent = (
 	data: SRTContentSafetySystemsInterface | SRTContentSafetySensorsInterface,
 	type: RobotDetailInformationTypeEnum
-) =>
+): RobotDetailSafetyMappedResultInterface[] =>
 	Object.entries(data.properties).map(([key, value]) => {
 		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
+		const ky = key as RobotDetailSafetySystemKeysTypeEnum;
 		return {
+			key: ky,
 			icon: `${translation}.${key}.ICON`,
 			label: `${translation}.${key}.LABEL`,
 			msg1: `${translation}.${key}.MSG_1`,
 			msg2: `${translation}.${key}.MSG_2`,
 			value: typeof value === 'object' ? value.every((val) => !!val) : Boolean(value),
-			opposite: safetyOpposites.includes(key),
-			warning: safetyWarnings.includes(key)
+			opposite: safetyOpposites.includes(ky),
+			warning: safetyWarnings.includes(ky)
 		};
 	});
 

@@ -1,4 +1,4 @@
-export enum RobotDetailSafetySystemKeysTypeEnum {
+export enum RobotDetailSafetyKeysTypeEnum {
 	FRONT_MUTING_ACTIVE = 'frontMutingActive',
 	BACK_MUTING_ACTIVE = 'backMutingActive',
 	BRAKE_RELEASED = 'brakeReleased',
@@ -14,6 +14,11 @@ export enum RobotDetailSafetySystemKeysTypeEnum {
 	DRIVE_TORQUE_ENABLED = 'driveTorqueEnabled',
 	NO_DRIVE_STOP = 'noDriveStop',
 	NO_STOP = 'noStop0'
+}
+
+export enum RobotDetailSafetySystemCounterTypeEnum {
+	WARNING,
+	ERROR
 }
 
 export enum RobotDetailInformationTypeEnum {

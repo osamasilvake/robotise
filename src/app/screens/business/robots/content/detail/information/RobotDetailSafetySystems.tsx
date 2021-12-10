@@ -16,7 +16,8 @@ import { useTranslation } from 'react-i18next';
 import { AppConfigService } from '../../../../../../services';
 import {
 	RobotDetailInformationTypeEnum,
-	RobotDetailSafetySystemKeysTypeEnum
+	RobotDetailSafetyKeysTypeEnum,
+	RobotDetailSafetySystemCounterTypeEnum
 } from './RobotDetailInformation.enum';
 import {
 	RobotDetailSafetyMappedResultInterface,
@@ -37,103 +38,85 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 	const orange = alpha(AppConfigService.AppOptions.colors.c14, 0.09);
 	const red = alpha(AppConfigService.AppOptions.colors.c12, 0.09);
 
-	const warnings = mappedSystem?.reduce((counter, row) => {
-		const forceStop0Active = !!systems?.properties.forceStop0Active;
-		switch (row.key) {
-			case RobotDetailSafetySystemKeysTypeEnum.FORCE_STOP0_ACTIVE:
-				return counter;
-			case RobotDetailSafetySystemKeysTypeEnum.BRAKE_RELEASED:
-			case RobotDetailSafetySystemKeysTypeEnum.DRIVE_TORQUE_ENABLED:
-			case RobotDetailSafetySystemKeysTypeEnum.NO_STOP:
-			case RobotDetailSafetySystemKeysTypeEnum.NO_DRIVE_STOP:
-				return forceStop0Active
-					? counter
-					: row.value
-					? counter
-					: row.warning
-					? (counter += 1)
-					: counter;
-			default:
-				return row.opposite
-					? !row.value
-						? counter
-						: row.warning
-						? (counter += 1)
-						: counter
-					: row.value
-					? counter
-					: row.warning
-					? (counter += 1)
-					: counter;
-		}
-	}, 0);
-
-	const errors = mappedSystem?.reduce((counter, row) => {
-		const forceStop0Active = !!systems?.properties.forceStop0Active;
-		switch (row.key) {
-			case RobotDetailSafetySystemKeysTypeEnum.FORCE_STOP0_ACTIVE:
-				return row.opposite ? (row.value && isDocked ? counter : (counter += 1)) : counter;
-			case RobotDetailSafetySystemKeysTypeEnum.BRAKE_RELEASED:
-			case RobotDetailSafetySystemKeysTypeEnum.DRIVE_TORQUE_ENABLED:
-			case RobotDetailSafetySystemKeysTypeEnum.NO_STOP:
-			case RobotDetailSafetySystemKeysTypeEnum.NO_DRIVE_STOP:
-				return forceStop0Active
-					? counter
-					: row.value
-					? counter
-					: row.warning
-					? counter
-					: (counter += 1);
-			default:
-				return row.opposite
-					? !row.value
-						? counter
-						: row.warning
-						? counter
-						: (counter += 1)
-					: row.value
-					? counter
-					: row.warning
-					? counter
-					: (counter += 1);
-		}
-	}, 0);
-
 	/**
-	 * apply background color
+	 * add colors and warnings
 	 * @param row
+	 * @param counter
+	 * @param type
 	 * @returns
 	 */
-	const applyBackgroundColor = (row: RobotDetailSafetyMappedResultInterface) => {
+	const addColorsAndWarnings = (
+		row: RobotDetailSafetyMappedResultInterface,
+		counter?: number,
+		type?: RobotDetailSafetySystemCounterTypeEnum
+	) => {
 		const forceStop0Active = !!systems?.properties.forceStop0Active;
+		let value1;
+		let value2;
+		let value3;
+		switch (type) {
+			case RobotDetailSafetySystemCounterTypeEnum.WARNING:
+				value1 = counter;
+				value2 = Number(counter) + 1;
+				value3 = counter;
+				break;
+			case RobotDetailSafetySystemCounterTypeEnum.ERROR:
+				value1 = counter;
+				value2 = counter;
+				value3 = Number(counter) + 1;
+				break;
+			default:
+				value1 = undefined;
+				value2 = orange;
+				value3 = red;
+		}
+
 		switch (row.key) {
-			case RobotDetailSafetySystemKeysTypeEnum.FORCE_STOP0_ACTIVE:
-				return row.opposite ? (row.value && isDocked ? undefined : red) : undefined;
-			case RobotDetailSafetySystemKeysTypeEnum.BRAKE_RELEASED:
-			case RobotDetailSafetySystemKeysTypeEnum.DRIVE_TORQUE_ENABLED:
-			case RobotDetailSafetySystemKeysTypeEnum.NO_STOP:
-			case RobotDetailSafetySystemKeysTypeEnum.NO_DRIVE_STOP:
+			case RobotDetailSafetyKeysTypeEnum.FORCE_STOP0_ACTIVE:
+				return forceStop0Active ? (row.value && isDocked ? value1 : value3) : value1;
+			case RobotDetailSafetyKeysTypeEnum.BRAKE_RELEASED:
+			case RobotDetailSafetyKeysTypeEnum.DRIVE_TORQUE_ENABLED:
+			case RobotDetailSafetyKeysTypeEnum.NO_STOP:
+			case RobotDetailSafetyKeysTypeEnum.NO_DRIVE_STOP:
 				return forceStop0Active
-					? undefined
+					? value1
 					: row.value
-					? undefined
+					? value1
 					: row.warning
-					? orange
-					: red;
+					? value2
+					: value3;
 			default:
 				return row.opposite
 					? !row.value
-						? undefined
+						? value1
 						: row.warning
-						? orange
-						: red
+						? value2
+						: value3
 					: row.value
-					? undefined
+					? value1
 					: row.warning
-					? orange
-					: red;
+					? value2
+					: value3;
 		}
 	};
+
+	// warnings
+	const warnings = mappedSystem?.reduce(
+		(counter, row) =>
+			Number(
+				addColorsAndWarnings(row, counter, RobotDetailSafetySystemCounterTypeEnum.WARNING)
+			),
+		0
+	);
+
+	// errors
+	const errors = mappedSystem?.reduce(
+		(counter, row) =>
+			Number(
+				addColorsAndWarnings(row, counter, RobotDetailSafetySystemCounterTypeEnum.ERROR)
+			),
+		0
+	);
 
 	return mappedSystem ? (
 		<List className={classes.sList}>
@@ -168,7 +151,7 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 			</ListItemButton>
 			{mappedSystem.map((row) => (
 				<Collapse key={row.label} in={open} timeout="auto" unmountOnExit>
-					<ListItem style={{ backgroundColor: applyBackgroundColor(row) }}>
+					<ListItem style={{ backgroundColor: String(addColorsAndWarnings(row)) }}>
 						<ListItemIcon>
 							<Icon>{t(row.icon)}</Icon>
 						</ListItemIcon>

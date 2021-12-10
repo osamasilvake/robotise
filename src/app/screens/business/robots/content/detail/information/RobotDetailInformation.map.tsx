@@ -8,27 +8,27 @@ import {
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import {
 	RobotDetailInformationTypeEnum,
-	RobotDetailSafetySystemKeysTypeEnum
+	RobotDetailSafetyKeysTypeEnum
 } from './RobotDetailInformation.enum';
 import { RobotDetailSafetyMappedResultInterface } from './RobotDetailInformation.interface';
 
 const safetyOpposites = [
-	RobotDetailSafetySystemKeysTypeEnum.FRONT_MUTING_ACTIVE,
-	RobotDetailSafetySystemKeysTypeEnum.BACK_MUTING_ACTIVE,
-	RobotDetailSafetySystemKeysTypeEnum.BRAKE_RELEASE_PRESSED,
-	RobotDetailSafetySystemKeysTypeEnum.FORCE_BRAKE_ACTIVE,
-	RobotDetailSafetySystemKeysTypeEnum.FORCE_STOP0_ACTIVE,
-	RobotDetailSafetySystemKeysTypeEnum.STOP0_RESET_REQUIRED,
-	RobotDetailSafetySystemKeysTypeEnum.STOP1_RESET_REQUIRED
+	RobotDetailSafetyKeysTypeEnum.FRONT_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BACK_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BRAKE_RELEASE_PRESSED,
+	RobotDetailSafetyKeysTypeEnum.FORCE_BRAKE_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.FORCE_STOP0_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.STOP0_RESET_REQUIRED,
+	RobotDetailSafetyKeysTypeEnum.STOP1_RESET_REQUIRED
 ];
 const safetyWarnings = [
-	RobotDetailSafetySystemKeysTypeEnum.FRONT_MUTING_ACTIVE,
-	RobotDetailSafetySystemKeysTypeEnum.BACK_MUTING_ACTIVE,
-	RobotDetailSafetySystemKeysTypeEnum.BRAKE_RELEASE_PRESSED,
-	RobotDetailSafetySystemKeysTypeEnum.NO_STOP2_TRIGGER,
-	RobotDetailSafetySystemKeysTypeEnum.DRAWERS,
-	RobotDetailSafetySystemKeysTypeEnum.LIDAR_TOP,
-	RobotDetailSafetySystemKeysTypeEnum.LIDAR_BOTTOM
+	RobotDetailSafetyKeysTypeEnum.FRONT_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BACK_MUTING_ACTIVE,
+	RobotDetailSafetyKeysTypeEnum.BRAKE_RELEASE_PRESSED,
+	RobotDetailSafetyKeysTypeEnum.NO_STOP2_TRIGGER,
+	RobotDetailSafetyKeysTypeEnum.DRAWERS,
+	RobotDetailSafetyKeysTypeEnum.LIDAR_TOP,
+	RobotDetailSafetyKeysTypeEnum.LIDAR_BOTTOM
 ];
 
 /**
@@ -43,7 +43,7 @@ export const mapSafetyContent = (
 ): RobotDetailSafetyMappedResultInterface[] =>
 	Object.entries(data.properties).map(([key, value]) => {
 		const translation = `CONTENT.DETAIL.INFORMATION.${type}.VALUES`;
-		const ky = key as RobotDetailSafetySystemKeysTypeEnum;
+		const ky = key as RobotDetailSafetyKeysTypeEnum;
 		return {
 			key: ky,
 			icon: `${translation}.${key}.ICON`,

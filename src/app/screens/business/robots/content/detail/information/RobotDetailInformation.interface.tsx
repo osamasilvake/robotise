@@ -6,7 +6,7 @@ import {
 	SRTContentSafetySystemsInterface,
 	SRTContentTransitPointStartedInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
-import { RobotDetailSafetySystemKeysTypeEnum } from './RobotDetailInformation.enum';
+import { RobotDetailSafetyKeysTypeEnum } from './RobotDetailInformation.enum';
 
 export interface RobotDetailInformationInterface {
 	robotTwins: SRTContentDataInterface;
@@ -34,7 +34,7 @@ export interface RobotDetailTransitPointStartedInterface {
 }
 
 export interface RobotDetailSafetyMappedResultInterface {
-	key: RobotDetailSafetySystemKeysTypeEnum;
+	key: RobotDetailSafetyKeysTypeEnum;
 	icon: string;
 	label: string;
 	msg1: string;

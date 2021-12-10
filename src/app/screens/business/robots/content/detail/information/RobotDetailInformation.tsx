@@ -34,7 +34,10 @@ const RobotDetailInformation: FC<RobotDetailInformationInterface> = (props) => {
 			<Grid container spacing={1} className={classes.sGridContainer}>
 				{robotTwins.safetySystems && (
 					<Grid item xs={12} md={6}>
-						<RobotDetailSafetySystems systems={robotTwins.safetySystems} />
+						<RobotDetailSafetySystems
+							systems={robotTwins.safetySystems}
+							isDocked={!!robotTwins.dockingState?.properties.isDocked}
+						/>
 					</Grid>
 				)}
 				{robotTwins.safetySensors && (

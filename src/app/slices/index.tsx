@@ -26,6 +26,7 @@ import sites from './business/sites/Sites.slice';
 import wifiHeatmap from './business/sites/statistics/WifiHeatmap.slice';
 import general from './general/General.slice';
 import alertCodes from './information/alert-codes/AlertCodes.slice';
+import deepLink from './settings/deep-links/DeepLink.slice';
 import deepLinks from './settings/deep-links/DeepLinks.slice';
 
 // app reducers
@@ -54,6 +55,7 @@ const combinedReducer = combineReducers({
 	commandsLog,
 	elevatorCalls,
 	alertCodes,
+	deepLink,
 	deepLinks
 });
 

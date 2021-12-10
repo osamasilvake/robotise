@@ -8,9 +8,9 @@ import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import {
-	RobotElevatorLogsLinkFetch,
-	robotSelector
-} from '../../../../../../../slices/business/robots/Robot.slice';
+	DeepLinkElevatorLogsLinkFetch,
+	deepLinkSelector
+} from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { momentFormat1, momentFormat3 } from '../../../../../../../utilities/methods/Moment';
 import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
 import {
@@ -25,7 +25,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotElevatorCallsTableStyle();
 
-	const robot = useSelector(robotSelector);
+	const deepLink = useSelector(deepLinkSelector);
 
 	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES';
 
@@ -49,9 +49,9 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 						from: elevatorCall.createdAt,
 						to: elevatorCall.updatedAt
 					}}
-					FetchExternalLink={RobotElevatorLogsLinkFetch}
-					showIcon={robot.elevatorLogs.loading}
-					disabled={robot.elevatorLogs.loading}
+					FetchExternalLink={DeepLinkElevatorLogsLinkFetch}
+					showIcon={deepLink.elevatorLogs.loading}
+					disabled={deepLink.elevatorLogs.loading}
 				/>
 			);
 		} else {

@@ -24,8 +24,8 @@ export interface SRTContentDataInterface {
 	dockingState?: SRTContentDockingStateInterface | undefined;
 	joystickState?: SRTContentJoystickStateInterface | undefined;
 	activityState?: SRTContentActivityStateInterface | undefined;
-	safetySensors?: SRTContentSafetySensorsInterface | undefined;
 	safetySystems?: SRTContentSafetySystemsInterface | undefined;
+	safetySensors?: SRTContentSafetySensorsInterface | undefined;
 	computerInfo?: SRTContentComputerInfoInterface | undefined;
 	humanPerception?: SRTContentHumanPerceptionInterface | undefined;
 	transitPointStarted?: SRTContentTransitPointStartedInterface | undefined;
@@ -132,28 +132,6 @@ export interface SRTContentActivityStateInterface {
 	updatedAt: Date;
 }
 
-export interface SRTContentSafetySensorsInterface {
-	properties: {
-		drawers: {
-			0: boolean;
-			1: boolean;
-			2: boolean;
-			3: boolean;
-			4: boolean;
-		}[];
-		fallProtectionBackLeft: boolean;
-		fallProtectionBackRight: boolean;
-		fallProtectionFrontLeft: boolean;
-		fallProtectionFrontRight: boolean;
-		lidarBottom: boolean;
-		lidarTop: boolean;
-		magnetSensorLeft: boolean;
-		magnetSensorRight: boolean;
-		safetyEdge: boolean;
-	};
-	updatedAt: Date;
-}
-
 export interface SRTContentSafetySystemsInterface {
 	properties: {
 		backMutingActive: boolean;
@@ -170,6 +148,22 @@ export interface SRTContentSafetySystemsInterface {
 		noStop2Trigger: boolean;
 		stop0ResetRequired: boolean;
 		stop1ResetRequired: boolean;
+	};
+	updatedAt: Date;
+}
+
+export interface SRTContentSafetySensorsInterface {
+	properties: {
+		drawers: boolean[];
+		fallProtectionBackLeft: boolean;
+		fallProtectionBackRight: boolean;
+		fallProtectionFrontLeft: boolean;
+		fallProtectionFrontRight: boolean;
+		lidarBottom: boolean;
+		lidarTop: boolean;
+		magnetSensorLeft: boolean;
+		magnetSensorRight: boolean;
+		safetyEdge: boolean;
 	};
 	updatedAt: Date;
 }
@@ -294,24 +288,6 @@ export interface IRobotTwinInterface {
 					powerSupplyHealth: string;
 					voltage: number;
 				};
-				safetySensors: {
-					drawers: {
-						0: boolean;
-						1: boolean;
-						2: boolean;
-						3: boolean;
-						4: boolean;
-					}[];
-					fallProtectionBackLeft: boolean;
-					fallProtectionBackRight: boolean;
-					fallProtectionFrontLeft: boolean;
-					fallProtectionFrontRight: boolean;
-					lidarBottom: boolean;
-					lidarTop: boolean;
-					magnetSensorLeft: boolean;
-					magnetSensorRight: boolean;
-					safetyEdge: boolean;
-				};
 				safetySystem: {
 					backMutingActive: boolean;
 					brakeReleasePressed: boolean;
@@ -327,6 +303,18 @@ export interface IRobotTwinInterface {
 					noStop2Trigger: boolean;
 					stop0ResetRequired: boolean;
 					stop1ResetRequired: boolean;
+				};
+				safetySensors: {
+					drawers: boolean[];
+					fallProtectionBackLeft: boolean;
+					fallProtectionBackRight: boolean;
+					fallProtectionFrontLeft: boolean;
+					fallProtectionFrontRight: boolean;
+					lidarBottom: boolean;
+					lidarTop: boolean;
+					magnetSensorLeft: boolean;
+					magnetSensorRight: boolean;
+					safetyEdge: boolean;
 				};
 				computerInfo: {
 					cpuLoad: {

@@ -60,18 +60,14 @@ export interface IRobotTwinSummaryInterface {
 	site: { id: string };
 	state: {
 		reported: {
-			alerts: IAlertInterface[];
+			name: string;
+			robotState: { isReady: boolean };
 			customerName: string;
+			ca: { ip: string; username: string };
+			note: string;
 			isHidden: boolean;
 			isOnlineCheckDisabled: boolean;
 			lastSyncedProducts: Date;
-			name: string;
-			note: string;
-			robotState: { isReady: boolean };
-			ca: {
-				ip: string;
-				username: string;
-			};
 			status: {
 				batteryState: { percentage: number };
 				controlMode: string;
@@ -80,88 +76,21 @@ export interface IRobotTwinSummaryInterface {
 					description: string;
 				};
 			};
+			alerts: IAlertInterface[];
 		};
 	};
 	metadata: {
 		reported: {
-			alerts: {
-				updatedAt: Date;
-			};
-			lastSyncedProducts: {
-				updatedAt: Date;
-			};
-			name: {
-				updatedAt: Date;
-			};
-			robotState: {
-				isReady: {
-					updatedAt: Date;
-				};
-			};
+			name: { updatedAt: Date };
+			robotState: { isReady: { updatedAt: Date } };
+			lastSyncedProducts: { updatedAt: Date };
 			status: {
-				batteryState: {
-					updatedAt: Date;
-				};
-				controlMode: {
-					updatedAt: Date;
-				};
-				location: {
-					updatedAt: Date;
-				};
-				mission: {
-					updatedAt: Date;
-				};
+				batteryState: { updatedAt: Date };
+				controlMode: { updatedAt: Date };
+				location: { updatedAt: Date };
+				mission: { updatedAt: Date };
 			};
-		};
-	};
-}
-
-export interface RTSContentTransformDataInterface {
-	id: string;
-	updatedAt: Date;
-	robot: {
-		id: string;
-		name: string;
-		customerName: string;
-		note: string;
-		isHidden: boolean;
-		isOnlineCheckDisabled: boolean;
-		ca: {
-			ip: string;
-			username: string;
-		};
-		alerts: {
-			value: IAlertInterface[];
-			updatedAt: Date;
-		};
-		lastSyncedProducts: {
-			updatedAt: Date;
-		};
-		robotState: {
-			isReady: {
-				value: boolean;
-				updatedAt: Date;
-			};
-		};
-	};
-	site: {
-		id: string;
-	};
-	status: {
-		batteryState: {
-			value: {
-				percentage: number;
-			};
-			updatedAt: Date;
-		};
-		controlMode: {
-			value: string;
-			updatedAt: Date;
-		};
-		mission: {
-			status: string;
-			description: string;
-			updatedAt: Date;
+			alerts: { updatedAt: Date };
 		};
 	};
 }

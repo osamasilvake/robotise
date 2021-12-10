@@ -9,6 +9,8 @@ export interface RobotConfigInterface {
 export interface RobotConfigFormInterface {
 	name: string;
 	customerName: string;
+	username: string;
+	ipAddress: string;
 	isHidden?: boolean;
 	isOnlineCheckDisabled?: boolean;
 }

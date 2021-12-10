@@ -299,20 +299,22 @@ class AppConfigService extends EnvService {
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
 						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
-						LINKS: {
-							AUDIT_LOGS: `${this.envAppUrl}/deeplinks-request/audit-logs-robot-site`,
-							BATTERY: `${this.envAppUrl}/deeplinks-request/robot-battery-dashboard`,
-							TEMPERATURE: `${this.envAppUrl}/deeplinks-request/robot-temperature`,
-							ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`,
-							ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`
-						},
 						REPORTS: {
 							PURCHASES: `${this.envAppUrl}/order-report-export`
 						}
 					}
 				},
 				SETTINGS: {
-					DEEP_LINKS: `${this.envAppUrl}/deeplinks`
+					DEEP_LINKS: `${this.envAppUrl}/deeplinks`,
+					DEEP_LINK: {
+						AUDIT_LOGS: `${this.envAppUrl}/deeplinks-request/audit-logs-robot-site`,
+						BATTERY: `${this.envAppUrl}/deeplinks-request/robot-battery-dashboard`,
+						TEMPERATURE: `${this.envAppUrl}/deeplinks-request/robot-temperature`,
+						DIAGNOSTICS_LOGS: `${this.envAppUrl}/deeplinks-request/robot-diagnostics-history`,
+						COOLING_UNIT: `${this.envAppUrl}/deeplinks-request/robot-cooling-unit`,
+						ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`,
+						ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`
+					}
 				},
 				INFORMATION: {
 					ALERT_CODES: `${this.envAppUrl}/active-alert-codes`

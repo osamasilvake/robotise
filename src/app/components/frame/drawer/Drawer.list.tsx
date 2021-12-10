@@ -12,13 +12,13 @@ const drawerBusinessList: DrawerListInterface[] = [
 	{
 		icon: 'apartment',
 		label: 'BUSINESS.LIST.SITES',
-		hint: '🏢  🍔  🛌🏻  ⚙️',
+		hint: '🏢  🍔  🛌🏻  📞  📈  ⚙️',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN
 	},
 	{
 		icon: 'android',
 		label: 'BUSINESS.LIST.ROBOTS',
-		hint: '🤖  🗄  📦  🛒  ⚙️',
+		hint: '🤖  🗄  📦  🛒  📝  ⚙️',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN,
 		badge: DrawerListBadgeTypeEnum.ROBOT
 	}

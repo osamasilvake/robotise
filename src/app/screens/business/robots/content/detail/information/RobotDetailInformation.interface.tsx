@@ -6,17 +6,19 @@ import {
 	SRTContentSafetySystemsInterface,
 	SRTContentTransitPointStartedInterface
 } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
+import { RobotDetailSafetyKeysTypeEnum } from './RobotDetailInformation.enum';
 
 export interface RobotDetailInformationInterface {
 	robotTwins: SRTContentDataInterface;
 }
 
-export interface RobotDetailSafetySensorsInterface {
-	sensors?: SRTContentSafetySensorsInterface | undefined;
-}
-
 export interface RobotDetailSafetySystemsInterface {
 	systems?: SRTContentSafetySystemsInterface | undefined;
+	isDocked: boolean;
+}
+
+export interface RobotDetailSafetySensorsInterface {
+	sensors?: SRTContentSafetySensorsInterface | undefined;
 }
 
 export interface RobotDetailComputerInfoInterface {
@@ -29,4 +31,15 @@ export interface RobotDetailHumanPerceptionInterface {
 
 export interface RobotDetailTransitPointStartedInterface {
 	transitPointStarted?: SRTContentTransitPointStartedInterface | undefined;
+}
+
+export interface RobotDetailSafetyMappedResultInterface {
+	key: RobotDetailSafetyKeysTypeEnum;
+	icon: string;
+	label: string;
+	msg1: string;
+	msg2: string;
+	value: boolean;
+	opposite: boolean;
+	warning: boolean;
 }

@@ -115,25 +115,6 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 						},
 						updatedAt: meta.activity?.updatedAt
 					},
-					safetySensors: state.status.safetySensors && {
-						properties: {
-							drawers: state.status.safetySensors.drawers,
-							fallProtectionBackLeft:
-								state.status.safetySensors.fallProtectionBackLeft,
-							fallProtectionBackRight:
-								state.status.safetySensors.fallProtectionBackRight,
-							fallProtectionFrontLeft:
-								state.status.safetySensors.fallProtectionFrontLeft,
-							fallProtectionFrontRight:
-								state.status.safetySensors.fallProtectionFrontRight,
-							lidarBottom: state.status.safetySensors.lidarBottom,
-							lidarTop: state.status.safetySensors.lidarTop,
-							magnetSensorLeft: state.status.safetySensors.magnetSensorLeft,
-							magnetSensorRight: state.status.safetySensors.magnetSensorRight,
-							safetyEdge: state.status.safetySensors.safetyEdge
-						},
-						updatedAt: meta.status?.safetySensors?.updatedAt
-					},
 					safetySystems: state.status.safetySystem && {
 						properties: {
 							backMutingActive: state.status.safetySystem.backMutingActive,
@@ -152,6 +133,25 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							stop1ResetRequired: state.status.safetySystem.stop1ResetRequired
 						},
 						updatedAt: meta.status.safetySystem.updatedAt
+					},
+					safetySensors: state.status.safetySensors && {
+						properties: {
+							drawers: state.status.safetySensors.drawers,
+							fallProtectionBackLeft:
+								state.status.safetySensors.fallProtectionBackLeft,
+							fallProtectionBackRight:
+								state.status.safetySensors.fallProtectionBackRight,
+							fallProtectionFrontLeft:
+								state.status.safetySensors.fallProtectionFrontLeft,
+							fallProtectionFrontRight:
+								state.status.safetySensors.fallProtectionFrontRight,
+							lidarBottom: state.status.safetySensors.lidarBottom,
+							lidarTop: state.status.safetySensors.lidarTop,
+							magnetSensorLeft: state.status.safetySensors.magnetSensorLeft,
+							magnetSensorRight: state.status.safetySensors.magnetSensorRight,
+							safetyEdge: state.status.safetySensors.safetyEdge
+						},
+						updatedAt: meta.status?.safetySensors?.updatedAt
 					},
 					computerInfo: {
 						properties: {

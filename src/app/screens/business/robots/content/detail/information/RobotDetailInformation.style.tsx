@@ -10,5 +10,8 @@ export const RobotDetailInformationStyle = makeStyles((theme: Theme) => ({
 	},
 	sList: {
 		padding: 0
+	},
+	sListChip: {
+		marginRight: theme.spacing(0.5)
 	}
 }));

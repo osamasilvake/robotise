@@ -311,6 +311,7 @@ class AppConfigService extends EnvService {
 						BATTERY: `${this.envAppUrl}/deeplinks-request/robot-battery-dashboard`,
 						TEMPERATURE: `${this.envAppUrl}/deeplinks-request/robot-temperature`,
 						DIAGNOSTICS_LOGS: `${this.envAppUrl}/deeplinks-request/robot-diagnostics-history`,
+						COOLING_UNIT: `${this.envAppUrl}/deeplinks-request/robot-cooling-unit`,
 						ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`,
 						ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`
 					}

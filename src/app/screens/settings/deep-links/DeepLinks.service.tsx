@@ -128,6 +128,22 @@ class DeepLinksService {
 	};
 
 	/**
+	 * fetch cooling unit link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkCoolingUnitLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.COOLING_UNIT;
+		return HttpClientService.get<SDContentInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * fetch item tracking link
 	 * @param payload
 	 * @returns

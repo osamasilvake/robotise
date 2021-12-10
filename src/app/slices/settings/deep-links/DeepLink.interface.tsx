@@ -15,6 +15,10 @@ export interface SliceDeepLinkInterface {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
+	coolingUnit: {
+		loading: boolean;
+		content: SDContentInterface | null;
+	};
 	itemTracking: {
 		loading: boolean;
 		content: SDContentInterface | null;

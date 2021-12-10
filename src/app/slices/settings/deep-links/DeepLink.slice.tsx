@@ -28,6 +28,10 @@ export const initialState: SliceDeepLinkInterface = {
 		loading: false,
 		content: null
 	},
+	coolingUnit: {
+		loading: false,
+		content: null
+	},
 	itemTracking: {
 		loading: false,
 		content: null
@@ -53,6 +57,8 @@ const dataSlice = createSlice({
 				state.temperature.loading = true;
 			} else if (module === DeepLinkTypeEnum.DIAGNOSTICS_LOGS) {
 				state.diagnosticsLogs.loading = true;
+			} else if (module === DeepLinkTypeEnum.COOLING_UNIT) {
+				state.coolingUnit.loading = true;
 			} else if (module === DeepLinkTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = true;
 			} else if (module === DeepLinkTypeEnum.ELEVATOR_LOGS) {
@@ -73,6 +79,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.DIAGNOSTICS_LOGS) {
 				state.diagnosticsLogs.loading = false;
 				state.diagnosticsLogs.content = response;
+			} else if (module === DeepLinkTypeEnum.COOLING_UNIT) {
+				state.coolingUnit.loading = false;
+				state.coolingUnit.content = response;
 			} else if (module === DeepLinkTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = response;
@@ -95,6 +104,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.DIAGNOSTICS_LOGS) {
 				state.diagnosticsLogs.loading = false;
 				state.diagnosticsLogs.content = null;
+			} else if (module === DeepLinkTypeEnum.COOLING_UNIT) {
+				state.coolingUnit.loading = false;
+				state.coolingUnit.content = null;
 			} else if (module === DeepLinkTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = null;
@@ -276,6 +288,48 @@ export const DeepLinkDiagnosticsLogsLinkFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `DEEP_LINKS.FETCH.DIAGNOSTICS_LOGS.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure({ ...state, response: message }));
+			});
+	};
+
+/**
+ * fetch cooling unit link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const DeepLinkCoolingUnitLinkFetch =
+	(payload: ExternalLinkPayloadInterface, callback: (data: SDContentInterface) => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: DeepLinkTypeEnum.COOLING_UNIT
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return DeepLinksService.deepLinkCoolingUnitLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: `deep-link-cooling-unit-error`,
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `DEEP_LINKS.FETCH.COOLING_UNIT.ERROR`
 				};
 				dispatch(triggerMessage(message));
 

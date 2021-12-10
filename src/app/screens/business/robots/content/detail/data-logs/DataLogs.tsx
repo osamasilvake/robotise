@@ -9,6 +9,7 @@ import { robotTwinsSummarySelector } from '../../../../../../slices/business/rob
 import {
 	DeepLinkAuditLogsLinkFetch,
 	DeepLinkBatteryLinkFetch,
+	DeepLinkCoolingUnitLinkFetch,
 	DeepLinkDiagnosticsLogsLinkFetch,
 	deepLinkSelector,
 	DeepLinkTemperatureLinkFetch
@@ -114,6 +115,26 @@ const RobotDetailDataLogs: FC = () => {
 							FetchExternalLink={DeepLinkDiagnosticsLogsLinkFetch}
 							showIcon={deepLink.diagnosticsLogs.loading}
 							disabled={deepLink.diagnosticsLogs.loading}
+						/>
+					</Box>
+				</Grid>
+
+				{/* Deep Link: Cooling Unit */}
+				<Grid item xs={12} sm={6} md={4} lg={2}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.COOLING_UNIT.LABEL`)}
+					</Typography>
+					<Box className={classes.sContent}>
+						<ExternalLink
+							text={t(`${translation}.COOLING_UNIT.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-8h',
+								to: 'now'
+							}}
+							FetchExternalLink={DeepLinkCoolingUnitLinkFetch}
+							showIcon={deepLink.coolingUnit.loading}
+							disabled={deepLink.coolingUnit.loading}
 						/>
 					</Box>
 				</Grid>

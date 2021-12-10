@@ -277,6 +277,9 @@
 				"DIAGNOSTICS_LOGS": {
 					"ERROR": "Failed to fetch diagnostics logs link!"
 				},
+				"COOLING_UNIT": {
+					"ERROR": "Failed to fetch cooling unit link!"
+				},
 				"ITEM_TRACKING": {
 					"ERROR": "Failed to fetch item tracking link!"
 				},
@@ -1150,6 +1153,10 @@
 					},
 					"DIAGNOSTICS_LOGS": {
 						"LABEL": "Diagnostics Logs",
+						"TEXT": "Link"
+					},
+					"COOLING_UNIT": {
+						"LABEL": "Cooling Unit",
 						"TEXT": "Link"
 					}
 				}

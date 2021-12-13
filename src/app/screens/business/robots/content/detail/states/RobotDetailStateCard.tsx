@@ -1,5 +1,4 @@
 import { Box, Card, CardContent, Icon, Typography } from '@mui/material';
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,7 +13,7 @@ const RobotDetailStateCard: FC<RobotDetailStateCardInterface> = (props) => {
 
 	return (
 		<Card variant="elevation" square elevation={1}>
-			<CardContent className={clsx(classes.sCardContent)}>
+			<CardContent className={classes.sCardContent}>
 				{/* Icon */}
 				<Box className={classes.sCardContentIcons}>
 					{item.icon && <Icon>{item.icon}</Icon>}

@@ -28,8 +28,8 @@ const RobotDetailSafetySensors: FC<RobotDetailSafetySensorsInterface> = (props) 
 
 	const mappedSensors =
 		sensors && mapSafetyContent(sensors, RobotDetailInformationTypeEnum.SAFETY_SENSORS);
-	const orange = alpha(AppConfigService.AppOptions.colors.c14, 0.09);
-	const red = alpha(AppConfigService.AppOptions.colors.c12, 0.09);
+	const yellow = alpha(AppConfigService.AppOptions.colors.c11, 0.15);
+	const red = alpha(AppConfigService.AppOptions.colors.c12, 0.15);
 	const warnings = mappedSensors?.reduce(
 		(counter, obj) =>
 			obj.warning && ((obj.value && obj.opposite) || (!obj.value && !obj.opposite))
@@ -84,12 +84,12 @@ const RobotDetailSafetySensors: FC<RobotDetailSafetySensorsInterface> = (props) 
 								? !row.value
 									? undefined
 									: row.warning
-									? orange
+									? yellow
 									: red
 								: row.value
 								? undefined
 								: row.warning
-								? orange
+								? yellow
 								: red
 						}}>
 						<ListItemIcon>

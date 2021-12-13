@@ -20,8 +20,7 @@ export const initialState: SliceServicePositionsInterface = {
 	loader: false,
 	loading: false,
 	updating: false,
-	content: null,
-	errors: null
+	content: null
 };
 
 // slice
@@ -39,13 +38,11 @@ const dataSlice = createSlice({
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
-			state.errors = null;
 		},
-		failure: (state, action) => {
+		failure: (state) => {
 			state.loader = false;
 			state.loading = false;
 			state.content = null;
-			state.errors = action.payload;
 		},
 		updating: (state) => {
 			state.updating = true;
@@ -108,7 +105,7 @@ export const ServicePositionsFetchList =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure(message));
+				dispatch(failure());
 			});
 	};
 

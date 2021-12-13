@@ -29,7 +29,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 
 	const [purchasesReport, setPurchasesReport] = useState(false);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
 
 	/**

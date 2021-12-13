@@ -21,7 +21,7 @@ const SiteStatistics: FC = () => {
 	const robot = useSelector(robotSelector);
 	const wifiHeatmap = useSelector(wifiHeatmapSelector);
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const pWifiHeatmapSiteId = robot.maps.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 

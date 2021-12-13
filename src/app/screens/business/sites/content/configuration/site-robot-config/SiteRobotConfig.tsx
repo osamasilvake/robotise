@@ -32,7 +32,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 
 	const dispatch = useDispatch();
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const cSiteRobot = sites.content?.dataById[cSiteId].robots[0];
 	const attachedRobot = robotTwinsSummary.content?.dataById[cSiteRobot?.id || ''];

@@ -20,7 +20,7 @@ const RobotOrderDetail: FC = () => {
 	const dispatch = useDispatch();
 	const order = useSelector(orderSelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const orderId = params.orderId;
 
 	useEffect(() => {

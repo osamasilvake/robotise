@@ -33,7 +33,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 
 	const deepLink = useSelector(deepLinkSelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';

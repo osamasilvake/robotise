@@ -46,7 +46,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;

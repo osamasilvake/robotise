@@ -17,7 +17,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 
 	const dispatch = useDispatch();
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
 
 	const robotTwinSingle = robotTwinsSummary.content?.dataById[cRobotId];

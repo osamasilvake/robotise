@@ -16,7 +16,7 @@ const Gen: FC = () => {
 
 	const email = useSelector(emailSelector);
 
-	const params = useParams() as GenParamsInterface;
+	const params = useParams<keyof GenParamsInterface>() as GenParamsInterface;
 
 	const dots = AppConfigService.AppOptions.common.dots;
 

@@ -25,7 +25,7 @@ const SiteTabs: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	const [value, setValue] = useState(-1);
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const location = useLocation();
 	const navigate = useNavigate();
 

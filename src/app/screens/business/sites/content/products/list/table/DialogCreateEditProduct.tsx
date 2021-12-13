@@ -47,7 +47,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const [image, setImage] = useState<string>(product?.image || '');
 	const [imageError, setImageError] = useState(0);
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 	const currency = sites.content?.dataById[cSiteId]?.currency || defaultCurrency;

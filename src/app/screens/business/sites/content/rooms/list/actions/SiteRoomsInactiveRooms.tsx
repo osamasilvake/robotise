@@ -23,7 +23,7 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 	const sites = useSelector(sitesSelector);
 	const rooms = useSelector(roomsSelector);
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 

@@ -20,7 +20,7 @@ const RobotPurchaseDetail: FC = () => {
 	const dispatch = useDispatch();
 	const purchase = useSelector(purchaseSelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	useEffect(() => {
 		// dispatch: fetch robot purchase

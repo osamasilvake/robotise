@@ -33,7 +33,7 @@ const RobotTabs: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const [value, setValue] = useState(-1);
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const location = useLocation();
 	const navigate = useNavigate();
 

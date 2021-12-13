@@ -34,7 +34,7 @@ const SiteConfiguration: FC = () => {
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
 	const pNotificationSiteId = notifications.content?.site.id;

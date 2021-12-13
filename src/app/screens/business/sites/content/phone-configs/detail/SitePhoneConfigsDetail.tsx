@@ -23,7 +23,7 @@ const SitePhoneConfigsDetail: FC = () => {
 	const dispatch = useDispatch();
 	const phoneConfigs = useSelector(phoneConfigsSelector);
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const pSiteId = phoneConfigs.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 

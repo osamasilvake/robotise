@@ -24,7 +24,7 @@ const RobotDetailDataLogs: FC = () => {
 	const deepLink = useSelector(deepLinkSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;

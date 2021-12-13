@@ -30,7 +30,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 	const robot = useSelector(robotSelector);
 	const dispatch = useDispatch();
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
 	const translation = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
 	const fieldNote = 'note';

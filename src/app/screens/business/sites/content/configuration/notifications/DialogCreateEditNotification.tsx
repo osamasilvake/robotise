@@ -48,7 +48,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 
 	const [newNotification, setNewNotification] = useState('');
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	const notification = index !== undefined ? notifications.content?.data[index] : null;

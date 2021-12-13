@@ -34,7 +34,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 
 	const dispatch = useDispatch();
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const navigate = useNavigate();
 
 	const cSiteId = params.siteId;

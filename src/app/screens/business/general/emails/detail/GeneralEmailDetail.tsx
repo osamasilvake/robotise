@@ -17,7 +17,7 @@ const GeneralEmailDetail: FC = () => {
 	const dispatch = useDispatch();
 	const email = useSelector(emailSelector);
 
-	const params = useParams() as GenParamsInterface;
+	const params = useParams<keyof GenParamsInterface>() as GenParamsInterface;
 
 	useEffect(() => {
 		// dispatch: fetch email

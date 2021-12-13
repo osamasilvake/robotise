@@ -12,7 +12,7 @@ import SiteTabs from './Site.tabs';
 const Site: FC = () => {
 	const sites = useSelector(sitesSelector);
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
 	const cSiteName = sites.content?.dataById[cSiteId]?.title;

@@ -31,7 +31,7 @@ const RobotDetail: FC = () => {
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotTwins = useSelector(robotTwinsSelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
 	const pRobotId = robotTwins.content?.robot.id;
 	const robotTwinId = robotTwinsSummary.content?.dataById[cRobotId]?.id;

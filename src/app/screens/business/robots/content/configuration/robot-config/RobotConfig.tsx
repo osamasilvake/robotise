@@ -37,7 +37,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 
 	const dispatch = useDispatch();
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const navigate = useNavigate();
 
 	const cRobotId = params.robotId;

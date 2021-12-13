@@ -1,4 +1,3 @@
-import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SliceServicePositionsInterface {
@@ -6,7 +5,6 @@ export interface SliceServicePositionsInterface {
 	loading: boolean;
 	updating: boolean;
 	content: SSContentInterface | null;
-	errors: TriggerMessageInterface | null;
 }
 
 export interface SSContentInterface extends JsonAPIResponseInterface {

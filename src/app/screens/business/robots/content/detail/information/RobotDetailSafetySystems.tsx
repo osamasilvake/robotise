@@ -1,4 +1,4 @@
-import { Error, ExpandLess, ExpandMore, Report } from '@mui/icons-material';
+import { Dangerous, ExpandLess, ExpandMore, Warning } from '@mui/icons-material';
 import {
 	alpha,
 	Chip,
@@ -35,8 +35,8 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 
 	const mappedSystem =
 		systems && mapSafetyContent(systems, RobotDetailInformationTypeEnum.SAFETY_SYSTEMS);
-	const orange = alpha(AppConfigService.AppOptions.colors.c14, 0.09);
-	const red = alpha(AppConfigService.AppOptions.colors.c12, 0.09);
+	const yellow = alpha(AppConfigService.AppOptions.colors.c11, 0.15);
+	const red = alpha(AppConfigService.AppOptions.colors.c12, 0.15);
 
 	/**
 	 * add colors and warnings
@@ -67,7 +67,7 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 				break;
 			default:
 				value1 = undefined;
-				value2 = orange;
+				value2 = yellow;
 				value3 = red;
 		}
 
@@ -130,7 +130,7 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 						size="small"
 						label={warnings}
 						color="warning"
-						icon={<Report />}
+						icon={<Warning />}
 						className={classes.sListChip}
 					/>
 				)}
@@ -141,7 +141,7 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 						size="small"
 						label={errors}
 						color="error"
-						icon={<Error />}
+						icon={<Dangerous />}
 						className={classes.sListChip}
 					/>
 				)}

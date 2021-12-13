@@ -1,11 +1,9 @@
-import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SliceWifiHeatmapInterface {
 	loader: boolean;
 	loading: boolean;
 	content: SWContentInterface | null;
-	errors: TriggerMessageInterface | null;
 }
 
 export interface SWContentInterface extends JsonAPIResponseInterface {

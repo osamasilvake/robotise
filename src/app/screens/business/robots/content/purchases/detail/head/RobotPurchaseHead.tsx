@@ -24,7 +24,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 
 	const deepLink = useSelector(deepLinkSelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const translation = 'CONTENT.PURCHASES.DETAIL.HEAD';
 	const cRobotId = params.robotId;

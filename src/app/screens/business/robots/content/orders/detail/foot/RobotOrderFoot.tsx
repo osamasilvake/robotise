@@ -13,7 +13,7 @@ const RobotOrderFoot: FC<RobotOrderFootInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrderFootStyle();
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 

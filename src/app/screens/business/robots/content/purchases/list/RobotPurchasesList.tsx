@@ -38,7 +38,7 @@ const RobotPurchasesList: FC = () => {
 		debug
 	});
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const pRobotId = purchases.content?.state?.pRobotId;
 	const cRobotId = params.robotId;
 

@@ -26,7 +26,7 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 	const { content, order, orderBy, page, rowsPerPage } = props;
 	const classes = RobotPurchasesTableStyle();
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const navigate = useNavigate();
 
 	const cRobotId = params.robotId;

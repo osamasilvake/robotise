@@ -33,7 +33,7 @@ const SitePhoneCallsList: FC = () => {
 		rowsPerPage
 	});
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const pSiteId = phoneCalls.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 

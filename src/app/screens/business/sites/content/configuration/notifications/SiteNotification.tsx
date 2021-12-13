@@ -33,7 +33,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
-	const params = useParams() as SiteParamsInterface;
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 
 	/**

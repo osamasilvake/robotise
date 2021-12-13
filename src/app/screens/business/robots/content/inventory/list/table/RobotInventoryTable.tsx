@@ -36,7 +36,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
 	const currency = robotTwinsSummary.content?.dataById[cRobotId]?.siteCurrency;
 	const none = AppConfigService.AppOptions.common.none;

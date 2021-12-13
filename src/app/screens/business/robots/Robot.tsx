@@ -21,7 +21,7 @@ const Robot: FC = () => {
 	const order = useSelector(orderSelector);
 	const purchase = useSelector(purchaseSelector);
 
-	const params = useParams() as RobotParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 	const cRobotName = robotTwinsSummary.content?.dataById[cRobotId]?.robotTitle;

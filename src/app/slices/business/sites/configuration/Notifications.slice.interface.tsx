@@ -1,11 +1,8 @@
-import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-
 export interface SliceNotificationsInterface {
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;
 	content: SNContentNotificationTypesInterface | null;
-	errors: TriggerMessageInterface | null;
 }
 
 export interface SNContentNotificationTypesInterface {

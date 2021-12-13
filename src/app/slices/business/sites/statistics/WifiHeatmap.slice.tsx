@@ -13,8 +13,7 @@ import { SliceWifiHeatmapInterface } from './WifiHeatmap.slice.interface';
 export const initialState: SliceWifiHeatmapInterface = {
 	loader: false,
 	loading: false,
-	content: null,
-	errors: null
+	content: null
 };
 
 // slice
@@ -32,13 +31,11 @@ const dataSlice = createSlice({
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
-			state.errors = null;
 		},
-		failure: (state, action) => {
+		failure: (state) => {
 			state.loader = false;
 			state.loading = false;
 			state.content = null;
-			state.errors = action.payload;
 		},
 		reset: () => initialState
 	}
@@ -94,6 +91,6 @@ export const WifiHeatmapDataFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure(message));
+				dispatch(failure());
 			});
 	};

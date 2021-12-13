@@ -23,8 +23,7 @@ if (user) {
 export const initialState: SliceAuthInterface = {
 	loader: false,
 	loading: false,
-	user,
-	errors: null
+	user
 };
 
 // slice
@@ -42,19 +41,16 @@ const dataSlice = createSlice({
 			state.loader = false;
 			state.loading = false;
 			state.user = action.payload;
-			state.errors = null;
 		},
-		failure: (state, action) => {
+		failure: (state) => {
 			state.loader = false;
 			state.loading = false;
 			state.user = null;
-			state.errors = action.payload;
 		},
 		terminate: (state) => {
 			state.loader = false;
 			state.loading = false;
 			state.user = null;
-			state.errors = null;
 		},
 		reset: () => initialState
 	}
@@ -102,7 +98,7 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure(message));
+			dispatch(failure());
 		});
 };
 
@@ -150,7 +146,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 						dispatch(triggerMessage(message));
 
 						// dispatch: failure
-						dispatch(failure(message));
+						dispatch(failure());
 
 						// clear authentication
 						AuthService.authLogout();
@@ -170,7 +166,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			dispatch(triggerMessage(message));
 
 			// dispatch: failure
-			dispatch(failure(message));
+			dispatch(failure());
 
 			// clear authentication
 			AuthService.authLogout();
@@ -186,9 +182,10 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 			severity: TriggerMessageTypeEnum.WARNING,
 			text: 'AUTH.TOKEN_EMPTY'
 		};
+		dispatch(triggerMessage(message));
 
 		// dispatch: failure
-		dispatch(failure(message));
+		dispatch(failure());
 	}
 };
 

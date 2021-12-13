@@ -803,7 +803,7 @@
 					"CUSTOMER_NAME": "Robot Customer Name",
 					"MISSION": "Mission",
 					"IP_ADDRESS": "IP Address",
-					"USERNAME": "Username",
+					"USERNAME": "CA Username",
 					"NOTE": {
 						"LABEL": "Note",
 						"EXCERPT": "Provide important and relevant information about the particular robot.",
@@ -1435,7 +1435,7 @@
 								}
 							},
 							"USERNAME": {
-								"LABEL": "Username",
+								"LABEL": "CA Username",
 								"PLACEHOLDER": "Enter username",
 								"VALIDATIONS": {
 									"REQUIRED": "Username is required."

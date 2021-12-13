@@ -1,10 +1,7 @@
-import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-
 export interface SliceAuthInterface {
 	loader: boolean;
 	loading: boolean;
 	user: AuthUserInterface | null;
-	errors: TriggerMessageInterface | null;
 }
 
 export interface AuthJWTInterface {

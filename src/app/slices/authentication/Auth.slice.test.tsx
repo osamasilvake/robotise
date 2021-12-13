@@ -103,13 +103,19 @@ describe('[SLICE] Authentication', () => {
 
 	it('[AuthRefreshToken] Create failure action on empty access token', () => {
 		const store = mockStore(initialState);
+		const message: TriggerMessageInterface = {
+			id: 'auth-token-empty-warn',
+			show: true,
+			severity: TriggerMessageTypeEnum.WARNING,
+			text: 'AUTH.TOKEN_EMPTY'
+		};
 
 		// act
 		AuthService.removeAccessToken();
 		store.dispatch(AuthRefreshToken(0));
 
 		// assert
-		const expectedActions = [failure()];
+		const expectedActions = [triggerMessage(message), failure()];
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 

@@ -21,7 +21,7 @@ const GeneralEmailDetail: FC = () => {
 
 	useEffect(() => {
 		// dispatch: fetch email
-		dispatch(EmailFetch(params.emailId));
+		params.emailId && dispatch(EmailFetch(params.emailId));
 	}, [dispatch, params.emailId]);
 
 	// loader

@@ -40,7 +40,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 						label: site.title
 					}))
 			]);
-	}, [sites.content, sites.content?.data, t, hidden]);
+	}, [sites.content, t, hidden]);
 
 	/**
 	 * handle site

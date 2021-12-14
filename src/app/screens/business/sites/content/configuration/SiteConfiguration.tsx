@@ -71,13 +71,16 @@ const SiteConfiguration: FC = () => {
 				<Grid item xs={12} md={6}>
 					<SiteConfig sites={sites} site={site} />
 				</Grid>
-				<Grid item xs={12} md={6}>
-					<SiteRobotConfig
-						sites={sites}
-						site={site}
-						robotTwinsSummary={robotTwinsSummary}
-					/>
-				</Grid>
+
+				{robotTwinsSummary.content && (
+					<Grid item xs={12} md={6}>
+						<SiteRobotConfig
+							sites={sites}
+							site={site}
+							robotTwinsSummary={robotTwinsSummary}
+						/>
+					</Grid>
+				)}
 			</Grid>
 
 			<Grid container spacing={1}>

@@ -11,24 +11,17 @@ import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector
 } from '../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { sitesSelector } from '../../../../slices/business/sites/Sites.slice';
 import RobotsActions from './actions/RobotsActions';
 import RobotsTable from './table/RobotsTable';
 
 const RobotsList: FC = () => {
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
-
-	useEffect(() => {
-		// dispatch: fetch robot twins summary
-		sites.content && dispatch(RobotTwinsSummaryFetchList(true));
-	}, [dispatch, sites.content]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			// dispatch: fetch robot twins summary
-			sites.content && dispatch(RobotTwinsSummaryFetchList(true));
+			dispatch(RobotTwinsSummaryFetchList(true));
 		};
 
 		// interval
@@ -37,16 +30,16 @@ const RobotsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, sites.content]);
+	}, [dispatch]);
 
 	// loader
-	if (sites.loader || robotTwinsSummary.loader) {
+	if (robotTwinsSummary.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (sites.errors || robotTwinsSummary.errors) {
-		return <PageError message={sites.errors?.text || robotTwinsSummary.errors?.text} />;
+	if (robotTwinsSummary.errors) {
+		return <PageError message={robotTwinsSummary.errors?.text} />;
 	}
 
 	// null

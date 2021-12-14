@@ -11,7 +11,6 @@ import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AppConfigService } from '../../../../../../../services';
 import { SPCDataCartInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotPurchaseTableColumnsTypeEnum } from './RobotPurchaseTable.enum';
@@ -34,8 +33,7 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 	 * @returns
 	 */
 	const setCellValue = (row: SPCDataCartInterface, column: RobotPurchaseTableColumnInterface) => {
-		const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
-		const currency = (purchase?.content && purchase.content.currency) || defaultCurrency;
+		const currency = purchase?.content?.currency;
 		const quantity = +row[RobotPurchaseTableColumnsTypeEnum.QUANTITY];
 		const price = +row[RobotPurchaseTableColumnsTypeEnum.PRICE_UNIT];
 
@@ -98,8 +96,7 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 								<Typography variant="h6">
 									{`${currencyFormat(
 										+purchase.content.totalPrice,
-										(purchase?.content && purchase.content.currency) ||
-											AppConfigService.AppOptions.common.defaultCurrency,
+										purchase?.content?.currency,
 										i18next.language
 									)}`}
 								</Typography>

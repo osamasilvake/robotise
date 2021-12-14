@@ -1,12 +1,10 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 import log from 'loglevel';
 
-import { AppConfigService } from '../../../services';
 import {
 	DeserializeRelationshipPropertiesInterface,
 	DeserializerExtendedOptionsInterface
 } from '../../JsonAPI.interface';
-import { SSContentInterface } from '../sites/Sites.slice.interface';
 import { RobotTwinsSummaryTypeEnum } from './RobotTwinsSummary.enum';
 import {
 	IRobotTwinSummaryInterface,
@@ -16,10 +14,9 @@ import {
 /**
  * deserialize robot twins summary
  * @param payload
- * @param sites
  * @returns
  */
-export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSContentInterface) => {
+export const deserializeRobotTwinsSummary = async <T,>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
 		robots: {
@@ -39,7 +36,6 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSCont
 	let data = await deserializer.deserialize(payload);
 	try {
 		data = data.map((item: IRobotTwinSummaryInterface) => {
-			const site = sites.dataById[item.site.id];
 			const result = {
 				id: item.id,
 				updatedAt: item.updatedAt,
@@ -64,10 +60,7 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSCont
 						(f) => f.level === RobotTwinsSummaryTypeEnum.WARNING
 					).length
 				},
-				siteId: item.site.id,
-				siteTitle: site?.title,
-				siteCurrency: site?.currency || AppConfigService.AppOptions.common.defaultCurrency,
-				siteAcceptOrders: site?.acceptOrders
+				siteId: item.site.id
 			};
 			dataById[item.robot.id] = result;
 			return result;

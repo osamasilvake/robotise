@@ -13,7 +13,6 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../slices/business/sites/configuration/ServicePositions.slice';
-import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import RobotCommandsLogList from './content/commands-log/list/RobotCommandsLogList';
 import RobotConfiguration from './content/configuration/RobotConfiguration';
 import RobotDetail from './content/detail/RobotDetail';
@@ -28,7 +27,6 @@ const RobotTabs: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
 	const dispatch = useDispatch();
-	const sites = useSelector(sitesSelector);
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
@@ -40,7 +38,8 @@ const RobotTabs: FC = () => {
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const pSiteId = servicePositions.content?.state?.pSiteId;
-	const problem = !!sites.errors?.id || !!robotTwinsSummary.errors?.id;
+	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
+	const problem = !!robotTwinsSummary.errors?.id || !robotSingle?.id;
 
 	const translation = 'CONTENT.TABS';
 
@@ -78,7 +77,7 @@ const RobotTabs: FC = () => {
 	};
 
 	// Loader & Error
-	if (sites.loader || robotTwinsSummary.loader) {
+	if (robotTwinsSummary.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	} else if (problem) {
 		return <PageError />;

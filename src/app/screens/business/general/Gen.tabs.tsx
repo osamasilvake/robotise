@@ -46,39 +46,33 @@ const GenTabs: FC = () => {
 		navigate(link);
 	};
 
-	return value !== -1 ? (
+	// Loader & Error
+	if (sites.loader) {
+		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
+	} else if (problem) {
+		return <PageError />;
+	}
+
+	return value !== -1 && !problem ? (
 		<Box>
-			{/* Loader */}
-			{!problem && sites.loader && (
-				<Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />
-			)}
+			{/* Tabs */}
+			<Tabs
+				allowScrollButtonsMobile
+				value={value}
+				onChange={handleTabChange}
+				variant="scrollable"
+				textColor="primary">
+				<Tab label={t(`${translation}.COMMON`)} />
+				<Tab label={t(`${translation}.EMAILS`)} />
+			</Tabs>
 
-			{/* Error */}
-			{problem && <PageError />}
+			{/* Tab Panel */}
+			<Box>
+				{value === 0 && <></>}
 
-			{/* Content */}
-			{!problem && sites.content && (
-				<>
-					{/* Tabs */}
-					<Tabs
-						allowScrollButtonsMobile
-						value={value}
-						onChange={handleTabChange}
-						variant="scrollable"
-						textColor="primary">
-						<Tab label={t(`${translation}.COMMON`)} />
-						<Tab label={t(`${translation}.EMAILS`)} />
-					</Tabs>
-
-					{/* Tab Panel */}
-					<Box>
-						{value === 0 && <></>}
-
-						{/* Emails */}
-						{value === 1 && <GeneralEmailsList />}
-					</Box>
-				</>
-			)}
+				{/* Emails */}
+				{value === 1 && <GeneralEmailsList />}
+			</Box>
 		</Box>
 	) : null;
 };

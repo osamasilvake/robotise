@@ -1,6 +1,5 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
-import { SSCStateInterface } from '../../../slices/business/sites/Sites.slice.interface';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
@@ -27,17 +26,11 @@ import {
 class SitesService {
 	/**
 	 * fetch sites
-	 * @param state
 	 * @returns
 	 */
-	sitesFetch = (state: SSCStateInterface | undefined) => {
+	sitesFetch = () => {
 		return HttpClientService.get<SitesAxiosGetInterface>(
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL,
-			{
-				params: {
-					'filter[isHidden]': state?.hidden ? undefined : false
-				}
-			}
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL
 		);
 	};
 

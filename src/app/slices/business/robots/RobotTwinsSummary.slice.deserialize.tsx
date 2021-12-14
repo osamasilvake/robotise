@@ -64,7 +64,7 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T, sites: SSCont
 						(f) => f.level === RobotTwinsSummaryTypeEnum.WARNING
 					).length
 				},
-				siteId: site?.id,
+				siteId: item.site.id,
 				siteTitle: site?.title,
 				siteCurrency: site?.currency || AppConfigService.AppOptions.common.defaultCurrency,
 				siteAcceptOrders: site?.acceptOrders

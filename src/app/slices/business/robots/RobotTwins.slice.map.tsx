@@ -8,10 +8,10 @@ import { SRTContentDataInterface } from './RobotTwins.slice.interface';
  * @returns
  */
 export const mapRobotTwins = (
-	sites: SSContentInterface,
+	sites: SSContentInterface | null,
 	robotTwins: SRTContentDataInterface
 ): SRTContentDataInterface => {
-	const site = sites.dataById[robotTwins.site.id];
+	const site = sites ? sites.dataById[robotTwins.site.id] : null;
 	return {
 		...robotTwins,
 		id: robotTwins.id,
@@ -23,9 +23,9 @@ export const mapRobotTwins = (
 		},
 		site: {
 			...robotTwins.site,
-			title: site.title,
-			acceptOrders: site.acceptOrders,
-			elevator: site.elevators
+			title: site?.title,
+			acceptOrders: site?.acceptOrders,
+			elevator: site?.elevators
 		}
 	};
 };

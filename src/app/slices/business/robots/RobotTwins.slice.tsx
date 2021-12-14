@@ -80,13 +80,11 @@ export const RobotTwinsFetch =
 				const robotTwins = await deserializeRobotTwins(res);
 
 				// prepare robot twins content
-				if (sites && sites.content) {
-					// map robot twins
-					const result = mapRobotTwins(sites.content, robotTwins);
+				// map robot twins
+				const result = mapRobotTwins(sites.content, robotTwins);
 
-					// dispatch: success
-					dispatch(success(result));
-				}
+				// dispatch: success
+				dispatch(success(result));
 			})
 			.catch(() => {
 				// dispatch: trigger message

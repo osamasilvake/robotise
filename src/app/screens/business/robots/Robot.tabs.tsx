@@ -40,10 +40,7 @@ const RobotTabs: FC = () => {
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const pSiteId = servicePositions.content?.state?.pSiteId;
-	const problem =
-		!!sites.errors?.id ||
-		(robotTwinsSummary.content && !cSiteId) ||
-		!!robotTwinsSummary.errors?.id;
+	const problem = !!sites.errors?.id || !!robotTwinsSummary.errors?.id;
 
 	const translation = 'CONTENT.TABS';
 
@@ -80,60 +77,54 @@ const RobotTabs: FC = () => {
 		navigate(link);
 	};
 
-	return value !== -1 ? (
+	// Loader & Error
+	if (sites.loader || robotTwinsSummary.loader) {
+		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
+	} else if (problem) {
+		return <PageError />;
+	}
+
+	return value !== -1 && !problem ? (
 		<Box>
-			{/* Loader */}
-			{!problem && (sites.loader || robotTwinsSummary.loader) && (
-				<Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />
-			)}
+			{/* Tabs */}
+			<Tabs
+				allowScrollButtonsMobile
+				value={value}
+				onChange={handleTabChange}
+				variant="scrollable"
+				textColor="primary">
+				<Tab label={t(`${translation}.DETAIL`)} />
+				<Tab label={t(`${translation}.INVENTORY`)} />
+				<Tab label={t(`${translation}.ORDERS`)} />
+				<Tab label={t(`${translation}.PURCHASES`)} />
+				<Tab label={t(`${translation}.COMMANDS_LOGS`)} />
+				<Tab label={t(`${translation}.ELEVATOR_CALLS`)} />
+				<Tab label={t(`${translation}.CONFIGURATION`)} />
+			</Tabs>
 
-			{/* Error */}
-			{problem && <PageError />}
+			{/* Tab Panel */}
+			<Box>
+				{/* Detail */}
+				{value === 0 && <RobotDetail />}
 
-			{/* Content */}
-			{!problem && !!cSiteId && (
-				<>
-					{/* Tabs */}
-					<Tabs
-						allowScrollButtonsMobile
-						value={value}
-						onChange={handleTabChange}
-						variant="scrollable"
-						textColor="primary">
-						<Tab label={t(`${translation}.DETAIL`)} />
-						<Tab label={t(`${translation}.INVENTORY`)} />
-						<Tab label={t(`${translation}.ORDERS`)} />
-						<Tab label={t(`${translation}.PURCHASES`)} />
-						<Tab label={t(`${translation}.COMMANDS_LOGS`)} />
-						<Tab label={t(`${translation}.ELEVATOR_CALLS`)} />
-						<Tab label={t(`${translation}.CONFIGURATION`)} />
-					</Tabs>
+				{/* Inventory */}
+				{value === 1 && <RobotInventoryList />}
 
-					{/* Tab Panel */}
-					<Box>
-						{/* Detail */}
-						{value === 0 && <RobotDetail />}
+				{/* Orders */}
+				{value === 2 && <RobotOrdersList />}
 
-						{/* Inventory */}
-						{value === 1 && <RobotInventoryList />}
+				{/* Purchases */}
+				{value === 3 && <RobotPurchasesList />}
 
-						{/* Orders */}
-						{value === 2 && <RobotOrdersList />}
+				{/* Commands Log */}
+				{value === 4 && <RobotCommandsLogList />}
 
-						{/* Purchases */}
-						{value === 3 && <RobotPurchasesList />}
+				{/* Elevator Calls */}
+				{value === 5 && <RobotElevatorCallsList />}
 
-						{/* Commands Log */}
-						{value === 4 && <RobotCommandsLogList />}
-
-						{/* Elevator Calls */}
-						{value === 5 && <RobotElevatorCallsList />}
-
-						{/* Configuration */}
-						{value === 6 && <RobotConfiguration />}
-					</Box>
-				</>
-			)}
+				{/* Configuration */}
+				{value === 6 && <RobotConfiguration />}
+			</Box>
 		</Box>
 	) : null;
 };

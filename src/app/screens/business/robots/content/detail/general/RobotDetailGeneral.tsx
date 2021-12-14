@@ -26,23 +26,25 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	return (
 		<Grid container spacing={1}>
 			{/* Site */}
-			<Grid item xs={12} sm={6} md={4} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.SITE`)}
-				</Typography>
-				<Box>
-					<Link
-						component={RouterLink}
-						variant="body1"
-						underline="hover"
-						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
-							':siteId',
-							robotTwins.site.id
-						)}>
-						{robotTwins.site.title}
-					</Link>
-				</Box>
-			</Grid>
+			{robotTwins.site.title && (
+				<Grid item xs={12} sm={6} md={4} lg={3}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.SITE`)}
+					</Typography>
+					<Box>
+						<Link
+							component={RouterLink}
+							variant="body1"
+							underline="hover"
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
+								':siteId',
+								robotTwins.site.id
+							)}>
+							{robotTwins.site.title}
+						</Link>
+					</Box>
+				</Grid>
+			)}
 
 			{/* Customer Name */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
@@ -114,18 +116,20 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Accept Orders */}
-			<Grid item xs={12} sm={6} md={4} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
-				</Typography>
-				<Box>
-					<Status active={!!robotTwins.site.acceptOrders}>
-						{robotTwins.site.acceptOrders
-							? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
-							: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
-					</Status>
-				</Box>
-			</Grid>
+			{robotTwins.site.acceptOrders && (
+				<Grid item xs={12} sm={6} md={4} lg={3}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
+					</Typography>
+					<Box>
+						<Status active={!!robotTwins.site.acceptOrders}>
+							{robotTwins.site.acceptOrders
+								? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
+								: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
+						</Status>
+					</Box>
+				</Grid>
+			)}
 
 			{/* Mission */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>

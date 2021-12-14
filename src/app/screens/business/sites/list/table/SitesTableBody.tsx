@@ -1,8 +1,10 @@
 import { TableBody, TableRow } from '@mui/material';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
+import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import {
 	ISite,
 	SSContentInterface
@@ -16,7 +18,11 @@ import SitesTableBodyCell from './SitesTableBodyCell';
 const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const { content, order, orderBy } = props;
 
+	const sites = useSelector(sitesSelector);
+
 	const navigate = useNavigate();
+
+	const hidden = !!sites.content?.state?.hidden;
 
 	/**
 	 * sort table data
@@ -86,17 +92,23 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 		<TableBody>
 			{content &&
 				content.data &&
-				sortTableData(content).map((siteTwins: ISite) => (
-					<TableRow
-						hover
-						key={siteTwins.id}
-						tabIndex={-1}
-						onClick={handleShowSiteDetail(siteTwins)}>
-						{columns.map((column: SitesTableColumnInterface) => (
-							<SitesTableBodyCell key={column.id} column={column} site={siteTwins} />
-						))}
-					</TableRow>
-				))}
+				sortTableData(content)
+					.filter((s) => !hidden || (hidden && !s.configs.isHidden))
+					.map((siteTwins: ISite) => (
+						<TableRow
+							hover
+							key={siteTwins.id}
+							tabIndex={-1}
+							onClick={handleShowSiteDetail(siteTwins)}>
+							{columns.map((column: SitesTableColumnInterface) => (
+								<SitesTableBodyCell
+									key={column.id}
+									column={column}
+									site={siteTwins}
+								/>
+							))}
+						</TableRow>
+					))}
 		</TableBody>
 	);
 };

@@ -51,7 +51,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 				// dispatch: update site config
 				dispatch(
 					SiteConfigUpdate(cSiteId, values, () => {
-						if (!sites.content?.state?.hidden && values.isHidden) {
+						if (sites.content?.state?.hidden && values.isHidden) {
 							// prepare link
 							const link = AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN;
 

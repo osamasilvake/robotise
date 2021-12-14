@@ -31,7 +31,7 @@ const SiteTabs: FC = () => {
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
-	const problem = !!sites.errors?.id || (sites.content && !cSiteId);
+	const problem = !!sites.errors?.id || !siteSingle?.id;
 
 	const translation = 'CONTENT.TABS';
 
@@ -56,60 +56,54 @@ const SiteTabs: FC = () => {
 		navigate(link);
 	};
 
-	return value !== -1 ? (
+	// Loader & Error
+	if (sites.loader) {
+		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
+	} else if (problem) {
+		return <PageError />;
+	}
+
+	return value !== -1 && !problem ? (
 		<Box>
-			{/* Loader */}
-			{!problem && sites.loader && (
-				<Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />
-			)}
+			{/* Tabs */}
+			<Tabs
+				allowScrollButtonsMobile
+				value={value}
+				onChange={handleTabChange}
+				variant="scrollable"
+				textColor="primary">
+				<Tab label={t(`${translation}.DETAIL`)} />
+				<Tab label={t(`${translation}.PRODUCTS`)} />
+				<Tab label={t(`${translation}.ROOMS`)} />
+				<Tab label={t(`${translation}.PHONE_CONFIGS`)} />
+				<Tab label={t(`${translation}.PHONE_CALLS`)} />
+				<Tab label={t(`${translation}.STATISTICS`)} />
+				<Tab label={t(`${translation}.CONFIGURATION`)} />
+			</Tabs>
 
-			{/* Error */}
-			{problem && <PageError />}
+			{/* Tab Panel */}
+			<Box>
+				{/* Detail */}
+				{value === 0 && <SiteDetail />}
 
-			{/* Content */}
-			{!!siteSingle?.id && (
-				<>
-					{/* Tabs */}
-					<Tabs
-						allowScrollButtonsMobile
-						value={value}
-						onChange={handleTabChange}
-						variant="scrollable"
-						textColor="primary">
-						<Tab label={t(`${translation}.DETAIL`)} />
-						<Tab label={t(`${translation}.PRODUCTS`)} />
-						<Tab label={t(`${translation}.ROOMS`)} />
-						<Tab label={t(`${translation}.PHONE_CONFIGS`)} />
-						<Tab label={t(`${translation}.PHONE_CALLS`)} />
-						<Tab label={t(`${translation}.STATISTICS`)} />
-						<Tab label={t(`${translation}.CONFIGURATION`)} />
-					</Tabs>
+				{/* Products */}
+				{value === 1 && <SiteProductsList />}
 
-					{/* Tab Panel */}
-					<Box>
-						{/* Detail */}
-						{value === 0 && <SiteDetail />}
+				{/* Rooms */}
+				{value === 2 && <SiteRoomsList />}
 
-						{/* Products */}
-						{value === 1 && <SiteProductsList />}
+				{/* Phone Configs */}
+				{value === 3 && <SitePhoneConfigsList />}
 
-						{/* Rooms */}
-						{value === 2 && <SiteRoomsList />}
+				{/* Phone Calls */}
+				{value === 4 && <SitePhoneCallsList />}
 
-						{/* Phone Configs */}
-						{value === 3 && <SitePhoneConfigsList />}
+				{/* Statistics */}
+				{value === 5 && <SiteStatistics />}
 
-						{/* Phone Calls */}
-						{value === 4 && <SitePhoneCallsList />}
-
-						{/* Statistics */}
-						{value === 5 && <SiteStatistics />}
-
-						{/* Configuration */}
-						{value === 6 && <SiteConfiguration />}
-					</Box>
-				</>
-			)}
+				{/* Configuration */}
+				{value === 6 && <SiteConfiguration />}
+			</Box>
 		</Box>
 	) : null;
 };

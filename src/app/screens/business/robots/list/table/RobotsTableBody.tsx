@@ -64,28 +64,31 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 */
 	const sortByProperty = (key: RobotsTableColumnsTypeEnum, type: RobotsTableSortTypeEnum) => {
 		return (a: RTSContentDataInterface, b: RTSContentDataInterface) => {
-			switch (type) {
-				case RobotsTableSortTypeEnum.OBJECT_ALERT:
-					if (a.robotAlerts.danger || b.robotAlerts.danger) {
-						return a.robotAlerts.danger - b.robotAlerts.danger;
-					}
-					return a.robotAlerts.warning - b.robotAlerts.warning;
-				case RobotsTableSortTypeEnum.OBJECT_MISSION:
-					return a.robotMission.status.localeCompare(b.robotMission.status);
-				case RobotsTableSortTypeEnum.NUMBER:
-					return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
-				case RobotsTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
-				case RobotsTableSortTypeEnum.BOOLEAN:
-					return a[key] ? -1 : 1;
-				case RobotsTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			if (key !== RobotsTableColumnsTypeEnum.ACCEPT_ORDER) {
+				switch (type) {
+					case RobotsTableSortTypeEnum.OBJECT_ALERT:
+						if (a.robotAlerts.danger || b.robotAlerts.danger) {
+							return a.robotAlerts.danger - b.robotAlerts.danger;
+						}
+						return a.robotAlerts.warning - b.robotAlerts.warning;
+					case RobotsTableSortTypeEnum.OBJECT_MISSION:
+						return a.robotMission.status.localeCompare(b.robotMission.status);
+					case RobotsTableSortTypeEnum.NUMBER:
+						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
+					case RobotsTableSortTypeEnum.DATE:
+						return momentSort(a[key]).diff(momentSort(b[key]));
+					case RobotsTableSortTypeEnum.BOOLEAN:
+						return a[key] ? -1 : 1;
+					case RobotsTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 

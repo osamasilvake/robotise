@@ -34,9 +34,6 @@ export interface RTSContentDataInterface {
 	robotAlerts: RTSContentAlertsInterface;
 	robotLastSyncedProducts: Date;
 	siteId: string;
-	siteTitle: string;
-	siteCurrency: string;
-	siteAcceptOrders: boolean;
 }
 
 export interface RTSContentDataByIdInterface {

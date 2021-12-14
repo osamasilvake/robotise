@@ -89,7 +89,7 @@ export const SitesFetchList =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch sites
-		return SitesService.sitesFetch(state)
+		return SitesService.sitesFetch()
 			.then(async (res) => {
 				// deserialize response
 				let result: SSContentInterface = await deserializeSites(res);

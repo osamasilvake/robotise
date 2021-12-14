@@ -1,3 +1,5 @@
+import { AppConfigService } from '../../services';
+
 /**
  * generate random number between min and max included
  * @param min
@@ -17,7 +19,11 @@ const randomNum = (min: number, max: number): number => {
  * @param language
  * @returns
  */
-const currencyFormat = (value: number, currency: string, language: string) => {
+const currencyFormat = (
+	value: number,
+	currency = AppConfigService.AppOptions.common.defaultCurrency,
+	language: string
+) => {
 	const formatter = new Intl.NumberFormat(language, {
 		style: 'currency',
 		currency

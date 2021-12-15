@@ -5,23 +5,16 @@
 ## Releasing
 A summary of development workflow involving multiple git branches.
 
+* Fetch latest changes to you local master branch: `git fetch origin`. Merge it with your `<feature-branch>`
 * Stage modified files: `git add .`
-
 * Push _feature branch_ to remote: `git push origin <feature-branch>`
-
-* Create a `merge request` from Gitlab to have all changes on the `master` branch
-
-* `git checkout master`
-
-* `git pull`
-
+* Create a `merge request` from Gitlab to have all changes merge on the `master` branch if no conflicts occurs
+* Do `git checkout master`
+* Do `git pull`
 * Release command: `yarn release:[major|minor|patch]`
-
 * Create Tag: `git push --follow-tags origin master`
-
 * Create a `merge request` from Gitlab to have all changes on the `pre-production` or `production` branch
-
-* Move to _feature branch_ and continue with the new _features_ and _bugfixes_.
+* Move to _feature branch_ and continue with the new _features_ or _bugfixes_.
 
 
 ## Libraries and Frameworks

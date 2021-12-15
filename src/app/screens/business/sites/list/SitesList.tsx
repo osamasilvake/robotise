@@ -16,11 +16,6 @@ const SitesList: FC = () => {
 	const sites = useSelector(sitesSelector);
 
 	useEffect(() => {
-		// dispatch: fetch sites
-		dispatch(SitesFetchList(true));
-	}, [dispatch]);
-
-	useEffect(() => {
 		const executeServices = () => {
 			// dispatch: fetch sites
 			dispatch(SitesFetchList(true));

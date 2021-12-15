@@ -52,7 +52,7 @@ const AuthGuard: FC<AuthInterface> = (props) => {
 			!sites.content && dispatch(SitesFetchList());
 
 			// dispatch: fetch robot twins summary
-			sites.content && !robotTwinsSummary.content && dispatch(RobotTwinsSummaryFetchList());
+			!robotTwinsSummary.content && dispatch(RobotTwinsSummaryFetchList());
 		};
 		!robotTwinsSummary.content && actions();
 	}, [dispatch, sites.content, robotTwinsSummary.content]);

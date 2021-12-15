@@ -26,12 +26,12 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	return (
 		<Grid container spacing={1}>
 			{/* Site */}
-			{robotTwins.site.title && (
-				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.SITE`)}
-					</Typography>
-					<Box>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.SITE`)}
+				</Typography>
+				<Box>
+					{robotTwins.site.title && (
 						<Link
 							component={RouterLink}
 							variant="body1"
@@ -40,11 +40,12 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 								':siteId',
 								robotTwins.site.id
 							)}>
-							{robotTwins.site.title}
+							{robotTwins.site.title || AppConfigService.AppOptions.common.none}
 						</Link>
-					</Box>
-				</Grid>
-			)}
+					)}
+					{!robotTwins.site.title && AppConfigService.AppOptions.common.none}
+				</Box>
+			</Grid>
 
 			{/* Customer Name */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
@@ -116,20 +117,21 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Accept Orders */}
-			{robotTwins.site.acceptOrders && (
-				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
-					</Typography>
-					<Box>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
+				</Typography>
+				<Box>
+					{!!robotTwins.site.title && (
 						<Status active={!!robotTwins.site.acceptOrders}>
 							{robotTwins.site.acceptOrders
 								? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
 								: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
 						</Status>
-					</Box>
-				</Grid>
-			)}
+					)}
+					{!robotTwins.site.title && AppConfigService.AppOptions.common.none}
+				</Box>
+			</Grid>
 
 			{/* Mission */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>

@@ -113,12 +113,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				return momentFormat1(value);
 			} else if (typeof value === 'number') {
 				if (SiteProductsTableColumnsTypeEnum.PRICE === column.id) {
-					const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
-					return `${currencyFormat(
-						value,
-						currency || defaultCurrency,
-						i18next.language
-					)}`;
+					return `${currencyFormat(value, currency, i18next.language)}`;
 				}
 				return value;
 			} else if (typeof value === 'string') {

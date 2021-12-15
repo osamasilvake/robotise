@@ -78,7 +78,6 @@ export const RobotTwinsSummaryFetchList =
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const sites = states.sites;
 		const robotTwinsSummary = states.robotTwinsSummary;
 		const state = robotTwinsSummary.content?.state || robotsState;
 
@@ -92,26 +91,21 @@ export const RobotTwinsSummaryFetchList =
 
 		return RobotsService.robotTwinsSummaryFetch(state)
 			.then(async (res) => {
-				if (sites && sites.content) {
-					// deserialize response
-					let result: RTSContentInterface = await deserializeRobotTwinsSummary(
-						res,
-						sites.content
-					);
+				// deserialize response
+				let result: RTSContentInterface = await deserializeRobotTwinsSummary(res);
 
-					// map robots alerts count
-					const alerts = mapRobotsAlertsCount(result);
+				// map robots alerts count
+				const alerts = mapRobotsAlertsCount(result);
 
-					// state
-					result = {
-						...result,
-						alerts,
-						state
-					};
+				// state
+				result = {
+					...result,
+					alerts,
+					state
+				};
 
-					// dispatch: success
-					dispatch(success(result));
-				}
+				// dispatch: success
+				dispatch(success(result));
 			})
 			.catch(() => {
 				// dispatch: trigger message

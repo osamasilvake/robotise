@@ -31,16 +31,19 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{t(`${translation}.SITE`)}
 				</Typography>
 				<Box>
-					<Link
-						component={RouterLink}
-						variant="body1"
-						underline="hover"
-						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
-							':siteId',
-							robotTwins.site.id
-						)}>
-						{robotTwins.site.title}
-					</Link>
+					{robotTwins.site.title && (
+						<Link
+							component={RouterLink}
+							variant="body1"
+							underline="hover"
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
+								':siteId',
+								robotTwins.site.id
+							)}>
+							{robotTwins.site.title || AppConfigService.AppOptions.common.none}
+						</Link>
+					)}
+					{!robotTwins.site.title && AppConfigService.AppOptions.common.none}
 				</Box>
 			</Grid>
 
@@ -119,11 +122,14 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
 				</Typography>
 				<Box>
-					<Status active={!!robotTwins.site.acceptOrders}>
-						{robotTwins.site.acceptOrders
-							? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
-							: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
-					</Status>
+					{!!robotTwins.site.title && (
+						<Status active={!!robotTwins.site.acceptOrders}>
+							{robotTwins.site.acceptOrders
+								? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
+								: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
+						</Status>
+					)}
+					{!robotTwins.site.title && AppConfigService.AppOptions.common.none}
 				</Box>
 			</Grid>
 
@@ -160,7 +166,11 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 						</IconButton>
 					</Tooltip>
 				</Typography>
+
+				{/* Read More */}
 				<ReadMore text={robotTwins.robot.note} />
+
+				{/* Dialog: Note */}
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
 			</Grid>
 		</Grid>

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import Status from '../../../../../../components/common/status/Status';
+import { AppConfigService } from '../../../../../../services';
 import { SECDataInterface } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
@@ -33,8 +34,11 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 		const value = mappedEmail[column.id];
 		if (GeneralEmailsTableColumnsTypeEnum.CREATED === column.id) {
 			return momentFormat1(value);
-		} else if (GeneralEmailsTableColumnsTypeEnum.SITE === column.id && sites.content) {
-			return sites.content?.dataById[email.site?.id].title;
+		} else if (GeneralEmailsTableColumnsTypeEnum.SITE === column.id) {
+			return (
+				sites.content?.dataById[email.site?.id]?.title ||
+				AppConfigService.AppOptions.common.none
+			);
 		} else if (GeneralEmailsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = email.history;
 			const historyMapped = mappedEmail.history;

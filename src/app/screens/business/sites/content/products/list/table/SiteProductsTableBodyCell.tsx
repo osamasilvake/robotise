@@ -82,12 +82,14 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 						onClick={openCreateEditProductDialog}
 						className={classes.sEditProduct}
 					/>
-					<DialogCreateEditProduct
-						product={product}
-						type={SiteProductCreateEditTypeEnum.EDIT}
-						open={openCreateEdit}
-						setOpen={setOpenCreateEdit}
-					/>
+					{openCreateEdit && (
+						<DialogCreateEditProduct
+							product={product}
+							type={SiteProductCreateEditTypeEnum.EDIT}
+							open={openCreateEdit}
+							setOpen={setOpenCreateEdit}
+						/>
+					)}
 
 					<Chip
 						style={{
@@ -100,11 +102,13 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 						clickable
 						onClick={openDeleteProductDialog}
 					/>
-					<DialogDeleteProduct
-						product={product}
-						open={openDelete}
-						setOpen={setOpenDelete}
-					/>
+					{openDelete && (
+						<DialogDeleteProduct
+							product={product}
+							open={openDelete}
+							setOpen={setOpenDelete}
+						/>
+					)}
 				</Box>
 			);
 		} else {
@@ -113,12 +117,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				return momentFormat1(value);
 			} else if (typeof value === 'number') {
 				if (SiteProductsTableColumnsTypeEnum.PRICE === column.id) {
-					const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
-					return `${currencyFormat(
-						value,
-						currency || defaultCurrency,
-						i18next.language
-					)}`;
+					return `${currencyFormat(value, currency, i18next.language)}`;
 				}
 				return value;
 			} else if (typeof value === 'string') {

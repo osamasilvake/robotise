@@ -29,13 +29,16 @@ const RobotConfiguration: FC = () => {
 				<Grid item xs={12} md={6}>
 					<RobotConfig robotTwinsSummary={robotTwinsSummary} robot={robot} />
 				</Grid>
-				<Grid item xs={12} md={6}>
-					<RobotSiteConfig
-						sites={sites}
-						robotTwinsSummary={robotTwinsSummary}
-						robot={robot}
-					/>
-				</Grid>
+
+				{sites.content && (
+					<Grid item xs={12} md={6}>
+						<RobotSiteConfig
+							sites={sites}
+							robotTwinsSummary={robotTwinsSummary}
+							robot={robot}
+						/>
+					</Grid>
+				)}
 			</Grid>
 		</Box>
 	);

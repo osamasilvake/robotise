@@ -66,11 +66,13 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 							<AddCircle color="primary" />
 						</IconButton>
 					</Tooltip>
-					<DialogCreateEditServicePosition
-						type={SiteServicePositionsCreateEditTypeEnum.CREATE}
-						open={open}
-						setOpen={setOpen}
-					/>
+					{open && (
+						<DialogCreateEditServicePosition
+							type={SiteServicePositionsCreateEditTypeEnum.CREATE}
+							open={open}
+							setOpen={setOpen}
+						/>
+					)}
 				</Box>
 
 				{!!servicePositions.content?.data.length && (

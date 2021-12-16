@@ -25,7 +25,8 @@ export const columns: RobotsTableColumnInterface[] = [
 		id: RobotsTableColumnsTypeEnum.ACCEPT_ORDER,
 		label: `${translation}.ACCEPT_ORDERS`,
 		width: 120,
-		align: 'left'
+		align: 'left',
+		noSort: true
 	},
 	{
 		id: RobotsTableColumnsTypeEnum.BATTERY_PERCENTAGE,

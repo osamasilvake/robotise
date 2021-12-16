@@ -166,7 +166,11 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 						</IconButton>
 					</Tooltip>
 				</Typography>
+
+				{/* Read More */}
 				<ReadMore text={robotTwins.robot.note} />
+
+				{/* Dialog: Note */}
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
 			</Grid>
 		</Grid>

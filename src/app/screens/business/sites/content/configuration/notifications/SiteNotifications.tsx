@@ -66,11 +66,13 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 							<AddCircle color="primary" />
 						</IconButton>
 					</Tooltip>
-					<DialogCreateEditNotification
-						type={SiteNotificationsCreateEditTypeEnum.CREATE}
-						open={open}
-						setOpen={setOpen}
-					/>
+					{open && (
+						<DialogCreateEditNotification
+							type={SiteNotificationsCreateEditTypeEnum.CREATE}
+							open={open}
+							setOpen={setOpen}
+						/>
+					)}
 				</Box>
 
 				{!!notifications.content?.data.length && (

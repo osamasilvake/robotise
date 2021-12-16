@@ -62,11 +62,13 @@ const DeepLinksActions: FC = () => {
 			</SpeedDial>
 
 			{/* Dialog: Create/Edit Deep Link */}
-			<DialogCreateEditDeepLink
-				type={DeepLinkCreateEditTypeEnum.CREATE}
-				open={createDeepLink}
-				setOpen={setCreateDeepLink}
-			/>
+			{createDeepLink && (
+				<DialogCreateEditDeepLink
+					type={DeepLinkCreateEditTypeEnum.CREATE}
+					open={createDeepLink}
+					setOpen={setCreateDeepLink}
+				/>
+			)}
 		</>
 	);
 };

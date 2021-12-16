@@ -80,12 +80,14 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						onClick={openCreateEditDeepLinkDialog}
 						className={classes.sEditDeepLink}
 					/>
-					<DialogCreateEditDeepLink
-						deepLink={deepLink}
-						type={DeepLinkCreateEditTypeEnum.EDIT}
-						open={openCreateEdit}
-						setOpen={setOpenCreateEdit}
-					/>
+					{openCreateEdit && (
+						<DialogCreateEditDeepLink
+							deepLink={deepLink}
+							type={DeepLinkCreateEditTypeEnum.EDIT}
+							open={openCreateEdit}
+							setOpen={setOpenCreateEdit}
+						/>
+					)}
 
 					<Chip
 						style={{
@@ -105,11 +107,13 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						}
 						onClick={openDeleteDeepLinkDialog}
 					/>
-					<DialogDeleteDeepLink
-						deepLink={deepLink}
-						open={openDelete}
-						setOpen={setOpenDelete}
-					/>
+					{openDelete && (
+						<DialogDeleteDeepLink
+							deepLink={deepLink}
+							open={openDelete}
+							setOpen={setOpenDelete}
+						/>
+					)}
 				</Box>
 			);
 		} else {

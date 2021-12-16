@@ -353,7 +353,7 @@ export const RobotMapFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};
 

@@ -108,10 +108,10 @@ export const SiteOrdersAccept =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-accept-orders-success`,
+					id: 'site-accept-orders-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.SUCCESS`
+					text: 'SITES.CONFIGURATION.ACCEPT_ORDERS.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -121,10 +121,10 @@ export const SiteOrdersAccept =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-accept-orders-error`,
+					id: 'site-accept-orders-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR`
+					text: 'SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -160,10 +160,10 @@ export const SiteConfigUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-config-success`,
+					id: 'site-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `SITES.CONFIGURATION.SITE_CONFIG.SUCCESS`
+					text: 'SITES.CONFIGURATION.SITE_CONFIG.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -173,10 +173,10 @@ export const SiteConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-config-error`,
+					id: 'site-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `SITES.CONFIGURATION.SITE_CONFIG.ERROR`
+					text: 'SITES.CONFIGURATION.SITE_CONFIG.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -204,10 +204,10 @@ export const SiteRobotConfigUpdate =
 			.then(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-robot-config-success`,
+					id: 'site-robot-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS`
+					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -217,10 +217,10 @@ export const SiteRobotConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-robot-config-error`,
+					id: 'site-robot-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR`
+					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -253,10 +253,10 @@ export const SiteReportsGenerate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-generate-reports-success`,
+					id: 'site-generate-reports-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `COMMON.REPORTS.SUCCESS`
+					text: 'COMMON.REPORTS.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -266,10 +266,10 @@ export const SiteReportsGenerate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `site-generate-reports-success`,
+					id: 'site-generate-reports-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `COMMON.REPORTS.ERROR`
+					text: 'COMMON.REPORTS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

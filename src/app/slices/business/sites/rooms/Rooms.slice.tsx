@@ -103,10 +103,10 @@ export const RoomStateUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `rooms-update-success`,
+					id: 'rooms-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `SITES.ROOMS.UPDATE.SUCCESS`
+					text: 'SITES.ROOMS.UPDATE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -116,10 +116,10 @@ export const RoomStateUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `rooms-update-error`,
+					id: 'rooms-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `SITES.ROOMS.UPDATE.ERROR`
+					text: 'SITES.ROOMS.UPDATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

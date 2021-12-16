@@ -187,10 +187,10 @@ export const RobotNoteUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-note-success`,
+					id: 'robot-note-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.DETAIL.NOTE.SUCCESS`
+					text: 'ROBOTS.DETAIL.NOTE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -200,10 +200,10 @@ export const RobotNoteUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-note-error`,
+					id: 'robot-note-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.NOTE.ERROR`
+					text: 'ROBOTS.DETAIL.NOTE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -272,10 +272,10 @@ export const RobotMapsFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-maps-error`,
+					id: 'robot-maps-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.MAPS.ERROR`
+					text: 'ROBOTS.DETAIL.MAPS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -345,10 +345,10 @@ export const RobotMapFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-map-error`,
+					id: 'robot-map-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.MAP.ERROR`
+					text: 'ROBOTS.DETAIL.MAP.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -392,7 +392,7 @@ export const RobotControlCommandSend =
 					id: 'robot-command-control-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.DETAIL.COMMANDS.SUCCESS`
+					text: 'ROBOTS.DETAIL.COMMANDS.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -405,7 +405,7 @@ export const RobotControlCommandSend =
 					id: 'robot-command-control-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.DETAIL.COMMANDS.ERROR`
+					text: 'ROBOTS.DETAIL.COMMANDS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -478,10 +478,10 @@ export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch)
 		.then(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: `robot-sync-products-success`,
+				id: 'robot-sync-products-success',
 				show: true,
 				severity: TriggerMessageTypeEnum.SUCCESS,
-				text: `ROBOTS.CONFIGURATION.SYNC_PRODUCTS.SUCCESS`
+				text: 'ROBOTS.CONFIGURATION.SYNC_PRODUCTS.SUCCESS'
 			};
 			dispatch(triggerMessage(message));
 
@@ -491,10 +491,10 @@ export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch)
 		.catch(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: `robot-sync-products-error`,
+				id: 'robot-sync-products-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: `ROBOTS.CONFIGURATION.SYNC_PRODUCTS.ERROR`
+				text: 'ROBOTS.CONFIGURATION.SYNC_PRODUCTS.ERROR'
 			};
 			dispatch(triggerMessage(message));
 
@@ -530,10 +530,10 @@ export const RobotConfigUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-config-success`,
+					id: 'robot-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.SUCCESS`
+					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIG.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -543,10 +543,10 @@ export const RobotConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-config-error`,
+					id: 'robot-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR`
+					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -582,10 +582,10 @@ export const RobotSiteConfigUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-site-config-success`,
+					id: 'robot-site-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.SUCCESS`
+					text: 'ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -595,10 +595,10 @@ export const RobotSiteConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-site-config-error`,
+					id: 'robot-site-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.ERROR`
+					text: 'ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -631,10 +631,10 @@ export const RobotReportsGenerate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-generate-reports-success`,
+					id: 'robot-generate-reports-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: `COMMON.REPORTS.SUCCESS`
+					text: 'COMMON.REPORTS.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -644,10 +644,10 @@ export const RobotReportsGenerate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-generate-reports-success`,
+					id: 'robot-generate-reports-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `COMMON.REPORTS.ERROR`
+					text: 'COMMON.REPORTS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

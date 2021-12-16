@@ -61,11 +61,13 @@ const SiteProductsActions: FC = () => {
 			</SpeedDial>
 
 			{/* Dialog: Create Product */}
-			<DialogCreateEditProduct
-				type={SiteProductCreateEditTypeEnum.CREATE}
-				open={createProduct}
-				setOpen={setCreateProduct}
-			/>
+			{createProduct && (
+				<DialogCreateEditProduct
+					type={SiteProductCreateEditTypeEnum.CREATE}
+					open={createProduct}
+					setOpen={setCreateProduct}
+				/>
+			)}
 
 			{/* Dialog: Report */}
 			<Report

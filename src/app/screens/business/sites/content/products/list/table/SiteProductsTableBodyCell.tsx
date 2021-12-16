@@ -82,12 +82,14 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 						onClick={openCreateEditProductDialog}
 						className={classes.sEditProduct}
 					/>
-					<DialogCreateEditProduct
-						product={product}
-						type={SiteProductCreateEditTypeEnum.EDIT}
-						open={openCreateEdit}
-						setOpen={setOpenCreateEdit}
-					/>
+					{openCreateEdit && (
+						<DialogCreateEditProduct
+							product={product}
+							type={SiteProductCreateEditTypeEnum.EDIT}
+							open={openCreateEdit}
+							setOpen={setOpenCreateEdit}
+						/>
+					)}
 
 					<Chip
 						style={{
@@ -100,11 +102,13 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 						clickable
 						onClick={openDeleteProductDialog}
 					/>
-					<DialogDeleteProduct
-						product={product}
-						open={openDelete}
-						setOpen={setOpenDelete}
-					/>
+					{openDelete && (
+						<DialogDeleteProduct
+							product={product}
+							open={openDelete}
+							setOpen={setOpenDelete}
+						/>
+					)}
 				</Box>
 			);
 		} else {

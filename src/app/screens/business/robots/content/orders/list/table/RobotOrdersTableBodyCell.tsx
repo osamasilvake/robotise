@@ -85,7 +85,13 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 									onClick={openCancelOrderDialog}
 									className={classes.sCancelOrder}
 								/>
-								<DialogCancelOrder order={order} open={open} setOpen={setOpen} />
+								{open && (
+									<DialogCancelOrder
+										order={order}
+										open={open}
+										setOpen={setOpen}
+									/>
+								)}
 							</>
 						)}
 					</Box>

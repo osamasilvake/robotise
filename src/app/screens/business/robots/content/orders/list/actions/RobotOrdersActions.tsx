@@ -62,7 +62,7 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 			</SpeedDial>
 
 			{/* Dialog: Create Order */}
-			<DialogCreateOrder open={createOrder} setOpen={setCreateOrder} />
+			{createOrder && <DialogCreateOrder open={createOrder} setOpen={setCreateOrder} />}
 		</>
 	);
 };

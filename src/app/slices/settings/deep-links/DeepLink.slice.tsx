@@ -158,10 +158,10 @@ export const DeepLinkAuditLogsLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `deep-link-audit-logs-error`,
+					id: 'deep-link-audit-logs-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `DEEP_LINKS.FETCH.AUDIT_LOGS.ERROR`
+					text: 'DEEP_LINKS.FETCH.AUDIT_LOGS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -200,10 +200,10 @@ export const DeepLinkBatteryLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `deep-link-battery-error`,
+					id: 'deep-link-battery-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `DEEP_LINKS.FETCH.BATTERY.ERROR`
+					text: 'DEEP_LINKS.FETCH.BATTERY.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -242,10 +242,10 @@ export const DeepLinkTemperatureLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `deep-link-temperature-error`,
+					id: 'deep-link-temperature-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `DEEP_LINKS.FETCH.TEMPERATURE.ERROR`
+					text: 'DEEP_LINKS.FETCH.TEMPERATURE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -284,10 +284,10 @@ export const DeepLinkDiagnosticsLogsLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `deep-link-diagnostics-logs-error`,
+					id: 'deep-link-diagnostics-logs-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `DEEP_LINKS.FETCH.DIAGNOSTICS_LOGS.ERROR`
+					text: 'DEEP_LINKS.FETCH.DIAGNOSTICS_LOGS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -326,10 +326,10 @@ export const DeepLinkCoolingUnitLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `deep-link-cooling-unit-error`,
+					id: 'deep-link-cooling-unit-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `DEEP_LINKS.FETCH.COOLING_UNIT.ERROR`
+					text: 'DEEP_LINKS.FETCH.COOLING_UNIT.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -368,10 +368,10 @@ export const DeepLinkItemTrackingLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `deep-link-item-tracking-error`,
+					id: 'deep-link-item-tracking-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `DEEP_LINKS.FETCH.ITEM_TRACKING.ERROR`
+					text: 'DEEP_LINKS.FETCH.ITEM_TRACKING.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -410,10 +410,10 @@ export const DeepLinkElevatorLogsLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `deep-link-elevator-logs-error`,
+					id: 'deep-link-elevator-logs-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: `DEEP_LINKS.FETCH.ELEVATOR_LOGS.ERROR`
+					text: 'DEEP_LINKS.FETCH.ELEVATOR_LOGS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

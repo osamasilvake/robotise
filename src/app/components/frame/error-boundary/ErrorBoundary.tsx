@@ -1,5 +1,6 @@
 import { Box, Link, Typography } from '@mui/material';
 import { withStyles } from '@mui/styles';
+import clsx from 'clsx';
 import log from 'loglevel';
 import { Component, ErrorInfo } from 'react';
 import { withTranslation } from 'react-i18next';
@@ -36,16 +37,25 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 	}
 
 	render() {
-		const { classes, t } = this.props;
+		const { hasError } = this.state;
+		const { children, classes, t, error } = this.props;
 
-		if (this.state.hasError) {
+		if (hasError) {
 			return (
 				<Box component="section">
-					<Error error={ErrorTypeEnum.ERROR_BOUNDARY}>
-						<Typography variant="h1" className={classes.sTitle}>
+					<Error error={error || ErrorTypeEnum.PAGE_ERROR}>
+						<Typography
+							variant={error ? 'h1' : 'h2'}
+							className={clsx({
+								[classes.sTitle]: error
+							})}>
 							{t('ERROR_BOUNDARY.TITLE')}
 						</Typography>
-						<Typography color="textSecondary" className={classes.sDescription}>
+						<Typography
+							color="textSecondary"
+							className={clsx({
+								[classes.sDescription]: error
+							})}>
 							{t('ERROR_BOUNDARY.DESCRIPTION')}
 						</Typography>
 						<Link
@@ -59,7 +69,7 @@ class ErrorBoundary extends Component<ErrorBoundaryPropsInterface, ErrorBoundary
 				</Box>
 			);
 		}
-		return this.props.children;
+		return children;
 	}
 }
 export default withStyles(ErrorBoundaryStyle)(withTranslation('ERRORS')(ErrorBoundary));

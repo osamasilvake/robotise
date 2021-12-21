@@ -19,14 +19,10 @@ const randomNum = (min: number, max: number): number => {
  * @param language
  * @returns
  */
-const currencyFormat = (
-	value: number,
-	currency = AppConfigService.AppOptions.common.defaultCurrency,
-	language: string
-) => {
+const currencyFormat = (value: number, currency: string | undefined, language: string) => {
 	const formatter = new Intl.NumberFormat(language, {
 		style: 'currency',
-		currency
+		currency: currency || AppConfigService.AppOptions.common.defaultCurrency
 	});
 	return formatter.format(value);
 };

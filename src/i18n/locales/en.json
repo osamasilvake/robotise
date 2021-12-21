@@ -822,7 +822,7 @@
 					"MAP": {
 						"HUMAN_PERCEPTION": {
 							"LEG_CLOSE": "Someone is very close to the robot!",
-							"LEG_FAR": "Someone is nearby to the robot!"
+							"LEG_FAR": "Someone is near to the robot!"
 						}
 					}
 				},

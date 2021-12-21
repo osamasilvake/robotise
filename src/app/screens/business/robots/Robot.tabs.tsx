@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../components/common/loader/Loader.enum';
 import PageError from '../../../components/content/page-error/PageError';
+import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
@@ -104,25 +105,53 @@ const RobotTabs: FC = () => {
 			{/* Tab Panel */}
 			<Box>
 				{/* Detail */}
-				{value === 0 && <RobotDetail />}
+				{value === 0 && (
+					<ErrorBoundary>
+						<RobotDetail />
+					</ErrorBoundary>
+				)}
 
 				{/* Inventory */}
-				{value === 1 && <RobotInventoryList />}
+				{value === 1 && (
+					<ErrorBoundary>
+						<RobotInventoryList />
+					</ErrorBoundary>
+				)}
 
 				{/* Orders */}
-				{value === 2 && <RobotOrdersList />}
+				{value === 2 && (
+					<ErrorBoundary>
+						<RobotOrdersList />
+					</ErrorBoundary>
+				)}
 
 				{/* Purchases */}
-				{value === 3 && <RobotPurchasesList />}
+				{value === 3 && (
+					<ErrorBoundary>
+						<RobotPurchasesList />
+					</ErrorBoundary>
+				)}
 
 				{/* Commands Log */}
-				{value === 4 && <RobotCommandsLogList />}
+				{value === 4 && (
+					<ErrorBoundary>
+						<RobotCommandsLogList />
+					</ErrorBoundary>
+				)}
 
 				{/* Elevator Calls */}
-				{value === 5 && <RobotElevatorCallsList />}
+				{value === 5 && (
+					<ErrorBoundary>
+						<RobotElevatorCallsList />
+					</ErrorBoundary>
+				)}
 
 				{/* Configuration */}
-				{value === 6 && <RobotConfiguration />}
+				{value === 6 && (
+					<ErrorBoundary>
+						<RobotConfiguration />
+					</ErrorBoundary>
+				)}
 			</Box>
 		</Box>
 	) : null;

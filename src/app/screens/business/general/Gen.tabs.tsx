@@ -3,6 +3,7 @@ import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import GeneralEmailsList from './emails/list/GeneralEmailsList';
 import generalRoutes from './General.routes';
@@ -55,7 +56,11 @@ const GenTabs: FC = () => {
 				{value === 0 && <></>}
 
 				{/* Emails */}
-				{value === 1 && <GeneralEmailsList />}
+				{value === 1 && (
+					<ErrorBoundary>
+						<GeneralEmailsList />
+					</ErrorBoundary>
+				)}
 			</Box>
 		</Box>
 	) : null;

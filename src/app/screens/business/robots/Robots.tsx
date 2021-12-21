@@ -2,6 +2,7 @@ import { Paper } from '@mui/material';
 import { FC } from 'react';
 
 import PageHead from '../../../components/content/page-head/PageHead';
+import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import RobotsList from './list/RobotsList';
 
 const Robots: FC = () => {
@@ -11,7 +12,9 @@ const Robots: FC = () => {
 			<PageHead title="ROBOTS.TITLE" description="ROBOTS.DESCRIPTION" />
 
 			{/* List */}
-			<RobotsList />
+			<ErrorBoundary>
+				<RobotsList />
+			</ErrorBoundary>
 		</Paper>
 	);
 };

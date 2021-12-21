@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../components/common/loader/Loader.enum';
 import PageError from '../../../components/content/page-error/PageError';
+import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import SiteConfiguration from './content/configuration/SiteConfiguration';
@@ -84,25 +85,53 @@ const SiteTabs: FC = () => {
 			{/* Tab Panel */}
 			<Box>
 				{/* Detail */}
-				{value === 0 && <SiteDetail />}
+				{value === 0 && (
+					<ErrorBoundary>
+						<SiteDetail />
+					</ErrorBoundary>
+				)}
 
 				{/* Products */}
-				{value === 1 && <SiteProductsList />}
+				{value === 1 && (
+					<ErrorBoundary>
+						<SiteProductsList />
+					</ErrorBoundary>
+				)}
 
 				{/* Rooms */}
-				{value === 2 && <SiteRoomsList />}
+				{value === 2 && (
+					<ErrorBoundary>
+						<SiteRoomsList />
+					</ErrorBoundary>
+				)}
 
 				{/* Phone Configs */}
-				{value === 3 && <SitePhoneConfigsList />}
+				{value === 3 && (
+					<ErrorBoundary>
+						<SitePhoneConfigsList />
+					</ErrorBoundary>
+				)}
 
 				{/* Phone Calls */}
-				{value === 4 && <SitePhoneCallsList />}
+				{value === 4 && (
+					<ErrorBoundary>
+						<SitePhoneCallsList />
+					</ErrorBoundary>
+				)}
 
 				{/* Statistics */}
-				{value === 5 && <SiteStatistics />}
+				{value === 5 && (
+					<ErrorBoundary>
+						<SiteStatistics />
+					</ErrorBoundary>
+				)}
 
 				{/* Configuration */}
-				{value === 6 && <SiteConfiguration />}
+				{value === 6 && (
+					<ErrorBoundary>
+						<SiteConfiguration />
+					</ErrorBoundary>
+				)}
 			</Box>
 		</Box>
 	) : null;

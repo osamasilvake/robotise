@@ -1,8 +1,4 @@
 import {
-	ExternalLinkCallbackResponseInterface,
-	ExternalLinkPayloadInterface
-} from '../../../../../../components/common/external-link/ExternalLink.interface';
-import {
 	SRTContentActivityStateInterface,
 	SRTContentBatteryStateInterface,
 	SRTContentDataInterface,

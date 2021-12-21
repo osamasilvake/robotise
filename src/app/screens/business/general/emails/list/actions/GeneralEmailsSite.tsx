@@ -33,7 +33,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 		sites.content &&
 			setSitesList([
 				{ id: '', label: t(`${translation}.SITE.ALL_SITES`) },
-				...sites.content?.data
+				...sites.content.data
 					.filter((s) => !hidden || (hidden && !s.configs.isHidden))
 					.map((site) => ({
 						id: site.id,

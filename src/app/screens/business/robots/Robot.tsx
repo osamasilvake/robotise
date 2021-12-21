@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageHead from '../../../components/content/page-head/PageHead';
+import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { orderSelector } from '../../../slices/business/robots/orders/Order.slice';
 import { purchaseSelector } from '../../../slices/business/robots/purchases/Purchase.slice';
@@ -65,7 +66,7 @@ const Robot: FC = () => {
 			/>
 
 			{/* Content */}
-			{robotDetailRoutes()}
+			<ErrorBoundary>{robotDetailRoutes()}</ErrorBoundary>
 		</Paper>
 	);
 };

@@ -24,3 +24,7 @@ export interface AuthAxiosPostResponseInterface {
 	session_state: string;
 	token_type: string;
 }
+
+export interface AuthStateInterface {
+	intendedUrl: string;
+}

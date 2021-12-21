@@ -166,7 +166,7 @@ export const DeepLinkAuditLogsLinkFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -208,7 +208,7 @@ export const DeepLinkBatteryLinkFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -250,7 +250,7 @@ export const DeepLinkTemperatureLinkFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -292,7 +292,7 @@ export const DeepLinkDiagnosticsLogsLinkFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -334,7 +334,7 @@ export const DeepLinkCoolingUnitLinkFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -376,7 +376,7 @@ export const DeepLinkItemTrackingLinkFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};
 
@@ -418,6 +418,6 @@ export const DeepLinkElevatorLogsLinkFetch =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure({ ...state, response: message }));
+				dispatch(failure(state));
 			});
 	};

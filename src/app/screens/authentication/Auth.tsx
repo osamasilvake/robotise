@@ -6,7 +6,7 @@ import Loader from '../../components/common/loader/Loader';
 import { isPrivate } from '../../routes/types';
 import { AppConfigService } from '../../services';
 import { AuthRefreshToken, authSelector } from '../../slices/authentication/Auth.slice';
-import { AuthInterface } from './Auth.interface';
+import { AuthInterface, AuthStateInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = (props) => {
 	const { route, template, type } = props;
@@ -14,7 +14,7 @@ const Auth: FC<AuthInterface> = (props) => {
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
 
-	const location = useLocation();
+	const { pathname, state } = useLocation();
 	const isUser = !!(auth.user && auth.user.data.user_id);
 
 	useEffect(() => {
@@ -54,7 +54,7 @@ const Auth: FC<AuthInterface> = (props) => {
 			return (
 				<Navigate
 					to={AppConfigService.AppRoutes.AUTH.LOGIN}
-					state={{ intendedUrl: condition && location.pathname }}
+					state={{ intendedUrl: condition && pathname }}
 					replace
 				/>
 			);
@@ -63,7 +63,8 @@ const Auth: FC<AuthInterface> = (props) => {
 		return <Template Component={route.component} />;
 	} else if (route.path === AppConfigService.AppRoutes.AUTH.LOGIN) {
 		const defaultUrl = AppConfigService.AppRoutes.HOME;
-		return <Navigate to={location.state?.intendedUrl || defaultUrl} />;
+		const intendedUrl = (state as AuthStateInterface)?.intendedUrl;
+		return <Navigate to={intendedUrl || defaultUrl} />;
 	}
 	const Template = route.template || template;
 	return <Template Component={route.component} />;

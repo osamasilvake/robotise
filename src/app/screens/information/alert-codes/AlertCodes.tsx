@@ -2,6 +2,7 @@ import { Paper } from '@mui/material';
 import { FC } from 'react';
 
 import PageHead from '../../../components/content/page-head/PageHead';
+import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import AlertCodesList from './list/AlertCodesList';
 
 const AlertCodes: FC = () => {
@@ -11,7 +12,9 @@ const AlertCodes: FC = () => {
 			<PageHead title="ALERT_CODES.TITLE" description="ALERT_CODES.DESCRIPTION" />
 
 			{/* List */}
-			<AlertCodesList />
+			<ErrorBoundary>
+				<AlertCodesList />
+			</ErrorBoundary>
 		</Paper>
 	);
 };

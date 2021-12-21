@@ -2,7 +2,7 @@ import { Theme } from '@mui/material';
 
 export const ErrorBoundaryStyle = (theme: Theme) => ({
 	sTitle: {
-		fontSize: theme.typography.pxToRem(75)
+		fontSize: theme.typography.pxToRem(60)
 	},
 	sDescription: {
 		fontSize: theme.typography.pxToRem(20),

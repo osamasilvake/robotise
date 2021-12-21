@@ -19,16 +19,10 @@ const PageEmpty: FC<PageEmptyInterface> = (props) => {
 				[classes.sStackPadding]: paddingTop
 			})}>
 			{/* Title */}
-			<Typography variant="h2" className={classes.sTitle}>
-				{t('EMPTY.TITLE')}
-			</Typography>
+			<Typography variant="h2">{t('EMPTY.TITLE')}</Typography>
 
 			{/* Message */}
-			{message && (
-				<Typography color="textSecondary" className={classes.sDescription}>
-					{t(message)}
-				</Typography>
-			)}
+			{message && <Typography color="textSecondary">{t(message)}</Typography>}
 
 			{/* Link */}
 			<Link

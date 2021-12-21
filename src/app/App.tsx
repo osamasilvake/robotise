@@ -3,6 +3,7 @@ import { FC, Suspense, useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 
+import { ErrorTypeEnum } from './components/common/error/Error.enum';
 import Loader from './components/common/loader/Loader';
 import Meta from './components/common/meta/Meta';
 import ErrorBoundary from './components/frame/error-boundary/ErrorBoundary';
@@ -44,7 +45,7 @@ const App: FC = () => {
 					{/* Meta: General Top-Level */}
 					<Meta />
 
-					<ErrorBoundary>
+					<ErrorBoundary error={ErrorTypeEnum.ERROR_BOUNDARY}>
 						<Suspense fallback={<Loader />}>
 							<Routes />
 						</Suspense>

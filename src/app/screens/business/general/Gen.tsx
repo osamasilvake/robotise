@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageHead from '../../../components/content/page-head/PageHead';
+import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { emailSelector } from '../../../slices/business/general/emails/Email.slice';
 import GeneralEmailDetail from './emails/detail/GeneralEmailDetail';
@@ -53,7 +54,7 @@ const Gen: FC = () => {
 			/>
 
 			{/* Content */}
-			{genDetailRoutes()}
+			<ErrorBoundary>{genDetailRoutes()}</ErrorBoundary>
 		</Paper>
 	);
 };

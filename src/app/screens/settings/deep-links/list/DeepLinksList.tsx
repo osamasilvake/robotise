@@ -98,13 +98,11 @@ const DeepLinksList: FC = () => {
 		return <PageError message={deepLinks.errors?.text} />;
 	}
 
-	// null
-	if (!deepLinks.content) {
-		return null;
-	}
+	// init
+	if (!deepLinks.init) return null;
 
 	// empty
-	if (!deepLinks.content.data.length) {
+	if (!deepLinks.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

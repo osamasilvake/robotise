@@ -10,6 +10,7 @@ import { mapRobotTwins } from './RobotTwins.slice.map';
 
 // initial state
 export const initialState: SliceRobotTwinsInterface = {
+	init: false,
 	loader: false,
 	loading: false,
 	content: null,
@@ -28,12 +29,14 @@ const dataSlice = createSlice({
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = null;

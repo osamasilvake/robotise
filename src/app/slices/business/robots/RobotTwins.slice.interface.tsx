@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../../components/frame/message/Messa
 import { RobotDetailControlModeTypeEnum } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 
 export interface SliceRobotTwinsInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	content: SRTContentDataInterface | null;

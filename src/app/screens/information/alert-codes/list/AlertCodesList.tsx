@@ -91,13 +91,11 @@ const AlertCodesList: FC = () => {
 		return <PageError message={alertCodes.errors?.text} />;
 	}
 
-	// null
-	if (!alertCodes.content) {
-		return null;
-	}
+	// init
+	if (!alertCodes.init) return null;
 
 	// empty
-	if (!alertCodes.content.data.length) {
+	if (!alertCodes.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

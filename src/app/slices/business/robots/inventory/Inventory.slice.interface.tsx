@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { SPCDataInterface } from '../../sites/products/Products.slice.interface';
 
 export interface SliceInventoryInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	content: SIContentInterface | null;

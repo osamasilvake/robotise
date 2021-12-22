@@ -17,6 +17,7 @@ import {
 
 // initial state
 export const initialState: SliceProductsInterface = {
+	init: false,
 	loader: false,
 	loading: false,
 	updating: false,
@@ -36,12 +37,14 @@ const dataSlice = createSlice({
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = null;

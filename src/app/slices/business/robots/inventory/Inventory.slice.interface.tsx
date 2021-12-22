@@ -9,8 +9,8 @@ export interface SliceInventoryInterface {
 }
 
 export interface SIContentInterface {
-	status: string;
 	id: string;
+	status: string;
 	drawers: SICDrawerInterface[];
 	robot: SICRobotInterface;
 }

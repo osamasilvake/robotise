@@ -78,7 +78,7 @@ export const PhoneConfigsFetch =
 				// deserialize response
 				let result: PCContentInterface = await deserializePhoneConfigs(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: {

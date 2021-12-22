@@ -93,7 +93,7 @@ export const PhoneCallsFetchList =
 				// deserialize response
 				let result: PCContentInterface = await deserializePhoneCalls(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: {

@@ -94,7 +94,7 @@ export const SitesFetchList =
 				// deserialize response
 				let result: SSContentInterface = await deserializeSites(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state

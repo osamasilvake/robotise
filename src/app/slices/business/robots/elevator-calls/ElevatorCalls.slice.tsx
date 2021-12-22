@@ -93,7 +93,7 @@ export const ElevatorCallsFetchList =
 				// deserialize response
 				let result: ECContentInterface = await deserializeElevatorCalls(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: {

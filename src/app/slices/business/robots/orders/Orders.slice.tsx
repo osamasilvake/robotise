@@ -101,7 +101,7 @@ export const OrdersFetchList =
 				// deserialize response
 				let result: SOContentInterface = await deserializeOrders(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: {

@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 
 import { AppConfigService } from '../../../../../../../services';
 
-export const RobotsInventoryTableStyle = makeStyles((theme: Theme) => ({
+export const RobotInventoryTableStyle = makeStyles((theme: Theme) => ({
 	sTableContainer: {
 		marginBottom: theme.spacing(5)
 	},

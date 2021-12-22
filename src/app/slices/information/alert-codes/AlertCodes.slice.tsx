@@ -87,7 +87,7 @@ export const AlertCodesFetchList =
 				// deserialize response
 				let result: SACContentInterface = await deserializeAlertCodes(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: payload

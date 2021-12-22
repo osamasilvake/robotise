@@ -96,7 +96,7 @@ export const ProductsFetchList =
 				// deserialize response
 				let result: SPContentInterface = await deserializeProducts(res);
 
-				// prepare content
+				// set state
 				result = {
 					...result,
 					state: {

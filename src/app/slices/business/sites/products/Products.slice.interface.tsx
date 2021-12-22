@@ -15,7 +15,6 @@ export interface SPContentInterface extends JsonAPIResponseInterface {
 }
 
 export interface SPCDataInterface {
-	site: SPCSiteInterface;
 	id: string;
 	image: string;
 	name: string;
@@ -25,6 +24,7 @@ export interface SPCDataInterface {
 	price: number;
 	createdAt: Date;
 	updatedAt: Date;
+	site: SPCSiteInterface;
 }
 
 export interface SPCSiteInterface {

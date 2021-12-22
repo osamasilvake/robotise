@@ -97,7 +97,7 @@ export const RobotTwinsSummaryFetchList =
 				// map robots alerts count
 				const alerts = mapRobotsAlertsCount(result);
 
-				// state
+				// set content
 				result = {
 					...result,
 					alerts,

@@ -107,7 +107,7 @@ export const DeepLinksFetchList =
 				// deserialize response
 				let result: SDLContentInterface = await deserializeDeepLinks(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: payload

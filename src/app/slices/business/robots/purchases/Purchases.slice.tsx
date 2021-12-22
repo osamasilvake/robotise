@@ -100,7 +100,7 @@ export const PurchasesFetchList =
 				// deserialize response
 				let result: SPContentInterface = await deserializePurchases(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: {

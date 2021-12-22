@@ -92,7 +92,7 @@ export const EmailsFetchList =
 				// deserialize response
 				let result: SEContentInterface = await deserializeEmails(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: payload

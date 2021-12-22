@@ -93,7 +93,7 @@ export const CommandsLogFetchList =
 				// deserialize response
 				let result: CLContentInterface = await deserializeCommandsLog(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: {

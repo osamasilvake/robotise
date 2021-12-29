@@ -109,13 +109,11 @@ const SitePhoneCallsList: FC = () => {
 		return <PageError message={phoneCalls.errors?.text} />;
 	}
 
-	// null
-	if (!phoneCalls.content) {
-		return null;
-	}
+	// init
+	if (!phoneCalls.init) return null;
 
 	// empty
-	if (!phoneCalls.content.data.length) {
+	if (!phoneCalls.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

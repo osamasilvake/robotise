@@ -240,7 +240,7 @@ export const RobotMapsFetch =
 				// deserialize response
 				let result: SRContentMapsInterface = await deserializeMaps(res);
 
-				// sort
+				// sort data
 				result = {
 					...result,
 					data: result.data.concat().sort((a, b) => {

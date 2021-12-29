@@ -63,13 +63,11 @@ const SitePhoneConfigsDetail: FC = () => {
 		return <PageError message={phoneConfigs.errors?.text} />;
 	}
 
-	// null
-	if (!phoneConfigs.content) {
-		return null;
-	}
+	// init
+	if (!phoneConfigs.init) return null;
 
 	// empty
-	if (!phoneConfigs.content.data.length) {
+	if (!phoneConfigs.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

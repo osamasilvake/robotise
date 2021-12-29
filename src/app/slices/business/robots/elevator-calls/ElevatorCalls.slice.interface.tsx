@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SliceElevatorCallsInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;

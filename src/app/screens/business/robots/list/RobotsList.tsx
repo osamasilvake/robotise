@@ -23,13 +23,11 @@ const RobotsList: FC = () => {
 		return <PageError message={robotTwinsSummary.errors?.text} />;
 	}
 
-	// null
-	if (!robotTwinsSummary.content) {
-		return null;
-	}
+	// init
+	if (!robotTwinsSummary.init) return null;
 
 	// empty
-	if (!robotTwinsSummary.content.data.length) {
+	if (!robotTwinsSummary.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

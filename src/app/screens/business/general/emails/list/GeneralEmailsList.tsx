@@ -119,13 +119,11 @@ const GeneralEmailsList: FC = () => {
 		return <PageError message={emails.errors?.text} />;
 	}
 
-	// null
-	if (!emails.content) {
-		return null;
-	}
+	// init
+	if (!emails.init) return null;
 
 	// empty
-	if (!emails.content.data.length) {
+	if (!emails.content?.data.length) {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}

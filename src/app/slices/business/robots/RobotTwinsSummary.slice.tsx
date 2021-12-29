@@ -18,6 +18,7 @@ const robotsState = StorageService.get(AppConfigService.StorageItems.RobotsState
 
 // initial state
 export const initialState: SliceRobotTwinsSummaryInterface = {
+	init: false,
 	loader: false,
 	loading: false,
 	updating: false,
@@ -37,12 +38,14 @@ const dataSlice = createSlice({
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = null;
@@ -97,7 +100,7 @@ export const RobotTwinsSummaryFetchList =
 				// map robots alerts count
 				const alerts = mapRobotsAlertsCount(result);
 
-				// state
+				// set content
 				result = {
 					...result,
 					alerts,

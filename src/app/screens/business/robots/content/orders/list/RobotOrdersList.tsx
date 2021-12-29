@@ -136,13 +136,11 @@ const RobotOrdersList: FC = () => {
 		return <PageError message={orders.errors?.text} />;
 	}
 
-	// null
-	if (!orders.content) {
-		return null;
-	}
+	// init
+	if (!orders.init) return null;
 
 	// empty
-	if (!orders.content.data.length) {
+	if (!orders.content?.data.length) {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}

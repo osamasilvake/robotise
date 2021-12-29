@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SliceProductsInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;
@@ -15,7 +16,6 @@ export interface SPContentInterface extends JsonAPIResponseInterface {
 }
 
 export interface SPCDataInterface {
-	site: SPCSiteInterface;
 	id: string;
 	image: string;
 	name: string;
@@ -25,6 +25,7 @@ export interface SPCDataInterface {
 	price: number;
 	createdAt: Date;
 	updatedAt: Date;
+	site: SPCSiteInterface;
 }
 
 export interface SPCSiteInterface {

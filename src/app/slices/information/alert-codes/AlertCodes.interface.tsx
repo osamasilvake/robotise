@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../../components/frame/message/Messa
 import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
 
 export interface SliceAlertCodesInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	content: SACContentInterface | null;

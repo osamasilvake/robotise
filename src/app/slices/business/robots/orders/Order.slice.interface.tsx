@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { SOCDataInterface } from './Orders.slice.interface';
 
 export interface SliceOrderInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	content: SOCDataInterface | null;

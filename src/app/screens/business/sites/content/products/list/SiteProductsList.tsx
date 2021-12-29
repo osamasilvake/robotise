@@ -63,13 +63,11 @@ const SiteProductsList: FC = () => {
 		return <PageError message={products.errors?.text} />;
 	}
 
-	// null
-	if (!products.content) {
-		return null;
-	}
+	// init
+	if (!products.init) return null;
 
 	// empty
-	if (!products.content.data.length) {
+	if (!products.content?.data.length) {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}

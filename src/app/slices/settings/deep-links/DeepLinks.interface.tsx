@@ -3,6 +3,7 @@ import { DeepLinkResetTypeEnum } from '../../../screens/settings/deep-links/list
 import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
 
 export interface SliceDeepLinksInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;

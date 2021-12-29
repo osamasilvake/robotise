@@ -1,15 +1,14 @@
-import { Theme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
+import { Badge, styled } from '@mui/material';
 
 import { AppConfigService } from '../../services';
 
-export const BadgeStyle = makeStyles((theme: Theme) => ({
-	sDot: {
+export const StyledBadge = styled(Badge)(({ theme }) => ({
+	'& .MuiBadge-badge': {
 		backgroundColor: AppConfigService.AppOptions.colors.c10v1,
 		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${theme.palette.background.paper}`,
 		color: AppConfigService.AppOptions.colors.c10v1,
 		'&::after': {
-			animation: '$ripple 1.2s infinite ease-in-out',
+			animation: 'ripple 1.2s infinite ease-in-out',
 			border: `${theme.typography.pxToRem(1)} solid currentColor`,
 			borderRadius: '50%',
 			content: '""',
@@ -20,11 +19,11 @@ export const BadgeStyle = makeStyles((theme: Theme) => ({
 			width: '100%'
 		}
 	},
-	sRed: {
+	'&.Mui-dot-red .MuiBadge-badge': {
 		backgroundColor: AppConfigService.AppOptions.colors.c12,
 		color: AppConfigService.AppOptions.colors.c12
 	},
-	sOrange: {
+	'&.Mui-dot-orange .MuiBadge-badge': {
 		backgroundColor: AppConfigService.AppOptions.colors.c14,
 		color: AppConfigService.AppOptions.colors.c14
 	},

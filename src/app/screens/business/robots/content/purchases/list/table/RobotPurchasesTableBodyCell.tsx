@@ -80,7 +80,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 				return momentFormat1(value);
 			} else if (RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE === column.id) {
 				const price = +value;
-				return price > 0 && purchase?.currency
+				return price > 0
 					? `${currencyFormat(price, purchase.currency, i18next.language)}`
 					: 0;
 			} else if (RobotPurchasesTableColumnsTypeEnum.COMMENT === column.id) {

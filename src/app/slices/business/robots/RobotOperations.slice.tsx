@@ -18,7 +18,7 @@ import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
 import { deserializeMap, deserializeMaps } from './RobotOperations.slice.deserialize';
-import { RobotTypeEnum } from './RobotOperations.slice.enum';
+import { RobotOperationsTypeEnum } from './RobotOperations.slice.enum';
 import {
 	SliceRobotOperationsInterface,
 	SRContentMapsInterface,
@@ -66,83 +66,83 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = true;
-			} else if (module === RobotTypeEnum.MAPS) {
+			} else if (module === RobotOperationsTypeEnum.MAPS) {
 				state.maps.loading = true;
-			} else if (module === RobotTypeEnum.MAP) {
+			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = true;
-			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = true;
-			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
+			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
-			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = true;
-			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = true;
-			} else if (module === RobotTypeEnum.REPORTS) {
+			} else if (module === RobotOperationsTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = false;
-			} else if (module === RobotTypeEnum.MAPS) {
+			} else if (module === RobotOperationsTypeEnum.MAPS) {
 				state.maps.loading = false;
 				state.maps.content = response;
-			} else if (module === RobotTypeEnum.MAP) {
+			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
-			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
-			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
+			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
-			} else if (module === RobotTypeEnum.REPORTS) {
+			} else if (module === RobotOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = false;
-			} else if (module === RobotTypeEnum.MAPS) {
+			} else if (module === RobotOperationsTypeEnum.MAPS) {
 				state.maps.loading = false;
 				state.maps.content = null;
-			} else if (module === RobotTypeEnum.MAP) {
+			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = null;
-			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
-			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
+			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
-			} else if (module === RobotTypeEnum.REPORTS) {
+			} else if (module === RobotOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
 		},
 		updating: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.MAPS) {
+			if (module === RobotOperationsTypeEnum.MAPS) {
 				state.maps.updating = true;
 			}
 		},
 		updated: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.MAPS) {
+			if (module === RobotOperationsTypeEnum.MAPS) {
 				state.maps.updating = false;
 				state.maps.content = response;
 			}
@@ -171,7 +171,7 @@ export const RobotNoteUpdate =
 	(robotId: string, payload: NoteFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.NOTE
+			module: RobotOperationsTypeEnum.NOTE
 		};
 
 		// dispatch: loading
@@ -224,7 +224,7 @@ export const RobotMapsFetch =
 		const states = getState();
 		const maps = states.robotOperations.maps;
 		const state = {
-			module: RobotTypeEnum.MAPS
+			module: RobotOperationsTypeEnum.MAPS
 		};
 
 		// return on busy
@@ -296,7 +296,7 @@ export const RobotMapsUpdateState =
 		const states = getState();
 		const maps = states.robotOperations.maps;
 		const state = {
-			module: RobotTypeEnum.MAPS
+			module: RobotOperationsTypeEnum.MAPS
 		};
 
 		// dispatch: updating
@@ -323,7 +323,7 @@ export const RobotMapFetch =
 		const states = getState();
 		const map = states.robotOperations.map;
 		const state = {
-			module: RobotTypeEnum.MAP
+			module: RobotOperationsTypeEnum.MAP
 		};
 
 		// return on busy
@@ -376,7 +376,7 @@ export const RobotControlCommandSend =
 	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.ROC_CONTROL
+			module: RobotOperationsTypeEnum.ROC_CONTROL
 		};
 
 		// dispatch: loading
@@ -423,7 +423,7 @@ export const RobotControlCommandSend =
 export const RobotCameraCommandRequest =
 	(camera: RobotDetailCameraTypeEnum, robotId: string) => async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.COMMAND_CAMERA
+			module: RobotOperationsTypeEnum.COMMAND_CAMERA
 		};
 
 		// dispatch: loading
@@ -468,7 +468,7 @@ export const RobotCameraCommandRequest =
  */
 export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch) => {
 	const state = {
-		module: RobotTypeEnum.SYNC_PRODUCTS
+		module: RobotOperationsTypeEnum.SYNC_PRODUCTS
 	};
 
 	// dispatch: loading
@@ -514,7 +514,7 @@ export const RobotConfigUpdate =
 	(robotId: string, payload: RobotConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.ROBOT_CONFIG
+			module: RobotOperationsTypeEnum.ROBOT_CONFIG
 		};
 
 		// dispatch: loading
@@ -566,7 +566,7 @@ export const RobotSiteConfigUpdate =
 	(robotId: string, payload: RobotSiteConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.ROBOT_SITE_CONFIG
+			module: RobotOperationsTypeEnum.ROBOT_SITE_CONFIG
 		};
 
 		// dispatch: loading
@@ -618,7 +618,7 @@ export const RobotReportsGenerate =
 	(robotId: string, payload: ReportFormInterface, callback: (report: string) => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.REPORTS
+			module: RobotOperationsTypeEnum.REPORTS
 		};
 
 		// dispatch: loading

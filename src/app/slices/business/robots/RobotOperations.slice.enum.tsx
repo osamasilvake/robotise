@@ -1,4 +1,4 @@
-export enum RobotTypeEnum {
+export enum RobotOperationsTypeEnum {
 	AUDIT_LOGS,
 	NOTE,
 	MAPS,

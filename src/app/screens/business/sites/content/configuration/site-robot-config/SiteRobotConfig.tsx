@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { SiteRobotConfigUpdate } from '../../../../../../slices/business/sites/Site.slice';
+import { SiteRobotConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
 import {
@@ -26,7 +26,7 @@ import {
 import { SiteRobotConfigStyle } from './SiteRobotConfig.style';
 
 const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
-	const { sites, site, robotTwinsSummary } = props;
+	const { sites, siteOperations, robotTwinsSummary } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteRobotConfigStyle();
 
@@ -92,9 +92,11 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 							<Button
 								variant="outlined"
 								type="submit"
-								disabled={site.siteRobotConfig.loading || !values.robotId}
+								disabled={siteOperations.siteRobotConfig.loading || !values.robotId}
 								endIcon={
-									site.siteRobotConfig.loading && <CircularProgress size={20} />
+									siteOperations.siteRobotConfig.loading && (
+										<CircularProgress size={20} />
+									)
 								}>
 								{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 							</Button>

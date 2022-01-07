@@ -5,7 +5,10 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
-import { RobotMapsFetch, robotSelector } from '../../../../../slices/business/robots/Robot.slice';
+import {
+	RobotMapsFetch,
+	robotOperationsSelector
+} from '../../../../../slices/business/robots/RobotOperations.slice';
 import {
 	WifiHeatmapDataFetch,
 	wifiHeatmapSelector
@@ -18,17 +21,19 @@ const SiteStatistics: FC = () => {
 	const classes = SiteStatisticsStyle();
 
 	const dispatch = useDispatch();
-	const robot = useSelector(robotSelector);
+	const robotOperations = useSelector(robotOperationsSelector);
 	const wifiHeatmap = useSelector(wifiHeatmapSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
-	const pWifiHeatmapSiteId = robot.maps.content?.state?.pSiteId;
+	const pWifiHeatmapSiteId = robotOperations.maps.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 
 	useEffect(() => {
-		const condition1 = robot.maps.content === null;
+		const condition1 = robotOperations.maps.content === null;
 		const condition2 =
-			robot.maps.content !== null && pWifiHeatmapSiteId && pWifiHeatmapSiteId !== cSiteId;
+			robotOperations.maps.content !== null &&
+			pWifiHeatmapSiteId &&
+			pWifiHeatmapSiteId !== cSiteId;
 
 		if (condition1 || condition2) {
 			// dispatch: fetch robot maps
@@ -46,18 +51,18 @@ const SiteStatistics: FC = () => {
 					})
 				);
 		}
-	}, [dispatch, robot.maps.content, pWifiHeatmapSiteId, cSiteId]);
+	}, [dispatch, robotOperations.maps.content, pWifiHeatmapSiteId, cSiteId]);
 
 	// loader
-	if (robot.maps.loading || wifiHeatmap.loader) {
+	if (robotOperations.maps.loading || wifiHeatmap.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	return (
 		<Box className={classes.sBox}>
 			{/* Wifi Heatmap */}
-			{robot.maps.content?.data && (
-				<SiteWifiHeatmap robot={robot} wifiHeatmap={wifiHeatmap} />
+			{robotOperations.maps.content?.data && (
+				<SiteWifiHeatmap robotOperations={robotOperations} wifiHeatmap={wifiHeatmap} />
 			)}
 		</Box>
 	);

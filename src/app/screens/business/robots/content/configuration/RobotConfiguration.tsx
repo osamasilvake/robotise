@@ -2,7 +2,7 @@ import { Box, Grid } from '@mui/material';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { robotSelector } from '../../../../../slices/business/robots/Robot.slice';
+import { robotOperationsSelector } from '../../../../../slices/business/robots/RobotOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import RobotConfig from './robot-config/RobotConfig';
@@ -15,19 +15,25 @@ const RobotConfiguration: FC = () => {
 
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
-	const robot = useSelector(robotSelector);
+	const robotOperations = useSelector(robotOperationsSelector);
 
 	return (
 		<Box className={classes.sBox}>
 			<Grid container spacing={1} className={classes.sGridMarginBottom}>
 				<Grid item xs={12} md={3}>
-					<SyncProducts robotTwinsSummary={robotTwinsSummary} robot={robot} />
+					<SyncProducts
+						robotTwinsSummary={robotTwinsSummary}
+						robotOperations={robotOperations}
+					/>
 				</Grid>
 			</Grid>
 
 			<Grid container spacing={1}>
 				<Grid item xs={12} md={6}>
-					<RobotConfig robotTwinsSummary={robotTwinsSummary} robot={robot} />
+					<RobotConfig
+						robotTwinsSummary={robotTwinsSummary}
+						robotOperations={robotOperations}
+					/>
 				</Grid>
 
 				{sites.content && (
@@ -35,7 +41,7 @@ const RobotConfiguration: FC = () => {
 						<RobotSiteConfig
 							sites={sites}
 							robotTwinsSummary={robotTwinsSummary}
-							robot={robot}
+							robotOperations={robotOperations}
 						/>
 					</Grid>
 				)}

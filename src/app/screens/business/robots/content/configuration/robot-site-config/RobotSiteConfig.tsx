@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { RobotSiteConfigUpdate } from '../../../../../../slices/business/robots/Robot.slice';
+import { RobotSiteConfigUpdate } from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
 import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
@@ -27,7 +27,7 @@ import {
 import { RobotSiteConfigStyle } from './RobotSiteConfig.style';
 
 const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
-	const { sites, robotTwinsSummary, robot } = props;
+	const { sites, robotTwinsSummary, robotOperations } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotSiteConfigStyle();
 
@@ -94,13 +94,15 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 								variant="outlined"
 								type="submit"
 								disabled={
-									robot.robotSiteConfig.loading ||
+									robotOperations.robotSiteConfig.loading ||
 									(!!values.siteId &&
 										sites.content?.dataById[values.siteId]?.id ===
 											robotTwinsSingle?.siteId)
 								}
 								endIcon={
-									robot.robotSiteConfig.loading && <CircularProgress size={20} />
+									robotOperations.robotSiteConfig.loading && (
+										<CircularProgress size={20} />
+									)
 								}>
 								{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 							</Button>

@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Picture from '../../../../../../components/common/picture/Picture';
 import {
 	RobotCameraCommandRequest,
-	robotSelector
-} from '../../../../../../slices/business/robots/Robot.slice';
+	robotOperationsSelector
+} from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotCameraImageUrl } from '../../../Robots.url';
@@ -22,7 +22,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
-	const robot = useSelector(robotSelector);
+	const robotOperations = useSelector(robotOperationsSelector);
 
 	const translation = 'CONTENT.DETAIL.CAMERAS';
 
@@ -69,9 +69,11 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleRequestRobotImage(cameraType)}
-					disabled={robot.camera.loading || !robotTwins.robotState.isReady.value}
+					disabled={
+						robotOperations.camera.loading || !robotTwins.robotState.isReady.value
+					}
 					endIcon={
-						robot.camera.loading &&
+						robotOperations.camera.loading &&
 						cameraType === currentCameraType && <CircularProgress size={20} />
 					}>
 					{t(`${translation}.REQUEST`)}

@@ -17,16 +17,16 @@ import { AppConfigService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { deserializeMap, deserializeMaps } from './Robot.slice.deserialize';
-import { RobotTypeEnum } from './Robot.slice.enum';
+import { deserializeMap, deserializeMaps } from './RobotOperations.slice.deserialize';
+import { RobotTypeEnum } from './RobotOperations.slice.enum';
 import {
-	SliceRobotInterface,
+	SliceRobotOperationsInterface,
 	SRContentMapsInterface,
-	SRContentMapsStateInterface
-} from './Robot.slice.interface';
+	SROContentMapsStateInterface
+} from './RobotOperations.slice.interface';
 
 // initial state
-export const initialState: SliceRobotInterface = {
+export const initialState: SliceRobotOperationsInterface = {
 	note: {
 		loading: false
 	},
@@ -61,7 +61,7 @@ export const initialState: SliceRobotInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Robot',
+	name: 'Robot Operations',
 	initialState,
 	reducers: {
 		loading: (state, action) => {
@@ -155,7 +155,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
-export const robotSelector = (state: AppReducerType) => state['robot'];
+export const robotOperationsSelector = (state: AppReducerType) => state['robotOperations'];
 
 // reducer
 export default dataSlice.reducer;
@@ -222,7 +222,7 @@ export const RobotMapsFetch =
 	(siteId: string, callback?: (res: SRContentMapsInterface) => void) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		const states = getState();
-		const maps = states.robot.maps;
+		const maps = states.robotOperations.maps;
 		const state = {
 			module: RobotTypeEnum.MAPS
 		};
@@ -290,11 +290,11 @@ export const RobotMapsFetch =
  * @returns
  */
 export const RobotMapsUpdateState =
-	(payload: SRContentMapsStateInterface) =>
+	(payload: SROContentMapsStateInterface) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();
-		const maps = states.robot.maps;
+		const maps = states.robotOperations.maps;
 		const state = {
 			module: RobotTypeEnum.MAPS
 		};
@@ -321,7 +321,7 @@ export const RobotMapsUpdateState =
 export const RobotMapFetch =
 	(mapId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		const states = getState();
-		const map = states.robot.map;
+		const map = states.robotOperations.map;
 		const state = {
 			module: RobotTypeEnum.MAP
 		};

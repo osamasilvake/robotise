@@ -12,7 +12,7 @@ import order from './business/robots/orders/Order.slice';
 import orders from './business/robots/orders/Orders.slice';
 import purchase from './business/robots/purchases/Purchase.slice';
 import purchases from './business/robots/purchases/Purchases.slice';
-import robot from './business/robots/Robot.slice';
+import robotOperations from './business/robots/RobotOperations.slice';
 import robotTwins from './business/robots/RobotTwins.slice';
 import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
 import notifications from './business/sites/configuration/Notifications.slice';
@@ -46,7 +46,7 @@ const combinedReducer = combineReducers({
 	wifiHeatmap,
 	robotTwinsSummary,
 	robotTwins,
-	robot,
+	robotOperations,
 	inventory,
 	orders,
 	order,

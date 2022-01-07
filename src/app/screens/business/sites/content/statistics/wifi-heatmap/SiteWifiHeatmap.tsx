@@ -14,8 +14,8 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 
 import { AppConfigService } from '../../../../../../services';
-import { RobotMapsUpdateState } from '../../../../../../slices/business/robots/Robot.slice';
-import { SRContentMapsStateInterface } from '../../../../../../slices/business/robots/Robot.slice.interface';
+import { RobotMapsUpdateState } from '../../../../../../slices/business/robots/RobotOperations.slice';
+import { SROContentMapsStateInterface } from '../../../../../../slices/business/robots/RobotOperations.slice.interface';
 import { WifiHeatmapDataFetch } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteWifiHeatmapInterface } from './SiteWifiHeatmap.interface';
@@ -23,14 +23,14 @@ import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
 import SiteWifiHeatmapCard from './SiteWifiHeatmapCard';
 
 const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
-	const { robot, wifiHeatmap } = props;
+	const { robotOperations, wifiHeatmap } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteWifiHeatmapStyle();
 
 	const dispatch = useDispatch();
 
-	const [floor, setFloor] = useState(robot.maps.content?.state?.floor);
-	const [name, setName] = useState(robot.maps.content?.state?.name);
+	const [floor, setFloor] = useState(robotOperations.maps.content?.state?.floor);
+	const [name, setName] = useState(robotOperations.maps.content?.state?.name);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
@@ -42,7 +42,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 	 */
 	const handleFloor = (event: SelectChangeEvent) => {
 		const floor = event.target.value;
-		const name = robot.maps.content?.data.find((f) => f.floor === floor)?.name;
+		const name = robotOperations.maps.content?.data.find((f) => f.floor === floor)?.name;
 
 		// set floor
 		setFloor(floor);
@@ -51,8 +51,8 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 		setName(name);
 
 		// dispatch: update state
-		const state: SRContentMapsStateInterface = {
-			...robot.maps.content?.state,
+		const state: SROContentMapsStateInterface = {
+			...robotOperations.maps.content?.state,
 			floor,
 			name
 		};
@@ -91,7 +91,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			</Typography>
 
 			{/* Floor */}
-			{!!robot.maps.content?.data?.length && (
+			{!!robotOperations.maps.content?.data?.length && (
 				<Grid container className={classes.sFloor}>
 					<Grid item xs={4}>
 						<FormControl fullWidth>
@@ -103,7 +103,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 								label={t(`${translation}.FLOOR`)}
 								value={String(floor)}
 								onChange={handleFloor}>
-								{robot.maps.content?.data.map((map) => (
+								{robotOperations.maps.content?.data.map((map) => (
 									<MenuItem key={map.name} value={map.floor}>
 										{map.floor}
 									</MenuItem>
@@ -115,7 +115,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			)}
 
 			{/* Empty */}
-			{!robot.maps.content?.data?.length && (
+			{!robotOperations.maps.content?.data?.length && (
 				<Typography variant="body2" className={classes.sEmpty}>
 					{t(`${translation}.EMPTY`)}
 				</Typography>
@@ -125,7 +125,11 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			{wifiHeatmap && name && (
 				<Grid container className={classes.sMap}>
 					<Grid item xs={6}>
-						<SiteWifiHeatmapCard robot={robot} wifiHeatmap={wifiHeatmap} name={name} />
+						<SiteWifiHeatmapCard
+							robotOperations={robotOperations}
+							wifiHeatmap={wifiHeatmap}
+							name={name}
+						/>
 					</Grid>
 				</Grid>
 			)}

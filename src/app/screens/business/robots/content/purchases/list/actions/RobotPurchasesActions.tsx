@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 
 import Report from '../../../../../../../components/common/report/Report';
 import {
-	RobotReportsGenerate,
-	robotSelector
-} from '../../../../../../../slices/business/robots/Robot.slice';
+	robotOperationsSelector,
+	RobotReportsGenerate
+} from '../../../../../../../slices/business/robots/RobotOperations.slice';
 import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchasesActionsSpeedDialTypeEnum } from './RobotPurchasesActions.enum';
@@ -25,7 +25,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const floatStyle = FloatStyle();
 	const classes = RobotPurchasesActionsStyle();
 
-	const robot = useSelector(robotSelector);
+	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [purchasesReport, setPurchasesReport] = useState(false);
 
@@ -79,7 +79,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				open={purchasesReport}
 				setOpen={setPurchasesReport}
 				filterId={cRobotId}
-				state={robot.reports}
+				state={robotOperations.reports}
 				GenerateReports={RobotReportsGenerate}
 			/>
 		</>

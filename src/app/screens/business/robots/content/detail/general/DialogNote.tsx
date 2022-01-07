@@ -17,8 +17,8 @@ import { useParams } from 'react-router-dom';
 
 import {
 	RobotNoteUpdate,
-	robotSelector
-} from '../../../../../../slices/business/robots/Robot.slice';
+	robotOperationsSelector
+} from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { NoteFormInterface, NoteInterface } from './RobotDetailGeneral.interface';
@@ -27,7 +27,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 	const { open, setOpen, note } = props;
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
-	const robot = useSelector(robotSelector);
+	const robotOperations = useSelector(robotOperationsSelector);
 	const dispatch = useDispatch();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
@@ -102,8 +102,8 @@ const DialogNote: FC<NoteInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={robot.note.loading}
-						endIcon={robot.note.loading && <CircularProgress size={20} />}>
+						disabled={robotOperations.note.loading}
+						endIcon={robotOperations.note.loading && <CircularProgress size={20} />}>
 						{t('BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>

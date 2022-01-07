@@ -2,11 +2,6 @@ export interface SliceRobotOperationsInterface {
 	note: {
 		loading: boolean;
 	};
-	maps: {
-		loading: boolean;
-		updating: boolean;
-		content: SRContentMapsInterface | null;
-	};
 	map: {
 		loading: boolean;
 		content: SROContentMapInterface | null;
@@ -31,11 +26,6 @@ export interface SliceRobotOperationsInterface {
 	};
 }
 
-export interface SRContentMapsInterface {
-	data: SROContentMapInterface[];
-	state?: SROContentMapsStateInterface;
-}
-
 export interface SROContentMapInterface {
 	floor: string;
 	imagePath: string;
@@ -44,10 +34,4 @@ export interface SROContentMapInterface {
 	resolution: number;
 	createdAt: Date;
 	updatedAt: Date;
-}
-
-export interface SROContentMapsStateInterface {
-	pSiteId?: string;
-	floor?: string;
-	name?: string;
 }

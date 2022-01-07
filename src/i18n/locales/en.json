@@ -160,8 +160,13 @@
 				}
 			},
 			"STATISTICS": {
-				"WIFI_HEATMAP": {
-					"ERROR": "Unable to fetch wifi heatmap data!"
+				"HEATMAP": {
+					"MAPS": {
+						"ERROR": "Unable to fetch wifi heatmap!"
+					},
+					"CONTENT": {
+						"ERROR": "Unable to fetch wifi heatmap content!"
+					}
 				}
 			},
 			"CONFIGURATION": {
@@ -210,9 +215,6 @@
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
 					"ERROR": "Unable to update note!"
-				},
-				"MAPS": {
-					"ERROR": "Failed to load maps!"
 				},
 				"MAP": {
 					"ERROR": "Failed to load map!"

@@ -15,7 +15,7 @@ import SiteWifiHeatmapCardLegend from './SiteWifiHeatmapCardLegend';
 import SiteWifiHeatmapCardPoints from './SiteWifiHeatmapCardPoints';
 
 const SiteWifiHeatmapCard: FC<SiteWifiHeatmapCardInterface> = (props) => {
-	const { robotOperations, wifiHeatmap, name } = props;
+	const { wifiHeatmap, name } = props;
 	const classes = SiteWifiHeatmapStyle();
 	const cardClasses = CardStyle();
 
@@ -28,7 +28,7 @@ const SiteWifiHeatmapCard: FC<SiteWifiHeatmapCardInterface> = (props) => {
 	const [points, setPoints] = useState<SiteWifiHeatmapCoordinatesInterface[] | null>();
 
 	useEffect(() => {
-		const map = robotOperations.maps.content?.data?.find((m) => m.name === name);
+		const map = wifiHeatmap.content?.maps?.data?.find((m) => m.name === name);
 		const origin = map?.origin;
 		const resolution = map?.resolution;
 		if (origin && resolution && ratio) {
@@ -50,7 +50,7 @@ const SiteWifiHeatmapCard: FC<SiteWifiHeatmapCardInterface> = (props) => {
 				setPoints([]);
 			}
 		}
-	}, [robotOperations.maps.content?.data, wifiHeatmap.content?.data, name, ratio]);
+	}, [wifiHeatmap.content, name, ratio]);
 
 	/**
 	 * on image load

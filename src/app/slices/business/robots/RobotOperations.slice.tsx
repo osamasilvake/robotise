@@ -13,27 +13,17 @@ import {
 } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
-import { AppConfigService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { deserializeMap, deserializeMaps } from './RobotOperations.slice.deserialize';
+import { deserializeMap } from './RobotOperations.slice.deserialize';
 import { RobotOperationsTypeEnum } from './RobotOperations.slice.enum';
-import {
-	SliceRobotOperationsInterface,
-	SRContentMapsInterface,
-	SROContentMapsStateInterface
-} from './RobotOperations.slice.interface';
+import { SliceRobotOperationsInterface } from './RobotOperations.slice.interface';
 
 // initial state
 export const initialState: SliceRobotOperationsInterface = {
 	note: {
 		loading: false
-	},
-	maps: {
-		loading: false,
-		updating: false,
-		content: null
 	},
 	map: {
 		loading: false,
@@ -68,8 +58,6 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = true;
-			} else if (module === RobotOperationsTypeEnum.MAPS) {
-				state.maps.loading = true;
 			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
@@ -90,9 +78,6 @@ const dataSlice = createSlice({
 			const { module, response } = action.payload;
 			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = false;
-			} else if (module === RobotOperationsTypeEnum.MAPS) {
-				state.maps.loading = false;
-				state.maps.content = response;
 			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
@@ -114,9 +99,6 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = false;
-			} else if (module === RobotOperationsTypeEnum.MAPS) {
-				state.maps.loading = false;
-				state.maps.content = null;
 			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = null;
@@ -134,25 +116,12 @@ const dataSlice = createSlice({
 				state.reports.loading = false;
 			}
 		},
-		updating: (state, action) => {
-			const { module } = action.payload;
-			if (module === RobotOperationsTypeEnum.MAPS) {
-				state.maps.updating = true;
-			}
-		},
-		updated: (state, action) => {
-			const { module, response } = action.payload;
-			if (module === RobotOperationsTypeEnum.MAPS) {
-				state.maps.updating = false;
-				state.maps.content = response;
-			}
-		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loading, success, failure, updating, updated, reset } = dataSlice.actions;
+export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const robotOperationsSelector = (state: AppReducerType) => state['robotOperations'];
@@ -210,107 +179,6 @@ export const RobotNoteUpdate =
 				// dispatch: failure
 				dispatch(failure(state));
 			});
-	};
-
-/**
- * fetch robot maps
- * @param siteId
- * @param callback
- * @returns
- */
-export const RobotMapsFetch =
-	(siteId: string, callback?: (res: SRContentMapsInterface) => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		const states = getState();
-		const maps = states.robotOperations.maps;
-		const state = {
-			module: RobotOperationsTypeEnum.MAPS
-		};
-
-		// return on busy
-		if (maps && maps.loading) {
-			return;
-		}
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return RobotsService.robotMapsFetch(siteId)
-			.then(async (res) => {
-				// deserialize response
-				let result: SRContentMapsInterface = await deserializeMaps(res);
-
-				// sort data
-				result = {
-					...result,
-					data: result.data.concat().sort((a, b) => {
-						const integer = AppConfigService.AppOptions.regex.integer;
-						return a && integer.test(a.floor) && integer.test(b.floor)
-							? +a.floor - +b.floor
-							: a.floor.localeCompare(b.floor);
-					})
-				};
-
-				// dispatch: success
-				dispatch(
-					success({
-						...state,
-						response: {
-							...result,
-							state: {
-								pSiteId: siteId,
-								floor: result?.data[0]?.floor,
-								name: result?.data[0]?.name
-							}
-						}
-					})
-				);
-
-				// callback
-				callback && callback(result);
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'robot-maps-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.DETAIL.MAPS.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
- * update state (maps)
- * @param state
- * @returns
- */
-export const RobotMapsUpdateState =
-	(payload: SROContentMapsStateInterface) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const maps = states.robotOperations.maps;
-		const state = {
-			module: RobotOperationsTypeEnum.MAPS
-		};
-
-		// dispatch: updating
-		dispatch(updating(state));
-
-		if (maps && maps.content) {
-			const result = {
-				...maps.content,
-				state: payload
-			};
-
-			// dispatch: updated
-			dispatch(updated({ ...state, response: result }));
-		}
 	};
 
 /**

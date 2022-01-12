@@ -72,13 +72,11 @@ const RobotDetail: FC = () => {
 		return <PageError message={robotTwins.errors?.text} />;
 	}
 
-	// null
-	if (!robotTwins.content || (pRobotId && pRobotId !== cRobotId)) {
-		return null;
-	}
+	// init
+	if (!robotTwins.init) return null;
 
 	// empty
-	if (!robotTwins.content.updatedAt) {
+	if (!robotTwins.content?.updatedAt) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

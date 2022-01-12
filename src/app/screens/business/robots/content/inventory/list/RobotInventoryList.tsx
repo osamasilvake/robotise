@@ -81,13 +81,11 @@ const RobotInventoryList: FC = () => {
 		return <PageError message={products.errors?.text || inventory.errors?.text} />;
 	}
 
-	// null
-	if (!inventory.content) {
-		return null;
-	}
+	// init
+	if (!inventory.init) return null;
 
 	// empty
-	if (!inventory.content.drawers.length) {
+	if (!inventory.content?.drawers.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

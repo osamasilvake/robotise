@@ -136,13 +136,11 @@ const RobotPurchasesList: FC = () => {
 		return <PageError message={purchases.errors?.text} />;
 	}
 
-	// null
-	if (!purchases.content) {
-		return null;
-	}
+	// init
+	if (!purchases.init) return null;
 
 	// empty
-	if (!purchases.content.data.length) {
+	if (!purchases.content?.data.length) {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}

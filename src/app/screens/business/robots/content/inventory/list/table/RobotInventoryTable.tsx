@@ -28,12 +28,12 @@ import {
 } from './RobotInventoryTable.interface';
 import { columns } from './RobotInventoryTable.list';
 import { mapStatus } from './RobotInventoryTable.map';
-import { RobotsInventoryTableStyle } from './RobotInventoryTable.style';
+import { RobotInventoryTableStyle } from './RobotInventoryTable.style';
 
 const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 	const { drawer, isLastDrawer } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotsInventoryTableStyle();
+	const classes = RobotInventoryTableStyle();
 
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);

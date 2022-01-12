@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { RobotProductsSync } from '../../../../../../slices/business/robots/Robot.slice';
+import { RobotProductsSync } from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { SyncProductsInterface } from './SyncProducts.interface';
 import { SyncProductsStyle } from './SyncProducts.style';
 
 const SyncProducts: FC<SyncProductsInterface> = (props) => {
-	const { robotTwinsSummary, robot } = props;
+	const { robotTwinsSummary, robotOperations } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = SyncProductsStyle();
 
@@ -46,8 +46,10 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 					variant="outlined"
 					className={classes.sButton}
 					onClick={handleSyncProducts}
-					disabled={!robotIsReady || robot.syncProducts.loading}
-					endIcon={robot.syncProducts.loading && <CircularProgress size={20} />}>
+					disabled={!robotIsReady || robotOperations.syncProducts.loading}
+					endIcon={
+						robotOperations.syncProducts.loading && <CircularProgress size={20} />
+					}>
 					{t(`${translation}.SYNC`)}
 				</Button>
 

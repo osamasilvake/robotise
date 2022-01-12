@@ -52,13 +52,11 @@ const RobotOrderDetail: FC = () => {
 		return <PageError message={order.errors.text} />;
 	}
 
-	// null
-	if (!order.content) {
-		return null;
-	}
+	// init
+	if (!order.init) return null;
 
 	// empty
-	if (!order.content.updatedAt) {
+	if (!order.content?.updatedAt) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

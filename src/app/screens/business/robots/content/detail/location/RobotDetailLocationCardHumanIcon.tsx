@@ -1,10 +1,10 @@
-import { Badge, Tooltip } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../../services';
-import { BadgeStyle } from '../../../../../../utilities/styles/Badge.style';
+import { StyledBadge } from '../../../../../../utilities/styles/Badge.style';
 import { RobotDetailLocationHumanLegTypeEnum } from './RobotDetailLocation.enum';
 import { RobotDetailLocationCardHumanIconInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
@@ -13,7 +13,6 @@ const RobotDetailLocationCardHumanIcon: FC<RobotDetailLocationCardHumanIconInter
 	const { humanCoords } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailLocationStyle();
-	const badgeClasses = BadgeStyle();
 
 	const translation = 'CONTENT.DETAIL.LOCATION.MAP.HUMAN_PERCEPTION';
 
@@ -24,7 +23,7 @@ const RobotDetailLocationCardHumanIcon: FC<RobotDetailLocationCardHumanIconInter
 					key={index}
 					title={t<string>(`${translation}.${coord.type}`)}
 					className={classes.sCardHumanTooltip}>
-					<Badge
+					<StyledBadge
 						variant="dot"
 						overlap="circular"
 						style={{
@@ -32,16 +31,12 @@ const RobotDetailLocationCardHumanIcon: FC<RobotDetailLocationCardHumanIconInter
 							left: coord.x,
 							bottom: coord.y
 						}}
-						classes={{
-							badge: clsx(badgeClasses.sDot, {
-								[badgeClasses.sRed]:
-									coord.type === RobotDetailLocationHumanLegTypeEnum.LEG_CLOSE,
-								[badgeClasses.sOrange]:
-									coord.type === RobotDetailLocationHumanLegTypeEnum.LEG_FAR
-							})
-						}}
-						className={classes.sCardHumanIcon}
-					/>
+						className={clsx(classes.sCardHumanIcon, {
+							['Mui-dot-red']:
+								coord.type === RobotDetailLocationHumanLegTypeEnum.LEG_CLOSE,
+							['Mui-dot-orange']:
+								coord.type === RobotDetailLocationHumanLegTypeEnum.LEG_FAR
+						})}></StyledBadge>
 				</Tooltip>
 			))}
 		</>

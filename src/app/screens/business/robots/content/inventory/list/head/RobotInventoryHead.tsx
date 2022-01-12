@@ -3,12 +3,12 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { RobotInventoryHeadInterface } from './RobotInventoryHead.interface';
-import { RobotsInventoryHeadStyle } from './RobotInventoryHead.style';
+import { RobotInventoryHeadStyle } from './RobotInventoryHead.style';
 
 const RobotInventoryHead: FC<RobotInventoryHeadInterface> = (props) => {
 	const { drawer } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotsInventoryHeadStyle();
+	const classes = RobotInventoryHeadStyle();
 
 	return (
 		<Box className={classes.sTitleBox}>

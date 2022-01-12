@@ -115,13 +115,11 @@ const RobotElevatorCallsList: FC = () => {
 		return <PageError message={elevatorCalls.errors?.text} />;
 	}
 
-	// null
-	if (!elevatorCalls.content) {
-		return null;
-	}
+	// init
+	if (!elevatorCalls.init) return null;
 
 	// empty
-	if (!elevatorCalls.content.data.length) {
+	if (!elevatorCalls.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

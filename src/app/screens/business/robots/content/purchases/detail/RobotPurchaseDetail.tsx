@@ -37,13 +37,11 @@ const RobotPurchaseDetail: FC = () => {
 		return <PageError message={purchase.errors.text} />;
 	}
 
-	// null
-	if (!purchase.content) {
-		return null;
-	}
+	// init
+	if (!purchase.init) return null;
 
 	// empty
-	if (!purchase.content.updatedAt) {
+	if (!purchase.content?.updatedAt) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

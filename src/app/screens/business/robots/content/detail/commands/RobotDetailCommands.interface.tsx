@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 
-import { SliceRobotInterface } from '../../../../../../slices/business/robots/Robot.slice.interface';
+import { SliceRobotOperationsInterface } from '../../../../../../slices/business/robots/RobotOperations.slice.interface';
 import { SRTContentDataInterface } from '../../../../../../slices/business/robots/RobotTwins.slice.interface';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -28,7 +28,7 @@ export interface RobotDetailCommandsPayloadInterface {
 
 export interface RobotDetailCommandControlInterface {
 	robotTwins: SRTContentDataInterface;
-	robot: SliceRobotInterface;
+	robotOperations: SliceRobotOperationsInterface;
 	state: RobotDetailCommandsStateInterface;
 	sendControlCommand: (
 		payload: RobotDetailCommandsPayloadInterface
@@ -36,7 +36,7 @@ export interface RobotDetailCommandControlInterface {
 }
 
 export interface RobotDetailCommandMuteSensorsInterface {
-	robot: SliceRobotInterface;
+	robotOperations: SliceRobotOperationsInterface;
 	state: RobotDetailCommandsStateInterface;
 	sendControlCommand: (
 		payload: RobotDetailCommandsPayloadInterface
@@ -44,7 +44,7 @@ export interface RobotDetailCommandMuteSensorsInterface {
 }
 
 export interface RobotDetailCommandActionsInterface {
-	robot: SliceRobotInterface;
+	robotOperations: SliceRobotOperationsInterface;
 	state: RobotDetailCommandsStateInterface;
 	sendControlCommand: (
 		payload: RobotDetailCommandsPayloadInterface

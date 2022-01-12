@@ -11,7 +11,7 @@ import { RobotDetailCommandControlInterface } from './RobotDetailCommands.interf
 import { RobotDetailCommandsStyle } from './RobotDetailCommands.style';
 
 const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props) => {
-	const { robotTwins, robot, state, sendControlCommand } = props;
+	const { robotTwins, robotOperations, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyle();
 
@@ -28,7 +28,7 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 					{t(`${translation}.TITLE`)}
 				</Typography>
 
-				{robot.control.loading && (
+				{robotOperations.control.loading && (
 					<Box component="span" className={classes.sCommandsControlLoading}>
 						{<CircularProgress size={20} />}
 					</Box>
@@ -38,7 +38,12 @@ const RobotDetailCommandControl: FC<RobotDetailCommandControlInterface> = (props
 			<ButtonGroup
 				color="primary"
 				variant="outlined"
-				disabled={!state.ready || state.forward || state.backward || robot.control.loading}>
+				disabled={
+					!state.ready ||
+					state.forward ||
+					state.backward ||
+					robotOperations.control.loading
+				}>
 				<Button
 					className={clsx({
 						['selected']: state.control

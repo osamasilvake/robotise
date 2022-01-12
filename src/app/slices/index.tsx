@@ -12,7 +12,7 @@ import order from './business/robots/orders/Order.slice';
 import orders from './business/robots/orders/Orders.slice';
 import purchase from './business/robots/purchases/Purchase.slice';
 import purchases from './business/robots/purchases/Purchases.slice';
-import robot from './business/robots/Robot.slice';
+import robotOperations from './business/robots/RobotOperations.slice';
 import robotTwins from './business/robots/RobotTwins.slice';
 import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
 import notifications from './business/sites/configuration/Notifications.slice';
@@ -21,7 +21,7 @@ import phoneCalls from './business/sites/phone-calls/PhoneCalls.slice';
 import phoneConfigs from './business/sites/phone-configs/PhoneConfigs.slice';
 import products from './business/sites/products/Products.slice';
 import rooms from './business/sites/rooms/Rooms.slice';
-import site from './business/sites/Site.slice';
+import siteOperations from './business/sites/SiteOperations.slice';
 import sites from './business/sites/Sites.slice';
 import wifiHeatmap from './business/sites/statistics/WifiHeatmap.slice';
 import general from './general/General.slice';
@@ -36,7 +36,7 @@ const combinedReducer = combineReducers({
 	emails,
 	email,
 	sites,
-	site,
+	siteOperations,
 	products,
 	rooms,
 	notifications,
@@ -46,7 +46,7 @@ const combinedReducer = combineReducers({
 	wifiHeatmap,
 	robotTwinsSummary,
 	robotTwins,
-	robot,
+	robotOperations,
 	inventory,
 	orders,
 	order,

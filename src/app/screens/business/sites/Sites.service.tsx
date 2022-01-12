@@ -157,12 +157,12 @@ class SitesService {
 	};
 
 	/**
-	 * fetch wifi data for heatmap
+	 * fetch wifi heatmap
 	 * @param siteId
 	 * @param payload
 	 * @returns
 	 */
-	siteWifiHeatmapDataFetch = (siteId: string, payload: SiteWifiHeatmapPayloadInterface) => {
+	siteWifiHeatmapFetch = (siteId: string, payload: SiteWifiHeatmapPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.STATISTICS.WIFI_HEATMAP;
 		return HttpClientService.get<SiteWifiHeatmapAxiosGetInterface>(url, {
 			params: {

@@ -1,7 +1,6 @@
 import { Close, Menu, PowerSettingsNew } from '@mui/icons-material';
 import {
 	Avatar,
-	Badge,
 	Box,
 	IconButton,
 	List,
@@ -23,7 +22,7 @@ import { Link } from 'react-router-dom';
 import { AppConfigService } from '../../../services';
 import { AuthLogout, authSelector } from '../../../slices/authentication/Auth.slice';
 import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
-import { BadgeStyle } from '../../../utilities/styles/Badge.style';
+import { StyledBadge } from '../../../utilities/styles/Badge.style';
 import { AccountStyle } from './Account.style';
 import Language from './language/Language';
 import ThemePalette from './theme/Theme';
@@ -31,7 +30,6 @@ import ThemePalette from './theme/Theme';
 const Account: FC = () => {
 	const { t } = useTranslation(['ACCOUNT', 'TOOLTIP']);
 	const classes = AccountStyle();
-	const badgeClasses = BadgeStyle();
 
 	const dispatch = useDispatch();
 	const auth = useSelector(authSelector);
@@ -93,19 +91,18 @@ const Account: FC = () => {
 					<Box>
 						{/* Account */}
 						<IconButton onClick={handleMenuOpen} className={classes.sButton}>
-							<Badge
+							<StyledBadge
 								variant="dot"
 								overlap="circular"
 								anchorOrigin={{
 									vertical: 'bottom',
 									horizontal: 'right'
-								}}
-								classes={{ badge: badgeClasses.sDot }}>
+								}}>
 								<Avatar
 									src={AppConfigService.AppImageURLs.avatar.path}
 									alt={AppConfigService.AppImageURLs.avatar.name}
 								/>
-							</Badge>
+							</StyledBadge>
 							<Box className={classes.sDetail}>
 								<Typography variant="subtitle2" color="textPrimary">
 									{auth.user?.data.display_name}

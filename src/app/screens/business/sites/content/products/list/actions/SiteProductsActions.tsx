@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 
 import Report from '../../../../../../../components/common/report/Report';
 import {
-	SiteReportsGenerate,
-	siteSelector
-} from '../../../../../../../slices/business/sites/Site.slice';
+	siteOperationsSelector,
+	SiteReportsGenerate
+} from '../../../../../../../slices/business/sites/SiteOperations.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditProduct from '../table/DialogCreateEditProduct';
 import { SiteProductCreateEditTypeEnum } from '../table/SiteProductsTable.enum';
@@ -21,7 +21,7 @@ const SiteProductsActions: FC = () => {
 	const { t } = useTranslation('SITES');
 	const classes = SiteProductsActionsStyle();
 
-	const site = useSelector(siteSelector);
+	const siteOperations = useSelector(siteOperationsSelector);
 
 	const [createProduct, setCreateProduct] = useState(false);
 	const [productsReport, setProductsReport] = useState(false);
@@ -75,7 +75,7 @@ const SiteProductsActions: FC = () => {
 				open={productsReport}
 				setOpen={setProductsReport}
 				filterId={cSiteId}
-				state={site.reports}
+				state={siteOperations.reports}
 				GenerateReports={SiteReportsGenerate}
 			/>
 		</>

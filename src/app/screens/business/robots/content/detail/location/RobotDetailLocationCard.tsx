@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
 import { PictureOnLoadInterface } from '../../../../../../components/common/picture/Picture.interface';
-import { RobotMapFetch, robotSelector } from '../../../../../../slices/business/robots/Robot.slice';
+import {
+	RobotMapFetch,
+	robotOperationsSelector
+} from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotLocationImageUrl } from '../../../Robots.url';
 import { RobotDetailLocationHumanLegTypeEnum } from './RobotDetailLocation.enum';
@@ -26,7 +29,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch();
-	const robot = useSelector(robotSelector);
+	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [ratio, setRatio] = useState<RobotDetailLocationCardRatioInterface>({
 		x: 0,
@@ -43,7 +46,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	>([]);
 
 	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
-	const robotMapName = robot.map.content?.name || '';
+	const robotMapName = robotOperations.map.content?.name || '';
 
 	useEffect(() => {
 		if (robotTwinsMapName !== robotMapName) {
@@ -53,8 +56,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	}, [dispatch, robotTwinsMapName, robotMapName]);
 
 	useEffect(() => {
-		const origin = robot.map.content?.origin;
-		const resolution = robot.map.content?.resolution;
+		const origin = robotOperations.map.content?.origin;
+		const resolution = robotOperations.map.content?.resolution;
 
 		if (origin && resolution && ratio) {
 			// planned path coordinates
@@ -100,7 +103,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		}
 	}, [
 		ratio,
-		robot.map.content,
+		robotOperations.map.content,
 		robotTwins.plannedPath?.properties.points,
 		robotTwins.location?.value,
 		robotTwins.humanPerception?.properties.legsClose,
@@ -120,7 +123,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		});
 	}, []);
 
-	return robot.map && !robot.map.loading ? (
+	return robotOperations.map && !robotOperations.map.loading ? (
 		<Grid item sm={12} md={6}>
 			<Card square elevation={1} className={classes.sCard}>
 				<CardContent className={cardClasses.sCardContent0}>

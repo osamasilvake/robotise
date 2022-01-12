@@ -11,7 +11,7 @@ import { rotateAngles, translateDistances } from './RobotDetailCommands.list';
 import { RobotDetailCommandsStyle } from './RobotDetailCommands.style';
 
 const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props) => {
-	const { robot, state, sendControlCommand } = props;
+	const { robotOperations, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyle();
 
@@ -40,7 +40,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						!state.control ||
 						state.forward ||
 						state.backward ||
-						robot.control.loading
+						robotOperations.control.loading
 					}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="label-rotate">{t(`${translation}.ROTATE.LABEL`)}</InputLabel>
@@ -71,14 +71,14 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						!state.control ||
 						state.forward ||
 						state.backward ||
-						robot.control.loading
+						robotOperations.control.loading
 					}>
 					{t(`${translation}.ROTATE.BUTTON`)}
 				</Button>
 			</Box>
 			<Box className={classes.sCommandsActionTranslateBox}>
 				<FormControl
-					disabled={!state.ready || !state.control || robot.control.loading}
+					disabled={!state.ready || !state.control || robotOperations.control.loading}
 					className={classes.sCommandsActionSelect}>
 					<InputLabel id="labe-translate">
 						{t(`${translation}.TRANSLATE.LABEL`)}
@@ -118,7 +118,7 @@ const RobotDetailCommandActions: FC<RobotDetailCommandActionsInterface> = (props
 						translate === translateDistances[4].value ||
 						!state.ready ||
 						!state.control ||
-						robot.control.loading
+						robotOperations.control.loading
 					}>
 					{t(`${translation}.TRANSLATE.BUTTON`)}
 				</Button>

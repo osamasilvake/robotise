@@ -13,14 +13,14 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { SiteOrdersAccept } from '../../../../../../slices/business/sites/Site.slice';
+import { SiteOrdersAccept } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { AcceptOrdersInterface } from './AcceptOrders.interface';
 import { AcceptOrdersStyle } from './AcceptOrders.style';
 
 const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
-	const { sites, site } = props;
+	const { sites, siteOperations } = props;
 	const { t } = useTranslation('SITES');
 	const classes = AcceptOrdersStyle();
 
@@ -51,7 +51,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 	return (
 		<Card square elevation={1}>
 			<CardContent className={clsx(classes.sContent)}>
-				{site.acceptOrders.loading && (
+				{siteOperations.acceptOrders.loading && (
 					<Box className={classes.sLoader}>
 						<CircularProgress size={20} />
 					</Box>
@@ -66,7 +66,7 @@ const AcceptOrders: FC<AcceptOrdersInterface> = (props) => {
 
 				<Box className={classes.sBox}>
 					<FormControlLabel
-						disabled={site.acceptOrders.loading}
+						disabled={siteOperations.acceptOrders.loading}
 						control={
 							<Switch
 								name="acceptOrders"

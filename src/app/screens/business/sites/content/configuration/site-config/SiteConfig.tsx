@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { SiteConfigUpdate } from '../../../../../../slices/business/sites/Site.slice';
+import { SiteConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
@@ -28,7 +28,7 @@ import { SiteConfigFormInterface, SiteConfigInterface } from './SiteConfig.inter
 import { SiteConfigStyle } from './SiteConfig.style';
 
 const SiteConfig: FC<SiteConfigInterface> = (props) => {
-	const { sites, site } = props;
+	const { sites, siteOperations } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigStyle();
 
@@ -101,11 +101,15 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								variant="outlined"
 								type="submit"
 								disabled={
-									site.siteConfig.loading ||
+									siteOperations.siteConfig.loading ||
 									(!!errors && !validateEmptyObj(errors)) ||
 									validateEmptyObjProperty(values)
 								}
-								endIcon={site.siteConfig.loading && <CircularProgress size={20} />}>
+								endIcon={
+									siteOperations.siteConfig.loading && (
+										<CircularProgress size={20} />
+									)
+								}>
 								{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 							</Button>
 						</Grid>

@@ -1,4 +1,4 @@
-import { Dangerous, ExpandLess, ExpandMore, Warning } from '@mui/icons-material';
+import { Dangerous, ExpandLess, ExpandMore, Report } from '@mui/icons-material';
 import {
 	alpha,
 	Chip,
@@ -130,7 +130,7 @@ const RobotDetailSafetySystems: FC<RobotDetailSafetySystemsInterface> = (props) 
 						size="small"
 						label={warnings}
 						color="warning"
-						icon={<Warning />}
+						icon={<Report />}
 						className={classes.sListChip}
 					/>
 				)}

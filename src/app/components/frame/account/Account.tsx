@@ -1,7 +1,6 @@
 import { Close, Menu, PowerSettingsNew } from '@mui/icons-material';
 import {
 	Avatar,
-	Badge,
 	Box,
 	IconButton,
 	List,

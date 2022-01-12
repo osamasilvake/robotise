@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
 	RobotControlCommandSend,
-	robotSelector
-} from '../../../../../../slices/business/robots/Robot.slice';
+	robotOperationsSelector
+} from '../../../../../../slices/business/robots/RobotOperations.slice';
 import RobotDetailCommandActions from './RobotDetailCommandActions';
 import RobotDetailCommandControl from './RobotDetailCommandControl';
 import RobotDetailCommandMuteSensors from './RobotDetailCommandMuteSensors';
@@ -21,7 +21,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 	const classes = RobotDetailCommandsStyle();
 
 	const dispatch = useDispatch();
-	const robot = useSelector(robotSelector);
+	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [state, setState] = useState({
 		ready: robotTwins.robotState.isReady.value,
@@ -81,21 +81,21 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 			{/* Control */}
 			<RobotDetailCommandControl
 				robotTwins={robotTwins}
-				robot={robot}
+				robotOperations={robotOperations}
 				state={state}
 				sendControlCommand={sendControlCommand}
 			/>
 
 			{/* Mute Sensors */}
 			<RobotDetailCommandMuteSensors
-				robot={robot}
+				robotOperations={robotOperations}
 				state={state}
 				sendControlCommand={sendControlCommand}
 			/>
 
 			{/* Actions */}
 			<RobotDetailCommandActions
-				robot={robot}
+				robotOperations={robotOperations}
 				state={state}
 				sendControlCommand={sendControlCommand}
 			/>

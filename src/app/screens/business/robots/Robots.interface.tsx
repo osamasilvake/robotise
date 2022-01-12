@@ -3,7 +3,7 @@ import { ECCDataInterface } from '../../../slices/business/robots/elevator-calls
 import { SICDrawerInterface } from '../../../slices/business/robots/inventory/Inventory.slice.interface';
 import { SOCDataInterface } from '../../../slices/business/robots/orders/Orders.slice.interface';
 import { SPCDataInterface } from '../../../slices/business/robots/purchases/Purchases.slice.interface';
-import { SRContentMapInterface } from '../../../slices/business/robots/Robot.slice.interface';
+import { SROContentMapInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { IRobotTwinInterface } from '../../../slices/business/robots/RobotTwins.slice.interface';
 import { IRobotTwinSummaryInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { JsonAPIResponseInterface } from '../../../slices/JsonAPI.interface';
@@ -29,7 +29,7 @@ export interface RobotMapsAxiosGetInterface {
 	data: {
 		id: string;
 		type: string;
-		attributes: SRContentMapInterface;
+		attributes: SROContentMapInterface;
 	}[];
 }
 
@@ -37,7 +37,7 @@ export interface RobotMapAxiosGetInterface {
 	data: {
 		id: string;
 		type: string;
-		attributes: SRContentMapInterface;
+		attributes: SROContentMapInterface;
 	};
 }
 

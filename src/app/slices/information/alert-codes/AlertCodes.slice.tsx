@@ -15,6 +15,7 @@ import { deserializeAlertCodes } from './AlertCodes.slice.deserialize';
 
 // initial state
 export const initialState: SliceAlertCodesInterface = {
+	init: false,
 	loader: false,
 	loading: false,
 	content: null,
@@ -33,12 +34,14 @@ const dataSlice = createSlice({
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = null;
@@ -87,7 +90,7 @@ export const AlertCodesFetchList =
 				// deserialize response
 				let result: SACContentInterface = await deserializeAlertCodes(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: payload

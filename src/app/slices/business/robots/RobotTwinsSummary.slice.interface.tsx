@@ -2,6 +2,7 @@ import { TriggerMessageInterface } from '../../../components/frame/message/Messa
 import { IAlertInterface } from './RobotTwins.slice.interface';
 
 export interface SliceRobotTwinsSummaryInterface {
+	init: boolean;
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;

@@ -24,6 +24,7 @@ import { deserializeDeepLinks } from './DeepLinks.slice.deserialize';
 
 // initial state
 export const initialState: SliceDeepLinksInterface = {
+	init: false,
 	loader: false,
 	loading: false,
 	updating: false,
@@ -43,12 +44,14 @@ const dataSlice = createSlice({
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = null;
@@ -107,7 +110,7 @@ export const DeepLinksFetchList =
 				// deserialize response
 				let result: SDLContentInterface = await deserializeDeepLinks(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: payload

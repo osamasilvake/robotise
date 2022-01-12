@@ -9,6 +9,7 @@ import { PCContentInterface, SlicePhoneConfigsInterface } from './PhoneConfigs.s
 
 // initial state
 export const initialState: SlicePhoneConfigsInterface = {
+	init: false,
 	loader: false,
 	loading: false,
 	content: null,
@@ -27,12 +28,14 @@ const dataSlice = createSlice({
 			state.loading = true;
 		},
 		success: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.loading = false;
 			state.content = null;
@@ -78,7 +81,7 @@ export const PhoneConfigsFetch =
 				// deserialize response
 				let result: PCContentInterface = await deserializePhoneConfigs(res);
 
-				// state
+				// set state
 				result = {
 					...result,
 					state: {

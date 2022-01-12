@@ -179,7 +179,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 						},
 						updatedAt: meta.status?.computerInfo?.updatedAt
 					},
-					plannedPath: {
+					plannedPath: state.plannedPath && {
 						properties: {
 							mapName: state.plannedPath.mapName,
 							goal: state.plannedPath.goal,

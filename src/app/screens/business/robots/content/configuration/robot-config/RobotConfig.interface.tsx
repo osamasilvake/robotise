@@ -1,9 +1,9 @@
-import { SliceRobotInterface } from '../../../../../../slices/business/robots/Robot.slice.interface';
+import { SliceRobotOperationsInterface } from '../../../../../../slices/business/robots/RobotOperations.slice.interface';
 import { SliceRobotTwinsSummaryInterface } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 
 export interface RobotConfigInterface {
 	robotTwinsSummary: SliceRobotTwinsSummaryInterface;
-	robot: SliceRobotInterface;
+	robotOperations: SliceRobotOperationsInterface;
 }
 
 export interface RobotConfigFormInterface {

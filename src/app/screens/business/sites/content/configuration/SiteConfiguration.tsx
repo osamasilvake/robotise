@@ -14,7 +14,7 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../../../slices/business/sites/configuration/ServicePositions.slice';
-import { siteSelector } from '../../../../../slices/business/sites/Site.slice';
+import { siteOperationsSelector } from '../../../../../slices/business/sites/SiteOperations.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import AcceptOrders from './accept-orders/AcceptOrders';
@@ -29,7 +29,7 @@ const SiteConfiguration: FC = () => {
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
-	const site = useSelector(siteSelector);
+	const siteOperations = useSelector(siteOperationsSelector);
 	const notifications = useSelector(notificationsSelector);
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
@@ -63,20 +63,20 @@ const SiteConfiguration: FC = () => {
 		<Box className={classes.sBox}>
 			<Grid container spacing={1} className={classes.sGridMarginBottom}>
 				<Grid item xs={12} md={3}>
-					<AcceptOrders sites={sites} site={site} />
+					<AcceptOrders sites={sites} siteOperations={siteOperations} />
 				</Grid>
 			</Grid>
 
 			<Grid container spacing={1} className={classes.sGridMarginBottom}>
 				<Grid item xs={12} md={6}>
-					<SiteConfig sites={sites} site={site} />
+					<SiteConfig sites={sites} siteOperations={siteOperations} />
 				</Grid>
 
 				{robotTwinsSummary.content && (
 					<Grid item xs={12} md={6}>
 						<SiteRobotConfig
 							sites={sites}
-							site={site}
+							siteOperations={siteOperations}
 							robotTwinsSummary={robotTwinsSummary}
 						/>
 					</Grid>

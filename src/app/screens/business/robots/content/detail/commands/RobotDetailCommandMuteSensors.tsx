@@ -11,7 +11,7 @@ import { RobotDetailCommandMuteSensorsInterface } from './RobotDetailCommands.in
 import { RobotDetailCommandsStyle } from './RobotDetailCommands.style';
 
 const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> = (props) => {
-	const { robot, state, sendControlCommand } = props;
+	const { robotOperations, state, sendControlCommand } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailCommandsStyle();
 
@@ -28,7 +28,7 @@ const RobotDetailCommandMuteSensors: FC<RobotDetailCommandMuteSensorsInterface> 
 			<ButtonGroup
 				color="primary"
 				variant="outlined"
-				disabled={!state.ready || !state.control || robot.control.loading}>
+				disabled={!state.ready || !state.control || robotOperations.control.loading}>
 				{/* Front */}
 				<Button
 					className={clsx({

@@ -13,27 +13,17 @@ import {
 } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
-import { AppConfigService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { deserializeMap, deserializeMaps } from './Robot.slice.deserialize';
-import { RobotTypeEnum } from './Robot.slice.enum';
-import {
-	SliceRobotInterface,
-	SRContentMapsInterface,
-	SRContentMapsStateInterface
-} from './Robot.slice.interface';
+import { deserializeMap } from './RobotOperations.slice.deserialize';
+import { RobotOperationsTypeEnum } from './RobotOperations.slice.enum';
+import { SliceRobotOperationsInterface } from './RobotOperations.slice.interface';
 
 // initial state
-export const initialState: SliceRobotInterface = {
+export const initialState: SliceRobotOperationsInterface = {
 	note: {
 		loading: false
-	},
-	maps: {
-		loading: false,
-		updating: false,
-		content: null
 	},
 	map: {
 		loading: false,
@@ -61,90 +51,69 @@ export const initialState: SliceRobotInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Robot',
+	name: 'Robot Operations',
 	initialState,
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = true;
-			} else if (module === RobotTypeEnum.MAPS) {
-				state.maps.loading = true;
-			} else if (module === RobotTypeEnum.MAP) {
+			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = true;
-			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = true;
-			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
+			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
-			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = true;
-			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = true;
-			} else if (module === RobotTypeEnum.REPORTS) {
+			} else if (module === RobotOperationsTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = false;
-			} else if (module === RobotTypeEnum.MAPS) {
-				state.maps.loading = false;
-				state.maps.content = response;
-			} else if (module === RobotTypeEnum.MAP) {
+			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = response;
-			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
-			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
+			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
-			} else if (module === RobotTypeEnum.REPORTS) {
+			} else if (module === RobotOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module } = action.payload;
-			if (module === RobotTypeEnum.NOTE) {
+			if (module === RobotOperationsTypeEnum.NOTE) {
 				state.note.loading = false;
-			} else if (module === RobotTypeEnum.MAPS) {
-				state.maps.loading = false;
-				state.maps.content = null;
-			} else if (module === RobotTypeEnum.MAP) {
+			} else if (module === RobotOperationsTypeEnum.MAP) {
 				state.map.loading = false;
 				state.map.content = null;
-			} else if (module === RobotTypeEnum.ROC_CONTROL) {
+			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
-			} else if (module === RobotTypeEnum.COMMAND_CAMERA) {
+			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === RobotTypeEnum.ROBOT_SITE_CONFIG) {
+			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
-			} else if (module === RobotTypeEnum.REPORTS) {
+			} else if (module === RobotOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
-			}
-		},
-		updating: (state, action) => {
-			const { module } = action.payload;
-			if (module === RobotTypeEnum.MAPS) {
-				state.maps.updating = true;
-			}
-		},
-		updated: (state, action) => {
-			const { module, response } = action.payload;
-			if (module === RobotTypeEnum.MAPS) {
-				state.maps.updating = false;
-				state.maps.content = response;
 			}
 		},
 		reset: () => initialState
@@ -152,10 +121,10 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loading, success, failure, updating, updated, reset } = dataSlice.actions;
+export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const robotSelector = (state: AppReducerType) => state['robot'];
+export const robotOperationsSelector = (state: AppReducerType) => state['robotOperations'];
 
 // reducer
 export default dataSlice.reducer;
@@ -171,7 +140,7 @@ export const RobotNoteUpdate =
 	(robotId: string, payload: NoteFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.NOTE
+			module: RobotOperationsTypeEnum.NOTE
 		};
 
 		// dispatch: loading
@@ -213,107 +182,6 @@ export const RobotNoteUpdate =
 	};
 
 /**
- * fetch robot maps
- * @param siteId
- * @param callback
- * @returns
- */
-export const RobotMapsFetch =
-	(siteId: string, callback?: (res: SRContentMapsInterface) => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		const states = getState();
-		const maps = states.robot.maps;
-		const state = {
-			module: RobotTypeEnum.MAPS
-		};
-
-		// return on busy
-		if (maps && maps.loading) {
-			return;
-		}
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return RobotsService.robotMapsFetch(siteId)
-			.then(async (res) => {
-				// deserialize response
-				let result: SRContentMapsInterface = await deserializeMaps(res);
-
-				// sort
-				result = {
-					...result,
-					data: result.data.concat().sort((a, b) => {
-						const integer = AppConfigService.AppOptions.regex.integer;
-						return a && integer.test(a.floor) && integer.test(b.floor)
-							? +a.floor - +b.floor
-							: a.floor.localeCompare(b.floor);
-					})
-				};
-
-				// dispatch: success
-				dispatch(
-					success({
-						...state,
-						response: {
-							...result,
-							state: {
-								pSiteId: siteId,
-								floor: result?.data[0]?.floor,
-								name: result?.data[0]?.name
-							}
-						}
-					})
-				);
-
-				// callback
-				callback && callback(result);
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'robot-maps-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.DETAIL.MAPS.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
- * update state (maps)
- * @param state
- * @returns
- */
-export const RobotMapsUpdateState =
-	(payload: SRContentMapsStateInterface) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const maps = states.robot.maps;
-		const state = {
-			module: RobotTypeEnum.MAPS
-		};
-
-		// dispatch: updating
-		dispatch(updating(state));
-
-		if (maps && maps.content) {
-			const result = {
-				...maps.content,
-				state: payload
-			};
-
-			// dispatch: updated
-			dispatch(updated({ ...state, response: result }));
-		}
-	};
-
-/**
  * fetch robot map
  * @param mapId
  * @returns
@@ -321,9 +189,9 @@ export const RobotMapsUpdateState =
 export const RobotMapFetch =
 	(mapId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		const states = getState();
-		const map = states.robot.map;
+		const map = states.robotOperations.map;
 		const state = {
-			module: RobotTypeEnum.MAP
+			module: RobotOperationsTypeEnum.MAP
 		};
 
 		// return on busy
@@ -376,7 +244,7 @@ export const RobotControlCommandSend =
 	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.ROC_CONTROL
+			module: RobotOperationsTypeEnum.ROC_CONTROL
 		};
 
 		// dispatch: loading
@@ -423,7 +291,7 @@ export const RobotControlCommandSend =
 export const RobotCameraCommandRequest =
 	(camera: RobotDetailCameraTypeEnum, robotId: string) => async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.COMMAND_CAMERA
+			module: RobotOperationsTypeEnum.COMMAND_CAMERA
 		};
 
 		// dispatch: loading
@@ -468,7 +336,7 @@ export const RobotCameraCommandRequest =
  */
 export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch) => {
 	const state = {
-		module: RobotTypeEnum.SYNC_PRODUCTS
+		module: RobotOperationsTypeEnum.SYNC_PRODUCTS
 	};
 
 	// dispatch: loading
@@ -514,7 +382,7 @@ export const RobotConfigUpdate =
 	(robotId: string, payload: RobotConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.ROBOT_CONFIG
+			module: RobotOperationsTypeEnum.ROBOT_CONFIG
 		};
 
 		// dispatch: loading
@@ -566,7 +434,7 @@ export const RobotSiteConfigUpdate =
 	(robotId: string, payload: RobotSiteConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.ROBOT_SITE_CONFIG
+			module: RobotOperationsTypeEnum.ROBOT_SITE_CONFIG
 		};
 
 		// dispatch: loading
@@ -618,7 +486,7 @@ export const RobotReportsGenerate =
 	(robotId: string, payload: ReportFormInterface, callback: (report: string) => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: RobotTypeEnum.REPORTS
+			module: RobotOperationsTypeEnum.REPORTS
 		};
 
 		// dispatch: loading

@@ -23,13 +23,11 @@ const SitesList: FC = () => {
 		return <PageError message={sites.errors.text} />;
 	}
 
-	// null
-	if (!sites.content) {
-		return null;
-	}
+	// init
+	if (!sites.init) return null;
 
 	// empty
-	if (!sites.content.data.length) {
+	if (!sites.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

@@ -9,11 +9,11 @@ import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
-import { SiteTypeEnum } from './Site.slice.enum';
-import { SliceSiteInterface } from './Site.slice.interface';
+import { SiteOperationsTypeEnum } from './SiteOperations.slice.enum';
+import { SliceOperationsSiteInterface } from './SiteOperations.slice.interface';
 
 // initial state
-export const initialState: SliceSiteInterface = {
+export const initialState: SliceOperationsSiteInterface = {
 	acceptOrders: {
 		loading: false
 	},
@@ -30,42 +30,42 @@ export const initialState: SliceSiteInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Site',
+	name: 'Site Operations',
 	initialState,
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = true;
-			} else if (module === SiteTypeEnum.SITE_CONFIG) {
+			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = true;
-			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
+			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = true;
-			} else if (module === SiteTypeEnum.REPORTS) {
+			} else if (module === SiteOperationsTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
 			const { module } = action.payload;
-			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-			} else if (module === SiteTypeEnum.SITE_CONFIG) {
+			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = false;
-			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
+			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
-			} else if (module === SiteTypeEnum.REPORTS) {
+			} else if (module === SiteOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module } = action.payload;
-			if (module === SiteTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-			} else if (module === SiteTypeEnum.SITE_CONFIG) {
+			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = false;
-			} else if (module === SiteTypeEnum.SITE_ROBOT_CONFIG) {
+			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
-			} else if (module === SiteTypeEnum.REPORTS) {
+			} else if (module === SiteOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
 		},
@@ -77,7 +77,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const siteSelector = (state: AppReducerType) => state['site'];
+export const siteOperationsSelector = (state: AppReducerType) => state['siteOperations'];
 
 // reducer
 export default dataSlice.reducer;
@@ -92,7 +92,7 @@ export default dataSlice.reducer;
 export const SiteOrdersAccept =
 	(siteId: string, acceptOrders: boolean, callback: () => void) => async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteTypeEnum.ACCEPT_ORDERS
+			module: SiteOperationsTypeEnum.ACCEPT_ORDERS
 		};
 
 		// dispatch: loading
@@ -144,7 +144,7 @@ export const SiteConfigUpdate =
 	(siteId: string, payload: SiteConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteTypeEnum.SITE_CONFIG
+			module: SiteOperationsTypeEnum.SITE_CONFIG
 		};
 
 		// dispatch: loading
@@ -194,7 +194,7 @@ export const SiteConfigUpdate =
 export const SiteRobotConfigUpdate =
 	(siteId: string, payload: SiteRobotConfigFormInterface) => async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteTypeEnum.SITE_ROBOT_CONFIG
+			module: SiteOperationsTypeEnum.SITE_ROBOT_CONFIG
 		};
 
 		// dispatch: loading
@@ -240,7 +240,7 @@ export const SiteReportsGenerate =
 	(siteId: string, payload: ReportFormInterface, callback: (report: string) => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteTypeEnum.REPORTS
+			module: SiteOperationsTypeEnum.REPORTS
 		};
 
 		// dispatch: loading

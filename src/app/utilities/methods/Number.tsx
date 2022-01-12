@@ -22,7 +22,9 @@ const randomNum = (min: number, max: number): number => {
 const currencyFormat = (value: number, currency: string | undefined, language: string) => {
 	const formatter = new Intl.NumberFormat(language, {
 		style: 'currency',
-		currency: currency || AppConfigService.AppOptions.common.defaultCurrency
+		currency: currency || AppConfigService.AppOptions.common.defaultCurrency,
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2
 	});
 	return formatter.format(value);
 };

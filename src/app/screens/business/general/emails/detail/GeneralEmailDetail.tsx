@@ -34,13 +34,11 @@ const GeneralEmailDetail: FC = () => {
 		return <PageError message={email.errors.text} />;
 	}
 
-	// null
-	if (!email.content) {
-		return null;
-	}
+	// init
+	if (!email.init) return null;
 
 	// empty
-	if (!email.content.updatedAt) {
+	if (!email.content?.updatedAt) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

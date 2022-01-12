@@ -2,17 +2,24 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
+import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { SiteWifiHeatmapPayloadInterface } from '../../../../screens/business/sites/content/statistics/SiteStatistics.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../../..';
 import { triggerMessage } from '../../../general/General.slice';
 import { deserializeWifiHeatmap } from './WifiHeatmap.slice.deserialize';
-import { SliceWifiHeatmapInterface } from './WifiHeatmap.slice.interface';
+import {
+	SliceWifiHeatmapInterface,
+	SWCMapsInterface,
+	SWCMapsStateInterface
+} from './WifiHeatmap.slice.interface';
+import { sortMapsContent } from './WifiHeatmap.slice.map';
 
 // initial state
 export const initialState: SliceWifiHeatmapInterface = {
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null
 };
 
@@ -37,12 +44,19 @@ const dataSlice = createSlice({
 			state.loading = false;
 			state.content = null;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
+		updated: (state, action) => {
+			state.updating = false;
+			state.content = action.payload;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const wifiHeatmapSelector = (state: AppReducerType) => state['wifiHeatmap'];
@@ -51,13 +65,77 @@ export const wifiHeatmapSelector = (state: AppReducerType) => state['wifiHeatmap
 export default dataSlice.reducer;
 
 /**
- * fetch wifi data for heatmap
+ * fetch sites maps
+ * @param siteId
+ * @param callback
+ * @returns
+ */
+export const WifiMapsFetch =
+	(siteId: string, callback?: (res: SWCMapsInterface) => void) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const wifiHeatmap = states.wifiHeatmap;
+
+		// return on busy
+		if (wifiHeatmap && (wifiHeatmap.loader || wifiHeatmap.loading)) {
+			return;
+		}
+
+		// dispatch: loader
+		dispatch(loader());
+
+		// fetch maps
+		return RobotsService.robotMapsFetch(siteId)
+			.then(async (res) => {
+				// result
+				const maps: SWCMapsInterface = await deserializeWifiHeatmap(res);
+
+				// sort
+				const sorted = sortMapsContent(maps);
+
+				// result
+				const result = {
+					maps: {
+						...maps,
+						data: sorted,
+						state: {
+							pSiteId: siteId,
+							floor: sorted && sorted[0]?.floor,
+							name: sorted && sorted[0]?.name
+						}
+					}
+				};
+
+				// dispatch: success
+				dispatch(success(result));
+
+				// callback
+				callback && callback(result.maps);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'wifi-maps-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.STATISTICS.HEATMAP.MAPS.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure());
+			});
+	};
+
+/**
+ * fetch wifi heatmap
  * @param siteId
  * @param payload
  * @param refresh
  * @returns
  */
-export const WifiHeatmapDataFetch =
+export const WifiHeatmapFetch =
 	(siteId: string, payload: SiteWifiHeatmapPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
@@ -72,10 +150,17 @@ export const WifiHeatmapDataFetch =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		return SitesService.siteWifiHeatmapDataFetch(siteId, payload)
+		// fetch wifi heatmap
+		return SitesService.siteWifiHeatmapFetch(siteId, payload)
 			.then(async (res) => {
-				// deserialize response
-				const result = await deserializeWifiHeatmap(res);
+				// deserialize
+				let result = await deserializeWifiHeatmap(res);
+
+				// result
+				result = {
+					...wifiHeatmap.content,
+					data: result?.data
+				};
 
 				// dispatch: success
 				dispatch(success(result));
@@ -83,14 +168,40 @@ export const WifiHeatmapDataFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'service-wifi-heatmap-fetch-error',
+					id: 'wifi-heatmap-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'SITES.STATISTICS.WIFI_HEATMAP.ERROR'
+					text: 'SITES.STATISTICS.HEATMAP.CONTENT.ERROR'
 				};
 				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure());
 			});
+	};
+
+/**
+ * update heatmap state
+ * @param state
+ * @returns
+ */
+export const WifiHeatmapState =
+	(state: SWCMapsStateInterface) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const content = states.wifiHeatmap.content;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		if (content && content.maps) {
+			const result = {
+				...content,
+				maps: {
+					...content.maps,
+					state
+				}
+			};
+
+			// dispatch: updated
+			dispatch(updated(result));
+		}
 	};

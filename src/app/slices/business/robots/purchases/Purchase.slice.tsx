@@ -9,6 +9,7 @@ import { SlicePurchaseInterface } from './Purchase.slice.interface';
 
 // initial state
 export const initialState: SlicePurchaseInterface = {
+	init: false,
 	loader: false,
 	content: null,
 	errors: null
@@ -23,11 +24,13 @@ const dataSlice = createSlice({
 			state.loader = true;
 		},
 		success: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
+			state.init = true;
 			state.loader = false;
 			state.content = null;
 			state.errors = action.payload;

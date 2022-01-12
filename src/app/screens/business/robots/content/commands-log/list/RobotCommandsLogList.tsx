@@ -114,13 +114,11 @@ const RobotCommandsLogList: FC = () => {
 		return <PageError message={commandsLog.errors?.text} />;
 	}
 
-	// null
-	if (!commandsLog.content) {
-		return null;
-	}
+	// init
+	if (!commandsLog.init) return null;
 
 	// empty
-	if (!commandsLog.content.data.length) {
+	if (!commandsLog.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 

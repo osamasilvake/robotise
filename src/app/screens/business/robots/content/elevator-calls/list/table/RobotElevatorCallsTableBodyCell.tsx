@@ -1,5 +1,5 @@
 import { CopyAll } from '@mui/icons-material';
-import { Box, Chip, Icon, Stack, TableCell, Typography } from '@mui/material';
+import { Box, Chip, CircularProgress, Icon, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,10 @@ import ExternalLink from '../../../../../../../components/common/external-link/E
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
-import { RobotElevatorTemplateFetch } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import {
+	RobotElevatorTemplateFetch,
+	robotOperationsSelector
+} from '../../../../../../../slices/business/robots/RobotOperations.slice';
 import {
 	DeepLinkElevatorLogsLinkFetch,
 	deepLinkSelector
@@ -28,6 +31,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const classes = RobotElevatorCallsTableStyle();
 
 	const dispatch = useDispatch();
+	const robotOperations = useSelector(robotOperationsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
 	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES';
@@ -36,6 +40,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	 * copy template
 	 */
 	const copyTemplate = () => {
+		// dispatch: fetch elevator template
 		dispatch(
 			RobotElevatorTemplateFetch(elevatorCall.id, (res) => {
 				// copy template
@@ -75,7 +80,14 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 						color="primary"
 						variant="outlined"
 						clickable
-						icon={<CopyAll />}
+						disabled={robotOperations.elevatorTemplate.loading}
+						icon={
+							robotOperations.elevatorTemplate.loading ? (
+								<CircularProgress size={18} />
+							) : (
+								<CopyAll />
+							)
+						}
 						onClick={copyTemplate}
 						className={classes.sTableTemplateIcon}
 					/>

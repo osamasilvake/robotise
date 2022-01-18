@@ -350,7 +350,7 @@ export const RobotCameraCommandRequest =
  */
 export const RobotElevatorTemplateFetch =
 	(elevatorId: string, callback: (data: SROContentElevatorTemplateInterface) => void) =>
-	(dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		const states = getState();
 		const elevatorTemplate = states.robotOperations.elevatorTemplate;
 		const state = {
@@ -365,6 +365,9 @@ export const RobotElevatorTemplateFetch =
 		// dispatch: loading
 		dispatch(loading(state));
 
+		// wait
+		await timeout(1000);
+
 		return RobotsService.robotElevatorTemplateFetch(elevatorId)
 			.then(async (res) => {
 				// dispatch: success
@@ -372,6 +375,15 @@ export const RobotElevatorTemplateFetch =
 
 				// callback
 				callback(res);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-elevator-template-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
 			})
 			.catch(() => {
 				// dispatch: trigger message

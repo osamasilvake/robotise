@@ -252,6 +252,7 @@
 			},
 			"ELEVATOR_CALLS": {
 				"TEMPLATE": {
+					"SUCCESS": "Template copied to clipboard!",
 					"ERROR": "Unable to copy template!"
 				}
 			},

@@ -1,6 +1,6 @@
 import { CopyAll } from '@mui/icons-material';
 import { Box, Chip, CircularProgress, Icon, Stack, TableCell, Typography } from '@mui/material';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -34,17 +34,26 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const robotOperations = useSelector(robotOperationsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
+	const [templateIndex, setTemplateIndex] = useState(-1);
+
 	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES';
 
 	/**
 	 * copy template
+	 * @param index
 	 */
-	const copyTemplate = () => {
+	const copyTemplate = (index: number) => {
+		// set index
+		setTemplateIndex(index);
+
 		// dispatch: fetch elevator template
 		dispatch(
 			RobotElevatorTemplateFetch(elevatorCall.id, (res) => {
 				// copy template
 				navigator.clipboard.writeText(res.data.attributes.template);
+
+				// reset index
+				setTemplateIndex(-1);
 			})
 		);
 	};
@@ -80,15 +89,17 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 						color="primary"
 						variant="outlined"
 						clickable
-						disabled={robotOperations.elevatorTemplate.loading}
+						disabled={
+							index === templateIndex && robotOperations.elevatorTemplate.loading
+						}
 						icon={
-							robotOperations.elevatorTemplate.loading ? (
+							index === templateIndex && robotOperations.elevatorTemplate.loading ? (
 								<CircularProgress size={18} />
 							) : (
 								<CopyAll />
 							)
 						}
-						onClick={copyTemplate}
+						onClick={() => copyTemplate(index)}
 						className={classes.sTableTemplateIcon}
 					/>
 				</Box>

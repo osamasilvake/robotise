@@ -12,6 +12,10 @@ export interface SliceRobotOperationsInterface {
 	camera: {
 		loading: boolean;
 	};
+	elevatorTemplate: {
+		loading: boolean;
+		content: SROContentElevatorTemplateInterface | null;
+	};
 	syncProducts: {
 		loading: boolean;
 	};
@@ -34,4 +38,13 @@ export interface SROContentMapInterface {
 	resolution: number;
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+export interface SROContentElevatorTemplateInterface {
+	data: {
+		type: string;
+		attributes: {
+			template: string;
+		};
+	};
 }

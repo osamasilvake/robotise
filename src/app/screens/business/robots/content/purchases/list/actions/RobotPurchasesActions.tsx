@@ -1,5 +1,5 @@
 import { SettingsOutlined } from '@mui/icons-material';
-import { Box, Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import { Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -47,13 +47,11 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 		<>
 			{/* Filters */}
 			<Paper elevation={2} square className={floatStyle.sFloat1}>
-				<Box>
-					{/* Billed */}
-					<RobotPurchasesBilled billed={billed} />
+				{/* Billed */}
+				<RobotPurchasesBilled billed={billed} />
 
-					{/* Debug */}
-					<RobotPurchasesDebug debug={debug} />
-				</Box>
+				{/* Debug */}
+				<RobotPurchasesDebug debug={debug} />
 			</Paper>
 
 			{/* Speed Dial */}

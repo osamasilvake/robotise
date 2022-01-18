@@ -18,7 +18,10 @@ import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
 import { deserializeMap } from './RobotOperations.slice.deserialize';
 import { RobotOperationsTypeEnum } from './RobotOperations.slice.enum';
-import { SliceRobotOperationsInterface } from './RobotOperations.slice.interface';
+import {
+	SliceRobotOperationsInterface,
+	SROContentElevatorTemplateInterface
+} from './RobotOperations.slice.interface';
 
 // initial state
 export const initialState: SliceRobotOperationsInterface = {
@@ -34,6 +37,10 @@ export const initialState: SliceRobotOperationsInterface = {
 	},
 	camera: {
 		loading: false
+	},
+	elevatorTemplate: {
+		loading: false,
+		content: null
 	},
 	syncProducts: {
 		loading: false
@@ -64,6 +71,8 @@ const dataSlice = createSlice({
 				state.control.loading = true;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
+			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
+				state.elevatorTemplate.loading = true;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
@@ -85,6 +94,9 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
+			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
+				state.elevatorTemplate.loading = false;
+				state.elevatorTemplate.content = response;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
@@ -106,6 +118,9 @@ const dataSlice = createSlice({
 				state.control.loading = false;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
+			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
+				state.elevatorTemplate.loading = false;
+				state.elevatorTemplate.content = null;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
@@ -321,6 +336,50 @@ export const RobotCameraCommandRequest =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.DETAIL.CAMERAS.${camera}.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch elevator template
+ * @param elevatorId
+ */
+export const RobotElevatorTemplateFetch =
+	(elevatorId: string, callback: (data: SROContentElevatorTemplateInterface) => void) =>
+	(dispatch: Dispatch, getState: () => AppReducerType) => {
+		const states = getState();
+		const elevatorTemplate = states.robotOperations.elevatorTemplate;
+		const state = {
+			module: RobotOperationsTypeEnum.ELEVATOR_TEMPLATE
+		};
+
+		// return on busy
+		if (elevatorTemplate && elevatorTemplate.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotElevatorTemplateFetch(elevatorId)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-elevator-template-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

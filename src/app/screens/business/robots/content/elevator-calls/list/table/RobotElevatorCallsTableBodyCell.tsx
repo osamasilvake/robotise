@@ -1,12 +1,14 @@
-import { Box, Icon, Stack, TableCell, Typography } from '@mui/material';
+import { CopyAll } from '@mui/icons-material';
+import { Box, Chip, Icon, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
+import { RobotElevatorTemplateFetch } from '../../../../../../../slices/business/robots/RobotOperations.slice';
 import {
 	DeepLinkElevatorLogsLinkFetch,
 	deepLinkSelector
@@ -25,9 +27,22 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotElevatorCallsTableStyle();
 
+	const dispatch = useDispatch();
 	const deepLink = useSelector(deepLinkSelector);
 
 	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES';
+
+	/**
+	 * copy template
+	 */
+	const copyTemplate = () => {
+		dispatch(
+			RobotElevatorTemplateFetch(elevatorCall.id, (res) => {
+				// copy template
+				navigator.clipboard.writeText(res.data.attributes.template);
+			})
+		);
+	};
 
 	/**
 	 * set cell value
@@ -41,18 +56,30 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	) => {
 		if (column.id === RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
 			return (
-				<ExternalLink
-					index={index}
-					text={t(`${translation}.ELEVATOR_LOGS`)}
-					payload={{
-						vendor: elevatorCall.vendor,
-						from: elevatorCall.createdAt,
-						to: elevatorCall.updatedAt
-					}}
-					FetchExternalLink={DeepLinkElevatorLogsLinkFetch}
-					showIcon={deepLink.elevatorLogs.loading}
-					disabled={deepLink.elevatorLogs.loading}
-				/>
+				<Box>
+					<ExternalLink
+						index={index}
+						text={t(`${translation}.ELEVATOR_LOGS`)}
+						payload={{
+							vendor: elevatorCall.vendor,
+							from: elevatorCall.createdAt,
+							to: elevatorCall.updatedAt
+						}}
+						FetchExternalLink={DeepLinkElevatorLogsLinkFetch}
+						showIcon={deepLink.elevatorLogs.loading}
+						disabled={deepLink.elevatorLogs.loading}
+					/>
+					<Chip
+						size="small"
+						label={t(`${translation}.COPY_TEMPLATE`)}
+						color="primary"
+						variant="outlined"
+						clickable
+						icon={<CopyAll />}
+						onClick={copyTemplate}
+						className={classes.sTableTemplateIcon}
+					/>
+				</Box>
 			);
 		} else {
 			const mappedElevatorCall = mapElevatorCall(elevatorCall);

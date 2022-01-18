@@ -250,6 +250,11 @@
 					"ERROR": "Unable to edit a comment field!"
 				}
 			},
+			"ELEVATOR_CALLS": {
+				"TEMPLATE": {
+					"ERROR": "Unable to copy template!"
+				}
+			},
 			"CONFIGURATION": {
 				"SYNC_PRODUCTS": {
 					"SUCCESS": "Products has been synchronized successfully!",
@@ -1406,7 +1411,8 @@
 									"elevator.event.error": "Error"
 								}
 							},
-							"ELEVATOR_LOGS": "Elevator details"
+							"ELEVATOR_LOGS": "Elevator details",
+							"COPY_TEMPLATE": "Copy template"
 						}
 					}
 				}

@@ -10,10 +10,10 @@ import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
 import { triggerMessage } from '../../general/General.slice';
 import { SiteOperationsTypeEnum } from './SiteOperations.slice.enum';
-import { SliceOperationsSiteInterface } from './SiteOperations.slice.interface';
+import { SliceSiteOperationsInterface } from './SiteOperations.slice.interface';
 
 // initial state
-export const initialState: SliceOperationsSiteInterface = {
+export const initialState: SliceSiteOperationsInterface = {
 	acceptOrders: {
 		loading: false
 	},

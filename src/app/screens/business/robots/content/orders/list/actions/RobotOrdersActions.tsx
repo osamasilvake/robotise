@@ -1,5 +1,5 @@
 import { SettingsOutlined } from '@mui/icons-material';
-import { Box, Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import { Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -35,13 +35,11 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 		<>
 			{/* Filters */}
 			<Paper elevation={2} square className={floatStyle.sFloat1}>
-				<Box>
-					{/* Active Orders */}
-					<RobotOrdersActiveOrders activeOrders={activeOrders} />
+				{/* Active Orders */}
+				<RobotOrdersActiveOrders activeOrders={activeOrders} />
 
-					{/* Debug */}
-					<RobotOrdersDebug debug={debug} />
-				</Box>
+				{/* Debug */}
+				<RobotOrdersDebug debug={debug} />
 			</Paper>
 
 			{/* Speed Dial */}

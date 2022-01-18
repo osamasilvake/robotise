@@ -1,5 +1,6 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
+import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
@@ -366,6 +367,18 @@ class RobotsService {
 				'page[size]': payload.rowsPerPage
 			}
 		});
+	};
+
+	/**
+	 * fetch elevator template
+	 * @param elevatorId
+	 * @returns
+	 */
+	robotElevatorTemplateFetch = (elevatorId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALL_TEMPLATE;
+		return HttpClientService.get<SROContentElevatorTemplateInterface>(
+			url.replace(':elevatorId', elevatorId)
+		);
 	};
 
 	/**

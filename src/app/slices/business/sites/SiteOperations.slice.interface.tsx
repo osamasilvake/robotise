@@ -1,4 +1,4 @@
-export interface SliceOperationsSiteInterface {
+export interface SliceSiteOperationsInterface {
 	acceptOrders: {
 		loading: boolean;
 	};

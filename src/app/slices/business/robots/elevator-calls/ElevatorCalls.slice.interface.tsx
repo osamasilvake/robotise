@@ -16,6 +16,7 @@ export interface ECContentInterface extends JsonAPIResponseInterface {
 }
 
 export interface ECCDataInterface {
+	id: string;
 	buildingId: string;
 	status: string;
 	vendor: string;

@@ -23,5 +23,9 @@ export const RobotElevatorCallsTableStyle = makeStyles((theme: Theme) => ({
 	sTableHistoryIcon: {
 		fontSize: theme.typography.pxToRem(20),
 		marginRight: theme.spacing(0.5)
+	},
+	sTableTemplateIcon: {
+		letterSpacing: theme.spacing(0.07),
+		marginTop: theme.spacing(0.5)
 	}
 }));

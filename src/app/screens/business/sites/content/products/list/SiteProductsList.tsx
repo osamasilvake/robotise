@@ -14,11 +14,11 @@ import {
 } from '../../../../../../slices/business/sites/products/Products.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteProductsActions from './actions/SiteProductsActions';
-import { siteProductsListStyle } from './SiteProductsList.style';
+import { SiteProductsListStyle } from './SiteProductsList.style';
 import SiteProductsTable from './table/SiteProductsTable';
 
 const SiteProductsList: FC = () => {
-	const classes = siteProductsListStyle();
+	const classes = SiteProductsListStyle();
 
 	const dispatch = useDispatch();
 	const products = useSelector(productsSelector);

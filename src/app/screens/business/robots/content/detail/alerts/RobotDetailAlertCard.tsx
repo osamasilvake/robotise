@@ -1,4 +1,4 @@
-import { FileCopy, OpenInNew } from '@mui/icons-material';
+import { CopyAll, OpenInNew } from '@mui/icons-material';
 import { Box, Card, CardContent, IconButton, Tooltip, Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import clsx from 'clsx';
@@ -90,7 +90,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 						title={t<string>('ALERTS.COPY_CLIPBOARD')}
 						onClick={handleCopyToClipboard(alert.code, alert.message)}>
 						<IconButton color="inherit">
-							<FileCopy fontSize="small" />
+							<CopyAll fontSize="small" />
 						</IconButton>
 					</Tooltip>
 					<Tooltip

@@ -1,4 +1,4 @@
-import { Box, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import { FC } from 'react';
 
 import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
@@ -12,13 +12,11 @@ const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
 
 	return (
 		<Paper elevation={2} square className={floatStyle.sFloat1}>
-			<Box>
-				{/* Active Rooms */}
-				<SiteRoomsActiveRooms active={active} />
+			{/* Active Rooms */}
+			<SiteRoomsActiveRooms active={active} />
 
-				{/* Inactive Rooms */}
-				<SiteRoomsInactiveRooms inactive={inactive} />
-			</Box>
+			{/* Inactive Rooms */}
+			<SiteRoomsInactiveRooms inactive={inactive} />
 		</Paper>
 	);
 };

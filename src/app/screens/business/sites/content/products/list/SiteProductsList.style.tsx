@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-export const siteProductsListStyle = makeStyles((theme: Theme) => ({
+export const SiteProductsListStyle = makeStyles((theme: Theme) => ({
 	sBox: {
 		marginTop: theme.spacing(3),
 		position: 'relative'

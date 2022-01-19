@@ -1,5 +1,5 @@
 import { Box, Tab, Tabs } from '@mui/material';
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -58,7 +58,9 @@ const GenTabs: FC = () => {
 				{/* Emails */}
 				{value === 1 && (
 					<ErrorBoundary>
-						<GeneralEmailsList />
+						<Suspense fallback={null}>
+							<GeneralEmailsList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 			</Box>

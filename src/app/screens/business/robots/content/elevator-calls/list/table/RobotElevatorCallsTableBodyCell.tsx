@@ -70,7 +70,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	) => {
 		if (column.id === RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
 			return (
-				<Box>
+				<Box className={classes.sLinks}>
 					<ExternalLink
 						index={index}
 						text={t(`${translation}.ELEVATOR_LOGS`)}

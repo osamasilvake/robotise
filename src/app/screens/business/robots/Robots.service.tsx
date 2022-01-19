@@ -45,7 +45,8 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
 		return HttpClientService.get<RobotTwinSummaryAxiosGetInterface>(url, {
 			params: {
-				'filter[isHidden]': state?.hidden ? undefined : false
+				'filter[isHidden]': state?.hidden ? undefined : false,
+				'filter[isSimulator]': state?.simulation ? undefined : false
 			}
 		});
 	};

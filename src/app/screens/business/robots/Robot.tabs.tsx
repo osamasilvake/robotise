@@ -1,5 +1,5 @@
 import { Box, Tab, Tabs } from '@mui/material';
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, lazy, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -14,15 +14,18 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../slices/business/sites/configuration/ServicePositions.slice';
-import RobotCommandsLogList from './content/commands-log/list/RobotCommandsLogList';
-import RobotConfiguration from './content/configuration/RobotConfiguration';
-import RobotDetail from './content/detail/RobotDetail';
-import RobotElevatorCallsList from './content/elevator-calls/list/RobotElevatorCallsList';
-import RobotInventoryList from './content/inventory/list/RobotInventoryList';
-import RobotOrdersList from './content/orders/list/RobotOrdersList';
-import RobotPurchasesList from './content/purchases/list/RobotPurchasesList';
 import { RobotParamsInterface } from './Robot.interface';
 import robotsRoutes from './Robots.routes';
+
+const RobotDetail = lazy(() => import('./content/detail/RobotDetail'));
+const RobotInventoryList = lazy(() => import('./content/inventory/list/RobotInventoryList'));
+const RobotOrdersList = lazy(() => import('./content/orders/list/RobotOrdersList'));
+const RobotPurchasesList = lazy(() => import('./content/purchases/list/RobotPurchasesList'));
+const RobotCommandsLogList = lazy(() => import('./content/commands-log/list/RobotCommandsLogList'));
+const RobotElevatorCallsList = lazy(
+	() => import('./content/elevator-calls/list/RobotElevatorCallsList')
+);
+const RobotConfiguration = lazy(() => import('./content/configuration/RobotConfiguration'));
 
 const RobotTabs: FC = () => {
 	const { t } = useTranslation('ROBOTS');
@@ -107,49 +110,63 @@ const RobotTabs: FC = () => {
 				{/* Detail */}
 				{value === 0 && (
 					<ErrorBoundary>
-						<RobotDetail />
+						<Suspense fallback={null}>
+							<RobotDetail />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Inventory */}
 				{value === 1 && (
 					<ErrorBoundary>
-						<RobotInventoryList />
+						<Suspense fallback={null}>
+							<RobotInventoryList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Orders */}
 				{value === 2 && (
 					<ErrorBoundary>
-						<RobotOrdersList />
+						<Suspense fallback={null}>
+							<RobotOrdersList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Purchases */}
 				{value === 3 && (
 					<ErrorBoundary>
-						<RobotPurchasesList />
+						<Suspense fallback={null}>
+							<RobotPurchasesList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Commands Log */}
 				{value === 4 && (
 					<ErrorBoundary>
-						<RobotCommandsLogList />
+						<Suspense fallback={null}>
+							<RobotCommandsLogList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Elevator Calls */}
 				{value === 5 && (
 					<ErrorBoundary>
-						<RobotElevatorCallsList />
+						<Suspense fallback={null}>
+							<RobotElevatorCallsList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Configuration */}
 				{value === 6 && (
 					<ErrorBoundary>
-						<RobotConfiguration />
+						<Suspense fallback={null}>
+							<RobotConfiguration />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 			</Box>

@@ -1,9 +1,9 @@
 {
-	"root": true, // make sure eslint picks up the config at the root of the directory
+	"root": true, // Let eslint picks up the config at the root of the directory
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["@typescript-eslint", "simple-import-sort"],
 	"parserOptions": {
-		"ecmaVersion": 2020, // use the latest ecmascript standard
+		"ecmaVersion": 2020,
 		"sourceType": "module", // allows using import/export statements
 		"ecmaFeatures": {
 			"jsx": true // enable JSX since we are using React
@@ -11,7 +11,7 @@
 	},
 	"settings": {
 		"react": {
-			"version": "latest" // automatically detect the react version
+			"version": "latest"
 		}
 	},
 	"env": {
@@ -29,15 +29,10 @@
 		"plugin:prettier/recommended" // make this the last element so prettier config overrides other formatting rules
 	],
 	"rules": {
-		"prettier/prettier": [
-			"error",
-			{},
-			{
-				"usePrettierrc": true
-			}
-		], // Use our .prettierrc file as source
+		"prettier/prettier": "error",
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-var-requires": "off",
 		"react/prop-types": "off",
 		"react/react-in-jsx-scope": "off", // React 17 - [NOTE]
 		"simple-import-sort/imports": "error",

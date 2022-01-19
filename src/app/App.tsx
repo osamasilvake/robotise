@@ -1,4 +1,5 @@
-import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FC, Suspense, useMemo } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
@@ -42,7 +43,7 @@ const App: FC = () => {
 				<CssBaseline />
 
 				<HelmetProvider>
-					{/* Meta: General Top-Level */}
+					{/* Meta: Top-Level */}
 					<Meta />
 
 					<ErrorBoundary error={ErrorTypeEnum.ERROR_BOUNDARY}>

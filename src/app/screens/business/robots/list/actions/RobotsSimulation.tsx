@@ -10,22 +10,22 @@ import {
 } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RTSContentStateInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 
-const RobotsHidden: FC = () => {
+const RobotsSimulation: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
 	const dispatch = useDispatch();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const hidden = !!robotTwinsSummary.content?.state?.hidden;
+	const simulation = !!robotTwinsSummary.content?.state?.simulation;
 
 	/**
-	 * handle hidden
+	 * handle simulation
 	 */
-	const handleHidden = () => {
+	const handleSimulation = () => {
 		// dispatch: update state
 		const state: RTSContentStateInterface = {
 			...robotTwinsSummary.content?.state,
-			hidden: !hidden
+			simulation: !simulation
 		};
 		dispatch(RobotTwinsSummaryUpdateState(state));
 
@@ -36,10 +36,15 @@ const RobotsHidden: FC = () => {
 	return (
 		<FormControlLabel
 			control={
-				<Checkbox color="primary" name="hidden" checked={hidden} onChange={handleHidden} />
+				<Checkbox
+					color="primary"
+					name="simulation"
+					checked={simulation}
+					onChange={handleSimulation}
+				/>
 			}
-			label={t<string>('LIST.ACTIONS.FILTERS.HIDDEN')}
+			label={t<string>('LIST.ACTIONS.FILTERS.SIMULATION')}
 		/>
 	);
 };
-export default RobotsHidden;
+export default RobotsSimulation;

@@ -1,6 +1,5 @@
 import { Dangerous, ExpandLess, ExpandMore, Report } from '@mui/icons-material';
 import {
-	alpha,
 	Chip,
 	Collapse,
 	Icon,
@@ -10,6 +9,7 @@ import {
 	ListItemIcon,
 	ListItemText
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

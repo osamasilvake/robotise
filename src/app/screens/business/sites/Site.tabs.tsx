@@ -1,5 +1,5 @@
 import { Box, Tab, Tabs } from '@mui/material';
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, lazy, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -10,15 +10,18 @@ import PageError from '../../../components/content/page-error/PageError';
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
-import SiteConfiguration from './content/configuration/SiteConfiguration';
-import SiteDetail from './content/detail/SiteDetail';
-import SitePhoneCallsList from './content/phone-calls/list/SitePhoneCallsList';
-import SitePhoneConfigsList from './content/phone-configs/detail/SitePhoneConfigsDetail';
-import SiteProductsList from './content/products/list/SiteProductsList';
-import SiteRoomsList from './content/rooms/list/SiteRoomsList';
-import SiteStatistics from './content/statistics/SiteStatistics';
 import { SiteParamsInterface } from './Site.interface';
 import sitesRoutes from './Sites.routes';
+
+const SiteDetail = lazy(() => import('./content/detail/SiteDetail'));
+const SiteProductsList = lazy(() => import('./content/products/list/SiteProductsList'));
+const SiteRoomsList = lazy(() => import('./content/rooms/list/SiteRoomsList'));
+const SitePhoneCallsList = lazy(() => import('./content/phone-calls/list/SitePhoneCallsList'));
+const SiteStatistics = lazy(() => import('./content/statistics/SiteStatistics'));
+const SiteConfiguration = lazy(() => import('./content/configuration/SiteConfiguration'));
+const SitePhoneConfigsList = lazy(
+	() => import('./content/phone-configs/detail/SitePhoneConfigsDetail')
+);
 
 const SiteTabs: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -87,49 +90,63 @@ const SiteTabs: FC = () => {
 				{/* Detail */}
 				{value === 0 && (
 					<ErrorBoundary>
-						<SiteDetail />
+						<Suspense fallback={null}>
+							<SiteDetail />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Products */}
 				{value === 1 && (
 					<ErrorBoundary>
-						<SiteProductsList />
+						<Suspense fallback={null}>
+							<SiteProductsList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Rooms */}
 				{value === 2 && (
 					<ErrorBoundary>
-						<SiteRoomsList />
+						<Suspense fallback={null}>
+							<SiteRoomsList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Phone Configs */}
 				{value === 3 && (
 					<ErrorBoundary>
-						<SitePhoneConfigsList />
+						<Suspense fallback={null}>
+							<SitePhoneConfigsList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Phone Calls */}
 				{value === 4 && (
 					<ErrorBoundary>
-						<SitePhoneCallsList />
+						<Suspense fallback={null}>
+							<SitePhoneCallsList />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Statistics */}
 				{value === 5 && (
 					<ErrorBoundary>
-						<SiteStatistics />
+						<Suspense fallback={null}>
+							<SiteStatistics />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 
 				{/* Configuration */}
 				{value === 6 && (
 					<ErrorBoundary>
-						<SiteConfiguration />
+						<Suspense fallback={null}>
+							<SiteConfiguration />
+						</Suspense>
 					</ErrorBoundary>
 				)}
 			</Box>

@@ -767,7 +767,8 @@
 		"LIST": {
 			"ACTIONS": {
 				"FILTERS": {
-					"HIDDEN": "Include hidden robots"
+					"HIDDEN": "Include hidden robots",
+					"SIMULATION": "Include simulation robots"
 				}
 			},
 			"TABLE": {

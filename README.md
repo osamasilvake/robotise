@@ -70,6 +70,10 @@ A summary of development workflow involving multiple git branches.
 - [X] [React App Rewired](https://github.com/timarney/react-app-rewired/)
 
 
+### Analyze
+- [X] [Source Map Explorer](https://github.com/danvk/source-map-explorer#readme)
+
+
 ## ENV (Environment)
 * `.env`                  = common environment variables
 * `.env.development`      = development environment variables (use with `yarn start`)

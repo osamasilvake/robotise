@@ -17,7 +17,8 @@
 		"release": "standard-version",
 		"release:major": "yarn release -- --release-as major",
 		"release:minor": "yarn release -- --release-as minor",
-		"release:patch": "yarn release -- --release-as patch"
+		"release:patch": "yarn release -- --release-as patch",
+		"analyze": "source-map-explorer 'build/static/js/*.js'"
 	},
 	"dependencies": {
 		"@date-io/date-fns": "^2.11.0",
@@ -59,6 +60,7 @@
 		"redux-logger": "^3.0.6",
 		"redux-mock-store": "^1.5.4",
 		"redux-thunk": "^2.4.1",
+		"source-map-explorer": "^2.5.2",
 		"typescript": "~4.5.4"
 	},
 	"devDependencies": {

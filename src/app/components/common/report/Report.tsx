@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { useForm } from '../../../utilities/hooks/form/UseForm';
-import { momentDaysPriorToToday, momentToday } from '../../../utilities/methods/Moment';
+import { dateDaysPriorToToday, dateToday } from '../../../utilities/methods/Date';
 import { validateEmptyObj } from '../../../utilities/methods/Object';
 import { ReportFormInterface, ReportInterface } from './Report.interface';
 import { ReportStyle } from './Report.style';
@@ -35,8 +35,8 @@ const Report: FC<ReportInterface> = (props) => {
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<ReportFormInterface>(
 			{
-				from: momentDaysPriorToToday(30),
-				to: momentToday()
+				from: dateDaysPriorToToday(30),
+				to: dateToday()
 			},
 			ReportValidation,
 			async () => {

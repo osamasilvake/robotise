@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import log from 'loglevel';
 
-import { momentISOString } from '../../utilities/methods/Moment';
+import { dateISOString } from '../../utilities/methods/Date';
 import { AppConfigService, HttpClientService, StorageService } from '..';
 import { LogErrorInterface, LogInterface } from './Logger.interface';
 
@@ -38,7 +38,7 @@ class LoggerService {
 				level: AppConfigService.envDev ? 'trace' : 'warn',
 				pageUrl: window.location.href,
 				token: StorageService.get(AppConfigService.StorageItems.JWTAccessToken),
-				timestamp: momentISOString(),
+				timestamp: dateISOString(),
 				...errorLog
 			}
 		];

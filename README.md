@@ -58,7 +58,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [JSON-API Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer/)
 - [X] [loglevel](https://github.com/pimterry/loglevel)
 - [X] [i18n](https://www.i18next.com/)
-- [X] [Moment](https://momentjs.com/)
+- [X] [DayJs](https://github.com/iamkun/dayjs/)
 - [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [React CSV](https://github.com/react-csv/react-csv)
 - [X] [DOM Purify](https://github.com/cure53/DOMPurify)

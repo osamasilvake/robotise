@@ -7,7 +7,7 @@ import ReadMore from '../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../services';
 import { authSelector } from '../../../../../slices/authentication/Auth.slice';
 import { SDLDataInterface } from '../../../../../slices/settings/deep-links/DeepLinks.interface';
-import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../utilities/methods/Date';
 import { AuthScopeTypeEnum } from '../../../../authentication/Auth.enum';
 import { validateScope } from '../../../../authentication/Auth.scope';
 import { DeepLinkCreateEditTypeEnum, DeepLinksTableColumnsTypeEnum } from './DeepLinksTable.enum';
@@ -119,7 +119,7 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 		} else {
 			const value = deepLink[column.id];
 			if (DeepLinksTableColumnsTypeEnum.CREATED === column.id) {
-				return momentFormat1(value);
+				return dateFormat1(value);
 			} else if (DeepLinksTableColumnsTypeEnum.DESCRIPTION === column.id) {
 				return <ReadMore text={String(value)} variant="body2" />;
 			}

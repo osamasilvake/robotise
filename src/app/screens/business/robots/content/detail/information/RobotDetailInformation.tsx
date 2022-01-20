@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
+import { dateFormat2 } from '../../../../../../utilities/methods/Date';
 import RobotDetailComputerInfo from './RobotDetailComputerInfo';
 import RobotDetailHumanPerception from './RobotDetailHumanPerception';
 import { RobotDetailInformationInterface } from './RobotDetailInformation.interface';
@@ -16,6 +16,8 @@ const RobotDetailInformation: FC<RobotDetailInformationInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotDetailInformationStyle();
 
+	const date = robotTwins.safetySystems?.updatedAt || robotTwins.safetySensors?.updatedAt;
+
 	return (
 		<Box className={classes.sStateContainer}>
 			{/* Title */}
@@ -24,11 +26,11 @@ const RobotDetailInformation: FC<RobotDetailInformationInterface> = (props) => {
 			</Typography>
 
 			{/* Date */}
-			<Typography variant="caption" color="textSecondary">
-				{momentFormat2(
-					robotTwins.safetySystems?.updatedAt || robotTwins.safetySensors?.updatedAt
-				)}
-			</Typography>
+			{date && (
+				<Typography variant="caption" color="textSecondary">
+					{dateFormat2(date)}
+				</Typography>
+			)}
 
 			{/* Grid */}
 			<Grid container spacing={1} className={classes.sGridContainer}>

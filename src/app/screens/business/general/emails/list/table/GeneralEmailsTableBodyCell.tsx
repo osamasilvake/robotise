@@ -7,7 +7,7 @@ import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
 import { SECDataInterface } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
-import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { GeneralEmailsTableColumnsTypeEnum } from './GeneralEmailsTable.enum';
 import {
 	GeneralEmailsTableBodyCellInterface,
@@ -33,7 +33,7 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 		const mappedEmail = mapEmail(email);
 		const value = mappedEmail[column.id];
 		if (GeneralEmailsTableColumnsTypeEnum.CREATED === column.id) {
-			return momentFormat1(value);
+			return dateFormat1(String(value));
 		} else if (GeneralEmailsTableColumnsTypeEnum.SITE === column.id) {
 			return (
 				sites.content?.dataById[email.site?.id]?.title ||

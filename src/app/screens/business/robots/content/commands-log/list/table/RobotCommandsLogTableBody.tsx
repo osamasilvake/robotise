@@ -5,7 +5,7 @@ import {
 	CLCDataInterface,
 	CLContentInterface
 } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
-import { momentSort } from '../../../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../../../utilities/methods/Date';
 import {
 	RobotCommandsLogTableColumnsTypeEnum,
 	RobotCommandsLogTableSortTypeEnum
@@ -53,9 +53,11 @@ const RobotCommandsLogTableBody: FC<RobotCommandsLogTableBodyInterface> = (props
 		type: RobotCommandsLogTableSortTypeEnum
 	) => {
 		return (a: CLCDataInterface, b: CLCDataInterface) => {
+			const dateA = a[RobotCommandsLogTableColumnsTypeEnum.CREATED];
+			const dateB = b[RobotCommandsLogTableColumnsTypeEnum.CREATED];
 			switch (type) {
 				case RobotCommandsLogTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
+					return dateSort(dateA).diff(dateSort(dateB));
 				case RobotCommandsLogTableSortTypeEnum.STRING:
 				default:
 					return a[key] && b[key]

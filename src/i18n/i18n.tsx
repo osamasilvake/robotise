@@ -1,7 +1,7 @@
-import 'moment/locale/de';
+import 'dayjs/locale/de';
 
+import dayjs from 'dayjs';
 import i18n from 'i18next';
-import moment from 'moment';
 import { initReactI18next } from 'react-i18next';
 
 import de from './locales/de.json';
@@ -17,5 +17,5 @@ i18n.use(initReactI18next)
 	})
 	.then();
 
-// change moment locale on language change
-i18n.on('languageChanged', (language: string) => moment.locale(language));
+// change daysJs locale on language change
+i18n.on('languageChanged', (language: string) => dayjs.locale(language));

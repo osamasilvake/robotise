@@ -16,7 +16,7 @@ import {
 	DeepLinkElevatorLogsLinkFetch,
 	deepLinkSelector
 } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
-import { momentFormat1, momentFormat3 } from '../../../../../../../utilities/methods/Moment';
+import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
 import {
 	RobotElevatorCallsTableBodyCellInterface,
@@ -108,7 +108,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 			const mappedElevatorCall = mapElevatorCall(elevatorCall);
 			const value = mappedElevatorCall[column.id];
 			if (RobotElevatorCallsTableColumnsTypeEnum.CREATED === column.id) {
-				return momentFormat1(value);
+				return dateFormat1(String(value));
 			} else if (RobotElevatorCallsTableColumnsTypeEnum.HISTORY === column.id) {
 				const history = elevatorCall.history;
 				const historyMapped = mappedElevatorCall.history;
@@ -130,7 +130,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 									{!!item.details && `: ${item.details}`}
 								</Typography>
 								<Typography variant="caption" color="textSecondary">
-									({momentFormat3(item.createdAt)})
+									({dateFormat3(item.createdAt)})
 								</Typography>
 							</Stack>
 						))}

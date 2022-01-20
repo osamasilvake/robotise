@@ -21,7 +21,6 @@
 		"analyze": "source-map-explorer 'build/static/js/*.js'"
 	},
 	"dependencies": {
-		"@date-io/date-fns": "^2.11.0",
 		"@emotion/react": "^11.7.1",
 		"@emotion/styled": "^11.6.0",
 		"@mui/icons-material": "^5.2.5",
@@ -41,12 +40,11 @@
 		"@types/redux-mock-store": "^1.0.3",
 		"axios": "^0.24.0",
 		"clsx": "^1.1.1",
-		"date-fns": "^2.28.0",
+		"dayjs": "^1.10.7",
 		"dompurify": "^2.3.4",
 		"i18next": "^21.6.6",
 		"jsonapi-serializer": "^3.6.7",
 		"loglevel": "^1.8.0",
-		"moment": "^2.29.1",
 		"react": "^17.0.2",
 		"react-csv": "^2.2.1",
 		"react-dom": "^17.0.2",

@@ -11,6 +11,7 @@ export const ReportValidation = (
 	touched: ReportFormInterface
 ): ReportFormInterface => {
 	const errors: ReportFormInterface = {
+		id: '',
 		from: '',
 		to: ''
 	};

@@ -35,6 +35,7 @@ const Report: FC<ReportInterface> = (props) => {
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<ReportFormInterface>(
 			{
+				id,
 				from: dateDaysPriorToToday(30),
 				to: dateToday()
 			},

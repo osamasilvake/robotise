@@ -10,7 +10,7 @@ import {
 	SEContentInterface
 } from '../../../../../../slices/business/general/emails/Emails.slice.interface';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
-import { momentSort } from '../../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../../utilities/methods/Date';
 import {
 	GeneralEmailsTableColumnHistoryEventTypeEnum,
 	GeneralEmailsTableColumnsTypeEnum,
@@ -85,9 +85,11 @@ const GeneralEmailsTableBody: FC<GeneralEmailsTableBodyInterface> = (props) => {
 		return (a: SECDataInterface, b: SECDataInterface) => {
 			const siteA = sites.content?.dataById[a.site.id].title;
 			const siteB = sites.content?.dataById[b.site.id].title;
+			const dateA = a[GeneralEmailsTableColumnsTypeEnum.CREATED];
+			const dateB = b[GeneralEmailsTableColumnsTypeEnum.CREATED];
 			switch (type) {
 				case GeneralEmailsTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
+					return dateSort(dateA).diff(dateSort(dateB));
 				case GeneralEmailsTableSortTypeEnum.STRING_SITE:
 					return siteA && siteB
 						? String(siteA).localeCompare(String(siteB))

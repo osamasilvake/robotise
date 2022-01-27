@@ -96,7 +96,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			</Typography>
 
 			{/* Floor */}
-			{!!wifiHeatmap.content?.maps?.data?.length && (
+			{!!wifiHeatmap.content?.maps?.data?.length && floor && (
 				<Grid container className={classes.sFloor}>
 					<Grid item xs={4}>
 						<FormControl fullWidth>
@@ -106,7 +106,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 								id="floor"
 								name="floor"
 								label={t(`${translation}.FLOOR`)}
-								value={String(floor)}
+								value={floor}
 								onChange={handleFloor}>
 								{wifiHeatmap.content?.maps?.data.map((map) => (
 									<MenuItem key={map.name} value={map.floor}>

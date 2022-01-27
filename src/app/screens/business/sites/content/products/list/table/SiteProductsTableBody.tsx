@@ -5,7 +5,7 @@ import {
 	SPCDataInterface,
 	SPContentInterface
 } from '../../../../../../../slices/business/sites/products/Products.slice.interface';
-import { momentSort } from '../../../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../../../utilities/methods/Date';
 import {
 	SiteProductsTableColumnsTypeEnum,
 	SiteProductsTableSortTypeEnum
@@ -59,11 +59,13 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 	) => {
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
 			if (key !== SiteProductsTableColumnsTypeEnum.ACTIONS) {
+				const dateA = a[SiteProductsTableColumnsTypeEnum.UPDATED];
+				const dateB = b[SiteProductsTableColumnsTypeEnum.UPDATED];
 				switch (type) {
 					case SiteProductsTableSortTypeEnum.NUMBER:
 						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 					case SiteProductsTableSortTypeEnum.DATE:
-						return momentSort(a[key]).diff(momentSort(b[key]));
+						return dateSort(dateA).diff(dateSort(dateB));
 					case SiteProductsTableSortTypeEnum.STRING:
 					default:
 						return a[key] && b[key]

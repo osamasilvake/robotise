@@ -2,7 +2,7 @@ import { Link, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../services';
-import { momentCurrentYear } from '../../../utilities/methods/Moment';
+import { dateCurrentYear } from '../../../utilities/methods/Date';
 import { CopyrightsInterface } from './Copyrights.interface';
 import { CopyrightStyle } from './Copyrights.style';
 
@@ -23,7 +23,7 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 					</Link>
 					<Typography variant="body2" color="textSecondary">
 						{' © '}
-						{momentCurrentYear()}
+						{dateCurrentYear()}
 						{' • '}
 						{AppConfigService.envAppName}
 						{' • '}v{AppConfigService.envAppVersion}

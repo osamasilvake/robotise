@@ -1,5 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
-import { momentDaysPriorToToday } from '../../../utilities/methods/Moment';
+import { dateDaysPriorToToday } from '../../../utilities/methods/Date';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
 import { GeneralEmailAxiosGetInterface, GeneralEmailsAxiosGetInterface } from './General.interface';
 
@@ -15,7 +15,7 @@ class GeneralService {
 			params: {
 				'filter[site]': payload.siteId,
 				'filter[status][ne]': !payload.delivered ? 'delivered' : undefined,
-				'filter[createdAt][gte]': momentDaysPriorToToday(30),
+				'filter[createdAt][gte]': dateDaysPriorToToday(30),
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}

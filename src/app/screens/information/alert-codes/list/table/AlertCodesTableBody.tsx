@@ -6,7 +6,7 @@ import {
 	SACContentInterface,
 	SACDataInterface
 } from '../../../../../slices/information/alert-codes/AlertCodes.interface';
-import { momentSort } from '../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../utilities/methods/Date';
 import {
 	AlertCodesTableColumnsTypeEnum,
 	AlertCodesTableSortTypeEnum
@@ -58,9 +58,11 @@ const AlertCodesTableBody: FC<AlertCodesTableBodyInterface> = (props) => {
 		type: AlertCodesTableSortTypeEnum
 	) => {
 		return (a: SACDataInterface, b: SACDataInterface) => {
+			const dateA = a[AlertCodesTableColumnsTypeEnum.UPDATED];
+			const dateB = b[AlertCodesTableColumnsTypeEnum.UPDATED];
 			switch (type) {
 				case AlertCodesTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
+					return dateSort(dateA).diff(dateSort(dateB));
 				case AlertCodesTableSortTypeEnum.STRING:
 				default:
 					return a[key] && b[key]

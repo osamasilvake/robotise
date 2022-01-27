@@ -17,7 +17,7 @@ import { useDispatch } from 'react-redux';
 import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
 import { GeneralTriggerMessage } from '../../../../../slices/general/General.slice';
-import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../utilities/methods/Date';
 import { strToLinks } from '../../../../../utilities/methods/String';
 import { GeneralEmailsTableColumnHistoryEventTypeEnum } from '../list/table/GeneralEmailsTable.enum';
 import { GeneralEmailDetailContentInterface } from './GeneralEmailDetail.interface';
@@ -92,7 +92,7 @@ const GeneralEmailContent: FC<GeneralEmailDetailContentInterface> = (props) => {
 
 				{/* Created */}
 				<Typography variant="caption" color="textSecondary">
-					{momentFormat1(email.createdAt)}
+					{dateFormat1(email.createdAt)}
 				</Typography>
 			</Box>
 

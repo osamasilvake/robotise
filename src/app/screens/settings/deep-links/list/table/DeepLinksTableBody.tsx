@@ -5,7 +5,7 @@ import {
 	SDLContentInterface,
 	SDLDataInterface
 } from '../../../../../slices/settings/deep-links/DeepLinks.interface';
-import { momentSort } from '../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../utilities/methods/Date';
 import { DeepLinksTableColumnsTypeEnum, DeepLinksTableSortTypeEnum } from './DeepLinksTable.enum';
 import {
 	DeepLinksTableBodyInterface,
@@ -52,9 +52,11 @@ const DeepLinksTableBody: FC<DeepLinksTableBodyInterface> = (props) => {
 	) => {
 		return (a: SDLDataInterface, b: SDLDataInterface) => {
 			if (key !== DeepLinksTableColumnsTypeEnum.ACTIONS) {
+				const dateA = a[DeepLinksTableColumnsTypeEnum.CREATED];
+				const dateB = b[DeepLinksTableColumnsTypeEnum.CREATED];
 				switch (type) {
 					case DeepLinksTableSortTypeEnum.DATE:
-						return momentSort(a[key]).diff(momentSort(b[key]));
+						return dateSort(dateA).diff(dateSort(dateB));
 					case DeepLinksTableSortTypeEnum.STRING:
 					default:
 						return a[key] && b[key]

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { PCCDataInterface } from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
-import { momentFormat1, momentFormat3 } from '../../../../../../../utilities/methods/Moment';
+import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import { SitePhoneCallsTableColumnsTypeEnum } from './SitePhoneCallsTable.enum';
 import {
 	SitePhoneCallsTableBodyCellInterface,
@@ -32,7 +32,7 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 		const mappedPhoneCall = mapPhoneCall(phoneCall);
 		const value = mappedPhoneCall[column.id];
 		if (SitePhoneCallsTableColumnsTypeEnum.UPDATED === column.id) {
-			return momentFormat1(value);
+			return dateFormat1(String(value));
 		} else if (SitePhoneCallsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = phoneCall.history;
 			const historyMapped = mappedPhoneCall.history;
@@ -54,7 +54,7 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 								</Typography>
 							)}
 							<Typography variant="caption" color="textSecondary">
-								({momentFormat3(item.createdAt)})
+								({dateFormat3(item.createdAt)})
 							</Typography>
 						</Stack>
 					))}

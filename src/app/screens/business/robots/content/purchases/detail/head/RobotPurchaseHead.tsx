@@ -12,7 +12,7 @@ import {
 	DeepLinkItemTrackingLinkFetch,
 	deepLinkSelector
 } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
-import { momentMinsPriorToDate } from '../../../../../../../utilities/methods/Moment';
+import { dateMinsPriorToDate } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchaseHeadInterface } from './RobotPurchaseHead.interface';
 import { RobotPurchaseHeadStyle } from './RobotPurchaseHead.style';
@@ -72,7 +72,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 								text={t(`${translation}.ITEM_TRACKING`)}
 								payload={{
 									robotId: cRobotId,
-									from: momentMinsPriorToDate(purchase.content.createdAt, 15),
+									from: dateMinsPriorToDate(purchase.content.createdAt, 15),
 									to: purchase.content.createdAt
 								}}
 								FetchExternalLink={DeepLinkItemTrackingLinkFetch}

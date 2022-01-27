@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { CLCDataInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
-import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
 import {
 	RobotCommandsLogTableBodyCellInterface,
@@ -53,7 +53,7 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 				</Box>
 			);
 		} else if (RobotCommandsLogTableColumnsTypeEnum.CREATED === column.id) {
-			return momentFormat1(value);
+			return dateFormat1(String(value));
 		} else if (typeof value === 'string') {
 			if (RobotCommandsLogTableColumnsTypeEnum.STATUS === column.id) {
 				return <Status level={mapStatus(value)}>{t(value)}</Status>;

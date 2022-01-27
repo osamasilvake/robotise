@@ -7,7 +7,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
-import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { strRemoveSymbols } from '../../../../../../utilities/methods/String';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import DialogNote from './DialogNote';
@@ -82,7 +82,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.LAST_UPDATED`)}
 				</Typography>
-				<Typography>{momentFormat1(robotTwins.updatedAt)}</Typography>
+				<Typography>{dateFormat1(robotTwins.updatedAt)}</Typography>
 			</Grid>
 
 			{/* Status */}

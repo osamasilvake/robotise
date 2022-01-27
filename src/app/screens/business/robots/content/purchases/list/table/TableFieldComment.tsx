@@ -149,11 +149,12 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					}
 					disabled={purchases.updating}
 					onClick={handleSubmit}
-					className={classes.sCommentEdit}
 				/>
 
 				{/* Value */}
-				{!editMode && <ReadMore text={purchase.comment} variant="body2" min={250} />}
+				<Box className={classes.sCommentText}>
+					{!editMode && <ReadMore text={purchase.comment} variant="body2" min={250} />}
+				</Box>
 			</Box>
 		</Box>
 	);

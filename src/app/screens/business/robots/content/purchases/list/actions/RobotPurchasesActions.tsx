@@ -73,7 +73,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 
 			{/* Dialog: Report */}
 			<Report
-				id="purchases"
+				id="order-report-export"
 				open={purchasesReport}
 				setOpen={setPurchasesReport}
 				filterId={cRobotId}

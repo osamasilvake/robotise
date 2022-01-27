@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { SOCDataHistoryInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
-import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { mapStatus } from '../../list/table/RobotOrdersTable.map';
 import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 import {
@@ -38,7 +38,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 				);
 			case RobotOrderTableColumnsTypeEnum.CREATED:
 			default:
-				return momentFormat1(row[column.id]);
+				return dateFormat1(row[column.id]);
 		}
 	};
 

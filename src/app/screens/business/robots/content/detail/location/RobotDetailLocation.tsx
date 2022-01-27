@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
+import { dateFormat2 } from '../../../../../../utilities/methods/Date';
 import { RobotDetailLocationInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
 import RobotDetailLocationCard from './RobotDetailLocationCard';
@@ -34,7 +34,7 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 
 			{/* Date */}
 			<Typography variant="caption" color="textSecondary">
-				{momentFormat2(robotTwins.location.updatedAt)}
+				{dateFormat2(robotTwins.location.updatedAt)}
 			</Typography>
 
 			{/* Grid */}

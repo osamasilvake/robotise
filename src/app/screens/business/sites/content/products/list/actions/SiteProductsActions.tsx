@@ -71,7 +71,7 @@ const SiteProductsActions: FC = () => {
 
 			{/* Dialog: Report */}
 			<Report
-				id="products"
+				id="product-export"
 				open={productsReport}
 				setOpen={setProductsReport}
 				filterId={cSiteId}

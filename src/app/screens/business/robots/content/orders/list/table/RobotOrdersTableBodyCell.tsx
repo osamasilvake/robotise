@@ -6,7 +6,7 @@ import { Link as RouterLink, useParams } from 'react-router-dom';
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
-import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import DialogCancelOrder from './DialogCancelOrder';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
@@ -51,7 +51,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		const mappedOrder = mapOrder(order);
 		const value = mappedOrder[column.id];
 		if (RobotOrdersTableColumnsTypeEnum.CREATED === column.id) {
-			return momentFormat1(value);
+			return dateFormat1(String(value));
 		} else if (
 			RobotOrdersTableColumnsTypeEnum.PURCHASE_DETAILS === column.id &&
 			order.orderReport?.id

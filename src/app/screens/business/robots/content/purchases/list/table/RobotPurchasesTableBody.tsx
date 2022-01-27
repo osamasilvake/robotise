@@ -8,7 +8,7 @@ import {
 	SPCDataInterface,
 	SPContentInterface
 } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
-import { momentSort } from '../../../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import {
 	RobotPurchasesTableColumnsTypeEnum,
@@ -68,11 +68,13 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 	) => {
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
 			if (key !== RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING) {
+				const dateA = a[RobotPurchasesTableColumnsTypeEnum.CREATED];
+				const dateB = b[RobotPurchasesTableColumnsTypeEnum.CREATED];
 				switch (type) {
 					case RobotPurchasesTableSortTypeEnum.NUMBER:
 						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 					case RobotPurchasesTableSortTypeEnum.DATE:
-						return momentSort(a[key]).diff(momentSort(b[key]));
+						return dateSort(dateA).diff(dateSort(dateB));
 					case RobotPurchasesTableSortTypeEnum.STRING:
 					default:
 						return a[key] && b[key]

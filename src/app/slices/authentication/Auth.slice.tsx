@@ -6,7 +6,7 @@ import { AuthLoginFormInterface } from '../../screens/authentication/Auth.interf
 import AuthService from '../../screens/authentication/Auth.service';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import { momentNow } from '../../utilities/methods/Moment';
+import { dateNow } from '../../utilities/methods/Date';
 import { AppReducerType } from '..';
 import { triggerMessage } from '../general/General.slice';
 import { AuthUserInterface, SliceAuthInterface } from './Auth.slice.interface';
@@ -110,7 +110,7 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 	const accessToken = AuthService.getAccessToken();
 	if (accessToken) {
 		if (AuthService.authTokenValid(accessToken)) {
-			const expiresInMs = expDate * 1000 - momentNow();
+			const expiresInMs = expDate * 1000 - dateNow();
 			if (
 				expiresInMs <
 				AppConfigService.AppOptions.screens.authentication.validateBeforeExpiry

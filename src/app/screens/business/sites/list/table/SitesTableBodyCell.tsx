@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../services';
 import { ISite } from '../../../../../slices/business/sites/Sites.slice.interface';
-import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../utilities/methods/Date';
 import { SitesTableColumnsTypeEnum } from './SitesTable.enum';
 import { SitesTableBodyCellInterface, SitesTableColumnInterface } from './SitesTable.interface';
 
@@ -28,7 +28,7 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 				</Box>
 			);
 		} else if (SitesTableColumnsTypeEnum.UPDATED === column.id) {
-			return momentFormat1(value);
+			return dateFormat1(String(value));
 		}
 		return value;
 	};

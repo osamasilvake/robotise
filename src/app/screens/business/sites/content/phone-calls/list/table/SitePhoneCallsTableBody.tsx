@@ -5,7 +5,7 @@ import {
 	PCCDataInterface,
 	PCContentInterface
 } from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
-import { momentSort } from '../../../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../../../utilities/methods/Date';
 import {
 	SitePhoneCallsTableColumnsTypeEnum,
 	SitePhoneCallsTableSortTypeEnum
@@ -53,9 +53,11 @@ const SitePhoneCallsTableBody: FC<SitePhoneCallsTableBodyInterface> = (props) =>
 		type: SitePhoneCallsTableSortTypeEnum
 	) => {
 		return (a: PCCDataInterface, b: PCCDataInterface) => {
+			const dateA = a[SitePhoneCallsTableColumnsTypeEnum.UPDATED];
+			const dateB = b[SitePhoneCallsTableColumnsTypeEnum.UPDATED];
 			switch (type) {
 				case SitePhoneCallsTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
+					return dateSort(dateA).diff(dateSort(dateB));
 				case SitePhoneCallsTableSortTypeEnum.STRING:
 				default:
 					return a[key] && b[key]

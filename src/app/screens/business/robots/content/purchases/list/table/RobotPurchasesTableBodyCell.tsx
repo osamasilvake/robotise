@@ -12,10 +12,7 @@ import {
 	DeepLinkItemTrackingLinkFetch,
 	deepLinkSelector
 } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
-import {
-	momentFormat1,
-	momentMinsPriorToDate
-} from '../../../../../../../utilities/methods/Moment';
+import { dateFormat1, dateMinsPriorToDate } from '../../../../../../../utilities/methods/Date';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import {
@@ -55,7 +52,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					text={t(`${translation}.ITEM_TRACKING`)}
 					payload={{
 						robotId: cRobotId,
-						from: momentMinsPriorToDate(purchase.createdAt, 15),
+						from: dateMinsPriorToDate(purchase.createdAt, 15),
 						to: purchase.createdAt
 					}}
 					FetchExternalLink={DeepLinkItemTrackingLinkFetch}
@@ -77,7 +74,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					</Box>
 				);
 			} else if (RobotPurchasesTableColumnsTypeEnum.CREATED === column.id) {
-				return momentFormat1(value);
+				return dateFormat1(String(value));
 			} else if (RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE === column.id) {
 				const price = +value;
 				return price > 0

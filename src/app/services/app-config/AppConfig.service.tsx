@@ -280,9 +280,7 @@ class AppConfigService extends EnvService {
 						STATISTICS: {
 							WIFI_HEATMAP: `${this.envAppUrl}/wifi-heatmap`
 						},
-						REPORTS: {
-							PRODUCTS: `${this.envAppUrl}/product-export`
-						}
+						REPORTS: this.envAppUrl
 					},
 					ROBOTS: {
 						ALL: `${this.envAppUrl}/robot-twins-summary`,
@@ -300,9 +298,7 @@ class AppConfigService extends EnvService {
 						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
 						ELEVATOR_CALL_TEMPLATE: `${this.envAppUrl}/elevator-calls/:elevatorId/request-support-template`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
-						REPORTS: {
-							PURCHASES: `${this.envAppUrl}/order-report-export`
-						}
+						REPORTS: this.envAppUrl
 					}
 				},
 				SETTINGS: {

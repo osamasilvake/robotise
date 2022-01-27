@@ -9,7 +9,7 @@ import {
 	ISite,
 	SSContentInterface
 } from '../../../../../slices/business/sites/Sites.slice.interface';
-import { momentSort } from '../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../utilities/methods/Date';
 import { SitesTableColumnsTypeEnum, SitesTableSortTypeEnum } from './SitesTable.enum';
 import { SitesTableBodyInterface, SitesTableColumnInterface } from './SitesTable.interface';
 import { columns } from './SitesTable.list';
@@ -58,9 +58,11 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	 */
 	const sortByProperty = (key: SitesTableColumnsTypeEnum, type: SitesTableSortTypeEnum) => {
 		return (a: ISite, b: ISite) => {
+			const dateA = a[SitesTableColumnsTypeEnum.UPDATED];
+			const dateB = b[SitesTableColumnsTypeEnum.UPDATED];
 			switch (type) {
 				case SitesTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
+					return dateSort(dateA).diff(dateSort(dateB));
 				case SitesTableSortTypeEnum.BOOLEAN:
 					return a[key] ? -1 : 1;
 				case SitesTableSortTypeEnum.STRING:

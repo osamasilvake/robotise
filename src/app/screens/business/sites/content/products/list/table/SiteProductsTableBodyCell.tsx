@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/business/sites/products/Products.slice.interface';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
-import { momentFormat1 } from '../../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditProduct from './DialogCreateEditProduct';
@@ -114,7 +114,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 		} else {
 			const value = product[column.id];
 			if (SiteProductsTableColumnsTypeEnum.UPDATED === column.id) {
-				return momentFormat1(value);
+				return dateFormat1(String(value));
 			} else if (typeof value === 'number') {
 				if (SiteProductsTableColumnsTypeEnum.PRICE === column.id) {
 					return `${currencyFormat(value, currency, i18next.language)}`;

@@ -8,7 +8,7 @@ import {
 	RTSContentDataInterface,
 	RTSContentInterface
 } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
-import { momentSort } from '../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../utilities/methods/Date';
 import { RobotsTableColumnsTypeEnum, RobotsTableSortTypeEnum } from './RobotsTable.enum';
 import { RobotsTableBodyInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
 import { columns } from './RobotsTable.list';
@@ -65,6 +65,8 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const sortByProperty = (key: RobotsTableColumnsTypeEnum, type: RobotsTableSortTypeEnum) => {
 		return (a: RTSContentDataInterface, b: RTSContentDataInterface) => {
 			if (key !== RobotsTableColumnsTypeEnum.ACCEPT_ORDER) {
+				const dateA = a[RobotsTableColumnsTypeEnum.UPDATED];
+				const dateB = b[RobotsTableColumnsTypeEnum.UPDATED];
 				switch (type) {
 					case RobotsTableSortTypeEnum.OBJECT_ALERT:
 						if (a.robotAlerts.danger || b.robotAlerts.danger) {
@@ -76,7 +78,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 					case RobotsTableSortTypeEnum.NUMBER:
 						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 					case RobotsTableSortTypeEnum.DATE:
-						return momentSort(a[key]).diff(momentSort(b[key]));
+						return dateSort(dateA).diff(dateSort(dateB));
 					case RobotsTableSortTypeEnum.BOOLEAN:
 						return a[key] ? -1 : 1;
 					case RobotsTableSortTypeEnum.STRING:

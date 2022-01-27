@@ -5,7 +5,7 @@ import {
 	ECCDataInterface,
 	ECContentInterface
 } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
-import { momentSort } from '../../../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../../../utilities/methods/Date';
 import {
 	RobotElevatorCallsTableColumnsTypeEnum,
 	RobotElevatorCallsTableSortTypeEnum
@@ -56,9 +56,11 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 	) => {
 		return (a: ECCDataInterface, b: ECCDataInterface) => {
 			if (key !== RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
+				const dateA = a[RobotElevatorCallsTableColumnsTypeEnum.CREATED];
+				const dateB = b[RobotElevatorCallsTableColumnsTypeEnum.CREATED];
 				switch (type) {
 					case RobotElevatorCallsTableSortTypeEnum.DATE:
-						return momentSort(a[key]).diff(momentSort(b[key]));
+						return dateSort(dateA).diff(dateSort(dateB));
 					case RobotElevatorCallsTableSortTypeEnum.STRING:
 					default:
 						return a[key] && b[key]

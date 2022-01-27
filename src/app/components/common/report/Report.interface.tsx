@@ -14,6 +14,7 @@ export interface ReportInterface {
 }
 
 export interface ReportFormInterface {
+	id: string;
 	from: string;
 	to: string;
 }

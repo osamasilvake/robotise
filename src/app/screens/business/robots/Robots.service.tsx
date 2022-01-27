@@ -459,8 +459,8 @@ class RobotsService {
 	 * @returns
 	 */
 	robotReportsGenerate = (robotId: string, payload: ReportFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS.PURCHASES;
-		return HttpClientService.get<string>(url, {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS;
+		return HttpClientService.get<string>(`${url}/${payload.id}`, {
 			params: {
 				'filter[robot]': robotId,
 				'filter[createdAt][gte]': payload.from,

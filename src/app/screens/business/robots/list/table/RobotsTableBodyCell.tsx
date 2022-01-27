@@ -10,7 +10,7 @@ import { AppConfigService } from '../../../../../services';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RTSContentDataInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
-import { momentFormat1 } from '../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../utilities/methods/Date';
 import { RobotDetailControlModeTypeEnum } from '../../content/detail/commands/RobotDetailCommands.enum';
 import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 import { RobotsTableBodyCellInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
@@ -131,7 +131,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 					AppConfigService.AppOptions.common.none
 				);
 			} else if (RobotsTableColumnsTypeEnum.UPDATED === column.id) {
-				return momentFormat1(value);
+				return dateFormat1(String(value));
 			} else if (RobotsTableColumnsTypeEnum.ALERTS === column.id) {
 				return `${robot.robotAlerts.danger}/${robot.robotAlerts.warning}`;
 			}

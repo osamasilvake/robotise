@@ -387,8 +387,8 @@ class SitesService {
 	 * @returns
 	 */
 	siteReportsGenerate = (siteId: string, payload: ReportFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS.PRODUCTS;
-		return HttpClientService.get<string>(url, {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS;
+		return HttpClientService.get<string>(`${url}/${payload.id}`, {
 			params: {
 				'filter[site]': siteId,
 				'filter[createdAt][gte]': payload.from,

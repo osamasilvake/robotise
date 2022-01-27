@@ -27,8 +27,8 @@ export const RobotPurchasesTableStyle = makeStyles((theme: Theme) => ({
 	sCommentClear: {
 		marginRight: theme.spacing(0.5)
 	},
-	sCommentEdit: {
-		marginBottom: theme.spacing(0.5)
+	sCommentText: {
+		marginTop: theme.spacing(0.5)
 	},
 	sItemTrackingVisit: {
 		marginLeft: theme.spacing(0.5)

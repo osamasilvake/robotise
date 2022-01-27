@@ -8,7 +8,7 @@ import {
 	SOCDataInterface,
 	SOContentInterface
 } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
-import { momentSort } from '../../../../../../../utilities/methods/Moment';
+import { dateSort } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import {
 	RobotOrdersTableColumnsTypeEnum,
@@ -66,9 +66,11 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 		type: RobotOrdersTableSortTypeEnum
 	) => {
 		return (a: SOCDataInterface, b: SOCDataInterface) => {
+			const dateA = a[RobotOrdersTableColumnsTypeEnum.CREATED];
+			const dateB = b[RobotOrdersTableColumnsTypeEnum.CREATED];
 			switch (type) {
 				case RobotOrdersTableSortTypeEnum.DATE:
-					return momentSort(a[key]).diff(momentSort(b[key]));
+					return dateSort(dateA).diff(dateSort(dateB));
 				case RobotOrdersTableSortTypeEnum.STRING:
 				default:
 					return a[key] && b[key]

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { RobotProductsSync } from '../../../../../../slices/business/robots/RobotOperations.slice';
-import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { SyncProductsInterface } from './SyncProducts.interface';
 import { SyncProductsStyle } from './SyncProducts.style';
@@ -55,7 +55,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 
 				{lastSynced && (
 					<Typography variant="body2" color="textSecondary" className={classes.sUpdated}>
-						{momentFormat1(lastSynced)}
+						{dateFormat1(lastSynced)}
 					</Typography>
 				)}
 			</CardContent>

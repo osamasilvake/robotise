@@ -1,4 +1,4 @@
-import { momentFromToDiff } from '../../../utilities/methods/Moment';
+import { dateFromToDiff } from '../../../utilities/methods/Date';
 import { ReportFormInterface } from './Report.interface';
 
 /**
@@ -11,6 +11,7 @@ export const ReportValidation = (
 	touched: ReportFormInterface
 ): ReportFormInterface => {
 	const errors: ReportFormInterface = {
+		id: '',
 		from: '',
 		to: ''
 	};
@@ -18,7 +19,7 @@ export const ReportValidation = (
 	// From and To
 	if (touched.to && touched.from) {
 		// exceeds
-		if (momentFromToDiff(values.from, values.to)) {
+		if (dateFromToDiff(values.from, values.to)) {
 			errors.from = `FROM.VALIDATIONS.EXCEEDS`;
 		}
 	}

@@ -22,10 +22,12 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
 	},
 	'&.Mui-dot-red .MuiBadge-badge': {
 		backgroundColor: AppConfigService.AppOptions.colors.c12,
+		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${AppConfigService.AppOptions.colors.c7}`,
 		color: AppConfigService.AppOptions.colors.c12
 	},
 	'&.Mui-dot-orange .MuiBadge-badge': {
 		backgroundColor: AppConfigService.AppOptions.colors.c14,
+		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${AppConfigService.AppOptions.colors.c7}`,
 		color: AppConfigService.AppOptions.colors.c14
 	},
 	'@keyframes ripple': {

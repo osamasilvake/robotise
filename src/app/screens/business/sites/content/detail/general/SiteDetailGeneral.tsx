@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
-import { momentFormat1 } from '../../../../../../utilities/methods/Moment';
+import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { SiteDetailGeneralInterface } from './SiteDetailGeneral.interface';
 import { SiteDetailGeneralStyle } from './SiteDetailGeneral.style';
 
@@ -32,7 +32,7 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.LAST_UPDATED`)}
 				</Typography>
-				<Typography>{momentFormat1(site.updatedAt)}</Typography>
+				<Typography>{dateFormat1(site.updatedAt)}</Typography>
 			</Grid>
 
 			{/* Timezone */}

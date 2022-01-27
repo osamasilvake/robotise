@@ -8,7 +8,7 @@ import {
 	RobotCameraCommandRequest,
 	robotOperationsSelector
 } from '../../../../../../slices/business/robots/RobotOperations.slice';
-import { momentFormat2 } from '../../../../../../utilities/methods/Moment';
+import { dateFormat2 } from '../../../../../../utilities/methods/Date';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotCameraImageUrl } from '../../../Robots.url';
 import { RobotDetailCameraTypeEnum } from './RobotDetailCameras.enum';
@@ -46,7 +46,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 			{/* Date */}
 			{robotTwins.cameras && robotTwins.cameras[cameraType] && (
 				<Typography variant="caption" color="textSecondary">
-					{momentFormat2(robotTwins.cameras[cameraType].imageId.updatedAt)}
+					{dateFormat2(robotTwins.cameras[cameraType].imageId.updatedAt)}
 				</Typography>
 			)}
 

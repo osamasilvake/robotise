@@ -80,7 +80,7 @@ export default dataSlice.reducer;
  * @returns
  */
 export const ProductsFetchList =
-	(siteId: string, refresh = false) =>
+	(siteId?: string, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

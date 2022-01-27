@@ -39,11 +39,11 @@ class SitesService {
 	 * @param siteId
 	 * @returns
 	 */
-	siteProductsFetch = (siteId: string) => {
+	siteProductsFetch = (siteId?: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PRODUCTS;
 		return HttpClientService.get<SiteProductsAxiosGetInterface>(url, {
 			params: {
-				'filter[site]': siteId
+				'filter[site]': siteId || undefined
 			}
 		});
 	};

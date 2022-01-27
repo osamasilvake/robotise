@@ -60,7 +60,7 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T) => {
 						(f) => f.level === RobotTwinsSummaryTypeEnum.WARNING
 					).length
 				},
-				siteId: item.site.id
+				siteId: item.site?.id
 			};
 			dataById[item.robot.id] = result;
 			return result;

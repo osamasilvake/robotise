@@ -41,7 +41,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 					id: data.id,
 					updatedAt: data.updatedAt,
 					site: {
-						id: data.site.id
+						id: data.site?.id
 					},
 					robot: {
 						id: data.robot.id,

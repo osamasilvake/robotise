@@ -45,7 +45,7 @@ const RobotInventoryList: FC = () => {
 		// products
 		if (condition1 || condition2) {
 			// dispatch: fetch site products
-			cSiteId && dispatch(ProductsFetchList(cSiteId));
+			dispatch(ProductsFetchList(cSiteId));
 		}
 
 		// inventory

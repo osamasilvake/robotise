@@ -247,6 +247,15 @@ class AppConfigService extends EnvService {
 	}
 
 	/**
+	 * routes scope
+	 */
+	get AppRoutesScope() {
+		return {
+			PURCHASES: 'orderReports'
+		};
+	}
+
+	/**
 	 * services
 	 */
 	get AppServices() {
@@ -325,13 +334,13 @@ class AppConfigService extends EnvService {
 	 */
 	get StorageItems() {
 		return {
-			JWTAccessToken: 'robotise_access_token',
-			ThemePalette: 'robotise_theme_palette',
-			ChangeLanguage: 'robotise_change_language',
-			DrawerState: 'robotise_drawer_state',
-			IntendedURL: 'robotise_intended_url',
-			SitesState: 'robotise_sites_state',
-			RobotsState: 'robotise_robots_state'
+			JWTAccessToken: 'roc_access_token',
+			ThemePalette: 'roc_theme_palette',
+			ChangeLanguage: 'roc_change_language',
+			DrawerState: 'roc_drawer_state',
+			IntendedURL: 'roc_intended_url',
+			SitesState: 'roc_sites_state',
+			RobotsState: 'roc_robots_state'
 		};
 	}
 

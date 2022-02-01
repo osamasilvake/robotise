@@ -34,8 +34,8 @@ const appRoutes = {
 					DETAIL: '/robots/:robotId/orders/:orderId'
 				},
 				PURCHASES: {
-					MAIN: '/robots/:robotId/orderReports',
-					DETAIL: '/robots/:robotId/orderReports/:purchaseId'
+					MAIN: '/robots/:robotId/purchases',
+					DETAIL: '/robots/:robotId/purchases/:purchaseId'
 				},
 				COMMANDS_LOG: '/robots/:robotId/commands-log',
 				ELEVATOR_CALLS: '/robots/:robotId/elevator-calls',

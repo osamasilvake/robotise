@@ -7,6 +7,7 @@ export interface RoutesInterface {
 	component: FC;
 	template?: FC<LayoutPageInterface>;
 	scope?: boolean;
+	scopeName?: string;
 }
 
 export interface RoutesTemplateInterface {

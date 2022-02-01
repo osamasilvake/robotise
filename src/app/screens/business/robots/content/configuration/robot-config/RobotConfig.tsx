@@ -22,6 +22,7 @@ import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotT
 import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
+	removeEmptyObjProperties,
 	validateEmptyObj,
 	validateEmptyObjProperty
 } from '../../../../../../utilities/methods/Object';
@@ -59,7 +60,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 				if (robotTwinsSingle) {
 					// dispatch: update robot config
 					dispatch(
-						RobotConfigUpdate(cRobotId, values, () => {
+						RobotConfigUpdate(cRobotId, removeEmptyObjProperties(values), () => {
 							if (!robotTwinsSummary.content?.state?.hidden && values.isHidden) {
 								// prepare link
 								const link =
@@ -125,7 +126,6 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 							</FormControl>
 							<FormControl fullWidth margin="normal">
 								<TextField
-									required
 									type="text"
 									id="username"
 									name="username"
@@ -136,13 +136,10 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									value={values?.username}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									error={!!errors?.username}
-									helperText={errors?.username && t(errors.username)}
 								/>
 							</FormControl>
 							<FormControl fullWidth margin="normal">
 								<TextField
-									required
 									type="text"
 									id="ipAddress"
 									name="ipAddress"
@@ -153,8 +150,6 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									value={values?.ipAddress}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									error={!!errors?.ipAddress}
-									helperText={errors?.ipAddress && t(errors.ipAddress)}
 								/>
 							</FormControl>
 						</Grid>
@@ -205,7 +200,10 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								disabled={
 									robotOperations.robotConfig.loading ||
 									(!!errors && !validateEmptyObj(errors)) ||
-									validateEmptyObjProperty(values)
+									validateEmptyObjProperty({
+										name: values.name,
+										customerName: values.customerName
+									})
 								}
 								endIcon={
 									robotOperations.robotConfig.loading && (

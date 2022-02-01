@@ -34,7 +34,7 @@ const validateEmptyObjProperty = <T,>(obj: T): boolean => {
  */
 const removeEmptyObjProperties = <T,>(obj: T) => {
 	return Object.entries(obj)
-		.filter(([, v]) => v !== null)
+		.filter(([, x]) => x !== null && x !== '')
 		.reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
 };
 

@@ -13,7 +13,7 @@ A summary of development workflow involving multiple git branches.
 * Create a `merge request` in Gitlab: `master -> development|pre-production|production`
 
 
-## Libraries and Frameworks
+## Packages
 
 ### Quality, Lint, Commit & Release
 ##### Quality: `*.{js,jsx,ts,tsx,json}`

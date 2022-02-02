@@ -16,4 +16,4 @@ dev:deploy:
   environment:
     name: development
   only:
-    - master
+    - development

@@ -5,7 +5,7 @@ prettier:
     - yarn pretty:check
   only:
     - merge_requests
-    - master
+    - development
     - pre-production
     - production
 
@@ -16,7 +16,7 @@ lint:
     - yarn lint:es
   only:
     - merge_requests
-    - master
+    - development
     - pre-production
     - production
 
@@ -27,6 +27,6 @@ test:
     - yarn test:ci
   only:
     - merge_requests
-    - master
+    - development
     - pre-production
     - production

@@ -11,4 +11,4 @@ dev:publish:
   environment:
     name: development
   only:
-    - master
+    - development

@@ -9,6 +9,6 @@ install:
     expire_in: 15 minutes
   only:
     - merge_requests
-    - master
+    - development
     - pre-production
     - production

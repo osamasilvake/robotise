@@ -19,4 +19,4 @@ dev:build:
   environment:
     name: development
   only:
-    - master
+    - development

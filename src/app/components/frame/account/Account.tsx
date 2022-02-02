@@ -1,4 +1,4 @@
-import { Close, KeyboardArrowDown, Menu, PowerSettingsNew } from '@mui/icons-material';
+import { KeyboardArrowDown, Menu, MenuOpen, PowerSettingsNew } from '@mui/icons-material';
 import {
 	Avatar,
 	Box,
@@ -158,7 +158,7 @@ const Account: FC = () => {
 					</Box>
 					<Tooltip title={t<string>('TOOLTIP:DRAWER.CLOSE')}>
 						<IconButton onClick={handleDrawer(false)}>
-							<Close />
+							<MenuOpen />
 						</IconButton>
 					</Tooltip>
 				</>

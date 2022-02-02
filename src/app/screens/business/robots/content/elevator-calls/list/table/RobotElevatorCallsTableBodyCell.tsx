@@ -70,7 +70,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	) => {
 		if (column.id === RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
 			return (
-				<Box className={classes.sLinks}>
+				<Stack direction="column" alignItems="center">
 					<ExternalLink
 						index={index}
 						text={t(`${translation}.ELEVATOR_LOGS`)}
@@ -102,7 +102,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 						onClick={() => copyTemplate(index)}
 						className={classes.sTableTemplateIcon}
 					/>
-				</Box>
+				</Stack>
 			);
 		} else {
 			const mappedElevatorCall = mapElevatorCall(elevatorCall);

@@ -9,7 +9,7 @@ import { AppConfigService } from '../../services';
  * @returns
  */
 const strRemoveSymbols = (str: string) => {
-	return str.replaceAll(/[-_]/gi, ' ');
+	return str.replace(/[-_]/gi, ' ');
 };
 
 /**

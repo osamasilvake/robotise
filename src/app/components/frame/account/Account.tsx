@@ -1,4 +1,4 @@
-import { Close, Menu, PowerSettingsNew } from '@mui/icons-material';
+import { Close, KeyboardArrowDown, Menu, PowerSettingsNew } from '@mui/icons-material';
 import {
 	Avatar,
 	Box,
@@ -104,9 +104,12 @@ const Account: FC = () => {
 								/>
 							</StyledBadge>
 							<Box className={classes.sDetail}>
-								<Typography variant="subtitle2" color="textPrimary">
-									{auth.user?.data.display_name}
-								</Typography>
+								<Stack spacing={0.25} direction="row" alignItems="center">
+									<Typography variant="subtitle2" color="textPrimary">
+										{auth.user?.data.display_name}
+									</Typography>
+									<KeyboardArrowDown fontSize="small" />
+								</Stack>
 								<Typography
 									variant="body2"
 									color="textSecondary"
@@ -128,7 +131,7 @@ const Account: FC = () => {
 								vertical: 'top',
 								horizontal: 'center'
 							}}>
-							<List disablePadding>
+							<List disablePadding className={classes.sList}>
 								{/* User Info */}
 								<ListItem divider>
 									<ListItemText

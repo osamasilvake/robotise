@@ -94,5 +94,4 @@ environment:
 --build-arg REACT_APP_API_BASE_URL \
 --build-arg REACT_APP_API_VERSION
 ```
-* Set Dockerfile with ARG (arguments).
-Reference: `Dockerfile`
+* Set Dockerfile with ARG (arguments): `docker/Dockerfile`

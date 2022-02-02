@@ -64,7 +64,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [DOM Purify](https://github.com/cure53/DOMPurify)
 
 
-### Code Splitting
+### MUI: Speedup Startup Times (Development)
 - [X] [MUI Babel Import](https://github.com/umijs/babel-plugin-import/)
 - [X] [Customize CRA](https://github.com/arackaf/customize-cra/)
 - [X] [React App Rewired](https://github.com/timarney/react-app-rewired/)

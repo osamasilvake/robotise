@@ -413,7 +413,7 @@ class RobotsService {
 					name: payload.name,
 					customerName: payload.customerName,
 					configs: {
-						ca: {
+						ca: (payload.username || payload.ipAddress) && {
 							username: payload.username,
 							ip: payload.ipAddress
 						},

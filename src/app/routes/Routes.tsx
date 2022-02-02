@@ -26,7 +26,8 @@ const RoutesCustom: FC = () => {
 										auth.user?.scope,
 										AuthScopeTypeEnum.READ,
 										r.path,
-										r.scope
+										r.scope,
+										r.scopeName
 									)
 								)
 						)

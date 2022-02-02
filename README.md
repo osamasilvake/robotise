@@ -64,13 +64,13 @@ A summary of development workflow involving multiple git branches.
 - [X] [DOM Purify](https://github.com/cure53/DOMPurify)
 
 
-#### MUI: Speedup Startup Times (Development)
+##### MUI: Speedup Startup Times (Development)
 - [X] [Babel Plugin Import](https://github.com/umijs/babel-plugin-import/)
 - [X] [Customize CRA](https://github.com/arackaf/customize-cra/)
 - [X] [React App Rewired](https://github.com/timarney/react-app-rewired/)
 
 
-#### Analyze Project
+##### Analyze Project
 - [X] [Source Map Explorer](https://github.com/danvk/source-map-explorer#readme)
 
 

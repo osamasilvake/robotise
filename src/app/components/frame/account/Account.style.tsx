@@ -1,6 +1,9 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
+import { AppConfigService } from '../../../services';
+
+const drawerOpenWidth = AppConfigService.AppOptions.components.drawer.openWidth;
 export const AccountStyle = makeStyles((theme: Theme) => ({
 	sAccount: {
 		minHeight: theme.spacing(8),
@@ -18,5 +21,8 @@ export const AccountStyle = makeStyles((theme: Theme) => ({
 	},
 	sDetailSubtitle: {
 		marginTop: theme.spacing(-0.25)
+	},
+	sList: {
+		maxWidth: `calc(${theme.typography.pxToRem(drawerOpenWidth)} - ${theme.spacing(4)})`
 	}
 }));

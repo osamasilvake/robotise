@@ -37,7 +37,9 @@ const robotsRoutes: RoutesInterface[] = [
 	},
 	{
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.MAIN,
-		component: Robot
+		component: Robot,
+		scope: false,
+		scopeName: AppConfigService.AppRoutesScope.PURCHASES
 	},
 	{
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.COMMANDS_LOG,
@@ -61,7 +63,9 @@ const robotsRoutes: RoutesInterface[] = [
 	},
 	{
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL,
-		component: Robot
+		component: Robot,
+		scope: false,
+		scopeName: AppConfigService.AppRoutesScope.PURCHASES
 	}
 ];
 export default robotsRoutes;

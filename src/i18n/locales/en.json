@@ -1446,17 +1446,11 @@
 							},
 							"USERNAME": {
 								"LABEL": "CA Username",
-								"PLACEHOLDER": "Enter username",
-								"VALIDATIONS": {
-									"REQUIRED": "Username is required."
-								}
+								"PLACEHOLDER": "Enter username"
 							},
 							"IP_ADDRESS": {
 								"LABEL": "IP Address",
-								"PLACEHOLDER": "Enter IP Address",
-								"VALIDATIONS": {
-									"REQUIRED": "IP Address is required."
-								}
+								"PLACEHOLDER": "Enter IP Address"
 							},
 							"CHECKBOXES": {
 								"HIDDEN": {

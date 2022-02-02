@@ -33,21 +33,5 @@ export const RobotConfigValidation = (
 		}
 	}
 
-	// Username
-	if (touched.username) {
-		// required
-		if (!values.username) {
-			errors.username = `${translation}.USERNAME.VALIDATIONS.REQUIRED`;
-		}
-	}
-
-	// IP Address
-	if (touched.ipAddress) {
-		// required
-		if (!values.ipAddress) {
-			errors.ipAddress = `${translation}.IP_ADDRESS.VALIDATIONS.REQUIRED`;
-		}
-	}
-
 	return errors;
 };

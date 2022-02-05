@@ -17,11 +17,11 @@ A summary of development workflow involving multiple git branches.
 
 ### Quality, Lint, Commit & Release
 ##### Quality: `*.{js,jsx,ts,tsx,json}`
-- [X] [prettier](https://prettier.io/)
+- [X] [prettier](https://prettier.io)
 
 ##### Lint: Eslint
 - [X] [eslint](https://github.com/eslint/eslint)
-- [X] [TypeScript](https://www.typescriptlang.org/)
+- [X] [TypeScript](https://www.typescriptlang.org)
 - [X] [@typescript-eslint/parser](https://github.com/eslint/typescript-eslint-parser)
 - [X] [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint)
 - [X] [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)
@@ -43,31 +43,31 @@ A summary of development workflow involving multiple git branches.
 
 ### Client Packages
 - [X] [Create React App](https://github.com/facebook/create-react-app)
-- [X] [Redux Toolkit](https://redux-toolkit.js.org/)
+- [X] [Redux Toolkit](https://redux-toolkit.js.org)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [Redux Logger](https://github.com/zalmoxisus/redux-devtools-extension)
-- [X] [TypeScript](https://www.typescriptlang.org/)
-- [X] [Material-UI](https://material-ui.com/)
-- [X] [Emotion](https://github.com/emotion-js/emotion/)
-- [X] [clsx](https://github.com/lukeed/clsx/)
-- [X] [Axios](https://github.com/axios/axios/)
-- [X] [JSON-API Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer/)
+- [X] [TypeScript](https://www.typescriptlang.org)
+- [X] [Material-UI](https://material-ui.com)
+- [X] [Emotion](https://github.com/emotion-js/emotion)
+- [X] [clsx](https://github.com/lukeed/clsx)
+- [X] [Axios](https://github.com/axios/axios)
+- [X] [JSON-API Serializer](https://github.com/jsonapi-serializer/jsonapi-serializer)
 - [X] [loglevel](https://github.com/pimterry/loglevel)
-- [X] [i18n](https://www.i18next.com/)
-- [X] [DayJs](https://github.com/iamkun/dayjs/)
+- [X] [i18n](https://www.i18next.com)
+- [X] [DayJs](https://github.com/iamkun/dayjs)
 - [X] [React Helmet Async](https://github.com/staylor/react-helmet-async)
 - [X] [React CSV](https://github.com/react-csv/react-csv)
 - [X] [DOM Purify](https://github.com/cure53/DOMPurify)
 
 
 ##### MUI: Speedup Startup Times (Development)
-- [X] [Babel Plugin Import](https://github.com/umijs/babel-plugin-import/)
+- [X] [Babel Plugin Import](https://github.com/umijs/babel-plugin-import)
 - [X] [Customize CRA](https://github.com/arackaf/customize-cra/)
-- [X] [React App Rewired](https://github.com/timarney/react-app-rewired/)
+- [X] [React App Rewired](https://github.com/timarney/react-app-rewired)
 
 
 ##### Analyze Project
-- [X] [Source Map Explorer](https://github.com/danvk/source-map-explorer#readme)
+- [X] [Source Map Explorer](https://github.com/danvk/source-map-explorer)
 
 
 ## ENV (Environment)

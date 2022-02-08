@@ -136,7 +136,14 @@ const Account: FC = () => {
 								<ListItem divider>
 									<ListItemText
 										primary={auth.user?.data.display_name}
-										secondary={auth.user?.data.email}
+										secondary={
+											<Typography
+												color="textSecondary"
+												variant="body2"
+												noWrap>
+												{auth.user?.data.email}
+											</Typography>
+										}
 									/>
 								</ListItem>
 

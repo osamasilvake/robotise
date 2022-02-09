@@ -2,9 +2,12 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
+import { DialogCreateRobotFormInterface } from '../../../screens/business/robots/list/actions/RobotsActions.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { AppConfigService, StorageService } from '../../../services';
+import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
+import { triggerMessage } from '../../general/General.slice';
 import { deserializeRobotTwinsSummary } from './RobotTwinsSummary.slice.deserialize';
 import {
 	RTSContentInterface,
@@ -54,16 +57,32 @@ const dataSlice = createSlice({
 		updating: (state) => {
 			state.updating = true;
 		},
-		updated: (state, action) => {
+		updatedContent: (state, action) => {
 			state.updating = false;
 			state.content = action.payload;
+		},
+		updated: (state) => {
+			state.updating = false;
+		},
+		updateFailed: (state) => {
+			state.updating = false;
 		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
+export const {
+	loader,
+	loading,
+	success,
+	failure,
+	updating,
+	updatedContent,
+	updated,
+	updateFailed,
+	reset
+} = dataSlice.actions;
 
 // selector
 export const robotTwinsSummarySelector = (state: AppReducerType) => state['robotTwinsSummary'];
@@ -125,6 +144,53 @@ export const RobotTwinsSummaryFetchList =
 	};
 
 /**
+ * create a robot
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const RobotCreate =
+	(payload: DialogCreateRobotFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return RobotsService.robotRobotCreate(payload)
+			.then(async () => {
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated());
+
+				// callback
+				callback();
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'rts-create-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.MAIN.CREATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'rts-create-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.MAIN.CREATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * update state
  * @param state
  * @returns
@@ -145,8 +211,8 @@ export const RobotTwinsSummaryUpdateState =
 				state
 			};
 
-			// dispatch: updated
-			dispatch(updated(result));
+			// dispatch: updatedContent
+			dispatch(updatedContent(result));
 
 			// storage: robots state
 			StorageService.put(AppConfigService.StorageItems.RobotsState, state);

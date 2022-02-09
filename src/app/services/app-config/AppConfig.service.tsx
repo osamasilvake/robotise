@@ -292,7 +292,8 @@ class AppConfigService extends EnvService {
 						REPORTS: this.envAppUrl
 					},
 					ROBOTS: {
-						ALL: `${this.envAppUrl}/robot-twins-summary`,
+						SUMMARY: `${this.envAppUrl}/robot-twins-summary`,
+						ALL: `${this.envAppUrl}/robots`,
 						SINGLE: `${this.envAppUrl}/robot-twins/:robotTwinId`,
 						INVENTORY: `${this.envAppUrl}/robots/:robotId/inventory`,
 						ORDERS: `${this.envAppUrl}/orders`,

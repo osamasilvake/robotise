@@ -211,6 +211,12 @@
 			}
 		},
 		"ROBOTS": {
+			"MAIN": {
+				"CREATE": {
+					"SUCCESS": "Robot has been created successfully!",
+					"ERROR": "Unable to create a robot!"
+				}
+			},
 			"DETAIL": {
 				"NOTE": {
 					"SUCCESS": "Note has been updated successfully!",
@@ -769,6 +775,33 @@
 				"FILTERS": {
 					"HIDDEN": "Include hidden robots",
 					"SIMULATION": "Include simulation robots"
+				},
+				"SPEED_DIAL": {
+					"CREATE_ROBOT": "Create new Robot"
+				},
+				"CREATE": {
+					"TITLE": "Create Robot",
+					"TEXT":"Create a new robot!",
+					"NOTE": "Note: New robot is by default hidden!",
+					"FIELDS": {
+						"SITE": {
+							"LABEL": "Site"
+						},
+						"NAME": {
+							"LABEL": "Name",
+							"PLACEHOLDER": "Enter robot name",
+							"VALIDATIONS": {
+								"REQUIRED": "Name is required."
+							}
+						},
+						"CUSTOMER_NAME": {
+							"LABEL": "Customer Name",
+							"PLACEHOLDER": "Enter customer robot name",
+							"VALIDATIONS": {
+								"REQUIRED": "Customer Name is required."
+							}
+						}
+					}
 				}
 			},
 			"TABLE": {

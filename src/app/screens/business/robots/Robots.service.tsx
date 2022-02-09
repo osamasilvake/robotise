@@ -17,8 +17,11 @@ import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
 import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
+import { DialogCreateRobotFormInterface } from './list/actions/RobotsActions.interface';
 import {
 	RobotCommandLogsAxiosGetInterface,
+	RobotCreateAxiosPostRequestInterface,
+	RobotCreateAxiosPostResponseInterface,
 	RobotElevatorCallsAxiosGetInterface,
 	RobotInventoryAxiosGetInterface,
 	RobotMapAxiosGetInterface,
@@ -42,11 +45,44 @@ class RobotsService {
 	 * @returns
 	 */
 	robotTwinsSummaryFetch = (state: RTSContentStateInterface | undefined) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SUMMARY;
 		return HttpClientService.get<RobotTwinSummaryAxiosGetInterface>(url, {
 			params: {
 				'filter[isHidden]': state?.hidden ? undefined : false,
 				'filter[isSimulator]': state?.simulation ? undefined : false
+			}
+		});
+	};
+
+	/**
+	 * create a robot
+	 * @param payload
+	 * @returns
+	 */
+	robotRobotCreate = (payload: DialogCreateRobotFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
+		return HttpClientService.post<
+			RobotCreateAxiosPostRequestInterface,
+			RobotCreateAxiosPostResponseInterface
+		>(url, {
+			data: {
+				type: 'robots',
+				attributes: {
+					name: payload.name,
+					customerName: payload.customerName,
+					configs: {
+						isOnlineCheckDisabled: true,
+						isHidden: true
+					}
+				},
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: payload.siteId
+						}
+					}
+				}
 			}
 		});
 	};

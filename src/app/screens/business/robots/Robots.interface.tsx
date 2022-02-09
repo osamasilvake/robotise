@@ -17,6 +17,36 @@ export interface RobotTwinSummaryAxiosGetInterface {
 	}[];
 }
 
+export interface RobotCreateAxiosPostRequestInterface {
+	data: {
+		type: string;
+		attributes: {
+			name: string;
+			customerName: string;
+			configs: {
+				isOnlineCheckDisabled: boolean;
+				isHidden: boolean;
+			};
+		};
+		relationships: {
+			site: {
+				data: {
+					type: string;
+					id: string;
+				};
+			};
+		};
+	};
+}
+
+export interface RobotCreateAxiosPostResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: IRobotTwinSummaryInterface;
+	};
+}
+
 export interface RobotTwinsAxiosGetInterface {
 	data: {
 		id: string;

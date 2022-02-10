@@ -63,10 +63,10 @@ const Account: FC = () => {
 
 	/**
 	 * handle menu open
-	 * @param $event
+	 * @param event
 	 */
-	const handleMenuOpen = ($event: MouseEvent<HTMLButtonElement>) =>
-		setAnchorEl($event.currentTarget);
+	const handleMenuOpen = (event: MouseEvent<HTMLButtonElement>) =>
+		setAnchorEl(event.currentTarget);
 
 	/**
 	 * handle menu close

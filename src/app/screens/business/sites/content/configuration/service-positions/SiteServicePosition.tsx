@@ -31,7 +31,7 @@ const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
 					title={t<string>('SERVICE_POSITIONS.EDIT')}
 					onClick={() => setOpenCreateEdit(true)}>
 					<IconButton edge="end">
-						<Edit color="primary" />
+						<Edit color="primary" fontSize="small" />
 					</IconButton>
 				</Tooltip>
 				{openCreateEdit && (
@@ -48,7 +48,7 @@ const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
 					title={t<string>('SERVICE_POSITIONS.DELETE')}
 					onClick={() => setOpenDelete(true)}>
 					<IconButton edge="end">
-						<Delete color="error" />
+						<Delete color="error" fontSize="small" />
 					</IconButton>
 				</Tooltip>
 				{openDelete && (

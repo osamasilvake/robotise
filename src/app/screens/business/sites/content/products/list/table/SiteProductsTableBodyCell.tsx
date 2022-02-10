@@ -1,4 +1,5 @@
-import { Avatar, Box, Chip, TableCell } from '@mui/material';
+import { DeleteOutline, Edit } from '@mui/icons-material';
+import { Avatar, Box, IconButton, TableCell } from '@mui/material';
 import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC, MouseEvent, useState } from 'react';
@@ -42,7 +43,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	 * open create/edit product dialog
 	 * @param event
 	 */
-	const openCreateEditProductDialog = (event: MouseEvent<HTMLDivElement>) => {
+	const openCreateEditProductDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -54,7 +55,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	 * open delete product dialog
 	 * @param event
 	 */
-	const openDeleteProductDialog = (event: MouseEvent<HTMLDivElement>) => {
+	const openDeleteProductDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -70,18 +71,11 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	 */
 	const setCellValue = (product: SPCDataInterface, column: SiteProductsTableColumnInterface) => {
 		if (column.id === SiteProductsTableColumnsTypeEnum.ACTIONS) {
-			const translation = 'CONTENT.PRODUCTS.LIST.TABLE.VALUES';
 			return (
 				<Box>
-					<Chip
-						size="small"
-						label={t(`${translation}.EDIT`)}
-						color="primary"
-						variant="outlined"
-						clickable
-						onClick={openCreateEditProductDialog}
-						className={classes.sEditProduct}
-					/>
+					<IconButton color="primary" onClick={openCreateEditProductDialog}>
+						<Edit fontSize="small" />
+					</IconButton>
 					{openCreateEdit && (
 						<DialogCreateEditProduct
 							product={product}
@@ -91,17 +85,9 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 						/>
 					)}
 
-					<Chip
-						style={{
-							borderColor: AppConfigService.AppOptions.colors.c12,
-							color: AppConfigService.AppOptions.colors.c12
-						}}
-						size="small"
-						label={t(`${translation}.DELETE`)}
-						variant="outlined"
-						clickable
-						onClick={openDeleteProductDialog}
-					/>
+					<IconButton color="error" onClick={openDeleteProductDialog}>
+						<DeleteOutline fontSize="small" />
+					</IconButton>
 					{openDelete && (
 						<DialogDeleteProduct
 							product={product}

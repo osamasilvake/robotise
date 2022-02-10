@@ -82,7 +82,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 					title={t<string>('NOTIFICATION.EDIT')}
 					onClick={() => setOpen(true)}>
 					<IconButton edge="end">
-						<Edit color="primary" />
+						<Edit color="primary" fontSize="small" />
 					</IconButton>
 				</Tooltip>
 

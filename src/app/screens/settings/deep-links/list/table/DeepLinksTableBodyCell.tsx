@@ -1,4 +1,5 @@
-import { Box, Chip, TableCell } from '@mui/material';
+import { DeleteOutline, Edit } from '@mui/icons-material';
+import { Box, Chip, IconButton, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -33,7 +34,7 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	 * open create/edit deep link dialog
 	 * @param event
 	 */
-	const openCreateEditDeepLinkDialog = (event: MouseEvent<HTMLDivElement>) => {
+	const openCreateEditDeepLinkDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -45,7 +46,7 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	 * open delete deep link dialog
 	 * @param event
 	 */
-	const openDeleteDeepLinkDialog = (event: MouseEvent<HTMLDivElement>) => {
+	const openDeleteDeepLinkDialog = (event: MouseEvent<HTMLButtonElement>) => {
 		// stop propagation
 		event.stopPropagation();
 
@@ -64,12 +65,8 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 			const translation = 'LIST.TABLE.VALUES';
 			return (
 				<Box>
-					<Chip
-						size="small"
-						label={t(`${translation}.EDIT`)}
+					<IconButton
 						color="primary"
-						variant="outlined"
-						clickable
 						disabled={
 							!validateScope(
 								auth.user?.scope,
@@ -77,9 +74,9 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
 							)
 						}
-						onClick={openCreateEditDeepLinkDialog}
-						className={classes.sEditDeepLink}
-					/>
+						onClick={openCreateEditDeepLinkDialog}>
+						<Edit fontSize="small" />
+					</IconButton>
 					{openCreateEdit && (
 						<DialogCreateEditDeepLink
 							deepLink={deepLink}
@@ -89,15 +86,8 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 						/>
 					)}
 
-					<Chip
-						style={{
-							borderColor: AppConfigService.AppOptions.colors.c12,
-							color: AppConfigService.AppOptions.colors.c12
-						}}
-						size="small"
-						label={t(`${translation}.DELETE`)}
-						variant="outlined"
-						clickable
+					<IconButton
+						color="error"
 						disabled={
 							!validateScope(
 								auth.user?.scope,
@@ -105,8 +95,9 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
 							)
 						}
-						onClick={openDeleteDeepLinkDialog}
-					/>
+						onClick={openDeleteDeepLinkDialog}>
+						<DeleteOutline fontSize="small" />
+					</IconButton>
 					{openDelete && (
 						<DialogDeleteDeepLink
 							deepLink={deepLink}

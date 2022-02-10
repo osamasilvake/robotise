@@ -560,10 +560,6 @@
 							"SIZE": "Size",
 							"UPDATED": "Updated",
 							"ACTIONS": "Actions"
-						},
-						"VALUES": {
-							"EDIT": "Edit",
-							"DELETE": "Delete"
 						}
 					}
 				}
@@ -1574,10 +1570,6 @@
 					"KEY": "Key",
 					"CREATED": "Created",
 					"ACTIONS": "Actions"
-				},
-				"VALUES": {
-					"EDIT": "Edit",
-					"DELETE": "Delete"
 				}
 			}
 		}

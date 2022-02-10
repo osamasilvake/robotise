@@ -1,13 +1,15 @@
+import { CopyAll } from '@mui/icons-material';
 import {
 	Alert,
 	AlertTitle,
 	Box,
-	Button,
 	Card,
 	CardContent,
 	Divider,
+	IconButton,
 	Link,
 	Stack,
+	Tooltip,
 	Typography
 } from '@mui/material';
 import { FC } from 'react';
@@ -61,12 +63,13 @@ const GeneralEmailContent: FC<GeneralEmailDetailContentInterface> = (props) => {
 				<Alert
 					severity="error"
 					action={
-						<Button
-							color="inherit"
-							size="small"
-							onClick={handleCopyToClipboard(email.id, history.reason)}>
-							{t(`${translation}.COPY`)}
-						</Button>
+						<Tooltip title={t<string>(`${translation}.COPY`)}>
+							<IconButton
+								color="error"
+								onClick={handleCopyToClipboard(email.id, history.reason)}>
+								<CopyAll fontSize="small" />
+							</IconButton>
+						</Tooltip>
 					}
 					className={classes.sError}>
 					<AlertTitle>{history.event.toUpperCase()}</AlertTitle>

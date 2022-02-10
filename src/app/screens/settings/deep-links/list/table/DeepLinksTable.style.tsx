@@ -11,8 +11,5 @@ export const DeepLinksTableStyle = makeStyles((theme: Theme) => ({
 	sTablePagination: {
 		opacity: 0.6,
 		pointerEvents: 'none'
-	},
-	sEditDeepLink: {
-		marginRight: theme.spacing(0.5)
 	}
 }));

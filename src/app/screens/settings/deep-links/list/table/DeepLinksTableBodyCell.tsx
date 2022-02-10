@@ -1,7 +1,6 @@
 import { DeleteOutline, Edit } from '@mui/icons-material';
-import { Box, Chip, IconButton, TableCell } from '@mui/material';
+import { Box, IconButton, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import ReadMore from '../../../../../components/common/read-more/ReadMore';
@@ -16,14 +15,11 @@ import {
 	DeepLinksTableBodyCellInterface,
 	DeepLinksTableColumnInterface
 } from './DeepLinksTable.interface';
-import { DeepLinksTableStyle } from './DeepLinksTable.style';
 import DialogCreateEditDeepLink from './DialogCreateEditDeepLink';
 import DialogDeleteDeepLink from './DialogDeleteDeepLink';
 
 const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	const { deepLink, column } = props;
-	const { t } = useTranslation('DEEP_LINKS');
-	const classes = DeepLinksTableStyle();
 
 	const auth = useSelector(authSelector);
 
@@ -62,7 +58,6 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 	 */
 	const setCellValue = (deepLink: SDLDataInterface, column: DeepLinksTableColumnInterface) => {
 		if (column.id === DeepLinksTableColumnsTypeEnum.ACTIONS) {
-			const translation = 'LIST.TABLE.VALUES';
 			return (
 				<Box>
 					<IconButton

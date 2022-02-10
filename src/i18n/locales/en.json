@@ -781,7 +781,7 @@
 				},
 				"CREATE": {
 					"TITLE": "Create Robot",
-					"TEXT":"Create a new robot!",
+					"TEXT": "Create a new robot!",
 					"NOTE": "Note: New robot is by default hidden!",
 					"FIELDS": {
 						"SITE": {

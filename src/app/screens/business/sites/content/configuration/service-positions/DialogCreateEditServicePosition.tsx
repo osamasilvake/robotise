@@ -60,7 +60,7 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 							? SiteServicePositionsCreateEditTypeEnum.EDIT
 							: SiteServicePositionsCreateEditTypeEnum.CREATE,
 						() => {
-							// dispatch: fetch site service positions
+							// dispatch: fetch service positions
 							dispatch(ServicePositionsFetchList(cSiteId, true));
 
 							// close dialog

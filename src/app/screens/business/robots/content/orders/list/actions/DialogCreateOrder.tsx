@@ -14,7 +14,7 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC, MouseEvent } from 'react';
+import { FC, MouseEvent, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -26,7 +26,10 @@ import {
 } from '../../../../../../../slices/business/robots/orders/Orders.slice';
 import { SOCStateInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { servicePositionsSelector } from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+import {
+	ServicePositionsFetchList,
+	servicePositionsSelector
+} from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { CreateOrderValidation } from './DialogCreateOrder.validation';
@@ -50,6 +53,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
+	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
 	const translation = 'ROBOTS:CONTENT.ORDERS';
 	const fieldLocation = 'location';
 
@@ -87,6 +91,13 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		}
 	);
 
+	useEffect(() => {
+		if (pServicePositionSiteId !== cSiteId) {
+			// dispatch: fetch service positions
+			cSiteId && dispatch(ServicePositionsFetchList(cSiteId));
+		}
+	}, [dispatch, pServicePositionSiteId, cSiteId]);
+
 	/**
 	 * close dialog
 	 * @param event
@@ -107,6 +118,42 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					<Typography color="textSecondary">
 						{t(`${translation}.LIST.ACTIONS.CREATE.TEXT`)}
 					</Typography>
+
+					<FormControl fullWidth margin="normal">
+						<InputLabel id="label-mode">
+							{t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
+						</InputLabel>
+						<Select
+							required
+							labelId="label-mode"
+							id="mode"
+							name="mode"
+							label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
+							value={values.mode}
+							onChange={(e) => {
+								handleChangeInput({
+									target: {
+										name: fieldLocation,
+										value: ''
+									}
+								});
+								handleChangeSelect(e);
+							}}
+							onBlur={handleBlur}>
+							{orderModes().map((mode) => (
+								<MenuItem
+									key={mode}
+									value={mode}
+									disabled={
+										mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
+										(!servicePositions.content ||
+											servicePositions.content?.data.length === 0)
+									}>
+									{t(`${translation}.COMMON.MODE.${mode}`)}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
 
 					{values.mode !== RobotOrderModeTypeEnum.SERVICE_POSITION && (
 						<FormControl fullWidth margin="normal">
@@ -156,41 +203,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							</Select>
 						</FormControl>
 					)}
-
-					<FormControl fullWidth margin="normal">
-						<InputLabel id="label-mode">
-							{t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
-						</InputLabel>
-						<Select
-							required
-							labelId="label-mode"
-							id="mode"
-							name="mode"
-							label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
-							value={values.mode}
-							onChange={(e) => {
-								handleChangeInput({
-									target: {
-										name: fieldLocation,
-										value: ''
-									}
-								});
-								handleChangeSelect(e);
-							}}
-							onBlur={handleBlur}>
-							{orderModes().map((mode) => (
-								<MenuItem
-									key={mode}
-									value={mode}
-									disabled={
-										mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
-										servicePositions.content?.data.length === 0
-									}>
-									{t(`${translation}.COMMON.MODE.${mode}`)}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
 
 					<FormControlLabel
 						control={

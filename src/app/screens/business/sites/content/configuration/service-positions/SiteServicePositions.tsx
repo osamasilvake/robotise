@@ -33,7 +33,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 	useEffect(() => {
 		const executeServices = () => {
 			if (cSiteId) {
-				// dispatch: fetch site service positions
+				// dispatch: fetch service positions
 				dispatch(ServicePositionsFetchList(cSiteId, true));
 			}
 		};

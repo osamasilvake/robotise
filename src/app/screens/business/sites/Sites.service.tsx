@@ -319,7 +319,7 @@ class SitesService {
 	};
 
 	/**
-	 * fetch site service positions
+	 * fetch service positions
 	 * @param siteId
 	 * @returns
 	 */

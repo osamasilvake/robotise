@@ -49,7 +49,7 @@ const SiteConfiguration: FC = () => {
 
 	useEffect(() => {
 		if (pServicePositionSiteId !== cSiteId) {
-			// dispatch: fetch site service positions
+			// dispatch: fetch service positions
 			dispatch(ServicePositionsFetchList(cSiteId));
 		}
 	}, [dispatch, pServicePositionSiteId, cSiteId]);

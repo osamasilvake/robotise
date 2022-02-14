@@ -1,7 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { FC, lazy, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Loader from '../../../components/common/loader/Loader';
@@ -10,10 +10,6 @@ import PageError from '../../../components/content/page-error/PageError';
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
-import {
-	ServicePositionsFetchList,
-	servicePositionsSelector
-} from '../../../slices/business/sites/configuration/ServicePositions.slice';
 import { RobotParamsInterface } from './Robot.interface';
 import robotsRoutes from './Robots.routes';
 
@@ -30,8 +26,6 @@ const RobotConfiguration = lazy(() => import('./content/configuration/RobotConfi
 const RobotTabs: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
-	const dispatch = useDispatch();
-	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const [value, setValue] = useState(-1);
@@ -40,22 +34,10 @@ const RobotTabs: FC = () => {
 	const navigate = useNavigate();
 
 	const cRobotId = params.robotId;
-	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
-	const pSiteId = servicePositions.content?.state?.pSiteId;
 	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const problem = !!robotTwinsSummary.errors?.id || !robotSingle?.id;
 
 	const translation = 'CONTENT.TABS';
-
-	useEffect(() => {
-		const condition1 = servicePositions.content === null;
-		const condition2 = servicePositions.content !== null && pSiteId && pSiteId !== cSiteId;
-
-		if (condition1 || condition2) {
-			// dispatch: fetch site service positions
-			cSiteId && dispatch(ServicePositionsFetchList(cSiteId, true));
-		}
-	}, [dispatch, pSiteId, cSiteId, servicePositions.content]);
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;

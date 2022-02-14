@@ -47,7 +47,7 @@ const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (p
 		status &&
 			dispatch(
 				SiteServicePositionDelete(servicePosition, () => {
-					// dispatch: fetch site service positions
+					// dispatch: fetch service positions
 					dispatch(ServicePositionsFetchList(cSiteId, true));
 
 					// close dialog

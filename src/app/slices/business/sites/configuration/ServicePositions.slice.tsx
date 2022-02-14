@@ -68,7 +68,7 @@ export const servicePositionsSelector = (state: AppReducerType) => state['servic
 export default dataSlice.reducer;
 
 /**
- * fetch site service positions
+ * fetch service positions
  * @param siteId
  * @param refresh
  * @returns

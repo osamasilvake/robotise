@@ -85,8 +85,8 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						id={fieldComment}
 						name={fieldComment}
 						rows={4}
-						label={t(`${translation}.FIELDS.LABEL`)}
-						placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
+						label={t(`${translation}.FIELD.LABEL`)}
+						placeholder={t(`${translation}.FIELD.PLACEHOLDER`)}
 						value={values.comment}
 						onChange={handleChangeInput}
 						onFocus={(e) =>

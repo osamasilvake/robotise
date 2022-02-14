@@ -63,8 +63,8 @@ const DialogNote: FC<NoteInterface> = (props) => {
 							id={fieldNote}
 							name={fieldNote}
 							rows={6}
-							label={t(`${translation}.FIELDS.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.PLACEHOLDER`)}
+							label={t(`${translation}.FIELD.LABEL`)}
+							placeholder={t(`${translation}.FIELD.PLACEHOLDER`)}
 							value={values.note}
 							onChange={handleChangeInput}
 							onFocus={(e) =>

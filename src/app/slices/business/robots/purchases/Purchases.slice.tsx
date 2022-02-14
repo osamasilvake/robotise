@@ -207,6 +207,9 @@ export const PurchaseUpdateState =
 		const states = getState();
 		const purchases = states.purchases;
 
+		// dispatch: updating
+		dispatch(updating());
+
 		if (purchases && purchases.content) {
 			const result = {
 				...purchases.content,

@@ -5,6 +5,7 @@ export interface SliceAlertCodesInterface {
 	init: boolean;
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: SACContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }

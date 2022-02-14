@@ -284,6 +284,9 @@ export const DeepLinksUpdateState =
 		const states = getState();
 		const DeepLinks = states.deepLinks;
 
+		// dispatch: updating
+		dispatch(updating());
+
 		if (DeepLinks && DeepLinks.content) {
 			const result = {
 				...DeepLinks.content,

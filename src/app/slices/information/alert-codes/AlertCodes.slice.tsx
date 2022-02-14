@@ -18,6 +18,7 @@ export const initialState: SliceAlertCodesInterface = {
 	init: false,
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -47,6 +48,9 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
 		updated: (state, action) => {
 			state.content = action.payload;
 		},
@@ -55,7 +59,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loader, loading, success, failure, updated, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
 export const alertCodesSelector = (state: AppReducerType) => state['alertCodes'];
@@ -133,6 +137,9 @@ export const AlertCodesUpdateState =
 		// states
 		const states = getState();
 		const alertCodes = states.alertCodes;
+
+		// dispatch: updating
+		dispatch(updating());
 
 		if (alertCodes && alertCodes.content) {
 			const result = {

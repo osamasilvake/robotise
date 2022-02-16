@@ -52,6 +52,7 @@ const dataSlice = createSlice({
 			state.updating = true;
 		},
 		updated: (state, action) => {
+			state.updating = false;
 			state.content = action.payload;
 		},
 		reset: () => initialState

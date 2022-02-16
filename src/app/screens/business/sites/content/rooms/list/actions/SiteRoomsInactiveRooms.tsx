@@ -6,14 +6,12 @@ import { useParams } from 'react-router-dom';
 
 import {
 	roomsSelector,
-	RoomUpdateFilters
+	RoomsUpdateState
 } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { SRCStateInterface } from '../../../../../../../slices/business/sites/rooms/Rooms.slice.interface';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
-import {
-	SiteRoomsActionsFiltersPayloadInterface,
-	SiteRoomsInactiveRoomsInterface
-} from './SiteRoomsActions.interface';
+import { SiteRoomsInactiveRoomsInterface } from './SiteRoomsActions.interface';
 
 const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 	const { inactive } = props;
@@ -31,12 +29,15 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 	 * handle room state
 	 */
 	const handleRoomState = () => {
-		// dispatch: update rooms filters
-		const filters: SiteRoomsActionsFiltersPayloadInterface = {
-			...rooms.content?.filters,
+		// return on empty
+		if (!rooms.content?.state) return;
+
+		// dispatch: update state
+		const state: SRCStateInterface = {
+			...rooms.content.state,
 			inactive: !inactive
 		};
-		dispatch(RoomUpdateFilters(siteSingle?.id, filters));
+		dispatch(RoomsUpdateState(siteSingle?.id, state));
 	};
 
 	return (

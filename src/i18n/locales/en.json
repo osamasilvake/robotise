@@ -51,6 +51,7 @@
 			"CREATE": "Create",
 			"UPDATE": "Update",
 			"CONFIRM": "Confirm",
+			"MODIFY": "Modify",
 			"GENERATE": "Generate"
 		}
 	},
@@ -572,6 +573,21 @@
 						},
 						"INACTIVE": {
 							"LABEL": "Inactive rooms only"
+						},
+						"MODIFY": {
+							"LABEL": "Modify Rooms",
+							"TITLE": "Modify Rooms",
+							"TEXT": "Modify Rooms configuration.",
+							"FIELDS": {
+								"WHITELIST": {
+									"LABEL": "Whitelist",
+									"PLACEHOLDER": "Add whitelist rooms"
+								},
+								"BLOCKED": {
+									"LABEL": "Blocked",
+									"PLACEHOLDER": "Add blocked rooms"
+								}
+							}
 						}
 					},
 					"GRID": {

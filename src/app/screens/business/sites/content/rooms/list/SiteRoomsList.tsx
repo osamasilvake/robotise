@@ -7,12 +7,12 @@ import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty
 import { AppConfigService } from '../../../../../../services';
 import {
 	roomsSelector,
-	RoomUpdateFilters
+	RoomsUpdateState
 } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { SRCStateInterface } from '../../../../../../slices/business/sites/rooms/Rooms.slice.interface';
 import { SitesFetchList, sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteRoomsActions from './actions/SiteRoomsActions';
-import { SiteRoomsActionsFiltersPayloadInterface } from './actions/SiteRoomsActions.interface';
 import SiteRoomsGrid from './grid/SiteRoomsGrid';
 import { SiteRoomsListStyle } from './SiteRoomsList.style';
 
@@ -30,8 +30,8 @@ const SiteRoomsList: FC = () => {
 
 	const siteSingle = sites.content?.dataById[cSiteId];
 
-	const active = cSiteId === pSiteId && !!rooms.content?.filters.active;
-	const inactive = cSiteId === pSiteId && !!rooms.content?.filters.inactive;
+	const active = cSiteId === pSiteId && !!rooms.content?.state?.active;
+	const inactive = cSiteId === pSiteId && !!rooms.content?.state?.inactive;
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -50,12 +50,12 @@ const SiteRoomsList: FC = () => {
 	useEffect(() => {
 		// clear filters on site change
 		if (cSiteId !== pSiteId) {
-			// dispatch: update rooms filters
-			const filters: SiteRoomsActionsFiltersPayloadInterface = {
+			// dispatch: update state
+			const state: SRCStateInterface = {
 				active: false,
 				inactive: false
 			};
-			dispatch(RoomUpdateFilters(cSiteId, filters));
+			dispatch(RoomsUpdateState(cSiteId, state));
 		}
 	}, [dispatch, cSiteId, pSiteId]);
 

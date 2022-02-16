@@ -184,14 +184,17 @@ export const DeepLinkCreateEdit =
 
 				if (deepLinks.content) {
 					if (type === DeepLinkCreateEditTypeEnum.CREATE) {
-						// dispatch: updated
-						dispatch(updated(null));
+						// wait
+						await timeout(1000);
 
 						// callback
 						callback();
 
 						// wait
 						await timeout(1000);
+
+						// dispatch: updated
+						dispatch(updated(null));
 
 						// dispatch: trigger message
 						dispatch(triggerMessage(message));
@@ -240,14 +243,17 @@ export const DeepLinkDelete =
 
 		return DeepLinksService.deepLinkDelete(deepLink.id)
 			.then(async () => {
-				// dispatch: updated
-				dispatch(updated(null));
+				// wait
+				await timeout(1000);
 
 				// callback
 				callback();
 
 				// wait
 				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated(null));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {

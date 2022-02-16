@@ -136,6 +136,12 @@ export const ServicePositionCreateEdit =
 				// callback
 				callback();
 
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated());
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'service-positions-create-edit-success',
@@ -147,9 +153,6 @@ export const ServicePositionCreateEdit =
 							: 'SITES.CONFIGURATION.SERVICE_POSITIONS.EDIT.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
-
-				// dispatch: updated
-				dispatch(updated());
 			})
 			.catch(() => {
 				// dispatch: trigger message

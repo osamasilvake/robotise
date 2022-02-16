@@ -57,12 +57,11 @@ const dataSlice = createSlice({
 		updating: (state) => {
 			state.updating = true;
 		},
-		updatedContent: (state, action) => {
+		updated: (state, action) => {
 			state.updating = false;
-			state.content = action.payload;
-		},
-		updated: (state) => {
-			state.updating = false;
+			if (action.payload) {
+				state.content = action.payload;
+			}
 		},
 		updateFailed: (state) => {
 			state.updating = false;
@@ -72,17 +71,8 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const {
-	loader,
-	loading,
-	success,
-	failure,
-	updating,
-	updatedContent,
-	updated,
-	updateFailed,
-	reset
-} = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const robotTwinsSummarySelector = (state: AppReducerType) => state['robotTwinsSummary'];
@@ -161,7 +151,7 @@ export const RobotCreate =
 				await timeout(1000);
 
 				// dispatch: updated
-				dispatch(updated());
+				dispatch(updated(null));
 
 				// callback
 				callback();
@@ -211,8 +201,8 @@ export const RobotTwinsSummaryUpdateState =
 				state
 			};
 
-			// dispatch: updatedContent
-			dispatch(updatedContent(result));
+			// dispatch: updated
+			dispatch(updated(result));
 
 			// storage: robots state
 			StorageService.put(AppConfigService.StorageItems.RobotsState, state);

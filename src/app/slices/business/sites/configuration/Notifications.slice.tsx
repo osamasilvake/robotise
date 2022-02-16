@@ -147,6 +147,12 @@ export const NotificationUpdate =
 				// callback
 				callback();
 
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated());
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'notifications-users-update-success',
@@ -155,9 +161,6 @@ export const NotificationUpdate =
 					text: 'SITES.CONFIGURATION.NOTIFICATIONS.UPDATE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
-
-				// dispatch: updated
-				dispatch(updated());
 			})
 			.catch(() => {
 				// dispatch: trigger message

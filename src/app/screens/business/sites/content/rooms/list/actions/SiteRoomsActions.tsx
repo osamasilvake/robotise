@@ -1,22 +1,31 @@
-import { Paper } from '@mui/material';
+import { Box, Paper, Stack } from '@mui/material';
 import { FC } from 'react';
 
-import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
 import { SiteRoomsActionsInterface } from './SiteRoomsActions.interface';
+import { SiteRoomsActionsStyle } from './SiteRoomsActions.style';
 import SiteRoomsActiveRooms from './SiteRoomsActiveRooms';
 import SiteRoomsInactiveRooms from './SiteRoomsInactiveRooms';
+import SiteRoomsModifyRooms from './SiteRoomsModifyRooms';
 
 const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
 	const { active, inactive } = props;
-	const floatStyle = FloatStyle();
+	const classes = SiteRoomsActionsStyle();
 
 	return (
-		<Paper elevation={2} square className={floatStyle.sFloat1}>
-			{/* Active Rooms */}
-			<SiteRoomsActiveRooms active={active} />
+		<Paper elevation={0} square className={classes.sActions}>
+			<Stack spacing={0.5} direction="row" alignItems="center" justifyContent="space-between">
+				<Box>
+					{/* Active Rooms */}
+					<SiteRoomsActiveRooms active={active} />
 
-			{/* Inactive Rooms */}
-			<SiteRoomsInactiveRooms inactive={inactive} />
+					{/* Inactive Rooms */}
+					<SiteRoomsInactiveRooms inactive={inactive} />
+				</Box>
+				<Box>
+					{/* Modify Rooms */}
+					<SiteRoomsModifyRooms />
+				</Box>
+			</Stack>
 		</Paper>
 	);
 };

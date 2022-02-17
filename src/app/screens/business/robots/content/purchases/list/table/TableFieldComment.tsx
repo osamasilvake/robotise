@@ -1,4 +1,5 @@
-import { Box, Chip, CircularProgress, FormControl, TextField } from '@mui/material';
+import { Edit } from '@mui/icons-material';
+import { Box, Chip, CircularProgress, FormControl, IconButton, TextField } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -137,19 +138,26 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 					/>
 				)}
 
-				{/* Edit/Save */}
-				<Chip
-					size="small"
-					label={editMode ? t(`${translation}.SAVE`) : t(`${translation}.EDIT`)}
-					color="primary"
-					variant="outlined"
-					clickable
-					icon={
-						editMode && purchases.updating ? <CircularProgress size={20} /> : undefined
-					}
-					disabled={purchases.updating}
-					onClick={handleSubmit}
-				/>
+				{/* Edit */}
+				{!editMode && (
+					<IconButton color="primary" onClick={handleSubmit}>
+						<Edit fontSize="small" />
+					</IconButton>
+				)}
+
+				{/* Save */}
+				{editMode && (
+					<Chip
+						size="small"
+						label={t(`${translation}.SAVE`)}
+						color="primary"
+						variant="outlined"
+						clickable
+						icon={purchases.updating ? <CircularProgress size={20} /> : undefined}
+						disabled={purchases.updating}
+						onClick={handleSubmit}
+					/>
+				)}
 
 				{/* Value */}
 				<Box className={classes.sCommentText}>

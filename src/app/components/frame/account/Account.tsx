@@ -105,7 +105,7 @@ const Account: FC = () => {
 							</StyledBadge>
 							<Box className={classes.sDetail}>
 								<Stack spacing={0.25} direction="row" alignItems="center">
-									<Typography variant="subtitle2" color="textPrimary">
+									<Typography variant="subtitle2" color="textPrimary" noWrap>
 										{auth.user?.data.display_name}
 									</Typography>
 									<KeyboardArrowDown fontSize="small" />

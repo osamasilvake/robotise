@@ -17,6 +17,7 @@ export const AccountStyle = makeStyles((theme: Theme) => ({
 	},
 	sDetail: {
 		margin: theme.spacing(0, 0, 0, 1),
+		maxWidth: theme.typography.pxToRem(125),
 		textAlign: 'left'
 	},
 	sDetailSubtitle: {

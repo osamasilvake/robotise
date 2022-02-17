@@ -10,7 +10,7 @@ prod:deploy:
     - gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone $GKE_CLUSTER_ZONE --project $GCP_PROJECT
 
     # Deploy with HELM
-    - helm repo add $HELM_REPO_NAME "http://$HELM_BASIC_AUTH@$HELM_REPO_DOMAIN"
+    - helm repo add $HELM_REPO_NAME "https://$HELM_BASIC_AUTH@$HELM_REPO_DOMAIN"
     - helm repo update
     - helm upgrade --namespace=production $HELM_RELEASE_NAME_PROD $HELM_REPO_NAME/$HELM_CHART_NAME --reuse-values --set-string=image.tag="$CI_COMMIT_SHORT_SHA"
   environment:

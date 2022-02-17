@@ -1606,14 +1606,27 @@
 	},
 	"ABOUT": {
 		"INFO": {
-			"ADDRESS": "Claudius-Keller-Str. 3c",
-			"POSTAL_CITY": "81669 München",
+			"ADDRESS": "Otto-Hahn-Ring 6",
+			"POSTAL_CITY": "81739 München",
 			"OWNER": "Oliver Stahl",
+			"SUPPORT": {
+				"TITLE": "Support",
+				"TEL": {
+					"LABEL": "Telephone",
+					"VALUE": "+49 892 441 811 60",
+					"PHONE": "+4989244181160"
+				},
+				"EMAIL": {
+					"LABEL": "E-Mail",
+					"VALUE": "support@robotise.eu"
+				}
+			},
 			"CONTACT": {
 				"TITLE": "Contact",
 				"TEL": {
 					"LABEL": "Telephone",
-					"VALUE": "+49 89 890 828 41"
+					"VALUE": "+49 89 890 828 41",
+					"PHONE": "+498989082841"
 				},
 				"EMAIL": {
 					"LABEL": "E-Mail",

@@ -23,10 +23,24 @@ const About: FC = () => {
 					<Typography>{t('INFO.POSTAL_CITY')}</Typography>
 					<Typography>{t('INFO.OWNER')}</Typography>
 					<br />
+					<Typography variant="h6">{t('INFO.SUPPORT.TITLE')}</Typography>
+					<Stack direction="row" spacing={0.5}>
+						<Typography>{t('INFO.SUPPORT.TEL.LABEL')}: </Typography>
+						<Link underline="hover" href={`tel:${t('INFO.SUPPORT.TEL.PHONE')}`}>
+							{t('INFO.SUPPORT.TEL.VALUE')}
+						</Link>
+					</Stack>
+					<Stack direction="row" spacing={0.5}>
+						<Typography>{t('INFO.SUPPORT.EMAIL.LABEL')}: </Typography>
+						<Link underline="hover" href={`mailto:${t('INFO.SUPPORT.EMAIL.VALUE')}`}>
+							{t('INFO.SUPPORT.EMAIL.VALUE')}
+						</Link>
+					</Stack>
+					<br />
 					<Typography variant="h6">{t('INFO.CONTACT.TITLE')}</Typography>
 					<Stack direction="row" spacing={0.5}>
 						<Typography>{t('INFO.CONTACT.TEL.LABEL')}: </Typography>
-						<Link underline="hover" href={`tel:${t('INFO.CONTACT.TEL.VALUE')}`}>
+						<Link underline="hover" href={`tel:${t('INFO.CONTACT.TEL.PHONE')}`}>
 							{t('INFO.CONTACT.TEL.VALUE')}
 						</Link>
 					</Stack>

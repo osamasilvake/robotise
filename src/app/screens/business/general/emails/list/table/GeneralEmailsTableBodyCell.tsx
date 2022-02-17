@@ -75,7 +75,11 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 					</Link>
 				);
 			} else if (GeneralEmailsTableColumnsTypeEnum.STATUS === column.id) {
-				return <Status level={mapStatus(value)}>{t(value)}</Status>;
+				return (
+					<Status level={mapStatus(value)} capitalize>
+						{t(value)}
+					</Status>
+				);
 			}
 			return t(value);
 		}

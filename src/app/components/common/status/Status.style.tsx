@@ -9,6 +9,9 @@ export const StatusStyle = makeStyles((theme: Theme) => ({
 		color: AppConfigService.AppOptions.colors.c7,
 		fontWeight: 400,
 		padding: theme.spacing(0.4, 0.5),
+		textTransform: 'none'
+	},
+	sStatusCapitalize: {
 		textTransform: 'capitalize'
 	},
 	sSmall: {

@@ -56,7 +56,11 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 			return dateFormat1(String(value));
 		} else if (typeof value === 'string') {
 			if (RobotCommandsLogTableColumnsTypeEnum.STATUS === column.id) {
-				return <Status level={mapStatus(value)}>{t(value)}</Status>;
+				return (
+					<Status level={mapStatus(value)} capitalize>
+						{t(value)}
+					</Status>
+				);
 			}
 			return t(value);
 		}

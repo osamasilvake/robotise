@@ -139,7 +139,11 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 				);
 			} else if (typeof value === 'string') {
 				if (RobotElevatorCallsTableColumnsTypeEnum.STATUS === column.id) {
-					return <Status level={mapStatus(value)}>{t(value)}</Status>;
+					return (
+						<Status level={mapStatus(value)} capitalize>
+							{t(value)}
+						</Status>
+					);
 				}
 				return t(value);
 			}

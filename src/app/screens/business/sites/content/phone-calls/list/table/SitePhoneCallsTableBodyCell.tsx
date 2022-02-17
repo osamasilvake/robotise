@@ -63,7 +63,11 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 			);
 		} else if (typeof value === 'string') {
 			if (SitePhoneCallsTableColumnsTypeEnum.STATUS === column.id) {
-				return <Status level={mapStatus(value)}>{t(value)}</Status>;
+				return (
+					<Status level={mapStatus(value)} capitalize>
+						{t(value)}
+					</Status>
+				);
 			} else if (SitePhoneCallsTableColumnsTypeEnum.FROM === column.id) {
 				return (
 					<Link underline="hover" href={`tel:${value}`}>

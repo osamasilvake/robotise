@@ -6,5 +6,6 @@ export interface StatusInterface {
 	children: TFunctionResult | string | number;
 	small?: boolean;
 	active?: boolean;
+	capitalize?: boolean;
 	level?: StatusTypeEnum;
 }

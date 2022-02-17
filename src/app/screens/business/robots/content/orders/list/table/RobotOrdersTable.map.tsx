@@ -33,6 +33,9 @@ export const mapStatus = (status: string) => {
 		case RobotOrdersTableColumnStatusTypeEnum.PENDING:
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_TIMEOUT_CUSTOMER_NOT_PRESENT:
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_TIMEOUT_DURING_INTERACTION:
+		case RobotOrdersTableColumnStatusTypeEnum.REJECTED:
+		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_ALREADY_IN_STACK:
+		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_UNKNOWN_LOCATION:
 			return StatusTypeEnum.WARN;
 		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
 		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:
@@ -40,9 +43,6 @@ export const mapStatus = (status: string) => {
 			return StatusTypeEnum.SUCCESS_LIGHT;
 		case RobotOrdersTableColumnStatusTypeEnum.FINISHED:
 			return StatusTypeEnum.SUCCESS_DARK;
-		case RobotOrdersTableColumnStatusTypeEnum.REJECTED:
-		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_ALREADY_IN_STACK:
-		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_UNKNOWN_LOCATION:
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED:
 		case RobotOrdersTableColumnStatusTypeEnum.CANCELED_REQUEST:
 		case RobotOrdersTableColumnStatusTypeEnum.ERROR:

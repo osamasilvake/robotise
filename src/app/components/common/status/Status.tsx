@@ -7,13 +7,14 @@ import { StatusInterface } from './Status.interface';
 import { StatusStyle } from './Status.style';
 
 const Status: FC<StatusInterface> = (props) => {
-	const { children, small, active, level = -1 } = props;
+	const { children, small, active, capitalize, level = -1 } = props;
 	const classes = StatusStyle();
 
 	return (
 		<Typography
 			variant="button"
 			className={clsx(classes.sStatus, {
+				[classes.sStatusCapitalize]: capitalize,
 				[classes.sSmall]: small,
 				[classes.sSuccessDark]:
 					(level === -1 && active) || level === StatusTypeEnum.SUCCESS_DARK,

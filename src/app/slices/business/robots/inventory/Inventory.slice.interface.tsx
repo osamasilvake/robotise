@@ -1,5 +1,4 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { SPCDataInterface } from '../../sites/products/Products.slice.interface';
 
 export interface SliceInventoryInterface {
 	init: boolean;
@@ -35,5 +34,4 @@ export interface SICDrawerLaneInterface {
 	quantity: number;
 	inCartQuantity: number;
 	productId: string;
-	product: SPCDataInterface | null;
 }

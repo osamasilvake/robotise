@@ -5,8 +5,8 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
 import { deserializeInventory } from './Inventory.slice.deserialize';
-import { SliceInventoryInterface } from './Inventory.slice.interface';
-import { mapProductsToInventory } from './Inventory.slice.map';
+import { SIContentInterface, SliceInventoryInterface } from './Inventory.slice.interface';
+import { filterDrawers } from './Inventory.slice.map';
 
 // initial state
 export const initialState: SliceInventoryInterface = {
@@ -67,7 +67,6 @@ export const InventoryFetchList =
 		// states
 		const states = getState();
 		const inventory = states.inventory;
-		const products = states.products;
 
 		// return on busy
 		if (inventory && (inventory.loader || inventory.loading)) {
@@ -80,16 +79,13 @@ export const InventoryFetchList =
 		return RobotsService.robotInventoryFetch(robotId)
 			.then(async (res) => {
 				// deserialize response
-				const inventory = await deserializeInventory(res);
+				let result: SIContentInterface = await deserializeInventory(res);
 
-				// prepare inventory content
-				if (products && products.content) {
-					// map products to inventory
-					const result = mapProductsToInventory(inventory, products.content.data);
+				// filter drawers
+				result = filterDrawers(result);
 
-					// dispatch: success
-					dispatch(success(result));
-				}
+				// dispatch: success
+				dispatch(success(result));
 			})
 			.catch(() => {
 				// dispatch: trigger message

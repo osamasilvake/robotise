@@ -18,6 +18,7 @@ import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { SICDrawerLaneInterface } from '../../../../../../../slices/business/robots/inventory/Inventory.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { productsSelector } from '../../../../../../../slices/business/sites/products/Products.slice';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -37,6 +38,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+	const products = useSelector(productsSelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
@@ -54,6 +56,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 		lane: SICDrawerLaneInterface,
 		column: RobotInventoryTableColumnInterface
 	) => {
+		const product = products.content?.data.find((p) => p.id === lane.productId);
 		switch (column.id) {
 			case RobotInventoryTableColumnsTypeEnum.IMAGE:
 				return (
@@ -61,17 +64,13 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 						variant="square"
 						className={clsx(classes.sImage, {
 							[classes.sImageBackground]:
-								lane.product &&
-								lane.product[RobotInventoryTableColumnsTypeEnum.PRICE] === 1
+								product && product[RobotInventoryTableColumnsTypeEnum.PRICE] === 1
 						})}
 						src={
-							(lane.product && lane.product[column.id]) ||
+							(product && product[column.id]) ||
 							AppConfigService.AppImageURLs.logo.iconOff
 						}
-						alt={
-							(lane.product && lane.product.name) ||
-							AppConfigService.AppImageURLs.logo.name
-						}
+						alt={(product && product.name) || AppConfigService.AppImageURLs.logo.name}
 					/>
 				);
 			case RobotInventoryTableColumnsTypeEnum.QUANTITY:
@@ -79,11 +78,11 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 			case RobotInventoryTableColumnsTypeEnum.CAPACITY:
 				return lane[column.id];
 			case RobotInventoryTableColumnsTypeEnum.PRICE:
-				return lane.product
-					? `${currencyFormat(lane.product[column.id], currency, i18next.language)}`
+				return product
+					? `${currencyFormat(product[column.id], currency, i18next.language)}`
 					: none;
 			default:
-				return lane.product ? lane.product[column.id] || none : none;
+				return product ? product[column.id] || none : none;
 		}
 	};
 

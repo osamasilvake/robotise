@@ -1,4 +1,5 @@
 import { AppConfigService } from '../../../../../../../services';
+import { SiteProductCreateEditLengthValidationTypeEnum } from './SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './SiteProductsTable.interface';
 
 /**
@@ -12,6 +13,7 @@ export const CreateEditProductValidation = (
 ): DialogCreateEditProductFormInterface => {
 	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
 	const regexMaxTwoDecimalPoints = AppConfigService.AppOptions.regex.maxTwoDecimalPoints;
+	const lengthEnum = SiteProductCreateEditLengthValidationTypeEnum;
 	const errors: DialogCreateEditProductFormInterface = {
 		image: '',
 		name: '',
@@ -39,6 +41,18 @@ export const CreateEditProductValidation = (
 		// validate
 		if (values.price && !regexMaxTwoDecimalPoints.test(String(values.price))) {
 			errors.price = `${translation}.PRICE.VALIDATIONS.INVALID`;
+		}
+	}
+
+	// Length
+	if (touched.length) {
+		// min
+		if ((values.length || 0) < lengthEnum.MIN) {
+			errors.length = `${translation}.LENGTH.VALIDATIONS.MIN`;
+		}
+		//max
+		if ((values.length || 0) > lengthEnum.MAX) {
+			errors.length = `${translation}.LENGTH.VALIDATIONS.MAX`;
 		}
 	}
 

@@ -30,7 +30,10 @@ import {
 import { timeout } from '../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';
-import { SiteProductCreateEditTypeEnum } from './SiteProductsTable.enum';
+import {
+	SiteProductCreateEditLengthValidationTypeEnum,
+	SiteProductCreateEditTypeEnum
+} from './SiteProductsTable.enum';
 import {
 	DialogCreateEditProductFormInterface,
 	DialogCreateEditProductInterface
@@ -52,6 +55,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
 	const currency = sites.content?.dataById[cSiteId]?.currency || defaultCurrency;
 	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
+	const lengthEnum = SiteProductCreateEditLengthValidationTypeEnum;
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductFormInterface>(
@@ -169,9 +173,18 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									helperText={
 										errors &&
 										typeof errors.length === 'string' &&
-										t(errors.length)
+										t(errors.length, {
+											min: lengthEnum.MIN,
+											max: lengthEnum.MAX
+										})
 									}
-									InputProps={{ inputProps: { min: 29, max: 280, step: 0.01 } }}
+									InputProps={{
+										inputProps: {
+											min: lengthEnum.MIN,
+											max: lengthEnum.MAX,
+											step: 0.01
+										}
+									}}
 								/>
 							</FormControl>
 						</Grid>

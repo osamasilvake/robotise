@@ -19,3 +19,8 @@ export enum SiteProductCreateEditTypeEnum {
 	CREATE,
 	EDIT
 }
+
+export enum SiteProductCreateEditLengthValidationTypeEnum {
+	MIN = 29,
+	MAX = 280
+}

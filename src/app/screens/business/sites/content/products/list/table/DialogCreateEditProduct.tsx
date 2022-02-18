@@ -171,7 +171,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 										typeof errors.length === 'string' &&
 										t(errors.length)
 									}
-									InputProps={{ inputProps: { min: 0, step: 0.01 } }}
+									InputProps={{ inputProps: { min: 29, max: 280, step: 0.01 } }}
 								/>
 							</FormControl>
 						</Grid>

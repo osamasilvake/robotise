@@ -583,11 +583,18 @@
 							"FIELDS": {
 								"WHITELIST": {
 									"LABEL": "Whitelist",
-									"PLACEHOLDER": "Add whitelist rooms"
+									"PLACEHOLDER": "Add whitelist rooms",
+									"VALIDATIONS": {
+										"INVALID": "Wrong format!"
+									}
 								},
 								"BLOCKED": {
 									"LABEL": "Blocked",
-									"PLACEHOLDER": "Add blocked rooms"
+									"PLACEHOLDER": "Add blocked rooms",
+									"VALIDATIONS": {
+										"INVALID": "Wrong format!",
+										"SIMILAR": "Looks like Whitelist and Blocked rooms have a common room!"
+									}
 								}
 							}
 						}

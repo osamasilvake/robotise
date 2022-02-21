@@ -24,6 +24,7 @@ import {
 } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../../Site.interface';
+import { ModifyRoomsValidation } from './DialogModifyRooms.validation';
 import {
 	DialogModifyRoomsFormInterface,
 	DialogModifyRoomsInterface
@@ -47,16 +48,33 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 	const whiteList = siteSingle?.rooms.whitelist || [];
 	const blacklist = allRooms?.filter((r) => !whiteList?.includes(r)) || [];
 
-	const strWhitelist = whiteList.join(',');
-	const strBlacklist = blacklist.join(',');
+	/**
+	 * group adjacent rooms
+	 * @param arr
+	 * @returns
+	 */
+	const groupAdjacentRooms = (arr: string[]) => {
+		const sorted = [...arr]?.sort((a, b) => +a - +b);
+		const grouped = sorted
+			.reduce((arr: string[][], val, i, a: string[]) => {
+				if (!i || +val !== +a[i - 1] + 1) arr.push([]);
+				arr[arr.length - 1].push(val);
+				return arr;
+			}, [])
+			.map((items: string[]) =>
+				items.length <= 1 ? items : `${items[0]}-${items[items.length - 1]}`
+			);
+		const joined = grouped.join(',');
+		return joined;
+	};
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogModifyRoomsFormInterface>(
 			{
-				whitelist: strWhitelist,
-				blocked: strBlacklist
+				whitelist: groupAdjacentRooms(whiteList),
+				blocked: groupAdjacentRooms(blacklist)
 			},
-			() => ({ whitelist: '', blocked: '' }),
+			ModifyRoomsValidation,
 			async () => {
 				// return on empty
 				if (!siteSingle?.id) return;
@@ -65,8 +83,8 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 				const a = values.whitelist as string;
 				const b = values.blocked as string;
 
-				const allowed = applyFiltering(a.split(','));
-				const blocked = applyFiltering(b.split(','));
+				const allowed = splitAdjacentRooms(a.split(','));
+				const blocked = splitAdjacentRooms(b.split(','));
 				const all = [...allowed, ...blocked];
 
 				// dispatch: update room state
@@ -83,11 +101,11 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 		);
 
 	/**
-	 * apply filtering
+	 * split adjacent rooms
 	 * @param arr
 	 * @returns
 	 */
-	const applyFiltering = (arr: string[]) => {
+	const splitAdjacentRooms = (arr: string[]) => {
 		if (!arr) return [];
 		const mapped: (string | string[])[] = arr.map((r) => {
 			if (r.indexOf('-') !== -1) {

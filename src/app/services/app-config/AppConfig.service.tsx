@@ -234,7 +234,8 @@ class AppConfigService extends EnvService {
 				email: new RegExp(/\S+@\S+\.\S+/),
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
 				integer: new RegExp(/^\+?([1-9]\d*)$/),
-				skipLastSlashes: new RegExp(/\/+$/)
+				skipLastSlashes: new RegExp(/\/+$/),
+				rooms: new RegExp(/\b[0-9]*([-,]+[0-9]*)\b$/)
 			}
 		};
 	}

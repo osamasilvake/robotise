@@ -9,6 +9,7 @@ import { SiteRobotConfigFormInterface } from './content/configuration/site-robot
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
+import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
 import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
 import {
 	SiteNotificationTypesAxiosGetInterface,
@@ -101,10 +102,10 @@ class SitesService {
 	/**
 	 * update room state
 	 * @param siteId
-	 * @param whitelist
+	 * @param payload
 	 * @returns
 	 */
-	siteRoomStateUpdate = (siteId: string, whitelist: string[]) => {
+	siteRoomStateUpdate = (siteId: string, payload: DialogModifyRoomsFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
 			':siteId',
 			siteId
@@ -118,7 +119,8 @@ class SitesService {
 				id: siteId,
 				attributes: {
 					rooms: {
-						whitelist
+						whitelist: payload.whitelist as string[],
+						available: payload.available || undefined
 					}
 				}
 			}

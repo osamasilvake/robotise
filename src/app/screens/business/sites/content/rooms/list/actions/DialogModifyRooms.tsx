@@ -1,5 +1,6 @@
 import {
 	Button,
+	CircularProgress,
 	Dialog,
 	DialogActions,
 	DialogContent,
@@ -10,26 +11,99 @@ import {
 } from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import {
+	roomsSelector,
+	RoomsUpdate
+} from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import {
+	SitesFetchList,
+	sitesSelector
+} from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
-import { DialogModifyRoomsInterface } from './SiteRoomsActions.interface';
+import { SiteParamsInterface } from '../../../../Site.interface';
+import {
+	DialogModifyRoomsFormInterface,
+	DialogModifyRoomsInterface
+} from './SiteRoomsActions.interface';
 
 const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['DIALOG', 'SITES']);
 
+	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
+	const rooms = useSelector(roomsSelector);
+
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
+
+	const cSiteId = params.siteId;
+	const siteSingle = sites.content?.dataById[cSiteId];
 	const translation = 'SITES:CONTENT.ROOMS.LIST.ACTIONS.MODIFY';
 
-	const { handleChangeInput, handleBlur, handleSubmit, values, errors } = useForm<any>(
-		{
-			whiteList: '',
-			available: ''
-		},
-		() => ({ whiteList: '', available: '' }),
-		async () => {
-			console.log('called', values);
-		}
-	);
+	const allRooms = siteSingle?.rooms.available;
+	const whiteList = siteSingle?.rooms.whitelist || [];
+	const blacklist = allRooms?.filter((r) => !whiteList?.includes(r)) || [];
+
+	const strWhitelist = whiteList.join(',');
+	const strBlacklist = blacklist.join(',');
+
+	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
+		useForm<DialogModifyRoomsFormInterface>(
+			{
+				whitelist: strWhitelist,
+				blocked: strBlacklist
+			},
+			() => ({ whitelist: '', blocked: '' }),
+			async () => {
+				// return on empty
+				if (!siteSingle?.id) return;
+
+				// string
+				const a = values.whitelist as string;
+				const b = values.blocked as string;
+
+				const allowed = applyFiltering(a.split(','));
+				const blocked = applyFiltering(b.split(','));
+				const all = [...allowed, ...blocked];
+
+				// dispatch: update room state
+				dispatch(
+					RoomsUpdate(siteSingle.id, { whitelist: allowed, available: all }, () => {
+						// dispatch: fetch sites
+						dispatch(SitesFetchList(true));
+
+						// close dialog
+						setOpen(false);
+					})
+				);
+			}
+		);
+
+	/**
+	 * apply filtering
+	 * @param arr
+	 * @returns
+	 */
+	const applyFiltering = (arr: string[]) => {
+		if (!arr) return [];
+		const mapped: (string | string[])[] = arr.map((r) => {
+			if (r.indexOf('-') !== -1) {
+				const collection = [];
+				const items = r.split('-');
+				if (items[1] < items[0]) return items[0];
+				for (let i = +items[0]; i <= +items[1]; i++) {
+					collection.push(String(i));
+				}
+				return collection;
+			}
+			return r;
+		});
+		const flatted = mapped.flat();
+		return Array.from(new Set(flatted));
+	};
 
 	/**
 	 * close dialog
@@ -54,16 +128,16 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 						<TextField
 							multiline
 							type="text"
-							id="whiteList"
-							name="whiteList"
+							id="whitelist"
+							name="whitelist"
 							rows={4}
 							label={t(`${translation}.FIELDS.WHITELIST.LABEL`)}
 							placeholder={t(`${translation}.FIELDS.WHITELIST.PLACEHOLDER`)}
-							value={values.whiteList}
+							value={values.whitelist}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
-							error={!!errors?.whiteList}
-							helperText={errors?.whiteList && t(errors.whiteList)}
+							error={!!errors?.whitelist}
+							helperText={!!errors?.whitelist && t(errors.whitelist)}
 							InputLabelProps={{ shrink: true }}
 						/>
 					</FormControl>
@@ -81,7 +155,7 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
 							error={!!errors?.blocked}
-							helperText={errors?.blocked && t(errors.blocked)}
+							helperText={!!errors?.blocked && t(errors.blocked)}
 							InputLabelProps={{ shrink: true }}
 						/>
 					</FormControl>
@@ -90,7 +164,11 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 					<Button variant="outlined" onClick={closeDialog}>
 						{t('BUTTONS.CANCEL')}
 					</Button>
-					<Button variant="outlined" type="submit">
+					<Button
+						variant="outlined"
+						type="submit"
+						disabled={rooms.updating}
+						endIcon={rooms.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.MODIFY')}
 					</Button>
 				</DialogActions>

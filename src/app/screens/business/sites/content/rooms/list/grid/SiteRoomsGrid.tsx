@@ -76,19 +76,20 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	 * @returns
 	 */
 	const handleRoomState = (room: string) => (event: ChangeEvent<HTMLInputElement>) => {
+		// return on empty
+		if (!siteSingle?.id) return;
+
 		const whitelist = event.target.checked
 			? allWhitelist.filter((r) => r !== room)
 			: [...allWhitelist, room];
 
 		// dispatch: update room state
-		if (siteSingle?.id) {
-			dispatch(
-				RoomsUpdate(siteSingle.id, whitelist, () => {
-					// dispatch: fetch sites
-					dispatch(SitesFetchList(true));
-				})
-			);
-		}
+		dispatch(
+			RoomsUpdate(siteSingle.id, { whitelist }, () => {
+				// dispatch: fetch sites
+				dispatch(SitesFetchList(true));
+			})
+		);
 	};
 
 	return result ? (

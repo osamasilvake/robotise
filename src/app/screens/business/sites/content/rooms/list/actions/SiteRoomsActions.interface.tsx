@@ -17,3 +17,9 @@ export interface DialogModifyRoomsInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface DialogModifyRoomsFormInterface {
+	whitelist: string | string[];
+	blocked?: string | string[];
+	available?: string[];
+}

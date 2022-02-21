@@ -2,6 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
+import { DialogModifyRoomsFormInterface } from '../../../../screens/business/sites/content/rooms/list/actions/SiteRoomsActions.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
@@ -47,16 +48,17 @@ export default dataSlice.reducer;
 /**
  * update room
  * @param siteId
- * @param whitelist
+ * @param payload
  * @param callback
  * @returns
  */
 export const RoomsUpdate =
-	(siteId: string, whitelist: string[], callback: () => void) => async (dispatch: Dispatch) => {
+	(siteId: string, payload: DialogModifyRoomsFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
 
-		return SitesService.siteRoomStateUpdate(siteId, whitelist)
+		return SitesService.siteRoomStateUpdate(siteId, payload)
 			.then(async () => {
 				// wait
 				await timeout(1000);

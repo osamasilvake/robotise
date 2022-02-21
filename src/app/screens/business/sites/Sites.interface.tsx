@@ -33,6 +33,7 @@ export interface SiteRoomsAxiosPatchRequestInterface {
 		attributes: {
 			rooms: {
 				whitelist: string[];
+				available?: string[];
 			};
 		};
 	};

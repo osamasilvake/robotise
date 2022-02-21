@@ -42,7 +42,7 @@ export const ModifyRoomsValidation = (
 			words
 				.filter((w) => w && w.length >= 3)
 				.forEach((word) => {
-					if (str1.includes(word)) {
+					if (str1 === word) {
 						errors.blocked = `${translation}.FIELDS.BLOCKED.VALIDATIONS.SIMILAR`;
 					}
 				});

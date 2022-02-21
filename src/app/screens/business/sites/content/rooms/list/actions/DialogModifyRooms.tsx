@@ -85,7 +85,7 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 
 				const allowed = splitAdjacentRooms(a.split(','));
 				const blocked = splitAdjacentRooms(b.split(','));
-				const all = [...allowed, ...blocked];
+				const all = [...allowed, ...blocked]?.filter(Boolean);
 
 				// dispatch: update room state
 				dispatch(

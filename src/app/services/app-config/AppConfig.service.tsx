@@ -235,7 +235,7 @@ class AppConfigService extends EnvService {
 				maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
 				integer: new RegExp(/^\+?([1-9]\d*)$/),
 				skipLastSlashes: new RegExp(/\/+$/),
-				rooms: new RegExp(/\b[0-9]*([-,]+[0-9]*)\b$/)
+				rooms: new RegExp(/\b[0-9]+([-,]+[0-9]*)?\b$/)
 			}
 		};
 	}

@@ -46,7 +46,15 @@ const SiteRoomsList: FC = () => {
 
 	// empty
 	if (!siteSingle?.rooms.available) {
-		return <PageEmpty message="EMPTY.MESSAGE" />;
+		return (
+			<Box className={classes.sBox}>
+				{/* Actions */}
+				<SiteRoomsActions active={active} inactive={inactive} />
+
+				{/* Empty */}
+				<PageEmpty message="EMPTY.MESSAGE" />
+			</Box>
+		);
 	}
 
 	return (

@@ -37,7 +37,6 @@ const dataSlice = createSlice({
 		loading: (state) => {
 			state.loading = true;
 		},
-
 		success: (state, action) => {
 			state.init = true;
 			state.loader = false;

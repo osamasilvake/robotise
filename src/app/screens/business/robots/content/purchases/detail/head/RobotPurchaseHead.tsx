@@ -34,6 +34,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 			<Stack
 				spacing={0.5}
 				direction="row"
+				alignItems="center"
 				justifyContent="space-between"
 				className={classes.sStack}>
 				<Typography variant="body2" color="textSecondary">

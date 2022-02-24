@@ -1259,7 +1259,7 @@
 						"PURCHASE": {
 							"LINK": {
 								"TITLE": "Purchase",
-								"TEXT": "Purchase details"
+								"TEXT": "Purchase detail"
 							}
 						}
 					}
@@ -1344,7 +1344,7 @@
 								"rest": "ROC App",
 								"debug": "MM ROC Bots"
 							},
-							"PURCHASE_DETAILS": "Purchase details"
+							"PURCHASE_DETAILS": "Purchase detail"
 						}
 					}
 				}
@@ -1354,8 +1354,8 @@
 					"HEAD": {
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",
-						"ORDER_DETAILS": "Order details",
-						"ITEM_TRACKING": "Tracking details",
+						"ORDER_DETAILS": "Order detail",
+						"ITEM_TRACKING": "Tracking detail",
 						"TITLE": "Products"
 					},
 					"TABLE": {
@@ -1406,8 +1406,8 @@
 							"TARGET": {
 								"UN_BILLED": "Unbilled"
 							},
-							"ORDER_DETAILS": "Order details",
-							"ITEM_TRACKING": "Tracking details"
+							"ORDER_DETAILS": "Order detail",
+							"ITEM_TRACKING": "Tracking detail"
 						}
 					}
 				}

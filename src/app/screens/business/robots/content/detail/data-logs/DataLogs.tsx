@@ -150,7 +150,7 @@ const RobotDetailDataLogs: FC = () => {
 							text={t(`${translation}.ALERT_LOGS.TEXT`)}
 							payload={{
 								robotId: cRobotId,
-								from: 'now-7d',
+								from: 'now-8h',
 								to: 'now'
 							}}
 							FetchExternalLink={DeepLinkAlertLogsLinkFetch}

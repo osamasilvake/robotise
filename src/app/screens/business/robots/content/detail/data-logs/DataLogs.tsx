@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import ExternalLink from '../../../../../../components/common/external-link/ExternalLink';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
+	DeepLinkAlertLogsLinkFetch,
 	DeepLinkAuditLogsLinkFetch,
 	DeepLinkBatteryLinkFetch,
 	DeepLinkCoolingUnitLinkFetch,
@@ -135,6 +136,26 @@ const RobotDetailDataLogs: FC = () => {
 							FetchExternalLink={DeepLinkCoolingUnitLinkFetch}
 							showIcon={deepLink.coolingUnit.loading}
 							disabled={deepLink.coolingUnit.loading}
+						/>
+					</Box>
+				</Grid>
+
+				{/* Deep Link: Alert Logs */}
+				<Grid item xs={12} sm={6} md={4} lg={2}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.ALERT_LOGS.LABEL`)}
+					</Typography>
+					<Box className={classes.sContent}>
+						<ExternalLink
+							text={t(`${translation}.ALERT_LOGS.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-7d',
+								to: 'now'
+							}}
+							FetchExternalLink={DeepLinkAlertLogsLinkFetch}
+							showIcon={deepLink.alertLogs.loading}
+							disabled={deepLink.alertLogs.loading}
 						/>
 					</Box>
 				</Grid>

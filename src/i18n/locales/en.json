@@ -300,6 +300,9 @@
 				},
 				"ELEVATOR_LOGS": {
 					"ERROR": "Failed to fetch elevator logs link!"
+				},
+				"ALERT_LOGS": {
+					"ERROR": "Failed to fetch alert logs link!"
 				}
 			},
 			"CREATE": {
@@ -1221,6 +1224,10 @@
 					},
 					"COOLING_UNIT": {
 						"LABEL": "Cooling Unit",
+						"TEXT": "Link"
+					},
+					"ALERT_LOGS": {
+						"LABEL": "Alert Logs",
 						"TEXT": "Link"
 					}
 				}

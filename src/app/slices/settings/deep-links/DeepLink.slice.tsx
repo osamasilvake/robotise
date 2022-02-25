@@ -39,6 +39,10 @@ export const initialState: SliceDeepLinkInterface = {
 	elevatorLogs: {
 		loading: false,
 		content: null
+	},
+	alertLogs: {
+		loading: false,
+		content: null
 	}
 };
 
@@ -63,6 +67,8 @@ const dataSlice = createSlice({
 				state.itemTracking.loading = true;
 			} else if (module === DeepLinkTypeEnum.ELEVATOR_LOGS) {
 				state.elevatorLogs.loading = true;
+			} else if (module === DeepLinkTypeEnum.ALERT_LOGS) {
+				state.alertLogs.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -88,6 +94,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.ELEVATOR_LOGS) {
 				state.elevatorLogs.loading = false;
 				state.elevatorLogs.content = response;
+			} else if (module === DeepLinkTypeEnum.ALERT_LOGS) {
+				state.alertLogs.loading = false;
+				state.alertLogs.content = response;
 			}
 		},
 		failure: (state, action) => {
@@ -113,6 +122,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.ELEVATOR_LOGS) {
 				state.elevatorLogs.loading = false;
 				state.elevatorLogs.content = null;
+			} else if (module === DeepLinkTypeEnum.ALERT_LOGS) {
+				state.alertLogs.loading = false;
+				state.alertLogs.content = null;
 			}
 		},
 		reset: () => initialState
@@ -414,6 +426,48 @@ export const DeepLinkElevatorLogsLinkFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.ELEVATOR_LOGS.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch alert logs link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const DeepLinkAlertLogsLinkFetch =
+	(payload: ExternalLinkPayloadInterface, callback: (data: SDContentInterface) => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: DeepLinkTypeEnum.ALERT_LOGS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return DeepLinksService.deepLinkAlertLogsLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'deep-link-alert-logs-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'DEEP_LINKS.FETCH.ALERT_LOGS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

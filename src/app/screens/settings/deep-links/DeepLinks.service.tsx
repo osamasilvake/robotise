@@ -174,6 +174,22 @@ class DeepLinksService {
 			}
 		});
 	};
+
+	/**
+	 * fetch alert logs link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkAlertLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ALERT_LOGS;
+		return HttpClientService.get<SDContentInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
 }
 const instance = new DeepLinksService();
 export default instance;

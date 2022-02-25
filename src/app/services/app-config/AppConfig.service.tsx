@@ -321,7 +321,8 @@ class AppConfigService extends EnvService {
 						DIAGNOSTICS_LOGS: `${this.envAppUrl}/deeplinks-request/robot-diagnostics-history`,
 						COOLING_UNIT: `${this.envAppUrl}/deeplinks-request/robot-cooling-unit`,
 						ITEM_TRACKING: `${this.envAppUrl}/deeplinks-request/item-tracking`,
-						ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`
+						ELEVATOR_LOGS: `${this.envAppUrl}/deeplinks-request/elevator-microservice-logs`,
+						ALERT_LOGS: `${this.envAppUrl}/deeplinks-request/robot-alerts-log`
 					}
 				},
 				INFORMATION: {

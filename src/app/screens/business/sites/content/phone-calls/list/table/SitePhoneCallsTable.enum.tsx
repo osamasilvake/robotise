@@ -16,5 +16,6 @@ export enum SitePhoneCallsTableColumnHistoryEventTypeEnum {
 	APPROVED = 'approved',
 	CONFIRMED = 'confirmed',
 	ORDER_ASSIGNED = 'orderAssigned',
-	REJECTED = 'rejected'
+	REJECTED = 'rejected',
+	ERROR = 'error'
 }

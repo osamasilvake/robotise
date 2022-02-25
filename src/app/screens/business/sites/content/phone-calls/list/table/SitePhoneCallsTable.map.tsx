@@ -36,6 +36,7 @@ export const mapStatus = (status: string) => {
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.CONFIRMED:
 			return StatusTypeEnum.SUCCESS_DARK;
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.REJECTED:
+		case SitePhoneCallsTableColumnHistoryEventTypeEnum.ERROR:
 			return StatusTypeEnum.ERROR;
 		default:
 			return StatusTypeEnum.INFO;
@@ -65,6 +66,7 @@ export const mapHistoryEventType = (event: string) => {
 				icon: 'shopping_cart'
 			};
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.REJECTED:
+		case SitePhoneCallsTableColumnHistoryEventTypeEnum.ERROR:
 			return {
 				color: StatusTypeTextEnum.ERROR,
 				icon: 'cancel_outlined'

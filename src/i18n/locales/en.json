@@ -665,7 +665,8 @@
 								"approved": "Approved",
 								"confirmed": "Confirmed",
 								"orderAssigned": "Order Assigned",
-								"rejected": "Rejected"
+								"rejected": "Rejected",
+								"error": "Error"
 							},
 							"MODE": {
 								"mini-bar": "Minibar",
@@ -677,7 +678,8 @@
 									"approved": "Approved",
 									"confirmed": "Confirmed",
 									"orderAssigned": "Order Assigned",
-									"rejected": "Rejected"
+									"rejected": "Rejected",
+									"error": "Error"
 								}
 							}
 						}

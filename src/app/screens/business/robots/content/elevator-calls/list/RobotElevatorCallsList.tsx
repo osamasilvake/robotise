@@ -13,6 +13,7 @@ import {
 	elevatorCallsSelector
 } from '../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
+import RobotElevatorCallsActions from '../actions/RobotElevatorCallsActions';
 import { RobotElevatorCallsListPayloadInterface } from './RobotElevatorCallsList.interface';
 import { RobotElevatorCallsListStyle } from './RobotElevatorCallsList.style';
 import RobotElevatorCallsTable from './table/RobotElevatorCallsTable';
@@ -120,11 +121,23 @@ const RobotElevatorCallsList: FC = () => {
 
 	// empty
 	if (!elevatorCalls.content?.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE" />;
+		return (
+			<Box className={classes.sBox}>
+				{/* Actions */}
+				<RobotElevatorCallsActions />
+
+				{/* Empty */}
+				<PageEmpty message="EMPTY.MESSAGE" />
+			</Box>
+		);
 	}
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Actions */}
+			<RobotElevatorCallsActions />
+
+			{/* Table */}
 			<RobotElevatorCallsTable
 				content={elevatorCalls.content}
 				page={page}

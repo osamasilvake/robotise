@@ -1,4 +1,5 @@
 import { TableBody, TableRow } from '@mui/material';
+import clsx from 'clsx';
 import { FC } from 'react';
 
 import {
@@ -15,10 +16,12 @@ import {
 	RobotElevatorCallsTableColumnInterface
 } from './RobotElevatorCallsTable.interface';
 import { columns } from './RobotElevatorCallsTable.list';
+import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
 import RobotElevatorCallsTableBodyCell from './RobotElevatorCallsTableBodyCell';
 
 const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
+	const classes = RobotElevatorCallsTableStyle();
 
 	/**
 	 * sort table data
@@ -81,7 +84,11 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 					.map((elevatorCall: ECCDataInterface, index: number) => (
-						<TableRow key={index}>
+						<TableRow
+							key={index}
+							className={clsx({
+								[classes.sTableRowWarning]: !!elevatorCall?.isDebug
+							})}>
 							{columns.map((column: RobotElevatorCallsTableColumnInterface) => (
 								<RobotElevatorCallsTableBodyCell
 									key={column.id}

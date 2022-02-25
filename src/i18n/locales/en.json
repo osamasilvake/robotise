@@ -258,6 +258,10 @@
 				}
 			},
 			"ELEVATOR_CALLS": {
+				"TEST_CALL": {
+					"SUCCESS": "Test call successful!",
+					"ERROR": "Unable to do test call!"
+				},
 				"TEMPLATE": {
 					"SUCCESS": "Template copied to clipboard!",
 					"ERROR": "Unable to copy template!"
@@ -1456,6 +1460,9 @@
 			},
 			"ELEVATOR_CALLS": {
 				"LIST": {
+					"ACTIONS": {
+						"TEST_CALLS": "Test Call"
+					},
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",

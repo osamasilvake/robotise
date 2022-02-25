@@ -24,6 +24,7 @@ export interface ECCDataInterface {
 	srcAreaId: string;
 	dstAreaId: string;
 	traceId: string;
+	isDebug: boolean;
 	updatedAt: Date;
 	createdAt: Date;
 	history: ECCDataHistoryInterface[];

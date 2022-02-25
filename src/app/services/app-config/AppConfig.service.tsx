@@ -71,7 +71,8 @@ class AppConfigService extends EnvService {
 				},
 				table: {
 					contentHeight1: 48 + 70.5 + 24 + 52 - 8,
-					contentHeight2: 48 + 70.5 + 24 + 52 - 8 + 72
+					contentHeight2: 48 + 70.5 + 24 + 52 - 8 + 72,
+					contentHeight3: 48 + 70.5 + 24 + 52 - 8 + 72 + 42
 				},
 				uploadImage: {
 					maxSize: 500,
@@ -307,6 +308,7 @@ class AppConfigService extends EnvService {
 						CONFIG: `${this.envAppUrl}/robots/:robotId`,
 						COMMANDS_LOGS: `${this.envAppUrl}/robot-commands`,
 						ELEVATOR_CALLS: `${this.envAppUrl}/elevator-calls`,
+						ELEVATOR_CALLS_TEST: `${this.envAppUrl}/test-elevator-calls/:siteId`,
 						ELEVATOR_CALL_TEMPLATE: `${this.envAppUrl}/elevator-calls/:elevatorId/request-support-template`,
 						SYNC_PRODUCTS: `${this.envAppUrl}/robots/:robotId/sync-products`,
 						REPORTS: this.envAppUrl

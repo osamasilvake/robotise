@@ -407,6 +407,20 @@ class RobotsService {
 	};
 
 	/**
+	 * test elevator call
+	 * @param siteId
+	 * @returns
+	 */
+	robotElevatorCallsTest = (siteId: string) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS_TEST.replace(
+				':siteId',
+				siteId
+			);
+		return HttpClientService.get(url);
+	};
+
+	/**
 	 * fetch elevator template
 	 * @param elevatorId
 	 * @returns

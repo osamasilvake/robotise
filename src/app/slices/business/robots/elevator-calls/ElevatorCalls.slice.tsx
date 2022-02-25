@@ -5,6 +5,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { RobotElevatorCallsListPayloadInterface } from '../../../../screens/business/robots/content/elevator-calls/list/RobotElevatorCallsList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
+import { triggerMessage } from '../../../general/General.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeElevatorCalls } from './ElevatorCalls.slice.deserialize';
 import {
@@ -53,14 +54,20 @@ const dataSlice = createSlice({
 		},
 		updated: (state, action) => {
 			state.updating = false;
-			state.content = action.payload;
+			if (action.payload) {
+				state.content = action.payload;
+			}
+		},
+		updateFailed: (state) => {
+			state.updating = false;
 		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const elevatorCallsSelector = (state: AppReducerType) => state['elevatorCalls'];
@@ -129,6 +136,50 @@ export const ElevatorCallsFetchList =
 
 				// dispatch: failure
 				dispatch(failure(message));
+			});
+	};
+
+/**
+ * test elevator call
+ * @param siteId
+ * @param callback
+ * @returns
+ */
+export const ElevatorCallsTest =
+	(siteId: string, callback: () => void) => async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		// test elevator call
+		return RobotsService.robotElevatorCallsTest(siteId)
+			.then(() => {
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-calls-text-fetch-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// callback
+				callback();
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-calls-text-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
 			});
 	};
 

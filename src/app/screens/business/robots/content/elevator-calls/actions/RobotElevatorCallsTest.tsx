@@ -1,5 +1,5 @@
 import { Elevator } from '@mui/icons-material';
-import { Chip } from '@mui/material';
+import { Chip, CircularProgress } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -58,11 +58,11 @@ const RobotElevatorCallsTest: FC = () => {
 	return (
 		<Chip
 			size="small"
-			icon={<Elevator />}
 			label={t(`${translation}.TEST_CALLS`)}
 			color="primary"
 			variant="outlined"
 			clickable
+			icon={elevatorCalls.updating ? <CircularProgress size={18} /> : <Elevator />}
 			disabled={halt || elevatorCalls.updating}
 			onClick={testElevatorCalls}
 		/>

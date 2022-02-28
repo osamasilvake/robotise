@@ -11,7 +11,10 @@ import { SiteProductCreateEditTypeEnum } from './content/products/list/table/Sit
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
 import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
+import { DialogCreateSiteFormInterface } from './list/actions/SitesActions.interface';
 import {
+	SiteCreateAxiosPostRequestInterface,
+	SiteCreateAxiosPostResponseInterface,
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
 	SitePhoneCallsAxiosGetInterface,
@@ -33,6 +36,33 @@ class SitesService {
 		return HttpClientService.get<SitesAxiosGetInterface>(
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL
 		);
+	};
+
+	/**
+	 * create a site
+	 * @param payload
+	 * @returns
+	 */
+	siteRobotCreate = (payload: DialogCreateSiteFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL;
+		return HttpClientService.post<
+			SiteCreateAxiosPostRequestInterface,
+			SiteCreateAxiosPostResponseInterface
+		>(url, {
+			data: {
+				type: 'sites',
+				attributes: {
+					title: payload.title,
+					timezone: payload.timezone,
+					currency: payload.currency,
+					rooms: {
+						whitelist: null
+					},
+					acceptOrders: false
+				},
+				relationships: {}
+			}
+		});
 	};
 
 	/**

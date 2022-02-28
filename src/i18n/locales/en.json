@@ -140,6 +140,12 @@
 			"UNKNOWN": "Unknown"
 		},
 		"SITES": {
+			"MAIN": {
+				"CREATE": {
+					"SUCCESS": "Site has been created successfully!",
+					"ERROR": "Unable to create a site!"
+				}
+			},
 			"PRODUCTS": {
 				"CREATE": {
 					"SUCCESS": "Product has been created successfully!",
@@ -463,6 +469,27 @@
 			"ACTIONS": {
 				"FILTERS": {
 					"HIDDEN": "Include hidden sites"
+				},
+				"CREATE": {
+					"LABEL": "Create",
+					"TITLE": "Create Site",
+					"TEXT": "Create a new site!",
+					"NOTE": "Note: New site is by default not accepting orders!",
+					"FIELDS": {
+						"TITLE": {
+							"LABEL": "Title",
+							"PLACEHOLDER": "Enter site name",
+							"VALIDATIONS": {
+								"REQUIRED": "Name is required."
+							}
+						},
+						"CURRENCY": {
+							"LABEL": "Currency"
+						},
+						"TIMEZONE": {
+							"LABEL": "Timezone"
+						}
+					}
 				}
 			},
 			"TABLE": {

@@ -3,6 +3,7 @@ import { Box, Grid, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { AppConfigService } from '../../../../../../../services';
 import { SitePhoneConfigsGeneralInterface } from './SitePhoneConfigsGeneral.interface';
 import { mapPhoneConfig } from './SitePhoneConfigsGeneral.map';
 import { SitePhoneConfigsGeneralStyle } from './SitePhoneConfigsGeneral.style';
@@ -30,7 +31,7 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.PREFIXES`)}
 				</Typography>
-				<Typography>{item.prefixes}</Typography>
+				<Typography>{item.prefixes || AppConfigService.AppOptions.common.none}</Typography>
 			</Grid>
 
 			{/* From */}
@@ -39,9 +40,13 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 					{t(`${translation}.FROM`)}
 				</Typography>
 				<Box>
-					<Link underline="hover" href={`tel:${item.from}`}>
-						{item.from}
-					</Link>
+					{item.from ? (
+						<Link underline="hover" href={`tel:${item.from}`}>
+							{item.from}
+						</Link>
+					) : (
+						AppConfigService.AppOptions.common.none
+					)}
 				</Box>
 			</Grid>
 

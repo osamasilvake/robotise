@@ -23,6 +23,7 @@ import {
 } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../utilities/hooks/form/UseForm';
+import { validateEmptyObjProperty } from '../../../../../utilities/methods/Object';
 import { CreateRobotValidation } from './DialogCreateRobot.validation';
 import {
 	DialogCreateRobotFormInterface,
@@ -140,7 +141,7 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={robotTwinsSummary.updating}
+						disabled={validateEmptyObjProperty(values) || robotTwinsSummary.updating}
 						endIcon={robotTwinsSummary.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CREATE')}
 					</Button>

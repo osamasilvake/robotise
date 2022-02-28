@@ -52,7 +52,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
-	const defaultCurrency = AppConfigService.AppOptions.common.defaultCurrency;
+	const defaultCurrency = AppConfigService.AppOptions.common.currencies[0].id;
 	const currency = sites.content?.dataById[cSiteId]?.currency || defaultCurrency;
 	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 	const lengthEnum = SiteProductCreateEditLengthValidationTypeEnum;

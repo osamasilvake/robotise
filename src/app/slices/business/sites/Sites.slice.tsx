@@ -2,9 +2,12 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
+import { DialogCreateSiteFormInterface } from '../../../screens/business/sites/list/actions/SitesActions.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { AppConfigService, StorageService } from '../../../services';
+import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
+import { triggerMessage } from '../../general/General.slice';
 import { deserializeSites } from './Sites.slice.deserialize';
 import {
 	SliceSitesInterface,
@@ -55,14 +58,20 @@ const dataSlice = createSlice({
 		},
 		updated: (state, action) => {
 			state.updating = false;
-			state.content = action.payload;
+			if (action.payload) {
+				state.content = action.payload;
+			}
+		},
+		updateFailed: (state) => {
+			state.updating = false;
 		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const sitesSelector = (state: AppReducerType) => state['sites'];
@@ -117,6 +126,53 @@ export const SitesFetchList =
 
 				// dispatch: failure
 				dispatch(failure(message));
+			});
+	};
+
+/**
+ * create a site
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const SiteCreate =
+	(payload: DialogCreateSiteFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return SitesService.siteRobotCreate(payload)
+			.then(async () => {
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// callback
+				callback();
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'sites-create-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.MAIN.CREATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'sites-create-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.MAIN.CREATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
 			});
 	};
 

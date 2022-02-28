@@ -1,7 +1,8 @@
-import { Box, Paper, Stack } from '@mui/material';
+import { Paper, Stack } from '@mui/material';
 import { FC } from 'react';
 
 import { SitesActionsStyle } from './SitesActions.style';
+import SitesCreate from './SitesCreate';
 import SitesHidden from './SitesHidden';
 
 const SitesActions: FC = () => {
@@ -13,8 +14,8 @@ const SitesActions: FC = () => {
 				{/* Hidden */}
 				<SitesHidden />
 
-				{/* Create Order */}
-				<Box />
+				{/* Create Site */}
+				<SitesCreate />
 			</Stack>
 		</Paper>
 	);

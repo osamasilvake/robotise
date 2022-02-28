@@ -18,6 +18,28 @@ export interface SitesAxiosGetInterface extends JsonAPIResponseInterface {
 	}[];
 }
 
+export interface SiteCreateAxiosPostRequestInterface {
+	data: {
+		type: string;
+		attributes: {
+			title: string;
+			timezone: string;
+			currency: string;
+			rooms: { whitelist: null };
+			acceptOrders: boolean;
+		};
+		relationships: object;
+	};
+}
+
+export interface SiteCreateAxiosPostResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: ISite;
+	};
+}
+
 export interface SiteProductsAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;

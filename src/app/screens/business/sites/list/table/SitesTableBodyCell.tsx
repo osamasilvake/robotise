@@ -20,7 +20,7 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 	const setCellValue = (site: ISite, column: SitesTableColumnInterface) => {
 		const value = site[column.id];
 		if (SitesTableColumnsTypeEnum.CURRENCY === column.id) {
-			return value || AppConfigService.AppOptions.common.defaultCurrency;
+			return value || AppConfigService.AppOptions.common.currencies[0].id;
 		} else if (SitesTableColumnsTypeEnum.ACCEPT_ORDER === column.id) {
 			return (
 				<Box>

@@ -1,3 +1,4 @@
 export enum RobotPurchasesActionsSpeedDialTypeEnum {
-	PURCHASES_REPORT
+	PURCHASES_REPORT,
+	PRODUCTS_REPORT
 }

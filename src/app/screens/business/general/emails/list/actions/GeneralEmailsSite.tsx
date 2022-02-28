@@ -13,12 +13,10 @@ import {
 	GeneralEmailsSiteComboBoxInterface,
 	GeneralEmailsSiteInterface
 } from './GeneralEmailsActions.interface';
-import { GeneralEmailsActionsStyle } from './GeneralEmailsActions.style';
 
 const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	const { siteId } = props;
 	const { t } = useTranslation('GENERAL');
-	const classes = GeneralEmailsActionsStyle();
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -71,7 +69,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 			renderInput={(params) => (
 				<TextField {...params} label={t(`${translation}.SITE.LABEL`)} />
 			)}
-			className={classes.sSite}
+			sx={{ minWidth: 250 }}
 		/>
 	) : null;
 };

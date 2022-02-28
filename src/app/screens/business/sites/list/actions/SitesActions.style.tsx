@@ -1,12 +1,12 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-import { AppConfigService } from '../../../../../../../services';
+import { AppConfigService } from '../../../../../services';
 
-export const SiteProductsActionsStyle = makeStyles((theme: Theme) => ({
+export const SitesActionsStyle = makeStyles((theme: Theme) => ({
 	sActions: {
 		marginBottom: theme.spacing(0.1),
-		padding: theme.spacing(1, 2),
+		padding: theme.spacing(0, 2),
 		position: 'sticky',
 		top: 0,
 		zIndex: AppConfigService.AppOptions.styles.zIndex.level3

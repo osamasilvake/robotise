@@ -1,5 +1,5 @@
-import { SettingsOutlined } from '@mui/icons-material';
-import { Paper, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import { Assessment } from '@mui/icons-material';
+import { Box, Paper, SpeedDial, SpeedDialAction, SpeedDialIcon, Stack } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,10 @@ import {
 	robotOperationsSelector,
 	RobotReportsGenerate
 } from '../../../../../../../slices/business/robots/RobotOperations.slice';
-import { FloatStyle } from '../../../../../../../utilities/styles/Float.style';
+import {
+	siteOperationsSelector,
+	SiteReportsGenerate
+} from '../../../../../../../slices/business/sites/SiteOperations.slice';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchasesActionsSpeedDialTypeEnum } from './RobotPurchasesActions.enum';
 import { RobotPurchasesActionsInterface } from './RobotPurchasesActions.interface';
@@ -22,12 +25,13 @@ import RobotPurchasesDebug from './RobotPurchasesDebug';
 const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const { billed, debug } = props;
 	const { t } = useTranslation('ROBOTS');
-	const floatStyle = FloatStyle();
 	const classes = RobotPurchasesActionsStyle();
 
+	const siteOperations = useSelector(siteOperationsSelector);
 	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [purchasesReport, setPurchasesReport] = useState(false);
+	const [productsReport, setProductsReport] = useState(false);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
@@ -40,27 +44,35 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const handleActions = (operation: RobotPurchasesActionsSpeedDialTypeEnum) => () => {
 		if (operation === RobotPurchasesActionsSpeedDialTypeEnum.PURCHASES_REPORT) {
 			setPurchasesReport(true);
+		} else if (operation === RobotPurchasesActionsSpeedDialTypeEnum.PRODUCTS_REPORT) {
+			setProductsReport(true);
 		}
 	};
 
 	return (
 		<>
 			{/* Filters */}
-			<Paper elevation={2} square className={floatStyle.sFloat1}>
-				{/* Billed */}
-				<RobotPurchasesBilled billed={billed} />
+			<Paper elevation={0} square className={classes.sActions}>
+				<Stack
+					spacing={0.5}
+					direction="row"
+					alignItems="center"
+					justifyContent="space-between">
+					<Box>
+						{/* Un-billed */}
+						<RobotPurchasesBilled billed={billed} />
 
-				{/* Debug */}
-				<RobotPurchasesDebug debug={debug} />
+						{/* Debug */}
+						<RobotPurchasesDebug debug={debug} />
+					</Box>
+				</Stack>
 			</Paper>
 
 			{/* Speed Dial */}
 			<SpeedDial
 				ariaLabel="speed-dial-purchases"
 				className={classes.sSpeedDial}
-				icon={
-					<SpeedDialIcon icon={<SettingsOutlined />} className={classes.sSpeedDialIcon} />
-				}>
+				icon={<SpeedDialIcon icon={<Assessment />} className={classes.sSpeedDialIcon} />}>
 				{purchaseActions.map((action) => (
 					<SpeedDialAction
 						key={action.name}
@@ -71,7 +83,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				))}
 			</SpeedDial>
 
-			{/* Dialog: Report */}
+			{/* Dialog: Purchase Report */}
 			<Report
 				id="order-report-export"
 				open={purchasesReport}
@@ -79,6 +91,16 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				filterId={cRobotId}
 				state={robotOperations.reports}
 				GenerateReports={RobotReportsGenerate}
+			/>
+
+			{/* Dialog: Purchase Products Report */}
+			<Report
+				id="product-export"
+				open={productsReport}
+				setOpen={setProductsReport}
+				filterId={cRobotId}
+				state={siteOperations.reports}
+				GenerateReports={SiteReportsGenerate}
 			/>
 		</>
 	);

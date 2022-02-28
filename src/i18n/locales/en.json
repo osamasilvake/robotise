@@ -501,12 +501,9 @@
 			"PRODUCTS": {
 				"LIST": {
 					"ACTIONS": {
-						"SPEED_DIAL": {
-							"PRODUCTS_REPORT": "Generate Report",
-							"CREATE_PRODUCT": "Create new Product"
-						},
 						"CREATE_EDIT": {
 							"CREATE": {
+								"LABEL": "Create",
 								"TITLE": "Create Product"
 							},
 							"EDIT": {
@@ -806,10 +803,8 @@
 					"HIDDEN": "Include hidden robots",
 					"SIMULATION": "Include simulation robots"
 				},
-				"SPEED_DIAL": {
-					"CREATE_ROBOT": "Create new Robot"
-				},
 				"CREATE": {
+					"LABEL": "Create",
 					"TITLE": "Create Robot",
 					"TEXT": "Create a new robot!",
 					"NOTE": "Note: New robot is by default hidden!",
@@ -1283,11 +1278,8 @@
 							"ACTIVE_ORDERS": "Active Orders only",
 							"DEBUG": "Include Test Orders"
 						},
-						"SPEED_DIAL": {
-							"CREATE_ORDER": "Create new Order"
-						},
 						"CREATE": {
-							"LABEL": "Create Order",
+							"LABEL": "Create",
 							"TITLE": "Create Order",
 							"TEXT": "Create a new order for JEEVES by providing a target location.",
 							"FIELDS": {
@@ -1393,7 +1385,8 @@
 							"DEBUG": "Include Test Orders"
 						},
 						"SPEED_DIAL": {
-							"PURCHASES_REPORT": "Generate Report"
+							"PURCHASES_REPORT": "Purchase report",
+							"PRODUCTS_REPORT": "Purchase detail report"
 						}
 					},
 					"TABLE": {
@@ -1559,11 +1552,9 @@
 	"DEEP_LINKS": {
 		"LIST": {
 			"ACTIONS": {
-				"SPEED_DIAL": {
-					"CREATE_DEEP_LINK": "Create new deep link"
-				},
 				"CREATE_EDIT": {
 					"CREATE": {
+						"LABEL": "Create",
 						"TITLE": "Create Deep Link"
 					},
 					"EDIT": {

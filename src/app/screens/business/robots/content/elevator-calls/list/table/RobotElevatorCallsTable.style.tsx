@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 
 import { AppConfigService } from '../../../../../../../services';
 
-const minusContentHeight = AppConfigService.AppOptions.components.table.contentHeight3;
+const minusContentHeight = AppConfigService.AppOptions.components.table.contentHeight4;
 export const RobotElevatorCallsTableStyle = makeStyles((theme: Theme) => ({
 	sTableMaxHeight: {
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`

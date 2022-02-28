@@ -1,20 +1,4 @@
-import { Add } from '@mui/icons-material';
-
-import {
-	RobotOrderModeTypeEnum,
-	RobotOrdersActionsSpeedDialTypeEnum
-} from './RobotOrdersActions.enum';
-
-/**
- * order actions
- */
-export const orderActions = [
-	{
-		icon: <Add />,
-		name: 'CONTENT.ORDERS.LIST.ACTIONS.SPEED_DIAL.CREATE_ORDER',
-		operation: RobotOrdersActionsSpeedDialTypeEnum.CREATE_ORDER
-	}
-];
+import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 
 /**
  * order modes

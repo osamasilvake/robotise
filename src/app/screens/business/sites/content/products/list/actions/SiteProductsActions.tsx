@@ -1,84 +1,21 @@
-import { SettingsOutlined } from '@mui/icons-material';
-import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
-import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Box, Paper, Stack } from '@mui/material';
+import { FC } from 'react';
 
-import Report from '../../../../../../../components/common/report/Report';
-import {
-	siteOperationsSelector,
-	SiteReportsGenerate
-} from '../../../../../../../slices/business/sites/SiteOperations.slice';
-import { SiteParamsInterface } from '../../../../Site.interface';
-import DialogCreateEditProduct from '../table/DialogCreateEditProduct';
-import { SiteProductCreateEditTypeEnum } from '../table/SiteProductsTable.enum';
-import { SiteProductsActionsSpeedDialTypeEnum } from './SiteProductsActions.enum';
-import { productActions } from './SiteProductsActions.map';
 import { SiteProductsActionsStyle } from './SiteProductsActions.style';
+import SiteProductsCreate from './SiteProductsCreate';
 
 const SiteProductsActions: FC = () => {
-	const { t } = useTranslation('SITES');
 	const classes = SiteProductsActionsStyle();
 
-	const siteOperations = useSelector(siteOperationsSelector);
-
-	const [createProduct, setCreateProduct] = useState(false);
-	const [productsReport, setProductsReport] = useState(false);
-
-	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
-	const cSiteId = params.siteId;
-
-	/**
-	 * handle speed dial actions
-	 * @param operation
-	 * @returns
-	 */
-	const handleActions = (operation: SiteProductsActionsSpeedDialTypeEnum) => () => {
-		if (operation === SiteProductsActionsSpeedDialTypeEnum.CREATE_PRODUCT) {
-			setCreateProduct(true);
-		} else if (operation === SiteProductsActionsSpeedDialTypeEnum.PRODUCTS_REPORT) {
-			setProductsReport(true);
-		}
-	};
-
 	return (
-		<>
-			<SpeedDial
-				ariaLabel="speed-dial-products"
-				className={classes.sSpeedDial}
-				icon={
-					<SpeedDialIcon icon={<SettingsOutlined />} className={classes.sSpeedDialIcon} />
-				}>
-				{productActions.map((action) => (
-					<SpeedDialAction
-						key={action.name}
-						icon={action.icon}
-						tooltipTitle={t(action.name)}
-						onClick={handleActions(action.operation)}
-					/>
-				))}
-			</SpeedDial>
+		<Paper elevation={0} square className={classes.sActions}>
+			<Stack spacing={0.5} direction="row" alignItems="center" justifyContent="end">
+				<Box />
 
-			{/* Dialog: Create Product */}
-			{createProduct && (
-				<DialogCreateEditProduct
-					type={SiteProductCreateEditTypeEnum.CREATE}
-					open={createProduct}
-					setOpen={setCreateProduct}
-				/>
-			)}
-
-			{/* Dialog: Report */}
-			<Report
-				id="product-export"
-				open={productsReport}
-				setOpen={setProductsReport}
-				filterId={cSiteId}
-				state={siteOperations.reports}
-				GenerateReports={SiteReportsGenerate}
-			/>
-		</>
+				{/* Create Product */}
+				<SiteProductsCreate />
+			</Stack>
+		</Paper>
 	);
 };
 export default SiteProductsActions;

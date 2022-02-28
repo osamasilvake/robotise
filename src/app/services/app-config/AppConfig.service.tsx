@@ -72,7 +72,8 @@ class AppConfigService extends EnvService {
 				table: {
 					contentHeight1: 48 + 70.5 + 24 + 52 - 8,
 					contentHeight2: 48 + 70.5 + 24 + 52 - 8 + 72,
-					contentHeight3: 48 + 70.5 + 24 + 52 - 8 + 72 + 42
+					contentHeight3: 48 + 70.5 + 24 + 52 - 8 + 42,
+					contentHeight4: 48 + 70.5 + 24 + 52 - 8 + 72 + 42
 				},
 				uploadImage: {
 					maxSize: 500,

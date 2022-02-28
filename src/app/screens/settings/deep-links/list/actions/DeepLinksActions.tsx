@@ -1,75 +1,21 @@
-import { SettingsOutlined } from '@mui/icons-material';
-import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
-import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { Box, Paper, Stack } from '@mui/material';
+import { FC } from 'react';
 
-import { AppConfigService } from '../../../../../services';
-import { authSelector } from '../../../../../slices/authentication/Auth.slice';
-import { AuthScopeTypeEnum } from '../../../../authentication/Auth.enum';
-import { validateScope } from '../../../../authentication/Auth.scope';
-import { DeepLinkCreateEditTypeEnum } from '../table/DeepLinksTable.enum';
-import DialogCreateEditDeepLink from '../table/DialogCreateEditDeepLink';
-import { DeepLinksActionsSpeedDialTypeEnum } from './DeepLinksActions.enum';
-import { deepLinkActions } from './DeepLinksActions.map';
 import { DeepLinksActionsStyle } from './DeepLinksActions.style';
+import DeepLinksCreate from './DeepLinksCreate';
 
 const DeepLinksActions: FC = () => {
-	const { t } = useTranslation('DEEP_LINKS');
 	const classes = DeepLinksActionsStyle();
 
-	const auth = useSelector(authSelector);
-
-	const [createDeepLink, setCreateDeepLink] = useState(false);
-
-	const scope = auth.user?.scope;
-
-	/**
-	 * handle speed dial actions
-	 * @param operation
-	 * @returns
-	 */
-	const handleActions = (operation: DeepLinksActionsSpeedDialTypeEnum) => () => {
-		if (operation === DeepLinksActionsSpeedDialTypeEnum.CREATE_DEEP_LINK) {
-			setCreateDeepLink(true);
-		}
-	};
-
 	return (
-		<>
-			{/* Speed Dial */}
-			<SpeedDial
-				ariaLabel="speed-dial-deep-links"
-				className={classes.sSpeedDial}
-				icon={
-					<SpeedDialIcon icon={<SettingsOutlined />} className={classes.sSpeedDialIcon} />
-				}
-				hidden={
-					!validateScope(
-						scope,
-						AuthScopeTypeEnum.WRITE,
-						AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
-					)
-				}>
-				{deepLinkActions.map((action) => (
-					<SpeedDialAction
-						key={action.name}
-						icon={action.icon}
-						tooltipTitle={t(action.name)}
-						onClick={handleActions(action.operation)}
-					/>
-				))}
-			</SpeedDial>
+		<Paper elevation={0} square className={classes.sActions}>
+			<Stack spacing={0.5} direction="row" alignItems="center" justifyContent="space-between">
+				<Box />
 
-			{/* Dialog: Create/Edit Deep Link */}
-			{createDeepLink && (
-				<DialogCreateEditDeepLink
-					type={DeepLinkCreateEditTypeEnum.CREATE}
-					open={createDeepLink}
-					setOpen={setCreateDeepLink}
-				/>
-			)}
-		</>
+				{/*  Create Deep */}
+				<DeepLinksCreate />
+			</Stack>
+		</Paper>
 	);
 };
 export default DeepLinksActions;

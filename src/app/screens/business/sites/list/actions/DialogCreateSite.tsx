@@ -141,7 +141,7 @@ const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={validateEmptyObjProperty(values) || sites.updating}
+						disabled={sites.updating || validateEmptyObjProperty(values)}
 						endIcon={sites.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CREATE')}
 					</Button>

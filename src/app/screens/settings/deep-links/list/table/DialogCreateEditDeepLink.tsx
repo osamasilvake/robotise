@@ -166,9 +166,9 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 						variant="outlined"
 						type="submit"
 						disabled={
+							deepLinks.updating ||
 							(errors && !validateEmptyObj(errors)) ||
-							validateEmptyObjProperty(values) ||
-							deepLinks.updating
+							validateEmptyObjProperty(values)
 						}
 						endIcon={deepLinks.updating && <CircularProgress size={20} />}>
 						{type === DeepLinkCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}

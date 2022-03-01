@@ -104,7 +104,7 @@ const Report: FC<ReportInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={(!!errors && !validateEmptyObj(errors)) || state.loading}
+						disabled={state.loading || (!!errors && !validateEmptyObj(errors))}
 						endIcon={state.loading && <CircularProgress size={20} />}>
 						{t('BUTTONS.GENERATE')}
 					</Button>

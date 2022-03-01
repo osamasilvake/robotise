@@ -23,8 +23,7 @@ import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/ro
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
 	removeEmptyObjProperties,
-	validateEmptyObj,
-	validateEmptyObjProperty
+	validateEmptyObj
 } from '../../../../../../utilities/methods/Object';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigFormInterface, RobotConfigInterface } from './RobotConfig.interface';
@@ -199,11 +198,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								type="submit"
 								disabled={
 									robotOperations.robotConfig.loading ||
-									(!!errors && !validateEmptyObj(errors)) ||
-									validateEmptyObjProperty({
-										name: values.name,
-										customerName: values.customerName
-									})
+									(!!errors && !validateEmptyObj(errors))
 								}
 								endIcon={
 									robotOperations.robotConfig.loading && (

@@ -22,7 +22,7 @@ import Copyright from '../../../components/frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
 import { AuthLogin, authSelector } from '../../../slices/authentication/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
-import { validateEmptyObj, validateEmptyObjProperty } from '../../../utilities/methods/Object';
+import { validateEmptyObj } from '../../../utilities/methods/Object';
 import { AuthLoginFormInterface } from '../Auth.interface';
 import { LoginStyle } from './Login.style';
 import { LoginValidation } from './Login.validation';
@@ -134,12 +134,7 @@ const Login: FC = () => {
 							variant="contained"
 							type="submit"
 							className={classes.sSubmit}
-							disabled={
-								focus.current &&
-								((!!errors && !validateEmptyObj(errors)) ||
-									validateEmptyObjProperty(values) ||
-									auth.loading)
-							}
+							disabled={focus.current && (auth.loading || !validateEmptyObj(errors))}
 							endIcon={auth.loading && <CircularProgress size={20} />}
 							onClick={() => (focus.current = true)}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}

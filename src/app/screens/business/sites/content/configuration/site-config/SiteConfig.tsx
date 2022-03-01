@@ -19,10 +19,6 @@ import { AppConfigService } from '../../../../../../services';
 import { SiteConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import {
-	validateEmptyObj,
-	validateEmptyObjProperty
-} from '../../../../../../utilities/methods/Object';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigFormInterface, SiteConfigInterface } from './SiteConfig.interface';
 import { SiteConfigStyle } from './SiteConfig.style';
@@ -41,7 +37,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const siteSingle = sites.content?.dataById[cSiteId];
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
 
-	const { handleChangeCheckbox, handleSubmit, values, errors } = useForm<SiteConfigFormInterface>(
+	const { handleChangeCheckbox, handleSubmit, values } = useForm<SiteConfigFormInterface>(
 		{
 			isHidden: !!siteSingle?.configs.isHidden
 		},
@@ -100,11 +96,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 							<Button
 								variant="outlined"
 								type="submit"
-								disabled={
-									siteOperations.siteConfig.loading ||
-									(!!errors && !validateEmptyObj(errors)) ||
-									validateEmptyObjProperty(values)
-								}
+								disabled={siteOperations.siteConfig.loading}
 								endIcon={
 									siteOperations.siteConfig.loading && (
 										<CircularProgress size={20} />

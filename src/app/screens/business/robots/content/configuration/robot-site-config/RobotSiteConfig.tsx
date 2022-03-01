@@ -93,12 +93,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 							<Button
 								variant="outlined"
 								type="submit"
-								disabled={
-									robotOperations.robotSiteConfig.loading ||
-									(!!values.siteId &&
-										sites.content?.dataById[values.siteId]?.id ===
-											robotTwinsSingle?.siteId)
-								}
+								disabled={robotOperations.robotSiteConfig.loading || !values.siteId}
 								endIcon={
 									robotOperations.robotSiteConfig.loading && (
 										<CircularProgress size={20} />

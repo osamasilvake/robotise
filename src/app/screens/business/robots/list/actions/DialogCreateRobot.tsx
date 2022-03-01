@@ -141,7 +141,7 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={validateEmptyObjProperty(values) || robotTwinsSummary.updating}
+						disabled={robotTwinsSummary.updating || validateEmptyObjProperty(values)}
 						endIcon={robotTwinsSummary.updating && <CircularProgress size={20} />}>
 						{t('BUTTONS.CREATE')}
 					</Button>

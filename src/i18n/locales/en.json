@@ -1484,7 +1484,7 @@
 						"TEST_CALL": {
 							"LABEL": "Test Call",
 							"TITLE": "Test Call",
-							"TEXT": "Are you sure, you want to execute test call?"
+							"TEXT": "Are you sure, you want to execute the test call?"
 						}
 					},
 					"TABLE": {

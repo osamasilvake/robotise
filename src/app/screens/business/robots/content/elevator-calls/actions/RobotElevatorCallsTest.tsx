@@ -1,71 +1,51 @@
 import { Elevator } from '@mui/icons-material';
-import { Chip, CircularProgress } from '@mui/material';
-import { FC, useState } from 'react';
+import { Chip } from '@mui/material';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { AppConfigService } from '../../../../../../services';
-import {
-	ElevatorCallsFetchList,
-	elevatorCallsSelector,
-	ElevatorCallsTest
-} from '../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
-import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { elevatorCallsSelector } from '../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { timeout } from '../../../../../../utilities/methods/Timeout';
-import { RobotParamsInterface } from '../../../Robot.interface';
+import DialogTestCallConfirmation from './DialogTestCallConfirmation';
 
 const RobotElevatorCallsTest: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
-	const dispatch = useDispatch();
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const elevatorCalls = useSelector(elevatorCallsSelector);
 
+	const [open, setOpen] = useState(false);
 	const [halt, setHalt] = useState(false);
 
-	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
-	const cRobotId = params.robotId;
-	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
-	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.ACTIONS';
+	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
 
-	const page = elevatorCalls.content?.state?.page || 0;
-	const rowsPerPage =
-		elevatorCalls.content?.state?.rowsPerPage ||
-		AppConfigService.AppOptions.screens.business.robots.content.elevatorCalls.list
-			.defaultPageSize;
-
-	/**
-	 * test elevator calls
-	 */
-	const testElevatorCalls = async () => {
-		// halt
-		setHalt(true);
-
-		// dispatch: test elevator call
-		cSiteId &&
-			dispatch(
-				ElevatorCallsTest(cSiteId, async () => {
-					// callback
-					ElevatorCallsFetchList(cRobotId, { page, rowsPerPage }, true);
-				})
-			);
-
-		// wait
-		await timeout(5000).then(() => setHalt(false));
-	};
+	useEffect(() => {
+		const timer = async () => await timeout(10000).then(() => setHalt(false));
+		timer();
+	}, [halt]);
 
 	return (
-		<Chip
-			size="small"
-			label={t(`${translation}.TEST_CALLS`)}
-			color="primary"
-			variant="outlined"
-			clickable
-			icon={elevatorCalls.updating ? <CircularProgress size={18} /> : <Elevator />}
-			disabled={halt || elevatorCalls.updating}
-			onClick={testElevatorCalls}
-		/>
+		<>
+			<Chip
+				size="small"
+				label={t(`${translation}.LABEL`)}
+				color="primary"
+				variant="outlined"
+				clickable
+				icon={<Elevator />}
+				disabled={halt || elevatorCalls.updating}
+				onClick={() => setOpen(true)}
+			/>
+
+			{/* Dialog: Test Call Confirmation */}
+			{open && (
+				<DialogTestCallConfirmation
+					open={open}
+					setOpen={setOpen}
+					halt={halt}
+					setHalt={setHalt}
+				/>
+			)}
+		</>
 	);
 };
 export default RobotElevatorCallsTest;

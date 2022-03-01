@@ -168,13 +168,13 @@ export const ElevatorCallsTest =
 				// callback
 				callback();
 			})
-			.catch(() => {
+			.catch((err: Error) => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'elevator-calls-text-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.ERROR'
+					text: err?.message || 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

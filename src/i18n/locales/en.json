@@ -1481,7 +1481,11 @@
 			"ELEVATOR_CALLS": {
 				"LIST": {
 					"ACTIONS": {
-						"TEST_CALLS": "Test Call"
+						"TEST_CALL": {
+							"LABEL": "Test Call",
+							"TITLE": "Test Call",
+							"TEXT": "Are you sure, you want to execute test call?"
+						}
 					},
 					"TABLE": {
 						"COLUMNS": {

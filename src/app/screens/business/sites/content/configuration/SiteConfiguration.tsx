@@ -61,19 +61,20 @@ const SiteConfiguration: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			<Grid container spacing={1} className={classes.sGridMarginBottom}>
-				<Grid item xs={12} md={3}>
+			<Grid container spacing={1}>
+				{/* Accept Orders */}
+				<Grid item xs={12}>
 					<AcceptOrders sites={sites} siteOperations={siteOperations} />
 				</Grid>
-			</Grid>
 
-			<Grid container spacing={1} className={classes.sGridMarginBottom}>
-				<Grid item xs={12} md={6}>
+				{/* Site Config */}
+				<Grid item xs={12}>
 					<SiteConfig sites={sites} siteOperations={siteOperations} />
 				</Grid>
 
+				{/* Site Robot Config */}
 				{robotTwinsSummary.content && (
-					<Grid item xs={12} md={6}>
+					<Grid item xs={12}>
 						<SiteRobotConfig
 							sites={sites}
 							siteOperations={siteOperations}
@@ -81,17 +82,17 @@ const SiteConfiguration: FC = () => {
 						/>
 					</Grid>
 				)}
-			</Grid>
 
-			<Grid container spacing={1}>
+				{/* Notifications */}
 				{!!notifications.content && (
-					<Grid item xs={12} md={6}>
+					<Grid item xs={12} md={12}>
 						<SiteNotifications notifications={notifications} />
 					</Grid>
 				)}
 
+				{/* Service Positions */}
 				{!!servicePositions.content && (
-					<Grid item xs={12} md={6}>
+					<Grid item xs={12} md={12}>
 						<SiteServicePositions servicePositions={servicePositions} />
 					</Grid>
 				)}

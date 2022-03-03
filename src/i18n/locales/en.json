@@ -733,6 +733,13 @@
 					"EXCERPT": "Update Site detail.",
 					"FORM": {
 						"FIELDS": {
+							"HELP_PAGE": {
+								"LABEL": "Help Page Id",
+								"PLACEHOLDER": "Enter Help Page Id",
+								"VALIDATIONS": {
+									"REQUIRED": "Help Page Id is required."
+								}
+							},
 							"CHECKBOXES": {
 								"HIDDEN": {
 									"LABEL": "Hide Site",

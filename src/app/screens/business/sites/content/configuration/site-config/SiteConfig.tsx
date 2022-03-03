@@ -8,20 +8,21 @@ import {
 	FormHelperText,
 	Grid,
 	Switch,
+	TextField,
 	Typography
 } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { AppConfigService } from '../../../../../../services';
 import { SiteConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigFormInterface, SiteConfigInterface } from './SiteConfig.interface';
 import { SiteConfigStyle } from './SiteConfig.style';
+import { SiteConfigValidation } from './SiteConfig.validation';
 
 const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const { sites, siteOperations } = props;
@@ -31,37 +32,30 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const dispatch = useDispatch();
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
-	const navigate = useNavigate();
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
 
-	const { handleChangeCheckbox, handleSubmit, values } = useForm<SiteConfigFormInterface>(
-		{
-			isHidden: !!siteSingle?.configs.isHidden
-		},
-		() => ({}),
-		async () => {
-			if (siteSingle) {
-				// dispatch: update site config
-				dispatch(
-					SiteConfigUpdate(cSiteId, values, () => {
-						if (sites.content?.state?.hidden && values.isHidden) {
-							// prepare link
-							const link = AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN;
-
-							// navigate
-							navigate(link);
-						} else {
+	const { handleChangeInput, handleBlur, handleChangeCheckbox, handleSubmit, values, errors } =
+		useForm<SiteConfigFormInterface>(
+			{
+				helpPage: siteSingle?.configs.helpPage || '',
+				isHidden: !!siteSingle?.configs.isHidden
+			},
+			SiteConfigValidation,
+			async () => {
+				if (siteSingle) {
+					// dispatch: update site config
+					dispatch(
+						SiteConfigUpdate(cSiteId, values, () => {
 							// dispatch: fetch sites
 							dispatch(SitesFetchList(true));
-						}
-					})
-				);
+						})
+					);
+				}
 			}
-		}
-	);
+		);
 
 	return (
 		<Card square elevation={1}>
@@ -72,7 +66,26 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 				</Typography>
 
 				<form onSubmit={handleSubmit}>
-					<Grid container spacing={2}>
+					<Grid container spacing={1}>
+						<Grid item xs={12}>
+							<FormControl fullWidth margin="normal">
+								<TextField
+									required
+									type="text"
+									id="helpPage"
+									name="helpPage"
+									label={t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
+									placeholder={t(
+										`${translation}.FORM.FIELDS.HELP_PAGE.PLACEHOLDER`
+									)}
+									value={values?.helpPage}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.helpPage}
+									helperText={errors?.helpPage && t(errors.helpPage)}
+								/>
+							</FormControl>
+						</Grid>
 						<Grid item xs={12}>
 							<FormControl>
 								<FormControlLabel
@@ -92,7 +105,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormHelperText>
 							</FormControl>
 						</Grid>
-						<Grid item xs={12}>
+						<Grid item xs={12} className={classes.sSubmit}>
 							<Button
 								variant="outlined"
 								type="submit"

@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 
 export const RobotConfigStyle = makeStyles((theme: Theme) => ({
 	sExcerpt: {
-		marginBottom: theme.spacing(3)
+		marginBottom: theme.spacing(1.5)
 	},
 	sFormHelperText: {
 		margin: 0

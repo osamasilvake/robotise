@@ -90,8 +90,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 
 				<form onSubmit={handleSubmit}>
 					<Grid container spacing={1}>
-						<Grid item xs={12}>
-							<FormControl fullWidth>
+						<Grid item xs={12} md={6}>
+							<FormControl fullWidth margin="normal">
 								<TextField
 									required
 									type="text"
@@ -106,6 +106,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									helperText={errors?.name && t(errors.name)}
 								/>
 							</FormControl>
+						</Grid>
+						<Grid item xs={12} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
 									required
@@ -123,6 +125,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									helperText={errors?.customerName && t(errors.customerName)}
 								/>
 							</FormControl>
+						</Grid>
+						<Grid item xs={12} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
 									type="text"
@@ -137,6 +141,8 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 									onBlur={handleBlur}
 								/>
 							</FormControl>
+						</Grid>
+						<Grid item xs={12} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
 									type="text"

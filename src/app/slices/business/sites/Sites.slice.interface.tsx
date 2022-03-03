@@ -33,6 +33,7 @@ export interface ISite {
 	createdAt: Date;
 	updatedAt: Date;
 	configs: {
+		helpPage: string;
 		isHidden: boolean;
 	};
 	rooms: {

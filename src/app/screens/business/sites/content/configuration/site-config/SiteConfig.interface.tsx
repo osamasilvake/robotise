@@ -7,5 +7,6 @@ export interface SiteConfigInterface {
 }
 
 export interface SiteConfigFormInterface {
+	helpPage: string;
 	isHidden?: boolean;
 }

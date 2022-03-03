@@ -244,6 +244,7 @@ class SitesService {
 				type: 'sites',
 				attributes: {
 					configs: {
+						helpPage: payload.helpPage,
 						isHidden: payload.isHidden
 					}
 				}

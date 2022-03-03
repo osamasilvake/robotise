@@ -67,22 +67,6 @@ const SiteConfiguration: FC = () => {
 					<AcceptOrders sites={sites} siteOperations={siteOperations} />
 				</Grid>
 
-				{/* Site Config */}
-				<Grid item xs={12}>
-					<SiteConfig sites={sites} siteOperations={siteOperations} />
-				</Grid>
-
-				{/* Site Robot Config */}
-				{robotTwinsSummary.content && (
-					<Grid item xs={12}>
-						<SiteRobotConfig
-							sites={sites}
-							siteOperations={siteOperations}
-							robotTwinsSummary={robotTwinsSummary}
-						/>
-					</Grid>
-				)}
-
 				{/* Notifications */}
 				{!!notifications.content && (
 					<Grid item xs={12} md={12}>
@@ -96,6 +80,22 @@ const SiteConfiguration: FC = () => {
 						<SiteServicePositions servicePositions={servicePositions} />
 					</Grid>
 				)}
+
+				{/* Site Robot Config */}
+				{robotTwinsSummary.content && (
+					<Grid item xs={12}>
+						<SiteRobotConfig
+							sites={sites}
+							siteOperations={siteOperations}
+							robotTwinsSummary={robotTwinsSummary}
+						/>
+					</Grid>
+				)}
+
+				{/* Site Config */}
+				<Grid item xs={12}>
+					<SiteConfig sites={sites} siteOperations={siteOperations} />
+				</Grid>
 			</Grid>
 		</Box>
 	);

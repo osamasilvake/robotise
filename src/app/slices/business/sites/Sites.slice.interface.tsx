@@ -59,6 +59,11 @@ export interface ISite {
 	robots: {
 		id: string;
 	}[];
+	actions: {
+		action: string;
+		createdAt: Date;
+		createdBy: string;
+	}[];
 }
 
 type Day = 'Mo' | 'Tu' | 'We' | 'Th' | 'Fr' | 'Sa' | 'Su';

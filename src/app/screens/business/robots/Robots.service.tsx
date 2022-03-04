@@ -25,7 +25,6 @@ import {
 	RobotElevatorCallsAxiosGetInterface,
 	RobotInventoryAxiosGetInterface,
 	RobotMapAxiosGetInterface,
-	RobotMapsAxiosGetInterface,
 	RobotOrderAxiosGetInterface,
 	RobotOrderCancelAxiosPatchRequestInterface,
 	RobotOrderCancelAxiosPatchResponseInterface,
@@ -107,30 +106,17 @@ class RobotsService {
 	 * @returns
 	 */
 	robotNoteUpdate = (robotId: string, payload: NoteFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
-			':robotId',
-			robotId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIG.replace(
+				':robotId',
+				robotId
+			);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'robots',
 				attributes: {
 					note: payload.note
 				}
-			}
-		});
-	};
-
-	/**
-	 * fetch robot maps
-	 * @param siteId
-	 * @returns
-	 */
-	robotMapsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.MAPS;
-		return HttpClientService.get<RobotMapsAxiosGetInterface>(url, {
-			params: {
-				'filter[site]': siteId
 			}
 		});
 	};
@@ -438,10 +424,11 @@ class RobotsService {
 	 * @returns
 	 */
 	robotProductsSync = (robotId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SYNC_PRODUCTS.replace(
-			':robotId',
-			robotId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.SYNC_PRODUCTS.replace(
+				':robotId',
+				robotId
+			);
 		return HttpClientService.post(url);
 	};
 
@@ -452,10 +439,11 @@ class RobotsService {
 	 * @returns
 	 */
 	robotConfigUpdate = (robotId: string, payload: RobotConfigFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
-			':robotId',
-			robotId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIG.replace(
+				':robotId',
+				robotId
+			);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'robots',
@@ -482,10 +470,11 @@ class RobotsService {
 	 * @returns
 	 */
 	robotSiteConfigUpdate = (robotId: string, payload: RobotSiteConfigFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIG.replace(
-			':robotId',
-			robotId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIG.replace(
+				':robotId',
+				robotId
+			);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'robots',

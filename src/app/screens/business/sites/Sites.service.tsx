@@ -1,6 +1,7 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
+import { DialogCleanTestOrdersFormInterface } from './content/configuration/clean-test-orders/SiteCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
@@ -15,6 +16,7 @@ import { DialogCreateSiteFormInterface } from './list/actions/SitesActions.inter
 import {
 	SiteCreateAxiosPostRequestInterface,
 	SiteCreateAxiosPostResponseInterface,
+	SiteMapsAxiosGetInterface,
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
 	SitePhoneCallsAxiosGetInterface,
@@ -207,6 +209,20 @@ class SitesService {
 	};
 
 	/**
+	 * fetch maps
+	 * @param siteId
+	 * @returns
+	 */
+	siteMapsFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.STATISTICS.MAPS;
+		return HttpClientService.get<SiteMapsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
 	 * accept orders
 	 * @param siteId
 	 * @param acceptOrders
@@ -235,10 +251,11 @@ class SitesService {
 	 * @returns
 	 */
 	siteConfigUpdate = (siteId: string, payload: SiteConfigFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIG.replace(
-			':siteId',
-			siteId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.CONFIG.replace(
+				':siteId',
+				siteId
+			);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'sites',
@@ -259,10 +276,11 @@ class SitesService {
 	 * @returns
 	 */
 	siteRobotConfigUpdate = (siteId: string, payload: SiteRobotConfigFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIG.replace(
-			':siteId',
-			siteId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.CONFIG.replace(
+				':siteId',
+				siteId
+			);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'sites',
@@ -288,7 +306,7 @@ class SitesService {
 	 */
 	siteNotificationTypesFetch = () => {
 		return HttpClientService.get<SiteNotificationTypesAxiosGetInterface>(
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.TYPES
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.NOTIFICATION.TYPES
 		);
 	};
 
@@ -299,7 +317,7 @@ class SitesService {
 	 */
 	siteNotificationUsersFetch = (siteId: string) => {
 		return HttpClientService.get<SiteNotificationUsersAxiosGetInterface>(
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS,
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.NOTIFICATION.USERS,
 			{
 				params: {
 					site: siteId
@@ -315,8 +333,8 @@ class SitesService {
 	 */
 	siteNotificationUpdate = (payload: DialogCreateEditNotificationFormInterface) => {
 		const url = payload.siteId
-			? AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USERS
-			: AppConfigService.AppServices.SCREENS.BUSINESS.SITES.NOTIFICATION.USER.replace(
+			? AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.NOTIFICATION.USERS
+			: AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.NOTIFICATION.USER.replace(
 					':userId',
 					payload.id || ''
 			  );
@@ -357,10 +375,11 @@ class SitesService {
 	 * @returns
 	 */
 	siteServicePositionsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS.replace(
-			':siteId',
-			siteId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SERVICE_POSITIONS.replace(
+				':siteId',
+				siteId
+			);
 		return HttpClientService.get<SiteServicePositionsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId
@@ -380,7 +399,8 @@ class SitesService {
 		payload: DialogCreateEditServicePositionFormInterface,
 		type: SiteServicePositionsCreateEditTypeEnum
 	) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS;
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SERVICE_POSITIONS;
 		const request = {
 			data: {
 				attributes: {
@@ -409,8 +429,32 @@ class SitesService {
 	 * @returns
 	 */
 	siteServicePositionDelete = (servicePositionId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SERVICE_POSITIONS;
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SERVICE_POSITIONS;
 		return HttpClientService.delete(`${url}/${servicePositionId}`);
+	};
+
+	/**
+	 * clean test orders
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteTestOrdersClean = (siteId: string, payload: DialogCleanTestOrdersFormInterface) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.CLEAN_TEST_ORDERS.replace(
+				':siteId',
+				siteId
+			);
+		return HttpClientService.post(url, {
+			data: {
+				type: 'site-action',
+				attributes: {
+					dateTo: payload.dateTo,
+					timeTo: payload.timeTo
+				}
+			}
+		});
 	};
 
 	/**

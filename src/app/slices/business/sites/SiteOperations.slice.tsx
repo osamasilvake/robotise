@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
+import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/clean-test-orders/SiteCleanTestOrders.interface';
 import { SiteConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
@@ -23,6 +24,9 @@ export const initialState: SliceSiteOperationsInterface = {
 	siteRobotConfig: {
 		loading: false
 	},
+	cleanTestOrders: {
+		loading: false
+	},
 	reports: {
 		loading: false
 	}
@@ -41,6 +45,8 @@ const dataSlice = createSlice({
 				state.siteConfig.loading = true;
 			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = true;
+			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
+				state.cleanTestOrders.loading = true;
 			} else if (module === SiteOperationsTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
@@ -53,6 +59,8 @@ const dataSlice = createSlice({
 				state.siteConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
+			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
+				state.cleanTestOrders.loading = false;
 			} else if (module === SiteOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -65,6 +73,8 @@ const dataSlice = createSlice({
 				state.siteConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
+			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
+				state.cleanTestOrders.loading = false;
 			} else if (module === SiteOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -221,6 +231,54 @@ export const SiteRobotConfigUpdate =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * clean test orders
+ * @param siteId
+ * @param payload
+ * @returns
+ */
+export const SiteTestOrdersClean =
+	(siteId: string, payload: DialogCleanTestOrdersFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteOperationsTypeEnum.CLEAN_TEST_ORDERS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteTestOrdersClean(siteId, payload)
+			.then(() => {
+				// callback
+				callback();
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-clean-test-orders-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.CONFIGURATION.CLEAN_TEST_ORDERS.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-clean-test-orders-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.CONFIGURATION.CLEAN_TEST_ORDERS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

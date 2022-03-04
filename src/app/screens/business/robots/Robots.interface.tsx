@@ -55,14 +55,6 @@ export interface RobotTwinsAxiosGetInterface {
 	};
 }
 
-export interface RobotMapsAxiosGetInterface {
-	data: {
-		id: string;
-		type: string;
-		attributes: SROContentMapInterface;
-	}[];
-}
-
 export interface RobotMapAxiosGetInterface {
 	data: {
 		id: string;

@@ -8,6 +8,9 @@ export interface SliceSiteOperationsInterface {
 	siteRobotConfig: {
 		loading: boolean;
 	};
+	cleanTestOrders: {
+		loading: boolean;
+	};
 	reports: {
 		loading: boolean;
 	};

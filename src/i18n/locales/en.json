@@ -52,6 +52,7 @@
 			"UPDATE": "Update",
 			"CONFIRM": "Confirm",
 			"MODIFY": "Modify",
+			"SUBMIT": "Submit",
 			"GENERATE": "Generate"
 		}
 	},
@@ -214,6 +215,10 @@
 						"SUCCESS": "Service position has been deleted successfully!",
 						"ERROR": "Unable to delete service position!"
 					}
+				},
+				"CLEAN_TEST_ORDERS": {
+					"SUCCESS": "Test orders cleaned successfully!",
+					"ERROR": "Unable to clean test orders!"
 				}
 			}
 		},
@@ -825,6 +830,25 @@
 					"DELETE": {
 						"TITLE": "Delete Service Position",
 						"TEXT": "Are you sure you want to delete the service position?"
+					}
+				},
+				"CLEAN_TEST_ORDERS": {
+					"TITLE": "Clean Test Orders",
+					"EXCERPT": "Delete all orders for this site.",
+					"TEXT": "You are deleting all orders for this site. Select an upper date and time bound.",
+					"BUTTONS": {
+						"CLEAN": "Clean"
+					},
+					"FORM": {
+						"FIELDS": {
+							"DATE_TO": {
+								"LABEL": "Date To",
+								"PLACEHOLDER": "Enter Date To",
+								"VALIDATIONS": {
+									"REQUIRED": "Date To is required."
+								}
+							}
+						}
 					}
 				}
 			}

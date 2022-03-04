@@ -28,6 +28,15 @@ const dateFormat3 = (date: Date): string => {
 };
 
 /**
+ * format 4
+ * @param date
+ * @returns
+ */
+const dateFormat4 = (date: Date): string => {
+	return dayjs(date).format('HH:mm');
+};
+
+/**
  * Date.now()
  * @returns
  */
@@ -41,6 +50,14 @@ const dateNow = (): number => {
  */
 const dateToday = (): string => {
 	return dayjs().format('YYYY-MM-DD');
+};
+
+/**
+ * today with time
+ * @returns
+ */
+const dateTodayWithTime = (): string => {
+	return dayjs().format('YYYY-MM-DD hh:mm:ss');
 };
 
 /**
@@ -101,10 +118,12 @@ export {
 	dateFormat1,
 	dateFormat2,
 	dateFormat3,
+	dateFormat4,
 	dateFromToDiff,
 	dateISOString,
 	dateMinsPriorToDate,
 	dateNow,
 	dateSort,
-	dateToday
+	dateToday,
+	dateTodayWithTime
 };

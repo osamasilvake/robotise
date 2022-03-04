@@ -2,7 +2,6 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { SiteWifiHeatmapPayloadInterface } from '../../../../screens/business/sites/content/statistics/SiteStatistics.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../../..';
@@ -86,7 +85,7 @@ export const WifiMapsFetch =
 		dispatch(loader());
 
 		// fetch maps
-		return RobotsService.robotMapsFetch(siteId)
+		return SitesService.siteMapsFetch(siteId)
 			.then(async (res) => {
 				// result
 				const maps: SWCMapsInterface = await deserializeWifiHeatmap(res);

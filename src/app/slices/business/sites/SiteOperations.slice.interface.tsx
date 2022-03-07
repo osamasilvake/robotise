@@ -2,16 +2,13 @@ export interface SliceSiteOperationsInterface {
 	acceptOrders: {
 		loading: boolean;
 	};
-	siteConfig: {
-		loading: boolean;
-	};
 	siteRobotConfig: {
 		loading: boolean;
 	};
-	cleanTestOrders: {
+	siteConfig: {
 		loading: boolean;
 	};
-	reports: {
+	cleanTestOrders: {
 		loading: boolean;
 	};
 }

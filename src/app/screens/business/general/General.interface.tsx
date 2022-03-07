@@ -16,3 +16,11 @@ export interface GeneralEmailAxiosGetInterface {
 		attributes: SECDataInterface;
 	};
 }
+
+export interface GeneralOrderModesAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: any;
+	}[];
+}

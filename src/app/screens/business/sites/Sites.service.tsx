@@ -1,4 +1,3 @@
-import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCleanTestOrdersFormInterface } from './content/configuration/clean-test-orders/SiteCleanTestOrders.interface';
@@ -245,62 +244,6 @@ class SitesService {
 	};
 
 	/**
-	 * update site config
-	 * @param siteId
-	 * @param payload
-	 * @returns
-	 */
-	siteConfigUpdate = (siteId: string, payload: SiteConfigFormInterface) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.CONFIG.replace(
-				':siteId',
-				siteId
-			);
-		return HttpClientService.patch(url, {
-			data: {
-				type: 'sites',
-				attributes: {
-					configs: {
-						helpPage: payload.helpPage,
-						isHidden: payload.isHidden
-					}
-				}
-			}
-		});
-	};
-
-	/**
-	 * update site robot config
-	 * @param siteId
-	 * @param payload
-	 * @returns
-	 */
-	siteRobotConfigUpdate = (siteId: string, payload: SiteRobotConfigFormInterface) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.CONFIG.replace(
-				':siteId',
-				siteId
-			);
-		return HttpClientService.patch(url, {
-			data: {
-				type: 'sites',
-				id: siteId,
-				attributes: {},
-				relationships: {
-					robots: {
-						data: [
-							{
-								type: 'robots',
-								id: payload.robotId
-							}
-						]
-					}
-				}
-			}
-		});
-	};
-
-	/**
 	 * fetch site notification types
 	 * @returns
 	 */
@@ -435,6 +378,60 @@ class SitesService {
 	};
 
 	/**
+	 * update site robot config
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteRobotConfigUpdate = (siteId: string, payload: SiteRobotConfigFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				id: siteId,
+				attributes: {},
+				relationships: {
+					robots: {
+						data: [
+							{
+								type: 'robots',
+								id: payload.robotId
+							}
+						]
+					}
+				}
+			}
+		});
+	};
+
+	/**
+	 * update site config
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteConfigUpdate = (siteId: string, payload: SiteConfigFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				attributes: {
+					configs: {
+						helpPage: payload.helpPage,
+						isHidden: payload.isHidden
+					}
+				}
+			}
+		});
+	};
+
+	/**
 	 * clean test orders
 	 * @param siteId
 	 * @param payload
@@ -453,23 +450,6 @@ class SitesService {
 					dateTo: payload.dateTo,
 					timeTo: payload.timeTo
 				}
-			}
-		});
-	};
-
-	/**
-	 * generate reports
-	 * @param siteId
-	 * @param payload
-	 * @returns
-	 */
-	siteReportsGenerate = (siteId: string, payload: ReportFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.REPORTS;
-		return HttpClientService.get<string>(`${url}/${payload.id}`, {
-			params: {
-				'filter[site]': siteId,
-				'filter[createdAt][gte]': payload.from,
-				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

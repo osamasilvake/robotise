@@ -1,7 +1,11 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { dateDaysPriorToToday } from '../../../utilities/methods/Date';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
-import { GeneralEmailAxiosGetInterface, GeneralEmailsAxiosGetInterface } from './General.interface';
+import {
+	GeneralEmailAxiosGetInterface,
+	GeneralEmailsAxiosGetInterface,
+	GeneralOrderModesAxiosGetInterface
+} from './General.interface';
 
 class GeneralService {
 	/**
@@ -33,6 +37,15 @@ class GeneralService {
 			emailId
 		);
 		return HttpClientService.get<GeneralEmailAxiosGetInterface>(url);
+	};
+
+	/**
+	 * fetch order modes
+	 * @returns
+	 */
+	generalOrderModesFetch = () => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ORDER_MODES;
+		return HttpClientService.get<GeneralOrderModesAxiosGetInterface>(url);
 	};
 }
 const instance = new GeneralService();

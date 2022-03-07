@@ -25,7 +25,7 @@ import { ReportStyle } from './Report.style';
 import { ReportValidation } from './Report.validation';
 
 const Report: FC<ReportInterface> = (props) => {
-	const { id, open, setOpen, filterId, state, GenerateReports } = props;
+	const { id, open, setOpen, filterId, filterIdType, state, GenerateReports } = props;
 	const { t } = useTranslation(['DIALOG', 'REPORT']);
 	const classes = ReportStyle();
 
@@ -42,7 +42,9 @@ const Report: FC<ReportInterface> = (props) => {
 			ReportValidation,
 			async () => {
 				// dispatch: generate reports
-				dispatch(GenerateReports(filterId, values, (report) => setReport(report)));
+				dispatch(
+					GenerateReports(filterId, filterIdType, values, (report) => setReport(report))
+				);
 			}
 		);
 

@@ -11,11 +11,12 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { GeneralFetchOrderModes } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { SiteConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
@@ -56,6 +57,11 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 				}
 			}
 		);
+
+	useEffect(() => {
+		// dispatch: fetch order modes
+		dispatch(GeneralFetchOrderModes());
+	}, [dispatch]);
 
 	return (
 		<Card square elevation={1}>

@@ -140,6 +140,11 @@
 			"TOKEN_EMPTY": "No Token Found!",
 			"UNKNOWN": "Unknown"
 		},
+		"GENERAL": {
+			"ORDER_MODES": {
+				"ERROR": "Unable to fetch order modes!"
+			}
+		},
 		"SITES": {
 			"MAIN": {
 				"CREATE": {
@@ -182,14 +187,6 @@
 					"SUCCESS": "Site Setting has been updated successfully!",
 					"ERROR": "Unable to update accept orders!"
 				},
-				"SITE_CONFIG": {
-					"SUCCESS": "Site setting has been updated successfully!",
-					"ERROR": "Unable to configure site!"
-				},
-				"SITE_ROBOT_CONFIG": {
-					"SUCCESS": "Site setting has been updated successfully!",
-					"ERROR": "Unable to configure site robot!"
-				},
 				"NOTIFICATIONS": {
 					"FETCH": {
 						"ERROR": "Unable to fetch notification types or users!"
@@ -215,6 +212,14 @@
 						"SUCCESS": "Service position has been deleted successfully!",
 						"ERROR": "Unable to delete service position!"
 					}
+				},
+				"SITE_ROBOT_CONFIG": {
+					"SUCCESS": "Site setting has been updated successfully!",
+					"ERROR": "Unable to configure site robot!"
+				},
+				"SITE_CONFIG": {
+					"SUCCESS": "Site setting has been updated successfully!",
+					"ERROR": "Unable to configure site!"
 				},
 				"CLEAN_TEST_ORDERS": {
 					"SUCCESS": "Test orders cleaned successfully!",
@@ -733,45 +738,6 @@
 					"EXCERPT": "Allow robots to accept orders.",
 					"ACTIVE": "Active"
 				},
-				"SITE_CONFIG": {
-					"TITLE": "Configure Site",
-					"EXCERPT": "Update Site detail.",
-					"FORM": {
-						"FIELDS": {
-							"HELP_PAGE": {
-								"LABEL": "Help Page Id",
-								"PLACEHOLDER": "Enter Help Page Id",
-								"VALIDATIONS": {
-									"REQUIRED": "Help Page Id is required."
-								}
-							},
-							"CHECKBOXES": {
-								"HIDDEN": {
-									"LABEL": "Hide Site",
-									"NOTE": "*Whether to show site in the ROC sites list!"
-								}
-							}
-						},
-						"BUTTONS": {
-							"UPDATE": "Update"
-						}
-					}
-				},
-				"SITE_ROBOT_CONFIG": {
-					"TITLE": "Configure Site ROBOT",
-					"EXCERPT": "Update Site ROBOT detail.",
-					"FORM": {
-						"FIELDS": {
-							"SITE": {
-								"LABEL": "Robot to accept order",
-								"NOTE": "*Either Attached robot is hidden or No robot is assigned to the site!"
-							}
-						},
-						"BUTTONS": {
-							"UPDATE": "Update"
-						}
-					}
-				},
 				"NOTIFICATIONS": {
 					"TITLE": "Notifications",
 					"EXCERPT": "Configure notification for specific users.",
@@ -830,6 +796,45 @@
 					"DELETE": {
 						"TITLE": "Delete Service Position",
 						"TEXT": "Are you sure you want to delete the service position?"
+					}
+				},
+				"SITE_CONFIG": {
+					"TITLE": "Configure Site",
+					"EXCERPT": "Update Site detail.",
+					"FORM": {
+						"FIELDS": {
+							"HELP_PAGE": {
+								"LABEL": "Help Page Id",
+								"PLACEHOLDER": "Enter Help Page Id",
+								"VALIDATIONS": {
+									"REQUIRED": "Help Page Id is required."
+								}
+							},
+							"CHECKBOXES": {
+								"HIDDEN": {
+									"LABEL": "Hide Site",
+									"NOTE": "*Whether to show site in the ROC sites list!"
+								}
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
+				},
+				"SITE_ROBOT_CONFIG": {
+					"TITLE": "Configure Site ROBOT",
+					"EXCERPT": "Update Site ROBOT detail.",
+					"FORM": {
+						"FIELDS": {
+							"SITE": {
+								"LABEL": "Robot to accept order",
+								"NOTE": "*Either Attached robot is hidden or No robot is assigned to the site!"
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
 					}
 				},
 				"CLEAN_TEST_ORDERS": {

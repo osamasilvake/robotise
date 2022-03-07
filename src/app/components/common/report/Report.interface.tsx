@@ -5,9 +5,11 @@ export interface ReportInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	filterId: string;
+	filterIdType: string;
 	state: { loading: boolean };
 	GenerateReports: (
 		filterId: string,
+		filterIdType: string,
 		payload: ReportFormInterface,
 		callback: (report: string) => void
 	) => void;

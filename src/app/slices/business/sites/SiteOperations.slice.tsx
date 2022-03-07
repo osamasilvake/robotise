@@ -1,6 +1,5 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/clean-test-orders/SiteCleanTestOrders.interface';
@@ -18,16 +17,13 @@ export const initialState: SliceSiteOperationsInterface = {
 	acceptOrders: {
 		loading: false
 	},
-	siteConfig: {
-		loading: false
-	},
 	siteRobotConfig: {
 		loading: false
 	},
-	cleanTestOrders: {
+	siteConfig: {
 		loading: false
 	},
-	reports: {
+	cleanTestOrders: {
 		loading: false
 	}
 };
@@ -41,42 +37,36 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = true;
-			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
-				state.siteConfig.loading = true;
 			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = true;
+			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
+				state.siteConfig.loading = true;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = true;
-			} else if (module === SiteOperationsTypeEnum.REPORTS) {
-				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
 			const { module } = action.payload;
 			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
-				state.siteConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
+			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
+				state.siteConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
-			} else if (module === SiteOperationsTypeEnum.REPORTS) {
-				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module } = action.payload;
 			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
-				state.siteConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
+			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
+				state.siteConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
-			} else if (module === SiteOperationsTypeEnum.REPORTS) {
-				state.reports.loading = false;
 			}
 		},
 		reset: () => initialState
@@ -144,6 +134,50 @@ export const SiteOrdersAccept =
 	};
 
 /**
+ * update site robot config
+ * @param siteId
+ * @param payload
+ * @returns
+ */
+export const SiteRobotConfigUpdate =
+	(siteId: string, payload: SiteRobotConfigFormInterface) => async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteOperationsTypeEnum.SITE_ROBOT_CONFIG
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteRobotConfigUpdate(siteId, payload)
+			.then(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-robot-config-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-robot-config-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
  * update site config
  * @param siteId
  * @param payload
@@ -196,50 +230,6 @@ export const SiteConfigUpdate =
 	};
 
 /**
- * update site robot config
- * @param siteId
- * @param payload
- * @returns
- */
-export const SiteRobotConfigUpdate =
-	(siteId: string, payload: SiteRobotConfigFormInterface) => async (dispatch: Dispatch) => {
-		const state = {
-			module: SiteOperationsTypeEnum.SITE_ROBOT_CONFIG
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return SitesService.siteRobotConfigUpdate(siteId, payload)
-			.then(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'site-robot-config-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: success
-				dispatch(success(state));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'site-robot-config-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
  * clean test orders
  * @param siteId
  * @param payload
@@ -279,55 +269,6 @@ export const SiteTestOrdersClean =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.CLEAN_TEST_ORDERS.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
- * generate reports
- * @param siteId
- * @param payload
- * @param callback
- * @returns
- */
-export const SiteReportsGenerate =
-	(siteId: string, payload: ReportFormInterface, callback: (report: string) => void) =>
-	async (dispatch: Dispatch) => {
-		const state = {
-			module: SiteOperationsTypeEnum.REPORTS
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return SitesService.siteReportsGenerate(siteId, payload)
-			.then(async (res) => {
-				// callback
-				callback(res);
-
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'site-generate-reports-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'COMMON.REPORTS.SUCCESS'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: success
-				dispatch(success(state));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'site-generate-reports-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'COMMON.REPORTS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

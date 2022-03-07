@@ -18,7 +18,8 @@ const AppServices = (config: typeof AppConfigService) => {
 			BUSINESS: {
 				GENERAL: {
 					EMAILS: `${config.envAppUrl}/emails`,
-					EMAIL: `${config.envAppUrl}/emails/:emailId`
+					EMAIL: `${config.envAppUrl}/emails/:emailId`,
+					ORDER_MODES: `${config.envAppUrl}/order-modes`
 				},
 				SITES: {
 					ALL: `${config.envAppUrl}/sites`,
@@ -31,7 +32,6 @@ const AppServices = (config: typeof AppConfigService) => {
 						MAPS: `${config.envAppUrl}/maps`
 					},
 					CONFIGURATION: {
-						CONFIG: `${config.envAppUrl}/sites/:siteId`,
 						NOTIFICATION: {
 							TYPES: `${config.envAppUrl}/notification-types`,
 							USERS: `${config.envAppUrl}/notification-users`,
@@ -39,8 +39,7 @@ const AppServices = (config: typeof AppConfigService) => {
 						},
 						SERVICE_POSITIONS: `${config.envAppUrl}/service-positions`,
 						CLEAN_TEST_ORDERS: `${config.envAppUrl}/sites/:siteId/clean-test-orders`
-					},
-					REPORTS: config.envAppUrl
+					}
 				},
 				ROBOTS: {
 					SUMMARY: `${config.envAppUrl}/robot-twins-summary`,

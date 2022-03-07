@@ -10,10 +10,7 @@ import {
 	robotOperationsSelector,
 	RobotReportsGenerate
 } from '../../../../../../../slices/business/robots/RobotOperations.slice';
-import {
-	siteOperationsSelector,
-	SiteReportsGenerate
-} from '../../../../../../../slices/business/sites/SiteOperations.slice';
+import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchasesActionsSpeedDialTypeEnum } from './RobotPurchasesActions.enum';
 import { RobotPurchasesActionsInterface } from './RobotPurchasesActions.interface';
@@ -27,7 +24,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesActionsStyle();
 
-	const siteOperations = useSelector(siteOperationsSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [purchasesReport, setPurchasesReport] = useState(false);
@@ -35,6 +32,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 
 	/**
 	 * handle speed dial actions
@@ -89,19 +87,23 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				open={purchasesReport}
 				setOpen={setPurchasesReport}
 				filterId={cRobotId}
+				filterIdType="robot"
 				state={robotOperations.reports}
 				GenerateReports={RobotReportsGenerate}
 			/>
 
 			{/* Dialog: Purchase Products Report */}
-			<Report
-				id="product-export"
-				open={productsReport}
-				setOpen={setProductsReport}
-				filterId={cRobotId}
-				state={siteOperations.reports}
-				GenerateReports={SiteReportsGenerate}
-			/>
+			{cSiteId && (
+				<Report
+					id="product-export"
+					open={productsReport}
+					setOpen={setProductsReport}
+					filterId={cSiteId}
+					filterIdType="site"
+					state={robotOperations.reports}
+					GenerateReports={RobotReportsGenerate}
+				/>
+			)}
 		</>
 	);
 };

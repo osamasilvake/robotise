@@ -548,13 +548,19 @@ export const RobotSiteConfigUpdate =
 
 /**
  * generate reports
- * @param robotId
+ * @param id
+ * @param idType
  * @param payload
  * @param callback
  * @returns
  */
 export const RobotReportsGenerate =
-	(robotId: string, payload: ReportFormInterface, callback: (report: string) => void) =>
+	(
+		id: string,
+		idType: string,
+		payload: ReportFormInterface,
+		callback: (report: string) => void
+	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
 			module: RobotOperationsTypeEnum.REPORTS
@@ -563,7 +569,7 @@ export const RobotReportsGenerate =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return RobotsService.robotReportsGenerate(robotId, payload)
+		return RobotsService.robotReportsGenerate(id, idType, payload)
 			.then(async (res) => {
 				// callback
 				callback(res);

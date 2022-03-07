@@ -52,6 +52,15 @@ export const useForm = <UseFormEntity,>(
 	};
 
 	/**
+	 * handle change: inputs
+	 * @param name
+	 * @param values
+	 */
+	const handleChangeInputs = (name: string, values: string[]) => {
+		setChangeEventValues(name, values);
+	};
+
+	/**
 	 * handle change: checkbox
 	 * @param event
 	 */
@@ -128,6 +137,7 @@ export const useForm = <UseFormEntity,>(
 	return {
 		handleChangeStringInputs,
 		handleChangeInput,
+		handleChangeInputs,
 		handleChangeCheckbox,
 		handleChangeSelect,
 		handleBlur,

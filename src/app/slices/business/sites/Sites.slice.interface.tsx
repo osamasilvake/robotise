@@ -35,6 +35,8 @@ export interface ISite {
 	configs: {
 		helpPage: string;
 		isHidden: boolean;
+		availableOrderModes: string[];
+		defaultOrderMode: string;
 	};
 	rooms: {
 		available: string[];

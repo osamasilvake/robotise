@@ -424,6 +424,13 @@
 		}
 	},
 	"GENERAL": {
+		"COMMON": {
+			"MODE": {
+				"mini-bar": "Minibar",
+				"room-service": "Room Service",
+				"service-position": "Service Position"
+			}
+		},
 		"CONTENT": {
 			"TABS": {
 				"COMMON": "Common",
@@ -649,14 +656,7 @@
 			},
 			"PHONE_CONFIGS": {
 				"GENERAL": {
-					"MODE": {
-						"LABEL": "Mode",
-						"ITEMS": {
-							"mini-bar": "Minibar",
-							"room-service": "Room Service",
-							"service-position": "Service Position"
-						}
-					},
+					"MODE": "Mode",
 					"PREFIXES": "Prefixes",
 					"FROM": "From",
 					"WORKFLOW": {
@@ -705,11 +705,6 @@
 								"orderAssigned": "Order Assigned",
 								"rejected": "Rejected",
 								"error": "Error"
-							},
-							"MODE": {
-								"mini-bar": "Minibar",
-								"room-service": "Room Service",
-								"service-position": "Service Position"
 							},
 							"HISTORY": {
 								"EVENT": {
@@ -808,6 +803,13 @@
 								"PLACEHOLDER": "Enter Help Page Id",
 								"VALIDATIONS": {
 									"REQUIRED": "Help Page Id is required."
+								}
+							},
+							"ORDER_MODE": {
+								"LABEL": "Order Modes",
+								"PLACEHOLDER": "Select Mode",
+								"VALIDATIONS": {
+									"REQUIRED": "Order mode is required."
 								}
 							},
 							"CHECKBOXES": {
@@ -1312,13 +1314,6 @@
 				}
 			},
 			"ORDERS": {
-				"COMMON": {
-					"MODE": {
-						"mini-bar": "Minibar",
-						"room-service": "Room Service",
-						"service-position": "Service Position"
-					}
-				},
 				"DETAIL": {
 					"TABLE": {
 						"COLUMNS": {

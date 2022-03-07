@@ -11,7 +11,8 @@ export const SiteConfigValidation = (
 ): SiteConfigFormInterface => {
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG.FORM.FIELDS';
 	const errors: SiteConfigFormInterface = {
-		helpPage: ''
+		helpPage: '',
+		availableOrderModes: []
 	};
 
 	// Help Page
@@ -19,6 +20,13 @@ export const SiteConfigValidation = (
 		// required
 		if (!values.helpPage) {
 			errors.helpPage = `${translation}.HELP_PAGE.VALIDATIONS.REQUIRED`;
+		}
+	}
+
+	// Order Mode
+	if (touched.availableOrderModes) {
+		if (values.availableOrderModes.length < 1) {
+			errors.availableOrderModes = [`${translation}.ORDER_MODE.VALIDATIONS.REQUIRED`];
 		}
 	}
 

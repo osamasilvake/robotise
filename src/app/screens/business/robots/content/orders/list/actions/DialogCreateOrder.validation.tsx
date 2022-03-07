@@ -1,5 +1,4 @@
 import { AppConfigService } from '../../../../../../../services';
-import { RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
 import { DialogCreateOrderFormInterface } from './RobotOrdersActions.interface';
 
 /**
@@ -16,7 +15,7 @@ export const CreateOrderValidation = (
 	const errors: DialogCreateOrderFormInterface = {
 		isDebug: false,
 		location: '',
-		mode: RobotOrderModeTypeEnum.MINI_BAR
+		mode: ''
 	};
 
 	// Location

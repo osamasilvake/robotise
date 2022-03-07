@@ -9,4 +9,6 @@ export interface SiteConfigInterface {
 export interface SiteConfigFormInterface {
 	helpPage: string;
 	isHidden?: boolean;
+	availableOrderModes: string[];
+	defaultOrderMode?: string;
 }

@@ -1,4 +1,5 @@
 import {
+	Autocomplete,
 	Button,
 	Card,
 	CardContent,
@@ -11,15 +12,16 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { GeneralFetchOrderModes } from '../../../../../../slices/business/general/GeneralOperations.slice';
+import { generalOperationsSelector } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { SiteConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { validateEmptyObj } from '../../../../../../utilities/methods/Object';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigFormInterface, SiteConfigInterface } from './SiteConfig.interface';
 import { SiteConfigStyle } from './SiteConfig.style';
@@ -31,37 +33,47 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const classes = SiteConfigStyle();
 
 	const dispatch = useDispatch();
+	const generalOperations = useSelector(generalOperationsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
+	const orderModesList = generalOperations.orderModes.content?.dataStringList;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
 
-	const { handleChangeInput, handleBlur, handleChangeCheckbox, handleSubmit, values, errors } =
-		useForm<SiteConfigFormInterface>(
-			{
-				helpPage: siteSingle?.configs.helpPage || '',
-				isHidden: !!siteSingle?.configs.isHidden
-			},
-			SiteConfigValidation,
-			async () => {
-				if (siteSingle) {
-					// dispatch: update site config
-					dispatch(
-						SiteConfigUpdate(cSiteId, values, () => {
-							// dispatch: fetch sites
-							dispatch(SitesFetchList(true));
-						})
-					);
-				}
-			}
-		);
+	const {
+		handleChangeInput,
+		handleChangeInputs,
+		handleBlur,
+		handleChangeCheckbox,
+		handleSubmit,
+		values,
+		errors
+	} = useForm<SiteConfigFormInterface>(
+		{
+			helpPage: siteSingle?.configs.helpPage || '',
+			isHidden: !!siteSingle?.configs.isHidden,
+			availableOrderModes: siteSingle?.configs.availableOrderModes || []
+		},
+		SiteConfigValidation,
+		async () => {
+			const payload = {
+				...values,
+				defaultOrderMode: values.availableOrderModes[0]
+			};
 
-	useEffect(() => {
-		// dispatch: fetch order modes
-		dispatch(GeneralFetchOrderModes());
-	}, [dispatch]);
+			if (siteSingle) {
+				// dispatch: update site config
+				dispatch(
+					SiteConfigUpdate(cSiteId, payload, () => {
+						// dispatch: fetch sites
+						dispatch(SitesFetchList(true));
+					})
+				);
+			}
+		}
+	);
 
 	return (
 		<Card square elevation={1}>
@@ -92,6 +104,36 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								/>
 							</FormControl>
 						</Grid>
+						{orderModesList && (
+							<Grid item xs={12}>
+								<Autocomplete
+									multiple
+									id="availableOrderModes"
+									options={orderModesList}
+									getOptionLabel={(option) => t(`GENERAL:COMMON.MODE.${option}`)}
+									defaultValue={siteSingle?.configs.availableOrderModes || []}
+									isOptionEqualToValue={(option, value) => option === value}
+									onChange={(_, values) =>
+										handleChangeInputs('availableOrderModes', values)
+									}
+									onBlur={handleBlur}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											label={t(`${translation}.FORM.FIELDS.ORDER_MODE.LABEL`)}
+											placeholder={t(
+												`${translation}.FORM.FIELDS.ORDER_MODE.PLACEHOLDER`
+											)}
+											error={!!errors?.availableOrderModes[0]}
+											helperText={
+												errors?.availableOrderModes[0] &&
+												t(errors.availableOrderModes[0])
+											}
+										/>
+									)}
+								/>
+							</Grid>
+						)}
 						<Grid item xs={12}>
 							<FormControl>
 								<FormControlLabel
@@ -115,7 +157,10 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 							<Button
 								variant="outlined"
 								type="submit"
-								disabled={siteOperations.siteConfig.loading}
+								disabled={
+									siteOperations.siteConfig.loading ||
+									(!!errors && !validateEmptyObj(errors))
+								}
 								endIcon={
 									siteOperations.siteConfig.loading && (
 										<CircularProgress size={20} />

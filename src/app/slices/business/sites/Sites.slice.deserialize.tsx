@@ -5,7 +5,7 @@ import {
 	DeserializerExtendedOptionsInterface,
 	JsonAPIResponseInterface
 } from '../../JsonAPI.interface';
-import { ISite } from './Sites.slice.interface';
+import { ISite, SSCDataByIdInterface } from './Sites.slice.interface';
 
 /**
  * deserialize sites
@@ -23,7 +23,7 @@ export const deserializeSites = async <T extends JsonAPIResponseInterface>(paylo
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-	const dataById = data.reduce((acc: { [x: string]: ISite }, item: ISite) => {
+	const dataById = data.reduce((acc: SSCDataByIdInterface, item: ISite) => {
 		acc[item.id] = item;
 		return acc;
 	}, {});

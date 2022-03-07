@@ -424,7 +424,9 @@ class SitesService {
 				attributes: {
 					configs: {
 						helpPage: payload.helpPage,
-						isHidden: payload.isHidden
+						isHidden: payload.isHidden,
+						availableOrderModes: payload.availableOrderModes,
+						defaultOrderMode: payload.defaultOrderMode
 					}
 				}
 			}

@@ -1,10 +1,12 @@
 import { Box, Chip, Link, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
+import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -22,11 +24,15 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotOrdersTableStyle();
 
+	const generalOperations = useSelector(generalOperationsSelector);
+
 	const [open, setOpen] = useState(false);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
+	const orderModesContent = generalOperations.orderModes.content;
+	const orderModesById = orderModesContent?.dataById;
 	const translation = 'CONTENT.ORDERS.LIST';
 
 	/**
@@ -96,6 +102,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 						)}
 					</Box>
 				);
+			} else if (RobotOrdersTableColumnsTypeEnum.MODE === column.id) {
+				return orderModesById && t(orderModesById[value]);
 			}
 			return t(value);
 		}

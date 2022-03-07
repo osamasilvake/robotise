@@ -17,7 +17,6 @@ export const mapOrder = (order: SOCDataInterface) => {
 			order.location?.length <= 4
 				? order.location
 				: `${translation}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
-		mode: `${translation}.COMMON.MODE.${order.mode}`,
 		origin: `${translation}.LIST.TABLE.VALUES.ORIGIN.${order.origin}`
 	};
 };

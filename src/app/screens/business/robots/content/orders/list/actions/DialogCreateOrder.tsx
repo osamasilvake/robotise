@@ -30,6 +30,7 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { CreateOrderValidation } from './DialogCreateOrder.validation';
@@ -38,13 +39,13 @@ import {
 	DialogCreateOrderFormInterface,
 	DialogCreateOrderInterface
 } from './RobotOrdersActions.interface';
-import { orderModes } from './RobotOrdersActions.map';
 
 const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
 
 	const dispatch = useDispatch();
+	const sites = useSelector(sitesSelector);
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
@@ -54,6 +55,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
+	const orderModes = cSiteId && sites.content?.dataById[cSiteId]?.configs.availableOrderModes;
+	const defaultOrderMode = cSiteId && sites.content?.dataById[cSiteId]?.configs.defaultOrderMode;
 	const translation = 'ROBOTS:CONTENT.ORDERS';
 	const fieldLocation = 'location';
 
@@ -69,7 +72,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		{
 			isDebug: false,
 			location: '',
-			mode: RobotOrderModeTypeEnum.MINI_BAR
+			mode: defaultOrderMode || RobotOrderModeTypeEnum.MINI_BAR
 		},
 		CreateOrderValidation,
 		async () => {
@@ -140,16 +143,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								handleChangeSelect(e);
 							}}
 							onBlur={handleBlur}>
-							{orderModes().map((mode) => (
-								<MenuItem
-									key={mode}
-									value={mode}
-									disabled={
-										mode === RobotOrderModeTypeEnum.SERVICE_POSITION &&
-										(!servicePositions.content ||
-											servicePositions.content?.data.length === 0)
-									}>
-									{t(`${translation}.COMMON.MODE.${mode}`)}
+							{(orderModes || [])?.map((m) => (
+								<MenuItem key={m} value={m}>
+									{t(m)}
 								</MenuItem>
 							))}
 						</Select>

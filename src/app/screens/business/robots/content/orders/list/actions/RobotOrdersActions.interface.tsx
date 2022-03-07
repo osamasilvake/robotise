@@ -23,5 +23,5 @@ export interface DialogCreateOrderInterface {
 export interface DialogCreateOrderFormInterface {
 	isDebug: boolean;
 	location: string;
-	mode: RobotOrderModeTypeEnum;
+	mode: string | RobotOrderModeTypeEnum;
 }

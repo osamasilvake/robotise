@@ -8,6 +8,7 @@ export interface UseFormRetInterface<UseFormEntity> {
 		items: string[]
 	) => void;
 	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
+	handleChangeInputs: (id: string, values: string[]) => void;
 	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleChangeSelect: (event: SelectChangeEvent) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;

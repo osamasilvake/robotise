@@ -1,9 +1,11 @@
 import { Box, Icon, Link, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
+import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { PCCDataInterface } from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
 import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import { SitePhoneCallsTableColumnsTypeEnum } from './SitePhoneCallsTable.enum';
@@ -18,6 +20,11 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 	const { column, phoneCall } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SitePhoneCallsTableStyle();
+
+	const generalOperations = useSelector(generalOperationsSelector);
+
+	const orderModesContent = generalOperations.orderModes.content;
+	const orderModesById = orderModesContent?.dataById;
 
 	/**
 	 * set cell value
@@ -74,6 +81,8 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 						{value}
 					</Link>
 				);
+			} else if (SitePhoneCallsTableColumnsTypeEnum.MODE === column.id) {
+				return orderModesById && t(orderModesById[value]);
 			}
 			return t(value);
 		}

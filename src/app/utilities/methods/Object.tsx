@@ -15,7 +15,9 @@ const serializeObj = <T,>(obj: T): string => {
  * @returns
  */
 const validateEmptyObj = <T,>(obj: T): boolean => {
-	return obj && Object.values(obj).every((x) => x === null || x === '' || x === 0);
+	return (
+		obj && Object.values(obj).every((x) => x === null || x === '' || x === 0 || x.length === 0)
+	);
 };
 
 /**
@@ -24,7 +26,9 @@ const validateEmptyObj = <T,>(obj: T): boolean => {
  * @returns
  */
 const validateEmptyObjProperty = <T,>(obj: T): boolean => {
-	return obj && Object.values(obj).some((x) => x === null || x === '' || x === 0);
+	return (
+		obj && Object.values(obj).some((x) => x === null || x === '' || x === 0 || x.length === 0)
+	);
 };
 
 /**

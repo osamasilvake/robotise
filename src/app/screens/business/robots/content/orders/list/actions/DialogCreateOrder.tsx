@@ -95,11 +95,15 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	);
 
 	useEffect(() => {
-		if (pServicePositionSiteId !== cSiteId) {
-			// dispatch: fetch service positions
-			cSiteId && dispatch(ServicePositionsFetchList(cSiteId));
-		}
-	}, [dispatch, pServicePositionSiteId, cSiteId]);
+		// validate mode: service-position
+		const exist = (orderModes || []).some((m) => m === RobotOrderModeTypeEnum.SERVICE_POSITION);
+		if (!exist) return;
+
+		if (pServicePositionSiteId === cSiteId) return;
+
+		// dispatch: fetch service positions
+		cSiteId && dispatch(ServicePositionsFetchList(cSiteId));
+	}, [dispatch, pServicePositionSiteId, cSiteId, orderModes]);
 
 	/**
 	 * close dialog

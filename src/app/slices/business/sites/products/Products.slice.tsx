@@ -141,40 +141,34 @@ export const ProductCreateEdit =
 		type: SiteProductCreateEditTypeEnum,
 		callback: () => void
 	) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const products = states.products;
-
+	async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
 
 		return SitesService.siteProductCreateEdit(siteId, productId, payload, type)
 			.then(async () => {
-				if (products.content) {
-					// wait
-					await timeout(1000);
+				// wait
+				await timeout(1000);
 
-					// callback
-					callback();
+				// callback
+				callback();
 
-					// wait
-					await timeout(2000);
+				// wait
+				await timeout(2000);
 
-					// dispatch: updated
-					dispatch(updated());
+				// dispatch: updated
+				dispatch(updated());
 
-					// dispatch: trigger message
-					const message: TriggerMessageInterface = {
-						id: 'products-create-update-success',
-						show: true,
-						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: `SITES.PRODUCTS.${
-							type === SiteProductCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
-						}.SUCCESS`
-					};
-					dispatch(triggerMessage(message));
-				}
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'products-create-update-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `SITES.PRODUCTS.${
+						type === SiteProductCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
+					}.SUCCESS`
+				};
+				dispatch(triggerMessage(message));
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -200,39 +194,32 @@ export const ProductCreateEdit =
  * @returns
  */
 export const ProductDelete =
-	(product: SPCDataInterface, callback: () => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
-		// states
-		const states = getState();
-		const products = states.products;
-
+	(product: SPCDataInterface, callback: () => void) => async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
 
 		return SitesService.siteProductDelete(product.id)
 			.then(async () => {
-				if (products.content) {
-					// wait
-					await timeout(1000);
+				// wait
+				await timeout(1000);
 
-					// callback
-					callback();
+				// callback
+				callback();
 
-					// wait
-					await timeout(2000);
+				// wait
+				await timeout(2000);
 
-					// dispatch: updated
-					dispatch(updated());
+				// dispatch: updated
+				dispatch(updated());
 
-					// dispatch: trigger message
-					const message: TriggerMessageInterface = {
-						id: 'products-delete-success',
-						show: true,
-						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: 'SITES.PRODUCTS.DELETE.SUCCESS'
-					};
-					dispatch(triggerMessage(message));
-				}
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'products-delete-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.PRODUCTS.DELETE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
 			})
 			.catch(() => {
 				// dispatch: trigger message

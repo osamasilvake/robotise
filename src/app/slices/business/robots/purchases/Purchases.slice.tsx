@@ -166,19 +166,19 @@ export const PurchaseCommentEdit =
 
 					// dispatch: updated
 					dispatch(updated(result));
-
-					// dispatch: trigger message
-					const message: TriggerMessageInterface = {
-						id: 'purchases-comment-edit-success',
-						show: true,
-						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
-					};
-					dispatch(triggerMessage(message));
-
-					// callback
-					callback();
 				}
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'purchases-comment-edit-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.PURCHASES.EDIT_COMMENT.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// callback
+				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

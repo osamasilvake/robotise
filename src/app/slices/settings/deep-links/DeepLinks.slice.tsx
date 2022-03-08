@@ -182,35 +182,35 @@ export const DeepLinkCreateEdit =
 					}.SUCCESS`
 				};
 
-				if (deepLinks.content) {
-					if (type === DeepLinkCreateEditTypeEnum.CREATE) {
-						// wait
-						await timeout(1000);
+				if (type === DeepLinkCreateEditTypeEnum.CREATE) {
+					// wait
+					await timeout(1000);
 
-						// callback
-						callback();
+					// callback
+					callback();
 
-						// wait
-						await timeout(1000);
+					// wait
+					await timeout(1000);
 
-						// dispatch: updated
-						dispatch(updated(null));
+					// dispatch: updated
+					dispatch(updated(null));
 
-						// dispatch: trigger message
-						dispatch(triggerMessage(message));
-					} else {
+					// dispatch: trigger message
+					dispatch(triggerMessage(message));
+				} else {
+					if (deepLinks.content) {
 						// update deep link
 						result = updateDeepLink(deepLinks.content, result);
 
 						// dispatch: updated
 						dispatch(updated(result));
-
-						// dispatch: trigger message
-						dispatch(triggerMessage(message));
-
-						// callback
-						callback();
 					}
+
+					// dispatch: trigger message
+					dispatch(triggerMessage(message));
+
+					// callback
+					callback();
 				}
 			})
 			.catch(() => {

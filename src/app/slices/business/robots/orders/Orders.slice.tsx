@@ -168,19 +168,19 @@ export const OrderCreate =
 
 					// dispatch: updated
 					dispatch(updated(result));
-
-					// dispatch: trigger message
-					const message: TriggerMessageInterface = {
-						id: 'order-create-success',
-						show: true,
-						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: 'ROBOTS.ORDERS.CREATE.SUCCESS'
-					};
-					dispatch(triggerMessage(message));
-
-					// callback
-					callback();
 				}
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'order-create-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ORDERS.CREATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// callback
+				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -224,19 +224,19 @@ export const OrderCancel =
 
 					// dispatch: updated
 					dispatch(updated(result));
-
-					// dispatch: trigger message
-					const message: TriggerMessageInterface = {
-						id: 'order-cancel-success',
-						show: true,
-						severity: TriggerMessageTypeEnum.SUCCESS,
-						text: 'ROBOTS.ORDERS.CANCEL.SUCCESS'
-					};
-					dispatch(triggerMessage(message));
-
-					// callback
-					callback();
 				}
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'order-cancel-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ORDERS.CANCEL.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// callback
+				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

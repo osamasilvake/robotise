@@ -122,8 +122,8 @@
 			"LINK": "Reload"
 		},
 		"PAGE_ERROR": {
-			"TITLE": "Whoops! 🤭",
-			"DESCRIPTION": "Unable to fetch the content!",
+			"TITLE": "Problem! 🤔",
+			"DESCRIPTION": "Please contact the support!",
 			"LINK": "Reload"
 		}
 	},

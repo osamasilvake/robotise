@@ -133,7 +133,15 @@ const RobotOrdersList: FC = () => {
 
 	// error
 	if (orders.errors) {
-		return <PageError message={orders.errors?.text} />;
+		return (
+			<Box className={classes.sBox}>
+				{/* Actions */}
+				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
+
+				{/* Error */}
+				<PageError message={orders.errors?.text} />
+			</Box>
+		);
 	}
 
 	// init

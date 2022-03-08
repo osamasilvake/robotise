@@ -5,6 +5,10 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
+import {
+	GeneralFetchOrderModes,
+	generalOperationsSelector
+} from '../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	notificationsSelector,
@@ -29,6 +33,7 @@ const SiteConfiguration: FC = () => {
 	const classes = SiteConfigurationStyle();
 
 	const dispatch = useDispatch();
+	const generalOperations = useSelector(generalOperationsSelector);
 	const sites = useSelector(sitesSelector);
 	const siteOperations = useSelector(siteOperationsSelector);
 	const notifications = useSelector(notificationsSelector);
@@ -42,18 +47,25 @@ const SiteConfiguration: FC = () => {
 	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
 
 	useEffect(() => {
-		if (pNotificationSiteId !== cSiteId) {
-			// dispatch: fetch site notification types and users
-			dispatch(NotificationTypesAndUsersFetchList(cSiteId));
-		}
+		if (pNotificationSiteId === cSiteId) return;
+
+		// dispatch: fetch site notification types and users
+		dispatch(NotificationTypesAndUsersFetchList(cSiteId));
 	}, [dispatch, pNotificationSiteId, cSiteId]);
 
 	useEffect(() => {
-		if (pServicePositionSiteId !== cSiteId) {
-			// dispatch: fetch service positions
-			dispatch(ServicePositionsFetchList(cSiteId));
-		}
+		if (pServicePositionSiteId === cSiteId) return;
+
+		// dispatch: fetch service positions
+		dispatch(ServicePositionsFetchList(cSiteId));
 	}, [dispatch, pServicePositionSiteId, cSiteId]);
+
+	useEffect(() => {
+		if (generalOperations.orderModes.content !== null) return;
+
+		// dispatch: fetch order modes
+		dispatch(GeneralFetchOrderModes());
+	}, [dispatch, generalOperations.orderModes.content]);
 
 	// loader
 	if (robotTwinsSummary.loader || notifications.loader || servicePositions.loader) {

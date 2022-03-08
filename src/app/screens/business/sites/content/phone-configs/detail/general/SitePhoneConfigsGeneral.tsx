@@ -2,10 +2,8 @@ import { InfoOutlined } from '@mui/icons-material';
 import { Box, Grid, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
-import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { SitePhoneConfigsGeneralInterface } from './SitePhoneConfigsGeneral.interface';
 import { mapPhoneConfig } from './SitePhoneConfigsGeneral.map';
 import { SitePhoneConfigsGeneralStyle } from './SitePhoneConfigsGeneral.style';
@@ -15,10 +13,6 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 	const { t } = useTranslation('SITES');
 	const classes = SitePhoneConfigsGeneralStyle();
 
-	const generalOperations = useSelector(generalOperationsSelector);
-
-	const orderModesContent = generalOperations.orderModes.content;
-	const orderModesById = orderModesContent?.dataById;
 	const item = content?.data && mapPhoneConfig(content.data[0]);
 	const translation = 'CONTENT.PHONE_CONFIGS.GENERAL';
 
@@ -29,7 +23,7 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.MODE`)}
 				</Typography>
-				{orderModesById && <Typography>{t(orderModesById[item.mode])}</Typography>}
+				<Typography>{t(`GENERAL:COMMON.MODE.${item.mode}`)}</Typography>
 			</Grid>
 
 			{/* Prefixes */}

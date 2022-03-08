@@ -8,7 +8,6 @@ import { LoaderTypeEnum } from '../../components/common/loader/Loader.enum';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interface';
 import { AppConfigService } from '../../services';
-import { GeneralFetchOrderModes } from '../../slices/business/general/GeneralOperations.slice';
 import { RobotTwinsSummaryFetchList } from '../../slices/business/robots/RobotTwinsSummary.slice';
 import { SitesFetchList } from '../../slices/business/sites/Sites.slice';
 import { generalSelector } from '../../slices/general/General.slice';
@@ -49,18 +48,6 @@ const PrivateLayout: FC<LayoutPageInterface> = (props) => {
 				AppConfigService.AppOptions.screens.business.robots.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch]);
-
-	useEffect(() => {
-		/**
-		 * actions
-		 * 1. load order modes
-		 */
-		const actions = () => {
-			// dispatch: fetch order modes
-			dispatch(GeneralFetchOrderModes());
-		};
-		actions();
 	}, [dispatch]);
 
 	return (

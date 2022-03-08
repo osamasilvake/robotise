@@ -1,4 +1,3 @@
-import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
@@ -487,24 +486,6 @@ class RobotsService {
 						}
 					}
 				}
-			}
-		});
-	};
-
-	/**
-	 * generate reports
-	 * @param id
-	 * @param idType
-	 * @param payload
-	 * @returns
-	 */
-	robotReportsGenerate = (id: string, idType: string, payload: ReportFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.REPORTS;
-		return HttpClientService.get<string>(`${url}/${payload.id}`, {
-			params: {
-				[`filter[${idType}]`]: id,
-				'filter[createdAt][gte]': payload.from,
-				'filter[createdAt][lte]': payload.to
 			}
 		});
 	};

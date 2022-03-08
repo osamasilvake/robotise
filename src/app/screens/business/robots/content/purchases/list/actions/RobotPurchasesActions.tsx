@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 
 import Report from '../../../../../../../components/common/report/Report';
 import {
-	robotOperationsSelector,
-	RobotReportsGenerate
-} from '../../../../../../../slices/business/robots/RobotOperations.slice';
+	generalOperationsSelector,
+	GeneralReportsGenerate
+} from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchasesActionsSpeedDialTypeEnum } from './RobotPurchasesActions.enum';
@@ -24,8 +24,8 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesActionsStyle();
 
+	const generalOperations = useSelector(generalOperationsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
-	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [purchasesReport, setPurchasesReport] = useState(false);
 	const [productsReport, setProductsReport] = useState(false);
@@ -88,8 +88,8 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				setOpen={setPurchasesReport}
 				filterId={cRobotId}
 				filterIdType="robot"
-				state={robotOperations.reports}
-				GenerateReports={RobotReportsGenerate}
+				state={generalOperations.reports}
+				GenerateReports={GeneralReportsGenerate}
 			/>
 
 			{/* Dialog: Purchase Products Report */}
@@ -100,8 +100,8 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 					setOpen={setProductsReport}
 					filterId={cSiteId}
 					filterIdType="site"
-					state={robotOperations.reports}
-					GenerateReports={RobotReportsGenerate}
+					state={generalOperations.reports}
+					GenerateReports={GeneralReportsGenerate}
 				/>
 			)}
 		</>

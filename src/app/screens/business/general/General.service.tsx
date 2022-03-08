@@ -1,3 +1,4 @@
+import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { dateDaysPriorToToday } from '../../../utilities/methods/Date';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
@@ -46,6 +47,24 @@ class GeneralService {
 	generalOrderModesFetch = () => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ORDER_MODES;
 		return HttpClientService.get<GeneralOrderModesAxiosGetInterface>(url);
+	};
+
+	/**
+	 * generate reports
+	 * @param id
+	 * @param idType
+	 * @param payload
+	 * @returns
+	 */
+	generalReportsGenerate = (id: string, idType: string, payload: ReportFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.REPORTS;
+		return HttpClientService.get<string>(`${url}/${payload.id}`, {
+			params: {
+				[`filter[${idType}]`]: id,
+				'filter[createdAt][gte]': payload.from,
+				'filter[createdAt][lte]': payload.to
+			}
+		});
 	};
 }
 const instance = new GeneralService();

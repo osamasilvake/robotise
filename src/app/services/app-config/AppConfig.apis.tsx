@@ -19,7 +19,8 @@ const AppServices = (config: typeof AppConfigService) => {
 				GENERAL: {
 					EMAILS: `${config.envAppUrl}/emails`,
 					EMAIL: `${config.envAppUrl}/emails/:emailId`,
-					ORDER_MODES: `${config.envAppUrl}/order-modes`
+					ORDER_MODES: `${config.envAppUrl}/order-modes`,
+					REPORTS: config.envAppUrl
 				},
 				SITES: {
 					ALL: `${config.envAppUrl}/sites`,
@@ -59,8 +60,7 @@ const AppServices = (config: typeof AppConfigService) => {
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
 						CONFIG: `${config.envAppUrl}/robots/:robotId`
-					},
-					REPORTS: config.envAppUrl
+					}
 				}
 			},
 			SETTINGS: {

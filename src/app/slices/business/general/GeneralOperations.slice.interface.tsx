@@ -5,6 +5,9 @@ export interface SliceGeneralOperationsInterface {
 		loading: boolean;
 		content: SGOOrderModesContentInterface | null;
 	};
+	reports: {
+		loading: boolean;
+	};
 }
 
 export interface SGOOrderModesContentInterface extends JsonAPIResponseInterface {

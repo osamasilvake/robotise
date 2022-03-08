@@ -1,3 +1,4 @@
 export enum GeneralOperationsTypeEnum {
-	ORDER_MODES
+	ORDER_MODES,
+	REPORTS
 }

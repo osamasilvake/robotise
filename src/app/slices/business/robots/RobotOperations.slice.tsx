@@ -1,6 +1,5 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { RobotConfigFormInterface } from '../../../screens/business/robots/content/configuration/robot-config/RobotConfig.interface';
@@ -50,9 +49,6 @@ export const initialState: SliceRobotOperationsInterface = {
 	},
 	robotSiteConfig: {
 		loading: false
-	},
-	reports: {
-		loading: false
 	}
 };
 
@@ -79,8 +75,6 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = true;
-			} else if (module === RobotOperationsTypeEnum.REPORTS) {
-				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -103,8 +97,6 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
-			} else if (module === RobotOperationsTypeEnum.REPORTS) {
-				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
@@ -127,8 +119,6 @@ const dataSlice = createSlice({
 				state.robotConfig.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
 				state.robotSiteConfig.loading = false;
-			} else if (module === RobotOperationsTypeEnum.REPORTS) {
-				state.reports.loading = false;
 			}
 		},
 		reset: () => initialState
@@ -538,61 +528,6 @@ export const RobotSiteConfigUpdate =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
- * generate reports
- * @param id
- * @param idType
- * @param payload
- * @param callback
- * @returns
- */
-export const RobotReportsGenerate =
-	(
-		id: string,
-		idType: string,
-		payload: ReportFormInterface,
-		callback: (report: string) => void
-	) =>
-	async (dispatch: Dispatch) => {
-		const state = {
-			module: RobotOperationsTypeEnum.REPORTS
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return RobotsService.robotReportsGenerate(id, idType, payload)
-			.then(async (res) => {
-				// callback
-				callback(res);
-
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'robot-generate-reports-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'COMMON.REPORTS.SUCCESS'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: success
-				dispatch(success(state));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'robot-generate-reports-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'COMMON.REPORTS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

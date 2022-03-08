@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
+import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import GeneralService from '../../../screens/business/general/General.service';
@@ -15,6 +16,9 @@ export const initialState: SliceGeneralOperationsInterface = {
 	orderModes: {
 		loading: false,
 		content: null
+	},
+	reports: {
+		loading: false
 	}
 };
 
@@ -27,6 +31,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === GeneralOperationsTypeEnum.ORDER_MODES) {
 				state.orderModes.loading = true;
+			} else if (module === GeneralOperationsTypeEnum.REPORTS) {
+				state.reports.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -34,12 +40,16 @@ const dataSlice = createSlice({
 			if (module === GeneralOperationsTypeEnum.ORDER_MODES) {
 				state.orderModes.loading = false;
 				response && (state.orderModes.content = response);
+			} else if (module === GeneralOperationsTypeEnum.REPORTS) {
+				state.reports.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module } = action.payload;
 			if (module === GeneralOperationsTypeEnum.ORDER_MODES) {
 				state.orderModes.loading = false;
+			} else if (module === GeneralOperationsTypeEnum.REPORTS) {
+				state.reports.loading = false;
 			}
 		},
 		reset: () => initialState
@@ -97,3 +107,58 @@ export const GeneralFetchOrderModes = () => async (dispatch: Dispatch) => {
 			dispatch(failure(state));
 		});
 };
+
+/**
+ * generate reports
+ * @param id
+ * @param idType
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const GeneralReportsGenerate =
+	(
+		id: string,
+		idType: string,
+		payload: ReportFormInterface,
+		callback: (report: string) => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: GeneralOperationsTypeEnum.REPORTS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return GeneralService.generalReportsGenerate(id, idType, payload)
+			.then(async (res) => {
+				// callback
+				callback(res);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'general-operations-generate-reports-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'GENERAL.REPORTS.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'general-operations-generate-reports-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'GENERAL.REPORTS.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};

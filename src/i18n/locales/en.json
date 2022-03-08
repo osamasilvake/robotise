@@ -128,15 +128,15 @@
 		}
 	},
 	"MESSAGE": {
-		"COMMON": {
-			"COPY_TO_CLIPBOARD": "Message copied to clipboard!"
-		},
 		"AUTH": {
 			"TOKEN_EXPIRED": "Token Expired!",
 			"TOKEN_EMPTY": "No Token Found!",
 			"UNKNOWN": "Unknown"
 		},
 		"GENERAL": {
+			"COMMON": {
+				"COPY_TO_CLIPBOARD": "Message copied to clipboard!"
+			},
 			"ORDER_MODES": {
 				"ERROR": "Unable to fetch order modes!"
 			},

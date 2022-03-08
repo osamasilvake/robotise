@@ -129,11 +129,7 @@
 	},
 	"MESSAGE": {
 		"COMMON": {
-			"COPY_TO_CLIPBOARD": "Message copied to clipboard!",
-			"REPORTS": {
-				"SUCCESS": "Report has been generated successfully!",
-				"ERROR": "Unable to generate Report!"
-			}
+			"COPY_TO_CLIPBOARD": "Message copied to clipboard!"
 		},
 		"AUTH": {
 			"TOKEN_EXPIRED": "Token Expired!",
@@ -143,6 +139,10 @@
 		"GENERAL": {
 			"ORDER_MODES": {
 				"ERROR": "Unable to fetch order modes!"
+			},
+			"REPORTS": {
+				"SUCCESS": "Report has been generated successfully!",
+				"ERROR": "Unable to generate Report!"
 			}
 		},
 		"SITES": {

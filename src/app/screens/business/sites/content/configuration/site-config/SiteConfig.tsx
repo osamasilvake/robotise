@@ -107,6 +107,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 						{orderModesList && (
 							<Grid item xs={12}>
 								<Autocomplete
+									disablePortal
 									multiple
 									id="availableOrderModes"
 									options={orderModesList}

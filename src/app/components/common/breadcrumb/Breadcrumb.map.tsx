@@ -1,8 +1,5 @@
 import { AppConfigService } from '../../../services';
-import {
-	strCapitalLetterAndCamelCaseToDash,
-	strRemoveSymbols
-} from '../../../utilities/methods/String';
+import { strCapitalLetterAndCamelCaseToDash } from '../../../utilities/methods/String';
 import { BreadcrumbLinksInterface } from './Breadcrumb.interface';
 
 /**
@@ -17,12 +14,14 @@ export const breadcrumbs = (): BreadcrumbLinksInterface[] => {
 		{
 			text: 'DASHBOARD.TITLE',
 			link: AppConfigService.AppRoutes.HOME,
-			isLast: false
+			isLast: !paths.length,
+			show: !!paths.length
 		},
 		...paths.map((path, index) => ({
-			text: strRemoveSymbols(strCapitalLetterAndCamelCaseToDash(path)),
+			text: strCapitalLetterAndCamelCaseToDash(path),
 			link: `/${paths.slice(0, index + 1).join('/')}`,
-			isLast: index === paths.length - 1
+			isLast: index === paths.length - 1,
+			show: true
 		}))
 	];
 };

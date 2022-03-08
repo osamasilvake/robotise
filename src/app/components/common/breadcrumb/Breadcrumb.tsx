@@ -34,7 +34,7 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 		<Breadcrumbs maxItems={4} itemsAfterCollapse={3}>
 			{breadcrumbs().map((item, index) => {
 				idx.current = index === 0 ? -1 : idx.current;
-				return (
+				return item.show ? (
 					<Box key={item.text}>
 						{!item.isLast && item.link && (
 							<Link component={RouterLink} underline="hover" to={item.link}>
@@ -47,7 +47,7 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 							</Typography>
 						)}
 					</Box>
-				);
+				) : null;
 			})}
 		</Breadcrumbs>
 	);

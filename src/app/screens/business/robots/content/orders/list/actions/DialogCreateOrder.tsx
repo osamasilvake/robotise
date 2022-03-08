@@ -145,7 +145,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							onBlur={handleBlur}>
 							{(orderModes || [])?.map((m) => (
 								<MenuItem key={m} value={m}>
-									{t(m)}
+									{t(`GENERAL:COMMON.MODE.${m}`)}
 								</MenuItem>
 							))}
 						</Select>

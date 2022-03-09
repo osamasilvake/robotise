@@ -6,7 +6,7 @@ export const SiteConfigStyle = makeStyles((theme: Theme) => ({
 		marginBottom: theme.spacing(1.5)
 	},
 	sFormHelperText: {
-		margin: 0
+		marginTop: theme.spacing(0.5)
 	},
 	sSubmit: {
 		marginTop: theme.spacing(1)

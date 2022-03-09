@@ -810,7 +810,8 @@
 								"PLACEHOLDER": "Select Mode",
 								"VALIDATIONS": {
 									"REQUIRED": "Order mode is required."
-								}
+								},
+								"NOTE": "*First element in select is default one"
 							},
 							"CHECKBOXES": {
 								"HIDDEN": {

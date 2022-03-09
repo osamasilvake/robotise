@@ -133,6 +133,12 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										/>
 									)}
 								/>
+								<FormHelperText className={classes.sFormHelperText}>
+									{t(`${translation}.FORM.FIELDS.ORDER_MODE.NOTE`)}
+									{values.availableOrderModes[0] && (
+										<>: ({values.availableOrderModes[0]})</>
+									)}
+								</FormHelperText>
 							</Grid>
 						)}
 						<Grid item xs={12}>

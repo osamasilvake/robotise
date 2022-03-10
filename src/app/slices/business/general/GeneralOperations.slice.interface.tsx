@@ -13,7 +13,6 @@ export interface SliceGeneralOperationsInterface {
 export interface SGOOrderModesContentInterface extends JsonAPIResponseInterface {
 	data: SGOOrderModeContentDataInterface[];
 	dataById: SGOOrderModeContentDataByIdInterface;
-	dataStringList: string[];
 }
 
 export interface SGOOrderModeContentDataInterface {

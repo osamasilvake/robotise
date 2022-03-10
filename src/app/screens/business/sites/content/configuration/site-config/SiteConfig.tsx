@@ -39,7 +39,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
-	const orderModesList = generalOperations.orderModes.content?.dataStringList;
+	const orderModesList = generalOperations.orderModes.content?.data?.map((m) => m.mode);
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
 
 	const {

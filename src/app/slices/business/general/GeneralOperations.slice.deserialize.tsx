@@ -4,10 +4,6 @@ import {
 	DeserializerExtendedOptionsInterface,
 	JsonAPIResponseInterface
 } from '../../JsonAPI.interface';
-import {
-	SGOOrderModeContentDataByIdInterface,
-	SGOOrderModeContentDataInterface
-} from './GeneralOperations.slice.interface';
 
 /**
  * deserialize order modes
@@ -20,14 +16,6 @@ export const deserializeOrderModes = async <T extends JsonAPIResponseInterface>(
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-	const dataById = data.reduce(
-		(acc: SGOOrderModeContentDataByIdInterface, item: SGOOrderModeContentDataInterface) => {
-			acc[item.mode] = item.mode;
-			return acc;
-		},
-		{}
-	);
-	const dataStringList = data.map((m: SGOOrderModeContentDataInterface) => m.mode);
 
-	return { data, dataById, dataStringList, meta: payload.meta };
+	return { data, meta: payload.meta };
 };

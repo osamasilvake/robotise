@@ -9,7 +9,6 @@ import { triggerMessage } from '../../app/App.slice';
 import { deserializeOrderModes } from './GeneralOperations.slice.deserialize';
 import { GeneralOperationsTypeEnum } from './GeneralOperations.slice.enum';
 import { SliceGeneralOperationsInterface } from './GeneralOperations.slice.interface';
-import { mapOrderModes } from './GeneralOperations.slice.map';
 
 // initial state
 export const initialState: SliceGeneralOperationsInterface = {
@@ -80,15 +79,7 @@ export const GeneralFetchOrderModes = () => async (dispatch: Dispatch) => {
 	return GeneralService.generalOrderModesFetch()
 		.then(async (res) => {
 			// deserialize response
-			let result = await deserializeOrderModes(res);
-
-			// map order modes
-			const mappedResult = mapOrderModes(result.data);
-			result = {
-				...result,
-				data: mappedResult.data,
-				dataById: mappedResult.dataById
-			};
+			const result = await deserializeOrderModes(res);
 
 			// dispatch: success
 			dispatch(success({ ...state, response: result }));

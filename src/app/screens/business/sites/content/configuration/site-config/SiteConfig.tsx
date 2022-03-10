@@ -29,7 +29,7 @@ import { SiteConfigValidation } from './SiteConfig.validation';
 
 const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const { sites, siteOperations } = props;
-	const { t } = useTranslation('SITES');
+	const { t } = useTranslation(['SITES', 'GENERAL']);
 	const classes = SiteConfigStyle();
 
 	const dispatch = useDispatch();

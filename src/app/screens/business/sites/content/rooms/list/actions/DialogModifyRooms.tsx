@@ -32,7 +32,7 @@ import {
 
 const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 	const { open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -42,7 +42,7 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
-	const translation = 'SITES:CONTENT.ROOMS.LIST.ACTIONS.MODIFY';
+	const translation = 'CONTENT.ROOMS.LIST.ACTIONS.MODIFY';
 
 	const allRooms = siteSingle?.rooms.available;
 	const whiteList = siteSingle?.rooms.whitelist || [];
@@ -180,14 +180,14 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={closeDialog}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
 						disabled={rooms.updating}
 						endIcon={rooms.updating && <CircularProgress size={20} />}>
-						{t('BUTTONS.MODIFY')}
+						{t('DIALOG:BUTTONS.MODIFY')}
 					</Button>
 				</DialogActions>
 			</form>

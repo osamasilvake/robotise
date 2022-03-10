@@ -40,7 +40,7 @@ import { SiteNotificationsStyle } from './SiteNotifications.style';
 
 const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = (props) => {
 	const { index, type, open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 	const classes = SiteNotificationsStyle();
 
 	const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const cSiteId = params.siteId;
 
 	const notification = index !== undefined ? notifications.content?.data[index] : null;
-	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.CREATE_EDIT';
+	const translation = 'CONTENT.CONFIGURATION.NOTIFICATIONS.CREATE_EDIT';
 	const fieldUsers = 'users';
 
 	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
@@ -237,7 +237,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 						variant="outlined"
 						onClick={closeDialog}
 						disabled={notifications.updating}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
@@ -250,8 +250,10 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 								!!(errors && errors.users.filter((e) => e).length))
 						}
 						endIcon={notifications.updating && <CircularProgress size={20} />}>
-						{type === SiteNotificationsCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}
-						{type === SiteNotificationsCreateEditTypeEnum.EDIT && t('BUTTONS.UPDATE')}
+						{type === SiteNotificationsCreateEditTypeEnum.CREATE &&
+							t('DIALOG:BUTTONS.CREATE')}
+						{type === SiteNotificationsCreateEditTypeEnum.EDIT &&
+							t('DIALOG:BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>
 			</form>

@@ -10,7 +10,7 @@ import { SitePhoneConfigsGeneralStyle } from './SitePhoneConfigsGeneral.style';
 
 const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) => {
 	const { content } = props;
-	const { t } = useTranslation('SITES');
+	const { t } = useTranslation(['SITES', 'GENERAL']);
 	const classes = SitePhoneConfigsGeneralStyle();
 
 	const item = content?.data && mapPhoneConfig(content.data[0]);

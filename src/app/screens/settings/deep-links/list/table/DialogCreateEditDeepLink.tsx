@@ -33,12 +33,12 @@ import { CreateEditDeepLinkValidation } from './DialogCreateEditDeepLink.validat
 
 const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) => {
 	const { deepLink, open, setOpen, type } = props;
-	const { t } = useTranslation(['DIALOG', 'DEEP_LINKS']);
+	const { t } = useTranslation(['DEEP_LINKS', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const deepLinks = useSelector(deepLinksSelector);
 
-	const translation = 'DEEP_LINKS:LIST.ACTIONS.CREATE_EDIT';
+	const translation = 'LIST.ACTIONS.CREATE_EDIT';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditDeepLinkFormInterface>(
@@ -160,7 +160,7 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={() => setOpen(false)}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
@@ -171,8 +171,8 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 							validateEmptyObjProperty(values)
 						}
 						endIcon={deepLinks.updating && <CircularProgress size={20} />}>
-						{type === DeepLinkCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}
-						{type === DeepLinkCreateEditTypeEnum.EDIT && t('BUTTONS.UPDATE')}
+						{type === DeepLinkCreateEditTypeEnum.CREATE && t('DIALOG:BUTTONS.CREATE')}
+						{type === DeepLinkCreateEditTypeEnum.EDIT && t('DIALOG:BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>
 			</form>

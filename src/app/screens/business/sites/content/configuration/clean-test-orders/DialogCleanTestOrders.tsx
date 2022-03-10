@@ -35,14 +35,14 @@ import {
 
 const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 	const { open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const siteOperations = useSelector(siteOperationsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
-	const translation = 'SITES:CONTENT.CONFIGURATION.CLEAN_TEST_ORDERS';
+	const translation = 'CONTENT.CONFIGURATION.CLEAN_TEST_ORDERS';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCleanTestOrdersFormInterface>(
@@ -106,7 +106,7 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 						variant="outlined"
 						onClick={() => setOpen(false)}
 						disabled={siteOperations.cleanTestOrders.loading}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						color="error"
@@ -116,7 +116,7 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 						endIcon={
 							siteOperations.cleanTestOrders.loading && <CircularProgress size={20} />
 						}>
-						{t('BUTTONS.SUBMIT')}
+						{t('DIALOG:BUTTONS.SUBMIT')}
 					</Button>
 				</DialogActions>
 			</form>

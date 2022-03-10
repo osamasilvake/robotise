@@ -22,12 +22,12 @@ import { DialogDeleteDeepLinkInterface } from './DeepLinksTable.interface';
 
 const DialogDeleteDeepLink: FC<DialogDeleteDeepLinkInterface> = (props) => {
 	const { deepLink, open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'DEEP_LINKS']);
+	const { t } = useTranslation(['DEEP_LINKS', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const deepLinks = useSelector(deepLinksSelector);
 
-	const translation = 'DEEP_LINKS:LIST.ACTIONS.DELETE';
+	const translation = 'LIST.ACTIONS.DELETE';
 
 	/**
 	 * delete deep link
@@ -74,7 +74,7 @@ const DialogDeleteDeepLink: FC<DialogDeleteDeepLinkInterface> = (props) => {
 					variant="outlined"
 					onClick={deleteDeepLink(false)}
 					disabled={deepLinks.updating}>
-					{t('BUTTONS.CANCEL')}
+					{t('DIALOG:BUTTONS.CANCEL')}
 				</Button>
 				<Button
 					color="error"
@@ -82,7 +82,7 @@ const DialogDeleteDeepLink: FC<DialogDeleteDeepLinkInterface> = (props) => {
 					onClick={deleteDeepLink(true)}
 					disabled={deepLinks.updating}
 					endIcon={deepLinks.updating && <CircularProgress size={20} />}>
-					{t('BUTTONS.CONFIRM')}
+					{t('DIALOG:BUTTONS.CONFIRM')}
 				</Button>
 			</DialogActions>
 		</Dialog>

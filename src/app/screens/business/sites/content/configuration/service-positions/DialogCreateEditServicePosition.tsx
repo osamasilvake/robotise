@@ -29,7 +29,7 @@ import {
 
 const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterface> = (props) => {
 	const { type, open, setOpen, index } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const servicePositions = useSelector(servicePositionsSelector);
@@ -38,7 +38,7 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 	const cSiteId = params.siteId;
 
 	const servicePosition = index !== undefined ? servicePositions.content?.data[index] : null;
-	const translation = 'SITES:CONTENT.CONFIGURATION.SERVICE_POSITIONS.CREATE_EDIT';
+	const translation = 'CONTENT.CONFIGURATION.SERVICE_POSITIONS.CREATE_EDIT';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditServicePositionFormInterface>(
@@ -131,7 +131,7 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 						variant="outlined"
 						disabled={servicePositions.updating}
 						onClick={closeDialog}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
@@ -139,9 +139,9 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 						disabled={servicePositions.updating}
 						endIcon={servicePositions.updating && <CircularProgress size={20} />}>
 						{type === SiteServicePositionsCreateEditTypeEnum.CREATE &&
-							t('BUTTONS.CREATE')}
+							t('DIALOG:BUTTONS.CREATE')}
 						{type === SiteServicePositionsCreateEditTypeEnum.EDIT &&
-							t('BUTTONS.UPDATE')}
+							t('DIALOG:BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>
 			</form>

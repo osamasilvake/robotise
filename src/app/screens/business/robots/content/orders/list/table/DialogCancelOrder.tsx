@@ -21,12 +21,12 @@ import { DialogCancelOrderInterface } from './RobotOrdersTable.interface';
 
 const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	const { order, open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
+	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const orders = useSelector(ordersSelector);
 
-	const translation = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CANCEL';
+	const translation = 'CONTENT.ORDERS.LIST.ACTIONS.CANCEL';
 
 	/**
 	 * cancel order
@@ -57,7 +57,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 						variant="outlined"
 						onClick={cancelOrder(false)}
 						disabled={orders.updating}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						color="error"
@@ -65,7 +65,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 						onClick={cancelOrder(true)}
 						disabled={orders.updating || !order.site}
 						endIcon={orders.updating && <CircularProgress size={20} />}>
-						{t('BUTTONS.CONFIRM')}
+						{t('DIALOG:BUTTONS.CONFIRM')}
 					</Button>
 				</DialogActions>
 			</Box>

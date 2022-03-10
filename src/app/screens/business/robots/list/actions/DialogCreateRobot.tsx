@@ -32,13 +32,13 @@ import {
 
 const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 	const { open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
+	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const translation = 'ROBOTS:LIST.ACTIONS.CREATE';
+	const translation = 'LIST.ACTIONS.CREATE';
 
 	const { handleChangeInput, handleBlur, handleChangeSelect, handleSubmit, values, errors } =
 		useForm<DialogCreateRobotFormInterface>(
@@ -136,14 +136,14 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={closeDialog}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
 						disabled={robotTwinsSummary.updating || validateEmptyObjProperty(values)}
 						endIcon={robotTwinsSummary.updating && <CircularProgress size={20} />}>
-						{t('BUTTONS.CREATE')}
+						{t('DIALOG:BUTTONS.CREATE')}
 					</Button>
 				</DialogActions>
 			</form>

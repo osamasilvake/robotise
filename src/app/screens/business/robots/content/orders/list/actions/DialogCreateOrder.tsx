@@ -42,7 +42,7 @@ import {
 
 const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const { open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
+	const { t } = useTranslation(['ROBOTS', 'DIALOG', 'GENERAL']);
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -57,7 +57,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
 	const orderModes = cSiteId && sites.content?.dataById[cSiteId]?.configs.availableOrderModes;
 	const defaultOrderMode = cSiteId && sites.content?.dataById[cSiteId]?.configs.defaultOrderMode;
-	const translation = 'ROBOTS:CONTENT.ORDERS';
+	const translation = 'CONTENT.ORDERS';
 	const fieldLocation = 'location';
 
 	const {
@@ -217,14 +217,14 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={closeDialog}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
 						disabled={orders.updating || !values.location}
 						endIcon={orders.updating && <CircularProgress size={20} />}>
-						{t('BUTTONS.CREATE')}
+						{t('DIALOG:BUTTONS.CREATE')}
 					</Button>
 				</DialogActions>
 			</form>

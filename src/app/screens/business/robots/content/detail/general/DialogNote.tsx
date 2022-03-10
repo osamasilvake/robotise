@@ -25,14 +25,14 @@ import { NoteFormInterface, NoteInterface } from './RobotDetailGeneral.interface
 
 const DialogNote: FC<NoteInterface> = (props) => {
 	const { open, setOpen, note } = props;
-	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
+	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
 	const robotOperations = useSelector(robotOperationsSelector);
 	const dispatch = useDispatch();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
-	const translation = 'ROBOTS:CONTENT.DETAIL.GENERAL.NOTE';
+	const translation = 'CONTENT.DETAIL.GENERAL.NOTE';
 	const fieldNote = 'note';
 	const maxLength = 2000;
 
@@ -85,7 +85,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={() => setOpen(false)}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
@@ -97,14 +97,14 @@ const DialogNote: FC<NoteInterface> = (props) => {
 								}
 							})
 						}>
-						{t('BUTTONS.CLEAR')}
+						{t('DIALOG:BUTTONS.CLEAR')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
 						disabled={robotOperations.note.loading}
 						endIcon={robotOperations.note.loading && <CircularProgress size={20} />}>
-						{t('BUTTONS.UPDATE')}
+						{t('DIALOG:BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>
 			</form>

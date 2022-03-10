@@ -23,14 +23,14 @@ import { DialogDeleteProductInterface } from './SiteProductsTable.interface';
 
 const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 	const { product, open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const products = useSelector(productsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
-	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
+	const translation = 'CONTENT.PRODUCTS.LIST.ACTIONS.DELETE';
 
 	/**
 	 * delete product
@@ -71,7 +71,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 					variant="outlined"
 					onClick={deleteProduct(false)}
 					disabled={products.updating}>
-					{t('BUTTONS.CANCEL')}
+					{t('DIALOG:BUTTONS.CANCEL')}
 				</Button>
 				<Button
 					color="error"
@@ -79,7 +79,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 					onClick={deleteProduct(true)}
 					disabled={products.updating || !product.site}
 					endIcon={products.updating && <CircularProgress size={20} />}>
-					{t('BUTTONS.CONFIRM')}
+					{t('DIALOG:BUTTONS.CONFIRM')}
 				</Button>
 			</DialogActions>
 		</Dialog>

@@ -16,7 +16,7 @@ import { SitePhoneCallsTableStyle } from './SitePhoneCallsTable.style';
 
 const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (props) => {
 	const { column, phoneCall } = props;
-	const { t } = useTranslation('SITES');
+	const { t } = useTranslation(['SITES', 'GENERAL']);
 	const classes = SitePhoneCallsTableStyle();
 
 	/**

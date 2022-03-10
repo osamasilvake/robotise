@@ -41,7 +41,7 @@ import {
 
 const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) => {
 	const { product, open, setOpen, type } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
@@ -54,7 +54,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const cSiteId = params.siteId;
 	const defaultCurrency = AppConfigService.AppOptions.common.currencies[0].id;
 	const currency = sites.content?.dataById[cSiteId]?.currency || defaultCurrency;
-	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
+	const translation = 'CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 	const lengthEnum = SiteProductCreateEditLengthValidationTypeEnum;
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
@@ -229,7 +229,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={() => setOpen(false)}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
@@ -244,8 +244,9 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							})
 						}
 						endIcon={products.updating && <CircularProgress size={20} />}>
-						{type === SiteProductCreateEditTypeEnum.CREATE && t('BUTTONS.CREATE')}
-						{type === SiteProductCreateEditTypeEnum.EDIT && t('BUTTONS.UPDATE')}
+						{type === SiteProductCreateEditTypeEnum.CREATE &&
+							t('DIALOG:BUTTONS.CREATE')}
+						{type === SiteProductCreateEditTypeEnum.EDIT && t('DIALOG:BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>
 			</form>

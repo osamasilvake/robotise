@@ -29,14 +29,14 @@ import { DialogCreateSiteFormInterface, DialogCreateSiteInterface } from './Site
 
 const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 	const { open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const sites = useSelector(sitesSelector);
 
 	const currencies = AppConfigService.AppOptions.common.currencies;
 	const timezones = AppConfigService.AppOptions.common.timezones;
-	const translation = 'SITES:LIST.ACTIONS.CREATE';
+	const translation = 'LIST.ACTIONS.CREATE';
 
 	const { handleChangeInput, handleBlur, handleChangeSelect, handleSubmit, values, errors } =
 		useForm<DialogCreateSiteFormInterface>(
@@ -136,14 +136,14 @@ const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={closeDialog}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
 						disabled={sites.updating || validateEmptyObjProperty(values)}
 						endIcon={sites.updating && <CircularProgress size={20} />}>
-						{t('BUTTONS.CREATE')}
+						{t('DIALOG:BUTTONS.CREATE')}
 					</Button>
 				</DialogActions>
 			</form>

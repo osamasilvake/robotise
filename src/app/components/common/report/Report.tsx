@@ -26,7 +26,7 @@ import { ReportValidation } from './Report.validation';
 
 const Report: FC<ReportInterface> = (props) => {
 	const { id, open, setOpen, filterId, filterIdType, state, GenerateReports } = props;
-	const { t } = useTranslation(['DIALOG', 'REPORT']);
+	const { t } = useTranslation(['REPORT', 'DIALOG']);
 	const classes = ReportStyle();
 
 	const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const Report: FC<ReportInterface> = (props) => {
 	return (
 		<Dialog open={open} onClose={() => setOpen(false)}>
 			<form onSubmit={handleSubmit}>
-				<DialogTitle>{t('REPORT:TITLE')}</DialogTitle>
+				<DialogTitle>{t('TITLE')}</DialogTitle>
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
@@ -60,12 +60,12 @@ const Report: FC<ReportInterface> = (props) => {
 									type="date"
 									id="from"
 									name="from"
-									label={t('REPORT:FIELDS.FROM.LABEL')}
+									label={t('FIELDS.FROM.LABEL')}
 									value={values.from}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
 									error={!!errors?.from}
-									helperText={errors?.from && t(`REPORT:FIELDS.${errors.from}`)}
+									helperText={errors?.from && t(`FIELDS.${errors.from}`)}
 									InputLabelProps={{ shrink: true }}
 								/>
 							</FormControl>
@@ -76,7 +76,7 @@ const Report: FC<ReportInterface> = (props) => {
 									type="date"
 									id="to"
 									name="to"
-									label={t('REPORT:FIELDS.TO.LABEL')}
+									label={t('FIELDS.TO.LABEL')}
 									value={values.to}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -94,21 +94,21 @@ const Report: FC<ReportInterface> = (props) => {
 							className={classes.sDownloadLink}>
 							<Stack spacing={0.5} direction="row" alignItems="center">
 								<CloudDownload className={classes.sDownloadIcon} />
-								<Typography>{t('REPORT:DOWNLOAD')}</Typography>
+								<Typography>{t('DOWNLOAD')}</Typography>
 							</Stack>
 						</CSVLink>
 					)}
 				</DialogContent>
 				<DialogActions>
 					<Button variant="outlined" onClick={() => setOpen(false)}>
-						{t('BUTTONS.CANCEL')}
+						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						variant="outlined"
 						type="submit"
 						disabled={state.loading || (!!errors && !validateEmptyObj(errors))}
 						endIcon={state.loading && <CircularProgress size={20} />}>
-						{t('BUTTONS.GENERATE')}
+						{t('DIALOG:BUTTONS.GENERATE')}
 					</Button>
 				</DialogActions>
 			</form>

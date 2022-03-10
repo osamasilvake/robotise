@@ -22,14 +22,14 @@ import { DialogDeleteServicePositionInterface } from './SiteServicePositions.int
 
 const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (props) => {
 	const { servicePosition, open, setOpen } = props;
-	const { t } = useTranslation(['DIALOG', 'SITES']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const servicePositions = useSelector(servicePositionsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
-	const translation = 'SITES:CONTENT.CONFIGURATION.SERVICE_POSITIONS.DELETE';
+	const translation = 'CONTENT.CONFIGURATION.SERVICE_POSITIONS.DELETE';
 
 	/**
 	 * delete service position
@@ -67,7 +67,7 @@ const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (p
 					variant="outlined"
 					onClick={deleteServicePosition(false)}
 					disabled={servicePositions.updating}>
-					{t('BUTTONS.CANCEL')}
+					{t('DIALOG:BUTTONS.CANCEL')}
 				</Button>
 				<Button
 					color="error"
@@ -75,7 +75,7 @@ const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (p
 					onClick={deleteServicePosition(true)}
 					disabled={servicePositions.updating}
 					endIcon={servicePositions.updating && <CircularProgress size={20} />}>
-					{t('BUTTONS.CONFIRM')}
+					{t('DIALOG:BUTTONS.CONFIRM')}
 				</Button>
 			</DialogActions>
 		</Dialog>

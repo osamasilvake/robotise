@@ -24,7 +24,7 @@ import { DialogTestCallConfirmationInterface } from './RobotElevatorCallsActions
 
 const DialogTestCallConfirmation: FC<DialogTestCallConfirmationInterface> = (props) => {
 	const { open, setOpen, halt, setHalt } = props;
-	const { t } = useTranslation(['DIALOG', 'ROBOTS']);
+	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
 	const dispatch = useDispatch();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
@@ -40,7 +40,7 @@ const DialogTestCallConfirmation: FC<DialogTestCallConfirmationInterface> = (pro
 		AppConfigService.AppOptions.screens.business.robots.content.elevatorCalls.list
 			.defaultPageSize;
 
-	const translation = 'ROBOTS:CONTENT.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
+	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
 
 	/**
 	 * text call confirmation product
@@ -82,14 +82,14 @@ const DialogTestCallConfirmation: FC<DialogTestCallConfirmationInterface> = (pro
 					variant="outlined"
 					onClick={executeTestCall(false)}
 					disabled={elevatorCalls.updating}>
-					{t('BUTTONS.CANCEL')}
+					{t('DIALOG:BUTTONS.CANCEL')}
 				</Button>
 				<Button
 					variant="outlined"
 					onClick={executeTestCall(true)}
 					disabled={halt || elevatorCalls.updating}
 					endIcon={elevatorCalls.updating && <CircularProgress size={20} />}>
-					{t('BUTTONS.CONFIRM')}
+					{t('DIALOG:BUTTONS.CONFIRM')}
 				</Button>
 			</DialogActions>
 		</Dialog>

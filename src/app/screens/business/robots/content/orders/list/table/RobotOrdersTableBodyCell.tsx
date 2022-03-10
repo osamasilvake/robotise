@@ -19,7 +19,7 @@ import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 
 const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) => {
 	const { column, order } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation(['ROBOTS', 'GENERAL']);
 	const classes = RobotOrdersTableStyle();
 
 	const [open, setOpen] = useState(false);

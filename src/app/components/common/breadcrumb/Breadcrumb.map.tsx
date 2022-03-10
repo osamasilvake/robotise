@@ -1,5 +1,8 @@
 import { AppConfigService } from '../../../services';
-import { strCapitalLetterAndCamelCaseToDash } from '../../../utilities/methods/String';
+import {
+	strCapitalLetterAndCamelCaseToDash,
+	strRemoveSymbols
+} from '../../../utilities/methods/String';
 import { BreadcrumbLinksInterface } from './Breadcrumb.interface';
 
 /**
@@ -18,7 +21,7 @@ export const breadcrumbs = (): BreadcrumbLinksInterface[] => {
 			show: !!paths.length
 		},
 		...paths.map((path, index) => ({
-			text: strCapitalLetterAndCamelCaseToDash(path),
+			text: strRemoveSymbols(strCapitalLetterAndCamelCaseToDash(path)),
 			link: `/${paths.slice(0, index + 1).join('/')}`,
 			isLast: index === paths.length - 1,
 			show: true

@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { SiteWifiHeatmapPayloadInterface } from '../../../../screens/business/sites/content/statistics/SiteStatistics.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { AppReducerType } from '../../..';
-import { triggerMessage } from '../../../general/General.slice';
+import { triggerMessage } from '../../../app/App.slice';
 import { deserializeWifiHeatmap } from './WifiHeatmap.slice.deserialize';
 import {
 	SliceWifiHeatmapInterface,

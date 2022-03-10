@@ -5,39 +5,39 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
-import { generalSelector, GeneralTriggerMessage } from '../../../slices/general/General.slice';
+import { appSelector, AppTriggerMessage } from '../../../slices/app/App.slice';
 import { TriggerMessageTypeEnum } from './Message.enum';
 
 const Message: FC = () => {
 	const { t } = useTranslation('MESSAGE');
 
 	const dispatch = useDispatch();
-	const general = useSelector(generalSelector);
+	const app = useSelector(appSelector);
 
 	/**
 	 * dispatch: trigger message
 	 */
 	const handleCloseMessage = () =>
 		dispatch(
-			GeneralTriggerMessage({
-				id: general.triggerMessage.id,
+			AppTriggerMessage({
+				id: app.triggerMessage.id,
 				show: false,
-				severity: general.triggerMessage.severity,
-				text: general.triggerMessage.text
+				severity: app.triggerMessage.severity,
+				text: app.triggerMessage.text
 			})
 		);
 
 	return (
 		<Snackbar
-			key={general.triggerMessage.id}
-			open={general.triggerMessage.show}
+			key={app.triggerMessage.id}
+			open={app.triggerMessage.show}
 			onClose={handleCloseMessage}
 			ClickAwayListenerProps={{ mouseEvent: false }}
 			anchorOrigin={
 				AppConfigService.AppOptions.components.snackbar.direction as SnackbarOrigin
 			}
 			autoHideDuration={
-				general.triggerMessage.severity === TriggerMessageTypeEnum.ERROR
+				app.triggerMessage.severity === TriggerMessageTypeEnum.ERROR
 					? AppConfigService.AppOptions.components.snackbar.timeout.slow
 					: AppConfigService.AppOptions.components.snackbar.timeout.fast
 			}
@@ -49,8 +49,8 @@ const Message: FC = () => {
 						<Close fontSize="small" />
 					</IconButton>
 				}
-				severity={general.triggerMessage.severity}>
-				{general.triggerMessage.text && t(general.triggerMessage.text)}
+				severity={app.triggerMessage.severity}>
+				{app.triggerMessage.text && t(app.triggerMessage.text)}
 			</Alert>
 		</Snackbar>
 	);

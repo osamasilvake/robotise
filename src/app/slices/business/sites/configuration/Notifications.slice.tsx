@@ -6,7 +6,7 @@ import { DialogCreateEditNotificationFormInterface } from '../../../../screens/b
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
-import { triggerMessage } from '../../../general/General.slice';
+import { triggerMessage } from '../../../app/App.slice';
 import { deserializeNotifications } from './Notifications.slice.deserialize';
 import {
 	SliceNotificationsInterface,

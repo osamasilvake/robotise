@@ -6,7 +6,7 @@ import { DialogCreateOrderFormInterface } from '../../../../screens/business/rob
 import { RobotOrdersListPayloadInterface } from '../../../../screens/business/robots/content/orders/list/RobotOrdersList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { triggerMessage } from '../../../general/General.slice';
+import { triggerMessage } from '../../../app/App.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeOrder } from './Order.slice.deserialize';
 import { deserializeOrders } from './Orders.slice.deserialize';

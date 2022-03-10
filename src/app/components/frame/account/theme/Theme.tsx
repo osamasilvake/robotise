@@ -4,11 +4,8 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-	GeneralApplyThemePalette,
-	generalSelector
-} from '../../../../slices/general/General.slice';
-import { GeneralThemePaletteTypeEnum } from '../../../../slices/general/General.slice.enum';
+import { AppApplyThemePalette, appSelector } from '../../../../slices/app/App.slice';
+import { AppThemePaletteTypeEnum } from '../../../../slices/app/App.slice.enum';
 import { ThemePaletteStyle } from './Theme.style';
 
 const ThemePalette: FC = () => {
@@ -16,25 +13,25 @@ const ThemePalette: FC = () => {
 	const classes = ThemePaletteStyle();
 
 	const dispatch = useDispatch();
-	const general = useSelector(generalSelector);
+	const app = useSelector(appSelector);
 
 	/**
 	 * dispatch: apply theme palette
 	 * @param theme
 	 * @returns
 	 */
-	const handleThemePalette = (theme: GeneralThemePaletteTypeEnum) => () =>
-		dispatch(GeneralApplyThemePalette(theme));
+	const handleThemePalette = (theme: AppThemePaletteTypeEnum) => () =>
+		dispatch(AppApplyThemePalette(theme));
 
 	return (
 		<ListItemButton
 			onClick={handleThemePalette(
-				general.themePalette === GeneralThemePaletteTypeEnum.LIGHT
-					? GeneralThemePaletteTypeEnum.DARK
-					: GeneralThemePaletteTypeEnum.LIGHT
+				app.themePalette === AppThemePaletteTypeEnum.LIGHT
+					? AppThemePaletteTypeEnum.DARK
+					: AppThemePaletteTypeEnum.LIGHT
 			)}>
 			<ListItemIcon>
-				{general.themePalette === GeneralThemePaletteTypeEnum.LIGHT ? (
+				{app.themePalette === AppThemePaletteTypeEnum.LIGHT ? (
 					<WbSunny className={classes.sColorThemeLight} />
 				) : (
 					<Brightness3 />
@@ -43,7 +40,7 @@ const ThemePalette: FC = () => {
 			<ListItemText
 				primary={t('THEME.LABEL')}
 				secondary={
-					general.themePalette === GeneralThemePaletteTypeEnum.LIGHT
+					app.themePalette === AppThemePaletteTypeEnum.LIGHT
 						? t('THEME.LIGHT')
 						: t('THEME.DARK')
 				}

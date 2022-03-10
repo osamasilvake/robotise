@@ -7,7 +7,7 @@ import SitesService from '../../../screens/business/sites/Sites.service';
 import { AppConfigService, StorageService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
-import { triggerMessage } from '../../general/General.slice';
+import { triggerMessage } from '../../app/App.slice';
 import { deserializeSites } from './Sites.slice.deserialize';
 import {
 	SliceSitesInterface,

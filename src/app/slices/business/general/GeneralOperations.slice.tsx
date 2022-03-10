@@ -5,7 +5,7 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import GeneralService from '../../../screens/business/general/General.service';
 import { AppReducerType } from '../..';
-import { triggerMessage } from '../../general/General.slice';
+import { triggerMessage } from '../../app/App.slice';
 import { deserializeOrderModes } from './GeneralOperations.slice.deserialize';
 import { GeneralOperationsTypeEnum } from './GeneralOperations.slice.enum';
 import { SliceGeneralOperationsInterface } from './GeneralOperations.slice.interface';

@@ -3,7 +3,7 @@ import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
-import { generalSelector } from '../../../slices/general/General.slice';
+import { appSelector } from '../../../slices/app/App.slice';
 import { useWindow } from '../../../utilities/hooks/window/UseWindow';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { PictureInterface, PictureOnLoadInterface } from './Picture.interface';
@@ -13,7 +13,7 @@ const Picture: FC<PictureInterface> = (props) => {
 	const { src, alt, onLoad, fullWidth } = props;
 	const classes = PictureStyle();
 
-	const general = useSelector(generalSelector);
+	const app = useSelector(appSelector);
 
 	const [values, setValues] = useState<PictureOnLoadInterface | null>(null);
 	const [image, setImage] = useState(src);
@@ -42,7 +42,7 @@ const Picture: FC<PictureInterface> = (props) => {
 			}
 		};
 		rerender();
-	}, [values, cWindow, general.openDrawer]);
+	}, [values, cWindow, app.openDrawer]);
 
 	/**
 	 * on image load

@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 
 import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
-import { GeneralTriggerMessage } from '../../../../../slices/general/General.slice';
+import { AppTriggerMessage } from '../../../../../slices/app/App.slice';
 import { dateFormat1 } from '../../../../../utilities/methods/Date';
 import { strToLinks } from '../../../../../utilities/methods/String';
 import { GeneralEmailsTableColumnHistoryEventTypeEnum } from '../list/table/GeneralEmailsTable.enum';
@@ -53,7 +53,7 @@ const GeneralEmailContent: FC<GeneralEmailDetailContentInterface> = (props) => {
 			severity: TriggerMessageTypeEnum.SUCCESS,
 			text: 'GENERAL.COMMON.COPY_TO_CLIPBOARD'
 		};
-		dispatch(GeneralTriggerMessage(message));
+		dispatch(AppTriggerMessage(message));
 	};
 
 	return (

@@ -4,31 +4,31 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { GeneralChangeLanguage, generalSelector } from '../../../../slices/general/General.slice';
-import { GeneralLanguageTypeEnum } from '../../../../slices/general/General.slice.enum';
+import { AppChangeLanguage, appSelector } from '../../../../slices/app/App.slice';
+import { AppLanguageTypeEnum } from '../../../../slices/app/App.slice.enum';
 
 const Language: FC = () => {
 	const { t } = useTranslation('ACCOUNT');
 
 	const dispatch = useDispatch();
-	const general = useSelector(generalSelector);
+	const app = useSelector(appSelector);
 
 	/**
 	 * dispatch: change language
 	 * @param language
 	 * @returns
 	 */
-	const handleLanguage = (language: GeneralLanguageTypeEnum) => () =>
-		dispatch(GeneralChangeLanguage(language));
+	const handleLanguage = (language: AppLanguageTypeEnum) => () =>
+		dispatch(AppChangeLanguage(language));
 
 	return (
 		<ListItemButton
 			disabled
 			divider
 			onClick={handleLanguage(
-				general.currentLanguage === GeneralLanguageTypeEnum.EN
-					? GeneralLanguageTypeEnum.DE
-					: GeneralLanguageTypeEnum.EN
+				app.currentLanguage === AppLanguageTypeEnum.EN
+					? AppLanguageTypeEnum.DE
+					: AppLanguageTypeEnum.EN
 			)}>
 			<ListItemIcon>
 				<Translate />
@@ -36,7 +36,7 @@ const Language: FC = () => {
 			<ListItemText
 				primary={t('LANGUAGE.LABEL')}
 				secondary={
-					general.currentLanguage === GeneralLanguageTypeEnum.EN
+					app.currentLanguage === AppLanguageTypeEnum.EN
 						? t('LANGUAGE.EN')
 						: t('LANGUAGE.DE')
 				}

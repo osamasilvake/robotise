@@ -4,8 +4,8 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppConfigService, StorageService } from '../../services';
 import { AppReducerType } from '..';
-import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
-import { SliceGeneralInterface } from './General.slice.interface';
+import { AppLanguageTypeEnum, AppThemePaletteTypeEnum } from './App.slice.enum';
+import { SliceAppInterface } from './App.slice.interface';
 
 // storage items
 const theme = StorageService.get(AppConfigService.StorageItems.ThemePalette);
@@ -13,10 +13,10 @@ const language = StorageService.get(AppConfigService.StorageItems.ChangeLanguage
 const drawerState = StorageService.get(AppConfigService.StorageItems.DrawerState);
 
 // initial state
-export const initialState: SliceGeneralInterface = {
+export const initialState: SliceAppInterface = {
 	openDrawer: drawerState,
-	themePalette: theme || GeneralThemePaletteTypeEnum.DARK,
-	currentLanguage: language || GeneralLanguageTypeEnum.EN,
+	themePalette: theme || AppThemePaletteTypeEnum.DARK,
+	currentLanguage: language || AppLanguageTypeEnum.EN,
 	triggerMessage: {
 		id: 'init',
 		show: false,
@@ -27,7 +27,7 @@ export const initialState: SliceGeneralInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'General',
+	name: 'App',
 	initialState,
 	reducers: {
 		setDrawerState: (state, action) => {
@@ -51,7 +51,7 @@ export const { setDrawerState, applyThemePalette, changeLanguage, triggerMessage
 	dataSlice.actions;
 
 // selector
-export const generalSelector = (state: AppReducerType) => state['general'];
+export const appSelector = (state: AppReducerType) => state['app'];
 
 // reducer
 export default dataSlice.reducer;
@@ -60,7 +60,7 @@ export default dataSlice.reducer;
  * set drawer state
  * @param drawerState
  */
-export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: Dispatch) => {
+export const AppSetDrawerState = (drawerState: boolean) => async (dispatch: Dispatch) => {
 	// dispatch: set drawer state
 	dispatch(setDrawerState(drawerState));
 
@@ -72,8 +72,8 @@ export const GeneralSetDrawerState = (drawerState: boolean) => async (dispatch: 
  * apply theme palette
  * @param theme
  */
-export const GeneralApplyThemePalette =
-	(theme: GeneralThemePaletteTypeEnum) => async (dispatch: Dispatch) => {
+export const AppApplyThemePalette =
+	(theme: AppThemePaletteTypeEnum) => async (dispatch: Dispatch) => {
 		// dispatch: apply theme palette
 		dispatch(applyThemePalette(theme));
 
@@ -85,20 +85,19 @@ export const GeneralApplyThemePalette =
  * change language
  * @param language
  */
-export const GeneralChangeLanguage =
-	(language: GeneralLanguageTypeEnum) => async (dispatch: Dispatch) => {
-		// dispatch: change language
-		dispatch(changeLanguage(language));
+export const AppChangeLanguage = (language: AppLanguageTypeEnum) => async (dispatch: Dispatch) => {
+	// dispatch: change language
+	dispatch(changeLanguage(language));
 
-		// storage: change language
-		StorageService.put(AppConfigService.StorageItems.ChangeLanguage, language);
-	};
+	// storage: change language
+	StorageService.put(AppConfigService.StorageItems.ChangeLanguage, language);
+};
 
 /**
  * trigger message
  * @param message
  */
-export const GeneralTriggerMessage =
+export const AppTriggerMessage =
 	(message: TriggerMessageInterface) => async (dispatch: Dispatch) => {
 		// dispatch: trigger message
 		dispatch(triggerMessage(message));

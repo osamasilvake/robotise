@@ -12,8 +12,8 @@ import Message from './components/frame/message/Message';
 import ScrollTop from './components/frame/scroll-top/ScrollTop';
 import Routes from './routes/Routes';
 import { InterceptorService, LoggerService } from './services';
-import { generalSelector } from './slices/general/General.slice';
-import { GeneralThemePaletteTypeEnum } from './slices/general/General.slice.enum';
+import { appSelector } from './slices/app/App.slice';
+import { AppThemePaletteTypeEnum } from './slices/app/App.slice.enum';
 import { Dark, Light } from './themes';
 import Options from './themes/options';
 
@@ -22,17 +22,15 @@ InterceptorService.init();
 LoggerService.init();
 
 const App: FC = () => {
-	const general = useSelector(generalSelector);
+	const app = useSelector(appSelector);
 
 	// change theme
 	const theme = useMemo(
 		() =>
 			createTheme(
-				general.themePalette === GeneralThemePaletteTypeEnum.DARK
-					? Dark(Options)
-					: Light(Options)
+				app.themePalette === AppThemePaletteTypeEnum.DARK ? Dark(Options) : Light(Options)
 			),
-		[general.themePalette]
+		[app.themePalette]
 	);
 
 	return (

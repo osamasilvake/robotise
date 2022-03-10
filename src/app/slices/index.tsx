@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { AnyAction, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 
+import app from './app/App.slice';
 import auth from './authentication/Auth.slice';
 import email from './business/general/emails/Email.slice';
 import emails from './business/general/emails/Emails.slice';
@@ -25,15 +26,14 @@ import rooms from './business/sites/rooms/Rooms.slice';
 import siteOperations from './business/sites/SiteOperations.slice';
 import sites from './business/sites/Sites.slice';
 import wifiHeatmap from './business/sites/statistics/WifiHeatmap.slice';
-import general from './general/General.slice';
 import alertCodes from './information/alert-codes/AlertCodes.slice';
 import deepLink from './settings/deep-links/DeepLink.slice';
 import deepLinks from './settings/deep-links/DeepLinks.slice';
 
 // app reducers
 const combinedReducer = combineReducers({
+	app,
 	auth,
-	general,
 	generalOperations,
 	emails,
 	email,
@@ -67,12 +67,12 @@ export type AppReducerType = ReturnType<typeof combinedReducer>;
 // root reducer
 let initRootState: AppReducerType | undefined = undefined;
 const rootReducer = (rootState: AppReducerType | undefined, action: AnyAction) => {
-	// terminate all states of a redux store except general
+	// terminate all states of a redux store except: app store
 	if (action.type === 'Auth/terminate') {
 		if (rootState && initRootState) {
 			rootState = {
 				...initRootState,
-				general: rootState.general
+				app: rootState.app
 			};
 		}
 	}

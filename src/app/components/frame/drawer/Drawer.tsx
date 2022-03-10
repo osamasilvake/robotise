@@ -18,9 +18,9 @@ import { NavLink } from 'react-router-dom';
 
 import { AuthScopeTypeEnum } from '../../../screens/authentication/Auth.enum';
 import { validateScope } from '../../../screens/authentication/Auth.scope';
+import { appSelector } from '../../../slices/app/App.slice';
 import { authSelector } from '../../../slices/authentication/Auth.slice';
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
-import { generalSelector } from '../../../slices/general/General.slice';
 import Account from '../account/Account';
 import Copyrights from '../copyrights/Copyrights';
 import { DrawerListBadgeTypeEnum } from './Drawer.enum';
@@ -31,8 +31,8 @@ const DrawerCustom: FC = () => {
 	const { t } = useTranslation('SIDEBAR');
 	const classes = DrawerStyle();
 
+	const app = useSelector(appSelector);
 	const auth = useSelector(authSelector);
-	const general = useSelector(generalSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	return (
@@ -41,8 +41,8 @@ const DrawerCustom: FC = () => {
 			className={classes.sDrawer}
 			classes={{
 				paper: clsx({
-					[classes.sOpen]: general.openDrawer,
-					[classes.sClose]: !general.openDrawer
+					[classes.sOpen]: app.openDrawer,
+					[classes.sClose]: !app.openDrawer
 				})
 			}}>
 			{/* Account */}
@@ -55,7 +55,7 @@ const DrawerCustom: FC = () => {
 						key={index}
 						subheader={
 							<ListSubheader>
-								{(general.openDrawer && t(root.primary)) || t(root.secondary)}
+								{(app.openDrawer && t(root.primary)) || t(root.secondary)}
 							</ListSubheader>
 						}>
 						{root.list.map((item, pIdx) => (
@@ -96,7 +96,7 @@ const DrawerCustom: FC = () => {
 			<Divider light />
 
 			{/* Copyrights */}
-			{general.openDrawer ? <Copyrights /> : <Copyrights short />}
+			{app.openDrawer ? <Copyrights /> : <Copyrights short />}
 		</Drawer>
 	);
 };

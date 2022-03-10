@@ -8,7 +8,7 @@ import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/co
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
-import { triggerMessage } from '../../general/General.slice';
+import { triggerMessage } from '../../app/App.slice';
 import { SiteOperationsTypeEnum } from './SiteOperations.slice.enum';
 import { SliceSiteOperationsInterface } from './SiteOperations.slice.interface';
 

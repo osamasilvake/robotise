@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { RobotElevatorCallsListPayloadInterface } from '../../../../screens/business/robots/content/elevator-calls/list/RobotElevatorCallsList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { AppReducerType } from '../../..';
-import { triggerMessage } from '../../../general/General.slice';
+import { triggerMessage } from '../../../app/App.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeElevatorCalls } from './ElevatorCalls.slice.deserialize';
 import {

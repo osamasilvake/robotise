@@ -6,7 +6,7 @@ import { DialogModifyRoomsFormInterface } from '../../../../screens/business/sit
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
-import { triggerMessage } from '../../../general/General.slice';
+import { triggerMessage } from '../../../app/App.slice';
 import { SliceRoomsInterface, SRCStateInterface } from './Rooms.slice.interface';
 
 // initial state

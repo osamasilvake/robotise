@@ -7,7 +7,7 @@ import { DialogCreateEditProductFormInterface } from '../../../../screens/busine
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
-import { triggerMessage } from '../../../general/General.slice';
+import { triggerMessage } from '../../../app/App.slice';
 import { deserializeProducts } from './Products.slice.deserialize';
 import {
 	SliceProductsInterface,

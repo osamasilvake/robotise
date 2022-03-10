@@ -6,31 +6,31 @@ import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.e
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppReducerType } from '..';
 import {
+	AppApplyThemePalette,
+	AppChangeLanguage,
 	applyThemePalette,
+	AppSetDrawerState,
+	AppTriggerMessage,
 	changeLanguage,
-	GeneralApplyThemePalette,
-	GeneralChangeLanguage,
-	GeneralSetDrawerState,
-	GeneralTriggerMessage,
 	initialState,
 	setDrawerState,
 	triggerMessage
-} from './General.slice';
-import { GeneralLanguageTypeEnum, GeneralThemePaletteTypeEnum } from './General.slice.enum';
-import { SliceGeneralInterface } from './General.slice.interface';
+} from './App.slice';
+import { AppLanguageTypeEnum, AppThemePaletteTypeEnum } from './App.slice.enum';
+import { SliceAppInterface } from './App.slice.interface';
 
 // mock store
 type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
-const mockStore = createMockStore<SliceGeneralInterface, DispatchExts>([thunk]);
+const mockStore = createMockStore<SliceAppInterface, DispatchExts>([thunk]);
 
-describe('[SLICE] General', () => {
-	it('[GeneralSetDrawerState] Set drawer state', () => {
+describe('[SLICE] App', () => {
+	it('[AppSetDrawerState] Set drawer state', () => {
 		const store = mockStore(initialState);
 		const cState = true;
 
 		// act
 		store
-			.dispatch(GeneralSetDrawerState(cState))
+			.dispatch(AppSetDrawerState(cState))
 			.then(() => {
 				// assert
 				const expectedActions = [setDrawerState(cState)];
@@ -39,13 +39,13 @@ describe('[SLICE] General', () => {
 			.catch();
 	});
 
-	it('[GeneralApplyThemePalette] Apply theme palette', () => {
+	it('[AppApplyThemePalette] Apply theme palette', () => {
 		const store = mockStore(initialState);
-		const cTheme = GeneralThemePaletteTypeEnum.LIGHT;
+		const cTheme = AppThemePaletteTypeEnum.LIGHT;
 
 		// act
 		store
-			.dispatch(GeneralApplyThemePalette(cTheme))
+			.dispatch(AppApplyThemePalette(cTheme))
 			.then(() => {
 				// assert
 				const expectedActions = [applyThemePalette(cTheme)];
@@ -54,13 +54,13 @@ describe('[SLICE] General', () => {
 			.catch();
 	});
 
-	it('[GeneralChangeLanguage] Change app language', () => {
+	it('[AppChangeLanguage] Change app language', () => {
 		const store = mockStore(initialState);
-		const cLanguage = GeneralLanguageTypeEnum.DE;
+		const cLanguage = AppLanguageTypeEnum.DE;
 
 		// act
 		store
-			.dispatch(GeneralChangeLanguage(cLanguage))
+			.dispatch(AppChangeLanguage(cLanguage))
 			.then(() => {
 				// assert
 				const expectedActions = [changeLanguage(cLanguage)];
@@ -69,10 +69,10 @@ describe('[SLICE] General', () => {
 			.catch();
 	});
 
-	it('[GeneralTriggerMessage] Trigger message', () => {
+	it('[AppTriggerMessage] Trigger message', () => {
 		const store = mockStore(initialState);
 		const message: TriggerMessageInterface = {
-			id: 'general-trigger-message',
+			id: 'app-trigger-message',
 			show: true,
 			severity: TriggerMessageTypeEnum.INFO,
 			text: 'TEST'
@@ -80,7 +80,7 @@ describe('[SLICE] General', () => {
 
 		// act
 		store
-			.dispatch(GeneralTriggerMessage(message))
+			.dispatch(AppTriggerMessage(message))
 			.then(() => {
 				// assert
 				const expectedActions = [triggerMessage(message)];

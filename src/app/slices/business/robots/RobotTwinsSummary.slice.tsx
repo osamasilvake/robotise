@@ -7,7 +7,7 @@ import RobotsService from '../../../screens/business/robots/Robots.service';
 import { AppConfigService, StorageService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
-import { triggerMessage } from '../../general/General.slice';
+import { triggerMessage } from '../../app/App.slice';
 import { deserializeRobotTwinsSummary } from './RobotTwinsSummary.slice.deserialize';
 import {
 	RTSContentInterface,

@@ -8,9 +8,9 @@ import { LoaderTypeEnum } from '../../components/common/loader/Loader.enum';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interface';
 import { AppConfigService } from '../../services';
+import { appSelector } from '../../slices/app/App.slice';
 import { RobotTwinsSummaryFetchList } from '../../slices/business/robots/RobotTwinsSummary.slice';
 import { SitesFetchList } from '../../slices/business/sites/Sites.slice';
-import { generalSelector } from '../../slices/general/General.slice';
 import { PrivateLayoutStyle } from './PrivateLayout.style';
 
 const PrivateLayout: FC<LayoutPageInterface> = (props) => {
@@ -18,7 +18,7 @@ const PrivateLayout: FC<LayoutPageInterface> = (props) => {
 	const classes = PrivateLayoutStyle();
 
 	const dispatch = useDispatch();
-	const general = useSelector(generalSelector);
+	const app = useSelector(appSelector);
 
 	const loaded = useRef(false);
 
@@ -58,8 +58,8 @@ const PrivateLayout: FC<LayoutPageInterface> = (props) => {
 			{/* Content */}
 			<Box
 				className={clsx({
-					[classes.sContentOpen]: general.openDrawer,
-					[classes.sContentClose]: !general.openDrawer
+					[classes.sContentOpen]: app.openDrawer,
+					[classes.sContentClose]: !app.openDrawer
 				})}>
 				<Suspense fallback={<Loader loader={LoaderTypeEnum.FALLBACK_LOADER} />}>
 					<Component />

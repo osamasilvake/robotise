@@ -14,7 +14,7 @@ import { NoteFormInterface } from '../../../screens/business/robots/content/deta
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
-import { triggerMessage } from '../../general/General.slice';
+import { triggerMessage } from '../../app/App.slice';
 import { deserializeMap } from './RobotOperations.slice.deserialize';
 import { RobotOperationsTypeEnum } from './RobotOperations.slice.enum';
 import {

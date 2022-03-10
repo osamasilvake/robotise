@@ -9,7 +9,7 @@ import { AuthLoginFormInterface } from '../../screens/authentication/Auth.interf
 import AuthService from '../../screens/authentication/Auth.service';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { AppReducerType } from '..';
-import { triggerMessage } from '../general/General.slice';
+import { triggerMessage } from '../app/App.slice';
 import {
 	AuthLogin,
 	AuthLogout,

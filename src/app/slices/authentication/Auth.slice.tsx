@@ -8,7 +8,7 @@ import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { dateNow } from '../../utilities/methods/Date';
 import { AppReducerType } from '..';
-import { triggerMessage } from '../general/General.slice';
+import { triggerMessage } from '../app/App.slice';
 import { AuthUserInterface, SliceAuthInterface } from './Auth.slice.interface';
 import { mapUserDetail } from './Auth.slice.map';
 

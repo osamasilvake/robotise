@@ -20,8 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { AppConfigService } from '../../../services';
+import { appSelector, AppSetDrawerState } from '../../../slices/app/App.slice';
 import { AuthLogout, authSelector } from '../../../slices/authentication/Auth.slice';
-import { generalSelector, GeneralSetDrawerState } from '../../../slices/general/General.slice';
 import { StyledBadge } from '../../../utilities/styles/Badge.style';
 import { AccountStyle } from './Account.style';
 import Language from './language/Language';
@@ -32,8 +32,8 @@ const Account: FC = () => {
 	const classes = AccountStyle();
 
 	const dispatch = useDispatch();
+	const app = useSelector(appSelector);
 	const auth = useSelector(authSelector);
-	const general = useSelector(generalSelector);
 
 	const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -41,25 +41,25 @@ const Account: FC = () => {
 
 	useEffect(() => {
 		// change language
-		i18next.changeLanguage(general.currentLanguage);
-	}, [general.currentLanguage]);
+		i18next.changeLanguage(app.currentLanguage);
+	}, [app.currentLanguage]);
 
 	useEffect(() => {
 		const handleSmallDevices = () => {
-			if (window && window.innerWidth <= mobileScreen && general.openDrawer) {
+			if (window && window.innerWidth <= mobileScreen && app.openDrawer) {
 				// dispatch: set drawer state
-				dispatch(GeneralSetDrawerState(!general.openDrawer));
+				dispatch(AppSetDrawerState(!app.openDrawer));
 			}
 		};
 		window.addEventListener('load', handleSmallDevices, { once: true });
-	}, [dispatch, general.openDrawer, mobileScreen]);
+	}, [dispatch, app.openDrawer, mobileScreen]);
 
 	/**
 	 * dispatch: set drawer state
 	 * @param status
 	 * @returns
 	 */
-	const handleDrawer = (status: boolean) => () => dispatch(GeneralSetDrawerState(status));
+	const handleDrawer = (status: boolean) => () => dispatch(AppSetDrawerState(status));
 
 	/**
 	 * handle menu open
@@ -86,7 +86,7 @@ const Account: FC = () => {
 			justifyContent="space-between"
 			className={classes.sAccount}>
 			{/* Opened Drawer */}
-			{general.openDrawer && (
+			{app.openDrawer && (
 				<>
 					<Box>
 						{/* Account */}
@@ -172,7 +172,7 @@ const Account: FC = () => {
 			)}
 
 			{/* Closed Drawer */}
-			{!general.openDrawer && (
+			{!app.openDrawer && (
 				<>
 					{window && window.innerWidth <= mobileScreen && (
 						<Link to={AppConfigService.AppRoutes.HOME}>

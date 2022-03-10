@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
 import { AppConfigService } from '../../../../../../services';
-import { GeneralTriggerMessage } from '../../../../../../slices/general/General.slice';
+import { AppTriggerMessage } from '../../../../../../slices/app/App.slice';
 import { useWindow } from '../../../../../../utilities/hooks/window/UseWindow';
 import { dateFormat2 } from '../../../../../../utilities/methods/Date';
 import { RobotDetailAlertsTypeEnum } from './RobotDetailAlerts.enum';
@@ -48,7 +48,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 			severity: TriggerMessageTypeEnum.SUCCESS,
 			text: 'GENERAL.COMMON.COPY_TO_CLIPBOARD'
 		};
-		dispatch(GeneralTriggerMessage(message));
+		dispatch(AppTriggerMessage(message));
 	};
 
 	/**

@@ -11,7 +11,7 @@ import {
 import { DialogCreateEditDeepLinkFormInterface } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.interface';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
-import { triggerMessage } from '../../general/General.slice';
+import { triggerMessage } from '../../app/App.slice';
 import { handleRefreshAndPagination } from '../../Slices.map';
 import { deserializeDeepLink } from './DeepLink.slice.deserialize';
 import {

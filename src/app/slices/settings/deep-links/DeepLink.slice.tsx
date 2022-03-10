@@ -6,7 +6,7 @@ import { TriggerMessageInterface } from '../../../components/frame/message/Messa
 import DeepLinksService from '../../../screens/settings/deep-links/DeepLinks.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
-import { triggerMessage } from '../../general/General.slice';
+import { triggerMessage } from '../../app/App.slice';
 import { SDContentInterface, SliceDeepLinkInterface } from './DeepLink.interface';
 import { DeepLinkTypeEnum } from './DeepLink.slice.enum';
 

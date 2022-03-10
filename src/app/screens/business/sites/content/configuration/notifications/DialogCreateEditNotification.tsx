@@ -55,7 +55,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const translation = 'CONTENT.CONFIGURATION.NOTIFICATIONS.CREATE_EDIT';
 	const fieldUsers = 'users';
 
-	const { handleChangeStringInputs, handleChangeCheckbox, handleSubmit, values, errors } =
+	const { handleChangeInputsMultiple, handleChangeCheckbox, handleSubmit, values, errors } =
 		useForm<DialogCreateEditNotificationFormInterface>(
 			{
 				isActive: !!notification?.isActive,
@@ -97,8 +97,8 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 		// add new field
 		list.push('');
 
-		// handle change: string inputs
-		handleChangeStringInputs(
+		// handle change: inputs (multiple fields)
+		handleChangeInputsMultiple(
 			index,
 			{
 				target: {
@@ -186,8 +186,9 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 										placeholder={t(`${translation}.FIELDS.EMAIL.PLACEHOLDER`)}
 										value={user}
 										onChange={(e) =>
-											handleChangeStringInputs(index, e, values.users)
+											handleChangeInputsMultiple(index, e, values.users)
 										}
+										error={!!errors?.users && !!errors.users[index]}
 										helperText={
 											errors?.users &&
 											errors.users[index] &&
@@ -200,7 +201,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 														disabled={!user}
 														edge="end"
 														onClick={() =>
-															handleChangeStringInputs(
+															handleChangeInputsMultiple(
 																index,
 																{
 																	target: {

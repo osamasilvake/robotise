@@ -20,12 +20,32 @@ export const useForm = <UseFormEntity,>(
 	const [touched, setTouched] = useState(initState);
 
 	/**
-	 * handle change: string inputs
+	 * handle change: input
+	 * @param event
+	 */
+	const handleChangeInput = (event: ChangeEvent<HTMLInputElement> | TargetInterface) => {
+		const { name, value } = event.target;
+
+		// set change event values
+		name && setChangeEventValues(name, value);
+	};
+
+	/**
+	 * handle change: inputs (single field)
+	 * @param name
+	 * @param values
+	 */
+	const handleChangeInputs = (name: string, values: string[]) => {
+		setChangeEventValues(name, values);
+	};
+
+	/**
+	 * handle change: inputs (multiple fields)
 	 * @param index
 	 * @param event
 	 * @param items
 	 */
-	const handleChangeStringInputs = (
+	const handleChangeInputsMultiple = (
 		index: number,
 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface,
 		items: string[]
@@ -38,26 +58,6 @@ export const useForm = <UseFormEntity,>(
 
 		// set change event values
 		setChangeEventValues(name, list);
-	};
-
-	/**
-	 * handle change: input
-	 * @param event
-	 */
-	const handleChangeInput = (event: ChangeEvent<HTMLInputElement> | TargetInterface) => {
-		const { name, value } = event.target;
-
-		// set change event values
-		name && setChangeEventValues(name, value);
-	};
-
-	/**
-	 * handle change: inputs
-	 * @param name
-	 * @param values
-	 */
-	const handleChangeInputs = (name: string, values: string[]) => {
-		setChangeEventValues(name, values);
 	};
 
 	/**
@@ -135,9 +135,9 @@ export const useForm = <UseFormEntity,>(
 	};
 
 	return {
-		handleChangeStringInputs,
 		handleChangeInput,
 		handleChangeInputs,
+		handleChangeInputsMultiple,
 		handleChangeCheckbox,
 		handleChangeSelect,
 		handleBlur,

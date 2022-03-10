@@ -2,13 +2,13 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { ChangeEvent, FocusEvent, FormEvent } from 'react';
 
 export interface UseFormRetInterface<UseFormEntity> {
-	handleChangeStringInputs: (
+	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
+	handleChangeInputs: (id: string, values: string[]) => void;
+	handleChangeInputsMultiple: (
 		index: number,
 		event: ChangeEvent<HTMLInputElement> | TargetInterface,
 		items: string[]
 	) => void;
-	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
-	handleChangeInputs: (id: string, values: string[]) => void;
 	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleChangeSelect: (event: SelectChangeEvent) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;

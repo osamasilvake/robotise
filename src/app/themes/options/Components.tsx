@@ -39,7 +39,7 @@ const ComponentsCustom: Components = {
 				transition: 'none',
 				'&.active': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					'& svg, span, p': {
+					'& > svg, span': {
 						color: AppConfigService.AppOptions.colors.c7
 					}
 				}

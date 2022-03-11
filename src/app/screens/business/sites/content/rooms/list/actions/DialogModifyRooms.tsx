@@ -23,6 +23,7 @@ import {
 	sitesSelector
 } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+import { validateEmptyObj } from '../../../../../../../utilities/methods/Object';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { ModifyRoomsValidation } from './DialogModifyRooms.validation';
 import {
@@ -111,8 +112,14 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 			if (r.indexOf('-') !== -1) {
 				const collection = [];
 				const items = r.split('-');
-				if (items[1] < items[0]) return items[0];
-				for (let i = +items[0]; i <= +items[1]; i++) {
+				const a = items[0]?.trim();
+				const b = items[1]?.trim();
+
+				// case: 300-200 -> 300
+				if (b < a) return a;
+
+				// loop
+				for (let i = +a; i <= +items[1]; i++) {
 					collection.push(String(i));
 				}
 				return collection;
@@ -185,7 +192,7 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={rooms.updating}
+						disabled={rooms.updating || (!!errors && !validateEmptyObj(errors))}
 						endIcon={rooms.updating && <CircularProgress size={20} />}>
 						{t('DIALOG:BUTTONS.MODIFY')}
 					</Button>

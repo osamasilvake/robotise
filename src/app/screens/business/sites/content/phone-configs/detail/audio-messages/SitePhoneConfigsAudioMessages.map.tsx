@@ -12,7 +12,7 @@ export const mapAudioMessagesTracks = (
 	audioMessages: SitePhoneConfigsAudioMessagesDataInterface[],
 	t: TFunction<'SITES'>
 ) => {
-	const translation = 'CONTENT.PHONE_CONFIGS.AUDIO';
+	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.AUDIO';
 
 	return audioMessages.map((item) => ({
 		primary: t(`${translation}.MESSAGES.${item.key}`),

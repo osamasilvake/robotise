@@ -7,6 +7,7 @@ import { DialogCreateEditServicePositionFormInterface } from './content/configur
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
+import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
@@ -168,6 +169,33 @@ class SitesService {
 		return HttpClientService.get<SitePhoneConfigsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * edit phone config
+	 * @param phoneConfigId
+	 * @param payload
+	 * @returns
+	 */
+	sitePhoneConfigEdit = (phoneConfigId: string, payload: DialogEditPhoneConfigFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIG.replace(
+			':phoneConfigId',
+			phoneConfigId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'phone-dispatcher-configs',
+				attributes: {
+					prefixes: payload.prefixes.split(','),
+					from: payload.from,
+					mode: payload.mode,
+					sip: payload.outboundPattern
+						? { outboundPattern: payload.outboundPattern }
+						: undefined,
+					callbackRetries: payload.callbackRetries
+				}
 			}
 		});
 	};

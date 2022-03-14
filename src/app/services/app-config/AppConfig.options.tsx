@@ -241,7 +241,9 @@ const AppOptions = (config: typeof AppConfigService) => {
 			maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
 			integer: new RegExp(/^\+?([1-9]\d*)$/),
 			skipLastSlashes: new RegExp(/\/+$/),
-			rooms: new RegExp(/\b[0-9]+([-,]+[0-9]*)?\b$/)
+			rooms: new RegExp(/\b[0-9]+([-,]+[0-9]*)?\b$/),
+			phoneNumbersCommaSeparated: new RegExp(/^\+\d{8,14}(,\+\d{8,14})*$/),
+			phoneNumber: new RegExp(/^\+\d{8,14}$/)
 		}
 	};
 };

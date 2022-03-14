@@ -15,7 +15,7 @@ const SitePhoneConfigsAudioMessages: FC<SitePhoneConfigsAudioMessagesInterface> 
 
 	const item = content?.data && mapPhoneConfig(content.data[0]);
 
-	const translation = 'CONTENT.PHONE_CONFIGS.AUDIO';
+	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.AUDIO';
 
 	return item && item.messages && item.messages.length ? (
 		<Box className={classes.sContainer}>

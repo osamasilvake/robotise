@@ -5,6 +5,7 @@ export interface SlicePhoneConfigsInterface {
 	init: boolean;
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: PCContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
@@ -15,6 +16,7 @@ export interface PCContentInterface extends JsonAPIResponseInterface {
 }
 
 export interface PCCDataInterface {
+	id: string;
 	name: string;
 	prefixes: string[];
 	from: string;
@@ -22,6 +24,8 @@ export interface PCCDataInterface {
 	mode: string;
 	workflow: string;
 	disableRoomsCallback: string[];
+	callbackRetries: number;
+	sip: { outboundPattern: string };
 	roomsMapping: PCCDataRoomsMappingInterface;
 	messages: PCCDataMessagesInterface;
 }

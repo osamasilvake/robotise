@@ -2,8 +2,11 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
+import { DialogEditPhoneConfigFormInterface } from '../../../../screens/business/sites/content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
+import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
+import { triggerMessage } from '../../../app/App.slice';
 import { deserializePhoneConfigs } from './PhoneConfigs.slice.deserialize';
 import { PCContentInterface, SlicePhoneConfigsInterface } from './PhoneConfigs.slice.interface';
 
@@ -12,6 +15,7 @@ export const initialState: SlicePhoneConfigsInterface = {
 	init: false,
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -41,12 +45,22 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
+		updated: (state) => {
+			state.updating = false;
+		},
+		updateFailed: (state) => {
+			state.updating = false;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const phoneConfigsSelector = (state: AppReducerType) => state['phoneConfigs'];
@@ -103,5 +117,53 @@ export const PhoneConfigsFetch =
 
 				// dispatch: failure
 				dispatch(failure(message));
+			});
+	};
+
+/**
+ * edit phone config
+ * @param phoneConfigId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const PhoneConfigEdit =
+	(phoneConfigId: string, payload: DialogEditPhoneConfigFormInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return SitesService.sitePhoneConfigEdit(phoneConfigId, payload)
+			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated());
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-edit-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.PHONE_CONFIGS.EDIT.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-edit-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.PHONE_CONFIGS.EDIT.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: updateFailed
+				dispatch(updateFailed());
 			});
 	};

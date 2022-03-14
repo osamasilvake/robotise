@@ -172,6 +172,12 @@
 					"ERROR": "Unable to update room state!"
 				}
 			},
+			"PHONE_CONFIGS": {
+				"EDIT": {
+					"SUCCESS": "Phone config has been updated successfully!",
+					"ERROR": "Unable to edit a Phone config!"
+				}
+			},
 			"STATISTICS": {
 				"HEATMAP": {
 					"MAPS": {
@@ -655,35 +661,76 @@
 				}
 			},
 			"PHONE_CONFIGS": {
-				"GENERAL": {
-					"MODE": "Mode",
-					"PREFIXES": "Prefixes",
-					"FROM": "From",
-					"WORKFLOW": {
-						"LABEL": "Workflow",
-						"ITEMS": {
-							"with-confirmation": "With Confirmation",
-							"without-confirmation": "Without Confirmation"
-						},
-						"NOTES": {
-							"with-confirmation": "Press 1 to make Jeeves to come to your room.",
-							"without-confirmation": "Just call short dial number, without pressing one."
+				"DETAIL": {
+					"ACTIONS": {
+						"EDIT": {
+							"TITLE": "Edit Phone Config",
+							"EXCERPT": "Configure phone related detail.",
+							"FIELDS": {
+								"PREFIXES": {
+									"LABEL": "Prefixes",
+									"PLACEHOLDER": "Format: +49221277208,+49221277209",
+									"VALIDATIONS": {
+										"REQUIRED": "Prefixes is required.",
+										"INVALID": "Invalid format"
+									}
+								},
+								"FROM": {
+									"LABEL": "From",
+									"PLACEHOLDER": "Format: +49221277208",
+									"VALIDATIONS": {
+										"REQUIRED": "From is required.",
+										"INVALID": "Invalid format"
+									}
+								},
+								"MODE": {
+									"LABEL": "Mode"
+								},
+								"OUTBOUND_PATTERN": {
+									"LABEL": "Outbound Pattern",
+									"PLACEHOLDER": "Example: sip:12345%room%@robotise.eu"
+								},
+								"CALLBACK_RETRIES": {
+									"LABEL": "Callback Retries",
+									"PLACEHOLDER": "Enter callback retries",
+									"VALIDATIONS": {
+										"REQUIRED": "Valid positive number is required.",
+										"LIMIT_EXCEEDED": "Max. callback retries allowed are 10."
+									}
+								}
+							}
 						}
 					},
-					"ROOMS_MAPPING": "Rooms Mapping",
-					"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback"
-				},
-				"AUDIO": {
-					"TITLE": "Audio Messages",
-					"MESSAGES": {
-						"welcome": "Welcome",
-						"confirmed": "Confirmed",
-						"welcomeNoConfirmation": "Welcome No Confirmation",
-						"orderAtTargetPosition": "Order at Target Position",
-						"rejectHoliday": "Reject Holiday",
-						"rejectOutOfWorkingTime": "Reject Out Of Working Time",
-						"rejectRoomNotServed": "Reject Room Not Served",
-						"rejectGeneric": "Reject Generic"
+					"GENERAL": {
+						"MODE": "Mode",
+						"PREFIXES": "Prefixes",
+						"FROM": "From",
+						"WORKFLOW": {
+							"LABEL": "Workflow",
+							"ITEMS": {
+								"with-confirmation": "With Confirmation",
+								"without-confirmation": "Without Confirmation"
+							},
+							"NOTES": {
+								"with-confirmation": "Press 1 to make Jeeves to come to your room.",
+								"without-confirmation": "Just call short dial number, without pressing one."
+							}
+						},
+						"ROOMS_MAPPING": "Rooms Mapping",
+						"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback"
+					},
+					"AUDIO": {
+						"TITLE": "Audio Messages",
+						"MESSAGES": {
+							"welcome": "Welcome",
+							"confirmed": "Confirmed",
+							"welcomeNoConfirmation": "Welcome No Confirmation",
+							"orderAtTargetPosition": "Order at Target Position",
+							"rejectHoliday": "Reject Holiday",
+							"rejectOutOfWorkingTime": "Reject Out Of Working Time",
+							"rejectRoomNotServed": "Reject Room Not Served",
+							"rejectGeneric": "Reject Generic"
+						}
 					}
 				}
 			},

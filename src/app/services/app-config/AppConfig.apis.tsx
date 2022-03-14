@@ -27,6 +27,7 @@ const AppServices = (config: typeof AppConfigService) => {
 					SINGLE: `${config.envAppUrl}/sites/:siteId`,
 					PRODUCTS: `${config.envAppUrl}/products`,
 					PHONE_CONFIGS: `${config.envAppUrl}/phone-dispatcher-configs`,
+					PHONE_CONFIG: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId`,
 					PHONE_CALLS: `${config.envAppUrl}/inbound-calls`,
 					STATISTICS: {
 						WIFI_HEATMAP: `${config.envAppUrl}/wifi-heatmap`,

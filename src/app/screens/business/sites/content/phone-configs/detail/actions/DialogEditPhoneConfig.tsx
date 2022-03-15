@@ -29,15 +29,15 @@ import {
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../../../../../utilities/methods/Object';
 import { SiteParamsInterface } from '../../../../Site.interface';
-import { EditPhoneConfigValidation } from './DialogEditPhoneConfig.validation';
-import { SiteEditConfigModeTypeEnum } from './SitePhoneConfigsGeneral.enum';
+import { SiteEditConfigModeTypeEnum } from '../general/SitePhoneConfigsGeneral.enum';
 import {
 	DialogEditPhoneConfigFormInterface,
 	DialogEditPhoneConfigInterface
-} from './SitePhoneConfigsGeneral.interface';
+} from '../general/SitePhoneConfigsGeneral.interface';
+import { EditPhoneConfigValidation } from './DialogEditPhoneConfig.validation';
 
 const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
-	const { open, setOpen, phoneConfig } = props;
+	const { open, setOpen } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch();
@@ -47,29 +47,31 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const orderModesList = generalOperations.orderModes.content?.data?.map((m) => m.mode);
+	const phoneConfig = phoneConfigs.content?.data[0];
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.ACTIONS.EDIT';
 
 	const { handleChangeInput, handleChangeSelect, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogEditPhoneConfigFormInterface>(
 			{
-				prefixes: phoneConfig.prefixes?.join(', '),
-				from: phoneConfig.from,
-				mode: phoneConfig.mode || SiteEditConfigModeTypeEnum.MINI_BAR,
+				prefixes: phoneConfig?.prefixes?.join(', ') || '',
+				from: phoneConfig?.from || '',
+				mode: phoneConfig?.mode || SiteEditConfigModeTypeEnum.MINI_BAR,
 				outboundPattern: phoneConfig?.sip?.outboundPattern || '',
-				callbackRetries: String(phoneConfig.callbackRetries) || '0'
+				callbackRetries: String(phoneConfig?.callbackRetries) || '0'
 			},
 			EditPhoneConfigValidation,
 			async () => {
 				// dispatch: edit phone config
-				dispatch(
-					PhoneConfigEdit(phoneConfig.id, values, () => {
-						// dispatch: fetch site phone configs
-						dispatch(PhoneConfigsFetch(cSiteId, true));
+				phoneConfig?.id &&
+					dispatch(
+						PhoneConfigEdit(phoneConfig.id, values, () => {
+							// dispatch: fetch site phone configs
+							dispatch(PhoneConfigsFetch(cSiteId, true));
 
-						// close dialog
-						setOpen(false);
-					})
-				);
+							// close dialog
+							setOpen(false);
+						})
+					);
 			}
 		);
 

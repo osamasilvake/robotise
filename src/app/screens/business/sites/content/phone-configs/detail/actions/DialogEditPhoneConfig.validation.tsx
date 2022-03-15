@@ -1,5 +1,5 @@
 import { AppConfigService } from '../../../../../../../services';
-import { DialogEditPhoneConfigFormInterface } from './SitePhoneConfigsGeneral.interface';
+import { DialogEditPhoneConfigFormInterface } from '../general/SitePhoneConfigsGeneral.interface';
 
 /**
  * edit phone config validation

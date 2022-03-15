@@ -13,6 +13,7 @@ import {
 	phoneConfigsSelector
 } from '../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
+import SitePhoneConfigsDetailActions from './actions/SitePhoneConfigsDetailActions';
 import SitePhoneConfigsAudioMessages from './audio-messages/SitePhoneConfigsAudioMessages';
 import SitePhoneConfigsGeneral from './general/SitePhoneConfigsGeneral';
 import { SitePhoneConfigsDetailStyle } from './SitePhoneConfigsDetail.style';
@@ -73,7 +74,13 @@ const SitePhoneConfigsDetail: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Actions */}
+			<SitePhoneConfigsDetailActions />
+
+			{/* General */}
 			<SitePhoneConfigsGeneral content={phoneConfigs.content} />
+
+			{/* Audio Messages */}
 			<SitePhoneConfigsAudioMessages content={phoneConfigs.content} />
 		</Box>
 	);

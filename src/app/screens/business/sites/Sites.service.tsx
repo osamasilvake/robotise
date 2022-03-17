@@ -7,7 +7,10 @@ import { DialogCreateEditServicePositionFormInterface } from './content/configur
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
-import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
+import {
+	DialogEditPhoneConfigFormInterface,
+	SitePhoneConfigUploadAudioInterface
+} from './content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
@@ -196,6 +199,28 @@ class SitesService {
 						: undefined,
 					callbackRetries: payload.callbackRetries
 				}
+			}
+		});
+	};
+
+	/**
+	 * upload phone config audio
+	 * @param phoneConfigId
+	 * @param payload
+	 * @returns
+	 */
+	sitePhoneConfigUploadAudio = (
+		phoneConfigId: string,
+		payload: SitePhoneConfigUploadAudioInterface
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIG_AUDIO.replace(
+			':phoneConfigId',
+			phoneConfigId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'phone-dispatcher-config-audio-messages',
+				attributes: payload
 			}
 		});
 	};

@@ -176,6 +176,10 @@
 				"EDIT": {
 					"SUCCESS": "Phone config has been updated successfully!",
 					"ERROR": "Unable to edit a Phone config!"
+				},
+				"UPLOAD_AUDIO": {
+					"SUCCESS": "Audio has been uploaded successfully!",
+					"ERROR": "Unable to upload audio file!"
 				}
 			},
 			"STATISTICS": {
@@ -1435,6 +1439,8 @@
 								"in_progress_traveling": "Travelling",
 								"in_progress_arrived": "Arrived",
 								"in_progress_customer_present": "Customer present",
+								"finishRequest": "Finish Requested",
+								"awaiting_finish": "Awaiting Finish",
 								"finished": "Finished",
 								"rejected": "Rejected",
 								"rejected_already_in_stack": "Rejected: Already in stack",

@@ -1,26 +1,14 @@
-import { PauseCircleOutlined, PlayCircleOutlined } from '@mui/icons-material';
-import {
-	Box,
-	Card,
-	CardContent,
-	Divider,
-	Grid,
-	IconButton,
-	List,
-	ListItemButton,
-	ListItemIcon,
-	ListItemText,
-	Slider,
-	Typography
-} from '@mui/material';
+import { Box, Card, CardContent, Divider, Typography } from '@mui/material';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import AudioPlayerControls from './AudioPlayer.controls';
 import { AudioPlayerInterface } from './AudioPlayer.interface';
 import { AudioPlayerStyle } from './AudioPlayer.style';
+import AudioPlayerControls from './AudioPlayerControls';
+import AudioPlayerList from './AudioPlayerList';
+import AudioPlayerSlider from './AudioPlayerSlider';
 
 const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
-	const { tracks } = props;
+	const { uploadAudio, tracks, onChangeAudio } = props;
 	const classes = AudioPlayerStyle();
 
 	const [trackIndex, setTrackIndex] = useState(0);
@@ -73,6 +61,11 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 		// set track progress
 		setTrackProgress(audioRef.current.currentTime);
 
+		// isReady
+		// case 1: init: set true
+		// case 2: << >>: set true
+		// case 3: list item selection: set true
+		// case 4: audio upload: set false
 		if (isReady.current) {
 			// play audio
 			playRef.current = audioRef.current.play();
@@ -115,6 +108,10 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 	 * set previous track
 	 */
 	const toPrevTrack = () => {
+		// isReady: set
+		isReady.current = true;
+
+		// set track
 		setTrackIndex(trackIndex - 1 < 0 ? tracks.length - 1 : trackIndex - 1);
 	};
 
@@ -122,35 +119,11 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 	 * set next track
 	 */
 	const toNextTrack = () => {
+		// isReady: set
+		isReady.current = true;
+
+		// set track
 		setTrackIndex(trackIndex < tracks.length - 1 ? trackIndex + 1 : 0);
-	};
-
-	/**
-	 * on scrub
-	 * @param value
-	 */
-	const onScrub = (value: number) => {
-		// clear any timers already running
-		clearInterval(intervalRef.current);
-
-		// set current time
-		audioRef.current.currentTime = value;
-
-		// set track progress
-		setTrackProgress(audioRef.current.currentTime);
-	};
-
-	/**
-	 * on scrub end
-	 */
-	const onScrubEnd = () => {
-		// if not already playing, start
-		if (!isPlaying) {
-			setIsPlaying(true);
-		}
-
-		// start timer
-		startTimer();
 	};
 
 	return (
@@ -170,59 +143,30 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 					onPlayPauseClick={setIsPlaying}
 				/>
 
-				<Grid container className={classes.sTrackProgressGrid}>
-					<Grid item xs={10}>
-						<Slider
-							value={trackProgress}
-							min={0}
-							max={duration || 0}
-							step={0.01}
-							onChange={(_e, v) => onScrub(+v)}
-							onMouseUp={onScrubEnd}
-							onKeyUp={onScrubEnd}
-						/>
-					</Grid>
-					<Grid item xs={2}>
-						{!Number.isNaN(duration) && (
-							<Typography
-								variant="caption"
-								color="textSecondary"
-								className={classes.sTimeTicker}>
-								{Math.round(trackProgress)}/{Math.round(duration)}s
-							</Typography>
-						)}
-					</Grid>
-				</Grid>
+				<AudioPlayerSlider
+					audioRef={audioRef}
+					intervalRef={intervalRef}
+					duration={duration}
+					startTimer={startTimer}
+					trackProgress={trackProgress}
+					setTrackProgress={setTrackProgress}
+					isPlaying={isPlaying}
+					setIsPlaying={setIsPlaying}
+				/>
 			</CardContent>
 
 			<Divider />
 
-			<List dense>
-				{tracks.map((track, idx) => (
-					<ListItemButton
-						key={track.primary}
-						onClick={() =>
-							trackIndex === idx ? setIsPlaying(!isPlaying) : setTrackIndex(idx)
-						}>
-						<ListItemIcon>
-							{isPlaying && trackIndex === idx ? (
-								<IconButton>
-									<PauseCircleOutlined color="primary" />
-								</IconButton>
-							) : (
-								<IconButton>
-									<PlayCircleOutlined color="primary" />
-								</IconButton>
-							)}
-						</ListItemIcon>
-						<ListItemText
-							primary={track.primary}
-							secondary={track.secondary}
-							className={classes.sListItemText}
-						/>
-					</ListItemButton>
-				))}
-			</List>
+			<AudioPlayerList
+				uploadAudio={uploadAudio}
+				tracks={tracks}
+				trackIndex={trackIndex}
+				setTrackIndex={setTrackIndex}
+				isPlaying={isPlaying}
+				setIsPlaying={setIsPlaying}
+				onChangeAudio={onChangeAudio}
+				isReady={isReady}
+			/>
 		</Card>
 	);
 };

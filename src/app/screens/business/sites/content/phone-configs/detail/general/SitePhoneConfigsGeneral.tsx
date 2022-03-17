@@ -1,5 +1,5 @@
 import { InfoOutlined } from '@mui/icons-material';
-import { Box, Grid, Link, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Grid, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -39,15 +39,7 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.FROM`)}
 				</Typography>
-				<Box>
-					{item.from ? (
-						<Link underline="hover" href={`tel:${item.from}`}>
-							{item.from}
-						</Link>
-					) : (
-						AppConfigService.AppOptions.common.none
-					)}
-				</Box>
+				<Box>{item.from || AppConfigService.AppOptions.common.none}</Box>
 			</Grid>
 
 			{/* Workflow */}

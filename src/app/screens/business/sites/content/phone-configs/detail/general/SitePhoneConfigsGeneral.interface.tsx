@@ -18,3 +18,8 @@ export interface DialogEditPhoneConfigFormInterface {
 	outboundPattern: string;
 	callbackRetries: string;
 }
+
+export interface SitePhoneConfigUploadAudioInterface {
+	code: string;
+	audioFileBase64: string;
+}

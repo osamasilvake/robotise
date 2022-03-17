@@ -2,7 +2,10 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { DialogEditPhoneConfigFormInterface } from '../../../../screens/business/sites/content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
+import {
+	DialogEditPhoneConfigFormInterface,
+	SitePhoneConfigUploadAudioInterface
+} from '../../../../screens/business/sites/content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { AppReducerType } from '../../..';
@@ -160,6 +163,54 @@ export const PhoneConfigEdit =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.PHONE_CONFIGS.EDIT.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: updateFailed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
+ * upload phone config audio
+ * @param phoneConfigId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const PhoneConfigUploadAudio =
+	(phoneConfigId: string, payload: SitePhoneConfigUploadAudioInterface, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return SitesService.sitePhoneConfigUploadAudio(phoneConfigId, payload)
+			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated());
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-upload-audio-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.PHONE_CONFIGS.UPLOAD_AUDIO.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-upload-audio-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.PHONE_CONFIGS.UPLOAD_AUDIO.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

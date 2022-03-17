@@ -39,6 +39,8 @@ export const mapStatus = (status: string) => {
 		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
 		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:
 		case RobotOrdersTableColumnStatusTypeEnum.CUSTOMER_PRESENT:
+		case RobotOrdersTableColumnStatusTypeEnum.FINISH_REQUESTED:
+		case RobotOrdersTableColumnStatusTypeEnum.AWAITING_FINISH:
 			return StatusTypeEnum.SUCCESS_LIGHT;
 		case RobotOrdersTableColumnStatusTypeEnum.FINISHED:
 			return StatusTypeEnum.SUCCESS_DARK;

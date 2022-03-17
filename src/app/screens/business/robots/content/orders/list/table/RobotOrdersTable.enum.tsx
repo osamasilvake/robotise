@@ -16,6 +16,8 @@ export enum RobotOrdersTableColumnStatusTypeEnum {
 	CREATED = 'created',
 	PENDING = 'pending',
 	ARRIVED = 'in_progress:arrived',
+	FINISH_REQUESTED = 'finishRequest',
+	AWAITING_FINISH = 'awaiting_finish',
 	FINISHED = 'finished',
 	CUSTOMER_PRESENT = 'in_progress:customer_present',
 	TRAVELLING = 'in_progress:traveling',

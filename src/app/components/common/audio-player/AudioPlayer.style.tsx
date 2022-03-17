@@ -16,5 +16,9 @@ export const AudioPlayerStyle = makeStyles((theme: Theme) => ({
 	},
 	sListItemText: {
 		wordBreak: 'break-all'
+	},
+	sListFileIcon: {
+		cursor: 'pointer',
+		display: 'block'
 	}
 }));

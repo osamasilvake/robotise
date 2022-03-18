@@ -35,6 +35,10 @@
 			"TITLE": "Deep Links",
 			"DESCRIPTION": "Deep Links Description"
 		},
+		"SETUP": {
+			"TITLE": "Setup",
+			"DESCRIPTION": "Setup Description"
+		},
 		"ALERT_CODES": {
 			"TITLE": "Alert Codes",
 			"DESCRIPTION": "Alert Codes Description"
@@ -390,7 +394,8 @@
 				"SHORT": "Set."
 			},
 			"LIST": {
-				"DEEP_LINKS": "Deep Links"
+				"DEEP_LINKS": "Deep Links",
+				"SETUP": "Setup"
 			}
 		}
 	},
@@ -443,7 +448,7 @@
 		},
 		"CONTENT": {
 			"TABS": {
-				"COMMON": "Common",
+				"COMMON": "COMMON",
 				"EMAILS": "EMAILS"
 			},
 			"EMAILS": {
@@ -1720,6 +1725,59 @@
 					"KEY": "Key",
 					"CREATED": "Created",
 					"ACTIONS": "Actions"
+				}
+			}
+		}
+	},
+	"SETUP": {
+		"CONTENT": {
+			"TABS": {
+				"COMMON": "COMMON",
+				"WIFI_CONFIG": "Wifi Configuration"
+			},
+			"WIFI_CONFIG": {
+				"TITLE": "Wifi Config",
+				"EXCERPT": "Generate Wifi Configuration YAML output.",
+				"FORM": {
+					"FIELDS": {
+						"SITE": {
+							"LABEL": "Site",
+							"PLACEHOLDER": "Enter Site",
+							"VALIDATIONS": {
+								"REQUIRED": "Site is required."
+							}
+						},
+						"SSID": {
+							"LABEL": "SSID",
+							"PLACEHOLDER": "Enter SSID",
+							"VALIDATIONS": {
+								"REQUIRED": "SSID is required."
+							}
+						},
+						"COUNTRY": {
+							"LABEL": "Country"
+						},
+						"AUTHENTICATION": {
+							"LABEL": "Authentication Method"
+						},
+						"PSK_PASSWORD": {
+							"LABEL": "PSK Password",
+							"PLACEHOLDER": "Enter PSK Password",
+							"VALIDATIONS": {
+								"REQUIRED": "PSK Password is required."
+							}
+						},
+						"REG_MAC_ADDRESS": {
+							"LABEL": "Registered MAC Address"
+						},
+						"MAC_ADDRESS": {
+							"LABEL": "MAC Address",
+							"PLACEHOLDER": "Enter MAC Address"
+						}
+					},
+					"BUTTONS": {
+						"DOWNLOAD": "Download"
+					}
 				}
 			}
 		}

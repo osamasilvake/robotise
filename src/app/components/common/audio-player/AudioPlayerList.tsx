@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { phoneConfigsSelector } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
 import { fileConvertBase64 } from '../../../utilities/methods/File';
 import { AudioPlayerListInterface, AudioPlayerTrackInterface } from './AudioPlayer.interface';
-import { allowedAudioExtensions } from './AudioPlayer.map';
+import { allowedAudioExtensions } from './AudioPlayer.list';
 import { AudioPlayerStyle } from './AudioPlayer.style';
 
 const AudioPlayerList: FC<AudioPlayerListInterface> = (props) => {

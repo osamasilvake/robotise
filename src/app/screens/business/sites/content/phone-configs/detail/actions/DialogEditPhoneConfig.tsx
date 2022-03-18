@@ -10,7 +10,8 @@ import {
 	InputLabel,
 	MenuItem,
 	Select,
-	TextField
+	TextField,
+	Typography
 } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -35,10 +36,12 @@ import {
 	DialogEditPhoneConfigInterface
 } from '../general/SitePhoneConfigsGeneral.interface';
 import { EditPhoneConfigValidation } from './DialogEditPhoneConfig.validation';
+import { SitePhoneConfigsDetailActionsStyle } from './SitePhoneConfigsDetailActions.style';
 
 const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
+	const classes = SitePhoneConfigsDetailActionsStyle();
 
 	const dispatch = useDispatch();
 	const generalOperations = useSelector(generalOperationsSelector);
@@ -148,20 +151,6 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 
 						<FormControl fullWidth margin="normal">
 							<TextField
-								type="string"
-								id="outboundPattern"
-								name="outboundPattern"
-								label={t(`${translation}.FIELDS.OUTBOUND_PATTERN.LABEL`)}
-								placeholder={t(
-									`${translation}.FIELDS.OUTBOUND_PATTERN.PLACEHOLDER`
-								)}
-								value={values?.outboundPattern}
-								onChange={handleChangeInput}
-								onBlur={handleBlur}
-							/>
-						</FormControl>
-						<FormControl fullWidth margin="normal">
-							<TextField
 								required
 								type="number"
 								id="callbackRetries"
@@ -180,6 +169,25 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 									t(errors.callbackRetries)
 								}
 								InputProps={{ inputProps: { min: 0, max: 10 } }}
+							/>
+						</FormControl>
+
+						<Typography variant="body2" className={classes.sSipTitle}>
+							SIP Config
+						</Typography>
+
+						<FormControl fullWidth>
+							<TextField
+								type="string"
+								id="outboundPattern"
+								name="outboundPattern"
+								label={t(`${translation}.FIELDS.OUTBOUND_PATTERN.LABEL`)}
+								placeholder={t(
+									`${translation}.FIELDS.OUTBOUND_PATTERN.PLACEHOLDER`
+								)}
+								value={values?.outboundPattern}
+								onChange={handleChangeInput}
+								onBlur={handleBlur}
 							/>
 						</FormControl>
 					</DialogContent>

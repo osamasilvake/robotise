@@ -30,6 +30,11 @@ const drawerSettingsList: DrawerListInterface[] = [
 		label: 'SETTINGS.LIST.DEEP_LINKS',
 		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS,
 		scope: true
+	},
+	{
+		icon: 'settings',
+		label: 'SETTINGS.LIST.SETUP',
+		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.SETUP.MAIN
 	}
 ];
 

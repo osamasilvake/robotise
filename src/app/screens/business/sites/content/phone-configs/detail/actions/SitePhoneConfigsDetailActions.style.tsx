@@ -10,5 +10,9 @@ export const SitePhoneConfigsDetailActionsStyle = makeStyles((theme: Theme) => (
 		position: 'sticky',
 		top: 0,
 		zIndex: AppConfigService.AppOptions.styles.zIndex.level3
+	},
+	sSipTitle: {
+		fontWeight: 500,
+		margin: `${theme.spacing(0.8)} 0 ${theme.spacing(0.6)}`
 	}
 }));

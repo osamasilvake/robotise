@@ -43,7 +43,11 @@ const appRoutes = {
 			}
 		},
 		SETTINGS: {
-			DEEP_LINKS: '/deeplinks'
+			DEEP_LINKS: '/deeplinks',
+			SETUP: {
+				MAIN: '/setup',
+				WIFI_CONFIG: '/setup/wifi-config'
+			}
 		},
 		INFORMATION: {
 			ALERT_CODES: '/alert-codes',

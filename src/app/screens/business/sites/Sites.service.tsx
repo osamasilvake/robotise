@@ -194,9 +194,7 @@ class SitesService {
 					prefixes: payload.prefixes.split(','),
 					from: payload.from,
 					mode: payload.mode,
-					sip: payload.outboundPattern
-						? { outboundPattern: payload.outboundPattern }
-						: undefined,
+					sip: { outboundPattern: payload?.outboundPattern || '' },
 					callbackRetries: payload.callbackRetries
 				}
 			}

@@ -727,7 +727,11 @@
 							}
 						},
 						"ROOMS_MAPPING": "Rooms Mapping",
-						"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback"
+						"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback",
+						"CALLBACK_RETRIES": "Callback Retries",
+						"SIP_CONFIG": {
+							"OUTBOUND_PATTERN": "Outbound Pattern"
+						}
 					},
 					"AUDIO": {
 						"TITLE": "Audio Messages",

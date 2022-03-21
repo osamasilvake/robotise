@@ -80,6 +80,22 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 					<Typography>{item.disableRoomsCallback}</Typography>
 				</Grid>
 			)}
+
+			{/* Callback Retries */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.CALLBACK_RETRIES`)}
+				</Typography>
+				<Box>{item.callbackRetries || 0}</Box>
+			</Grid>
+
+			{/* Outbound Pattern */}
+			<Grid item xs={12} sm={6} md={4} lg={6}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.SIP_CONFIG.OUTBOUND_PATTERN`)}
+				</Typography>
+				<Box>{item.sip?.outboundPattern || AppConfigService.AppOptions.common.none}</Box>
+			</Grid>
 		</Grid>
 	) : null;
 };

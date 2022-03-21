@@ -1812,7 +1812,6 @@
 							"VALIDATIONS": {
 								"REQUIRED": "Gateway is required.",
 								"INVALID": "Invalid Gateway format."
-
 							}
 						},
 						"DNS_SERVER": {

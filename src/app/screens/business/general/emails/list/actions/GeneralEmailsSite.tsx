@@ -42,11 +42,11 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 
 	/**
 	 * handle site
-	 * @param event
+	 * @param _event
 	 * @param option
 	 */
 	const handleSite = (
-		_event: SyntheticEvent<Element, Event>,
+		_event: SyntheticEvent,
 		option: GeneralEmailsSiteComboBoxInterface | null
 	) => {
 		// dispatch: update state

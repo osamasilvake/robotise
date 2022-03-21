@@ -1,5 +1,6 @@
 import {
 	SetupWifiConfigAuthenticationTypeEnum,
+	SetupWifiConfigIpConfigTypeEnum,
 	SetupWifiConfigRegisteredMacAddressTypeEnum
 } from './SetupWifiConfig.enum';
 
@@ -24,6 +25,18 @@ const registeredMacAddress = [
 	{
 		id: SetupWifiConfigRegisteredMacAddressTypeEnum.YES,
 		title: 'YES'
+	}
+];
+
+// ip configs
+const ipConfigs = [
+	{
+		id: SetupWifiConfigIpConfigTypeEnum.STATIC,
+		title: 'Static'
+	},
+	{
+		id: SetupWifiConfigIpConfigTypeEnum.DHCP,
+		title: 'DHCP'
 	}
 ];
 
@@ -274,4 +287,4 @@ const countriesList = [
 	{ name: 'Zimbabwe', code: 'ZW' }
 ];
 
-export { authenticationMethods, countriesList, registeredMacAddress };
+export { authenticationMethods, countriesList, ipConfigs, registeredMacAddress };

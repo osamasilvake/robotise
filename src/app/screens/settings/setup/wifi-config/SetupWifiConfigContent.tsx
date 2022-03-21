@@ -2,7 +2,9 @@ import {
 	Button,
 	Card,
 	CardContent,
+	Checkbox,
 	FormControl,
+	FormControlLabel,
 	Grid,
 	InputLabel,
 	MenuItem,
@@ -17,10 +19,16 @@ import YAML from 'yaml';
 import { useForm } from '../../../../utilities/hooks/form/UseForm';
 import {
 	SetupWifiConfigAuthenticationTypeEnum,
+	SetupWifiConfigIpConfigTypeEnum,
 	SetupWifiConfigRegisteredMacAddressTypeEnum
 } from './SetupWifiConfig.enum';
 import { SetupWifiConfigFormInterface } from './SetupWifiConfig.interface';
-import { authenticationMethods, countriesList, registeredMacAddress } from './SetupWifiConfig.list';
+import {
+	authenticationMethods,
+	countriesList,
+	ipConfigs,
+	registeredMacAddress
+} from './SetupWifiConfig.list';
 import { SetupWifiConfigStyle } from './SetupWifiConfig.style';
 import { WifiConfigValidation } from './SetupWifiConfig.validation';
 
@@ -30,38 +38,89 @@ const SetupWifiConfigContent: FC = () => {
 
 	const translation = 'CONTENT.WIFI_CONFIG';
 
-	const { handleChangeInput, handleChangeSelect, handleBlur, handleSubmit, values, errors } =
-		useForm<SetupWifiConfigFormInterface>(
-			{
-				site: '',
-				ssid: '',
-				country: countriesList[0].code,
-				authentication: authenticationMethods[0].id,
-				pskPassword: '',
-				regMacAddress: registeredMacAddress[0].id,
-				macAddress: ''
-			},
-			WifiConfigValidation,
-			async () => {
-				const payload = {
-					[values.site]: {
-						ssid: values.ssid,
-						country: values.country,
-						auth: values.authentication,
-						psk:
-							values.authentication === SetupWifiConfigAuthenticationTypeEnum.PSK
-								? values.pskPassword || undefined
-								: undefined,
-						mac:
-							values.authentication === SetupWifiConfigAuthenticationTypeEnum.OPEN &&
-							values.regMacAddress === SetupWifiConfigRegisteredMacAddressTypeEnum.YES
-								? values.macAddress || undefined
-								: undefined
-					}
-				};
-				console.log(YAML.stringify(payload));
-			}
-		);
+	const {
+		handleChangeInput,
+		handleChangeSelect,
+		handleChangeCheckbox,
+		handleBlur,
+		handleSubmit,
+		values,
+		errors
+	} = useForm<SetupWifiConfigFormInterface>(
+		{
+			site: '',
+			ssid: '',
+			country: countriesList[0].code,
+			authentication: authenticationMethods[0].id,
+			pskPassword: '',
+			regMacAddress: registeredMacAddress[0].id,
+			macAddress: '',
+			hiddenNetwork: false,
+			ipConfig: ipConfigs[0].id,
+			address: '',
+			netmask: '',
+			gateway: '',
+			dnsServer: ''
+		},
+		WifiConfigValidation,
+		async () => {
+			// ip config
+			const ipConfiguration = values.ipConfig === SetupWifiConfigIpConfigTypeEnum.STATIC && {
+				static_ip_config: true,
+				address: `${values.address}/${netmaskToCidr(String(values.netmask))}`,
+				gateway: values.gateway,
+				dnsServer: values.dnsServer
+			};
+
+			// payload
+			const payload = {
+				[values.site]: {
+					ssid: values.ssid,
+					country: values.country,
+					auth: values.authentication,
+					psk:
+						values.authentication === SetupWifiConfigAuthenticationTypeEnum.PSK
+							? values.pskPassword || undefined
+							: undefined,
+					mac:
+						values.authentication === SetupWifiConfigAuthenticationTypeEnum.OPEN &&
+						values.regMacAddress === SetupWifiConfigRegisteredMacAddressTypeEnum.YES
+							? values.macAddress || undefined
+							: undefined,
+					hidden: +!!values.hiddenNetwork,
+					...ipConfiguration
+				}
+			};
+
+			// download YAML file
+			downloadYAML(YAML.stringify(payload));
+		}
+	);
+
+	/**
+	 * netmask to cidr
+	 * @param n
+	 * @returns
+	 */
+	const netmaskToCidr = (n: string) =>
+		n.split('.').reduce((c: number, o: string) => c - Math.log2(256 - +o), 32);
+
+	/**
+	 * download YAML file
+	 * @param text
+	 */
+	const downloadYAML = (text: string) => {
+		const a = window.document.createElement('a');
+		a.href = window.URL.createObjectURL(new Blob([text]));
+		a.download = 'wifi-configuration.yaml';
+
+		// append anchor to body.
+		document.body.appendChild(a);
+		a.click();
+
+		// remove anchor from body
+		document.body.removeChild(a);
+	};
 
 	return (
 		<Card square elevation={1}>
@@ -224,6 +283,125 @@ const SetupWifiConfigContent: FC = () => {
 										</FormControl>
 									</Grid>
 								)}
+							</>
+						)}
+
+						<Grid item xs={12}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										color="primary"
+										name="hiddenNetwork"
+										checked={values.hiddenNetwork}
+										onChange={handleChangeCheckbox}
+									/>
+								}
+								label={t<string>(`${translation}.FORM.FIELDS.HIDDEN_NETWORK.LABEL`)}
+							/>
+						</Grid>
+
+						<Grid item xs={12}>
+							<FormControl fullWidth margin="normal">
+								<InputLabel id="label-ip-config">
+									{t(`${translation}.FORM.FIELDS.IP_CONFIG.LABEL`)}
+								</InputLabel>
+								<Select
+									labelId="label-ip-config"
+									id="ipConfig"
+									name="ipConfig"
+									label={t(`${translation}.FORM.FIELDS.IP_CONFIG.LABEL`)}
+									value={values.ipConfig}
+									onChange={handleChangeSelect}>
+									{ipConfigs.map((config) => (
+										<MenuItem key={config.id} value={config.id}>
+											{config.title}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						</Grid>
+
+						{values?.ipConfig === SetupWifiConfigIpConfigTypeEnum.STATIC && (
+							<>
+								<Grid item xs={12} md={6}>
+									<FormControl fullWidth margin="normal">
+										<TextField
+											required
+											type="text"
+											id="address"
+											name="address"
+											label={t(`${translation}.FORM.FIELDS.ADDRESS.LABEL`)}
+											placeholder={t(
+												`${translation}.FORM.FIELDS.ADDRESS.PLACEHOLDER`
+											)}
+											value={values?.address}
+											onChange={handleChangeInput}
+											onBlur={handleBlur}
+											error={!!errors?.address}
+											helperText={errors?.address && t(errors.address)}
+										/>
+									</FormControl>
+								</Grid>
+
+								<Grid item xs={12} md={6}>
+									<FormControl fullWidth margin="normal">
+										<TextField
+											required
+											type="text"
+											id="netmask"
+											name="netmask"
+											label={t(`${translation}.FORM.FIELDS.NETMASK.LABEL`)}
+											placeholder={t(
+												`${translation}.FORM.FIELDS.NETMASK.PLACEHOLDER`
+											)}
+											value={values?.netmask}
+											onChange={handleChangeInput}
+											onBlur={handleBlur}
+											error={!!errors?.netmask}
+											helperText={errors?.netmask && t(errors.netmask)}
+										/>
+									</FormControl>
+								</Grid>
+
+								<Grid item xs={12} md={6}>
+									<FormControl fullWidth margin="normal">
+										<TextField
+											required
+											type="text"
+											id="gateway"
+											name="gateway"
+											label={t(`${translation}.FORM.FIELDS.GATEWAY.LABEL`)}
+											placeholder={t(
+												`${translation}.FORM.FIELDS.GATEWAY.PLACEHOLDER`
+											)}
+											value={values?.gateway}
+											onChange={handleChangeInput}
+											onBlur={handleBlur}
+											error={!!errors?.gateway}
+											helperText={errors?.gateway && t(errors.gateway)}
+										/>
+									</FormControl>
+								</Grid>
+
+								<Grid item xs={12} md={6}>
+									<FormControl fullWidth margin="normal">
+										<TextField
+											required
+											type="text"
+											id="dnsServer"
+											name="dnsServer"
+											label={t(`${translation}.FORM.FIELDS.DNS_SERVER.LABEL`)}
+											placeholder={t(
+												`${translation}.FORM.FIELDS.DNS_SERVER.PLACEHOLDER`
+											)}
+											value={values?.dnsServer}
+											onChange={handleChangeInput}
+											onBlur={handleBlur}
+											error={!!errors?.dnsServer}
+											helperText={errors?.dnsServer && t(errors.dnsServer)}
+										/>
+									</FormControl>
+								</Grid>
 							</>
 						)}
 

@@ -243,7 +243,12 @@ const AppOptions = (config: typeof AppConfigService) => {
 			skipLastSlashes: new RegExp(/\/+$/),
 			rooms: new RegExp(/\b[0-9]+([-,]+[0-9]*)?\b$/),
 			phoneNumbersCommaSeparated: new RegExp(/^\+\d{8,14}(,\+\d{8,14})*$/),
-			phoneNumber: new RegExp(/^\+\d{8,14}$/)
+			phoneNumber: new RegExp(/^\+\d{8,14}$/),
+			macAddress: new RegExp(/^([0-9a-fA-F]{2}[:.-]){5}[0-9a-fA-F]{2}$/),
+			ipAddress: new RegExp(/^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\d)|1?\d?\d)){4}$/),
+			ipNetmask: new RegExp(
+				/^(((255\.){3}(255|254|252|248|240|224|192|128|0+))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))$/
+			)
 		}
 	};
 };

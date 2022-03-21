@@ -6,9 +6,11 @@ import {
 	ListItem,
 	ListItemButton,
 	ListItemIcon,
-	ListItemText
+	ListItemText,
+	Tooltip
 } from '@mui/material';
 import { ChangeEvent, FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { phoneConfigsSelector } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
@@ -28,6 +30,7 @@ const AudioPlayerList: FC<AudioPlayerListInterface> = (props) => {
 		onChangeAudio,
 		isReady
 	} = props;
+	const { t } = useTranslation('TOOLTIP');
 	const classes = AudioPlayerStyle();
 
 	const phoneConfigs = useSelector(phoneConfigsSelector);
@@ -89,22 +92,29 @@ const AudioPlayerList: FC<AudioPlayerListInterface> = (props) => {
 					key={track.primary}
 					secondaryAction={
 						uploadAudio ? (
-							<IconButton edge="end">
-								{phoneConfigs && phoneConfigs.updating && audioIdx === idx ? (
-									<CircularProgress size={20} />
-								) : (
-									<label htmlFor={`audio-upload-${idx}`}>
-										<Upload color="primary" className={classes.sListFileIcon} />
-										<input
-											hidden
-											id={`audio-upload-${idx}`}
-											type="file"
-											accept={allowedAudioExtensions.join(',')}
-											onChange={(e) => onFileChange(e, track, idx)}
-										/>
-									</label>
-								)}
-							</IconButton>
+							<Tooltip
+								title={t<string>('TOOLTIP:AUDIO_PLAYER.UPLOAD')}
+								placement="top">
+								<IconButton edge="end">
+									{phoneConfigs && phoneConfigs.updating && audioIdx === idx ? (
+										<CircularProgress size={20} />
+									) : (
+										<label htmlFor={`audio-upload-${idx}`}>
+											<Upload
+												color="primary"
+												className={classes.sListFileIcon}
+											/>
+											<input
+												hidden
+												id={`audio-upload-${idx}`}
+												type="file"
+												accept={allowedAudioExtensions.join(',')}
+												onChange={(e) => onFileChange(e, track, idx)}
+											/>
+										</label>
+									)}
+								</IconButton>
+							</Tooltip>
 						) : null
 					}>
 					<ListItemButton onClick={() => onListItemSelection(idx)}>

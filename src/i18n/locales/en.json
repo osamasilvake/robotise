@@ -62,13 +62,16 @@
 	},
 	"TOOLTIP": {
 		"EDIT": "Edit",
-		"ALERTS": {
-			"COPY_CLIPBOARD": "Copy to clipboard",
-			"DOCS_LINK": "Show more detail"
-		},
 		"DRAWER": {
 			"OPEN": "Open Drawer",
 			"CLOSE": "Close Drawer"
+		},
+		"AUDIO_PLAYER": {
+			"UPLOAD": "Upload Audio"
+		},
+		"ALERTS": {
+			"COPY_CLIPBOARD": "Copy to clipboard",
+			"DOCS_LINK": "Show more detail"
 		},
 		"NOTIFICATION": {
 			"ADD": "Add Notification",
@@ -1776,7 +1779,49 @@
 						},
 						"MAC_ADDRESS": {
 							"LABEL": "MAC Address",
-							"PLACEHOLDER": "Enter MAC Address"
+							"PLACEHOLDER": "Enter MAC Address",
+							"VALIDATIONS": {
+								"INVALID": "Invalid Mac Address format."
+							}
+						},
+						"HIDDEN_NETWORK": {
+							"LABEL": "Hidden Network"
+						},
+						"IP_CONFIG": {
+							"LABEL": "IP Configuration"
+						},
+						"ADDRESS": {
+							"LABEL": "Address",
+							"PLACEHOLDER": "Enter Address",
+							"VALIDATIONS": {
+								"REQUIRED": "Address is required.",
+								"INVALID": "Invalid Address format."
+							}
+						},
+						"NETMASK": {
+							"LABEL": "Netmask",
+							"PLACEHOLDER": "Enter Netmask",
+							"VALIDATIONS": {
+								"REQUIRED": "Netmask is required.",
+								"INVALID": "Invalid Netmask format."
+							}
+						},
+						"GATEWAY": {
+							"LABEL": "Gateway",
+							"PLACEHOLDER": "Enter Gateway",
+							"VALIDATIONS": {
+								"REQUIRED": "Gateway is required.",
+								"INVALID": "Invalid Gateway format."
+
+							}
+						},
+						"DNS_SERVER": {
+							"LABEL": "DNS Server",
+							"PLACEHOLDER": "Enter DNS Server",
+							"VALIDATIONS": {
+								"REQUIRED": "DNS Server is required.",
+								"INVALID": "Invalid DNS Server format."
+							}
 						}
 					},
 					"BUTTONS": {

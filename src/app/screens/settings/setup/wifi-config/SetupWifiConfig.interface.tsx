@@ -6,4 +6,10 @@ export interface SetupWifiConfigFormInterface {
 	pskPassword?: string;
 	regMacAddress?: string;
 	macAddress?: string;
+	hiddenNetwork?: boolean;
+	ipConfig: string;
+	address?: string;
+	netmask?: string;
+	gateway?: string;
+	dnsServer?: string;
 }

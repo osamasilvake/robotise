@@ -1,7 +1,7 @@
 export interface SetupWifiConfigFormInterface {
 	site: string;
 	ssid: string;
-	country: string;
+	country?: { id: string; title: string };
 	authentication: string;
 	pskPassword?: string;
 	regMacAddress?: string;

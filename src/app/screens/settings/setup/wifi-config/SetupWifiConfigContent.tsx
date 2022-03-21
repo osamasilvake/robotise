@@ -1,4 +1,5 @@
 import {
+	Autocomplete,
 	Button,
 	Card,
 	CardContent,
@@ -41,6 +42,7 @@ const SetupWifiConfigContent: FC = () => {
 	const {
 		handleChangeInput,
 		handleChangeSelect,
+		handleChangeAutoComplete,
 		handleChangeCheckbox,
 		handleBlur,
 		handleSubmit,
@@ -50,7 +52,7 @@ const SetupWifiConfigContent: FC = () => {
 		{
 			site: '',
 			ssid: '',
-			country: countriesList[0].code,
+			country: countriesList[0],
 			authentication: authenticationMethods[0].id,
 			pskPassword: '',
 			regMacAddress: registeredMacAddress[0].id,
@@ -76,7 +78,7 @@ const SetupWifiConfigContent: FC = () => {
 			const payload = {
 				[values.site]: {
 					ssid: values.ssid,
-					country: values.country,
+					country: values.country?.id,
 					auth: values.authentication,
 					psk:
 						values.authentication === SetupWifiConfigAuthenticationTypeEnum.PSK
@@ -169,22 +171,22 @@ const SetupWifiConfigContent: FC = () => {
 
 						<Grid item xs={12}>
 							<FormControl fullWidth margin="normal">
-								<InputLabel id="label-country">
-									{t(`${translation}.FORM.FIELDS.COUNTRY.LABEL`)}
-								</InputLabel>
-								<Select
-									labelId="label-country"
+								<Autocomplete
+									disablePortal
+									disableClearable
 									id="country"
-									name="country"
-									label={t(`${translation}.FORM.FIELDS.COUNTRY.LABEL`)}
+									options={countriesList}
+									getOptionLabel={(option) => option.title}
 									value={values.country}
-									onChange={handleChangeSelect}>
-									{countriesList.map((country) => (
-										<MenuItem key={country.code} value={country.code}>
-											{country.name}
-										</MenuItem>
-									))}
-								</Select>
+									onChange={handleChangeAutoComplete}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											label={t(`${translation}.FORM.FIELDS.COUNTRY.LABEL`)}
+										/>
+									)}
+									sx={{ minWidth: 250 }}
+								/>
 							</FormControl>
 						</Grid>
 

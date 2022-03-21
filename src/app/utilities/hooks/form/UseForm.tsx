@@ -1,5 +1,5 @@
 import { SelectChangeEvent } from '@mui/material/Select';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, SyntheticEvent, useState } from 'react';
 
 import { TargetInterface, UseFormRetInterface } from './UseForm.interface';
 
@@ -82,6 +82,16 @@ export const useForm = <UseFormEntity,>(
 		name && value && setChangeEventValues(name, value);
 	};
 
+	const handleChangeAutoComplete = <T,>(event: SyntheticEvent, option: T) => {
+		const id = (event.target as Element)?.id;
+		const name = id?.split('-')[0];
+		if (!name) return;
+		const value = option;
+
+		// set change event values
+		name && value && setChangeEventValues(name, value);
+	};
+
 	/**
 	 * set change event values
 	 * @param name
@@ -142,6 +152,7 @@ export const useForm = <UseFormEntity,>(
 		handleChangeSelect,
 		handleBlur,
 		handleSubmit,
+		handleChangeAutoComplete,
 		values,
 		errors
 	};

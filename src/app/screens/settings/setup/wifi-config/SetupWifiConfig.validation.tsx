@@ -17,7 +17,6 @@ export const WifiConfigValidation = (
 	const errors: SetupWifiConfigFormInterface = {
 		site: '',
 		ssid: '',
-		country: '',
 		authentication: '',
 		macAddress: '',
 		ipConfig: '',

@@ -10,5 +10,12 @@ export const SetupWifiConfigStyle = makeStyles((theme: Theme) => ({
 	},
 	sSubmit: {
 		marginTop: theme.spacing(1)
+	},
+	sPreviewButton: {
+		cursor: 'default',
+		marginLeft: theme.spacing(1)
+	},
+	sPreview: {
+		whiteSpace: 'pre-wrap'
 	}
 }));

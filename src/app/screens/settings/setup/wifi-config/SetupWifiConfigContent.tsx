@@ -1,3 +1,4 @@
+import { Visibility } from '@mui/icons-material';
 import {
 	Autocomplete,
 	Button,
@@ -11,6 +12,7 @@ import {
 	MenuItem,
 	Select,
 	TextField,
+	Tooltip,
 	Typography
 } from '@mui/material';
 import { FC } from 'react';
@@ -18,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import YAML from 'yaml';
 
 import { useForm } from '../../../../utilities/hooks/form/UseForm';
+import { removeEmptyObjProperties } from '../../../../utilities/methods/Object';
 import {
 	SetupWifiConfigAuthenticationTypeEnum,
 	SetupWifiConfigIpConfigTypeEnum,
@@ -66,38 +69,53 @@ const SetupWifiConfigContent: FC = () => {
 		},
 		WifiConfigValidation,
 		async () => {
-			// ip config
-			const ipConfiguration = values.ipConfig === SetupWifiConfigIpConfigTypeEnum.STATIC && {
-				static_ip_config: true,
-				address: `${values.address}/${netmaskToCidr(String(values.netmask))}`,
-				gateway: values.gateway,
-				dnsServer: values.dnsServer
-			};
-
-			// payload
-			const payload = {
-				[values.site]: {
-					ssid: values.ssid,
-					country: values.country?.id,
-					auth: values.authentication,
-					psk:
-						values.authentication === SetupWifiConfigAuthenticationTypeEnum.PSK
-							? values.pskPassword || undefined
-							: undefined,
-					mac:
-						values.authentication === SetupWifiConfigAuthenticationTypeEnum.OPEN &&
-						values.regMacAddress === SetupWifiConfigRegisteredMacAddressTypeEnum.YES
-							? values.macAddress || undefined
-							: undefined,
-					hidden: +!!values.hiddenNetwork,
-					...ipConfiguration
-				}
-			};
+			// generate YAML
+			const payload = generateYAML();
 
 			// download YAML file
-			downloadYAML(YAML.stringify(payload));
+			downloadYAML(payload);
 		}
 	);
+
+	const generateYAML = () => {
+		// ip config
+		const ipConfiguration = values.ipConfig === SetupWifiConfigIpConfigTypeEnum.STATIC && {
+			static_ip_config: true,
+			address:
+				values.address && values.netmask
+					? `${values.address}/${netmaskToCidr(values.netmask)}`
+					: undefined,
+			gateway: values.gateway,
+			dnsServer: values.dnsServer
+		};
+
+		// psk
+		const psk = values.authentication === SetupWifiConfigAuthenticationTypeEnum.PSK &&
+			values.pskPassword && {
+				psk: values.pskPassword
+			};
+
+		// mac
+		const mac = values.authentication === SetupWifiConfigAuthenticationTypeEnum.OPEN &&
+			values.regMacAddress === SetupWifiConfigRegisteredMacAddressTypeEnum.YES &&
+			values.macAddress && {
+				mac: values.macAddress
+			};
+
+		// payload
+		const payload = {
+			[values.site || 'Site']: removeEmptyObjProperties({
+				ssid: values.ssid,
+				country: values.country?.id,
+				auth: values.authentication,
+				...psk,
+				...mac,
+				hidden: +!!values.hiddenNetwork,
+				...ipConfiguration
+			})
+		};
+		return YAML.stringify(payload);
+	};
 
 	/**
 	 * netmask to cidr
@@ -411,6 +429,22 @@ const SetupWifiConfigContent: FC = () => {
 							<Button variant="outlined" type="submit">
 								{t(`${translation}.FORM.BUTTONS.DOWNLOAD`)}
 							</Button>
+
+							<Tooltip
+								title={
+									<Typography variant="body2" className={classes.sPreview}>
+										{generateYAML()}
+									</Typography>
+								}
+								placement="top">
+								<Button
+									variant="text"
+									type="button"
+									className={classes.sPreviewButton}
+									endIcon={<Visibility />}>
+									{t(`${translation}.FORM.BUTTONS.PREVIEW`)}
+								</Button>
+							</Tooltip>
 						</Grid>
 					</Grid>
 				</form>

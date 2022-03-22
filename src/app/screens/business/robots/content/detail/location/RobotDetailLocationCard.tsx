@@ -46,14 +46,12 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	>([]);
 
 	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
-	const robotMapName = robotOperations.map.content?.name || '';
+	const robotMapUpdatedAt = robotOperations.map.content?.updatedAt;
 
 	useEffect(() => {
-		if (robotTwinsMapName !== robotMapName) {
-			// dispatch: fetch robot map
-			dispatch(RobotMapFetch(robotTwinsMapName));
-		}
-	}, [dispatch, robotTwinsMapName, robotMapName]);
+		// dispatch: fetch robot map
+		dispatch(RobotMapFetch(robotTwinsMapName));
+	}, [dispatch, robotTwinsMapName]);
 
 	useEffect(() => {
 		const origin = robotOperations.map.content?.origin;
@@ -129,7 +127,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 				<CardContent className={cardClasses.sCardContent0}>
 					<Box className={clsx({ [classes.sCardGridLines]: grid })}>
 						<Picture
-							src={robotLocationImageUrl(robotTwinsMapName)}
+							src={robotLocationImageUrl(robotTwinsMapName, robotMapUpdatedAt)}
 							alt={robotTwinsMapName}
 							onLoad={onLoad}
 							fullWidth

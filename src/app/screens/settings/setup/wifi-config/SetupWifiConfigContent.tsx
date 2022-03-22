@@ -86,7 +86,7 @@ const SetupWifiConfigContent: FC = () => {
 					? `${values.address}/${netmaskToCidr(values.netmask)}`
 					: undefined,
 			gateway: values.gateway,
-			dnsServer: values.dnsServer
+			dns_server: values.dnsServer
 		};
 
 		// psk

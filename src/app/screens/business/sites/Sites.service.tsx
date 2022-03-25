@@ -48,7 +48,7 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	siteRobotCreate = (payload: DialogCreateSiteFormInterface) => {
+	siteCreate = (payload: DialogCreateSiteFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.ALL;
 		return HttpClientService.post<
 			SiteCreateAxiosPostRequestInterface,
@@ -473,6 +473,9 @@ class SitesService {
 			data: {
 				type: 'sites',
 				attributes: {
+					title: payload.title,
+					timezone: payload.timezone,
+					currency: payload.currency,
 					configs: {
 						helpPage: payload.helpPage,
 						isHidden: payload.isHidden,

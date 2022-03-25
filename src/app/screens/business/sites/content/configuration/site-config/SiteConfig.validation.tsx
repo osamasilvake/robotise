@@ -11,9 +11,20 @@ export const SiteConfigValidation = (
 ): SiteConfigFormInterface => {
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG.FORM.FIELDS';
 	const errors: SiteConfigFormInterface = {
+		title: '',
+		timezone: '',
+		currency: '',
 		helpPage: '',
 		availableOrderModes: []
 	};
+
+	// Title
+	if (touched.title) {
+		// required
+		if (!values.title) {
+			errors.title = `${translation}.TITLE.VALIDATIONS.REQUIRED`;
+		}
+	}
 
 	// Help Page
 	if (touched.helpPage) {

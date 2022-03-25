@@ -141,7 +141,7 @@ export const SiteCreate =
 		// dispatch: updating
 		dispatch(updating());
 
-		return SitesService.siteRobotCreate(payload)
+		return SitesService.siteCreate(payload)
 			.then(async () => {
 				// wait
 				await timeout(1000);

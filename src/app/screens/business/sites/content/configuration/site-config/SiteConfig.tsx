@@ -8,6 +8,9 @@ import {
 	FormControlLabel,
 	FormHelperText,
 	Grid,
+	InputLabel,
+	MenuItem,
+	Select,
 	Switch,
 	TextField,
 	Typography
@@ -17,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppConfigService } from '../../../../../../services';
 import { generalOperationsSelector } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { SiteConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
@@ -40,18 +44,24 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 	const orderModesList = generalOperations.orderModes.content?.data?.map((m) => m.mode);
+	const currencies = AppConfigService.AppOptions.common.currencies;
+	const timezones = AppConfigService.AppOptions.common.timezones;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
 
 	const {
 		handleChangeInput,
 		handleChangeInputs,
-		handleBlur,
+		handleChangeSelect,
 		handleChangeCheckbox,
+		handleBlur,
 		handleSubmit,
 		values,
 		errors
 	} = useForm<SiteConfigFormInterface>(
 		{
+			title: siteSingle?.title || '',
+			timezone: siteSingle?.timezone || AppConfigService.AppOptions.common.timezones[0].id,
+			currency: siteSingle?.currency || AppConfigService.AppOptions.common.currencies[0].id,
 			helpPage: siteSingle?.configs.helpPage || '',
 			isHidden: !!siteSingle?.configs.isHidden,
 			availableOrderModes: siteSingle?.configs.availableOrderModes || []
@@ -89,6 +99,63 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 							<FormControl fullWidth margin="normal">
 								<TextField
 									required
+									type="string"
+									id="title"
+									name="title"
+									label={t(`${translation}.FORM.FIELDS.TITLE.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.TITLE.PLACEHOLDER`)}
+									value={values?.title}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.title}
+									helperText={errors?.title && t(errors.title)}
+								/>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<FormControl fullWidth margin="normal">
+								<InputLabel id="label-currencyId">
+									{t(`${translation}.FORM.FIELDS.CURRENCY.LABEL`)}
+								</InputLabel>
+								<Select
+									labelId="label-currencyId"
+									id="currency"
+									name="currency"
+									label={t(`${translation}.FORM.FIELDS.CURRENCY.LABEL`)}
+									value={values.currency}
+									onChange={handleChangeSelect}>
+									{currencies.map((currency) => (
+										<MenuItem key={currency.id} value={currency.id}>
+											{currency.name}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<FormControl fullWidth margin="normal">
+								<InputLabel id="label-timezoneId">
+									{t(`${translation}.FORM.FIELDS.TIMEZONE.LABEL`)}
+								</InputLabel>
+								<Select
+									labelId="label-timezoneId"
+									id="timezone"
+									name="timezone"
+									label={t(`${translation}.FORM.FIELDS.TIMEZONE.LABEL`)}
+									value={values.timezone}
+									onChange={handleChangeSelect}>
+									{timezones.map((timezone) => (
+										<MenuItem key={timezone.id} value={timezone.id}>
+											{timezone.name}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12}>
+							<FormControl fullWidth margin="normal">
+								<TextField
+									required
 									type="text"
 									id="helpPage"
 									name="helpPage"
@@ -106,33 +173,40 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 						</Grid>
 						{orderModesList && (
 							<Grid item xs={12}>
-								<Autocomplete
-									disablePortal
-									multiple
-									id="availableOrderModes"
-									options={orderModesList}
-									getOptionLabel={(option) => t(`GENERAL:COMMON.MODE.${option}`)}
-									defaultValue={siteSingle?.configs.availableOrderModes || []}
-									isOptionEqualToValue={(option, value) => option === value}
-									onChange={(_, values) =>
-										handleChangeInputs('availableOrderModes', values)
-									}
-									onBlur={handleBlur}
-									renderInput={(params) => (
-										<TextField
-											{...params}
-											label={t(`${translation}.FORM.FIELDS.ORDER_MODE.LABEL`)}
-											placeholder={t(
-												`${translation}.FORM.FIELDS.ORDER_MODE.PLACEHOLDER`
-											)}
-											error={!!errors?.availableOrderModes[0]}
-											helperText={
-												errors?.availableOrderModes[0] &&
-												t(errors.availableOrderModes[0])
-											}
-										/>
-									)}
-								/>
+								<FormControl fullWidth margin="normal">
+									<Autocomplete
+										disablePortal
+										multiple
+										id="availableOrderModes"
+										options={orderModesList}
+										getOptionLabel={(option) =>
+											t(`GENERAL:COMMON.MODE.${option}`)
+										}
+										defaultValue={siteSingle?.configs.availableOrderModes || []}
+										isOptionEqualToValue={(option, value) => option === value}
+										onChange={(_, values) =>
+											handleChangeInputs('availableOrderModes', values)
+										}
+										onBlur={handleBlur}
+										renderInput={(params) => (
+											<TextField
+												{...params}
+												label={t(
+													`${translation}.FORM.FIELDS.ORDER_MODE.LABEL`
+												)}
+												placeholder={t(
+													`${translation}.FORM.FIELDS.ORDER_MODE.PLACEHOLDER`
+												)}
+												error={!!errors?.availableOrderModes[0]}
+												helperText={
+													errors?.availableOrderModes[0] &&
+													t(errors.availableOrderModes[0])
+												}
+											/>
+										)}
+									/>
+								</FormControl>
+
 								<FormHelperText className={classes.sFormHelperText}>
 									{t(`${translation}.FORM.FIELDS.ORDER_MODE.NOTE`)}
 									{values.availableOrderModes[0] && (

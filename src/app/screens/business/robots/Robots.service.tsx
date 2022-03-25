@@ -57,7 +57,7 @@ class RobotsService {
 	 * @param payload
 	 * @returns
 	 */
-	robotRobotCreate = (payload: DialogCreateRobotFormInterface) => {
+	robotCreate = (payload: DialogCreateRobotFormInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ALL;
 		return HttpClientService.post<
 			RobotCreateAxiosPostRequestInterface,

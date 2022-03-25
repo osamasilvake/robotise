@@ -7,6 +7,9 @@ export interface SiteConfigInterface {
 }
 
 export interface SiteConfigFormInterface {
+	title: string;
+	timezone: string;
+	currency: string;
 	helpPage: string;
 	isHidden?: boolean;
 	availableOrderModes: string[];

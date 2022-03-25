@@ -145,7 +145,7 @@ export const RobotCreate =
 		// dispatch: updating
 		dispatch(updating());
 
-		return RobotsService.robotRobotCreate(payload)
+		return RobotsService.robotCreate(payload)
 			.then(async () => {
 				// wait
 				await timeout(1000);

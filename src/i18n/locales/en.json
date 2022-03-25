@@ -862,6 +862,19 @@
 					"EXCERPT": "Update Site detail.",
 					"FORM": {
 						"FIELDS": {
+							"TITLE": {
+								"LABEL": "Title",
+								"PLACEHOLDER": "Enter site name",
+								"VALIDATIONS": {
+									"REQUIRED": "Name is required."
+								}
+							},
+							"CURRENCY": {
+								"LABEL": "Currency"
+							},
+							"TIMEZONE": {
+								"LABEL": "Timezone"
+							},
 							"HELP_PAGE": {
 								"LABEL": "Help Page Id",
 								"PLACEHOLDER": "Enter Help Page Id",

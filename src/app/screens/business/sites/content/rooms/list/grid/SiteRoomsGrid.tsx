@@ -8,15 +8,13 @@ import {
 	Typography
 } from '@mui/material';
 import clsx from 'clsx';
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 
 import PageEmpty from '../../../../../../../components/content/page-empty/PageEmpty';
 import { AppConfigService } from '../../../../../../../services';
-import { RoomsUpdate } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
-import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
+import DialogToggleRoomState from './DialogToggleRoomState';
 import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';
 import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
 
@@ -26,9 +24,9 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const classes = SiteRoomsGridStyle();
 	const cardClasses = CardStyle();
 
-	const dispatch = useDispatch();
-
 	const [result, setResult] = useState<SiteRoomsGridGroupAccInterface | null>(null);
+	const [confirmRoomState, setConfirmRoomState] = useState(false);
+	const [checkedState, setCheckedState] = useState({ room: '', checked: false });
 
 	const allRooms = siteSingle.rooms.available;
 	const allWhitelist = siteSingle.rooms.whitelist;
@@ -70,28 +68,6 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 		groupedRooms && setResult(groupedRooms);
 	}, [allRooms, allWhitelist, active, inactive]);
 
-	/**
-	 * handle room state
-	 * @param room
-	 * @returns
-	 */
-	const handleRoomState = (room: string) => (event: ChangeEvent<HTMLInputElement>) => {
-		// return on empty
-		if (!siteSingle?.id) return;
-
-		const whitelist = event.target.checked
-			? allWhitelist.filter((r) => r !== room)
-			: [...allWhitelist, room];
-
-		// dispatch: update room state
-		dispatch(
-			RoomsUpdate(siteSingle.id, { whitelist }, () => {
-				// dispatch: fetch sites
-				dispatch(SitesFetchList(true));
-			})
-		);
-	};
-
 	return result ? (
 		<>
 			{Object.keys(result).map((key, idx) => (
@@ -128,7 +104,13 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 													<Checkbox
 														name="room"
 														checked={!allWhitelist?.includes(room)}
-														onChange={handleRoomState(room)}
+														onChange={(e) => {
+															setConfirmRoomState(true);
+															setCheckedState({
+																room,
+																checked: e.target.checked
+															});
+														}}
 														style={{
 															color: AppConfigService.AppOptions
 																.colors.c15
@@ -153,6 +135,17 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 					)}
 				</Box>
 			))}
+
+			{/* Dialog: Confirm Room State */}
+			{confirmRoomState && (
+				<DialogToggleRoomState
+					open={confirmRoomState}
+					setOpen={setConfirmRoomState}
+					checkedState={checkedState}
+					siteSingle={siteSingle}
+					allWhitelist={allWhitelist}
+				/>
+			)}
 
 			{/* Empty */}
 			{Object.keys(result).length === 0 && <PageEmpty message="EMPTY.MESSAGE" paddingTop />}

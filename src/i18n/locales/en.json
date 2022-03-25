@@ -668,7 +668,11 @@
 					"GRID": {
 						"BLOCKED": "Blocked",
 						"FLOOR": "Floor",
-						"ROOM": "Room"
+						"ROOM": "Room",
+						"ROOM_STATE": {
+							"TITLE": "Room {{value}}",
+							"TEXT":"Are you sure you want to update the room state?"
+						}
 					}
 				}
 			},

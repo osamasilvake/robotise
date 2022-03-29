@@ -33,10 +33,11 @@ export interface ISite {
 	createdAt: Date;
 	updatedAt: Date;
 	configs: {
-		helpPage: string;
-		isHidden: boolean;
-		availableOrderModes: string[];
 		defaultOrderMode: string;
+		availableOrderModes: string[];
+		helpPage: string;
+		qrOrdersEnabled: boolean;
+		isHidden: boolean;
 	};
 	rooms: {
 		available: string[];

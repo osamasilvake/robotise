@@ -14,8 +14,8 @@ export const SiteConfigValidation = (
 		title: '',
 		timezone: '',
 		currency: '',
-		helpPage: '',
-		availableOrderModes: []
+		availableOrderModes: [],
+		helpPage: ''
 	};
 
 	// Title
@@ -26,18 +26,18 @@ export const SiteConfigValidation = (
 		}
 	}
 
+	// Order Mode
+	if (touched.availableOrderModes) {
+		if (values.availableOrderModes.length < 1) {
+			errors.availableOrderModes = [`${translation}.ORDER_MODE.VALIDATIONS.REQUIRED`];
+		}
+	}
+
 	// Help Page
 	if (touched.helpPage) {
 		// required
 		if (!values.helpPage) {
 			errors.helpPage = `${translation}.HELP_PAGE.VALIDATIONS.REQUIRED`;
-		}
-	}
-
-	// Order Mode
-	if (touched.availableOrderModes) {
-		if (values.availableOrderModes.length < 1) {
-			errors.availableOrderModes = [`${translation}.ORDER_MODE.VALIDATIONS.REQUIRED`];
 		}
 	}
 

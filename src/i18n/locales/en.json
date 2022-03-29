@@ -879,13 +879,6 @@
 							"TIMEZONE": {
 								"LABEL": "Timezone"
 							},
-							"HELP_PAGE": {
-								"LABEL": "Help Page Id",
-								"PLACEHOLDER": "Enter Help Page Id",
-								"VALIDATIONS": {
-									"REQUIRED": "Help Page Id is required."
-								}
-							},
 							"ORDER_MODE": {
 								"LABEL": "Order Modes",
 								"PLACEHOLDER": "Select Mode",
@@ -894,7 +887,18 @@
 								},
 								"NOTE": "*Default order mode is the first element in select"
 							},
+							"HELP_PAGE": {
+								"LABEL": "Help Page Id",
+								"PLACEHOLDER": "Enter Help Page Id",
+								"VALIDATIONS": {
+									"REQUIRED": "Help Page Id is required."
+								}
+							},
 							"CHECKBOXES": {
+								"QR_CODE": {
+									"LABEL": "Enable QR Code",
+									"NOTE": "*Allow orders using QR Code!"
+								},
 								"HIDDEN": {
 									"LABEL": "Hide Site",
 									"NOTE": "*Whether to show site in the ROC sites list!"

@@ -62,9 +62,10 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			title: siteSingle?.title || '',
 			timezone: siteSingle?.timezone || AppConfigService.AppOptions.common.timezones[0].id,
 			currency: siteSingle?.currency || AppConfigService.AppOptions.common.currencies[0].id,
+			availableOrderModes: siteSingle?.configs.availableOrderModes || [],
 			helpPage: siteSingle?.configs.helpPage || '',
-			isHidden: !!siteSingle?.configs.isHidden,
-			availableOrderModes: siteSingle?.configs.availableOrderModes || []
+			qrOrdersEnabled: !!siteSingle?.configs.qrOrdersEnabled,
+			isHidden: !!siteSingle?.configs.isHidden
 		},
 		SiteConfigValidation,
 		async () => {
@@ -152,25 +153,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</Select>
 							</FormControl>
 						</Grid>
-						<Grid item xs={12}>
-							<FormControl fullWidth margin="normal">
-								<TextField
-									required
-									type="text"
-									id="helpPage"
-									name="helpPage"
-									label={t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
-									placeholder={t(
-										`${translation}.FORM.FIELDS.HELP_PAGE.PLACEHOLDER`
-									)}
-									value={values?.helpPage}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
-									error={!!errors?.helpPage}
-									helperText={errors?.helpPage && t(errors.helpPage)}
-								/>
-							</FormControl>
-						</Grid>
 						{orderModesList && (
 							<Grid item xs={12}>
 								<FormControl fullWidth margin="normal">
@@ -207,7 +189,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 									/>
 								</FormControl>
 
-								<FormHelperText className={classes.sFormHelperText}>
+								<FormHelperText>
 									{t(`${translation}.FORM.FIELDS.ORDER_MODE.NOTE`)}
 									{values.availableOrderModes[0] && (
 										<>: ({values.availableOrderModes[0]})</>
@@ -215,6 +197,44 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormHelperText>
 							</Grid>
 						)}
+						<Grid item xs={12}>
+							<FormControl fullWidth margin="normal">
+								<TextField
+									required
+									type="text"
+									id="helpPage"
+									name="helpPage"
+									label={t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
+									placeholder={t(
+										`${translation}.FORM.FIELDS.HELP_PAGE.PLACEHOLDER`
+									)}
+									value={values?.helpPage}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.helpPage}
+									helperText={errors?.helpPage && t(errors.helpPage)}
+								/>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12}>
+							<FormControl>
+								<FormControlLabel
+									control={
+										<Switch
+											name="qrOrdersEnabled"
+											checked={values.qrOrdersEnabled}
+											onChange={handleChangeCheckbox}
+										/>
+									}
+									label={t<string>(
+										`${translation}.FORM.FIELDS.CHECKBOXES.QR_CODE.LABEL`
+									)}
+								/>
+								<FormHelperText>
+									{t(`${translation}.FORM.FIELDS.CHECKBOXES.QR_CODE.NOTE`)}
+								</FormHelperText>
+							</FormControl>
+						</Grid>
 						<Grid item xs={12}>
 							<FormControl>
 								<FormControlLabel
@@ -229,11 +249,12 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.LABEL`
 									)}
 								/>
-								<FormHelperText className={classes.sFormHelperText}>
+								<FormHelperText>
 									{t(`${translation}.FORM.FIELDS.CHECKBOXES.HIDDEN.NOTE`)}
 								</FormHelperText>
 							</FormControl>
 						</Grid>
+
 						<Grid item xs={12} className={classes.sSubmit}>
 							<Button
 								variant="outlined"

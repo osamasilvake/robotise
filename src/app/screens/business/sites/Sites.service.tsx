@@ -477,10 +477,11 @@ class SitesService {
 					timezone: payload.timezone,
 					currency: payload.currency,
 					configs: {
-						helpPage: payload.helpPage,
-						isHidden: payload.isHidden,
+						defaultOrderMode: payload.defaultOrderMode,
 						availableOrderModes: payload.availableOrderModes,
-						defaultOrderMode: payload.defaultOrderMode
+						helpPage: payload.helpPage,
+						qrOrdersEnabled: payload.qrOrdersEnabled,
+						isHidden: payload.isHidden
 					}
 				}
 			}

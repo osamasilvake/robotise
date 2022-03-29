@@ -7,6 +7,7 @@ import {
 	DialogContentText,
 	DialogTitle,
 	FormControl,
+	Grid,
 	InputLabel,
 	MenuItem,
 	Select,
@@ -60,7 +61,8 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 				from: phoneConfig?.from || '',
 				mode: phoneConfig?.mode || SiteEditConfigModeTypeEnum.MINI_BAR,
 				outboundPattern: phoneConfig?.sip?.outboundPattern || '',
-				callbackRetries: String(phoneConfig?.callbackRetries) || '0'
+				callbackRetries: String(phoneConfig?.callbackRetries) || '0',
+				smsGateway: phoneConfig?.smsGateway || ''
 			},
 			EditPhoneConfigValidation,
 			async () => {
@@ -90,7 +92,7 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 
 	return (
 		<>
-			<Dialog open={open} onClose={() => setOpen(false)}>
+			<Dialog open={open} onClose={() => setOpen(false)} fullWidth>
 				<form onSubmit={handleSubmit}>
 					<DialogTitle>{t(`${translation}.TITLE`)}</DialogTitle>
 					<DialogContent>
@@ -128,47 +130,67 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 							/>
 						</FormControl>
 
-						<FormControl fullWidth margin="normal">
-							<InputLabel id="label-mode">
-								{t(`${translation}.FIELDS.MODE.LABEL`)}
-							</InputLabel>
-							<Select
-								required
-								labelId="label-mode"
-								id="mode"
-								name="mode"
-								label={t(`${translation}.FIELDS.MODE.LABEL`)}
-								value={values.mode}
-								onChange={handleChangeSelect}
-								onBlur={handleBlur}>
-								{(orderModesList || [])?.map((m) => (
-									<MenuItem key={m} value={m}>
-										{t(`GENERAL:COMMON.MODE.${m}`)}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
+						<Grid container spacing={1}>
+							<Grid item xs={12} sm={6}>
+								<FormControl fullWidth margin="normal">
+									<InputLabel id="label-mode">
+										{t(`${translation}.FIELDS.MODE.LABEL`)}
+									</InputLabel>
+									<Select
+										required
+										labelId="label-mode"
+										id="mode"
+										name="mode"
+										label={t(`${translation}.FIELDS.MODE.LABEL`)}
+										value={values.mode}
+										onChange={handleChangeSelect}
+										onBlur={handleBlur}>
+										{(orderModesList || [])?.map((m) => (
+											<MenuItem key={m} value={m}>
+												{t(`GENERAL:COMMON.MODE.${m}`)}
+											</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							</Grid>
+							<Grid item xs={12} sm={6}>
+								<FormControl fullWidth margin="normal">
+									<TextField
+										required
+										type="number"
+										id="callbackRetries"
+										name="callbackRetries"
+										label={t(`${translation}.FIELDS.CALLBACK_RETRIES.LABEL`)}
+										placeholder={t(
+											`${translation}.FIELDS.CALLBACK_RETRIES.PLACEHOLDER`
+										)}
+										value={values.callbackRetries}
+										onChange={handleChangeInput}
+										onBlur={handleBlur}
+										error={!!errors?.callbackRetries}
+										helperText={
+											errors &&
+											typeof errors.callbackRetries === 'string' &&
+											t(errors.callbackRetries)
+										}
+										InputProps={{ inputProps: { min: 0, max: 10 } }}
+									/>
+								</FormControl>
+							</Grid>
+						</Grid>
 
 						<FormControl fullWidth margin="normal">
 							<TextField
-								required
-								type="number"
-								id="callbackRetries"
-								name="callbackRetries"
-								label={t(`${translation}.FIELDS.CALLBACK_RETRIES.LABEL`)}
-								placeholder={t(
-									`${translation}.FIELDS.CALLBACK_RETRIES.PLACEHOLDER`
-								)}
-								value={values.callbackRetries}
+								type="string"
+								id="smsGateway"
+								name="smsGateway"
+								label={t(`${translation}.FIELDS.SMS_GATEWAY.LABEL`)}
+								placeholder={t(`${translation}.FIELDS.SMS_GATEWAY.PLACEHOLDER`)}
+								value={values?.smsGateway}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
-								error={!!errors?.callbackRetries}
-								helperText={
-									errors &&
-									typeof errors.callbackRetries === 'string' &&
-									t(errors.callbackRetries)
-								}
-								InputProps={{ inputProps: { min: 0, max: 10 } }}
+								error={!!errors?.smsGateway}
+								helperText={errors?.smsGateway && t(errors.smsGateway)}
 							/>
 						</FormControl>
 

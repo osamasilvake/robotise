@@ -714,6 +714,13 @@
 										"REQUIRED": "Valid positive number is required.",
 										"LIMIT_EXCEEDED": "Max. callback retries allowed are 10."
 									}
+								},
+								"SMS_GATEWAY": {
+									"LABEL": "SMS Gateway",
+									"PLACEHOLDER": "Format: +49221277208",
+									"VALIDATIONS": {
+										"INVALID": "Invalid format"
+									}
 								}
 							}
 						}
@@ -736,6 +743,7 @@
 						"ROOMS_MAPPING": "Rooms Mapping",
 						"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback",
 						"CALLBACK_RETRIES": "Callback Retries",
+						"SMS_GATEWAY": "SMS Gateway",
 						"SIP_CONFIG": {
 							"OUTBOUND_PATTERN": "Outbound Pattern"
 						}

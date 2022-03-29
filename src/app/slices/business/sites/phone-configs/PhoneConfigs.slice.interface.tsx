@@ -25,6 +25,7 @@ export interface PCCDataInterface {
 	workflow: string;
 	disableRoomsCallback: string[];
 	callbackRetries: number;
+	smsGateway: string;
 	sip: { outboundPattern: string };
 	roomsMapping: PCCDataRoomsMappingInterface;
 	messages: PCCDataMessagesInterface;

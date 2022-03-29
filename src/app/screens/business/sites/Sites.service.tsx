@@ -195,7 +195,8 @@ class SitesService {
 					from: payload.from,
 					mode: payload.mode,
 					sip: { outboundPattern: payload?.outboundPattern || '' },
-					callbackRetries: payload.callbackRetries
+					callbackRetries: payload.callbackRetries,
+					smsGateway: payload.smsGateway
 				}
 			}
 		});

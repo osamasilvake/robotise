@@ -89,8 +89,16 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				<Box>{item.callbackRetries || 0}</Box>
 			</Grid>
 
+			{/* SMS Gateway */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.SMS_GATEWAY`)}
+				</Typography>
+				<Box>{item.smsGateway || AppConfigService.AppOptions.common.none}</Box>
+			</Grid>
+
 			{/* Outbound Pattern */}
-			<Grid item xs={12} sm={6} md={4} lg={6}>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.SIP_CONFIG.OUTBOUND_PATTERN`)}
 				</Typography>

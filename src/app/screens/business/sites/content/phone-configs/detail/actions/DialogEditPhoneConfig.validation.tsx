@@ -19,7 +19,8 @@ export const EditPhoneConfigValidation = (
 		from: '',
 		mode: '',
 		outboundPattern: '',
-		callbackRetries: ''
+		callbackRetries: '',
+		smsGateway: ''
 	};
 
 	// Prefixes
@@ -30,7 +31,7 @@ export const EditPhoneConfigValidation = (
 		}
 
 		// invalid
-		if (!regexPhoneCommaSeparated.test(values.prefixes)) {
+		if (values.prefixes && !regexPhoneCommaSeparated.test(values.prefixes)) {
 			errors.prefixes = `${translation}.FIELDS.PREFIXES.VALIDATIONS.INVALID`;
 		}
 	}
@@ -43,7 +44,7 @@ export const EditPhoneConfigValidation = (
 		}
 
 		// invalid
-		if (!regexPhone.test(values.from)) {
+		if (values.from && !regexPhone.test(values.from)) {
 			errors.from = `${translation}.FIELDS.FROM.VALIDATIONS.INVALID`;
 		}
 	}
@@ -58,6 +59,14 @@ export const EditPhoneConfigValidation = (
 		// limit exceeds
 		if (+values.callbackRetries > 10) {
 			errors.callbackRetries = `${translation}.FIELDS.CALLBACK_RETRIES.VALIDATIONS.LIMIT_EXCEEDED`;
+		}
+	}
+
+	// SMS Gateway
+	if (touched.smsGateway) {
+		// invalid
+		if (values.smsGateway && !regexPhone.test(values.smsGateway)) {
+			errors.smsGateway = `${translation}.FIELDS.SMS_GATEWAY.VALIDATIONS.INVALID`;
 		}
 	}
 

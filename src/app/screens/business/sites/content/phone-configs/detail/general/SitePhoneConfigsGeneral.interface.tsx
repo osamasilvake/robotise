@@ -17,6 +17,7 @@ export interface DialogEditPhoneConfigFormInterface {
 	mode: string;
 	outboundPattern: string;
 	callbackRetries: string;
+	smsGateway: string;
 }
 
 export interface SitePhoneConfigUploadAudioInterface {

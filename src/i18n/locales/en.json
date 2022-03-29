@@ -943,11 +943,10 @@
 					"FORM": {
 						"FIELDS": {
 							"DATE_TO": {
-								"LABEL": "Date To",
-								"PLACEHOLDER": "Enter Date To",
-								"VALIDATIONS": {
-									"REQUIRED": "Date To is required."
-								}
+								"LABEL": "Date To"
+							},
+							"TIME_TO": {
+								"LABEL": "Time To"
 							}
 						}
 					}

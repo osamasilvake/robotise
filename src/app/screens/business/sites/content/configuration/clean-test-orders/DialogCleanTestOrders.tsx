@@ -86,7 +86,7 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 					<FormControl fullWidth margin="normal">
 						<LocalizationProvider dateAdapter={AdapterDayJS}>
 							<TimePicker
-								label="Time To"
+								label={t(`${translation}.FORM.FIELDS.TIME_TO.LABEL`)}
 								value={values.timeTo}
 								onChange={(e) => {
 									handleChangeInput({

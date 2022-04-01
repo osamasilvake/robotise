@@ -44,6 +44,7 @@ const appRoutes = {
 		},
 		SETTINGS: {
 			DEEP_LINKS: '/deeplinks',
+			MIDDLEWARE_CONFIG: '/middleware-config',
 			SETUP: {
 				MAIN: '/setup',
 				WIFI_CONFIG: '/setup/wifi-config'

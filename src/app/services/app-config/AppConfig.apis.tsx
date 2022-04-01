@@ -76,7 +76,8 @@ const AppServices = (config: typeof AppConfigService) => {
 					ITEM_TRACKING: `${config.envAppUrl}/deeplinks-request/item-tracking`,
 					ELEVATOR_LOGS: `${config.envAppUrl}/deeplinks-request/elevator-microservice-logs`,
 					ALERT_LOGS: `${config.envAppUrl}/deeplinks-request/robot-alerts-log`
-				}
+				},
+				MIDDLEWARE_CONFIG: `${config.envAppUrl}/cmd-events`
 			},
 			INFORMATION: {
 				ALERT_CODES: `${config.envAppUrl}/active-alert-codes`

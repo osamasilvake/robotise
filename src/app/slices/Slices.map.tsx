@@ -6,6 +6,7 @@ import { SPContentInterface } from './business/robots/purchases/Purchases.slice.
 import { PCContentInterface } from './business/sites/phone-calls/PhoneCalls.slice.interface';
 import { SACContentInterface } from './information/alert-codes/AlertCodes.interface';
 import { SDLContentInterface } from './settings/deep-links/DeepLinks.interface';
+import { SMCContentInterface } from './settings/middleware-config/MiddlewareConfig.interface';
 
 /**
  * handle refresh and pagination
@@ -58,4 +59,5 @@ export type PaginationInput =
 	| CLContentInterface
 	| PCContentInterface
 	| SDLContentInterface
-	| ECContentInterface;
+	| ECContentInterface
+	| SMCContentInterface;

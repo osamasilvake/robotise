@@ -35,6 +35,10 @@
 			"TITLE": "Deep Links",
 			"DESCRIPTION": "Deep Links Description"
 		},
+		"MIDDLEWARE_CONFIG": {
+			"TITLE": "Middleware Config",
+			"DESCRIPTION": "Middleware Config Description"
+		},
 		"SETUP": {
 			"TITLE": "Setup",
 			"DESCRIPTION": "Setup Description"
@@ -398,6 +402,7 @@
 			},
 			"LIST": {
 				"DEEP_LINKS": "Deep Links",
+				"MIDDLEWARE_CONFIG": "Middleware Config",
 				"SETUP": "Setup"
 			}
 		}
@@ -1760,6 +1765,22 @@
 					"KEY": "Key",
 					"CREATED": "Created",
 					"ACTIONS": "Actions"
+				}
+			}
+		}
+	},
+	"MIDDLEWARE_CONFIG": {
+		"LIST": {
+			"TABLE": {
+				"COLUMNS": {
+					"KEY": "Key",
+					"PROP": "Prop",
+					"DIRECTION": "Direction",
+					"AUDIT": "Audit",
+					"DEBUG": "Debug",
+					"SAVE_HISTORY": "Save History",
+					"STATUS": "Status",
+					"STOP_PROPAGATE": "Stop Propagate"
 				}
 			}
 		}

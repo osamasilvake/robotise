@@ -29,6 +29,7 @@ import wifiHeatmap from './business/sites/statistics/WifiHeatmap.slice';
 import alertCodes from './information/alert-codes/AlertCodes.slice';
 import deepLink from './settings/deep-links/DeepLink.slice';
 import deepLinks from './settings/deep-links/DeepLinks.slice';
+import middlewareConfig from './settings/middleware-config/MiddlewareConfig.slice';
 
 // app reducers
 const combinedReducer = combineReducers({
@@ -58,7 +59,8 @@ const combinedReducer = combineReducers({
 	elevatorCalls,
 	alertCodes,
 	deepLink,
-	deepLinks
+	deepLinks,
+	middlewareConfig
 });
 
 // reducers type

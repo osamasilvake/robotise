@@ -37,7 +37,7 @@ const DeepLinksList: FC = () => {
 			rowsPerPage
 		};
 
-		// reset page: create or delete deep link
+		// reset cases: create or delete
 		if (reset === DeepLinkResetTypeEnum.RESET) {
 			pageRef.current.page = 0;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {

@@ -35,6 +35,7 @@ const MiddlewareConfigTableHead: FC<MiddlewareConfigTableHeadInterface> = (props
 						}}
 						sortDirection={orderBy === column.id ? order : false}>
 						<TableSortLabel
+							disabled={column.noSort}
 							active={orderBy === column.id}
 							direction={orderBy === column.id ? order : 'asc'}
 							onClick={handleSortRequest(column.id)}>

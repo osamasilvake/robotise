@@ -8,7 +8,9 @@ const MiddlewareConfig = lazy(() => import('./MiddlewareConfig'));
 const middlewareConfigRoutes: RoutesInterface[] = [
 	{
 		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.MIDDLEWARE_CONFIG,
-		component: MiddlewareConfig
+		component: MiddlewareConfig,
+		scope: true,
+		scopeName: AppConfigService.AppRoutesScope.MIDDLEWARE_CONFIG
 	}
 ];
 export default middlewareConfigRoutes;

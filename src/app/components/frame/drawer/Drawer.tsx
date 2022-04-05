@@ -69,7 +69,8 @@ const DrawerCustom: FC = () => {
 										auth.user?.scope,
 										AuthScopeTypeEnum.READ,
 										item.path,
-										item.scope
+										item.scope,
+										item.scopeName
 									)
 								}
 								className={clsx({ [classes.sListItemHint]: item.hint })}>

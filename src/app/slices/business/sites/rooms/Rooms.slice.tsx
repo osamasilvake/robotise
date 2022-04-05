@@ -63,14 +63,14 @@ export const RoomsUpdate =
 				// wait
 				await timeout(1000);
 
+				// dispatch: updated
+				dispatch(updated(null));
+
 				// callback
 				callback();
 
 				// wait
 				await timeout(1000);
-
-				// dispatch: updated
-				dispatch(updated(null));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {

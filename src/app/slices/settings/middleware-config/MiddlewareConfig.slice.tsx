@@ -3,15 +3,26 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { MiddlewareConfigListPayloadInterface } from '../../../screens/settings/middleware-config/list/MiddlewareConfigList.interface';
+import {
+	MiddlewareConfigCreateEditTypeEnum,
+	MiddlewareConfigResetTypeEnum
+} from '../../../screens/settings/middleware-config/list/table/MiddlewareConfigTable.enum';
+import { DialogCreateEditMiddlewareConfigFormInterface } from '../../../screens/settings/middleware-config/list/table/MiddlewareConfigTable.interface';
 import MiddlewareConfigService from '../../../screens/settings/middleware-config/MiddlewareConfig.service';
+import { timeout } from '../../../utilities/methods/Timeout';
 import { AppReducerType } from '../..';
+import { triggerMessage } from '../../app/App.slice';
 import { handleRefreshAndPagination } from '../../Slices.map';
 import {
 	SliceMiddlewareConfigInterface,
 	SMCContentInterface,
+	SMCDataInterface,
 	SMCStateInterface
 } from './MiddlewareConfig.interface';
-import { deserializeMiddlewareConfig } from './MiddlewareConfig.slice.deserialize';
+import {
+	deserializeMiddlewareConfig,
+	deserializeMiddlewareConfigs
+} from './MiddlewareConfig.slice.deserialize';
 
 // initial state
 export const initialState: SliceMiddlewareConfigInterface = {
@@ -102,7 +113,7 @@ export const MiddlewareConfigFetchList =
 		return MiddlewareConfigService.middlewareConfigFetch(payload)
 			.then(async (res) => {
 				// deserialize response
-				let result: SMCContentInterface = await deserializeMiddlewareConfig(res);
+				let result: SMCContentInterface = await deserializeMiddlewareConfigs(res);
 
 				// set state
 				result = {
@@ -116,7 +127,8 @@ export const MiddlewareConfigFetchList =
 						middlewareConfig.content,
 						result,
 						refresh,
-						payload.rowsPerPage
+						payload.rowsPerPage,
+						payload.reset === MiddlewareConfigResetTypeEnum.RESET
 					);
 				}
 
@@ -134,6 +146,92 @@ export const MiddlewareConfigFetchList =
 
 				// dispatch: failure
 				dispatch(failure(message));
+			});
+	};
+
+/**
+ * create/edit middleware config
+ * @param middlewareConfigId
+ * @param payload
+ * @param type
+ * @param callback
+ * @returns
+ */
+export const MiddlewareConfigCreateEdit =
+	(
+		middlewareConfigId: string | undefined,
+		payload: DialogCreateEditMiddlewareConfigFormInterface,
+		type: MiddlewareConfigCreateEditTypeEnum,
+		callback: () => void
+	) =>
+	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+		// states
+		const states = getState();
+		const middlewareConfig = states.middlewareConfig;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		return MiddlewareConfigService.middlewareConfigCreateEdit(middlewareConfigId, payload, type)
+			.then(async (res) => {
+				// deserialize response
+				let result = await deserializeMiddlewareConfig(res);
+
+				// trigger message
+				const message: TriggerMessageInterface = {
+					id: 'middleware-config-create-update-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: `MIDDLEWARE_CONFIG.${
+						type === MiddlewareConfigCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
+					}.SUCCESS`
+				};
+
+				if (type === MiddlewareConfigCreateEditTypeEnum.CREATE) {
+					// wait
+					await timeout(1000);
+
+					// dispatch: updated
+					dispatch(updated(null));
+
+					// callback
+					callback();
+
+					// wait
+					await timeout(1000);
+
+					// dispatch: trigger message
+					dispatch(triggerMessage(message));
+				} else {
+					if (middlewareConfig.content) {
+						// update middleware config
+						result = updateMiddlewareConfig(middlewareConfig.content, result);
+
+						// dispatch: updated
+						dispatch(updated(result));
+					}
+
+					// dispatch: trigger message
+					dispatch(triggerMessage(message));
+
+					// callback
+					callback();
+				}
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'middleware-config-create-update-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: `MIDDLEWARE_CONFIG.${
+						type === MiddlewareConfigCreateEditTypeEnum.CREATE ? 'CREATE' : 'EDIT'
+					}.ERROR`
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
 			});
 	};
 
@@ -161,3 +259,17 @@ export const MiddlewareConfigUpdateState =
 			dispatch(updated(result));
 		}
 	};
+
+/**
+ * update middleware config
+ * @param state
+ * @param middlewareConfig
+ * @returns
+ */
+const updateMiddlewareConfig = (
+	state: SMCContentInterface,
+	middlewareConfig: SMCDataInterface
+): SMCContentInterface => ({
+	...state,
+	data: state.data.map((item) => (item.id === middlewareConfig.id ? middlewareConfig : item))
+});

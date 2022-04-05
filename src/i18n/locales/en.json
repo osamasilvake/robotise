@@ -358,6 +358,20 @@
 				"SUCCESS": "Deep link has been deleted successfully!",
 				"ERROR": "Unable to delete a deep link!"
 			}
+		},
+		"MIDDLEWARE_CONFIG": {
+			"CREATE": {
+				"SUCCESS": "Event has been created successfully!",
+				"ERROR": "Unable to create an event!"
+			},
+			"EDIT": {
+				"SUCCESS": "Event has been updated successfully!",
+				"ERROR": "Unable to edit an event!"
+			},
+			"DELETE": {
+				"SUCCESS": "Event has been deleted successfully!",
+				"ERROR": "Unable to delete an event!"
+			}
 		}
 	},
 	"ACCOUNT": {
@@ -1771,16 +1785,79 @@
 	},
 	"MIDDLEWARE_CONFIG": {
 		"LIST": {
+			"ACTIONS": {
+				"CREATE_EDIT": {
+					"CREATE": {
+						"LABEL": "Create",
+						"TITLE": "Create an Event"
+					},
+					"EDIT": {
+						"TITLE": "Edit Event"
+					},
+					"FIELDS": {
+						"NAME": {
+							"LABEL": "Name",
+							"PLACEHOLDER": "Enter name",
+							"VALIDATIONS": {
+								"REQUIRED": "Name is required."
+							}
+						},
+						"DESC": {
+							"LABEL": "Description",
+							"PLACEHOLDER": "Enter Description"
+						},
+						"KEY": {
+							"LABEL": "Key",
+							"PLACEHOLDER": "Enter Key",
+							"VALIDATIONS": {
+								"REQUIRED": "Key is required."
+							}
+						},
+						"PROP": {
+							"LABEL": "Prop",
+							"PLACEHOLDER": "Enter Prop",
+							"VALIDATIONS": {
+								"REQUIRED": "Prop is required."
+							}
+						},
+						"DIRECTION": {
+							"LABEL": "Direction"
+						},
+						"STATUS": {
+							"LABEL": "Status"
+						},
+						"TRACE_MODE": {
+							"LABEL": "Trace Mode"
+						},
+						"DEBUG": {
+							"LABEL": "Debug"
+						},
+						"AUDIT": {
+							"LABEL": "Audit"
+						},
+						"STOP_PROPAGATE": {
+							"LABEL": "Stop Propagate"
+						},
+						"SAVE_HISTORY": {
+							"LABEL": "Save History"
+						}
+					}
+				},
+				"DELETE": {
+					"TITLE": "Delete Deep Link",
+					"TEXT": "Are you sure you want to delete the deep link?"
+				}
+			},
 			"TABLE": {
 				"COLUMNS": {
-					"KEY": "Key",
-					"PROP": "Prop",
+					"KEY": "Key/Prop",
 					"DIRECTION": "Direction",
 					"AUDIT": "Audit",
 					"DEBUG": "Debug",
 					"SAVE_HISTORY": "Save History",
+					"STOP_PROPAGATE": "Stop Propagate",
 					"STATUS": "Status",
-					"STOP_PROPAGATE": "Stop Propagate"
+					"ACTIONS": "Actions"
 				}
 			}
 		}

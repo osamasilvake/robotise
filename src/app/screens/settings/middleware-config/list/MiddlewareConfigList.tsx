@@ -11,13 +11,16 @@ import {
 	MiddlewareConfigFetchList,
 	middlewareConfigSelector
 } from '../../../../slices/settings/middleware-config/MiddlewareConfig.slice';
+import MiddlewareConfigActions from './actions/MiddlewareConfigActions';
 import { MiddlewareConfigListPayloadInterface } from './MiddlewareConfigList.interface';
 import MiddlewareConfigTable from './table/MiddlewareConfigTable';
+import { MiddlewareConfigResetTypeEnum } from './table/MiddlewareConfigTable.enum';
 
 const MiddlewareConfigList: FC = () => {
 	const dispatch = useDispatch();
 	const middlewareConfig = useSelector(middlewareConfigSelector);
 
+	const reset = middlewareConfig.content?.state?.reset || MiddlewareConfigResetTypeEnum.NA;
 	const page = middlewareConfig.content?.state?.page || 0;
 	const rowsPerPage =
 		middlewareConfig.content?.state?.rowsPerPage ||
@@ -34,7 +37,10 @@ const MiddlewareConfigList: FC = () => {
 			rowsPerPage
 		};
 
-		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
+		// reset cases: create or delete
+		if (reset === MiddlewareConfigResetTypeEnum.RESET) {
+			pageRef.current.page = 0;
+		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch middleware config
 			dispatch(MiddlewareConfigFetchList(payload));
 
@@ -56,7 +62,7 @@ const MiddlewareConfigList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, middlewareConfig.content, page, rowsPerPage]);
+	}, [dispatch, middlewareConfig.content, page, rowsPerPage, reset]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -102,6 +108,9 @@ const MiddlewareConfigList: FC = () => {
 
 	return (
 		<Box>
+			{/* Actions */}
+			<MiddlewareConfigActions />
+
 			{/* Table */}
 			<MiddlewareConfigTable
 				content={middlewareConfig.content}

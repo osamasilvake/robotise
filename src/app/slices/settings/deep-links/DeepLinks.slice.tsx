@@ -186,14 +186,14 @@ export const DeepLinkCreateEdit =
 					// wait
 					await timeout(1000);
 
+					// dispatch: updated
+					dispatch(updated(null));
+
 					// callback
 					callback();
 
 					// wait
 					await timeout(1000);
-
-					// dispatch: updated
-					dispatch(updated(null));
 
 					// dispatch: trigger message
 					dispatch(triggerMessage(message));
@@ -246,14 +246,14 @@ export const DeepLinkDelete =
 				// wait
 				await timeout(1000);
 
+				// dispatch: updated
+				dispatch(updated(null));
+
 				// callback
 				callback();
 
 				// wait
 				await timeout(1000);
-
-				// dispatch: updated
-				dispatch(updated(null));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {

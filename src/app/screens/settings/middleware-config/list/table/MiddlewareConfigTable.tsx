@@ -10,7 +10,10 @@ import {
 	middlewareConfigSelector,
 	MiddlewareConfigUpdateState
 } from '../../../../../slices/settings/middleware-config/MiddlewareConfig.slice';
-import { MiddlewareConfigTableColumnsTypeEnum } from './MiddlewareConfigTable.enum';
+import {
+	MiddlewareConfigResetTypeEnum,
+	MiddlewareConfigTableColumnsTypeEnum
+} from './MiddlewareConfigTable.enum';
 import {
 	MiddlewareConfigTableHeadOrder,
 	MiddlewareConfigTableInterface
@@ -30,7 +33,7 @@ const MiddlewareConfigTable: FC<MiddlewareConfigTableInterface> = (props) => {
 
 	const [order, setOrder] = useState<MiddlewareConfigTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<MiddlewareConfigTableColumnsTypeEnum>(
-		MiddlewareConfigTableColumnsTypeEnum.STATUS
+		MiddlewareConfigTableColumnsTypeEnum.CREATED_AT
 	);
 
 	/**
@@ -60,7 +63,8 @@ const MiddlewareConfigTable: FC<MiddlewareConfigTableInterface> = (props) => {
 		// dispatch: update state
 		const state: SMCStateInterface = {
 			...content?.state,
-			page: newPage
+			page: newPage,
+			reset: MiddlewareConfigResetTypeEnum.NA
 		};
 		dispatch(MiddlewareConfigUpdateState(state));
 	};
@@ -74,7 +78,8 @@ const MiddlewareConfigTable: FC<MiddlewareConfigTableInterface> = (props) => {
 		const state: SMCStateInterface = {
 			...content?.state,
 			page: 0,
-			rowsPerPage: +event.target.value
+			rowsPerPage: +event.target.value,
+			reset: MiddlewareConfigResetTypeEnum.NA
 		};
 		dispatch(MiddlewareConfigUpdateState(state));
 	};

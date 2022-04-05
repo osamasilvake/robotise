@@ -23,7 +23,8 @@ class AppConfigService extends EnvService {
 	 */
 	get AppRoutesScope() {
 		return {
-			PURCHASES: 'orderReports'
+			PURCHASES: 'orderReports',
+			MIDDLEWARE_CONFIG: 'cmdEvents'
 		};
 	}
 

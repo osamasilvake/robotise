@@ -1,10 +1,13 @@
-import { MouseEvent } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import {
 	SMCContentInterface,
 	SMCDataInterface
 } from '../../../../../slices/settings/middleware-config/MiddlewareConfig.interface';
-import { MiddlewareConfigTableColumnsTypeEnum } from './MiddlewareConfigTable.enum';
+import {
+	MiddlewareConfigCreateEditTypeEnum,
+	MiddlewareConfigTableColumnsTypeEnum
+} from './MiddlewareConfigTable.enum';
 
 export interface MiddlewareConfigTableInterface {
 	content: SMCContentInterface | null;
@@ -28,8 +31,29 @@ export interface MiddlewareConfigTableBodyInterface {
 }
 
 export interface MiddlewareConfigTableBodyCellInterface {
-	messageConfig: SMCDataInterface;
+	config: SMCDataInterface;
 	column: MiddlewareConfigTableColumnInterface;
+}
+
+export interface DialogCreateEditMiddlewareConfigInterface {
+	config?: SMCDataInterface | null;
+	type: MiddlewareConfigCreateEditTypeEnum;
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface DialogCreateEditMiddlewareConfigFormInterface {
+	name: string;
+	desc: string;
+	key: string;
+	prop: string;
+	direction: string;
+	status: string;
+	traceMode: string;
+	debug?: boolean;
+	audit?: boolean;
+	stopPropagate?: boolean;
+	saveHistory?: boolean;
 }
 
 export interface MiddlewareConfigTableColumnInterface {

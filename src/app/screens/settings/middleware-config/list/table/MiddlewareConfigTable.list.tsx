@@ -10,27 +10,21 @@ export const columns: MiddlewareConfigTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: MiddlewareConfigTableColumnsTypeEnum.PROP,
-		label: `${translation}.PROP`,
-		minWidth: 150,
-		align: 'left'
-	},
-	{
 		id: MiddlewareConfigTableColumnsTypeEnum.DIRECTION,
 		label: `${translation}.DIRECTION`,
-		minWidth: 150,
+		minWidth: 110,
 		align: 'left'
 	},
 	{
 		id: MiddlewareConfigTableColumnsTypeEnum.AUDIT,
 		label: `${translation}.AUDIT`,
-		minWidth: 100,
+		minWidth: 70,
 		align: 'left'
 	},
 	{
 		id: MiddlewareConfigTableColumnsTypeEnum.DEBUG,
 		label: `${translation}.DEBUG`,
-		minWidth: 100,
+		minWidth: 70,
 		align: 'left'
 	},
 	{
@@ -40,15 +34,40 @@ export const columns: MiddlewareConfigTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: MiddlewareConfigTableColumnsTypeEnum.STATUS,
-		label: `${translation}.STATUS`,
-		minWidth: 100,
+		id: MiddlewareConfigTableColumnsTypeEnum.STOP_PROPAGATE,
+		label: `${translation}.STOP_PROPAGATE`,
+		minWidth: 160,
 		align: 'left'
 	},
 	{
-		id: MiddlewareConfigTableColumnsTypeEnum.STOP_PROPAGATE,
-		label: `${translation}.STOP_PROPAGATE`,
-		minWidth: 200,
-		align: 'right'
+		id: MiddlewareConfigTableColumnsTypeEnum.STATUS,
+		label: `${translation}.STATUS`,
+		minWidth: 80,
+		align: 'left'
+	},
+	{
+		id: MiddlewareConfigTableColumnsTypeEnum.ACTIONS,
+		label: `${translation}.ACTIONS`,
+		minWidth: 130,
+		align: 'right',
+		noSort: true
 	}
+];
+
+// directions
+export const MiddlewareConfigDirections = [
+	{ id: 'roc', name: 'ROC' },
+	{ id: 'robot', name: 'Robot' }
+];
+
+// statuses
+export const MiddlewareConfigStatuses = [
+	{ id: 'inactive', name: 'InActive' },
+	{ id: 'active', name: 'Active' }
+];
+
+// trace modes
+export const MiddlewareConfigTraceModes = [
+	{ id: 'traceStd', name: 'traceStd' },
+	{ id: 'traceAll', name: 'traceAll' }
 ];

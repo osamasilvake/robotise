@@ -34,7 +34,9 @@ const drawerSettingsList: DrawerListInterface[] = [
 	{
 		icon: 'sticky_note_2',
 		label: 'SETTINGS.LIST.MIDDLEWARE_CONFIG',
-		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.MIDDLEWARE_CONFIG
+		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.MIDDLEWARE_CONFIG,
+		scope: true,
+		scopeName: AppConfigService.AppRoutesScope.MIDDLEWARE_CONFIG
 	},
 	{
 		icon: 'settings',

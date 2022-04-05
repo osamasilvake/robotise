@@ -1,4 +1,5 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
+
 /**
  * deserialize deep link
  * @param payload

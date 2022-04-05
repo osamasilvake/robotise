@@ -7,4 +7,5 @@ export interface DrawerListInterface {
 	hint?: string;
 	badge?: DrawerListBadgeTypeEnum;
 	scope?: boolean;
+	scopeName?: string;
 }

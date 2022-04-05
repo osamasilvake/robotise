@@ -1,4 +1,5 @@
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
+import { MiddlewareConfigResetTypeEnum } from '../../../screens/settings/middleware-config/list/table/MiddlewareConfigTable.enum';
 import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
 
 export interface SliceMiddlewareConfigInterface {
@@ -35,4 +36,5 @@ export interface SMCDataInterface {
 export interface SMCStateInterface {
 	page?: number;
 	rowsPerPage?: number;
+	reset?: MiddlewareConfigResetTypeEnum;
 }

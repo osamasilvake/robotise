@@ -28,7 +28,6 @@ const MiddlewareConfigTableBody: FC<MiddlewareConfigTableBodyInterface> = (props
 		let type;
 		switch (orderBy) {
 			case MiddlewareConfigTableColumnsTypeEnum.KEY:
-			case MiddlewareConfigTableColumnsTypeEnum.PROP:
 			case MiddlewareConfigTableColumnsTypeEnum.DIRECTION:
 			case MiddlewareConfigTableColumnsTypeEnum.STATUS:
 				type = MiddlewareConfigTableSortTypeEnum.STRING;
@@ -38,6 +37,9 @@ const MiddlewareConfigTableBody: FC<MiddlewareConfigTableBodyInterface> = (props
 			case MiddlewareConfigTableColumnsTypeEnum.SAVE_HISTORY:
 			case MiddlewareConfigTableColumnsTypeEnum.STOP_PROPAGATE:
 				type = MiddlewareConfigTableSortTypeEnum.BOOLEAN;
+				break;
+			case MiddlewareConfigTableColumnsTypeEnum.CREATED_AT:
+				type = MiddlewareConfigTableSortTypeEnum.DATE;
 				break;
 			default:
 				return content.data;
@@ -57,17 +59,20 @@ const MiddlewareConfigTableBody: FC<MiddlewareConfigTableBodyInterface> = (props
 		type: MiddlewareConfigTableSortTypeEnum
 	) => {
 		return (a: SMCDataInterface, b: SMCDataInterface) => {
-			switch (type) {
-				case MiddlewareConfigTableSortTypeEnum.BOOLEAN:
-					return a[key] ? -1 : 1;
-				case MiddlewareConfigTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			if (key !== MiddlewareConfigTableColumnsTypeEnum.ACTIONS) {
+				switch (type) {
+					case MiddlewareConfigTableSortTypeEnum.BOOLEAN:
+						return a[key] ? -1 : 1;
+					case MiddlewareConfigTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 
@@ -77,12 +82,12 @@ const MiddlewareConfigTableBody: FC<MiddlewareConfigTableBodyInterface> = (props
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((messageConfig: SMCDataInterface) => (
-						<TableRow key={messageConfig.id} tabIndex={-1}>
+					.map((config: SMCDataInterface) => (
+						<TableRow key={config.id} tabIndex={-1}>
 							{columns.map((column: MiddlewareConfigTableColumnInterface) => (
 								<MiddlewareConfigTableBodyCell
 									key={column.id}
-									messageConfig={messageConfig}
+									config={config}
 									column={column}
 								/>
 							))}

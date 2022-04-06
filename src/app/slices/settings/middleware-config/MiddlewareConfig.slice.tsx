@@ -236,6 +236,55 @@ export const MiddlewareConfigCreateEdit =
 	};
 
 /**
+ * delete middleware config
+ * @param middlewareConfig
+ * @param callback
+ * @returns
+ */
+export const MiddlewareConfigDelete =
+	(middlewareConfig: SMCDataInterface, callback: () => void) => async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return MiddlewareConfigService.middlewareConfigDelete(middlewareConfig.id)
+			.then(async () => {
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'middleware-config-delete-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'MIDDLEWARE_CONFIG.DELETE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'middleware-config-delete-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'MIDDLEWARE_CONFIG.DELETE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * update state
  * @param state
  * @returns

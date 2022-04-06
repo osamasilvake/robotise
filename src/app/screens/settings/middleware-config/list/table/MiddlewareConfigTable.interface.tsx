@@ -42,6 +42,12 @@ export interface DialogCreateEditMiddlewareConfigInterface {
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
+export interface DialogDeleteMiddlewareConfigInterface {
+	config: SMCDataInterface;
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
 export interface DialogCreateEditMiddlewareConfigFormInterface {
 	name: string;
 	desc: string;

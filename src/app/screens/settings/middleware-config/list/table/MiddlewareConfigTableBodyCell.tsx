@@ -10,6 +10,7 @@ import { AuthScopeTypeEnum } from '../../../../authentication/Auth.enum';
 import { validateScope } from '../../../../authentication/Auth.scope';
 import middlewareConfigRoutes from '../../MiddlewareConfig.routes';
 import DialogCreateEditMiddlewareConfig from './DialogCreateEditMiddlewareConfig';
+import DialogDeleteMiddlewareConfig from './DialogDeleteMiddlewareConfig';
 import {
 	MiddlewareConfigCreateEditTypeEnum,
 	MiddlewareConfigTableColumnsTypeEnum
@@ -101,6 +102,13 @@ const MiddlewareConfigTableBodyCell: FC<MiddlewareConfigTableBodyCellInterface> 
 						onClick={openDeleteMiddlewareConfigDialog}>
 						<DeleteOutline fontSize="small" />
 					</IconButton>
+					{openDelete && (
+						<DialogDeleteMiddlewareConfig
+							config={config}
+							open={openDelete}
+							setOpen={setOpenDelete}
+						/>
+					)}
 				</Box>
 			);
 		} else {

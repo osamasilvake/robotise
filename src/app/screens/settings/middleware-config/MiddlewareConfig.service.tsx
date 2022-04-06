@@ -49,6 +49,16 @@ class MiddlewareConfigService {
 			}
 		});
 	};
+
+	/**
+	 * delete middleware config
+	 * @param middlewareConfigId
+	 * @returns
+	 */
+	middlewareConfigDelete = (middlewareConfigId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.MIDDLEWARE_CONFIG;
+		return HttpClientService.delete(`${url}/${middlewareConfigId}`);
+	};
 }
 const instance = new MiddlewareConfigService();
 export default instance;

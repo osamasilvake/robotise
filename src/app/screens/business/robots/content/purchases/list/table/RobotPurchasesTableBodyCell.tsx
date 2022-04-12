@@ -64,14 +64,14 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			const value = purchase[column.id];
 			if (RobotPurchasesTableColumnsTypeEnum.TARGET === column.id) {
 				return (
-					<Box>
+					<>
 						{value || AppConfigService.AppOptions.common.none}
 						{!purchase.isBilled && (
 							<Box component="span" className={classes.sTarget}>
 								<Chip size="small" label={t(`${translation}.TARGET.UN_BILLED`)} />
 							</Box>
 						)}
-					</Box>
+					</>
 				);
 			} else if (RobotPurchasesTableColumnsTypeEnum.CREATED === column.id) {
 				return dateFormat1(String(value));
@@ -106,7 +106,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(purchase, column)}
+			<>{setCellValue(purchase, column)}</>
 		</TableCell>
 	);
 };

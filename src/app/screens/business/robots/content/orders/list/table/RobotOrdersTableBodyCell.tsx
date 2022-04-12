@@ -106,7 +106,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(order, column)}
+			<>{setCellValue(order, column)}</>
 		</TableCell>
 	);
 };

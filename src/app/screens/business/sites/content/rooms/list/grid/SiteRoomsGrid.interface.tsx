@@ -1,11 +1,18 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import { ISite } from '../../../../../../../slices/business/sites/Sites.slice.interface';
+import { SiteRoomsGridBlockUnblockFloorTypeEnum } from './SiteRoomsGrid.enum';
 
 export interface SiteRoomsGridInterface {
 	siteSingle: ISite;
 	active: boolean;
 	inactive: boolean;
+}
+
+export interface SiteRoomsGridFloorInterface {
+	siteSingle: ISite;
+	floor: string;
+	result: SiteRoomsGridGroupAccInterface | null;
 }
 
 export interface SiteRoomsGridGroupAccInterface {
@@ -16,6 +23,18 @@ export interface DialogToggleRoomStateInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	checkedState: { room: string; checked: boolean };
+	siteSingle: ISite;
+	allWhitelist: string[];
+}
+
+export interface DialogToggleFloorStateInterface {
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+	floorState: {
+		type: SiteRoomsGridBlockUnblockFloorTypeEnum;
+		floor: string;
+		rooms: string[];
+	};
 	siteSingle: ISite;
 	allWhitelist: string[];
 }

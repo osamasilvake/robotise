@@ -141,7 +141,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(robot, column)}
+			<>{setCellValue(robot, column)}</>
 		</TableCell>
 	);
 };

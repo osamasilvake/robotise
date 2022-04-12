@@ -127,7 +127,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(product, column)}
+			<>{setCellValue(product, column)}</>
 		</TableCell>
 	);
 };

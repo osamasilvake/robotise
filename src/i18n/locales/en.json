@@ -77,6 +77,12 @@
 			"COPY_CLIPBOARD": "Copy to clipboard",
 			"DOCS_LINK": "Show more detail"
 		},
+		"BLACKLIST": {
+			"FLOOR": {
+				"BLOCK": "Block Floor",
+				"UNBLOCK": "Unblock Floor"
+			}
+		},
 		"NOTIFICATION": {
 			"ADD": "Add Notification",
 			"EDIT": "Edit Notification"
@@ -179,8 +185,8 @@
 			},
 			"ROOMS": {
 				"UPDATE": {
-					"SUCCESS": "Room has been updated successfully!",
-					"ERROR": "Unable to update room state!"
+					"SUCCESS": "Changes has been updated successfully!",
+					"ERROR": "Unable to update room(s) state!"
 				}
 			},
 			"PHONE_CONFIGS": {
@@ -691,6 +697,10 @@
 						"ROOM_STATE": {
 							"TITLE": "Room {{value}}",
 							"TEXT": "Are you sure you want to update the room state?"
+						},
+						"FLOOR_STATE": {
+							"TITLE": "Floor",
+							"TEXT": "Are you sure you want to update the floor state?"
 						}
 					}
 				}

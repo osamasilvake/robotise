@@ -88,7 +88,7 @@ const GeneralEmailsTableBodyCell: FC<GeneralEmailsTableBodyCellInterface> = (pro
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(email, column)}
+			<>{setCellValue(email, column)}</>
 		</TableCell>
 	);
 };

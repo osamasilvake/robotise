@@ -84,7 +84,7 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(phoneCall, column)}
+			<>{setCellValue(phoneCall, column)}</>
 		</TableCell>
 	);
 };

@@ -17,6 +17,7 @@ import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
 import DialogToggleRoomState from './DialogToggleRoomState';
 import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';
 import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
+import SiteRoomsGridFloor from './SiteRoomsGridFloor';
 
 const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const { siteSingle, active, inactive } = props;
@@ -73,9 +74,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 			{Object.keys(result).map((key, idx) => (
 				<Box key={key}>
 					{/* Floor */}
-					<Typography variant="h2" className={classes.sFloorLabel}>
-						{t(`${translation}.FLOOR`)} {key}
-					</Typography>
+					<SiteRoomsGridFloor siteSingle={siteSingle} floor={key} result={result} />
 
 					{/* Grid */}
 					{result[key] && result[key].length && (

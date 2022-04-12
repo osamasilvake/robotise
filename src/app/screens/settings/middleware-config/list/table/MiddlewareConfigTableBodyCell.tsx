@@ -129,12 +129,13 @@ const MiddlewareConfigTableBodyCell: FC<MiddlewareConfigTableBodyCellInterface> 
 					</Box>
 				);
 			} else if (MiddlewareConfigTableColumnsTypeEnum.KEY === column.id) {
+				const key = config.key;
 				const prop = config.prop;
 				return (
-					<Box>
-						<Typography variant="body2">Key: {value}</Typography>
-						<Typography variant="body2">Prop: {prop}</Typography>
-					</Box>
+					<>
+						<Typography variant="body2">{key}</Typography>
+						<Typography variant="body2">{prop}</Typography>
+					</>
 				);
 			}
 			return value || AppConfigService.AppOptions.common.none;
@@ -143,7 +144,7 @@ const MiddlewareConfigTableBodyCell: FC<MiddlewareConfigTableBodyCellInterface> 
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(config, column)}
+			<>{setCellValue(config, column)}</>
 		</TableCell>
 	);
 };

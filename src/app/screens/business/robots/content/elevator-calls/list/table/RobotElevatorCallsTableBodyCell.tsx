@@ -153,7 +153,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(elevatorCall, column)}
+			<>{setCellValue(elevatorCall, column)}</>
 		</TableCell>
 	);
 };

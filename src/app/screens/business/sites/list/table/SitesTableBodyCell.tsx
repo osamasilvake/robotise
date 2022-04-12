@@ -35,7 +35,7 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(site, column)}
+			<>{setCellValue(site, column)}</>
 		</TableCell>
 	);
 };

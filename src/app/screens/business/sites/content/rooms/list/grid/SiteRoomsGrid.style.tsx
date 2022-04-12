@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles';
 import { AppConfigService } from '../../../../../../../services';
 
 export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
-	sFloorLabel: {
+	sFloor: {
 		marginBottom: theme.spacing(1)
 	},
 	sGridContainer: {

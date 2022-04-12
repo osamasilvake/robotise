@@ -24,7 +24,7 @@ const Status: FC<StatusInterface> = (props) => {
 				[classes.sWarn]: level === StatusTypeEnum.WARN,
 				[classes.sInfo]: level === StatusTypeEnum.INFO
 			})}>
-			{children}
+			<>{children}</>
 		</Typography>
 	);
 };

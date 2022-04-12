@@ -29,7 +29,7 @@ const AlertCodesTableBodyCell: FC<AlertCodesTableBodyCellInterface> = (props) =>
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(alertCode, column)}
+			<>{setCellValue(alertCode, column)}</>
 		</TableCell>
 	);
 };

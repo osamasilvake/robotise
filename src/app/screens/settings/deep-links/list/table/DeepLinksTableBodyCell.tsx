@@ -115,7 +115,7 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(deepLink, column)}
+			<>{setCellValue(deepLink, column)}</>
 		</TableCell>
 	);
 };

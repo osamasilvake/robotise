@@ -69,7 +69,7 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 
 	return (
 		<TableCell key={column.id} align={column.align}>
-			{setCellValue(commandLog, column)}
+			<>{setCellValue(commandLog, column)}</>
 		</TableCell>
 	);
 };

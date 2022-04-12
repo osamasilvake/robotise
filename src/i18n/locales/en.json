@@ -1505,6 +1505,7 @@
 								"in_progress_arrived": "Arrived",
 								"in_progress_customer_present": "Customer present",
 								"finishRequest": "Finish Requested",
+								"awaiting_cancelation": "Awaiting Cancellation",
 								"awaiting_finish": "Awaiting Finish",
 								"finished": "Finished",
 								"rejected": "Rejected",

@@ -35,6 +35,7 @@ export const mapStatus = (status: string) => {
 		case RobotOrdersTableColumnStatusTypeEnum.REJECTED:
 		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_ALREADY_IN_STACK:
 		case RobotOrdersTableColumnStatusTypeEnum.REJECTED_UNKNOWN_LOCATION:
+		case RobotOrdersTableColumnStatusTypeEnum.AWAITING_CANCELLATION:
 			return StatusTypeEnum.WARN;
 		case RobotOrdersTableColumnStatusTypeEnum.TRAVELLING:
 		case RobotOrdersTableColumnStatusTypeEnum.ARRIVED:

@@ -7,6 +7,9 @@ export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
 	sFloor: {
 		marginBottom: theme.spacing(1)
 	},
+	sFloorIcon: {
+		marginLeft: theme.spacing(0.5)
+	},
 	sGridContainer: {
 		marginBottom: theme.spacing(3)
 	},

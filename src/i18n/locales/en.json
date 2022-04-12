@@ -77,12 +77,6 @@
 			"COPY_CLIPBOARD": "Copy to clipboard",
 			"DOCS_LINK": "Show more detail"
 		},
-		"BLACKLIST": {
-			"FLOOR": {
-				"BLOCK": "Block Floor",
-				"UNBLOCK": "Unblock Floor"
-			}
-		},
 		"NOTIFICATION": {
 			"ADD": "Add Notification",
 			"EDIT": "Edit Notification"
@@ -694,6 +688,8 @@
 						"BLOCKED": "Blocked",
 						"FLOOR": "Floor",
 						"ROOM": "Room",
+						"BLOCK": "Block Floor",
+						"UNBLOCK": "Unblock Floor",
 						"ROOM_STATE": {
 							"TITLE": "Room {{value}}",
 							"TEXT": "Are you sure you want to update the room state?"

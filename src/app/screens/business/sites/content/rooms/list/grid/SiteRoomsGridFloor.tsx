@@ -1,5 +1,5 @@
 import { Block, Contrast } from '@mui/icons-material';
-import { Box, IconButton, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Chip, Stack, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -48,22 +48,27 @@ const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
 
 				{/* Block/Unblock */}
 				<Box>
-					<Tooltip title={t<string>('TOOLTIP:BLACKLIST.FLOOR.BLOCK')}>
-						<IconButton
-							onClick={() =>
-								blockAndUnblockFloor(SiteRoomsGridBlockUnblockFloorTypeEnum.BLOCK)
-							}>
-							<Block color="error" />
-						</IconButton>
-					</Tooltip>
-					<Tooltip title={t<string>('TOOLTIP:BLACKLIST.FLOOR.UNBLOCK')}>
-						<IconButton
-							onClick={() =>
-								blockAndUnblockFloor(SiteRoomsGridBlockUnblockFloorTypeEnum.UNBLOCK)
-							}>
-							<Contrast color="secondary" />
-						</IconButton>
-					</Tooltip>
+					<Chip
+						size="small"
+						label={t(`${translation}.BLOCK`)}
+						color="error"
+						variant="outlined"
+						icon={<Block />}
+						onClick={() =>
+							blockAndUnblockFloor(SiteRoomsGridBlockUnblockFloorTypeEnum.BLOCK)
+						}
+					/>
+					<Chip
+						size="small"
+						label={t(`${translation}.UNBLOCK`)}
+						color="secondary"
+						variant="outlined"
+						icon={<Contrast />}
+						onClick={() =>
+							blockAndUnblockFloor(SiteRoomsGridBlockUnblockFloorTypeEnum.UNBLOCK)
+						}
+						className={classes.sFloorIcon}
+					/>
 				</Box>
 			</Stack>
 

@@ -482,6 +482,7 @@ class SitesService {
 						availableOrderModes: payload.availableOrderModes,
 						helpPage: payload.helpPage,
 						qrOrdersEnabled: payload.qrOrdersEnabled,
+						showEmergencyWorkflow: payload.showEmergencyWorkflow,
 						isHidden: payload.isHidden
 					}
 				}

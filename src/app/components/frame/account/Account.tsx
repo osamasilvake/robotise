@@ -28,7 +28,7 @@ import Language from './language/Language';
 import ThemePalette from './theme/Theme';
 
 const Account: FC = () => {
-	const { t } = useTranslation(['ACCOUNT', 'TOOLTIP']);
+	const { t } = useTranslation(['FRAME', 'TOOLTIP']);
 	const classes = AccountStyle();
 
 	const dispatch = useDispatch();
@@ -158,7 +158,7 @@ const Account: FC = () => {
 									<ListItemIcon>
 										<PowerSettingsNew />
 									</ListItemIcon>
-									<ListItemText primary={t('LOGOUT')} />
+									<ListItemText primary={t('ACCOUNT.LOGOUT')} />
 								</ListItemButton>
 							</List>
 						</Popover>

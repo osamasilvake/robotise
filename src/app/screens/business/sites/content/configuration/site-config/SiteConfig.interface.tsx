@@ -14,5 +14,6 @@ export interface SiteConfigFormInterface {
 	availableOrderModes: string[];
 	helpPage: string;
 	qrOrdersEnabled?: boolean;
+	showEmergencyWorkflow?: boolean;
 	isHidden?: boolean;
 }

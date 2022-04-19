@@ -9,7 +9,7 @@ import { AppThemePaletteTypeEnum } from '../../../../slices/app/App.slice.enum';
 import { ThemePaletteStyle } from './Theme.style';
 
 const ThemePalette: FC = () => {
-	const { t } = useTranslation('ACCOUNT');
+	const { t } = useTranslation('FRAME');
 	const classes = ThemePaletteStyle();
 
 	const dispatch = useDispatch();
@@ -38,11 +38,11 @@ const ThemePalette: FC = () => {
 				)}
 			</ListItemIcon>
 			<ListItemText
-				primary={t('THEME.LABEL')}
+				primary={t('ACCOUNT.THEME.LABEL')}
 				secondary={
 					app.themePalette === AppThemePaletteTypeEnum.LIGHT
-						? t('THEME.LIGHT')
-						: t('THEME.DARK')
+						? t('ACCOUNT.THEME.LIGHT')
+						: t('ACCOUNT.THEME.DARK')
 				}
 			/>
 		</ListItemButton>

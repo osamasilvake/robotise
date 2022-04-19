@@ -37,6 +37,7 @@ export interface ISite {
 		availableOrderModes: string[];
 		helpPage: string;
 		qrOrdersEnabled: boolean;
+		showEmergencyWorkflow: boolean;
 		isHidden: boolean;
 	};
 	rooms: {

@@ -8,7 +8,7 @@ import { AppChangeLanguage, appSelector } from '../../../../slices/app/App.slice
 import { AppLanguageTypeEnum } from '../../../../slices/app/App.slice.enum';
 
 const Language: FC = () => {
-	const { t } = useTranslation('ACCOUNT');
+	const { t } = useTranslation('FRAME');
 
 	const dispatch = useDispatch();
 	const app = useSelector(appSelector);
@@ -34,11 +34,11 @@ const Language: FC = () => {
 				<Translate />
 			</ListItemIcon>
 			<ListItemText
-				primary={t('LANGUAGE.LABEL')}
+				primary={t('ACCOUNT.LANGUAGE.LABEL')}
 				secondary={
 					app.currentLanguage === AppLanguageTypeEnum.EN
-						? t('LANGUAGE.EN')
-						: t('LANGUAGE.DE')
+						? t('ACCOUNT.LANGUAGE.EN')
+						: t('ACCOUNT.LANGUAGE.DE')
 				}
 			/>
 		</ListItemButton>

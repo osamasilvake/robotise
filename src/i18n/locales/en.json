@@ -134,288 +134,6 @@
 			"LINK": "Reload"
 		}
 	},
-	"MESSAGE": {
-		"AUTH": {
-			"TOKEN_EXPIRED": "Token Expired!",
-			"TOKEN_EMPTY": "No Token Found!",
-			"UNKNOWN": "Unknown"
-		},
-		"GENERAL": {
-			"COMMON": {
-				"COPY_TO_CLIPBOARD": "Message copied to clipboard!"
-			},
-			"ORDER_MODES": {
-				"ERROR": "Unable to fetch order modes!"
-			},
-			"REPORTS": {
-				"SUCCESS": "Report has been generated successfully!",
-				"ERROR": "Unable to generate Report!"
-			}
-		},
-		"SITES": {
-			"MAIN": {
-				"CREATE": {
-					"SUCCESS": "Site has been created successfully!",
-					"ERROR": "Unable to create a site!"
-				}
-			},
-			"PRODUCTS": {
-				"CREATE": {
-					"SUCCESS": "Product has been created successfully!",
-					"ERROR": "Unable to create a product!"
-				},
-				"EDIT": {
-					"SUCCESS": "Product has been updated successfully!",
-					"ERROR": "Unable to edit a product!"
-				},
-				"DELETE": {
-					"SUCCESS": "Product has been deleted successfully!",
-					"ERROR": "Unable to delete a product!"
-				}
-			},
-			"ROOMS": {
-				"UPDATE": {
-					"SUCCESS": "Changes has been updated successfully!",
-					"ERROR": "Unable to update room(s) state!"
-				}
-			},
-			"PHONE_CONFIGS": {
-				"EDIT": {
-					"SUCCESS": "Phone config has been updated successfully!",
-					"ERROR": "Unable to edit a Phone config!"
-				},
-				"UPLOAD_AUDIO": {
-					"SUCCESS": "Audio has been uploaded successfully!",
-					"ERROR": "Unable to upload audio file!"
-				}
-			},
-			"STATISTICS": {
-				"HEATMAP": {
-					"MAPS": {
-						"ERROR": "Unable to fetch wifi heatmap!"
-					},
-					"CONTENT": {
-						"ERROR": "Unable to fetch wifi heatmap content!"
-					}
-				}
-			},
-			"CONFIGURATION": {
-				"ACCEPT_ORDERS": {
-					"SUCCESS": "Site Setting has been updated successfully!",
-					"ERROR": "Unable to update accept orders!"
-				},
-				"NOTIFICATIONS": {
-					"FETCH": {
-						"ERROR": "Unable to fetch notification types or users!"
-					},
-					"UPDATE": {
-						"SUCCESS": "Notification has been updated successfully!",
-						"ERROR": "Unable to update notification!"
-					}
-				},
-				"SERVICE_POSITIONS": {
-					"FETCH": {
-						"ERROR": "Unable to fetch service positions!"
-					},
-					"CREATE": {
-						"SUCCESS": "Service position has been created successfully!",
-						"ERROR": "Unable to create service position!"
-					},
-					"EDIT": {
-						"SUCCESS": "Service position has been updated successfully!",
-						"ERROR": "Unable to update service position!"
-					},
-					"DELETE": {
-						"SUCCESS": "Service position has been deleted successfully!",
-						"ERROR": "Unable to delete service position!"
-					}
-				},
-				"SITE_ROBOT_CONFIG": {
-					"SUCCESS": "Site setting has been updated successfully!",
-					"ERROR": "Unable to configure site robot!"
-				},
-				"SITE_CONFIG": {
-					"SUCCESS": "Site setting has been updated successfully!",
-					"ERROR": "Unable to configure site!"
-				},
-				"CLEAN_TEST_ORDERS": {
-					"SUCCESS": "Test orders cleaned successfully!",
-					"ERROR": "Unable to clean test orders!"
-				}
-			}
-		},
-		"ROBOTS": {
-			"MAIN": {
-				"CREATE": {
-					"SUCCESS": "Robot has been created successfully!",
-					"ERROR": "Unable to create a robot!"
-				}
-			},
-			"DETAIL": {
-				"NOTE": {
-					"SUCCESS": "Note has been updated successfully!",
-					"ERROR": "Unable to update note!"
-				},
-				"MAP": {
-					"ERROR": "Failed to load map!"
-				},
-				"COMMANDS": {
-					"SUCCESS": "Command has been executed successfully!",
-					"ERROR": "Failed to request control access!"
-				},
-				"CAMERAS": {
-					"top": {
-						"SUCCESS": "Top camera image was requested!",
-						"ERROR": "Failed to request top camera image!"
-					},
-					"base": {
-						"SUCCESS": "Base camera image was requested!",
-						"ERROR": "Failed to request base camera image!"
-					}
-				}
-			},
-			"ORDERS": {
-				"CREATE": {
-					"SUCCESS": "Order has been created successfully!",
-					"ERROR": "Unable to create an order!"
-				},
-				"CANCEL": {
-					"SUCCESS": "Order has been canceled successfully!",
-					"ERROR": "Unable to cancel the order!"
-				}
-			},
-			"PURCHASES": {
-				"EDIT_COMMENT": {
-					"SUCCESS": "Comment has been updated successfully!",
-					"ERROR": "Unable to edit a comment field!"
-				}
-			},
-			"ELEVATOR_CALLS": {
-				"TEST_CALL": {
-					"SUCCESS": "Test call successful!",
-					"ERROR": "Unable to do test call!"
-				},
-				"TEMPLATE": {
-					"SUCCESS": "Template copied to clipboard!",
-					"ERROR": "Unable to copy template!"
-				}
-			},
-			"CONFIGURATION": {
-				"SYNC_PRODUCTS": {
-					"SUCCESS": "Products has been synchronized successfully!",
-					"ERROR": "Unable to sync products on the robot!"
-				},
-				"ROBOT_CONFIG": {
-					"SUCCESS": "Robot setting has been updated successfully!",
-					"ERROR": "Unable to configure robot!"
-				},
-				"ROBOT_SITE_CONFIG": {
-					"SUCCESS": "Robot setting has been updated successfully!",
-					"ERROR": "Unable to configure robot to a site!"
-				}
-			}
-		},
-		"DEEP_LINKS": {
-			"FETCH": {
-				"AUDIT_LOGS": {
-					"ERROR": "Failed to fetch audit logs link!"
-				},
-				"BATTERY": {
-					"ERROR": "Failed to fetch battery link!"
-				},
-				"TEMPERATURE": {
-					"ERROR": "Failed to fetch temperature link!"
-				},
-				"DIAGNOSTICS_LOGS": {
-					"ERROR": "Failed to fetch diagnostics logs link!"
-				},
-				"COOLING_UNIT": {
-					"ERROR": "Failed to fetch cooling unit link!"
-				},
-				"ITEM_TRACKING": {
-					"ERROR": "Failed to fetch item tracking link!"
-				},
-				"ELEVATOR_LOGS": {
-					"ERROR": "Failed to fetch elevator logs link!"
-				},
-				"ALERT_LOGS": {
-					"ERROR": "Failed to fetch alert logs link!"
-				}
-			},
-			"CREATE": {
-				"SUCCESS": "Deep link has been created successfully!",
-				"ERROR": "Unable to create a deep link!"
-			},
-			"EDIT": {
-				"SUCCESS": "Deep link has been updated successfully!",
-				"ERROR": "Unable to edit a deep link!"
-			},
-			"DELETE": {
-				"SUCCESS": "Deep link has been deleted successfully!",
-				"ERROR": "Unable to delete a deep link!"
-			}
-		},
-		"MIDDLEWARE_CONFIG": {
-			"CREATE": {
-				"SUCCESS": "Event has been created successfully!",
-				"ERROR": "Unable to create an event!"
-			},
-			"EDIT": {
-				"SUCCESS": "Event has been updated successfully!",
-				"ERROR": "Unable to edit an event!"
-			},
-			"DELETE": {
-				"SUCCESS": "Event has been deleted successfully!",
-				"ERROR": "Unable to delete an event!"
-			}
-		}
-	},
-	"ACCOUNT": {
-		"THEME": {
-			"LABEL": "Theme",
-			"LIGHT": "Light",
-			"DARK": "Dark"
-		},
-		"LANGUAGE": {
-			"LABEL": "Language",
-			"EN": "English",
-			"DE": "Deutsch"
-		},
-		"LOGOUT": "Logout"
-	},
-	"SIDEBAR": {
-		"BUSINESS": {
-			"TITLE": {
-				"MAIN": "Business",
-				"SHORT": "Bus."
-			},
-			"LIST": {
-				"GENERAL": "General",
-				"SITES": "Sites",
-				"ROBOTS": "Robots"
-			}
-		},
-		"INFORMATION": {
-			"TITLE": {
-				"MAIN": "Information",
-				"SHORT": "Info"
-			},
-			"LIST": {
-				"ALERT_CODES": "Alert Codes"
-			}
-		},
-		"SETTINGS": {
-			"TITLE": {
-				"MAIN": "Settings",
-				"SHORT": "Set."
-			},
-			"LIST": {
-				"DEEP_LINKS": "Deep Links",
-				"MIDDLEWARE_CONFIG": "Middleware Config",
-				"SETUP": "Setup"
-			}
-		}
-	},
 	"COMMON": {
 		"LOADING": "Loading...",
 		"ROWS_PER_PAGE": "Per Page",
@@ -423,6 +141,290 @@
 			"TITLE": "Empty 😢",
 			"MESSAGE": "The requested content is empty!",
 			"LINK": "Reload"
+		}
+	},
+	"FRAME": {
+		"MESSAGE": {
+			"AUTH": {
+				"TOKEN_EXPIRED": "Token Expired!",
+				"TOKEN_EMPTY": "No Token Found!",
+				"UNKNOWN": "Unknown"
+			},
+			"GENERAL": {
+				"COMMON": {
+					"COPY_TO_CLIPBOARD": "Message copied to clipboard!"
+				},
+				"ORDER_MODES": {
+					"ERROR": "Unable to fetch order modes!"
+				},
+				"REPORTS": {
+					"SUCCESS": "Report has been generated successfully!",
+					"ERROR": "Unable to generate Report!"
+				}
+			},
+			"SITES": {
+				"MAIN": {
+					"CREATE": {
+						"SUCCESS": "Site has been created successfully!",
+						"ERROR": "Unable to create a site!"
+					}
+				},
+				"PRODUCTS": {
+					"CREATE": {
+						"SUCCESS": "Product has been created successfully!",
+						"ERROR": "Unable to create a product!"
+					},
+					"EDIT": {
+						"SUCCESS": "Product has been updated successfully!",
+						"ERROR": "Unable to edit a product!"
+					},
+					"DELETE": {
+						"SUCCESS": "Product has been deleted successfully!",
+						"ERROR": "Unable to delete a product!"
+					}
+				},
+				"ROOMS": {
+					"UPDATE": {
+						"SUCCESS": "Changes has been updated successfully!",
+						"ERROR": "Unable to update room(s) state!"
+					}
+				},
+				"PHONE_CONFIGS": {
+					"EDIT": {
+						"SUCCESS": "Phone config has been updated successfully!",
+						"ERROR": "Unable to edit a Phone config!"
+					},
+					"UPLOAD_AUDIO": {
+						"SUCCESS": "Audio has been uploaded successfully!",
+						"ERROR": "Unable to upload audio file!"
+					}
+				},
+				"STATISTICS": {
+					"HEATMAP": {
+						"MAPS": {
+							"ERROR": "Unable to fetch wifi heatmap!"
+						},
+						"CONTENT": {
+							"ERROR": "Unable to fetch wifi heatmap content!"
+						}
+					}
+				},
+				"CONFIGURATION": {
+					"ACCEPT_ORDERS": {
+						"SUCCESS": "Site Setting has been updated successfully!",
+						"ERROR": "Unable to update accept orders!"
+					},
+					"NOTIFICATIONS": {
+						"FETCH": {
+							"ERROR": "Unable to fetch notification types or users!"
+						},
+						"UPDATE": {
+							"SUCCESS": "Notification has been updated successfully!",
+							"ERROR": "Unable to update notification!"
+						}
+					},
+					"SERVICE_POSITIONS": {
+						"FETCH": {
+							"ERROR": "Unable to fetch service positions!"
+						},
+						"CREATE": {
+							"SUCCESS": "Service position has been created successfully!",
+							"ERROR": "Unable to create service position!"
+						},
+						"EDIT": {
+							"SUCCESS": "Service position has been updated successfully!",
+							"ERROR": "Unable to update service position!"
+						},
+						"DELETE": {
+							"SUCCESS": "Service position has been deleted successfully!",
+							"ERROR": "Unable to delete service position!"
+						}
+					},
+					"SITE_ROBOT_CONFIG": {
+						"SUCCESS": "Site setting has been updated successfully!",
+						"ERROR": "Unable to configure site robot!"
+					},
+					"SITE_CONFIG": {
+						"SUCCESS": "Site setting has been updated successfully!",
+						"ERROR": "Unable to configure site!"
+					},
+					"CLEAN_TEST_ORDERS": {
+						"SUCCESS": "Test orders cleaned successfully!",
+						"ERROR": "Unable to clean test orders!"
+					}
+				}
+			},
+			"ROBOTS": {
+				"MAIN": {
+					"CREATE": {
+						"SUCCESS": "Robot has been created successfully!",
+						"ERROR": "Unable to create a robot!"
+					}
+				},
+				"DETAIL": {
+					"NOTE": {
+						"SUCCESS": "Note has been updated successfully!",
+						"ERROR": "Unable to update note!"
+					},
+					"MAP": {
+						"ERROR": "Failed to load map!"
+					},
+					"COMMANDS": {
+						"SUCCESS": "Command has been executed successfully!",
+						"ERROR": "Failed to request control access!"
+					},
+					"CAMERAS": {
+						"top": {
+							"SUCCESS": "Top camera image was requested!",
+							"ERROR": "Failed to request top camera image!"
+						},
+						"base": {
+							"SUCCESS": "Base camera image was requested!",
+							"ERROR": "Failed to request base camera image!"
+						}
+					}
+				},
+				"ORDERS": {
+					"CREATE": {
+						"SUCCESS": "Order has been created successfully!",
+						"ERROR": "Unable to create an order!"
+					},
+					"CANCEL": {
+						"SUCCESS": "Order has been canceled successfully!",
+						"ERROR": "Unable to cancel the order!"
+					}
+				},
+				"PURCHASES": {
+					"EDIT_COMMENT": {
+						"SUCCESS": "Comment has been updated successfully!",
+						"ERROR": "Unable to edit a comment field!"
+					}
+				},
+				"ELEVATOR_CALLS": {
+					"TEST_CALL": {
+						"SUCCESS": "Test call successful!",
+						"ERROR": "Unable to do test call!"
+					},
+					"TEMPLATE": {
+						"SUCCESS": "Template copied to clipboard!",
+						"ERROR": "Unable to copy template!"
+					}
+				},
+				"CONFIGURATION": {
+					"SYNC_PRODUCTS": {
+						"SUCCESS": "Products has been synchronized successfully!",
+						"ERROR": "Unable to sync products on the robot!"
+					},
+					"ROBOT_CONFIG": {
+						"SUCCESS": "Robot setting has been updated successfully!",
+						"ERROR": "Unable to configure robot!"
+					},
+					"ROBOT_SITE_CONFIG": {
+						"SUCCESS": "Robot setting has been updated successfully!",
+						"ERROR": "Unable to configure robot to a site!"
+					}
+				}
+			},
+			"DEEP_LINKS": {
+				"FETCH": {
+					"AUDIT_LOGS": {
+						"ERROR": "Failed to fetch audit logs link!"
+					},
+					"BATTERY": {
+						"ERROR": "Failed to fetch battery link!"
+					},
+					"TEMPERATURE": {
+						"ERROR": "Failed to fetch temperature link!"
+					},
+					"DIAGNOSTICS_LOGS": {
+						"ERROR": "Failed to fetch diagnostics logs link!"
+					},
+					"COOLING_UNIT": {
+						"ERROR": "Failed to fetch cooling unit link!"
+					},
+					"ITEM_TRACKING": {
+						"ERROR": "Failed to fetch item tracking link!"
+					},
+					"ELEVATOR_LOGS": {
+						"ERROR": "Failed to fetch elevator logs link!"
+					},
+					"ALERT_LOGS": {
+						"ERROR": "Failed to fetch alert logs link!"
+					}
+				},
+				"CREATE": {
+					"SUCCESS": "Deep link has been created successfully!",
+					"ERROR": "Unable to create a deep link!"
+				},
+				"EDIT": {
+					"SUCCESS": "Deep link has been updated successfully!",
+					"ERROR": "Unable to edit a deep link!"
+				},
+				"DELETE": {
+					"SUCCESS": "Deep link has been deleted successfully!",
+					"ERROR": "Unable to delete a deep link!"
+				}
+			},
+			"MIDDLEWARE_CONFIG": {
+				"CREATE": {
+					"SUCCESS": "Event has been created successfully!",
+					"ERROR": "Unable to create an event!"
+				},
+				"EDIT": {
+					"SUCCESS": "Event has been updated successfully!",
+					"ERROR": "Unable to edit an event!"
+				},
+				"DELETE": {
+					"SUCCESS": "Event has been deleted successfully!",
+					"ERROR": "Unable to delete an event!"
+				}
+			}
+		},
+		"ACCOUNT": {
+			"THEME": {
+				"LABEL": "Theme",
+				"LIGHT": "Light",
+				"DARK": "Dark"
+			},
+			"LANGUAGE": {
+				"LABEL": "Language",
+				"EN": "English",
+				"DE": "Deutsch"
+			},
+			"LOGOUT": "Logout"
+		},
+		"SIDEBAR": {
+			"BUSINESS": {
+				"TITLE": {
+					"MAIN": "Business",
+					"SHORT": "Bus."
+				},
+				"LIST": {
+					"GENERAL": "General",
+					"SITES": "Sites",
+					"ROBOTS": "Robots"
+				}
+			},
+			"INFORMATION": {
+				"TITLE": {
+					"MAIN": "Information",
+					"SHORT": "Info"
+				},
+				"LIST": {
+					"ALERT_CODES": "Alert Codes"
+				}
+			},
+			"SETTINGS": {
+				"TITLE": {
+					"MAIN": "Settings",
+					"SHORT": "Set."
+				},
+				"LIST": {
+					"DEEP_LINKS": "Deep Links",
+					"MIDDLEWARE_CONFIG": "Middleware Config",
+					"SETUP": "Setup"
+				}
+			}
 		}
 	},
 	"AUTH": {
@@ -569,6 +571,11 @@
 					"TIMEZONE": "Timezone",
 					"ACCEPT_ORDERS": {
 						"LABEL": "Accept Orders",
+						"ACTIVE": "Active",
+						"INACTIVE": "Inactive"
+					},
+					"EMERGENCY": {
+						"LABEL": "Emergency State",
 						"ACTIVE": "Active",
 						"INACTIVE": "Inactive"
 					}
@@ -926,6 +933,10 @@
 								"QR_CODE": {
 									"LABEL": "Enable QR Code",
 									"NOTE": "*Allow orders using QR Code!"
+								},
+								"EMERGENCY": {
+									"LABEL": "Enable Emergency",
+									"NOTE": "*Show emergency feature on site!"
 								},
 								"HIDDEN": {
 									"LABEL": "Hide Site",

@@ -9,7 +9,7 @@ import { appSelector, AppTriggerMessage } from '../../../slices/app/App.slice';
 import { TriggerMessageTypeEnum } from './Message.enum';
 
 const Message: FC = () => {
-	const { t } = useTranslation('MESSAGE');
+	const { t } = useTranslation('FRAME');
 
 	const dispatch = useDispatch();
 	const app = useSelector(appSelector);
@@ -50,7 +50,7 @@ const Message: FC = () => {
 					</IconButton>
 				}
 				severity={app.triggerMessage.severity}>
-				{app.triggerMessage.text && t(app.triggerMessage.text)}
+				{app.triggerMessage.text && t(`MESSAGE.${app.triggerMessage.text}`)}
 			</Alert>
 		</Snackbar>
 	);

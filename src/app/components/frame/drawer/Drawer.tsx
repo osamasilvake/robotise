@@ -28,7 +28,7 @@ import { DrawersList } from './Drawer.list';
 import { DrawerStyle } from './Drawer.style';
 
 const DrawerCustom: FC = () => {
-	const { t } = useTranslation('SIDEBAR');
+	const { t } = useTranslation('FRAME');
 	const classes = DrawerStyle();
 
 	const app = useSelector(appSelector);
@@ -55,7 +55,8 @@ const DrawerCustom: FC = () => {
 						key={index}
 						subheader={
 							<ListSubheader>
-								{(app.openDrawer && t(root.primary)) || t(root.secondary)}
+								{(app.openDrawer && t(`SIDEBAR.${root.primary}`)) ||
+									t(`SIDEBAR.${root.secondary}`)}
 							</ListSubheader>
 						}>
 						{root.list.map((item, pIdx) => (
@@ -87,7 +88,10 @@ const DrawerCustom: FC = () => {
 										<Icon>{item.icon}</Icon>
 									)}
 								</ListItemIcon>
-								<ListItemText primary={t(item.label)} secondary={item.hint} />
+								<ListItemText
+									primary={t(`SIDEBAR.${item.label}`)}
+									secondary={item.hint}
+								/>
 							</ListItemButton>
 						))}
 					</List>

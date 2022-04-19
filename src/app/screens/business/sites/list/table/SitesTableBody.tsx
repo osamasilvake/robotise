@@ -1,4 +1,5 @@
 import { TableBody, TableRow } from '@mui/material';
+import clsx from 'clsx';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -13,10 +14,12 @@ import { dateSort } from '../../../../../utilities/methods/Date';
 import { SitesTableColumnsTypeEnum, SitesTableSortTypeEnum } from './SitesTable.enum';
 import { SitesTableBodyInterface, SitesTableColumnInterface } from './SitesTable.interface';
 import { columns } from './SitesTable.list';
+import { SitesListStyle } from './SitesTable.style';
 import SitesTableBodyCell from './SitesTableBodyCell';
 
 const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const { content, order, orderBy } = props;
+	const classes = SitesListStyle();
 
 	const sites = useSelector(sitesSelector);
 
@@ -78,13 +81,13 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 
 	/**
 	 * handle show site detail
-	 * @param siteTwins
+	 * @param site
 	 * @returns
 	 */
-	const handleShowSiteDetail = (siteTwins: ISite) => () => {
+	const handleShowSiteDetail = (site: ISite) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL;
-		const link = url.replace(':siteId', siteTwins.id);
+		const link = url.replace(':siteId', site.id);
 
 		// navigate
 		navigate(link);
@@ -96,18 +99,17 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 				content.data &&
 				sortTableData(content)
 					.filter((s) => hidden || (!hidden && !s.configs.isHidden))
-					.map((siteTwins: ISite) => (
+					.map((site: ISite) => (
 						<TableRow
 							hover
-							key={siteTwins.id}
+							key={site.id}
 							tabIndex={-1}
-							onClick={handleShowSiteDetail(siteTwins)}>
+							onClick={handleShowSiteDetail(site)}
+							className={clsx({
+								[classes.sTableRowDanger]: !site.configs?.showEmergencyWorkflow
+							})}>
 							{columns.map((column: SitesTableColumnInterface) => (
-								<SitesTableBodyCell
-									key={column.id}
-									column={column}
-									site={siteTwins}
-								/>
+								<SitesTableBodyCell key={column.id} column={column} site={site} />
 							))}
 						</TableRow>
 					))}

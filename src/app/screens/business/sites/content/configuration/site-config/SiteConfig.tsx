@@ -65,6 +65,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			availableOrderModes: siteSingle?.configs.availableOrderModes || [],
 			helpPage: siteSingle?.configs.helpPage || '',
 			qrOrdersEnabled: !!siteSingle?.configs.qrOrdersEnabled,
+			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
 			isHidden: !!siteSingle?.configs.isHidden
 		},
 		SiteConfigValidation,
@@ -232,6 +233,25 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								/>
 								<FormHelperText>
 									{t(`${translation}.FORM.FIELDS.CHECKBOXES.QR_CODE.NOTE`)}
+								</FormHelperText>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12}>
+							<FormControl>
+								<FormControlLabel
+									control={
+										<Switch
+											name="showEmergencyWorkflow"
+											checked={values.showEmergencyWorkflow}
+											onChange={handleChangeCheckbox}
+										/>
+									}
+									label={t<string>(
+										`${translation}.FORM.FIELDS.CHECKBOXES.EMERGENCY.LABEL`
+									)}
+								/>
+								<FormHelperText>
+									{t(`${translation}.FORM.FIELDS.CHECKBOXES.EMERGENCY.NOTE`)}
 								</FormHelperText>
 							</FormControl>
 						</Grid>

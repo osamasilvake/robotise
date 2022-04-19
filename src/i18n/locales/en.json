@@ -1615,7 +1615,8 @@
 								"sync-products": "Sync Products",
 								"remote-control-translate": "Remote Control Translate",
 								"remote-control-rotate": "Remote Control Rotate",
-								"set-mute-sensor-state": "Set Mute Sensor State"
+								"set-mute-sensor-state": "Set Mute Sensor State",
+								"set-emergency-state": "Set Emergency State"
 							},
 							"HISTORY": {
 								"STATUS": {

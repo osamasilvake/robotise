@@ -132,10 +132,14 @@ const MiddlewareConfigTableBodyCell: FC<MiddlewareConfigTableBodyCellInterface> 
 				const key = config.key;
 				const prop = config.prop;
 				return (
-					<>
-						<Typography variant="body2">{key}</Typography>
-						<Typography variant="body2">{prop}</Typography>
-					</>
+					<Box>
+						<Typography variant="body2">
+							<>Key: {key}</>
+						</Typography>
+						<Typography variant="body2">
+							<>Prop: {prop}</>
+						</Typography>
+					</Box>
 				);
 			}
 			return value || AppConfigService.AppOptions.common.none;

@@ -51,7 +51,7 @@ const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
 					<Chip
 						size="small"
 						label={t(`${translation}.BLOCK`)}
-						color="error"
+						color="primary"
 						variant="outlined"
 						icon={<Block />}
 						onClick={() =>
@@ -61,7 +61,7 @@ const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
 					<Chip
 						size="small"
 						label={t(`${translation}.UNBLOCK`)}
-						color="secondary"
+						color="primary"
 						variant="outlined"
 						icon={<Contrast />}
 						onClick={() =>

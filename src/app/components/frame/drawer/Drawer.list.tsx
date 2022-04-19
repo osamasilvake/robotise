@@ -50,11 +50,6 @@ const drawerInformationList: DrawerListInterface[] = [
 		icon: 'access_alarm',
 		label: 'INFORMATION.LIST.ALERT_CODES',
 		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ALERT_CODES
-	},
-	{
-		icon: 'info',
-		label: 'INFORMATION.LIST.ABOUT',
-		path: AppConfigService.AppRoutes.SCREENS.INFORMATION.ABOUT
 	}
 ];
 

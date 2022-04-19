@@ -46,10 +46,6 @@
 		"ALERT_CODES": {
 			"TITLE": "Alert Codes",
 			"DESCRIPTION": "Alert Codes Description"
-		},
-		"ABOUT": {
-			"TITLE": "About",
-			"DESCRIPTION": "About Description"
 		}
 	},
 	"DIALOG": {
@@ -405,8 +401,7 @@
 				"SHORT": "Info"
 			},
 			"LIST": {
-				"ALERT_CODES": "Alert Codes",
-				"ABOUT": "About"
+				"ALERT_CODES": "Alert Codes"
 			}
 		},
 		"SETTINGS": {
@@ -1975,66 +1970,6 @@
 					"NODE": "Node",
 					"UPDATED": "Updated"
 				}
-			}
-		}
-	},
-	"ABOUT": {
-		"INFO": {
-			"ADDRESS": "Otto-Hahn-Ring 6",
-			"POSTAL_CITY": "81739 München",
-			"OWNER": "Oliver Stahl",
-			"SUPPORT": {
-				"TITLE": "Support",
-				"TEL": {
-					"LABEL": "Telephone",
-					"VALUE": "+49 892 441 811 60",
-					"PHONE": "+4989244181160"
-				},
-				"EMAIL": {
-					"LABEL": "E-Mail",
-					"VALUE": "support@robotise.eu"
-				}
-			},
-			"CONTACT": {
-				"TITLE": "Contact",
-				"TEL": {
-					"LABEL": "Telephone",
-					"VALUE": "+49 89 890 828 41",
-					"PHONE": "+498989082841"
-				},
-				"EMAIL": {
-					"LABEL": "E-Mail",
-					"VALUE": "info@robotise.eu"
-				}
-			},
-			"REGISTRY": {
-				"TITLE": "Register Entry",
-				"COURT": {
-					"LABEL": "Register Court",
-					"VALUE": "München"
-				},
-				"REG_NO": {
-					"LABEL": "Register No.",
-					"VALUE": "262463"
-				}
-			}
-		},
-		"SERVICES": {
-			"JEEVES": {
-				"TITLE": "Jeeves",
-				"DESCRIPTION": "The multi-point service robot JEEVES is the first service robot by Robotise, is used in hotels, healthcare facilities, offices, airports and many other settings. His main duty is to transport materials and products. Thanks to his spacious drawers and intelligent route planning, JEEVES can service multiple points in a single run. Optionally, he can be loaded with a set range of items. All of these features allow him to provide an unrivalled range of services."
-			},
-			"RB_130": {
-				"TITLE": "RB-130",
-				"DESCRIPTION": "Our RB-130 is a medium-sized, compact, autonomous, mobile service robot designed for indoor use and with a focus on safety. Our robot base has unique capabilities for 24/7 operation in close proximity to humans and builds on our know-how and experience from existing applications in the hospitality industry. The robot base introduces a completely new level of security in professional and production environments for collaborative use scenarios. Our robot uses a differential drive train, has expandable power and connection options and modular components to perform all tasks smoothly and reliably."
-			},
-			"SAFETY_MEASURES": {
-				"TITLE": "The highest safety measures",
-				"DESCRIPTION": "Our robots employ the very latest safety sensors in order to safely navigate around humans, stairs and other obstacles. The sensors also stop them instantaneously and safely in critical situations. The latest standards were applied during development and experienced partners and certification institutions were involved in product development. Our mission is to provide unsurpassed safety."
-			},
-			"ELEVATOR": {
-				"TITLE": "Riding the elevator",
-				"DESCRIPTION": "Our robots work with the elevators in your building. We do this by working with the manufacturer to install an interface in the elevator which JEEVES can use to call the elevator car. Most elevator systems can be easily retrofitted to work with JEEVES, and we can provide a choice of solutions. Tell us which type of elevator you have, and we’ll take care of the rest."
 			}
 		}
 	}

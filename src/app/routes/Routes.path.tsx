@@ -51,8 +51,7 @@ const appRoutes = {
 			}
 		},
 		INFORMATION: {
-			ALERT_CODES: '/alert-codes',
-			ABOUT: '/about-us'
+			ALERT_CODES: '/alert-codes'
 		}
 	}
 };

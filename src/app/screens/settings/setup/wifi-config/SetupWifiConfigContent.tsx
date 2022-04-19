@@ -55,7 +55,7 @@ const SetupWifiConfigContent: FC = () => {
 		{
 			site: '',
 			ssid: '',
-			country: countriesList[0],
+			country: countriesList[80],
 			authentication: authenticationMethods[0].id,
 			pskPassword: '',
 			regMacAddress: registeredMacAddress[0].id,

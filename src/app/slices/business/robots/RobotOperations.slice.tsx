@@ -41,6 +41,9 @@ export const initialState: SliceRobotOperationsInterface = {
 		loading: false,
 		content: null
 	},
+	emergencyState: {
+		loading: false
+	},
 	syncProducts: {
 		loading: false
 	},
@@ -69,6 +72,8 @@ const dataSlice = createSlice({
 				state.camera.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
 				state.elevatorTemplate.loading = true;
+			} else if (module === RobotOperationsTypeEnum.EMERGENCY_STATE) {
+				state.emergencyState.loading = true;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
@@ -91,6 +96,8 @@ const dataSlice = createSlice({
 			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
 				state.elevatorTemplate.loading = false;
 				state.elevatorTemplate.content = response;
+			} else if (module === RobotOperationsTypeEnum.EMERGENCY_STATE) {
+				state.emergencyState.loading = false;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
@@ -113,6 +120,8 @@ const dataSlice = createSlice({
 			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
 				state.elevatorTemplate.loading = false;
 				state.elevatorTemplate.content = null;
+			} else if (module === RobotOperationsTypeEnum.EMERGENCY_STATE) {
+				state.emergencyState.loading = false;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
@@ -337,6 +346,8 @@ export const RobotCameraCommandRequest =
 /**
  * fetch elevator template
  * @param elevatorId
+ * @param callback
+ * @returns
  */
 export const RobotElevatorTemplateFetch =
 	(elevatorId: string, callback: (data: SROContentElevatorTemplateInterface) => void) =>
@@ -382,6 +393,55 @@ export const RobotElevatorTemplateFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * set emergency state
+ * @param robotId
+ * @param isInEmergencyState
+ * @param callback
+ * @returns
+ */
+export const RobotSetEmergencyState =
+	(robotId: string, isInEmergencyState: boolean, callback: () => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotOperationsTypeEnum.EMERGENCY_STATE
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotSetEmergencyState(robotId, isInEmergencyState)
+			.then(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-operations-emergency-state-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.CONFIGURATION.EMERGENCY_STATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+
+				// callback
+				callback();
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-operations-emergency-state-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.CONFIGURATION.EMERGENCY_STATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

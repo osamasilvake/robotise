@@ -24,6 +24,7 @@ export interface SRTContentDataInterface {
 	batteryState?: SRTContentBatteryStateInterface | undefined;
 	dockingState?: SRTContentDockingStateInterface | undefined;
 	joystickState?: SRTContentJoystickStateInterface | undefined;
+	emergencyState?: SRTContentEmergencyStateInterface | undefined;
 	activityState?: SRTContentActivityStateInterface | undefined;
 	safetySystems?: SRTContentSafetySystemsInterface | undefined;
 	safetySensors?: SRTContentSafetySensorsInterface | undefined;
@@ -122,6 +123,13 @@ export interface SRTContentDockingStateInterface {
 export interface SRTContentJoystickStateInterface {
 	properties: {
 		isConnected: boolean;
+	};
+	updatedAt: Date;
+}
+
+export interface SRTContentEmergencyStateInterface {
+	properties: {
+		isInEmergencyState: boolean;
 	};
 	updatedAt: Date;
 }
@@ -277,6 +285,7 @@ export interface IRobotTwinInterface {
 				controlMode: RobotDetailControlModeTypeEnum;
 				isDocked: boolean;
 				isJoystickConnected: boolean;
+				isInEmergencyState: boolean;
 				mission: {
 					status: string;
 					description: string;
@@ -416,6 +425,9 @@ export interface IRobotTwinInterface {
 					updatedAt: Date;
 				};
 				isJoystickConnected: {
+					updatedAt: Date;
+				};
+				isInEmergencyState: {
 					updatedAt: Date;
 				};
 				mission: {

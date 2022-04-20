@@ -32,6 +32,7 @@ export interface RTSContentDataInterface {
 	robotNote: string;
 	robotHidden: boolean;
 	robotOnlineCheckDisabled: boolean;
+	robotEmergencyState: boolean;
 	robotAlerts: RTSContentAlertsInterface;
 	robotLastSyncedProducts: Date;
 	siteId: string;
@@ -74,6 +75,7 @@ export interface IRobotTwinSummaryInterface {
 					status: string;
 					description: string;
 				};
+				isInEmergencyState: boolean;
 			};
 			alerts: IAlertInterface[];
 		};

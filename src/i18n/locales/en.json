@@ -322,6 +322,10 @@
 					"ROBOT_SITE_CONFIG": {
 						"SUCCESS": "Robot setting has been updated successfully!",
 						"ERROR": "Unable to configure robot to a site!"
+					},
+					"EMERGENCY_STATE": {
+						"SUCCESS": "Emergency state has been updated successfully!",
+						"ERROR": "Unable to update emergency state!"
 					}
 				}
 			},
@@ -571,11 +575,6 @@
 					"TIMEZONE": "Timezone",
 					"ACCEPT_ORDERS": {
 						"LABEL": "Accept Orders",
-						"ACTIVE": "Active",
-						"INACTIVE": "Inactive"
-					},
-					"EMERGENCY": {
-						"LABEL": "Emergency State",
 						"ACTIVE": "Active",
 						"INACTIVE": "Inactive"
 					}
@@ -935,8 +934,8 @@
 									"NOTE": "*Allow orders using QR Code!"
 								},
 								"EMERGENCY": {
-									"LABEL": "Enable Emergency",
-									"NOTE": "*Show emergency feature on site!"
+									"LABEL": "Activate Emergency",
+									"NOTE": "*Show emergency feature on JEEVES app!"
 								},
 								"HIDDEN": {
 									"LABEL": "Hide Site",
@@ -1058,6 +1057,11 @@
 					},
 					"CUSTOMER_NAME": "Robot Customer Name",
 					"MISSION": "Mission",
+					"EMERGENCY": {
+						"LABEL": "Emergency State",
+						"ACTIVE": "Active",
+						"INACTIVE": "Inactive"
+					},
 					"IP_ADDRESS": "IP Address",
 					"USERNAME": "CA Username",
 					"NOTE": {
@@ -1678,6 +1682,16 @@
 					"TITLE": "Sync Products",
 					"EXCERPT": "Sync Products on the robot.",
 					"SYNC": "SYNC"
+				},
+				"EMERGENCY": {
+					"TITLE": "Emergency State",
+					"EXCERPT": "Update emergency status.",
+					"ACTIVE": "Active",
+					"MODAL": {
+						"TITLE": "Emergency mode",
+						"TEXT": "Are you sure you want to change the emergency mode?",
+						"NOTE": "Note*: Don't forget to take the robot into service again."
+					}
 				},
 				"ROBOT_CONFIG": {
 					"TITLE": "Configure Robot",

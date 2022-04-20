@@ -109,6 +109,12 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 						},
 						updatedAt: meta.status.isJoystickConnected.updatedAt
 					},
+					emergencyState: meta.status?.isInEmergencyState && {
+						properties: {
+							isInEmergencyState: state.status.isInEmergencyState
+						},
+						updatedAt: meta.status.isInEmergencyState.updatedAt
+					},
 					activityState: state && {
 						properties: {
 							latest: state.activity

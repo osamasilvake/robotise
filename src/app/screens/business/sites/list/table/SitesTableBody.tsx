@@ -1,5 +1,4 @@
 import { TableBody, TableRow } from '@mui/material';
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -14,12 +13,10 @@ import { dateSort } from '../../../../../utilities/methods/Date';
 import { SitesTableColumnsTypeEnum, SitesTableSortTypeEnum } from './SitesTable.enum';
 import { SitesTableBodyInterface, SitesTableColumnInterface } from './SitesTable.interface';
 import { columns } from './SitesTable.list';
-import { SitesListStyle } from './SitesTable.style';
 import SitesTableBodyCell from './SitesTableBodyCell';
 
 const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const { content, order, orderBy } = props;
-	const classes = SitesListStyle();
 
 	const sites = useSelector(sitesSelector);
 
@@ -104,10 +101,7 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 							hover
 							key={site.id}
 							tabIndex={-1}
-							onClick={handleShowSiteDetail(site)}
-							className={clsx({
-								[classes.sTableRowDanger]: !site.configs?.showEmergencyWorkflow
-							})}>
+							onClick={handleShowSiteDetail(site)}>
 							{columns.map((column: SitesTableColumnInterface) => (
 								<SitesTableBodyCell key={column.id} column={column} site={site} />
 							))}

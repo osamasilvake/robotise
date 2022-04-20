@@ -16,6 +16,9 @@ export interface SliceRobotOperationsInterface {
 		loading: boolean;
 		content: SROContentElevatorTemplateInterface | null;
 	};
+	emergencyState: {
+		loading: boolean;
+	};
 	syncProducts: {
 		loading: boolean;
 	};

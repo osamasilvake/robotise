@@ -21,6 +21,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 
 	const [open, setOpen] = useState(false);
 
+	const emergencyState = !!robotTwins?.emergencyState?.properties.isInEmergencyState;
 	const translation = 'CONTENT.DETAIL.GENERAL';
 
 	return (
@@ -151,8 +152,22 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Stack>
 			</Grid>
 
+			{/* Emergency State */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.EMERGENCY.LABEL`)}
+				</Typography>
+				<Box>
+					<Status active={!emergencyState}>
+						{emergencyState
+							? t(`${translation}.EMERGENCY.ACTIVE`)
+							: t(`${translation}.EMERGENCY.INACTIVE`)}
+					</Status>
+				</Box>
+			</Grid>
+
 			{/* Note */}
-			<Grid item xs={12} sm={6} md={4} lg={9} className={classes.sNoteGrid}>
+			<Grid item xs={12} sm={6} md={4} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.NOTE.LABEL`)}
 					<Tooltip

@@ -14,7 +14,6 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 	const classes = SiteDetailGeneralStyle();
 
 	const translation = 'CONTENT.DETAIL.GENERAL';
-	const showEmergency = !!site.configs?.showEmergencyWorkflow;
 
 	return (
 		<Grid container spacing={1}>
@@ -54,20 +53,6 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 						{site.acceptOrders
 							? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
 							: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
-					</Status>
-				</Box>
-			</Grid>
-
-			{/* Emergency State */}
-			<Grid item xs={12} sm={6} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.EMERGENCY.LABEL`)}
-				</Typography>
-				<Box>
-					<Status active={showEmergency}>
-						{showEmergency
-							? t(`${translation}.EMERGENCY.ACTIVE`)
-							: t(`${translation}.EMERGENCY.INACTIVE`)}
 					</Status>
 				</Box>
 			</Grid>

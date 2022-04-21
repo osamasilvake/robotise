@@ -14,6 +14,9 @@ const PaletteCustom: PaletteOptions = {
 	},
 	error: {
 		main: AppConfigService.AppOptions.colors.c12
+	},
+	info: {
+		main: AppConfigService.AppOptions.colors.c7
 	}
 };
 export default PaletteCustom;

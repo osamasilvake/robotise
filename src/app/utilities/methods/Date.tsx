@@ -1,6 +1,15 @@
 import dayjs from 'dayjs';
 
 /**
+ * day JS
+ * @param date
+ * @returns
+ */
+const dateDayJs = (date?: Date) => {
+	return date ? dayjs(date) : dayjs();
+};
+
+/**
  * format 1
  * @param date
  * @returns
@@ -50,14 +59,6 @@ const dateNow = (): number => {
  */
 const dateToday = (): string => {
 	return dayjs().format('YYYY-MM-DD');
-};
-
-/**
- * today with time
- * @returns
- */
-const dateTodayWithTime = (): string => {
-	return dayjs().format('YYYY-MM-DD hh:mm:ss');
 };
 
 /**
@@ -114,6 +115,7 @@ const dateSort = (date: Date): dayjs.Dayjs => dayjs(date);
 
 export {
 	dateCurrentYear,
+	dateDayJs,
 	dateDaysPriorToToday,
 	dateFormat1,
 	dateFormat2,
@@ -124,6 +126,5 @@ export {
 	dateMinsPriorToDate,
 	dateNow,
 	dateSort,
-	dateToday,
-	dateTodayWithTime
+	dateToday
 };

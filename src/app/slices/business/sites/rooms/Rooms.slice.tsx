@@ -103,7 +103,7 @@ export const RoomsUpdate =
  * @returns
  */
 export const RoomsUpdateState =
-	(siteId: string | undefined, state: SRCStateInterface) =>
+	(siteId: string, state: SRCStateInterface) =>
 	async (dispatch: Dispatch, getState: () => AppReducerType) => {
 		// states
 		const states = getState();

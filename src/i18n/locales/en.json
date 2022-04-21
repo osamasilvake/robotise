@@ -691,13 +691,13 @@
 						"ROOM": "Room",
 						"BLOCK": "Block Floor",
 						"UNBLOCK": "Unblock Floor",
-						"ROOM_STATE": {
-							"TITLE": "Room {{value}}",
-							"TEXT": "Are you sure you want to update the room state?"
-						},
 						"FLOOR_STATE": {
 							"TITLE": "Floor",
 							"TEXT": "Are you sure you want to update the floor state?"
+						},
+						"ROOM_STATE": {
+							"TITLE": "Room {{value}}",
+							"TEXT": "Are you sure you want to update the room state?"
 						}
 					}
 				}

@@ -37,7 +37,7 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 			...rooms.content.state,
 			active: !active
 		};
-		dispatch(RoomsUpdateState(siteSingle?.id, filters));
+		siteSingle?.id && dispatch(RoomsUpdateState(siteSingle.id, filters));
 	};
 
 	return (

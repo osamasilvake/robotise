@@ -37,7 +37,7 @@ const SiteRoomsInactiveRooms: FC<SiteRoomsInactiveRoomsInterface> = (props) => {
 			...rooms.content.state,
 			inactive: !inactive
 		};
-		dispatch(RoomsUpdateState(siteSingle?.id, state));
+		siteSingle?.id && dispatch(RoomsUpdateState(siteSingle.id, state));
 	};
 
 	return (

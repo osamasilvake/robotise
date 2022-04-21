@@ -22,11 +22,7 @@ import {
 	SiteTestOrdersClean
 } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import {
-	dateFormat4,
-	dateToday,
-	dateTodayWithTime
-} from '../../../../../../utilities/methods/Date';
+import { dateDayJs, dateFormat4, dateToday } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
 import {
 	DialogCleanTestOrdersFormInterface,
@@ -48,7 +44,7 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 		useForm<DialogCleanTestOrdersFormInterface>(
 			{
 				dateTo: dateToday(),
-				timeTo: dateTodayWithTime()
+				timeTo: dateDayJs().format('YYYY-MM-DD hh:mm:ss')
 			},
 			() => ({ dateTo: '', timeTo: '' }),
 			async () => {

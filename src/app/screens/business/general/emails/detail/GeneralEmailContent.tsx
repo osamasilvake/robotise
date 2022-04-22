@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 
 import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
+import { AppDispatch } from '../../../../../slices';
 import { AppTriggerMessage } from '../../../../../slices/app/App.slice';
 import { dateFormat1 } from '../../../../../utilities/methods/Date';
 import { strToLinks } from '../../../../../utilities/methods/String';
@@ -30,7 +31,7 @@ const GeneralEmailContent: FC<GeneralEmailDetailContentInterface> = (props) => {
 	const { t } = useTranslation('GENERAL');
 	const classes = GeneralEmailsTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const translation = 'CONTENT.EMAILS.DETAIL';
 	const history = email.history && email.history[email.history.length - 1];

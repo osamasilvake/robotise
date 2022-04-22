@@ -10,6 +10,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	roomsSelector,
 	RoomsUpdate
@@ -22,7 +23,7 @@ const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
 	const { open, setOpen, floorState, siteSingle, allWhitelist } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const rooms = useSelector(roomsSelector);
 
 	const translation = 'CONTENT.ROOMS.LIST.GRID';

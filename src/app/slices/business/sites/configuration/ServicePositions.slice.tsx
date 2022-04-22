@@ -6,7 +6,7 @@ import { SiteServicePositionsCreateEditTypeEnum } from '../../../../screens/busi
 import { DialogCreateEditServicePositionFormInterface } from '../../../../screens/business/sites/content/configuration/service-positions/SiteServicePositions.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { deserializeServicePositions } from './ServicePositions.slice.deserialize';
 import {
@@ -62,7 +62,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const servicePositionsSelector = (state: AppReducerType) => state['servicePositions'];
+export const servicePositionsSelector = (state: RootState) => state['servicePositions'];
 
 // reducer
 export default dataSlice.reducer;

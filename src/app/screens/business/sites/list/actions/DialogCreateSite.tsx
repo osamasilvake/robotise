@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import {
 	SiteCreate,
 	SitesFetchList,
@@ -31,7 +32,7 @@ const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 
 	const currencies = AppConfigService.AppOptions.common.currencies;

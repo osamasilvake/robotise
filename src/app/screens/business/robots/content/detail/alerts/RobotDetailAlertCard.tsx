@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import { AppTriggerMessage } from '../../../../../../slices/app/App.slice';
 import { useWindow } from '../../../../../../utilities/hooks/window/UseWindow';
 import { dateFormat2 } from '../../../../../../utilities/methods/Date';
@@ -21,7 +22,7 @@ const RobotDetailAlertCard: FC<RobotDetailAlertCardInterface> = (props) => {
 	const { t } = useTranslation('TOOLTIP');
 	const classes = RobotDetailAlertsStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const cWindow = useWindow();
 

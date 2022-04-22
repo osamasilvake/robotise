@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	RobotCameraCommandRequest,
 	robotOperationsSelector
@@ -21,7 +22,7 @@ const RobotDetailCamera: FC<RobotDetailCameraInterface> = (props) => {
 	const classes = RobotDetailCameraStyle();
 	const cardClasses = CardStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotOperations = useSelector(robotOperationsSelector);
 
 	const translation = 'CONTENT.DETAIL.CAMERAS';

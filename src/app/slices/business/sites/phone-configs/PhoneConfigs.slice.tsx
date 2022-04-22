@@ -8,7 +8,7 @@ import {
 } from '../../../../screens/business/sites/content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { deserializePhoneConfigs } from './PhoneConfigs.slice.deserialize';
 import { PCContentInterface, SlicePhoneConfigsInterface } from './PhoneConfigs.slice.interface';
@@ -66,7 +66,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const phoneConfigsSelector = (state: AppReducerType) => state['phoneConfigs'];
+export const phoneConfigsSelector = (state: RootState) => state['phoneConfigs'];
 
 // reducer
 export default dataSlice.reducer;
@@ -79,7 +79,7 @@ export default dataSlice.reducer;
  */
 export const PhoneConfigsFetch =
 	(siteId: string, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const phoneConfigs = states.phoneConfigs;

@@ -13,7 +13,7 @@ import {
 import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { deserializeMap } from './RobotOperations.slice.deserialize';
 import { RobotOperationsTypeEnum } from './RobotOperations.slice.enum';
@@ -138,7 +138,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const robotOperationsSelector = (state: AppReducerType) => state['robotOperations'];
+export const robotOperationsSelector = (state: RootState) => state['robotOperations'];
 
 // reducer
 export default dataSlice.reducer;
@@ -201,7 +201,7 @@ export const RobotNoteUpdate =
  * @returns
  */
 export const RobotMapFetch =
-	(mapId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(mapId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
 		const states = getState();
 		const map = states.robotOperations.map;
 		const state = {
@@ -351,7 +351,7 @@ export const RobotCameraCommandRequest =
  */
 export const RobotElevatorTemplateFetch =
 	(elevatorId: string, callback: (data: SROContentElevatorTemplateInterface) => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		const states = getState();
 		const elevatorTemplate = states.robotOperations.elevatorTemplate;
 		const state = {

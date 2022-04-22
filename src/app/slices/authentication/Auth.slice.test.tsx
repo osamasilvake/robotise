@@ -8,7 +8,7 @@ import { TriggerMessageInterface } from '../../components/frame/message/Message.
 import { AuthLoginFormInterface } from '../../screens/authentication/Auth.interface';
 import AuthService from '../../screens/authentication/Auth.service';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import { AppReducerType } from '..';
+import { RootState } from '..';
 import { triggerMessage } from '../app/App.slice';
 import {
 	AuthLogin,
@@ -29,7 +29,7 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 // mock store
-type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
+type DispatchExts = ThunkDispatch<RootState, void, AnyAction>;
 const mockStore = createMockStore<SliceAuthInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] Authentication', () => {

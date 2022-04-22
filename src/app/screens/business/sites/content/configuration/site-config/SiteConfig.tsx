@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import { generalOperationsSelector } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { SiteConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
@@ -36,7 +37,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const { t } = useTranslation(['SITES', 'GENERAL']);
 	const classes = SiteConfigStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const generalOperations = useSelector(generalOperationsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;

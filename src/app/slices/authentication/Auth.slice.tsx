@@ -7,7 +7,7 @@ import AuthService from '../../screens/authentication/Auth.service';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
 import { dateNow } from '../../utilities/methods/Date';
-import { AppReducerType } from '..';
+import { RootState } from '..';
 import { triggerMessage } from '../app/App.slice';
 import { AuthUserInterface, SliceAuthInterface } from './Auth.slice.interface';
 import { mapUserDetail } from './Auth.slice.map';
@@ -60,7 +60,7 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, terminate, reset } = dataSlice.actions;
 
 // selector
-export const authSelector = (state: AppReducerType) => state['auth'];
+export const authSelector = (state: RootState) => state['auth'];
 
 // reducer
 export default dataSlice.reducer;

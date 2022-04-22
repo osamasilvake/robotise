@@ -10,7 +10,7 @@ import {
 import { DialogCreateEditMiddlewareConfigFormInterface } from '../../../screens/settings/middleware-config/list/table/MiddlewareConfigTable.interface';
 import MiddlewareConfigService from '../../../screens/settings/middleware-config/MiddlewareConfig.service';
 import { timeout } from '../../../utilities/methods/Timeout';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { handleRefreshAndPagination } from '../../Slices.map';
 import {
@@ -80,7 +80,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const middlewareConfigSelector = (state: AppReducerType) => state['middlewareConfig'];
+export const middlewareConfigSelector = (state: RootState) => state['middlewareConfig'];
 
 // reducer
 export default dataSlice.reducer;
@@ -93,7 +93,7 @@ export default dataSlice.reducer;
  */
 export const MiddlewareConfigFetchList =
 	(payload: MiddlewareConfigListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const middlewareConfig = states.middlewareConfig;
@@ -164,7 +164,7 @@ export const MiddlewareConfigCreateEdit =
 		type: MiddlewareConfigCreateEditTypeEnum,
 		callback: () => void
 	) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const middlewareConfig = states.middlewareConfig;
@@ -290,7 +290,7 @@ export const MiddlewareConfigDelete =
  * @returns
  */
 export const MiddlewareConfigUpdateState =
-	(state: SMCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SMCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const middlewareConfig = states.middlewareConfig;

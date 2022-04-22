@@ -6,12 +6,10 @@ import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
+import { ExternalLinkActionTypeEnum } from '../../../../../../../components/common/external-link/ExternalLink.enum';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
-import {
-	DeepLinkItemTrackingLinkFetch,
-	deepLinkSelector
-} from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
+import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateMinsPriorToDate } from '../../../../../../../utilities/methods/Date';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -55,7 +53,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 						from: dateMinsPriorToDate(purchase.createdAt, 15),
 						to: purchase.createdAt
 					}}
-					FetchExternalLink={DeepLinkItemTrackingLinkFetch}
+					actionType={ExternalLinkActionTypeEnum.ITEM_TRACKING}
 					showIcon={deepLink.itemTracking.loading}
 					disabled={deepLink.itemTracking.loading}
 				/>

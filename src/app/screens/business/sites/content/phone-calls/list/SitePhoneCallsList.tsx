@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	PhoneCallsFetchList,
 	phoneCallsSelector
@@ -20,7 +21,7 @@ import SitePhoneCallsTable from './table/SitePhoneCallsTable';
 const SitePhoneCallsList: FC = () => {
 	const classes = SitePhoneCallsListStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const phoneCalls = useSelector(phoneCallsSelector);
 
 	const page = phoneCalls.content?.state?.page || 0;

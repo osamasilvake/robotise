@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../../slices';
 import {
 	RobotControlCommandSend,
 	robotOperationsSelector
@@ -20,7 +21,7 @@ const RobotDetailCommands: FC<RobotDetailCommandsInterface> = (props) => {
 	const { robotTwins } = props;
 	const classes = RobotDetailCommandsStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [state, setState] = useState({

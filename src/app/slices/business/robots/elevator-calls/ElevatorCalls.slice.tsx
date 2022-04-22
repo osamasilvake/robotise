@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { RobotElevatorCallsListPayloadInterface } from '../../../../screens/business/robots/content/elevator-calls/list/RobotElevatorCallsList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeElevatorCalls } from './ElevatorCalls.slice.deserialize';
@@ -70,7 +70,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const elevatorCallsSelector = (state: AppReducerType) => state['elevatorCalls'];
+export const elevatorCallsSelector = (state: RootState) => state['elevatorCalls'];
 
 // reducer
 export default dataSlice.reducer;
@@ -84,7 +84,7 @@ export default dataSlice.reducer;
  */
 export const ElevatorCallsFetchList =
 	(robotId: string, payload: RobotElevatorCallsListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const elevatorCalls = states.elevatorCalls;
@@ -189,7 +189,7 @@ export const ElevatorCallsTest =
  * @returns
  */
 export const ElevatorCallsUpdateState =
-	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const elevatorCalls = states.elevatorCalls;

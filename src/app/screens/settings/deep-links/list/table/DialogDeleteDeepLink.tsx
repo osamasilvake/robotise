@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import {
 	DeepLinkDelete,
 	DeepLinksFetchList,
@@ -24,7 +25,7 @@ const DialogDeleteDeepLink: FC<DialogDeleteDeepLinkInterface> = (props) => {
 	const { deepLink, open, setOpen } = props;
 	const { t } = useTranslation(['DEEP_LINKS', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const deepLinks = useSelector(deepLinksSelector);
 
 	const translation = 'LIST.ACTIONS.DELETE';

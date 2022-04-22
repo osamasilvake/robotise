@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	WifiHeatmapFetch,
 	WifiHeatmapState
@@ -29,7 +30,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 	const { t } = useTranslation('SITES');
 	const classes = SiteWifiHeatmapStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const [floor, setFloor] = useState(wifiHeatmap.content?.maps?.state?.floor);
 	const [name, setName] = useState(wifiHeatmap.content?.maps?.state?.name);

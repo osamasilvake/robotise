@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import { ServicePositionsFetchList } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -21,7 +22,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 	const classes = SiteServicePositionsStyle();
 	const cardClasses = CardStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const [open, setOpen] = useState(false);
 

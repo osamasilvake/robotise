@@ -1,14 +1,11 @@
-import { ExternalLinkTypeEnum } from './ExternalLink.enum';
+import { ExternalLinkActionTypeEnum, ExternalLinkTypeEnum } from './ExternalLink.enum';
 
 export interface ExternalLinkInterface {
 	index?: number;
 	type?: ExternalLinkTypeEnum;
+	actionType: ExternalLinkActionTypeEnum;
 	text: string;
 	payload: ExternalLinkPayloadInterface;
-	FetchExternalLink: (
-		payload: ExternalLinkPayloadInterface,
-		callback: (res: ExternalLinkCallbackResponseInterface) => void
-	) => void;
 	showIcon?: boolean;
 	disabled?: boolean;
 }

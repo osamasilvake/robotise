@@ -63,12 +63,12 @@ const combinedReducer = combineReducers({
 	middlewareConfig
 });
 
-// reducers type
-export type AppReducerType = ReturnType<typeof combinedReducer>;
+// type: root state
+export type RootState = ReturnType<typeof combinedReducer>;
 
 // root reducer
-let initRootState: AppReducerType | undefined = undefined;
-const rootReducer = (rootState: AppReducerType | undefined, action: AnyAction) => {
+let initRootState: RootState | undefined = undefined;
+const rootReducer = (rootState: RootState | undefined, action: AnyAction) => {
 	// terminate all states of a redux store except: app store
 	if (action.type === 'Auth/terminate') {
 		if (rootState && initRootState) {
@@ -94,3 +94,6 @@ export const store = configureStore({
 
 // store redux initial state
 initRootState = store.getState();
+
+// type: dispatch
+export type AppDispatch = typeof store.dispatch;

@@ -5,16 +5,9 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../components/common/external-link/ExternalLink';
+import { ExternalLinkActionTypeEnum } from '../../../../../../components/common/external-link/ExternalLink.enum';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import {
-	DeepLinkAlertLogsLinkFetch,
-	DeepLinkAuditLogsLinkFetch,
-	DeepLinkBatteryLinkFetch,
-	DeepLinkCoolingUnitLinkFetch,
-	DeepLinkDiagnosticsLogsLinkFetch,
-	deepLinkSelector,
-	DeepLinkTemperatureLinkFetch
-} from '../../../../../../slices/settings/deep-links/DeepLink.slice';
+import { deepLinkSelector } from '../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotDetailDataLogsStyle } from './DataLogs.style';
 
@@ -53,7 +46,7 @@ const RobotDetailDataLogs: FC = () => {
 								from: 'now-7d',
 								to: 'now'
 							}}
-							FetchExternalLink={DeepLinkAuditLogsLinkFetch}
+							actionType={ExternalLinkActionTypeEnum.AUDIT_LOGS}
 							showIcon={deepLink.auditLogs.loading}
 							disabled={deepLink.auditLogs.loading}
 						/>
@@ -73,7 +66,7 @@ const RobotDetailDataLogs: FC = () => {
 								from: 'now-1d',
 								to: 'now'
 							}}
-							FetchExternalLink={DeepLinkBatteryLinkFetch}
+							actionType={ExternalLinkActionTypeEnum.BATTERY}
 							showIcon={deepLink.battery.loading}
 							disabled={deepLink.battery.loading}
 						/>
@@ -93,7 +86,7 @@ const RobotDetailDataLogs: FC = () => {
 								from: 'now-6h',
 								to: 'now'
 							}}
-							FetchExternalLink={DeepLinkTemperatureLinkFetch}
+							actionType={ExternalLinkActionTypeEnum.TEMPERATURE}
 							showIcon={deepLink.temperature.loading}
 							disabled={deepLink.temperature.loading}
 						/>
@@ -113,7 +106,7 @@ const RobotDetailDataLogs: FC = () => {
 								from: 'now-1d',
 								to: 'now'
 							}}
-							FetchExternalLink={DeepLinkDiagnosticsLogsLinkFetch}
+							actionType={ExternalLinkActionTypeEnum.DIAGNOSTICS_LOGS}
 							showIcon={deepLink.diagnosticsLogs.loading}
 							disabled={deepLink.diagnosticsLogs.loading}
 						/>
@@ -133,7 +126,7 @@ const RobotDetailDataLogs: FC = () => {
 								from: 'now-8h',
 								to: 'now'
 							}}
-							FetchExternalLink={DeepLinkCoolingUnitLinkFetch}
+							actionType={ExternalLinkActionTypeEnum.COOLING_UNIT}
 							showIcon={deepLink.coolingUnit.loading}
 							disabled={deepLink.coolingUnit.loading}
 						/>
@@ -153,7 +146,7 @@ const RobotDetailDataLogs: FC = () => {
 								from: 'now-8h',
 								to: 'now'
 							}}
-							FetchExternalLink={DeepLinkAlertLogsLinkFetch}
+							actionType={ExternalLinkActionTypeEnum.ALERT_LOGS}
 							showIcon={deepLink.alertLogs.loading}
 							disabled={deepLink.alertLogs.loading}
 						/>

@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { SiteWifiHeatmapPayloadInterface } from '../../../../screens/business/sites/content/statistics/SiteStatistics.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { deserializeWifiHeatmap } from './WifiHeatmap.slice.deserialize';
 import {
@@ -58,7 +58,7 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
-export const wifiHeatmapSelector = (state: AppReducerType) => state['wifiHeatmap'];
+export const wifiHeatmapSelector = (state: RootState) => state['wifiHeatmap'];
 
 // reducer
 export default dataSlice.reducer;
@@ -71,7 +71,7 @@ export default dataSlice.reducer;
  */
 export const WifiMapsFetch =
 	(siteId: string, callback?: (res: SWCMapsInterface) => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const wifiHeatmap = states.wifiHeatmap;
@@ -136,7 +136,7 @@ export const WifiMapsFetch =
  */
 export const WifiHeatmapFetch =
 	(siteId: string, payload: SiteWifiHeatmapPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const wifiHeatmap = states.wifiHeatmap;
@@ -182,8 +182,7 @@ export const WifiHeatmapFetch =
  * @returns
  */
 export const WifiHeatmapState =
-	(state: SWCMapsStateInterface) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SWCMapsStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const content = states.wifiHeatmap.content;

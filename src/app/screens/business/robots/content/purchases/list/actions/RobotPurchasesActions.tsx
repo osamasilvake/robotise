@@ -6,10 +6,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Report from '../../../../../../../components/common/report/Report';
-import {
-	generalOperationsSelector,
-	GeneralReportsGenerate
-} from '../../../../../../../slices/business/general/GeneralOperations.slice';
+import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchasesActionsSpeedDialTypeEnum } from './RobotPurchasesActions.enum';
@@ -89,7 +86,6 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 				filterId={cRobotId}
 				filterIdType="robot"
 				state={generalOperations.reports}
-				GenerateReports={GeneralReportsGenerate}
 			/>
 
 			{/* Dialog: Purchase Products Report */}
@@ -101,7 +97,6 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 					filterId={cSiteId}
 					filterIdType="site"
 					state={generalOperations.reports}
-					GenerateReports={GeneralReportsGenerate}
 				/>
 			)}
 		</>

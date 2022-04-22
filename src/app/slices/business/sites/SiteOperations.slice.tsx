@@ -7,7 +7,7 @@ import { SiteConfigFormInterface } from '../../../screens/business/sites/content
 import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { SiteOperationsTypeEnum } from './SiteOperations.slice.enum';
 import { SliceSiteOperationsInterface } from './SiteOperations.slice.interface';
@@ -77,7 +77,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const siteOperationsSelector = (state: AppReducerType) => state['siteOperations'];
+export const siteOperationsSelector = (state: RootState) => state['siteOperations'];
 
 // reducer
 export default dataSlice.reducer;

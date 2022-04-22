@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
 import { AppConfigService, StorageService } from '../../services';
-import { AppReducerType } from '..';
+import { RootState } from '..';
 import { AppLanguageTypeEnum, AppThemePaletteTypeEnum } from './App.slice.enum';
 import { SliceAppInterface } from './App.slice.interface';
 
@@ -51,7 +51,7 @@ export const { setDrawerState, applyThemePalette, changeLanguage, triggerMessage
 	dataSlice.actions;
 
 // selector
-export const appSelector = (state: AppReducerType) => state['app'];
+export const appSelector = (state: RootState) => state['app'];
 
 // reducer
 export default dataSlice.reducer;

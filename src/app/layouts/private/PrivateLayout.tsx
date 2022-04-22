@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../components/common/loader/Loader.enum';
 import Drawer from '../../components/frame/drawer/Drawer';
 import { LayoutPageInterface } from '../../routes/Routes.interface';
 import { AppConfigService } from '../../services';
+import { AppDispatch } from '../../slices';
 import { appSelector } from '../../slices/app/App.slice';
 import { RobotTwinsSummaryFetchList } from '../../slices/business/robots/RobotTwinsSummary.slice';
 import { SitesFetchList } from '../../slices/business/sites/Sites.slice';
@@ -17,7 +18,7 @@ const PrivateLayout: FC<LayoutPageInterface> = (props) => {
 	const { Component } = props;
 	const classes = PrivateLayoutStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const app = useSelector(appSelector);
 
 	const loaded = useRef(false);

@@ -7,6 +7,7 @@ import Loader from '../../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	PurchaseFetch,
 	purchaseSelector
@@ -17,7 +18,7 @@ import RobotPurchaseHead from './head/RobotPurchaseHead';
 import RobotPurchaseTable from './table/RobotPurchaseTable';
 
 const RobotPurchaseDetail: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const purchase = useSelector(purchaseSelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;

@@ -13,6 +13,7 @@ import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	OrderCancel,
 	ordersSelector
@@ -23,7 +24,7 @@ const DialogCancelOrder: FC<DialogCancelOrderInterface> = (props) => {
 	const { order, open, setOpen } = props;
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
 
 	const translation = 'CONTENT.ORDERS.LIST.ACTIONS.CANCEL';

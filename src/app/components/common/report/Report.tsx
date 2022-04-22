@@ -17,6 +17,8 @@ import { CSVLink } from 'react-csv';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
+import { AppDispatch } from '../../../slices';
+import { GeneralReportsGenerate } from '../../../slices/business/general/GeneralOperations.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { dateDaysPriorToToday, dateToday } from '../../../utilities/methods/Date';
 import { validateEmptyObj } from '../../../utilities/methods/Object';
@@ -25,11 +27,11 @@ import { ReportStyle } from './Report.style';
 import { ReportValidation } from './Report.validation';
 
 const Report: FC<ReportInterface> = (props) => {
-	const { id, open, setOpen, filterId, filterIdType, state, GenerateReports } = props;
+	const { id, open, setOpen, filterId, filterIdType, state } = props;
 	const { t } = useTranslation(['REPORT', 'DIALOG']);
 	const classes = ReportStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const [report, setReport] = useState('');
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
@@ -43,7 +45,9 @@ const Report: FC<ReportInterface> = (props) => {
 			async () => {
 				// dispatch: generate reports
 				dispatch(
-					GenerateReports(filterId, filterIdType, values, (report) => setReport(report))
+					GeneralReportsGenerate(filterId, filterIdType, values, (report) =>
+						setReport(report)
+					)
 				);
 			}
 		);

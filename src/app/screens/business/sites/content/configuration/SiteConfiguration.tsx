@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
+import { AppDispatch } from '../../../../../slices';
 import {
 	GeneralFetchOrderModes,
 	generalOperationsSelector
@@ -32,7 +33,7 @@ import { SiteConfigurationStyle } from './SiteConfiguration.style';
 const SiteConfiguration: FC = () => {
 	const classes = SiteConfigurationStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const generalOperations = useSelector(generalOperationsSelector);
 	const sites = useSelector(sitesSelector);
 	const siteOperations = useSelector(siteOperationsSelector);

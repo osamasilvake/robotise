@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import { SACStateInterface } from '../../../../../slices/information/alert-codes/AlertCodes.interface';
 import {
 	alertCodesSelector,
@@ -22,7 +23,7 @@ const AlertCodesTable: FC<AlertCodesTableInterface> = (props) => {
 	const { t } = useTranslation('COMMON');
 	const classes = AlertCodesTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const alertCodes = useSelector(alertCodesSelector);
 
 	const [order, setOrder] = useState<AlertCodesTableHeadOrder>('desc');

@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Copyright from '../../../components/frame/copyrights/Copyrights';
 import { AppConfigService } from '../../../services';
+import { AppDispatch } from '../../../slices';
 import { AuthLogin, authSelector } from '../../../slices/authentication/Auth.slice';
 import { useForm } from '../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../utilities/methods/Object';
@@ -31,7 +32,7 @@ const Login: FC = () => {
 	const { t } = useTranslation('AUTH');
 	const classes = LoginStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const auth = useSelector(authSelector);
 
 	const focus = useRef(false);

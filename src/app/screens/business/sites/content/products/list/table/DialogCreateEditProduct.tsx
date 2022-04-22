@@ -16,6 +16,7 @@ import { useParams } from 'react-router-dom';
 
 import Upload from '../../../../../../../components/common/upload/Upload';
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	ProductCreateEdit,
 	ProductsFetchList,
@@ -43,7 +44,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const { product, open, setOpen, type } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 

@@ -5,13 +5,11 @@ import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
+import { ExternalLinkActionTypeEnum } from '../../../../../../../components/common/external-link/ExternalLink.enum';
 import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
-import {
-	DeepLinkItemTrackingLinkFetch,
-	deepLinkSelector
-} from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
+import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateMinsPriorToDate } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotPurchaseHeadInterface } from './RobotPurchaseHead.interface';
@@ -76,7 +74,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 									from: dateMinsPriorToDate(purchase.content.createdAt, 15),
 									to: purchase.content.createdAt
 								}}
-								FetchExternalLink={DeepLinkItemTrackingLinkFetch}
+								actionType={ExternalLinkActionTypeEnum.ITEM_TRACKING}
 								showIcon={deepLink.itemTracking.loading}
 								disabled={deepLink.itemTracking.loading}
 							/>

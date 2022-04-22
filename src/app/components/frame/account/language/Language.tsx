@@ -4,13 +4,14 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../slices';
 import { AppChangeLanguage, appSelector } from '../../../../slices/app/App.slice';
 import { AppLanguageTypeEnum } from '../../../../slices/app/App.slice.enum';
 
 const Language: FC = () => {
 	const { t } = useTranslation('FRAME');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const app = useSelector(appSelector);
 
 	/**

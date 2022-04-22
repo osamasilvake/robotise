@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Picture from '../../../../../../components/common/picture/Picture';
 import { PictureOnLoadInterface } from '../../../../../../components/common/picture/Picture.interface';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	RobotMapFetch,
 	robotOperationsSelector
@@ -28,7 +29,7 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 	const classes = RobotDetailLocationStyle();
 	const cardClasses = CardStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotOperations = useSelector(robotOperationsSelector);
 
 	const [ratio, setRatio] = useState<RobotDetailLocationCardRatioInterface>({

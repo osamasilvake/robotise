@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import {
 	RobotNoteUpdate,
 	robotOperationsSelector
@@ -28,7 +29,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
 	const robotOperations = useSelector(robotOperationsSelector);
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;

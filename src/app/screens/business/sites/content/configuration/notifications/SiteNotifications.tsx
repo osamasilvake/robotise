@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import { NotificationTypesAndUsersFetchList } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -21,7 +22,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 	const classes = SiteNotificationsStyle();
 	const cardClasses = CardStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const [open, setOpen] = useState(false);
 

@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { RobotPurchasesListPayloadInterface } from '../../../../screens/business/robots/content/purchases/list/RobotPurchasesList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializePurchase } from './Purchase.slice.deserialize';
@@ -70,7 +70,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const purchasesSelector = (state: AppReducerType) => state['purchases'];
+export const purchasesSelector = (state: RootState) => state['purchases'];
 
 // reducer
 export default dataSlice.reducer;
@@ -84,7 +84,7 @@ export default dataSlice.reducer;
  */
 export const PurchasesFetchList =
 	(robotId: string, payload: RobotPurchasesListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const purchases = states.purchases;
@@ -147,7 +147,7 @@ export const PurchasesFetchList =
  */
 export const PurchaseCommentEdit =
 	(purchaseId: string, comment: string, callback: () => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const purchases = states.purchases;
@@ -201,7 +201,7 @@ export const PurchaseCommentEdit =
  * @returns
  */
 export const PurchaseUpdateState =
-	(state: SPCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SPCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const purchases = states.purchases;

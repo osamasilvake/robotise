@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { DialogModifyRoomsFormInterface } from '../../../../screens/business/sites/content/rooms/list/actions/SiteRoomsActions.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { SliceRoomsInterface, SRCStateInterface } from './Rooms.slice.interface';
 
@@ -40,7 +40,7 @@ const dataSlice = createSlice({
 export const { updating, updated, updateFailed, reset } = dataSlice.actions;
 
 // selector
-export const roomsSelector = (state: AppReducerType) => state['rooms'];
+export const roomsSelector = (state: RootState) => state['rooms'];
 
 // reducer
 export default dataSlice.reducer;
@@ -104,7 +104,7 @@ export const RoomsUpdate =
  */
 export const RoomsUpdateState =
 	(siteId: string, state: SRCStateInterface) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const rooms = states.rooms;

@@ -6,7 +6,7 @@ import { SiteProductCreateEditTypeEnum } from '../../../../screens/business/site
 import { DialogCreateEditProductFormInterface } from '../../../../screens/business/sites/content/products/list/table/SiteProductsTable.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { deserializeProducts } from './Products.slice.deserialize';
 import {
@@ -68,7 +68,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const productsSelector = (state: AppReducerType) => state['products'];
+export const productsSelector = (state: RootState) => state['products'];
 
 // reducer
 export default dataSlice.reducer;
@@ -81,7 +81,7 @@ export default dataSlice.reducer;
  */
 export const ProductsFetchList =
 	(siteId?: string, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const products = states.products;

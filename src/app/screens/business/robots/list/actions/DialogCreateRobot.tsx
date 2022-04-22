@@ -16,6 +16,7 @@ import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../slices';
 import {
 	RobotCreate,
 	RobotTwinsSummaryFetchList,
@@ -34,7 +35,7 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 

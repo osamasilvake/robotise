@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import { SDLStateInterface } from '../../../../../slices/settings/deep-links/DeepLinks.interface';
 import {
 	deepLinksSelector,
@@ -22,7 +23,7 @@ const DeepLinksTable: FC<DeepLinksTableInterface> = (props) => {
 	const { t } = useTranslation('COMMON');
 	const classes = DeepLinksTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const deepLinks = useSelector(deepLinksSelector);
 
 	const [order, setOrder] = useState<DeepLinksTableHeadOrder>('desc');

@@ -4,7 +4,7 @@ import { ReportFormInterface } from '../../../components/common/report/Report.in
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import GeneralService from '../../../screens/business/general/General.service';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { deserializeOrderModes } from './GeneralOperations.slice.deserialize';
 import { GeneralOperationsTypeEnum } from './GeneralOperations.slice.enum';
@@ -59,7 +59,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const generalOperationsSelector = (state: AppReducerType) => state['generalOperations'];
+export const generalOperationsSelector = (state: RootState) => state['generalOperations'];
 
 // reducer
 export default dataSlice.reducer;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	roomsSelector,
 	RoomsUpdateState
@@ -18,7 +19,7 @@ import { SiteRoomsListStyle } from './SiteRoomsList.style';
 const SiteRoomsList: FC = () => {
 	const classes = SiteRoomsListStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const rooms = useSelector(roomsSelector);
 

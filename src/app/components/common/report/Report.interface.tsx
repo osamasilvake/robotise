@@ -7,12 +7,6 @@ export interface ReportInterface {
 	filterId: string;
 	filterIdType: string;
 	state: { loading: boolean };
-	GenerateReports: (
-		filterId: string,
-		filterIdType: string,
-		payload: ReportFormInterface,
-		callback: (report: string) => void
-	) => void;
 }
 
 export interface ReportFormInterface {

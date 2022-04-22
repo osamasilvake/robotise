@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	InventoryFetchList,
 	inventorySelector
@@ -25,7 +26,7 @@ import RobotInventoryTable from './table/RobotInventoryTable';
 const RobotInventoryList: FC = () => {
 	const classes = RobotInventoryListStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const products = useSelector(productsSelector);
 	const inventory = useSelector(inventorySelector);

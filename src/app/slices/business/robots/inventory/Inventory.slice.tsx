@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { deserializeInventory } from './Inventory.slice.deserialize';
 import { SIContentInterface, SliceInventoryInterface } from './Inventory.slice.interface';
 import { filterDrawers } from './Inventory.slice.map';
@@ -50,7 +50,7 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const inventorySelector = (state: AppReducerType) => state['inventory'];
+export const inventorySelector = (state: RootState) => state['inventory'];
 
 // reducer
 export default dataSlice.reducer;
@@ -63,7 +63,7 @@ export default dataSlice.reducer;
  */
 export const InventoryFetchList =
 	(robotId: string, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const inventory = states.inventory;

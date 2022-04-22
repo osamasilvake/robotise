@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
+import { AppDispatch } from '../../../../../slices';
 import {
 	WifiHeatmapFetch,
 	wifiHeatmapSelector,
@@ -17,7 +18,7 @@ import SiteWifiHeatmap from './wifi-heatmap/SiteWifiHeatmap';
 const SiteStatistics: FC = () => {
 	const classes = SiteStatisticsStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const wifiHeatmap = useSelector(wifiHeatmapSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;

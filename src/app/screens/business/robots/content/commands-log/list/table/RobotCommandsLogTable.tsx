@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	commandsLogSelector,
 	CommandsLogUpdateState
@@ -25,7 +26,7 @@ const RobotCommandsLogTable: FC<RobotCommandsLogTableInterface> = (props) => {
 	const { t } = useTranslation('COMMON');
 	const classes = RobotCommandsLogTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const commandsLog = useSelector(commandsLogSelector);
 
 	const [order, setOrder] = useState<RobotCommandsLogTableHeadOrder>('desc');

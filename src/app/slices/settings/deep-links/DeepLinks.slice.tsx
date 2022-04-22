@@ -10,7 +10,7 @@ import {
 } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.enum';
 import { DialogCreateEditDeepLinkFormInterface } from '../../../screens/settings/deep-links/list/table/DeepLinksTable.interface';
 import { timeout } from '../../../utilities/methods/Timeout';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { handleRefreshAndPagination } from '../../Slices.map';
 import { deserializeDeepLink } from './DeepLink.slice.deserialize';
@@ -78,7 +78,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const deepLinksSelector = (state: AppReducerType) => state['deepLinks'];
+export const deepLinksSelector = (state: RootState) => state['deepLinks'];
 
 // reducer
 export default dataSlice.reducer;
@@ -91,7 +91,7 @@ export default dataSlice.reducer;
  */
 export const DeepLinksFetchList =
 	(payload: DeepLinksListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const deepLinks = states.deepLinks;
@@ -159,7 +159,7 @@ export const DeepLinkCreateEdit =
 		type: DeepLinkCreateEditTypeEnum,
 		callback: () => void
 	) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const deepLinks = states.deepLinks;
@@ -285,7 +285,7 @@ export const DeepLinkDelete =
  * @returns
  */
 export const DeepLinksUpdateState =
-	(state: SDLStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SDLStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const DeepLinks = states.deepLinks;

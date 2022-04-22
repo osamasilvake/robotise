@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../slices';
 import {
 	SitesFetchList,
 	sitesSelector,
@@ -13,7 +14,7 @@ import { SSCStateInterface } from '../../../../../slices/business/sites/Sites.sl
 const SitesHidden: FC = () => {
 	const { t } = useTranslation('SITES');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 
 	const hidden = !!sites.content?.state?.hidden;

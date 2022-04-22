@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ReadMore from '../../../../../../../components/common/read-more/ReadMore';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	PurchaseCommentEdit,
 	purchasesSelector,
@@ -24,7 +25,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const purchases = useSelector(purchasesSelector);
 
 	const purchaseId = purchases.content?.state?.locked;

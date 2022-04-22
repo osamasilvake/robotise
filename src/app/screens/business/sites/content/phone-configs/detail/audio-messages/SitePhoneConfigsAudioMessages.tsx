@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import AudioPlayer from '../../../../../../../components/common/audio-player/AudioPlayer';
 import { AudioPlayerTrackInterface } from '../../../../../../../components/common/audio-player/AudioPlayer.interface';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	PhoneConfigsFetch,
 	PhoneConfigUploadAudio
@@ -21,7 +22,7 @@ const SitePhoneConfigsAudioMessages: FC<SitePhoneConfigsAudioMessagesInterface> 
 	const { t } = useTranslation('SITES');
 	const classes = SitePhoneConfigsAudioMessagesStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;

@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import {
 	DeepLinkCreateEdit,
 	DeepLinksFetchList,
@@ -35,7 +36,7 @@ const DialogCreateEditDeepLink: FC<DialogCreateEditDeepLinkInterface> = (props) 
 	const { deepLink, open, setOpen, type } = props;
 	const { t } = useTranslation(['DEEP_LINKS', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const deepLinks = useSelector(deepLinksSelector);
 
 	const translation = 'LIST.ACTIONS.CREATE_EDIT';

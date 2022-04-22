@@ -5,13 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../services';
+import { AppDispatch } from '../../../slices';
 import { appSelector, AppTriggerMessage } from '../../../slices/app/App.slice';
 import { TriggerMessageTypeEnum } from './Message.enum';
 
 const Message: FC = () => {
 	const { t } = useTranslation('FRAME');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const app = useSelector(appSelector);
 
 	/**

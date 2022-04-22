@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	ElevatorCallsFetchList,
 	elevatorCallsSelector,
@@ -26,7 +27,7 @@ const DialogTestCallConfirmation: FC<DialogTestCallConfirmationInterface> = (pro
 	const { open, setOpen, halt, setHalt } = props;
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const elevatorCalls = useSelector(elevatorCallsSelector);
 

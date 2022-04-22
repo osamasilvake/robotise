@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../../slices';
 import {
 	emailsSelector,
 	EmailsUpdateState
@@ -14,7 +15,7 @@ const GeneralEmailDelivered: FC<GeneralEmailsDeliveredInterface> = (props) => {
 	const { delivered } = props;
 	const { t } = useTranslation('GENERAL');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const emails = useSelector(emailsSelector);
 
 	/**

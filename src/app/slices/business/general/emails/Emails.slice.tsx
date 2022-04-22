@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { GeneralEmailsListPayloadInterface } from '../../../../screens/business/general/emails/list/GeneralEmailsList.interface';
 import GeneralService from '../../../../screens/business/general/General.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeEmails } from './Emails.slice.deserialize';
 import {
@@ -63,7 +63,7 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
-export const emailsSelector = (state: AppReducerType) => state['emails'];
+export const emailsSelector = (state: RootState) => state['emails'];
 
 // reducer
 export default dataSlice.reducer;
@@ -76,7 +76,7 @@ export default dataSlice.reducer;
  */
 export const EmailsFetchList =
 	(payload: GeneralEmailsListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const emails = states.emails;
@@ -134,7 +134,7 @@ export const EmailsFetchList =
  * @returns
  */
 export const EmailsUpdateState =
-	(state: SECStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SECStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const emails = states.emails;

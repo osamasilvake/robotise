@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	CommandsLogFetchList,
 	commandsLogSelector
@@ -20,7 +21,7 @@ import RobotCommandsLogTable from './table/RobotCommandsLogTable';
 const RobotCommandsLogList: FC = () => {
 	const classes = RobotCommandsLogListStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const commandsLog = useSelector(commandsLogSelector);
 
 	const page = commandsLog.content?.state?.page || 0;

@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	PhoneConfigsFetch,
 	phoneConfigsSelector
@@ -21,7 +22,7 @@ import { SitePhoneConfigsDetailStyle } from './SitePhoneConfigsDetail.style';
 const SitePhoneConfigsDetail: FC = () => {
 	const classes = SitePhoneConfigsDetailStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const phoneConfigs = useSelector(phoneConfigsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;

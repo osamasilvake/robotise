@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import {
 	NotificationTypesAndUsersFetchList,
 	NotificationUpdate
@@ -29,7 +30,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 	const { notifications, notification, index } = props;
 	const { t } = useTranslation('TOOLTIP');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const [open, setOpen] = useState(false);
 

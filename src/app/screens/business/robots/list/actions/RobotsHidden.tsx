@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../slices';
 import {
 	RobotTwinsSummaryFetchList,
 	robotTwinsSummarySelector,
@@ -13,7 +14,7 @@ import { RTSContentStateInterface } from '../../../../../slices/business/robots/
 const RobotsHidden: FC = () => {
 	const { t } = useTranslation('ROBOTS');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const hidden = !!robotTwinsSummary.content?.state?.hidden;

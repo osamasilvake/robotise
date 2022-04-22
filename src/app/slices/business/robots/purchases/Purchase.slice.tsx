@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { deserializePurchase } from './Purchase.slice.deserialize';
 import { SlicePurchaseInterface } from './Purchase.slice.interface';
 
@@ -43,7 +43,7 @@ const dataSlice = createSlice({
 export const { loader, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const purchaseSelector = (state: AppReducerType) => state['purchase'];
+export const purchaseSelector = (state: RootState) => state['purchase'];
 
 // reducer
 export default dataSlice.reducer;
@@ -54,7 +54,7 @@ export default dataSlice.reducer;
  * @returns
  */
 export const PurchaseFetch =
-	(purchaseId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(purchaseId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const purchase = states.purchase;

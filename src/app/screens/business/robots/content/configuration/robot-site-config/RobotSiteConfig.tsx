@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import { RobotSiteConfigUpdate } from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
 import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
@@ -31,7 +32,7 @@ const RobotSiteConfig: FC<RobotSiteConfigInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotSiteConfigStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;

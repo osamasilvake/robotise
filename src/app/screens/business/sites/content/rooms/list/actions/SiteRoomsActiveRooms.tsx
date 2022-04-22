@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	roomsSelector,
 	RoomsUpdateState
@@ -17,7 +18,7 @@ const SiteRoomsActiveRooms: FC<SiteRoomsActiveRoomsInterface> = (props) => {
 	const { active } = props;
 	const { t } = useTranslation('SITES');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const rooms = useSelector(roomsSelector);
 

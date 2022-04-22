@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { SitePhoneCallsListPayloadInterface } from '../../../../screens/business/sites/content/phone-calls/list/SitePhoneCallsList.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializePhoneCalls } from './PhoneCalls.slice.deserialize';
 import {
@@ -63,7 +63,7 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
-export const phoneCallsSelector = (state: AppReducerType) => state['phoneCalls'];
+export const phoneCallsSelector = (state: RootState) => state['phoneCalls'];
 
 // reducer
 export default dataSlice.reducer;
@@ -77,7 +77,7 @@ export default dataSlice.reducer;
  */
 export const PhoneCallsFetchList =
 	(siteId: string, payload: SitePhoneCallsListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const phoneCalls = states.phoneCalls;
@@ -138,7 +138,7 @@ export const PhoneCallsFetchList =
  * @returns
  */
 export const PhoneCallsUpdateState =
-	(state: PCCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: PCCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const phoneCalls = states.phoneCalls;

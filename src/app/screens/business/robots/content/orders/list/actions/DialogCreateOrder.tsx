@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	OrderCreate,
 	ordersSelector,
@@ -44,7 +45,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['ROBOTS', 'DIALOG', 'GENERAL']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);

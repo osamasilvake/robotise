@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import {
 	MiddlewareConfigCreateEdit,
 	MiddlewareConfigFetchList,
@@ -48,7 +49,7 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 	const { config, open, setOpen, type } = props;
 	const { t } = useTranslation(['MIDDLEWARE_CONFIG', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const middlewareConfig = useSelector(middlewareConfigSelector);
 
 	const translation = 'LIST.ACTIONS.CREATE_EDIT';

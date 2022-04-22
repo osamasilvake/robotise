@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { RobotCommandsLogListPayloadInterface } from '../../../../screens/business/robots/content/commands-log/list/RobotCommandsLogList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeCommandsLog } from './CommandsLog.slice.deserialize';
 import {
@@ -63,7 +63,7 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
-export const commandsLogSelector = (state: AppReducerType) => state['commandsLog'];
+export const commandsLogSelector = (state: RootState) => state['commandsLog'];
 
 // reducer
 export default dataSlice.reducer;
@@ -77,7 +77,7 @@ export default dataSlice.reducer;
  */
 export const CommandsLogFetchList =
 	(robotId: string, payload: RobotCommandsLogListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const commandsLog = states.commandsLog;
@@ -138,7 +138,7 @@ export const CommandsLogFetchList =
  * @returns
  */
 export const CommandsLogUpdateState =
-	(state: CLCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: CLCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const commandsLog = states.commandsLog;

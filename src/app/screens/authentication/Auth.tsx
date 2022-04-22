@@ -5,13 +5,14 @@ import { Navigate, useLocation } from 'react-router-dom';
 import Loader from '../../components/common/loader/Loader';
 import { isPrivate } from '../../routes/types';
 import { AppConfigService } from '../../services';
+import { AppDispatch } from '../../slices';
 import { AuthRefreshToken, authSelector } from '../../slices/authentication/Auth.slice';
 import { AuthInterface, AuthStateInterface } from './Auth.interface';
 
 const Auth: FC<AuthInterface> = (props) => {
 	const { route, template, type } = props;
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const auth = useSelector(authSelector);
 
 	const { pathname, state } = useLocation();

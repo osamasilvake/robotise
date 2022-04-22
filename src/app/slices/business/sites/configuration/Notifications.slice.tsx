@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { DialogCreateEditNotificationFormInterface } from '../../../../screens/business/sites/content/configuration/notifications/SiteNotifications.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { deserializeNotifications } from './Notifications.slice.deserialize';
 import {
@@ -61,7 +61,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const notificationsSelector = (state: AppReducerType) => state['notifications'];
+export const notificationsSelector = (state: RootState) => state['notifications'];
 
 // reducer
 export default dataSlice.reducer;

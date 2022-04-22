@@ -5,17 +5,16 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
+import { ExternalLinkActionTypeEnum } from '../../../../../../../components/common/external-link/ExternalLink.enum';
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
 import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import {
 	RobotElevatorTemplateFetch,
 	robotOperationsSelector
 } from '../../../../../../../slices/business/robots/RobotOperations.slice';
-import {
-	DeepLinkElevatorLogsLinkFetch,
-	deepLinkSelector
-} from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
+import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
 import {
@@ -30,7 +29,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotElevatorCallsTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotOperations = useSelector(robotOperationsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
@@ -79,7 +78,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 							from: elevatorCall.createdAt,
 							to: elevatorCall.updatedAt
 						}}
-						FetchExternalLink={DeepLinkElevatorLogsLinkFetch}
+						actionType={ExternalLinkActionTypeEnum.ELEVATOR_LOGS}
 						showIcon={deepLink.elevatorLogs.loading}
 						disabled={deepLink.elevatorLogs.loading}
 					/>

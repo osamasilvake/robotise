@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.e
 import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import {
 	RobotTwinsFetch,
 	robotTwinsSelector
@@ -27,7 +28,7 @@ import RobotDetailStates from './states/RobotDetailStates';
 const RobotDetail: FC = () => {
 	const classes = RobotDetailStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotTwins = useSelector(robotTwinsSelector);
 

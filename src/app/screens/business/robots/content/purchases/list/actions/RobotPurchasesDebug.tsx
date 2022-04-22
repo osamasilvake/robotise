@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	purchasesSelector,
 	PurchaseUpdateState
@@ -14,7 +15,7 @@ const RobotPurchasesDebug: FC<RobotPurchasesDebugInterface> = (props) => {
 	const { debug } = props;
 	const { t } = useTranslation('ROBOTS');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const purchases = useSelector(purchasesSelector);
 
 	/**

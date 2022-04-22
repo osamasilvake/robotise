@@ -3,7 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import GeneralService from '../../../../screens/business/general/General.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { deserializeEmail } from './Email.slice.deserialize';
 import { SliceEmailInterface } from './Email.slice.interface';
 
@@ -43,7 +43,7 @@ const dataSlice = createSlice({
 export const { loader, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const emailSelector = (state: AppReducerType) => state['email'];
+export const emailSelector = (state: RootState) => state['email'];
 
 // reducer
 export default dataSlice.reducer;
@@ -54,7 +54,7 @@ export default dataSlice.reducer;
  * @returns
  */
 export const EmailFetch =
-	(emailId: string) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(emailId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const email = states.email;

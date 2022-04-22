@@ -7,6 +7,7 @@ import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum
 import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
+import { AppDispatch } from '../../../../slices';
 import {
 	MiddlewareConfigFetchList,
 	middlewareConfigSelector
@@ -17,7 +18,7 @@ import MiddlewareConfigTable from './table/MiddlewareConfigTable';
 import { MiddlewareConfigResetTypeEnum } from './table/MiddlewareConfigTable.enum';
 
 const MiddlewareConfigList: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const middlewareConfig = useSelector(middlewareConfigSelector);
 
 	const reset = middlewareConfig.content?.state?.reset || MiddlewareConfigResetTypeEnum.NA;

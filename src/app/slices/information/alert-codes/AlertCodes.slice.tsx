@@ -4,7 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import AlertCodesService from '../../../screens/information/alert-codes/AlertCodes.service';
 import { AlertCodesListPayloadInterface } from '../../../screens/information/alert-codes/list/AlertCodesList.interface';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { handleRefreshAndPagination } from '../../Slices.map';
 import {
 	SACContentInterface,
@@ -63,7 +63,7 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
-export const alertCodesSelector = (state: AppReducerType) => state['alertCodes'];
+export const alertCodesSelector = (state: RootState) => state['alertCodes'];
 
 // reducer
 export default dataSlice.reducer;
@@ -76,7 +76,7 @@ export default dataSlice.reducer;
  */
 export const AlertCodesFetchList =
 	(payload: AlertCodesListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const alertCodes = states.alertCodes;
@@ -134,7 +134,7 @@ export const AlertCodesFetchList =
  * @returns
  */
 export const AlertCodesUpdateState =
-	(state: SACStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SACStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const alertCodes = states.alertCodes;

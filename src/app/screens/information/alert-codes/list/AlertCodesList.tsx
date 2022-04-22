@@ -6,6 +6,7 @@ import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum
 import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
+import { AppDispatch } from '../../../../slices';
 import {
 	AlertCodesFetchList,
 	alertCodesSelector
@@ -14,7 +15,7 @@ import { AlertCodesListPayloadInterface } from './AlertCodesList.interface';
 import AlertCodesTable from './table/AlertCodesTable';
 
 const AlertCodesList: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const alertCodes = useSelector(alertCodesSelector);
 
 	const page = alertCodes.content?.state?.page || 0;

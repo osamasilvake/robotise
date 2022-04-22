@@ -6,7 +6,7 @@ import { DialogCreateRobotFormInterface } from '../../../screens/business/robots
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { AppConfigService, StorageService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { deserializeRobotTwinsSummary } from './RobotTwinsSummary.slice.deserialize';
 import {
@@ -75,7 +75,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const robotTwinsSummarySelector = (state: AppReducerType) => state['robotTwinsSummary'];
+export const robotTwinsSummarySelector = (state: RootState) => state['robotTwinsSummary'];
 
 // reducer
 export default dataSlice.reducer;
@@ -87,7 +87,7 @@ export default dataSlice.reducer;
  */
 export const RobotTwinsSummaryFetchList =
 	(refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const robotTwinsSummary = states.robotTwinsSummary;
@@ -186,8 +186,7 @@ export const RobotCreate =
  * @returns
  */
 export const RobotTwinsSummaryUpdateState =
-	(state: RTSContentStateInterface) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: RTSContentStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const robotTwinsSummary = states.robotTwinsSummary;

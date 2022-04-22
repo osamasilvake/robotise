@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import {
 	siteOperationsSelector,
 	SiteTestOrdersClean
@@ -33,7 +34,7 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 	const { open, setOpen } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const siteOperations = useSelector(siteOperationsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;

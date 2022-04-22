@@ -6,7 +6,7 @@ import { DialogCreateSiteFormInterface } from '../../../screens/business/sites/l
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { AppConfigService, StorageService } from '../../../services';
 import { timeout } from '../../../utilities/methods/Timeout';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { deserializeSites } from './Sites.slice.deserialize';
 import {
@@ -74,7 +74,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const sitesSelector = (state: AppReducerType) => state['sites'];
+export const sitesSelector = (state: RootState) => state['sites'];
 
 // reducer
 export default dataSlice.reducer;
@@ -86,7 +86,7 @@ export default dataSlice.reducer;
  */
 export const SitesFetchList =
 	(refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const sites = states.sites;
@@ -182,7 +182,7 @@ export const SiteCreate =
  * @returns
  */
 export const SitesUpdateState =
-	(state: SSCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SSCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const sites = states.sites;

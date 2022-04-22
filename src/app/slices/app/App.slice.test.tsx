@@ -4,7 +4,7 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 
 import { TriggerMessageTypeEnum } from '../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../components/frame/message/Message.interface';
-import { AppReducerType } from '..';
+import { RootState } from '..';
 import {
 	AppApplyThemePalette,
 	AppChangeLanguage,
@@ -20,7 +20,7 @@ import { AppLanguageTypeEnum, AppThemePaletteTypeEnum } from './App.slice.enum';
 import { SliceAppInterface } from './App.slice.interface';
 
 // mock store
-type DispatchExts = ThunkDispatch<AppReducerType, void, AnyAction>;
+type DispatchExts = ThunkDispatch<RootState, void, AnyAction>;
 const mockStore = createMockStore<SliceAppInterface, DispatchExts>([thunk]);
 
 describe('[SLICE] App', () => {

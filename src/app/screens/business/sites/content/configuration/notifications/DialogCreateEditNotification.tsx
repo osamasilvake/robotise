@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import {
 	notificationsSelector,
 	NotificationTypesAndUsersFetchList,
@@ -43,7 +44,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 	const classes = SiteNotificationsStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const notifications = useSelector(notificationsSelector);
 
 	const [newNotification, setNewNotification] = useState('');

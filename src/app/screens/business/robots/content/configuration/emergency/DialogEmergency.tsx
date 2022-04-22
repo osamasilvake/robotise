@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import { RobotSetEmergencyState } from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { DialogEmergencyInterface } from './RobotEmergency.interface';
@@ -22,7 +23,7 @@ const DialogEmergency: FC<DialogEmergencyInterface> = (props) => {
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 	const classes = RobotEmergencyStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;

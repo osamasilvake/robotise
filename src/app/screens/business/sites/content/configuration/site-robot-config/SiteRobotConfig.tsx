@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import { SiteRobotConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -30,7 +31,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const { t } = useTranslation('SITES');
 	const classes = SiteRobotConfigStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;

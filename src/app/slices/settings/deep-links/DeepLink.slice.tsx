@@ -5,7 +5,7 @@ import { TriggerMessageTypeEnum } from '../../../components/frame/message/Messag
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import DeepLinksService from '../../../screens/settings/deep-links/DeepLinks.service';
 import { timeout } from '../../../utilities/methods/Timeout';
-import { AppReducerType } from '../..';
+import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { SDContentInterface, SliceDeepLinkInterface } from './DeepLink.interface';
 import { DeepLinkTypeEnum } from './DeepLink.slice.enum';
@@ -135,7 +135,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const deepLinkSelector = (state: AppReducerType) => state['deepLink'];
+export const deepLinkSelector = (state: RootState) => state['deepLink'];
 
 // reducer
 export default dataSlice.reducer;

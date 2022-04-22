@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	OrdersFetchList,
 	ordersSelector
@@ -21,7 +22,7 @@ import RobotOrdersTable from './table/RobotOrdersTable';
 const RobotOrdersList: FC = () => {
 	const classes = RobotOrdersListStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
 
 	const page = orders.content?.state?.page || 0;

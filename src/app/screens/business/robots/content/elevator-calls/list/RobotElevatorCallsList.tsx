@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	ElevatorCallsFetchList,
 	elevatorCallsSelector
@@ -21,7 +22,7 @@ import RobotElevatorCallsTable from './table/RobotElevatorCallsTable';
 const RobotElevatorCallsList: FC = () => {
 	const classes = RobotElevatorCallsListStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const elevatorCalls = useSelector(elevatorCallsSelector);
 
 	const page = elevatorCalls.content?.state?.page || 0;

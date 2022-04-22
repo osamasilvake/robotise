@@ -7,6 +7,7 @@ import { LoaderTypeEnum } from '../../../../components/common/loader/Loader.enum
 import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../services';
+import { AppDispatch } from '../../../../slices';
 import {
 	DeepLinksFetchList,
 	deepLinksSelector
@@ -17,7 +18,7 @@ import DeepLinksTable from './table/DeepLinksTable';
 import { DeepLinkResetTypeEnum } from './table/DeepLinksTable.enum';
 
 const DeepLinksList: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const deepLinks = useSelector(deepLinksSelector);
 
 	const reset = deepLinks.content?.state?.reset || DeepLinkResetTypeEnum.NA;

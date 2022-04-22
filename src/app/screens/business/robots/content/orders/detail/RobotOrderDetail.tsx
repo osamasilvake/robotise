@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	OrderFetch,
 	orderSelector
@@ -17,7 +18,7 @@ import RobotOrderFoot from './foot/RobotOrderFoot';
 import RobotOrderTable from './table/RobotOrderTable';
 
 const RobotOrderDetail: FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const order = useSelector(orderSelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;

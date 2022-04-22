@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import {
 	MiddlewareConfigDelete,
 	MiddlewareConfigFetchList,
@@ -24,7 +25,7 @@ const DialogDeleteMiddlewareConfig: FC<DialogDeleteMiddlewareConfigInterface> = 
 	const { config, open, setOpen } = props;
 	const { t } = useTranslation(['MIDDLEWARE_CONFIG', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const middlewareConfig = useSelector(middlewareConfigSelector);
 
 	const translation = 'LIST.ACTIONS.DELETE';

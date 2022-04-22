@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	ProductDelete,
 	ProductsFetchList,
@@ -25,7 +26,7 @@ const DialogDeleteProduct: FC<DialogDeleteProductInterface> = (props) => {
 	const { product, open, setOpen } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const products = useSelector(productsSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;

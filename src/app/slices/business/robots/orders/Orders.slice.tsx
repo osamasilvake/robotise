@@ -5,7 +5,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { DialogCreateOrderFormInterface } from '../../../../screens/business/robots/content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from '../../../../screens/business/robots/content/orders/list/RobotOrdersList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
-import { AppReducerType } from '../../..';
+import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeOrder } from './Order.slice.deserialize';
@@ -72,7 +72,7 @@ export const { loader, loading, success, failure, updating, updated, updateFaile
 	dataSlice.actions;
 
 // selector
-export const ordersSelector = (state: AppReducerType) => state['orders'];
+export const ordersSelector = (state: RootState) => state['orders'];
 
 // reducer
 export default dataSlice.reducer;
@@ -86,7 +86,7 @@ export default dataSlice.reducer;
  */
 export const OrdersFetchList =
 	(robotId: string, payload: RobotOrdersListPayloadInterface, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const orders = states.orders;
@@ -149,7 +149,7 @@ export const OrdersFetchList =
  */
 export const OrderCreate =
 	(siteId: string, payload: DialogCreateOrderFormInterface, callback: () => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const orders = states.orders;
@@ -205,7 +205,7 @@ export const OrderCreate =
  */
 export const OrderCancel =
 	(order: SOCDataInterface, callback: () => void) =>
-	async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const orders = states.orders;
@@ -259,7 +259,7 @@ export const OrderCancel =
  * @returns
  */
 export const OrderUpdateState =
-	(state: SOCStateInterface) => async (dispatch: Dispatch, getState: () => AppReducerType) => {
+	(state: SOCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const orders = states.orders;

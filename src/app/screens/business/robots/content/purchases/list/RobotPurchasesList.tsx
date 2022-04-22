@@ -8,6 +8,7 @@ import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loade
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import {
 	PurchasesFetchList,
 	purchasesSelector
@@ -21,7 +22,7 @@ import RobotPurchasesTable from './table/RobotPurchasesTable';
 const RobotPurchasesList: FC = () => {
 	const classes = RobotPurchasesListStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const purchases = useSelector(purchasesSelector);
 
 	const page = purchases.content?.state?.page || 0;

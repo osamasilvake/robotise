@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
 import { SMCStateInterface } from '../../../../../slices/settings/middleware-config/MiddlewareConfig.interface';
 import {
 	middlewareConfigSelector,
@@ -28,7 +29,7 @@ const MiddlewareConfigTable: FC<MiddlewareConfigTableInterface> = (props) => {
 	const { t } = useTranslation('COMMON');
 	const classes = MiddlewareConfigTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const middlewareConfig = useSelector(middlewareConfigSelector);
 
 	const [order, setOrder] = useState<MiddlewareConfigTableHeadOrder>('desc');

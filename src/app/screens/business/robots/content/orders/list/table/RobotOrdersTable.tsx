@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	ordersSelector,
 	OrderUpdateState
@@ -22,7 +23,7 @@ const RobotOrdersTable: FC<RobotOrdersTableInterface> = (props) => {
 	const { t } = useTranslation('COMMON');
 	const classes = RobotOrdersTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
 
 	const [order, setOrder] = useState<RobotOrdersTableHeadOrder>('desc');

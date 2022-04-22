@@ -3,6 +3,7 @@ import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../../slices';
 import {
 	emailsSelector,
 	EmailsUpdateState
@@ -18,7 +19,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	const { siteId } = props;
 	const { t } = useTranslation('GENERAL');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const emails = useSelector(emailsSelector);
 

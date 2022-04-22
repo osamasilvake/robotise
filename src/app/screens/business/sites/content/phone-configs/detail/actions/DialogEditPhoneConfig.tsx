@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	GeneralFetchOrderModes,
 	generalOperationsSelector
@@ -44,7 +45,7 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 	const classes = SitePhoneConfigsDetailActionsStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const generalOperations = useSelector(generalOperationsSelector);
 	const phoneConfigs = useSelector(phoneConfigsSelector);
 

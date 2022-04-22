@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../slices';
 import { AppApplyThemePalette, appSelector } from '../../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../../slices/app/App.slice.enum';
 import { ThemePaletteStyle } from './Theme.style';
@@ -12,7 +13,7 @@ const ThemePalette: FC = () => {
 	const { t } = useTranslation('FRAME');
 	const classes = ThemePaletteStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const app = useSelector(appSelector);
 
 	/**

@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { AppConfigService } from '../../../services';
+import { AppDispatch } from '../../../slices';
 import { appSelector, AppSetDrawerState } from '../../../slices/app/App.slice';
 import { AuthLogout, authSelector } from '../../../slices/authentication/Auth.slice';
 import { StyledBadge } from '../../../utilities/styles/Badge.style';
@@ -31,7 +32,7 @@ const Account: FC = () => {
 	const { t } = useTranslation(['FRAME', 'TOOLTIP']);
 	const classes = AccountStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const app = useSelector(appSelector);
 	const auth = useSelector(authSelector);
 

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	phoneCallsSelector,
 	PhoneCallsUpdateState
@@ -25,7 +26,7 @@ const SitePhoneCallsTable: FC<SitePhoneCallsTableInterface> = (props) => {
 	const { t } = useTranslation('COMMON');
 	const classes = SitePhoneCallsTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const phoneCalls = useSelector(phoneCallsSelector);
 
 	const [order, setOrder] = useState<SitePhoneCallsTableHeadOrder>('desc');

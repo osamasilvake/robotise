@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	ordersSelector,
 	OrderUpdateState
@@ -14,7 +15,7 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	const { debug } = props;
 	const { t } = useTranslation('ROBOTS');
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
 
 	/**

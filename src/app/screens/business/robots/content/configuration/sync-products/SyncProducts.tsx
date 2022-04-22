@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
 import { RobotProductsSync } from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../Robot.interface';
@@ -15,7 +16,7 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = SyncProductsStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;

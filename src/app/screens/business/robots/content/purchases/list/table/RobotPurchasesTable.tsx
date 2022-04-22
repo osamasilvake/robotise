@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	purchasesSelector,
 	PurchaseUpdateState
@@ -25,7 +26,7 @@ const RobotPurchasesTable: FC<RobotPurchasesTableInterface> = (props) => {
 	const { t } = useTranslation('COMMON');
 	const classes = RobotPurchasesTableStyle();
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const purchases = useSelector(purchasesSelector);
 
 	const [order, setOrder] = useState<RobotPurchasesTableHeadOrder>('desc');

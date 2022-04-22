@@ -3,23 +3,45 @@ import { Chip, CircularProgress, IconButton } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ExternalLinkTypeEnum } from './ExternalLink.enum';
+import { AppDispatch } from '../../../slices';
+import {
+	DeepLinkAlertLogsLinkFetch,
+	DeepLinkAuditLogsLinkFetch,
+	DeepLinkBatteryLinkFetch,
+	DeepLinkCoolingUnitLinkFetch,
+	DeepLinkDiagnosticsLogsLinkFetch,
+	DeepLinkElevatorLogsLinkFetch,
+	DeepLinkItemTrackingLinkFetch,
+	DeepLinkTemperatureLinkFetch
+} from '../../../slices/settings/deep-links/DeepLink.slice';
+import { ExternalLinkActionTypeEnum, ExternalLinkTypeEnum } from './ExternalLink.enum';
 import { ExternalLinkInterface } from './ExternalLink.interface';
 
 const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 	const {
 		index,
 		type = ExternalLinkTypeEnum.CHIP,
+		actionType,
 		text,
 		payload,
-		FetchExternalLink,
 		showIcon,
 		disabled
 	} = props;
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const [trackingIndex, setTrackingIndex] = useState(-1);
+
+	const actionsList = {
+		[ExternalLinkActionTypeEnum.AUDIT_LOGS]: DeepLinkAuditLogsLinkFetch,
+		[ExternalLinkActionTypeEnum.ALERT_LOGS]: DeepLinkAlertLogsLinkFetch,
+		[ExternalLinkActionTypeEnum.BATTERY]: DeepLinkBatteryLinkFetch,
+		[ExternalLinkActionTypeEnum.COOLING_UNIT]: DeepLinkCoolingUnitLinkFetch,
+		[ExternalLinkActionTypeEnum.DIAGNOSTICS_LOGS]: DeepLinkDiagnosticsLogsLinkFetch,
+		[ExternalLinkActionTypeEnum.ELEVATOR_LOGS]: DeepLinkElevatorLogsLinkFetch,
+		[ExternalLinkActionTypeEnum.ITEM_TRACKING]: DeepLinkItemTrackingLinkFetch,
+		[ExternalLinkActionTypeEnum.TEMPERATURE]: DeepLinkTemperatureLinkFetch
+	};
 
 	/**
 	 * handle external link
@@ -35,7 +57,7 @@ const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 
 		// dispatch: fetch link
 		dispatch(
-			FetchExternalLink(payload, (res) => {
+			actionsList[actionType](payload, (res) => {
 				res.data && window.open(res.data.dlink);
 
 				// reset tracking index

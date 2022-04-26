@@ -1652,7 +1652,8 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
-							"STATUS": "Status",
+							"API_STATUS": "API Status",
+							"E2E_STATUS": "Status",
 							"CALL_TYPE": "Call Type",
 							"SRC_AREA_ID": "SRC ID",
 							"DST_AREA_ID": "DST ID",

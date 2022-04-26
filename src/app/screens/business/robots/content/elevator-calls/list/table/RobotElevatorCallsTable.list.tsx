@@ -4,8 +4,14 @@ import { RobotElevatorCallsTableColumnInterface } from './RobotElevatorCallsTabl
 const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.COLUMNS';
 export const columns: RobotElevatorCallsTableColumnInterface[] = [
 	{
-		id: RobotElevatorCallsTableColumnsTypeEnum.STATUS,
-		label: `${translation}.STATUS`,
+		id: RobotElevatorCallsTableColumnsTypeEnum.API_STATUS,
+		label: `${translation}.API_STATUS`,
+		minWidth: 130,
+		align: 'left'
+	},
+	{
+		id: RobotElevatorCallsTableColumnsTypeEnum.E2E_STATUS,
+		label: `${translation}.E2E_STATUS`,
 		minWidth: 130,
 		align: 'left'
 	},

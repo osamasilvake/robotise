@@ -19,6 +19,7 @@ export interface ECCDataInterface {
 	id: string;
 	buildingId: string;
 	status: string;
+	e2eStatus: string;
 	vendor: string;
 	callType: string;
 	srcAreaId: string;

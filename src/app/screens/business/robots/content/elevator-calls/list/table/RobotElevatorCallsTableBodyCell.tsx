@@ -137,7 +137,13 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 					</Box>
 				);
 			} else if (typeof value === 'string') {
-				if (RobotElevatorCallsTableColumnsTypeEnum.STATUS === column.id) {
+				if (RobotElevatorCallsTableColumnsTypeEnum.API_STATUS === column.id) {
+					return (
+						<Status level={mapStatus(value)} capitalize>
+							{t(value)}
+						</Status>
+					);
+				} else if (RobotElevatorCallsTableColumnsTypeEnum.E2E_STATUS === column.id) {
 					return (
 						<Status level={mapStatus(value)} capitalize>
 							{t(value)}

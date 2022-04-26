@@ -34,7 +34,8 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 			case RobotElevatorCallsTableColumnsTypeEnum.CREATED:
 				type = RobotElevatorCallsTableSortTypeEnum.DATE;
 				break;
-			case RobotElevatorCallsTableColumnsTypeEnum.STATUS:
+			case RobotElevatorCallsTableColumnsTypeEnum.API_STATUS:
+			case RobotElevatorCallsTableColumnsTypeEnum.E2E_STATUS:
 			case RobotElevatorCallsTableColumnsTypeEnum.CALL_TYPE:
 			case RobotElevatorCallsTableColumnsTypeEnum.SRC_AREA_ID:
 			case RobotElevatorCallsTableColumnsTypeEnum.DST_AREA_ID:

@@ -37,7 +37,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 	const fieldNote = 'note';
 	const maxLength = 2000;
 
-	const { handleChangeInput, handleSubmit, values } = useForm<NoteFormInterface>(
+	const { handleChangeInput, handleBlur, handleSubmit, values } = useForm<NoteFormInterface>(
 		{
 			note: note || ''
 		},
@@ -68,6 +68,7 @@ const DialogNote: FC<NoteInterface> = (props) => {
 							placeholder={t(`${translation}.FIELD.PLACEHOLDER`)}
 							value={values.note}
 							onChange={handleChangeInput}
+							onBlur={handleBlur}
 							onFocus={(e) =>
 								e.currentTarget.setSelectionRange(
 									e.currentTarget.value.length,

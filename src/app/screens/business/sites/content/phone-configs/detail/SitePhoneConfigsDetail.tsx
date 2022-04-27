@@ -18,6 +18,7 @@ import SitePhoneConfigsDetailActions from './actions/SitePhoneConfigsDetailActio
 import SitePhoneConfigsAudioMessages from './audio-messages/SitePhoneConfigsAudioMessages';
 import SitePhoneConfigsGeneral from './general/SitePhoneConfigsGeneral';
 import { SitePhoneConfigsDetailStyle } from './SitePhoneConfigsDetail.style';
+import SitePhoneConfigsSMSMessages from './sms-messages/SitePhoneConfigsSMSMessages';
 
 const SitePhoneConfigsDetail: FC = () => {
 	const classes = SitePhoneConfigsDetailStyle();
@@ -83,6 +84,9 @@ const SitePhoneConfigsDetail: FC = () => {
 
 			{/* Audio Messages */}
 			<SitePhoneConfigsAudioMessages content={phoneConfigs.content} />
+
+			{/* SMS Messages */}
+			<SitePhoneConfigsSMSMessages content={phoneConfigs.content} />
 		</Box>
 	);
 };

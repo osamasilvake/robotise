@@ -775,16 +775,15 @@
 						}
 					},
 					"AUDIO": {
-						"TITLE": "Audio Messages",
-						"MESSAGES": {
-							"welcome": "Welcome",
-							"confirmed": "Confirmed",
-							"welcomeNoConfirmation": "Welcome No Confirmation",
-							"orderAtTargetPosition": "Order at Target Position",
-							"rejectHoliday": "Reject Holiday",
-							"rejectOutOfWorkingTime": "Reject Out Of Working Time",
-							"rejectRoomNotServed": "Reject Room Not Served",
-							"rejectGeneric": "Reject Generic"
+						"TITLE": "Audio Messages"
+					},
+					"SMS": {
+						"TITLE": "SMS Messages",
+						"EXCERPT": "Update mobile SMS messages.",
+						"FIELDS": {
+							"MESSAGE": {
+								"PLACEHOLDER": "Enter message"
+							}
 						}
 					}
 				}

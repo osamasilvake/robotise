@@ -33,36 +33,37 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES.COMMENT';
 	const fieldComment = 'comment';
 
-	const { handleChangeInput, handleSubmit, values } = useForm<TableFieldCommentFormInterface>(
-		{
-			comment: purchase.comment
-		},
-		() => ({ comment: '' }),
-		async () => {
-			if (editMode) {
-				// sanitize text
-				const comment = DOMPurify.sanitize(values.comment);
+	const { handleChangeInput, handleBlur, handleSubmit, values } =
+		useForm<TableFieldCommentFormInterface>(
+			{
+				comment: purchase.comment
+			},
+			() => ({ comment: '' }),
+			async () => {
+				if (editMode) {
+					// sanitize text
+					const comment = DOMPurify.sanitize(values.comment);
 
-				// dispatch: edit a comment field
-				dispatch(PurchaseCommentEdit(purchase.id, comment, () => closeEditMode()));
-			} else {
-				// dispatch: update state
-				const state: SPCStateInterface = {
-					...purchases.content?.state,
-					locked: purchase.id
-				};
-				dispatch(PurchaseUpdateState(state));
+					// dispatch: edit a comment field
+					dispatch(PurchaseCommentEdit(purchase.id, comment, () => closeEditMode()));
+				} else {
+					// dispatch: update state
+					const state: SPCStateInterface = {
+						...purchases.content?.state,
+						locked: purchase.id
+					};
+					dispatch(PurchaseUpdateState(state));
 
-				// set value
-				handleChangeInput({
-					target: {
-						name: fieldComment,
-						value: purchase.comment
-					}
-				});
+					// set value
+					handleChangeInput({
+						target: {
+							name: fieldComment,
+							value: purchase.comment
+						}
+					});
+				}
 			}
-		}
-	);
+		);
 
 	/**
 	 * close edit mode
@@ -91,6 +92,7 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 						placeholder={t(`${translation}.FIELD.PLACEHOLDER`)}
 						value={values.comment}
 						onChange={handleChangeInput}
+						onBlur={handleBlur}
 						onFocus={(e) =>
 							e.currentTarget.setSelectionRange(
 								e.currentTarget.value.length,

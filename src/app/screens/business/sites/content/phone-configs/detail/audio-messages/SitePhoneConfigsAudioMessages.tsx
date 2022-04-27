@@ -60,7 +60,7 @@ const SitePhoneConfigsAudioMessages: FC<SitePhoneConfigsAudioMessagesInterface> 
 			{/* Audio Player */}
 			<AudioPlayer
 				uploadAudio
-				tracks={mapAudioMessagesTracks(item.messages, t)}
+				tracks={mapAudioMessagesTracks(item.messages)}
 				onChangeAudio={onChangeAudio}
 			/>
 		</Box>

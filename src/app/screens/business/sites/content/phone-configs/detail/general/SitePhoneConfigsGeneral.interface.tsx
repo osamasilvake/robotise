@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { PCContentInterface } from '../../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
+import {
+	PCCDataMessagesInterface,
+	PCContentInterface
+} from '../../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
 
 export interface SitePhoneConfigsGeneralInterface {
 	content: PCContentInterface | null;
@@ -18,6 +21,7 @@ export interface DialogEditPhoneConfigFormInterface {
 	outboundPattern: string;
 	callbackRetries: string;
 	smsGateway: string;
+	smsMessages?: PCCDataMessagesInterface;
 }
 
 export interface SitePhoneConfigUploadAudioInterface {

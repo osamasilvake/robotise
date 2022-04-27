@@ -143,6 +143,7 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 									placeholder={t(`${translation}.FIELDS.DESC.PLACEHOLDER`)}
 									value={values.desc}
 									onChange={handleChangeInput}
+									onBlur={handleBlur}
 								/>
 							</FormControl>
 						</Grid>

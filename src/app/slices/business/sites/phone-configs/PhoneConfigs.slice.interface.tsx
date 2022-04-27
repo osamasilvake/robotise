@@ -29,6 +29,7 @@ export interface PCCDataInterface {
 	sip: { outboundPattern: string };
 	roomsMapping: PCCDataRoomsMappingInterface;
 	messages: PCCDataMessagesInterface;
+	smsMessages: PCCDataMessagesInterface;
 }
 
 export interface PCCDataRoomsMappingInterface {
@@ -36,14 +37,7 @@ export interface PCCDataRoomsMappingInterface {
 }
 
 export interface PCCDataMessagesInterface {
-	welcome: string;
-	confirmed: string;
-	welcomeNoConfirmation: string;
-	orderAtTargetPosition: string;
-	rejectHoliday: string;
-	rejectOutOfWorkingTime: string;
-	rejectRoomNotServed: string;
-	rejectGeneric: string;
+	[key: string]: string;
 }
 
 export interface PCCStateInterface {

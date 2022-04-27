@@ -63,7 +63,8 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 				mode: phoneConfig?.mode || SiteEditConfigModeTypeEnum.MINI_BAR,
 				outboundPattern: phoneConfig?.sip?.outboundPattern || '',
 				callbackRetries: String(phoneConfig?.callbackRetries) || '0',
-				smsGateway: phoneConfig?.smsGateway || ''
+				smsGateway: phoneConfig?.smsGateway || '',
+				smsMessages: phoneConfig?.smsMessages
 			},
 			EditPhoneConfigValidation,
 			async () => {

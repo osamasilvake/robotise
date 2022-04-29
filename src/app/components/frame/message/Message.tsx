@@ -15,6 +15,8 @@ const Message: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const app = useSelector(appSelector);
 
+	const { id, show, severity, text, dynamicText } = app.triggerMessage;
+
 	/**
 	 * dispatch: trigger message
 	 */
@@ -30,15 +32,15 @@ const Message: FC = () => {
 
 	return (
 		<Snackbar
-			key={app.triggerMessage.id}
-			open={app.triggerMessage.show}
+			key={id}
+			open={show}
 			onClose={handleCloseMessage}
 			ClickAwayListenerProps={{ mouseEvent: false }}
 			anchorOrigin={
 				AppConfigService.AppOptions.components.snackbar.direction as SnackbarOrigin
 			}
 			autoHideDuration={
-				app.triggerMessage.severity === TriggerMessageTypeEnum.ERROR
+				severity === TriggerMessageTypeEnum.ERROR
 					? AppConfigService.AppOptions.components.snackbar.timeout.slow
 					: AppConfigService.AppOptions.components.snackbar.timeout.fast
 			}
@@ -50,8 +52,8 @@ const Message: FC = () => {
 						<Close fontSize="small" />
 					</IconButton>
 				}
-				severity={app.triggerMessage.severity}>
-				{app.triggerMessage.text && t(`MESSAGE.${app.triggerMessage.text}`)}
+				severity={severity}>
+				{text && (!dynamicText ? t(`MESSAGE.${text}`) : text)}
 			</Alert>
 		</Snackbar>
 	);

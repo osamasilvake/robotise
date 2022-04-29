@@ -86,7 +86,8 @@ describe('[SLICE] Authentication', () => {
 			id: 'auth-login-error',
 			show: true,
 			severity: TriggerMessageTypeEnum.ERROR,
-			text: response.message
+			text: response.message,
+			dynamicText: true
 		};
 		mockedAxios.post.mockRejectedValueOnce(response);
 

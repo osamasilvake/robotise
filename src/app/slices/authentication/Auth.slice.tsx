@@ -88,12 +88,15 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 			dispatch(success(user));
 		})
 		.catch((err) => {
+			const error = err && (err.error_description || err.message);
+
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
 				id: 'auth-login-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: (err && (err.error_description || err.message)) || 'AUTH.UNKNOWN'
+				text: error || 'AUTH.UNKNOWN',
+				dynamicText: !!error
 			};
 			dispatch(triggerMessage(message));
 
@@ -141,7 +144,8 @@ export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) 
 							id: 'auto-token-refresh-error',
 							show: true,
 							severity: TriggerMessageTypeEnum.ERROR,
-							text: err && err.error_description
+							text: err && err.error_description,
+							dynamicText: true
 						};
 						dispatch(triggerMessage(message));
 

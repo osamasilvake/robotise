@@ -5,4 +5,5 @@ export interface TriggerMessageInterface {
 	show: boolean;
 	severity: TriggerMessageTypeEnum;
 	text: string;
+	dynamicText?: boolean;
 }

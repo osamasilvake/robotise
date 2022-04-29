@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, Divider, Typography } from '@mui/material';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 
+import { timeout } from '../../../utilities/methods/Timeout';
 import { AudioPlayerInterface } from './AudioPlayer.interface';
 import { AudioPlayerStyle } from './AudioPlayer.style';
 import AudioPlayerControls from './AudioPlayerControls';
@@ -36,15 +37,31 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 				// reset track progress
 				setTrackProgress(0);
 
-				// reset isPlaying
-				setIsPlaying(false);
-
 				// clear interval
 				clearInterval(intervalRef.current);
+
+				// reset isPlaying
+				setIsPlaying(false);
 			} else {
 				setTrackProgress(audioRef.current.currentTime);
 			}
 		}, 100);
+	}, []);
+
+	useEffect(() => {
+		const playerReady = async () => {
+			await timeout(500);
+			isReady.current = true;
+		};
+		playerReady();
+
+		return () => {
+			// pause audio
+			audioRef.current.pause();
+
+			// clear interval
+			clearInterval(intervalRef.current);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -61,22 +78,12 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 		// set track progress
 		setTrackProgress(audioRef.current.currentTime);
 
-		// isReady
-		// case 1: init: set true
-		// case 2: << >>: set true
-		// case 3: list item selection: set true
-		// case 4: audio upload: set false
 		if (isReady.current) {
 			// play audio
 			playRef.current = audioRef.current.play();
 
-			// set isPlaying
-			setIsPlaying(true);
-
 			// start timer
 			startTimer();
-		} else {
-			isReady.current = true;
 		}
 
 		return () => audioRef.current.removeEventListener('durationchange', handleDuration);
@@ -94,24 +101,10 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 		}
 	}, [isPlaying, startTimer]);
 
-	useEffect(() => {
-		return () => {
-			// pause audio
-			audioRef.current.pause();
-
-			// clear interval
-			clearInterval(intervalRef.current);
-		};
-	}, []);
-
 	/**
 	 * set previous track
 	 */
 	const toPrevTrack = () => {
-		// isReady: set
-		isReady.current = true;
-
-		// set track
 		setTrackIndex(trackIndex - 1 < 0 ? tracks.length - 1 : trackIndex - 1);
 	};
 
@@ -119,10 +112,6 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 	 * set next track
 	 */
 	const toNextTrack = () => {
-		// isReady: set
-		isReady.current = true;
-
-		// set track
 		setTrackIndex(trackIndex < tracks.length - 1 ? trackIndex + 1 : 0);
 	};
 
@@ -165,7 +154,6 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 				isPlaying={isPlaying}
 				setIsPlaying={setIsPlaying}
 				onChangeAudio={onChangeAudio}
-				isReady={isReady}
 			/>
 		</Card>
 	);

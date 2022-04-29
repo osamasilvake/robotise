@@ -3,6 +3,7 @@ import { Box, Grid, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import ReadMore from '../../../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../../../services';
 import { SitePhoneConfigsGeneralInterface } from './SitePhoneConfigsGeneral.interface';
 import { mapPhoneConfig } from './SitePhoneConfigsGeneral.map';
@@ -15,6 +16,8 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 
 	const item = content?.data && mapPhoneConfig(content.data[0]);
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.GENERAL';
+
+	const roomsMapping = item?.roomsMapping?.map((ob) => `${ob.key}:${ob.value}`).join(' ') || '';
 
 	return item ? (
 		<Grid container spacing={1}>
@@ -61,13 +64,11 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 					<Typography variant="caption" color="textSecondary">
 						{t(`${translation}.ROOMS_MAPPING`)}
 					</Typography>
-					{item.roomsMapping.map((room) => (
-						<Box key={room.key}>
-							<Typography>
-								{room.key}:{room.value}
-							</Typography>
-						</Box>
-					))}
+					{item.roomsMapping.length > 12 ? (
+						<ReadMore text={roomsMapping} />
+					) : (
+						<Typography>{roomsMapping}</Typography>
+					)}
 				</Grid>
 			)}
 

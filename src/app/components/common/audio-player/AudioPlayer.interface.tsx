@@ -39,5 +39,4 @@ export interface AudioPlayerListInterface {
 	isPlaying: boolean;
 	setIsPlaying: Dispatch<SetStateAction<boolean>>;
 	onChangeAudio?: (base64: string, track: AudioPlayerTrackInterface) => void;
-	isReady: MutableRefObject<boolean>;
 }

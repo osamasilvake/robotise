@@ -27,8 +27,7 @@ const AudioPlayerList: FC<AudioPlayerListInterface> = (props) => {
 		setTrackIndex,
 		isPlaying,
 		setIsPlaying,
-		onChangeAudio,
-		isReady
+		onChangeAudio
 	} = props;
 	const { t } = useTranslation('TOOLTIP');
 	const classes = AudioPlayerStyle();
@@ -58,9 +57,6 @@ const AudioPlayerList: FC<AudioPlayerListInterface> = (props) => {
 		const base64 = await fileConvertBase64(file);
 		if (!base64) return;
 
-		// isReady: set
-		isReady.current = false;
-
 		// set audio index
 		setAudioIdx(idx);
 
@@ -73,9 +69,6 @@ const AudioPlayerList: FC<AudioPlayerListInterface> = (props) => {
 	 * @param idx
 	 */
 	const onListItemSelection = (idx: number) => {
-		// isReady: set
-		isReady.current = true;
-
 		// play or set new track
 		if (trackIndex === idx) {
 			setIsPlaying(!isPlaying);

@@ -75,7 +75,7 @@ export const WifiMapsFetch =
 		const wifiHeatmap = states.wifiHeatmap;
 
 		// return on busy
-		if (wifiHeatmap && (wifiHeatmap.loader || wifiHeatmap.loading)) {
+		if (wifiHeatmap && wifiHeatmap.loader) {
 			return;
 		}
 

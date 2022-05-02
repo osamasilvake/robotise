@@ -202,6 +202,7 @@ export const RobotNoteUpdate =
  */
 export const RobotMapFetch =
 	(mapId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
 		const states = getState();
 		const map = states.robotOperations.map;
 		const state = {
@@ -352,6 +353,7 @@ export const RobotCameraCommandRequest =
 export const RobotElevatorTemplateFetch =
 	(elevatorId: string, callback: (data: SROContentElevatorTemplateInterface) => void) =>
 	async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
 		const states = getState();
 		const elevatorTemplate = states.robotOperations.elevatorTemplate;
 		const state = {

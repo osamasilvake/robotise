@@ -68,36 +68,45 @@ export default dataSlice.reducer;
  * fetch order modes
  * @returns
  */
-export const GeneralFetchOrderModes = () => async (dispatch: Dispatch) => {
-	const state = {
-		module: GeneralOperationsTypeEnum.ORDER_MODES
+export const GeneralFetchOrderModes =
+	() => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const orderModes = states.generalOperations.orderModes;
+		const state = {
+			module: GeneralOperationsTypeEnum.ORDER_MODES
+		};
+
+		// return on busy
+		if (orderModes && orderModes.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return GeneralService.generalOrderModesFetch()
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeOrderModes(res);
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'general-order-modes-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'GENERAL.ORDER_MODES.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
 	};
-
-	// dispatch: loading
-	dispatch(loading(state));
-
-	return GeneralService.generalOrderModesFetch()
-		.then(async (res) => {
-			// deserialize response
-			const result = await deserializeOrderModes(res);
-
-			// dispatch: success
-			dispatch(success({ ...state, response: result }));
-		})
-		.catch(() => {
-			// dispatch: trigger message
-			const message: TriggerMessageInterface = {
-				id: 'general-order-modes-fetch-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'GENERAL.ORDER_MODES.ERROR'
-			};
-			dispatch(triggerMessage(message));
-
-			// dispatch: failure
-			dispatch(failure(state));
-		});
-};
 
 /**
  * generate reports

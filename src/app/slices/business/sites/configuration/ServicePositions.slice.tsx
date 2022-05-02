@@ -75,7 +75,16 @@ export default dataSlice.reducer;
  */
 export const ServicePositionsFetchList =
 	(siteId: string, refresh = false) =>
-	async (dispatch: Dispatch) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const servicePositions = states.servicePositions;
+
+		// return on busy
+		if (servicePositions && (servicePositions.loader || servicePositions.loading)) {
+			return;
+		}
+
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 

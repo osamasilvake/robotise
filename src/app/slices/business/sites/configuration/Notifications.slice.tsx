@@ -74,7 +74,16 @@ export default dataSlice.reducer;
  */
 export const NotificationTypesAndUsersFetchList =
 	(siteId: string, refresh = false) =>
-	async (dispatch: Dispatch) => {
+	async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const notifications = states.notifications;
+
+		// return on busy
+		if (notifications && (notifications.loader || notifications.loading)) {
+			return;
+		}
+
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 

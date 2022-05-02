@@ -121,6 +121,12 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 						},
 						updatedAt: meta.activity?.updatedAt
 					},
+					drawerStates: state.status.drawerStates && {
+						properties: {
+							drawers: state.status.drawerStates
+						},
+						updatedAt: meta.status?.drawerStates?.updatedAt
+					},
 					safetySystems: state.status.safetySystem && {
 						properties: {
 							backMutingActive: state.status.safetySystem.backMutingActive,

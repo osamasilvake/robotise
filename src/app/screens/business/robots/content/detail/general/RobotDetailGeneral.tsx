@@ -22,6 +22,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const [open, setOpen] = useState(false);
 
 	const emergencyState = !!robotTwins?.emergencyState?.properties.isInEmergencyState;
+	const openDrawer = robotTwins.drawerStates?.properties.drawers?.find((f) => f.isOpen);
 	const translation = 'CONTENT.DETAIL.GENERAL';
 
 	return (
@@ -188,6 +189,24 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				{/* Dialog: Note */}
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
 			</Grid>
+
+			{/* Drawer States */}
+			{robotTwins.drawerStates && (
+				<Grid item xs={12} sm={6} md={4} lg={3}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.DRAWER_STATES.LABEL`)}
+					</Typography>
+					<Box>
+						<Typography>
+							{openDrawer
+								? t(`${translation}.DRAWER_STATES.OPENED`, {
+										value: openDrawer.drawer
+								  })
+								: t(`${translation}.DRAWER_STATES.CLOSED`)}
+						</Typography>
+					</Box>
+				</Grid>
+			)}
 		</Grid>
 	);
 };

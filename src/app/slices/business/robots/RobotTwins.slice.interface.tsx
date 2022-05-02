@@ -26,6 +26,7 @@ export interface SRTContentDataInterface {
 	joystickState?: SRTContentJoystickStateInterface | undefined;
 	emergencyState?: SRTContentEmergencyStateInterface | undefined;
 	activityState?: SRTContentActivityStateInterface | undefined;
+	drawerStates?: SRTContentDrawerStatesInterface | undefined;
 	safetySystems?: SRTContentSafetySystemsInterface | undefined;
 	safetySensors?: SRTContentSafetySensorsInterface | undefined;
 	computerInfo?: SRTContentComputerInfoInterface | undefined;
@@ -137,6 +138,13 @@ export interface SRTContentEmergencyStateInterface {
 export interface SRTContentActivityStateInterface {
 	properties: {
 		latest: string;
+	};
+	updatedAt: Date;
+}
+
+export interface SRTContentDrawerStatesInterface {
+	properties: {
+		drawers: { drawer: string; isOpen: boolean }[];
 	};
 	updatedAt: Date;
 }
@@ -298,6 +306,10 @@ export interface IRobotTwinInterface {
 					powerSupplyHealth: string;
 					voltage: number;
 				};
+				drawerStates: {
+					drawer: string;
+					isOpen: boolean;
+				}[];
 				safetySystem: {
 					backMutingActive: boolean;
 					brakeReleasePressed: boolean;
@@ -437,6 +449,9 @@ export interface IRobotTwinInterface {
 					updatedAt: Date;
 				};
 				batteryState: {
+					updatedAt: Date;
+				};
+				drawerStates: {
 					updatedAt: Date;
 				};
 				safetySensors: {

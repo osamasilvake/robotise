@@ -1072,6 +1072,11 @@
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"
 						}
+					},
+					"DRAWER_STATES": {
+						"LABEL": "Drawer State",
+						"OPENED": "Drawer {{value}} is opened",
+						"CLOSED": "All drawers are closed"
 					}
 				},
 				"LOCATION": {

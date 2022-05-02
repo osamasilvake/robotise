@@ -7,10 +7,9 @@ import { DialogCreateEditServicePositionFormInterface } from './content/configur
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
-import {
-	DialogEditPhoneConfigFormInterface,
-	SitePhoneConfigUploadAudioInterface
-} from './content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
+import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
+import { SitePhoneConfigUploadAudioInterface } from './content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
+import { SitePhoneConfigsPhoneNumbersTypeEnum } from './content/phone-configs/detail/SitePhoneConfigsDetail.enum';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
@@ -23,6 +22,7 @@ import {
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
 	SitePhoneCallsAxiosGetInterface,
+	SitePhoneConfigPhoneNumbersAxiosGetInterface,
 	SitePhoneConfigsAxiosGetInterface,
 	SiteProductsAxiosGetInterface,
 	SiteRoomsAxiosPatchRequestInterface,
@@ -168,7 +168,7 @@ class SitesService {
 	 * @returns
 	 */
 	sitePhoneConfigsFetch = (siteId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS.FETCH;
 		return HttpClientService.get<SitePhoneConfigsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId
@@ -183,10 +183,11 @@ class SitesService {
 	 * @returns
 	 */
 	sitePhoneConfigEdit = (phoneConfigId: string, payload: DialogEditPhoneConfigFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIG.replace(
-			':phoneConfigId',
-			phoneConfigId
-		);
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS.SINGLE.replace(
+				':phoneConfigId',
+				phoneConfigId
+			);
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'phone-dispatcher-configs',
@@ -213,7 +214,7 @@ class SitesService {
 		phoneConfigId: string,
 		payload: SitePhoneConfigUploadAudioInterface
 	) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIG_AUDIO.replace(
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS.AUDIO.replace(
 			':phoneConfigId',
 			phoneConfigId
 		);
@@ -221,6 +222,20 @@ class SitesService {
 			data: {
 				type: 'phone-dispatcher-config-audio-messages',
 				attributes: payload
+			}
+		});
+	};
+
+	/**
+	 * fetch phone config phone numbers
+	 * @param capability
+	 * @returns
+	 */
+	sitePhoneConfigsFetchPhoneNumbers = (capability: SitePhoneConfigsPhoneNumbersTypeEnum) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS.PHONE_NUMBERS;
+		return HttpClientService.get<SitePhoneConfigPhoneNumbersAxiosGetInterface>(url, {
+			params: {
+				'filter[capability]': capability
 			}
 		});
 	};

@@ -26,9 +26,12 @@ const AppServices = (config: typeof AppConfigService) => {
 					ALL: `${config.envAppUrl}/sites`,
 					SINGLE: `${config.envAppUrl}/sites/:siteId`,
 					PRODUCTS: `${config.envAppUrl}/products`,
-					PHONE_CONFIGS: `${config.envAppUrl}/phone-dispatcher-configs`,
-					PHONE_CONFIG: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId`,
-					PHONE_CONFIG_AUDIO: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId/audio-messages`,
+					PHONE_CONFIGS: {
+						FETCH: `${config.envAppUrl}/phone-dispatcher-configs`,
+						SINGLE: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId`,
+						AUDIO: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId/audio-messages`,
+						PHONE_NUMBERS: `${config.envAppUrl}/twilio-phone-numbers`
+					},
 					PHONE_CALLS: `${config.envAppUrl}/inbound-calls`,
 					STATISTICS: {
 						WIFI_HEATMAP: `${config.envAppUrl}/wifi-heatmap`,

@@ -2,15 +2,14 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import {
-	DialogEditPhoneConfigFormInterface,
-	SitePhoneConfigUploadAudioInterface
-} from '../../../../screens/business/sites/content/phone-configs/detail/general/SitePhoneConfigsGeneral.interface';
+import { DialogEditPhoneConfigFormInterface } from '../../../../screens/business/sites/content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
+import { SitePhoneConfigUploadAudioInterface } from '../../../../screens/business/sites/content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
+import { SitePhoneConfigsPhoneNumbersTypeEnum } from '../../../../screens/business/sites/content/phone-configs/detail/SitePhoneConfigsDetail.enum';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
-import { deserializePhoneConfigs } from './PhoneConfigs.slice.deserialize';
+import { deserializePhoneConfig, deserializePhoneConfigs } from './PhoneConfigs.slice.deserialize';
 import { PCContentInterface, SlicePhoneConfigsInterface } from './PhoneConfigs.slice.interface';
 
 // initial state
@@ -107,7 +106,12 @@ export const PhoneConfigsFetch =
 				};
 
 				// dispatch: success
-				dispatch(success(result));
+				dispatch(
+					success({
+						...phoneConfigs?.content,
+						...result
+					})
+				);
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -120,6 +124,65 @@ export const PhoneConfigsFetch =
 
 				// dispatch: failure
 				dispatch(failure(message));
+			});
+	};
+
+/**
+ * fetch phone config phone numbers
+ * @returns
+ */
+export const PhoneConfigsFetchPhoneNumbers =
+	() => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const phoneConfigs = states.phoneConfigs;
+
+		// return on busy
+		if (phoneConfigs && phoneConfigs.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading());
+
+		// types
+		const typeVoice = SitePhoneConfigsPhoneNumbersTypeEnum.VOICE;
+		const typeSms = SitePhoneConfigsPhoneNumbersTypeEnum.SMS;
+
+		// fetch
+		return Promise.all([
+			SitesService.sitePhoneConfigsFetchPhoneNumbers(typeVoice),
+			SitesService.sitePhoneConfigsFetchPhoneNumbers(typeSms)
+		])
+			.then(async (res) => {
+				// deserialize responses
+				const voice = await deserializePhoneConfig(res[0]);
+				const sms = await deserializePhoneConfig(res[1]);
+
+				// dispatch: success
+				dispatch(
+					success({
+						...phoneConfigs.content,
+						phoneNumbers: {
+							...phoneConfigs.content?.phoneNumbers,
+							[typeVoice]: voice,
+							[typeSms]: sms
+						}
+					})
+				);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-configs-fetch-phone-numbers-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.PHONE_CONFIGS.PHONE_NUMBERS.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: updateFailed
+				dispatch(updateFailed());
 			});
 	};
 

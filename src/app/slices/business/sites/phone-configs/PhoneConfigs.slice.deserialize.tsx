@@ -25,3 +25,17 @@ export const deserializePhoneConfigs = async <T extends JsonAPIResponseInterface
 
 	return { data, meta: payload.meta };
 };
+
+/**
+ * deserialize phone config
+ * @param payload
+ * @returns
+ */
+export const deserializePhoneConfig = async <T,>(payload: T) => {
+	const options: DeserializerExtendedOptionsInterface = {
+		keyForAttribute: 'camelCase'
+	};
+	const deserializer = new JSONAPIDeserializer.Deserializer(options);
+	const data = await deserializer.deserialize(payload);
+	return data;
+};

@@ -194,6 +194,9 @@
 						"SUCCESS": "Phone config has been updated successfully!",
 						"ERROR": "Unable to edit a Phone config!"
 					},
+					"PHONE_NUMBERS": {
+						"ERROR": "Unable to fetch phone numbers!"
+					},
 					"UPLOAD_AUDIO": {
 						"SUCCESS": "Audio has been uploaded successfully!",
 						"ERROR": "Unable to upload audio file!"
@@ -719,12 +722,7 @@
 									}
 								},
 								"FROM": {
-									"LABEL": "From",
-									"PLACEHOLDER": "Format: +49221277208",
-									"VALIDATIONS": {
-										"REQUIRED": "From is required.",
-										"INVALID": "Invalid format"
-									}
+									"LABEL": "From"
 								},
 								"MODE": {
 									"LABEL": "Mode"
@@ -742,11 +740,7 @@
 									}
 								},
 								"SMS_GATEWAY": {
-									"LABEL": "SMS Gateway",
-									"PLACEHOLDER": "Format: +49221277208",
-									"VALIDATIONS": {
-										"INVALID": "Invalid format"
-									}
+									"LABEL": "SMS Gateway"
 								}
 							}
 						}

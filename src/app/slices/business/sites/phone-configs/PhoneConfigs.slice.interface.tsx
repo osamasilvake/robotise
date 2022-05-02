@@ -13,6 +13,9 @@ export interface SlicePhoneConfigsInterface {
 export interface PCContentInterface extends JsonAPIResponseInterface {
 	data: PCCDataInterface[];
 	state?: PCCStateInterface;
+	phoneNumbers?: {
+		[key: string]: PCPhoneNumbersInterface[] | null;
+	};
 }
 
 export interface PCCDataInterface {
@@ -42,4 +45,41 @@ export interface PCCDataMessagesInterface {
 
 export interface PCCStateInterface {
 	pSiteId?: string;
+}
+
+export interface PCPhoneNumbersInterface {
+	id: string;
+	dateCreated: Date;
+	dateUpdated: Date;
+	friendlyName: string;
+	phoneNumber: string;
+	smsFallbackMethod: string;
+	smsFallbackUrl: string;
+	smsMethod: string;
+	smsUrl: string;
+	statusCallback: string;
+	statusCallbackMethod: string;
+	status: string;
+	voiceFallbackMethod: string;
+	voiceFallbackUrl: string;
+	voiceMethod: string;
+	voiceUrl: string;
+	emergencyStatus: string;
+	address: PCPhoneNumbersAddressInterface;
+}
+
+export interface PCPhoneNumbersAddressInterface {
+	city: string;
+	customerName: string;
+	dateCreated: Date;
+	dateUpdated: Date;
+	friendlyName: string;
+	isoCountry: string;
+	postalCode: string;
+	region: string;
+	sid: string;
+	street: string;
+	emergencyEnabled: boolean;
+	validated: boolean;
+	verified: boolean;
 }

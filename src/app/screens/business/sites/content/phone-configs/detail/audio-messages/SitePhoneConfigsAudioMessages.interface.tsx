@@ -8,3 +8,8 @@ export interface SitePhoneConfigsAudioMessagesDataInterface {
 	key: string;
 	value: string;
 }
+
+export interface SitePhoneConfigUploadAudioInterface {
+	code: string;
+	audioFileBase64: string;
+}

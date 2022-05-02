@@ -1,5 +1,5 @@
 import { AppConfigService } from '../../../../../../../services';
-import { DialogEditPhoneConfigFormInterface } from '../general/SitePhoneConfigsGeneral.interface';
+import { DialogEditPhoneConfigFormInterface } from './SitePhoneConfigsEdit.interface';
 
 /**
  * edit phone config validation
@@ -13,7 +13,6 @@ export const EditPhoneConfigValidation = (
 	const translation = 'SITES:CONTENT.PHONE_CONFIGS.DETAIL.ACTIONS.EDIT';
 	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const regexPhoneCommaSeparated = AppConfigService.AppOptions.regex.phoneNumbersCommaSeparated;
-	const regexPhone = AppConfigService.AppOptions.regex.phoneNumber;
 	const errors: DialogEditPhoneConfigFormInterface = {
 		prefixes: '',
 		from: '',
@@ -36,19 +35,6 @@ export const EditPhoneConfigValidation = (
 		}
 	}
 
-	// From
-	if (touched.from) {
-		// required
-		if (!values.from) {
-			errors.from = `${translation}.FIELDS.FROM.VALIDATIONS.REQUIRED`;
-		}
-
-		// invalid
-		if (values.from && !regexPhone.test(values.from)) {
-			errors.from = `${translation}.FIELDS.FROM.VALIDATIONS.INVALID`;
-		}
-	}
-
 	// Callback Retries
 	if (touched.callbackRetries) {
 		// required
@@ -59,14 +45,6 @@ export const EditPhoneConfigValidation = (
 		// limit exceeds
 		if (+values.callbackRetries > 10) {
 			errors.callbackRetries = `${translation}.FIELDS.CALLBACK_RETRIES.VALIDATIONS.LIMIT_EXCEEDED`;
-		}
-	}
-
-	// SMS Gateway
-	if (touched.smsGateway) {
-		// invalid
-		if (values.smsGateway && !regexPhone.test(values.smsGateway)) {
-			errors.smsGateway = `${translation}.FIELDS.SMS_GATEWAY.VALIDATIONS.INVALID`;
 		}
 	}
 

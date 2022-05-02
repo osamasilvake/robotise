@@ -33,12 +33,13 @@ import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../../../../../utilities/methods/Object';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { SiteEditConfigModeTypeEnum } from '../general/SitePhoneConfigsGeneral.enum';
+import { SitePhoneConfigsPhoneNumbersTypeEnum } from '../SitePhoneConfigsDetail.enum';
+import { EditPhoneConfigValidation } from './DialogEditPhoneConfig.validation';
+import { SitePhoneConfigsDetailActionsStyle } from './SitePhoneConfigsDetailActions.style';
 import {
 	DialogEditPhoneConfigFormInterface,
 	DialogEditPhoneConfigInterface
-} from '../general/SitePhoneConfigsGeneral.interface';
-import { EditPhoneConfigValidation } from './DialogEditPhoneConfig.validation';
-import { SitePhoneConfigsDetailActionsStyle } from './SitePhoneConfigsDetailActions.style';
+} from './SitePhoneConfigsEdit.interface';
 
 const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 	const { open, setOpen } = props;
@@ -53,6 +54,9 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const orderModesList = generalOperations.orderModes.content?.data?.map((m) => m.mode);
 	const phoneConfig = phoneConfigs.content?.data[0];
+	const phoneNumbers = phoneConfigs?.content?.phoneNumbers;
+	const fromList = phoneNumbers && phoneNumbers[SitePhoneConfigsPhoneNumbersTypeEnum.VOICE];
+	const smsList = phoneNumbers && phoneNumbers[SitePhoneConfigsPhoneNumbersTypeEnum.SMS];
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.ACTIONS.EDIT';
 
 	const { handleChangeInput, handleChangeSelect, handleBlur, handleSubmit, values, errors } =
@@ -116,21 +120,26 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 							/>
 						</FormControl>
 
-						<FormControl fullWidth margin="normal">
-							<TextField
-								required
-								type="string"
-								id="from"
-								name="from"
-								label={t(`${translation}.FIELDS.FROM.LABEL`)}
-								placeholder={t(`${translation}.FIELDS.FROM.PLACEHOLDER`)}
-								value={values?.from}
-								onChange={handleChangeInput}
-								onBlur={handleBlur}
-								error={!!errors?.from}
-								helperText={errors?.from && t(errors.from)}
-							/>
-						</FormControl>
+						{fromList && (
+							<FormControl fullWidth margin="normal">
+								<InputLabel id="label-from">
+									{t(`${translation}.FIELDS.FROM.LABEL`)}
+								</InputLabel>
+								<Select
+									labelId="label-from"
+									id="from"
+									name="from"
+									label={t(`${translation}.FIELDS.FROM.LABEL`)}
+									value={values.from}
+									onChange={handleChangeSelect}>
+									{fromList?.map((from) => (
+										<MenuItem key={from.id} value={from.phoneNumber}>
+											{from.phoneNumber}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						)}
 
 						<Grid container spacing={1}>
 							<Grid item xs={12} sm={6}>
@@ -139,14 +148,12 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 										{t(`${translation}.FIELDS.MODE.LABEL`)}
 									</InputLabel>
 									<Select
-										required
 										labelId="label-mode"
 										id="mode"
 										name="mode"
 										label={t(`${translation}.FIELDS.MODE.LABEL`)}
 										value={values.mode}
-										onChange={handleChangeSelect}
-										onBlur={handleBlur}>
+										onChange={handleChangeSelect}>
 										{(orderModesList || [])?.map((m) => (
 											<MenuItem key={m} value={m}>
 												{t(`GENERAL:COMMON.MODE.${m}`)}
@@ -181,20 +188,26 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 							</Grid>
 						</Grid>
 
-						<FormControl fullWidth margin="normal">
-							<TextField
-								type="string"
-								id="smsGateway"
-								name="smsGateway"
-								label={t(`${translation}.FIELDS.SMS_GATEWAY.LABEL`)}
-								placeholder={t(`${translation}.FIELDS.SMS_GATEWAY.PLACEHOLDER`)}
-								value={values?.smsGateway}
-								onChange={handleChangeInput}
-								onBlur={handleBlur}
-								error={!!errors?.smsGateway}
-								helperText={errors?.smsGateway && t(errors.smsGateway)}
-							/>
-						</FormControl>
+						{smsList && (
+							<FormControl fullWidth margin="normal">
+								<InputLabel id="label-smsGateway">
+									{t(`${translation}.FIELDS.SMS_GATEWAY.LABEL`)}
+								</InputLabel>
+								<Select
+									labelId="label-smsGateway"
+									id="smsGateway"
+									name="smsGateway"
+									label={t(`${translation}.FIELDS.SMS_GATEWAY.LABEL`)}
+									value={values.smsGateway}
+									onChange={handleChangeSelect}>
+									{smsList?.map((from) => (
+										<MenuItem key={from.id} value={from.phoneNumber}>
+											{from.phoneNumber}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						)}
 
 						<Typography variant="body2" className={classes.sSipTitle}>
 							SIP Config

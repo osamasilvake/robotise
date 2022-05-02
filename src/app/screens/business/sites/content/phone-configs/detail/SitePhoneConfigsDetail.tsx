@@ -11,6 +11,7 @@ import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
 import {
 	PhoneConfigsFetch,
+	PhoneConfigsFetchPhoneNumbers,
 	phoneConfigsSelector
 } from '../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -55,6 +56,15 @@ const SitePhoneConfigsDetail: FC = () => {
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, phoneConfigs.content, cSiteId]);
+
+	useEffect(() => {
+		const condition1 = phoneConfigs.content === null;
+		const condition2 = phoneConfigs.content?.phoneNumbers;
+		if (condition1 || condition2) return;
+
+		// dispatch: fetch phone config phone numbers
+		dispatch(PhoneConfigsFetchPhoneNumbers());
+	}, [dispatch, phoneConfigs.content]);
 
 	// loader
 	if (phoneConfigs.loader) {

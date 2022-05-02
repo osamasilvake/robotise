@@ -1,5 +1,4 @@
-import { InfoOutlined } from '@mui/icons-material';
-import { Box, Grid, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -7,12 +6,10 @@ import ReadMore from '../../../../../../../components/common/read-more/ReadMore'
 import { AppConfigService } from '../../../../../../../services';
 import { SitePhoneConfigsGeneralInterface } from './SitePhoneConfigsGeneral.interface';
 import { mapPhoneConfig } from './SitePhoneConfigsGeneral.map';
-import { SitePhoneConfigsGeneralStyle } from './SitePhoneConfigsGeneral.style';
 
 const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) => {
 	const { content } = props;
 	const { t } = useTranslation(['SITES', 'GENERAL']);
-	const classes = SitePhoneConfigsGeneralStyle();
 
 	const item = content?.data && mapPhoneConfig(content.data[0]);
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.GENERAL';
@@ -43,19 +40,6 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 					{t(`${translation}.FROM`)}
 				</Typography>
 				<Box>{item.from || AppConfigService.AppOptions.common.none}</Box>
-			</Grid>
-
-			{/* Workflow */}
-			<Grid item xs={12} sm={6} md={4} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.WORKFLOW.LABEL`)}
-				</Typography>
-				<Stack spacing={0.5} direction="row">
-					<Typography>{t(`${translation}.WORKFLOW.ITEMS.${item.workflow}`)}</Typography>
-					<Tooltip title={t<string>(`${translation}.WORKFLOW.NOTES.${item.workflow}`)}>
-						<InfoOutlined fontSize="small" className={classes.sWorkflowInfoIcon} />
-					</Tooltip>
-				</Stack>
 			</Grid>
 
 			{/* Rooms Mapping */}

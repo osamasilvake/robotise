@@ -66,12 +66,10 @@ export default dataSlice.reducer;
 /**
  * fetch sites maps
  * @param siteId
- * @param callback
  * @returns
  */
 export const WifiMapsFetch =
-	(siteId: string, callback?: (res: SWCMapsInterface) => void) =>
-	async (dispatch: Dispatch, getState: () => RootState) => {
+	(siteId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const wifiHeatmap = states.wifiHeatmap;
@@ -108,9 +106,6 @@ export const WifiMapsFetch =
 
 				// dispatch: success
 				dispatch(success(result));
-
-				// callback
-				callback && callback(result.maps);
 			})
 			.catch(() => {
 				// dispatch: trigger message

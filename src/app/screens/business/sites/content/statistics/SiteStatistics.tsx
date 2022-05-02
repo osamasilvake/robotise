@@ -7,7 +7,6 @@ import Loader from '../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.enum';
 import { AppDispatch } from '../../../../../slices';
 import {
-	WifiHeatmapFetch,
 	wifiHeatmapSelector,
 	WifiMapsFetch
 } from '../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
@@ -32,19 +31,7 @@ const SiteStatistics: FC = () => {
 
 		if (condition1 || condition2) {
 			// dispatch: fetch sites maps
-			cSiteId &&
-				dispatch(
-					WifiMapsFetch(cSiteId, (res) => {
-						// dispatch: fetch wifi heatmap
-						res?.data?.length &&
-							dispatch(
-								WifiHeatmapFetch(cSiteId, {
-									floor: res.data[0].floor,
-									name: res.data[0].name
-								})
-							);
-					})
-				);
+			cSiteId && dispatch(WifiMapsFetch(cSiteId));
 		}
 	}, [dispatch, wifiHeatmap.content, pWifiHeatmapSiteId, cSiteId]);
 

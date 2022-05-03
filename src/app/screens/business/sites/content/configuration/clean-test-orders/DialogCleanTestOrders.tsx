@@ -23,7 +23,7 @@ import {
 	SiteTestOrdersClean
 } from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { dateDayJs, dateFormat4, dateToday } from '../../../../../../utilities/methods/Date';
+import { dateDayJs, dateFormat3, dateToday } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
 import {
 	DialogCleanTestOrdersFormInterface,
@@ -49,7 +49,7 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 			},
 			() => ({ dateTo: '', timeTo: '' }),
 			async () => {
-				const payload = { ...values, timeTo: dateFormat4(new Date(values.timeTo)) };
+				const payload = { ...values, timeTo: dateFormat3(new Date(values.timeTo)) };
 
 				// dispatch: clean test orders
 				dispatch(

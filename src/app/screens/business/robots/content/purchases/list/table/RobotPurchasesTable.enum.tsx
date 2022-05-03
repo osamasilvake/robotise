@@ -3,7 +3,6 @@ export enum RobotPurchasesTableColumnsTypeEnum {
 	CREATED = 'createdAt',
 	TOTAL_PRICE = 'totalPrice',
 	COMMENT = 'comment',
-	BILLED = 'isBilled',
 	ORDER_DETAILS = 'order',
 	ITEM_TRACKING = 'itemTracking'
 }
@@ -11,6 +10,5 @@ export enum RobotPurchasesTableColumnsTypeEnum {
 export enum RobotPurchasesTableSortTypeEnum {
 	DATE,
 	STRING,
-	NUMBER,
-	BOOLEAN
+	NUMBER
 }

@@ -4,7 +4,6 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { RobotPurchasesListPayloadInterface } from '../../../../screens/business/robots/content/purchases/list/RobotPurchasesList.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
-import { timeout } from '../../../../utilities/methods/Timeout';
 import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
@@ -57,9 +56,7 @@ const dataSlice = createSlice({
 		},
 		updated: (state, action) => {
 			state.updating = false;
-			if (action.payload) {
-				state.content = action.payload;
-			}
+			state.content = action.payload;
 		},
 		updateFailed: (state) => {
 			state.updating = false;
@@ -93,7 +90,7 @@ export const PurchasesFetchList =
 		const purchases = states.purchases;
 
 		// return on busy
-		if (purchases && (purchases.loader || purchases.loading)) {
+		if (purchases && (purchases.loader || purchases.loading || purchases.updating)) {
 			return;
 		}
 
@@ -190,59 +187,6 @@ export const PurchaseCommentEdit =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.PURCHASES.EDIT_COMMENT.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: update failed
-				dispatch(updateFailed());
-			});
-	};
-
-/**
- * update purchase bill status
- * @param purchaseId
- * @param isBilled
- * @param callback
- * @returns
- */
-export const PurchaseUpdateBillStatus =
-	(purchaseId: string, isBilled: boolean, callback: () => void) => async (dispatch: Dispatch) => {
-		// dispatch: updating
-		dispatch(updating());
-
-		return RobotsService.robotPurchaseUpdateBillStatus(purchaseId, isBilled)
-			.then(async () => {
-				// wait
-				await timeout(1000);
-
-				// callback
-				callback();
-
-				// wait
-				await timeout(200);
-
-				// dispatch: updated
-				dispatch(updated(null));
-
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'purchases-bill-update-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.PURCHASES.UPDATE_BILL.SUCCESS'
-				};
-				dispatch(triggerMessage(message));
-
-				// callback
-				callback();
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'purchases-bill-update-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.PURCHASES.UPDATE_BILL.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

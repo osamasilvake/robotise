@@ -11,7 +11,6 @@ import { SlicePurchaseInterface } from './Purchase.slice.interface';
 export const initialState: SlicePurchaseInterface = {
 	init: false,
 	loader: false,
-	loading: false,
 	content: null,
 	errors: null
 };
@@ -24,20 +23,15 @@ const dataSlice = createSlice({
 		loader: (state) => {
 			state.loader = true;
 		},
-		loading: (state) => {
-			state.loading = true;
-		},
 		success: (state, action) => {
 			state.init = true;
 			state.loader = false;
-			state.loading = false;
 			state.content = action.payload;
 			state.errors = null;
 		},
 		failure: (state, action) => {
 			state.init = true;
 			state.loader = false;
-			state.loading = false;
 			state.content = null;
 			state.errors = action.payload;
 		},
@@ -46,7 +40,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const purchaseSelector = (state: RootState) => state['purchase'];
@@ -57,12 +51,10 @@ export default dataSlice.reducer;
 /**
  * fetch robot purchase
  * @param purchaseId
- * @param refresh
  * @returns
  */
 export const PurchaseFetch =
-	(purchaseId: string, refresh = false) =>
-	async (dispatch: Dispatch, getState: () => RootState) => {
+	(purchaseId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
 		const purchase = states.purchase;
@@ -72,8 +64,8 @@ export const PurchaseFetch =
 			return;
 		}
 
-		// dispatch: loader/loading
-		dispatch(!refresh ? loader() : loading());
+		// dispatch: loader
+		dispatch(loader());
 
 		return RobotsService.robotPurchaseFetch(purchaseId)
 			.then(async (res) => {

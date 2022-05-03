@@ -22,6 +22,7 @@ import servicePositions from './business/sites/configuration/ServicePositions.sl
 import phoneCalls from './business/sites/phone-calls/PhoneCalls.slice';
 import phoneConfigs from './business/sites/phone-configs/PhoneConfigs.slice';
 import products from './business/sites/products/Products.slice';
+import qrCodes from './business/sites/rooms/qrCode/QRCodes.slice';
 import rooms from './business/sites/rooms/Rooms.slice';
 import siteOperations from './business/sites/SiteOperations.slice';
 import sites from './business/sites/Sites.slice';
@@ -42,6 +43,7 @@ const combinedReducer = combineReducers({
 	siteOperations,
 	products,
 	rooms,
+	qrCodes,
 	notifications,
 	servicePositions,
 	phoneConfigs,

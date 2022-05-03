@@ -9,6 +9,7 @@ import {
 	PCPhoneNumbersInterface
 } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
 import { SPCDataInterface } from '../../../slices/business/sites/products/Products.slice.interface';
+import { SQRDataInterface } from '../../../slices/business/sites/rooms/qrCode/QRCodes.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
 import {
 	SWCDataInterface,
@@ -72,6 +73,40 @@ export interface SiteRoomsAxiosPatchResponseInterface {
 		id: string;
 		type: string;
 		attributes: ISite;
+	};
+}
+
+export interface SiteQRCodesAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SPCDataInterface;
+	}[];
+}
+
+export interface SiteQRCodeCreateAxiosPostRequestInterface {
+	data: {
+		type: string;
+		attributes: {
+			room: string;
+			expirationDate: string;
+		};
+		relationships: {
+			site: {
+				data: {
+					type: string;
+					id: string;
+				};
+			};
+		};
+	};
+}
+
+export interface RobotQRCodeCreateAxiosPostResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SQRDataInterface;
 	};
 }
 

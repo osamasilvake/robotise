@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
+import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
+import {
+	QRCodesFetch,
+	qrCodesSelector
+} from '../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
 import {
 	roomsSelector,
 	RoomsUpdateState
@@ -22,6 +27,7 @@ const SiteRoomsList: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const rooms = useSelector(roomsSelector);
+	const qrCodes = useSelector(qrCodesSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
@@ -46,6 +52,30 @@ const SiteRoomsList: FC = () => {
 			dispatch(RoomsUpdateState(cSiteId, state));
 		}
 	}, [dispatch, cSiteId, pSiteId]);
+
+	useEffect(() => {
+		// return if content
+		if (qrCodes.content) return;
+
+		// dispatch: fetch QR codes
+		cSiteId && dispatch(QRCodesFetch(cSiteId));
+	}, [dispatch, cSiteId, qrCodes.content]);
+
+	useEffect(() => {
+		const executeServices = () => {
+			if (qrCodes.content) {
+				// dispatch: fetch QR codes
+				cSiteId && dispatch(QRCodesFetch(cSiteId));
+			}
+		};
+
+		// interval
+		const intervalId = window.setInterval(
+			executeServices,
+			AppConfigService.AppOptions.screens.business.sites.content.qrCodes.refreshTime
+		);
+		return () => window.clearInterval(intervalId);
+	}, [dispatch, qrCodes.content, cSiteId]);
 
 	// empty
 	if (!siteSingle?.rooms.available) {

@@ -1,19 +1,25 @@
+import { QrCode2 } from '@mui/icons-material';
 import {
 	Box,
 	Card,
 	CardContent,
 	Checkbox,
+	Chip,
 	FormControlLabel,
 	Grid,
+	Stack,
 	Typography
 } from '@mui/material';
 import clsx from 'clsx';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import PageEmpty from '../../../../../../../components/content/page-empty/PageEmpty';
 import { AppConfigService } from '../../../../../../../services';
+import { qrCodesSelector } from '../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
+import DialogGenerateQRCode from './DialogGenerateQRCode';
 import DialogToggleRoomState from './DialogToggleRoomState';
 import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';
 import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
@@ -25,12 +31,17 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const classes = SiteRoomsGridStyle();
 	const cardClasses = CardStyle();
 
+	const qrCodes = useSelector(qrCodesSelector);
+
 	const [result, setResult] = useState<SiteRoomsGridGroupAccInterface | null>(null);
+	const [qrCode, setQRCode] = useState(false);
 	const [confirmRoomState, setConfirmRoomState] = useState(false);
-	const [checkedState, setCheckedState] = useState({ room: '', checked: false });
+	const [roomState, setRoomState] = useState({ room: '', checked: false });
 
 	const allRooms = siteSingle.rooms.available;
 	const allWhitelist = siteSingle.rooms.whitelist;
+	const qrEnabled = siteSingle?.configs?.qrOrdersEnabled;
+	const qrCodesDataById = qrCodes.content?.dataById;
 
 	const translation = 'CONTENT.ROOMS.LIST.GRID';
 
@@ -92,7 +103,6 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 									<Card square elevation={1}>
 										<CardContent
 											className={clsx(
-												classes.sCardContent,
 												cardClasses.sCardContent1,
 												classes.sActive,
 												{
@@ -100,35 +110,82 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														!allWhitelist?.includes(room)
 												}
 											)}>
-											<FormControlLabel
-												className={classes.sCheckbox}
-												control={
-													<Checkbox
-														name="room"
-														checked={!allWhitelist?.includes(room)}
-														onChange={(e) => {
-															setConfirmRoomState(true);
-															setCheckedState({
-																room,
-																checked: e.target.checked
-															});
-														}}
-														style={{
-															color: AppConfigService.AppOptions
-																.colors.c15
-														}}
-													/>
-												}
-												label={t<string>(`${translation}.BLOCKED`)}
-												labelPlacement="start"
-											/>
+											<Stack
+												direction="row"
+												alignItems="flex-end"
+												justifyContent="space-between">
+												{/* Room */}
+												<Box flex={1}>
+													<Stack direction="row" alignItems="center">
+														<Typography variant="body2">
+															{t(`${translation}.ROOM`)}
+														</Typography>
+														{qrEnabled &&
+															qrCodesDataById &&
+															qrCodesDataById[room] && (
+																<QrCode2
+																	className={classes.sQRCodeIcon}
+																/>
+															)}
+													</Stack>
+													<Typography variant="h4">{room}</Typography>
+												</Box>
 
-											<Box>
-												<Typography variant="body2">
-													{t(`${translation}.ROOM`)}
-												</Typography>
-												<Typography variant="h4">{room}</Typography>
-											</Box>
+												{/* Info */}
+												<Box flex={1} className={classes.sBlockRight}>
+													<Box
+														className={clsx({
+															[classes.sQRChip]:
+																!qrEnabled ||
+																!allWhitelist?.includes(room)
+														})}>
+														<Chip
+															size="small"
+															label={t(
+																qrCodesDataById &&
+																	qrCodesDataById[room]
+																	? `${translation}.QR_CODE.MANAGE`
+																	: `${translation}.QR_CODE.CREATE`
+															)}
+															color="info"
+															variant="outlined"
+															onClick={() => {
+																setQRCode(true);
+																setRoomState({
+																	room,
+																	checked: false
+																});
+															}}
+														/>
+													</Box>
+													<FormControlLabel
+														className={classes.sCheckboxControl}
+														classes={{ label: classes.sCheckboxLabel }}
+														control={
+															<Checkbox
+																name="room"
+																checked={
+																	!allWhitelist?.includes(room)
+																}
+																onChange={(e) => {
+																	setConfirmRoomState(true);
+																	setRoomState({
+																		room,
+																		checked: e.target.checked
+																	});
+																}}
+																style={{
+																	color: AppConfigService
+																		.AppOptions.colors.c15
+																}}
+																className={classes.sCheckbox}
+															/>
+														}
+														label={t<string>(`${translation}.BLOCKED`)}
+														labelPlacement="start"
+													/>
+												</Box>
+											</Stack>
 										</CardContent>
 									</Card>
 								</Grid>
@@ -138,12 +195,15 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 				</Box>
 			))}
 
+			{/* Dialog: Generate QR Code */}
+			<DialogGenerateQRCode open={qrCode} setOpen={setQRCode} roomState={roomState} />
+
 			{/* Dialog: Confirm Room State */}
 			{confirmRoomState && (
 				<DialogToggleRoomState
 					open={confirmRoomState}
 					setOpen={setConfirmRoomState}
-					checkedState={checkedState}
+					checkedState={roomState}
 					siteSingle={siteSingle}
 					allWhitelist={allWhitelist}
 				/>

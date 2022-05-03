@@ -23,10 +23,25 @@ export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
 	sInactive: {
 		backgroundColor: AppConfigService.AppOptions.colors.c12
 	},
+	sQRCodeIcon: {
+		fontSize: theme.typography.pxToRem(18),
+		marginLeft: theme.spacing(0.5)
+	},
+	sBlockRight: {
+		textAlign: 'right'
+	},
+	sQRChip: {
+		visibility: 'hidden'
+	},
+	sCheckboxControl: {
+		marginLeft: 0,
+		marginRight: 0,
+		marginTop: theme.spacing(1)
+	},
 	sCheckbox: {
-		height: '100%',
-		position: 'absolute',
-		right: theme.spacing(1.25),
-		top: 0
+		padding: 0
+	},
+	sCheckboxLabel: {
+		marginRight: theme.spacing(0.5)
 	}
 }));

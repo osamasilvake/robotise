@@ -42,7 +42,16 @@ const dateFormat3 = (date: Date): string => {
  * @returns
  */
 const dateFormat4 = (date: Date): string => {
-	return dayjs(date).format('HH:mm');
+	return dayjs(date).format('YYYY-MM-DD');
+};
+
+/**
+ * format 5
+ * @param date
+ * @returns
+ */
+const dateFormat5 = (date: Date): string => {
+	return dayjs(date).format('YYYY-MM-DD hh:mm:ss');
 };
 
 /**
@@ -92,8 +101,8 @@ const dateCurrentYear = (): number => {
  * ISO string
  * @returns
  */
-const dateISOString = (): string => {
-	return dayjs().toISOString();
+const dateISOString = (date?: Date): string => {
+	return date ? dayjs(date).toISOString() : dayjs().toISOString();
 };
 
 /**
@@ -121,6 +130,7 @@ export {
 	dateFormat2,
 	dateFormat3,
 	dateFormat4,
+	dateFormat5,
 	dateFromToDiff,
 	dateISOString,
 	dateMinsPriorToDate,

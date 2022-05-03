@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>QR Code Template</title>
+		<link rel="stylesheet" href="qrCode.css" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+	</head>
+	<body>
+		<!-- Hotel Content -->
+		<div class="qr-hotel">Hotel Content</div>
+
+		<!-- Jeeves Title & Sub-title -->
+		<div class="qr-jeeves">
+			<img class="qr-logo" src="/assets/images/qr-template/jeeves.png" alt="logo" />
+			<p>...und die Minibar kommt zu Ihnen aufs Zimmer</p>
+		</div>
+
+		<div class="qr-container">
+			<div class="qr-content">
+				<div class="qr-left">
+					<div>
+						<canvas id="canvas" />
+						<img
+							id="icon"
+							class="qr-robot"
+							src="/assets/svg/logos/robotise-icon.svg"
+							alt="robot" />
+					</div>
+					<div class="qr-text">
+						<p>
+							JEEVES kommt dan zu Ihnen an die Zimmertür & meldet sich per SMS* bei
+							Ihnen, wenn er angekommen ist.
+						</p>
+						<p>Bitte halten Sie Ihr Mobiltelefon bei sich, um die SMS zu empfangen.</p>
+					</div>
+				</div>
+				<div class="qr-right">
+					<ol>
+						<li>
+							<p>QR-Code mit dem Mobiltelefon scannen.</p>
+						</li>
+						<li>
+							<p>
+								Das Telefon den SMS-Dialog öffnen lassen SMS unverändert
+								versichicken*
+							</p>
+						</li>
+					</ol>
+					<div class="img-wrapper">
+						<img
+							class="qr-robot"
+							src="/assets/images/qr-template/robot.jpg"
+							alt="robot" />
+					</div>
+				</div>
+			</div>
+
+			<div class="qr-bottom">
+				<div class="qr-info">
+					<h6>*Bitte beachten:</h6>
+					<p>
+						Es können Gebühren für den Versand der SMS an einen lokalen Dienstanbieter
+						sowie Gebühren von Ihrem Dienstanbieter für den Empfang einer SMS anfallen.
+					</p>
+				</div>
+				<div class="qr-about">
+					<div class="qr-text">
+						<h6>Mehr über JEEVES unter</h6>
+						<a href="https://robotise.eu">https://robotise.eu</a>
+					</div>
+					<div>
+						<img src="/assets/images/qr-template/about-qr.png" alt="about-qr" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	/**
+	 * add QR to canvas
+	 */
+	const addQRtoCanvas = (url) => {
+		let image = new Image();
+		image.onload = function () {
+			// QR Code
+			const canvas = document.getElementById('canvas');
+			canvas.width = image.width;
+			canvas.height = image.height;
+			const ctx = canvas.getContext('2d');
+			ctx.drawImage(image, 0, 0);
+
+			// Background color
+			const qrCodeWidth = 210;
+			const iconWidth = 40;
+			const center = (qrCodeWidth - iconWidth) / 2;
+			ctx.fillStyle = 'white';
+			ctx.fillRect(center, center, iconWidth, iconWidth);
+
+			// Logo
+			const logo = document.getElementById('icon');
+			ctx.drawImage(logo, center, center, iconWidth, iconWidth);
+		};
+		image.src = url;
+	};
+
+	window.addEventListener(
+		'message',
+		({ data }) => {
+			const { type, url } = data;
+
+			// only allow qr-code iframe content
+			if (type !== 'qr-code') return;
+
+			// update qr code
+			addQRtoCanvas(url);
+
+			// open print
+			setTimeout(() => window.print());
+		},
+		false
+	);
+</script>

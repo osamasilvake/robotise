@@ -46,6 +46,7 @@
 		"i18next": "^21.6.16",
 		"jsonapi-serializer": "^3.6.7",
 		"loglevel": "^1.8.0",
+		"qrcode": "^1.5.0",
 		"react": "^18.1.0",
 		"react-csv": "^2.2.2",
 		"react-dom": "^18.1.0",
@@ -66,6 +67,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.4",
 		"@commitlint/config-conventional": "^16.2.4",
+		"@types/qrcode": "^1.4.2",
 		"@typescript-eslint/eslint-plugin": "^5.21.0",
 		"@typescript-eslint/parser": "^5.21.0",
 		"babel-plugin-import": "^1.13.5",

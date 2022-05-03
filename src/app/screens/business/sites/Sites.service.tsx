@@ -13,9 +13,11 @@ import { SitePhoneConfigsPhoneNumbersTypeEnum } from './content/phone-configs/de
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
+import { DialogGenerateQRCodeFormInterface } from './content/rooms/list/grid/SiteRoomsGrid.interface';
 import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
 import { DialogCreateSiteFormInterface } from './list/actions/SitesActions.interface';
 import {
+	RobotQRCodeCreateAxiosPostResponseInterface,
 	SiteCreateAxiosPostRequestInterface,
 	SiteCreateAxiosPostResponseInterface,
 	SiteMapsAxiosGetInterface,
@@ -25,6 +27,8 @@ import {
 	SitePhoneConfigPhoneNumbersAxiosGetInterface,
 	SitePhoneConfigsAxiosGetInterface,
 	SiteProductsAxiosGetInterface,
+	SiteQRCodeCreateAxiosPostRequestInterface,
+	SiteQRCodesAxiosGetInterface,
 	SiteRoomsAxiosPatchRequestInterface,
 	SiteRoomsAxiosPatchResponseInterface,
 	SitesAxiosGetInterface,
@@ -158,6 +162,65 @@ class SitesService {
 						available: payload.available || undefined
 					}
 				}
+			}
+		});
+	};
+
+	/**
+	 * fetch QR codes
+	 * @param siteId
+	 * @returns
+	 */
+	siteQRCodesFetch = (siteId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.QR_CODES;
+		return HttpClientService.get<SiteQRCodesAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * create QR code
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteQRCodeCreate = (siteId: string, payload: DialogGenerateQRCodeFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.QR_CODES;
+		return HttpClientService.post<
+			SiteQRCodeCreateAxiosPostRequestInterface,
+			RobotQRCodeCreateAxiosPostResponseInterface
+		>(url, {
+			data: {
+				type: 'roomQrCodes',
+				attributes: {
+					room: payload.room,
+					expirationDate: payload.date
+				},
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: siteId
+						}
+					}
+				}
+			}
+		});
+	};
+
+	/**
+	 * delete QR code
+	 * @param siteId
+	 * @param qrCodeId
+	 * @returns
+	 */
+	siteQRCodeDelete = (siteId: string, qrCodeId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.QR_CODES;
+		return HttpClientService.delete(`${url}/${qrCodeId}`, {
+			params: {
+				'filter[site]': siteId
 			}
 		});
 	};

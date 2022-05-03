@@ -123,6 +123,9 @@ const AppOptions = (config: typeof AppConfigService) => {
 								pageSizes: [5, 10, 15, 20, 50, 100]
 							}
 						},
+						qrCodes: {
+							refreshTime: 30000
+						},
 						phoneConfigs: {
 							list: {
 								refreshTime: 10000,

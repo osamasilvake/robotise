@@ -26,6 +26,7 @@ const AppServices = (config: typeof AppConfigService) => {
 					ALL: `${config.envAppUrl}/sites`,
 					SINGLE: `${config.envAppUrl}/sites/:siteId`,
 					PRODUCTS: `${config.envAppUrl}/products`,
+					QR_CODES: `${config.envAppUrl}/room-qr-codes`,
 					PHONE_CONFIGS: {
 						FETCH: `${config.envAppUrl}/phone-dispatcher-configs`,
 						SINGLE: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId`,

@@ -57,7 +57,9 @@
 			"CONFIRM": "Confirm",
 			"MODIFY": "Modify",
 			"SUBMIT": "Submit",
-			"GENERATE": "Generate"
+			"DELETE": "Delete",
+			"GENERATE": "Generate",
+			"PRINT": "Print"
 		}
 	},
 	"TOOLTIP": {
@@ -187,6 +189,19 @@
 					"UPDATE": {
 						"SUCCESS": "Changes has been updated successfully!",
 						"ERROR": "Unable to update room(s) state!"
+					}
+				},
+				"QR_CODES": {
+					"FETCH": {
+						"ERROR": "Unable to fetch QR Codes!"
+					},
+					"CREATE": {
+						"SUCCESS": "QR Code has been created successfully!",
+						"ERROR": "Unable to create a QR Code!"
+					},
+					"DELETE": {
+						"SUCCESS": "QR Code has been deleted successfully!",
+						"ERROR": "Unable to delete a QR Code!"
 					}
 				},
 				"PHONE_CONFIGS": {
@@ -709,6 +724,23 @@
 						"ROOM_STATE": {
 							"TITLE": "Room {{value}}",
 							"TEXT": "Are you sure you want to update the room state?"
+						},
+						"QR_CODE": {
+							"CREATE": "Create QR",
+							"MANAGE": "Manage QR",
+							"TITLE": "QR Code",
+							"TEXT": "Manage QR code for room {{value}}.",
+							"SMS_TEXT": "smsTo:{{smsTo}}:I want to order Jeeves with code #{{code}}#",
+							"FORM": {
+								"FIELDS": {
+									"DATE": {
+										"LABEL": "Expiry Date"
+									},
+									"TIME": {
+										"LABEL": "Expiry Time"
+									}
+								}
+							}
 						}
 					}
 				}

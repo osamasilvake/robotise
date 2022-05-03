@@ -44,22 +44,17 @@ export const CreateEditProductValidation = (
 		}
 	}
 
-	// Length
-	if (touched.length) {
-		// min
-		if ((values.length || 0) < lengthEnum.MIN) {
-			errors.length = `${translation}.LENGTH.VALIDATIONS.MIN`;
-		}
-		//max
-		if ((values.length || 0) > lengthEnum.MAX) {
-			errors.length = `${translation}.LENGTH.VALIDATIONS.MAX`;
-		}
-	}
-
 	// Length/Weight
 	if ((!values.length || +values.length <= 0) && (!values.weight || +values.weight <= 0)) {
 		errors.length = `${translation}.LENGTH.VALIDATIONS.INVALID`;
 		errors.weight = `${translation}.WEIGHT.VALIDATIONS.INVALID`;
+	} else if (values.length || !values.weight || +values.weight <= 0) {
+		// min & max
+		if ((values.length || 0) < lengthEnum.MIN) {
+			errors.length = `${translation}.LENGTH.VALIDATIONS.MIN`;
+		} else if ((values.length || 0) > lengthEnum.MAX) {
+			errors.length = `${translation}.LENGTH.VALIDATIONS.MAX`;
+		}
 	}
 
 	return errors;

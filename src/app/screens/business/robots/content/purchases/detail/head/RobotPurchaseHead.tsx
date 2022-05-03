@@ -6,12 +6,11 @@ import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
 import { ExternalLinkActionTypeEnum } from '../../../../../../../components/common/external-link/ExternalLink.enum';
-import Status from '../../../../../../../components/common/status/Status';
-import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
 import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateMinsPriorToDate } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
+import RobotPurchasesActionBilled from '../../actions/RobotPurchasesActionBilled';
 import { RobotPurchaseHeadInterface } from './RobotPurchaseHead.interface';
 import { RobotPurchaseHeadStyle } from './RobotPurchaseHead.style';
 
@@ -27,7 +26,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 	const translation = 'CONTENT.PURCHASES.DETAIL.HEAD';
 	const cRobotId = params.robotId;
 
-	return (
+	return cRobotId ? (
 		<Box className={classes.sBox}>
 			<Stack
 				spacing={0.5}
@@ -35,19 +34,13 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 				alignItems="center"
 				justifyContent="space-between"
 				className={classes.sStack}>
-				<Typography variant="body2" color="textSecondary">
-					<Status
-						level={
-							purchase?.content?.isBilled
-								? StatusTypeEnum.SUCCESS_DARK
-								: StatusTypeEnum.INFO
-						}
-						small>
-						{purchase?.content?.isBilled
-							? t(`${translation}.BILLED`)
-							: t(`${translation}.UN_BILLED`)}
-					</Status>
-				</Typography>
+				{purchase?.content && (
+					<RobotPurchasesActionBilled
+						detailPage
+						purchaseId={purchase.content.id}
+						isBilled={purchase.content.isBilled}
+					/>
+				)}
 
 				<Stack spacing={1.5} direction="row">
 					{purchase?.content?.order?.id && (
@@ -87,6 +80,6 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 				{t(`${translation}.TITLE`)}
 			</Typography>
 		</Box>
-	);
+	) : null;
 };
 export default RobotPurchaseHead;

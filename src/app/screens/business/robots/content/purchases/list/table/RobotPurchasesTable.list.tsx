@@ -28,6 +28,12 @@ export const columns: RobotPurchasesTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: RobotPurchasesTableColumnsTypeEnum.BILLED,
+		label: `${translation}.BILLED`,
+		minWidth: 120,
+		align: 'left'
+	},
+	{
 		id: RobotPurchasesTableColumnsTypeEnum.ORDER_DETAILS,
 		label: `${translation}.ORDER_DETAILS`,
 		minWidth: 120,

@@ -355,6 +355,25 @@ class RobotsService {
 	};
 
 	/**
+	 * update purchase bill status
+	 * @param purchaseId
+	 * @param isBilled
+	 * @returns
+	 */
+	robotPurchaseUpdateBillStatus = (purchaseId: string, isBilled: boolean) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASE.replace(
+			':purchaseId',
+			purchaseId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'orderReports',
+				attributes: { isBilled }
+			}
+		});
+	};
+
+	/**
 	 * fetch robot commands log
 	 * @param robotId
 	 * @param payload

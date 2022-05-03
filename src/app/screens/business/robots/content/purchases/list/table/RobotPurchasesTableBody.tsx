@@ -49,6 +49,9 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 			case RobotPurchasesTableColumnsTypeEnum.COMMENT:
 				type = RobotPurchasesTableSortTypeEnum.STRING;
 				break;
+			case RobotPurchasesTableColumnsTypeEnum.BILLED:
+				type = RobotPurchasesTableSortTypeEnum.BOOLEAN;
+				break;
 			default:
 				return content.data;
 		}
@@ -75,6 +78,8 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 					case RobotPurchasesTableSortTypeEnum.DATE:
 						return dateSort(dateA).diff(dateSort(dateB));
+					case RobotPurchasesTableSortTypeEnum.BOOLEAN:
+						return a[key] ? -1 : 1;
 					case RobotPurchasesTableSortTypeEnum.STRING:
 					default:
 						return a[key] && b[key]

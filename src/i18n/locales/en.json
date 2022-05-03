@@ -138,7 +138,7 @@
 		"LOADING": "Loading...",
 		"ROWS_PER_PAGE": "Per Page",
 		"EMPTY": {
-			"TITLE": "Empty 😢",
+			"TITLE": "Empty 🤔",
 			"MESSAGE": "The requested content is empty!",
 			"LINK": "Reload"
 		}
@@ -301,6 +301,10 @@
 					"EDIT_COMMENT": {
 						"SUCCESS": "Comment has been updated successfully!",
 						"ERROR": "Unable to edit a comment field!"
+					},
+					"UPDATE_BILL": {
+						"SUCCESS": "Billing status has been updated successfully!",
+						"ERROR": "Unable to update a billing status!"
 					}
 				},
 				"ELEVATOR_CALLS": {
@@ -1531,10 +1535,11 @@
 				}
 			},
 			"PURCHASES": {
+				"ACTIONS": {
+					"BILLED": "Billed"
+				},
 				"DETAIL": {
 					"HEAD": {
-						"BILLED": "Billed",
-						"UN_BILLED": "Unbilled",
 						"ORDER_DETAILS": "Order details",
 						"ITEM_TRACKING": "Tracking details",
 						"TITLE": "Products"
@@ -1571,6 +1576,7 @@
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",
 							"COMMENT": "Comment",
+							"BILLED": "Billed",
 							"ORDER_DETAILS": "Order",
 							"ITEM_TRACKING": "Item Tracking"
 						},

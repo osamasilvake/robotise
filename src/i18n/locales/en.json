@@ -690,6 +690,10 @@
 									}
 								}
 							}
+						},
+						"SEARCH": {
+							"LABEL": "Search room",
+							"PLACEHOLDER": "Search room"
 						}
 					},
 					"GRID": {

@@ -41,6 +41,11 @@ const Light = (options: ThemeOptions): ThemeOptions => ({
 					boxShadow: 'none',
 					padding: pxToRem(20),
 					transition: 'none'
+				},
+				elevation13: {
+					backgroundColor: AppConfigService.AppOptions.colors.c4,
+					boxShadow: 'none',
+					transition: 'none'
 				}
 			}
 		},

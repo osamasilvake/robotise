@@ -20,7 +20,7 @@ import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
 import SiteRoomsGridFloor from './SiteRoomsGridFloor';
 
 const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
-	const { siteSingle, active, inactive } = props;
+	const { siteSingle, active, inactive, searchText } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteRoomsGridStyle();
 	const cardClasses = CardStyle();
@@ -49,6 +49,9 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 			rooms = allBlacklist;
 		}
 
+		// search room
+		rooms = searchText ? rooms.filter((r) => r.indexOf(searchText) > -1) : rooms;
+
 		// sort rooms
 		const sortedRooms = rooms?.concat().sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
 
@@ -67,7 +70,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 
 		// set result
 		groupedRooms && setResult(groupedRooms);
-	}, [allRooms, allWhitelist, active, inactive]);
+	}, [allRooms, allWhitelist, active, inactive, searchText]);
 
 	return result ? (
 		<>

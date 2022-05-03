@@ -6,14 +6,20 @@ import { SiteRoomsActionsStyle } from './SiteRoomsActions.style';
 import SiteRoomsActiveRooms from './SiteRoomsActiveRooms';
 import SiteRoomsInactiveRooms from './SiteRoomsInactiveRooms';
 import SiteRoomsModifyRooms from './SiteRoomsModifyRooms';
+import SiteRoomsSearchRooms from './SiteRoomsSearchRooms';
 
 const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
-	const { active, inactive } = props;
+	const { active, inactive, searchText } = props;
 	const classes = SiteRoomsActionsStyle();
 
 	return (
 		<Paper elevation={0} square className={classes.sActions}>
-			<Stack spacing={0.5} direction="row" alignItems="center" justifyContent="space-between">
+			<Stack
+				spacing={0.5}
+				direction="row"
+				alignItems="center"
+				justifyContent="space-between"
+				flexWrap="wrap">
 				<Box>
 					{/* Active Rooms */}
 					<SiteRoomsActiveRooms active={active} />
@@ -21,10 +27,22 @@ const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
 					{/* Inactive Rooms */}
 					<SiteRoomsInactiveRooms inactive={inactive} />
 				</Box>
-				<Box>
+				<Stack
+					spacing={0.5}
+					direction="row"
+					alignItems="center"
+					justifyContent="space-between"
+					flexWrap="wrap">
 					{/* Modify Rooms */}
 					<SiteRoomsModifyRooms />
-				</Box>
+
+					{/* Search Rooms */}
+					<SiteRoomsSearchRooms
+						active={active}
+						inactive={inactive}
+						searchText={searchText}
+					/>
+				</Stack>
 			</Stack>
 		</Paper>
 	);

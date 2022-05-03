@@ -41,6 +41,11 @@ const Dark = (options: ThemeOptions): ThemeOptions => ({
 					boxShadow: 'none',
 					padding: pxToRem(20),
 					transition: 'none'
+				},
+				elevation13: {
+					backgroundColor: AppConfigService.AppOptions.colors.c1,
+					boxShadow: 'none',
+					transition: 'none'
 				}
 			}
 		},

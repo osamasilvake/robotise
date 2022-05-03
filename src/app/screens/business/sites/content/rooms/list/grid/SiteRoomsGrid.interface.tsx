@@ -7,6 +7,7 @@ export interface SiteRoomsGridInterface {
 	siteSingle: ISite;
 	active: boolean;
 	inactive: boolean;
+	searchText: string;
 }
 
 export interface SiteRoomsGridFloorInterface {

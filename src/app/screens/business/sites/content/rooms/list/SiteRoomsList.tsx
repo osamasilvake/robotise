@@ -32,6 +32,7 @@ const SiteRoomsList: FC = () => {
 
 	const active = cSiteId === pSiteId && !!rooms.content?.state?.active;
 	const inactive = cSiteId === pSiteId && !!rooms.content?.state?.inactive;
+	const searchText = cSiteId === pSiteId ? rooms.content?.state?.searchText || '' : '';
 
 	useEffect(() => {
 		// clear filters on site change
@@ -39,7 +40,8 @@ const SiteRoomsList: FC = () => {
 			// dispatch: update state
 			const state: SRCStateInterface = {
 				active: false,
-				inactive: false
+				inactive: false,
+				searchText: ''
 			};
 			dispatch(RoomsUpdateState(cSiteId, state));
 		}
@@ -50,7 +52,7 @@ const SiteRoomsList: FC = () => {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}
-				<SiteRoomsActions active={active} inactive={inactive} />
+				<SiteRoomsActions active={active} inactive={inactive} searchText={searchText} />
 
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE" />
@@ -61,10 +63,15 @@ const SiteRoomsList: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Actions */}
-			<SiteRoomsActions active={active} inactive={inactive} />
+			<SiteRoomsActions active={active} inactive={inactive} searchText={searchText} />
 
 			{/* Grid */}
-			<SiteRoomsGrid siteSingle={siteSingle} active={active} inactive={inactive} />
+			<SiteRoomsGrid
+				siteSingle={siteSingle}
+				active={active}
+				inactive={inactive}
+				searchText={searchText}
+			/>
 		</Box>
 	);
 };

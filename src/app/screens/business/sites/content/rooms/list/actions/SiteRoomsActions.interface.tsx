@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 export interface SiteRoomsActionsInterface {
 	active: boolean;
 	inactive: boolean;
+	searchText: string;
 }
 
 export interface SiteRoomsActiveRoomsInterface {
@@ -11,6 +12,12 @@ export interface SiteRoomsActiveRoomsInterface {
 
 export interface SiteRoomsInactiveRoomsInterface {
 	inactive: boolean;
+}
+
+export interface SiteRoomsSearchRoomsInterface {
+	active: boolean;
+	inactive: boolean;
+	searchText: string;
 }
 
 export interface DialogModifyRoomsInterface {

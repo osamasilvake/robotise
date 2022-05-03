@@ -10,5 +10,6 @@ export interface SRContentInterface {
 export interface SRCStateInterface {
 	active: boolean;
 	inactive: boolean;
+	searchText: string;
 	pSiteId?: string;
 }

@@ -84,6 +84,9 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 
 			// start timer
 			startTimer();
+
+			// set isPlaying
+			setIsPlaying(true);
 		}
 
 		return () => audioRef.current.removeEventListener('durationchange', handleDuration);

@@ -749,6 +749,9 @@
 							"TITLE": "Edit Phone Config",
 							"EXCERPT": "Configure phone related detail.",
 							"FIELDS": {
+								"MODE": {
+									"LABEL": "Mode"
+								},
 								"PREFIXES": {
 									"LABEL": "Prefixes",
 									"PLACEHOLDER": "Format: +49221277208,+49221277209",
@@ -760,8 +763,12 @@
 								"FROM": {
 									"LABEL": "From"
 								},
-								"MODE": {
-									"LABEL": "Mode"
+								"ROOMS_MAPPING": {
+									"LABEL": "Rooms Mapping",
+									"VALIDATIONS": {
+										"REQUIRED": "Rooms Mapping is required.",
+										"INVALID": "Invalid format"
+									}
 								},
 								"OUTBOUND_PATTERN": {
 									"LABEL": "Outbound Pattern",

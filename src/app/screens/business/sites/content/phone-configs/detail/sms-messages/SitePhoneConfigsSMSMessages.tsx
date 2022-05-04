@@ -40,6 +40,9 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const phoneConfig = content?.data && mapPhoneConfig(content.data[0]);
+	const roomsMapping = Object.entries(phoneConfig?.roomsMapping || {})
+		.map(([key, value]) => `${key}:${value}`)
+		.join(',');
 	const messages = phoneConfig?.smsMessages;
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.SMS';
 
@@ -49,9 +52,10 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 			() => ({ ...messages }),
 			async () => {
 				const payload = {
+					mode: phoneConfig?.mode || '',
 					prefixes: phoneConfig?.prefixes || '',
 					from: phoneConfig?.from || '',
-					mode: phoneConfig?.mode || '',
+					roomsMapping: roomsMapping || '',
 					outboundPattern: phoneConfig?.sip?.outboundPattern || '',
 					callbackRetries: String(phoneConfig?.callbackRetries),
 					smsGateway: phoneConfig?.smsGateway || '',

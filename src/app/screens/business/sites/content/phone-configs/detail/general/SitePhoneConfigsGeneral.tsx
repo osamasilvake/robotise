@@ -42,6 +42,14 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				<Box>{item.from || AppConfigService.AppOptions.common.none}</Box>
 			</Grid>
 
+			{/* Callback Retries */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.CALLBACK_RETRIES`)}
+				</Typography>
+				<Box>{item.callbackRetries || 0}</Box>
+			</Grid>
+
 			{/* Rooms Mapping */}
 			{item.roomsMapping && (
 				<Grid item xs={12} sm={6} md={4} lg={3}>
@@ -65,14 +73,6 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 					<Typography>{item.disableRoomsCallback}</Typography>
 				</Grid>
 			)}
-
-			{/* Callback Retries */}
-			<Grid item xs={12} sm={6} md={4} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.CALLBACK_RETRIES`)}
-				</Typography>
-				<Box>{item.callbackRetries || 0}</Box>
-			</Grid>
 
 			{/* SMS Gateway */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>

@@ -13,10 +13,12 @@ export const EditPhoneConfigValidation = (
 	const translation = 'SITES:CONTENT.PHONE_CONFIGS.DETAIL.ACTIONS.EDIT';
 	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const regexPhoneCommaSeparated = AppConfigService.AppOptions.regex.phoneNumbersCommaSeparated;
+	const regexRoomsMapping = AppConfigService.AppOptions.regex.roomsMapping;
 	const errors: DialogEditPhoneConfigFormInterface = {
+		mode: '',
 		prefixes: '',
 		from: '',
-		mode: '',
+		roomsMapping: '',
 		outboundPattern: '',
 		callbackRetries: '',
 		smsGateway: ''
@@ -32,6 +34,19 @@ export const EditPhoneConfigValidation = (
 		// invalid
 		if (values.prefixes && !regexPhoneCommaSeparated.test(values.prefixes)) {
 			errors.prefixes = `${translation}.FIELDS.PREFIXES.VALIDATIONS.INVALID`;
+		}
+	}
+
+	// Prefixes
+	if (touched.roomsMapping) {
+		// required
+		if (!values.roomsMapping) {
+			errors.roomsMapping = `${translation}.FIELDS.ROOMS_MAPPING.VALIDATIONS.REQUIRED`;
+		}
+
+		// invalid
+		if (values.roomsMapping && !regexRoomsMapping.test(values.roomsMapping as string)) {
+			errors.roomsMapping = `${translation}.FIELDS.PREFIXES.VALIDATIONS.INVALID`;
 		}
 	}
 

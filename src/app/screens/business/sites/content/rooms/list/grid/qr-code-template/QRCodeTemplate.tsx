@@ -1,6 +1,7 @@
 import QRCode, { QRCodeToDataURLOptions } from 'qrcode';
 import { FC, useEffect } from 'react';
 
+import { AppConfigService } from '../../../../../../../../services';
 import { timeout } from '../../../../../../../../utilities/methods/Timeout';
 import { QRCodeTemplateInterface } from './QRCodeTemplate.interface';
 
@@ -17,7 +18,7 @@ const QRCodeTemplate: FC<QRCodeTemplateInterface> = (props) => {
 				type: 'image/png',
 				margin: 0,
 				rendererOpts: { quality: 1 },
-				color: { dark: '#B0B0B0' },
+				color: { dark: AppConfigService.AppOptions.colors.c2 },
 				width: 210
 			};
 

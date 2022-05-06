@@ -54,7 +54,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const qrCodeSingle = qrCodes.content?.dataById[roomState.room];
 	const translation = 'CONTENT.ROOMS.LIST.GRID.QR_CODE';
 	let code = qrCodeSingle?.code;
-	let smsTo = qrCodeSingle?.smsTo;
+	let smsTo = qrCodeSingle?.smsTo?.replace('+', '00');
 	let smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
@@ -85,7 +85,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 							dispatch(QRCodesFetch(cSiteId)).then(() => {
 								// generate QR code
 								code = res?.code;
-								smsTo = res?.smsTo;
+								smsTo = res?.smsTo?.replace('+', '00');
 								smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
 								handleGenerateQRCode();
 							});

@@ -150,7 +150,8 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 									onChange={handleChangeSelect}>
 									{fromList?.map((from) => (
 										<MenuItem key={from.id} value={from.phoneNumber}>
-											{from.phoneNumber}
+											{from.phoneNumber} - {from.friendlyName} (
+											{from?.address?.isoCountry})
 										</MenuItem>
 									))}
 								</Select>

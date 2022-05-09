@@ -595,7 +595,8 @@
 						"LABEL": "Accept Orders",
 						"ACTIVE": "Active",
 						"INACTIVE": "Inactive"
-					}
+					},
+					"DEFAULT_ROBOT": "Default Robot"
 				}
 			},
 			"PRODUCTS": {

@@ -18,7 +18,7 @@ import { RobotsListStyle } from './RobotsTable.style';
 import RobotsTableBodyCell from './RobotsTableBodyCell';
 
 const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
-	const { content, order, orderBy, hideActions, siteId } = props;
+	const { content, order, orderBy, siteId } = props;
 	const classes = RobotsListStyle();
 
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
@@ -101,6 +101,20 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	};
 
 	/**
+	 * filter robots
+	 * @returns
+	 */
+	const filterRobots = () => {
+		const list = (content && content.data && sortTableData(content)) || [];
+		if (siteId) {
+			return list.filter((r) => r.siteId === siteId);
+		}
+		return list
+			.filter((r) => showHidden || (!showHidden && !r.robotHidden))
+			.filter((r) => showSimulation || (!showSimulation && !r.robotIsSimulator));
+	};
+
+	/**
 	 * handle show robot detail
 	 * @param robotTwins
 	 * @returns
@@ -116,36 +130,21 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 
 	return (
 		<TableBody>
-			{content &&
-				content.data &&
-				sortTableData(content)
-					.filter((s) => !hideActions || (hideActions && s.siteId === siteId))
-					.filter((s) => hideActions || showHidden || (!showHidden && !s.robotHidden))
-					.filter(
-						(s) =>
-							hideActions ||
-							showSimulation ||
-							(!showSimulation && !s.robotIsSimulator)
-					)
-					.map((robotTwins: RTSContentDataInterface) => (
-						<TableRow
-							hover
-							key={robotTwins.id}
-							tabIndex={-1}
-							onClick={handleShowRobotDetail(robotTwins)}
-							className={clsx({
-								[classes.sTableRowWarning]: !!robotTwins.robotAlerts.warning,
-								[classes.sTableRowDanger]: !!robotTwins.robotAlerts.danger
-							})}>
-							{columns.map((column: RobotsTableColumnInterface) => (
-								<RobotsTableBodyCell
-									key={column.id}
-									column={column}
-									robot={robotTwins}
-								/>
-							))}
-						</TableRow>
+			{filterRobots().map((robotTwins: RTSContentDataInterface) => (
+				<TableRow
+					hover
+					key={robotTwins.id}
+					tabIndex={-1}
+					onClick={handleShowRobotDetail(robotTwins)}
+					className={clsx({
+						[classes.sTableRowWarning]: !!robotTwins.robotAlerts.warning,
+						[classes.sTableRowDanger]: !!robotTwins.robotAlerts.danger
+					})}>
+					{columns.map((column: RobotsTableColumnInterface) => (
+						<RobotsTableBodyCell key={column.id} column={column} robot={robotTwins} />
 					))}
+				</TableRow>
+			))}
 		</TableBody>
 	);
 };

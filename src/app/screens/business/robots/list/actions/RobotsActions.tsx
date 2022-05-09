@@ -1,12 +1,14 @@
 import { Box, Paper, Stack } from '@mui/material';
 import { FC } from 'react';
 
+import { RobotsActionsInterface } from './RobotsActions.interface';
 import { RobotsActionsStyle } from './RobotsActions.style';
 import RobotsCreate from './RobotsCreate';
 import RobotsHidden from './RobotsHidden';
 import RobotsSimulation from './RobotsSimulation';
 
-const RobotsActions: FC = () => {
+const RobotsActions: FC<RobotsActionsInterface> = (props) => {
+	const { hideCreateBtn } = props;
 	const classes = RobotsActionsStyle();
 
 	return (
@@ -21,7 +23,7 @@ const RobotsActions: FC = () => {
 				</Box>
 
 				{/* Create Robot */}
-				<RobotsCreate />
+				{!hideCreateBtn && <RobotsCreate />}
 			</Stack>
 		</Paper>
 	);

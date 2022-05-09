@@ -95,7 +95,7 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 			{content &&
 				content.data &&
 				sortTableData(content)
-					.filter((s) => showHidden || (!showHidden && !s.configs.isHidden))
+					.filter((r) => showHidden || (!showHidden && !r.configs.isHidden))
 					.map((site: ISite) => (
 						<TableRow
 							hover

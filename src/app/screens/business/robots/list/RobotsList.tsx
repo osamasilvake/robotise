@@ -12,7 +12,7 @@ import { RobotsInterface } from './RobotsList.interface';
 import RobotsTable from './table/RobotsTable';
 
 const RobotsList: FC<RobotsInterface> = (props) => {
-	const { hideActions, hideTableScroll, siteId } = props;
+	const { hideCreateBtn, hideTableScroll, siteId } = props;
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	// loader
@@ -36,11 +36,10 @@ const RobotsList: FC<RobotsInterface> = (props) => {
 	return (
 		<Box>
 			{/* Actions */}
-			{!hideActions && <RobotsActions />}
+			<RobotsActions hideCreateBtn={hideCreateBtn} />
 
 			{/* Table */}
 			<RobotsTable
-				hideActions={hideActions}
 				hideTableScroll={hideTableScroll}
 				siteId={siteId}
 				content={robotTwinsSummary.content}

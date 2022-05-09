@@ -8,7 +8,6 @@ import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 
 export interface RobotsTableInterface {
 	content: RTSContentInterface | null;
-	hideActions?: boolean;
 	hideTableScroll?: boolean;
 	siteId?: string;
 }
@@ -25,7 +24,6 @@ export interface RobotsTableBodyInterface {
 	order: RobotsTableHeadOrder;
 	orderBy: RobotsTableColumnsTypeEnum;
 	siteId?: string;
-	hideActions?: boolean;
 }
 
 export interface RobotsTableBodyCellInterface {

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import PageEmpty from '../../../../../components/content/page-empty/PageEmpty';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
+import RobotsList from '../../../robots/list/RobotsList';
 import { SiteParamsInterface } from '../../Site.interface';
 import SiteDetailGeneral from './general/SiteDetailGeneral';
 import { SiteDetailStyle } from './SiteDetail.style';
@@ -25,7 +26,13 @@ const SiteDetail: FC = () => {
 
 	return siteSingle?.id ? (
 		<Box className={classes.sBox}>
+			{/* Detail */}
 			<SiteDetailGeneral site={siteSingle} />
+
+			{/* Robots List */}
+			<Box className={classes.sList}>
+				<RobotsList hideActions hideTableScroll siteId={cSiteId} />
+			</Box>
 		</Box>
 	) : null;
 };

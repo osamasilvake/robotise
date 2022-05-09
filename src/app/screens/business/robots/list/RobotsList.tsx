@@ -8,9 +8,11 @@ import PageEmpty from '../../../../components/content/page-empty/PageEmpty';
 import PageError from '../../../../components/content/page-error/PageError';
 import { robotTwinsSummarySelector } from '../../../../slices/business/robots/RobotTwinsSummary.slice';
 import RobotsActions from './actions/RobotsActions';
+import { RobotsInterface } from './RobotsList.interface';
 import RobotsTable from './table/RobotsTable';
 
-const RobotsList: FC = () => {
+const RobotsList: FC<RobotsInterface> = (props) => {
+	const { hideActions, hideTableScroll, siteId } = props;
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	// loader
@@ -34,10 +36,15 @@ const RobotsList: FC = () => {
 	return (
 		<Box>
 			{/* Actions */}
-			<RobotsActions />
+			{!hideActions && <RobotsActions />}
 
 			{/* Table */}
-			<RobotsTable content={robotTwinsSummary.content} />
+			<RobotsTable
+				hideActions={hideActions}
+				hideTableScroll={hideTableScroll}
+				siteId={siteId}
+				content={robotTwinsSummary.content}
+			/>
 		</Box>
 	);
 };

@@ -53,6 +53,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 				username: robotTwinsSingle?.robotUsername || '',
 				ipAddress: robotTwinsSingle?.robotIPAddress || '',
 				isHidden: !!robotTwinsSingle?.robotHidden,
+				isSimulator: !!robotTwinsSingle?.robotIsSimulator,
 				isOnlineCheckDisabled: !!robotTwinsSingle?.robotOnlineCheckDisabled
 			},
 			RobotConfigValidation,
@@ -61,7 +62,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 					// dispatch: update robot config
 					dispatch(
 						RobotConfigUpdate(cRobotId, removeEmptyObjProperties(values), () => {
-							if (!robotTwinsSummary.content?.state?.hidden && values.isHidden) {
+							if (!robotTwinsSummary.content?.state?.showHidden && values.isHidden) {
 								// prepare link
 								const link =
 									AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;

@@ -1,4 +1,5 @@
 import { Box, Table, TableContainer, TablePagination } from '@mui/material';
+import clsx from 'clsx';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +12,7 @@ import RobotsTableBody from './RobotsTableBody';
 import RobotsTableHead from './RobotsTableHead';
 
 const RobotsTable: FC<RobotsTableInterface> = (props) => {
-	const { content } = props;
+	const { content, hideActions, hideTableScroll, siteId } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotsListStyle();
 
@@ -37,7 +38,10 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 
 	return (
 		<Box>
-			<TableContainer className={classes.sTableMaxHeight}>
+			<TableContainer
+				className={clsx({
+					[classes.sTableMaxHeight]: !hideTableScroll
+				})}>
 				<Table stickyHeader>
 					{/* Head */}
 					<RobotsTableHead
@@ -48,7 +52,13 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 					/>
 
 					{/* Body */}
-					<RobotsTableBody order={order} orderBy={orderBy} content={content} />
+					<RobotsTableBody
+						order={order}
+						orderBy={orderBy}
+						content={content}
+						siteId={siteId}
+						hideActions={hideActions}
+					/>
 				</Table>
 			</TableContainer>
 

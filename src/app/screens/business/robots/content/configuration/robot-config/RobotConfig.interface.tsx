@@ -12,5 +12,6 @@ export interface RobotConfigFormInterface {
 	username?: string;
 	ipAddress?: string;
 	isHidden?: boolean;
+	isSimulator?: boolean;
 	isOnlineCheckDisabled?: boolean;
 }

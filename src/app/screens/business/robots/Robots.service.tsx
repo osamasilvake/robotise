@@ -1,6 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
-import { RTSContentStateInterface } from '../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
 import { RobotSiteConfigFormInterface } from './content/configuration/robot-site-config/RobotSiteConfig.interface';
@@ -39,17 +38,11 @@ import {
 class RobotsService {
 	/**
 	 * fetch robot twins summary
-	 * @param state
 	 * @returns
 	 */
-	robotTwinsSummaryFetch = (state: RTSContentStateInterface | undefined) => {
+	robotTwinsSummaryFetch = () => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.SUMMARY;
-		return HttpClientService.get<RobotTwinSummaryAxiosGetInterface>(url, {
-			params: {
-				'filter[isHidden]': state?.hidden ? undefined : false,
-				'filter[isSimulator]': state?.simulation ? undefined : false
-			}
-		});
+		return HttpClientService.get<RobotTwinSummaryAxiosGetInterface>(url);
 	};
 
 	/**

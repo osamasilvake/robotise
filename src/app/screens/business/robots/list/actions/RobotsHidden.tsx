@@ -17,7 +17,7 @@ const RobotsHidden: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const hidden = !!robotTwinsSummary.content?.state?.hidden;
+	const showHidden = !!robotTwinsSummary.content?.state?.showHidden;
 
 	/**
 	 * handle hidden
@@ -26,7 +26,7 @@ const RobotsHidden: FC = () => {
 		// dispatch: update state
 		const state: RTSContentStateInterface = {
 			...robotTwinsSummary.content?.state,
-			hidden: !hidden
+			showHidden: !showHidden
 		};
 		dispatch(RobotTwinsSummaryUpdateState(state));
 
@@ -37,7 +37,12 @@ const RobotsHidden: FC = () => {
 	return (
 		<FormControlLabel
 			control={
-				<Checkbox color="primary" name="hidden" checked={hidden} onChange={handleHidden} />
+				<Checkbox
+					color="primary"
+					name="hidden"
+					checked={showHidden}
+					onChange={handleHidden}
+				/>
 			}
 			label={t<string>('LIST.ACTIONS.FILTERS.HIDDEN')}
 		/>

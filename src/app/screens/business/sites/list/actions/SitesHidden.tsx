@@ -17,14 +17,14 @@ const SitesHidden: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 
-	const hidden = !!sites.content?.state?.hidden;
+	const showHidden = !!sites.content?.state?.showHidden;
 
 	/**
 	 * handle hidden
 	 */
 	const handleHidden = () => {
 		// dispatch: update state
-		const state: SSCStateInterface = { hidden: !hidden };
+		const state: SSCStateInterface = { showHidden: !showHidden };
 		dispatch(SitesUpdateState(state));
 
 		// dispatch: fetch sites
@@ -34,7 +34,12 @@ const SitesHidden: FC = () => {
 	return (
 		<FormControlLabel
 			control={
-				<Checkbox color="primary" name="hidden" checked={hidden} onChange={handleHidden} />
+				<Checkbox
+					color="primary"
+					name="hidden"
+					checked={showHidden}
+					onChange={handleHidden}
+				/>
 			}
 			label={t<string>('LIST.ACTIONS.FILTERS.HIDDEN')}
 		/>

@@ -17,7 +17,7 @@ const RobotsSimulation: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const simulation = !!robotTwinsSummary.content?.state?.simulation;
+	const showSimulation = !!robotTwinsSummary.content?.state?.showSimulation;
 
 	/**
 	 * handle simulation
@@ -26,7 +26,7 @@ const RobotsSimulation: FC = () => {
 		// dispatch: update state
 		const state: RTSContentStateInterface = {
 			...robotTwinsSummary.content?.state,
-			simulation: !simulation
+			showSimulation: !showSimulation
 		};
 		dispatch(RobotTwinsSummaryUpdateState(state));
 
@@ -40,7 +40,7 @@ const RobotsSimulation: FC = () => {
 				<Checkbox
 					color="primary"
 					name="simulation"
-					checked={simulation}
+					checked={showSimulation}
 					onChange={handleSimulation}
 				/>
 			}

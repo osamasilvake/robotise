@@ -31,6 +31,7 @@ export interface RTSContentDataInterface {
 	robotIPAddress: string;
 	robotNote: string;
 	robotHidden: boolean;
+	robotIsSimulator: boolean;
 	robotOnlineCheckDisabled: boolean;
 	robotEmergencyState: boolean;
 	robotAlerts: RTSContentAlertsInterface;
@@ -49,8 +50,8 @@ export interface RTSContentAlertsInterface {
 }
 
 export interface RTSContentStateInterface {
-	hidden?: boolean;
-	simulation?: boolean;
+	showHidden?: boolean;
+	showSimulation?: boolean;
 }
 
 export interface IRobotTwinSummaryInterface {
@@ -66,6 +67,7 @@ export interface IRobotTwinSummaryInterface {
 			ca: { ip: string; username: string };
 			note: string;
 			isHidden: boolean;
+			isSimulator: boolean;
 			isOnlineCheckDisabled: boolean;
 			lastSyncedProducts: Date;
 			status: {

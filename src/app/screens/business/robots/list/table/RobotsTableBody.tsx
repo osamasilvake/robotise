@@ -1,9 +1,11 @@
 import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
+import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	RTSContentDataInterface,
 	RTSContentInterface
@@ -16,10 +18,14 @@ import { RobotsListStyle } from './RobotsTable.style';
 import RobotsTableBodyCell from './RobotsTableBodyCell';
 
 const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
-	const { content, order, orderBy } = props;
+	const { content, order, orderBy, hideActions, siteId } = props;
 	const classes = RobotsListStyle();
 
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const navigate = useNavigate();
+
+	const showHidden = !!robotTwinsSummary.content?.state?.showHidden;
+	const showSimulation = !!robotTwinsSummary.content?.state?.showSimulation;
 
 	/**
 	 * sort table data
@@ -112,25 +118,34 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		<TableBody>
 			{content &&
 				content.data &&
-				sortTableData(content).map((robotTwins: RTSContentDataInterface) => (
-					<TableRow
-						hover
-						key={robotTwins.id}
-						tabIndex={-1}
-						onClick={handleShowRobotDetail(robotTwins)}
-						className={clsx({
-							[classes.sTableRowWarning]: !!robotTwins.robotAlerts.warning,
-							[classes.sTableRowDanger]: !!robotTwins.robotAlerts.danger
-						})}>
-						{columns.map((column: RobotsTableColumnInterface) => (
-							<RobotsTableBodyCell
-								key={column.id}
-								column={column}
-								robot={robotTwins}
-							/>
-						))}
-					</TableRow>
-				))}
+				sortTableData(content)
+					.filter((s) => !hideActions || (hideActions && s.siteId === siteId))
+					.filter((s) => hideActions || showHidden || (!showHidden && !s.robotHidden))
+					.filter(
+						(s) =>
+							hideActions ||
+							showSimulation ||
+							(!showSimulation && !s.robotIsSimulator)
+					)
+					.map((robotTwins: RTSContentDataInterface) => (
+						<TableRow
+							hover
+							key={robotTwins.id}
+							tabIndex={-1}
+							onClick={handleShowRobotDetail(robotTwins)}
+							className={clsx({
+								[classes.sTableRowWarning]: !!robotTwins.robotAlerts.warning,
+								[classes.sTableRowDanger]: !!robotTwins.robotAlerts.danger
+							})}>
+							{columns.map((column: RobotsTableColumnInterface) => (
+								<RobotsTableBodyCell
+									key={column.id}
+									column={column}
+									robot={robotTwins}
+								/>
+							))}
+						</TableRow>
+					))}
 		</TableBody>
 	);
 };

@@ -101,7 +101,7 @@ export const RobotTwinsSummaryFetchList =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		return RobotsService.robotTwinsSummaryFetch(state)
+		return RobotsService.robotTwinsSummaryFetch()
 			.then(async (res) => {
 				// deserialize response
 				let result: RTSContentInterface = await deserializeRobotTwinsSummary(res);

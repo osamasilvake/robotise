@@ -26,20 +26,20 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	const [sitesList, setSitesList] = useState<GeneralEmailsSiteComboBoxInterface[]>([]);
 
 	const translation = 'CONTENT.EMAILS.LIST.ACTIONS.FILTERS';
-	const hidden = !!sites.content?.state?.hidden;
+	const showHidden = !!sites.content?.state?.showHidden;
 
 	useEffect(() => {
 		sites.content &&
 			setSitesList([
 				{ id: '', label: t(`${translation}.SITE.ALL_SITES`) },
 				...sites.content.data
-					.filter((s) => !hidden || (hidden && !s.configs.isHidden))
+					.filter((s) => !showHidden || (showHidden && !s.configs.isHidden))
 					.map((site) => ({
 						id: site.id,
 						label: site.title
 					}))
 			]);
-	}, [sites.content, t, hidden]);
+	}, [sites.content, t, showHidden]);
 
 	/**
 	 * handle site

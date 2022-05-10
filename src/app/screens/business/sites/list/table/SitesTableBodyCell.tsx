@@ -1,5 +1,5 @@
-import { Check, Close } from '@mui/icons-material';
-import { Box, TableCell } from '@mui/material';
+import { Check, Close, VisibilityOff } from '@mui/icons-material';
+import { Box, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../services';
@@ -7,9 +7,11 @@ import { ISite } from '../../../../../slices/business/sites/Sites.slice.interfac
 import { dateFormat1 } from '../../../../../utilities/methods/Date';
 import { SitesTableColumnsTypeEnum } from './SitesTable.enum';
 import { SitesTableBodyCellInterface, SitesTableColumnInterface } from './SitesTable.interface';
+import { SitesListStyle } from './SitesTable.style';
 
 const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 	const { column, site } = props;
+	const classes = SitesListStyle();
 
 	/**
 	 * set cell value
@@ -29,6 +31,17 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 			);
 		} else if (SitesTableColumnsTypeEnum.UPDATED === column.id) {
 			return dateFormat1(String(value));
+		} else if (SitesTableColumnsTypeEnum.SITE_TITLE === column.id) {
+			return (
+				<Stack direction="row" alignItems="center">
+					<Typography variant="body2">
+						{String(value) || AppConfigService.AppOptions.common.none}
+					</Typography>
+					{!!site.configs?.isHidden && (
+						<VisibilityOff fontSize="small" className={classes.sTableIcon} />
+					)}
+				</Stack>
+			);
 		}
 		return value;
 	};

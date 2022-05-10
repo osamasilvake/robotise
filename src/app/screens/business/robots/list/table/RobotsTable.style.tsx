@@ -17,11 +17,12 @@ export const RobotsListStyle = makeStyles((theme: Theme) => ({
 	sTableColumnTitle: {
 		lineHeight: 0
 	},
-	sTableRowHelpIcon: {
+	sTableIcon: {
+		color: alpha(AppConfigService.AppOptions.colors.c2, 0.95),
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
 	},
-	sTableRowCommentIcon: {
+	sTableIconMoveTop: {
 		marginTop: theme.spacing(-1)
 	}
 }));

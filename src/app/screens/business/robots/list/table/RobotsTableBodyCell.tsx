@@ -1,4 +1,4 @@
-import { ChatOutlined, Check, Close, InfoOutlined } from '@mui/icons-material';
+import { ChatOutlined, Check, Close, InfoOutlined, VisibilityOff } from '@mui/icons-material';
 import { Box, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -77,13 +77,20 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 									<ChatOutlined
 										fontSize="small"
 										className={clsx(
-											classes.sTableRowHelpIcon,
-											classes.sTableRowCommentIcon
+											classes.sTableIcon,
+											classes.sTableIconMoveTop
 										)}
 									/>
 								</Tooltip>
 							)}
+							{robot.robotHidden && (
+								<VisibilityOff
+									fontSize="small"
+									className={clsx(classes.sTableIcon, classes.sTableIconMoveTop)}
+								/>
+							)}
 						</Stack>
+
 						<Typography variant="body2" color="textSecondary">
 							{siteTitle || AppConfigService.AppOptions.common.none}
 						</Typography>
@@ -120,10 +127,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 						</Typography>
 						{mission.description && (
 							<Tooltip title={mission.description}>
-								<InfoOutlined
-									fontSize="small"
-									className={classes.sTableRowHelpIcon}
-								/>
+								<InfoOutlined fontSize="small" className={classes.sTableIcon} />
 							</Tooltip>
 						)}
 					</Stack>

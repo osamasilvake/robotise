@@ -18,7 +18,6 @@ export const RobotsListStyle = makeStyles((theme: Theme) => ({
 		lineHeight: 0
 	},
 	sTableIcon: {
-		color: alpha(AppConfigService.AppOptions.colors.c2, 0.95),
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
 	},

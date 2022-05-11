@@ -6,7 +6,7 @@ export const columns: SitesTableColumnInterface[] = [
 	{
 		id: SitesTableColumnsTypeEnum.SITE_TITLE,
 		label: `${translation}.NAME`,
-		minWidth: 200,
+		minWidth: 220,
 		align: 'left'
 	},
 	{

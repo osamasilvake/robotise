@@ -1,4 +1,4 @@
-import { alpha, Theme } from '@mui/material/styles';
+import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 import { AppConfigService } from '../../../../../services';
@@ -9,7 +9,6 @@ export const SitesListStyle = makeStyles((theme: Theme) => ({
 		maxHeight: `calc(100vh - ${theme.typography.pxToRem(minusContentHeight)})`
 	},
 	sTableIcon: {
-		color: alpha(AppConfigService.AppOptions.colors.c2, 0.95),
 		cursor: 'help',
 		marginLeft: theme.spacing(0.5)
 	}

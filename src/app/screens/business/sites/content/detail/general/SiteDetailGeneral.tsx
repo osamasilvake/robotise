@@ -1,4 +1,5 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { InfoOutlined } from '@mui/icons-material';
+import { Box, Grid, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -43,19 +44,26 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 				<Typography>{dateFormat1(site.updatedAt)}</Typography>
 			</Grid>
 
-			{/* Timezone */}
-			<Grid item xs={12} sm={6} lg={2}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.TIMEZONE`)}
-				</Typography>
-				<Typography>{site.timezone}</Typography>
-			</Grid>
-
 			{/* Accept Orders */}
-			<Grid item xs={12} sm={6} lg={3} className={classes.sGeneralLastItem}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
-				</Typography>
+			<Grid item xs={12} sm={6} lg={3}>
+				<Stack spacing={0.5} direction="row" alignItems="center">
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
+					</Typography>
+					{site && site.acceptOrdersLastModifiedAt && (
+						<Tooltip
+							title={
+								<Box>
+									<Typography variant="caption">
+										{dateFormat1(site.acceptOrdersLastModifiedAt)} (
+										{site.acceptOrdersLastModifiedOrigin})
+									</Typography>
+								</Box>
+							}>
+							<InfoOutlined fontSize="small" />
+						</Tooltip>
+					)}
+				</Stack>
 				<Box>
 					<Status active={!!site.acceptOrders}>
 						{site.acceptOrders
@@ -63,24 +71,24 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 							: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
 					</Status>
 				</Box>
-				{site && site.acceptOrdersLastModifiedAt && (
-					<Box>
-						<Typography variant="caption">
-							{dateFormat1(site.acceptOrdersLastModifiedAt)} (
-							{site.acceptOrdersLastModifiedOrigin})
-						</Typography>
-					</Box>
-				)}
 			</Grid>
 
 			{/* Default Robot */}
-			<Grid item xs={12} sm={6} lg={2}>
+			<Grid item xs={12} sm={6} lg={2} className={classes.sGeneralLastItem}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.DEFAULT_ROBOT`)}
 				</Typography>
 				<Typography>
 					{attachedRobot?.robotTitle || AppConfigService.AppOptions.common.none}
 				</Typography>
+			</Grid>
+
+			{/* Timezone */}
+			<Grid item xs={12} sm={6} lg={2}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.TIMEZONE`)}
+				</Typography>
+				<Typography>{site.timezone}</Typography>
 			</Grid>
 		</Grid>
 	);

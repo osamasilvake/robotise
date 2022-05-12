@@ -63,6 +63,14 @@ const SiteDetailGeneral: FC<SiteDetailGeneralInterface> = (props) => {
 							: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
 					</Status>
 				</Box>
+				{site && site.acceptOrdersLastModifiedAt && (
+					<Box>
+						<Typography variant="caption">
+							{dateFormat1(site.acceptOrdersLastModifiedAt)} (
+							{site.acceptOrdersLastModifiedOrigin})
+						</Typography>
+					</Box>
+				)}
 			</Grid>
 
 			{/* Default Robot */}

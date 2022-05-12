@@ -30,6 +30,8 @@ export interface ISite {
 	timezone: string;
 	currency: string;
 	acceptOrders: boolean;
+	acceptOrdersLastModifiedAt: Date;
+	acceptOrdersLastModifiedOrigin: string;
 	createdAt: Date;
 	updatedAt: Date;
 	configs: {

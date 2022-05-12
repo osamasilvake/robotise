@@ -31,6 +31,7 @@ import alertCodes from './information/alert-codes/AlertCodes.slice';
 import deepLink from './settings/deep-links/DeepLink.slice';
 import deepLinks from './settings/deep-links/DeepLinks.slice';
 import middlewareConfig from './settings/middleware-config/MiddlewareConfig.slice';
+import robotPassword from './setup/robot-password/RobotPassword.slice';
 
 // app reducers
 const combinedReducer = combineReducers({
@@ -62,7 +63,8 @@ const combinedReducer = combineReducers({
 	alertCodes,
 	deepLink,
 	deepLinks,
-	middlewareConfig
+	middlewareConfig,
+	robotPassword
 });
 
 // type: root state

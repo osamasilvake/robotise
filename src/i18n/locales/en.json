@@ -400,6 +400,14 @@
 					"SUCCESS": "Event has been deleted successfully!",
 					"ERROR": "Unable to delete an event!"
 				}
+			},
+			"SETUP": {
+				"ROBOT_PASSWORD": {
+					"EDIT": {
+						"SUCCESS": "Password has been updated successfully!",
+						"ERROR": "Unable to update password!"
+					}
+				}
 			}
 		},
 		"ACCOUNT": {
@@ -1926,7 +1934,8 @@
 		"CONTENT": {
 			"TABS": {
 				"COMMON": "COMMON",
-				"WIFI_CONFIG": "Wifi Configuration"
+				"WIFI_CONFIG": "Wifi Configuration",
+				"ROBOT_PASSWORD": "Robot Password"
 			},
 			"WIFI_CONFIG": {
 				"TITLE": "Wifi Config",
@@ -2012,6 +2021,21 @@
 					"BUTTONS": {
 						"PREVIEW": "Preview",
 						"DOWNLOAD": "Download"
+					}
+				}
+			},
+			"ROBOT_PASSWORD": {
+				"TITLE": "Robot Password",
+				"EXCERPT": "Update robot password",
+				"FORM": {
+					"FIELDS": {
+						"PASSWORD": {
+							"LABEL": "Password",
+							"PLACEHOLDER": "Enter Password"
+						}
+					},
+					"BUTTONS": {
+						"SAVE": "Save"
 					}
 				}
 			}

@@ -25,6 +25,10 @@ const setupRoutes: RoutesInterface[] = [
 	{
 		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.SETUP.WIFI_CONFIG,
 		component: Setup
+	},
+	{
+		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.SETUP.ROBOT_PASSWORD,
+		component: Setup
 	}
 ];
 export default setupRoutes;

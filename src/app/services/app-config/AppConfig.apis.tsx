@@ -81,7 +81,10 @@ const AppServices = (config: typeof AppConfigService) => {
 					ELEVATOR_LOGS: `${config.envAppUrl}/deeplinks-request/elevator-microservice-logs`,
 					ALERT_LOGS: `${config.envAppUrl}/deeplinks-request/robot-alerts-log`
 				},
-				MIDDLEWARE_CONFIG: `${config.envAppUrl}/cmd-events`
+				MIDDLEWARE_CONFIG: `${config.envAppUrl}/cmd-events`,
+				SETUP: {
+					ROBOT_PASSWORD: `${config.envAppUrl}/robots-password`
+				}
 			},
 			INFORMATION: {
 				ALERT_CODES: `${config.envAppUrl}/active-alert-codes`

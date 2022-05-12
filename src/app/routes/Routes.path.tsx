@@ -47,7 +47,8 @@ const appRoutes = {
 			MIDDLEWARE_CONFIG: '/middleware-config',
 			SETUP: {
 				MAIN: '/setup',
-				WIFI_CONFIG: '/setup/wifi-config'
+				WIFI_CONFIG: '/setup/wifi-config',
+				ROBOT_PASSWORD: '/setup/robot-password'
 			}
 		},
 		INFORMATION: {

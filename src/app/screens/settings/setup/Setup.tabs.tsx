@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
+import SetupRobotPassword from './robot-password/SetupRobotPassword';
 import setupRoutes from './Setup.routes';
 import SetupWifiConfig from './wifi-config/SetupWifiConfig';
 
@@ -49,17 +50,27 @@ const SetupTabs: FC = () => {
 				textColor="primary">
 				<Tab label={t(`${translation}.COMMON`)} />
 				<Tab label={t(`${translation}.WIFI_CONFIG`)} />
+				<Tab label={t(`${translation}.ROBOT_PASSWORD`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
 			<Box>
 				{value === 0 && <></>}
 
-				{/* Emails */}
+				{/* Wifi Config */}
 				{value === 1 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SetupWifiConfig />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* Robot Password */}
+				{value === 2 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<SetupRobotPassword />
 						</Suspense>
 					</ErrorBoundary>
 				)}

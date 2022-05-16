@@ -80,7 +80,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 						}
 						return a.robotAlerts.warning - b.robotAlerts.warning;
 					case RobotsTableSortTypeEnum.OBJECT_MISSION:
-						return a.robotMission.status.localeCompare(b.robotMission.status);
+						return a?.robotMission?.status?.localeCompare(b?.robotMission?.status);
 					case RobotsTableSortTypeEnum.NUMBER:
 						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
 					case RobotsTableSortTypeEnum.DATE:

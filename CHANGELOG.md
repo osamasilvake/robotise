@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.6.0...v2.7.0) (2022-05-24)
+
+
+### Features
+
+* Add changes to qr code template ([27d82f8](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/27d82f89276b18c6d210bbdd5449b2f4c0bad406))
+
 ## [2.6.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.5.1...v2.6.0) (2022-05-24)
 
 

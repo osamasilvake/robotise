@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.5.1...v2.6.0) (2022-05-24)
+
+
+### Features
+
+* Improve phone config form ([74b2651](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/74b2651f5d0968c82c8e53f2033dc33effb13be9))
+
 ### [2.5.1](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.5.0...v2.5.1) (2022-05-24)
 
 ## [2.5.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.4.0...v2.5.0) (2022-05-24)

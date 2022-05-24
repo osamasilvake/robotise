@@ -735,7 +735,7 @@
 							"MANAGE": "Manage QR",
 							"TITLE": "QR Code",
 							"TEXT": "Manage QR code for room {{value}}.",
-							"SMS_TEXT": "smsTo:{{smsTo}}:I want to order Jeeves with code #{{code}}#",
+							"SMS_TEXT": "smsto:{{smsTo}}:I want to order Jeeves with code #{{code}}#",
 							"FORM": {
 								"FIELDS": {
 									"DATE": {

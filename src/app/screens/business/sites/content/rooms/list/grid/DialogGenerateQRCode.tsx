@@ -32,6 +32,7 @@ import {
 	dateFormat5,
 	dateISOString
 } from '../../../../../../../utilities/methods/Date';
+import { formatPhoneNumber } from '../../../../../../../utilities/methods/PhoneNumber';
 import { timeout } from '../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import QRCodeTemplate from './qr-code-template/QRCodeTemplate';
@@ -53,9 +54,11 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const qrCodeSingle = qrCodes.content?.dataById[roomState.room];
 	const translation = 'CONTENT.ROOMS.LIST.GRID.QR_CODE';
-	let code = qrCodeSingle?.code;
-	let smsTo = qrCodeSingle?.smsTo?.replace('+', '00');
+	let code = qrCodeSingle?.code.toUpperCase() || '';
+	let smsTo = qrCodeSingle?.smsTo?.replace('+', '00') || '';
 	let smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
+	const smsToBeautified = formatPhoneNumber(qrCodeSingle?.smsTo || '');
+	const room = qrCodeSingle?.room || '';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogGenerateQRCodeFormInterface>(
@@ -187,7 +190,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 			</DialogContent>
 			<DialogActions>
 				<Button variant="outlined" onClick={onCloseDialog}>
-					{t('DIALOG:BUTTONS.CANCEL')}
+					{t('DIALOG:BUTTONS.GOBACK')}
 				</Button>
 				{code && (
 					<>
@@ -218,6 +221,9 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 			{/* QR Code Template */}
 			<QRCodeTemplate
 				text={smsText}
+				code={code}
+				room={room}
+				smsTo={smsToBeautified}
 				iframeId="qr-code"
 				iframeUrl="/assets/templates/qr-code/qrCode.html"
 				showIframe={showIframe}

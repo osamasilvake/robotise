@@ -6,7 +6,7 @@ import { timeout } from '../../../../../../../../utilities/methods/Timeout';
 import { QRCodeTemplateInterface } from './QRCodeTemplate.interface';
 
 const QRCodeTemplate: FC<QRCodeTemplateInterface> = (props) => {
-	const { text, iframeId, iframeUrl, showIframe } = props;
+	const { text, code, smsTo, room, iframeId, iframeUrl, showIframe } = props;
 
 	useEffect(() => {
 		/**
@@ -30,11 +30,18 @@ const QRCodeTemplate: FC<QRCodeTemplateInterface> = (props) => {
 
 				// send url to iframe
 				const iframeElem = document.getElementById(iframeId) as HTMLIFrameElement;
-				iframeElem?.contentWindow?.postMessage({ type: iframeId, url });
+				iframeElem?.contentWindow?.postMessage({
+					type: iframeId,
+					url,
+					text,
+					code,
+					smsTo,
+					room
+				});
 			});
 		};
 		showIframe && generateQRCode();
-	}, [iframeId, showIframe, text]);
+	}, [iframeId, showIframe, text, code, smsTo, room]);
 
 	return showIframe ? (
 		<iframe

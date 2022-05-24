@@ -255,6 +255,7 @@ const AppOptions = (config: typeof AppConfigService) => {
 			rooms: new RegExp(/\b[0-9]+([-,]+[0-9]*)?\b$/),
 			roomsMapping: new RegExp(/^\S([0-9a-zA-Z]{1,8}[:][0-9a-zA-Z]{1,8}(,?)(\s{0,1}))+$/),
 			phoneNumbersCommaSeparated: new RegExp(/^\+\d{8,14}(,\s{0,1}\+\d{8,14})*$/),
+			phoneNumberBeautifier: new RegExp(/^(.{3})(\d{4})(\d{4})(\d{1,3})$/),
 			macAddress: new RegExp(/^([0-9a-fA-F]{2}[:.-]){5}[0-9a-fA-F]{2}$/),
 			ipAddress: new RegExp(/^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\d)|1?\d?\d)){4}$/),
 			ipNetmask: new RegExp(

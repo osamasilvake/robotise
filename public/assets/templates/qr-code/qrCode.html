@@ -14,7 +14,7 @@
 		<!-- Jeeves Title & Sub-title -->
 		<div class="qr-jeeves">
 			<img class="qr-logo" src="/assets/images/qr-template/jeeves.png" alt="logo" />
-			<p>...und die Minibar kommt zu Ihnen aufs Zimmer</p>
+			<p>...und die Minibar kommt zu Ihnen auf Zimmer #<span id="room-no"></span></p>
 		</div>
 
 		<div class="qr-container">
@@ -33,7 +33,10 @@
 							JEEVES kommt dann zu Ihnen an die Zimmertür & meldet sich per SMS* bei
 							Ihnen, wenn er angekommen ist.
 						</p>
-						<p>Bitte halten Sie Ihr Mobiltelefon bei sich, um die SMS zu empfangen.</p>
+						<p>
+							Bitte behalten Sie Ihr Mobiltelefon bei sich und achten Sie auf Ihre Benachrichtigungen,
+							um die SMS zu empfangen.
+						</p>
 					</div>
 				</div>
 				<div class="qr-right">
@@ -48,6 +51,15 @@
 							</p>
 						</li>
 					</ol>
+					<ul class="qr-text">
+						<li>
+							<p>
+								Alternativ können Sie auch eine SMS mit dem Code
+								<span style="color:green" id="qr-code"></span> an die
+								<br> Nummer <span style="color:blue" id="sms-to"></span> schicken*
+							</p>
+						</li>
+					</ul>
 					<div class="img-wrapper">
 						<img
 							class="qr-robot"
@@ -62,7 +74,7 @@
 					<h6>*Bitte beachten:</h6>
 					<p>
 						Es können Gebühren für den Versand der SMS an einen lokalen Dienstanbieter
-						sowie Gebühren von Ihrem Dienstanbieter für den Empfang einer SMS anfallen.
+						sowie Gebühren von Ihrem Dienstanbieter für den Empfang von SMS anfallen.
 					</p>
 				</div>
 				<div class="qr-about">
@@ -110,7 +122,11 @@
 	window.addEventListener(
 		'message',
 		({ data }) => {
-			const { type, url } = data;
+			const { type, url, text, code, smsTo, room } = data;
+
+			document.getElementById('qr-code').innerText = code;
+			document.getElementById('sms-to').innerText = smsTo;
+			document.getElementById('room-no').innerText = room;
 
 			// only allow qr-code iframe content
 			if (type !== 'qr-code') return;
@@ -119,7 +135,7 @@
 			addQRtoCanvas(url);
 
 			// open print
-			setTimeout(() => window.print());
+			setTimeout(() => window.print(), 100);
 		},
 		false
 	);

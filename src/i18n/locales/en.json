@@ -59,7 +59,8 @@
 			"SUBMIT": "Submit",
 			"DELETE": "Delete",
 			"GENERATE": "Generate",
-			"PRINT": "Print"
+			"PRINT": "Print",
+			"GOBACK": "Go Back"
 		}
 	},
 	"TOOLTIP": {

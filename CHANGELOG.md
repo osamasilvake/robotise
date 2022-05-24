@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.4.0...v2.5.0) (2022-05-24)
+
+
+### Features
+
+* Add accept order time on site detail ([bc3e821](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/bc3e821678b7b798f145d1990af74a60f237b586))
+* Add Robots list in site detail page ([7737e22](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7737e227c652772e72f072396bf798ea7e26c711))
+* Add rooms mapping ([2615228](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/2615228625934e62366a74da74cba542383471f3))
+* Add update robot password ([39826ef](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/39826ef9dd123652bb0484e95c9cf66f03402854))
+
+
+### Bug Fixes
+
+* Add default robot name ([ce470cb](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ce470cb7c4cd9e3f96a93112383bbefc42f74aea))
+* Add icon to hidden robots and sites ([bb40765](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/bb40765d4d1a39e9011e35842738397a421321e2))
+* Add tooltip ([3409305](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/34093057b6342a85a3ae5ca1b187bd643493c52e))
+* Style on Dark more ([7d193bc](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/7d193bc5203c93d002c4291db82ee108c3c48078))
+* Update Audio player control icon ([ef9d179](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/ef9d179e3091771eb7d7647d704512fa7279a3a5))
+* Update from field ([29e8a6e](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/29e8a6eb2526ee47e6311a98cbc1067a71f8e8ce))
+* Update qr code ([8ca3f2f](https://gitlab.robotise.eu/robotise/roc/frontend/roc/commit/8ca3f2f98482e76ecf4b0b8771a86aed45d1b584))
+
 ## [2.4.0](https://gitlab.robotise.eu/robotise/roc/frontend/roc/compare/v2.3.0...v2.4.0) (2022-05-03)
 
 

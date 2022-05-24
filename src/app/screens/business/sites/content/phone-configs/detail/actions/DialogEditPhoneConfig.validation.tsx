@@ -37,13 +37,8 @@ export const EditPhoneConfigValidation = (
 		}
 	}
 
-	// Prefixes
-	if (touched.roomsMapping) {
-		// required
-		if (!values.roomsMapping) {
-			errors.roomsMapping = `${translation}.FIELDS.ROOMS_MAPPING.VALIDATIONS.REQUIRED`;
-		}
-
+	// Rooms Mapping
+	if (touched.roomsMapping && values.roomsMapping) {
 		// invalid
 		if (values.roomsMapping && !regexRoomsMapping.test(values.roomsMapping as string)) {
 			errors.roomsMapping = `${translation}.FIELDS.PREFIXES.VALIDATIONS.INVALID`;

@@ -56,7 +56,7 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 	const phoneConfig = phoneConfigs.content?.data[0];
 	const roomsMapping = Object.entries(phoneConfig?.roomsMapping || {})
 		.map(([key, value]) => `${key}:${value}`)
-		.join(',');
+		.join(', ');
 	const phoneNumbers = phoneConfigs?.content?.phoneNumbers;
 	const fromList = phoneNumbers && phoneNumbers[SitePhoneConfigsPhoneNumbersTypeEnum.VOICE];
 	const smsList = phoneNumbers && phoneNumbers[SitePhoneConfigsPhoneNumbersTypeEnum.SMS];
@@ -77,7 +77,9 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 			EditPhoneConfigValidation,
 			async () => {
 				// rooms mapping
-				const splitRoomsMapping = (values.roomsMapping as string)?.split(',');
+				const splitRoomsMapping = String(values.roomsMapping || '')
+					.split(',')
+					.map((e: string) => e.trim());
 				const mappingsOutput = splitRoomsMapping.reduce(
 					(obj, item) => Object.assign(obj, { [item.split(':')[0]]: item.split(':')[1] }),
 					{}
@@ -160,7 +162,6 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 
 						<FormControl fullWidth margin="normal">
 							<TextField
-								required
 								multiline
 								type="string"
 								id="roomsMapping"

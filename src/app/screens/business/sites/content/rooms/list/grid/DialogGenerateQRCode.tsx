@@ -58,6 +58,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	let smsTo = qrCodeSingle?.smsTo?.replace('+', '00') || '';
 	let smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
 	const smsToBeautified = formatPhoneNumber(qrCodeSingle?.smsTo || '');
+	const codeBeautified = `#${code}#`;
 	const room = qrCodeSingle?.room || '';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
@@ -221,7 +222,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 			{/* QR Code Template */}
 			<QRCodeTemplate
 				text={smsText}
-				code={code}
+				code={codeBeautified}
 				room={room}
 				smsTo={smsToBeautified}
 				iframeId="qr-code"

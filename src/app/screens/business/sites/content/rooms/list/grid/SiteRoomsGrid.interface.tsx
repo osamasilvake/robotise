@@ -24,6 +24,7 @@ export interface DialogGenerateQRCodeInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	roomState: { room: string };
+	siteSingle: ISite;
 }
 
 export interface DialogGenerateQRCodeFormInterface {

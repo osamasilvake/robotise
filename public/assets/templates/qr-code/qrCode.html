@@ -9,7 +9,9 @@
 	</head>
 	<body>
 		<!-- Hotel Content -->
-		<div class="qr-hotel">Hotel Content</div>
+		<div class="qr-hotel">
+			<p id="hotel-name"></p>
+		</div>
 
 		<!-- Jeeves Title & Sub-title -->
 		<div class="qr-jeeves">
@@ -47,16 +49,16 @@
 						<li>
 							<p>
 								Das Telefon den SMS-Dialog öffnen lassen SMS unverändert
-								verschicken*
+								verschicken*.
 							</p>
 						</li>
 					</ol>
 					<ul class="qr-text">
 						<li>
-							<p>
+							<p class="frame">
 								Alternativ können Sie auch eine SMS mit dem Code
-								<span style="color:green" id="qr-code"></span> an die
-								<br> Nummer <span style="color:blue" id="sms-to"></span> schicken*
+								<span style="color:green" id="qr-code"></span> an die Nummer
+								<br> <span style="color:blue" id="sms-to"></span> schicken*.
 							</p>
 						</li>
 					</ul>
@@ -122,11 +124,12 @@
 	window.addEventListener(
 		'message',
 		({ data }) => {
-			const { type, url, text, code, smsTo, room } = data;
+			const { type, url, text, code, smsTo, room, siteTitle } = data;
 
 			document.getElementById('qr-code').innerText = code;
 			document.getElementById('sms-to').innerText = smsTo;
 			document.getElementById('room-no').innerText = room;
+			document.getElementById('hotel-name').innerText = siteTitle;
 
 			// only allow qr-code iframe content
 			if (type !== 'qr-code') return;

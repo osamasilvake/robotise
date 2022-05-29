@@ -196,7 +196,12 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 			))}
 
 			{/* Dialog: Generate QR Code */}
-			<DialogGenerateQRCode open={qrCode} setOpen={setQRCode} roomState={roomState} />
+			<DialogGenerateQRCode
+				open={qrCode}
+				setOpen={setQRCode}
+				roomState={roomState}
+				siteSingle={siteSingle}
+			/>
 
 			{/* Dialog: Confirm Room State */}
 			{confirmRoomState && (

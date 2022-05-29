@@ -42,7 +42,7 @@ import {
 } from './SiteRoomsGrid.interface';
 
 const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
-	const { open, setOpen, roomState } = props;
+	const { open, setOpen, roomState, siteSingle } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -54,7 +54,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const qrCodeSingle = qrCodes.content?.dataById[roomState.room];
 	const translation = 'CONTENT.ROOMS.LIST.GRID.QR_CODE';
-	let code = qrCodeSingle?.code.toUpperCase() || '';
+	let code = qrCodeSingle?.code || '';
 	let smsTo = qrCodeSingle?.smsTo?.replace('+', '00') || '';
 	let smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
 	const smsToBeautified = formatPhoneNumber(qrCodeSingle?.smsTo || '');
@@ -225,6 +225,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 				code={codeBeautified}
 				room={room}
 				smsTo={smsToBeautified}
+				siteTitle={siteSingle.title}
 				iframeId="qr-code"
 				iframeUrl="/assets/templates/qr-code/qrCode.html"
 				showIframe={showIframe}

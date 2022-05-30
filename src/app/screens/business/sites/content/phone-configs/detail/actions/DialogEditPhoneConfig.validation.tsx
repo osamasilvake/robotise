@@ -41,7 +41,7 @@ export const EditPhoneConfigValidation = (
 	if (touched.roomsMapping && values.roomsMapping) {
 		// invalid
 		if (values.roomsMapping && !regexRoomsMapping.test(values.roomsMapping as string)) {
-			errors.roomsMapping = `${translation}.FIELDS.PREFIXES.VALIDATIONS.INVALID`;
+			errors.roomsMapping = `${translation}.FIELDS.ROOMS_MAPPING.VALIDATIONS.INVALID`;
 		}
 	}
 

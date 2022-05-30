@@ -488,6 +488,17 @@
 			"FORGET_PASSWORD": "Forgot Your Password?"
 		}
 	},
+	"DASHBOARD": {
+		"CHARTS": {
+			"PERIOD": "Select Period",
+			"PURCHASES": {
+				"LABEL": "Total Purchases"
+			},
+			"ORDERS": {
+				"LABEL": "Total Orders"
+			}
+		}
+	},
 	"GENERAL": {
 		"COMMON": {
 			"MODE": {

@@ -787,7 +787,6 @@
 								"ROOMS_MAPPING": {
 									"LABEL": "Rooms Mapping",
 									"VALIDATIONS": {
-										"REQUIRED": "Rooms Mapping is required.",
 										"INVALID": "Invalid format"
 									},
 									"PLACEHOLDER": "Format: 501:932, 349:1412"

@@ -73,7 +73,7 @@ const Dashboard: FC = () => {
 					</Typography>
 
 					{/* Bar */}
-					<BarReChart data={chart.list} axisX="purchase" axisY="price" />
+					<BarReChart data={chart.list} x="Date" axisX="Purchases" axisY="Price" />
 				</Grid>
 				<Grid item xs={12} sm={6} md={6}>
 					{/* Title */}
@@ -82,7 +82,14 @@ const Dashboard: FC = () => {
 					</Typography>
 
 					{/* Bar */}
-					<StackedBarReChart data={stackedChart.list} axisX="x" axisY1="y1" axisY2="y2" />
+					<StackedBarReChart
+						data={stackedChart.list}
+						x="Date"
+						axisX="Orders"
+						axisY1="Minibar"
+						axisY2="Service Position"
+						axisY3="Room Service"
+					/>
 				</Grid>
 			</Grid>
 		</Paper>

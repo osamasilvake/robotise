@@ -1,5 +1,6 @@
 export interface BarChartInterface {
 	data: BarChartDataInterface[];
+	x: string;
 	axisX: string;
 	axisY: string;
 }

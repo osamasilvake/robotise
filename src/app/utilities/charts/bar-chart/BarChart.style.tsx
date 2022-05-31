@@ -23,6 +23,6 @@ export const BarChartStyle = {
 		color: AppConfigService.AppOptions.colors.c8
 	},
 	sBar: {
-		fill: AppConfigService.AppOptions.colors.c9
+		fill: AppConfigService.AppOptions.colors.c10v1
 	}
 };

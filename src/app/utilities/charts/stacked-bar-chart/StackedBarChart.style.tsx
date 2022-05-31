@@ -21,11 +21,5 @@ export const StackedBarChartStyle = {
 	},
 	sTooltipLabel: {
 		color: AppConfigService.AppOptions.colors.c8
-	},
-	sBar1: {
-		fill: AppConfigService.AppOptions.colors.c9
-	},
-	sBar2: {
-		fill: AppConfigService.AppOptions.colors.c14
 	}
 };

@@ -1,21 +1,36 @@
 import { Box } from '@mui/material';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+	Bar,
+	BarChart,
+	CartesianGrid,
+	Legend,
+	ResponsiveContainer,
+	Tooltip,
+	XAxis,
+	YAxis
+} from 'recharts';
 
+import { AppConfigService } from '../../../services';
 import { appSelector } from '../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../slices/app/App.slice.enum';
+import { dateFormat6 } from '../../methods/Date';
 import { BarChartInterface } from './BarChart.interface';
 import { BarChartStyle } from './BarChart.style';
 
 const BarReChart: FC<BarChartInterface> = (props) => {
-	const { data, axisX, axisY } = props;
+	const { data, x, axisX, axisY } = props;
 	const styles = BarChartStyle;
 
 	const app = useSelector(appSelector);
 
 	const isDark = app.themePalette === AppThemePaletteTypeEnum.DARK;
-	const mapData = data.map((d) => ({ [axisX]: d.x, [axisY]: d.y }));
+	const mapData = data.map((d) => ({
+		[x]: d.x,
+		[axisX]: d.x,
+		[axisY]: d.y
+	}));
 
 	return (
 		<Box style={styles.sBox}>
@@ -33,10 +48,17 @@ const BarReChart: FC<BarChartInterface> = (props) => {
 					<XAxis dataKey={axisX} style={isDark ? styles.sAxisLight : styles.sAxisDark} />
 
 					{/* Tooltip */}
-					<Tooltip cursor={false} labelStyle={styles.sTooltipLabel} />
+					<Tooltip
+						cursor={false}
+						labelFormatter={(t) => `${x}: ${dateFormat6(t)}`}
+						labelStyle={styles.sTooltipLabel}
+					/>
 
 					{/* Bar */}
-					<Bar style={styles.sBar} dataKey={axisY} />
+					<Bar fill={AppConfigService.AppOptions.colors.c10v1} dataKey={axisY} />
+
+					{/* Legend */}
+					<Legend />
 				</BarChart>
 			</ResponsiveContainer>
 		</Box>

@@ -14,8 +14,8 @@ const Dashboard: FC = () => {
 	const classes = DashboardStyle();
 
 	const selectList = [
-		{ id: DashboardChartPeriodTypeEnum.WEEK, label: 'Past Week' },
-		{ id: DashboardChartPeriodTypeEnum.MONTH, label: 'Past Month' }
+		{ id: DashboardChartPeriodTypeEnum.WEEK, label: t('CHARTS.PERIOD.WEEK') },
+		{ id: DashboardChartPeriodTypeEnum.MONTH, label: t('CHARTS.PERIOD.MONTH') }
 	];
 	const [currentPeriod, setCurrentPeriod] = useState(selectList[1].id);
 	const [chart, setChart] = useState(chartData[DashboardChartPeriodTypeEnum.MONTH]);
@@ -49,13 +49,13 @@ const Dashboard: FC = () => {
 			<Grid container spacing={1}>
 				<Grid item xs={12} textAlign="right">
 					<FormControl>
-						<InputLabel id="period">{t('CHARTS.PERIOD')}</InputLabel>
+						<InputLabel id="period">{t('CHARTS.PERIOD.LABEL')}</InputLabel>
 						<Select
 							size="small"
 							labelId="period"
 							id="period"
 							name="period"
-							label={t('CHARTS.PERIOD')}
+							label={t('CHARTS.PERIOD.LABEL')}
 							value={currentPeriod}
 							onChange={(event) => handlePeriod(event.target.value)}>
 							{selectList.map((item) => (
@@ -73,7 +73,12 @@ const Dashboard: FC = () => {
 					</Typography>
 
 					{/* Bar */}
-					<BarReChart data={chart.list} x="Date" axisX="Purchases" axisY="Price" />
+					<BarReChart
+						data={chart.list}
+						x={t('CHARTS.PURCHASES.DATE')}
+						axisX={t('CHARTS.PURCHASES.LABEL')}
+						axisY={t('CHARTS.PURCHASES.PRICE')}
+					/>
 				</Grid>
 				<Grid item xs={12} sm={6} md={6}>
 					{/* Title */}
@@ -84,11 +89,11 @@ const Dashboard: FC = () => {
 					{/* Bar */}
 					<StackedBarReChart
 						data={stackedChart.list}
-						x="Date"
-						axisX="Orders"
-						axisY1="Minibar"
-						axisY2="Service Position"
-						axisY3="Room Service"
+						x={t('CHARTS.ORDERS.DATE')}
+						axisX={t('CHARTS.ORDERS.LABEL')}
+						axisY1={t('CHARTS.ORDERS.MODES.MINIBAR')}
+						axisY2={t('CHARTS.ORDERS.MODES.SERVICE_POSITION')}
+						axisY3={t('CHARTS.ORDERS.MODES.ROOM_SERVICE')}
 					/>
 				</Grid>
 			</Grid>

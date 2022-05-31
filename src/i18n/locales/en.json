@@ -490,12 +490,24 @@
 	},
 	"DASHBOARD": {
 		"CHARTS": {
-			"PERIOD": "Select Period",
+			"PERIOD": {
+				"LABEL": "Select Period",
+				"WEEK": "Past Week",
+				"MONTH": "Past Month"
+			},
 			"PURCHASES": {
-				"LABEL": "Total Purchases"
+				"LABEL": "Total Purchases",
+				"DATE": "Date",
+				"PRICE": "Price"
 			},
 			"ORDERS": {
-				"LABEL": "Total Orders"
+				"LABEL": "Total Orders",
+				"DATE": "Date",
+				"MODES": {
+					"MINIBAR": "Minibar",
+					"ROOM_SERVICE": "Room Service",
+					"SERVICE_POSITION": "Service Position"
+				}
 			}
 		}
 	},

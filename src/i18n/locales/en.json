@@ -60,7 +60,7 @@
 			"DELETE": "Delete",
 			"GENERATE": "Generate",
 			"PRINT": "Print",
-			"GOBACK": "Go Back"
+			"GO_BACK": "Go Back"
 		}
 	},
 	"TOOLTIP": {
@@ -786,10 +786,10 @@
 								},
 								"ROOMS_MAPPING": {
 									"LABEL": "Rooms Mapping",
+									"PLACEHOLDER": "Format: 501:932, 349:1412",
 									"VALIDATIONS": {
 										"INVALID": "Invalid format"
-									},
-									"PLACEHOLDER": "Format: 501:932, 349:1412"
+									}
 								},
 								"OUTBOUND_PATTERN": {
 									"LABEL": "Outbound Pattern",

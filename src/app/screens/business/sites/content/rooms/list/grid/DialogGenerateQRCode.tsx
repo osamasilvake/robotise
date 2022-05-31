@@ -32,7 +32,7 @@ import {
 	dateFormat5,
 	dateISOString
 } from '../../../../../../../utilities/methods/Date';
-import { formatPhoneNumber } from '../../../../../../../utilities/methods/PhoneNumber';
+import { formatPhoneNumber } from '../../../../../../../utilities/methods/Number';
 import { timeout } from '../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import QRCodeTemplate from './qr-code-template/QRCodeTemplate';
@@ -191,7 +191,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 			</DialogContent>
 			<DialogActions>
 				<Button variant="outlined" onClick={onCloseDialog}>
-					{t('DIALOG:BUTTONS.GOBACK')}
+					{t('DIALOG:BUTTONS.GO_BACK')}
 				</Button>
 				{code && (
 					<>

@@ -15,6 +15,9 @@ export const RobotElevatorCallsTableStyle = makeStyles((theme: Theme) => ({
 		opacity: 0.6,
 		pointerEvents: 'none'
 	},
+	sTableStatus: {
+		display: 'inline-block'
+	},
 	sTableHistory: {
 		'&:not(:last-child)': {
 			marginBottom: theme.spacing(0.5)

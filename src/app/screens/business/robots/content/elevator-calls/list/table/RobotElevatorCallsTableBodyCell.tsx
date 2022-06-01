@@ -1,5 +1,14 @@
 import { CopyAll } from '@mui/icons-material';
-import { Box, Chip, CircularProgress, Icon, Stack, TableCell, Typography } from '@mui/material';
+import {
+	Box,
+	Chip,
+	CircularProgress,
+	Icon,
+	Stack,
+	TableCell,
+	Tooltip,
+	Typography
+} from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +25,10 @@ import {
 } from '../../../../../../../slices/business/robots/RobotOperations.slice';
 import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
-import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
+import {
+	RobotElevatorCallsTableColumnStatusTypeEnum,
+	RobotElevatorCallsTableColumnsTypeEnum
+} from './RobotElevatorCallsTable.enum';
 import {
 	RobotElevatorCallsTableBodyCellInterface,
 	RobotElevatorCallsTableColumnInterface
@@ -139,15 +151,33 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 			} else if (typeof value === 'string') {
 				if (RobotElevatorCallsTableColumnsTypeEnum.API_STATUS === column.id) {
 					return (
-						<Status level={mapStatus(value)} capitalize>
-							{t(value)}
-						</Status>
+						<Tooltip
+							title={
+								value === RobotElevatorCallsTableColumnStatusTypeEnum.FAILED
+									? t(`${translation}.API_STATUS.FAILED`)
+									: ''
+							}>
+							<Box className={classes.sTableStatus}>
+								<Status level={mapStatus(value)} capitalize>
+									{t(value)}
+								</Status>
+							</Box>
+						</Tooltip>
 					);
 				} else if (RobotElevatorCallsTableColumnsTypeEnum.E2E_STATUS === column.id) {
 					return (
-						<Status level={mapStatus(value)} capitalize>
-							{t(value)}
-						</Status>
+						<Tooltip
+							title={
+								value === RobotElevatorCallsTableColumnStatusTypeEnum.FAILED
+									? t(`${translation}.STATUS.FAILED`)
+									: ''
+							}>
+							<Box className={classes.sTableStatus}>
+								<Status level={mapStatus(value)} capitalize>
+									{t(value)}
+								</Status>
+							</Box>
+						</Tooltip>
 					);
 				}
 				return t(value);

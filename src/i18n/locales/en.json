@@ -1725,6 +1725,12 @@
 							"ELEVATOR_LOGS": "Elevator Logs"
 						},
 						"VALUES": {
+							"API_STATUS": {
+								"FAILED": "Communication between ROC Cloud and Elevator API was not completed successfully"
+							},
+							"STATUS": {
+								"FAILED": "Communication between ROC and Elevator API was unsuccessful, or robot did not enter/exit the car"
+							},
 							"HISTORY": {
 								"EVENT": {
 									"elevator.event.gotCallStatus": "Got Call Status",

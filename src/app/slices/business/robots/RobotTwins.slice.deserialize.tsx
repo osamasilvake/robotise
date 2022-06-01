@@ -170,7 +170,8 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							cpuLoad: state.status.computerInfo.cpuLoad,
 							memoryUsage: state.status.computerInfo.memoryUsage,
 							wifiStatus: state.status.computerInfo.wifiStatus,
-							hardDrives: state.status.computerInfo.hardDrives
+							hardDrives: state.status.computerInfo.hardDrives,
+							distributionInfo: state.status.computerInfo.distributionInfo
 						},
 						updatedAt: meta.status?.computerInfo?.updatedAt
 					},

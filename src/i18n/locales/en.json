@@ -1419,6 +1419,10 @@
 							"hardDrives": {
 								"ICON": "save",
 								"LABEL": "Hard Drives"
+							},
+							"distributionInfo": {
+								"ICON": "info",
+								"LABEL": "Distribution Info"
 							}
 						}
 					},

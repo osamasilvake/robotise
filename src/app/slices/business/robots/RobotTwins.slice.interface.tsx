@@ -216,6 +216,10 @@ export interface SRTContentComputerInfoInterface {
 			status: string;
 			mountPoint: string;
 		}[];
+		distributionInfo: {
+			name: string;
+			version: string;
+		};
 	};
 	updatedAt: Date;
 }
@@ -368,6 +372,10 @@ export interface IRobotTwinInterface {
 						status: string;
 						mountPoint: string;
 					}[];
+					distributionInfo: {
+						name: string;
+						version: string;
+					};
 				};
 				humanPerception: {
 					legsClose: HLocationInterface[];

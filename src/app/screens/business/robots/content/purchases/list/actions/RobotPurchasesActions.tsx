@@ -79,14 +79,16 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 			</SpeedDial>
 
 			{/* Dialog: Purchase Report */}
-			<Report
-				id="order-report-export"
-				open={purchasesReport}
-				setOpen={setPurchasesReport}
-				filterId={cRobotId}
-				filterIdType="robot"
-				state={generalOperations.reports}
-			/>
+			{cSiteId && (
+				<Report
+					id="order-report-export"
+					open={purchasesReport}
+					setOpen={setPurchasesReport}
+					filterId={cSiteId}
+					filterIdType="site"
+					state={generalOperations.reports}
+				/>
+			)}
 
 			{/* Dialog: Purchase Products Report */}
 			{cSiteId && (

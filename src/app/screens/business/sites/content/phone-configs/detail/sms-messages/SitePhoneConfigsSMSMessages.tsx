@@ -40,9 +40,6 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const phoneConfig = content?.data && mapPhoneConfig(content.data[0]);
-	const roomsMapping = Object.entries(phoneConfig?.roomsMapping || {})
-		.map(([key, value]) => `${key}:${value}`)
-		.join(',');
 	const messages = phoneConfig?.smsMessages;
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.SMS';
 
@@ -51,23 +48,7 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 			{ ...messages },
 			() => ({ ...messages }),
 			async () => {
-				// rooms mapping
-				const splitRoomsMapping = String(roomsMapping || '')
-					.split(',')
-					.map((e: string) => e.trim());
-				const mappingsOutput = splitRoomsMapping.reduce(
-					(obj, item) => Object.assign(obj, { [item.split(':')[0]]: item.split(':')[1] }),
-					{}
-				);
-
 				const payload = {
-					mode: phoneConfig?.mode || '',
-					prefixes: phoneConfig?.prefixes || '',
-					from: phoneConfig?.from || '',
-					roomsMapping: mappingsOutput,
-					outboundPattern: phoneConfig?.sip?.outboundPattern || '',
-					callbackRetries: String(phoneConfig?.callbackRetries),
-					smsGateway: phoneConfig?.smsGateway || '',
 					smsMessages: values
 				};
 
@@ -75,7 +56,7 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 				cSiteId &&
 					phoneConfig?.id &&
 					dispatch(
-						PhoneConfigEdit(phoneConfig.id, payload, () => {
+						PhoneConfigEdit(phoneConfig.id, payload as any, () => {
 							// dispatch: fetch site phone configs
 							dispatch(PhoneConfigsFetch(cSiteId, true));
 						})

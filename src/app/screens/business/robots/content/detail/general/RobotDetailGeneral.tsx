@@ -177,6 +177,24 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Box>
 			</Grid>
 
+			{/* Drawer States */}
+			{robotTwins.drawerStates && (
+				<Grid item xs={12} sm={6} md={4} lg={3}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.DRAWER_STATES.LABEL`)}
+					</Typography>
+					<Box>
+						<Typography>
+							{openDrawer
+								? t(`${translation}.DRAWER_STATES.OPENED`, {
+										value: openDrawer.drawer
+								  })
+								: t(`${translation}.DRAWER_STATES.CLOSED`)}
+						</Typography>
+					</Box>
+				</Grid>
+			)}
+
 			{/* Note */}
 			<Grid item xs={12} sm={6} md={4} lg={6} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
@@ -199,24 +217,6 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				{/* Dialog: Note */}
 				{open && <DialogNote open={open} setOpen={setOpen} note={robotTwins.robot.note} />}
 			</Grid>
-
-			{/* Drawer States */}
-			{robotTwins.drawerStates && (
-				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.DRAWER_STATES.LABEL`)}
-					</Typography>
-					<Box>
-						<Typography>
-							{openDrawer
-								? t(`${translation}.DRAWER_STATES.OPENED`, {
-										value: openDrawer.drawer
-								  })
-								: t(`${translation}.DRAWER_STATES.CLOSED`)}
-						</Typography>
-					</Box>
-				</Grid>
-			)}
 		</Grid>
 	);
 };

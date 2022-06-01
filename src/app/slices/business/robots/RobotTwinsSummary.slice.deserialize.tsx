@@ -42,6 +42,7 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T) => {
 				robotId: item.robot.id,
 				robotTitle: item.state.reported.name,
 				robotIsReady: item.state.reported.robotState?.isReady,
+				robotCEInventoryId: item.state.reported.ceInventoryId,
 				robotCustomerName: item.state.reported.customerName,
 				robotUsername: item.state.reported.ca?.username,
 				robotIPAddress: item.state.reported.ca?.ip,

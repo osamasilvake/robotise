@@ -7,6 +7,7 @@ export interface RobotConfigInterface {
 }
 
 export interface RobotConfigFormInterface {
+	ceInventoryId?: string;
 	name?: string;
 	customerName?: string;
 	username?: string;

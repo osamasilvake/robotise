@@ -26,6 +26,7 @@ export interface RTSContentDataInterface {
 	robotControlMode: string;
 	robotBatteryPercentage: number;
 	robotMission: { status: string; description: string };
+	robotCEInventoryId: string;
 	robotCustomerName: string;
 	robotUsername: string;
 	robotIPAddress: string;
@@ -61,9 +62,10 @@ export interface IRobotTwinSummaryInterface {
 	site: { id: string };
 	state: {
 		reported: {
+			ceInventoryId: string;
 			name: string;
-			robotState: { isReady: boolean };
 			customerName: string;
+			robotState: { isReady: boolean };
 			ca: { ip: string; username: string };
 			note: string;
 			isHidden: boolean;

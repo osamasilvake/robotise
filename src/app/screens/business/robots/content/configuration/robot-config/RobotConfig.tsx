@@ -48,6 +48,7 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<RobotConfigFormInterface>(
 			{
+				ceInventoryId: robotTwinsSingle?.robotCEInventoryId || '',
 				name: robotTwinsSingle?.robotTitle || '',
 				customerName: robotTwinsSingle?.robotCustomerName || '',
 				username: robotTwinsSingle?.robotUsername || '',
@@ -92,6 +93,24 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 
 				<form onSubmit={handleSubmit}>
 					<Grid container spacing={1}>
+						<Grid item xs={12}>
+							<FormControl fullWidth margin="normal">
+								<TextField
+									type="text"
+									id="ceInventoryId"
+									name="ceInventoryId"
+									label={t(`${translation}.FORM.FIELDS.CE_INVENTORY_ID.LABEL`)}
+									placeholder={t(
+										`${translation}.FORM.FIELDS.CE_INVENTORY_ID.PLACEHOLDER`
+									)}
+									value={values?.ceInventoryId}
+									onChange={handleChangeInput}
+									onBlur={handleBlur}
+									error={!!errors?.ceInventoryId}
+									helperText={errors?.ceInventoryId && t(errors.ceInventoryId)}
+								/>
+							</FormControl>
+						</Grid>
 						<Grid item xs={12} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField

@@ -443,6 +443,7 @@ class RobotsService {
 					name: payload.name,
 					customerName: payload.customerName,
 					configs: {
+						ceInventoryId: payload.ceInventoryId,
 						ca: (payload.username || payload.ipAddress) && {
 							username: payload.username,
 							ip: payload.ipAddress

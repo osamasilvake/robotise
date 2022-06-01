@@ -49,6 +49,7 @@ export interface SRTContentSiteInterface {
 export interface SRTContentRobotInterface {
 	id: string;
 	name: string;
+	ceInventoryId: string;
 	customerName: string;
 	note: string;
 }
@@ -276,6 +277,7 @@ export interface IRobotTwinInterface {
 	};
 	state: {
 		reported: {
+			ceInventoryId: string;
 			name: string;
 			customerName: string;
 			note: string;

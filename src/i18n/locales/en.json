@@ -1121,6 +1121,7 @@
 						"INACTIVE": "Inactive"
 					},
 					"IP_ADDRESS": "IP Address",
+					"CE_INVENTORY_ID": "CE Inventory ID",
 					"USERNAME": "CA Username",
 					"NOTE": {
 						"LABEL": "Note",
@@ -1773,6 +1774,10 @@
 					"EXCERPT": "Update Robot detail.",
 					"FORM": {
 						"FIELDS": {
+							"CE_INVENTORY_ID": {
+								"LABEL": "CE Inventory ID",
+								"PLACEHOLDER": "Enter CE Inventory ID"
+							},
 							"NAME": {
 								"LABEL": "Name",
 								"PLACEHOLDER": "Enter robot name",

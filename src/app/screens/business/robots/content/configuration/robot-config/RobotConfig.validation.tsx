@@ -11,6 +11,7 @@ export const RobotConfigValidation = (
 ): RobotConfigFormInterface => {
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIG.FORM.FIELDS';
 	const errors: RobotConfigFormInterface = {
+		ceInventoryId: '',
 		name: '',
 		customerName: '',
 		username: '',

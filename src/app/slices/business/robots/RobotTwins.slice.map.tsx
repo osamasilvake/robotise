@@ -18,6 +18,7 @@ export const mapRobotTwins = (
 		robot: {
 			id: robotTwins.robot.id,
 			name: robotTwins.robot.name,
+			ceInventoryId: robotTwins.robot.ceInventoryId,
 			customerName: robotTwins.robot.customerName,
 			note: robotTwins.robot.note
 		},

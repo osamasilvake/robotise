@@ -59,6 +59,16 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 				</Typography>
 			</Grid>
 
+			{/* CE Inventory ID */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.CE_INVENTORY_ID`)}
+				</Typography>
+				<Typography>
+					{robotTwins.robot?.ceInventoryId || AppConfigService.AppOptions.common.none}
+				</Typography>
+			</Grid>
+
 			{/* Username */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">

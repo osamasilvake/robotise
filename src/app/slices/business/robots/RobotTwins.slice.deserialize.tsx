@@ -46,6 +46,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 					robot: {
 						id: data.robot.id,
 						name: state.name,
+						ceInventoryId: state.ceInventoryId,
 						customerName: state.customerName,
 						note: state.note
 					},

@@ -720,14 +720,14 @@
 							"FIELDS": {
 								"WHITELIST": {
 									"LABEL": "Whitelist",
-									"PLACEHOLDER": "Add whitelist rooms",
+									"PLACEHOLDER": "Whitelisted rooms. Format: 101,102, 105-110",
 									"VALIDATIONS": {
 										"INVALID": "Wrong format!"
 									}
 								},
 								"BLOCKED": {
 									"LABEL": "Blocked",
-									"PLACEHOLDER": "Add blocked rooms",
+									"PLACEHOLDER": "Blocked rooms. Format: 101,102, 105-110",
 									"VALIDATIONS": {
 										"INVALID": "Wrong format!",
 										"SIMILAR": "Looks like Whitelist and Blocked rooms have a common room!"

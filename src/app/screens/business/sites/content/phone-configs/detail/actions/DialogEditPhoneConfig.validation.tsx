@@ -25,12 +25,7 @@ export const EditPhoneConfigValidation = (
 	};
 
 	// Prefixes
-	if (touched.prefixes) {
-		// required
-		if (!values.prefixes) {
-			errors.prefixes = `${translation}.FIELDS.PREFIXES.VALIDATIONS.REQUIRED`;
-		}
-
+	if (touched.prefixes && values.prefixes) {
 		// invalid
 		if (values.prefixes && !regexPhoneCommaSeparated.test(values.prefixes)) {
 			errors.prefixes = `${translation}.FIELDS.PREFIXES.VALIDATIONS.INVALID`;

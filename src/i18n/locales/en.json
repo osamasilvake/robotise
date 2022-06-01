@@ -789,7 +789,6 @@
 									"LABEL": "Prefixes",
 									"PLACEHOLDER": "Format: +49221277208, +49221277209",
 									"VALIDATIONS": {
-										"REQUIRED": "Prefixes is required.",
 										"INVALID": "Invalid format"
 									}
 								},

@@ -124,7 +124,6 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 
 						<FormControl fullWidth margin="normal">
 							<TextField
-								required
 								type="string"
 								id="prefixes"
 								name="prefixes"

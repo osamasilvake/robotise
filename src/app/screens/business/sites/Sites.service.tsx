@@ -256,7 +256,9 @@ class SitesService {
 				type: 'phone-dispatcher-configs',
 				attributes: {
 					mode: payload.mode,
-					prefixes: payload.prefixes.split(',').map((e: string) => e.trim()),
+					prefixes: payload.prefixes
+						? payload.prefixes.split(',').map((e: string) => e.trim())
+						: [],
 					from: payload.from,
 					roomsMapping: payload.roomsMapping,
 					sip: { outboundPattern: payload?.outboundPattern || '' },

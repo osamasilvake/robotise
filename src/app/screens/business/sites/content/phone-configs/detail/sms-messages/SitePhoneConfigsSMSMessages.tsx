@@ -51,11 +51,20 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 			{ ...messages },
 			() => ({ ...messages }),
 			async () => {
+				// rooms mapping
+				const splitRoomsMapping = String(roomsMapping || '')
+					.split(',')
+					.map((e: string) => e.trim());
+				const mappingsOutput = splitRoomsMapping.reduce(
+					(obj, item) => Object.assign(obj, { [item.split(':')[0]]: item.split(':')[1] }),
+					{}
+				);
+
 				const payload = {
 					mode: phoneConfig?.mode || '',
 					prefixes: phoneConfig?.prefixes || '',
 					from: phoneConfig?.from || '',
-					roomsMapping: roomsMapping || '',
+					roomsMapping: mappingsOutput,
 					outboundPattern: phoneConfig?.sip?.outboundPattern || '',
 					callbackRetries: String(phoneConfig?.callbackRetries),
 					smsGateway: phoneConfig?.smsGateway || '',

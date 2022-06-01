@@ -7,5 +7,8 @@ export const SyncProductsStyle = makeStyles((theme: Theme) => ({
 	},
 	sUpdated: {
 		marginTop: theme.spacing(1.5)
+	},
+	sNote: {
+		marginTop: theme.spacing(1.5)
 	}
 }));

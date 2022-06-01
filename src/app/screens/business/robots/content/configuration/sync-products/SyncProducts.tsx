@@ -59,6 +59,10 @@ const SyncProducts: FC<SyncProductsInterface> = (props) => {
 						{dateFormat1(lastSynced)}
 					</Typography>
 				)}
+
+				<Typography variant="body2" color="textSecondary" className={classes.sNote}>
+					{t(`${translation}.NOTE`)}
+				</Typography>
 			</CardContent>
 		</Card>
 	);

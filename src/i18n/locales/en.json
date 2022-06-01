@@ -1751,7 +1751,8 @@
 				"SYNC_PRODUCTS": {
 					"TITLE": "Sync Products",
 					"EXCERPT": "Sync Products on the robot.",
-					"SYNC": "SYNC"
+					"SYNC": "SYNC",
+					"NOTE": "Note: Sync is not possible when robot is offline"
 				},
 				"EMERGENCY": {
 					"TITLE": "Emergency State",

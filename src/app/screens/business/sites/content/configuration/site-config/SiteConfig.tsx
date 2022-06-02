@@ -65,7 +65,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			currency: siteSingle?.currency || AppConfigService.AppOptions.common.currencies[0].id,
 			availableOrderModes: siteSingle?.configs.availableOrderModes || [],
 			helpPage: siteSingle?.configs.helpPage || '',
-			qrOrdersEnabled: !!siteSingle?.configs.qrOrdersEnabled,
+			codeOrdersEnabled: !!siteSingle?.configs.codeOrdersEnabled,
 			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
 			isHidden: !!siteSingle?.configs.isHidden
 		},
@@ -223,8 +223,8 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								<FormControlLabel
 									control={
 										<Switch
-											name="qrOrdersEnabled"
-											checked={values.qrOrdersEnabled}
+											name="codeOrdersEnabled"
+											checked={values.codeOrdersEnabled}
 											onChange={handleChangeCheckbox}
 										/>
 									}

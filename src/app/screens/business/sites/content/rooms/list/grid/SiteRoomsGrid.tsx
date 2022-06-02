@@ -40,7 +40,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 
 	const allRooms = siteSingle.rooms.available;
 	const allWhitelist = siteSingle.rooms.whitelist;
-	const qrEnabled = siteSingle?.configs?.qrOrdersEnabled;
+	const codeOrdersEnabled = siteSingle?.configs?.codeOrdersEnabled;
 	const qrCodesDataById = qrCodes.content?.dataById;
 
 	const translation = 'CONTENT.ROOMS.LIST.GRID';
@@ -120,7 +120,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														<Typography variant="body2">
 															{t(`${translation}.ROOM`)}
 														</Typography>
-														{qrEnabled &&
+														{codeOrdersEnabled &&
 															qrCodesDataById &&
 															qrCodesDataById[room] && (
 																<QrCode2
@@ -136,7 +136,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 													<Box
 														className={clsx({
 															[classes.sQRChip]:
-																!qrEnabled ||
+																!codeOrdersEnabled ||
 																!allWhitelist?.includes(room)
 														})}>
 														<Chip

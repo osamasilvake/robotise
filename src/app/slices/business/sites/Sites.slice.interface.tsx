@@ -38,7 +38,7 @@ export interface ISite {
 		defaultOrderMode: string;
 		availableOrderModes: string[];
 		helpPage: string;
-		qrOrdersEnabled: boolean;
+		codeOrdersEnabled: boolean;
 		showEmergencyWorkflow: boolean;
 		isHidden: boolean;
 	};

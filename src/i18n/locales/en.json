@@ -987,7 +987,7 @@
 							},
 							"CHECKBOXES": {
 								"QR_CODE": {
-									"LABEL": "Enable QR Code",
+									"LABEL": "Enable Room Code Orders",
 									"NOTE": "*Allow orders using QR Code!"
 								},
 								"EMERGENCY": {

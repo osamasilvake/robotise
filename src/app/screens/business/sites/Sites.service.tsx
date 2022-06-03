@@ -10,6 +10,7 @@ import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/S
 import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
 import { SitePhoneConfigUploadAudioInterface } from './content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
 import { SitePhoneConfigsPhoneNumbersTypeEnum } from './content/phone-configs/detail/SitePhoneConfigsDetail.enum';
+import { SitePhoneConfigsSMSMessagesFormInterface } from './content/phone-configs/detail/sms-messages/SitePhoneConfigsSMSMessages.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
@@ -245,26 +246,33 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	sitePhoneConfigEdit = (phoneConfigId: string, payload: DialogEditPhoneConfigFormInterface) => {
+	sitePhoneConfigEdit = (
+		phoneConfigId: string,
+		payload:
+			| DialogEditPhoneConfigFormInterface
+			| { [key: string]: SitePhoneConfigsSMSMessagesFormInterface }
+	) => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS.SINGLE.replace(
 				':phoneConfigId',
 				phoneConfigId
 			);
+		const prefixes = payload.prefixes as string;
+
 		return HttpClientService.patch(url, {
 			data: {
 				type: 'phone-dispatcher-configs',
 				attributes: {
-					mode: payload.mode,
-					prefixes: payload.prefixes
-						? payload.prefixes.split(',').map((e: string) => e.trim())
+					mode: payload?.mode,
+					prefixes: payload?.prefixes
+						? prefixes?.split(',').map((e: string) => e.trim())
 						: [],
-					from: payload.from,
-					roomsMapping: payload.roomsMapping,
+					from: payload?.from,
+					roomsMapping: payload?.roomsMapping,
 					sip: { outboundPattern: payload?.outboundPattern || '' },
-					callbackRetries: payload.callbackRetries,
-					smsGateway: payload.smsGateway,
-					smsMessages: payload.smsMessages
+					callbackRetries: payload?.callbackRetries,
+					smsGateway: payload?.smsGateway,
+					smsMessages: payload?.smsMessages
 				}
 			}
 		});

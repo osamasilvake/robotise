@@ -5,6 +5,7 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { DialogEditPhoneConfigFormInterface } from '../../../../screens/business/sites/content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
 import { SitePhoneConfigUploadAudioInterface } from '../../../../screens/business/sites/content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
 import { SitePhoneConfigsPhoneNumbersTypeEnum } from '../../../../screens/business/sites/content/phone-configs/detail/SitePhoneConfigsDetail.enum';
+import { SitePhoneConfigsSMSMessagesFormInterface } from '../../../../screens/business/sites/content/phone-configs/detail/sms-messages/SitePhoneConfigsSMSMessages.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { RootState } from '../../..';
@@ -194,7 +195,13 @@ export const PhoneConfigsFetchPhoneNumbers =
  * @returns
  */
 export const PhoneConfigEdit =
-	(phoneConfigId: string, payload: DialogEditPhoneConfigFormInterface, callback: () => void) =>
+	(
+		phoneConfigId: string,
+		payload:
+			| DialogEditPhoneConfigFormInterface
+			| { [key: string]: SitePhoneConfigsSMSMessagesFormInterface },
+		callback: () => void
+	) =>
 	async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());

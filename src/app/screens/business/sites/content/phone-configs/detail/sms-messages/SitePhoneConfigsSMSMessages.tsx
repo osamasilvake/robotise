@@ -56,7 +56,7 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 				cSiteId &&
 					phoneConfig?.id &&
 					dispatch(
-						PhoneConfigEdit(phoneConfig.id, payload as any, () => {
+						PhoneConfigEdit(phoneConfig.id, payload, () => {
 							// dispatch: fetch site phone configs
 							dispatch(PhoneConfigsFetch(cSiteId, true));
 						})

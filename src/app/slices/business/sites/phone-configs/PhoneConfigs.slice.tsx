@@ -242,6 +242,60 @@ export const PhoneConfigEdit =
 	};
 
 /**
+ * edit phone config SMS Messages
+ * @param phoneConfigId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const PhoneConfigSmsMessagesEdit =
+	(
+		phoneConfigId: string,
+		payload:
+			| DialogEditPhoneConfigFormInterface
+			| { [key: string]: SitePhoneConfigsSMSMessagesFormInterface },
+		callback: () => void
+	) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return SitesService.sitePhoneConfigSmsMessagesEdit(phoneConfigId, payload)
+			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated());
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-edit-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.PHONE_CONFIGS.EDIT.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-edit-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.PHONE_CONFIGS.EDIT.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: updateFailed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * upload phone config audio
  * @param phoneConfigId
  * @param payload

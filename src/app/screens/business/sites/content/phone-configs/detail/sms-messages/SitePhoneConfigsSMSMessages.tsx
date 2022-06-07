@@ -15,8 +15,8 @@ import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
 import {
-	PhoneConfigEdit,
 	PhoneConfigsFetch,
+	PhoneConfigSmsMessagesEdit,
 	phoneConfigsSelector
 } from '../../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
@@ -56,7 +56,7 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 				cSiteId &&
 					phoneConfig?.id &&
 					dispatch(
-						PhoneConfigEdit(phoneConfig.id, payload, () => {
+						PhoneConfigSmsMessagesEdit(phoneConfig.id, payload, () => {
 							// dispatch: fetch site phone configs
 							dispatch(PhoneConfigsFetch(cSiteId, true));
 						})

@@ -279,6 +279,34 @@ class SitesService {
 	};
 
 	/**
+	 * edit phone config SMS Messages
+	 * @param phoneConfigId
+	 * @param payload
+	 * @returns
+	 */
+	sitePhoneConfigSmsMessagesEdit = (
+		phoneConfigId: string,
+		payload:
+			| DialogEditPhoneConfigFormInterface
+			| { [key: string]: SitePhoneConfigsSMSMessagesFormInterface }
+	) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS.SINGLE.replace(
+				':phoneConfigId',
+				phoneConfigId
+			);
+
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'phone-dispatcher-configs',
+				attributes: {
+					smsMessages: payload?.smsMessages
+				}
+			}
+		});
+	};
+
+	/**
 	 * upload phone config audio
 	 * @param phoneConfigId
 	 * @param payload

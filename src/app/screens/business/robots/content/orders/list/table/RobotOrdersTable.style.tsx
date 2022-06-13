@@ -17,5 +17,8 @@ export const RobotOrdersTableStyle = makeStyles((theme: Theme) => ({
 	},
 	sCancelOrder: {
 		marginLeft: theme.spacing(1)
+	},
+	sRestartOrder: {
+		marginLeft: theme.spacing(0.25)
 	}
 }));

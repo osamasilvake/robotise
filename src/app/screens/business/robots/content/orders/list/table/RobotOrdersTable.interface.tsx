@@ -38,6 +38,12 @@ export interface DialogCancelOrderInterface {
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
+export interface DialogRestartOrderInterface {
+	order: SOCDataInterface;
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
 export interface RobotOrdersTableColumnInterface {
 	id: RobotOrdersTableColumnsTypeEnum;
 	label: string;

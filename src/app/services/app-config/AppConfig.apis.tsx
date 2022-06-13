@@ -55,8 +55,11 @@ const AppServices = (config: typeof AppConfigService) => {
 					MAP: `${config.envAppUrl}/maps/:mapId`,
 					COMMANDS: `${config.envAppUrl}/robots/:robotId/commands`,
 					INVENTORY: `${config.envAppUrl}/robots/:robotId/inventory`,
-					ORDERS: `${config.envAppUrl}/orders`,
-					ORDER: `${config.envAppUrl}/orders/:orderId`,
+					ORDERS: {
+						FETCH: `${config.envAppUrl}/orders`,
+						SINGLE: `${config.envAppUrl}/orders/:orderId`,
+						RESTART: `${config.envAppUrl}/orders/:orderId/restart`
+					},
 					PURCHASES: `${config.envAppUrl}/order-reports`,
 					PURCHASE: `${config.envAppUrl}/order-reports/:purchaseId`,
 					COMMANDS_LOGS: `${config.envAppUrl}/robot-commands`,

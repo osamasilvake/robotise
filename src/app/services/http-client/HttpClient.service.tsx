@@ -34,6 +34,17 @@ class HttpClientService {
 	};
 
 	/**
+	 * PUT
+	 * @param url
+	 * @param data
+	 * @param config
+	 */
+	put = async <T, K>(url: string, data?: T, config?: AxiosRequestConfig): Promise<K> => {
+		const resp = await axios.put(url, data, config);
+		return resp.data as K;
+	};
+
+	/**
 	 * DELETE
 	 * @param url
 	 * @param config

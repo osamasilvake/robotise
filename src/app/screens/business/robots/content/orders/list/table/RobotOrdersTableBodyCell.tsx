@@ -1,4 +1,4 @@
-import { Box, Chip, Link, TableCell } from '@mui/material';
+import { Box, Chip, Link, Stack, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink, useParams } from 'react-router-dom';
@@ -6,10 +6,14 @@ import { Link as RouterLink, useParams } from 'react-router-dom';
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
-import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
+import { dateDayJs, dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import DialogCancelOrder from './DialogCancelOrder';
-import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
+import DialogRestartOrder from './DialogRestartOrder';
+import {
+	RobotOrdersTableColumnStatusTypeEnum,
+	RobotOrdersTableColumnsTypeEnum
+} from './RobotOrdersTable.enum';
 import {
 	RobotOrdersTableBodyCellInterface,
 	RobotOrdersTableColumnInterface
@@ -22,7 +26,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const { t } = useTranslation(['ROBOTS', 'GENERAL']);
 	const classes = RobotOrdersTableStyle();
 
-	const [open, setOpen] = useState(false);
+	const [openCancel, setOpenCancel] = useState(false);
+	const [openRestart, setOpenRestart] = useState(false);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
@@ -38,7 +43,19 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 		event.stopPropagation();
 
 		// show dialog
-		setOpen(true);
+		setOpenCancel(true);
+	};
+
+	/**
+	 * open restart order dialog
+	 * @param event
+	 */
+	const openRestartOrderDialog = (event: MouseEvent<HTMLDivElement>) => {
+		// stop propagation
+		event.stopPropagation();
+
+		// show dialog
+		setOpenRestart(true);
 	};
 
 	/**
@@ -71,11 +88,16 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 			);
 		} else if (typeof value === 'string') {
 			if (RobotOrdersTableColumnsTypeEnum.STATUS === column.id) {
+				const notFinished = order.status !== RobotOrdersTableColumnStatusTypeEnum.FINISHED;
+				const yesterday = dateDayJs().subtract(1, 'd');
+				const notBefore24hrs = dateDayJs(order.createdAt).isAfter(yesterday);
 				return (
-					<Box>
-						<Status level={mapStatus(value)}>{t(value.replace(':', '_'))}</Status>
+					<Stack spacing={0.5} direction="row" alignItems="center">
+						<Box>
+							<Status level={mapStatus(value)}>{t(value.replace(':', '_'))}</Status>
+						</Box>
 						{isOrderCancellable(value) && (
-							<>
+							<Box>
 								<Chip
 									size="small"
 									label={t(`${translation}.ACTIONS.CANCEL.LABEL`)}
@@ -85,16 +107,36 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 									onClick={openCancelOrderDialog}
 									className={classes.sCancelOrder}
 								/>
-								{open && (
+								{openCancel && (
 									<DialogCancelOrder
 										order={order}
-										open={open}
-										setOpen={setOpen}
+										open={openCancel}
+										setOpen={setOpenCancel}
 									/>
 								)}
-							</>
+							</Box>
 						)}
-					</Box>
+						{notFinished && notBefore24hrs && (
+							<Box>
+								<Chip
+									size="small"
+									label={t(`${translation}.ACTIONS.RESTART.LABEL`)}
+									variant="outlined"
+									color="primary"
+									onDelete={openRestartOrderDialog}
+									onClick={openRestartOrderDialog}
+									className={classes.sRestartOrder}
+								/>
+								{openRestart && (
+									<DialogRestartOrder
+										order={order}
+										open={openRestart}
+										setOpen={setOpenRestart}
+									/>
+								)}
+							</Box>
+						)}
+					</Stack>
 				);
 			} else if (RobotOrdersTableColumnsTypeEnum.MODE === column.id) {
 				return t(`GENERAL:COMMON.MODE.${value}`);

@@ -215,7 +215,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotOrdersFetch = (robotId: string, payload: RobotOrdersListPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
 		return HttpClientService.get<RobotOrdersAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
@@ -234,7 +234,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotOrderCreate = (siteId: string, payload: DialogCreateOrderFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
 		return HttpClientService.post<
 			RobotOrderCreateAxiosPostRequestInterface,
 			RobotOrderCreateAxiosPostResponseInterface
@@ -261,7 +261,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotOrderCancel = (siteId: string, ids: string[]) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
 		return HttpClientService.patch<
 			RobotOrderCancelAxiosPatchRequestInterface,
 			RobotOrderCancelAxiosPatchResponseInterface
@@ -285,12 +285,25 @@ class RobotsService {
 	};
 
 	/**
+	 * restart an order
+	 * @param orderId
+	 * @returns
+	 */
+	robotOrderRestart = (orderId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.RESTART.replace(
+			':orderId',
+			orderId
+		);
+		return HttpClientService.put(url);
+	};
+
+	/**
 	 * fetch robot order
 	 * @param orderId
 	 * @returns
 	 */
 	robotOrderFetch = (orderId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDER.replace(
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.SINGLE.replace(
 			':orderId',
 			orderId
 		);

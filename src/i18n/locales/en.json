@@ -311,6 +311,10 @@
 					"CANCEL": {
 						"SUCCESS": "Order has been canceled successfully!",
 						"ERROR": "Unable to cancel the order!"
+					},
+					"RESTART": {
+						"SUCCESS": "Order has been restarted successfully!",
+						"ERROR": "Unable to restart the order!"
 					}
 				},
 				"PURCHASES": {
@@ -1562,6 +1566,11 @@
 							"ERROR": {
 								"SITE": "Missing site ID in the order!"
 							}
+						},
+						"RESTART": {
+							"LABEL": "restart",
+							"TITLE": "Restart Order",
+							"TEXT": "Are you sure you want to restart the order?"
 						}
 					},
 					"TABLE": {
@@ -1660,6 +1669,7 @@
 								"SAVE": "Save",
 								"CLEAR": "Clear",
 								"CANCEL": "Cancel",
+								"RESTART": "Restart",
 								"FIELD": {
 									"LABEL": "Comment",
 									"PLACEHOLDER": "Enter a comment"

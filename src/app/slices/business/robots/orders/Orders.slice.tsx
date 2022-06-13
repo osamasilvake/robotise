@@ -254,6 +254,62 @@ export const OrderCancel =
 	};
 
 /**
+ * restart an order
+ * @param orderId
+ * @param callback
+ * @returns
+ */
+export const OrderRestart =
+	(orderId: string, callback: () => void) =>
+	async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const orders = states.orders;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		return RobotsService.robotOrderRestart(orderId)
+			.then(async (res) => {
+				// deserialize response
+				let result = await deserializeOrder(res);
+
+				if (orders.content) {
+					// map created order
+					result = mapCreatedOrder(orders.content, result);
+
+					// dispatch: updated
+					dispatch(updated(result));
+				}
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'order-restart-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ORDERS.RESTART.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// callback
+				callback();
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'order-restart-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.ORDERS.RESTART.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * update state
  * @param state
  * @returns

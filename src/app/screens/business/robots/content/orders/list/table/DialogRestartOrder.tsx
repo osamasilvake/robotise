@@ -59,7 +59,6 @@ const DialogRestartOrder: FC<DialogRestartOrderInterface> = (props) => {
 						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
-						color="error"
 						variant="outlined"
 						onClick={restartOrder(true)}
 						disabled={orders.updating || !order.site}

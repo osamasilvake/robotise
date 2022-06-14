@@ -1,10 +1,10 @@
-import { Box, Icon, Stack, TableCell } from '@mui/material';
+import { Box, Icon, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { CLCDataInterface } from '../../../../../../../slices/business/robots/commands-log/CommandsLog.slice.interface';
-import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
+import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import { RobotCommandsLogTableColumnsTypeEnum } from './RobotCommandsLogTable.enum';
 import {
 	RobotCommandsLogTableBodyCellInterface,
@@ -46,8 +46,13 @@ const RobotCommandsLogTableBodyCell: FC<RobotCommandsLogTableBodyCellInterface> 
 								className={classes.sTableHistoryIcon}>
 								{mapHistoryStatus(item.status).icon}
 							</Icon>
-							{t(historyMapped[index].status)}
-							{item.details && <>: {item.details}</>}
+							<Typography variant="body2">
+								{t(historyMapped[index].status)}
+								{!!item.details && `: ${item.details}`}
+							</Typography>
+							<Typography variant="caption" color="textSecondary">
+								({dateFormat3(item.createdAt)})
+							</Typography>
 						</Stack>
 					))}
 				</Box>

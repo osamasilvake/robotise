@@ -12,7 +12,6 @@ import {
 	YAxis
 } from 'recharts';
 
-import { AppConfigService } from '../../../services';
 import { appSelector } from '../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../slices/app/App.slice.enum';
 import { dateFormat6 } from '../../methods/Date';
@@ -20,7 +19,8 @@ import { StackedBarChartInterface } from './StackedBarChart.interface';
 import { StackedBarChartStyle } from './StackedBarChart.style';
 
 const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
-	const { data, x, axisX, axisY1, axisY2, axisY3 } = props;
+	const { data, x, axisX, axisY1, axisY2, axisY3, fills, barCategoryGap, gridLinesHorizontal } =
+		props;
 	const styles = StackedBarChartStyle;
 
 	const app = useSelector(appSelector);
@@ -38,9 +38,10 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 	return (
 		<Box style={styles.sBox}>
 			<ResponsiveContainer>
-				<BarChart data={mapData}>
+				<BarChart data={mapData} barCategoryGap={barCategoryGap}>
 					{/* Cartesian Grid */}
 					<CartesianGrid
+						horizontal={gridLinesHorizontal || false}
 						vertical={false}
 						stroke={styles.sCartesianGrid.stroke}
 						strokeDasharray="4 4"
@@ -58,21 +59,9 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 					/>
 
 					{/* Bar */}
-					<Bar
-						dataKey={axisY1}
-						fill={AppConfigService.AppOptions.colors.c10v1}
-						stackId={stackId}
-					/>
-					<Bar
-						stackId={stackId}
-						dataKey={axisY2}
-						fill={AppConfigService.AppOptions.colors.c14}
-					/>
-					<Bar
-						stackId={stackId}
-						dataKey={axisY3}
-						fill={AppConfigService.AppOptions.colors.c13}
-					/>
+					<Bar dataKey={axisY1} fill={fills[0]} stackId={stackId} />
+					<Bar stackId={stackId} dataKey={axisY2} fill={fills[1]} />
+					<Bar stackId={stackId} dataKey={axisY3} fill={fills[2]} />
 
 					{/* Legend */}
 					<Legend />

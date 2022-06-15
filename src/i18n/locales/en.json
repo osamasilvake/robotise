@@ -512,6 +512,15 @@
 					"ROOM_SERVICE": "Room Service",
 					"SERVICE_POSITION": "Service Position"
 				}
+			},
+			"INVENTORY": {
+				"LABEL": "Inventory Status",
+				"DATE": "Date",
+				"STATUS": {
+					"GREEN": "Full",
+					"YELLOW": "Low",
+					"RED": "Empty"
+				}
 			}
 		}
 	},

@@ -5,6 +5,9 @@ export interface StackedBarChartInterface {
 	axisY1: string;
 	axisY2: string;
 	axisY3: string;
+	fills: string[];
+	barCategoryGap?: number;
+	gridLinesHorizontal?: boolean;
 }
 
 export interface StackedBarChartDataInterface {

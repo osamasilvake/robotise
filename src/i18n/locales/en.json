@@ -1732,8 +1732,8 @@
 							"API_STATUS": "API Status",
 							"E2E_STATUS": "Status",
 							"CALL_TYPE": "Call Type",
-							"SRC_AREA_ID": "SRC ID",
-							"DST_AREA_ID": "DST ID",
+							"SRC_AREA_ID": "Source",
+							"DST_AREA_ID": "Destination",
 							"HISTORY": "History",
 							"CREATED": "Created",
 							"ELEVATOR_LOGS": "Elevator Logs"
@@ -1747,11 +1747,11 @@
 							},
 							"HISTORY": {
 								"EVENT": {
-									"elevator.event.gotCallStatus": "Got Call Status",
-									"elevator.event.gotLiftId": "Got Lift ID",
-									"elevator.event.gotStatus": "Got Status",
-									"robot.event.enteredLift": "Robot Entered Lift",
-									"robot.event.leftLift": "Robot Left Lift",
+									"elevator.event.gotCallStatus": "Call Status",
+									"elevator.event.gotLiftId": "Elevator: Lift Id >",
+									"elevator.event.gotStatus": "Elevator",
+									"robot.event.enteredLift": "Robot: Entered Lift",
+									"robot.event.leftLift": "Robot: Left Lift",
 									"elevator.event.error": "Error"
 								}
 							},

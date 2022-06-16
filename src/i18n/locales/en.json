@@ -1748,7 +1748,7 @@
 							"HISTORY": {
 								"EVENT": {
 									"elevator.event.gotCallStatus": "Call Status",
-									"elevator.event.gotLiftId": "Elevator: Lift Id >",
+									"elevator.event.gotLiftId": "Elevator: Sending Lift",
 									"elevator.event.gotStatus": "Elevator",
 									"robot.event.enteredLift": "Robot: Entered Lift",
 									"robot.event.leftLift": "Robot: Left Lift",

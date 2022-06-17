@@ -1039,7 +1039,7 @@
 									"phone-room": "Phone Room",
 									"phone-customer": "Phone Customer",
 									"sms-customer": "SMS Customer",
-									"webhook": "SMS Customer",
+									"webhook": "Webhook",
 									"mobile_push": "Mobile Push"
 								},
 								"VALIDATIONS": {

@@ -14,6 +14,10 @@ export interface SliceSiteOperationsInterface {
 		loading: boolean;
 		content: SOOContentInterface | null;
 	};
+	customerNotificationTypes: {
+		loading: boolean;
+		content: SCNContentInterface | null;
+	};
 	cleanTestOrders: {
 		loading: boolean;
 	};
@@ -25,4 +29,12 @@ export interface SOOContentInterface extends JsonAPIResponseInterface {
 
 export interface SOOContentDataInterface {
 	origin: string;
+}
+
+export interface SCNContentInterface extends JsonAPIResponseInterface {
+	data: SCNContentDataInterface[];
+}
+
+export interface SCNContentDataInterface {
+	type: string;
 }

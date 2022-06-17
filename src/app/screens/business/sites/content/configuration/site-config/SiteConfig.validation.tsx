@@ -16,6 +16,7 @@ export const SiteConfigValidation = (
 		currency: '',
 		availableOrderModes: [],
 		orderOriginsEnabled: [],
+		customerNotificationTypesEnabled: [],
 		helpPage: ''
 	};
 
@@ -34,10 +35,19 @@ export const SiteConfigValidation = (
 		}
 	}
 
-	// Order Origin
+	// Order Origins
 	if (touched.orderOriginsEnabled) {
 		if (values.orderOriginsEnabled.length < 1) {
 			errors.orderOriginsEnabled = [`${translation}.ORDER_ORIGINS.VALIDATIONS.REQUIRED`];
+		}
+	}
+
+	// Customer Notification Types
+	if (touched.customerNotificationTypesEnabled) {
+		if (values.customerNotificationTypesEnabled.length < 1) {
+			errors.customerNotificationTypesEnabled = [
+				`${translation}.CUSTOMER_NOTIFICATION_TYPES.VALIDATIONS.REQUIRED`
+			];
 		}
 	}
 

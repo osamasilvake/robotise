@@ -21,6 +21,7 @@ import {
 	RobotQRCodeCreateAxiosPostResponseInterface,
 	SiteCreateAxiosPostRequestInterface,
 	SiteCreateAxiosPostResponseInterface,
+	SiteCustomerNotificationTypesAxiosGetInterface,
 	SiteMapsAxiosGetInterface,
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
@@ -600,6 +601,7 @@ class SitesService {
 						defaultOrderMode: payload.defaultOrderMode,
 						availableOrderModes: payload.availableOrderModes,
 						orderOriginsEnabled: payload.orderOriginsEnabled,
+						customerNotificationTypesEnabled: payload.customerNotificationTypesEnabled,
 						helpPage: payload.helpPage,
 						showEmergencyWorkflow: payload.showEmergencyWorkflow,
 						isHidden: payload.isHidden
@@ -618,6 +620,17 @@ class SitesService {
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
 				.ORDER_ORIGINS;
 		return HttpClientService.get<SiteOrderOriginsAxiosGetInterface>(url);
+	};
+
+	/**
+	 * fetch customer notification types
+	 * @returns
+	 */
+	siteCustomerNotificationTypesFetch = () => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
+				.CUSTOMER_NOTIFICATION_TYPES;
+		return HttpClientService.get<SiteCustomerNotificationTypesAxiosGetInterface>(url);
 	};
 
 	/**

@@ -270,6 +270,9 @@
 					"ORDER_ORIGINS": {
 						"ERROR": "Unable to fetch order origins!"
 					},
+					"CUSTOMER_NOTIFICATION_TYPES": {
+						"ERROR": "Unable to fetch customer notification types!"
+					},
 					"CLEAN_TEST_ORDERS": {
 						"SUCCESS": "Test orders cleaned successfully!",
 						"ERROR": "Unable to clean test orders!"
@@ -1028,6 +1031,20 @@
 									"REQUIRED": "Order origin is required."
 								},
 								"NOTE": "*Order origins {{value}} are defined by default and cannot be removed."
+							},
+							"CUSTOMER_NOTIFICATION_TYPES": {
+								"LABEL": "Customer Notification Types",
+								"PLACEHOLDER": "Select Type",
+								"OPTIONS": {
+									"phone-room": "Phone Room",
+									"phone-customer": "Phone Customer",
+									"sms-customer": "SMS Customer",
+									"webhook": "SMS Customer",
+									"mobile_push": "Mobile Push"
+								},
+								"VALIDATIONS": {
+									"REQUIRED": "Customer Notification Type is required."
+								}
 							},
 							"HELP_PAGE": {
 								"LABEL": "Help Page Id",

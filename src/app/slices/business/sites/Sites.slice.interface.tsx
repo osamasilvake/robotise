@@ -38,6 +38,7 @@ export interface ISite {
 		defaultOrderMode: string;
 		availableOrderModes: string[];
 		orderOriginsEnabled: string[];
+		customerNotificationTypesEnabled: string[];
 		helpPage: string;
 		showEmergencyWorkflow: boolean;
 		isHidden: boolean;

@@ -9,7 +9,7 @@ import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
-import { deserializeOrderOrigins } from './SiteOperations.slice.deserialize';
+import { deserializeSiteOperations } from './SiteOperations.slice.deserialize';
 import { SiteOperationsTypeEnum } from './SiteOperations.slice.enum';
 import { SliceSiteOperationsInterface } from './SiteOperations.slice.interface';
 
@@ -25,6 +25,10 @@ export const initialState: SliceSiteOperationsInterface = {
 		loading: false
 	},
 	orderOrigins: {
+		loading: false,
+		content: null
+	},
+	customerNotificationTypes: {
 		loading: false,
 		content: null
 	},
@@ -48,6 +52,8 @@ const dataSlice = createSlice({
 				state.siteConfig.loading = true;
 			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
 				state.orderOrigins.loading = true;
+			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
+				state.customerNotificationTypes.loading = true;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = true;
 			}
@@ -63,6 +69,9 @@ const dataSlice = createSlice({
 			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
 				state.orderOrigins.loading = false;
 				state.orderOrigins.content = response;
+			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
+				state.customerNotificationTypes.loading = false;
+				state.customerNotificationTypes.content = response;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
@@ -78,6 +87,9 @@ const dataSlice = createSlice({
 			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
 				state.orderOrigins.loading = false;
 				state.orderOrigins.content = null;
+			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
+				state.customerNotificationTypes.loading = false;
+				state.customerNotificationTypes.content = null;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
@@ -266,7 +278,7 @@ export const SiteOrderOriginsFetch =
 		return SitesService.siteOrderOriginsFetch()
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializeOrderOrigins(res);
+				const result = await deserializeSiteOperations(res);
 
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
@@ -278,6 +290,50 @@ export const SiteOrderOriginsFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.ORDER_ORIGINS.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch customer notification types
+ * @returns
+ */
+export const SiteCustomerNotificationTypesFetch =
+	() => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const customerNotificationTypes = states.siteOperations.customerNotificationTypes;
+		const state = {
+			module: SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES
+		};
+
+		// return on busy
+		if (customerNotificationTypes && customerNotificationTypes.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteCustomerNotificationTypesFetch()
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeSiteOperations(res);
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-customer-notification-types-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.CONFIGURATION.CUSTOMER_NOTIFICATION_TYPES.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

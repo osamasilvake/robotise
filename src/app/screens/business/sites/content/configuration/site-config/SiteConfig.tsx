@@ -56,6 +56,9 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 				o.origin !== SiteConfigOrderOriginsTypeEnum.MANUAL_GUI
 		)
 		.map((o) => o.origin);
+	const customerNotificationTypes = siteOperations.customerNotificationTypes.content?.data?.map(
+		(c) => c.type
+	);
 	const currencies = AppConfigService.AppOptions.common.currencies;
 	const timezones = AppConfigService.AppOptions.common.timezones;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
@@ -76,6 +79,8 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			currency: siteSingle?.currency || AppConfigService.AppOptions.common.currencies[0].id,
 			availableOrderModes: siteSingle?.configs.availableOrderModes || [],
 			orderOriginsEnabled: siteSingle?.configs.orderOriginsEnabled || [],
+			customerNotificationTypesEnabled:
+				siteSingle?.configs.customerNotificationTypesEnabled || [],
 			helpPage: siteSingle?.configs.helpPage || '',
 			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
 			isHidden: !!siteSingle?.configs.isHidden
@@ -264,6 +269,53 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										value: 'DEBUG, REST, API_HOTEL, CUSTOMER_APP, MANUAL_GUI'
 									})}
 								</FormHelperText>
+							</Grid>
+						)}
+						{customerNotificationTypes && (
+							<Grid item xs={12}>
+								<FormControl fullWidth margin="normal">
+									<Autocomplete
+										disablePortal
+										multiple
+										id="customerNotificationTypesEnabled"
+										options={customerNotificationTypes}
+										getOptionLabel={(option) =>
+											t(
+												`${translation}.FORM.FIELDS.CUSTOMER_NOTIFICATION_TYPES.OPTIONS.${option}`
+											)
+										}
+										defaultValue={
+											siteSingle?.configs.customerNotificationTypesEnabled ||
+											[]
+										}
+										isOptionEqualToValue={(option, value) => option === value}
+										onChange={(_, values) =>
+											handleChangeInputs(
+												'customerNotificationTypesEnabled',
+												values
+											)
+										}
+										onBlur={handleBlur}
+										renderInput={(params) => (
+											<TextField
+												{...params}
+												label={t(
+													`${translation}.FORM.FIELDS.CUSTOMER_NOTIFICATION_TYPES.LABEL`
+												)}
+												placeholder={t(
+													`${translation}.FORM.FIELDS.CUSTOMER_NOTIFICATION_TYPES.PLACEHOLDER`
+												)}
+												error={
+													!!errors?.customerNotificationTypesEnabled[0]
+												}
+												helperText={
+													errors?.customerNotificationTypesEnabled[0] &&
+													t(errors.customerNotificationTypesEnabled[0])
+												}
+											/>
+										)}
+									/>
+								</FormControl>
 							</Grid>
 						)}
 						<Grid item xs={12}>

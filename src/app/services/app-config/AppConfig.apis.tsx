@@ -47,7 +47,8 @@ const AppServices = (config: typeof AppConfigService) => {
 						SERVICE_POSITIONS: `${config.envAppUrl}/service-positions`,
 						CLEAN_TEST_ORDERS: `${config.envAppUrl}/sites/:siteId/clean-test-orders`,
 						SITE_CONFIG: {
-							ORDER_ORIGINS: `${config.envAppUrl}/order-origins`
+							ORDER_ORIGINS: `${config.envAppUrl}/order-origins`,
+							CUSTOMER_NOTIFICATION_TYPES: `${config.envAppUrl}/customer-notification-types`
 						}
 					}
 				},

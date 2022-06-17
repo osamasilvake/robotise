@@ -15,6 +15,7 @@ export const SiteConfigValidation = (
 		timezone: '',
 		currency: '',
 		availableOrderModes: [],
+		orderOriginsEnabled: [],
 		helpPage: ''
 	};
 
@@ -30,6 +31,13 @@ export const SiteConfigValidation = (
 	if (touched.availableOrderModes) {
 		if (values.availableOrderModes.length < 1) {
 			errors.availableOrderModes = [`${translation}.ORDER_MODE.VALIDATIONS.REQUIRED`];
+		}
+	}
+
+	// Order Origin
+	if (touched.orderOriginsEnabled) {
+		if (values.orderOriginsEnabled.length < 1) {
+			errors.orderOriginsEnabled = [`${translation}.ORDER_ORIGINS.VALIDATIONS.REQUIRED`];
 		}
 	}
 

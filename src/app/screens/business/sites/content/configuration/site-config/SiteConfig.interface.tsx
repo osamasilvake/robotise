@@ -12,8 +12,8 @@ export interface SiteConfigFormInterface {
 	currency: string;
 	defaultOrderMode?: string;
 	availableOrderModes: string[];
+	orderOriginsEnabled: string[];
 	helpPage: string;
-	codeOrdersEnabled?: boolean;
 	showEmergencyWorkflow?: boolean;
 	isHidden?: boolean;
 }

@@ -37,8 +37,8 @@ export interface ISite {
 	configs: {
 		defaultOrderMode: string;
 		availableOrderModes: string[];
+		orderOriginsEnabled: string[];
 		helpPage: string;
-		codeOrdersEnabled: boolean;
 		showEmergencyWorkflow: boolean;
 		isHidden: boolean;
 	};

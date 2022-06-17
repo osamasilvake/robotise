@@ -9,6 +9,7 @@ import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
+import { deserializeOrderOrigins } from './SiteOperations.slice.deserialize';
 import { SiteOperationsTypeEnum } from './SiteOperations.slice.enum';
 import { SliceSiteOperationsInterface } from './SiteOperations.slice.interface';
 
@@ -22,6 +23,10 @@ export const initialState: SliceSiteOperationsInterface = {
 	},
 	siteConfig: {
 		loading: false
+	},
+	orderOrigins: {
+		loading: false,
+		content: null
 	},
 	cleanTestOrders: {
 		loading: false
@@ -41,18 +46,23 @@ const dataSlice = createSlice({
 				state.siteRobotConfig.loading = true;
 			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = true;
+			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
+				state.orderOrigins.loading = true;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = true;
 			}
 		},
 		success: (state, action) => {
-			const { module } = action.payload;
+			const { module, response } = action.payload;
 			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
 			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = false;
+			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
+				state.orderOrigins.loading = false;
+				state.orderOrigins.content = response;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
@@ -65,6 +75,9 @@ const dataSlice = createSlice({
 				state.siteRobotConfig.loading = false;
 			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = false;
+			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
+				state.orderOrigins.loading = false;
+				state.orderOrigins.content = null;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
@@ -221,6 +234,50 @@ export const SiteConfigUpdate =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SITE_CONFIG.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch order origins
+ * @returns
+ */
+export const SiteOrderOriginsFetch =
+	() => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const orderOrigins = states.siteOperations.orderOrigins;
+		const state = {
+			module: SiteOperationsTypeEnum.ORDER_ORIGINS
+		};
+
+		// return on busy
+		if (orderOrigins && orderOrigins.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteOrderOriginsFetch()
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeOrderOrigins(res);
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-order-origins-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.CONFIGURATION.ORDER_ORIGINS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

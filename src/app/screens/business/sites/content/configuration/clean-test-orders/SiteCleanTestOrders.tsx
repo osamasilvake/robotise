@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -27,7 +27,7 @@ const SiteCleanTestOrders: FC = () => {
 	const translation = 'CONTENT.CONFIGURATION.CLEAN_TEST_ORDERS';
 
 	return (
-		<>
+		<Box>
 			<Card square elevation={1}>
 				<CardContent>
 					<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
@@ -57,7 +57,7 @@ const SiteCleanTestOrders: FC = () => {
 
 			{/* Dialog: Clean Test Orders */}
 			{open && <DialogCleanTestOrders open={open} setOpen={setOpen} />}
-		</>
+		</Box>
 	);
 };
 export default SiteCleanTestOrders;

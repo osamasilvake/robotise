@@ -45,7 +45,10 @@ const AppServices = (config: typeof AppConfigService) => {
 							USER: `${config.envAppUrl}/notification-users/:userId`
 						},
 						SERVICE_POSITIONS: `${config.envAppUrl}/service-positions`,
-						CLEAN_TEST_ORDERS: `${config.envAppUrl}/sites/:siteId/clean-test-orders`
+						CLEAN_TEST_ORDERS: `${config.envAppUrl}/sites/:siteId/clean-test-orders`,
+						SITE_CONFIG: {
+							ORDER_ORIGINS: `${config.envAppUrl}/order-origins`
+						}
 					}
 				},
 				ROBOTS: {

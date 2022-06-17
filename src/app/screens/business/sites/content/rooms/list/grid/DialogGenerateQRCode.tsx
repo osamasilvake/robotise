@@ -1,6 +1,3 @@
-import AdapterDayJS from '@mui/lab/AdapterDayjs';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import TimePicker from '@mui/lab/TimePicker';
 import {
 	Button,
 	CircularProgress,
@@ -12,6 +9,9 @@ import {
 	FormControl,
 	TextField
 } from '@mui/material';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -171,7 +171,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 					/>
 				</FormControl>
 				<FormControl fullWidth margin="normal">
-					<LocalizationProvider dateAdapter={AdapterDayJS}>
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
 						<TimePicker
 							label={t(`${translation}.FORM.FIELDS.TIME.LABEL`)}
 							value={time}

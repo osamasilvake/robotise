@@ -19,7 +19,10 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../../../slices/business/sites/configuration/ServicePositions.slice';
-import { siteOperationsSelector } from '../../../../../slices/business/sites/SiteOperations.slice';
+import {
+	siteOperationsSelector,
+	SiteOrderOriginsFetch
+} from '../../../../../slices/business/sites/SiteOperations.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import AcceptOrders from './accept-orders/AcceptOrders';
@@ -62,11 +65,18 @@ const SiteConfiguration: FC = () => {
 	}, [dispatch, pServicePositionSiteId, cSiteId]);
 
 	useEffect(() => {
-		if (generalOperations.orderModes.content !== null) return;
+		if (generalOperations.orderModes?.content !== null) return;
 
 		// dispatch: fetch order modes
 		dispatch(GeneralFetchOrderModes());
-	}, [dispatch, generalOperations.orderModes.content]);
+	}, [dispatch, generalOperations.orderModes?.content]);
+
+	useEffect(() => {
+		if (siteOperations.orderOrigins?.content !== null) return;
+
+		// dispatch: fetch order origins
+		dispatch(SiteOrderOriginsFetch());
+	}, [dispatch, siteOperations.orderOrigins?.content]);
 
 	// loader
 	if (robotTwinsSummary.loader || notifications.loader || servicePositions.loader) {

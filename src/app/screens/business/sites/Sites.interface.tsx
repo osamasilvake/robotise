@@ -10,6 +10,7 @@ import {
 } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
 import { SPCDataInterface } from '../../../slices/business/sites/products/Products.slice.interface';
 import { SQRDataInterface } from '../../../slices/business/sites/rooms/qrCode/QRCodes.slice.interface';
+import { SOOContentDataInterface } from '../../../slices/business/sites/SiteOperations.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
 import {
 	SWCDataInterface,
@@ -171,5 +172,13 @@ export interface SiteServicePositionsAxiosGetInterface extends JsonAPIResponseIn
 		id: string;
 		type: string;
 		attributes: SSCDataInterface;
+	}[];
+}
+
+export interface SiteOrderOriginsAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SOOContentDataInterface;
 	}[];
 }

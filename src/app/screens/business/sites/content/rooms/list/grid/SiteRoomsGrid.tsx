@@ -19,6 +19,7 @@ import PageEmpty from '../../../../../../../components/content/page-empty/PageEm
 import { AppConfigService } from '../../../../../../../services';
 import { qrCodesSelector } from '../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
+import { SiteConfigOrderOriginsTypeEnum } from '../../../configuration/site-config/SiteConfig.enum';
 import DialogGenerateQRCode from './DialogGenerateQRCode';
 import DialogToggleRoomState from './DialogToggleRoomState';
 import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';
@@ -40,7 +41,8 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 
 	const allRooms = siteSingle.rooms.available;
 	const allWhitelist = siteSingle.rooms.whitelist;
-	const codeOrdersEnabled = siteSingle?.configs?.codeOrdersEnabled;
+	const orderOriginsEnabled = siteSingle?.configs?.orderOriginsEnabled;
+	const isSMSCode = orderOriginsEnabled.includes(SiteConfigOrderOriginsTypeEnum.SMS_CODE);
 	const qrCodesDataById = qrCodes.content?.dataById;
 
 	const translation = 'CONTENT.ROOMS.LIST.GRID';
@@ -120,7 +122,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														<Typography variant="body2">
 															{t(`${translation}.ROOM`)}
 														</Typography>
-														{codeOrdersEnabled &&
+														{isSMSCode &&
 															qrCodesDataById &&
 															qrCodesDataById[room] && (
 																<QrCode2
@@ -136,7 +138,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 													<Box
 														className={clsx({
 															[classes.sQRChip]:
-																!codeOrdersEnabled ||
+																!isSMSCode ||
 																!allWhitelist?.includes(room)
 														})}>
 														<Chip

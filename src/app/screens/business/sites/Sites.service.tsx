@@ -24,6 +24,7 @@ import {
 	SiteMapsAxiosGetInterface,
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
+	SiteOrderOriginsAxiosGetInterface,
 	SitePhoneCallsAxiosGetInterface,
 	SitePhoneConfigPhoneNumbersAxiosGetInterface,
 	SitePhoneConfigsAxiosGetInterface,
@@ -598,14 +599,25 @@ class SitesService {
 					configs: {
 						defaultOrderMode: payload.defaultOrderMode,
 						availableOrderModes: payload.availableOrderModes,
+						orderOriginsEnabled: payload.orderOriginsEnabled,
 						helpPage: payload.helpPage,
-						codeOrdersEnabled: payload.codeOrdersEnabled,
 						showEmergencyWorkflow: payload.showEmergencyWorkflow,
 						isHidden: payload.isHidden
 					}
 				}
 			}
 		});
+	};
+
+	/**
+	 * fetch order origins
+	 * @returns
+	 */
+	siteOrderOriginsFetch = () => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
+				.ORDER_ORIGINS;
+		return HttpClientService.get<SiteOrderOriginsAxiosGetInterface>(url);
 	};
 
 	/**

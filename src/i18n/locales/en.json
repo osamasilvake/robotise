@@ -267,6 +267,9 @@
 						"SUCCESS": "Site setting has been updated successfully!",
 						"ERROR": "Unable to configure site!"
 					},
+					"ORDER_ORIGINS": {
+						"ERROR": "Unable to fetch order origins!"
+					},
 					"CLEAN_TEST_ORDERS": {
 						"SUCCESS": "Test orders cleaned successfully!",
 						"ERROR": "Unable to clean test orders!"
@@ -511,6 +514,15 @@
 					"MINIBAR": "Minibar",
 					"ROOM_SERVICE": "Room Service",
 					"SERVICE_POSITION": "Service Position"
+				}
+			},
+			"INVENTORY": {
+				"LABEL": "Inventory Status",
+				"DATE": "Date",
+				"STATUS": {
+					"GREEN": "Full",
+					"YELLOW": "Low",
+					"RED": "Empty"
 				}
 			}
 		}
@@ -956,6 +968,21 @@
 						"TEXT": "Are you sure you want to delete the service position?"
 					}
 				},
+				"SITE_ROBOT_CONFIG": {
+					"TITLE": "Configure Site ROBOT",
+					"EXCERPT": "Update Site ROBOT detail.",
+					"FORM": {
+						"FIELDS": {
+							"SITE": {
+								"LABEL": "Robot to accept order",
+								"NOTE": "*Either Attached robot is hidden or No robot is assigned to the site!"
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
+				},
 				"SITE_CONFIG": {
 					"TITLE": "Configure Site",
 					"EXCERPT": "Update Site detail.",
@@ -982,6 +1009,26 @@
 								},
 								"NOTE": "*Default order mode is the first element in select"
 							},
+							"ORDER_ORIGINS": {
+								"LABEL": "Order Origins",
+								"PLACEHOLDER": "Select Origin",
+								"OPTIONS": {
+									"phone": "Phone",
+									"qrcode-sms": "QR-Code SMS",
+									"api-hotel": "API Hotel",
+									"api-connect": "API Connect",
+									"manualGUI": "Manual GUI",
+									"debug": "Debug",
+									"test": "Test",
+									"rest": "Rest",
+									"customer-app": "Customer App",
+									"sms_code": "SMS Code"
+								},
+								"VALIDATIONS": {
+									"REQUIRED": "Order origin is required."
+								},
+								"NOTE": "*Order origins {{value}} are defined by default and cannot be removed."
+							},
 							"HELP_PAGE": {
 								"LABEL": "Help Page Id",
 								"PLACEHOLDER": "Enter Help Page Id",
@@ -990,10 +1037,6 @@
 								}
 							},
 							"CHECKBOXES": {
-								"QR_CODE": {
-									"LABEL": "Enable Room Code Orders",
-									"NOTE": "*Allow orders using QR Code!"
-								},
 								"EMERGENCY": {
 									"LABEL": "Activate Emergency",
 									"NOTE": "*Show emergency feature on JEEVES app!"
@@ -1002,21 +1045,6 @@
 									"LABEL": "Hide Site",
 									"NOTE": "*Whether to show site in the ROC sites list!"
 								}
-							}
-						},
-						"BUTTONS": {
-							"UPDATE": "Update"
-						}
-					}
-				},
-				"SITE_ROBOT_CONFIG": {
-					"TITLE": "Configure Site ROBOT",
-					"EXCERPT": "Update Site ROBOT detail.",
-					"FORM": {
-						"FIELDS": {
-							"SITE": {
-								"LABEL": "Robot to accept order",
-								"NOTE": "*Either Attached robot is hidden or No robot is assigned to the site!"
 							}
 						},
 						"BUTTONS": {

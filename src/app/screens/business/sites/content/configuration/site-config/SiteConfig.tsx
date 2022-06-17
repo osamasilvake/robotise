@@ -28,6 +28,7 @@ import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.sl
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../../../../utilities/methods/Object';
 import { SiteParamsInterface } from '../../../Site.interface';
+import { SiteConfigOrderOriginsTypeEnum } from './SiteConfig.enum';
 import { SiteConfigFormInterface, SiteConfigInterface } from './SiteConfig.interface';
 import { SiteConfigStyle } from './SiteConfig.style';
 import { SiteConfigValidation } from './SiteConfig.validation';
@@ -45,6 +46,16 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 	const orderModesList = generalOperations.orderModes.content?.data?.map((m) => m.mode);
+	const orderOriginsList = siteOperations.orderOrigins.content?.data
+		?.filter(
+			(o) =>
+				o.origin !== SiteConfigOrderOriginsTypeEnum.DEBUG &&
+				o.origin !== SiteConfigOrderOriginsTypeEnum.REST &&
+				o.origin !== SiteConfigOrderOriginsTypeEnum.API_HOTEL &&
+				o.origin !== SiteConfigOrderOriginsTypeEnum.CUSTOMER_APP &&
+				o.origin !== SiteConfigOrderOriginsTypeEnum.MANUAL_GUI
+		)
+		.map((o) => o.origin);
 	const currencies = AppConfigService.AppOptions.common.currencies;
 	const timezones = AppConfigService.AppOptions.common.timezones;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
@@ -64,8 +75,8 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			timezone: siteSingle?.timezone || AppConfigService.AppOptions.common.timezones[0].id,
 			currency: siteSingle?.currency || AppConfigService.AppOptions.common.currencies[0].id,
 			availableOrderModes: siteSingle?.configs.availableOrderModes || [],
+			orderOriginsEnabled: siteSingle?.configs.orderOriginsEnabled || [],
 			helpPage: siteSingle?.configs.helpPage || '',
-			codeOrdersEnabled: !!siteSingle?.configs.codeOrdersEnabled,
 			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
 			isHidden: !!siteSingle?.configs.isHidden
 		},
@@ -199,6 +210,62 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormHelperText>
 							</Grid>
 						)}
+						{orderOriginsList && (
+							<Grid item xs={12}>
+								<FormControl fullWidth margin="normal">
+									<Autocomplete
+										disablePortal
+										multiple
+										id="orderOriginsEnabled"
+										options={orderOriginsList}
+										getOptionLabel={(option) =>
+											t(
+												`${translation}.FORM.FIELDS.ORDER_ORIGINS.OPTIONS.${option}`
+											)
+										}
+										defaultValue={
+											siteSingle?.configs.orderOriginsEnabled?.filter(
+												(o) =>
+													o !== SiteConfigOrderOriginsTypeEnum.DEBUG &&
+													o !== SiteConfigOrderOriginsTypeEnum.REST &&
+													o !==
+														SiteConfigOrderOriginsTypeEnum.API_HOTEL &&
+													o !==
+														SiteConfigOrderOriginsTypeEnum.CUSTOMER_APP &&
+													o !== SiteConfigOrderOriginsTypeEnum.MANUAL_GUI
+											) || []
+										}
+										isOptionEqualToValue={(option, value) => option === value}
+										onChange={(_, values) =>
+											handleChangeInputs('orderOriginsEnabled', values)
+										}
+										onBlur={handleBlur}
+										renderInput={(params) => (
+											<TextField
+												{...params}
+												label={t(
+													`${translation}.FORM.FIELDS.ORDER_ORIGINS.LABEL`
+												)}
+												placeholder={t(
+													`${translation}.FORM.FIELDS.ORDER_ORIGINS.PLACEHOLDER`
+												)}
+												error={!!errors?.orderOriginsEnabled[0]}
+												helperText={
+													errors?.orderOriginsEnabled[0] &&
+													t(errors.orderOriginsEnabled[0])
+												}
+											/>
+										)}
+									/>
+								</FormControl>
+
+								<FormHelperText>
+									{t(`${translation}.FORM.FIELDS.ORDER_ORIGINS.NOTE`, {
+										value: 'DEBUG, REST, API_HOTEL, CUSTOMER_APP, MANUAL_GUI'
+									})}
+								</FormHelperText>
+							</Grid>
+						)}
 						<Grid item xs={12}>
 							<FormControl fullWidth margin="normal">
 								<TextField
@@ -216,25 +283,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 									error={!!errors?.helpPage}
 									helperText={errors?.helpPage && t(errors.helpPage)}
 								/>
-							</FormControl>
-						</Grid>
-						<Grid item xs={12}>
-							<FormControl>
-								<FormControlLabel
-									control={
-										<Switch
-											name="codeOrdersEnabled"
-											checked={values.codeOrdersEnabled}
-											onChange={handleChangeCheckbox}
-										/>
-									}
-									label={t<string>(
-										`${translation}.FORM.FIELDS.CHECKBOXES.QR_CODE.LABEL`
-									)}
-								/>
-								<FormHelperText>
-									{t(`${translation}.FORM.FIELDS.CHECKBOXES.QR_CODE.NOTE`)}
-								</FormHelperText>
 							</FormControl>
 						</Grid>
 						<Grid item xs={12}>
@@ -275,7 +323,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormHelperText>
 							</FormControl>
 						</Grid>
-
 						<Grid item xs={12} className={classes.sSubmit}>
 							<Button
 								variant="outlined"

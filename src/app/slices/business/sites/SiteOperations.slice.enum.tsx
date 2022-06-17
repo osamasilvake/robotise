@@ -2,5 +2,6 @@ export enum SiteOperationsTypeEnum {
 	ACCEPT_ORDERS,
 	SITE_ROBOT_CONFIG,
 	SITE_CONFIG,
+	ORDER_ORIGINS,
 	CLEAN_TEST_ORDERS
 }

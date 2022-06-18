@@ -1657,7 +1657,9 @@
 								"api-hotel": "Hotel App",
 								"api-connect": "API Connect",
 								"rest": "ROC App",
-								"debug": "MM ROC Bots"
+								"debug": "MM ROC Bots",
+								"sms_code": "SMS Code",
+								"customer-app": "Jeeves App"
 							},
 							"PURCHASE_DETAILS": "Purchase details"
 						}

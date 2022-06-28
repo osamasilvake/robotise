@@ -36,12 +36,14 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const cSiteRobot = sites.content?.dataById[cSiteId].robots[0];
+	const robotList = robotTwinsSummary.content?.data.filter((robot) => robot.siteId === cSiteId);
 	const attachedRobot = robotTwinsSummary.content?.dataById[cSiteRobot?.id || ''];
+	const isRobotInList = !!robotList?.find((r) => r.robotId === attachedRobot?.robotId);
 	const translation = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
 
 	const { handleChangeSelect, handleSubmit, values } = useForm<SiteRobotConfigFormInterface>(
 		{
-			robotId: attachedRobot?.robotId || ''
+			robotId: (isRobotInList && attachedRobot?.robotId) || ''
 		},
 		() => ({ robotId: '' }),
 		async () => {

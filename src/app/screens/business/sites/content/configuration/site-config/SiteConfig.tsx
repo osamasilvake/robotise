@@ -182,7 +182,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										getOptionLabel={(option) =>
 											t(`GENERAL:COMMON.MODE.${option}`)
 										}
-										defaultValue={siteSingle?.configs.availableOrderModes || []}
+										value={values.availableOrderModes || []}
 										isOptionEqualToValue={(option, value) => option === value}
 										onChange={(_, values) =>
 											handleChangeInputs('availableOrderModes', values)
@@ -228,8 +228,8 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 												`${translation}.FORM.FIELDS.ORDER_ORIGINS.OPTIONS.${option}`
 											)
 										}
-										defaultValue={
-											siteSingle?.configs.orderOriginsEnabled?.filter(
+										value={
+											values?.orderOriginsEnabled?.filter(
 												(o) =>
 													o !== SiteConfigOrderOriginsTypeEnum.DEBUG &&
 													o !== SiteConfigOrderOriginsTypeEnum.REST &&
@@ -284,10 +284,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 												`${translation}.FORM.FIELDS.CUSTOMER_NOTIFICATION_TYPES.OPTIONS.${option}`
 											)
 										}
-										defaultValue={
-											siteSingle?.configs.customerNotificationTypesEnabled ||
-											[]
-										}
+										value={values.customerNotificationTypesEnabled || []}
 										isOptionEqualToValue={(option, value) => option === value}
 										onChange={(_, values) =>
 											handleChangeInputs(

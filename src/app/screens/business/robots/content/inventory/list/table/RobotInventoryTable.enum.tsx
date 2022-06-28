@@ -9,6 +9,7 @@ export enum RobotInventoryTableColumnsTypeEnum {
 
 export enum RobotInventoryTableStatusTypeEnum {
 	HIGH = 'high',
-	MEDIUM = 'medium',
-	LOW = 'low'
+	LOW = 'low',
+	EMPTY = 'empty',
+	MEDIUM = 'medium'
 }

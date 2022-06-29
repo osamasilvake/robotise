@@ -24,4 +24,10 @@ export interface DialogCreateOrderFormInterface {
 	isDebug: boolean;
 	location: string;
 	mode: string | RobotOrderModeTypeEnum;
+	type?: string;
+	phone?: string;
+	customerNotification?: {
+		notificationTypes?: string[];
+		phoneNumber?: string;
+	};
 }

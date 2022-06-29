@@ -1038,9 +1038,7 @@
 								"OPTIONS": {
 									"phone-room": "Phone Room",
 									"phone-customer": "Phone Customer",
-									"sms-customer": "SMS Customer",
-									"webhook": "Webhook",
-									"mobile_push": "Mobile Push"
+									"sms-customer": "SMS Customer"
 								},
 								"VALIDATIONS": {
 									"REQUIRED": "Customer Notification Type is required."
@@ -1584,6 +1582,7 @@
 							"LABEL": "Create",
 							"TITLE": "Create Order",
 							"TEXT": "Create a new order for JEEVES by providing a target location.",
+							"NOTIFICATION_TYPES": "Notify Customer Via:",
 							"FIELDS": {
 								"LOCATION": {
 									"LABEL": "Location",
@@ -1601,6 +1600,21 @@
 								},
 								"DEBUG": {
 									"LABEL": "Test Order"
+								},
+								"CUSTOMER_NOTIFICATION_TYPES": {
+									"LABEL": "Customer Notification Types *",
+									"OPTIONS": {
+										"phone-room": "Phone Room",
+										"phone-customer": "Phone Customer",
+										"sms-customer": "SMS Customer"
+									}
+								},
+								"PHONE": {
+									"LABEL": "Customer Phone",
+									"PLACEHOLDER": "Enter Phone No.",
+									"VALIDATIONS": {
+										"INVALID": "Phone No. must be valid."
+									}
 								}
 							}
 						},

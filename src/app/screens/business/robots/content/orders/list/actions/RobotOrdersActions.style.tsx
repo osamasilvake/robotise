@@ -10,5 +10,8 @@ export const RobotOrdersActionsStyle = makeStyles((theme: Theme) => ({
 		position: 'sticky',
 		top: 0,
 		zIndex: AppConfigService.AppOptions.styles.zIndex.level3
+	},
+	sNotificationTypes: {
+		marginTop: theme.spacing(1)
 	}
 }));

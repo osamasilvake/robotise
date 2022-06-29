@@ -15,7 +15,8 @@ export const CreateOrderValidation = (
 	const errors: DialogCreateOrderFormInterface = {
 		isDebug: false,
 		location: '',
-		mode: ''
+		mode: '',
+		phone: ''
 	};
 
 	// Location
@@ -28,6 +29,14 @@ export const CreateOrderValidation = (
 		// validate
 		if (!regexInteger.test(values.location)) {
 			errors.location = `${translation}.FIELDS.LOCATION.VALIDATIONS.INVALID`;
+		}
+	}
+
+	// Phone
+	if (touched.phone && values.phone) {
+		// invalid
+		if (!regexInteger.test(values.phone)) {
+			errors.phone = `${translation}.FIELDS.PHONE.VALIDATIONS.INVALID`;
 		}
 	}
 

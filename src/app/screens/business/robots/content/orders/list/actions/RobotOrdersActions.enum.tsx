@@ -3,3 +3,9 @@ export enum RobotOrderModeTypeEnum {
 	ROOM_SERVICE = 'room-service',
 	SERVICE_POSITION = 'service-position'
 }
+
+export enum RobotCustomNotificationTypeEnum {
+	PHONE_ROOM = 'phone-room',
+	PHONE_CUSTOMER = 'phone-customer',
+	SMS_CUSTOMER = 'sms-customer'
+}

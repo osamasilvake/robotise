@@ -32,10 +32,6 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
-import {
-	SiteCustomerNotificationTypesFetch,
-	siteOperationsSelector
-} from '../../../../../../../slices/business/sites/SiteOperations.slice';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -54,7 +50,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
-	const siteOperations = useSelector(siteOperationsSelector);
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
@@ -64,12 +59,13 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
-	const orderModes = cSiteId && sites.content?.dataById[cSiteId]?.configs.availableOrderModes;
-	const defaultOrderMode = cSiteId && sites.content?.dataById[cSiteId]?.configs.defaultOrderMode;
-	const customerNotificationTypes = siteOperations.customerNotificationTypes.content?.data;
+	const configs = cSiteId && sites.content?.dataById[cSiteId]?.configs;
+	const orderModes = configs && configs.availableOrderModes;
+	const defaultOrderMode = configs && configs.defaultOrderMode;
+	const customerNotificationTypesEnabled = configs && configs.customerNotificationTypesEnabled;
 	const onlyPhoneRoom =
-		customerNotificationTypes?.length === 1 &&
-		customerNotificationTypes[0].type === RobotCustomNotificationTypeEnum.PHONE_ROOM;
+		customerNotificationTypesEnabled?.length === 1 &&
+		customerNotificationTypesEnabled[0] === RobotCustomNotificationTypeEnum.PHONE_ROOM;
 	const translation = 'CONTENT.ORDERS';
 	const fieldLocation = 'location';
 
@@ -91,8 +87,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		},
 		CreateOrderValidation,
 		async () => {
-			const defaultType = customerNotificationTypes?.length
-				? customerNotificationTypes[0]?.type
+			const defaultType = customerNotificationTypesEnabled?.length
+				? customerNotificationTypesEnabled[0]
 				: '';
 			const phoneRoom = values.type === RobotCustomNotificationTypeEnum.PHONE_ROOM;
 			const payload = {
@@ -133,13 +129,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		// dispatch: fetch service positions
 		cSiteId && dispatch(ServicePositionsFetchList(cSiteId));
 	}, [dispatch, pServicePositionSiteId, cSiteId, orderModes]);
-
-	useEffect(() => {
-		if (siteOperations.customerNotificationTypes?.content !== null) return;
-
-		// dispatch: fetch customer notification types
-		dispatch(SiteCustomerNotificationTypesFetch());
-	}, [dispatch, siteOperations.customerNotificationTypes?.content]);
 
 	/**
 	 * close dialog
@@ -251,7 +240,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					/>
 
 					{/* Notification Types */}
-					{customerNotificationTypes && !onlyPhoneRoom && (
+					{customerNotificationTypesEnabled && !onlyPhoneRoom && (
 						<Box className={classes.sNotificationTypes}>
 							<Typography color="textSecondary">
 								{t(`${translation}.LIST.ACTIONS.CREATE.NOTIFICATION_TYPES`)}
@@ -270,12 +259,12 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									label={t(
 										`${translation}.LIST.ACTIONS.CREATE.FIELDS.CUSTOMER_NOTIFICATION_TYPES.LABEL`
 									)}
-									value={values.type || customerNotificationTypes[0]?.type}
+									value={values.type || customerNotificationTypesEnabled[0]}
 									onChange={handleChangeSelect}>
-									{customerNotificationTypes.map((n) => (
-										<MenuItem key={n.type} value={n.type}>
+									{customerNotificationTypesEnabled.map((n) => (
+										<MenuItem key={n} value={n}>
 											{t(
-												`${translation}.LIST.ACTIONS.CREATE.FIELDS.CUSTOMER_NOTIFICATION_TYPES.OPTIONS.${n.type}`
+												`${translation}.LIST.ACTIONS.CREATE.FIELDS.CUSTOMER_NOTIFICATION_TYPES.OPTIONS.${n}`
 											)}
 										</MenuItem>
 									))}

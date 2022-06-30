@@ -580,7 +580,8 @@
 								"emergency-brake-pressed": "Emergency Brake Pressed",
 								"new-purchase": "New Purchase",
 								"order-no-person-interaction": "Order no person Interaction",
-								"low-rating-alert": "Low Rating Alert"
+								"low-rating-alert": "Low Rating Alert",
+								"robot-in-emergency-state": "Robot in Emergency State"
 							}
 						}
 					}

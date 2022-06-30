@@ -1,48 +1,47 @@
-import { Translate } from '@mui/icons-material';
-import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { List, ListItemButton, ListItemText, ListSubheader } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '../../../../slices';
-import { AppChangeLanguage, appSelector } from '../../../../slices/app/App.slice';
+import { AppChangeLanguage } from '../../../../slices/app/App.slice';
 import { AppLanguageTypeEnum } from '../../../../slices/app/App.slice.enum';
+import { LanguageStyle } from './Language.style';
 
 const Language: FC = () => {
 	const { t } = useTranslation('FRAME');
+	const classes = LanguageStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
-	const app = useSelector(appSelector);
+
+	const languages = Object.keys(AppLanguageTypeEnum);
 
 	/**
 	 * dispatch: change language
 	 * @param language
 	 * @returns
 	 */
-	const handleLanguage = (language: AppLanguageTypeEnum) => () =>
-		dispatch(AppChangeLanguage(language));
+	const handleLanguage = (language: string) => () => dispatch(AppChangeLanguage(language));
 
 	return (
-		<ListItemButton
-			disabled
-			divider
-			onClick={handleLanguage(
-				app.currentLanguage === AppLanguageTypeEnum.EN
-					? AppLanguageTypeEnum.DE
-					: AppLanguageTypeEnum.EN
-			)}>
-			<ListItemIcon>
-				<Translate />
-			</ListItemIcon>
-			<ListItemText
-				primary={t('ACCOUNT.LANGUAGE.LABEL')}
-				secondary={
-					app.currentLanguage === AppLanguageTypeEnum.EN
-						? t('ACCOUNT.LANGUAGE.EN')
-						: t('ACCOUNT.LANGUAGE.DE')
-				}
-			/>
-		</ListItemButton>
+		<List
+			disablePadding
+			dense
+			subheader={
+				<ListSubheader className={classes.sSubHeader}>
+					{t('ACCOUNT.LANGUAGES.LABEL')}
+				</ListSubheader>
+			}>
+			{languages.map((language, index, { length }) => (
+				<ListItemButton
+					key={language}
+					divider={index + 1 !== length}
+					onClick={handleLanguage(language.toLowerCase())}
+					disabled>
+					<ListItemText primary={t(`ACCOUNT.LANGUAGES.${language}`)} />
+				</ListItemButton>
+			))}
+		</List>
 	);
 };
 export default Language;

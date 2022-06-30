@@ -57,7 +57,7 @@ const ComponentsCustom: Components = {
 		styleOverrides: {
 			root: {
 				borderRadius: pxToRem(2),
-				height: pxToRem(40),
+				height: pxToRem(38),
 				transition: 'none'
 			},
 			outlined: {

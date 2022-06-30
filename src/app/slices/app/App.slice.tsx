@@ -85,7 +85,7 @@ export const AppApplyThemePalette =
  * change language
  * @param language
  */
-export const AppChangeLanguage = (language: AppLanguageTypeEnum) => async (dispatch: Dispatch) => {
+export const AppChangeLanguage = (language: string) => async (dispatch: Dispatch) => {
 	// dispatch: change language
 	dispatch(changeLanguage(language));
 

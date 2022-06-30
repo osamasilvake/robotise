@@ -24,6 +24,14 @@ export const AccountStyle = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(-0.25)
 	},
 	sList: {
-		maxWidth: `calc(${theme.typography.pxToRem(drawerOpenWidth)} - ${theme.spacing(4)})`
+		width: `calc(${theme.typography.pxToRem(drawerOpenWidth)} - ${theme.spacing(4)})`
+	},
+	sUserEmail: {
+		wordBreak: 'break-word'
+	},
+	sLogout: {
+		position: 'absolute',
+		right: 0,
+		top: 0
 	}
 }));

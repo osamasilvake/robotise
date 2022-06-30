@@ -6,7 +6,6 @@ import {
 	List,
 	ListItem,
 	ListItemButton,
-	ListItemIcon,
 	ListItemText,
 	Popover,
 	Stack,
@@ -134,33 +133,32 @@ const Account: FC = () => {
 							}}>
 							<List disablePadding className={classes.sList}>
 								{/* User Info */}
-								<ListItem divider>
+								<ListItem>
 									<ListItemText
 										primary={auth.user?.data.display_name}
 										secondary={
 											<Typography
 												color="textSecondary"
 												variant="body2"
-												noWrap>
+												className={classes.sUserEmail}>
 												{auth.user?.data.email}
 											</Typography>
 										}
 									/>
 								</ListItem>
 
+								{/* Logout */}
+								<ListItemButton onClick={handleLogout} className={classes.sLogout}>
+									<Tooltip title={t<string>('ACCOUNT.LOGOUT')}>
+										<PowerSettingsNew />
+									</Tooltip>
+								</ListItemButton>
+
 								{/* Light / Dark Mode */}
 								<ThemePalette />
 
 								{/* Language */}
 								<Language />
-
-								{/* Logout */}
-								<ListItemButton onClick={handleLogout}>
-									<ListItemIcon>
-										<PowerSettingsNew />
-									</ListItemIcon>
-									<ListItemText primary={t('ACCOUNT.LOGOUT')} />
-								</ListItemButton>
 							</List>
 						</Popover>
 					</Box>

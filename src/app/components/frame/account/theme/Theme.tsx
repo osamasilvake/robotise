@@ -1,5 +1,4 @@
-import { Brightness3, WbSunny } from '@mui/icons-material';
-import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Button, ButtonGroup, List, ListItem, ListSubheader } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,14 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../../slices';
 import { AppApplyThemePalette, appSelector } from '../../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../../slices/app/App.slice.enum';
-import { ThemePaletteStyle } from './Theme.style';
+import { ThemeStyle } from './Theme.style';
 
 const ThemePalette: FC = () => {
 	const { t } = useTranslation('FRAME');
-	const classes = ThemePaletteStyle();
+	const classes = ThemeStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 	const app = useSelector(appSelector);
+
+	const light = app.themePalette === AppThemePaletteTypeEnum.LIGHT;
 
 	/**
 	 * dispatch: apply theme palette
@@ -25,28 +26,29 @@ const ThemePalette: FC = () => {
 		dispatch(AppApplyThemePalette(theme));
 
 	return (
-		<ListItemButton
-			onClick={handleThemePalette(
-				app.themePalette === AppThemePaletteTypeEnum.LIGHT
-					? AppThemePaletteTypeEnum.DARK
-					: AppThemePaletteTypeEnum.LIGHT
-			)}>
-			<ListItemIcon>
-				{app.themePalette === AppThemePaletteTypeEnum.LIGHT ? (
-					<WbSunny className={classes.sColorThemeLight} />
-				) : (
-					<Brightness3 />
-				)}
-			</ListItemIcon>
-			<ListItemText
-				primary={t('ACCOUNT.THEME.LABEL')}
-				secondary={
-					app.themePalette === AppThemePaletteTypeEnum.LIGHT
-						? t('ACCOUNT.THEME.LIGHT')
-						: t('ACCOUNT.THEME.DARK')
-				}
-			/>
-		</ListItemButton>
+		<List
+			disablePadding
+			dense
+			subheader={
+				<ListSubheader className={classes.sSubHeader}>
+					{t('ACCOUNT.THEME.LABEL')}
+				</ListSubheader>
+			}>
+			<ListItem>
+				<ButtonGroup disableElevation size="small" fullWidth variant="outlined">
+					<Button
+						onClick={handleThemePalette(AppThemePaletteTypeEnum.LIGHT)}
+						variant={light ? 'contained' : 'outlined'}>
+						{t('ACCOUNT.THEME.LIGHT')}
+					</Button>
+					<Button
+						onClick={handleThemePalette(AppThemePaletteTypeEnum.DARK)}
+						variant={!light ? 'contained' : 'outlined'}>
+						{t('ACCOUNT.THEME.DARK')}
+					</Button>
+				</ButtonGroup>
+			</ListItem>
+		</List>
 	);
 };
 export default ThemePalette;

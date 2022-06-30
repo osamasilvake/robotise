@@ -427,7 +427,7 @@
 				"LIGHT": "Light",
 				"DARK": "Dark"
 			},
-			"LANGUAGE": {
+			"LANGUAGES": {
 				"LABEL": "Language",
 				"EN": "English",
 				"DE": "Deutsch"

@@ -119,6 +119,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		}
 	);
 
+	const types0 = customerNotificationTypesEnabled && customerNotificationTypesEnabled[0];
+	const type = values.type || types0;
+	const phoneCustomer = type === RobotCustomNotificationTypeEnum.PHONE_CUSTOMER;
+	const smsCustomer = type === RobotCustomNotificationTypeEnum.SMS_CUSTOMER;
+
 	useEffect(() => {
 		// validate mode: service-position
 		const exist = (orderModes || []).some((m) => m === RobotOrderModeTypeEnum.SERVICE_POSITION);
@@ -259,7 +264,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									label={t(
 										`${translation}.LIST.ACTIONS.CREATE.FIELDS.CUSTOMER_NOTIFICATION_TYPES.LABEL`
 									)}
-									value={values.type || customerNotificationTypesEnabled[0]}
+									value={type}
 									onChange={handleChangeSelect}>
 									{customerNotificationTypesEnabled.map((n) => (
 										<MenuItem key={n} value={n}>
@@ -271,8 +276,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								</Select>
 							</FormControl>
 
-							{(values.type === RobotCustomNotificationTypeEnum.PHONE_CUSTOMER ||
-								values.type === RobotCustomNotificationTypeEnum.SMS_CUSTOMER) && (
+							{(phoneCustomer || smsCustomer) && (
 								<FormControl fullWidth margin="normal">
 									<TextField
 										required

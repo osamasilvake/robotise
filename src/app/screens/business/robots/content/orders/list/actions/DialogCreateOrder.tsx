@@ -36,7 +36,10 @@ import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { CreateOrderValidation } from './DialogCreateOrder.validation';
-import { RobotCustomNotificationTypeEnum, RobotOrderModeTypeEnum } from './RobotOrdersActions.enum';
+import {
+	RobotOrderCustomNotificationTypeEnum,
+	RobotOrderModeTypeEnum
+} from './RobotOrdersActions.enum';
 import {
 	DialogCreateOrderFormInterface,
 	DialogCreateOrderInterface
@@ -65,7 +68,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const customerNotificationTypesEnabled = configs && configs.customerNotificationTypesEnabled;
 	const onlyPhoneRoom =
 		customerNotificationTypesEnabled?.length === 1 &&
-		customerNotificationTypesEnabled[0] === RobotCustomNotificationTypeEnum.PHONE_ROOM;
+		customerNotificationTypesEnabled[0] === RobotOrderCustomNotificationTypeEnum.PHONE_ROOM;
 	const translation = 'CONTENT.ORDERS';
 	const fieldLocation = 'location';
 
@@ -90,7 +93,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 			const defaultType = customerNotificationTypesEnabled?.length
 				? customerNotificationTypesEnabled[0]
 				: '';
-			const phoneRoom = values.type === RobotCustomNotificationTypeEnum.PHONE_ROOM;
+			const phoneRoom = values.type === RobotOrderCustomNotificationTypeEnum.PHONE_ROOM;
 			const payload = {
 				isDebug: values.isDebug,
 				location: values.location,
@@ -121,8 +124,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const types0 = customerNotificationTypesEnabled && customerNotificationTypesEnabled[0];
 	const type = values.type || types0;
-	const phoneCustomer = type === RobotCustomNotificationTypeEnum.PHONE_CUSTOMER;
-	const smsCustomer = type === RobotCustomNotificationTypeEnum.SMS_CUSTOMER;
+	const phoneCustomer = type === RobotOrderCustomNotificationTypeEnum.PHONE_CUSTOMER;
+	const smsCustomer = type === RobotOrderCustomNotificationTypeEnum.SMS_CUSTOMER;
 
 	useEffect(() => {
 		// validate mode: service-position

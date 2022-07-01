@@ -1611,7 +1611,7 @@
 									}
 								},
 								"PHONE": {
-									"LABEL": "Customer Phone",
+									"LABEL": "Phone Call No.",
 									"PLACEHOLDER": "Enter Phone No.",
 									"VALIDATIONS": {
 										"INVALID": "Phone No. must be valid."

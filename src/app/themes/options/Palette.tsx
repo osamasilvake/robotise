@@ -9,14 +9,17 @@ const PaletteCustom: PaletteOptions = {
 	secondary: {
 		main: AppConfigService.AppOptions.colors.c10v1
 	},
+	info: {
+		main: AppConfigService.AppOptions.colors.c7
+	},
+	success: {
+		main: AppConfigService.AppOptions.colors.c10v1
+	},
 	warning: {
 		main: AppConfigService.AppOptions.colors.c11
 	},
 	error: {
 		main: AppConfigService.AppOptions.colors.c12
-	},
-	info: {
-		main: AppConfigService.AppOptions.colors.c7
 	}
 };
 export default PaletteCustom;

@@ -1,10 +1,20 @@
-import { List, ListItemButton, ListItemText, ListSubheader } from '@mui/material';
+import { Done } from '@mui/icons-material';
+import {
+	Avatar,
+	IconButton,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemText,
+	ListSubheader
+} from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { AppConfigService } from '../../../../services';
 import { AppDispatch } from '../../../../slices';
-import { AppChangeLanguage } from '../../../../slices/app/App.slice';
+import { AppChangeLanguage, appSelector } from '../../../../slices/app/App.slice';
 import { AppLanguageTypeEnum } from '../../../../slices/app/App.slice.enum';
 import { LanguageStyle } from './Language.style';
 
@@ -15,6 +25,7 @@ const Language: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 
 	const languages = Object.keys(AppLanguageTypeEnum);
+	const app = useSelector(appSelector);
 
 	/**
 	 * dispatch: change language
@@ -33,13 +44,33 @@ const Language: FC = () => {
 				</ListSubheader>
 			}>
 			{languages.map((language, index, { length }) => (
-				<ListItemButton
+				<ListItem
+					disablePadding
 					key={language}
 					divider={index + 1 !== length}
-					onClick={handleLanguage(language.toLowerCase())}
-					disabled>
-					<ListItemText primary={t(`ACCOUNT.LANGUAGES.${language}`)} />
-				</ListItemButton>
+					secondaryAction={
+						language.toLowerCase() === app.currentLanguage ? (
+							<IconButton edge="end" disabled>
+								<Done color="success" />
+							</IconButton>
+						) : null
+					}>
+					<ListItemButton
+						selected={language.toLowerCase() === app.currentLanguage}
+						onClick={handleLanguage(language.toLowerCase())}>
+						<Avatar
+							variant="square"
+							className={classes.sFlag}
+							src={`${
+								AppConfigService.AppImageURLs.languages.path
+							}${language.toLowerCase()}${
+								AppConfigService.AppImageURLs.languages.format
+							}`}
+							alt="flag"
+						/>
+						<ListItemText primary={t(`ACCOUNT.LANGUAGES.${language}`)} />
+					</ListItemButton>
+				</ListItem>
 			))}
 		</List>
 	);

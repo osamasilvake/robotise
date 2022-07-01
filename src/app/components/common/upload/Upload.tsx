@@ -36,9 +36,9 @@ const Upload: FC<UploadImageInterface> = (props) => {
 			<Box>
 				<Avatar
 					variant="square"
+					className={clsx({ [classes.sImageBackground]: background })}
 					src={image || AppConfigService.AppImageURLs.logo.iconOff}
 					alt={AppConfigService.AppImageURLs.logo.name}
-					className={clsx({ [classes.sImageBackground]: background })}
 				/>
 
 				<label htmlFor="button-file">

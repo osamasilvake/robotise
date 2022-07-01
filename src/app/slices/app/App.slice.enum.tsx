@@ -4,6 +4,5 @@ export enum AppThemePaletteTypeEnum {
 }
 
 export enum AppLanguageTypeEnum {
-	EN = 'en',
-	DE = 'de'
+	EN = 'en'
 }

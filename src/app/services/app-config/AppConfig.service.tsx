@@ -67,6 +67,10 @@ class AppConfigService extends EnvService {
 			robotise: {
 				format: '.jpg',
 				path: '/assets/images/robotise/'
+			},
+			languages: {
+				format: '.svg',
+				path: '/assets/svg/languages/'
 			}
 		};
 	}

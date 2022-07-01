@@ -111,11 +111,11 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 					return (
 						<Avatar
 							variant="square"
-							src={value}
-							alt={product.name}
 							className={clsx({
 								[classes.sAvatarBackground]: product.price === 1
 							})}
+							src={value}
+							alt={product.name}
 						/>
 					);
 				}

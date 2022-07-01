@@ -56,7 +56,7 @@ describe('[SLICE] App', () => {
 
 	it('[AppChangeLanguage] Change app language', () => {
 		const store = mockStore(initialState);
-		const cLanguage = AppLanguageTypeEnum.DE;
+		const cLanguage = AppLanguageTypeEnum.EN;
 
 		// act
 		store

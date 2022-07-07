@@ -18,7 +18,7 @@ import { RobotParamsInterface } from '../../Robot.interface';
 import RobotDetailAlerts from './alerts/RobotDetailAlerts';
 import RobotDetailCameras from './cameras/RobotDetailCameras';
 import RobotDetailCommands from './commands/RobotDetailCommands';
-import RobotDetailDataLogs from './data-logs/DataLogs';
+import RobotDetailDataLogs from './data-logs/RobotDetailDataLogs';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailInformation from './information/RobotDetailInformation';
 import RobotDetailLocation from './location/RobotDetailLocation';

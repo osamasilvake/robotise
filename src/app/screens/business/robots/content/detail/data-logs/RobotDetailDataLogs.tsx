@@ -9,7 +9,7 @@ import { ExternalLinkActionTypeEnum } from '../../../../../../components/common/
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { deepLinkSelector } from '../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import { RobotDetailDataLogsStyle } from './DataLogs.style';
+import { RobotDetailDataLogsStyle } from './RobotDetailDataLogs.style';
 
 const RobotDetailDataLogs: FC = () => {
 	const { t } = useTranslation('ROBOTS');

@@ -23,7 +23,8 @@ const appRoutes = {
 				PHONE_CONFIGS: '/sites/:siteId/phone-configs',
 				PHONE_CALLS: '/sites/:siteId/phone-calls',
 				STATISTICS: '/sites/:siteId/statistics',
-				CONFIGURATION: '/sites/:siteId/configuration'
+				CONFIGURATION: '/sites/:siteId/configuration',
+				PERFORMANCE: '/sites/:siteId/performance'
 			},
 			ROBOTS: {
 				MAIN: '/robots',

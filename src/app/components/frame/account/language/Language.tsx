@@ -50,7 +50,7 @@ const Language: FC = () => {
 					divider={index + 1 !== length}
 					secondaryAction={
 						language.toLowerCase() === app.currentLanguage ? (
-							<IconButton edge="end" disabled>
+							<IconButton edge="end" size="small" disabled>
 								<Done color="success" />
 							</IconButton>
 						) : null

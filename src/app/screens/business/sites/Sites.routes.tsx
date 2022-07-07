@@ -50,6 +50,10 @@ const sitesRoutes: RoutesInterface[] = [
 	{
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.CONFIGURATION,
 		component: Site
+	},
+	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PERFORMANCE,
+		component: Site
 	}
 ];
 export default sitesRoutes;

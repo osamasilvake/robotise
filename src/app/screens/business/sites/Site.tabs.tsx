@@ -10,6 +10,7 @@ import PageError from '../../../components/content/page-error/PageError';
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
+import SitePerformance from './content/performance/SitePerformance';
 import { SiteParamsInterface } from './Site.interface';
 import sitesRoutes from './Sites.routes';
 
@@ -83,6 +84,7 @@ const SiteTabs: FC = () => {
 				<Tab label={t(`${translation}.PHONE_CALLS`)} />
 				<Tab label={t(`${translation}.STATISTICS`)} />
 				<Tab label={t(`${translation}.CONFIGURATION`)} />
+				<Tab label={t(`${translation}.PERFORMANCE`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -146,6 +148,15 @@ const SiteTabs: FC = () => {
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SiteConfiguration />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* Performance */}
+				{value === 7 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<SitePerformance />
 						</Suspense>
 					</ErrorBoundary>
 				)}

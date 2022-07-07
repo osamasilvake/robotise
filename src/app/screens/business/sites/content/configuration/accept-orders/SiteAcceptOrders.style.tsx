@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-export const AcceptOrdersStyle = makeStyles((theme: Theme) => ({
+export const SiteAcceptOrdersStyle = makeStyles((theme: Theme) => ({
 	sContent: {
 		position: 'relative'
 	},

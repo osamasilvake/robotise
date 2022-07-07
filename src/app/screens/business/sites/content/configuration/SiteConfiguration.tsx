@@ -26,7 +26,7 @@ import {
 } from '../../../../../slices/business/sites/SiteOperations.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
-import AcceptOrders from './accept-orders/AcceptOrders';
+import SiteAcceptOrders from './accept-orders/SiteAcceptOrders';
 import SiteCleanTestOrders from './clean-test-orders/SiteCleanTestOrders';
 import SiteNotifications from './notifications/SiteNotifications';
 import SiteServicePositions from './service-positions/SiteServicePositions';
@@ -96,7 +96,7 @@ const SiteConfiguration: FC = () => {
 			<Grid container spacing={1}>
 				{/* Accept Orders */}
 				<Grid item xs={12}>
-					<AcceptOrders sites={sites} siteOperations={siteOperations} />
+					<SiteAcceptOrders sites={sites} siteOperations={siteOperations} />
 				</Grid>
 
 				{/* Notifications */}

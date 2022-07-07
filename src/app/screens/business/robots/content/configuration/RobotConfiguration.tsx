@@ -9,7 +9,7 @@ import RobotEmergency from './emergency/RobotEmergency';
 import RobotConfig from './robot-config/RobotConfig';
 import RobotSiteConfig from './robot-site-config/RobotSiteConfig';
 import { RobotConfigurationStyle } from './RobotConfiguration.style';
-import SyncProducts from './sync-products/SyncProducts';
+import RobotSyncProducts from './sync-products/RobotSyncProducts';
 
 const RobotConfiguration: FC = () => {
 	const classes = RobotConfigurationStyle();
@@ -29,7 +29,7 @@ const RobotConfiguration: FC = () => {
 				</Grid>
 
 				<Grid item xs={12}>
-					<SyncProducts
+					<RobotSyncProducts
 						robotTwinsSummary={robotTwinsSummary}
 						robotOperations={robotOperations}
 					/>

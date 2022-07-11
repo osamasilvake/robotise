@@ -20,7 +20,7 @@ const SiteWifiHeatmapDownload: FC<SiteWifiHeatmapDownloadInterface> = (props) =>
 		const elem = document.querySelector('#wifi-map') as HTMLElement;
 		domtoimage.toPng(elem).then((dataUrl: string) => {
 			const link = document.createElement('a');
-			link.download = `Wifi_Map_${siteName?.replace(/\s/g, '_')}_${floor}.png`;
+			link.download = `Wifi_Map_${siteName?.replace(/\s/g, '_')}_Floor_${floor}.png`;
 			link.href = dataUrl;
 			link.click();
 		});

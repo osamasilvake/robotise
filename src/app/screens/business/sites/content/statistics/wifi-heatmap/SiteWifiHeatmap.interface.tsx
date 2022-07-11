@@ -1,7 +1,15 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import { SliceWifiHeatmapInterface } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice.interface';
+import { SiteWifiHeatmapPeriodsTypeEnum } from './SiteWifiHeatmap.enum';
 
 export interface SiteWifiHeatmapInterface {
 	wifiHeatmap: SliceWifiHeatmapInterface;
+}
+
+export interface SiteWifiHeatmapPeriodInterface {
+	period: SiteWifiHeatmapPeriodsTypeEnum;
+	setPeriod: Dispatch<SetStateAction<SiteWifiHeatmapPeriodsTypeEnum>>;
 }
 
 export interface SiteWifiHeatmapCardInterface {

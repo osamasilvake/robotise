@@ -21,9 +21,11 @@ import {
 } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
 import { SWCMapsStateInterface } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice.interface';
 import { SiteParamsInterface } from '../../../Site.interface';
+import { SiteWifiHeatmapPeriodsTypeEnum } from './SiteWifiHeatmap.enum';
 import { SiteWifiHeatmapInterface } from './SiteWifiHeatmap.interface';
 import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
 import SiteWifiHeatmapCard from './SiteWifiHeatmapCard';
+import SiteWifiHeatmapPeriod from './SiteWifiHeatmapPeriod';
 
 const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 	const { wifiHeatmap } = props;
@@ -32,6 +34,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 
 	const dispatch = useDispatch<AppDispatch>();
 
+	const [period, setPeriod] = useState(SiteWifiHeatmapPeriodsTypeEnum.LAST_WEEK);
 	const [floor, setFloor] = useState(wifiHeatmap.content?.maps?.state?.floor);
 	const [name, setName] = useState(wifiHeatmap.content?.maps?.state?.name);
 
@@ -68,15 +71,15 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 		const condition2 = floor && name;
 		if (condition1 && condition2) {
 			// dispatch: fetch wifi heatmap
-			dispatch(WifiHeatmapFetch(cSiteId, { floor, name }, true));
+			dispatch(WifiHeatmapFetch(cSiteId, { floor, name, period }, true));
 		}
-	}, [dispatch, pWifiHeatmapSiteId, cSiteId, floor, name]);
+	}, [dispatch, pWifiHeatmapSiteId, cSiteId, floor, name, period]);
 
 	useEffect(() => {
 		const executeServices = () => {
 			if (wifiHeatmap.content && floor && name) {
 				// dispatch: fetch wifi heatmap
-				dispatch(WifiHeatmapFetch(cSiteId, { floor, name }, true));
+				dispatch(WifiHeatmapFetch(cSiteId, { floor, name, period }, true));
 			}
 		};
 
@@ -87,7 +90,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 				.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, wifiHeatmap.content, cSiteId, floor, name]);
+	}, [dispatch, wifiHeatmap.content, cSiteId, floor, name, period]);
 
 	return (
 		<Box>
@@ -95,6 +98,9 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			<Typography variant="h6" color="textSecondary">
 				{t(`${translation}.TITLE`)}
 			</Typography>
+
+			{/* Period */}
+			<SiteWifiHeatmapPeriod period={period} setPeriod={setPeriod} />
 
 			{/* Floor */}
 			{!!wifiHeatmap.content?.maps?.data?.length && floor && (

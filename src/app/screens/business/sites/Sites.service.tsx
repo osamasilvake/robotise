@@ -373,7 +373,7 @@ class SitesService {
 			params: {
 				'filter[site]': siteId,
 				'filter[floor]': payload.floor,
-				'filter[createdAt][gte]': 'now-7d',
+				'filter[createdAt][gte]': payload.period,
 				'filter[createdAt][lte]': 'now'
 			}
 		});

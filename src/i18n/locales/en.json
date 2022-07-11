@@ -902,8 +902,16 @@
 			"STATISTICS": {
 				"WIFI_HEATMAP": {
 					"TITLE": "WIFI Heatmap",
+					"PERIODS": {
+						"LABEL": "Period",
+						"LIST": {
+							"now-1d": "Last Day",
+							"now-7d": "Last Week",
+							"now-30d": "Last Month"
+						}
+					},
 					"FLOOR": "Floor",
-					"EMPTY": "Empty",
+					"EMPTY": "No Maps found!",
 					"STRENGTH": "Strength"
 				}
 			},

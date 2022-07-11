@@ -67,7 +67,7 @@ const SiteWifiHeatmapCard: FC<SiteWifiHeatmapCardInterface> = (props) => {
 
 	return name ? (
 		<Card square elevation={1} className={classes.cCard}>
-			<CardContent className={cardClasses.sCardContent0}>
+			<CardContent id="wifi-data" className={cardClasses.sCardContent0}>
 				<Picture src={robotLocationImageUrl(name)} alt={name} onLoad={onLoad} fullWidth />
 
 				{/* Legend */}

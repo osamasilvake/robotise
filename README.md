@@ -61,6 +61,7 @@ A summary of development workflow involving multiple git branches.
 - [X] [YAML](https://github.com/eemeli/yaml)
 - [X] [QR Code](https://github.com/soldair/node-qrcode)
 - [X] [Recharts](https://github.com/recharts/recharts)
+- [X] [Dom to Image](https://github.com/tsayen/dom-to-image)
 
 
 ##### MUI: Speedup Startup Times (Development)

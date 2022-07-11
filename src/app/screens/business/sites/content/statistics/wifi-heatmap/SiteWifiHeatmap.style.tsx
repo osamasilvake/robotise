@@ -31,5 +31,8 @@ export const SiteWifiHeatmapStyle = makeStyles((theme: Theme) => ({
 		left: 0,
 		position: 'absolute',
 		width: theme.typography.pxToRem(4)
+	},
+	sDownload: {
+		marginTop: theme.spacing(2)
 	}
 }));

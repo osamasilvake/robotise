@@ -42,3 +42,8 @@ export interface SiteWifiHeatmapCoordinatesInterface {
 export interface SiteWifiHeatmapCardPointsInterface {
 	points: SiteWifiHeatmapCoordinatesInterface[];
 }
+
+export interface SiteWifiHeatmapDownloadInterface {
+	siteName: string | undefined;
+	floor: string | undefined;
+}

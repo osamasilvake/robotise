@@ -1,17 +1,19 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
 import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { WifiHeatmapFetch } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteWifiHeatmapPeriodsTypeEnum } from './SiteWifiHeatmap.enum';
 import { SiteWifiHeatmapInterface } from './SiteWifiHeatmap.interface';
 import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
 import SiteWifiHeatmapCard from './SiteWifiHeatmapCard';
+import SiteWifiHeatmapDownload from './SiteWifiHeatmapDownload';
 import SiteWifiHeatmapFloor from './SiteWifiHeatmapFloor';
 import SiteWifiHeatmapPeriod from './SiteWifiHeatmapPeriod';
 
@@ -21,6 +23,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 	const classes = SiteWifiHeatmapStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
+	const sites = useSelector(sitesSelector);
 
 	const [period, setPeriod] = useState(SiteWifiHeatmapPeriodsTypeEnum.LAST_WEEK);
 	const [floor, setFloor] = useState(wifiHeatmap.content?.maps?.state?.floor);
@@ -29,6 +32,7 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const pWifiHeatmapSiteId = wifiHeatmap.content?.maps?.state?.pSiteId;
 	const cSiteId = params.siteId;
+	const cSiteName = sites.content?.dataById[cSiteId]?.title;
 	const translation = 'CONTENT.STATISTICS.WIFI_HEATMAP';
 
 	useEffect(() => {
@@ -95,11 +99,14 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			{/* Map */}
 			{wifiHeatmap && name && (
 				<Grid container className={classes.sMap}>
-					<Grid item xs={6}>
+					<Grid item xs={6} id="wifi-map">
 						<SiteWifiHeatmapCard wifiHeatmap={wifiHeatmap} name={name} />
 					</Grid>
 				</Grid>
 			)}
+
+			{/* Download */}
+			<SiteWifiHeatmapDownload siteName={cSiteName} floor={floor} />
 		</Box>
 	);
 };

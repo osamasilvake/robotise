@@ -912,7 +912,8 @@
 					},
 					"FLOOR": "Floor",
 					"EMPTY": "No Maps found!",
-					"STRENGTH": "Strength"
+					"STRENGTH": "Strength",
+					"DOWNLOAD": "Download"
 				}
 			},
 			"CONFIGURATION": {

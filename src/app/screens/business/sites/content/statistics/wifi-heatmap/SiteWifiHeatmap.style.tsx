@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 
 export const SiteWifiHeatmapStyle = makeStyles((theme: Theme) => ({
 	sSelection: {
-		marginTop: theme.spacing(2)
+		marginTop: theme.spacing(1)
 	},
 	sEmpty: {
 		marginTop: theme.spacing(1)

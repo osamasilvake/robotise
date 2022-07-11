@@ -1,6 +1,5 @@
 import {
 	Box,
-	Button,
 	FormControl,
 	Grid,
 	InputLabel,
@@ -9,7 +8,6 @@ import {
 	SelectChangeEvent,
 	Typography
 } from '@mui/material';
-import * as htmlToImage from 'html-to-image';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -42,6 +40,29 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const translation = 'CONTENT.STATISTICS.WIFI_HEATMAP';
 
+	/**
+	 * handle floor
+	 * @param event
+	 */
+	const handleFloor = (event: SelectChangeEvent) => {
+		const floor = event.target.value;
+		const name = wifiHeatmap.content?.maps?.data?.find((f) => f.floor === floor)?.name;
+
+		// set floor
+		setFloor(floor);
+
+		// set name
+		setName(name);
+
+		// dispatch: update state
+		const state: SWCMapsStateInterface = {
+			...wifiHeatmap.content?.maps?.state,
+			floor,
+			name
+		};
+		dispatch(WifiHeatmapState(state));
+	};
+
 	useEffect(() => {
 		const condition1 = pWifiHeatmapSiteId && pWifiHeatmapSiteId === cSiteId;
 		const condition2 = floor && name;
@@ -67,42 +88,6 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, wifiHeatmap.content, cSiteId, floor, name]);
-
-	/**
-	 * handle floor
-	 * @param event
-	 */
-	const handleFloor = (event: SelectChangeEvent) => {
-		const floor = event.target.value;
-		const name = wifiHeatmap.content?.maps?.data?.find((f) => f.floor === floor)?.name;
-
-		// set floor
-		setFloor(floor);
-
-		// set name
-		setName(name);
-
-		// dispatch: update state
-		const state: SWCMapsStateInterface = {
-			...wifiHeatmap.content?.maps?.state,
-			floor,
-			name
-		};
-		dispatch(WifiHeatmapState(state));
-	};
-
-	/**
-	 * download map
-	 */
-	const downloadMap = async () => {
-		const elem = document.querySelector('#wifi-data') as HTMLElement;
-		htmlToImage.toPng(elem, { skipFonts: true, skipAutoScale: true }).then((dataUrl) => {
-			const link = document.createElement('a');
-			link.download = 'wifi-heatmap.png';
-			link.href = dataUrl;
-			link.click();
-		});
-	};
 
 	return (
 		<Box>
@@ -150,11 +135,6 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 					</Grid>
 				</Grid>
 			)}
-
-			{/* Download */}
-			<Button variant="outlined" onClick={downloadMap}>
-				{t(`${translation}.DOWNLOAD`)}
-			</Button>
 		</Box>
 	);
 };

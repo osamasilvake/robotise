@@ -12,6 +12,13 @@ export interface SiteWifiHeatmapPeriodInterface {
 	setPeriod: Dispatch<SetStateAction<SiteWifiHeatmapPeriodsTypeEnum>>;
 }
 
+export interface SiteWifiHeatmapFloorInterface {
+	wifiHeatmap: SliceWifiHeatmapInterface;
+	floor: string;
+	setFloor: Dispatch<SetStateAction<string | undefined>>;
+	setName: Dispatch<SetStateAction<string | undefined>>;
+}
+
 export interface SiteWifiHeatmapCardInterface {
 	wifiHeatmap: SliceWifiHeatmapInterface;
 	name: string;

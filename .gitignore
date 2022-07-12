@@ -1,13 +1,13 @@
-# npm & yarn
-package-lock.json
-yarn-error.log
-yarn.lock
-
 # dependencies
 node_modules/
 
 # production
 build/
+
+# npm & yarn
+package-lock.json
+yarn-error.log
+yarn.lock
 
 # cache
 .eslintcache

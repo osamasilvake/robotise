@@ -8,9 +8,9 @@ import {
 	PerformanceFetchPurchases,
 	performanceSelector
 } from '../../../../../../../slices/business/sites/performance/Performance.slice';
-import PurchasesCard from './PurchasesCard';
+import SitePerformanceKPIPurchaseCard from './SitePerformanceKPIPurchaseCard';
 
-const PurchasesKPI: FC = () => {
+const SitePerformanceKPIPurchases: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 
 	const performance = useSelector(performanceSelector);
@@ -42,14 +42,14 @@ const PurchasesKPI: FC = () => {
 		<Box>
 			<Grid container spacing={1}>
 				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<PurchasesCard title="Sum" value={sum} icon="functions" />
+					<SitePerformanceKPIPurchaseCard title="Sum" value={sum} icon="functions" />
 				</Grid>
 
 				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<PurchasesCard title="Avg" value={avg} icon="functions" />
+					<SitePerformanceKPIPurchaseCard title="Avg" value={avg} icon="functions" />
 				</Grid>
 			</Grid>
 		</Box>
 	) : null;
 };
-export default PurchasesKPI;
+export default SitePerformanceKPIPurchases;

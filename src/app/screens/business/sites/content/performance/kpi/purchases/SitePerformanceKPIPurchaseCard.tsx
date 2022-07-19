@@ -3,13 +3,13 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../../../services';
-import { DashboardKPICardInterface } from '../DashboardKPI.interface';
-import { DashboardKPIStyle } from '../DashboardKPI.style';
+import { SitePerformanceKPIInterface } from '../SitePerformanceKPI.interface';
+import { SitePerformanceKPIStyle } from '../SitePerformanceKPI.style';
 
-const PurchasesCard: FC<DashboardKPICardInterface> = (props) => {
+const SitePerformanceKPIPurchaseCard: FC<SitePerformanceKPIInterface> = (props) => {
 	const { title, value, icon } = props;
 	const { t } = useTranslation('DASHBOARD');
-	const classes = DashboardKPIStyle();
+	const classes = SitePerformanceKPIStyle();
 
 	return (
 		<Card variant="elevation" square elevation={1}>
@@ -52,4 +52,4 @@ const PurchasesCard: FC<DashboardKPICardInterface> = (props) => {
 		</Card>
 	);
 };
-export default PurchasesCard;
+export default SitePerformanceKPIPurchaseCard;

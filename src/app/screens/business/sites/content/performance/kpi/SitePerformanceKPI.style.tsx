@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 
 import { AppConfigService } from '../../../../../../services';
 
-export const DashboardKPIStyle = makeStyles((theme: Theme) => ({
+export const SitePerformanceKPIStyle = makeStyles((theme: Theme) => ({
 	sContainer: {
 		marginTop: theme.spacing(4)
 	},

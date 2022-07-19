@@ -2,7 +2,6 @@ import { Box } from '@mui/material';
 import { FC, useState } from 'react';
 
 import PerformanceCharts from './charts/SitePerformanceCharts';
-import DashboardKPI from './kpi/DashboardKPI';
 import DashboardPeriod from './period/SitePerformancePeriod';
 import { performancePeriod } from './period/SitePerformancePeriod.list';
 import { PerformanceStyle } from './SitePerformance.style';
@@ -25,7 +24,7 @@ const SitePerformance: FC = () => {
 			<PerformanceCharts currentPeriod={currentPeriod} />
 
 			{/* KPI */}
-			<DashboardKPI />
+			{/*<SitePerformanceKPI />*/}
 		</Box>
 	);
 };

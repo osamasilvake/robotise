@@ -35,7 +35,7 @@ const BarReChart: FC<BarChartInterface> = (props) => {
 	return (
 		<Box style={styles.sBox}>
 			<ResponsiveContainer>
-				<BarChart data={mapData}>
+				<BarChart data={mapData} margin={{ left: -25 }}>
 					{/* Cartesian Grid */}
 					<CartesianGrid
 						vertical={false}

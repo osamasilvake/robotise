@@ -3,7 +3,7 @@
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["@typescript-eslint", "simple-import-sort"],
 	"parserOptions": {
-		"ecmaVersion": 2020,
+		"ecmaVersion": 2022,
 		"sourceType": "module", // allows using import/export statements
 		"ecmaFeatures": {
 			"jsx": true // enable JSX since we are using React
@@ -34,7 +34,7 @@
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/no-var-requires": "off",
 		"react/prop-types": "off",
-		"react/react-in-jsx-scope": "off", // React 17 - [NOTE]
+		"react/react-in-jsx-scope": "off", // React 17 | cause: No React import in files
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error"
 	}

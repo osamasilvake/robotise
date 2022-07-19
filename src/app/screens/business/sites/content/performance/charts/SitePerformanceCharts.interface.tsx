@@ -1,5 +1,5 @@
-import { PerformanceChartPeriodTypeEnum } from './SitePerformanceCharts.enum';
+import { PerformancePeriodTypeEnum } from '../period/SitePerformancePeriod.enum';
 
 export interface PerformanceChartsInterface {
-	currentPeriod: PerformanceChartPeriodTypeEnum;
+	currentPeriod: PerformancePeriodTypeEnum;
 }

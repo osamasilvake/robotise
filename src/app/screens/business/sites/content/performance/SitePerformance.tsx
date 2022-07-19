@@ -3,14 +3,17 @@ import { FC, useState } from 'react';
 
 import PerformanceCharts from './charts/SitePerformanceCharts';
 import DashboardKPI from './kpi/DashboardKPI';
-import { performancePeriod } from './SitePerformance.list';
-import DashboardPeriod from './SitePerformancePeriod';
+import DashboardPeriod from './period/SitePerformancePeriod';
+import { performancePeriod } from './period/SitePerformancePeriod.list';
+import { PerformanceStyle } from './SitePerformance.style';
 
 const SitePerformance: FC = () => {
+	const classes = PerformanceStyle();
+
 	const [currentPeriod, setCurrentPeriod] = useState(performancePeriod[1].id);
 
 	return (
-		<Box>
+		<Box className={classes.sBox}>
 			{/* Period */}
 			<DashboardPeriod
 				performancePeriod={performancePeriod}

@@ -2,17 +2,17 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { SPCDataInterface } from '../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { JsonAPIResponseInterface } from '../../../../../slices/JsonAPI.interface';
-import { PerformanceChartPeriodTypeEnum } from './charts/SitePerformanceCharts.enum';
+import { PerformancePeriodTypeEnum } from './period/SitePerformancePeriod.enum';
 
 export interface PerformancePeriodListInterface {
-	id: PerformanceChartPeriodTypeEnum;
+	id: PerformancePeriodTypeEnum;
 	label: string;
 }
 
-export interface PerformancePeriodInterface {
+export interface PerformanceChartsInterface {
 	performancePeriod: PerformancePeriodListInterface[];
-	currentPeriod: PerformanceChartPeriodTypeEnum;
-	setCurrentPeriod: Dispatch<SetStateAction<PerformanceChartPeriodTypeEnum>>;
+	currentPeriod: PerformancePeriodTypeEnum;
+	setCurrentPeriod: Dispatch<SetStateAction<PerformancePeriodTypeEnum>>;
 }
 
 export interface PerformancePurchasesPayloadInterface {

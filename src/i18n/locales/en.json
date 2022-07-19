@@ -498,38 +498,6 @@
 			"FORGET_PASSWORD": "Forgot Your Password?"
 		}
 	},
-	"DASHBOARD": {
-		"CHARTS": {
-			"PERIOD": {
-				"LABEL": "Select Period",
-				"WEEK": "Past Week",
-				"MONTH": "Past Month"
-			},
-			"PURCHASES": {
-				"LABEL": "Total Purchases",
-				"DATE": "Date",
-				"PRICE": "Price"
-			},
-			"ORDERS": {
-				"LABEL": "Total Orders",
-				"DATE": "Date",
-				"MODES": {
-					"MINIBAR": "Minibar",
-					"ROOM_SERVICE": "Room Service",
-					"SERVICE_POSITION": "Service Position"
-				}
-			},
-			"INVENTORY": {
-				"LABEL": "Inventory Status",
-				"DATE": "Date",
-				"STATUS": {
-					"GREEN": "Full",
-					"YELLOW": "Low",
-					"RED": "Empty"
-				}
-			}
-		}
-	},
 	"GENERAL": {
 		"COMMON": {
 			"MODE": {
@@ -1093,6 +1061,38 @@
 							"TIME_TO": {
 								"LABEL": "Time To"
 							}
+						}
+					}
+				}
+			},
+			"PERFORMANCE": {
+				"PERIOD": {
+					"LABEL": "Select Period",
+					"WEEK": "Past Week",
+					"MONTH": "Past Month"
+				},
+				"CHARTS": {
+					"PURCHASES": {
+						"LABEL": "Total Purchases",
+						"DATE": "Date",
+						"PRICE": "Price"
+					},
+					"ORDERS": {
+						"LABEL": "Total Orders",
+						"DATE": "Date",
+						"MODES": {
+							"MINIBAR": "Minibar",
+							"ROOM_SERVICE": "Room Service",
+							"SERVICE_POSITION": "Service Position"
+						}
+					},
+					"INVENTORY": {
+						"LABEL": "Inventory Status",
+						"DATE": "Date",
+						"STATUS": {
+							"GREEN": "Full",
+							"YELLOW": "Low",
+							"RED": "Empty"
 						}
 					}
 				}

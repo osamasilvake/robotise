@@ -2,25 +2,34 @@ import { Box, Grid, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import { performanceSelector } from '../../../../../../slices/business/sites/performance/Performance.slice';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import BarReChart from '../../../../../../utilities/charts/bar-chart/BarChart';
 import { BarChartDataInterface } from '../../../../../../utilities/charts/bar-chart/BarChart.interface';
 import StackedBarReChart from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart';
 import { dateFormat4 } from '../../../../../../utilities/methods/Date';
+import { SiteParamsInterface } from '../../../Site.interface';
 import { SitePerformanceChartsStyle } from './SitePerformanceCharts.style';
 
 const SitePerformanceCharts: FC = () => {
 	const { t } = useTranslation('SITES');
 	const classes = SitePerformanceChartsStyle();
 
+	const sites = useSelector(sitesSelector);
 	const performance = useSelector(performanceSelector);
 
 	const [chart, setChart] = useState<BarChartDataInterface[] | null>(null);
 	const [stackedChart] = useState([]);
 	const [stacked2Chart] = useState([]);
+
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
+
+	const cSiteId = params.siteId;
+	const siteSingle = sites.content?.dataById[cSiteId];
 
 	const translation = 'CONTENT.PERFORMANCE';
 	const allChartsEmpty = !chart?.length && !stackedChart?.length && !stacked2Chart?.length;
@@ -51,7 +60,7 @@ const SitePerformanceCharts: FC = () => {
 					<Grid item xs={12} sm={6} md={6}>
 						{/* Title */}
 						<Typography variant="h5" className={classes.sChartLabel}>
-							{t(`${translation}.CHARTS.PURCHASES.LABEL`)}
+							{t(`${translation}.CHARTS.PURCHASES.LABEL`)} ({siteSingle?.currency})
 						</Typography>
 
 						{/* Bar */}
@@ -59,7 +68,7 @@ const SitePerformanceCharts: FC = () => {
 							data={chart}
 							x={t(`${translation}.CHARTS.PURCHASES.DATE`)}
 							axisX={t(`${translation}.CHARTS.PURCHASES.LABEL`)}
-							axisY={t(`${translation}.CHARTS.PURCHASES.PRICE`)}
+							axisY={t(`${translation}.CHARTS.PURCHASES.REVENUE`)}
 						/>
 					</Grid>
 				)}

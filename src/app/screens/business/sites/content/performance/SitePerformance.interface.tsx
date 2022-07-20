@@ -1,18 +1,18 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import { SPCDataInterface } from '../../../../../slices/business/robots/purchases/Purchases.slice.interface';
-import { JsonAPIResponseInterface } from '../../../../../slices/JsonAPI.interface';
 import { SitePerformancePeriodTypeEnum } from './period/SitePerformancePeriod.enum';
 
 export interface SitePerformancePeriodListInterface {
 	id: SitePerformancePeriodTypeEnum;
 	label: string;
+	period: number;
 }
 
 export interface SitePerformanceChartsInterface {
 	sitePerformancePeriod: SitePerformancePeriodListInterface[];
 	currentPeriod: SitePerformancePeriodTypeEnum;
-	setCurrentPeriod: Dispatch<SetStateAction<SitePerformancePeriodTypeEnum>>;
+	setCurrentPeriod: Dispatch<SetStateAction<SitePerformancePeriodListInterface>>;
 }
 
 export interface SitePerformancePurchasesPayloadInterface {

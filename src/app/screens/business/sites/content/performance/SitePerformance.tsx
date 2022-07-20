@@ -7,6 +7,7 @@ import { AppDispatch } from '../../../../../slices';
 import { PerformanceFetchPurchases } from '../../../../../slices/business/sites/performance/Performance.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SitePerformanceCharts from './charts/SitePerformanceCharts';
+import SitePerformanceKPI from './kpi/SitePerformanceKPI';
 import SitePerformancePeriod from './period/SitePerformancePeriod';
 import { sitePerformancePeriod } from './period/SitePerformancePeriod.list';
 import { SitePerformanceStyle } from './SitePerformance.style';
@@ -16,7 +17,7 @@ const SitePerformance: FC = () => {
 
 	const dispatch = useDispatch<AppDispatch>();
 
-	const [currentPeriod, setCurrentPeriod] = useState(sitePerformancePeriod[1].id);
+	const [currentPeriod, setCurrentPeriod] = useState(sitePerformancePeriod[1]);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
@@ -27,8 +28,8 @@ const SitePerformance: FC = () => {
 			PerformanceFetchPurchases({
 				site: cSiteId,
 				lookup: {
-					period: 6,
-					unit: currentPeriod
+					period: currentPeriod.period,
+					unit: currentPeriod.id
 				},
 				excludeTotalPriceZero: true
 			})
@@ -40,7 +41,7 @@ const SitePerformance: FC = () => {
 			{/* Period */}
 			<SitePerformancePeriod
 				sitePerformancePeriod={sitePerformancePeriod}
-				currentPeriod={currentPeriod}
+				currentPeriod={currentPeriod.id}
 				setCurrentPeriod={setCurrentPeriod}
 			/>
 
@@ -48,7 +49,7 @@ const SitePerformance: FC = () => {
 			<SitePerformanceCharts />
 
 			{/* KPI */}
-			{/*<SitePerformanceKPI />*/}
+			<SitePerformanceKPI />
 		</Box>
 	);
 };

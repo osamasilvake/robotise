@@ -1073,15 +1073,15 @@
 			"PERFORMANCE": {
 				"PERIOD": {
 					"LABEL": "Select Period",
-					"DAY": "Last Day",
-					"WEEK": "Past Week",
-					"MONTH": "Past Month"
+					"DAY": "Last 7 Days",
+					"WEEK": "Last 8 Weeks",
+					"MONTH": "Last 12 Months"
 				},
 				"CHARTS": {
 					"PURCHASES": {
 						"LABEL": "Total Purchases",
 						"DATE": "Date",
-						"PRICE": "Price"
+						"REVENUE": "Revenue"
 					},
 					"ORDERS": {
 						"LABEL": "Total Orders",

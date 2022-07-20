@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Icon, Stack, Typography } from '@mui/material';
+import { Box, Card, CardContent, Icon, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -29,25 +29,9 @@ const SitePerformanceKPIPurchaseCard: FC<SitePerformanceKPIInterface> = (props) 
 				)}
 
 				{/* Value */}
-				<Typography variant="h4" textAlign="center" className={classes.sCardContentValue}>
+				<Typography variant="h2" textAlign="center" className={classes.sCardContentValue}>
 					{value || AppConfigService.AppOptions.common.none}
 				</Typography>
-
-				{/* Sub Value */}
-				<Stack
-					spacing={0.25}
-					direction="row"
-					alignItems="center"
-					justifyContent="space-between">
-					<Typography variant="body2" color="textSecondary">
-						Min: 200
-					</Typography>
-
-					{/* Sub Value */}
-					<Typography variant="body2" color="textSecondary">
-						Max: 400
-					</Typography>
-				</Stack>
 			</CardContent>
 		</Card>
 	);

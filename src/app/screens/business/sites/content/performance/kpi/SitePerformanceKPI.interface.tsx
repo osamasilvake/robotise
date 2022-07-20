@@ -1,5 +1,5 @@
 export interface SitePerformanceKPIInterface {
 	title: string;
-	value: number;
+	value: number | string;
 	icon: string;
 }

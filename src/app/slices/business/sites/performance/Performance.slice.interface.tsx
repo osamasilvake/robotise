@@ -25,6 +25,7 @@ export interface SPContentHistogramInterface {
 export interface SPContentSingleInterface {
 	sumTotalPrice: number;
 	avgTotalPrice: number;
+	avgSumTotalPricePerPeriod: number;
 	avgTotalQuantity: number;
 	avgPurchases: number;
 	totalPurchases: number;

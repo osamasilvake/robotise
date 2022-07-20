@@ -16,7 +16,7 @@ const SitePerformancePeriod: FC<SitePerformanceChartsInterface> = (props) => {
 	 */
 	const handlePeriod = (id: string) => {
 		const period = sitePerformancePeriod.find((d) => d.id === id);
-		period && setCurrentPeriod(period.id);
+		period && setCurrentPeriod(period);
 	};
 
 	return (

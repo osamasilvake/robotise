@@ -1,4 +1,5 @@
-export enum PerformancePeriodTypeEnum {
-	WEEK = 'week',
-	MONTH = 'month'
+export enum SitePerformancePeriodTypeEnum {
+	DAY = 'd',
+	WEEK = 'w',
+	MONTH = 'M'
 }

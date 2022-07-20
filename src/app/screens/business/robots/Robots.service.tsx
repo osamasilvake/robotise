@@ -317,7 +317,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotPurchasesFetch = (robotId: string, payload: RobotPurchasesListPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES.FETCH;
 		return HttpClientService.get<RobotPurchasesAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
@@ -353,7 +353,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotPurchaseFetch = (purchaseId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASE.replace(
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES.SINGLE.replace(
 			':purchaseId',
 			purchaseId
 		);

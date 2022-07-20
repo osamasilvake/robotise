@@ -64,8 +64,11 @@ const AppServices = (config: typeof AppConfigService) => {
 						SINGLE: `${config.envAppUrl}/orders/:orderId`,
 						RESTART: `${config.envAppUrl}/orders/:orderId/restart`
 					},
-					PURCHASES: `${config.envAppUrl}/order-reports`,
-					PURCHASE: `${config.envAppUrl}/order-reports/:purchaseId`,
+					PURCHASES: {
+						FETCH: `${config.envAppUrl}/order-reports`,
+						SINGLE: `${config.envAppUrl}/order-reports/:purchaseId`,
+						STATISTICS: `${config.envAppUrl}/purchase-statistics`
+					},
 					COMMANDS_LOGS: `${config.envAppUrl}/robot-commands`,
 					ELEVATOR_CALLS: `${config.envAppUrl}/elevator-calls`,
 					ELEVATOR_CALLS_TEST: `${config.envAppUrl}/test-elevator-calls/:siteId`,

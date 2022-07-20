@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { FC } from 'react';
 
-import SitePerformanceKPIPurchases from './purchases/SitePerformanceKPIPurchases';
+import SitePerformancePurchasesKPI from './purchases/SitePerformanceKPIPurchases';
 import { SitePerformanceKPIStyle } from './SitePerformanceKPI.style';
 
 const SitePerformanceKPI: FC = () => {
@@ -10,7 +10,7 @@ const SitePerformanceKPI: FC = () => {
 	return (
 		<Box className={classes.sContainer}>
 			{/* Purchases KPI */}
-			<SitePerformanceKPIPurchases />
+			<SitePerformancePurchasesKPI />
 		</Box>
 	);
 };

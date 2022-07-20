@@ -6,6 +6,10 @@ import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
+import {
+	SitePerformancePurchasesAxiosGetInterface,
+	SitePerformancePurchasesPayloadInterface
+} from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
 import { SitePhoneConfigUploadAudioInterface } from './content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
@@ -652,6 +656,23 @@ class SitesService {
 					dateTo: payload.dateTo,
 					timeTo: payload.timeTo
 				}
+			}
+		});
+	};
+
+	/**
+	 * fetch performance purchases
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformancePurchasesFetch = (payload: SitePerformancePurchasesPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES.STATISTICS;
+		return HttpClientService.get<SitePerformancePurchasesAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.site,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit,
+				'filter[excludeTotalPriceZero]': payload.excludeTotalPriceZero
 			}
 		});
 	};

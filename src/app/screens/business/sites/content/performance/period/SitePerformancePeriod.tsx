@@ -2,10 +2,10 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { PerformanceChartsInterface } from '../SitePerformance.interface';
+import { SitePerformanceChartsInterface } from '../SitePerformance.interface';
 
-const DashboardPeriod: FC<PerformanceChartsInterface> = (props) => {
-	const { performancePeriod, currentPeriod, setCurrentPeriod } = props;
+const SitePerformancePeriod: FC<SitePerformanceChartsInterface> = (props) => {
+	const { sitePerformancePeriod, currentPeriod, setCurrentPeriod } = props;
 	const { t } = useTranslation('SITES');
 
 	const translation = 'CONTENT.PERFORMANCE';
@@ -15,7 +15,7 @@ const DashboardPeriod: FC<PerformanceChartsInterface> = (props) => {
 	 * @param id
 	 */
 	const handlePeriod = (id: string) => {
-		const period = performancePeriod.find((d) => d.id === id);
+		const period = sitePerformancePeriod.find((d) => d.id === id);
 		period && setCurrentPeriod(period.id);
 	};
 
@@ -31,7 +31,7 @@ const DashboardPeriod: FC<PerformanceChartsInterface> = (props) => {
 					label={t(`${translation}.PERIOD.LABEL`)}
 					value={currentPeriod}
 					onChange={(event) => handlePeriod(event.target.value)}>
-					{performancePeriod.map((item) => (
+					{sitePerformancePeriod.map((item) => (
 						<MenuItem key={item.id} value={item.id}>
 							{t(`${translation}.${item.label}`)}
 						</MenuItem>
@@ -41,4 +41,4 @@ const DashboardPeriod: FC<PerformanceChartsInterface> = (props) => {
 		</Box>
 	);
 };
-export default DashboardPeriod;
+export default SitePerformancePeriod;

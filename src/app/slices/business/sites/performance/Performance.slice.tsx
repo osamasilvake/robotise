@@ -2,11 +2,11 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { PerformancePurchasesPayloadInterface } from '../../../../screens/business/sites/content/performance/SitePerformance.interface';
-import PerformanceService from '../../../../screens/business/sites/content/performance/SitePerformance.service';
+import { SitePerformancePurchasesPayloadInterface } from '../../../../screens/business/sites/content/performance/SitePerformance.interface';
+import SitesService from '../../../../screens/business/sites/Sites.service';
 import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
-import { deserializePurchases } from '../../robots/purchases/Purchases.slice.deserialize';
+import { deserializePurchases } from './Performance.slice.deserialize';
 import { PerformanceTypeEnum } from './Performance.slice.enum';
 import { SlicePerformanceInterface } from './Performance.slice.interface';
 
@@ -62,7 +62,7 @@ export default dataSlice.reducer;
  * @returns
  */
 export const PerformanceFetchPurchases =
-	(payload: PerformancePurchasesPayloadInterface) =>
+	(payload: SitePerformancePurchasesPayloadInterface) =>
 	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
@@ -79,7 +79,7 @@ export const PerformanceFetchPurchases =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return PerformanceService.performancePurchasesFetch(payload)
+		return SitesService.sitePerformancePurchasesFetch(payload)
 			.then(async (res) => {
 				// deserialize response
 				const result = await deserializePurchases(res);
@@ -95,7 +95,7 @@ export const PerformanceFetchPurchases =
 					id: 'performance-purchases-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'PERFORMANCE.PURCHASES.ERROR'
+					text: 'SITES.PERFORMANCE.PURCHASES.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

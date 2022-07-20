@@ -277,6 +277,11 @@
 						"SUCCESS": "Test orders cleaned successfully!",
 						"ERROR": "Unable to clean test orders!"
 					}
+				},
+				"PERFORMANCE": {
+					"PURCHASES": {
+						"ERROR":"Failed to fetch purchase statistics!"
+					}
 				}
 			},
 			"ROBOTS": {
@@ -1068,6 +1073,7 @@
 			"PERFORMANCE": {
 				"PERIOD": {
 					"LABEL": "Select Period",
+					"DAY": "Last Day",
 					"WEEK": "Past Week",
 					"MONTH": "Past Month"
 				},
@@ -1094,7 +1100,8 @@
 							"YELLOW": "Low",
 							"RED": "Empty"
 						}
-					}
+					},
+					"EMPTY": "No Charts found!"
 				}
 			}
 		}

@@ -1,27 +1,51 @@
 import { Box } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import PerformanceCharts from './charts/SitePerformanceCharts';
-import DashboardPeriod from './period/SitePerformancePeriod';
-import { performancePeriod } from './period/SitePerformancePeriod.list';
-import { PerformanceStyle } from './SitePerformance.style';
+import { AppDispatch } from '../../../../../slices';
+import { PerformanceFetchPurchases } from '../../../../../slices/business/sites/performance/Performance.slice';
+import { SiteParamsInterface } from '../../Site.interface';
+import SitePerformanceCharts from './charts/SitePerformanceCharts';
+import SitePerformancePeriod from './period/SitePerformancePeriod';
+import { sitePerformancePeriod } from './period/SitePerformancePeriod.list';
+import { SitePerformanceStyle } from './SitePerformance.style';
 
 const SitePerformance: FC = () => {
-	const classes = PerformanceStyle();
+	const classes = SitePerformanceStyle();
 
-	const [currentPeriod, setCurrentPeriod] = useState(performancePeriod[1].id);
+	const dispatch = useDispatch<AppDispatch>();
+
+	const [currentPeriod, setCurrentPeriod] = useState(sitePerformancePeriod[1].id);
+
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
+	const cSiteId = params.siteId;
+
+	useEffect(() => {
+		// purchases
+		dispatch(
+			PerformanceFetchPurchases({
+				site: cSiteId,
+				lookup: {
+					period: 6,
+					unit: currentPeriod
+				},
+				excludeTotalPriceZero: true
+			})
+		);
+	}, [dispatch, cSiteId, currentPeriod]);
 
 	return (
 		<Box className={classes.sBox}>
 			{/* Period */}
-			<DashboardPeriod
-				performancePeriod={performancePeriod}
+			<SitePerformancePeriod
+				sitePerformancePeriod={sitePerformancePeriod}
 				currentPeriod={currentPeriod}
 				setCurrentPeriod={setCurrentPeriod}
 			/>
 
 			{/* Charts */}
-			<PerformanceCharts currentPeriod={currentPeriod} />
+			<SitePerformanceCharts />
 
 			{/* KPI */}
 			{/*<SitePerformanceKPI />*/}

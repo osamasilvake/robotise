@@ -25,7 +25,7 @@
 		"prettier",
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended", // react hooks
-		"plugin:jsx-a11y/recommended", // automatically surface any accessibility issues as they pop up
+		"plugin:jsx-a11y/recommended", // automatically surface all accessibility issues as they pop up
 		"plugin:prettier/recommended" // make this the last element so prettier config overrides other formatting rules
 	],
 	"rules": {

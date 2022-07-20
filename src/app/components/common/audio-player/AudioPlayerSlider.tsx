@@ -22,7 +22,7 @@ const AudioPlayerSlider: FC<AudioPlayerSliderInterface> = (props) => {
 	 * @param value
 	 */
 	const onScrub = (value: number) => {
-		// clear any timers already running
+		// clear timers already running
 		clearInterval(intervalRef.current);
 
 		// set current time

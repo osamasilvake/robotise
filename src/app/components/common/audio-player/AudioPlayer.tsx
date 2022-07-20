@@ -28,7 +28,7 @@ const AudioPlayer: FC<AudioPlayerInterface> = (props) => {
 	 * start timer
 	 */
 	const startTimer = useCallback(() => {
-		// clear any timers already running
+		// clear timers already running
 		clearInterval(intervalRef.current);
 
 		// set track progress

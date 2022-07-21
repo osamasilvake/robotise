@@ -12,7 +12,6 @@ import {
 	YAxis
 } from 'recharts';
 
-import { AppConfigService } from '../../../services';
 import { appSelector } from '../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../slices/app/App.slice.enum';
 import { dateFormat6 } from '../../methods/Date';
@@ -55,7 +54,7 @@ const BarReChart: FC<BarChartInterface> = (props) => {
 					/>
 
 					{/* Bar */}
-					<Bar fill={AppConfigService.AppOptions.colors.c10v1} dataKey={axisY} />
+					<Bar fill={styles.sBar.fill} dataKey={axisY} />
 
 					{/* Legend */}
 					<Legend />

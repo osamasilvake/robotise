@@ -38,7 +38,7 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 	return (
 		<Box style={styles.sBox}>
 			<ResponsiveContainer>
-				<BarChart data={mapData} barCategoryGap={barCategoryGap} margin={{ left: -25 }}>
+				<BarChart data={mapData} barCategoryGap={barCategoryGap} margin={{ left: -20 }}>
 					{/* Cartesian Grid */}
 					<CartesianGrid
 						horizontal={gridLinesHorizontal || false}

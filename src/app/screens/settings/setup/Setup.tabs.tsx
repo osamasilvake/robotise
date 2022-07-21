@@ -48,17 +48,14 @@ const SetupTabs: FC = () => {
 				onChange={handleTabChange}
 				variant="scrollable"
 				textColor="primary">
-				<Tab label={t(`${translation}.COMMON`)} />
 				<Tab label={t(`${translation}.WIFI_CONFIG`)} />
 				<Tab label={t(`${translation}.ROBOT_PASSWORD`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
 			<Box>
-				{value === 0 && <></>}
-
 				{/* Wifi Config */}
-				{value === 1 && (
+				{value === 0 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SetupWifiConfig />
@@ -67,7 +64,7 @@ const SetupTabs: FC = () => {
 				)}
 
 				{/* Robot Password */}
-				{value === 2 && (
+				{value === 1 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SetupRobotPassword />

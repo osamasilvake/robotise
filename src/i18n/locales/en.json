@@ -2061,7 +2061,6 @@
 	"SETUP": {
 		"CONTENT": {
 			"TABS": {
-				"COMMON": "COMMON",
 				"WIFI_CONFIG": "Wifi Configuration",
 				"ROBOT_PASSWORD": "Robot Password"
 			},

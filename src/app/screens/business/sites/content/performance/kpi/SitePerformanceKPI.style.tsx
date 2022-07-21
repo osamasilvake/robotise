@@ -10,11 +10,14 @@ export const SitePerformanceKPIStyle = makeStyles((theme: Theme) => ({
 	sCardContent: {
 		position: 'relative'
 	},
-	sCardContentIcons: {
+	sCardContentIcon: {
 		color: AppConfigService.AppOptions.colors.c13,
 		position: 'absolute',
 		right: theme.spacing(0.5),
 		top: theme.spacing(0.5)
+	},
+	sCardContentIconRotate: {
+		transform: 'rotate(90deg)'
 	},
 	sCardContentValue: {
 		margin: theme.spacing(1, 0)

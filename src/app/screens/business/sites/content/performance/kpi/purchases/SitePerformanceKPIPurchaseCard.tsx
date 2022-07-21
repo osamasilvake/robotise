@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, Icon, Typography } from '@mui/material';
+import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -7,7 +8,7 @@ import { SitePerformanceKPIInterface } from '../SitePerformanceKPI.interface';
 import { SitePerformanceKPIStyle } from '../SitePerformanceKPI.style';
 
 const SitePerformanceKPIPurchaseCard: FC<SitePerformanceKPIInterface> = (props) => {
-	const { title, value, icon } = props;
+	const { title, value, icon, rotateIcon } = props;
 	const { t } = useTranslation('DASHBOARD');
 	const classes = SitePerformanceKPIStyle();
 
@@ -16,8 +17,10 @@ const SitePerformanceKPIPurchaseCard: FC<SitePerformanceKPIInterface> = (props) 
 			<CardContent className={classes.sCardContent}>
 				{/* Icon */}
 				{icon && (
-					<Box className={classes.sCardContentIcons}>
-						<Icon>{icon}</Icon>
+					<Box className={classes.sCardContentIcon}>
+						<Icon className={clsx({ [classes.sCardContentIconRotate]: !!rotateIcon })}>
+							{icon}
+						</Icon>
 					</Box>
 				)}
 

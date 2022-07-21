@@ -55,7 +55,8 @@ const SitePerformanceKPIPurchases: FC = () => {
 					<SitePerformanceKPIPurchaseCard
 						title="Average revenue per period"
 						value={currencyFormat(avgSumTotal, siteSingle?.currency, i18next.language)}
-						icon="equalizer"
+						icon="hide_source"
+						rotateIcon
 					/>
 				</Grid>
 

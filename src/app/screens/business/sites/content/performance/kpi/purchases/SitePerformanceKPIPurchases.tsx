@@ -1,6 +1,7 @@
 import { Box, Grid } from '@mui/material';
 import i18next from 'i18next';
 import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -11,6 +12,8 @@ import { SiteParamsInterface } from '../../../../Site.interface';
 import SitePerformanceKPIPurchaseCard from './SitePerformanceKPIPurchaseCard';
 
 const SitePerformanceKPIPurchases: FC = () => {
+	const { t } = useTranslation('SITES');
+
 	const sites = useSelector(sitesSelector);
 	const performance = useSelector(performanceSelector);
 
@@ -23,6 +26,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
+	const translation = 'CONTENT.PERFORMANCE.BOXES.PURCHASES';
 
 	useEffect(() => {
 		const single = performance?.purchases?.content?.statistics?.single;
@@ -37,7 +41,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 			<Grid container spacing={1}>
 				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<SitePerformanceKPIPurchaseCard
-						title="Total Revenue"
+						title={t(`${translation}.SUM`)}
 						value={currencyFormat(sumTotal, siteSingle?.currency, i18next.language)}
 						icon="functions"
 					/>
@@ -45,7 +49,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 
 				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<SitePerformanceKPIPurchaseCard
-						title="Average Check"
+						title={t(`${translation}.AVG`)}
 						value={currencyFormat(avgTotal, siteSingle?.currency, i18next.language)}
 						icon="equalizer"
 					/>
@@ -53,7 +57,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 
 				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<SitePerformanceKPIPurchaseCard
-						title="Average revenue per period"
+						title={t(`${translation}.AVG_REVENUE_PER_PERIOD`)}
 						value={currencyFormat(avgSumTotal, siteSingle?.currency, i18next.language)}
 						icon="hide_source"
 						rotateIcon
@@ -62,7 +66,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 
 				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<SitePerformanceKPIPurchaseCard
-						title="Average total quantity"
+						title={t(`${translation}.AVG_REVENUE_PER_PERIOD`)}
 						value={avgTotalQuantity}
 						icon="equalizer"
 					/>

@@ -1102,6 +1102,14 @@
 						}
 					},
 					"EMPTY": "No Charts found!"
+				},
+				"BOXES": {
+					"PURCHASES": {
+						"SUM": "Total Revenue",
+						"AVG": "Average Purchase Total Price",
+						"AVG_REVENUE_PER_PERIOD": "Average Revenue Per Period",
+						"AVG_TOTAL_QUANTITY": "Average Total Quantity"
+					}
 				}
 			}
 		}

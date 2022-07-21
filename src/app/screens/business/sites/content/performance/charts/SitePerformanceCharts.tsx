@@ -1,4 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
+import i18next from 'i18next';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -69,6 +70,8 @@ const SitePerformanceCharts: FC = () => {
 							x={t(`${translation}.CHARTS.PURCHASES.DATE`)}
 							axisX={t(`${translation}.CHARTS.PURCHASES.LABEL`)}
 							axisY={t(`${translation}.CHARTS.PURCHASES.REVENUE`)}
+							currency={siteSingle?.currency}
+							language={i18next.language}
 						/>
 					</Grid>
 				)}

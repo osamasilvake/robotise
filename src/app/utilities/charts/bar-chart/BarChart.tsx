@@ -15,11 +15,12 @@ import {
 import { appSelector } from '../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../slices/app/App.slice.enum';
 import { dateFormat6 } from '../../methods/Date';
+import { currencyFormat } from '../../methods/Number';
 import { BarChartInterface } from './BarChart.interface';
 import { BarChartStyle } from './BarChart.style';
 
 const BarReChart: FC<BarChartInterface> = (props) => {
-	const { data, x, axisX, axisY } = props;
+	const { data, x, axisX, axisY, currency, language } = props;
 	const styles = BarChartStyle;
 
 	const app = useSelector(appSelector);
@@ -50,6 +51,7 @@ const BarReChart: FC<BarChartInterface> = (props) => {
 					<Tooltip
 						cursor={false}
 						labelFormatter={(t) => `${x}: ${dateFormat6(t)}`}
+						formatter={(value: number) => currencyFormat(value, currency, language)}
 						labelStyle={styles.sTooltipLabel}
 					/>
 

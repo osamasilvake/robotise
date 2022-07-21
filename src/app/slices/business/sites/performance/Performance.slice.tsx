@@ -13,9 +13,11 @@ import { SlicePerformanceInterface } from './Performance.slice.interface';
 // initial state
 export const initialState: SlicePerformanceInterface = {
 	purchases: {
+		init: false,
 		loader: false,
 		loading: false,
-		content: null
+		content: null,
+		errors: null
 	}
 };
 
@@ -24,6 +26,12 @@ const dataSlice = createSlice({
 	name: 'Performance',
 	initialState,
 	reducers: {
+		loader: (state, action) => {
+			const { module } = action.payload;
+			if (module === PerformanceTypeEnum.PURCHASES) {
+				state.purchases.loader = true;
+			}
+		},
 		loading: (state, action) => {
 			const { module } = action.payload;
 			if (module === PerformanceTypeEnum.PURCHASES) {
@@ -33,15 +41,21 @@ const dataSlice = createSlice({
 		success: (state, action) => {
 			const { module, response } = action.payload;
 			if (module === PerformanceTypeEnum.PURCHASES) {
+				state.purchases.init = true;
+				state.purchases.loader = false;
 				state.purchases.loading = false;
 				state.purchases.content = response;
+				state.purchases.errors = null;
 			}
 		},
 		failure: (state, action) => {
-			const { module } = action.payload;
+			const { module, response } = action.payload;
 			if (module === PerformanceTypeEnum.PURCHASES) {
+				state.purchases.init = true;
+				state.purchases.loader = false;
 				state.purchases.loading = false;
 				state.purchases.content = null;
+				state.purchases.errors = response;
 			}
 		},
 		reset: () => initialState
@@ -49,7 +63,7 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, reset } = dataSlice.actions;
 
 // selector
 export const performanceSelector = (state: RootState) => state['performance'];
@@ -59,10 +73,12 @@ export default dataSlice.reducer;
 
 /**
  * fetch purchases
+ * @param payload
+ * @param refresh
  * @returns
  */
 export const PerformanceFetchPurchases =
-	(payload: SitePerformancePurchasesPayloadInterface) =>
+	(payload: SitePerformancePurchasesPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
@@ -76,8 +92,8 @@ export const PerformanceFetchPurchases =
 			return;
 		}
 
-		// dispatch: loading
-		dispatch(loading(state));
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader(state) : loading(state));
 
 		return SitesService.sitePerformancePurchasesFetch(payload)
 			.then(async (res) => {
@@ -86,8 +102,6 @@ export const PerformanceFetchPurchases =
 
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
-
-				return result;
 			})
 			.catch(() => {
 				// dispatch: trigger message
@@ -100,8 +114,6 @@ export const PerformanceFetchPurchases =
 				dispatch(triggerMessage(message));
 
 				// dispatch: failure
-				dispatch(failure(state));
-
-				return null;
+				dispatch(failure({ state, response: message }));
 			});
 	};

@@ -1,11 +1,10 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import i18next from 'i18next';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import { performanceSelector } from '../../../../../../slices/business/sites/performance/Performance.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
@@ -33,7 +32,6 @@ const SitePerformanceCharts: FC = () => {
 	const siteSingle = sites.content?.dataById[cSiteId];
 
 	const translation = 'CONTENT.PERFORMANCE';
-	const allChartsEmpty = !chart?.length && !stackedChart?.length && !stacked2Chart?.length;
 
 	useEffect(() => {
 		const histogram = performance?.purchases?.content?.statistics?.histogram;
@@ -54,84 +52,79 @@ const SitePerformanceCharts: FC = () => {
 	}, [performance?.purchases]);
 
 	return (
-		<Box>
-			<Grid container spacing={1}>
-				{/* Purchases */}
-				{chart && chart.length > 0 && (
-					<Grid item xs={12} sm={6} md={6}>
-						{/* Title */}
-						<Typography variant="h5" className={classes.sChartLabel}>
-							{t(`${translation}.CHARTS.PURCHASES.LABEL`)} ({siteSingle?.currency})
-						</Typography>
+		<Grid container spacing={1}>
+			{/* Purchases */}
+			{chart && chart.length > 0 && (
+				<Grid item xs={12} sm={6} md={6}>
+					{/* Title */}
+					<Typography variant="h5" className={classes.sChartLabel}>
+						{t(`${translation}.CHARTS.PURCHASES.LABEL`)} ({siteSingle?.currency})
+					</Typography>
 
-						{/* Bar */}
-						<BarReChart
-							data={chart}
-							x={t(`${translation}.CHARTS.PURCHASES.DATE`)}
-							axisX={t(`${translation}.CHARTS.PURCHASES.LABEL`)}
-							axisY={t(`${translation}.CHARTS.PURCHASES.REVENUE`)}
-							currency={siteSingle?.currency}
-							language={i18next.language}
-						/>
-					</Grid>
-				)}
+					{/* Bar */}
+					<BarReChart
+						data={chart}
+						x={t(`${translation}.CHARTS.PURCHASES.DATE`)}
+						axisX={t(`${translation}.CHARTS.PURCHASES.LABEL`)}
+						axisY={t(`${translation}.CHARTS.PURCHASES.REVENUE`)}
+						currency={siteSingle?.currency}
+						language={i18next.language}
+					/>
+				</Grid>
+			)}
 
-				{/* Orders */}
-				{stackedChart && stackedChart.length > 0 && (
-					<Grid item xs={12} sm={6} md={6}>
-						{/* Title */}
-						<Typography variant="h5" className={classes.sChartLabel}>
-							{t(`${translation}.CHARTS.ORDERS.LABEL`)}
-						</Typography>
+			{/* Orders */}
+			{stackedChart && stackedChart.length > 0 && (
+				<Grid item xs={12} sm={6} md={6}>
+					{/* Title */}
+					<Typography variant="h5" className={classes.sChartLabel}>
+						{t(`${translation}.CHARTS.ORDERS.LABEL`)}
+					</Typography>
 
-						{/* Bar */}
-						<StackedBarReChart
-							data={stackedChart}
-							x={t(`${translation}.CHARTS.ORDERS.DATE`)}
-							axisX={t(`${translation}.CHARTS.ORDERS.LABEL`)}
-							axisY1={t(`${translation}.CHARTS.ORDERS.MODES.MINIBAR`)}
-							axisY2={t(`${translation}.CHARTS.ORDERS.MODES.SERVICE_POSITION`)}
-							axisY3={t(`${translation}.CHARTS.ORDERS.MODES.ROOM_SERVICE`)}
-							fills={[
-								AppConfigService.AppOptions.colors.c10v1,
-								AppConfigService.AppOptions.colors.c14,
-								AppConfigService.AppOptions.colors.c13
-							]}
-							gridLinesHorizontal={true}
-						/>
-					</Grid>
-				)}
+					{/* Bar */}
+					<StackedBarReChart
+						data={stackedChart}
+						x={t(`${translation}.CHARTS.ORDERS.DATE`)}
+						axisX={t(`${translation}.CHARTS.ORDERS.LABEL`)}
+						axisY1={t(`${translation}.CHARTS.ORDERS.MODES.MINIBAR`)}
+						axisY2={t(`${translation}.CHARTS.ORDERS.MODES.SERVICE_POSITION`)}
+						axisY3={t(`${translation}.CHARTS.ORDERS.MODES.ROOM_SERVICE`)}
+						fills={[
+							AppConfigService.AppOptions.colors.c10v1,
+							AppConfigService.AppOptions.colors.c14,
+							AppConfigService.AppOptions.colors.c13
+						]}
+						gridLinesHorizontal={true}
+					/>
+				</Grid>
+			)}
 
-				{/* Inventory */}
-				{stacked2Chart && stacked2Chart.length > 0 && (
-					<Grid item xs={12} sm={6} md={6}>
-						{/* Title */}
-						<Typography variant="h5" className={classes.sChartLabel}>
-							{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
-						</Typography>
+			{/* Inventory */}
+			{stacked2Chart && stacked2Chart.length > 0 && (
+				<Grid item xs={12} sm={6} md={6}>
+					{/* Title */}
+					<Typography variant="h5" className={classes.sChartLabel}>
+						{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
+					</Typography>
 
-						{/* Bar */}
-						<StackedBarReChart
-							data={stacked2Chart}
-							x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
-							axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
-							axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}
-							axisY2={t(`${translation}.CHARTS.INVENTORY.STATUS.YELLOW`)}
-							axisY3={t(`${translation}.CHARTS.INVENTORY.STATUS.RED`)}
-							fills={[
-								AppConfigService.AppOptions.colors.c10v1,
-								AppConfigService.AppOptions.colors.c14,
-								AppConfigService.AppOptions.colors.c12
-							]}
-							barCategoryGap={-1}
-						/>
-					</Grid>
-				)}
-			</Grid>
-
-			{/* Empty */}
-			{allChartsEmpty && <PageError message={t(`${translation}.CHARTS.EMPTY`)} />}
-		</Box>
+					{/* Bar */}
+					<StackedBarReChart
+						data={stacked2Chart}
+						x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
+						axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
+						axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}
+						axisY2={t(`${translation}.CHARTS.INVENTORY.STATUS.YELLOW`)}
+						axisY3={t(`${translation}.CHARTS.INVENTORY.STATUS.RED`)}
+						fills={[
+							AppConfigService.AppOptions.colors.c10v1,
+							AppConfigService.AppOptions.colors.c14,
+							AppConfigService.AppOptions.colors.c12
+						]}
+						barCategoryGap={-1}
+					/>
+				</Grid>
+			)}
+		</Grid>
 	);
 };
 export default SitePerformanceCharts;

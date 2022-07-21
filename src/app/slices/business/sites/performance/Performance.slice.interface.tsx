@@ -1,8 +1,12 @@
+import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
+
 export interface SlicePerformanceInterface {
 	purchases: {
+		init: boolean;
 		loader: boolean;
 		loading: boolean;
 		content: SPContentInterface | null;
+		errors: TriggerMessageInterface | null;
 	};
 }
 

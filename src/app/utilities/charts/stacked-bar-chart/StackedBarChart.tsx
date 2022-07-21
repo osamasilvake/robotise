@@ -59,7 +59,7 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 					/>
 
 					{/* Bar */}
-					<Bar dataKey={axisY1} fill={fills[0]} stackId={stackId} />
+					<Bar stackId={stackId} dataKey={axisY1} fill={fills[0]} />
 					<Bar stackId={stackId} dataKey={axisY2} fill={fills[1]} />
 					<Bar stackId={stackId} dataKey={axisY3} fill={fills[2]} />
 

@@ -61,7 +61,7 @@ const SitePerformanceCharts: FC = () => {
 						{t(`${translation}.CHARTS.PURCHASES.LABEL`)} ({siteSingle?.currency})
 					</Typography>
 
-					{/* Bar */}
+					{/* Chart */}
 					<BarReChart
 						data={chart}
 						x={t(`${translation}.CHARTS.PURCHASES.DATE`)}
@@ -81,7 +81,7 @@ const SitePerformanceCharts: FC = () => {
 						{t(`${translation}.CHARTS.ORDERS.LABEL`)}
 					</Typography>
 
-					{/* Bar */}
+					{/* Chart */}
 					<StackedBarReChart
 						data={stackedChart}
 						x={t(`${translation}.CHARTS.ORDERS.DATE`)}

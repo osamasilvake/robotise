@@ -280,7 +280,7 @@
 				},
 				"PERFORMANCE": {
 					"PURCHASES": {
-						"ERROR":"Failed to fetch purchase statistics!"
+						"ERROR": "Failed to fetch purchase statistics!"
 					}
 				}
 			},

@@ -10,6 +10,7 @@ import { performanceSelector } from '../../../../../../slices/business/sites/per
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import BarReChart from '../../../../../../utilities/charts/bar-chart/BarChart';
 import { BarChartDataInterface } from '../../../../../../utilities/charts/bar-chart/BarChart.interface';
+import StackedAreaReChart from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart';
 import StackedBarReChart from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart';
 import { dateFormat4 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -100,30 +101,27 @@ const SitePerformanceCharts: FC = () => {
 			)}
 
 			{/* Inventory */}
-			{stacked2Chart && stacked2Chart.length > 0 && (
-				<Grid item xs={12} sm={6} md={6}>
-					{/* Title */}
-					<Typography variant="h5" className={classes.sChartLabel}>
-						{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
-					</Typography>
+			<Grid item xs={12} sm={6} md={6}>
+				{/* Title */}
+				<Typography variant="h5" className={classes.sChartLabel}>
+					{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
+				</Typography>
 
-					{/* Bar */}
-					<StackedBarReChart
-						data={stacked2Chart}
-						x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
-						axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
-						axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}
-						axisY2={t(`${translation}.CHARTS.INVENTORY.STATUS.YELLOW`)}
-						axisY3={t(`${translation}.CHARTS.INVENTORY.STATUS.RED`)}
-						fills={[
-							AppConfigService.AppOptions.colors.c10v1,
-							AppConfigService.AppOptions.colors.c14,
-							AppConfigService.AppOptions.colors.c12
-						]}
-						barCategoryGap={-1}
-					/>
-				</Grid>
-			)}
+				{/* Chart */}
+				<StackedAreaReChart
+					data={stacked2Chart}
+					x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
+					axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
+					axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}
+					axisY2={t(`${translation}.CHARTS.INVENTORY.STATUS.YELLOW`)}
+					axisY3={t(`${translation}.CHARTS.INVENTORY.STATUS.RED`)}
+					fills={[
+						AppConfigService.AppOptions.colors.c10v1,
+						AppConfigService.AppOptions.colors.c14,
+						AppConfigService.AppOptions.colors.c12
+					]}
+				/>
+			</Grid>
 		</Grid>
 	);
 };

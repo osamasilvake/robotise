@@ -8,9 +8,10 @@ import { LoaderTypeEnum } from '../../../../../components/common/loader/Loader.e
 import PageError from '../../../../../components/content/page-error/PageError';
 import { AppDispatch } from '../../../../../slices';
 import {
-	PerformanceFetchPurchases,
+	PerformanceFetch,
 	performanceSelector
 } from '../../../../../slices/business/sites/performance/Performance.slice';
+import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SitePerformanceCharts from './charts/SitePerformanceCharts';
 import SitePerformanceKPI from './kpi/SitePerformanceKPI';
@@ -22,47 +23,47 @@ const SitePerformance: FC = () => {
 	const classes = SitePerformanceStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
+	const sites = useSelector(sitesSelector);
 	const performance = useSelector(performanceSelector);
 
 	const [currentPeriod, setCurrentPeriod] = useState(sitePerformancePeriod[1]);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
+	const cRobotId = sites.content?.dataById[cSiteId]?.robots[0]?.id;
 	const refresh = useRef(false);
 
 	useEffect(() => {
-		// dispatch: fetch purchases
+		// dispatch: fetch performance
 		dispatch(
-			PerformanceFetchPurchases(
+			PerformanceFetch(
 				{
+					lookup: { period: currentPeriod.period, unit: currentPeriod.id },
+					robot: cRobotId,
 					site: cSiteId,
-					lookup: {
-						period: currentPeriod.period,
-						unit: currentPeriod.id
-					},
 					excludeTotalPriceZero: true
 				},
 				!!refresh.current
 			)
 		);
-	}, [dispatch, cSiteId, currentPeriod]);
+	}, [dispatch, cSiteId, cRobotId, currentPeriod]);
 
 	useEffect(() => {
-		refresh.current = !!performance?.purchases?.content;
-	}, [currentPeriod, performance?.purchases?.content]);
+		refresh.current = !!performance?.content;
+	}, [currentPeriod, performance?.content]);
 
 	// loader
-	if (performance.purchases.loader) {
+	if (performance.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (!performance.purchases.content?.statistics?.histogram) {
-		return <PageError message={performance.purchases.errors?.text} />;
+	if (!performance.content) {
+		return <PageError message={performance.errors?.text} />;
 	}
 
 	// init
-	if (!performance.purchases.init) return null;
+	if (!performance.init) return null;
 
 	return (
 		<Box className={classes.sBox}>

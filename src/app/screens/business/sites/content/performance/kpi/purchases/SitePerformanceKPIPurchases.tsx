@@ -29,14 +29,14 @@ const SitePerformanceKPIPurchases: FC = () => {
 	const translation = 'CONTENT.PERFORMANCE.BOXES.PURCHASES';
 
 	useEffect(() => {
-		const single = performance?.purchases?.content?.statistics?.single;
+		const single = performance?.content?.purchases?.statistics?.single;
 		setSumTotal(single?.sumTotalPrice || 0);
 		setAvgTotal(single?.avgTotalPrice || 0);
 		setAvgSumTotal(single?.avgSumTotalPricePerPeriod || 0);
 		setAvgTotalQuantity(single?.avgTotalQuantity || 0);
-	}, [performance?.purchases]);
+	}, [performance?.content?.purchases]);
 
-	return performance.purchases?.content ? (
+	return performance?.content ? (
 		<Box>
 			<Grid container spacing={1}>
 				<Grid item xs={12} sm={6} md={4} lg={3}>

@@ -66,8 +66,7 @@ const AppServices = (config: typeof AppConfigService) => {
 					},
 					PURCHASES: {
 						FETCH: `${config.envAppUrl}/order-reports`,
-						SINGLE: `${config.envAppUrl}/order-reports/:purchaseId`,
-						STATISTICS: `${config.envAppUrl}/purchase-statistics`
+						SINGLE: `${config.envAppUrl}/order-reports/:purchaseId`
 					},
 					COMMANDS_LOGS: `${config.envAppUrl}/robot-commands`,
 					ELEVATOR_CALLS: `${config.envAppUrl}/elevator-calls`,
@@ -76,6 +75,10 @@ const AppServices = (config: typeof AppConfigService) => {
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
 						CONFIG: `${config.envAppUrl}/robots/:robotId`
+					},
+					PERFORMANCE: {
+						PURCHASES: `${config.envAppUrl}/purchase-statistics`,
+						INVENTORY: `${config.envAppUrl}/inventory-statistics`
 					}
 				}
 			},

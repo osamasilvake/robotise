@@ -7,8 +7,9 @@ import { DialogCreateEditServicePositionFormInterface } from './content/configur
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import {
-	SitePerformancePurchasesAxiosGetInterface,
-	SitePerformancePurchasesPayloadInterface
+	SitePerformanceInventoryAxiosGetInterface,
+	SitePerformancePayloadInterface,
+	SitePerformancePurchasesAxiosGetInterface
 } from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
@@ -665,14 +666,30 @@ class SitesService {
 	 * @param payload
 	 * @returns
 	 */
-	sitePerformancePurchasesFetch = (payload: SitePerformancePurchasesPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES.STATISTICS;
+	sitePerformancePurchasesFetch = (payload: SitePerformancePayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASES;
 		return HttpClientService.get<SitePerformancePurchasesAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.site,
 				'filter[lookup][period]': payload.lookup.period,
 				'filter[lookup][unit]': payload.lookup.unit,
 				'filter[excludeTotalPriceZero]': payload.excludeTotalPriceZero
+			}
+		});
+	};
+
+	/**
+	 * fetch performance inventory
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformanceInventoryFetch = (payload: SitePerformancePayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.INVENTORY;
+		return HttpClientService.get<SitePerformanceInventoryAxiosGetInterface>(url, {
+			params: {
+				'filter[robot]': payload.robot,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit
 			}
 		});
 	};

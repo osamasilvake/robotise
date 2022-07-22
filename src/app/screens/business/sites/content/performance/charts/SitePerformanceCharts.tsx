@@ -11,6 +11,7 @@ import { sitesSelector } from '../../../../../../slices/business/sites/Sites.sli
 import BarReChart from '../../../../../../utilities/charts/bar-chart/BarChart';
 import { BarChartDataInterface } from '../../../../../../utilities/charts/bar-chart/BarChart.interface';
 import StackedAreaReChart from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart';
+import { StackedAreaChartDataInterface } from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart.interface';
 import StackedBarReChart from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart';
 import { dateFormat4 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
@@ -24,8 +25,8 @@ const SitePerformanceCharts: FC = () => {
 	const performance = useSelector(performanceSelector);
 
 	const [chart, setChart] = useState<BarChartDataInterface[] | null>(null);
-	const [stackedChart] = useState([]);
-	const [stacked2Chart] = useState([]);
+	const [chart2, setChart2] = useState<StackedAreaChartDataInterface[] | null>(null);
+	const [chart3] = useState<StackedAreaChartDataInterface[] | null>(null);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
@@ -35,22 +36,24 @@ const SitePerformanceCharts: FC = () => {
 	const translation = 'CONTENT.PERFORMANCE';
 
 	useEffect(() => {
-		const histogram = performance?.purchases?.content?.statistics?.histogram;
-		const buckets = histogram?.purchasesPerPeriod?.buckets || [];
-
-		// return
-		if (!(buckets && buckets.length)) {
-			setChart([]);
-			return;
-		}
-
-		// chart 1
-		const list1 = buckets?.map((item) => ({
-			x: dateFormat4(item.key),
-			y: item.sumTotalPrice
-		}));
+		// purchases
+		const purchases = performance?.content?.purchases;
+		const pBuckets = purchases?.statistics?.histogram.purchasesPerPeriod?.buckets || [];
+		const list1 = pBuckets.map((item) => ({ x: dateFormat4(item.key), y: item.sumTotalPrice }));
 		list1 && setChart(list1);
-	}, [performance?.purchases]);
+
+		// inventory
+		const inventory = performance?.content?.inventory;
+		const iBuckets = inventory?.statistics?.histogram?.inventoryPerPeriod?.buckets || [];
+		const list2 = iBuckets.map((item) => ({
+			x: dateFormat4(item.key),
+			y1: item.avgLanesHigh,
+			y2: item.avgLanesLow,
+			y3: item.avgLanesEmpty
+		}));
+		list2 && setChart2(list2);
+		console.log(list2);
+	}, [performance?.content]);
 
 	return (
 		<Grid container spacing={1}>
@@ -75,7 +78,7 @@ const SitePerformanceCharts: FC = () => {
 			)}
 
 			{/* Orders */}
-			{stackedChart && stackedChart.length > 0 && (
+			{chart3 && chart3.length > 0 && (
 				<Grid item xs={12} sm={6} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
@@ -84,7 +87,7 @@ const SitePerformanceCharts: FC = () => {
 
 					{/* Chart */}
 					<StackedBarReChart
-						data={stackedChart}
+						data={chart3}
 						x={t(`${translation}.CHARTS.ORDERS.DATE`)}
 						axisX={t(`${translation}.CHARTS.ORDERS.LABEL`)}
 						axisY1={t(`${translation}.CHARTS.ORDERS.MODES.MINIBAR`)}
@@ -101,27 +104,29 @@ const SitePerformanceCharts: FC = () => {
 			)}
 
 			{/* Inventory */}
-			<Grid item xs={12} sm={6} md={6}>
-				{/* Title */}
-				<Typography variant="h5" className={classes.sChartLabel}>
-					{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
-				</Typography>
+			{chart2 && chart2.length > 0 && (
+				<Grid item xs={12} sm={6} md={6}>
+					{/* Title */}
+					<Typography variant="h5" className={classes.sChartLabel}>
+						{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
+					</Typography>
 
-				{/* Chart */}
-				<StackedAreaReChart
-					data={stacked2Chart}
-					x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
-					axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
-					axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}
-					axisY2={t(`${translation}.CHARTS.INVENTORY.STATUS.YELLOW`)}
-					axisY3={t(`${translation}.CHARTS.INVENTORY.STATUS.RED`)}
-					fills={[
-						AppConfigService.AppOptions.colors.c10v1,
-						AppConfigService.AppOptions.colors.c14,
-						AppConfigService.AppOptions.colors.c12
-					]}
-				/>
-			</Grid>
+					{/* Chart */}
+					<StackedAreaReChart
+						data={chart2}
+						x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
+						axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
+						axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}
+						axisY2={t(`${translation}.CHARTS.INVENTORY.STATUS.YELLOW`)}
+						axisY3={t(`${translation}.CHARTS.INVENTORY.STATUS.RED`)}
+						fills={[
+							AppConfigService.AppOptions.colors.c10v1,
+							AppConfigService.AppOptions.colors.c14,
+							AppConfigService.AppOptions.colors.c12
+						]}
+					/>
+				</Grid>
+			)}
 		</Grid>
 	);
 };

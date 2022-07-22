@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SPCDataInterface } from '../../../../../slices/business/robots/purchases/Purchases.slice.interface';
+import {
+	SPContentInventoryInterface,
+	SPContentPurchasesInterface
+} from '../../../../../slices/business/sites/performance/Performance.slice.interface';
 import { SitePerformancePeriodTypeEnum } from './period/SitePerformancePeriod.enum';
 
 export interface SitePerformancePeriodListInterface {
@@ -15,15 +18,23 @@ export interface SitePerformanceChartsInterface {
 	setCurrentPeriod: Dispatch<SetStateAction<SitePerformancePeriodListInterface>>;
 }
 
-export interface SitePerformancePurchasesPayloadInterface {
-	site: string;
+export interface SitePerformancePayloadInterface {
 	lookup: { period: number; unit: string };
-	excludeTotalPriceZero: boolean;
+	robot?: string;
+	site?: string;
+	excludeTotalPriceZero?: boolean;
 }
 
 export interface SitePerformancePurchasesAxiosGetInterface {
 	data: {
 		type: string;
-		attributes: SPCDataInterface;
+		attributes: SPContentPurchasesInterface;
+	};
+}
+
+export interface SitePerformanceInventoryAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentInventoryInterface;
 	};
 }

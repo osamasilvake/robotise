@@ -57,8 +57,8 @@ const SitePerformanceKPIPurchases: FC = () => {
 
 				<Grid item xs={12} sm={12} md={6} lg={3}>
 					<SitePerformanceKPICard
-						title={t(`${translation}.AVG`)}
-						value={currencyFormat(avgTotal, siteSingle?.currency, i18next.language)}
+						title={t(`${translation}.AVG_REVENUE_PER_PERIOD`)}
+						value={currencyFormat(avgSumTotal, siteSingle?.currency, i18next.language)}
 						icon="hide_source"
 						rotateIcon
 					/>
@@ -66,8 +66,8 @@ const SitePerformanceKPIPurchases: FC = () => {
 
 				<Grid item xs={12} sm={12} md={6} lg={3}>
 					<SitePerformanceKPICard
-						title={t(`${translation}.AVG_REVENUE_PER_PERIOD`)}
-						value={currencyFormat(avgSumTotal, siteSingle?.currency, i18next.language)}
+						title={t(`${translation}.AVG`)}
+						value={currencyFormat(avgTotal, siteSingle?.currency, i18next.language)}
 						icon="hide_source"
 						rotateIcon
 					/>

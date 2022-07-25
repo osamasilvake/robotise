@@ -19,8 +19,7 @@ import { StackedBarChartInterface } from './StackedBarChart.interface';
 import { StackedBarChartStyle } from './StackedBarChart.style';
 
 const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
-	const { data, x, axisX, axisY1, axisY2, axisY3, fills, barCategoryGap, gridLinesHorizontal } =
-		props;
+	const { data, x, axisX, axisY1, axisY2, fills, barCategoryGap, gridLinesHorizontal } = props;
 	const styles = StackedBarChartStyle;
 
 	const app = useSelector(appSelector);
@@ -30,8 +29,7 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 		[x]: d.x,
 		[axisX]: d.x,
 		[axisY1]: d.y1,
-		[axisY2]: d.y2,
-		[axisY3]: d.y3
+		[axisY2]: d.y2
 	}));
 	const stackId = 'stacked';
 
@@ -61,7 +59,6 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 					{/* Bar */}
 					<Bar stackId={stackId} dataKey={axisY1} fill={fills[0]} />
 					<Bar stackId={stackId} dataKey={axisY2} fill={fills[1]} />
-					<Bar stackId={stackId} dataKey={axisY3} fill={fills[2]} />
 
 					{/* Legend */}
 					<Legend />

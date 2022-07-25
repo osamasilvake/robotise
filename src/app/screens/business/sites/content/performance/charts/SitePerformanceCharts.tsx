@@ -13,8 +13,10 @@ import { BarChartDataInterface } from '../../../../../../utilities/charts/bar-ch
 import StackedAreaReChart from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart';
 import { StackedAreaChartDataInterface } from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart.interface';
 import StackedBarReChart from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart';
+import { StackedBarChartDataInterface } from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart.interface';
 import { dateFormat4 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
+import { SitePerformanceChartsTypeEnum } from './SitePerformanceCharts.enum';
 import { SitePerformanceChartsStyle } from './SitePerformanceCharts.style';
 
 const SitePerformanceCharts: FC = () => {
@@ -25,8 +27,8 @@ const SitePerformanceCharts: FC = () => {
 	const performance = useSelector(performanceSelector);
 
 	const [chart, setChart] = useState<BarChartDataInterface[] | null>(null);
-	const [chart2, setChart2] = useState<StackedAreaChartDataInterface[] | null>(null);
-	const [chart3] = useState<StackedAreaChartDataInterface[] | null>(null);
+	const [chart2, setChart2] = useState<StackedBarChartDataInterface[] | null>(null);
+	const [chart3, setChart3] = useState<StackedAreaChartDataInterface[] | null>(null);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
@@ -42,17 +44,28 @@ const SitePerformanceCharts: FC = () => {
 		const list1 = pBuckets.map((item) => ({ x: dateFormat4(item.key), y: item.sumTotalPrice }));
 		list1 && setChart(list1);
 
+		// orders
+		const miniBar = SitePerformanceChartsTypeEnum.MINI_BAR;
+		const roomService = SitePerformanceChartsTypeEnum.ROOM_SERVICE;
+		const orders = performance?.content?.orders;
+		const oBuckets = orders?.statistics?.histogram.ordersPerPeriod?.buckets || [];
+		const list2 = oBuckets.map((item) => ({
+			x: dateFormat4(item.key),
+			y1: item.orderModes.find((m) => m.key === miniBar)?.docCount || 0,
+			y2: item.orderModes.find((m) => m.key === roomService)?.docCount || 0
+		}));
+		list2 && setChart2(list2);
+
 		// inventory
 		const inventory = performance?.content?.inventory;
 		const iBuckets = inventory?.statistics?.histogram?.inventoryPerPeriod?.buckets || [];
-		const list2 = iBuckets.map((item) => ({
+		const list3 = iBuckets.map((item) => ({
 			x: dateFormat4(item.key),
 			y1: item.avgLanesHigh,
 			y2: item.avgLanesLow,
 			y3: item.avgLanesEmpty
 		}));
-		list2 && setChart2(list2);
-		console.log(list2);
+		list3 && setChart3(list3);
 	}, [performance?.content]);
 
 	return (
@@ -78,7 +91,7 @@ const SitePerformanceCharts: FC = () => {
 			)}
 
 			{/* Orders */}
-			{chart3 && chart3.length > 0 && (
+			{chart2 && chart2.length > 0 && (
 				<Grid item xs={12} sm={6} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
@@ -87,15 +100,13 @@ const SitePerformanceCharts: FC = () => {
 
 					{/* Chart */}
 					<StackedBarReChart
-						data={chart3}
+						data={chart2}
 						x={t(`${translation}.CHARTS.ORDERS.DATE`)}
 						axisX={t(`${translation}.CHARTS.ORDERS.LABEL`)}
 						axisY1={t(`${translation}.CHARTS.ORDERS.MODES.MINIBAR`)}
-						axisY2={t(`${translation}.CHARTS.ORDERS.MODES.SERVICE_POSITION`)}
-						axisY3={t(`${translation}.CHARTS.ORDERS.MODES.ROOM_SERVICE`)}
+						axisY2={t(`${translation}.CHARTS.ORDERS.MODES.ROOM_SERVICE`)}
 						fills={[
-							AppConfigService.AppOptions.colors.c10v1,
-							AppConfigService.AppOptions.colors.c14,
+							AppConfigService.AppOptions.colors.c9,
 							AppConfigService.AppOptions.colors.c13
 						]}
 						gridLinesHorizontal={true}
@@ -104,7 +115,7 @@ const SitePerformanceCharts: FC = () => {
 			)}
 
 			{/* Inventory */}
-			{chart2 && chart2.length > 0 && (
+			{chart3 && chart3.length > 0 && (
 				<Grid item xs={12} sm={6} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
@@ -113,7 +124,7 @@ const SitePerformanceCharts: FC = () => {
 
 					{/* Chart */}
 					<StackedAreaReChart
-						data={chart2}
+						data={chart3}
 						x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
 						axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
 						axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}

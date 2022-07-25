@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import {
 	SPContentInventoryInterface,
+	SPContentOrdersInterface,
 	SPContentPurchasesInterface
 } from '../../../../../slices/business/sites/performance/Performance.slice.interface';
 import { SitePerformancePeriodTypeEnum } from './period/SitePerformancePeriod.enum';
@@ -29,6 +30,13 @@ export interface SitePerformancePurchasesAxiosGetInterface {
 	data: {
 		type: string;
 		attributes: SPContentPurchasesInterface;
+	};
+}
+
+export interface SitePerformanceOrdersAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentOrdersInterface;
 	};
 }
 

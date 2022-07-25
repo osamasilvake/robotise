@@ -5,10 +5,11 @@ import { TriggerMessageInterface } from '../../../../components/frame/message/Me
 import { SitePerformancePayloadInterface } from '../../../../screens/business/sites/content/performance/SitePerformance.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { RootState } from '../../..';
-import { deserializePurchases } from './Performance.slice.deserialize';
+import { deserializePerformance } from './Performance.slice.deserialize';
 import {
 	SlicePerformanceInterface,
 	SPContentInventoryInterface,
+	SPContentOrdersInterface,
 	SPContentPurchasesInterface
 } from './Performance.slice.interface';
 
@@ -82,16 +83,19 @@ export const PerformanceFetch =
 
 		return Promise.all([
 			SitesService.sitePerformancePurchasesFetch(payload),
+			SitesService.sitePerformanceOrdersFetch(payload),
 			SitesService.sitePerformanceInventoryFetch(payload)
 		])
 			.then(async (res) => {
-				// deserialize response
-				const purchases: SPContentPurchasesInterface = await deserializePurchases(res[0]);
-				const inventory: SPContentInventoryInterface = await deserializePurchases(res[1]);
+				// deserialize responses
+				const purchases: SPContentPurchasesInterface = await deserializePerformance(res[0]);
+				const orders: SPContentOrdersInterface = await deserializePerformance(res[1]);
+				const inventory: SPContentInventoryInterface = await deserializePerformance(res[2]);
 
 				// result
 				const result = {
 					purchases,
+					orders,
 					inventory
 				};
 

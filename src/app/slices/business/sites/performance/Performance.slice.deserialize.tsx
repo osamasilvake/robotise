@@ -3,11 +3,11 @@ import JSONAPIDeserializer from 'jsonapi-serializer';
 import { DeserializerExtendedOptionsInterface } from '../../../JsonAPI.interface';
 
 /**
- * deserialize purchases
+ * deserialize performance
  * @param payload
  * @returns
  */
-export const deserializePurchases = async <T,>(payload: T) => {
+export const deserializePerformance = async <T,>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase'
 	};

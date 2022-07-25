@@ -1103,10 +1103,18 @@
 				},
 				"BOXES": {
 					"PURCHASES": {
+						"TITLE": "Purchases",
 						"SUM": "Total Revenue",
 						"AVG": "Average Purchase Total Price",
 						"AVG_REVENUE_PER_PERIOD": "Average Revenue Per Period",
 						"AVG_TOTAL_QUANTITY": "Average Total Quantity"
+					},
+					"ORDERS": {
+						"TITLE": "Orders",
+						"TOTAL_MINIBAR_ORDERS": "Total Minibar Orders",
+						"TOTAL_ROOM_SERVICE_ORDERS": "Total Room Service Orders",
+						"AVG_MINIBAR_ORDERS": "Average Minibar Orders",
+						"AVG_ROOM_SERVICE_ORDERS": "Average Room Service Orders"
 					}
 				}
 			}

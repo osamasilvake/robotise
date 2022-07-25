@@ -8,6 +8,7 @@ import { SiteConfigFormInterface } from './content/configuration/site-config/Sit
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import {
 	SitePerformanceInventoryAxiosGetInterface,
+	SitePerformanceOrdersAxiosGetInterface,
 	SitePerformancePayloadInterface,
 	SitePerformancePurchasesAxiosGetInterface
 } from './content/performance/SitePerformance.interface';
@@ -674,6 +675,22 @@ class SitesService {
 				'filter[lookup][period]': payload.lookup.period,
 				'filter[lookup][unit]': payload.lookup.unit,
 				'filter[excludeTotalPriceZero]': payload.excludeTotalPriceZero
+			}
+		});
+	};
+
+	/**
+	 * fetch performance orders
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformanceOrdersFetch = (payload: SitePerformancePayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.ORDERS;
+		return HttpClientService.get<SitePerformanceOrdersAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.site,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit
 			}
 		});
 	};

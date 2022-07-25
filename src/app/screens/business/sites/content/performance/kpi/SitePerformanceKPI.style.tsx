@@ -7,6 +7,10 @@ export const SitePerformanceKPIStyle = makeStyles((theme: Theme) => ({
 	sContainer: {
 		marginTop: theme.spacing(4)
 	},
+	sTitle: {
+		marginBottom: theme.spacing(1),
+		marginTop: theme.spacing(2)
+	},
 	sCardContent: {
 		position: 'relative'
 	},

@@ -78,6 +78,7 @@ const AppServices = (config: typeof AppConfigService) => {
 					},
 					PERFORMANCE: {
 						PURCHASES: `${config.envAppUrl}/purchase-statistics`,
+						ORDERS: `${config.envAppUrl}/order-statistics`,
 						INVENTORY: `${config.envAppUrl}/inventory-statistics`
 					}
 				}

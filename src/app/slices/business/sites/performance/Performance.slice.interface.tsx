@@ -10,6 +10,7 @@ export interface SlicePerformanceInterface {
 
 export interface SPContentInterface {
 	purchases: SPContentPurchasesInterface;
+	orders: SPContentOrdersInterface;
 	inventory: SPContentInventoryInterface;
 }
 
@@ -52,6 +53,41 @@ export interface SPContentInventoryHistogramInterface {
 			avgLanesLow: number;
 			avgLanesHigh: number;
 			avgLanesFull: number;
+		}[];
+	};
+}
+
+export interface SPContentOrdersInterface {
+	statistics: {
+		histogram: SPContentOrdersHistogramInterface;
+		single: SPContentOrdersSingleInterface;
+	};
+}
+
+export interface SPContentOrdersHistogramInterface {
+	ordersPerPeriod: {
+		buckets: {
+			key: Date;
+			orderModes: {
+				docCount: number;
+				key: string;
+			}[];
+			totalOrders: number;
+		}[];
+	};
+}
+
+export interface SPContentOrdersSingleInterface {
+	avgOrderModes: {
+		buckets: {
+			docCount: number;
+			key: string;
+		}[];
+	};
+	totalOrderModes: {
+		buckets: {
+			docCount: number;
+			key: string;
 		}[];
 	};
 }

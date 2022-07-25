@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AppConfigService } from '../../../../../../../services';
-import { SitePerformanceKPIInterface } from '../SitePerformanceKPI.interface';
-import { SitePerformanceKPIStyle } from '../SitePerformanceKPI.style';
+import { AppConfigService } from '../../../../../../services';
+import { SitePerformanceKPIInterface } from './SitePerformanceKPI.interface';
+import { SitePerformanceKPIStyle } from './SitePerformanceKPI.style';
 
-const SitePerformanceKPIPurchaseCard: FC<SitePerformanceKPIInterface> = (props) => {
+const SitePerformanceKPICard: FC<SitePerformanceKPIInterface> = (props) => {
 	const { title, value, icon, rotateIcon } = props;
 	const { t } = useTranslation('DASHBOARD');
 	const classes = SitePerformanceKPIStyle();
@@ -39,4 +39,4 @@ const SitePerformanceKPIPurchaseCard: FC<SitePerformanceKPIInterface> = (props) 
 		</Card>
 	);
 };
-export default SitePerformanceKPIPurchaseCard;
+export default SitePerformanceKPICard;

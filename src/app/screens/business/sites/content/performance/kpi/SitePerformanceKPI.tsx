@@ -2,7 +2,8 @@ import { Box } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 
 import { timeout } from '../../../../../../utilities/methods/Timeout';
-import SitePerformancePurchasesKPI from './purchases/SitePerformanceKPIPurchases';
+import SitePerformanceKPIOrders from './orders/SitePerformanceKPIOrders';
+import SitePerformanceKPIPurchases from './purchases/SitePerformanceKPIPurchases';
 import { SitePerformanceKPIStyle } from './SitePerformanceKPI.style';
 
 const SitePerformanceKPI: FC = () => {
@@ -26,7 +27,10 @@ const SitePerformanceKPI: FC = () => {
 	return (
 		<Box className={classes.sContainer}>
 			{/* Purchases KPI */}
-			<SitePerformancePurchasesKPI />
+			<SitePerformanceKPIPurchases />
+
+			{/* Orders KPI */}
+			<SitePerformanceKPIOrders />
 		</Box>
 	);
 };

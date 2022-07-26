@@ -5,8 +5,8 @@ import { AppConfigService } from '../../../../../../../../services';
 
 export const RobotTopProductsTableStyle = makeStyles((theme: Theme) => ({
 	sImage: {
-		height: theme.spacing(6),
-		width: theme.spacing(6)
+		height: theme.spacing(3.5),
+		width: theme.spacing(3.5)
 	},
 	sImageBackground: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c15, 0.7)

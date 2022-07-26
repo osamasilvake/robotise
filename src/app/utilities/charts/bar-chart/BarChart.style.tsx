@@ -6,7 +6,7 @@ import { pxToRem } from '../../methods/Number';
 export const BarChartStyle = {
 	sBox: {
 		width: '100%',
-		height: pxToRem(250)
+		height: pxToRem(280)
 	},
 	sCartesianGrid: {
 		stroke: AppConfigService.AppOptions.colors.c13

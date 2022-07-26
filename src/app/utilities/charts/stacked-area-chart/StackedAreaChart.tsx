@@ -48,7 +48,7 @@ const StackedAreaReChart: FC<StackedAreaChartInterface> = (props) => {
 					/>
 
 					{/* Axis */}
-					<YAxis style={isDark ? styles.sAxisLight : styles.sAxisDark} />
+					<YAxis style={isDark ? styles.sAxisLight : styles.sAxisDark} domain={[0]} />
 					<XAxis dataKey={axisX} style={isDark ? styles.sAxisLight : styles.sAxisDark} />
 
 					{/* Tooltip */}

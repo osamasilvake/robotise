@@ -6,7 +6,7 @@ export const columns: RobotTopProductsTableColumnInterface[] = [
 	{
 		id: RobotTopProductsTableColumnsTypeEnum.IMAGE,
 		label: `${translation}.IMAGE`,
-		width: 80,
+		width: 50,
 		align: 'left'
 	},
 	{

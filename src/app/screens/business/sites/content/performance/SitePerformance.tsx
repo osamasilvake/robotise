@@ -46,7 +46,7 @@ const SitePerformance: FC = () => {
 					robot: cRobotId,
 					site: cSiteId,
 					excludeTotalPriceZero: true,
-					topItems: 3
+					topItems: 5
 				},
 				!!refresh.current
 			)

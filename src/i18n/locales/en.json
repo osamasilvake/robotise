@@ -1100,7 +1100,7 @@
 						}
 					},
 					"TOP_PRODUCTS": {
-						"LABEL": "Top Products",
+						"LABEL": "Most Popular Products",
 						"TABLE": {
 							"COLUMNS": {
 								"IMAGE": "Image",

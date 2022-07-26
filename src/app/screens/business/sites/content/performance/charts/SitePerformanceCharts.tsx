@@ -71,8 +71,8 @@ const SitePerformanceCharts: FC = () => {
 		list3 && setChart3(list3);
 
 		// top products
-		const topTotalPrice = performance?.content?.topProducts?.statistics?.topTotalPrice;
-		const products = topTotalPrice?.buckets || [];
+		const topQuantity = performance?.content?.topProducts?.statistics?.topQuantity;
+		const products = topQuantity?.buckets || [];
 		setTopProducts(products);
 	}, [performance?.content, topProducts]);
 

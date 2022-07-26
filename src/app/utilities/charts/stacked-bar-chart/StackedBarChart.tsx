@@ -24,6 +24,7 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 
 	const app = useSelector(appSelector);
 
+	const stackId = 'stacked';
 	const isDark = app.themePalette === AppThemePaletteTypeEnum.DARK;
 	const mapData = data.map((d) => ({
 		[x]: d.x,
@@ -31,7 +32,6 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 		[axisY1]: d.y1,
 		[axisY2]: d.y2
 	}));
-	const stackId = 'stacked';
 
 	return (
 		<Box style={styles.sBox}>

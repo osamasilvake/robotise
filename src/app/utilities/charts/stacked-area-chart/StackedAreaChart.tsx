@@ -25,15 +25,17 @@ const StackedAreaReChart: FC<StackedAreaChartInterface> = (props) => {
 
 	const app = useSelector(appSelector);
 
+	const stackId = 'stacked';
 	const isDark = app.themePalette === AppThemePaletteTypeEnum.DARK;
 	const mapData = data.map((d) => ({
 		[x]: d.x,
 		[axisX]: d.x,
 		[axisY1]: d.y1,
 		[axisY2]: d.y2,
-		[axisY3]: d.y3
+		[axisY3]: d.y3,
+		count: Math.round(d.y1 + d.y2 + d.y3)
 	}));
-	const stackId = 'stacked';
+	const max = Math.max(...mapData.map((o) => o.count));
 
 	return (
 		<Box style={styles.sBox}>
@@ -48,7 +50,10 @@ const StackedAreaReChart: FC<StackedAreaChartInterface> = (props) => {
 					/>
 
 					{/* Axis */}
-					<YAxis style={isDark ? styles.sAxisLight : styles.sAxisDark} domain={[0]} />
+					<YAxis
+						style={isDark ? styles.sAxisLight : styles.sAxisDark}
+						domain={[0, max || 'auto']}
+					/>
 					<XAxis dataKey={axisX} style={isDark ? styles.sAxisLight : styles.sAxisDark} />
 
 					{/* Tooltip */}

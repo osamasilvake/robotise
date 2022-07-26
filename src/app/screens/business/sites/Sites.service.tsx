@@ -10,7 +10,8 @@ import {
 	SitePerformanceInventoryAxiosGetInterface,
 	SitePerformanceOrdersAxiosGetInterface,
 	SitePerformancePayloadInterface,
-	SitePerformancePurchasesAxiosGetInterface
+	SitePerformancePurchasesAxiosGetInterface,
+	SitePerformanceTopProductsAxiosGetInterface
 } from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
@@ -707,6 +708,24 @@ class SitesService {
 				'filter[robot]': payload.robot,
 				'filter[lookup][period]': payload.lookup.period,
 				'filter[lookup][unit]': payload.lookup.unit
+			}
+		});
+	};
+
+	/**
+	 * fetch performance top products
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformanceTopProductsFetch = (payload: SitePerformancePayloadInterface) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASE_PRODUCTS;
+		return HttpClientService.get<SitePerformanceTopProductsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.site,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit,
+				'filter[topItems]': payload?.topItems || 10
 			}
 		});
 	};

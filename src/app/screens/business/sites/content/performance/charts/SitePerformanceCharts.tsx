@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
 import { performanceSelector } from '../../../../../../slices/business/sites/performance/Performance.slice';
+import { SPContentTopProductsBucketInterface } from '../../../../../../slices/business/sites/performance/Performance.slice.interface';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import BarReChart from '../../../../../../utilities/charts/bar-chart/BarChart';
 import { BarChartDataInterface } from '../../../../../../utilities/charts/bar-chart/BarChart.interface';
@@ -18,6 +19,7 @@ import { dateFormat4 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SitePerformanceChartsTypeEnum } from './SitePerformanceCharts.enum';
 import { SitePerformanceChartsStyle } from './SitePerformanceCharts.style';
+import RobotTopProductsTable from './top-products/table/RobotTopProductsTable';
 
 const SitePerformanceCharts: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -29,6 +31,7 @@ const SitePerformanceCharts: FC = () => {
 	const [chart, setChart] = useState<BarChartDataInterface[] | null>(null);
 	const [chart2, setChart2] = useState<StackedBarChartDataInterface[] | null>(null);
 	const [chart3, setChart3] = useState<StackedAreaChartDataInterface[] | null>(null);
+	const [topProducts, setTopProducts] = useState<SPContentTopProductsBucketInterface[]>([]);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
@@ -66,13 +69,18 @@ const SitePerformanceCharts: FC = () => {
 			y3: item.avgLanesEmpty
 		}));
 		list3 && setChart3(list3);
-	}, [performance?.content]);
+
+		// top products
+		const topQuantity = performance?.content?.topProducts?.statistics?.topQuantity;
+		const products = topQuantity?.buckets || [];
+		setTopProducts(products);
+	}, [performance?.content, topProducts]);
 
 	return (
 		<Grid container spacing={1}>
 			{/* Purchases */}
 			{chart && chart.length > 0 && (
-				<Grid item xs={12} sm={6} md={6}>
+				<Grid item xs={12} sm={12} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
 						{t(`${translation}.CHARTS.PURCHASES.LABEL`)} ({siteSingle?.currency})
@@ -92,7 +100,7 @@ const SitePerformanceCharts: FC = () => {
 
 			{/* Orders */}
 			{chart2 && chart2.length > 0 && (
-				<Grid item xs={12} sm={6} md={6}>
+				<Grid item xs={12} sm={12} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
 						{t(`${translation}.CHARTS.ORDERS.LABEL`)}
@@ -116,7 +124,7 @@ const SitePerformanceCharts: FC = () => {
 
 			{/* Inventory */}
 			{chart3 && chart3.length > 0 && (
-				<Grid item xs={12} sm={6} md={6}>
+				<Grid item xs={12} sm={12} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
 						{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
@@ -138,6 +146,17 @@ const SitePerformanceCharts: FC = () => {
 					/>
 				</Grid>
 			)}
+
+			{/* Top Products */}
+			<Grid item xs={12} sm={12} md={6}>
+				{/* Title */}
+				<Typography variant="h5" className={classes.sChartLabel}>
+					{t(`${translation}.CHARTS.TOP_PRODUCTS.LABEL`)}
+				</Typography>
+
+				{/* Table */}
+				<RobotTopProductsTable topProducts={topProducts} currency={siteSingle?.currency} />
+			</Grid>
 		</Grid>
 	);
 };

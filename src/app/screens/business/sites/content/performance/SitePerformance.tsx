@@ -11,6 +11,7 @@ import {
 	PerformanceFetch,
 	performanceSelector
 } from '../../../../../slices/business/sites/performance/Performance.slice';
+import { ProductsFetchList } from '../../../../../slices/business/sites/products/Products.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SitePerformanceCharts from './charts/SitePerformanceCharts';
@@ -34,6 +35,9 @@ const SitePerformance: FC = () => {
 	const refresh = useRef(false);
 
 	useEffect(() => {
+		// dispatch: fetch site products
+		cSiteId && dispatch(ProductsFetchList(cSiteId, true));
+
 		// dispatch: fetch performance
 		dispatch(
 			PerformanceFetch(
@@ -41,7 +45,8 @@ const SitePerformance: FC = () => {
 					lookup: { period: currentPeriod.period, unit: currentPeriod.id },
 					robot: cRobotId,
 					site: cSiteId,
-					excludeTotalPriceZero: true
+					excludeTotalPriceZero: true,
+					topItems: 3
 				},
 				!!refresh.current
 			)

@@ -10,7 +10,8 @@ import {
 	SlicePerformanceInterface,
 	SPContentInventoryInterface,
 	SPContentOrdersInterface,
-	SPContentPurchasesInterface
+	SPContentPurchasesInterface,
+	SPContentTopProductsInterface
 } from './Performance.slice.interface';
 
 // initial state
@@ -84,19 +85,24 @@ export const PerformanceFetch =
 		return Promise.all([
 			SitesService.sitePerformancePurchasesFetch(payload),
 			SitesService.sitePerformanceOrdersFetch(payload),
-			SitesService.sitePerformanceInventoryFetch(payload)
+			SitesService.sitePerformanceInventoryFetch(payload),
+			SitesService.sitePerformanceTopProductsFetch(payload)
 		])
 			.then(async (res) => {
 				// deserialize responses
 				const purchases: SPContentPurchasesInterface = await deserializePerformance(res[0]);
 				const orders: SPContentOrdersInterface = await deserializePerformance(res[1]);
 				const inventory: SPContentInventoryInterface = await deserializePerformance(res[2]);
+				const topProducts: SPContentTopProductsInterface = await deserializePerformance(
+					res[3]
+				);
 
 				// result
 				const result = {
 					purchases,
 					orders,
-					inventory
+					inventory,
+					topProducts
 				};
 
 				// dispatch: success

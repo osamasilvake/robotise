@@ -1099,6 +1099,19 @@
 							"RED": "Empty"
 						}
 					},
+					"TOP_PRODUCTS": {
+						"LABEL": "Top Products",
+						"TABLE": {
+							"COLUMNS": {
+								"IMAGE": "Image",
+								"NAME": "Name",
+								"SIZE": "Size",
+								"QUANTITY": "Quantity",
+								"CAPACITY": "Capacity",
+								"PRICE": "Price"
+							}
+						}
+					},
 					"EMPTY": "No Charts found!"
 				},
 				"BOXES": {

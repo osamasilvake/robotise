@@ -12,6 +12,7 @@ export interface SPContentInterface {
 	purchases: SPContentPurchasesInterface;
 	orders: SPContentOrdersInterface;
 	inventory: SPContentInventoryInterface;
+	topProducts: SPContentTopProductsInterface;
 }
 
 export interface SPContentPurchasesInterface {
@@ -90,4 +91,23 @@ export interface SPContentOrdersSingleInterface {
 			key: string;
 		}[];
 	};
+}
+
+export interface SPContentTopProductsInterface {
+	statistics: {
+		topQuantity: SPContentTopProductsBucketsInterface;
+		topTotalPrice: SPContentTopProductsBucketsInterface;
+		topOrders: SPContentTopProductsBucketsInterface;
+	};
+}
+
+export interface SPContentTopProductsBucketsInterface {
+	buckets: SPContentTopProductsBucketInterface[];
+}
+
+export interface SPContentTopProductsBucketInterface {
+	productId: string;
+	totalQuantity: number;
+	totalPrice: number;
+	totalOrders: number;
 }

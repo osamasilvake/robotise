@@ -3,7 +3,8 @@ import { Dispatch, SetStateAction } from 'react';
 import {
 	SPContentInventoryInterface,
 	SPContentOrdersInterface,
-	SPContentPurchasesInterface
+	SPContentPurchasesInterface,
+	SPContentTopProductsInterface
 } from '../../../../../slices/business/sites/performance/Performance.slice.interface';
 import { SitePerformancePeriodTypeEnum } from './period/SitePerformancePeriod.enum';
 
@@ -24,6 +25,7 @@ export interface SitePerformancePayloadInterface {
 	robot?: string;
 	site?: string;
 	excludeTotalPriceZero?: boolean;
+	topItems?: number;
 }
 
 export interface SitePerformancePurchasesAxiosGetInterface {
@@ -44,5 +46,12 @@ export interface SitePerformanceInventoryAxiosGetInterface {
 	data: {
 		type: string;
 		attributes: SPContentInventoryInterface;
+	};
+}
+
+export interface SitePerformanceTopProductsAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentTopProductsInterface;
 	};
 }

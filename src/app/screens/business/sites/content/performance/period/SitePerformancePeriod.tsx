@@ -1,12 +1,16 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { CircularProgress, FormControl, InputLabel, MenuItem, Select, Stack } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
+import { performanceSelector } from '../../../../../../slices/business/sites/performance/Performance.slice';
 import { SitePerformancePeriodInterface } from './SitePerformancePeriod.interface';
 
 const SitePerformancePeriod: FC<SitePerformancePeriodInterface> = (props) => {
 	const { sitePerformancePeriod, currentPeriod, setCurrentPeriod } = props;
 	const { t } = useTranslation('SITES');
+
+	const performance = useSelector(performanceSelector);
 
 	const translation = 'CONTENT.PERFORMANCE';
 
@@ -20,7 +24,11 @@ const SitePerformancePeriod: FC<SitePerformancePeriodInterface> = (props) => {
 	};
 
 	return (
-		<Box textAlign="right">
+		<Stack spacing={1.5} direction="row" alignItems="center" justifyContent="end">
+			{/* Loader */}
+			{performance?.loading && <CircularProgress size={20} />}
+
+			{/* Selection */}
 			<FormControl>
 				<InputLabel id="period">{t(`${translation}.PERIOD.LABEL`)}</InputLabel>
 				<Select
@@ -30,7 +38,8 @@ const SitePerformancePeriod: FC<SitePerformancePeriodInterface> = (props) => {
 					name="period"
 					label={t(`${translation}.PERIOD.LABEL`)}
 					value={currentPeriod}
-					onChange={(event) => handlePeriod(event.target.value)}>
+					onChange={(event) => handlePeriod(event.target.value)}
+					disabled={!!performance?.loading}>
 					{sitePerformancePeriod.map((item) => (
 						<MenuItem key={item.id} value={item.id}>
 							{t(`${translation}.${item.label}`)}
@@ -38,7 +47,7 @@ const SitePerformancePeriod: FC<SitePerformancePeriodInterface> = (props) => {
 					))}
 				</Select>
 			</FormControl>
-		</Box>
+		</Stack>
 	);
 };
 export default SitePerformancePeriod;

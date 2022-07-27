@@ -2,9 +2,9 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SitePerformanceChartsInterface } from '../SitePerformance.interface';
+import { SitePerformancePeriodInterface } from './SitePerformancePeriod.interface';
 
-const SitePerformancePeriod: FC<SitePerformanceChartsInterface> = (props) => {
+const SitePerformancePeriod: FC<SitePerformancePeriodInterface> = (props) => {
 	const { sitePerformancePeriod, currentPeriod, setCurrentPeriod } = props;
 	const { t } = useTranslation('SITES');
 

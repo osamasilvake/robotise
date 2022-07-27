@@ -14,7 +14,7 @@ import {
 import { ProductsFetchList } from '../../../../../slices/business/sites/products/Products.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
-import SitePerformanceCharts from './charts/SitePerformanceCharts';
+import SitePerformanceDemography from './demography/SitePerformanceDemography';
 import SitePerformanceKPI from './kpi/SitePerformanceKPI';
 import SitePerformancePeriod from './period/SitePerformancePeriod';
 import { sitePerformancePeriod } from './period/SitePerformancePeriod.list';
@@ -37,7 +37,9 @@ const SitePerformance: FC = () => {
 	useEffect(() => {
 		// dispatch: fetch site products
 		cSiteId && dispatch(ProductsFetchList(cSiteId, true));
+	}, [dispatch, cSiteId]);
 
+	useEffect(() => {
 		// dispatch: fetch performance
 		dispatch(
 			PerformanceFetch(
@@ -79,8 +81,8 @@ const SitePerformance: FC = () => {
 				setCurrentPeriod={setCurrentPeriod}
 			/>
 
-			{/* Charts */}
-			<SitePerformanceCharts />
+			{/* Demography */}
+			<SitePerformanceDemography currentPeriod={currentPeriod.id} />
 
 			{/* KPI */}
 			<SitePerformanceKPI />

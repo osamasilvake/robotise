@@ -64,6 +64,15 @@ const dateFormat6 = (date: Date): string => {
 };
 
 /**
+ * format 7
+ * @param date
+ * @returns
+ */
+const dateFormat7 = (date: Date): string => {
+	return dayjs(date).format('YYYY-MM');
+};
+
+/**
  * Date.now()
  * @returns
  */
@@ -141,6 +150,7 @@ export {
 	dateFormat4,
 	dateFormat5,
 	dateFormat6,
+	dateFormat7,
 	dateFromToDiff,
 	dateISOString,
 	dateMinsPriorToDate,

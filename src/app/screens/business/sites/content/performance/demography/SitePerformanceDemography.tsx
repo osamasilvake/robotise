@@ -15,15 +15,18 @@ import StackedAreaReChart from '../../../../../../utilities/charts/stacked-area-
 import { StackedAreaChartDataInterface } from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart.interface';
 import StackedBarReChart from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart';
 import { StackedBarChartDataInterface } from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart.interface';
-import { dateFormat4 } from '../../../../../../utilities/methods/Date';
+import { dateFormat4, dateFormat7 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
-import { SitePerformanceChartsTypeEnum } from './SitePerformanceCharts.enum';
-import { SitePerformanceChartsStyle } from './SitePerformanceCharts.style';
+import { SitePerformancePeriodTypeEnum } from '../period/SitePerformancePeriod.enum';
+import { SitePerformanceDemographyTypeEnum } from './SitePerformanceDemography.enum';
+import { SitePerformanceDemographyInterface } from './SitePerformanceDemography.interface';
+import { SitePerformanceDemographyStyle } from './SitePerformanceDemography.style';
 import RobotTopProductsTable from './top-products/table/RobotTopProductsTable';
 
-const SitePerformanceCharts: FC = () => {
+const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props) => {
+	const { currentPeriod } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SitePerformanceChartsStyle();
+	const classes = SitePerformanceDemographyStyle();
 
 	const sites = useSelector(sitesSelector);
 	const performance = useSelector(performanceSelector);
@@ -41,19 +44,25 @@ const SitePerformanceCharts: FC = () => {
 	const translation = 'CONTENT.PERFORMANCE';
 
 	useEffect(() => {
+		// period: month
+		const month = currentPeriod === SitePerformancePeriodTypeEnum.MONTH;
+
 		// purchases
 		const purchases = performance?.content?.purchases;
 		const pBuckets = purchases?.statistics?.histogram.purchasesPerPeriod?.buckets || [];
-		const list1 = pBuckets.map((item) => ({ x: dateFormat4(item.key), y: item.sumTotalPrice }));
+		const list1 = pBuckets.map((item) => ({
+			x: month ? dateFormat7(item.key) : dateFormat4(item.key),
+			y: item.sumTotalPrice
+		}));
 		list1 && setChart(list1);
 
 		// orders
-		const miniBar = SitePerformanceChartsTypeEnum.MINI_BAR;
-		const roomService = SitePerformanceChartsTypeEnum.ROOM_SERVICE;
+		const miniBar = SitePerformanceDemographyTypeEnum.MINI_BAR;
+		const roomService = SitePerformanceDemographyTypeEnum.ROOM_SERVICE;
 		const orders = performance?.content?.orders;
 		const oBuckets = orders?.statistics?.histogram.ordersPerPeriod?.buckets || [];
 		const list2 = oBuckets.map((item) => ({
-			x: dateFormat4(item.key),
+			x: month ? dateFormat7(item.key) : dateFormat4(item.key),
 			y1: item.orderModes.find((m) => m.key === miniBar)?.docCount || 0,
 			y2: item.orderModes.find((m) => m.key === roomService)?.docCount || 0
 		}));
@@ -63,7 +72,7 @@ const SitePerformanceCharts: FC = () => {
 		const inventory = performance?.content?.inventory;
 		const iBuckets = inventory?.statistics?.histogram?.inventoryPerPeriod?.buckets || [];
 		const list3 = iBuckets.map((item) => ({
-			x: dateFormat4(item.key),
+			x: month ? dateFormat7(item.key) : dateFormat4(item.key),
 			y1: item.avgLanesHigh,
 			y2: item.avgLanesLow,
 			y3: item.avgLanesEmpty
@@ -74,7 +83,7 @@ const SitePerformanceCharts: FC = () => {
 		const topQuantity = performance?.content?.topProducts?.statistics?.topQuantity;
 		const products = topQuantity?.buckets || [];
 		setTopProducts(products);
-	}, [performance?.content, topProducts]);
+	}, [performance?.content, currentPeriod]);
 
 	return (
 		<Grid container spacing={1}>
@@ -83,15 +92,15 @@ const SitePerformanceCharts: FC = () => {
 				<Grid item xs={12} sm={12} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
-						{t(`${translation}.CHARTS.PURCHASES.LABEL`)} ({siteSingle?.currency})
+						{t(`${translation}.DEMOGRAPHY.PURCHASES.LABEL`)} ({siteSingle?.currency})
 					</Typography>
 
 					{/* Chart */}
 					<BarReChart
 						data={chart}
-						x={t(`${translation}.CHARTS.PURCHASES.DATE`)}
-						axisX={t(`${translation}.CHARTS.PURCHASES.LABEL`)}
-						axisY={t(`${translation}.CHARTS.PURCHASES.REVENUE`)}
+						x={t(`${translation}.DEMOGRAPHY.PURCHASES.DATE`)}
+						axisX={t(`${translation}.DEMOGRAPHY.PURCHASES.LABEL`)}
+						axisY={t(`${translation}.DEMOGRAPHY.PURCHASES.REVENUE`)}
 						currency={siteSingle?.currency}
 						language={i18next.language}
 					/>
@@ -103,16 +112,16 @@ const SitePerformanceCharts: FC = () => {
 				<Grid item xs={12} sm={12} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
-						{t(`${translation}.CHARTS.ORDERS.LABEL`)}
+						{t(`${translation}.DEMOGRAPHY.ORDERS.LABEL`)}
 					</Typography>
 
 					{/* Chart */}
 					<StackedBarReChart
 						data={chart2}
-						x={t(`${translation}.CHARTS.ORDERS.DATE`)}
-						axisX={t(`${translation}.CHARTS.ORDERS.LABEL`)}
-						axisY1={t(`${translation}.CHARTS.ORDERS.MODES.MINIBAR`)}
-						axisY2={t(`${translation}.CHARTS.ORDERS.MODES.ROOM_SERVICE`)}
+						x={t(`${translation}.DEMOGRAPHY.ORDERS.DATE`)}
+						axisX={t(`${translation}.DEMOGRAPHY.ORDERS.LABEL`)}
+						axisY1={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.MINIBAR`)}
+						axisY2={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.ROOM_SERVICE`)}
 						fills={[
 							AppConfigService.AppOptions.colors.c9,
 							AppConfigService.AppOptions.colors.c13
@@ -127,17 +136,17 @@ const SitePerformanceCharts: FC = () => {
 				<Grid item xs={12} sm={12} md={6}>
 					{/* Title */}
 					<Typography variant="h5" className={classes.sChartLabel}>
-						{t(`${translation}.CHARTS.INVENTORY.LABEL`)}
+						{t(`${translation}.DEMOGRAPHY.INVENTORY.LABEL`)}
 					</Typography>
 
 					{/* Chart */}
 					<StackedAreaReChart
 						data={chart3}
-						x={t(`${translation}.CHARTS.INVENTORY.DATE`)}
-						axisX={t(`${translation}.CHARTS.INVENTORY.LABEL`)}
-						axisY1={t(`${translation}.CHARTS.INVENTORY.STATUS.GREEN`)}
-						axisY2={t(`${translation}.CHARTS.INVENTORY.STATUS.YELLOW`)}
-						axisY3={t(`${translation}.CHARTS.INVENTORY.STATUS.RED`)}
+						x={t(`${translation}.DEMOGRAPHY.INVENTORY.DATE`)}
+						axisX={t(`${translation}.DEMOGRAPHY.INVENTORY.LABEL`)}
+						axisY1={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.GREEN`)}
+						axisY2={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.YELLOW`)}
+						axisY3={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.RED`)}
 						fills={[
 							AppConfigService.AppOptions.colors.c10v1,
 							AppConfigService.AppOptions.colors.c14,
@@ -151,7 +160,7 @@ const SitePerformanceCharts: FC = () => {
 			<Grid item xs={12} sm={12} md={6}>
 				{/* Title */}
 				<Typography variant="h5" className={classes.sChartLabel}>
-					{t(`${translation}.CHARTS.TOP_PRODUCTS.LABEL`)}
+					{t(`${translation}.DEMOGRAPHY.TOP_PRODUCTS.LABEL`)}
 				</Typography>
 
 				{/* Table */}
@@ -160,4 +169,4 @@ const SitePerformanceCharts: FC = () => {
 		</Grid>
 	);
 };
-export default SitePerformanceCharts;
+export default SitePerformanceDemography;

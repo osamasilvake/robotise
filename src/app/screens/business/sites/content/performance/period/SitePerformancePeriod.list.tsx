@@ -1,5 +1,5 @@
-import { SitePerformancePeriodListInterface } from '../SitePerformance.interface';
 import { SitePerformancePeriodTypeEnum } from './SitePerformancePeriod.enum';
+import { SitePerformancePeriodListInterface } from './SitePerformancePeriod.interface';
 
 export const sitePerformancePeriod: SitePerformancePeriodListInterface[] = [
 	{

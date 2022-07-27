@@ -1,7 +1,7 @@
 import { RobotTopProductsTableColumnsTypeEnum } from './RobotTopProductsTable.enum';
 import { RobotTopProductsTableColumnInterface } from './RobotTopProductsTable.interface';
 
-const translation = 'CONTENT.PERFORMANCE.CHARTS.TOP_PRODUCTS.TABLE.COLUMNS';
+const translation = 'CONTENT.PERFORMANCE.DEMOGRAPHY.TOP_PRODUCTS.TABLE.COLUMNS';
 export const columns: RobotTopProductsTableColumnInterface[] = [
 	{
 		id: RobotTopProductsTableColumnsTypeEnum.IMAGE,

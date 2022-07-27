@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { performanceSelector } from '../../../../../../../slices/business/sites/performance/Performance.slice';
-import { SitePerformanceChartsTypeEnum } from '../../charts/SitePerformanceCharts.enum';
+import { SitePerformanceDemographyTypeEnum } from '../../demography/SitePerformanceDemography.enum';
 import { SitePerformanceKPIStyle } from '../SitePerformanceKPI.style';
 import SitePerformanceKPICard from '../SitePerformanceKPICard';
 
@@ -22,8 +22,8 @@ const SitePerformanceKPIOrders: FC = () => {
 	const translation = 'CONTENT.PERFORMANCE.BOXES.ORDERS';
 
 	useEffect(() => {
-		const tMinibar = SitePerformanceChartsTypeEnum.MINI_BAR;
-		const tRoomService = SitePerformanceChartsTypeEnum.ROOM_SERVICE;
+		const tMinibar = SitePerformanceDemographyTypeEnum.MINI_BAR;
+		const tRoomService = SitePerformanceDemographyTypeEnum.ROOM_SERVICE;
 
 		const single = performance?.content?.orders?.statistics?.single;
 		const minibars = single?.totalOrderModes.buckets.filter((m) => m.key === tMinibar);

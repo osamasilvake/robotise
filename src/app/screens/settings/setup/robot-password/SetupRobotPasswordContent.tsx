@@ -9,7 +9,7 @@ import {
 	RobotPasswordUpdate
 } from '../../../../slices/setup/robot-password/RobotPassword.slice';
 import { useForm } from '../../../../utilities/hooks/form/UseForm';
-import { SetupRobotPasswordFormInterface } from './RobotSiteConfig.interface';
+import { SetupRobotPasswordFormInterface } from './SetupRobotPassword.interface';
 import { SetupRobotPasswordStyle } from './SetupRobotPassword.style';
 
 const SetupWifiConfigContent: FC = () => {

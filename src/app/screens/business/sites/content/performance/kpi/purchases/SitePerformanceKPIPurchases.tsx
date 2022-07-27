@@ -35,7 +35,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 		setSumTotal(single?.sumTotalPrice || 0);
 		setAvgTotal(single?.avgTotalPrice || 0);
 		setAvgSumTotal(single?.avgSumTotalPricePerPeriod || 0);
-		setAvgTotalQuantity(single?.avgTotalQuantity || 0);
+		setAvgTotalQuantity(+(single?.avgTotalQuantity || 0).toFixed(1));
 	}, [performance?.content?.purchases]);
 
 	return performance?.content ? (
@@ -66,7 +66,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 
 				<Grid item xs={12} sm={12} md={6} lg={3}>
 					<SitePerformanceKPICard
-						title={t(`${translation}.AVG`)}
+						title={t(`${translation}.AVG_TOTAL_PRICE`)}
 						value={currencyFormat(avgTotal, siteSingle?.currency, i18next.language)}
 						icon="hide_source"
 						rotateIcon

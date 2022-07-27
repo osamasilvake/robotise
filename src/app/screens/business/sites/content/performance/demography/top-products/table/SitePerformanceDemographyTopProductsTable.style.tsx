@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 
 import { AppConfigService } from '../../../../../../../../services';
 
-export const RobotTopProductsTableStyle = makeStyles((theme: Theme) => ({
+export const SitePerformanceDemographyTopProductsTableStyle = makeStyles((theme: Theme) => ({
 	sImage: {
 		height: theme.spacing(3.5),
 		width: theme.spacing(3.5)

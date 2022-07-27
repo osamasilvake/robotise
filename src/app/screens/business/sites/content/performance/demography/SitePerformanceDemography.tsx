@@ -1,36 +1,26 @@
-import { InfoOutlined } from '@mui/icons-material';
-import { Box, Grid, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
-import i18next from 'i18next';
+import { Grid } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppConfigService } from '../../../../../../services';
 import { performanceSelector } from '../../../../../../slices/business/sites/performance/Performance.slice';
 import { SPContentTopProductsBucketInterface } from '../../../../../../slices/business/sites/performance/Performance.slice.interface';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
-import BarReChart from '../../../../../../utilities/charts/bar-chart/BarChart';
 import { BarChartDataInterface } from '../../../../../../utilities/charts/bar-chart/BarChart.interface';
-import StackedAreaReChart from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart';
 import { StackedAreaChartDataInterface } from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart.interface';
-import StackedBarReChart from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart';
 import { StackedBarChartDataInterface } from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart.interface';
 import { dateFormat4, dateFormat7 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SitePerformancePeriodTypeEnum } from '../period/SitePerformancePeriod.enum';
-import {
-	SitePerformanceDemographyOrdersTooltipTypeEnum,
-	SitePerformanceDemographyTypeEnum
-} from './SitePerformanceDemography.enum';
+import SitePerformanceDemographyInventory from './inventory/SitePerformanceDemographyInventory';
+import SitePerformanceDemographyOrders from './orders/SitePerformanceDemographyOrders';
+import SitePerformanceDemographyPurchases from './purchases/SitePerformanceDemographyPurchases';
+import { SitePerformanceDemographyTypeEnum } from './SitePerformanceDemography.enum';
 import { SitePerformanceDemographyInterface } from './SitePerformanceDemography.interface';
-import { SitePerformanceDemographyStyle } from './SitePerformanceDemography.style';
-import RobotTopProductsTable from './top-products/table/RobotTopProductsTable';
+import SitePerformanceDemographyTopProducts from './top-products/SitePerformanceDemographyTopProducts';
 
 const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props) => {
 	const { currentPeriod } = props;
-	const { t } = useTranslation('SITES');
-	const classes = SitePerformanceDemographyStyle();
 
 	const sites = useSelector(sitesSelector);
 	const performance = useSelector(performanceSelector);
@@ -44,26 +34,6 @@ const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
-
-	const translation = 'CONTENT.PERFORMANCE';
-	const inventoryTooltips = {
-		label: t(`${translation}.DEMOGRAPHY.INVENTORY.TOOLTIP.LABEL`),
-		list: [
-			{
-				key: SitePerformanceDemographyOrdersTooltipTypeEnum.FULL,
-				label: t(`${translation}.DEMOGRAPHY.INVENTORY.TOOLTIP.TYPES.FULL`)
-			},
-			{
-				key: SitePerformanceDemographyOrdersTooltipTypeEnum.LOW,
-				label: t(`${translation}.DEMOGRAPHY.INVENTORY.TOOLTIP.TYPES.LOW`)
-			},
-			{
-				key: SitePerformanceDemographyOrdersTooltipTypeEnum.EMPTY,
-				label: t(`${translation}.DEMOGRAPHY.INVENTORY.TOOLTIP.TYPES.EMPTY`)
-			}
-		]
-	};
-	console.log(inventoryTooltips);
 
 	useEffect(() => {
 		// period: month
@@ -107,180 +77,24 @@ const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props
 		setTopProducts(products);
 	}, [performance?.content, currentPeriod]);
 
-	/**
-	 * tooltip inventory colors
-	 * @param type
-	 * @returns
-	 */
-	const tooltipInventoryColors = (type: SitePerformanceDemographyOrdersTooltipTypeEnum) => {
-		if (type === SitePerformanceDemographyOrdersTooltipTypeEnum.FULL) {
-			return AppConfigService.AppOptions.colors.c10v1;
-		} else if (type === SitePerformanceDemographyOrdersTooltipTypeEnum.LOW) {
-			return AppConfigService.AppOptions.colors.c11;
-		}
-		return AppConfigService.AppOptions.colors.c12;
-	};
-
 	return (
 		<Grid container spacing={1}>
 			{/* Purchases */}
 			{chart && chart.length > 0 && (
-				<Grid item xs={12} sm={12} md={6}>
-					{/* Title */}
-					<Stack
-						spacing={0.5}
-						direction="row"
-						alignItems="center"
-						className={classes.sTitleLabel}>
-						{/* Label */}
-						<Typography variant="h5">
-							{t(`${translation}.DEMOGRAPHY.PURCHASES.LABEL`)} ({siteSingle?.currency}
-							)
-						</Typography>
-
-						{/* Tooltip */}
-						<Tooltip title={t(`${translation}.DEMOGRAPHY.PURCHASES.TOOLTIP`)}>
-							<InfoOutlined fontSize="small" />
-						</Tooltip>
-					</Stack>
-
-					{/* Chart */}
-					<BarReChart
-						data={chart}
-						x={t(`${translation}.DEMOGRAPHY.PURCHASES.DATE`)}
-						axisX={t(`${translation}.DEMOGRAPHY.PURCHASES.LABEL`)}
-						axisY={t(`${translation}.DEMOGRAPHY.PURCHASES.REVENUE`)}
-						currency={siteSingle?.currency}
-						language={i18next.language}
-					/>
-				</Grid>
+				<SitePerformanceDemographyPurchases chart={chart} currency={siteSingle?.currency} />
 			)}
 
 			{/* Orders */}
-			{chart2 && chart2.length > 0 && (
-				<Grid item xs={12} sm={12} md={6}>
-					{/* Title */}
-					<Stack
-						spacing={0.5}
-						direction="row"
-						alignItems="center"
-						className={classes.sTitleLabel}>
-						{/* Label */}
-						<Typography variant="h5">
-							{t(`${translation}.DEMOGRAPHY.ORDERS.LABEL`)}
-						</Typography>
-
-						{/* Tooltip */}
-						<Tooltip title={t(`${translation}.DEMOGRAPHY.ORDERS.TOOLTIP`)}>
-							<InfoOutlined fontSize="small" />
-						</Tooltip>
-					</Stack>
-
-					{/* Chart */}
-					<StackedBarReChart
-						data={chart2}
-						x={t(`${translation}.DEMOGRAPHY.ORDERS.DATE`)}
-						axisX={t(`${translation}.DEMOGRAPHY.ORDERS.LABEL`)}
-						axisY1={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.MINIBAR`)}
-						axisY2={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.ROOM_SERVICE`)}
-						fills={[
-							AppConfigService.AppOptions.colors.c9,
-							AppConfigService.AppOptions.colors.c13
-						]}
-						gridLinesHorizontal={true}
-					/>
-				</Grid>
-			)}
+			{chart2 && chart2.length > 0 && <SitePerformanceDemographyOrders chart={chart2} />}
 
 			{/* Inventory */}
-			{chart3 && chart3.length > 0 && (
-				<Grid item xs={12} sm={12} md={6}>
-					{/* Title */}
-					<Stack
-						spacing={0.5}
-						direction="row"
-						alignItems="center"
-						className={classes.sTitleLabel}>
-						{/* Label */}
-						<Typography variant="h5">
-							{t(`${translation}.DEMOGRAPHY.INVENTORY.LABEL`)}
-						</Typography>
-
-						{/* Tooltip */}
-						<Tooltip
-							title={
-								<Box>
-									<Box className={classes.sTooltipLabel}>
-										{inventoryTooltips.label}
-									</Box>
-									<List disablePadding className={classes.sTooltipInventoryList}>
-										{inventoryTooltips.list.map((item) => (
-											<ListItem disablePadding key={item.key}>
-												<Stack spacing={0} direction="row">
-													<Box
-														className={
-															classes.sTooltipInventoryListItemKey
-														}
-														style={{
-															color: tooltipInventoryColors(item.key)
-														}}>
-														{item.key}
-													</Box>
-													<Box
-														className={
-															classes.sTooltipInventoryListItemLabel
-														}>
-														{item.label}
-													</Box>
-												</Stack>
-											</ListItem>
-										))}
-									</List>
-								</Box>
-							}>
-							<InfoOutlined fontSize="small" />
-						</Tooltip>
-					</Stack>
-
-					{/* Chart */}
-					<StackedAreaReChart
-						data={chart3}
-						x={t(`${translation}.DEMOGRAPHY.INVENTORY.DATE`)}
-						axisX={t(`${translation}.DEMOGRAPHY.INVENTORY.LABEL`)}
-						axisY1={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.GREEN`)}
-						axisY2={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.YELLOW`)}
-						axisY3={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.RED`)}
-						fills={[
-							AppConfigService.AppOptions.colors.c10v1,
-							AppConfigService.AppOptions.colors.c14,
-							AppConfigService.AppOptions.colors.c12
-						]}
-					/>
-				</Grid>
-			)}
+			{chart3 && chart3.length > 0 && <SitePerformanceDemographyInventory chart={chart3} />}
 
 			{/* Top Products */}
-			<Grid item xs={12} sm={12} md={6}>
-				{/* Title */}
-				<Stack
-					spacing={0.5}
-					direction="row"
-					alignItems="center"
-					className={classes.sTitleLabel}>
-					{/* Label */}
-					<Typography variant="h5">
-						{t(`${translation}.DEMOGRAPHY.TOP_PRODUCTS.LABEL`)}
-					</Typography>
-
-					{/* Tooltip */}
-					<Tooltip title={t(`${translation}.DEMOGRAPHY.TOP_PRODUCTS.TOOLTIP`)}>
-						<InfoOutlined fontSize="small" />
-					</Tooltip>
-				</Stack>
-
-				{/* Table */}
-				<RobotTopProductsTable topProducts={topProducts} currency={siteSingle?.currency} />
-			</Grid>
+			<SitePerformanceDemographyTopProducts
+				topProducts={topProducts}
+				currency={siteSingle?.currency}
+			/>
 		</Grid>
 	);
 };

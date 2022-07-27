@@ -48,7 +48,8 @@ const SitePerformanceKPIOrders: FC = () => {
 			<Grid container spacing={1}>
 				<Grid item xs={12} sm={12} md={6} lg={3}>
 					<SitePerformanceKPICard
-						title={t(`${translation}.TOTAL_MINIBAR_ORDERS`)}
+						title={t(`${translation}.TOTAL_MINIBAR_ORDERS.LABEL`)}
+						tooltip={t(`${translation}.TOTAL_MINIBAR_ORDERS.TOOLTIP`)}
 						value={sumTotalMinibar}
 						icon="functions"
 					/>
@@ -56,7 +57,8 @@ const SitePerformanceKPIOrders: FC = () => {
 
 				<Grid item xs={12} sm={12} md={6} lg={3}>
 					<SitePerformanceKPICard
-						title={t(`${translation}.TOTAL_ROOM_SERVICE_ORDERS`)}
+						title={t(`${translation}.TOTAL_ROOM_SERVICE_ORDERS.LABEL`)}
+						tooltip={t(`${translation}.TOTAL_ROOM_SERVICE_ORDERS.TOOLTIP`)}
 						value={sumTotalRoomService}
 						icon="functions"
 					/>
@@ -64,7 +66,8 @@ const SitePerformanceKPIOrders: FC = () => {
 
 				<Grid item xs={12} sm={12} md={6} lg={3}>
 					<SitePerformanceKPICard
-						title={t(`${translation}.AVG_MINIBAR_ORDERS`)}
+						title={t(`${translation}.AVG_MINIBAR_ORDERS.LABEL`)}
+						tooltip={t(`${translation}.AVG_MINIBAR_ORDERS.TOOLTIP`)}
 						value={avgMinibar}
 						icon="hide_source"
 						rotateIcon
@@ -73,7 +76,8 @@ const SitePerformanceKPIOrders: FC = () => {
 
 				<Grid item xs={12} sm={12} md={6} lg={3}>
 					<SitePerformanceKPICard
-						title={t(`${translation}.AVG_ROOM_SERVICE_ORDERS`)}
+						title={t(`${translation}.AVG_ROOM_SERVICE_ORDERS.LABEL`)}
+						tooltip={t(`${translation}.AVG_ROOM_SERVICE_ORDERS.TOOLTIP`)}
 						value={avgRoomService}
 						icon="hide_source"
 						rotateIcon

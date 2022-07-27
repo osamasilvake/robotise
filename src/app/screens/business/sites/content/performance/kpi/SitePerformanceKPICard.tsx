@@ -1,4 +1,5 @@
-import { Box, Card, CardContent, Icon, Typography } from '@mui/material';
+import { InfoOutlined } from '@mui/icons-material';
+import { Box, Card, CardContent, Icon, Stack, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +9,7 @@ import { SitePerformanceKPIInterface } from './SitePerformanceKPI.interface';
 import { SitePerformanceKPIStyle } from './SitePerformanceKPI.style';
 
 const SitePerformanceKPICard: FC<SitePerformanceKPIInterface> = (props) => {
-	const { title, value, icon, rotateIcon } = props;
+	const { title, tooltip, value, icon, rotateIcon } = props;
 	const { t } = useTranslation('DASHBOARD');
 	const classes = SitePerformanceKPIStyle();
 
@@ -26,9 +27,17 @@ const SitePerformanceKPICard: FC<SitePerformanceKPIInterface> = (props) => {
 
 				{/* Title */}
 				{title && (
-					<Typography variant="subtitle2" color="textSecondary">
-						{t(title)}
-					</Typography>
+					<Stack spacing={0.5} direction="row" alignItems="center">
+						{/* Label */}
+						<Typography variant="subtitle2" color="textSecondary">
+							{t(title)}
+						</Typography>
+
+						{/* Tooltip */}
+						<Tooltip title={t(tooltip)}>
+							<InfoOutlined fontSize="small" />
+						</Tooltip>
+					</Stack>
 				)}
 
 				{/* Value */}

@@ -1078,11 +1078,13 @@
 				"DEMOGRAPHY": {
 					"PURCHASES": {
 						"LABEL": "Total Purchases",
+						"TOOLTIP": "Total purchase revenue per period (day, week, month) in the selected timeframe",
 						"DATE": "Date",
 						"REVENUE": "Revenue"
 					},
 					"ORDERS": {
 						"LABEL": "Total Orders",
+						"TOOLTIP": "Number of successful orders executed in each period (day, week, month) by order typ",
 						"DATE": "Date",
 						"MODES": {
 							"MINIBAR": "Minibar",
@@ -1092,6 +1094,14 @@
 					},
 					"INVENTORY": {
 						"LABEL": "Inventory Status",
+						"TOOLTIP": {
+							"LABEL": "Status of the inventory (average over time)",
+							"TYPES": {
+								"FULL": "Number of lanes which have more than 40 % capacity filled with products",
+								"LOW": "Number of lanes which have at least one but less than 40 % capacity filled with products",
+								"EMPTY": "Number of lanes which have 0 (zero) products in"
+							}
+						},
 						"DATE": "Date",
 						"STATUS": {
 							"GREEN": "Full",
@@ -1101,6 +1111,7 @@
 					},
 					"TOP_PRODUCTS": {
 						"LABEL": "Most Popular Products",
+						"TOOLTIP": "Most sold products by numbers (quantity) purchased during the whole timeframe. The sum shows the overall revenue achieved with this product in the whole timeframe",
 						"TABLE": {
 							"COLUMNS": {
 								"IMAGE": "",
@@ -1116,17 +1127,41 @@
 				"BOXES": {
 					"PURCHASES": {
 						"TITLE": "Purchases",
-						"SUM": "Total Revenue",
-						"AVG_REVENUE_PER_PERIOD": "Average Revenue Per Period",
-						"AVG_TOTAL_PRICE": "Average Purchase Total Price",
-						"AVG_TOTAL_QUANTITY": "Average Purchase Total Quantity"
+						"SUM": {
+							"LABEL": "Total Revenue",
+							"TOOLTIP": "Total amount of revenue generated during the whole timeframe (sum of all purchases)"
+						},
+						"AVG_REVENUE_PER_PERIOD": {
+							"LABEL": "Average Revenue Per Period",
+							"TOOLTIP": "Average revenue per period (day / week / month) achieved during the timeframe (sum of all purchases divided by number of periods)"
+						},
+						"AVG_TOTAL_PRICE": {
+							"LABEL": "Average Purchase Total Price",
+							"TOOLTIP": "Average revenue achieved per purchase done (orders without a purchase are excluded)"
+						},
+						"AVG_TOTAL_QUANTITY": {
+							"LABEL": "Average Purchase Total Quantity",
+							"TOOLTIP": "Average number of products per purchase (orders without a purchase are excluded)"
+						}
 					},
 					"ORDERS": {
 						"TITLE": "Orders",
-						"TOTAL_MINIBAR_ORDERS": "Total Number Minibar Orders",
-						"TOTAL_ROOM_SERVICE_ORDERS": "Total Number Room Service Orders",
-						"AVG_MINIBAR_ORDERS": "Average Number Minibar Orders",
-						"AVG_ROOM_SERVICE_ORDERS": "Average Number Room Service Orders"
+						"TOTAL_MINIBAR_ORDERS": {
+							"LABEL": "Total No. Minibar Orders",
+							"TOOLTIP": "Number of minibar orders during the whole timeframe"
+						},
+						"TOTAL_ROOM_SERVICE_ORDERS": {
+							"LABEL": "Total No. Room Service Orders",
+							"TOOLTIP": "Number of room service orders during the whole timeframe"
+						},
+						"AVG_MINIBAR_ORDERS": {
+							"LABEL": "Average No. Minibar Orders",
+							"TOOLTIP": "Average number of minibar orders per period (day / week / month), calculated by overall number of orders divided by number of periods"
+						},
+						"AVG_ROOM_SERVICE_ORDERS": {
+							"LABEL": "Average No. Room Service Orders",
+							"TOOLTIP": "Average number of room service orders per period (day / week / month), calculated by overall number of orders divided by number of periods"
+						}
 					}
 				}
 			}

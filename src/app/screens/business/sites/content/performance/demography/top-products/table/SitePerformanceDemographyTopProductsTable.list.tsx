@@ -22,8 +22,8 @@ export const columns: SitePerformanceDemographyTopProductsTableColumnInterface[]
 		align: 'center'
 	},
 	{
-		id: SitePerformanceDemographyTopProductsTableColumnsTypeEnum.PRICE,
-		label: `${translation}.PRICE`,
+		id: SitePerformanceDemographyTopProductsTableColumnsTypeEnum.REVENUE,
+		label: `${translation}.REVENUE`,
 		width: 85,
 		align: 'right'
 	}

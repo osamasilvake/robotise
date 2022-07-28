@@ -53,7 +53,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 		const product = products.content?.data.find((p) => p.id === topProduct.productId);
 		const price =
 			topProduct &&
-			topProduct[SitePerformanceDemographyTopProductsTableColumnsTypeEnum.PRICE];
+			topProduct[SitePerformanceDemographyTopProductsTableColumnsTypeEnum.REVENUE];
 		const quantity =
 			topProduct &&
 			topProduct[SitePerformanceDemographyTopProductsTableColumnsTypeEnum.QUANTITY];
@@ -75,7 +75,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 				);
 			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.QUANTITY:
 				return quantity;
-			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.PRICE:
+			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.REVENUE:
 				return product ? `${currencyFormat(price, currency, i18next.language)}` : none;
 			default:
 				return product ? product[column.id] || none : none;

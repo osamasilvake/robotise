@@ -8,12 +8,12 @@ import { sitesSelector } from '../../../../../../slices/business/sites/Sites.sli
 import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCleanTestOrders from './DialogCleanTestOrders';
-import { SiteCleanTestOrdersActionTypeEnum } from './SiteCleanTestOrders.enum';
-import { SiteCleanTestOrdersStyle } from './SiteCleanTestOrders.style';
+import { SiteConfigurationCleanTestOrdersActionTypeEnum } from './SiteConfigurationCleanTestOrders.enum';
+import { SiteConfigurationCleanTestOrdersStyle } from './SiteConfigurationCleanTestOrders.style';
 
-const SiteCleanTestOrders: FC = () => {
+const SiteConfigurationCleanTestOrders: FC = () => {
 	const { t } = useTranslation('SITES');
-	const classes = SiteCleanTestOrdersStyle();
+	const classes = SiteConfigurationCleanTestOrdersStyle();
 
 	const sites = useSelector(sitesSelector);
 
@@ -22,7 +22,8 @@ const SiteCleanTestOrders: FC = () => {
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
-	const cleanAfterDeployment = SiteCleanTestOrdersActionTypeEnum.CLEAN_AFTER_DEPLOYMENT;
+	const cleanAfterDeployment =
+		SiteConfigurationCleanTestOrdersActionTypeEnum.CLEAN_AFTER_DEPLOYMENT;
 	const cleanedOnce = siteSingle?.actions.find((e) => e.action === cleanAfterDeployment);
 	const translation = 'CONTENT.CONFIGURATION.CLEAN_TEST_ORDERS';
 
@@ -60,4 +61,4 @@ const SiteCleanTestOrders: FC = () => {
 		</Box>
 	);
 };
-export default SiteCleanTestOrders;
+export default SiteConfigurationCleanTestOrders;

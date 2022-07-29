@@ -28,7 +28,7 @@ import { SiteParamsInterface } from '../../../Site.interface';
 import {
 	DialogCleanTestOrdersFormInterface,
 	DialogCleanTestOrdersInterface
-} from './SiteCleanTestOrders.interface';
+} from './SiteConfigurationCleanTestOrders.interface';
 
 const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 	const { open, setOpen } = props;

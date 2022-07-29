@@ -2,7 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/clean-test-orders/SiteCleanTestOrders.interface';
+import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { SiteConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';

@@ -1,6 +1,6 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
-import { DialogCleanTestOrdersFormInterface } from './content/configuration/clean-test-orders/SiteCleanTestOrders.interface';
+import { DialogCleanTestOrdersFormInterface } from './content/configuration/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteNotifications.interface';
 import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';

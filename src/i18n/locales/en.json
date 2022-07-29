@@ -683,7 +683,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
-							"IMAGE": "",
+							"IMAGE": "Image",
 							"NAME": "Name",
 							"PRICE": "Price",
 							"LENGTH": "Length (mm)",
@@ -1113,7 +1113,7 @@
 						"TOOLTIP": "Most sold products by numbers (quantity) purchased during the whole timeframe. The sum shows the overall revenue achieved with this product in the whole timeframe",
 						"TABLE": {
 							"COLUMNS": {
-								"IMAGE": "",
+								"IMAGE": "Image",
 								"NAME": "Name",
 								"SIZE": "Size",
 								"QUANTITY": "Quantity",
@@ -1623,7 +1623,7 @@
 					"TITLE": "Drawer",
 					"TABLE": {
 						"COLUMNS": {
-							"IMAGE": "",
+							"IMAGE": "Image",
 							"NAME": "Name",
 							"SIZE": "Size",
 							"QUANTITY": "Quantity",

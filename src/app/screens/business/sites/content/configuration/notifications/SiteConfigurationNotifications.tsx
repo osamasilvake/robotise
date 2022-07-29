@@ -11,15 +11,15 @@ import { NotificationTypesAndUsersFetchList } from '../../../../../../slices/bus
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
-import SiteNotification from './SiteNotification';
-import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
-import { SiteNotificationsInterface } from './SiteNotifications.interface';
-import { SiteNotificationsStyle } from './SiteNotifications.style';
+import SiteConfigurationNotification from './SiteConfigurationNotification';
+import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';
+import { SiteConfigurationNotificationsInterface } from './SiteConfigurationNotifications.interface';
+import { SiteConfigurationNotificationsStyle } from './SiteConfigurationNotifications.style';
 
-const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
+const SiteConfigurationNotifications: FC<SiteConfigurationNotificationsInterface> = (props) => {
 	const { notifications } = props;
 	const { t } = useTranslation(['SITES', 'TOOLTIP']);
-	const classes = SiteNotificationsStyle();
+	const classes = SiteConfigurationNotificationsStyle();
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -69,7 +69,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 					</Tooltip>
 					{open && (
 						<DialogCreateEditNotification
-							type={SiteNotificationsCreateEditTypeEnum.CREATE}
+							type={SiteConfigurationNotificationsCreateEditTypeEnum.CREATE}
 							open={open}
 							setOpen={setOpen}
 						/>
@@ -79,7 +79,7 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 				{!!notifications.content?.data.length && (
 					<List disablePadding>
 						{notifications.content.data.map((notification, index) => (
-							<SiteNotification
+							<SiteConfigurationNotification
 								key={notification.id}
 								notifications={notifications}
 								notification={notification}
@@ -92,4 +92,4 @@ const SiteNotifications: FC<SiteNotificationsInterface> = (props) => {
 		</Card>
 	);
 };
-export default SiteNotifications;
+export default SiteConfigurationNotifications;

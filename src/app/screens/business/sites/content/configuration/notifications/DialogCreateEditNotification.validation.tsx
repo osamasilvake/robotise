@@ -1,5 +1,5 @@
 import { AppConfigService } from '../../../../../../services';
-import { DialogCreateEditNotificationFormInterface } from './SiteNotifications.interface';
+import { DialogCreateEditNotificationFormInterface } from './SiteConfigurationNotifications.interface';
 
 /**
  * create/edit notification validation

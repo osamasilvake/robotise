@@ -32,17 +32,17 @@ import {
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { DialogCreateEditNotificationValidation } from './DialogCreateEditNotification.validation';
-import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
+import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';
 import {
 	DialogCreateEditNotificationFormInterface,
 	DialogCreateEditNotificationInterface
-} from './SiteNotifications.interface';
-import { SiteNotificationsStyle } from './SiteNotifications.style';
+} from './SiteConfigurationNotifications.interface';
+import { SiteConfigurationNotificationsStyle } from './SiteConfigurationNotifications.style';
 
 const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = (props) => {
 	const { index, type, open, setOpen } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
-	const classes = SiteNotificationsStyle();
+	const classes = SiteConfigurationNotificationsStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 	const notifications = useSelector(notificationsSelector);
@@ -127,13 +127,13 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 		<Dialog open={open} onClose={closeDialog} fullWidth>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
-					{type === SiteNotificationsCreateEditTypeEnum.CREATE &&
+					{type === SiteConfigurationNotificationsCreateEditTypeEnum.CREATE &&
 						t(`${translation}.CREATE.TITLE`)}
-					{type === SiteNotificationsCreateEditTypeEnum.EDIT &&
+					{type === SiteConfigurationNotificationsCreateEditTypeEnum.EDIT &&
 						t(`${translation}.EDIT.TITLE`)}
 				</DialogTitle>
 
-				{type === SiteNotificationsCreateEditTypeEnum.CREATE && (
+				{type === SiteConfigurationNotificationsCreateEditTypeEnum.CREATE && (
 					<DialogContent>
 						<FormControl fullWidth margin="normal">
 							<InputLabel id="label-notifications">
@@ -163,7 +163,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 					</DialogContent>
 				)}
 
-				{type === SiteNotificationsCreateEditTypeEnum.EDIT && (
+				{type === SiteConfigurationNotificationsCreateEditTypeEnum.EDIT && (
 					<DialogContent>
 						<FormControlLabel
 							control={
@@ -246,15 +246,15 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 						type="submit"
 						disabled={
 							notifications.updating ||
-							(type === SiteNotificationsCreateEditTypeEnum.CREATE &&
+							(type === SiteConfigurationNotificationsCreateEditTypeEnum.CREATE &&
 								!newNotification) ||
-							(type === SiteNotificationsCreateEditTypeEnum.EDIT &&
+							(type === SiteConfigurationNotificationsCreateEditTypeEnum.EDIT &&
 								!!(errors && errors.users.filter((e) => e).length))
 						}
 						endIcon={notifications.updating && <CircularProgress size={20} />}>
-						{type === SiteNotificationsCreateEditTypeEnum.CREATE &&
+						{type === SiteConfigurationNotificationsCreateEditTypeEnum.CREATE &&
 							t('DIALOG:BUTTONS.CREATE')}
-						{type === SiteNotificationsCreateEditTypeEnum.EDIT &&
+						{type === SiteConfigurationNotificationsCreateEditTypeEnum.EDIT &&
 							t('DIALOG:BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>

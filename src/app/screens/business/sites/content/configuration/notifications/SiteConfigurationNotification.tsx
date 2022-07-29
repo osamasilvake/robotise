@@ -20,13 +20,13 @@ import {
 } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
-import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
+import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';
 import {
 	DialogCreateEditNotificationFormInterface,
-	SiteNotificationInterface
-} from './SiteNotifications.interface';
+	SiteConfigurationNotificationInterface
+} from './SiteConfigurationNotifications.interface';
 
-const SiteNotification: FC<SiteNotificationInterface> = (props) => {
+const SiteConfigurationNotification: FC<SiteConfigurationNotificationInterface> = (props) => {
 	const { notifications, notification, index } = props;
 	const { t } = useTranslation('TOOLTIP');
 
@@ -90,7 +90,7 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 				{open && (
 					<DialogCreateEditNotification
 						index={index}
-						type={SiteNotificationsCreateEditTypeEnum.EDIT}
+						type={SiteConfigurationNotificationsCreateEditTypeEnum.EDIT}
 						open={open}
 						setOpen={setOpen}
 					/>
@@ -99,4 +99,4 @@ const SiteNotification: FC<SiteNotificationInterface> = (props) => {
 		</ListItem>
 	) : null;
 };
-export default SiteNotification;
+export default SiteConfigurationNotification;

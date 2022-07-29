@@ -28,7 +28,7 @@ import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice'
 import { SiteParamsInterface } from '../../Site.interface';
 import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
 import SiteConfigurationCleanTestOrders from './clean-test-orders/SiteConfigurationCleanTestOrders';
-import SiteNotifications from './notifications/SiteNotifications';
+import SiteConfigurationNotifications from './notifications/SiteConfigurationNotifications';
 import SiteServicePositions from './service-positions/SiteServicePositions';
 import SiteConfig from './site-config/SiteConfig';
 import SiteRobotConfig from './site-robot-config/SiteRobotConfig';
@@ -102,7 +102,7 @@ const SiteConfiguration: FC = () => {
 				{/* Notifications */}
 				{!!notifications.content && (
 					<Grid item xs={12} md={12}>
-						<SiteNotifications notifications={notifications} />
+						<SiteConfigurationNotifications notifications={notifications} />
 					</Grid>
 				)}
 

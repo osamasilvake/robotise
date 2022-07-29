@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-export const SiteNotificationsStyle = makeStyles((theme: Theme) => ({
+export const SiteConfigurationNotificationsStyle = makeStyles((theme: Theme) => ({
 	sCard: {
 		position: 'relative'
 	},

@@ -4,20 +4,20 @@ import {
 	SliceNotificationsInterface,
 	SNContentNotificationTypesDataInterface
 } from '../../../../../../slices/business/sites/configuration/Notifications.slice.interface';
-import { SiteNotificationsCreateEditTypeEnum } from './SiteNotifications.enum';
+import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';
 
-export interface SiteNotificationsInterface {
+export interface SiteConfigurationNotificationsInterface {
 	notifications: SliceNotificationsInterface;
 }
 
-export interface SiteNotificationInterface {
+export interface SiteConfigurationNotificationInterface {
 	notifications: SliceNotificationsInterface;
 	notification: SNContentNotificationTypesDataInterface;
 	index: number;
 }
 
 export interface DialogCreateEditNotificationInterface {
-	type: SiteNotificationsCreateEditTypeEnum;
+	type: SiteConfigurationNotificationsCreateEditTypeEnum;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	index?: number;

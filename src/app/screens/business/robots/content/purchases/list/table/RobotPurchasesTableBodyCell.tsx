@@ -19,7 +19,7 @@ import {
 } from '../../../purchases/list/table/RobotPurchasesTable.interface';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
-import TableFieldComment from './TableFieldComment';
+import RobotPurchasesTableBodyCellComment from './RobotPurchasesTableBodyCellComment';
 
 const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (props) => {
 	const { index, purchase, column } = props;
@@ -79,7 +79,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					? `${currencyFormat(price, purchase.currency, i18next.language)}`
 					: 0;
 			} else if (RobotPurchasesTableColumnsTypeEnum.COMMENT === column.id) {
-				return <TableFieldComment purchase={purchase} />;
+				return <RobotPurchasesTableBodyCellComment purchase={purchase} />;
 			} else if (
 				RobotPurchasesTableColumnsTypeEnum.ORDER_DETAILS === column.id &&
 				purchase.order?.id

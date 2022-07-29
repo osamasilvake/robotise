@@ -20,7 +20,7 @@ import {
 } from './RobotPurchasesTable.interface';
 import { RobotPurchasesTableStyle } from './RobotPurchasesTable.style';
 
-const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
+const RobotPurchasesTableBodyCellComment: FC<TableFieldCommentInterface> = (props) => {
 	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
@@ -170,4 +170,4 @@ const TableFieldComment: FC<TableFieldCommentInterface> = (props) => {
 		</Box>
 	);
 };
-export default TableFieldComment;
+export default RobotPurchasesTableBodyCellComment;

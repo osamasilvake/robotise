@@ -7,7 +7,7 @@ import { AppConfigService } from '../../../services';
  * @param event
  * @returns
  */
-export const imageFromInput = (event: ChangeEvent<HTMLInputElement>) =>
+export const fetchImageFromInput = (event: ChangeEvent<HTMLInputElement>) =>
 	new Promise((resolve) => {
 		const files = event.target.files;
 		const file = files && files[0];

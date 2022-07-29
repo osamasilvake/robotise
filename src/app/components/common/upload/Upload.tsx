@@ -4,7 +4,7 @@ import { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../services';
-import { imageFromInput } from '../picture/Image';
+import { fetchImageFromInput } from '../picture/Picture.process';
 import { UploadImageChangeInterface, UploadImageInterface } from './Upload.interface';
 import { UploadStyle } from './Upload.style';
 
@@ -22,7 +22,7 @@ const Upload: FC<UploadImageInterface> = (props) => {
 	 * @param event
 	 */
 	const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
-		const image = (await imageFromInput(event)) as UploadImageChangeInterface;
+		const image = (await fetchImageFromInput(event)) as UploadImageChangeInterface;
 		if (image.validate) {
 			setImageError(0);
 			setImage(image.value);

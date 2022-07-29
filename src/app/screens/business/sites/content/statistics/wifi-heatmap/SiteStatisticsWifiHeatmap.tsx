@@ -9,23 +9,23 @@ import { AppDispatch } from '../../../../../../slices';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { WifiHeatmapFetch } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
-import { SiteWifiHeatmapPeriodsTypeEnum } from './SiteWifiHeatmap.enum';
-import { SiteWifiHeatmapInterface } from './SiteWifiHeatmap.interface';
-import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
-import SiteWifiHeatmapCard from './SiteWifiHeatmapCard';
-import SiteWifiHeatmapDownload from './SiteWifiHeatmapDownload';
-import SiteWifiHeatmapFloor from './SiteWifiHeatmapFloor';
-import SiteWifiHeatmapPeriod from './SiteWifiHeatmapPeriod';
+import { SiteStatisticsWifiHeatmapPeriodsTypeEnum } from './SiteStatisticsWifiHeatmap.enum';
+import { SiteStatisticsWifiHeatmapInterface } from './SiteStatisticsWifiHeatmap.interface';
+import { SiteStatisticsWifiHeatmapStyle } from './SiteStatisticsWifiHeatmap.style';
+import SiteStatisticsWifiHeatmapCard from './SiteStatisticsWifiHeatmapCard';
+import SiteStatisticsWifiHeatmapDownload from './SiteStatisticsWifiHeatmapDownload';
+import SiteStatisticsWifiHeatmapFloor from './SiteStatisticsWifiHeatmapFloor';
+import SiteStatisticsWifiHeatmapPeriod from './SiteStatisticsWifiHeatmapPeriod';
 
-const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
+const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props) => {
 	const { wifiHeatmap } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteWifiHeatmapStyle();
+	const classes = SiteStatisticsWifiHeatmapStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 
-	const [period, setPeriod] = useState(SiteWifiHeatmapPeriodsTypeEnum.LAST_WEEK);
+	const [period, setPeriod] = useState(SiteStatisticsWifiHeatmapPeriodsTypeEnum.LAST_WEEK);
 	const [floor, setFloor] = useState(wifiHeatmap.content?.maps?.state?.floor);
 	const [name, setName] = useState(wifiHeatmap.content?.maps?.state?.name);
 
@@ -74,12 +74,12 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 				<Grid container spacing={2} item xs={12} md={6} className={classes.sSelection}>
 					{/* Period */}
 					<Grid item xs={12} sm={6}>
-						<SiteWifiHeatmapPeriod period={period} setPeriod={setPeriod} />
+						<SiteStatisticsWifiHeatmapPeriod period={period} setPeriod={setPeriod} />
 					</Grid>
 
 					{/* Floor */}
 					<Grid item xs={12} sm={6}>
-						<SiteWifiHeatmapFloor
+						<SiteStatisticsWifiHeatmapFloor
 							wifiHeatmap={wifiHeatmap}
 							floor={floor}
 							setFloor={setFloor}
@@ -100,14 +100,14 @@ const SiteWifiHeatmap: FC<SiteWifiHeatmapInterface> = (props) => {
 			{wifiHeatmap && name && (
 				<Grid container className={classes.sMap}>
 					<Grid item xs={6} id="wifi-map">
-						<SiteWifiHeatmapCard wifiHeatmap={wifiHeatmap} name={name} />
+						<SiteStatisticsWifiHeatmapCard wifiHeatmap={wifiHeatmap} name={name} />
 					</Grid>
 				</Grid>
 			)}
 
 			{/* Download */}
-			<SiteWifiHeatmapDownload siteName={cSiteName} floor={floor} />
+			<SiteStatisticsWifiHeatmapDownload siteName={cSiteName} floor={floor} />
 		</Box>
 	);
 };
-export default SiteWifiHeatmap;
+export default SiteStatisticsWifiHeatmap;

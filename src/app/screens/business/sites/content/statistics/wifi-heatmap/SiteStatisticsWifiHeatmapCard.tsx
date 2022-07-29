@@ -6,26 +6,26 @@ import { PictureOnLoadInterface } from '../../../../../../components/common/pict
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { robotLocationImageUrl } from '../../../../robots/Robots.url';
 import {
-	SiteWifiHeatmapCardInterface,
-	SiteWifiHeatmapCoordinatesInterface,
-	SiteWifiHeatmapRatioInterface
-} from './SiteWifiHeatmap.interface';
-import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
-import SiteWifiHeatmapCardLegend from './SiteWifiHeatmapCardLegend';
-import SiteWifiHeatmapCardPoints from './SiteWifiHeatmapCardPoints';
+	SiteStatisticsWifiHeatmapCardInterface,
+	SiteStatisticsWifiHeatmapCoordinatesInterface,
+	SiteStatisticsWifiHeatmapRatioInterface
+} from './SiteStatisticsWifiHeatmap.interface';
+import { SiteStatisticsWifiHeatmapStyle } from './SiteStatisticsWifiHeatmap.style';
+import SiteStatisticsWifiHeatmapCardLegend from './SiteStatisticsWifiHeatmapCardLegend';
+import SiteStatisticsWifiHeatmapCardPoints from './SiteStatisticsWifiHeatmapCardPoints';
 
-const SiteWifiHeatmapCard: FC<SiteWifiHeatmapCardInterface> = (props) => {
+const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> = (props) => {
 	const { wifiHeatmap, name } = props;
-	const classes = SiteWifiHeatmapStyle();
+	const classes = SiteStatisticsWifiHeatmapStyle();
 	const cardClasses = CardStyle();
 
-	const [ratio, setRatio] = useState<SiteWifiHeatmapRatioInterface>({
+	const [ratio, setRatio] = useState<SiteStatisticsWifiHeatmapRatioInterface>({
 		x: 0,
 		y: 0,
 		cx: 0,
 		cy: 0
 	});
-	const [points, setPoints] = useState<SiteWifiHeatmapCoordinatesInterface[] | null>();
+	const [points, setPoints] = useState<SiteStatisticsWifiHeatmapCoordinatesInterface[] | null>();
 
 	useEffect(() => {
 		const map = wifiHeatmap.content?.maps?.data?.find((m) => m.name === name);
@@ -71,14 +71,14 @@ const SiteWifiHeatmapCard: FC<SiteWifiHeatmapCardInterface> = (props) => {
 				<Picture src={robotLocationImageUrl(name)} alt={name} onLoad={onLoad} fullWidth />
 
 				{/* Legend */}
-				<SiteWifiHeatmapCardLegend />
+				<SiteStatisticsWifiHeatmapCardLegend />
 
 				{/* Points */}
 				{points && !!points.length && !!points[0].x && (
-					<SiteWifiHeatmapCardPoints points={points} />
+					<SiteStatisticsWifiHeatmapCardPoints points={points} />
 				)}
 			</CardContent>
 		</Card>
 	) : null;
 };
-export default SiteWifiHeatmapCard;
+export default SiteStatisticsWifiHeatmapCard;

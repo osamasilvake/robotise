@@ -4,10 +4,10 @@ import { FC } from 'react';
 
 import { AppConfigService } from '../../../../../../services';
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
-import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
+import { SiteStatisticsWifiHeatmapStyle } from './SiteStatisticsWifiHeatmap.style';
 
-const SiteWifiHeatmapCardLegend: FC = () => {
-	const classes = SiteWifiHeatmapStyle();
+const SiteStatisticsWifiHeatmapCardLegend: FC = () => {
+	const classes = SiteStatisticsWifiHeatmapStyle();
 	const cardClasses = CardStyle();
 
 	const green = AppConfigService.AppOptions.colors.c10;
@@ -33,4 +33,4 @@ const SiteWifiHeatmapCardLegend: FC = () => {
 		</Card>
 	);
 };
-export default SiteWifiHeatmapCardLegend;
+export default SiteStatisticsWifiHeatmapCardLegend;

@@ -3,13 +3,15 @@ import domtoimage from 'dom-to-image';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SiteWifiHeatmapDownloadInterface } from './SiteWifiHeatmap.interface';
-import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
+import { SiteStatisticsWifiHeatmapDownloadInterface } from './SiteStatisticsWifiHeatmap.interface';
+import { SiteStatisticsWifiHeatmapStyle } from './SiteStatisticsWifiHeatmap.style';
 
-const SiteWifiHeatmapDownload: FC<SiteWifiHeatmapDownloadInterface> = (props) => {
+const SiteStatisticsWifiHeatmapDownload: FC<SiteStatisticsWifiHeatmapDownloadInterface> = (
+	props
+) => {
 	const { siteName, floor } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteWifiHeatmapStyle();
+	const classes = SiteStatisticsWifiHeatmapStyle();
 
 	const translation = 'CONTENT.STATISTICS.WIFI_HEATMAP';
 
@@ -32,4 +34,4 @@ const SiteWifiHeatmapDownload: FC<SiteWifiHeatmapDownloadInterface> = (props) =>
 		</Button>
 	);
 };
-export default SiteWifiHeatmapDownload;
+export default SiteStatisticsWifiHeatmapDownload;

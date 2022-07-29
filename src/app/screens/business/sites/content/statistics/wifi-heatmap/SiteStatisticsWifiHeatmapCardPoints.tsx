@@ -3,13 +3,15 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../../../../services';
-import { SiteWifiHeatmapCardPointsInterface } from './SiteWifiHeatmap.interface';
-import { SiteWifiHeatmapStyle } from './SiteWifiHeatmap.style';
+import { SiteStatisticsWifiHeatmapCardPointsInterface } from './SiteStatisticsWifiHeatmap.interface';
+import { SiteStatisticsWifiHeatmapStyle } from './SiteStatisticsWifiHeatmap.style';
 
-const SiteWifiHeatmapCardPoints: FC<SiteWifiHeatmapCardPointsInterface> = (props) => {
+const SiteStatisticsWifiHeatmapCardPoints: FC<SiteStatisticsWifiHeatmapCardPointsInterface> = (
+	props
+) => {
 	const { points } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteWifiHeatmapStyle();
+	const classes = SiteStatisticsWifiHeatmapStyle();
 
 	const green = AppConfigService.AppOptions.colors.c10;
 	const orange = AppConfigService.AppOptions.colors.c14;
@@ -51,4 +53,4 @@ const SiteWifiHeatmapCardPoints: FC<SiteWifiHeatmapCardPointsInterface> = (props
 		</>
 	);
 };
-export default SiteWifiHeatmapCardPoints;
+export default SiteStatisticsWifiHeatmapCardPoints;

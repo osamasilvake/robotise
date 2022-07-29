@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-export const SiteWifiHeatmapStyle = makeStyles((theme: Theme) => ({
+export const SiteStatisticsWifiHeatmapStyle = makeStyles((theme: Theme) => ({
 	sSelection: {
 		marginTop: theme.spacing(1)
 	},

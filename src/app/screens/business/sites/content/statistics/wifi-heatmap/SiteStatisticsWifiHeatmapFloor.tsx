@@ -6,9 +6,9 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../../slices';
 import { WifiHeatmapState } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
 import { SWCMapsStateInterface } from '../../../../../../slices/business/sites/statistics/WifiHeatmap.slice.interface';
-import { SiteWifiHeatmapFloorInterface } from './SiteWifiHeatmap.interface';
+import { SiteStatisticsWifiHeatmapFloorInterface } from './SiteStatisticsWifiHeatmap.interface';
 
-const SiteWifiHeatmapFloor: FC<SiteWifiHeatmapFloorInterface> = (props) => {
+const SiteStatisticsWifiHeatmapFloor: FC<SiteStatisticsWifiHeatmapFloorInterface> = (props) => {
 	const { wifiHeatmap, floor, setFloor, setName } = props;
 	const { t } = useTranslation('SITES');
 
@@ -58,4 +58,4 @@ const SiteWifiHeatmapFloor: FC<SiteWifiHeatmapFloorInterface> = (props) => {
 		</FormControl>
 	);
 };
-export default SiteWifiHeatmapFloor;
+export default SiteStatisticsWifiHeatmapFloor;

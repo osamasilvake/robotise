@@ -2,15 +2,15 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SiteWifiHeatmapPeriodsTypeEnum } from './SiteWifiHeatmap.enum';
-import { SiteWifiHeatmapPeriodInterface } from './SiteWifiHeatmap.interface';
+import { SiteStatisticsWifiHeatmapPeriodsTypeEnum } from './SiteStatisticsWifiHeatmap.enum';
+import { SiteStatisticsWifiHeatmapPeriodInterface } from './SiteStatisticsWifiHeatmap.interface';
 
-const SiteWifiHeatmapPeriod: FC<SiteWifiHeatmapPeriodInterface> = (props) => {
+const SiteStatisticsWifiHeatmapPeriod: FC<SiteStatisticsWifiHeatmapPeriodInterface> = (props) => {
 	const { period, setPeriod } = props;
 	const { t } = useTranslation('SITES');
 
 	const translation = 'CONTENT.STATISTICS.WIFI_HEATMAP';
-	const periods = Object.values(SiteWifiHeatmapPeriodsTypeEnum).map((p) => ({
+	const periods = Object.values(SiteStatisticsWifiHeatmapPeriodsTypeEnum).map((p) => ({
 		id: p,
 		label: t(`${translation}.PERIODS.LIST.${p}`)
 	}));
@@ -24,7 +24,9 @@ const SiteWifiHeatmapPeriod: FC<SiteWifiHeatmapPeriodInterface> = (props) => {
 				name="period"
 				label={t(`${translation}.PERIODS.LABEL`)}
 				value={period}
-				onChange={(e) => setPeriod(e.target.value as SiteWifiHeatmapPeriodsTypeEnum)}>
+				onChange={(e) =>
+					setPeriod(e.target.value as SiteStatisticsWifiHeatmapPeriodsTypeEnum)
+				}>
 				{periods.map((p) => (
 					<MenuItem key={p.id} value={p.id}>
 						{p.label}
@@ -34,4 +36,4 @@ const SiteWifiHeatmapPeriod: FC<SiteWifiHeatmapPeriodInterface> = (props) => {
 		</FormControl>
 	);
 };
-export default SiteWifiHeatmapPeriod;
+export default SiteStatisticsWifiHeatmapPeriod;

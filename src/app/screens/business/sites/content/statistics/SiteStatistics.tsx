@@ -12,7 +12,7 @@ import {
 } from '../../../../../slices/business/sites/statistics/WifiHeatmap.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import { SiteStatisticsStyle } from './SiteStatistics.style';
-import SiteWifiHeatmap from './wifi-heatmap/SiteWifiHeatmap';
+import SiteStatisticsWifiHeatmap from './wifi-heatmap/SiteStatisticsWifiHeatmap';
 
 const SiteStatistics: FC = () => {
 	const classes = SiteStatisticsStyle();
@@ -43,7 +43,7 @@ const SiteStatistics: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Wifi Heatmap */}
-			{wifiHeatmap.content && <SiteWifiHeatmap wifiHeatmap={wifiHeatmap} />}
+			{wifiHeatmap.content && <SiteStatisticsWifiHeatmap wifiHeatmap={wifiHeatmap} />}
 		</Box>
 	);
 };

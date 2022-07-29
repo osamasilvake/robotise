@@ -2,8 +2,8 @@ import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCleanTestOrdersFormInterface } from './content/configuration/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteConfigurationNotifications.interface';
-import { SiteServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteServicePositions.enum';
-import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteServicePositions.interface';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteConfigurationServicePositions.enum';
+import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteConfigurationServicePositions.interface';
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
 import {
@@ -519,7 +519,7 @@ class SitesService {
 	siteServicePositionCreateEdit = (
 		siteId: string,
 		payload: DialogCreateEditServicePositionFormInterface,
-		type: SiteServicePositionsCreateEditTypeEnum
+		type: SiteConfigurationServicePositionsCreateEditTypeEnum
 	) => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SERVICE_POSITIONS;
@@ -540,7 +540,7 @@ class SitesService {
 			}
 		};
 
-		return type === SiteServicePositionsCreateEditTypeEnum.CREATE
+		return type === SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE
 			? HttpClientService.post(url, request)
 			: HttpClientService.patch(`${url}/${payload.id}`, request);
 	};

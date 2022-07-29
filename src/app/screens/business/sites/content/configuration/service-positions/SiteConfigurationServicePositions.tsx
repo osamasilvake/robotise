@@ -11,15 +11,17 @@ import { ServicePositionsFetchList } from '../../../../../../slices/business/sit
 import { CardStyle } from '../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../Site.interface';
 import DialogCreateEditServicePosition from './DialogCreateEditServicePosition';
-import SiteServicePosition from './SiteServicePosition';
-import { SiteServicePositionsCreateEditTypeEnum } from './SiteServicePositions.enum';
-import { SiteServicePositionsInterface } from './SiteServicePositions.interface';
-import { SiteServicePositionsStyle } from './SiteServicePositions.style';
+import SiteConfigurationServicePosition from './SiteConfigurationServicePosition';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './SiteConfigurationServicePositions.enum';
+import { SiteConfigurationServicePositionsInterface } from './SiteConfigurationServicePositions.interface';
+import { SiteConfigurationServicePositionsStyle } from './SiteConfigurationServicePositions.style';
 
-const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
+const SiteConfigurationServicePositions: FC<SiteConfigurationServicePositionsInterface> = (
+	props
+) => {
 	const { servicePositions } = props;
 	const { t } = useTranslation(['SITES', 'TOOLTIP']);
-	const classes = SiteServicePositionsStyle();
+	const classes = SiteConfigurationServicePositionsStyle();
 	const cardClasses = CardStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -69,7 +71,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 					</Tooltip>
 					{open && (
 						<DialogCreateEditServicePosition
-							type={SiteServicePositionsCreateEditTypeEnum.CREATE}
+							type={SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE}
 							open={open}
 							setOpen={setOpen}
 						/>
@@ -79,7 +81,7 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 				{!!servicePositions.content?.data.length && (
 					<List disablePadding>
 						{servicePositions.content.data.map((servicePosition, index) => (
-							<SiteServicePosition
+							<SiteConfigurationServicePosition
 								key={servicePosition.id}
 								servicePosition={servicePosition}
 								index={index}
@@ -91,4 +93,4 @@ const SiteServicePositions: FC<SiteServicePositionsInterface> = (props) => {
 		</Card>
 	);
 };
-export default SiteServicePositions;
+export default SiteConfigurationServicePositions;

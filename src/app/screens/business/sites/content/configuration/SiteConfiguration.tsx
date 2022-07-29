@@ -29,7 +29,7 @@ import { SiteParamsInterface } from '../../Site.interface';
 import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
 import SiteConfigurationCleanTestOrders from './clean-test-orders/SiteConfigurationCleanTestOrders';
 import SiteConfigurationNotifications from './notifications/SiteConfigurationNotifications';
-import SiteServicePositions from './service-positions/SiteServicePositions';
+import SiteConfigurationServicePositions from './service-positions/SiteConfigurationServicePositions';
 import SiteConfig from './site-config/SiteConfig';
 import SiteRobotConfig from './site-robot-config/SiteRobotConfig';
 import { SiteConfigurationStyle } from './SiteConfiguration.style';
@@ -109,7 +109,7 @@ const SiteConfiguration: FC = () => {
 				{/* Service Positions */}
 				{!!servicePositions.content && (
 					<Grid item xs={12} md={12}>
-						<SiteServicePositions servicePositions={servicePositions} />
+						<SiteConfigurationServicePositions servicePositions={servicePositions} />
 					</Grid>
 				)}
 

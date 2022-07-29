@@ -19,7 +19,7 @@ import {
 	SiteServicePositionDelete
 } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
-import { DialogDeleteServicePositionInterface } from './SiteServicePositions.interface';
+import { DialogDeleteServicePositionInterface } from './SiteConfigurationServicePositions.interface';
 
 const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (props) => {
 	const { servicePosition, open, setOpen } = props;

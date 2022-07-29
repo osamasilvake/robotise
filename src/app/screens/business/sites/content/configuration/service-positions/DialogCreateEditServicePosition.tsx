@@ -22,11 +22,11 @@ import {
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { DialogCreateEditServicePositionValidation } from './DialogCreateEditServicePosition.validation';
-import { SiteServicePositionsCreateEditTypeEnum } from './SiteServicePositions.enum';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './SiteConfigurationServicePositions.enum';
 import {
 	DialogCreateEditServicePositionFormInterface,
 	DialogCreateEditServicePositionInterface
-} from './SiteServicePositions.interface';
+} from './SiteConfigurationServicePositions.interface';
 
 const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterface> = (props) => {
 	const { type, open, setOpen, index } = props;
@@ -58,8 +58,8 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 							id: servicePosition?.id
 						},
 						index !== undefined
-							? SiteServicePositionsCreateEditTypeEnum.EDIT
-							: SiteServicePositionsCreateEditTypeEnum.CREATE,
+							? SiteConfigurationServicePositionsCreateEditTypeEnum.EDIT
+							: SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE,
 						() => {
 							// dispatch: fetch service positions
 							dispatch(ServicePositionsFetchList(cSiteId, true));
@@ -88,9 +88,9 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 		<Dialog open={open} onClose={closeDialog} fullWidth>
 			<form onSubmit={handleSubmit}>
 				<DialogTitle>
-					{type === SiteServicePositionsCreateEditTypeEnum.CREATE &&
+					{type === SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE &&
 						t(`${translation}.CREATE.TITLE`)}
-					{type === SiteServicePositionsCreateEditTypeEnum.EDIT &&
+					{type === SiteConfigurationServicePositionsCreateEditTypeEnum.EDIT &&
 						t(`${translation}.EDIT.TITLE`)}
 				</DialogTitle>
 
@@ -139,9 +139,9 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 						type="submit"
 						disabled={servicePositions.updating}
 						endIcon={servicePositions.updating && <CircularProgress size={20} />}>
-						{type === SiteServicePositionsCreateEditTypeEnum.CREATE &&
+						{type === SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE &&
 							t('DIALOG:BUTTONS.CREATE')}
-						{type === SiteServicePositionsCreateEditTypeEnum.EDIT &&
+						{type === SiteConfigurationServicePositionsCreateEditTypeEnum.EDIT &&
 							t('DIALOG:BUTTONS.UPDATE')}
 					</Button>
 				</DialogActions>

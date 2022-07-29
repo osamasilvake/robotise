@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-export const SiteServicePositionsStyle = makeStyles((theme: Theme) => ({
+export const SiteConfigurationServicePositionsStyle = makeStyles((theme: Theme) => ({
 	sCard: {
 		position: 'relative'
 	},

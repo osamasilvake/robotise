@@ -2,8 +2,8 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { SiteServicePositionsCreateEditTypeEnum } from '../../../../screens/business/sites/content/configuration/service-positions/SiteServicePositions.enum';
-import { DialogCreateEditServicePositionFormInterface } from '../../../../screens/business/sites/content/configuration/service-positions/SiteServicePositions.interface';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from '../../../../screens/business/sites/content/configuration/service-positions/SiteConfigurationServicePositions.enum';
+import { DialogCreateEditServicePositionFormInterface } from '../../../../screens/business/sites/content/configuration/service-positions/SiteConfigurationServicePositions.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { RootState } from '../../..';
@@ -130,7 +130,7 @@ export const ServicePositionCreateEdit =
 	(
 		siteId: string,
 		payload: DialogCreateEditServicePositionFormInterface,
-		type: SiteServicePositionsCreateEditTypeEnum,
+		type: SiteConfigurationServicePositionsCreateEditTypeEnum,
 		callback: () => void
 	) =>
 	async (dispatch: Dispatch) => {
@@ -157,7 +157,7 @@ export const ServicePositionCreateEdit =
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text:
-						type === SiteServicePositionsCreateEditTypeEnum.CREATE
+						type === SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE
 							? 'SITES.CONFIGURATION.SERVICE_POSITIONS.CREATE.SUCCESS'
 							: 'SITES.CONFIGURATION.SERVICE_POSITIONS.EDIT.SUCCESS'
 				};
@@ -170,7 +170,7 @@ export const ServicePositionCreateEdit =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text:
-						type === SiteServicePositionsCreateEditTypeEnum.CREATE
+						type === SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE
 							? 'SITES.CONFIGURATION.SERVICE_POSITIONS.CREATE.ERROR'
 							: 'SITES.CONFIGURATION.SERVICE_POSITIONS.EDIT.ERROR'
 				};

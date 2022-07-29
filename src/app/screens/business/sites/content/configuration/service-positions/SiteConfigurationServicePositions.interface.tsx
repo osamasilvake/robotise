@@ -4,19 +4,19 @@ import {
 	SliceServicePositionsInterface,
 	SSCDataInterface
 } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice.interface';
-import { SiteServicePositionsCreateEditTypeEnum } from './SiteServicePositions.enum';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './SiteConfigurationServicePositions.enum';
 
-export interface SiteServicePositionsInterface {
+export interface SiteConfigurationServicePositionsInterface {
 	servicePositions: SliceServicePositionsInterface;
 }
 
-export interface SiteServicePositionInterface {
+export interface SiteConfigurationServicePositionInterface {
 	servicePosition: SSCDataInterface;
 	index: number;
 }
 
 export interface DialogCreateEditServicePositionInterface {
-	type: SiteServicePositionsCreateEditTypeEnum;
+	type: SiteConfigurationServicePositionsCreateEditTypeEnum;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	index?: number;

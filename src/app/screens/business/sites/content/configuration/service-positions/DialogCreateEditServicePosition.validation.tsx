@@ -1,4 +1,4 @@
-import { DialogCreateEditServicePositionFormInterface } from './SiteServicePositions.interface';
+import { DialogCreateEditServicePositionFormInterface } from './SiteConfigurationServicePositions.interface';
 
 /**
  * create/edit service position validation

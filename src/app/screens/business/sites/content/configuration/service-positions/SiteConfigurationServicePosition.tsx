@@ -11,10 +11,10 @@ import { useTranslation } from 'react-i18next';
 
 import DialogCreateEditServicePosition from './DialogCreateEditServicePosition';
 import DialogDeleteServicePosition from './DialogDeleteServicePosition';
-import { SiteServicePositionsCreateEditTypeEnum } from './SiteServicePositions.enum';
-import { SiteServicePositionInterface } from './SiteServicePositions.interface';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './SiteConfigurationServicePositions.enum';
+import { SiteConfigurationServicePositionInterface } from './SiteConfigurationServicePositions.interface';
 
-const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
+const SiteConfigurationServicePosition: FC<SiteConfigurationServicePositionInterface> = (props) => {
 	const { servicePosition, index } = props;
 	const { t } = useTranslation('TOOLTIP');
 
@@ -36,7 +36,7 @@ const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
 				</Tooltip>
 				{openCreateEdit && (
 					<DialogCreateEditServicePosition
-						type={SiteServicePositionsCreateEditTypeEnum.EDIT}
+						type={SiteConfigurationServicePositionsCreateEditTypeEnum.EDIT}
 						open={openCreateEdit}
 						setOpen={setOpenCreateEdit}
 						index={index}
@@ -62,4 +62,4 @@ const SiteServicePosition: FC<SiteServicePositionInterface> = (props) => {
 		</ListItem>
 	) : null;
 };
-export default SiteServicePosition;
+export default SiteConfigurationServicePosition;

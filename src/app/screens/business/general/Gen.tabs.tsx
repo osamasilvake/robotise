@@ -47,16 +47,13 @@ const GenTabs: FC = () => {
 				onChange={handleTabChange}
 				variant="scrollable"
 				textColor="primary">
-				<Tab label={t(`${translation}.COMMON`)} />
 				<Tab label={t(`${translation}.EMAILS`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
 			<Box>
-				{value === 0 && <></>}
-
 				{/* Emails */}
-				{value === 1 && (
+				{value === 0 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<GeneralEmailsList />

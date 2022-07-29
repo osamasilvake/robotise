@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 
 import { RobotParamsInterface } from '../../../Robot.interface';
 import DialogEmergency from './DialogEmergency';
-import { RobotEmergencyInterface } from './RobotEmergency.interface';
-import { RobotEmergencyStyle } from './RobotEmergency.style';
+import { RobotConfigurationEmergencyInterface } from './RobotConfigurationEmergency.interface';
+import { RobotConfigurationEmergencyStyle } from './RobotConfigurationEmergency.style';
 
-const RobotEmergency: FC<RobotEmergencyInterface> = (props) => {
+const RobotConfigurationEmergency: FC<RobotConfigurationEmergencyInterface> = (props) => {
 	const { robotTwinsSummary, robotOperations } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotEmergencyStyle();
+	const classes = RobotConfigurationEmergencyStyle();
 
 	const [open, setOpen] = useState(false);
 
@@ -51,4 +51,4 @@ const RobotEmergency: FC<RobotEmergencyInterface> = (props) => {
 		</Card>
 	);
 };
-export default RobotEmergency;
+export default RobotConfigurationEmergency;

@@ -8,13 +8,13 @@ import { AppDispatch } from '../../../../../../slices';
 import { RobotProductsSync } from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import { RobotSyncProductsInterface } from './RobotSyncProducts.interface';
-import { RobotSyncProductsStyle } from './RobotSyncProducts.style';
+import { RobotConfigurationSyncProductsInterface } from './RobotConfigurationSyncProducts.interface';
+import { RobotConfigurationSyncProductsStyle } from './RobotConfigurationSyncProducts.style';
 
-const RobotSyncProducts: FC<RobotSyncProductsInterface> = (props) => {
+const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface> = (props) => {
 	const { robotTwinsSummary, robotOperations } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotSyncProductsStyle();
+	const classes = RobotConfigurationSyncProductsStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 
@@ -67,4 +67,4 @@ const RobotSyncProducts: FC<RobotSyncProductsInterface> = (props) => {
 		</Card>
 	);
 };
-export default RobotSyncProducts;
+export default RobotConfigurationSyncProducts;

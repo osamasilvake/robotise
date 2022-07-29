@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import { robotOperationsSelector } from '../../../../../slices/business/robots/RobotOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
-import RobotEmergency from './emergency/RobotEmergency';
+import RobotConfigurationEmergency from './emergency/RobotConfigurationEmergency';
 import RobotConfig from './robot-config/RobotConfig';
 import RobotSiteConfig from './robot-site-config/RobotSiteConfig';
 import { RobotConfigurationStyle } from './RobotConfiguration.style';
-import RobotSyncProducts from './sync-products/RobotSyncProducts';
+import RobotConfigurationSyncProducts from './sync-products/RobotConfigurationSyncProducts';
 
 const RobotConfiguration: FC = () => {
 	const classes = RobotConfigurationStyle();
@@ -22,14 +22,14 @@ const RobotConfiguration: FC = () => {
 		<Box className={classes.sBox}>
 			<Grid container spacing={1}>
 				<Grid item xs={12}>
-					<RobotEmergency
+					<RobotConfigurationEmergency
 						robotTwinsSummary={robotTwinsSummary}
 						robotOperations={robotOperations}
 					/>
 				</Grid>
 
 				<Grid item xs={12}>
-					<RobotSyncProducts
+					<RobotConfigurationSyncProducts
 						robotTwinsSummary={robotTwinsSummary}
 						robotOperations={robotOperations}
 					/>

@@ -15,13 +15,13 @@ import { useParams } from 'react-router-dom';
 import { AppDispatch } from '../../../../../../slices';
 import { RobotSetEmergencyState } from '../../../../../../slices/business/robots/RobotOperations.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import { DialogEmergencyInterface } from './RobotEmergency.interface';
-import { RobotEmergencyStyle } from './RobotEmergency.style';
+import { DialogEmergencyInterface } from './RobotConfigurationEmergency.interface';
+import { RobotConfigurationEmergencyStyle } from './RobotConfigurationEmergency.style';
 
 const DialogEmergency: FC<DialogEmergencyInterface> = (props) => {
 	const { open, setOpen, robotTwinsSummary, robotOperations } = props;
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
-	const classes = RobotEmergencyStyle();
+	const classes = RobotConfigurationEmergencyStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 

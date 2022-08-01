@@ -9,6 +9,7 @@ const RobotConfiguration: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Content */}
 			<RobotConfigurationTabs />
 		</Box>
 	);

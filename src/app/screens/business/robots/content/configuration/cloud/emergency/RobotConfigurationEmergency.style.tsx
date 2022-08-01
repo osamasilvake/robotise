@@ -1,7 +1,7 @@
 import { alpha, Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-import { AppConfigService } from '../../../../../../services';
+import { AppConfigService } from '../../../../../../../services';
 
 export const RobotConfigurationEmergencyStyle = makeStyles((theme: Theme) => ({
 	sCard: {

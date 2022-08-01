@@ -1220,7 +1220,11 @@
 				"PURCHASES": "PURCHASES",
 				"COMMANDS_LOGS": "COMMANDS LOG",
 				"ELEVATOR_CALLS": "ELEVATOR CALLS",
-				"CONFIGURATION": "CONFIGURATION"
+				"CONFIGURATION": {
+					"MAIN": "Configuration",
+					"CLOUD": "Cloud",
+					"ROBOT": "Robot"
+				}
 			},
 			"DETAIL": {
 				"GENERAL": {

@@ -15,12 +15,12 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
-import { RobotSiteConfigUpdate } from '../../../../../../slices/business/robots/RobotOperations.slice';
-import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
-import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { RobotParamsInterface } from '../../../Robot.interface';
+import { AppDispatch } from '../../../../../../../slices';
+import { RobotSiteConfigUpdate } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import { RobotTwinsFetch } from '../../../../../../../slices/business/robots/RobotTwins.slice';
+import { RobotTwinsSummaryFetchList } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+import { RobotParamsInterface } from '../../../../Robot.interface';
 import {
 	RobotSiteConfigFormInterface,
 	RobotSiteConfigInterface

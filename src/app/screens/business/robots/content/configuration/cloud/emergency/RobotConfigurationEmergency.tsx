@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { RobotParamsInterface } from '../../../Robot.interface';
+import { RobotParamsInterface } from '../../../../Robot.interface';
 import DialogEmergency from './DialogEmergency';
 import { RobotConfigurationEmergencyInterface } from './RobotConfigurationEmergency.interface';
 import { RobotConfigurationEmergencyStyle } from './RobotConfigurationEmergency.style';

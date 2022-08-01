@@ -16,17 +16,17 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { AppConfigService } from '../../../../../../services';
-import { AppDispatch } from '../../../../../../slices';
-import { RobotConfigUpdate } from '../../../../../../slices/business/robots/RobotOperations.slice';
-import { RobotTwinsFetch } from '../../../../../../slices/business/robots/RobotTwins.slice';
-import { RobotTwinsSummaryFetchList } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
+import { RobotConfigUpdate } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import { RobotTwinsFetch } from '../../../../../../../slices/business/robots/RobotTwins.slice';
+import { RobotTwinsSummaryFetchList } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import {
 	removeEmptyObjProperties,
 	validateEmptyObj
-} from '../../../../../../utilities/methods/Object';
-import { RobotParamsInterface } from '../../../Robot.interface';
+} from '../../../../../../../utilities/methods/Object';
+import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotConfigFormInterface, RobotConfigInterface } from './RobotConfig.interface';
 import { RobotConfigStyle } from './RobotConfig.style';
 import { RobotConfigValidation } from './RobotConfig.validation';

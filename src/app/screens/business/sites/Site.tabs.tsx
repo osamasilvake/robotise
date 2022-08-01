@@ -17,12 +17,12 @@ import sitesRoutes from './Sites.routes';
 const SiteDetail = lazy(() => import('./content/detail/SiteDetail'));
 const SiteProductsList = lazy(() => import('./content/products/list/SiteProductsList'));
 const SiteRoomsList = lazy(() => import('./content/rooms/list/SiteRoomsList'));
-const SitePhoneCallsList = lazy(() => import('./content/phone-calls/list/SitePhoneCallsList'));
-const SiteStatistics = lazy(() => import('./content/statistics/SiteStatistics'));
-const SiteConfiguration = lazy(() => import('./content/configuration/SiteConfiguration'));
 const SitePhoneConfigsList = lazy(
 	() => import('./content/phone-configs/detail/SitePhoneConfigsDetail')
 );
+const SitePhoneCallsList = lazy(() => import('./content/phone-calls/list/SitePhoneCallsList'));
+const SiteStatistics = lazy(() => import('./content/statistics/SiteStatistics'));
+const SiteConfiguration = lazy(() => import('./content/configuration/SiteConfiguration'));
 
 const SiteTabs: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -39,13 +39,14 @@ const SiteTabs: FC = () => {
 	const problem = !!sites.errors?.id || !siteSingle?.id;
 
 	const translation = 'CONTENT.TABS';
+	const offset = 1;
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
 		const cPath = location.pathname.replace(skipLastSlashes, '');
 		const cIndex = sitesRoutes.findIndex((r) => r.path.replace(':siteId', cSiteId) === cPath);
 
-		setValue(cIndex - 1);
+		setValue(cIndex - offset);
 	}, [location.pathname, cSiteId]);
 
 	/**
@@ -55,7 +56,7 @@ const SiteTabs: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const link = sitesRoutes[value + 1].path.replace(':siteId', cSiteId);
+		const link = sitesRoutes[value + offset].path.replace(':siteId', cSiteId);
 
 		// navigate
 		navigate(link);

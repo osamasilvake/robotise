@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
-import { RobotProductsSync } from '../../../../../../slices/business/robots/RobotOperations.slice';
-import { dateFormat1 } from '../../../../../../utilities/methods/Date';
-import { RobotParamsInterface } from '../../../Robot.interface';
+import { AppDispatch } from '../../../../../../../slices';
+import { RobotProductsSync } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
+import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotConfigurationSyncProductsInterface } from './RobotConfigurationSyncProducts.interface';
 import { RobotConfigurationSyncProductsStyle } from './RobotConfigurationSyncProducts.style';
 

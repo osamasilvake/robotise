@@ -38,6 +38,7 @@ const RobotTabs: FC = () => {
 	const problem = !!robotTwinsSummary.errors?.id || !robotSingle?.id;
 
 	const translation = 'CONTENT.TABS';
+	const offset = 1;
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
@@ -46,7 +47,7 @@ const RobotTabs: FC = () => {
 			(r) => r.path.replace(':robotId', cRobotId) === cPath
 		);
 
-		setValue(cIndex - 1);
+		setValue(cIndex - offset);
 	}, [location.pathname, cRobotId]);
 
 	/**
@@ -56,7 +57,7 @@ const RobotTabs: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const link = robotsRoutes[value + 1].path.replace(':robotId', cRobotId);
+		const link = robotsRoutes[value + offset].path.replace(':robotId', cRobotId);
 
 		// navigate
 		navigate(link);
@@ -74,7 +75,7 @@ const RobotTabs: FC = () => {
 			{/* Tabs */}
 			<Tabs
 				allowScrollButtonsMobile
-				value={value}
+				value={value === 7 ? value - 1 : value}
 				onChange={handleTabChange}
 				variant="scrollable"
 				textColor="primary">
@@ -84,7 +85,7 @@ const RobotTabs: FC = () => {
 				<Tab label={t(`${translation}.PURCHASES`)} />
 				<Tab label={t(`${translation}.COMMANDS_LOGS`)} />
 				<Tab label={t(`${translation}.ELEVATOR_CALLS`)} />
-				<Tab label={t(`${translation}.CONFIGURATION`)} />
+				<Tab label={t(`${translation}.CONFIGURATION.MAIN`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -144,7 +145,7 @@ const RobotTabs: FC = () => {
 				)}
 
 				{/* Configuration */}
-				{value === 6 && (
+				{(value === 6 || value === 7) && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<RobotConfiguration />

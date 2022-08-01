@@ -2,8 +2,8 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { RobotConfigFormInterface } from '../../../screens/business/robots/content/configuration/robot-config/RobotConfig.interface';
-import { RobotSiteConfigFormInterface } from '../../../screens/business/robots/content/configuration/robot-site-config/RobotSiteConfig.interface';
+import { RobotConfigFormInterface } from '../../../screens/business/robots/content/configuration/cloud/robot-config/RobotConfig.interface';
+import { RobotSiteConfigFormInterface } from '../../../screens/business/robots/content/configuration/cloud/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,

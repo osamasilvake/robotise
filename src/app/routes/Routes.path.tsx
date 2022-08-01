@@ -40,7 +40,10 @@ const appRoutes = {
 				},
 				COMMANDS_LOG: '/robots/:robotId/commands-log',
 				ELEVATOR_CALLS: '/robots/:robotId/elevator-calls',
-				CONFIGURATION: '/robots/:robotId/configuration'
+				CONFIGURATION: {
+					CLOUD: '/robots/:robotId/configuration/cloud',
+					ROBOT: '/robots/:robotId/configuration/robot'
+				}
 			}
 		},
 		SETTINGS: {

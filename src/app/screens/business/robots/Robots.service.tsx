@@ -1,8 +1,8 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
-import { RobotConfigFormInterface } from './content/configuration/robot-config/RobotConfig.interface';
-import { RobotSiteConfigFormInterface } from './content/configuration/robot-site-config/RobotSiteConfig.interface';
+import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
+import { RobotSiteConfigFormInterface } from './content/configuration/cloud/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,

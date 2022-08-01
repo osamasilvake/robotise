@@ -49,8 +49,16 @@ const robotsRoutes: RoutesInterface[] = [
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS,
 		component: Robot
 	},
+
+	/**
+	 * Configuration sub tabs
+	 */
 	{
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CLOUD,
+		component: Robot
+	},
+	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.ROBOT,
 		component: Robot
 	},
 

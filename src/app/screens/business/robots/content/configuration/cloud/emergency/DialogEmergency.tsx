@@ -12,9 +12,9 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
-import { RobotSetEmergencyState } from '../../../../../../slices/business/robots/RobotOperations.slice';
-import { RobotParamsInterface } from '../../../Robot.interface';
+import { AppDispatch } from '../../../../../../../slices';
+import { RobotSetEmergencyState } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import { RobotParamsInterface } from '../../../../Robot.interface';
 import { DialogEmergencyInterface } from './RobotConfigurationEmergency.interface';
 import { RobotConfigurationEmergencyStyle } from './RobotConfigurationEmergency.style';
 

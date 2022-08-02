@@ -343,6 +343,10 @@
 					}
 				},
 				"CONFIGURATION": {
+					"EMERGENCY_STATE": {
+						"SUCCESS": "Emergency state has been updated successfully!",
+						"ERROR": "Unable to update emergency state!"
+					},
 					"SYNC_PRODUCTS": {
 						"SUCCESS": "Products has been synchronized successfully!",
 						"ERROR": "Unable to sync products on the robot!"
@@ -354,10 +358,6 @@
 					"ROBOT_SITE_CONFIG": {
 						"SUCCESS": "Robot setting has been updated successfully!",
 						"ERROR": "Unable to configure robot to a site!"
-					},
-					"EMERGENCY_STATE": {
-						"SUCCESS": "Emergency state has been updated successfully!",
-						"ERROR": "Unable to update emergency state!"
 					}
 				}
 			},
@@ -1846,7 +1846,8 @@
 								"remote-control-translate": "Remote Control Translate",
 								"remote-control-rotate": "Remote Control Rotate",
 								"set-mute-sensor-state": "Set Mute Sensor State",
-								"set-emergency-state": "Set Emergency State"
+								"set-emergency-state": "Set Emergency State",
+								"finish-order": "Finish Order"
 							},
 							"HISTORY": {
 								"STATUS": {

@@ -424,6 +424,30 @@ class RobotsService {
 	};
 
 	/**
+	 * set emergency state
+	 * @param robotId
+	 * @param isInEmergencyState
+	 * @returns
+	 */
+	robotSetEmergencyState = (robotId: string, isInEmergencyState: boolean) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
+			':robotId',
+			robotId
+		);
+		return HttpClientService.post(url, {
+			data: {
+				type: 'robot-commands',
+				attributes: {
+					command: 'set-emergency-state',
+					options: {
+						active: isInEmergencyState
+					}
+				}
+			}
+		});
+	};
+
+	/**
 	 * sync products on the robot
 	 * @param robotId
 	 * @returns
@@ -491,30 +515,6 @@ class RobotsService {
 							type: 'sites',
 							id: payload.siteId
 						}
-					}
-				}
-			}
-		});
-	};
-
-	/**
-	 * set emergency state
-	 * @param robotId
-	 * @param isInEmergencyState
-	 * @returns
-	 */
-	robotSetEmergencyState = (robotId: string, isInEmergencyState: boolean) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
-			':robotId',
-			robotId
-		);
-		return HttpClientService.post(url, {
-			data: {
-				type: 'robot-commands',
-				attributes: {
-					command: 'set-emergency-state',
-					options: {
-						active: isInEmergencyState
 					}
 				}
 			}

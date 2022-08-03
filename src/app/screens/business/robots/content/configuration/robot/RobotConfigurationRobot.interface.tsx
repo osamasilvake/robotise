@@ -1,7 +1,7 @@
 import { ChangeEvent, FocusEvent } from 'react';
 
 import {
-	RCCDataElementValueInterface,
+	RCCDataElementKeyValueInterface,
 	RCContentInterface
 } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
@@ -9,7 +9,7 @@ import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.
 export interface RobotConfigurationRobotFormInputInterface {
 	id: string;
 	label: string;
-	content: RCCDataElementValueInterface;
+	content: RCCDataElementKeyValueInterface;
 	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 	value: string;
@@ -29,14 +29,12 @@ export interface RobotConfigurationRobotFieldsChangesInterface {
 }
 
 export interface RobotConfigurationRobotRecursiveOutputInterface {
-	[key: string]:
-		| RCCDataElementValueInterface
-		| { [key: string]: string | RCCDataElementValueInterface };
+	[key: string]: any;
 }
 
 export interface RobotConfigurationRobotRenderElementsInterface {
 	parentKey?: string;
 	key: string;
-	obj: RCCDataElementValueInterface;
+	list: RCCDataElementKeyValueInterface;
 	index?: number;
 }

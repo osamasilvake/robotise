@@ -1,9 +1,13 @@
 import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
 import clsx from 'clsx';
-import { FC, Fragment, ReactElement } from 'react';
+import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RCCDataElementValueInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+import {
+	RCCDataElementInterface,
+	RCCDataElementKeyValueInterface,
+	RCCDataElementValueInterface
+} from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
 import {
@@ -21,9 +25,12 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigurationRobotStyle();
 
+	const [elements, setElements] = useState<RCCDataElementValueInterface | undefined>(
+		section?.elements?.value
+	);
+
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const sectionName = (section?.sectionName || '').toUpperCase();
-	const elements = section?.elements?.value;
 
 	const { handleChangeInput, handleBlur, handleSubmit, values } =
 		useForm<RobotConfigurationRobotFormInterface>(
@@ -40,6 +47,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 				// generate recursive output
 				const result = recursiveOutput(elements, changes);
+
 				console.log(result);
 			}
 		);
@@ -57,6 +65,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				if (i < keys.length - 1) {
 					cur[key] = cur[key] || {};
 					cur = cur[key];
+					console.log(cur);
 				} else {
 					cur[key] = o.value;
 				}
@@ -68,28 +77,46 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	 * generate recursive output
 	 * @param initial
 	 * @param update
+	 * @param newItems
 	 * @returns
 	 */
 	const recursiveOutput = (
 		initial: RobotConfigurationRobotRecursiveOutputInterface,
-		update: RobotConfigurationRobotRecursiveOutputInterface
+		update: RobotConfigurationRobotRecursiveOutputInterface,
+		newItems?: RCCDataElementInterface[]
 	): RobotConfigurationRobotRecursiveOutputInterface => {
 		const result: RobotConfigurationRobotRecursiveOutputInterface = {};
+
 		for (const prop in initial) {
 			if ({}.hasOwnProperty.call(initial, prop)) {
 				result[prop] = initial[prop];
+
 				if ({}.hasOwnProperty.call(update, prop)) {
-					if (typeof initial[prop] === 'object' && typeof update[prop] === 'object') {
-						const iObj = initial[prop] as {
-							[key: string]: RCCDataElementValueInterface;
-						};
-						const uObj = update[prop] as {
-							[key: string]: RCCDataElementValueInterface;
-						};
-						result[prop] = recursiveOutput(iObj, uObj) as {
-							[key: string]: RCCDataElementValueInterface;
-						};
-					} else {
+					// Array
+					if (Array.isArray(initial[prop])) {
+						const iObj = initial[prop] as RCCDataElementValueInterface;
+						const uObj = update[prop] as RCCDataElementValueInterface;
+						const out = recursiveOutput(iObj, uObj) as RCCDataElementValueInterface;
+						result[prop] = newItems ? newItems : Object.values(out);
+					}
+
+					// Object
+					else if (
+						typeof initial[prop] === 'object' &&
+						typeof update[prop] === 'object'
+					) {
+						const iObj = initial[prop] as RCCDataElementValueInterface;
+						const uObj = update[prop] as RCCDataElementValueInterface;
+						const out = recursiveOutput(
+							iObj,
+							uObj,
+							newItems
+						) as RCCDataElementValueInterface;
+						result[prop] = out;
+					}
+
+					// value
+					else {
 						result[prop] = update[prop];
 					}
 				}
@@ -106,10 +133,32 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const recursiveElements = (
 		payload: RobotConfigurationRobotRenderElementsInterface
 	): ReactElement | null => {
-		const { parentKey, key, obj, index } = payload;
+		const { parentKey, key, list, index } = payload;
 		const id = parentKey ? `${parentKey}-${key}` : key;
 
-		switch (obj.type.toString()) {
+		switch (list.type.toString()) {
+			case RobotConfigurationRobotElementTypeEnum.ARRAY:
+				return (
+					<Box>
+						<Typography
+							variant="body2"
+							color="textSecondary"
+							className={classes.sRecursiveTitle}>
+							{key.toUpperCase()}
+						</Typography>
+						{Object.entries(list?.value)?.map(([k, v], idx) => (
+							<Fragment key={k}>
+								{recursiveElements({
+									parentKey: id, // keep parent keys
+									key: k,
+									list: v,
+									index: idx
+								})}
+							</Fragment>
+						))}
+						<Box onClick={() => onClickAddMore(id, list)}>Array Finished</Box>
+					</Box>
+				);
 			case RobotConfigurationRobotElementTypeEnum.OBJECT:
 				return (
 					<Box className={clsx({ [classes.sIntendBox]: index !== undefined })}>
@@ -119,12 +168,12 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							className={classes.sRecursiveTitle}>
 							{key.toUpperCase()}
 						</Typography>
-						{Object.entries(obj?.value)?.map(([k, v], idx) => (
+						{Object.entries(list?.value)?.map(([k, v], idx) => (
 							<Fragment key={k}>
 								{recursiveElements({
 									parentKey: id, // keep parent keys
 									key: k,
-									obj: v,
+									list: v,
 									index: idx
 								})}
 							</Fragment>
@@ -137,8 +186,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 					<RobotConfigurationRobotSectionInput
 						id={id}
 						label={key}
-						content={obj}
-						value={String(values[id] || obj?.value || obj?.default)}
+						content={list}
+						value={String(values[id] || list?.value || list?.default)}
 						handleChangeInput={handleChangeInput}
 						handleBlur={handleBlur}
 					/>
@@ -146,6 +195,32 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 			default:
 				return null;
 		}
+	};
+
+	/**
+	 * add more
+	 * @param parentKey
+	 * @param items
+	 */
+	const onClickAddMore = (parentKey: string, items: RCCDataElementKeyValueInterface) => {
+		// return
+		if (!elements) return;
+
+		// add item
+		const values = items.value as RCCDataElementInterface[];
+		const newList = [...values, values[values.length - 1]];
+
+		// prepare fields changes
+		const list = [{ key: parentKey, value: newList }];
+
+		// prepare fields changes
+		const changes = fieldsChanges(list);
+
+		// generate recursive output
+		const result = recursiveOutput(elements, changes, newList);
+
+		// set elements
+		setElements(result);
 	};
 
 	return (
@@ -159,7 +234,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				<form onSubmit={handleSubmit}>
 					{elements &&
 						Object.entries(elements)?.map(([key, value]) => (
-							<Fragment key={key}>{recursiveElements({ key, obj: value })}</Fragment>
+							<Fragment key={key}>{recursiveElements({ key, list: value })}</Fragment>
 						))}
 					<Grid item xs={12} className={classes.sSubmit}>
 						<Button variant="outlined" type="submit">

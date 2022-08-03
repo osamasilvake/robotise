@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { RCContentInterface } from '../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
@@ -519,6 +520,16 @@ class RobotsService {
 				}
 			}
 		});
+	};
+
+	/**
+	 * fetch robot configuration
+	 * @param robotId
+	 * @returns
+	 */
+	robotConfigurationFetch = (robotId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIGS;
+		return HttpClientService.get<RCContentInterface>(url.replace(':robotId', robotId));
 	};
 }
 const instance = new RobotsService();

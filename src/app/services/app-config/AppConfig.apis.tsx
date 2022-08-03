@@ -74,7 +74,8 @@ const AppServices = (config: typeof AppConfigService) => {
 					ELEVATOR_CALL_TEMPLATE: `${config.envAppUrl}/elevator-calls/:elevatorId/request-support-template`,
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
-						CONFIG: `${config.envAppUrl}/robots/:robotId`
+						CONFIG: `${config.envAppUrl}/robots/:robotId`,
+						CONFIGS: `${config.envAppUrl}/robots/:robotId/configs`
 					},
 					PERFORMANCE: {
 						PURCHASES: `${config.envAppUrl}/purchase-statistics`,

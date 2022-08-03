@@ -11,7 +11,7 @@ export const RobotConfigurationRobotStyle = makeStyles((theme: Theme) => ({
 	sRecursiveTitle: {
 		marginTop: theme.spacing(1)
 	},
-	sIntendBox: {
+	sIntendElement: {
 		marginLeft: theme.spacing(4)
 	},
 	sSubmit: {

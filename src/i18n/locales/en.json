@@ -1988,7 +1988,8 @@
 					"EXCERPT": "Update Robot detail.",
 					"FORM": {
 						"FIELD": {
-							"PLACEHOLDER": "Enter {{value}}"
+							"PLACEHOLDER": "Enter {{value}}",
+							"ADD_MORE": "Add More"
 						},
 						"BUTTONS": {
 							"UPDATE": "Update"

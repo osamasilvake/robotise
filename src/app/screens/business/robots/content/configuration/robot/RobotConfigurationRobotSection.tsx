@@ -1,4 +1,5 @@
-import { Box, Button, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { Box, Button, Card, CardContent, Chip, Grid, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -65,7 +66,6 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				if (i < keys.length - 1) {
 					cur[key] = cur[key] || {};
 					cur = cur[key];
-					console.log(cur);
 				} else {
 					cur[key] = o.value;
 				}
@@ -156,12 +156,20 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								})}
 							</Fragment>
 						))}
-						<Box onClick={() => onClickAddMore(id, list)}>Array Finished</Box>
+						<Chip
+							size="small"
+							label={t(`${translation}.FORM.FIELD.ADD_MORE`)}
+							color="primary"
+							variant="outlined"
+							icon={<Add />}
+							className={classes.sIntendElement}
+							onClick={() => onClickAddMore(id, list)}
+						/>
 					</Box>
 				);
 			case RobotConfigurationRobotElementTypeEnum.OBJECT:
 				return (
-					<Box className={clsx({ [classes.sIntendBox]: index !== undefined })}>
+					<Box className={clsx({ [classes.sIntendElement]: index !== undefined })}>
 						<Typography
 							variant="body2"
 							color="textSecondary"

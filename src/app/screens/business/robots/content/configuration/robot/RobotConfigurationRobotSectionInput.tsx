@@ -1,5 +1,5 @@
 import { Box, FormControl, FormHelperText, TextField } from '@mui/material';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
@@ -8,13 +8,16 @@ import { RobotConfigurationRobotFormInputInterface } from './RobotConfigurationR
 const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputInterface> = (
 	props
 ) => {
-	const { id, label, content, handleChangeInput, handleBlur, value } = props;
+	const { id, label, content, handleChangeInput, handleBlur, initValue, value } = props;
 	const { t } = useTranslation('ROBOTS');
 
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const type = content?.type;
-	const placeholder = t(`${translation}.FIELD.PLACEHOLDER`, { value: label });
+	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, {
+		value: strCapitalLetterAndCamelCaseToDash(label)
+	});
 	const notes = content?.notes;
+	const touched = useRef(false);
 
 	return (
 		<Box>
@@ -25,8 +28,11 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 					name={id}
 					label={strCapitalLetterAndCamelCaseToDash(label)}
 					placeholder={placeholder}
-					value={value}
-					onChange={handleChangeInput}
+					value={!touched.current ? initValue : value}
+					onChange={(e) => {
+						handleChangeInput(e);
+						touched.current = true;
+					}}
 					onBlur={handleBlur}
 				/>
 			</FormControl>

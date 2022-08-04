@@ -195,7 +195,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						id={id}
 						label={key}
 						content={list}
-						value={String(values[id] || list?.value || list?.default)}
+						initValue={String(list?.value || list?.default)}
+						value={String(values[id])}
 						handleChangeInput={handleChangeInput}
 						handleBlur={handleBlur}
 					/>

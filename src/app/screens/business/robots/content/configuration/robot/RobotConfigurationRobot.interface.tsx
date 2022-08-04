@@ -12,6 +12,7 @@ export interface RobotConfigurationRobotFormInputInterface {
 	content: RCCDataElementKeyValueInterface;
 	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
+	initValue: string;
 	value: string;
 }
 

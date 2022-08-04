@@ -19,6 +19,7 @@ import {
 	RobotConfigurationRobotSectionInterface
 } from './RobotConfigurationRobot.interface';
 import { RobotConfigurationRobotStyle } from './RobotConfigurationRobot.style';
+import RobotConfigurationRobotSectionBoolean from './RobotConfigurationRobotSectionBoolean';
 import RobotConfigurationRobotSectionInput from './RobotConfigurationRobotSectionInput';
 
 const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface> = (props) => {
@@ -33,7 +34,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const sectionName = (section?.sectionName || '').toUpperCase();
 
-	const { handleChangeInput, handleBlur, handleSubmit, values } =
+	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values } =
 		useForm<RobotConfigurationRobotFormInterface>(
 			{},
 			() => ({}),
@@ -199,6 +200,17 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						value={String(values[id])}
 						handleChangeInput={handleChangeInput}
 						handleBlur={handleBlur}
+					/>
+				);
+			case RobotConfigurationRobotElementTypeEnum.BOOLEAN:
+				return (
+					<RobotConfigurationRobotSectionBoolean
+						id={id}
+						label={key}
+						content={list}
+						initValue={!!(list?.value || list?.default)}
+						value={!!values[id]}
+						handleChangeCheckbox={handleChangeCheckbox}
 					/>
 				);
 			default:

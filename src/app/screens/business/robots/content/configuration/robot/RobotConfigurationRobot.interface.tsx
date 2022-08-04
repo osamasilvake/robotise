@@ -6,16 +6,6 @@ import {
 } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
 
-export interface RobotConfigurationRobotFormInputInterface {
-	id: string;
-	label: string;
-	content: RCCDataElementKeyValueInterface;
-	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
-	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
-	initValue: string;
-	value: string;
-}
-
 export interface RobotConfigurationRobotSectionInterface {
 	section: RCContentInterface | null;
 }
@@ -38,4 +28,23 @@ export interface RobotConfigurationRobotRenderElementsInterface {
 	key: string;
 	list: RCCDataElementKeyValueInterface;
 	index?: number;
+}
+
+export interface RobotConfigurationRobotFormInputInterface {
+	id: string;
+	label: string;
+	content: RCCDataElementKeyValueInterface;
+	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
+	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
+	initValue: string;
+	value: string;
+}
+
+export interface RobotConfigurationRobotFormBooleanInterface {
+	id: string;
+	label: string;
+	content: RCCDataElementKeyValueInterface;
+	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
+	initValue: boolean;
+	value: boolean;
 }

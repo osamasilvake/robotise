@@ -1,7 +1,7 @@
 export enum RobotConfigurationRobotElementTypeEnum {
 	NUMBER = 'number',
 	STRING = 'string',
-	BOOL = 'bool',
+	BOOLEAN = 'bool',
 	OBJECT = 'object',
 	ARRAY = 'array',
 	IMAGE = 'image',

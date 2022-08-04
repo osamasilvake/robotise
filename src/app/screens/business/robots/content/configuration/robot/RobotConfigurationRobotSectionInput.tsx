@@ -8,10 +8,11 @@ import { RobotConfigurationRobotFormInputInterface } from './RobotConfigurationR
 const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputInterface> = (
 	props
 ) => {
-	const { id, label, content, handleChangeInput, handleBlur, initValue, value } = props;
+	const { id, label, content, handleChangeInput, handleBlur, initValue, value, error } = props;
 	const { t } = useTranslation('ROBOTS');
 
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
+	const required = !!content?.required;
 	const type = content?.type;
 	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, {
 		value: strCapitalLetterAndCamelCaseToDash(label)
@@ -23,6 +24,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 		<Box>
 			<FormControl fullWidth margin="normal">
 				<TextField
+					required={required}
 					type={type}
 					id={id}
 					name={id}
@@ -34,6 +36,8 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 						touched.current = true;
 					}}
 					onBlur={handleBlur}
+					error={required && !!error}
+					helperText={required && error && t(error)}
 				/>
 			</FormControl>
 			{notes && (

@@ -34,17 +34,18 @@ export interface RobotConfigurationRobotFormInputInterface {
 	id: string;
 	label: string;
 	content: RCCDataElementKeyValueInterface;
-	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
-	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 	initValue: string;
 	value: string;
+	error: string | null;
+	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
+	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
 export interface RobotConfigurationRobotFormBooleanInterface {
 	id: string;
 	label: string;
 	content: RCCDataElementKeyValueInterface;
-	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 	initValue: boolean;
 	value: boolean;
+	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 }

@@ -19,6 +19,7 @@ import {
 	RobotConfigurationRobotSectionInterface
 } from './RobotConfigurationRobot.interface';
 import { RobotConfigurationRobotStyle } from './RobotConfigurationRobot.style';
+import { RobotConfigurationRobotValidation } from './RobotConfigurationRobot.validation';
 import RobotConfigurationRobotSectionBoolean from './RobotConfigurationRobotSectionBoolean';
 import RobotConfigurationRobotSectionInput from './RobotConfigurationRobotSectionInput';
 
@@ -34,10 +35,10 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const sectionName = (section?.sectionName || '').toUpperCase();
 
-	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values } =
+	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<RobotConfigurationRobotFormInterface>(
 			{},
-			() => ({}),
+			RobotConfigurationRobotValidation,
 			async () => {
 				if (!elements) return;
 
@@ -159,7 +160,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						))}
 						<Chip
 							size="small"
-							label={t(`${translation}.FORM.FIELD.ADD_MORE`)}
+							label={t(`${translation}.FORM.ADD_MORE`)}
 							color="primary"
 							variant="outlined"
 							icon={<Add />}
@@ -198,6 +199,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						content={list}
 						initValue={String(list?.value || list?.default)}
 						value={String(values[id])}
+						error={errors && errors[id] ? String(errors[id]) : ''}
 						handleChangeInput={handleChangeInput}
 						handleBlur={handleBlur}
 					/>

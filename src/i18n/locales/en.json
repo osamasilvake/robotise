@@ -1989,8 +1989,11 @@
 					"FORM": {
 						"FIELD": {
 							"PLACEHOLDER": "Enter {{value}}",
-							"ADD_MORE": "Add More"
+							"VALIDATIONS": {
+								"REQUIRED": "Field is required."
+							}
 						},
+						"ADD_MORE": "Add More",
 						"BUTTONS": {
 							"UPDATE": "Update"
 						}

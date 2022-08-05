@@ -1,7 +1,8 @@
 import { Box, FormControl, FormHelperText, TextField } from '@mui/material';
-import { FC, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useDebounce } from '../../../../../../utilities/hooks/debounce/Debounce';
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
 import { RobotConfigurationRobotFormInputInterface } from './RobotConfigurationRobot.interface';
 
@@ -14,11 +15,23 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const required = !!content?.required;
 	const type = content?.type;
-	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, {
-		value: strCapitalLetterAndCamelCaseToDash(label)
-	});
+	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);
+	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, { value: labelTransform });
 	const notes = content?.notes;
+
 	const touched = useRef(false);
+	const inputValue = !touched.current ? initValue : value;
+	const [elemValue, setElemValue] = useState(inputValue);
+
+	const debouncedValue = useDebounce(elemValue, 1500);
+
+	useEffect(() => {
+		// return on same value
+		if (inputValue === debouncedValue) return;
+
+		// update input
+		handleChangeInput({ target: { name: id, value: debouncedValue } });
+	}, [debouncedValue, handleChangeInput, inputValue, id]);
 
 	return (
 		<Box>
@@ -28,11 +41,11 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 					type={type}
 					id={id}
 					name={id}
-					label={strCapitalLetterAndCamelCaseToDash(label)}
+					label={labelTransform}
 					placeholder={placeholder}
-					value={!touched.current ? initValue : value}
+					value={elemValue}
 					onChange={(e) => {
-						handleChangeInput(e);
+						setElemValue(e.target.value);
 						touched.current = true;
 					}}
 					onBlur={handleBlur}

@@ -75,7 +75,8 @@ const AppServices = (config: typeof AppConfigService) => {
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
 						CONFIG: `${config.envAppUrl}/robots/:robotId`,
-						CONFIGS: `${config.envAppUrl}/robots/:robotId/configs`
+						CONFIGS: `${config.envAppUrl}/robots/:robotId/configs`,
+						CONFIGS_SINGLE: `${config.envAppUrl}/robots/:robotId/configs/:configId`
 					},
 					PERFORMANCE: {
 						PURCHASES: `${config.envAppUrl}/purchase-statistics`,

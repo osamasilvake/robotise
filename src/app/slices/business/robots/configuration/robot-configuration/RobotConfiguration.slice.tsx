@@ -2,8 +2,10 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
+import { RobotConfigurationRobotFormInterface } from '../../../../../screens/business/robots/content/configuration/robot/RobotConfigurationRobot.interface';
 import RobotsService from '../../../../../screens/business/robots/Robots.service';
 import { RootState } from '../../../..';
+import { triggerMessage } from '../../../../app/App.slice';
 import { deserializeRobotConfiguration } from './RobotConfiguration.slice.deserialize';
 import {
 	RCContentInterface,
@@ -15,6 +17,7 @@ export const initialState: SliceRobotConfigurationInterface = {
 	init: false,
 	loader: false,
 	loading: false,
+	updating: false,
 	content: null,
 	errors: null
 };
@@ -44,12 +47,22 @@ const dataSlice = createSlice({
 			state.content = null;
 			state.errors = action.payload;
 		},
+		updating: (state) => {
+			state.updating = true;
+		},
+		updated: (state) => {
+			state.updating = false;
+		},
+		updateFailed: (state) => {
+			state.updating = false;
+		},
 		reset: () => initialState
 	}
 });
 
 // actions
-export const { loader, loading, success, failure, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const robotConfigurationSelector = (state: RootState) => state['robotConfiguration'];
@@ -98,5 +111,45 @@ export const RobotConfigurationFetch =
 
 				// dispatch: failure
 				dispatch(failure(message));
+			});
+	};
+
+/**
+ * update robot configuration
+ * @param robotId
+ * @param configId
+ * @param payload
+ * @returns
+ */
+export const RobotConfigurationUpdate =
+	(robotId: string, configId: string, payload: RobotConfigurationRobotFormInterface) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		// update robot configuration
+		return RobotsService.robotConfigurationUpdate(robotId, configId, payload)
+			.then(async () => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-configuration-update-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-configuration-update-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
 			});
 	};

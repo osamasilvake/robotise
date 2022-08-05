@@ -358,6 +358,10 @@
 					"ROBOT_SITE_CONFIG": {
 						"SUCCESS": "Robot setting has been updated successfully!",
 						"ERROR": "Unable to configure robot to a site!"
+					},
+					"ROBOT_CONFIGURATION": {
+						"SUCCESS": "Configuration has been updated successfully!",
+						"ERROR": "Unable to update configuration!"
 					}
 				}
 			},

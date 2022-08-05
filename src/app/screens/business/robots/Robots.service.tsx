@@ -4,6 +4,7 @@ import { SROContentElevatorTemplateInterface } from '../../../slices/business/ro
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
 import { RobotSiteConfigFormInterface } from './content/configuration/cloud/robot-site-config/RobotSiteConfig.interface';
+import { RobotConfigurationRobotFormInterface } from './content/configuration/robot/RobotConfigurationRobot.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -530,6 +531,40 @@ class RobotsService {
 	robotConfigurationFetch = (robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIGS;
 		return HttpClientService.get<RCContentInterface>(url.replace(':robotId', robotId));
+	};
+
+	/**
+	 * update robot configuration
+	 * @param robotId
+	 * @param configId
+	 * @param payload
+	 * @returns
+	 */
+	robotConfigurationUpdate = (
+		robotId: string,
+		configId: string,
+		payload: RobotConfigurationRobotFormInterface
+	) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIGS_SINGLE;
+		return HttpClientService.patch(
+			url.replace(':robotId', robotId).replace(':configId', configId),
+			{
+				data: {
+					type: 'robotConfigs',
+					id: configId,
+					attributes: payload.request,
+					relationships: {
+						robot: {
+							data: {
+								type: 'robots',
+								id: robotId
+							}
+						}
+					}
+				}
+			}
+		);
 	};
 }
 const instance = new RobotsService();

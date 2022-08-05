@@ -3,13 +3,18 @@ import { Box, Button, Card, CardContent, Chip, Grid, Typography } from '@mui/mat
 import clsx from 'clsx';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
+import { RobotConfigurationUpdate } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice';
 import {
 	RCCDataElementInterface,
 	RCCDataElementKeyValueInterface,
 	RCCDataElementValueInterface
 } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
 import {
 	RobotConfigurationRobotFieldsChangesInterface,
@@ -28,12 +33,16 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigurationRobotStyle();
 
+	const dispatch = useDispatch<AppDispatch>();
+
 	const [elements, setElements] = useState<RCCDataElementValueInterface | undefined>(
 		section?.elements?.value
 	);
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
-	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
+	const cRobotId = params.robotId;
 	const sectionName = (section?.sectionName || '').toUpperCase();
+	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
 		useForm<RobotConfigurationRobotFormInterface>(
@@ -41,6 +50,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 			RobotConfigurationRobotValidation,
 			async () => {
 				if (!elements) return;
+				if (!cRobotId) return;
+				if (!section?.id) return;
 
 				// object to array of key/value pairs
 				const list = Object.entries(values).map(([key, value]) => ({ key, value }));
@@ -51,7 +62,18 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				// generate recursive output
 				const result = recursiveOutput(elements, changes);
 
-				console.log(result);
+				// dispatch: update robot configuration
+				dispatch(
+					RobotConfigurationUpdate(cRobotId, section?.id, {
+						request: {
+							name: section.name,
+							configType: section.configType,
+							sectionName: section.sectionName,
+							preset: section.preset,
+							elements: { ...section?.elements, value: result }
+						}
+					})
+				);
 			}
 		);
 

@@ -6,6 +6,7 @@ export interface SliceRobotConfigurationInterface {
 	init: boolean;
 	loader: boolean;
 	loading: boolean;
+	updating: boolean;
 	content: RCContentInterface[] | null;
 	errors: TriggerMessageInterface | null;
 }

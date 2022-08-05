@@ -249,11 +249,13 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	return (
 		<Card square elevation={1}>
 			<CardContent>
+				{/* Title */}
 				<Typography variant="h6">{sectionName || t(`${translation}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
 					{t(`${translation}.EXCERPT`)}
 				</Typography>
 
+				{/* Elements */}
 				<form onSubmit={handleSubmit}>
 					{elements &&
 						Object.entries(elements)?.map(([key, value]) => (

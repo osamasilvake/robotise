@@ -33,7 +33,7 @@ const StackedAreaReChart: FC<StackedAreaChartInterface> = (props) => {
 		[axisY1]: d.y1,
 		[axisY2]: d.y2,
 		[axisY3]: d.y3,
-		count: Math.floor(d.y1 + d.y2 + d.y3)
+		count: Math.round(d.y1 + d.y2 + d.y3)
 	}));
 	const max = Math.max(...mapData.map((o) => o.count));
 

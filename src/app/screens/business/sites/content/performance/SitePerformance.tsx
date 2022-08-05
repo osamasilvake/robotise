@@ -27,7 +27,7 @@ const SitePerformance: FC = () => {
 	const sites = useSelector(sitesSelector);
 	const performance = useSelector(performanceSelector);
 
-	const [currentPeriod, setCurrentPeriod] = useState(sitePerformancePeriod[1]);
+	const [currentPeriod, setCurrentPeriod] = useState(sitePerformancePeriod[2]);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;

@@ -9,6 +9,7 @@ export const RobotConfigurationRobotStyle = makeStyles((theme: Theme) => ({
 		marginBottom: theme.spacing(1.5)
 	},
 	sRecursiveTitle: {
+		fontWeight: 500,
 		marginTop: theme.spacing(1)
 	},
 	sIntendElement: {

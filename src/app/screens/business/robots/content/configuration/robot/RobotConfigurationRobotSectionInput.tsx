@@ -23,7 +23,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 	const inputValue = !touched.current ? initValue : value;
 	const [elemValue, setElemValue] = useState(inputValue);
 
-	const debouncedValue = useDebounce(elemValue, 1500);
+	const debouncedValue = useDebounce(elemValue, 200);
 
 	useEffect(() => {
 		// return on same value

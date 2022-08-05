@@ -17,5 +17,8 @@ export const RobotConfigurationRobotStyle = makeStyles((theme: Theme) => ({
 	},
 	sSubmit: {
 		marginTop: theme.spacing(1)
+	},
+	sSubmitNote: {
+		marginTop: theme.spacing(1)
 	}
 }));

@@ -1,18 +1,33 @@
 import { Add } from '@mui/icons-material';
-import { Box, Button, Card, CardContent, Chip, Grid, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	Card,
+	CardContent,
+	Chip,
+	CircularProgress,
+	Grid,
+	Typography
+} from '@mui/material';
 import clsx from 'clsx';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../slices';
-import { RobotConfigurationUpdate } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice';
+import {
+	RobotConfigurationFetch,
+	robotConfigurationSelector,
+	RobotConfigurationUpdate
+} from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice';
 import {
 	RCCDataElementInterface,
 	RCCDataElementKeyValueInterface,
 	RCCDataElementValueInterface
 } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
@@ -34,6 +49,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const classes = RobotConfigurationRobotStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+	const robotConfiguration = useSelector(robotConfigurationSelector);
 
 	const [elements, setElements] = useState<RCCDataElementValueInterface | undefined>(
 		section?.elements?.value
@@ -41,6 +58,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
+	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const sectionName = (section?.sectionName || '').toUpperCase();
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 
@@ -64,15 +82,23 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 				// dispatch: update robot configuration
 				dispatch(
-					RobotConfigurationUpdate(cRobotId, section?.id, {
-						request: {
-							name: section.name,
-							configType: section.configType,
-							sectionName: section.sectionName,
-							preset: section.preset,
-							elements: { ...section?.elements, value: result }
+					RobotConfigurationUpdate(
+						cRobotId,
+						section?.id,
+						{
+							request: {
+								name: section.name,
+								configType: section.configType,
+								sectionName: section.sectionName,
+								preset: section.preset,
+								elements: { ...section?.elements, value: result }
+							}
+						},
+						() => {
+							// dispatch: fetch robot configuration
+							dispatch(RobotConfigurationFetch(cRobotId, true));
 						}
-					})
+					)
 				);
 			}
 		);
@@ -284,9 +310,21 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							<Fragment key={key}>{recursiveElements({ key, list: value })}</Fragment>
 						))}
 					<Grid item xs={12} className={classes.sSubmit}>
-						<Button variant="outlined" type="submit">
+						<Button
+							variant="outlined"
+							type="submit"
+							disabled={robotConfiguration.updating || !robotSingle?.robotIsReady}
+							endIcon={robotConfiguration.updating && <CircularProgress size={20} />}>
 							{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 						</Button>
+						{!robotSingle?.robotIsReady && (
+							<Typography
+								variant="body2"
+								color="textSecondary"
+								className={classes.sSubmitNote}>
+								{t(`${translation}.FORM.NOTE`)}
+							</Typography>
+						)}
 					</Grid>
 				</form>
 			</CardContent>

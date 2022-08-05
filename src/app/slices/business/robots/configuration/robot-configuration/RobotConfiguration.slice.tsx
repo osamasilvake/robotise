@@ -4,6 +4,7 @@ import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/
 import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
 import { RobotConfigurationRobotFormInterface } from '../../../../../screens/business/robots/content/configuration/robot/RobotConfigurationRobot.interface';
 import RobotsService from '../../../../../screens/business/robots/Robots.service';
+import { timeout } from '../../../../../utilities/methods/Timeout';
 import { RootState } from '../../../..';
 import { triggerMessage } from '../../../../app/App.slice';
 import { deserializeRobotConfiguration } from './RobotConfiguration.slice.deserialize';
@@ -119,10 +120,16 @@ export const RobotConfigurationFetch =
  * @param robotId
  * @param configId
  * @param payload
+ * @param callback
  * @returns
  */
 export const RobotConfigurationUpdate =
-	(robotId: string, configId: string, payload: RobotConfigurationRobotFormInterface) =>
+	(
+		robotId: string,
+		configId: string,
+		payload: RobotConfigurationRobotFormInterface,
+		callback: () => void
+	) =>
 	async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
@@ -138,6 +145,15 @@ export const RobotConfigurationUpdate =
 					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
+
+				// dispatch: updated
+				dispatch(updated());
+
+				// wait
+				await timeout(1000);
+
+				// callback
+				callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

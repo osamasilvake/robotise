@@ -2000,7 +2000,8 @@
 						"ADD_MORE": "Add More",
 						"BUTTONS": {
 							"UPDATE": "Update"
-						}
+						},
+						"NOTE": "Robot is offline!"
 					}
 				}
 			}

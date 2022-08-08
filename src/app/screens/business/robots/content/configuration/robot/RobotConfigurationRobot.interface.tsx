@@ -10,15 +10,6 @@ export interface RobotConfigurationRobotSectionInterface {
 	section: RCContentInterface | null;
 }
 
-export interface RobotConfigurationRobotFormInterface {
-	[key: string]: string | object;
-}
-
-export interface RobotConfigurationRobotFieldsChangesInterface {
-	key: string;
-	value: string | number | object;
-}
-
 export interface RobotConfigurationRobotRenderElementsInterface {
 	parentKey?: string;
 	key: string;

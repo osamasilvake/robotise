@@ -28,8 +28,6 @@ import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
 import {
-	RobotConfigurationRobotFieldsChangesInterface,
-	RobotConfigurationRobotFormInterface,
 	RobotConfigurationRobotRenderElementsInterface,
 	RobotConfigurationRobotSectionInterface
 } from './RobotConfigurationRobot.interface';
@@ -58,59 +56,56 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
-		useForm<RobotConfigurationRobotFormInterface>(
-			{},
-			RobotConfigurationRobotValidation,
-			async () => {
-				if (!elements) return;
-				if (!cRobotId) return;
-				if (!section?.id) return;
+		useForm<RCCDataElementInterface>({}, RobotConfigurationRobotValidation, async () => {
+			if (!elements) return;
+			if (!cRobotId) return;
+			if (!section?.id) return;
 
-				// object to array of key/value pairs
-				const list = Object.entries(values).map(([key, value]) => ({ key, value }));
+			// object to array of key/value pairs
+			const list = Object.entries(values).map(([key, value]) => ({ key, value }));
 
-				// prepare fields changes
-				const changes = fieldsChanges(list);
+			// prepare fields changes
+			const changes = fieldsChanges(list);
 
-				// generate recursive output
-				const result = recursiveOutput(elements, changes);
+			// generate recursive output
+			const result = recursiveOutput(elements, changes);
 
-				// dispatch: update robot configuration
-				dispatch(
-					RobotConfigurationUpdate(
-						cRobotId,
-						section?.id,
-						{
-							request: {
-								name: section.name,
-								configType: section.configType,
-								sectionName: section.sectionName,
-								preset: section.preset,
-								elements: { ...section?.elements, value: result }
-							}
-						},
-						() => {
-							// dispatch: fetch robot configuration
-							dispatch(RobotConfigurationFetch(cRobotId, true));
+			// dispatch: update robot configuration
+			dispatch(
+				RobotConfigurationUpdate(
+					cRobotId,
+					section?.id,
+					{
+						request: {
+							name: section.name,
+							configType: section.configType,
+							sectionName: section.sectionName,
+							preset: section.preset,
+							elements: { ...section?.elements, value: result }
 						}
-					)
-				);
-			}
-		);
+					},
+					() => {
+						// dispatch: fetch robot configuration
+						dispatch(RobotConfigurationFetch(cRobotId, true));
+					}
+				)
+			);
+		});
 
 	/**
 	 * prepare fields changes
 	 * @param values
 	 * @returns
 	 */
-	const fieldsChanges = (values: RobotConfigurationRobotFieldsChangesInterface[]) =>
-		values.reduce((m: any, o: any) => {
-			const keys = o.key.replaceAll('-', '-value-').concat('-value').split('-');
-			let cur = m;
+	const fieldsChanges = (values: RCCDataElementInterface[]) =>
+		values.reduce((m, o) => {
+			const key = o.key as string;
+			const keys = key.replaceAll('-', '-value-').concat('-value').split('-');
+			let cur = m as RCCDataElementInterface;
 			keys.forEach((key: string, i: number) => {
 				if (i < keys.length - 1) {
 					cur[key] = cur[key] || {};
-					cur = cur[key];
+					cur = cur[key] as RCCDataElementInterface;
 				} else {
 					cur[key] = o.value;
 				}
@@ -301,7 +296,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 		const list = [{ key: parentKey, value: newList }];
 
 		// prepare fields changes
-		const changes = fieldsChanges(list);
+		const changes = fieldsChanges(list as RCCDataElementInterface[]);
 
 		// generate recursive output
 		const result = recursiveOutput(elements, changes, newList);

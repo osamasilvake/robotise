@@ -1,10 +1,12 @@
 import { AppConfigService, HttpClientService } from '../../../services';
-import { RCContentInterface } from '../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+import {
+	RCCDataElementInterface,
+	RCContentInterface
+} from '../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
 import { RobotSiteConfigFormInterface } from './content/configuration/cloud/robot-site-config/RobotSiteConfig.interface';
-import { RobotConfigurationRobotFormInterface } from './content/configuration/robot/RobotConfigurationRobot.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -543,7 +545,7 @@ class RobotsService {
 	robotConfigurationUpdate = (
 		robotId: string,
 		configId: string,
-		payload: RobotConfigurationRobotFormInterface
+		payload: RCCDataElementInterface
 	) => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIGS_SINGLE;

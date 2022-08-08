@@ -2,13 +2,13 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
-import { RobotConfigurationRobotFormInterface } from '../../../../../screens/business/robots/content/configuration/robot/RobotConfigurationRobot.interface';
 import RobotsService from '../../../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../../../utilities/methods/Timeout';
 import { RootState } from '../../../..';
 import { triggerMessage } from '../../../../app/App.slice';
 import { deserializeRobotConfiguration } from './RobotConfiguration.slice.deserialize';
 import {
+	RCCDataElementInterface,
 	RCContentInterface,
 	SliceRobotConfigurationInterface
 } from './RobotConfiguration.slice.interface';
@@ -124,12 +124,7 @@ export const RobotConfigurationFetch =
  * @returns
  */
 export const RobotConfigurationUpdate =
-	(
-		robotId: string,
-		configId: string,
-		payload: RobotConfigurationRobotFormInterface,
-		callback: () => void
-	) =>
+	(robotId: string, configId: string, payload: RCCDataElementInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());

@@ -28,6 +28,7 @@ export interface RCContentInterface {
 export interface RCCDataElementInterface {
 	[key: string]:
 		| string
+		| boolean
 		| RCCDataElementInterface
 		| RCCDataElementInterface[]
 		| RCCDataElementKeyValueInterface;

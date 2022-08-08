@@ -14,7 +14,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const required = !!content?.required;
-	const type = content?.type;
+	const type = content?.type as string;
 	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);
 	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, { value: labelTransform });
 	const notes = content?.notes;

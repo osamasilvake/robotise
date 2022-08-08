@@ -22,11 +22,7 @@ import {
 	robotConfigurationSelector,
 	RobotConfigurationUpdate
 } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice';
-import {
-	RCCDataElementInterface,
-	RCCDataElementKeyValueInterface,
-	RCCDataElementValueInterface
-} from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../Robot.interface';
@@ -34,7 +30,6 @@ import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobo
 import {
 	RobotConfigurationRobotFieldsChangesInterface,
 	RobotConfigurationRobotFormInterface,
-	RobotConfigurationRobotRecursiveOutputInterface,
 	RobotConfigurationRobotRenderElementsInterface,
 	RobotConfigurationRobotSectionInterface
 } from './RobotConfigurationRobot.interface';
@@ -52,8 +47,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotConfiguration = useSelector(robotConfigurationSelector);
 
-	const [elements, setElements] = useState<RCCDataElementValueInterface | undefined>(
-		section?.elements?.value
+	const [elements, setElements] = useState<RCCDataElementInterface | undefined>(
+		section?.elements?.value as RCCDataElementInterface
 	);
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
@@ -131,11 +126,11 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	 * @returns
 	 */
 	const recursiveOutput = (
-		initial: RobotConfigurationRobotRecursiveOutputInterface,
-		update: RobotConfigurationRobotRecursiveOutputInterface,
-		newItems?: RobotConfigurationRobotRecursiveOutputInterface[]
-	): RobotConfigurationRobotRecursiveOutputInterface => {
-		const result: RobotConfigurationRobotRecursiveOutputInterface = {};
+		initial: RCCDataElementInterface,
+		update: RCCDataElementInterface,
+		newItems?: RCCDataElementInterface[]
+	): RCCDataElementInterface => {
+		const result = { ...initial };
 
 		for (const prop in initial) {
 			if ({}.hasOwnProperty.call(initial, prop)) {
@@ -144,10 +139,12 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				if ({}.hasOwnProperty.call(update, prop)) {
 					// Array
 					if (Array.isArray(initial[prop])) {
-						const iObj = initial[prop] as RCCDataElementValueInterface;
-						const uObj = update[prop] as RCCDataElementValueInterface;
-						const out = recursiveOutput(iObj, uObj) as RCCDataElementValueInterface;
-						result[prop] = newItems ? newItems : Object.values(out);
+						const iObj = initial[prop] as RCCDataElementInterface;
+						const uObj = update[prop] as RCCDataElementInterface;
+						const out = recursiveOutput(iObj, uObj);
+						result[prop] = (
+							newItems ? newItems : Object.values(out)
+						) as RCCDataElementInterface[];
 					}
 
 					// Object
@@ -155,13 +152,9 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						typeof initial[prop] === 'object' &&
 						typeof update[prop] === 'object'
 					) {
-						const iObj = initial[prop] as RCCDataElementValueInterface;
-						const uObj = update[prop] as RCCDataElementValueInterface;
-						const out = recursiveOutput(
-							iObj,
-							uObj,
-							newItems
-						) as RCCDataElementValueInterface;
+						const iObj = initial[prop] as RCCDataElementInterface;
+						const uObj = update[prop] as RCCDataElementInterface;
+						const out = recursiveOutput(iObj, uObj, newItems);
 						result[prop] = out;
 					}
 
@@ -273,13 +266,13 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	 * @param item
 	 * @returns
 	 */
-	const emptyItem = (item: RobotConfigurationRobotRecursiveOutputInterface) => {
-		const result: RobotConfigurationRobotRecursiveOutputInterface = {};
+	const emptyItem = (item: RCCDataElementInterface) => {
+		const result = { ...item };
 		for (const prop in item) {
 			if ({}.hasOwnProperty.call(item, prop)) {
 				result[prop] = item[prop];
 				if (typeof item[prop] === 'object') {
-					result[prop] = emptyItem(item[prop]);
+					result[prop] = emptyItem(item[prop] as RCCDataElementInterface);
 				} else {
 					if (prop === 'default' || prop === 'value') {
 						result[prop] = '';
@@ -295,7 +288,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	 * @param parentKey
 	 * @param items
 	 */
-	const onClickAddMore = (parentKey: string, items: RCCDataElementKeyValueInterface) => {
+	const onClickAddMore = (parentKey: string, items: RCCDataElementInterface) => {
 		// return
 		if (!elements) return;
 
@@ -330,7 +323,9 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				<form onSubmit={handleSubmit}>
 					{elements &&
 						Object.entries(elements)?.map(([key, value]) => (
-							<Fragment key={key}>{recursiveElements({ key, list: value })}</Fragment>
+							<Fragment key={key}>
+								{recursiveElements({ key, list: value as RCCDataElementInterface })}
+							</Fragment>
 						))}
 					<Grid item xs={12} className={classes.sSubmit}>
 						<Button

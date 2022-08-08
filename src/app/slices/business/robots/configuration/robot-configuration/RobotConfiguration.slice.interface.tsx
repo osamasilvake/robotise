@@ -26,14 +26,17 @@ export interface RCContentInterface {
 }
 
 export interface RCCDataElementInterface {
-	type: string;
-	required: boolean;
-	notes: string;
-	value: RCCDataElementValueInterface;
-}
-
-export interface RCCDataElementValueInterface {
-	[key: string]: RCCDataElementKeyValueInterface;
+	[key: string]:
+		| {
+				[key: string]:
+					| RCCDataElementInterface
+					| RCCDataElementInterface[]
+					| RCCDataElementKeyValueInterface;
+		  }
+		| string
+		| RCCDataElementInterface
+		| RCCDataElementInterface[]
+		| RCCDataElementKeyValueInterface;
 }
 
 export interface RCCDataElementKeyValueInterface {

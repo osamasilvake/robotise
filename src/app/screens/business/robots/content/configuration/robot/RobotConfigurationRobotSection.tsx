@@ -133,7 +133,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const recursiveOutput = (
 		initial: RobotConfigurationRobotRecursiveOutputInterface,
 		update: RobotConfigurationRobotRecursiveOutputInterface,
-		newItems?: RCCDataElementInterface[]
+		newItems?: RobotConfigurationRobotRecursiveOutputInterface[]
 	): RobotConfigurationRobotRecursiveOutputInterface => {
 		const result: RobotConfigurationRobotRecursiveOutputInterface = {};
 
@@ -269,6 +269,28 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	};
 
 	/**
+	 * empty item
+	 * @param item
+	 * @returns
+	 */
+	const emptyItem = (item: RobotConfigurationRobotRecursiveOutputInterface) => {
+		const result: RobotConfigurationRobotRecursiveOutputInterface = {};
+		for (const prop in item) {
+			if ({}.hasOwnProperty.call(item, prop)) {
+				result[prop] = item[prop];
+				if (typeof item[prop] === 'object') {
+					result[prop] = emptyItem(item[prop]);
+				} else {
+					if (prop === 'default' || prop === 'value') {
+						result[prop] = '';
+					}
+				}
+			}
+		}
+		return result;
+	};
+
+	/**
 	 * add more
 	 * @param parentKey
 	 * @param items
@@ -279,7 +301,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 		// add item
 		const values = items.value as RCCDataElementInterface[];
-		const newList = [...values, values[values.length - 1]];
+		const value = emptyItem(values[values.length - 1]);
+		const newList = [...values, value];
 
 		// prepare fields changes
 		const list = [{ key: parentKey, value: newList }];

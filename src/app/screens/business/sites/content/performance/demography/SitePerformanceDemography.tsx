@@ -65,9 +65,9 @@ const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props
 		const iBuckets = inventory?.statistics?.histogram?.inventoryPerPeriod?.buckets || [];
 		const list3 = iBuckets.map((item) => ({
 			x: month ? dateFormat7(item.key) : dateFormat4(item.key),
-			y1: Math.round(item.avgLanesHigh),
-			y2: Math.round(item.avgLanesLow),
-			y3: Math.round(item.avgLanesEmpty)
+			y1: +item.avgLanesHigh.toFixed(2),
+			y2: +item.avgLanesLow.toFixed(2),
+			y3: +item.avgLanesEmpty.toFixed(2)
 		}));
 		list3 && setChart3(list3);
 

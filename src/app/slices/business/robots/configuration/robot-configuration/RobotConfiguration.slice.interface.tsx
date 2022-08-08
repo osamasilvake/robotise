@@ -27,12 +27,6 @@ export interface RCContentInterface {
 
 export interface RCCDataElementInterface {
 	[key: string]:
-		| {
-				[key: string]:
-					| RCCDataElementInterface
-					| RCCDataElementInterface[]
-					| RCCDataElementKeyValueInterface;
-		  }
 		| string
 		| RCCDataElementInterface
 		| RCCDataElementInterface[]

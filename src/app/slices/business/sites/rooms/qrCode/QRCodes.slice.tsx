@@ -2,7 +2,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
-import { DialogGenerateQRCodeFormInterface } from '../../../../../screens/business/sites/content/rooms/list/grid/SiteRoomsGrid.interface';
+import { DialogGenerateQRCodeFormInterface } from '../../../../../screens/business/sites/content/rooms/list/grid/qr-code/SiteRoomsQRCodeTemplate.interface';
 import SitesService from '../../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../../utilities/methods/Timeout';
 import { RootState } from '../../../..';

@@ -20,19 +20,6 @@ export interface SiteRoomsGridGroupAccInterface {
 	[id: string]: string[];
 }
 
-export interface DialogGenerateQRCodeInterface {
-	open: boolean;
-	setOpen: Dispatch<SetStateAction<boolean>>;
-	roomState: { room: string };
-	siteSingle: ISite;
-}
-
-export interface DialogGenerateQRCodeFormInterface {
-	room: string;
-	date: string;
-	time: string;
-}
-
 export interface DialogToggleRoomStateInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;

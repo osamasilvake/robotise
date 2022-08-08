@@ -17,29 +17,29 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../../slices';
+import { AppDispatch } from '../../../../../../../../slices';
 import {
 	QRCodeCreate,
 	QRCodeDelete,
 	QRCodesFetch,
 	qrCodesSelector
-} from '../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
-import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+} from '../../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
+import { useForm } from '../../../../../../../../utilities/hooks/form/UseForm';
 import {
 	dateDayJs,
 	dateFormat3,
 	dateFormat4,
 	dateFormat5,
 	dateISOString
-} from '../../../../../../../utilities/methods/Date';
-import { formatPhoneNumber } from '../../../../../../../utilities/methods/Number';
-import { timeout } from '../../../../../../../utilities/methods/Timeout';
-import { SiteParamsInterface } from '../../../../Site.interface';
-import QRCodeTemplate from './qr-code-template/QRCodeTemplate';
+} from '../../../../../../../../utilities/methods/Date';
+import { formatPhoneNumber } from '../../../../../../../../utilities/methods/Number';
+import { timeout } from '../../../../../../../../utilities/methods/Timeout';
+import { SiteParamsInterface } from '../../../../../Site.interface';
+import SiteRoomsQRCodeTemplate from './SiteRoomsQRCodeTemplate';
 import {
 	DialogGenerateQRCodeFormInterface,
 	DialogGenerateQRCodeInterface
-} from './SiteRoomsGrid.interface';
+} from './SiteRoomsQRCodeTemplate.interface';
 
 const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const { open, setOpen, roomState, siteSingle } = props;
@@ -220,7 +220,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 			</DialogActions>
 
 			{/* QR Code Template */}
-			<QRCodeTemplate
+			<SiteRoomsQRCodeTemplate
 				text={smsText}
 				code={codeBeautified}
 				room={room}

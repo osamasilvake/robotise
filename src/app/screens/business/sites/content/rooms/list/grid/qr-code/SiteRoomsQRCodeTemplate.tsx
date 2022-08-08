@@ -3,9 +3,9 @@ import { FC, useEffect } from 'react';
 
 import { AppConfigService } from '../../../../../../../../services';
 import { timeout } from '../../../../../../../../utilities/methods/Timeout';
-import { QRCodeTemplateInterface } from './QRCodeTemplate.interface';
+import { QRCodeTemplateInterface } from './SiteRoomsQRCodeTemplate.interface';
 
-const QRCodeTemplate: FC<QRCodeTemplateInterface> = (props) => {
+const SiteRoomsQRCodeTemplate: FC<QRCodeTemplateInterface> = (props) => {
 	const { text, code, smsTo, room, siteTitle, iframeId, iframeUrl, showIframe } = props;
 
 	useEffect(() => {
@@ -55,4 +55,4 @@ const QRCodeTemplate: FC<QRCodeTemplateInterface> = (props) => {
 		/>
 	) : null;
 };
-export default QRCodeTemplate;
+export default SiteRoomsQRCodeTemplate;

@@ -21,7 +21,7 @@ import { SitePhoneConfigsSMSMessagesFormInterface } from './content/phone-config
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
-import { DialogGenerateQRCodeFormInterface } from './content/rooms/list/grid/SiteRoomsGrid.interface';
+import { DialogGenerateQRCodeFormInterface } from './content/rooms/list/grid/qr-code/SiteRoomsQRCodeTemplate.interface';
 import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
 import { DialogCreateSiteFormInterface } from './list/actions/SitesActions.interface';
 import {

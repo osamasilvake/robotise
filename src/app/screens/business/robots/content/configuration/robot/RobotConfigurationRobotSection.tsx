@@ -173,8 +173,9 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	): ReactElement | null => {
 		const { parentKey, key, list, index } = payload;
 		const id = parentKey ? `${parentKey}-${key}` : key;
+		const type = list.type.toString();
 
-		switch (list.type.toString()) {
+		switch (type) {
 			case RobotConfigurationRobotElementTypeEnum.ARRAY:
 				return (
 					<Box>
@@ -228,8 +229,10 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				);
 			case RobotConfigurationRobotElementTypeEnum.NUMBER:
 			case RobotConfigurationRobotElementTypeEnum.STRING:
+			case RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING:
 				return (
 					<RobotConfigurationRobotSectionInput
+						multiline={type === RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING}
 						id={id}
 						label={key}
 						content={list}

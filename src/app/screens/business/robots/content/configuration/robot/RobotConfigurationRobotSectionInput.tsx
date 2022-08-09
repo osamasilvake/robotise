@@ -9,7 +9,17 @@ import { RobotConfigurationRobotFormInputInterface } from './RobotConfigurationR
 const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputInterface> = (
 	props
 ) => {
-	const { id, label, content, handleChangeInput, handleBlur, initValue, value, error } = props;
+	const {
+		multiline,
+		id,
+		label,
+		content,
+		handleChangeInput,
+		handleBlur,
+		initValue,
+		value,
+		error
+	} = props;
 	const { t } = useTranslation('ROBOTS');
 
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
@@ -38,12 +48,14 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 			<FormControl fullWidth margin="normal">
 				<TextField
 					required={required}
+					multiline={multiline}
 					type={type}
 					id={id}
 					name={id}
 					label={labelTransform}
 					placeholder={placeholder}
 					value={elemValue}
+					rows={3}
 					onChange={(e) => {
 						setElemValue(e.target.value);
 						touched.current = true;

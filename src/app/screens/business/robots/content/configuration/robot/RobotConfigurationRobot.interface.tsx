@@ -18,6 +18,7 @@ export interface RobotConfigurationRobotRenderElementsInterface {
 }
 
 export interface RobotConfigurationRobotFormInputInterface {
+	multiline: boolean;
 	id: string;
 	label: string;
 	content: RCCDataElementInterface;

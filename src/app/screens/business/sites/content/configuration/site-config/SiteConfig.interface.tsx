@@ -16,5 +16,6 @@ export interface SiteConfigFormInterface {
 	customerNotificationTypesEnabled: string[];
 	helpPage: string;
 	showEmergencyWorkflow?: boolean;
+	showPerformanceDashboard?: boolean;
 	isHidden?: boolean;
 }

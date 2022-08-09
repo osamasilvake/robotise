@@ -41,6 +41,7 @@ export interface ISite {
 		customerNotificationTypesEnabled: string[];
 		helpPage: string;
 		showEmergencyWorkflow: boolean;
+		showPerformanceDashboard: boolean;
 		isHidden: boolean;
 	};
 	rooms: {

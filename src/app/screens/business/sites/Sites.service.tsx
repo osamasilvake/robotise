@@ -611,6 +611,7 @@ class SitesService {
 						customerNotificationTypesEnabled: payload.customerNotificationTypesEnabled,
 						helpPage: payload.helpPage,
 						showEmergencyWorkflow: payload.showEmergencyWorkflow,
+						showPerformanceDashboard: payload.showPerformanceDashboard,
 						isHidden: payload.isHidden
 					}
 				}

@@ -83,6 +83,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 				siteSingle?.configs.customerNotificationTypesEnabled || [],
 			helpPage: siteSingle?.configs.helpPage || '',
 			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
+			showPerformanceDashboard: !!siteSingle?.configs.showPerformanceDashboard,
 			isHidden: !!siteSingle?.configs.isHidden
 		},
 		SiteConfigValidation,
@@ -350,6 +351,25 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								/>
 								<FormHelperText>
 									{t(`${translation}.FORM.FIELDS.CHECKBOXES.EMERGENCY.NOTE`)}
+								</FormHelperText>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12}>
+							<FormControl>
+								<FormControlLabel
+									control={
+										<Switch
+											name="showPerformanceDashboard"
+											checked={values.showPerformanceDashboard}
+											onChange={handleChangeCheckbox}
+										/>
+									}
+									label={t<string>(
+										`${translation}.FORM.FIELDS.CHECKBOXES.PERFORMANCE.LABEL`
+									)}
+								/>
+								<FormHelperText>
+									{t(`${translation}.FORM.FIELDS.CHECKBOXES.PERFORMANCE.NOTE`)}
 								</FormHelperText>
 							</FormControl>
 						</Grid>

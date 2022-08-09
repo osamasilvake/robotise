@@ -1044,6 +1044,10 @@
 								"HIDDEN": {
 									"LABEL": "Hide Site",
 									"NOTE": "*Whether to show site in the ROC sites list!"
+								},
+								"PERFORMANCE": {
+									"LABEL": "Show Performance Dashboard",
+									"NOTE": "*Show performance dashboard on JEEVES app!"
 								}
 							}
 						},

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDebounce } from '../../../../../../utilities/hooks/debounce/Debounce';
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
 import { RobotConfigurationRobotFormInputInterface } from './RobotConfigurationRobot.interface';
+import { RobotConfigurationRobotStyle } from './RobotConfigurationRobot.style';
 
 const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputInterface> = (
 	props
@@ -21,6 +22,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 		error
 	} = props;
 	const { t } = useTranslation('ROBOTS');
+	const classes = RobotConfigurationRobotStyle();
 
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const required = !!content?.required;
@@ -45,7 +47,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 
 	return (
 		<Box>
-			<FormControl fullWidth margin="normal">
+			<FormControl fullWidth className={classes.sInput}>
 				<TextField
 					required={required}
 					multiline={multiline}
@@ -55,7 +57,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 					label={labelTransform}
 					placeholder={placeholder}
 					value={elemValue}
-					rows={3}
+					rows={2}
 					onChange={(e) => {
 						setElemValue(e.target.value);
 						touched.current = true;

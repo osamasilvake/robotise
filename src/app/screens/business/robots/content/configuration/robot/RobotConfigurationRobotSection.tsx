@@ -1,14 +1,5 @@
 import { Add } from '@mui/icons-material';
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	Chip,
-	CircularProgress,
-	Grid,
-	Typography
-} from '@mui/material';
+import { Button, Card, CardContent, Chip, CircularProgress, Grid, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -178,7 +169,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 		switch (type) {
 			case RobotConfigurationRobotElementTypeEnum.ARRAY:
 				return (
-					<Box>
+					<Grid container spacing={2} className={classes.sIntentElement}>
 						<Typography
 							variant="body2"
 							color="textSecondary"
@@ -201,58 +192,68 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							color="primary"
 							variant="outlined"
 							icon={<Add />}
-							className={classes.sIntendElement}
+							className={clsx(classes.sAddMore)}
 							onClick={() => onClickAddMore(id, list)}
 						/>
-					</Box>
+					</Grid>
 				);
 			case RobotConfigurationRobotElementTypeEnum.OBJECT:
 				return (
-					<Box className={clsx({ [classes.sIntendElement]: index !== undefined })}>
+					<Grid
+						container
+						className={clsx({ [classes.sIntentElement]: index !== undefined })}>
 						<Typography
 							variant="body2"
 							color="textSecondary"
-							className={classes.sRecursiveTitle}>
+							className={classes.sRecursiveTitleInner}>
 							{key.toUpperCase()}
 						</Typography>
-						{Object.entries(list?.value)?.map(([k, v], idx) => (
-							<Fragment key={k}>
-								{recursiveElements({
-									parentKey: id, // keep parent keys
-									key: k,
-									list: v,
-									index: idx
-								})}
-							</Fragment>
-						))}
-					</Box>
+						<Grid container spacing={2} className={classes.sIntentElementInner}>
+							{Object.entries(list?.value)?.map(([k, v], idx) => (
+								<Fragment key={k}>
+									{recursiveElements({
+										parentKey: id, // keep parent keys
+										key: k,
+										list: v,
+										index: idx
+									})}
+								</Fragment>
+							))}
+						</Grid>
+					</Grid>
 				);
 			case RobotConfigurationRobotElementTypeEnum.NUMBER:
 			case RobotConfigurationRobotElementTypeEnum.STRING:
 			case RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING:
 				return (
-					<RobotConfigurationRobotSectionInput
-						multiline={type === RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING}
-						id={id}
-						label={key}
-						content={list}
-						initValue={String(list?.value || list?.default)}
-						value={String(values[id])}
-						error={errors && errors[id] ? String(errors[id]) : ''}
-						handleChangeInput={handleChangeInput}
-						handleBlur={handleBlur}
-					/>
+					<Grid item xs={12} sm={6} md={6}>
+						<RobotConfigurationRobotSectionInput
+							multiline={
+								type === RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING
+							}
+							id={id}
+							label={key}
+							content={list}
+							initValue={String(list?.value || list?.default)}
+							value={String(values[id])}
+							error={errors && errors[id] ? String(errors[id]) : ''}
+							handleChangeInput={handleChangeInput}
+							handleBlur={handleBlur}
+						/>
+					</Grid>
 				);
 			case RobotConfigurationRobotElementTypeEnum.BOOLEAN:
 				return (
-					<RobotConfigurationRobotSectionBoolean
-						id={id}
-						label={key}
-						content={list}
-						initValue={!!(list?.value || list?.default)}
-						value={!!values[id]}
-						handleChangeCheckbox={handleChangeCheckbox}
-					/>
+					<Grid item xs={12}>
+						<RobotConfigurationRobotSectionBoolean
+							id={id}
+							label={key}
+							content={list}
+							initValue={!!(list?.value || list?.default)}
+							value={!!values[id]}
+							handleChangeCheckbox={handleChangeCheckbox}
+						/>
+					</Grid>
 				);
 			default:
 				return null;
@@ -319,12 +320,18 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 				{/* Elements */}
 				<form onSubmit={handleSubmit}>
-					{elements &&
-						Object.entries(elements)?.map(([key, value]) => (
-							<Fragment key={key}>
-								{recursiveElements({ key, list: value as RCCDataElementInterface })}
-							</Fragment>
-						))}
+					<Grid container spacing={2}>
+						{elements &&
+							Object.entries(elements)?.map(([key, value]) => (
+								<Fragment key={key}>
+									{recursiveElements({
+										key,
+										list: value as RCCDataElementInterface
+									})}
+								</Fragment>
+							))}
+					</Grid>
+
 					<Grid item xs={12} className={classes.sSubmit}>
 						<Button
 							variant="outlined"

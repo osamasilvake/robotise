@@ -6,13 +6,7 @@ import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/c
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteConfigurationServicePositions.interface';
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
-import {
-	SitePerformanceInventoryAxiosGetInterface,
-	SitePerformanceOrdersAxiosGetInterface,
-	SitePerformancePayloadInterface,
-	SitePerformancePurchasesAxiosGetInterface,
-	SitePerformanceTopProductsAxiosGetInterface
-} from './content/performance/SitePerformance.interface';
+import { SitePerformancePayloadInterface } from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
 import { SitePhoneConfigUploadAudioInterface } from './content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
@@ -25,7 +19,6 @@ import { DialogGenerateQRCodeFormInterface } from './content/rooms/list/grid/qr-
 import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
 import { DialogCreateSiteFormInterface } from './list/actions/SitesActions.interface';
 import {
-	RobotQRCodeCreateAxiosPostResponseInterface,
 	SiteCreateAxiosPostRequestInterface,
 	SiteCreateAxiosPostResponseInterface,
 	SiteCustomerNotificationTypesAxiosGetInterface,
@@ -33,11 +26,16 @@ import {
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
 	SiteOrderOriginsAxiosGetInterface,
+	SitePerformanceInventoryAxiosGetInterface,
+	SitePerformanceOrdersAxiosGetInterface,
+	SitePerformancePurchasesAxiosGetInterface,
+	SitePerformanceTopProductsAxiosGetInterface,
 	SitePhoneCallsAxiosGetInterface,
 	SitePhoneConfigPhoneNumbersAxiosGetInterface,
 	SitePhoneConfigsAxiosGetInterface,
 	SiteProductsAxiosGetInterface,
 	SiteQRCodeCreateAxiosPostRequestInterface,
+	SiteQRCodeCreateAxiosPostResponseInterface,
 	SiteQRCodesAxiosGetInterface,
 	SiteRoomsAxiosPatchRequestInterface,
 	SiteRoomsAxiosPatchResponseInterface,
@@ -200,7 +198,7 @@ class SitesService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.QR_CODES;
 		return HttpClientService.post<
 			SiteQRCodeCreateAxiosPostRequestInterface,
-			RobotQRCodeCreateAxiosPostResponseInterface
+			SiteQRCodeCreateAxiosPostResponseInterface
 		>(url, {
 			data: {
 				type: 'roomQrCodes',

@@ -3,6 +3,12 @@ import {
 	SNContentNotificationUsersInterface
 } from '../../../slices/business/sites/configuration/Notifications.slice.interface';
 import { SSCDataInterface } from '../../../slices/business/sites/configuration/ServicePositions.slice.interface';
+import {
+	SPContentInventoryInterface,
+	SPContentOrdersInterface,
+	SPContentPurchasesInterface,
+	SPContentTopProductsInterface
+} from '../../../slices/business/sites/performance/Performance.slice.interface';
 import { PCCDataInterface as PCCDataAliasInterface } from '../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
 import {
 	PCCDataInterface,
@@ -106,7 +112,7 @@ export interface SiteQRCodeCreateAxiosPostRequestInterface {
 	};
 }
 
-export interface RobotQRCodeCreateAxiosPostResponseInterface {
+export interface SiteQRCodeCreateAxiosPostResponseInterface {
 	data: {
 		id: string;
 		type: string;
@@ -192,4 +198,32 @@ export interface SiteCustomerNotificationTypesAxiosGetInterface extends JsonAPIR
 		type: string;
 		attributes: SCNContentDataInterface;
 	}[];
+}
+
+export interface SitePerformancePurchasesAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentPurchasesInterface;
+	};
+}
+
+export interface SitePerformanceOrdersAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentOrdersInterface;
+	};
+}
+
+export interface SitePerformanceInventoryAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentInventoryInterface;
+	};
+}
+
+export interface SitePerformanceTopProductsAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentTopProductsInterface;
+	};
 }

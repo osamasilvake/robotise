@@ -127,7 +127,7 @@
 			"LINK": "Refresh Page"
 		},
 		"ERROR_BOUNDARY": {
-			"TITLE": "Whoops! 🤭",
+			"TITLE": "Whoops! 🤔",
 			"DESCRIPTION": "Something bad happened!",
 			"LINK": "Reload"
 		},
@@ -1091,7 +1091,7 @@
 					},
 					"ORDERS": {
 						"LABEL": "Total Orders",
-						"TOOLTIP": "Number of successful orders executed in each period (day, week, month) by order typ",
+						"TOOLTIP": "Number of successful orders executed in each period (day, week, month) by order type",
 						"DATE": "Date",
 						"MODES": {
 							"MINIBAR": "Minibar",

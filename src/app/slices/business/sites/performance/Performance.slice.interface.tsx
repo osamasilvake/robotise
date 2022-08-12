@@ -13,6 +13,7 @@ export interface SPContentInterface {
 	orders: SPContentOrdersInterface;
 	inventory: SPContentInventoryInterface;
 	topProducts: SPContentTopProductsInterface;
+	state?: SPContentStateInterface;
 }
 
 export interface SPContentPurchasesInterface {
@@ -110,4 +111,8 @@ export interface SPContentTopProductsBucketInterface {
 	totalQuantity: number;
 	totalPrice: number;
 	totalOrders: number;
+}
+
+export interface SPContentStateInterface {
+	pSiteId?: string;
 }

@@ -102,7 +102,10 @@ export const PerformanceFetch =
 					purchases,
 					orders,
 					inventory,
-					topProducts
+					topProducts,
+					state: {
+						pSiteId: payload.site
+					}
 				};
 
 				// dispatch: success

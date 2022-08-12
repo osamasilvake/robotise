@@ -63,11 +63,11 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 					<IconButton
 						color="primary"
 						disabled={
-							!validateScope(
-								auth.user?.scope,
-								AuthScopeTypeEnum.WRITE,
-								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
-							)
+							!validateScope({
+								authScopeType: AuthScopeTypeEnum.WRITE,
+								authScope: auth.user?.scope,
+								link: AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
+							})
 						}
 						onClick={openCreateEditDeepLinkDialog}>
 						<Edit fontSize="small" />
@@ -84,11 +84,11 @@ const DeepLinksTableBodyCell: FC<DeepLinksTableBodyCellInterface> = (props) => {
 					<IconButton
 						color="error"
 						disabled={
-							!validateScope(
-								auth.user?.scope,
-								AuthScopeTypeEnum.WRITE,
-								AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
-							)
+							!validateScope({
+								authScopeType: AuthScopeTypeEnum.WRITE,
+								authScope: auth.user?.scope,
+								link: AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
+							})
 						}
 						onClick={openDeleteDeepLinkDialog}>
 						<DeleteOutline fontSize="small" />

@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { RouteTypeEnum } from '../../routes/Routes.enum';
 import { LayoutPageInterface, RoutesInterface } from '../../routes/Routes.interface';
+import { AuthScopeTypeEnum } from './Auth.enum';
 
 export interface AuthInterface {
 	route: RoutesInterface;
@@ -27,4 +28,12 @@ export interface AuthAxiosPostResponseInterface {
 
 export interface AuthStateInterface {
 	intendedUrl: string;
+}
+
+export interface AuthScopeInterface {
+	authScopeType: AuthScopeTypeEnum;
+	authScope?: string;
+	link?: string;
+	scope?: boolean;
+	scopeName?: string;
 }

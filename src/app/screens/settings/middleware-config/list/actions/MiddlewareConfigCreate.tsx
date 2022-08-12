@@ -32,13 +32,13 @@ const MiddlewareConfigCreate: FC = () => {
 				variant="outlined"
 				clickable
 				disabled={
-					!validateScope(
-						scope,
-						AuthScopeTypeEnum.WRITE,
-						AppConfigService.AppRoutes.SCREENS.SETTINGS.MIDDLEWARE_CONFIG,
-						middlewareConfigRoutes[0].scope,
-						middlewareConfigRoutes[0].scopeName
-					)
+					!validateScope({
+						authScopeType: AuthScopeTypeEnum.WRITE,
+						authScope: auth.user?.scope,
+						scope: middlewareConfigRoutes[0].scope,
+						scopeName: middlewareConfigRoutes[0].scopeName,
+						link: AppConfigService.AppRoutes.SCREENS.SETTINGS.MIDDLEWARE_CONFIG
+					})
 				}
 				onClick={() => setCreateMiddlewareConfig(true)}
 			/>

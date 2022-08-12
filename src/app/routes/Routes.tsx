@@ -22,13 +22,13 @@ const RoutesCustom: FC = () => {
 							(r) =>
 								!(
 									isUser &&
-									!validateScope(
-										auth.user?.scope,
-										AuthScopeTypeEnum.READ,
-										r.path,
-										r.scope,
-										r.scopeName
-									)
+									!validateScope({
+										authScopeType: AuthScopeTypeEnum.READ,
+										authScope: auth.user?.scope,
+										scope: r.scope,
+										scopeName: r.scopeName,
+										link: r.path
+									})
 								)
 						)
 						.map((route) => (

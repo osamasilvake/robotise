@@ -31,11 +31,11 @@ const DeepLinksCreate: FC = () => {
 				variant="outlined"
 				clickable
 				disabled={
-					!validateScope(
-						scope,
-						AuthScopeTypeEnum.WRITE,
-						AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
-					)
+					!validateScope({
+						authScopeType: AuthScopeTypeEnum.WRITE,
+						authScope: scope,
+						link: AppConfigService.AppRoutes.SCREENS.SETTINGS.DEEP_LINKS
+					})
 				}
 				onClick={() => setCreateDeepLink(true)}
 			/>

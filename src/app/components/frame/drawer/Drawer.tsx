@@ -66,13 +66,13 @@ const DrawerCustom: FC = () => {
 								component={NavLink}
 								to={item.path}
 								disabled={
-									!validateScope(
-										auth.user?.scope,
-										AuthScopeTypeEnum.READ,
-										item.path,
-										item.scope,
-										item.scopeName
-									)
+									!validateScope({
+										authScopeType: AuthScopeTypeEnum.READ,
+										authScope: auth.user?.scope,
+										scope: item.scope,
+										scopeName: item.scopeName,
+										link: item.path
+									})
 								}
 								className={clsx({ [classes.sListItemHint]: item.hint })}>
 								<ListItemIcon className={classes.sListItemIcon}>

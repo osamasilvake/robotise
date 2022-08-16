@@ -104,7 +104,8 @@ export const PerformanceFetch =
 					inventory,
 					topProducts,
 					state: {
-						pSiteId: payload.site
+						pSiteId: payload.site,
+						currentPeriod: payload.currentPeriod
 					}
 				};
 

@@ -27,12 +27,15 @@ const SitePerformance: FC = () => {
 	const sites = useSelector(sitesSelector);
 	const performance = useSelector(performanceSelector);
 
-	const [currentPeriod, setCurrentPeriod] = useState(sitePerformancePeriod[2]);
+	const [currentPeriod, setCurrentPeriod] = useState(
+		performance.content?.state?.currentPeriod || sitePerformancePeriod[2]
+	);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const pSiteId = performance.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 	const cRobotId = sites.content?.dataById[cSiteId]?.robots[0]?.id;
+	const pCurrentPeriod = performance.content?.state?.currentPeriod;
 	const refresh = useRef(false);
 
 	useEffect(() => {
@@ -44,8 +47,10 @@ const SitePerformance: FC = () => {
 	}, [dispatch, pSiteId, cSiteId]);
 
 	useEffect(() => {
-		// clear filters on site change
-		if (cSiteId !== pSiteId) {
+		const condition1 = pCurrentPeriod !== currentPeriod;
+		const condition2 = cSiteId !== pSiteId;
+
+		if (condition1 || condition2) {
 			// dispatch: fetch performance
 			dispatch(
 				PerformanceFetch(
@@ -54,13 +59,14 @@ const SitePerformance: FC = () => {
 						robot: cRobotId,
 						site: cSiteId,
 						excludeTotalPriceZero: true,
-						topItems: 5
+						topItems: 5,
+						currentPeriod
 					},
 					!!refresh.current
 				)
 			);
 		}
-	}, [dispatch, pSiteId, cSiteId, cRobotId, currentPeriod]);
+	}, [dispatch, pSiteId, cSiteId, cRobotId, pCurrentPeriod, currentPeriod]);
 
 	useEffect(() => {
 		refresh.current = !!performance?.content;

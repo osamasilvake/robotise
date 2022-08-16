@@ -1,4 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
+import { SitePerformancePeriodListInterface } from '../../../../screens/business/sites/content/performance/period/SitePerformancePeriod.interface';
 
 export interface SlicePerformanceInterface {
 	init: boolean;
@@ -115,4 +116,5 @@ export interface SPContentTopProductsBucketInterface {
 
 export interface SPContentStateInterface {
 	pSiteId?: string;
+	currentPeriod?: SitePerformancePeriodListInterface;
 }

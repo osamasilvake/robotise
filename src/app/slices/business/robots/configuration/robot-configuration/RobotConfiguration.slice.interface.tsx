@@ -7,11 +7,16 @@ export interface SliceRobotConfigurationInterface {
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;
-	content: RCContentInterface[] | null;
+	content: RCContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
 export interface RCContentInterface {
+	data: RCContentDataInterface[];
+	pRobotId?: string;
+}
+
+export interface RCContentDataInterface {
 	id: string;
 	name: string;
 	configType: string;

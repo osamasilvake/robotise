@@ -25,16 +25,17 @@ const RobotConfigurationRobot: FC = () => {
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
+	const section = robotConfiguration.content && robotConfiguration.content?.data[0];
+	const pRobotId = robotConfiguration.content?.pRobotId;
 	const cRobotId = params.robotId;
-	const section = robotConfiguration.content && robotConfiguration.content[0];
 
 	useEffect(() => {
 		// return
-		if (robotConfiguration.content) return;
+		if (pRobotId !== cRobotId) return;
 
 		// dispatch: fetch robot configuration
 		dispatch(RobotConfigurationFetch(cRobotId));
-	}, [dispatch, cRobotId, robotConfiguration.content]);
+	}, [dispatch, pRobotId, cRobotId, robotConfiguration.content]);
 
 	// loader
 	if (robotConfiguration.loader) {

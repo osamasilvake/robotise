@@ -9,7 +9,6 @@ import { triggerMessage } from '../../../../app/App.slice';
 import { deserializeRobotConfiguration } from './RobotConfiguration.slice.deserialize';
 import {
 	RCCDataElementInterface,
-	RCContentInterface,
 	SliceRobotConfigurationInterface
 } from './RobotConfiguration.slice.interface';
 
@@ -96,7 +95,12 @@ export const RobotConfigurationFetch =
 		return RobotsService.robotConfigurationFetch(robotId)
 			.then(async (res) => {
 				// deserialize response
-				const result: RCContentInterface = await deserializeRobotConfiguration(res);
+				let result = await deserializeRobotConfiguration(res);
+
+				result = {
+					data: result,
+					pRobotId: robotId
+				};
 
 				// dispatch: success
 				dispatch(success(result));

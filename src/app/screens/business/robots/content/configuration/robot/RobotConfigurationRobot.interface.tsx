@@ -2,12 +2,12 @@ import { ChangeEvent, FocusEvent } from 'react';
 
 import {
 	RCCDataElementInterface,
-	RCContentInterface
+	RCContentDataInterface
 } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
 
 export interface RobotConfigurationRobotSectionInterface {
-	section: RCContentInterface | null;
+	section: RCContentDataInterface | null;
 }
 
 export interface RobotConfigurationRobotRenderElementsInterface {

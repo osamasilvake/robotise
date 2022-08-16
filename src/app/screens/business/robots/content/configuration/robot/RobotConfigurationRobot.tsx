@@ -30,11 +30,13 @@ const RobotConfigurationRobot: FC = () => {
 	const cRobotId = params.robotId;
 
 	useEffect(() => {
+		const condition1 = robotConfiguration.content === null && cRobotId;
+		const condition2 = robotConfiguration.content !== null && pRobotId && pRobotId !== cRobotId;
 		// return
-		if (pRobotId !== cRobotId) return;
-
-		// dispatch: fetch robot configuration
-		dispatch(RobotConfigurationFetch(cRobotId));
+		if (condition1 || condition2) {
+			// dispatch: fetch robot configuration
+			dispatch(RobotConfigurationFetch(cRobotId));
+		}
 	}, [dispatch, pRobotId, cRobotId, robotConfiguration.content]);
 
 	// loader

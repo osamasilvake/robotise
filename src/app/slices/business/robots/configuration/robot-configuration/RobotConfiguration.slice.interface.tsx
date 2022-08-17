@@ -32,6 +32,7 @@ export interface RCContentDataInterface {
 
 export interface RCCDataElementInterface {
 	[key: string]:
+		| number
 		| string
 		| boolean
 		| RCCDataElementInterface

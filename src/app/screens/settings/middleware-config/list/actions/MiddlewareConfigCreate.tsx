@@ -19,7 +19,6 @@ const MiddlewareConfigCreate: FC = () => {
 
 	const [createMiddlewareConfig, setCreateMiddlewareConfig] = useState(false);
 
-	const scope = auth.user?.scope;
 	const translation = 'LIST.ACTIONS.CREATE_EDIT.CREATE';
 
 	return (

@@ -146,7 +146,10 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 					// value
 					else {
-						result[prop] = update[prop];
+						result[prop] =
+							initial.type === RobotConfigurationRobotElementTypeEnum.NUMBER
+								? +update[prop]
+								: update[prop];
 					}
 				}
 			}

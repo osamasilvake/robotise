@@ -17,7 +17,6 @@ const SiteRoomsQRCodeTemplate: FC<QRCodeTemplateInterface> = (props) => {
 				errorCorrectionLevel: 'H',
 				type: 'image/png',
 				margin: 0,
-				rendererOpts: { quality: 1 },
 				color: { dark: AppConfigService.AppOptions.colors.c2 },
 				width: 210
 			};

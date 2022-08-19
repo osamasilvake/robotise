@@ -19,6 +19,7 @@ import SitePerformanceKPI from './kpi/SitePerformanceKPI';
 import SitePerformancePeriod from './period/SitePerformancePeriod';
 import { sitePerformancePeriod } from './period/SitePerformancePeriod.list';
 import { SitePerformanceStyle } from './SitePerformance.style';
+import SitePerformanceDownload from './SitePerformanceDownload';
 
 const SitePerformance: FC = () => {
 	const classes = SitePerformanceStyle();
@@ -35,6 +36,7 @@ const SitePerformance: FC = () => {
 	const pSiteId = performance.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 	const cRobotId = sites.content?.dataById[cSiteId]?.robots[0]?.id;
+	const siteName = sites.content?.dataById[cSiteId]?.title;
 	const pCurrentPeriod = performance.content?.state?.currentPeriod;
 	const refresh = useRef(false);
 
@@ -88,17 +90,31 @@ const SitePerformance: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Period */}
-			<SitePerformancePeriod
-				sitePerformancePeriod={sitePerformancePeriod}
-				currentPeriod={currentPeriod.id}
-				setCurrentPeriod={setCurrentPeriod}
-			/>
+			<Box className={classes.sContentTop}>
+				<SitePerformancePeriod
+					sitePerformancePeriod={sitePerformancePeriod}
+					currentPeriod={currentPeriod.id}
+					setCurrentPeriod={setCurrentPeriod}
+				/>
+			</Box>
 
-			{/* Demography */}
-			<SitePerformanceDemography currentPeriod={currentPeriod.id} />
+			<Box id="performance" className={classes.sPrint}>
+				{/* Demography */}
+				<SitePerformanceDemography currentPeriod={currentPeriod.id} />
 
-			{/* KPI */}
-			<SitePerformanceKPI />
+				{/* KPI */}
+				<SitePerformanceKPI />
+			</Box>
+
+			{/* Download */}
+			<Box className={classes.sContentBottom}>
+				{siteName && (
+					<SitePerformanceDownload
+						siteName={siteName}
+						currentPeriod={currentPeriod.label}
+					/>
+				)}
+			</Box>
 		</Box>
 	);
 };

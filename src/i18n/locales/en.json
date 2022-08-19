@@ -1170,7 +1170,8 @@
 							"TOOLTIP": "Average number of room service orders per period (day / week / month), calculated by overall number of orders divided by number of periods"
 						}
 					}
-				}
+				},
+				"DOWNLOAD": "Download"
 			}
 		}
 	},

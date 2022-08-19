@@ -8,3 +8,8 @@ export interface SitePerformancePayloadInterface {
 	topItems?: number;
 	currentPeriod?: SitePerformancePeriodListInterface;
 }
+
+export interface SitePerformanceDownloadInterface {
+	siteName: string;
+	currentPeriod: string;
+}

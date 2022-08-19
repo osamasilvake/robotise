@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import domtoimage from 'dom-to-image';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,9 +16,9 @@ const SiteStatisticsWifiHeatmapDownload: FC<SiteStatisticsWifiHeatmapDownloadInt
 	const translation = 'CONTENT.STATISTICS.WIFI_HEATMAP';
 
 	/**
-	 * download map
+	 * download
 	 */
-	const downloadMap = async () => {
+	const download = async () => {
 		const elem = document.querySelector('#wifi-map') as HTMLElement;
 		domtoimage.toPng(elem).then((dataUrl: string) => {
 			const link = document.createElement('a');
@@ -29,9 +29,11 @@ const SiteStatisticsWifiHeatmapDownload: FC<SiteStatisticsWifiHeatmapDownloadInt
 	};
 
 	return (
-		<Button variant="outlined" onClick={downloadMap} className={classes.sDownload}>
-			{t(`${translation}.DOWNLOAD`)}
-		</Button>
+		<Box className={classes.sDownload}>
+			<Button variant="outlined" onClick={download}>
+				{t(`${translation}.DOWNLOAD`)}
+			</Button>
+		</Box>
 	);
 };
 export default SiteStatisticsWifiHeatmapDownload;

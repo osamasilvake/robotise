@@ -1,6 +1,8 @@
+import { SitePerformancePeriodTypeEnum } from '../../../screens/business/sites/content/performance/period/SitePerformancePeriod.enum';
+
 export interface StackedAreaChartInterface {
+	currentPeriod: SitePerformancePeriodTypeEnum;
 	data: StackedAreaChartDataInterface[];
-	x: string;
 	axisX: string;
 	axisY1: string;
 	axisY2: string;

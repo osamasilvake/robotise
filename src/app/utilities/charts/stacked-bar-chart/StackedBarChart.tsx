@@ -12,22 +12,32 @@ import {
 	YAxis
 } from 'recharts';
 
+import { SitePerformancePeriodTypeEnum } from '../../../screens/business/sites/content/performance/period/SitePerformancePeriod.enum';
 import { appSelector } from '../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../slices/app/App.slice.enum';
-import { dateFormat6 } from '../../methods/Date';
+import { dateFormat6, dateFormat7 } from '../../methods/Date';
 import { StackedBarChartInterface } from './StackedBarChart.interface';
 import { StackedBarChartStyle } from './StackedBarChart.style';
 
 const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
-	const { data, x, axisX, axisY1, axisY2, fills, barCategoryGap, gridLinesHorizontal } = props;
+	const {
+		currentPeriod,
+		data,
+		axisX,
+		axisY1,
+		axisY2,
+		fills,
+		barCategoryGap,
+		gridLinesHorizontal
+	} = props;
 	const styles = StackedBarChartStyle;
 
 	const app = useSelector(appSelector);
 
 	const stackId = 'stacked';
 	const isDark = app.themePalette === AppThemePaletteTypeEnum.DARK;
+	const month = currentPeriod === SitePerformancePeriodTypeEnum.MONTH;
 	const mapData = data.map((d) => ({
-		[x]: d.x,
 		[axisX]: d.x,
 		[axisY1]: d.y1,
 		[axisY2]: d.y2
@@ -47,12 +57,16 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 
 					{/* Axis */}
 					<YAxis style={isDark ? styles.sAxisLight : styles.sAxisDark} />
-					<XAxis dataKey={axisX} style={isDark ? styles.sAxisLight : styles.sAxisDark} />
+					<XAxis
+						dataKey={axisX}
+						tickFormatter={(t) => (month ? dateFormat7(t) : t)}
+						style={isDark ? styles.sAxisLight : styles.sAxisDark}
+					/>
 
 					{/* Tooltip */}
 					<Tooltip
 						cursor={false}
-						labelFormatter={(t) => `${x}: ${dateFormat6(t)}`}
+						labelFormatter={(t) => `${axisX}: ${dateFormat6(t)}`}
 						labelStyle={styles.sTooltipLabel}
 					/>
 

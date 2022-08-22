@@ -1,6 +1,8 @@
+import { SitePerformancePeriodTypeEnum } from '../../../screens/business/sites/content/performance/period/SitePerformancePeriod.enum';
+
 export interface BarChartInterface {
+	currentPeriod: SitePerformancePeriodTypeEnum;
 	data: BarChartDataInterface[];
-	x: string;
 	axisX: string;
 	axisY: string;
 	language: string;

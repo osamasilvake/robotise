@@ -11,7 +11,7 @@ import { SitePerformanceDemographyPurchasesInterface } from './SitePerformanceDe
 const SitePerformanceDemographyPurchases: FC<SitePerformanceDemographyPurchasesInterface> = (
 	props
 ) => {
-	const { chart, currency } = props;
+	const { currentPeriod, chart, currency } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SitePerformanceDemographyStyle();
 
@@ -39,9 +39,9 @@ const SitePerformanceDemographyPurchases: FC<SitePerformanceDemographyPurchasesI
 			{/* Chart */}
 			{chart && (
 				<BarReChart
+					currentPeriod={currentPeriod}
 					data={chart}
-					x={t(`${translation}.DEMOGRAPHY.PURCHASES.DATE`)}
-					axisX={t(`${translation}.DEMOGRAPHY.PURCHASES.LABEL`)}
+					axisX={t(`${translation}.DEMOGRAPHY.PURCHASES.DATE`)}
 					axisY={t(`${translation}.DEMOGRAPHY.PURCHASES.REVENUE`)}
 					currency={currency}
 					language={i18next.language}

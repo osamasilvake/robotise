@@ -12,22 +12,23 @@ import {
 	YAxis
 } from 'recharts';
 
+import { SitePerformancePeriodTypeEnum } from '../../../screens/business/sites/content/performance/period/SitePerformancePeriod.enum';
 import { appSelector } from '../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../slices/app/App.slice.enum';
-import { dateFormat6 } from '../../methods/Date';
+import { dateFormat6, dateFormat7 } from '../../methods/Date';
 import { currencyFormat } from '../../methods/Number';
 import { BarChartInterface } from './BarChart.interface';
 import { BarChartStyle } from './BarChart.style';
 
 const BarReChart: FC<BarChartInterface> = (props) => {
-	const { data, x, axisX, axisY, currency, language } = props;
+	const { currentPeriod, data, axisX, axisY, currency, language } = props;
 	const styles = BarChartStyle;
 
 	const app = useSelector(appSelector);
 
 	const isDark = app.themePalette === AppThemePaletteTypeEnum.DARK;
+	const month = currentPeriod === SitePerformancePeriodTypeEnum.MONTH;
 	const mapData = data.map((d) => ({
-		[x]: d.x,
 		[axisX]: d.x,
 		[axisY]: d.y
 	}));
@@ -45,12 +46,16 @@ const BarReChart: FC<BarChartInterface> = (props) => {
 
 					{/* Axis */}
 					<YAxis dataKey={axisY} style={isDark ? styles.sAxisLight : styles.sAxisDark} />
-					<XAxis dataKey={axisX} style={isDark ? styles.sAxisLight : styles.sAxisDark} />
+					<XAxis
+						dataKey={axisX}
+						tickFormatter={(t) => (month ? dateFormat7(t) : t)}
+						style={isDark ? styles.sAxisLight : styles.sAxisDark}
+					/>
 
 					{/* Tooltip */}
 					<Tooltip
 						cursor={false}
-						labelFormatter={(t) => `${x}: ${dateFormat6(t)}`}
+						labelFormatter={(t) => `${axisX}: ${dateFormat6(t)}`}
 						formatter={(value: number) => currencyFormat(value, currency, language)}
 						labelStyle={styles.sTooltipLabel}
 					/>

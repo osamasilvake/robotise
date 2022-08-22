@@ -12,7 +12,7 @@ import { SitePerformanceDemographyInventoryInterface } from './SitePerformanceDe
 const SitePerformanceDemographyInventory: FC<SitePerformanceDemographyInventoryInterface> = (
 	props
 ) => {
-	const { chart } = props;
+	const { currentPeriod, chart } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SitePerformanceDemographyStyle();
 
@@ -94,9 +94,9 @@ const SitePerformanceDemographyInventory: FC<SitePerformanceDemographyInventoryI
 			{/* Chart */}
 			{chart && (
 				<StackedAreaReChart
+					currentPeriod={currentPeriod}
 					data={chart}
-					x={t(`${translation}.DEMOGRAPHY.INVENTORY.DATE`)}
-					axisX={t(`${translation}.DEMOGRAPHY.INVENTORY.LABEL`)}
+					axisX={t(`${translation}.DEMOGRAPHY.INVENTORY.DATE`)}
 					axisY1={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.GREEN`)}
 					axisY2={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.YELLOW`)}
 					axisY3={t(`${translation}.DEMOGRAPHY.INVENTORY.STATUS.RED`)}

@@ -9,9 +9,8 @@ import { sitesSelector } from '../../../../../../slices/business/sites/Sites.sli
 import { BarChartDataInterface } from '../../../../../../utilities/charts/bar-chart/BarChart.interface';
 import { StackedAreaChartDataInterface } from '../../../../../../utilities/charts/stacked-area-chart/StackedAreaChart.interface';
 import { StackedBarChartDataInterface } from '../../../../../../utilities/charts/stacked-bar-chart/StackedBarChart.interface';
-import { dateFormat4, dateFormat7 } from '../../../../../../utilities/methods/Date';
+import { dateFormat4 } from '../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../Site.interface';
-import { SitePerformancePeriodTypeEnum } from '../period/SitePerformancePeriod.enum';
 import SitePerformanceDemographyInventory from './inventory/SitePerformanceDemographyInventory';
 import SitePerformanceDemographyOrders from './orders/SitePerformanceDemographyOrders';
 import SitePerformanceDemographyPurchases from './purchases/SitePerformanceDemographyPurchases';
@@ -36,14 +35,11 @@ const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props
 	const siteSingle = sites.content?.dataById[cSiteId];
 
 	useEffect(() => {
-		// period: month
-		const month = currentPeriod === SitePerformancePeriodTypeEnum.MONTH;
-
 		// purchases
 		const purchases = performance?.content?.purchases;
 		const pBuckets = purchases?.statistics?.histogram.purchasesPerPeriod?.buckets || [];
 		const list1 = pBuckets.map((item) => ({
-			x: month ? dateFormat7(item.key) : dateFormat4(item.key),
+			x: dateFormat4(item.key),
 			y: item.sumTotalPrice
 		}));
 		list1 && setChart(list1);
@@ -54,7 +50,7 @@ const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props
 		const orders = performance?.content?.orders;
 		const oBuckets = orders?.statistics?.histogram.ordersPerPeriod?.buckets || [];
 		const list2 = oBuckets.map((item) => ({
-			x: month ? dateFormat7(item.key) : dateFormat4(item.key),
+			x: dateFormat4(item.key),
 			y1: item.orderModes.find((m) => m.key === miniBar)?.docCount || 0,
 			y2: item.orderModes.find((m) => m.key === roomService)?.docCount || 0
 		}));
@@ -64,7 +60,7 @@ const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props
 		const inventory = performance?.content?.inventory;
 		const iBuckets = inventory?.statistics?.histogram?.inventoryPerPeriod?.buckets || [];
 		const list3 = iBuckets.map((item) => ({
-			x: month ? dateFormat7(item.key) : dateFormat4(item.key),
+			x: dateFormat4(item.key),
 			y1: +item.avgLanesHigh.toFixed(2),
 			y2: +item.avgLanesLow.toFixed(2),
 			y3: +item.avgLanesEmpty.toFixed(2)
@@ -81,14 +77,22 @@ const SitePerformanceDemography: FC<SitePerformanceDemographyInterface> = (props
 		<Grid container spacing={1}>
 			{/* Purchases */}
 			{chart && chart.length > 0 && (
-				<SitePerformanceDemographyPurchases chart={chart} currency={siteSingle?.currency} />
+				<SitePerformanceDemographyPurchases
+					currentPeriod={currentPeriod}
+					chart={chart}
+					currency={siteSingle?.currency}
+				/>
 			)}
 
 			{/* Orders */}
-			{chart2 && chart2.length > 0 && <SitePerformanceDemographyOrders chart={chart2} />}
+			{chart2 && chart2.length > 0 && (
+				<SitePerformanceDemographyOrders currentPeriod={currentPeriod} chart={chart2} />
+			)}
 
 			{/* Inventory */}
-			{chart3 && chart3.length > 0 && <SitePerformanceDemographyInventory chart={chart3} />}
+			{chart3 && chart3.length > 0 && (
+				<SitePerformanceDemographyInventory currentPeriod={currentPeriod} chart={chart3} />
+			)}
 
 			{/* Top Products */}
 			<SitePerformanceDemographyTopProducts

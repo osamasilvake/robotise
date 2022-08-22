@@ -9,7 +9,7 @@ import { SitePerformanceDemographyStyle } from '../SitePerformanceDemography.sty
 import { SitePerformanceDemographyOrdersInterface } from './SitePerformanceDemographyOrders.interface';
 
 const SitePerformanceDemographyOrders: FC<SitePerformanceDemographyOrdersInterface> = (props) => {
-	const { chart } = props;
+	const { currentPeriod, chart } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SitePerformanceDemographyStyle();
 
@@ -35,9 +35,9 @@ const SitePerformanceDemographyOrders: FC<SitePerformanceDemographyOrdersInterfa
 			{/* Chart */}
 			{chart && (
 				<StackedBarReChart
+					currentPeriod={currentPeriod}
 					data={chart}
-					x={t(`${translation}.DEMOGRAPHY.ORDERS.DATE`)}
-					axisX={t(`${translation}.DEMOGRAPHY.ORDERS.LABEL`)}
+					axisX={t(`${translation}.DEMOGRAPHY.ORDERS.DATE`)}
 					axisY1={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.MINIBAR`)}
 					axisY2={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.ROOM_SERVICE`)}
 					fills={[

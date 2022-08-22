@@ -8,12 +8,10 @@ import { AppConfigService } from '../../../../../services';
 import { appSelector } from '../../../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../../../slices/app/App.slice.enum';
 import { SitePerformanceDownloadInterface } from './SitePerformance.interface';
-import { SitePerformanceStyle } from './SitePerformance.style';
 
-const SitePerformanceDownload: FC<SitePerformanceDownloadInterface> = (props) => {
+const SitePerformanceScreenshot: FC<SitePerformanceDownloadInterface> = (props) => {
 	const { siteName, currentPeriod } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SitePerformanceStyle();
 
 	const app = useSelector(appSelector);
 
@@ -43,11 +41,11 @@ const SitePerformanceDownload: FC<SitePerformanceDownloadInterface> = (props) =>
 	};
 
 	return (
-		<Box className={classes.sDownload}>
+		<Box>
 			<Button variant="outlined" onClick={download}>
-				{t(`${translation}.DOWNLOAD`)}
+				{t(`${translation}.SCREENSHOT`)}
 			</Button>
 		</Box>
 	);
 };
-export default SitePerformanceDownload;
+export default SitePerformanceScreenshot;

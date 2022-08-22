@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -19,7 +19,7 @@ import SitePerformanceKPI from './kpi/SitePerformanceKPI';
 import SitePerformancePeriod from './period/SitePerformancePeriod';
 import { sitePerformancePeriod } from './period/SitePerformancePeriod.list';
 import { SitePerformanceStyle } from './SitePerformance.style';
-import SitePerformanceDownload from './SitePerformanceDownload';
+import SitePerformanceScreenshot from './SitePerformanceScreenshot';
 
 const SitePerformance: FC = () => {
 	const classes = SitePerformanceStyle();
@@ -89,13 +89,27 @@ const SitePerformance: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
-			{/* Period */}
 			<Box className={classes.sContentTop}>
-				<SitePerformancePeriod
-					sitePerformancePeriod={sitePerformancePeriod}
-					currentPeriod={currentPeriod.id}
-					setCurrentPeriod={setCurrentPeriod}
-				/>
+				<Stack
+					spacing={1.5}
+					direction="row"
+					alignItems="center"
+					justifyContent="space-between">
+					{/* Download */}
+					{siteName && (
+						<SitePerformanceScreenshot
+							siteName={siteName}
+							currentPeriod={currentPeriod.label}
+						/>
+					)}
+
+					{/* Period */}
+					<SitePerformancePeriod
+						sitePerformancePeriod={sitePerformancePeriod}
+						currentPeriod={currentPeriod.id}
+						setCurrentPeriod={setCurrentPeriod}
+					/>
+				</Stack>
 			</Box>
 
 			<Box id="performance" className={classes.sPrint}>
@@ -104,16 +118,6 @@ const SitePerformance: FC = () => {
 
 				{/* KPI */}
 				<SitePerformanceKPI />
-			</Box>
-
-			{/* Download */}
-			<Box className={classes.sContentBottom}>
-				{siteName && (
-					<SitePerformanceDownload
-						siteName={siteName}
-						currentPeriod={currentPeriod.label}
-					/>
-				)}
 			</Box>
 		</Box>
 	);

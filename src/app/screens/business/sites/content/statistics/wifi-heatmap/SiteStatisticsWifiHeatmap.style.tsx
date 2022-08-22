@@ -32,7 +32,7 @@ export const SiteStatisticsWifiHeatmapStyle = makeStyles((theme: Theme) => ({
 		position: 'absolute',
 		width: theme.typography.pxToRem(4)
 	},
-	sDownload: {
+	sScreenshot: {
 		marginTop: theme.spacing(2)
 	}
 }));

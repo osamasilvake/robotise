@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { SiteStatisticsWifiHeatmapDownloadInterface } from './SiteStatisticsWifiHeatmap.interface';
 import { SiteStatisticsWifiHeatmapStyle } from './SiteStatisticsWifiHeatmap.style';
 
-const SiteStatisticsWifiHeatmapDownload: FC<SiteStatisticsWifiHeatmapDownloadInterface> = (
+const SiteStatisticsWifiHeatmapScreenshot: FC<SiteStatisticsWifiHeatmapDownloadInterface> = (
 	props
 ) => {
 	const { siteName, floor } = props;
@@ -29,11 +29,11 @@ const SiteStatisticsWifiHeatmapDownload: FC<SiteStatisticsWifiHeatmapDownloadInt
 	};
 
 	return (
-		<Box className={classes.sDownload}>
+		<Box className={classes.sScreenshot}>
 			<Button variant="outlined" onClick={download}>
-				{t(`${translation}.DOWNLOAD`)}
+				{t(`${translation}.SCREENSHOT`)}
 			</Button>
 		</Box>
 	);
 };
-export default SiteStatisticsWifiHeatmapDownload;
+export default SiteStatisticsWifiHeatmapScreenshot;

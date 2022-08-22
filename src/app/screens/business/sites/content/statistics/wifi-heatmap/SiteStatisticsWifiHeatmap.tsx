@@ -13,9 +13,9 @@ import { SiteStatisticsWifiHeatmapPeriodsTypeEnum } from './SiteStatisticsWifiHe
 import { SiteStatisticsWifiHeatmapInterface } from './SiteStatisticsWifiHeatmap.interface';
 import { SiteStatisticsWifiHeatmapStyle } from './SiteStatisticsWifiHeatmap.style';
 import SiteStatisticsWifiHeatmapCard from './SiteStatisticsWifiHeatmapCard';
-import SiteStatisticsWifiHeatmapDownload from './SiteStatisticsWifiHeatmapDownload';
 import SiteStatisticsWifiHeatmapFloor from './SiteStatisticsWifiHeatmapFloor';
 import SiteStatisticsWifiHeatmapPeriod from './SiteStatisticsWifiHeatmapPeriod';
+import SiteStatisticsWifiHeatmapScreenshot from './SiteStatisticsWifiHeatmapScreenshot';
 
 const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props) => {
 	const { wifiHeatmap } = props;
@@ -106,7 +106,7 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 			)}
 
 			{/* Download */}
-			<SiteStatisticsWifiHeatmapDownload siteName={cSiteName} floor={floor} />
+			<SiteStatisticsWifiHeatmapScreenshot siteName={cSiteName} floor={floor} />
 		</Box>
 	);
 };

@@ -109,9 +109,22 @@ export interface SPContentTopProductsBucketsInterface {
 
 export interface SPContentTopProductsBucketInterface {
 	productId: string;
+	productData: SPContentTopProductsBucketDataInterface;
 	totalQuantity: number;
 	totalPrice: number;
 	totalOrders: number;
+}
+
+export interface SPContentTopProductsBucketDataInterface {
+	id: string;
+	image: string;
+	name: string;
+	length: number;
+	weight: number;
+	volume: string;
+	price: number;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 export interface SPContentStateInterface {

@@ -11,7 +11,6 @@ import {
 	PerformanceFetch,
 	performanceSelector
 } from '../../../../../slices/business/sites/performance/Performance.slice';
-import { ProductsFetchList } from '../../../../../slices/business/sites/products/Products.slice';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import SitePerformanceDemography from './demography/SitePerformanceDemography';
@@ -39,14 +38,6 @@ const SitePerformance: FC = () => {
 	const siteName = sites.content?.dataById[cSiteId]?.title;
 	const pCurrentPeriod = performance.content?.state?.currentPeriod;
 	const refresh = useRef(false);
-
-	useEffect(() => {
-		// clear filters on site change
-		if (cSiteId !== pSiteId) {
-			// dispatch: fetch site products
-			cSiteId && dispatch(ProductsFetchList(cSiteId, true));
-		}
-	}, [dispatch, pSiteId, cSiteId]);
 
 	useEffect(() => {
 		const condition1 = pCurrentPeriod !== currentPeriod;

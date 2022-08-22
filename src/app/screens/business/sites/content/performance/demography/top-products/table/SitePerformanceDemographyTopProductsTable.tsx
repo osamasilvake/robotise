@@ -11,11 +11,9 @@ import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../../../services';
 import { SPContentTopProductsBucketInterface } from '../../../../../../../../slices/business/sites/performance/Performance.slice.interface';
-import { productsSelector } from '../../../../../../../../slices/business/sites/products/Products.slice';
 import { currencyFormat } from '../../../../../../../../utilities/methods/Number';
 import { SitePerformanceDemographyTopProductsTableColumnsTypeEnum } from './SitePerformanceDemographyTopProductsTable.enum';
 import {
@@ -32,8 +30,6 @@ const SitePerformanceDemographyTopProductsTable: FC<
 	const { t } = useTranslation('SITES');
 	const classes = SitePerformanceDemographyTopProductsTableStyle();
 
-	const products = useSelector(productsSelector);
-
 	const none = AppConfigService.AppOptions.common.none;
 
 	/**
@@ -48,9 +44,8 @@ const SitePerformanceDemographyTopProductsTable: FC<
 	) => {
 		// return
 		if (!topProduct) return none;
-		if (!(products && products.content)) return none;
 
-		const product = products.content?.data.find((p) => p.id === topProduct.productId);
+		const product = topProduct?.productData;
 		const price =
 			topProduct &&
 			topProduct[SitePerformanceDemographyTopProductsTableColumnsTypeEnum.REVENUE];

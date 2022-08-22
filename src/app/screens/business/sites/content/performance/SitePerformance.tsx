@@ -93,7 +93,7 @@ const SitePerformance: FC = () => {
 				<Stack
 					spacing={1.5}
 					direction="row"
-					alignItems="center"
+					alignItems="top"
 					justifyContent="space-between">
 					{/* Download */}
 					{siteName && (

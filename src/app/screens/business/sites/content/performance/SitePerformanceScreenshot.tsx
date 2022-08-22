@@ -1,4 +1,5 @@
-import { Box, Button } from '@mui/material';
+import { ScreenshotMonitor } from '@mui/icons-material';
+import { Box, Chip } from '@mui/material';
 import domtoimage from 'dom-to-image';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -42,9 +43,14 @@ const SitePerformanceScreenshot: FC<SitePerformanceDownloadInterface> = (props) 
 
 	return (
 		<Box>
-			<Button variant="outlined" onClick={download}>
-				{t(`${translation}.SCREENSHOT`)}
-			</Button>
+			<Chip
+				size="small"
+				label={t(`${translation}.SCREENSHOT`)}
+				color="primary"
+				variant="outlined"
+				icon={<ScreenshotMonitor />}
+				onClick={download}
+			/>
 		</Box>
 	);
 };

@@ -1,4 +1,5 @@
 import { Link, Stack, Typography } from '@mui/material';
+import clsx from 'clsx';
 import { FC } from 'react';
 
 import { AppConfigService } from '../../../services';
@@ -7,7 +8,7 @@ import { CopyrightsInterface } from './Copyrights.interface';
 import { CopyrightStyle } from './Copyrights.style';
 
 const Copyright: FC<CopyrightsInterface> = (props) => {
-	const { short } = props;
+	const { short, small } = props;
 	const classes = CopyrightStyle();
 
 	return (
@@ -18,10 +19,14 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 						variant="body2"
 						underline="hover"
 						href={AppConfigService.envCompanyUrl}
-						target="_blank">
+						target="_blank"
+						className={clsx({ [classes.sFontSmall]: small })}>
 						{AppConfigService.envCompanyName}
 					</Link>
-					<Typography variant="body2" color="textSecondary">
+					<Typography
+						variant="body2"
+						color="textSecondary"
+						className={clsx({ [classes.sFontSmall]: small })}>
 						{' © '}
 						{dateCurrentYear()}
 						{' • '}
@@ -31,7 +36,10 @@ const Copyright: FC<CopyrightsInterface> = (props) => {
 				</Stack>
 			)}
 			{short && (
-				<Typography variant="body2" color="textSecondary">
+				<Typography
+					variant="body2"
+					color="textSecondary"
+					className={clsx({ [classes.sFontSmall]: small })}>
 					v{AppConfigService.envAppVersion}
 				</Typography>
 			)}

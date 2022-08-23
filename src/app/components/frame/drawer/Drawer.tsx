@@ -101,7 +101,7 @@ const DrawerCustom: FC = () => {
 			<Divider light />
 
 			{/* Copyrights */}
-			{app.openDrawer ? <Copyrights /> : <Copyrights short />}
+			{app.openDrawer ? <Copyrights small /> : <Copyrights short />}
 		</Drawer>
 	);
 };

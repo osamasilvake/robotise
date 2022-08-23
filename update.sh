@@ -50,7 +50,7 @@ while true; do
             break;;
         "02")
             docker stop roc-client
-            yarn docker:dev
+            yarn docker:run
 
             echo -e
             break;;

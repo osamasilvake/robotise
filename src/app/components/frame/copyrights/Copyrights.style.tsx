@@ -1,6 +1,7 @@
+import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-export const CopyrightStyle = makeStyles(() => ({
+export const CopyrightStyle = makeStyles((theme: Theme) => ({
 	sCopyright: {
 		height: 40
 	},

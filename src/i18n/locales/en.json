@@ -881,7 +881,9 @@
 						"LIST": {
 							"now-1d": "Last Day",
 							"now-7d": "Last Week",
-							"now-30d": "Last Month"
+							"now-30d": "Last Month",
+							"now-2M": "Last 2 Months",
+							"now-3M": "Last 3 Months"
 						}
 					},
 					"FLOOR": "Floor",

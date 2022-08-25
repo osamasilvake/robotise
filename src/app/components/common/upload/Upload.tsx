@@ -4,8 +4,8 @@ import { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AppConfigService } from '../../../services';
-import { fetchImageFromInput } from '../picture/Picture.process';
 import { UploadImageChangeInterface, UploadImageInterface } from './Upload.interface';
+import { fetchImageFromInput } from './Upload.process';
 import { UploadStyle } from './Upload.style';
 
 const Upload: FC<UploadImageInterface> = (props) => {

@@ -62,7 +62,7 @@ const SetupWifiConfigContent: FC = () => {
 
 					<Grid item xs={12} className={classes.sSubmit}>
 						<Button variant="outlined" type="submit">
-							{t(`${translation}.FORM.BUTTONS.SAVE`)}
+							{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 						</Button>
 					</Grid>
 				</form>

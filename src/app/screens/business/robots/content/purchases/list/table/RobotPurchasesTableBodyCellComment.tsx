@@ -148,11 +148,11 @@ const RobotPurchasesTableBodyCellComment: FC<TableFieldCommentInterface> = (prop
 					</IconButton>
 				)}
 
-				{/* Save */}
+				{/* Update */}
 				{editMode && (
 					<Chip
 						size="small"
-						label={t(`${translation}.SAVE`)}
+						label={t(`${translation}.UPDATE`)}
 						color="primary"
 						variant="outlined"
 						clickable

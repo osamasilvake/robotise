@@ -1820,7 +1820,7 @@
 						"VALUES": {
 							"COMMENT": {
 								"EDIT": "Edit",
-								"SAVE": "Save",
+								"UPDATE": "Update",
 								"CLEAR": "Clear",
 								"CANCEL": "Cancel",
 								"RESTART": "Restart",
@@ -2255,7 +2255,7 @@
 						}
 					},
 					"BUTTONS": {
-						"SAVE": "Save"
+						"UPDATE": "Update"
 					}
 				}
 			}

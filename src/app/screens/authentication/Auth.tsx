@@ -40,12 +40,15 @@ const Auth: FC<AuthInterface> = (props) => {
 
 	/**
 	 * authentication state
-	 *
-	 * loader: 						Loader
-	 * !user + private + !login: 	Login
-	 * !user + !private: 			Route
-	 * login:						Intended URL
-	 * others:						Route
+	 * -------------------------------------------------------------
+	 * loader 							: Loader
+	 * -------------------------------------------------------------
+	 * !user + private + !login 		: Login
+	 * !user + !(private + !login) 		: Route
+	 * -------------------------------------------------------------
+	 * login							: Intended URL | Default URL
+	 * others							: Route
+	 * -------------------------------------------------------------
 	 */
 	if (auth.loader) {
 		return <Loader />;

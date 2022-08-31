@@ -143,12 +143,18 @@ export const OrdersFetchList =
 /**
  * create an order
  * @param siteId
+ * @param robotId
  * @param payload
  * @param callback
  * @returns
  */
 export const OrderCreate =
-	(siteId: string, payload: DialogCreateOrderFormInterface, callback: () => void) =>
+	(
+		siteId: string,
+		robotId: string,
+		payload: DialogCreateOrderFormInterface,
+		callback: () => void
+	) =>
 	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
@@ -157,7 +163,7 @@ export const OrderCreate =
 		// dispatch: updating
 		dispatch(updating());
 
-		return RobotsService.robotOrderCreate(siteId, payload)
+		return RobotsService.robotOrderCreate(siteId, robotId, payload)
 			.then(async (res) => {
 				// deserialize response
 				let result = await deserializeOrder(res);

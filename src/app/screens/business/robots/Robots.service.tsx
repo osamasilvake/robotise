@@ -234,10 +234,15 @@ class RobotsService {
 	/**
 	 * create an order
 	 * @param siteId
+	 * @param robotId
 	 * @param payload
 	 * @returns
 	 */
-	robotOrderCreate = (siteId: string, payload: DialogCreateOrderFormInterface) => {
+	robotOrderCreate = (
+		siteId: string,
+		robotId: string,
+		payload: DialogCreateOrderFormInterface
+	) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
 		return HttpClientService.post<
 			RobotOrderCreateAxiosPostRequestInterface,
@@ -251,6 +256,12 @@ class RobotsService {
 						data: {
 							type: 'sites',
 							id: siteId
+						}
+					},
+					robot: {
+						data: {
+							type: 'robots',
+							id: robotId
 						}
 					}
 				}

@@ -93,6 +93,12 @@ export interface RobotOrderCreateAxiosPostRequestInterface {
 					id: string;
 				};
 			};
+			robot: {
+				data: {
+					type: string;
+					id: string;
+				};
+			};
 		};
 	};
 }

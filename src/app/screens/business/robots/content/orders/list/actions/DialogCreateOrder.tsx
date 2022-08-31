@@ -106,8 +106,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 			// dispatch: create an order
 			cSiteId &&
+				cRobotId &&
 				dispatch(
-					OrderCreate(cSiteId, payload, () => {
+					OrderCreate(cSiteId, cRobotId, payload, () => {
 						// close dialog
 						setOpen(false);
 

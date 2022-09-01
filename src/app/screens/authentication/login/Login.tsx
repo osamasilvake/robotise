@@ -135,7 +135,10 @@ const Login: FC = () => {
 							variant="contained"
 							type="submit"
 							className={classes.sSubmit}
-							disabled={focus.current && (auth.loading || !validateEmptyObj(errors))}
+							disabled={
+								focus.current &&
+								(auth.loading || (errors && !validateEmptyObj(errors)))
+							}
 							endIcon={auth.loading && <CircularProgress size={20} />}
 							onClick={() => (focus.current = true)}>
 							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}

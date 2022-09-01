@@ -3,7 +3,7 @@
  * @param obj
  * @returns
  */
-const serializeObj = <T,>(obj: T): string => {
+const serializeObj = <T extends object>(obj: T): string => {
 	return Object.entries(obj)
 		.map(([key, val]) => `${key}=${encodeURIComponent(val)}`)
 		.join('&');
@@ -14,7 +14,7 @@ const serializeObj = <T,>(obj: T): string => {
  * @param obj
  * @returns
  */
-const validateEmptyObj = <T,>(obj: T): boolean => {
+const validateEmptyObj = <T extends object>(obj: T): boolean => {
 	return (
 		obj && Object.values(obj).every((x) => x === null || x === '' || x === 0 || x.length === 0)
 	);
@@ -25,9 +25,9 @@ const validateEmptyObj = <T,>(obj: T): boolean => {
  * @param obj
  * @returns
  */
-const validateEmptyObjProperty = <T,>(obj: T): boolean => {
+const validateEmptyObjProperty = <T extends object>(obj: T): boolean => {
 	return (
-		obj && Object.values(obj).some((x) => x === null || x === '' || x === 0 || x.length === 0)
+		obj && Object.values(obj)?.some((x) => x === null || x === '' || x === 0 || x.length === 0)
 	);
 };
 
@@ -36,7 +36,7 @@ const validateEmptyObjProperty = <T,>(obj: T): boolean => {
  * @param obj
  * @returns
  */
-const removeEmptyObjProperties = <T,>(obj: T) => {
+const removeEmptyObjProperties = <T extends object>(obj: T) => {
 	return Object.entries(obj)
 		.filter(([, x]) => x !== null && x !== '')
 		.reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {}) as T;

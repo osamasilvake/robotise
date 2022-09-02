@@ -16,6 +16,7 @@ import {
 import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { strRemoveSymbols } from '../../../../../../utilities/methods/String';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
 import {
@@ -316,7 +317,9 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 		<Card square elevation={1}>
 			<CardContent>
 				{/* Title */}
-				<Typography variant="h6">{sectionName || t(`${translation}.TITLE`)}</Typography>
+				<Typography variant="h6">
+					{strRemoveSymbols(sectionName) || t(`${translation}.TITLE`)}
+				</Typography>
 				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
 					{t(`${translation}.EXCERPT`)}
 				</Typography>

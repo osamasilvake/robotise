@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 
 export const RobotConfigurationRobotStyle = makeStyles((theme: Theme) => ({
 	sBox: {
-		marginTop: theme.spacing(2)
+		marginTop: theme.spacing(3)
 	},
 	sExcerpt: {
 		marginBottom: theme.spacing(1.5)

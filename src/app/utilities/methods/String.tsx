@@ -22,10 +22,11 @@ const strCapitalLetterAndCamelCaseToDash = (str: string) =>
 		.replace(/([a-zA-Z])(?=[A-Z])/g, '$1 ')
 		.toLowerCase()
 		.replace(/\b[a-z]/g, (letter: string) => letter.toUpperCase());
+
 /**
  * convert string links to link elements
  * @param text
- * @returns {*}
+ * @returns
  */
 const strToLinks = (text: string) => {
 	const link = (link: string, additional?: boolean, mail?: boolean) =>

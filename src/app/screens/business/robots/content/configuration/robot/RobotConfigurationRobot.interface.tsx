@@ -6,8 +6,12 @@ import {
 } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
 
+export interface RobotConfigurationRobotInterface {
+	section: RCContentDataInterface;
+}
+
 export interface RobotConfigurationRobotSectionInterface {
-	section: RCContentDataInterface | null;
+	section: RCContentDataInterface;
 }
 
 export interface RobotConfigurationRobotRenderElementsInterface {

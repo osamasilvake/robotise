@@ -7,18 +7,23 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ErrorBoundary from '../../../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../../../services';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { strRemoveSymbols } from '../../../../../utilities/methods/String';
 import { RobotParamsInterface } from '../../Robot.interface';
 import robotsRoutes from '../../Robots.routes';
+import { RobotConfigurationTabsTypeEnum } from './RobotConfiguration.enum';
+import { RobotConfigurationTabsInterface } from './RobotConfiguration.interface';
 
 const RobotConfigurationCloud = lazy(() => import('./cloud/RobotConfigurationCloud'));
 const RobotConfigurationRobot = lazy(() => import('./robot/RobotConfigurationRobot'));
 
-const RobotConfigurationTabs: FC = () => {
+const RobotConfigurationTabs: FC<RobotConfigurationTabsInterface> = (props) => {
+	const { sections } = props;
 	const { t } = useTranslation('ROBOTS');
 
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const [value, setValue] = useState(-1);
+	const [value, setValue] = useState(0);
+	const [sectionName, setSectionName] = useState('');
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -28,17 +33,24 @@ const RobotConfigurationTabs: FC = () => {
 	const problem = !!robotTwinsSummary.errors?.id || !robotSingle?.id;
 
 	const translation = 'CONTENT.TABS';
-	const offset = 7;
+	const offset = 8;
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
 		const cPath = location.pathname.replace(skipLastSlashes, '');
-		const cIndex = robotsRoutes.findIndex(
-			(r) => r.path.replace(':robotId', cRobotId) === cPath
-		);
+		const slashIndex = cPath.lastIndexOf('/');
+		const pathSection = cPath.substring(slashIndex + 1);
 
-		setValue(cIndex - offset);
-	}, [location.pathname, cRobotId]);
+		if (pathSection === RobotConfigurationTabsTypeEnum.CLOUD) {
+			setValue(0);
+		} else {
+			const index = sections?.findIndex((s) => s.sectionName === pathSection);
+			setValue(index + 1);
+			if (!sectionName) {
+				setSectionName(pathSection);
+			}
+		}
+	}, [location.pathname, cRobotId, sections, sectionName]);
 
 	/**
 	 * handle tab change
@@ -46,8 +58,15 @@ const RobotConfigurationTabs: FC = () => {
 	 * @param value
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
+		const updateSectionName = sections[value - 1]?.sectionName;
+
+		// set section name
+		setSectionName(!value ? RobotConfigurationTabsTypeEnum.CLOUD : updateSectionName);
+
 		// prepare link
-		const link = robotsRoutes[value + offset].path.replace(':robotId', cRobotId);
+		const link = robotsRoutes[offset].path
+			.replace(':configId', !value ? RobotConfigurationTabsTypeEnum.CLOUD : updateSectionName)
+			.replace(':robotId', cRobotId);
 
 		// navigate
 		navigate(link);
@@ -63,7 +82,9 @@ const RobotConfigurationTabs: FC = () => {
 				variant="scrollable"
 				textColor="primary">
 				<Tab label={t(`${translation}.CONFIGURATION.CLOUD`)} />
-				<Tab label={t(`${translation}.CONFIGURATION.ROBOT`)} />
+				{sections?.map((section) => (
+					<Tab key={section.id} label={strRemoveSymbols(section.sectionName)} />
+				))}
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -78,13 +99,17 @@ const RobotConfigurationTabs: FC = () => {
 				)}
 
 				{/* Robot */}
-				{value === 1 && (
-					<ErrorBoundary>
-						<Suspense fallback={null}>
-							<RobotConfigurationRobot />
-						</Suspense>
-					</ErrorBoundary>
-				)}
+				{value !== 0 &&
+					sections?.map(
+						(section) =>
+							section.sectionName === sectionName && (
+								<ErrorBoundary key={section.id}>
+									<Suspense fallback={null}>
+										<RobotConfigurationRobot section={section} />
+									</Suspense>
+								</ErrorBoundary>
+							)
+					)}
 			</Box>
 		</Box>
 	) : null;

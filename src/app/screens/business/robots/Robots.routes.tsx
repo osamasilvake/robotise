@@ -54,11 +54,11 @@ const robotsRoutes: RoutesInterface[] = [
 	 * Configuration sub tabs
 	 */
 	{
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.MAIN,
+		path: `${AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION}`,
 		component: Robot
 	},
 	{
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.ROBOT,
+		path: `${AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.CONFIGURATION}/:configId`,
 		component: Robot
 	},
 

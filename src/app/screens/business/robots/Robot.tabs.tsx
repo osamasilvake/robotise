@@ -10,6 +10,7 @@ import PageError from '../../../components/content/page-error/PageError';
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
+import { RobotConfigurationTabsTypeEnum } from './content/configuration/RobotConfiguration.enum';
 import { RobotParamsInterface } from './Robot.interface';
 import robotsRoutes from './Robots.routes';
 
@@ -43,9 +44,18 @@ const RobotTabs: FC = () => {
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
 		const cPath = location.pathname.replace(skipLastSlashes, '');
-		const cIndex = robotsRoutes.findIndex(
-			(r) => r.path.replace(':robotId', cRobotId) === cPath
-		);
+		const cIndex = robotsRoutes.findIndex((r) => {
+			if (cPath.indexOf('configuration')) {
+				const n = location.pathname.replace(skipLastSlashes, '').lastIndexOf('/');
+				const lastPart = location.pathname.substring(n + 1);
+				return (
+					r.path
+						.replace(':configId', lastPart || RobotConfigurationTabsTypeEnum.CLOUD)
+						.replace(':robotId', cRobotId) === cPath
+				);
+			}
+			return r.path.replace(':robotId', cRobotId) === cPath;
+		});
 
 		setValue(cIndex - offset);
 	}, [location.pathname, cRobotId]);
@@ -57,7 +67,9 @@ const RobotTabs: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const link = robotsRoutes[value + offset].path.replace(':robotId', cRobotId);
+		const link = robotsRoutes[value + offset].path
+			.replace(':configId', RobotConfigurationTabsTypeEnum.CLOUD)
+			.replace(':robotId', cRobotId);
 
 		// navigate
 		navigate(link);

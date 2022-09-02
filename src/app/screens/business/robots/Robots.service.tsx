@@ -543,11 +543,7 @@ class RobotsService {
 	 */
 	robotConfigurationFetch = (robotId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIGS;
-		return HttpClientService.get<RCContentInterface>(url.replace(':robotId', robotId), {
-			params: {
-				'filter[sectionName]': 'gui'
-			}
-		});
+		return HttpClientService.get<RCContentInterface>(url.replace(':robotId', robotId));
 	};
 
 	/**

@@ -21,7 +21,7 @@ export const breadcrumbs = (): BreadcrumbLinksInterface[] => {
 			show: !!paths.length
 		},
 		...paths.map((path, index) => ({
-			text: strRemoveSymbols(strCapitalLetterAndCamelCaseToDash(path)),
+			text: strCapitalLetterAndCamelCaseToDash(strRemoveSymbols(path)),
 			link: `/${paths.slice(0, index + 1).join('/')}`,
 			isLast: index === paths.length - 1,
 			show: true

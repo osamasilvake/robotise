@@ -1,4 +1,4 @@
-import { InfoOutlined } from '@mui/icons-material';
+import { HelpOutline } from '@mui/icons-material';
 import { Box, Grid, List, ListItem, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -87,7 +87,7 @@ const SitePerformanceDemographyInventory: FC<SitePerformanceDemographyInventoryI
 							</List>
 						</Box>
 					}>
-					<InfoOutlined fontSize="small" />
+					<HelpOutline fontSize="small" />
 				</Tooltip>
 			</Stack>
 

@@ -1,4 +1,4 @@
-import { InfoOutlined } from '@mui/icons-material';
+import { HelpOutline } from '@mui/icons-material';
 import { Grid, Stack, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +28,7 @@ const SitePerformanceDemographyOrders: FC<SitePerformanceDemographyOrdersInterfa
 
 				{/* Tooltip */}
 				<Tooltip title={t(`${translation}.DEMOGRAPHY.ORDERS.TOOLTIP`)}>
-					<InfoOutlined fontSize="small" />
+					<HelpOutline fontSize="small" />
 				</Tooltip>
 			</Stack>
 

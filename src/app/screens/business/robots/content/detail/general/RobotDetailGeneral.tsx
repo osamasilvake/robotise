@@ -1,4 +1,4 @@
-import { Edit, InfoOutlined } from '@mui/icons-material';
+import { Edit, HelpOutline } from '@mui/icons-material';
 import { Box, Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -157,7 +157,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					</Typography>
 					{robotTwins.mission?.value?.description && (
 						<Tooltip title={robotTwins.mission?.value?.description}>
-							<InfoOutlined fontSize="small" className={classes.sGridItemInfoIcon} />
+							<HelpOutline fontSize="small" className={classes.sGridItemInfoIcon} />
 						</Tooltip>
 					)}
 				</Stack>

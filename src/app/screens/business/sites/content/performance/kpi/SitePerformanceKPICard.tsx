@@ -1,4 +1,4 @@
-import { InfoOutlined } from '@mui/icons-material';
+import { HelpOutline } from '@mui/icons-material';
 import { Box, Card, CardContent, Icon, Stack, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -33,7 +33,7 @@ const SitePerformanceKPICard: FC<SitePerformanceKPIInterface> = (props) => {
 
 						{/* Tooltip */}
 						<Tooltip title={tooltip}>
-							<InfoOutlined fontSize="small" />
+							<HelpOutline fontSize="small" />
 						</Tooltip>
 					</Stack>
 				)}

@@ -1,4 +1,4 @@
-import { ChatOutlined, Check, Close, InfoOutlined, VisibilityOff } from '@mui/icons-material';
+import { ChatOutlined, Check, Close, HelpOutline, VisibilityOff } from '@mui/icons-material';
 import { Box, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -127,7 +127,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 						</Typography>
 						{mission.description && (
 							<Tooltip title={mission.description}>
-								<InfoOutlined fontSize="small" className={classes.sTableIcon} />
+								<HelpOutline fontSize="small" className={classes.sTableIcon} />
 							</Tooltip>
 						)}
 					</Stack>

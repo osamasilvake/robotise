@@ -31,7 +31,6 @@ const RobotDetailLocationCardPlannedPath: FC<RobotDetailLocationCardPlannedPathI
 				className={classes.sCardPlannedPath}>
 				<marker
 					id="flag"
-					viewBox="0 0 24 24"
 					refX="5"
 					refY="20"
 					markerUnits="strokeWidth"

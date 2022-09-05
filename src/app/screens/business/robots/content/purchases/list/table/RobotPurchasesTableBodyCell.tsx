@@ -76,7 +76,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			} else if (RobotPurchasesTableColumnsTypeEnum.TOTAL_PRICE === column.id) {
 				const price = +value;
 				return price > 0
-					? `${currencyFormat(price, purchase.currency, i18next.language)}`
+					? `${currencyFormat(price, i18next.language, purchase.currency)}`
 					: 0;
 			} else if (RobotPurchasesTableColumnsTypeEnum.COMMENT === column.id) {
 				return <RobotPurchasesTableBodyCellComment purchase={purchase} />;

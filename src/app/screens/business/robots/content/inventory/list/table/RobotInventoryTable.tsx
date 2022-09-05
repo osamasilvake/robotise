@@ -79,7 +79,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 				return lane[column.id];
 			case RobotInventoryTableColumnsTypeEnum.PRICE:
 				return product
-					? `${currencyFormat(product[column.id], currency, i18next.language)}`
+					? `${currencyFormat(product[column.id], i18next.language, currency)}`
 					: none;
 			default:
 				return product ? product[column.id] || none : none;

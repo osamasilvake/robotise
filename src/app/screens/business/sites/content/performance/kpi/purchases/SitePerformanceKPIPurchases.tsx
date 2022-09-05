@@ -51,7 +51,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 					<SitePerformanceKPICard
 						title={t(`${translation}.SUM.LABEL`)}
 						tooltip={t(`${translation}.SUM.TOOLTIP`)}
-						value={currencyFormat(sumTotal, siteSingle?.currency, i18next.language)}
+						value={currencyFormat(sumTotal, i18next.language, siteSingle?.currency)}
 						icon="functions"
 					/>
 				</Grid>
@@ -60,7 +60,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 					<SitePerformanceKPICard
 						title={t(`${translation}.AVG_REVENUE_PER_PERIOD.LABEL`)}
 						tooltip={t(`${translation}.AVG_REVENUE_PER_PERIOD.TOOLTIP`)}
-						value={currencyFormat(avgSumTotal, siteSingle?.currency, i18next.language)}
+						value={currencyFormat(avgSumTotal, i18next.language, siteSingle?.currency)}
 						icon="hide_source"
 						rotateIcon
 					/>
@@ -70,7 +70,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 					<SitePerformanceKPICard
 						title={t(`${translation}.AVG_TOTAL_PRICE.LABEL`)}
 						tooltip={t(`${translation}.AVG_TOTAL_PRICE.TOOLTIP`)}
-						value={currencyFormat(avgTotal, siteSingle?.currency, i18next.language)}
+						value={currencyFormat(avgTotal, i18next.language, siteSingle?.currency)}
 						icon="hide_source"
 						rotateIcon
 					/>
@@ -80,7 +80,7 @@ const SitePerformanceKPIPurchases: FC = () => {
 					<SitePerformanceKPICard
 						title={t(`${translation}.AVG_TOTAL_QUANTITY.LABEL`)}
 						tooltip={t(`${translation}.AVG_TOTAL_QUANTITY.TOOLTIP`)}
-						value={avgTotalQuantity}
+						value={currencyFormat(avgTotalQuantity, i18next.language)}
 						icon="hide_source"
 						rotateIcon
 					/>

@@ -1,9 +1,11 @@
 import { Box, Grid, Typography } from '@mui/material';
+import i18next from 'i18next';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { performanceSelector } from '../../../../../../../slices/business/sites/performance/Performance.slice';
+import { currencyFormat } from '../../../../../../../utilities/methods/Number';
 import { SitePerformanceDemographyTypeEnum } from '../../demography/SitePerformanceDemography.enum';
 import { SitePerformanceKPIStyle } from '../SitePerformanceKPI.style';
 import SitePerformanceKPICard from '../SitePerformanceKPICard';
@@ -68,7 +70,7 @@ const SitePerformanceKPIOrders: FC = () => {
 					<SitePerformanceKPICard
 						title={t(`${translation}.AVG_MINIBAR_ORDERS.LABEL`)}
 						tooltip={t(`${translation}.AVG_MINIBAR_ORDERS.TOOLTIP`)}
-						value={avgMinibar}
+						value={currencyFormat(avgMinibar, i18next.language)}
 						icon="hide_source"
 						rotateIcon
 					/>
@@ -78,7 +80,7 @@ const SitePerformanceKPIOrders: FC = () => {
 					<SitePerformanceKPICard
 						title={t(`${translation}.AVG_ROOM_SERVICE_ORDERS.LABEL`)}
 						tooltip={t(`${translation}.AVG_ROOM_SERVICE_ORDERS.TOOLTIP`)}
-						value={avgRoomService}
+						value={currencyFormat(avgRoomService, i18next.language)}
 						icon="hide_source"
 						rotateIcon
 					/>

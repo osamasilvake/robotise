@@ -103,7 +103,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				return dateFormat1(String(value));
 			} else if (typeof value === 'number') {
 				if (SiteProductsTableColumnsTypeEnum.PRICE === column.id) {
-					return `${currencyFormat(value, currency, i18next.language)}`;
+					return `${currencyFormat(value, i18next.language, currency)}`;
 				}
 				return value;
 			} else if (typeof value === 'string') {

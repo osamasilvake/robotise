@@ -71,7 +71,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.QUANTITY:
 				return quantity;
 			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.REVENUE:
-				return product ? `${currencyFormat(price, currency, i18next.language)}` : none;
+				return product ? `${currencyFormat(price, i18next.language, currency)}` : none;
 			default:
 				return product ? product[column.id] || none : none;
 		}

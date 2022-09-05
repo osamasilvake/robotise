@@ -43,10 +43,10 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 			case RobotPurchaseTableColumnsTypeEnum.QUANTITY:
 				return quantity;
 			case RobotPurchaseTableColumnsTypeEnum.PRICE_UNIT:
-				return `${currencyFormat(price, currency, i18next.language)}`;
+				return `${currencyFormat(price, i18next.language, currency)}`;
 			case RobotPurchaseTableColumnsTypeEnum.PRICE_TOTAL:
 			default:
-				return `${currencyFormat(quantity * price, currency, i18next.language)}`;
+				return `${currencyFormat(quantity * price, i18next.language, currency)}`;
 		}
 	};
 
@@ -96,8 +96,8 @@ const RobotPurchaseTable: FC<RobotPurchaseTableInterface> = (props) => {
 								<Typography variant="h6">
 									{`${currencyFormat(
 										+purchase.content.totalPrice,
-										purchase?.content?.currency,
-										i18next.language
+										i18next.language,
+										purchase?.content?.currency
 									)}`}
 								</Typography>
 							)}

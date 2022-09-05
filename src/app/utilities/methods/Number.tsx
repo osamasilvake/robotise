@@ -15,17 +15,23 @@ const randomNum = (min: number, max: number): number => {
 /**
  * currency format
  * @param value
- * @param currency
  * @param language
+ * @param currency
  * @returns
  */
-const currencyFormat = (value: number, currency: string | undefined, language: string) => {
-	const formatter = new Intl.NumberFormat(language, {
-		style: 'currency',
-		currency: currency || AppConfigService.AppOptions.common.currencies[0].id,
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2
-	});
+const currencyFormat = (value: number, language: string, currency?: string) => {
+	let formatter: Intl.NumberFormat;
+	if (currency) {
+		formatter = new Intl.NumberFormat(language, {
+			style: 'currency',
+			currency: currency,
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		});
+	} else {
+		formatter = new Intl.NumberFormat(language);
+	}
+
 	return formatter.format(value);
 };
 

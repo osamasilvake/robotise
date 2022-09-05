@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, FormControlLabel, Switch, Typography } from '@mui/material';
+import clsx from 'clsx';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -23,7 +24,10 @@ const RobotConfigurationEmergency: FC<RobotConfigurationEmergencyInterface> = (p
 	const translation = 'CONTENT.CONFIGURATION.EMERGENCY';
 
 	return (
-		<Card square elevation={1} className={classes.sCard}>
+		<Card
+			square
+			elevation={1}
+			className={clsx(classes.sCard, { [classes.sCardActive]: emergencyState })}>
 			<CardContent>
 				<Box>
 					<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>

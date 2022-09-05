@@ -5,8 +5,11 @@ import { AppConfigService } from '../../../../../../../services';
 
 export const RobotConfigurationEmergencyStyle = makeStyles((theme: Theme) => ({
 	sCard: {
-		backgroundColor: alpha(AppConfigService.AppOptions.colors.c12, 0.15),
-		borderTop: `${theme.typography.pxToRem(3)} solid ${AppConfigService.AppOptions.colors.c12}`
+		borderTop: `${theme.typography.pxToRem(3)} solid transparent`
+	},
+	sCardActive: {
+		borderTop: `${theme.typography.pxToRem(3)} solid ${AppConfigService.AppOptions.colors.c12}`,
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c12, 0.15)
 	},
 	sBox: {
 		marginTop: theme.spacing(2)

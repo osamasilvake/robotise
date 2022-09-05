@@ -1849,14 +1849,16 @@
 						},
 						"VALUES": {
 							"COMMAND": {
-								"create-order": "Create Order",
-								"set-control-mode": "Set Control Mode",
 								"catch-camera-image": "Catch Camera Image",
-								"cancel-orders": "Cancel Orders",
-								"sync-products": "Sync Products",
-								"remote-control-translate": "Remote Control Translate",
+								"set-control-mode": "Set Control Mode",
 								"remote-control-rotate": "Remote Control Rotate",
+								"remote-control-translate": "Remote Control Translate",
 								"set-mute-sensor-state": "Set Mute Sensor State",
+								"sync-products": "Sync Products",
+								"update-robot-config-section": "Update Robot Config section",
+								"create-order": "Create Order",
+								"cancel-orders": "Cancel Orders",
+								"set-drawer-state": "Set Drawer State",
 								"set-emergency-state": "Set Emergency State",
 								"finish-order": "Finish Order"
 							},

@@ -1,8 +1,11 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { dateDaysPriorToToday } from '../../../utilities/methods/Date';
+import { GeneralAllOrdersListPayloadInterface } from './all-orders/list/GeneralAllOrdersList.interface';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
 import {
+	GeneralAllOrderAxiosGetInterface,
+	GeneralAllOrdersAxiosGetInterface,
 	GeneralEmailAxiosGetInterface,
 	GeneralEmailsAxiosGetInterface,
 	GeneralOrderModesAxiosGetInterface
@@ -38,6 +41,37 @@ class GeneralService {
 			emailId
 		);
 		return HttpClientService.get<GeneralEmailAxiosGetInterface>(url);
+	};
+
+	/**
+	 * fetch all orders
+	 * @param payload
+	 * @returns
+	 */
+	generalAllOrdersFetch = (payload: GeneralAllOrdersListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
+		return HttpClientService.get<GeneralAllOrdersAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.siteId || undefined,
+				'filter[active]': payload.activeOrders || undefined,
+				'filter[isDebug]': payload.debug ? undefined : false,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
+	 * fetch order
+	 * @param orderId
+	 * @returns
+	 */
+	generalAllOrderFetch = (orderId: string) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.SINGLE.replace(
+			':orderId',
+			orderId
+		);
+		return HttpClientService.get<GeneralAllOrderAxiosGetInterface>(url);
 	};
 
 	/**

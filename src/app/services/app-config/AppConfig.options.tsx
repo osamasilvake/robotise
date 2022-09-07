@@ -95,6 +95,17 @@ const AppOptions = (config: typeof AppConfigService) => {
 			},
 			business: {
 				general: {
+					allOrders: {
+						detail: {
+							refreshTime: 10000
+						},
+						list: {
+							refreshTime: 10000,
+							showPageSizes: true,
+							defaultPageSize: 50,
+							pageSizes: [5, 10, 15, 20, 50, 100]
+						}
+					},
 					emails: {
 						list: {
 							refreshTime: 10000,

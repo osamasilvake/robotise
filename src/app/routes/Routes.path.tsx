@@ -10,6 +10,10 @@ const appRoutes = {
 				EMAILS: {
 					MAIN: '/general/emails',
 					DETAIL: '/general/emails/:emailId'
+				},
+				ALL_ORDERS: {
+					MAIN: '/general/all-orders',
+					DETAIL: '/general/all-orders/:orderId'
 				}
 			},
 			SITES: {

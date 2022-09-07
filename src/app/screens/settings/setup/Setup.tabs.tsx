@@ -1,7 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { FC, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
@@ -17,13 +17,14 @@ const SetupTabs: FC = () => {
 	const location = useLocation();
 
 	const translation = 'CONTENT.TABS';
+	const offset = 1;
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
 		const cPath = location.pathname.replace(skipLastSlashes, '');
 		const cIndex = setupRoutes.findIndex((r) => r.path === cPath);
 
-		setValue(cIndex);
+		setValue(cIndex - offset);
 	}, [location.pathname]);
 
 	/**
@@ -33,11 +34,16 @@ const SetupTabs: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const link = setupRoutes[value].path;
+		const link = setupRoutes[value + offset].path;
 
 		// navigate
 		navigate(link);
 	};
+
+	// navigate to first tab
+	if (location.pathname === AppConfigService.AppRoutes.SCREENS.SETTINGS.SETUP.MAIN) {
+		return <Navigate to={AppConfigService.AppRoutes.SCREENS.SETTINGS.SETUP.WIFI_CONFIG} />;
+	}
 
 	return value !== -1 ? (
 		<Box>

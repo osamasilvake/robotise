@@ -27,12 +27,20 @@ const generalRoutes: RoutesInterface[] = [
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS.MAIN,
 		component: General
 	},
+	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_ORDERS.MAIN,
+		component: General
+	},
 
 	/**
 	 * Details
 	 */
 	{
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS.DETAIL,
+		component: Gen
+	},
+	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_ORDERS.DETAIL,
 		component: Gen
 	}
 ];

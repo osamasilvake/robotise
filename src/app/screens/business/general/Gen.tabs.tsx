@@ -1,10 +1,11 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { FC, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
+import GeneralAllOrdersList from './all-orders/list/GeneralAllOrdersList';
 import GeneralEmailsList from './emails/list/GeneralEmailsList';
 import generalRoutes from './General.routes';
 
@@ -16,13 +17,14 @@ const GenTabs: FC = () => {
 	const location = useLocation();
 
 	const translation = 'CONTENT.TABS';
+	const offset = 1;
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
 		const cPath = location.pathname.replace(skipLastSlashes, '');
 		const cIndex = generalRoutes.findIndex((r) => r.path === cPath);
 
-		setValue(cIndex);
+		setValue(cIndex - offset);
 	}, [location.pathname]);
 
 	/**
@@ -32,11 +34,16 @@ const GenTabs: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const link = generalRoutes[value].path;
+		const link = generalRoutes[value + offset].path;
 
 		// navigate
 		navigate(link);
 	};
+
+	// navigate to first tab
+	if (location.pathname === AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN) {
+		return <Navigate to={AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS.MAIN} />;
+	}
 
 	return value !== -1 ? (
 		<Box>
@@ -48,6 +55,7 @@ const GenTabs: FC = () => {
 				variant="scrollable"
 				textColor="primary">
 				<Tab label={t(`${translation}.EMAILS`)} />
+				<Tab label={t(`${translation}.ALL_ORDERS`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -57,6 +65,15 @@ const GenTabs: FC = () => {
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<GeneralEmailsList />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* All Orders */}
+				{value === 1 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<GeneralAllOrdersList />
 						</Suspense>
 					</ErrorBoundary>
 				)}

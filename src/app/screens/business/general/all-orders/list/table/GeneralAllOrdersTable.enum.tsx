@@ -1,4 +1,4 @@
-export enum RobotOrdersTableColumnsTypeEnum {
+export enum GeneralAllOrdersTableColumnsTypeEnum {
 	STATUS = 'status',
 	TARGET = 'location',
 	MODE = 'mode',
@@ -7,12 +7,12 @@ export enum RobotOrdersTableColumnsTypeEnum {
 	PURCHASE_DETAILS = 'orderReport'
 }
 
-export enum RobotOrdersTableSortTypeEnum {
+export enum GeneralAllOrdersTableSortTypeEnum {
 	DATE,
 	STRING
 }
 
-export enum RobotOrdersTableColumnStatusTypeEnum {
+export enum GeneralAllOrdersTableColumnStatusTypeEnum {
 	CREATED = 'created',
 	PENDING = 'pending',
 	ARRIVED = 'in_progress:arrived',

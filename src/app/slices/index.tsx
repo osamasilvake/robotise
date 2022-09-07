@@ -4,6 +4,8 @@ import { createLogger } from 'redux-logger';
 
 import app from './app/App.slice';
 import auth from './authentication/Auth.slice';
+import allOrder from './business/general/all-orders/AllOrder.slice';
+import allOrders from './business/general/all-orders/AllOrders.slice';
 import email from './business/general/emails/Email.slice';
 import emails from './business/general/emails/Emails.slice';
 import generalOperations from './business/general/GeneralOperations.slice';
@@ -39,9 +41,13 @@ import robotPassword from './setup/robot-password/RobotPassword.slice';
 const combinedReducer = combineReducers({
 	app,
 	auth,
+
 	generalOperations,
 	emails,
 	email,
+	allOrders,
+	allOrder,
+
 	sites,
 	siteOperations,
 	products,
@@ -53,6 +59,7 @@ const combinedReducer = combineReducers({
 	phoneCalls,
 	wifiHeatmap,
 	performance,
+
 	robotTwinsSummary,
 	robotTwins,
 	robotOperations,
@@ -64,9 +71,11 @@ const combinedReducer = combineReducers({
 	commandsLog,
 	elevatorCalls,
 	robotConfiguration,
+
 	alertCodes,
 	deepLink,
 	deepLinks,
+
 	middlewareConfig,
 	robotPassword
 });

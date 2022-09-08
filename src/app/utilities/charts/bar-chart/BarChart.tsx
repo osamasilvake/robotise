@@ -56,7 +56,7 @@ const BarReChart: FC<BarChartInterface> = (props) => {
 					<Tooltip
 						cursor={false}
 						labelFormatter={(t) => `${axisX}: ${dateFormat6(t)}`}
-						formatter={(value: number) => currencyFormat(value, language, currency)}
+						formatter={(value: string) => currencyFormat(+value, language, currency)}
 						labelStyle={styles.sTooltipLabel}
 					/>
 

@@ -6,13 +6,13 @@ const drawerBusinessList: DrawerListInterface[] = [
 	{
 		icon: 'apps',
 		label: 'BUSINESS.LIST.GENERAL',
-		hint: '📮',
+		hint: '📮  📦',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN
 	},
 	{
 		icon: 'apartment',
 		label: 'BUSINESS.LIST.SITES',
-		hint: '🏢  🍔  🛌🏻  📞  📈  ⚙️',
+		hint: '🏢  🍔  🛌🏻  📞  📈  ⚙️  📊',
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.MAIN
 	},
 	{

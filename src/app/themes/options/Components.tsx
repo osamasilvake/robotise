@@ -15,6 +15,9 @@ const ComponentsCustom: Components = {
 			},
 			img: {
 				maxWidth: '100%'
+			},
+			a: {
+				color: AppConfigService.AppOptions.colors.c9
 			}
 		}
 	},

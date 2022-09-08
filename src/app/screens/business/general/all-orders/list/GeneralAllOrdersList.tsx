@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../../../../../components/common/loader/Loader';
@@ -13,6 +13,7 @@ import {
 	allOrdersSelector
 } from '../../../../../slices/business/general/all-orders/AllOrders.slice';
 import GeneralAllOrdersActions from './actions/GeneralAllOrdersActions';
+import { generalAllOrdersPeriod } from './actions/GeneralAllOrdersActions.list';
 import { GeneralAllOrdersListPayloadInterface } from './GeneralAllOrdersList.interface';
 import { GeneralAllOrdersListStyle } from './GeneralAllOrdersList.style';
 import GeneralAllOrdersTable from './table/GeneralAllOrdersTable';
@@ -23,25 +24,33 @@ const GeneralAllOrdersList: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const allOrders = useSelector(allOrdersSelector);
 
+	const [currentPeriod, setCurrentPeriod] = useState(
+		allOrders.content?.state?.currentPeriod || generalAllOrdersPeriod[0]
+	);
+
 	const page = allOrders.content?.state?.page || 0;
 	const rowsPerPage =
 		allOrders.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.business.general.allOrders.list.defaultPageSize;
 	const siteId = allOrders.content?.state?.siteId;
+
+	const period = currentPeriod.id;
 	const includeAllOrders = !!allOrders.content?.state?.includeAllOrders;
 
 	const pageRef = useRef({
 		page: (allOrders.content?.meta?.page || 0) - 1,
 		rowsPerPage,
 		siteId,
+		period,
 		includeAllOrders
 	});
 
 	useEffect(() => {
 		const payload: GeneralAllOrdersListPayloadInterface = {
-			siteId,
 			page,
 			rowsPerPage,
+			siteId,
+			period,
 			includeAllOrders
 		};
 
@@ -52,6 +61,13 @@ const GeneralAllOrdersList: FC = () => {
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.siteId = siteId;
+		} else if (pageRef.current.period !== period && page === 0) {
+			// dispatch: fetch all orders
+			dispatch(AllOrdersFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.period = period;
 		} else if (pageRef.current.includeAllOrders !== includeAllOrders && page === 0) {
 			// dispatch: fetch all orders
 			dispatch(AllOrdersFetchList(payload));
@@ -82,7 +98,7 @@ const GeneralAllOrdersList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, allOrders.content, rowsPerPage, page, siteId, includeAllOrders]);
+	}, [dispatch, allOrders.content, rowsPerPage, page, siteId, period, includeAllOrders]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -94,6 +110,7 @@ const GeneralAllOrdersList: FC = () => {
 							page: 0,
 							rowsPerPage,
 							siteId,
+							period,
 							includeAllOrders
 						},
 						true
@@ -108,7 +125,7 @@ const GeneralAllOrdersList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allOrders.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allOrders.content, page, rowsPerPage, siteId, includeAllOrders]);
+	}, [dispatch, allOrders.content, page, rowsPerPage, siteId, period, includeAllOrders]);
 
 	// loader
 	if (allOrders.loader) {
@@ -128,7 +145,12 @@ const GeneralAllOrdersList: FC = () => {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}
-				<GeneralAllOrdersActions siteId={siteId} includeAllOrders={includeAllOrders} />
+				<GeneralAllOrdersActions
+					siteId={siteId}
+					currentPeriod={currentPeriod.id}
+					setCurrentPeriod={setCurrentPeriod}
+					includeAllOrders={includeAllOrders}
+				/>
 
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE" paddingTop />
@@ -139,7 +161,12 @@ const GeneralAllOrdersList: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Actions */}
-			<GeneralAllOrdersActions siteId={siteId} includeAllOrders={includeAllOrders} />
+			<GeneralAllOrdersActions
+				siteId={siteId}
+				currentPeriod={currentPeriod.id}
+				setCurrentPeriod={setCurrentPeriod}
+				includeAllOrders={includeAllOrders}
+			/>
 
 			{/* Table */}
 			<GeneralAllOrdersTable

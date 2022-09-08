@@ -1,6 +1,7 @@
 export interface GeneralAllOrdersListPayloadInterface {
-	siteId?: string;
 	page: number;
 	rowsPerPage: number;
+	siteId?: string;
+	period?: string;
 	includeAllOrders: boolean;
 }

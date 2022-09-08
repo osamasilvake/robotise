@@ -586,6 +586,11 @@
 								"ALL_SITES": "All Sites",
 								"LABEL": "Sites"
 							},
+							"PERIOD": {
+								"LABEL": "Timeframe",
+								"24HR": "Last 24 Hrs",
+								"DAY": "Last 7 Days"
+							},
 							"INCLUDE_ALL_ORDERS": "Include All Orders"
 						}
 					},

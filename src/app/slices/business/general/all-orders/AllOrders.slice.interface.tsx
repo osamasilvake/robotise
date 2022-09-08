@@ -1,4 +1,5 @@
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
+import { GeneralAllOrdersPeriodListInterface } from '../../../../screens/business/general/all-orders/list/actions/GeneralAllOrdersActions.interface';
 import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
 
 export interface SliceAllOrdersInterface {
@@ -32,9 +33,10 @@ export interface SAODataInterface {
 }
 
 export interface SAOStateInterface {
-	siteId?: string;
 	page?: number;
 	rowsPerPage?: number;
+	siteId?: string;
+	currentPeriod?: GeneralAllOrdersPeriodListInterface;
 	includeAllOrders?: boolean;
 }
 

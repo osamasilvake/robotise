@@ -1,6 +1,7 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { dateDaysPriorToToday } from '../../../utilities/methods/Date';
+import { GeneralAllOrdersPeriodTypeEnum } from './all-orders/list/actions/GeneralAllOrdersActions.enum';
 import { GeneralAllOrdersListPayloadInterface } from './all-orders/list/GeneralAllOrdersList.interface';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
 import {
@@ -50,9 +51,14 @@ class GeneralService {
 	 */
 	generalAllOrdersFetch = (payload: GeneralAllOrdersListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
+
+		const isPeriod24Hr = payload.period === GeneralAllOrdersPeriodTypeEnum.HR24;
+		const date = isPeriod24Hr ? dateDaysPriorToToday(1) : dateDaysPriorToToday(7);
+
 		return HttpClientService.get<GeneralAllOrdersAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.siteId || undefined,
+				'filter[createdAt][gte]': date,
 				'filter[status][ne]': payload.includeAllOrders ? undefined : 'finished',
 				'filter[isDebug]': false,
 				'page[number]': payload.page + 1,

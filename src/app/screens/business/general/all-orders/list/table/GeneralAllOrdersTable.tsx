@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
-import { SAOStateInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import {
-	ordersSelector,
-	OrderUpdateState
-} from '../../../../../../slices/business/robots/orders/Orders.slice';
+	allOrdersSelector,
+	AllOrderUpdateState
+} from '../../../../../../slices/business/general/all-orders/AllOrders.slice';
+import { SAOStateInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import { GeneralAllOrdersTableColumnsTypeEnum } from './GeneralAllOrdersTable.enum';
 import {
 	GeneralAllOrdersTableHeadOrder,
@@ -27,7 +27,7 @@ const GeneralAllOrdersTable: FC<GeneralAllOrdersTableInterface> = (props) => {
 	const classes = GeneralAllOrdersTableStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
-	const orders = useSelector(ordersSelector);
+	const allOrders = useSelector(allOrdersSelector);
 
 	const [order, setOrder] = useState<GeneralAllOrdersTableHeadOrder>('desc');
 	const [orderBy, setOrderBy] = useState<GeneralAllOrdersTableColumnsTypeEnum>(
@@ -63,7 +63,7 @@ const GeneralAllOrdersTable: FC<GeneralAllOrdersTableInterface> = (props) => {
 			...content?.state,
 			page: newPage
 		};
-		dispatch(OrderUpdateState(state));
+		dispatch(AllOrderUpdateState(state));
 	};
 
 	/**
@@ -77,7 +77,7 @@ const GeneralAllOrdersTable: FC<GeneralAllOrdersTableInterface> = (props) => {
 			page: 0,
 			rowsPerPage: +event.target.value
 		};
-		dispatch(OrderUpdateState(state));
+		dispatch(AllOrderUpdateState(state));
 	};
 
 	return (
@@ -120,7 +120,7 @@ const GeneralAllOrdersTable: FC<GeneralAllOrdersTableInterface> = (props) => {
 				rowsPerPage={rowsPerPage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 				className={clsx({
-					[classes.sTablePagination]: orders.loading
+					[classes.sTablePagination]: allOrders.loading
 				})}
 			/>
 		</Box>

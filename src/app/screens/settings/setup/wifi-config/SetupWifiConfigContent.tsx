@@ -203,7 +203,7 @@ const SetupWifiConfigContent: FC = () => {
 											label={t(`${translation}.FORM.FIELDS.COUNTRY.LABEL`)}
 										/>
 									)}
-									sx={{ minWidth: 250 }}
+									sx={{ minWidth: 200 }}
 								/>
 							</FormControl>
 						</Grid>

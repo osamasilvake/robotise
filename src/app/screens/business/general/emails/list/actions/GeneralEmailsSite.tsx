@@ -70,7 +70,7 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 			renderInput={(params) => (
 				<TextField {...params} label={t(`${translation}.SITE.LABEL`)} />
 			)}
-			sx={{ minWidth: 250 }}
+			sx={{ minWidth: 180 }}
 		/>
 	) : null;
 };

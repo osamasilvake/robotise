@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, Box, ListItem, TextField } from '@mui/material';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,18 +60,25 @@ const GeneralEmailsSite: FC<GeneralEmailsSiteInterface> = (props) => {
 	};
 
 	return sitesList.length ? (
-		<Autocomplete
-			disablePortal
-			size="small"
-			id="sites"
-			options={sitesList}
-			value={sitesList.find((site) => site.id === siteId) || sitesList[0]}
-			onChange={handleSite}
-			renderInput={(params) => (
-				<TextField {...params} label={t(`${translation}.SITE.LABEL`)} />
-			)}
-			sx={{ minWidth: 180 }}
-		/>
+		<Box>
+			<Autocomplete
+				disablePortal
+				size="small"
+				id="sites"
+				options={sitesList}
+				value={sitesList.find((site) => site.id === siteId) || sitesList[0]}
+				onChange={handleSite}
+				renderOption={(props, option) => (
+					<ListItem {...props} key={option.id}>
+						{option.label}
+					</ListItem>
+				)}
+				renderInput={(params) => (
+					<TextField {...params} label={t(`${translation}.SITE.LABEL`)} />
+				)}
+				sx={{ minWidth: 180 }}
+			/>
+		</Box>
 	) : null;
 };
 export default GeneralEmailsSite;

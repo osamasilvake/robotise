@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
-import { SOCStateInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
+import { SAOStateInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import {
 	ordersSelector,
 	OrderUpdateState
@@ -59,7 +59,7 @@ const GeneralAllOrdersTable: FC<GeneralAllOrdersTableInterface> = (props) => {
 	 */
 	const handleChangePage = (_event: unknown, newPage: number) => {
 		// dispatch: update state
-		const state: SOCStateInterface = {
+		const state: SAOStateInterface = {
 			...content?.state,
 			page: newPage
 		};
@@ -72,7 +72,7 @@ const GeneralAllOrdersTable: FC<GeneralAllOrdersTableInterface> = (props) => {
 	 */
 	const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
 		// dispatch: update state
-		const state: SOCStateInterface = {
+		const state: SAOStateInterface = {
 			...content?.state,
 			page: 0,
 			rowsPerPage: +event.target.value

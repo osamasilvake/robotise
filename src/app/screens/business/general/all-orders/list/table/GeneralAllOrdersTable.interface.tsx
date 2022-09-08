@@ -1,13 +1,13 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import {
-	SOCDataInterface,
-	SOContentInterface
+	SAOContentInterface,
+	SAODataInterface
 } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import { GeneralAllOrdersTableColumnsTypeEnum } from './GeneralAllOrdersTable.enum';
 
 export interface GeneralAllOrdersTableInterface {
-	content: SOContentInterface | null;
+	content: SAOContentInterface | null;
 	page: number;
 	rowsPerPage: number;
 }
@@ -20,7 +20,7 @@ export interface GeneralAllOrdersTableHeadInterface {
 }
 
 export interface GeneralAllOrdersTableBodyInterface {
-	content: SOContentInterface | null;
+	content: SAOContentInterface | null;
 	order: GeneralAllOrdersTableHeadOrder;
 	orderBy: GeneralAllOrdersTableColumnsTypeEnum;
 	page: number;
@@ -29,17 +29,17 @@ export interface GeneralAllOrdersTableBodyInterface {
 
 export interface GeneralAllOrdersTableBodyCellInterface {
 	column: GeneralAllOrdersTableColumnInterface;
-	order: SOCDataInterface;
+	order: SAODataInterface;
 }
 
 export interface DialogCancelOrderInterface {
-	order: SOCDataInterface;
+	order: SAODataInterface;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface DialogRestartOrderInterface {
-	order: SOCDataInterface;
+	order: SAODataInterface;
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 }

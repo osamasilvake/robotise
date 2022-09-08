@@ -1,12 +1,12 @@
 import { AllOrderHistoryTypeEnum } from './AllOrder.slice.enum';
-import { SOCDataInterface } from './AllOrders.slice.interface';
+import { SAODataInterface } from './AllOrders.slice.interface';
 
 /**
  * map order
  * @param result
  * @returns
  */
-export const mapOrder = (result: SOCDataInterface) =>
+export const mapOrder = (result: SAODataInterface) =>
 	result.history
 		? {
 				...result,

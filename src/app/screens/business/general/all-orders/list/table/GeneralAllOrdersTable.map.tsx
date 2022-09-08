@@ -1,5 +1,5 @@
 import { StatusTypeEnum } from '../../../../../../components/common/status/Status.enum';
-import { SOCDataInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
+import { SAODataInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import { GeneralAllOrdersTableColumnStatusTypeEnum } from './GeneralAllOrdersTable.enum';
 
 /**
@@ -7,7 +7,7 @@ import { GeneralAllOrdersTableColumnStatusTypeEnum } from './GeneralAllOrdersTab
  * @param order
  * @returns
  */
-export const mapOrder = (order: SOCDataInterface) => {
+export const mapOrder = (order: SAODataInterface) => {
 	const translation = 'CONTENT.ALL_ORDERS';
 	return {
 		...order,

@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
 import {
-	SOCDataInterface,
-	SOContentInterface
+	SAOContentInterface,
+	SAODataInterface
 } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import { dateSort } from '../../../../../../utilities/methods/Date';
 import {
@@ -32,12 +32,13 @@ const GeneralAllOrdersTableBody: FC<GeneralAllOrdersTableBodyInterface> = (props
 	 * @param content
 	 * @returns
 	 */
-	const sortTableData = (content: SOContentInterface): SOCDataInterface[] => {
+	const sortTableData = (content: SAOContentInterface): SAODataInterface[] => {
 		let type;
 		switch (orderBy) {
 			case GeneralAllOrdersTableColumnsTypeEnum.CREATED:
 				type = GeneralAllOrdersTableSortTypeEnum.DATE;
 				break;
+			case GeneralAllOrdersTableColumnsTypeEnum.SITE_ROBOT:
 			case GeneralAllOrdersTableColumnsTypeEnum.STATUS:
 			case GeneralAllOrdersTableColumnsTypeEnum.TARGET:
 			case GeneralAllOrdersTableColumnsTypeEnum.MODE:
@@ -61,20 +62,24 @@ const GeneralAllOrdersTableBody: FC<GeneralAllOrdersTableBodyInterface> = (props
 		key: GeneralAllOrdersTableColumnsTypeEnum,
 		type: GeneralAllOrdersTableSortTypeEnum
 	) => {
-		return (a: SOCDataInterface, b: SOCDataInterface) => {
-			const dateA = a[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
-			const dateB = b[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
-			switch (type) {
-				case GeneralAllOrdersTableSortTypeEnum.DATE:
-					return dateSort(dateA).diff(dateSort(dateB));
-				case GeneralAllOrdersTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+		return (a: SAODataInterface, b: SAODataInterface) => {
+			const siteRobot = key === GeneralAllOrdersTableColumnsTypeEnum.SITE_ROBOT;
+			if (!siteRobot) {
+				const dateA = a[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
+				const dateB = b[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
+				switch (type) {
+					case GeneralAllOrdersTableSortTypeEnum.DATE:
+						return dateSort(dateA).diff(dateSort(dateB));
+					case GeneralAllOrdersTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 
@@ -83,7 +88,7 @@ const GeneralAllOrdersTableBody: FC<GeneralAllOrdersTableBodyInterface> = (props
 	 * @param order
 	 * @returns
 	 */
-	const handleShowOrderDetail = (order: SOCDataInterface) => () => {
+	const handleShowOrderDetail = (order: SAODataInterface) => () => {
 		// prepare link
 		const url = AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_ORDERS.DETAIL;
 		const link = url.replace(':orderId', order.id);
@@ -98,7 +103,7 @@ const GeneralAllOrdersTableBody: FC<GeneralAllOrdersTableBodyInterface> = (props
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((order: SOCDataInterface) => (
+					.map((order: SAODataInterface) => (
 						<TableRow
 							hover
 							key={order.id}

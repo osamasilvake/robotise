@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Status from '../../../../../../components/common/status/Status';
-import { SOCDataHistoryInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
+import { SAODataHistoryInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { mapStatus } from '../../list/table/GeneralAllOrdersTable.map';
 import { GeneralAllOrderTableColumnsTypeEnum } from './GeneralAllOrderTable.enum';
@@ -24,7 +24,7 @@ const GeneralAllOrderTable: FC<GeneralAllOrderTableInterface> = (props) => {
 	 * @returns
 	 */
 	const setCellValue = (
-		row: SOCDataHistoryInterface,
+		row: SAODataHistoryInterface,
 		column: GeneralAllOrderTableColumnInterface
 	) => {
 		switch (column.id) {

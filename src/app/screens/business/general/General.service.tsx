@@ -53,8 +53,8 @@ class GeneralService {
 		return HttpClientService.get<GeneralAllOrdersAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.siteId || undefined,
-				'filter[active]': payload.activeOrders || undefined,
-				'filter[isDebug]': payload.debug ? undefined : false,
+				'filter[status][ne]': payload.includeAllOrders ? undefined : 'finished',
+				'filter[isDebug]': false,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}

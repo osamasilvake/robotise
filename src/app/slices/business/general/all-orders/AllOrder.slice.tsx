@@ -66,10 +66,10 @@ export const AllOrderFetch =
 	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const order = states.order;
+		const allOrder = states.allOrder;
 
 		// return on busy
-		if (order && (order.loader || order.loading)) {
+		if (allOrder && (allOrder.loader || allOrder.loading)) {
 			return;
 		}
 

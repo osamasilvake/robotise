@@ -12,6 +12,7 @@ import {
 	AllOrdersFetchList,
 	allOrdersSelector
 } from '../../../../../slices/business/general/all-orders/AllOrders.slice';
+import GeneralAllOrdersActions from './actions/GeneralAllOrdersActions';
 import { GeneralAllOrdersListPayloadInterface } from './GeneralAllOrdersList.interface';
 import { GeneralAllOrdersListStyle } from './GeneralAllOrdersList.style';
 import GeneralAllOrdersTable from './table/GeneralAllOrdersTable';
@@ -26,15 +27,14 @@ const GeneralAllOrdersList: FC = () => {
 	const rowsPerPage =
 		allOrders.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.business.general.allOrders.list.defaultPageSize;
-	const activeOrders = !!allOrders.content?.state?.activeOrders;
-	const debug = !!allOrders.content?.state?.debug;
 	const siteId = allOrders.content?.state?.siteId;
+	const includeAllOrders = !!allOrders.content?.state?.includeAllOrders;
 
 	const pageRef = useRef({
 		page: (allOrders.content?.meta?.page || 0) - 1,
 		rowsPerPage,
-		activeOrders,
-		debug
+		siteId,
+		includeAllOrders
 	});
 
 	useEffect(() => {
@@ -42,24 +42,23 @@ const GeneralAllOrdersList: FC = () => {
 			siteId,
 			page,
 			rowsPerPage,
-			activeOrders,
-			debug
+			includeAllOrders
 		};
 
-		if (pageRef.current.activeOrders !== activeOrders && page === 0) {
+		if (pageRef.current.siteId !== siteId && page === 0) {
 			// dispatch: fetch all orders
 			dispatch(AllOrdersFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
-			pageRef.current.activeOrders = activeOrders;
-		} else if (pageRef.current.debug !== debug && page === 0) {
+			pageRef.current.siteId = siteId;
+		} else if (pageRef.current.includeAllOrders !== includeAllOrders && page === 0) {
 			// dispatch: fetch all orders
 			dispatch(AllOrdersFetchList(payload));
 
 			// update ref
 			pageRef.current.page = page;
-			pageRef.current.debug = debug;
+			pageRef.current.includeAllOrders = includeAllOrders;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch all orders
 			dispatch(AllOrdersFetchList(payload));
@@ -76,21 +75,14 @@ const GeneralAllOrdersList: FC = () => {
 			if (condition1 || condition2) {
 				if (condition3) {
 					// dispatch: fetch all orders
-					dispatch(
-						AllOrdersFetchList({
-							...payload,
-							page: condition2 ? 0 : page,
-							activeOrders: condition2 ? false : activeOrders,
-							debug: condition2 ? false : debug
-						})
-					);
+					dispatch(AllOrdersFetchList(payload));
 
 					// update ref
 					pageRef.current.page = page;
 				}
 			}
 		}
-	}, [dispatch, allOrders.content, siteId, rowsPerPage, page, activeOrders, debug]);
+	}, [dispatch, allOrders.content, rowsPerPage, page, siteId, includeAllOrders]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -99,11 +91,10 @@ const GeneralAllOrdersList: FC = () => {
 				dispatch(
 					AllOrdersFetchList(
 						{
-							siteId,
 							page: 0,
 							rowsPerPage,
-							activeOrders,
-							debug
+							siteId,
+							includeAllOrders
 						},
 						true
 					)
@@ -117,7 +108,7 @@ const GeneralAllOrdersList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allOrders.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allOrders.content, siteId, page, rowsPerPage, activeOrders, debug]);
+	}, [dispatch, allOrders.content, page, rowsPerPage, siteId, includeAllOrders]);
 
 	// loader
 	if (allOrders.loader) {
@@ -126,15 +117,7 @@ const GeneralAllOrdersList: FC = () => {
 
 	// error
 	if (allOrders.errors) {
-		return (
-			<Box className={classes.sBox}>
-				{/* Actions */}
-				{/*<RobotOrdersActions activeOrders={activeOrders} debug={debug} />*/}
-
-				{/* Error */}
-				<PageError message={allOrders.errors?.text} />
-			</Box>
-		);
+		return <PageError message={allOrders.errors?.text} />;
 	}
 
 	// init
@@ -145,7 +128,7 @@ const GeneralAllOrdersList: FC = () => {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}
-				{/*<RobotOrdersActions activeOrders={activeOrders} debug={debug} />*/}
+				<GeneralAllOrdersActions siteId={siteId} includeAllOrders={includeAllOrders} />
 
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE" paddingTop />
@@ -156,7 +139,7 @@ const GeneralAllOrdersList: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Actions */}
-			{/*<RobotOrdersActions activeOrders={activeOrders} debug={debug} />*/}
+			<GeneralAllOrdersActions siteId={siteId} includeAllOrders={includeAllOrders} />
 
 			{/* Table */}
 			<GeneralAllOrdersTable

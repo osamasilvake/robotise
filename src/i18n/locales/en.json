@@ -516,7 +516,7 @@
 		"CONTENT": {
 			"TABS": {
 				"EMAILS": "EMAILS",
-				"ALL_ORDERS": "All Orders"
+				"ALL_ORDERS": "Orders"
 			},
 			"EMAILS": {
 				"DETAIL": {
@@ -582,12 +582,16 @@
 				"LIST": {
 					"ACTIONS": {
 						"FILTERS": {
-							"ACTIVE_ORDERS": "Active Orders only",
-							"DEBUG": "Include Test Orders"
+							"SITE": {
+								"ALL_SITES": "All Sites",
+								"LABEL": "Sites"
+							},
+							"INCLUDE_ALL_ORDERS": "Include All Orders"
 						}
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"SITE_ROBOT": "Site & Robot",
 							"STATUS": "Status",
 							"TARGET": "Target 🎯",
 							"ROBOT": "Robot",

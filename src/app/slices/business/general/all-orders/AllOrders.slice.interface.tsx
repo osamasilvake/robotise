@@ -6,16 +6,16 @@ export interface SliceAllOrdersInterface {
 	loader: boolean;
 	loading: boolean;
 	updating: boolean;
-	content: SOContentInterface | null;
+	content: SAOContentInterface | null;
 	errors: TriggerMessageInterface | null;
 }
 
-export interface SOContentInterface extends JsonAPIResponseInterface {
-	data: SOCDataInterface[];
-	state?: SOCStateInterface;
+export interface SAOContentInterface extends JsonAPIResponseInterface {
+	data: SAODataInterface[];
+	state?: SAOStateInterface;
 }
 
-export interface SOCDataInterface {
+export interface SAODataInterface {
 	id: string;
 	location: string;
 	mode: string;
@@ -24,34 +24,34 @@ export interface SOCDataInterface {
 	isDebug: boolean;
 	updatedAt: Date;
 	createdAt: Date;
-	history: SOCDataHistoryInterface[];
-	orderReport: SOCDataOrderReportInterface;
-	site: SOCDataSiteInterface;
-	robot: SOCRobotInterface;
+	history: SAODataHistoryInterface[];
+	orderReport: SAODataOrderReportInterface;
+	site: SAODataSiteInterface;
+	robot: SAORobotInterface;
+	siteRobot: string;
 }
 
-export interface SOCStateInterface {
+export interface SAOStateInterface {
 	siteId?: string;
 	page?: number;
 	rowsPerPage?: number;
-	activeOrders?: boolean;
-	debug?: boolean;
+	includeAllOrders?: boolean;
 }
 
-export interface SOCDataHistoryInterface {
+export interface SAODataHistoryInterface {
 	event: string;
 	details: string;
 	createdAt: Date;
 }
 
-export interface SOCDataOrderReportInterface {
+export interface SAODataOrderReportInterface {
 	id: string;
 }
 
-export interface SOCDataSiteInterface {
+export interface SAODataSiteInterface {
 	id: string;
 }
 
-export interface SOCRobotInterface {
+export interface SAORobotInterface {
 	id: string;
 }

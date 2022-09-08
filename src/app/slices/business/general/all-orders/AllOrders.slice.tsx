@@ -8,9 +8,9 @@ import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeAllOrders } from './AllOrders.slice.deserialize';
 import {
-	SliceAllOrdersInterface,
-	SOContentInterface,
-	SOCStateInterface
+	SAOContentInterface,
+	SAOStateInterface,
+	SliceAllOrdersInterface
 } from './AllOrders.slice.interface';
 
 // initial state
@@ -83,10 +83,10 @@ export const AllOrdersFetchList =
 	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const orders = states.orders;
+		const allOrders = states.allOrders;
 
 		// return on busy
-		if (orders && (orders.loader || orders.loading || orders.updating)) {
+		if (allOrders && (allOrders.loader || allOrders.loading || allOrders.updating)) {
 			return;
 		}
 
@@ -96,7 +96,7 @@ export const AllOrdersFetchList =
 		return GeneralService.generalAllOrdersFetch(payload)
 			.then(async (res) => {
 				// deserialize response
-				let result: SOContentInterface = await deserializeAllOrders(res);
+				let result: SAOContentInterface = await deserializeAllOrders(res);
 
 				// set state
 				result = {
@@ -108,9 +108,9 @@ export const AllOrdersFetchList =
 				};
 
 				// handle refresh and pagination
-				if (orders && orders.content) {
+				if (allOrders && allOrders.content) {
 					result = handleRefreshAndPagination(
-						orders.content,
+						allOrders.content,
 						result,
 						refresh,
 						payload.rowsPerPage
@@ -140,17 +140,17 @@ export const AllOrdersFetchList =
  * @returns
  */
 export const AllOrderUpdateState =
-	(state: SOCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
+	(state: SAOStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const orders = states.orders;
+		const allOrders = states.allOrders;
 
 		// dispatch: updating
 		dispatch(updating());
 
-		if (orders && orders.content) {
+		if (allOrders && allOrders.content) {
 			const result = {
-				...orders.content,
+				...allOrders.content,
 				state
 			};
 

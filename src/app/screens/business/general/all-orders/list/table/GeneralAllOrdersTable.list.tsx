@@ -4,6 +4,12 @@ import { GeneralAllOrdersTableColumnInterface } from './GeneralAllOrdersTable.in
 const translation = 'CONTENT.ALL_ORDERS.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllOrdersTableColumnInterface[] = [
 	{
+		id: GeneralAllOrdersTableColumnsTypeEnum.SITE_ROBOT,
+		label: `${translation}.SITE_ROBOT`,
+		minWidth: 200,
+		align: 'left'
+	},
+	{
 		id: GeneralAllOrdersTableColumnsTypeEnum.STATUS,
 		label: `${translation}.STATUS`,
 		minWidth: 200,

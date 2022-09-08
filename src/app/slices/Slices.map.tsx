@@ -1,3 +1,4 @@
+import { SAOContentInterface } from './business/general/all-orders/AllOrders.slice.interface';
 import { SEContentInterface } from './business/general/emails/Emails.slice.interface';
 import { CLContentInterface } from './business/robots/commands-log/CommandsLog.slice.interface';
 import { ECContentInterface } from './business/robots/elevator-calls/ElevatorCalls.slice.interface';
@@ -60,4 +61,5 @@ export type PaginationInput =
 	| PCContentInterface
 	| SDLContentInterface
 	| ECContentInterface
-	| SMCContentInterface;
+	| SMCContentInterface
+	| SAOContentInterface;

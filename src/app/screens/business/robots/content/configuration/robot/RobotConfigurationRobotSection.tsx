@@ -1,5 +1,14 @@
-import { Add } from '@mui/icons-material';
-import { Button, Card, CardContent, Chip, CircularProgress, Grid, Typography } from '@mui/material';
+import { Add, DeleteOutline } from '@mui/icons-material';
+import {
+	Button,
+	Card,
+	CardContent,
+	Chip,
+	CircularProgress,
+	Grid,
+	Stack,
+	Typography
+} from '@mui/material';
 import clsx from 'clsx';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -190,15 +199,30 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								})}
 							</Fragment>
 						))}
-						<Chip
-							size="small"
-							label={t(`${translation}.FORM.ADD_MORE`)}
-							color="primary"
-							variant="outlined"
-							icon={<Add />}
-							className={clsx(classes.sAddMore)}
-							onClick={() => onClickAddMore(id, list)}
-						/>
+						<Stack
+							spacing={0.5}
+							direction="row"
+							alignItems="center"
+							className={classes.sAction}>
+							<Chip
+								size="small"
+								label={t(`${translation}.FORM.ADD_MORE`)}
+								color="primary"
+								variant="outlined"
+								icon={<Add />}
+								onClick={() => onClickAddDelete(id, list)}
+							/>
+							{(list.value as RCCDataElementInterface[])?.length > 1 && (
+								<Chip
+									size="small"
+									label={t(`${translation}.FORM.DELETE`)}
+									color="error"
+									variant="outlined"
+									icon={<DeleteOutline />}
+									onClick={() => onClickAddDelete(id, list, true)}
+								/>
+							)}
+						</Stack>
 					</Grid>
 				);
 			case RobotConfigurationRobotElementTypeEnum.OBJECT:
@@ -287,18 +311,23 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	};
 
 	/**
-	 * add more
+	 * add/delete item
 	 * @param parentKey
 	 * @param items
+	 * @param isDelete
 	 */
-	const onClickAddMore = (parentKey: string, items: RCCDataElementInterface) => {
+	const onClickAddDelete = (
+		parentKey: string,
+		items: RCCDataElementInterface,
+		isDelete = false
+	) => {
 		// return
 		if (!elements) return;
 
 		// add item
 		const values = items.value as RCCDataElementInterface[];
 		const value = emptyItem(values[values.length - 1]);
-		const newList = [...values, value];
+		const newList = isDelete ? [...values.slice(0, -1)] : [...values, value];
 
 		// prepare fields changes
 		const list = [{ key: parentKey, value: newList }];

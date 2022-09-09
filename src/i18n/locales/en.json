@@ -2089,6 +2089,7 @@
 							}
 						},
 						"ADD_MORE": "Add More",
+						"DELETE": "Delete",
 						"BUTTONS": {
 							"UPDATE": "Update"
 						},

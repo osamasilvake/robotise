@@ -16,7 +16,7 @@ export const RobotConfigurationRobotStyle = makeStyles((theme: Theme) => ({
 		marginLeft: theme.spacing(2),
 		marginTop: 0
 	},
-	sAddMore: {
+	sAction: {
 		marginLeft: theme.spacing(4),
 		marginTop: theme.spacing(2)
 	},

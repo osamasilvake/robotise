@@ -1211,6 +1211,9 @@
 								"QUANTITY": "Quantity",
 								"CAPACITY": "Capacity",
 								"REVENUE": "Revenue"
+							},
+							"VALUES": {
+								"DELETED": "Retired"
 							}
 						}
 					}

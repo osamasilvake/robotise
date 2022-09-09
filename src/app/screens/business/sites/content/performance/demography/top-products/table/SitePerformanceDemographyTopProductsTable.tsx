@@ -1,11 +1,14 @@
+import { HelpOutline } from '@mui/icons-material';
 import {
 	Avatar,
+	Box,
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
-	TableRow
+	TableRow,
+	Tooltip
 } from '@mui/material';
 import clsx from 'clsx';
 import i18next from 'i18next';
@@ -30,6 +33,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 	const { t } = useTranslation('SITES');
 	const classes = SitePerformanceDemographyTopProductsTableStyle();
 
+	const translation = 'CONTENT.PERFORMANCE';
 	const none = AppConfigService.AppOptions.common.none;
 
 	/**
@@ -46,27 +50,40 @@ const SitePerformanceDemographyTopProductsTable: FC<
 		if (!topProduct) return none;
 
 		const product = topProduct?.productData;
-		const price =
-			topProduct &&
-			topProduct[SitePerformanceDemographyTopProductsTableColumnsTypeEnum.REVENUE];
-		const quantity =
-			topProduct &&
-			topProduct[SitePerformanceDemographyTopProductsTableColumnsTypeEnum.QUANTITY];
+		if (!topProduct) return;
+
+		const type = SitePerformanceDemographyTopProductsTableColumnsTypeEnum;
+		const price = topProduct[type.REVENUE];
+		const quantity = topProduct[type.QUANTITY];
+		const isDeleted = product.isDeleted;
 
 		switch (column.id) {
 			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.IMAGE:
 				return (
-					<Avatar
-						variant="square"
-						className={clsx(classes.sImage, {
-							[classes.sImageBackground]: price === 1
-						})}
-						src={
-							(product && product[column.id]) ||
-							AppConfigService.AppImageURLs.logo.iconOff
-						}
-						alt={(product && product.name) || AppConfigService.AppImageURLs.logo.name}
-					/>
+					<Box>
+						<Avatar
+							variant="square"
+							className={clsx(classes.sImage, {
+								[classes.sImageBackground]: price === 1
+							})}
+							classes={{ img: isDeleted ? classes.sImageGrey : '' }}
+							src={
+								(product && product[column.id]) ||
+								AppConfigService.AppImageURLs.logo.iconOff
+							}
+							alt={
+								(product && product.name) || AppConfigService.AppImageURLs.logo.name
+							}
+						/>
+						{isDeleted && (
+							<Tooltip
+								title={t(
+									`${translation}.DEMOGRAPHY.TOP_PRODUCTS.TABLE.VALUES.DELETED`
+								)}>
+								<HelpOutline fontSize="small" className={classes.sLabel} />
+							</Tooltip>
+						)}
+					</Box>
 				);
 			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.QUANTITY:
 				return quantity;
@@ -100,7 +117,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 
 				<TableBody>
 					{topProducts.map((product) => (
-						<TableRow key={product.productId}>
+						<TableRow key={product.productId} className={classes.sTableRow}>
 							{columns.map(
 								(
 									column: SitePerformanceDemographyTopProductsTableColumnInterface

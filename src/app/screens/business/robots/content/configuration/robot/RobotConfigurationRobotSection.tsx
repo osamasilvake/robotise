@@ -25,7 +25,10 @@ import {
 import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { strRemoveSymbols } from '../../../../../../utilities/methods/String';
+import {
+	strCapitalLetterAndCamelCaseToDash,
+	strRemoveSymbols
+} from '../../../../../../utilities/methods/String';
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
 import {
@@ -187,7 +190,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							variant="body2"
 							color="textSecondary"
 							className={classes.sRecursiveTitle}>
-							{key.toUpperCase()}
+							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						{Object.entries(list?.value)?.map(([k, v], idx) => (
 							<Fragment key={k}>
@@ -234,7 +237,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							variant="body2"
 							color="textSecondary"
 							className={classes.sRecursiveTitleInner}>
-							{key.toUpperCase()}
+							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						<Grid container spacing={2} className={classes.sIntentElementInner}>
 							{Object.entries(list?.value)?.map(([k, v], idx) => (

@@ -5,22 +5,22 @@ import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import { RobotParamsInterface } from '../../../../Robot.interface';
-import { RobotOrderFootInterface } from './RobotOrderFoot.interface';
-import { RobotOrderFootStyle } from './RobotOrderFoot.style';
+import { RobotOrderPurchaseDetailInterface } from './RobotOrderPurchaseDetail.interface';
+import { RobotOrderPurchaseDetailStyle } from './RobotOrderPurchaseDetail.style';
 
-const RobotOrderFoot: FC<RobotOrderFootInterface> = (props) => {
+const RobotOrderPurchaseDetail: FC<RobotOrderPurchaseDetailInterface> = (props) => {
 	const { order } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotOrderFootStyle();
+	const classes = RobotOrderPurchaseDetailStyle();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
 
 	return order?.content?.orderReport ? (
-		<Box className={classes.sFootBox}>
+		<Box className={classes.sBox}>
 			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.ORDERS.DETAIL.FOOT.PURCHASE.LINK.TITLE')}
+				{t('CONTENT.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TITLE')}
 			</Typography>
 			<Link
 				component={RouterLink}
@@ -30,9 +30,9 @@ const RobotOrderFoot: FC<RobotOrderFootInterface> = (props) => {
 					':robotId',
 					cRobotId
 				).replace(':purchaseId', order.content.orderReport.id)}>
-				{t('CONTENT.ORDERS.DETAIL.FOOT.PURCHASE.LINK.TEXT')}
+				{t('CONTENT.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TEXT')}
 			</Link>
 		</Box>
 	) : null;
 };
-export default RobotOrderFoot;
+export default RobotOrderPurchaseDetail;

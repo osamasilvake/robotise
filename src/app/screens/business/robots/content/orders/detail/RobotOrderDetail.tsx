@@ -14,7 +14,7 @@ import {
 	orderSelector
 } from '../../../../../../slices/business/robots/orders/Order.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import RobotOrderFoot from './foot/RobotOrderFoot';
+import RobotOrderPurchaseDetail from './purchase-detail/RobotOrderPurchaseDetail';
 import RobotOrderTable from './table/RobotOrderTable';
 
 const RobotOrderDetail: FC = () => {
@@ -66,8 +66,8 @@ const RobotOrderDetail: FC = () => {
 			{/* Table */}
 			<RobotOrderTable order={order} />
 
-			{/* Foot */}
-			<RobotOrderFoot order={order} />
+			{/* Purchase Detail */}
+			<RobotOrderPurchaseDetail order={order} />
 		</Box>
 	) : null;
 };

@@ -4,20 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../services';
-import { GeneralAllOrderFootInterface } from './GeneralAllOrderFoot.interface';
-import { GeneralAllOrderFootStyle } from './GeneralAllOrderFoot.style';
+import { GeneralAllOrderPurchaseDetailInterface } from './GeneralAllOrderPurchaseDetail.interface';
+import { GeneralAllOrderPurchaseDetailStyle } from './GeneralAllOrderPurchaseDetail.style';
 
-const GeneralAllOrderFoot: FC<GeneralAllOrderFootInterface> = (props) => {
+const GeneralAllOrderPurchaseDetail: FC<GeneralAllOrderPurchaseDetailInterface> = (props) => {
 	const { order } = props;
 	const { t } = useTranslation('GENERAL');
-	const classes = GeneralAllOrderFootStyle();
+	const classes = GeneralAllOrderPurchaseDetailStyle();
 
 	const cRobotId = order?.content?.robot.id || '';
 
 	return order?.content?.orderReport ? (
-		<Box className={classes.sFootBox}>
+		<Box className={classes.sBox}>
 			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.ALL_ORDERS.DETAIL.FOOT.PURCHASE.LINK.TITLE')}
+				{t('CONTENT.ALL_ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TITLE')}
 			</Typography>
 			<Link
 				component={RouterLink}
@@ -27,9 +27,9 @@ const GeneralAllOrderFoot: FC<GeneralAllOrderFootInterface> = (props) => {
 					':robotId',
 					cRobotId
 				).replace(':purchaseId', order.content.orderReport.id)}>
-				{t('CONTENT.ALL_ORDERS.DETAIL.FOOT.PURCHASE.LINK.TEXT')}
+				{t('CONTENT.ALL_ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TEXT')}
 			</Link>
 		</Box>
 	) : null;
 };
-export default GeneralAllOrderFoot;
+export default GeneralAllOrderPurchaseDetail;

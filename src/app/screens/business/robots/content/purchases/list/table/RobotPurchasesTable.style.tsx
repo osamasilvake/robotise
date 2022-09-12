@@ -11,6 +11,9 @@ export const RobotPurchasesTableStyle = makeStyles((theme: Theme) => ({
 	sTableRowWarning: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)
 	},
+	sTableRowDanger: {
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c12, 0.15)
+	},
 	sTablePagination: {
 		opacity: 0.6,
 		pointerEvents: 'none'

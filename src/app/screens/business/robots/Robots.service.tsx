@@ -351,7 +351,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotPurchaseCommentEdit = (purchaseId: string, comment: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PURCHASES.FETCH;
 		return HttpClientService.patch(`${url}/${purchaseId}`, {
 			data: {
 				type: 'orderReports',

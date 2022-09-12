@@ -82,10 +82,6 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 					</Box>
 				</Stack>
 			</Stack>
-
-			<Typography variant="h6" color="textSecondary">
-				{t(`${translation}.TITLE`)}
-			</Typography>
 		</Box>
 	);
 };

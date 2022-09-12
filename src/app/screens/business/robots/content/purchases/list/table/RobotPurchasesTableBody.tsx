@@ -119,7 +119,9 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 									: () => null
 							}
 							className={clsx({
-								[classes.sTableRowWarning]: purchase.isDebug
+								[classes.sTableRowWarning]: purchase.isDebug,
+								[classes.sTableRowDanger]:
+									!!purchase?.paymentData && !purchase?.paymentData?.isPaid
 							})}>
 							{columns.map((column: RobotPurchasesTableColumnInterface) => (
 								<RobotPurchasesTableBodyCell

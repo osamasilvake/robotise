@@ -570,12 +570,10 @@
 							"CREATED": "Created"
 						}
 					},
-					"FOOT": {
-						"PURCHASE": {
-							"LINK": {
-								"TITLE": "Purchase",
-								"TEXT": "Purchase details"
-							}
+					"PURCHASE_DETAIL": {
+						"LINK": {
+							"TITLE": "Purchase",
+							"TEXT": "Purchase details"
 						}
 					}
 				},
@@ -1741,12 +1739,10 @@
 							"CREATED": "Created"
 						}
 					},
-					"FOOT": {
-						"PURCHASE": {
-							"LINK": {
-								"TITLE": "Purchase",
-								"TEXT": "Purchase details"
-							}
+					"PURCHASE_DETAIL": {
+						"LINK": {
+							"TITLE": "Purchase",
+							"TEXT": "Purchase details"
 						}
 					}
 				},
@@ -1864,8 +1860,7 @@
 						"BILLED": "Billed",
 						"UN_BILLED": "Unbilled",
 						"ORDER_DETAILS": "Order details",
-						"ITEM_TRACKING": "Tracking details",
-						"TITLE": "Products"
+						"ITEM_TRACKING": "Tracking details"
 					},
 					"TABLE": {
 						"COLUMNS": {
@@ -1878,7 +1873,22 @@
 							"TOTAL": "Total"
 						}
 					},
-					"FOOT": {
+					"E_PAYMENT": {
+						"TITLE": "E-Payment",
+						"EXCERPT": "See all e-Payment related detail.",
+						"METHOD": "Method",
+						"STATUS": {
+							"LABEL": "Status",
+							"PAID": "Paid",
+							"CANCELED": "Canceled",
+							"NOT_PAID": "Not Paid"
+						},
+						"PRE_AUTHORIZED": "Pre-Authorized",
+						"CAPTURED": "Captured",
+						"MISSING_AMOUNT": "Missing Amount",
+						"MORE_DETAILS": "More Details"
+					},
+					"COMMENT": {
 						"NOTE": "Note"
 					}
 				},

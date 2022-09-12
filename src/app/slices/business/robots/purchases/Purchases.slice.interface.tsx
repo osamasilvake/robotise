@@ -27,7 +27,8 @@ export interface SPCDataInterface {
 	updatedAt: Date;
 	cart: SPCDataCartInterface[];
 	history: SPCDataHistoryInterface[];
-	site: SPCDataSiteInterface;
+	paymentData: SPCDataPaymentInterface;
+	site: SPCSiteInterface;
 	robot: SPCRobotInterface;
 	order: SPCOrderInterface;
 }
@@ -56,7 +57,31 @@ export interface SPCDataHistoryInterface {
 	payload: string;
 }
 
-export interface SPCDataSiteInterface {
+export interface SPCDataPaymentInterface {
+	isPaid: boolean;
+	method: string;
+	payment: {
+		id: string;
+		accountId: string;
+		capturedAmount: number;
+		currency: string;
+		isCaptured: boolean;
+		isDebug: boolean;
+		preAuthorizedAmount: boolean;
+		status: string;
+		updatedAt: string;
+		vendorId: string;
+		receiptUrl: string;
+		vendorPaymentUrl: string;
+		preAuthorizedAt: Date;
+		capturedAt: Date;
+		createdAt: Date;
+	};
+	transactionId: string;
+	vendor: string;
+}
+
+export interface SPCSiteInterface {
 	id: string;
 }
 

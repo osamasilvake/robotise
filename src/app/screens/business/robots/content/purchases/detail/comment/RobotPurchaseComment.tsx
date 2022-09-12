@@ -2,18 +2,18 @@ import { Box, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RobotPurchaseFootInterface } from './RobotPurchaseFoot.interface';
-import { RobotPurchaseFootStyle } from './RobotPurchaseFoot.style';
+import { RobotPurchaseCommentInterface } from './RobotPurchaseComment.interface';
+import { RobotPurchaseCommentStyle } from './RobotPurchaseComment.style';
 
-const RobotPurchaseFoot: FC<RobotPurchaseFootInterface> = (props) => {
+const RobotPurchaseComment: FC<RobotPurchaseCommentInterface> = (props) => {
 	const { purchase } = props;
 	const { t } = useTranslation('ROBOTS');
-	const classes = RobotPurchaseFootStyle();
+	const classes = RobotPurchaseCommentStyle();
 
-	const translation = 'CONTENT.PURCHASES.DETAIL.FOOT';
+	const translation = 'CONTENT.PURCHASES.DETAIL.COMMENT';
 
 	return purchase?.content?.comment ? (
-		<Box className={classes.sFootBox}>
+		<Box className={classes.sBox}>
 			<Typography variant="h6" color="textSecondary">
 				{t(`${translation}.NOTE`)}
 			</Typography>
@@ -21,4 +21,4 @@ const RobotPurchaseFoot: FC<RobotPurchaseFootInterface> = (props) => {
 		</Box>
 	) : null;
 };
-export default RobotPurchaseFoot;
+export default RobotPurchaseComment;

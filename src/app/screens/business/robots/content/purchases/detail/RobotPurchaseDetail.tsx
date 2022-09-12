@@ -13,7 +13,8 @@ import {
 	purchaseSelector
 } from '../../../../../../slices/business/robots/purchases/Purchase.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
-import RobotPurchaseFoot from './foot/RobotPurchaseFoot';
+import RobotPurchaseComment from './comment/RobotPurchaseComment';
+import RobotPurchaseEPayment from './epayment/RobotPurchaseEPayment';
 import RobotPurchaseHead from './head/RobotPurchaseHead';
 import RobotPurchaseTable from './table/RobotPurchaseTable';
 
@@ -48,9 +49,17 @@ const RobotPurchaseDetail: FC = () => {
 
 	return purchase ? (
 		<Box>
+			{/* Head */}
 			<RobotPurchaseHead purchase={purchase} />
+
+			{/* Table */}
 			<RobotPurchaseTable purchase={purchase} />
-			<RobotPurchaseFoot purchase={purchase} />
+
+			{/* EPayment */}
+			<RobotPurchaseEPayment purchase={purchase} />
+
+			{/* Comment */}
+			<RobotPurchaseComment purchase={purchase} />
 		</Box>
 	) : null;
 };

@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-export const GeneralEmailsTableStyle = makeStyles((theme: Theme) => ({
+export const GeneralEmailContentStyle = makeStyles((theme: Theme) => ({
 	sBlock1: {
 		margin: `${theme.spacing(2)} auto ${theme.spacing(1)}`
 	},

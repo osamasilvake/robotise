@@ -83,13 +83,28 @@ const RobotDetail: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			{/* General */}
 			<RobotDetailGeneral robotTwins={robotTwins.content} />
+
+			{/* Alerts */}
 			<RobotDetailAlerts robotTwins={robotTwins.content} />
+
+			{/* Locations */}
 			<RobotDetailLocation robotTwins={robotTwins.content} />
+
+			{/* Commands */}
 			<RobotDetailCommands robotTwins={robotTwins.content} />
+
+			{/* Cameras */}
 			<RobotDetailCameras robotTwins={robotTwins.content} />
+
+			{/* States */}
 			<RobotDetailStates robotTwins={robotTwins.content} />
+
+			{/* Information */}
 			<RobotDetailInformation robotTwins={robotTwins.content} />
+
+			{/* Data Logs */}
 			<RobotDetailDataLogs />
 		</Box>
 	);

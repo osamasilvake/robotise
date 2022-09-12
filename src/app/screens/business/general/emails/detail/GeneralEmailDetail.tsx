@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -12,7 +13,7 @@ import {
 	emailSelector
 } from '../../../../../slices/business/general/emails/Email.slice';
 import { GenParamsInterface } from '../../Gen.interface';
-import GeneralEmailContent from './GeneralEmailContent';
+import GeneralEmailContent from './content/GeneralEmailContent';
 
 const GeneralEmailDetail: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -43,6 +44,11 @@ const GeneralEmailDetail: FC = () => {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return email ? <GeneralEmailContent email={email.content} /> : null;
+	return email ? (
+		<Box>
+			{/* Email Content */}
+			<GeneralEmailContent email={email.content} />
+		</Box>
+	) : null;
 };
 export default GeneralEmailDetail;

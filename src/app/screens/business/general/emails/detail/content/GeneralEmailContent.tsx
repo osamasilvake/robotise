@@ -16,20 +16,20 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
-import { AppDispatch } from '../../../../../slices';
-import { AppTriggerMessage } from '../../../../../slices/app/App.slice';
-import { dateFormat1 } from '../../../../../utilities/methods/Date';
-import { strToLinks } from '../../../../../utilities/methods/String';
-import { GeneralEmailsTableColumnHistoryEventTypeEnum } from '../list/table/GeneralEmailsTable.enum';
-import { GeneralEmailDetailContentInterface } from './GeneralEmailDetail.interface';
-import { GeneralEmailsTableStyle } from './GeneralEmailDetail.style';
+import { TriggerMessageTypeEnum } from '../../../../../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../../../../../components/frame/message/Message.interface';
+import { AppDispatch } from '../../../../../../slices';
+import { AppTriggerMessage } from '../../../../../../slices/app/App.slice';
+import { dateFormat1 } from '../../../../../../utilities/methods/Date';
+import { strToLinks } from '../../../../../../utilities/methods/String';
+import { GeneralEmailsTableColumnHistoryEventTypeEnum } from '../../list/table/GeneralEmailsTable.enum';
+import { GeneralEmailContentInterface } from './GeneralEmailContent.interface';
+import { GeneralEmailContentStyle } from './GeneralEmailContent.style';
 
-const GeneralEmailContent: FC<GeneralEmailDetailContentInterface> = (props) => {
+const GeneralEmailContent: FC<GeneralEmailContentInterface> = (props) => {
 	const { email } = props;
 	const { t } = useTranslation('GENERAL');
-	const classes = GeneralEmailsTableStyle();
+	const classes = GeneralEmailContentStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 
@@ -81,6 +81,7 @@ const GeneralEmailContent: FC<GeneralEmailDetailContentInterface> = (props) => {
 			{/* Subject */}
 			<Typography variant="h5">{email.subject}</Typography>
 
+			{/* From & Created */}
 			<Box className={classes.sBlock1}>
 				{/* From */}
 				<Stack direction="row" spacing={0.5} alignItems="center" className={classes.sFrom}>
@@ -100,6 +101,7 @@ const GeneralEmailContent: FC<GeneralEmailDetailContentInterface> = (props) => {
 				</Typography>
 			</Box>
 
+			{/* To & Recipient */}
 			<Box className={classes.sBlock2}>
 				<Stack direction="row" spacing={0.5} alignItems="center">
 					{/* To */}

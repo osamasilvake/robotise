@@ -273,6 +273,10 @@
 					"CUSTOMER_NOTIFICATION_TYPES": {
 						"ERROR": "Unable to fetch customer notification types!"
 					},
+					"PAYMENT_SETTINGS": {
+						"SUCCESS": "Payment settings updated successfully!",
+						"ERROR": "Unable to update payment settings!"
+					},
 					"CLEAN_TEST_ORDERS": {
 						"SUCCESS": "Test orders cleaned successfully!",
 						"ERROR": "Unable to clean test orders!"
@@ -1097,7 +1101,7 @@
 								"VALIDATIONS": {
 									"REQUIRED": "Order origin is required."
 								},
-								"NOTE": "*Order origins {{value}} are defined by default and cannot be removed."
+								"NOTE": "*Order origins {{value}} are defined by default and cannot be removed!"
 							},
 							"CUSTOMER_NOTIFICATION_TYPES": {
 								"LABEL": "Customer Notification Types",
@@ -1130,6 +1134,47 @@
 								"PERFORMANCE": {
 									"LABEL": "Show Performance Dashboard",
 									"NOTE": "*Show performance dashboard on JEEVES app!"
+								}
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
+				},
+				"PAYMENT_SETTINGS": {
+					"TITLE": "Payment Settings",
+					"EXCERPT": "Update payment settings",
+					"FORM": {
+						"FIELDS": {
+							"CHECKBOXES": {
+								"ENABLED": {
+									"LABEL": "Enabled payments",
+									"NOTE": "*Enable/Disable payment workflow!"
+								},
+								"LIVE_MODE": {
+									"LABEL": "Live Mode",
+									"NOTE": "*Live Mode is for real payments. Otherwise test account will be used!"
+								}
+							},
+							"ACCOUNT_ID": {
+								"LABEL": "Account ID",
+								"PLACEHOLDER": "Enter Account ID",
+								"NOTE": "Stripe account id of the hotel!",
+								"VALIDATIONS": {
+									"REQUIRED": "Account ID is required."
+								}
+							},
+							"PRE_AUTHORIZED_AMOUNT": {
+								"LABEL": "Pre-authorized Amount",
+								"PLACEHOLDER": "Enter Pre-authorized Amount",
+								"NOTE": "Amount of money to pre authorize to customers!",
+								"VALIDATIONS": {
+									"REQUIRED": "Pre-authorized Amount is required.",
+									"LIMIT": {
+										"MIN": "Min amount limit is: 5",
+										"MAX": "Max amount limit is: 150"
+									}
 								}
 							}
 						},
@@ -1349,7 +1394,7 @@
 						"LABEL": "Note",
 						"TITLE": "Note",
 						"EXCERPT": "Provide important and relevant information about the particular robot.",
-						"NOTE": "Maximum limit {{value}}/2000.",
+						"NOTE": "Maximum limit {{value}}/2000!",
 						"FIELD": {
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"
@@ -2018,7 +2063,7 @@
 					"TITLE": "Sync Products",
 					"EXCERPT": "Sync Products on the robot.",
 					"SYNC": "SYNC",
-					"NOTE": "Note: Sync is not possible when robot is offline"
+					"NOTE": "Note: Sync is not possible when robot is offline!"
 				},
 				"EMERGENCY": {
 					"TITLE": "Emergency State",
@@ -2027,7 +2072,7 @@
 					"MODAL": {
 						"TITLE": "Emergency mode",
 						"TEXT": "Are you sure you want to change the emergency mode?",
-						"NOTE": "Note*: Don't forget to take the robot into service again."
+						"NOTE": "Note*: Don't forget to take the robot into service again!"
 					}
 				},
 				"ROBOT_CONFIG": {

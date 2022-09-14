@@ -29,6 +29,7 @@ import { SiteParamsInterface } from '../../Site.interface';
 import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
 import SiteConfigurationCleanTestOrders from './clean-test-orders/SiteConfigurationCleanTestOrders';
 import SiteConfigurationNotifications from './notifications/SiteConfigurationNotifications';
+import SiteConfigurationPaymentSettings from './payment-settings/SiteConfigurationPaymentSettings';
 import SiteConfigurationServicePositions from './service-positions/SiteConfigurationServicePositions';
 import SiteConfig from './site-config/SiteConfig';
 import SiteRobotConfig from './site-robot-config/SiteRobotConfig';
@@ -127,6 +128,14 @@ const SiteConfiguration: FC = () => {
 				{/* Site Config */}
 				<Grid item xs={12}>
 					<SiteConfig sites={sites} siteOperations={siteOperations} />
+				</Grid>
+
+				{/* Payment Settings */}
+				<Grid item xs={12}>
+					<SiteConfigurationPaymentSettings
+						sites={sites}
+						siteOperations={siteOperations}
+					/>
 				</Grid>
 
 				{/* Clean Test Orders */}

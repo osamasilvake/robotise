@@ -18,6 +18,9 @@ export interface SliceSiteOperationsInterface {
 		loading: boolean;
 		content: SCNContentInterface | null;
 	};
+	paymentSettings: {
+		loading: boolean;
+	};
 	cleanTestOrders: {
 		loading: boolean;
 	};

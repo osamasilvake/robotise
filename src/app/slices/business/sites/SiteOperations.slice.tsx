@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
+import { SiteConfigurationPaymentSettingsFormInterface } from '../../../screens/business/sites/content/configuration/payment-settings/SiteConfigurationPaymentSettings.interface';
 import { SiteConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
@@ -32,6 +33,9 @@ export const initialState: SliceSiteOperationsInterface = {
 		loading: false,
 		content: null
 	},
+	paymentSettings: {
+		loading: false
+	},
 	cleanTestOrders: {
 		loading: false
 	}
@@ -54,6 +58,8 @@ const dataSlice = createSlice({
 				state.orderOrigins.loading = true;
 			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = true;
+			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
+				state.paymentSettings.loading = true;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = true;
 			}
@@ -72,6 +78,8 @@ const dataSlice = createSlice({
 			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = response;
+			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
+				state.paymentSettings.loading = false;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
@@ -90,6 +98,8 @@ const dataSlice = createSlice({
 			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = null;
+			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
+				state.paymentSettings.loading = false;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
@@ -334,6 +344,62 @@ export const SiteCustomerNotificationTypesFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.CUSTOMER_NOTIFICATION_TYPES.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * update payment settings
+ * @param siteId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const SitePaymentSettingsUpdate =
+	(
+		siteId: string,
+		payload: SiteConfigurationPaymentSettingsFormInterface,
+		callback: () => void
+	) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: SiteOperationsTypeEnum.PAYMENT_SETTINGS
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.sitePaymentSettingsUpdate(siteId, payload)
+			.then(async () => {
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-payment-settings-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.CONFIGURATION.PAYMENT_SETTINGS.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-payment-settings-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.CONFIGURATION.PAYMENT_SETTINGS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

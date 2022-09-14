@@ -44,6 +44,12 @@ export interface ISite {
 		showPerformanceDashboard: boolean;
 		isHidden: boolean;
 	};
+	paymentConfigs: {
+		enabled: boolean;
+		accountId: string;
+		liveMode: boolean;
+		defaultPreAuthorizedAmount: number;
+	};
 	rooms: {
 		available: string[];
 		whitelist: string[];

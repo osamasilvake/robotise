@@ -2,6 +2,7 @@ import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCleanTestOrdersFormInterface } from './content/configuration/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteConfigurationNotifications.interface';
+import { SiteConfigurationPaymentSettingsFormInterface } from './content/configuration/payment-settings/SiteConfigurationPaymentSettings.interface';
 import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteConfigurationServicePositions.enum';
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteConfigurationServicePositions.interface';
 import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
@@ -637,6 +638,35 @@ class SitesService {
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
 				.CUSTOMER_NOTIFICATION_TYPES;
 		return HttpClientService.get<SiteCustomerNotificationTypesAxiosGetInterface>(url);
+	};
+
+	/**
+	 * update payment settings
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	sitePaymentSettingsUpdate = (
+		siteId: string,
+		payload: SiteConfigurationPaymentSettingsFormInterface
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				attributes: {
+					paymentConfigs: {
+						accountId: payload.accountId,
+						defaultPreAuthorizedAmount: payload.defaultPreAuthorizedAmount,
+						enabled: payload.enabled,
+						liveMode: payload.liveMode
+					}
+				}
+			}
+		});
 	};
 
 	/**

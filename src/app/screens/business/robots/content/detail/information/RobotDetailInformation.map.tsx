@@ -19,9 +19,7 @@ const safetyOpposites = [
 	RobotDetailSafetyKeysTypeEnum.FORCE_BRAKE_ACTIVE,
 	RobotDetailSafetyKeysTypeEnum.FORCE_STOP0_ACTIVE,
 	RobotDetailSafetyKeysTypeEnum.STOP0_RESET_REQUIRED,
-	RobotDetailSafetyKeysTypeEnum.STOP1_RESET_REQUIRED,
-	RobotDetailSafetyKeysTypeEnum.ESTOP_RESET_PERMITTED,
-	RobotDetailSafetyKeysTypeEnum.REMOTE_RESET_PERMITTED
+	RobotDetailSafetyKeysTypeEnum.STOP1_RESET_REQUIRED
 ];
 const safetyWarnings = [
 	RobotDetailSafetyKeysTypeEnum.FRONT_MUTING_ACTIVE,
@@ -30,7 +28,9 @@ const safetyWarnings = [
 	RobotDetailSafetyKeysTypeEnum.NO_STOP2_TRIGGER,
 	RobotDetailSafetyKeysTypeEnum.DRAWERS,
 	RobotDetailSafetyKeysTypeEnum.LIDAR_TOP,
-	RobotDetailSafetyKeysTypeEnum.LIDAR_BOTTOM
+	RobotDetailSafetyKeysTypeEnum.LIDAR_BOTTOM,
+	RobotDetailSafetyKeysTypeEnum.ESTOP_RESET_PERMITTED,
+	RobotDetailSafetyKeysTypeEnum.REMOTE_RESET_PERMITTED
 ];
 
 /**

@@ -1617,13 +1617,13 @@
 								"ICON": "info",
 								"LABEL": "estop_reset_permitted",
 								"MSG_1": "Blue button on top of the robot is sufficient to clear the error",
-								"MSG_2": "No action is required"
+								"MSG_2": "Top Blue button cannot reset the safety error"
 							},
 							"remoteResetPermitted": {
 								"ICON": "info",
 								"LABEL": "remote_reset_permitted",
-								"MSG_1": "Remote reset is required",
-								"MSG_2": "No action is required"
+								"MSG_1": "Blue button on top of the robot is sufficient to clear the error",
+								"MSG_2": "Top Blue button cannot reset the safety error"
 							}
 						}
 					},

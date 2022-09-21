@@ -305,6 +305,10 @@
 						"SUCCESS": "Command has been executed successfully!",
 						"ERROR": "Failed to request control access!"
 					},
+					"REMOTE_SAFETY_RESET": {
+						"SUCCESS": "Command has been executed successfully!",
+						"ERROR": "Failed to reset remote safety!"
+					},
 					"CAMERAS": {
 						"top": {
 							"SUCCESS": "Top camera image was requested!",
@@ -1444,6 +1448,13 @@
 							"BUTTON": "Translate"
 						}
 					}
+				},
+				"REMOTE_SAFETY_RESET": {
+					"TITLE": "Remote Safety Reset",
+					"HOLD": "Hold",
+					"PRESS": "Press",
+					"ACTION_NOT_REQUIRED": "No action is required.",
+					"ACTION_REQUIRED": "Action is required!"
 				},
 				"CAMERAS": {
 					"TITLE": "Cameras",

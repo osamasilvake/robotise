@@ -9,6 +9,9 @@ export interface SliceRobotOperationsInterface {
 	control: {
 		loading: boolean;
 	};
+	remoteSafetyReset: {
+		loading: boolean;
+	};
 	camera: {
 		loading: boolean;
 	};

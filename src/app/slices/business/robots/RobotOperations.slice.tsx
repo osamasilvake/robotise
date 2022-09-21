@@ -11,6 +11,7 @@ import {
 	RobotDetailControlModeTypeEnum
 } from '../../../screens/business/robots/content/detail/commands/RobotDetailCommands.enum';
 import { NoteFormInterface } from '../../../screens/business/robots/content/detail/general/RobotDetailGeneral.interface';
+import { RobotDetailRemoteSafetyResetOptionsInterface } from '../../../screens/business/robots/content/detail/remote-safety-reset/RobotDetailRemoteSafetyReset.interface';
 import RobotsService from '../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { RootState } from '../..';
@@ -32,6 +33,9 @@ export const initialState: SliceRobotOperationsInterface = {
 		content: null
 	},
 	control: {
+		loading: false
+	},
+	remoteSafetyReset: {
 		loading: false
 	},
 	camera: {
@@ -68,6 +72,8 @@ const dataSlice = createSlice({
 				state.map.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = true;
+			} else if (module === RobotOperationsTypeEnum.REMOTE_SAFETY_RESET) {
+				state.remoteSafetyReset.loading = true;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
@@ -91,6 +97,8 @@ const dataSlice = createSlice({
 				state.map.content = response;
 			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
+			} else if (module === RobotOperationsTypeEnum.REMOTE_SAFETY_RESET) {
+				state.remoteSafetyReset.loading = false;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
@@ -115,6 +123,8 @@ const dataSlice = createSlice({
 				state.map.content = null;
 			} else if (module === RobotOperationsTypeEnum.ROC_CONTROL) {
 				state.control.loading = false;
+			} else if (module === RobotOperationsTypeEnum.REMOTE_SAFETY_RESET) {
+				state.remoteSafetyReset.loading = false;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
@@ -289,6 +299,54 @@ export const RobotControlCommandSend =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.DETAIL.COMMANDS.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * send remote safety reset command
+ * @param robotId
+ * @param options
+ * @returns
+ */
+export const RobotRemoteSafetyResetCommandSend =
+	(robotId: string, options: RobotDetailRemoteSafetyResetOptionsInterface) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: RobotOperationsTypeEnum.REMOTE_SAFETY_RESET
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return RobotsService.robotRemoteSafetyResetCommandSend(robotId, options)
+			.then(async () => {
+				// wait
+				await timeout(3000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-remote-safety-reset-command-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.DETAIL.REMOTE_SAFETY_RESET.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: success
+				dispatch(success(state));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'robot-remote-safety-reset-command-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.DETAIL.REMOTE_SAFETY_RESET.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

@@ -45,6 +45,7 @@ const AppOptions = (config: typeof AppConfigService) => {
 				Roboto: 'Roboto'
 			},
 			zIndex: {
+				level1: 1,
 				level2: 2,
 				level3: 3
 			},
@@ -183,6 +184,10 @@ const AppOptions = (config: typeof AppConfigService) => {
 							},
 							commands: {
 								requestDelay: 4000
+							},
+							remoteSafetyReset: {
+								duration: 3000,
+								reverseDuration: 200
 							},
 							camera: {
 								requestDelay: 8000

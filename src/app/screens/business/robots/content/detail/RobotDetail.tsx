@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -22,6 +22,7 @@ import RobotDetailDataLogs from './data-logs/RobotDetailDataLogs';
 import RobotDetailGeneral from './general/RobotDetailGeneral';
 import RobotDetailInformation from './information/RobotDetailInformation';
 import RobotDetailLocation from './location/RobotDetailLocation';
+import RemoteSafetyReset from './remote-safety-reset/RobotDetailRemoteSafetyReset';
 import { RobotDetailStyle } from './RobotDetail.style';
 import RobotDetailStates from './states/RobotDetailStates';
 
@@ -93,7 +94,15 @@ const RobotDetail: FC = () => {
 			<RobotDetailLocation robotTwins={robotTwins.content} />
 
 			{/* Commands */}
-			<RobotDetailCommands robotTwins={robotTwins.content} />
+			{/* Remote Safety Reset */}
+			<Grid container spacing={0}>
+				<Grid item xs={12} md={8} lg={6}>
+					<RobotDetailCommands robotTwins={robotTwins.content} />
+				</Grid>
+				<Grid item xs={12} md={4} lg={6}>
+					<RemoteSafetyReset robotTwins={robotTwins.content} />
+				</Grid>
+			</Grid>
 
 			{/* Cameras */}
 			<RobotDetailCameras robotTwins={robotTwins.content} />

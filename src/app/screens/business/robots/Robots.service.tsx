@@ -15,6 +15,7 @@ import {
 } from './content/detail/commands/RobotDetailCommands.enum';
 import { RobotDetailCommandsStateOptionInterface } from './content/detail/commands/RobotDetailCommands.interface';
 import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.interface';
+import { RobotDetailRemoteSafetyResetOptionsInterface } from './content/detail/remote-safety-reset/RobotDetailRemoteSafetyReset.interface';
 import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls/list/RobotElevatorCallsList.interface';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
@@ -172,6 +173,31 @@ class RobotsService {
 				type: 'robot-commands',
 				attributes: {
 					command,
+					options
+				}
+			}
+		});
+	};
+
+	/**
+	 * send remote safety reset command
+	 * @param robotId
+	 * @param options
+	 * @returns
+	 */
+	robotRemoteSafetyResetCommandSend = (
+		robotId: string,
+		options: RobotDetailRemoteSafetyResetOptionsInterface
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.COMMANDS.replace(
+			':robotId',
+			robotId
+		);
+		return HttpClientService.post(url, {
+			data: {
+				type: 'robot-commands',
+				attributes: {
+					command: 'remote-safety-reset',
 					options
 				}
 			}

@@ -13,7 +13,7 @@ import { RobotDetailRemoteSafetyResetStyle } from './RobotDetailRemoteSafetyRese
 const RobotDetailRemoteSafetyResetButton: FC<RobotDetailRemoteSafetyResetButtonInterface> = (
 	props
 ) => {
-	const { robotId, buttonClass, event, holdConfirm, setHoldConfirm, disabled, children } = props;
+	const { robotId, buttonClass, event, setHoldConfirm, disabled, children } = props;
 	const classes = RobotDetailRemoteSafetyResetStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -99,7 +99,7 @@ const RobotDetailRemoteSafetyResetButton: FC<RobotDetailRemoteSafetyResetButtonI
 			disableRipple
 			disableElevation>
 			{/* Progress */}
-			{(!isPress || (isPress && holdConfirm)) && (
+			{!disabled && (
 				<Box className={classes.sButtonSVGMain}>
 					<svg
 						className={clsx(classes.sButtonSVG, classes.sButtonSVGProgress)}

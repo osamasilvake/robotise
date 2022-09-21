@@ -143,7 +143,9 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							noStop1: state.status.safetySystem.noStop1,
 							noStop2Trigger: state.status.safetySystem.noStop2Trigger,
 							stop0ResetRequired: state.status.safetySystem.stop0ResetRequired,
-							stop1ResetRequired: state.status.safetySystem.stop1ResetRequired
+							stop1ResetRequired: state.status.safetySystem.stop1ResetRequired,
+							estopResetPermitted: state.status.safetySystem.estopResetPermitted,
+							remoteResetPermitted: state.status.safetySystem.remoteResetPermitted
 						},
 						updatedAt: meta.status.safetySystem.updatedAt
 					},

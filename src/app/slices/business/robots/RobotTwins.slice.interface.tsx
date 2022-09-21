@@ -166,6 +166,8 @@ export interface SRTContentSafetySystemsInterface {
 		noStop2Trigger: boolean;
 		stop0ResetRequired: boolean;
 		stop1ResetRequired: boolean;
+		estopResetPermitted: boolean;
+		remoteResetPermitted: boolean;
 	};
 	updatedAt: Date;
 }
@@ -331,6 +333,8 @@ export interface IRobotTwinInterface {
 					noStop2Trigger: boolean;
 					stop0ResetRequired: boolean;
 					stop1ResetRequired: boolean;
+					estopResetPermitted: boolean;
+					remoteResetPermitted: boolean;
 				};
 				safetySensors: {
 					drawers: boolean[];

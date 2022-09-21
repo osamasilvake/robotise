@@ -7,6 +7,8 @@ export enum RobotDetailSafetyKeysTypeEnum {
 	FORCE_STOP0_ACTIVE = 'forceStop0Active',
 	STOP0_RESET_REQUIRED = 'stop0ResetRequired',
 	STOP1_RESET_REQUIRED = 'stop1ResetRequired',
+	ESTOP_RESET_PERMITTED = 'estopResetPermitted',
+	REMOTE_RESET_PERMITTED = 'remoteResetPermitted',
 	NO_STOP2_TRIGGER = 'noStop2Trigger',
 	DRAWERS = 'drawers',
 	LIDAR_BOTTOM = 'lidarBottom',

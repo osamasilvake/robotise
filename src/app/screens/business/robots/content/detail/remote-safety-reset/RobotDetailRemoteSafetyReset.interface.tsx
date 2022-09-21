@@ -14,7 +14,6 @@ export interface RobotDetailRemoteSafetyResetButtonInterface {
 	robotId: string;
 	buttonClass: RobotDetailRemoteSafetyResetButtonTypeEnum;
 	event: RobotDetailRemoteSafetyResetEventsTypeEnum;
-	holdConfirm?: boolean;
 	setHoldConfirm: Dispatch<SetStateAction<boolean>>;
 	disabled?: boolean;
 	children: ReactNode;

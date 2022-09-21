@@ -1612,6 +1612,18 @@
 								"LABEL": "stop1_reset_required",
 								"MSG_1": "The blue button must be pressed after emergency stop or magnet sensor activation",
 								"MSG_2": "No safe stop 1 can be reset"
+							},
+							"estopResetPermitted": {
+								"ICON": "info",
+								"LABEL": "estop_reset_permitted",
+								"MSG_1": "Blue button on top of the robot is sufficient to clear the error",
+								"MSG_2": "No action is required"
+							},
+							"remoteResetPermitted": {
+								"ICON": "info",
+								"LABEL": "remote_reset_permitted",
+								"MSG_1": "Remote reset is required",
+								"MSG_2": "No action is required"
 							}
 						}
 					},

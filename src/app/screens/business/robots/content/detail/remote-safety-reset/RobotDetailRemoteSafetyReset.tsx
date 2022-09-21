@@ -18,6 +18,10 @@ const RobotDetailRemoteSafetyReset: FC<RobotDetailRemoteSafetyResetInterface> = 
 	const [holdConfirm, setHoldConfirm] = useState(false);
 
 	const translation = 'CONTENT.DETAIL.REMOTE_SAFETY_RESET';
+	const stop0 = robotTwins.safetySystems?.properties.stop0ResetRequired;
+	const stop1 = robotTwins.safetySystems?.properties.stop1ResetRequired;
+	const remoteResetPermitted = robotTwins.safetySystems?.properties.remoteResetPermitted;
+	const isRequired = (stop0 || stop1) && remoteResetPermitted;
 
 	return (
 		<Box className={classes.sBox}>
@@ -33,7 +37,8 @@ const RobotDetailRemoteSafetyReset: FC<RobotDetailRemoteSafetyResetInterface> = 
 					robotId={robotTwins.robot.id}
 					buttonClass={RobotDetailRemoteSafetyResetButtonTypeEnum.HOLD}
 					event={RobotDetailRemoteSafetyResetEventsTypeEnum.ARM}
-					setHoldConfirm={setHoldConfirm}>
+					setHoldConfirm={setHoldConfirm}
+					disabled={!isRequired}>
 					{t(`${translation}.HOLD`)}
 				</RemoteSafetyResetButton>
 
@@ -42,7 +47,6 @@ const RobotDetailRemoteSafetyReset: FC<RobotDetailRemoteSafetyResetInterface> = 
 					robotId={robotTwins.robot.id}
 					buttonClass={RobotDetailRemoteSafetyResetButtonTypeEnum.PRESS}
 					event={RobotDetailRemoteSafetyResetEventsTypeEnum.CONFIRM}
-					holdConfirm={holdConfirm}
 					setHoldConfirm={setHoldConfirm}
 					disabled={!holdConfirm}>
 					{t(`${translation}.PRESS`)}
@@ -51,7 +55,8 @@ const RobotDetailRemoteSafetyReset: FC<RobotDetailRemoteSafetyResetInterface> = 
 
 			{/* Info */}
 			<Typography variant="body2" color="textSecondary" className={classes.sInfo}>
-				{t(`${translation}.ACTION_NOT_REQUIRED`)}
+				{!isRequired && t(`${translation}.ACTION_NOT_REQUIRED`)}
+				{isRequired && t(`${translation}.ACTION_REQUIRED`)}
 			</Typography>
 		</Box>
 	);

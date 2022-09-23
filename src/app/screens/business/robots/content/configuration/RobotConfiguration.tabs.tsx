@@ -82,9 +82,11 @@ const RobotConfigurationTabs: FC<RobotConfigurationTabsInterface> = (props) => {
 				variant="scrollable"
 				textColor="primary">
 				<Tab label={t(`${translation}.CONFIGURATION.CLOUD`)} />
-				{sections?.map((section) => (
-					<Tab key={section.id} label={strRemoveSymbols(section.sectionName)} />
-				))}
+				{sections
+					?.filter((s) => !!s?.sectionName)
+					?.map((section) => (
+						<Tab key={section.id} label={strRemoveSymbols(section.sectionName)} />
+					))}
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -100,16 +102,18 @@ const RobotConfigurationTabs: FC<RobotConfigurationTabsInterface> = (props) => {
 
 				{/* Robot */}
 				{value !== 0 &&
-					sections?.map(
-						(section) =>
-							section.sectionName === sectionName && (
-								<ErrorBoundary key={section.id}>
-									<Suspense fallback={null}>
-										<RobotConfigurationRobot section={section} />
-									</Suspense>
-								</ErrorBoundary>
-							)
-					)}
+					sections
+						?.filter((s) => !!s?.sectionName)
+						?.map(
+							(section) =>
+								section.sectionName === sectionName && (
+									<ErrorBoundary key={section.id}>
+										<Suspense fallback={null}>
+											<RobotConfigurationRobot section={section} />
+										</Suspense>
+									</ErrorBoundary>
+								)
+						)}
 			</Box>
 		</Box>
 	) : null;

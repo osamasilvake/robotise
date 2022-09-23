@@ -2016,6 +2016,7 @@
 								"set-control-mode": "Set Control Mode",
 								"remote-control-rotate": "Remote Control Rotate",
 								"remote-control-translate": "Remote Control Translate",
+								"remote-safety-reset": "Remote Safety Reset",
 								"set-mute-sensor-state": "Set Mute Sensor State",
 								"sync-products": "Sync Products",
 								"update-robot-config-section": "Update Robot Config section",

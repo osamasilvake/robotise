@@ -52,6 +52,7 @@ export interface SRTContentRobotInterface {
 	ceInventoryId: string;
 	customerName: string;
 	note: string;
+	isRemoteSafetyResetRequired: boolean;
 }
 
 export interface SRTContentRobotStateInterface {
@@ -287,6 +288,7 @@ export interface IRobotTwinInterface {
 			robotState: {
 				isReady: boolean;
 			};
+			isRemoteSafetyResetRequired: boolean;
 			alerts: IAlertInterface[];
 			ca: {
 				ip: string;

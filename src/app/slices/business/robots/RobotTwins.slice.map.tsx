@@ -20,7 +20,8 @@ export const mapRobotTwins = (
 			name: robotTwins.robot.name,
 			ceInventoryId: robotTwins.robot.ceInventoryId,
 			customerName: robotTwins.robot.customerName,
-			note: robotTwins.robot.note
+			note: robotTwins.robot.note,
+			isRemoteSafetyResetRequired: robotTwins.robot.isRemoteSafetyResetRequired
 		},
 		site: {
 			...robotTwins.site,

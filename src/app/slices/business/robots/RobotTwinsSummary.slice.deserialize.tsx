@@ -50,6 +50,7 @@ export const deserializeRobotTwinsSummary = async <T,>(payload: T) => {
 				robotHidden: item.state.reported.isHidden,
 				robotIsSimulator: item.state.reported.isSimulator,
 				robotOnlineCheckDisabled: item.state.reported.isOnlineCheckDisabled,
+				robotIsRemoteSafetyResetRequired: item.state.reported.isRemoteSafetyResetRequired,
 				robotEmergencyState: !!item.state.reported.status?.isInEmergencyState,
 				robotLastSyncedProducts: item.state.reported.lastSyncedProducts,
 				robotBatteryPercentage: item.state.reported.status.batteryState?.percentage,

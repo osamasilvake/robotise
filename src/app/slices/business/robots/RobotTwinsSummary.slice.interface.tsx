@@ -34,6 +34,7 @@ export interface RTSContentDataInterface {
 	robotHidden: boolean;
 	robotIsSimulator: boolean;
 	robotOnlineCheckDisabled: boolean;
+	robotIsRemoteSafetyResetRequired: boolean;
 	robotEmergencyState: boolean;
 	robotAlerts: RTSContentAlertsInterface;
 	robotLastSyncedProducts: Date;
@@ -71,6 +72,7 @@ export interface IRobotTwinSummaryInterface {
 			isHidden: boolean;
 			isSimulator: boolean;
 			isOnlineCheckDisabled: boolean;
+			isRemoteSafetyResetRequired: boolean;
 			lastSyncedProducts: Date;
 			status: {
 				batteryState: { percentage: number };

@@ -14,6 +14,9 @@ export const RobotsListStyle = makeStyles((theme: Theme) => ({
 	sTableRowDanger: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c12, 0.15)
 	},
+	sTableRowUrgent: {
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c9, 0.15)
+	},
 	sTableColumnTitle: {
 		lineHeight: 0
 	},

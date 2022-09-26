@@ -1,11 +1,9 @@
 import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
-import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	RTSContentDataInterface,
 	RTSContentInterface
@@ -21,11 +19,10 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const { content, order, orderBy, siteId } = props;
 	const classes = RobotsListStyle();
 
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const navigate = useNavigate();
 
-	const showHidden = !!robotTwinsSummary.content?.state?.showHidden;
-	const showSimulation = !!robotTwinsSummary.content?.state?.showSimulation;
+	const showHidden = !!content?.state?.showHidden;
+	const showSimulation = !!content?.state?.showSimulation;
 
 	/**
 	 * sort table data
@@ -130,18 +127,24 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 
 	return (
 		<TableBody>
-			{filterRobots().map((robotTwins: RTSContentDataInterface) => (
+			{filterRobots().map((robotTwinSummary: RTSContentDataInterface) => (
 				<TableRow
 					hover
-					key={robotTwins.id}
+					key={robotTwinSummary.id}
 					tabIndex={-1}
-					onClick={handleShowRobotDetail(robotTwins)}
+					onClick={handleShowRobotDetail(robotTwinSummary)}
 					className={clsx({
-						[classes.sTableRowWarning]: !!robotTwins.robotAlerts.warning,
-						[classes.sTableRowDanger]: !!robotTwins.robotAlerts.danger
+						[classes.sTableRowWarning]: !!robotTwinSummary.robotAlerts.warning,
+						[classes.sTableRowDanger]: !!robotTwinSummary.robotAlerts.danger,
+						[classes.sTableRowUrgent]:
+							!!robotTwinSummary.robotIsRemoteSafetyResetRequired
 					})}>
 					{columns.map((column: RobotsTableColumnInterface) => (
-						<RobotsTableBodyCell key={column.id} column={column} robot={robotTwins} />
+						<RobotsTableBodyCell
+							key={column.id}
+							column={column}
+							robot={robotTwinSummary}
+						/>
 					))}
 				</TableRow>
 			))}

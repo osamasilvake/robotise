@@ -9,7 +9,7 @@ import { DeserializerExtendedOptionsInterface } from '../../../../JsonAPI.interf
  */
 export const deserializeRobotConfiguration = async <T,>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
-		keyForAttribute: 'camelCase'
+		keyForAttribute: (attr: string) => attr
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);

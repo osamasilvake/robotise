@@ -192,7 +192,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						<FormControl fullWidth margin="normal">
 							<TextField
 								required
-								type="number"
+								type="string"
 								id={fieldLocation}
 								name={fieldLocation}
 								label={t(
@@ -311,7 +311,12 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 					<Button
 						variant="outlined"
 						type="submit"
-						disabled={orders.updating || !values.location || !!errors?.phone}
+						disabled={
+							orders.updating ||
+							!values.location ||
+							!!errors?.location ||
+							!!errors?.phone
+						}
 						endIcon={orders.updating && <CircularProgress size={20} />}>
 						{t('DIALOG:BUTTONS.CREATE')}
 					</Button>

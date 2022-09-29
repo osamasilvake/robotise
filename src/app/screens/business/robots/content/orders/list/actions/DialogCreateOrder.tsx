@@ -206,7 +206,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								onBlur={handleBlur}
 								error={!!errors?.location}
 								helperText={errors?.location && t(errors.location)}
-								InputProps={{ inputProps: { min: 0 } }}
 							/>
 						</FormControl>
 					)}

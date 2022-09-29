@@ -21,6 +21,13 @@ export interface RobotConfigurationRobotRenderElementsInterface {
 	index?: number;
 }
 
+export interface RobotConfigurationRobotResultInterface {
+	initial: RCCDataElementInterface;
+	update: RCCDataElementInterface;
+	newItems?: RCCDataElementInterface[];
+	isArray?: boolean;
+}
+
 export interface RobotConfigurationRobotFormInputInterface {
 	multiline: boolean;
 	id: string;

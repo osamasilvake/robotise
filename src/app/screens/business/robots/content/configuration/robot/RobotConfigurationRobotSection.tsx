@@ -25,6 +25,7 @@ import {
 import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { isArray } from '../../../../../../utilities/methods/Array';
 import {
 	strCapitalLetterAndCamelCaseToDash,
 	strRemoveSymbols
@@ -33,6 +34,7 @@ import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
 import {
 	RobotConfigurationRobotRenderElementsInterface,
+	RobotConfigurationRobotResultInterface,
 	RobotConfigurationRobotSectionInterface
 } from './RobotConfigurationRobot.interface';
 import { RobotConfigurationRobotStyle } from './RobotConfigurationRobot.style';
@@ -72,7 +74,11 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 			const changes = fieldsChanges(list);
 
 			// generate recursive output
-			const result = recursiveOutput(elements, changes);
+			const result = recursiveOutput({
+				initial: elements,
+				update: changes,
+				isArray: isArray(elements)
+			});
 
 			// dispatch: update robot configuration
 			dispatch(
@@ -119,16 +125,13 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 	/**
 	 * generate recursive output
-	 * @param initial
-	 * @param update
-	 * @param newItems
+	 * @param payload
 	 * @returns
 	 */
 	const recursiveOutput = (
-		initial: RCCDataElementInterface,
-		update: RCCDataElementInterface,
-		newItems?: RCCDataElementInterface[]
-	): RCCDataElementInterface => {
+		payload: RobotConfigurationRobotResultInterface
+	): RCCDataElementInterface | RCCDataElementInterface[] => {
+		const { initial, update, newItems, isArray } = payload;
 		const result = { ...initial };
 
 		for (const prop in initial) {
@@ -140,7 +143,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 					if (Array.isArray(initial[prop])) {
 						const iObj = initial[prop] as RCCDataElementInterface;
 						const uObj = update[prop] as RCCDataElementInterface;
-						const out = recursiveOutput(iObj, uObj);
+						const out = recursiveOutput({ initial: iObj, update: uObj });
 						result[prop] = (
 							newItems ? newItems : Object.values(out)
 						) as RCCDataElementInterface[];
@@ -153,7 +156,11 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 					) {
 						const iObj = initial[prop] as RCCDataElementInterface;
 						const uObj = update[prop] as RCCDataElementInterface;
-						const out = recursiveOutput(iObj, uObj, newItems);
+						const out = recursiveOutput({
+							initial: iObj,
+							update: uObj,
+							newItems
+						});
 						result[prop] = out;
 					}
 
@@ -167,7 +174,12 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				}
 			}
 		}
-		return result;
+
+		// prepare output
+		const prepare = isArray ? (Object.values(result) as RCCDataElementInterface[]) : result;
+		const output: RCCDataElementInterface | RCCDataElementInterface[] = prepare;
+
+		return output;
 	};
 
 	/**
@@ -339,7 +351,11 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 		const changes = fieldsChanges(list as RCCDataElementInterface[]);
 
 		// generate recursive output
-		const result = recursiveOutput(elements, changes, newList);
+		const result = recursiveOutput({
+			initial: elements,
+			update: changes,
+			newItems: newList
+		}) as RCCDataElementInterface;
 
 		// set elements
 		setElements(result);

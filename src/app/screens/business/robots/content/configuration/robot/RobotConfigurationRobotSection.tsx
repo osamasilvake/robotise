@@ -284,7 +284,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							id={id}
 							label={key}
 							content={list}
-							initValue={String(list?.value || list?.default)}
+							initValue={String(list?.value?.toString() || list?.default)}
 							value={String(values[id])}
 							error={errors && errors[id] ? String(errors[id]) : ''}
 							handleChangeInput={handleChangeInput}

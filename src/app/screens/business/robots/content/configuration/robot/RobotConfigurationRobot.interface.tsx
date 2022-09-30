@@ -48,3 +48,10 @@ export interface RobotConfigurationRobotFormBooleanInterface {
 	value: boolean;
 	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface RobotConfigurationRobotAddDeleteItemInterface {
+	parentKey?: string;
+	items: RCCDataElementInterface;
+	isDelete?: boolean;
+	isRoot?: boolean;
+}

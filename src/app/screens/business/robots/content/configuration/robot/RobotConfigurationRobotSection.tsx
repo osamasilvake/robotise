@@ -33,6 +33,7 @@ import {
 import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotConfigurationRobotElementTypeEnum } from './RobotConfigurationRobot.enum';
 import {
+	RobotConfigurationRobotAddDeleteItemInterface,
 	RobotConfigurationRobotRenderElementsInterface,
 	RobotConfigurationRobotResultInterface,
 	RobotConfigurationRobotSectionInterface
@@ -51,7 +52,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotConfiguration = useSelector(robotConfigurationSelector);
 
-	const [elements, setElements] = useState<RCCDataElementInterface | undefined>(
+	const [elements, setElements] = useState<any | undefined>(
 		section?.elements?.value as RCCDataElementInterface
 	);
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
@@ -225,7 +226,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								color="primary"
 								variant="outlined"
 								icon={<Add />}
-								onClick={() => onClickAddDelete(id, list)}
+								onClick={() => onClickAddDelete({ parentKey: id, items: list })}
 							/>
 							{(list.value as RCCDataElementInterface[])?.length > 1 && (
 								<Chip
@@ -234,7 +235,13 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 									color="error"
 									variant="outlined"
 									icon={<DeleteOutline />}
-									onClick={() => onClickAddDelete(id, list, true)}
+									onClick={() =>
+										onClickAddDelete({
+											parentKey: id,
+											items: list,
+											isDelete: true
+										})
+									}
 								/>
 							)}
 						</Stack>
@@ -327,38 +334,38 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 	/**
 	 * add/delete item
-	 * @param parentKey
-	 * @param items
-	 * @param isDelete
+	 * @param payload
 	 */
-	const onClickAddDelete = (
-		parentKey: string,
-		items: RCCDataElementInterface,
-		isDelete = false
-	) => {
+	const onClickAddDelete = (payload: RobotConfigurationRobotAddDeleteItemInterface) => {
 		// return
 		if (!elements) return;
 
-		// add item
-		const values = items.value as RCCDataElementInterface[];
+		const { parentKey, items, isDelete, isRoot } = payload;
+		const values = (isRoot ? elements : items.value) as RCCDataElementInterface[];
 		const value = emptyItem(values[values.length - 1]);
 		const newList = isDelete ? [...values.slice(0, -1)] : [...values, value];
 
-		// prepare fields changes
-		const list = [{ key: parentKey, value: newList }];
+		if (isRoot) {
+			// set elements
+			setElements(isDelete ? [...values.slice(0, -1)] : [...elements, value]);
+		} else {
+			// prepare fields changes
+			const list = [{ key: parentKey || '', value: newList }];
 
-		// prepare fields changes
-		const changes = fieldsChanges(list as RCCDataElementInterface[]);
+			// prepare fields changes
+			const changes = fieldsChanges(list as RCCDataElementInterface[]);
 
-		// generate recursive output
-		const result = recursiveOutput({
-			initial: elements,
-			update: changes,
-			newItems: newList
-		}) as RCCDataElementInterface;
+			// generate recursive output
+			const result = recursiveOutput({
+				initial: elements,
+				update: changes,
+				newItems: newList,
+				isArray: isArray(elements)
+			}) as RCCDataElementInterface;
 
-		// set elements
-		setElements(result);
+			// set elements
+			setElements(result);
+		}
 	};
 
 	return (
@@ -384,6 +391,36 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 									})}
 								</Fragment>
 							))}
+
+						{/* Add */}
+						{elements && isArray(elements) && (
+							<Chip
+								size="small"
+								label={t(`${translation}.FORM.ADD_MORE`)}
+								color="primary"
+								variant="outlined"
+								icon={<Add />}
+								onClick={() => onClickAddDelete({ items: elements, isRoot: true })}
+							/>
+						)}
+
+						{/* Delete */}
+						{elements && isArray(elements) && elements?.length > 1 && (
+							<Chip
+								size="small"
+								label={t(`${translation}.FORM.DELETE`)}
+								color="error"
+								variant="outlined"
+								icon={<DeleteOutline />}
+								onClick={() =>
+									onClickAddDelete({
+										items: elements,
+										isDelete: true,
+										isRoot: true
+									})
+								}
+							/>
+						)}
 					</Grid>
 
 					<Grid item xs={12} className={classes.sSubmit}>

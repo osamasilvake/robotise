@@ -28,8 +28,7 @@ const appRoutes = {
 				PHONE_CALLS: '/sites/:siteId/phone-calls',
 				STATISTICS: '/sites/:siteId/statistics',
 				CONFIGURATION: '/sites/:siteId/configuration',
-				PERFORMANCE: '/sites/:siteId/performance',
-				SETTINGS: '/sites/:siteId/settings'
+				PERFORMANCE: '/sites/:siteId/performance'
 			},
 			ROBOTS: {
 				MAIN: '/robots',

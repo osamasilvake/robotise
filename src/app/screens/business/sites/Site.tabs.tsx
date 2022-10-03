@@ -23,7 +23,6 @@ const SitePhoneConfigsList = lazy(
 const SitePhoneCallsList = lazy(() => import('./content/phone-calls/list/SitePhoneCallsList'));
 const SiteStatistics = lazy(() => import('./content/statistics/SiteStatistics'));
 const SiteConfiguration = lazy(() => import('./content/configuration/SiteConfiguration'));
-const SiteSettings = lazy(() => import('./content/settings/SiteSettings'));
 
 const SiteTabs: FC = () => {
 	const { t } = useTranslation('SITES');
@@ -87,7 +86,6 @@ const SiteTabs: FC = () => {
 				<Tab label={t(`${translation}.STATISTICS`)} />
 				<Tab label={t(`${translation}.CONFIGURATION`)} />
 				<Tab label={t(`${translation}.PERFORMANCE`)} />
-				<Tab label={t(`${translation}.SETTINGS`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -160,15 +158,6 @@ const SiteTabs: FC = () => {
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SitePerformance />
-						</Suspense>
-					</ErrorBoundary>
-				)}
-
-				{/* Settings */}
-				{value === 8 && (
-					<ErrorBoundary>
-						<Suspense fallback={null}>
-							<SiteSettings />
 						</Suspense>
 					</ErrorBoundary>
 				)}

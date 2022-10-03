@@ -52,8 +52,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotConfiguration = useSelector(robotConfigurationSelector);
 
-	const [elements, setElements] = useState<any | undefined>(
-		section?.elements?.value as RCCDataElementInterface
+	const [elements, setElements] = useState<RCCDataElementInterface | RCCDataElementInterface[]>(
+		section?.elements?.value as RCCDataElementInterface | RCCDataElementInterface[]
 	);
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
@@ -76,7 +76,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 			// generate recursive output
 			const result = recursiveOutput({
-				initial: elements,
+				initial: elements as RCCDataElementInterface,
 				update: changes,
 				isArray: isArray(elements)
 			});
@@ -347,17 +347,17 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 		if (isRoot) {
 			// set elements
-			setElements(isDelete ? [...values.slice(0, -1)] : [...elements, value]);
+			setElements(isDelete ? values.slice(0, -1) : [...values, value]);
 		} else {
 			// prepare fields changes
 			const list = [{ key: parentKey || '', value: newList }];
 
 			// prepare fields changes
-			const changes = fieldsChanges(list as RCCDataElementInterface[]);
+			const changes = fieldsChanges(list);
 
 			// generate recursive output
 			const result = recursiveOutput({
-				initial: elements,
+				initial: elements as RCCDataElementInterface,
 				update: changes,
 				newItems: newList,
 				isArray: isArray(elements)
@@ -382,6 +382,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				{/* Elements */}
 				<form onSubmit={handleSubmit}>
 					<Grid container spacing={2}>
+						{/* Elements Root */}
 						{elements &&
 							Object.entries(elements)?.map(([key, value]) => (
 								<Fragment key={key}>
@@ -400,7 +401,12 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								color="primary"
 								variant="outlined"
 								icon={<Add />}
-								onClick={() => onClickAddDelete({ items: elements, isRoot: true })}
+								onClick={() =>
+									onClickAddDelete({
+										items: elements as RCCDataElementInterface,
+										isRoot: true
+									})
+								}
 							/>
 						)}
 
@@ -414,7 +420,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								icon={<DeleteOutline />}
 								onClick={() =>
 									onClickAddDelete({
-										items: elements,
+										items: elements as RCCDataElementInterface,
 										isDelete: true,
 										isRoot: true
 									})

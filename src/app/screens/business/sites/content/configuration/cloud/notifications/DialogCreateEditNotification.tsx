@@ -23,14 +23,14 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	notificationsSelector,
 	NotificationTypesAndUsersFetchList,
 	NotificationUpdate
-} from '../../../../../../slices/business/sites/configuration/Notifications.slice';
-import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { SiteParamsInterface } from '../../../Site.interface';
+} from '../../../../../../../slices/business/sites/configuration/Notifications.slice';
+import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import { DialogCreateEditNotificationValidation } from './DialogCreateEditNotification.validation';
 import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';
 import {

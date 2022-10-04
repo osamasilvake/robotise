@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
-import { dateFormat1 } from '../../../../../../utilities/methods/Date';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
+import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCleanTestOrders from './DialogCleanTestOrders';
 import { SiteConfigurationCleanTestOrdersActionTypeEnum } from './SiteConfigurationCleanTestOrders.enum';
 import { SiteConfigurationCleanTestOrdersStyle } from './SiteConfigurationCleanTestOrders.style';

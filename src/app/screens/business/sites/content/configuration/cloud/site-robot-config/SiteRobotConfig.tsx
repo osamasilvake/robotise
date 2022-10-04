@@ -16,10 +16,10 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
-import { SiteRobotConfigUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
-import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { AppDispatch } from '../../../../../../../slices';
+import { SiteRobotConfigUpdate } from '../../../../../../../slices/business/sites/SiteOperations.slice';
+import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import {
 	SiteRobotConfigFormInterface,
 	SiteRobotConfigInterface

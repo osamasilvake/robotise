@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppConfigService } from '../../../../../../services';
-import { AppDispatch } from '../../../../../../slices';
-import { ServicePositionsFetchList } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
+import { ServicePositionsFetchList } from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditServicePosition from './DialogCreateEditServicePosition';
 import SiteConfigurationServicePosition from './SiteConfigurationServicePosition';
 import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './SiteConfigurationServicePositions.enum';

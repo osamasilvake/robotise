@@ -16,12 +16,12 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
-import { SitePaymentSettingsUpdate } from '../../../../../../slices/business/sites/SiteOperations.slice';
-import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
-import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { validateEmptyObj } from '../../../../../../utilities/methods/Object';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { AppDispatch } from '../../../../../../../slices';
+import { SitePaymentSettingsUpdate } from '../../../../../../../slices/business/sites/SiteOperations.slice';
+import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
+import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
+import { validateEmptyObj } from '../../../../../../../utilities/methods/Object';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import {
 	SiteConfigurationPaymentSettingsFormInterface,
 	SiteConfigurationPaymentSettingsInterface

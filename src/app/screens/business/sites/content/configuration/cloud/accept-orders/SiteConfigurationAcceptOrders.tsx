@@ -13,10 +13,10 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
-import { SiteOrdersAccept } from '../../../../../../slices/business/sites/SiteOperations.slice';
-import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { AppDispatch } from '../../../../../../../slices';
+import { SiteOrdersAccept } from '../../../../../../../slices/business/sites/SiteOperations.slice';
+import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import { SiteConfigurationAcceptOrdersInterface } from './SiteConfigurationAcceptOrders.interface';
 import { SiteConfigurationAcceptOrdersStyle } from './SiteConfigurationAcceptOrders.style';
 

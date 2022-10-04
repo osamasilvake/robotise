@@ -19,7 +19,7 @@ import PageEmpty from '../../../../../../../components/content/page-empty/PageEm
 import { AppConfigService } from '../../../../../../../services';
 import { qrCodesSelector } from '../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
-import { SiteConfigOrderOriginsTypeEnum } from '../../../configuration/site-config/SiteConfig.enum';
+import { SiteConfigOrderOriginsTypeEnum } from '../../../configuration/cloud/site-config/SiteConfig.enum';
 import DialogToggleRoomState from './DialogToggleRoomState';
 import DialogGenerateQRCode from './qr-code/DialogGenerateQRCode';
 import { SiteRoomsGridGroupAccInterface, SiteRoomsGridInterface } from './SiteRoomsGrid.interface';

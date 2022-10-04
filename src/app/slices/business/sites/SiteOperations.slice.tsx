@@ -2,10 +2,10 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
-import { SiteConfigurationPaymentSettingsFormInterface } from '../../../screens/business/sites/content/configuration/payment-settings/SiteConfigurationPaymentSettings.interface';
-import { SiteConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-config/SiteConfig.interface';
-import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/site-robot-config/SiteRobotConfig.interface';
+import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
+import { SiteConfigurationPaymentSettingsFormInterface } from '../../../screens/business/sites/content/configuration/cloud/payment-settings/SiteConfigurationPaymentSettings.interface';
+import { SiteConfigFormInterface } from '../../../screens/business/sites/content/configuration/cloud/site-config/SiteConfig.interface';
+import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/cloud/site-robot-config/SiteRobotConfig.interface';
 import SitesService from '../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../utilities/methods/Timeout';
 import { RootState } from '../..';

@@ -13,12 +13,12 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	NotificationTypesAndUsersFetchList,
 	NotificationUpdate
-} from '../../../../../../slices/business/sites/configuration/Notifications.slice';
-import { SiteParamsInterface } from '../../../Site.interface';
+} from '../../../../../../../slices/business/sites/configuration/Notifications.slice';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';
 import {

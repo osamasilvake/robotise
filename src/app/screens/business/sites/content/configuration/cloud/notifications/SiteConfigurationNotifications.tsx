@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppConfigService } from '../../../../../../services';
-import { AppDispatch } from '../../../../../../slices';
-import { NotificationTypesAndUsersFetchList } from '../../../../../../slices/business/sites/configuration/Notifications.slice';
-import { CardStyle } from '../../../../../../utilities/styles/Card.style';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
+import { NotificationTypesAndUsersFetchList } from '../../../../../../../slices/business/sites/configuration/Notifications.slice';
+import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import SiteConfigurationNotification from './SiteConfigurationNotification';
 import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';

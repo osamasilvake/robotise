@@ -48,11 +48,19 @@ const sitesRoutes: RoutesInterface[] = [
 		component: Site
 	},
 	{
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.CONFIGURATION,
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PERFORMANCE,
+		component: Site
+	},
+
+	/**
+	 * Configuration sub tabs
+	 */
+	{
+		path: `${AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.CONFIGURATION}`,
 		component: Site
 	},
 	{
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PERFORMANCE,
+		path: `${AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.CONFIGURATION}/:configId`,
 		component: Site
 	}
 ];

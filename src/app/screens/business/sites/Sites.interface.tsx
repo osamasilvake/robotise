@@ -160,6 +160,34 @@ export interface SiteMapsAxiosGetInterface {
 	}[];
 }
 
+export interface SitePerformancePurchasesAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentPurchasesInterface;
+	};
+}
+
+export interface SitePerformanceOrdersAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentOrdersInterface;
+	};
+}
+
+export interface SitePerformanceInventoryAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentInventoryInterface;
+	};
+}
+
+export interface SitePerformanceTopProductsAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: SPContentTopProductsInterface;
+	};
+}
+
 export interface SiteNotificationTypesAxiosGetInterface {
 	data: {
 		id: string;
@@ -198,32 +226,4 @@ export interface SiteCustomerNotificationTypesAxiosGetInterface extends JsonAPIR
 		type: string;
 		attributes: SCNContentDataInterface;
 	}[];
-}
-
-export interface SitePerformancePurchasesAxiosGetInterface {
-	data: {
-		type: string;
-		attributes: SPContentPurchasesInterface;
-	};
-}
-
-export interface SitePerformanceOrdersAxiosGetInterface {
-	data: {
-		type: string;
-		attributes: SPContentOrdersInterface;
-	};
-}
-
-export interface SitePerformanceInventoryAxiosGetInterface {
-	data: {
-		type: string;
-		attributes: SPContentInventoryInterface;
-	};
-}
-
-export interface SitePerformanceTopProductsAxiosGetInterface {
-	data: {
-		type: string;
-		attributes: SPContentTopProductsInterface;
-	};
 }

@@ -72,17 +72,17 @@ const AppServices = (config: typeof AppConfigService) => {
 					ELEVATOR_CALLS: `${config.envAppUrl}/elevator-calls`,
 					ELEVATOR_CALLS_TEST: `${config.envAppUrl}/test-elevator-calls/:siteId`,
 					ELEVATOR_CALL_TEMPLATE: `${config.envAppUrl}/elevator-calls/:elevatorId/request-support-template`,
-					CONFIGURATION: {
-						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
-						CONFIG: `${config.envAppUrl}/robots/:robotId`,
-						CONFIGS: `${config.envAppUrl}/robots/:robotId/configs`,
-						CONFIGS_SINGLE: `${config.envAppUrl}/robots/:robotId/configs/:configId`
-					},
 					PERFORMANCE: {
 						PURCHASES: `${config.envAppUrl}/purchase-statistics`,
 						ORDERS: `${config.envAppUrl}/order-statistics`,
 						INVENTORY: `${config.envAppUrl}/inventory-statistics`,
 						PURCHASE_PRODUCTS: `${config.envAppUrl}/purchase-product-statistics`
+					},
+					CONFIGURATION: {
+						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
+						CONFIG: `${config.envAppUrl}/robots/:robotId`,
+						CONFIGS: `${config.envAppUrl}/robots/:robotId/configs`,
+						CONFIGS_SINGLE: `${config.envAppUrl}/robots/:robotId/configs/:configId`
 					}
 				}
 			},

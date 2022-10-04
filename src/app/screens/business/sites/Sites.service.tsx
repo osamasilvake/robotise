@@ -1,12 +1,12 @@
 import { AppConfigService, HttpClientService } from '../../../services';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
-import { DialogCleanTestOrdersFormInterface } from './content/configuration/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
-import { DialogCreateEditNotificationFormInterface } from './content/configuration/notifications/SiteConfigurationNotifications.interface';
-import { SiteConfigurationPaymentSettingsFormInterface } from './content/configuration/payment-settings/SiteConfigurationPaymentSettings.interface';
-import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/configuration/service-positions/SiteConfigurationServicePositions.enum';
-import { DialogCreateEditServicePositionFormInterface } from './content/configuration/service-positions/SiteConfigurationServicePositions.interface';
-import { SiteConfigFormInterface } from './content/configuration/site-config/SiteConfig.interface';
-import { SiteRobotConfigFormInterface } from './content/configuration/site-robot-config/SiteRobotConfig.interface';
+import { DialogCleanTestOrdersFormInterface } from './content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
+import { DialogCreateEditNotificationFormInterface } from './content/configuration/cloud/notifications/SiteConfigurationNotifications.interface';
+import { SiteConfigurationPaymentSettingsFormInterface } from './content/configuration/cloud/payment-settings/SiteConfigurationPaymentSettings.interface';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/configuration/cloud/service-positions/SiteConfigurationServicePositions.enum';
+import { DialogCreateEditServicePositionFormInterface } from './content/configuration/cloud/service-positions/SiteConfigurationServicePositions.interface';
+import { SiteConfigFormInterface } from './content/configuration/cloud/site-config/SiteConfig.interface';
+import { SiteRobotConfigFormInterface } from './content/configuration/cloud/site-robot-config/SiteRobotConfig.interface';
 import { SitePerformancePayloadInterface } from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
@@ -400,6 +400,73 @@ class SitesService {
 	};
 
 	/**
+	 * fetch performance purchases
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformancePurchasesFetch = (payload: SitePerformancePayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASES;
+		return HttpClientService.get<SitePerformancePurchasesAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.site,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit,
+				'filter[excludeTotalPriceZero]': payload.excludeTotalPriceZero
+			}
+		});
+	};
+
+	/**
+	 * fetch performance orders
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformanceOrdersFetch = (payload: SitePerformancePayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.ORDERS;
+		return HttpClientService.get<SitePerformanceOrdersAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.site,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit
+			}
+		});
+	};
+
+	/**
+	 * fetch performance inventory
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformanceInventoryFetch = (payload: SitePerformancePayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.INVENTORY;
+		return HttpClientService.get<SitePerformanceInventoryAxiosGetInterface>(url, {
+			params: {
+				'filter[robot]': payload.robot,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit
+			}
+		});
+	};
+
+	/**
+	 * fetch performance top products
+	 * @param payload
+	 * @returns
+	 */
+	sitePerformanceTopProductsFetch = (payload: SitePerformancePayloadInterface) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASE_PRODUCTS;
+		return HttpClientService.get<SitePerformanceTopProductsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.site,
+				'filter[lookup][period]': payload.lookup.period,
+				'filter[lookup][unit]': payload.lookup.unit,
+				'filter[topItems]': payload?.topItems || 10
+			}
+		});
+	};
+
+	/**
 	 * accept orders
 	 * @param siteId
 	 * @param acceptOrders
@@ -688,73 +755,6 @@ class SitesService {
 					dateTo: payload.dateTo,
 					timeTo: payload.timeTo
 				}
-			}
-		});
-	};
-
-	/**
-	 * fetch performance purchases
-	 * @param payload
-	 * @returns
-	 */
-	sitePerformancePurchasesFetch = (payload: SitePerformancePayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASES;
-		return HttpClientService.get<SitePerformancePurchasesAxiosGetInterface>(url, {
-			params: {
-				'filter[site]': payload.site,
-				'filter[lookup][period]': payload.lookup.period,
-				'filter[lookup][unit]': payload.lookup.unit,
-				'filter[excludeTotalPriceZero]': payload.excludeTotalPriceZero
-			}
-		});
-	};
-
-	/**
-	 * fetch performance orders
-	 * @param payload
-	 * @returns
-	 */
-	sitePerformanceOrdersFetch = (payload: SitePerformancePayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.ORDERS;
-		return HttpClientService.get<SitePerformanceOrdersAxiosGetInterface>(url, {
-			params: {
-				'filter[site]': payload.site,
-				'filter[lookup][period]': payload.lookup.period,
-				'filter[lookup][unit]': payload.lookup.unit
-			}
-		});
-	};
-
-	/**
-	 * fetch performance inventory
-	 * @param payload
-	 * @returns
-	 */
-	sitePerformanceInventoryFetch = (payload: SitePerformancePayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.INVENTORY;
-		return HttpClientService.get<SitePerformanceInventoryAxiosGetInterface>(url, {
-			params: {
-				'filter[robot]': payload.robot,
-				'filter[lookup][period]': payload.lookup.period,
-				'filter[lookup][unit]': payload.lookup.unit
-			}
-		});
-	};
-
-	/**
-	 * fetch performance top products
-	 * @param payload
-	 * @returns
-	 */
-	sitePerformanceTopProductsFetch = (payload: SitePerformancePayloadInterface) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASE_PRODUCTS;
-		return HttpClientService.get<SitePerformanceTopProductsAxiosGetInterface>(url, {
-			params: {
-				'filter[site]': payload.site,
-				'filter[lookup][period]': payload.lookup.period,
-				'filter[lookup][unit]': payload.lookup.unit,
-				'filter[topItems]': payload?.topItems || 10
 			}
 		});
 	};

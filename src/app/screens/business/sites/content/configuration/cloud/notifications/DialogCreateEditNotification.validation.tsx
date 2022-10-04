@@ -1,4 +1,4 @@
-import { AppConfigService } from '../../../../../../services';
+import { AppConfigService } from '../../../../../../../services';
 import { DialogCreateEditNotificationFormInterface } from './SiteConfigurationNotifications.interface';
 
 /**

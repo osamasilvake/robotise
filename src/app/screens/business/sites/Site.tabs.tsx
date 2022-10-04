@@ -10,6 +10,7 @@ import PageError from '../../../components/content/page-error/PageError';
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
+import { SiteConfigurationTabsTypeEnum } from './content/configuration/SiteConfiguration.enum';
 import SitePerformance from './content/performance/SitePerformance';
 import { SiteParamsInterface } from './Site.interface';
 import sitesRoutes from './Sites.routes';
@@ -44,7 +45,18 @@ const SiteTabs: FC = () => {
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
 		const cPath = location.pathname.replace(skipLastSlashes, '');
-		const cIndex = sitesRoutes.findIndex((r) => r.path.replace(':siteId', cSiteId) === cPath);
+		const cIndex = sitesRoutes.findIndex((r) => {
+			if (cPath.indexOf('configuration')) {
+				const n = location.pathname.replace(skipLastSlashes, '').lastIndexOf('/');
+				const lastPart = location.pathname.substring(n + 1);
+				return (
+					r.path
+						.replace(':configId', lastPart || SiteConfigurationTabsTypeEnum.CLOUD)
+						.replace(':siteId', cSiteId) === cPath
+				);
+			}
+			return r.path.replace(':siteId', cSiteId) === cPath;
+		});
 
 		setValue(cIndex - offset);
 	}, [location.pathname, cSiteId]);
@@ -56,7 +68,9 @@ const SiteTabs: FC = () => {
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
 		// prepare link
-		const link = sitesRoutes[value + offset].path.replace(':siteId', cSiteId);
+		const link = sitesRoutes[value + offset].path
+			.replace(':configId', SiteConfigurationTabsTypeEnum.CLOUD)
+			.replace(':siteId', cSiteId);
 
 		// navigate
 		navigate(link);
@@ -74,7 +88,7 @@ const SiteTabs: FC = () => {
 			{/* Tabs */}
 			<Tabs
 				allowScrollButtonsMobile
-				value={value}
+				value={value === 8 ? value - 1 : value}
 				onChange={handleTabChange}
 				variant="scrollable"
 				textColor="primary">
@@ -84,8 +98,8 @@ const SiteTabs: FC = () => {
 				<Tab label={t(`${translation}.PHONE_CONFIGS`)} />
 				<Tab label={t(`${translation}.PHONE_CALLS`)} />
 				<Tab label={t(`${translation}.STATISTICS`)} />
-				<Tab label={t(`${translation}.CONFIGURATION`)} />
 				<Tab label={t(`${translation}.PERFORMANCE`)} />
+				<Tab label={t(`${translation}.CONFIGURATION.MAIN`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -144,20 +158,20 @@ const SiteTabs: FC = () => {
 					</ErrorBoundary>
 				)}
 
-				{/* Configuration */}
+				{/* Performance */}
 				{value === 6 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
-							<SiteConfiguration />
+							<SitePerformance />
 						</Suspense>
 					</ErrorBoundary>
 				)}
 
-				{/* Performance */}
-				{value === 7 && (
+				{/* Configuration */}
+				{(value === 7 || value === 8) && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
-							<SitePerformance />
+							<SiteConfiguration />
 						</Suspense>
 					</ErrorBoundary>
 				)}

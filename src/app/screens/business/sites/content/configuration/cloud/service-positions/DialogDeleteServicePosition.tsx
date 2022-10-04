@@ -12,13 +12,13 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { AppDispatch } from '../../../../../../slices';
+import { AppDispatch } from '../../../../../../../slices';
 import {
 	ServicePositionsFetchList,
 	servicePositionsSelector,
 	SiteServicePositionDelete
-} from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
-import { SiteParamsInterface } from '../../../Site.interface';
+} from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+import { SiteParamsInterface } from '../../../../Site.interface';
 import { DialogDeleteServicePositionInterface } from './SiteConfigurationServicePositions.interface';
 
 const DialogDeleteServicePosition: FC<DialogDeleteServicePositionInterface> = (props) => {

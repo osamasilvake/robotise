@@ -58,18 +58,31 @@ const RobotConfigurationTabs: FC<RobotConfigurationTabsInterface> = (props) => {
 	 * @param value
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
-		const updateSectionName = sections[value - 1]?.sectionName;
+		if (value > 0) {
+			const updateSectionName = sections[value - 1]?.sectionName;
 
-		// set section name
-		setSectionName(!value ? RobotConfigurationTabsTypeEnum.CLOUD : updateSectionName);
+			// set section name
+			setSectionName(updateSectionName);
 
-		// prepare link
-		const link = robotsRoutes[offset].path
-			.replace(':configId', !value ? RobotConfigurationTabsTypeEnum.CLOUD : updateSectionName)
-			.replace(':robotId', cRobotId);
+			// prepare link
+			const link = robotsRoutes[offset].path
+				.replace(':configId', updateSectionName)
+				.replace(':robotId', cRobotId);
 
-		// navigate
-		navigate(link);
+			// navigate
+			navigate(link);
+		} else {
+			const configId = RobotConfigurationTabsTypeEnum.CLOUD;
+			const offsetNo = offset;
+
+			// prepare link
+			const link = robotsRoutes[offsetNo].path
+				.replace(':robotId', cRobotId)
+				.replace(':configId', configId);
+
+			// navigate
+			navigate(link);
+		}
 	};
 
 	return value !== -1 && !problem ? (

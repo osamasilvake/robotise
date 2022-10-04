@@ -700,7 +700,8 @@
 				"PERFORMANCE": "PERFORMANCE",
 				"CONFIGURATION": {
 					"MAIN": "Configuration",
-					"CLOUD": "Cloud"
+					"CLOUD": "Cloud",
+					"MARKETING_RIDES": "Marketing Rides"
 				}
 			},
 			"DETAIL": {

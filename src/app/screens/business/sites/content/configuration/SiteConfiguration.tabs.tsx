@@ -10,6 +10,7 @@ import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice'
 import { strRemoveSymbols } from '../../../../../utilities/methods/String';
 import { SiteParamsInterface } from '../../Site.interface';
 import sitesRoutes from '../../Sites.routes';
+import SiteConfigurationMarketingRides from './marketing-rides/SiteConfigurationMarketingRides';
 import { SiteConfigurationTabsTypeEnum } from './SiteConfiguration.enum';
 import { SiteConfigurationTabsInterface } from './SiteConfiguration.interface';
 
@@ -42,6 +43,8 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 
 		if (pathSection === SiteConfigurationTabsTypeEnum.CLOUD) {
 			setValue(0);
+		} else if (pathSection === SiteConfigurationTabsTypeEnum.MARKETING_RIDES) {
+			setValue(1);
 		} else {
 			const index = sections?.findIndex((s: any) => s.sectionName === pathSection) || -1;
 			setValue(index + 1);
@@ -57,18 +60,36 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 	 * @param value
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
-		const updateSectionName = sections[value - 1]?.sectionName;
+		if (value > 1) {
+			const updateSectionName = sections[value - 1]?.sectionName;
 
-		// set section name
-		setSectionName(!value ? SiteConfigurationTabsTypeEnum.CLOUD : updateSectionName);
+			// set section name
+			setSectionName(updateSectionName);
 
-		// prepare link
-		const link = sitesRoutes[offset].path
-			.replace(':configId', !value ? SiteConfigurationTabsTypeEnum.CLOUD : updateSectionName)
-			.replace(':siteId', cSiteId);
+			// prepare link
+			const link = sitesRoutes[offset].path
+				.replace(':configId', updateSectionName)
+				.replace(':siteId', cSiteId);
 
-		// navigate
-		navigate(link);
+			// navigate
+			navigate(link);
+		} else {
+			let configId = SiteConfigurationTabsTypeEnum.CLOUD;
+			let offsetNo = offset;
+
+			if (value === 1) {
+				configId = SiteConfigurationTabsTypeEnum.MARKETING_RIDES;
+				offsetNo = offset + 1;
+			}
+
+			// prepare link
+			const link = sitesRoutes[offsetNo].path
+				.replace(':siteId', cSiteId)
+				.replace(':configId', configId);
+
+			// navigate
+			navigate(link);
+		}
 	};
 
 	return value !== -1 && !problem ? (
@@ -81,6 +102,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 				variant="scrollable"
 				textColor="primary">
 				<Tab label={t(`${translation}.CONFIGURATION.CLOUD`)} />
+				<Tab label={t(`${translation}.CONFIGURATION.MARKETING_RIDES`)} />
 				{sections
 					?.filter((s: any) => !!s?.sectionName)
 					?.map((section: any) => (
@@ -95,6 +117,15 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SiteConfigurationCloud />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* Marketing Rides */}
+				{value === 1 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<SiteConfigurationMarketingRides />
 						</Suspense>
 					</ErrorBoundary>
 				)}

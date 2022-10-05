@@ -42,17 +42,17 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 		const slashIndex = cPath.lastIndexOf('/');
 		const pathSection = cPath.substring(slashIndex + 1);
 
-		if (pathSection === SiteConfigurationTabsTypeEnum.CLOUD) {
-			setValue(0);
-		} else if (pathSection === SiteConfigurationTabsTypeEnum.MARKETING_RIDES) {
-			setValue(1);
-		} else {
-			const index = sections?.findIndex((s) => s.sectionName === pathSection) || -1;
-			setValue(index + 1);
-			if (!sectionName) {
-				setSectionName(pathSection);
-			}
-		}
+		const all = [
+			{ sectionName: SiteConfigurationTabsTypeEnum.CLOUD },
+			{ sectionName: SiteConfigurationTabsTypeEnum.MARKETING_RIDES },
+			...sections
+		];
+		const index = all?.findIndex((s) => s.sectionName === pathSection);
+
+		// set value
+		setValue(index == -1 ? 0 : index);
+
+		!sectionName && setSectionName(pathSection);
 	}, [location.pathname, sections, sectionName]);
 
 	/**
@@ -61,36 +61,23 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 	 * @param value
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
-		if (value > 1) {
-			const updateSectionName = sections[value - 1]?.sectionName;
+		const all = [
+			{ sectionName: SiteConfigurationTabsTypeEnum.CLOUD },
+			{ sectionName: SiteConfigurationTabsTypeEnum.MARKETING_RIDES },
+			...sections
+		];
+		const updateSectionName = all[value]?.sectionName;
 
-			// set section name
-			setSectionName(updateSectionName);
+		// set section name
+		setSectionName(updateSectionName);
 
-			// prepare link
-			const link = sitesRoutes[offset].path
-				.replace(':configId', updateSectionName)
-				.replace(':siteId', cSiteId);
+		// prepare link
+		const link = sitesRoutes[offset + 1].path
+			.replace(':configId', updateSectionName)
+			.replace(':siteId', cSiteId);
 
-			// navigate
-			navigate(link);
-		} else {
-			let configId = SiteConfigurationTabsTypeEnum.CLOUD;
-			let offsetNo = offset;
-
-			if (value === 1) {
-				configId = SiteConfigurationTabsTypeEnum.MARKETING_RIDES;
-				offsetNo = offset + 1;
-			}
-
-			// prepare link
-			const link = sitesRoutes[offsetNo].path
-				.replace(':siteId', cSiteId)
-				.replace(':configId', configId);
-
-			// navigate
-			navigate(link);
-		}
+		// navigate
+		navigate(link);
 	};
 
 	return value !== -1 && !problem ? (
@@ -132,8 +119,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 				)}
 
 				{/* Site */}
-				{value !== 0 &&
-					value !== 1 &&
+				{value >= 2 &&
 					sections
 						?.filter((s) => !!s?.sectionName)
 						?.map(

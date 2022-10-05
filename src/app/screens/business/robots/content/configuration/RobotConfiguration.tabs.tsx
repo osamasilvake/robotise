@@ -33,7 +33,7 @@ const RobotConfigurationTabs: FC<RobotConfigurationTabsInterface> = (props) => {
 	const problem = !!robotTwinsSummary.errors?.id || !robotSingle?.id;
 
 	const translation = 'CONTENT.TABS';
-	const offset = 8;
+	const offset = 7;
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;
@@ -41,15 +41,13 @@ const RobotConfigurationTabs: FC<RobotConfigurationTabsInterface> = (props) => {
 		const slashIndex = cPath.lastIndexOf('/');
 		const pathSection = cPath.substring(slashIndex + 1);
 
-		if (pathSection === RobotConfigurationTabsTypeEnum.CLOUD) {
-			setValue(0);
-		} else {
-			const index = sections?.findIndex((s) => s.sectionName === pathSection);
-			setValue(index + 1);
-			if (!sectionName) {
-				setSectionName(pathSection);
-			}
-		}
+		const all = [{ sectionName: RobotConfigurationTabsTypeEnum.CLOUD }, ...sections];
+		const index = all?.findIndex((s) => s.sectionName === pathSection);
+
+		// set value
+		setValue(index == -1 ? 0 : index);
+
+		!sectionName && setSectionName(pathSection);
 	}, [location.pathname, sections, sectionName]);
 
 	/**
@@ -58,31 +56,19 @@ const RobotConfigurationTabs: FC<RobotConfigurationTabsInterface> = (props) => {
 	 * @param value
 	 */
 	const handleTabChange = (_event: SyntheticEvent, value: number) => {
-		if (value > 0) {
-			const updateSectionName = sections[value - 1]?.sectionName;
+		const all = [{ sectionName: RobotConfigurationTabsTypeEnum.CLOUD }, ...sections];
+		const updateSectionName = all[value]?.sectionName;
 
-			// set section name
-			setSectionName(updateSectionName);
+		// set section name
+		setSectionName(updateSectionName);
 
-			// prepare link
-			const link = robotsRoutes[offset].path
-				.replace(':configId', updateSectionName)
-				.replace(':robotId', cRobotId);
+		// prepare link
+		const link = robotsRoutes[offset + 1].path
+			.replace(':robotId', cRobotId)
+			.replace(':configId', updateSectionName);
 
-			// navigate
-			navigate(link);
-		} else {
-			const configId = RobotConfigurationTabsTypeEnum.CLOUD;
-			const offsetNo = offset;
-
-			// prepare link
-			const link = robotsRoutes[offsetNo].path
-				.replace(':robotId', cRobotId)
-				.replace(':configId', configId);
-
-			// navigate
-			navigate(link);
-		}
+		// navigate
+		navigate(link);
 	};
 
 	return value !== -1 && !problem ? (

@@ -7,7 +7,6 @@ import {
 	Switch,
 	Typography
 } from '@mui/material';
-import clsx from 'clsx';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -51,7 +50,7 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 
 	return (
 		<Card square elevation={1}>
-			<CardContent className={clsx(classes.sContent)}>
+			<CardContent className={classes.sContent}>
 				{siteOperations.acceptOrders.loading && (
 					<Box className={classes.sLoader}>
 						<CircularProgress size={20} />

@@ -1,7 +1,7 @@
 import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 
 /**
- * login validation
+ * validation
  * @param values
  */
 export const RobotConfigurationRobotValidation = (

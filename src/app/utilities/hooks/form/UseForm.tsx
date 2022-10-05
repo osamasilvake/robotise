@@ -48,7 +48,7 @@ export const useForm = <UseFormEntity,>(
 	const handleChangeInputsMultiple = (
 		index: number,
 		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | TargetInterface,
-		items: string[]
+		items: string[] | object[]
 	) => {
 		const { name, value } = event.target;
 		const list = [...items];

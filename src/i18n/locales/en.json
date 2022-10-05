@@ -1309,6 +1309,19 @@
 							}
 						}
 					}
+				},
+				"MARKETING_RIDES": {
+					"FORM": {
+						"FIELDS": {
+							"MINUTES": {
+								"LABEL": "Minutes",
+								"PLACEHOLDER": "Enter Minutes",
+								"VALIDATIONS": {
+									"INVALID": "Invalid format! Correct format: 10,25,50"
+								}
+							}
+						}
+					}
 				}
 			}
 		}

@@ -7,7 +7,7 @@ export interface UseFormRetInterface<UseFormEntity> {
 	handleChangeInputsMultiple: (
 		index: number,
 		event: ChangeEvent<HTMLInputElement> | TargetInterface,
-		items: string[]
+		items: string[] | object[]
 	) => void;
 	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleChangeSelect: (event: SelectChangeEvent) => void;
@@ -21,7 +21,6 @@ export interface UseFormRetInterface<UseFormEntity> {
 export interface TargetInterface {
 	target: {
 		name: string;
-		value: string;
-		valueAsNumber?: number;
+		value: string | object;
 	};
 }

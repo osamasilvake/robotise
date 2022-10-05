@@ -268,7 +268,7 @@ const AppOptions = (config: typeof AppConfigService) => {
 			maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
 			integer: new RegExp(/^\+?([1-9]\d*)$/),
 			integersAndChars: new RegExp(/^[A-Za-z0-9]*$/),
-			minutes: new RegExp(/^([0-5][0-9]|60)/),
+			minutes: new RegExp(/([0-5][0-9]?)+,?$/),
 			skipLastSlashes: new RegExp(/\/+$/),
 			rooms: new RegExp(/\b[0-9]+([-,]+[0-9]*)?\b$/),
 			roomsMapping: new RegExp(/^\S([0-9a-zA-Z]{1,8}[:][0-9a-zA-Z]{1,8}(,?)(\s{0,1}))+$/),

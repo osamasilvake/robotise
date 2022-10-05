@@ -31,9 +31,9 @@ export const SiteConfigurationMarketingRidesValidation = (
 		},
 		[]
 	);
-	console.log(times);
 
-	const errors = {
+	const errors: SiteConfigurationMarketingRidesFormInterface = {
+		locations: [],
 		times
 	};
 

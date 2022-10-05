@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 import { useDebounce } from '../../../../../../utilities/hooks/debounce/Debounce';
 import {
-	SiteConfigurationMarketingRidesInterface,
+	SiteConfigurationMarketingRidesInputInterface,
 	SiteConfigurationMarketingRidesTimesInterface
 } from './SiteConfigurationMarketingRides.interface';
 
-const SiteConfigurationMarketingRidesInput: FC<SiteConfigurationMarketingRidesInterface> = (
+const SiteConfigurationMarketingRidesInput: FC<SiteConfigurationMarketingRidesInputInterface> = (
 	props
 ) => {
 	const { index, id, times, handleBlur, error, handleChangeInputsMultiple } = props;

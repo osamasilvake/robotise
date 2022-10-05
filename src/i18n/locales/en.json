@@ -1315,8 +1315,14 @@
 					}
 				},
 				"MARKETING_RIDES": {
+					"LOCATIONS": "Locations",
+					"TIMES": "Times",
 					"FORM": {
 						"FIELDS": {
+							"LOCATIONS": {
+								"LABEL": "Locations",
+								"PLACEHOLDER": "Select Locations"
+							},
 							"MINUTES": {
 								"LABEL": "Minutes",
 								"PLACEHOLDER": "Enter Minutes",

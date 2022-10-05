@@ -1,4 +1,8 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import {
+	SCCDataElementInterface,
+	SCContentInterface
+} from '../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCleanTestOrdersFormInterface } from './content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/cloud/notifications/SiteConfigurationNotifications.interface';
@@ -405,7 +409,7 @@ class SitesService {
 	 * @returns
 	 */
 	sitePerformancePurchasesFetch = (payload: SitePerformancePayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASES;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PERFORMANCE.PURCHASES;
 		return HttpClientService.get<SitePerformancePurchasesAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.site,
@@ -422,7 +426,7 @@ class SitesService {
 	 * @returns
 	 */
 	sitePerformanceOrdersFetch = (payload: SitePerformancePayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.ORDERS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PERFORMANCE.ORDERS;
 		return HttpClientService.get<SitePerformanceOrdersAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.site,
@@ -438,7 +442,7 @@ class SitesService {
 	 * @returns
 	 */
 	sitePerformanceInventoryFetch = (payload: SitePerformancePayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.INVENTORY;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PERFORMANCE.INVENTORY;
 		return HttpClientService.get<SitePerformanceInventoryAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': payload.robot,
@@ -455,7 +459,7 @@ class SitesService {
 	 */
 	sitePerformanceTopProductsFetch = (payload: SitePerformancePayloadInterface) => {
 		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.PERFORMANCE.PURCHASE_PRODUCTS;
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PERFORMANCE.PURCHASE_PRODUCTS;
 		return HttpClientService.get<SitePerformanceTopProductsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.site,
@@ -754,6 +758,52 @@ class SitesService {
 				attributes: {
 					dateTo: payload.dateTo,
 					timeTo: payload.timeTo
+				}
+			}
+		});
+	};
+
+	/**
+	 * fetch site configuration
+	 * @param siteId
+	 * @returns
+	 */
+	siteConfigurationFetch = (siteId: string) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIGS.ALL;
+		return HttpClientService.get<SCContentInterface>(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * update site configuration
+	 * @param siteId
+	 * @param configId
+	 * @param payload
+	 * @returns
+	 */
+	siteConfigurationUpdate = (
+		siteId: string,
+		configId: string,
+		payload: SCCDataElementInterface
+	) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIGS.SINGLE;
+		return HttpClientService.patch(url.replace(':configId', configId), {
+			data: {
+				type: 'siteConfigs',
+				id: configId,
+				attributes: payload.request,
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: siteId
+						}
+					}
 				}
 			}
 		});

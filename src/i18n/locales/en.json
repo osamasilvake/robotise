@@ -283,6 +283,10 @@
 					"CLEAN_TEST_ORDERS": {
 						"SUCCESS": "Test orders cleaned successfully!",
 						"ERROR": "Unable to clean test orders!"
+					},
+					"SITE_CONFIGURATION": {
+						"SUCCESS": "Configuration has been updated successfully!",
+						"ERROR": "Unable to update configuration!"
 					}
 				}
 			},
@@ -1321,6 +1325,24 @@
 								}
 							}
 						}
+					}
+				},
+				"SITE_CONFIGURATION": {
+					"TITLE": "Site Configuration",
+					"EXCERPT": "Update Site detail.",
+					"FORM": {
+						"FIELD": {
+							"PLACEHOLDER": "Enter {{value}}",
+							"VALIDATIONS": {
+								"REQUIRED": "Field is required."
+							}
+						},
+						"ADD_MORE": "Add More",
+						"DELETE": "Delete",
+						"BUTTONS": {
+							"UPDATE": "Update"
+						},
+						"NOTE": "Robot is offline!"
 					}
 				}
 			}

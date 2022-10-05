@@ -11,6 +11,7 @@ import { strRemoveSymbols } from '../../../../../utilities/methods/String';
 import { SiteParamsInterface } from '../../Site.interface';
 import sitesRoutes from '../../Sites.routes';
 import SiteConfigurationMarketingRides from './marketing-rides/SiteConfigurationMarketingRides';
+import SiteConfigurationSite from './site/SiteConfigurationSite';
 import { SiteConfigurationTabsTypeEnum } from './SiteConfiguration.enum';
 import { SiteConfigurationTabsInterface } from './SiteConfiguration.interface';
 
@@ -46,7 +47,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 		} else if (pathSection === SiteConfigurationTabsTypeEnum.MARKETING_RIDES) {
 			setValue(1);
 		} else {
-			const index = sections?.findIndex((s: any) => s.sectionName === pathSection) || -1;
+			const index = sections?.findIndex((s) => s.sectionName === pathSection) || -1;
 			setValue(index + 1);
 			if (!sectionName) {
 				setSectionName(pathSection);
@@ -104,8 +105,8 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 				<Tab label={t(`${translation}.CONFIGURATION.CLOUD`)} />
 				<Tab label={t(`${translation}.CONFIGURATION.MARKETING_RIDES`)} />
 				{sections
-					?.filter((s: any) => !!s?.sectionName)
-					?.map((section: any) => (
+					?.filter((s) => !!s?.sectionName)
+					?.map((section) => (
 						<Tab key={section.id} label={strRemoveSymbols(section.sectionName)} />
 					))}
 			</Tabs>
@@ -129,6 +130,22 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 						</Suspense>
 					</ErrorBoundary>
 				)}
+
+				{/* Site */}
+				{value !== 0 &&
+					value !== 1 &&
+					sections
+						?.filter((s) => !!s?.sectionName)
+						?.map(
+							(section) =>
+								section.sectionName === sectionName && (
+									<ErrorBoundary key={section.id}>
+										<Suspense fallback={null}>
+											<SiteConfigurationSite section={section} />
+										</Suspense>
+									</ErrorBoundary>
+								)
+						)}
 			</Box>
 		</Box>
 	) : null;

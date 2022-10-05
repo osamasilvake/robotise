@@ -38,6 +38,12 @@ const AppServices = (config: typeof AppConfigService) => {
 						WIFI_HEATMAP: `${config.envAppUrl}/wifi-heatmap`,
 						MAPS: `${config.envAppUrl}/maps`
 					},
+					PERFORMANCE: {
+						PURCHASES: `${config.envAppUrl}/purchase-statistics`,
+						ORDERS: `${config.envAppUrl}/order-statistics`,
+						INVENTORY: `${config.envAppUrl}/inventory-statistics`,
+						PURCHASE_PRODUCTS: `${config.envAppUrl}/purchase-product-statistics`
+					},
 					CONFIGURATION: {
 						NOTIFICATION: {
 							TYPES: `${config.envAppUrl}/notification-types`,
@@ -49,6 +55,10 @@ const AppServices = (config: typeof AppConfigService) => {
 						SITE_CONFIG: {
 							ORDER_ORIGINS: `${config.envAppUrl}/order-origins`,
 							CUSTOMER_NOTIFICATION_TYPES: `${config.envAppUrl}/customer-notification-types`
+						},
+						SITE_CONFIGS: {
+							ALL: `${config.envAppUrl}/robot-configs`,
+							SINGLE: `${config.envAppUrl}/robot-configs/:configId`
 						}
 					}
 				},
@@ -72,17 +82,13 @@ const AppServices = (config: typeof AppConfigService) => {
 					ELEVATOR_CALLS: `${config.envAppUrl}/elevator-calls`,
 					ELEVATOR_CALLS_TEST: `${config.envAppUrl}/test-elevator-calls/:siteId`,
 					ELEVATOR_CALL_TEMPLATE: `${config.envAppUrl}/elevator-calls/:elevatorId/request-support-template`,
-					PERFORMANCE: {
-						PURCHASES: `${config.envAppUrl}/purchase-statistics`,
-						ORDERS: `${config.envAppUrl}/order-statistics`,
-						INVENTORY: `${config.envAppUrl}/inventory-statistics`,
-						PURCHASE_PRODUCTS: `${config.envAppUrl}/purchase-product-statistics`
-					},
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
 						CONFIG: `${config.envAppUrl}/robots/:robotId`,
-						CONFIGS: `${config.envAppUrl}/robots/:robotId/configs`,
-						CONFIGS_SINGLE: `${config.envAppUrl}/robots/:robotId/configs/:configId`
+						ROBOT_CONFIGS: {
+							ALL: `${config.envAppUrl}/robot-configs`,
+							SINGLE: `${config.envAppUrl}/robot-configs/:configId`
+						}
 					}
 				}
 			},

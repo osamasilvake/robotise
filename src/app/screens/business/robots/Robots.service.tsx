@@ -568,8 +568,13 @@ class RobotsService {
 	 * @returns
 	 */
 	robotConfigurationFetch = (robotId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIGS;
-		return HttpClientService.get<RCContentInterface>(url.replace(':robotId', robotId));
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.ROBOT_CONFIGS.ALL;
+		return HttpClientService.get<RCContentInterface>(url, {
+			params: {
+				'filter[robot]': robotId
+			}
+		});
 	};
 
 	/**
@@ -585,25 +590,22 @@ class RobotsService {
 		payload: RCCDataElementInterface
 	) => {
 		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIGS_SINGLE;
-		return HttpClientService.patch(
-			url.replace(':robotId', robotId).replace(':configId', configId),
-			{
-				data: {
-					type: 'robotConfigs',
-					id: configId,
-					attributes: payload.request,
-					relationships: {
-						robot: {
-							data: {
-								type: 'robots',
-								id: robotId
-							}
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.ROBOT_CONFIGS.SINGLE;
+		return HttpClientService.patch(url.replace(':configId', configId), {
+			data: {
+				type: 'robotConfigs',
+				id: configId,
+				attributes: payload.request,
+				relationships: {
+					robot: {
+						data: {
+							type: 'robots',
+							id: robotId
 						}
 					}
 				}
 			}
-		);
+		});
 	};
 }
 const instance = new RobotsService();

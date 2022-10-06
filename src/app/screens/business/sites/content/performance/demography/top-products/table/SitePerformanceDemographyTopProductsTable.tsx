@@ -55,7 +55,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 		const type = SitePerformanceDemographyTopProductsTableColumnsTypeEnum;
 		const price = topProduct[type.REVENUE];
 		const quantity = topProduct[type.QUANTITY];
-		const isDeleted = product.isDeleted;
+		const isDeleted = !!product?.isDeleted;
 
 		switch (column.id) {
 			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.IMAGE:

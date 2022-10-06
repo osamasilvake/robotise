@@ -1330,6 +1330,9 @@
 									"INVALID": "Invalid format! Correct format: 10,25,50"
 								}
 							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
 						}
 					}
 				},

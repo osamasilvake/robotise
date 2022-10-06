@@ -9,6 +9,9 @@ export const SiteConfigurationMarketingRidesStyle = makeStyles((theme: Theme) =>
 		marginTop: theme.spacing(2)
 	},
 	sTimeLabel: {
-		width: theme.typography.pxToRem(120)
+		width: theme.typography.pxToRem(80)
+	},
+	sFormControl: {
+		marginTop: theme.spacing(1)
 	}
 }));

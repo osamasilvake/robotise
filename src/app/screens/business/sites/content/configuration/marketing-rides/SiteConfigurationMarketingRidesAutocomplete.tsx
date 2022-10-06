@@ -12,12 +12,14 @@ import {
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigurationMarketingRidesAutocompleteInterface } from './SiteConfigurationMarketingRides.interface';
+import { SiteConfigurationMarketingRidesStyle } from './SiteConfigurationMarketingRides.style';
 
 const SiteConfigurationMarketingRidesAutocomplete: FC<
 	SiteConfigurationMarketingRidesAutocompleteInterface
 > = (props) => {
 	const { locations, handleChangeInputs, handleBlur, errors } = props;
 	const { t } = useTranslation('SITES');
+	const classes = SiteConfigurationMarketingRidesStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
@@ -46,8 +48,9 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 	}, [dispatch, pServicePositionSiteId, cSiteId]);
 
 	return (
-		<FormControl fullWidth margin="normal">
+		<FormControl fullWidth className={classes.sFormControl}>
 			<Autocomplete
+				size="small"
 				disablePortal
 				multiple
 				id="locations"

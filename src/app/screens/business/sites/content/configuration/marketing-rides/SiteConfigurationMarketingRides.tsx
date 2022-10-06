@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -15,26 +15,32 @@ const SiteConfigurationMarketingRides: FC = () => {
 
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 
-	const { handleChangeInputs, handleChangeInputsMultiple, handleBlur, values, errors } =
-		useForm<SiteConfigurationMarketingRidesFormInterface>(
-			{
-				locations: [],
-				times: []
-			},
-			SiteConfigurationMarketingRidesValidation,
-			async () => {
-				console.log(values);
-			}
-		);
+	const {
+		handleChangeInputs,
+		handleChangeInputsMultiple,
+		handleBlur,
+		handleSubmit,
+		values,
+		errors
+	} = useForm<SiteConfigurationMarketingRidesFormInterface>(
+		{
+			locations: [],
+			times: []
+		},
+		SiteConfigurationMarketingRidesValidation,
+		async () => {
+			console.log(values);
+		}
+	);
 
 	return (
 		<Box className={classes.sBox}>
-			<Grid container spacing={0}>
-				<Grid item sm={12} md={8} lg={6}>
-					<Card square elevation={1}>
-						<CardContent>
-							{/* Locations */}
-							<Box>
+			<Card square elevation={1}>
+				<CardContent>
+					<form onSubmit={handleSubmit}>
+						{/* Locations */}
+						<Grid container spacing={2}>
+							<Grid item sm={12} md={6} lg={4}>
 								<Typography variant="h6">
 									{t(`${translation}.LOCATIONS`)}
 								</Typography>
@@ -44,37 +50,61 @@ const SiteConfigurationMarketingRides: FC = () => {
 									handleBlur={handleBlur}
 									errors={errors?.locations || []}
 								/>
-							</Box>
+							</Grid>
+						</Grid>
 
-							{/* Times */}
-							<Box className={classes.sTimes}>
-								<Typography variant="h6">{t(`${translation}.TIMES`)}</Typography>
+						{/* Times */}
+						<Box className={classes.sTimes}>
+							<Typography variant="h6">{t(`${translation}.TIMES`)}</Typography>
+							<Grid container spacing={2}>
 								{[...Array(24)].map((h, i) => (
-									<Stack key={i} spacing={0} direction="row" alignItems="center">
-										<Typography className={classes.sTimeLabel}>
-											{i < 10 ? `0${i}` : i}:00
-										</Typography>
+									<Grid key={i} item sm={12} md={6} lg={4}>
+										<Stack spacing={0} direction="row" alignItems="center">
+											<Typography className={classes.sTimeLabel}>
+												{i < 10 ? `0${i}` : i}:00
+											</Typography>
 
-										{/* Marketing Rides */}
-										<SiteConfigurationMarketingRidesInput
-											index={i}
-											id={`minute-${i}`}
-											times={values.times}
-											error={
-												errors && errors?.times
-													? errors.times[i]?.value
-													: null
-											}
-											handleBlur={handleBlur}
-											handleChangeInputsMultiple={handleChangeInputsMultiple}
-										/>
-									</Stack>
+											{/* Marketing Rides */}
+											<SiteConfigurationMarketingRidesInput
+												index={i}
+												id={`minute-${i}`}
+												times={values.times}
+												error={
+													errors && errors?.times
+														? errors.times[i]?.value
+														: null
+												}
+												handleBlur={handleBlur}
+												handleChangeInputsMultiple={
+													handleChangeInputsMultiple
+												}
+											/>
+										</Stack>
+									</Grid>
 								))}
-							</Box>
-						</CardContent>
-					</Card>
-				</Grid>
-			</Grid>
+								<>
+									{JSON.stringify(values?.times)}
+									{values?.times?.length}
+								</>
+								<Grid item sm={12} textAlign="right">
+									<Button
+										variant="outlined"
+										type="submit"
+										disabled={
+											(values?.locations?.length || 0) === 0 ||
+											!!(
+												errors &&
+												errors?.times?.filter((e) => e.value).length
+											)
+										}>
+										{t(`${translation}.FORM.BUTTONS.UPDATE`)}
+									</Button>
+								</Grid>
+							</Grid>
+						</Box>
+					</form>
+				</CardContent>
+			</Card>
 		</Box>
 	);
 };

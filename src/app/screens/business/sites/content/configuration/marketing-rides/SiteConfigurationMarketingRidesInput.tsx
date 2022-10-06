@@ -39,15 +39,15 @@ const SiteConfigurationMarketingRidesInput: FC<SiteConfigurationMarketingRidesIn
 	}, [debouncedValue, index, time, times, handleChangeInputsMultiple]);
 
 	return (
-		<FormControl fullWidth margin="normal">
+		<FormControl fullWidth>
 			<TextField
+				size="small"
 				type="text"
 				id={id}
 				name="times"
 				label={label}
 				placeholder={placeholder}
-				value={times[index]?.value || ''}
-				rows={2}
+				value={time?.value || ''}
 				onChange={(e) => setTime({ id: index, value: e.target.value })}
 				onBlur={handleBlur}
 				error={!!error}

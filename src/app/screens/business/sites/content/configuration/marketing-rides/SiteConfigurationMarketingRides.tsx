@@ -39,26 +39,22 @@ const SiteConfigurationMarketingRides: FC = () => {
 				<CardContent>
 					<form onSubmit={handleSubmit}>
 						{/* Locations */}
-						<Grid container spacing={2}>
-							<Grid item sm={12} md={6} lg={4}>
-								<Typography variant="h6">
-									{t(`${translation}.LOCATIONS`)}
-								</Typography>
-								<SiteConfigurationMarketingRidesAutocomplete
-									locations={values.locations}
-									handleChangeInputs={handleChangeInputs}
-									handleBlur={handleBlur}
-									errors={errors?.locations || []}
-								/>
-							</Grid>
-						</Grid>
+						<Typography variant="h6">{t(`${translation}.LOCATIONS`)}</Typography>
+						<Box className={classes.sLocations}>
+							<SiteConfigurationMarketingRidesAutocomplete
+								locations={values.locations}
+								handleChangeInputs={handleChangeInputs}
+								handleBlur={handleBlur}
+								errors={errors?.locations || []}
+							/>
+						</Box>
 
 						{/* Times */}
 						<Box className={classes.sTimes}>
 							<Typography variant="h6">{t(`${translation}.TIMES`)}</Typography>
-							<Grid container spacing={2}>
+							<Box className={classes.sTimesList}>
 								{[...Array(24)].map((_, i) => (
-									<Grid key={i} item sm={12} md={6} lg={4}>
+									<Box key={i} className={classes.sTimesListItem}>
 										<Stack spacing={0} direction="row" alignItems="center">
 											<Typography className={classes.sTimeLabel}>
 												{i < 10 ? `0${i}` : i}:00
@@ -80,8 +76,10 @@ const SiteConfigurationMarketingRides: FC = () => {
 												}
 											/>
 										</Stack>
-									</Grid>
+									</Box>
 								))}
+							</Box>
+							<Box>
 								<Grid item sm={12} textAlign="right">
 									<Button
 										variant="outlined"
@@ -96,7 +94,7 @@ const SiteConfigurationMarketingRides: FC = () => {
 										{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 									</Button>
 								</Grid>
-							</Grid>
+							</Box>
 						</Box>
 					</form>
 				</CardContent>

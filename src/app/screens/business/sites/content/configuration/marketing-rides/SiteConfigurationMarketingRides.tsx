@@ -57,7 +57,7 @@ const SiteConfigurationMarketingRides: FC = () => {
 						<Box className={classes.sTimes}>
 							<Typography variant="h6">{t(`${translation}.TIMES`)}</Typography>
 							<Grid container spacing={2}>
-								{[...Array(24)].map((h, i) => (
+								{[...Array(24)].map((_, i) => (
 									<Grid key={i} item sm={12} md={6} lg={4}>
 										<Stack spacing={0} direction="row" alignItems="center">
 											<Typography className={classes.sTimeLabel}>
@@ -82,10 +82,6 @@ const SiteConfigurationMarketingRides: FC = () => {
 										</Stack>
 									</Grid>
 								))}
-								<>
-									{JSON.stringify(values?.times)}
-									{values?.times?.length}
-								</>
 								<Grid item sm={12} textAlign="right">
 									<Button
 										variant="outlined"

@@ -1328,7 +1328,7 @@
 								"LABEL": "Minutes",
 								"PLACEHOLDER": "Enter Minutes",
 								"VALIDATIONS": {
-									"INVALID": "Invalid format! Correct format: 10,25,50"
+									"INVALID": "Only 0-59 are allowed with comma separated, ex:10,25,50"
 								}
 							}
 						},

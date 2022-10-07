@@ -29,7 +29,15 @@ const SiteConfigurationMarketingRides: FC = () => {
 		},
 		SiteConfigurationMarketingRidesValidation,
 		async () => {
-			console.log(values);
+			const result = {
+				...values,
+				times: values?.times
+					?.filter((v) => v)
+					?.map((v) => ({
+						...v,
+						value: v.value?.split(',')?.sort()?.join(',')
+					}))
+			};
 		}
 	);
 

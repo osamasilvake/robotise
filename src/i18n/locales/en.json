@@ -1320,6 +1320,9 @@
 					"TIMES": "Times",
 					"FORM": {
 						"FIELDS": {
+							"ACTIVATE": {
+								"LABEL": "Activate"
+							},
 							"LOCATIONS": {
 								"LABEL": "Locations",
 								"PLACEHOLDER": "Select Locations"

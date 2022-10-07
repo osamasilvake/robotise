@@ -3,6 +3,7 @@ import { ChangeEvent, FocusEvent } from 'react';
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
 
 export interface SiteConfigurationMarketingRidesFormInterface {
+	activate: boolean;
 	locations: string[];
 	times: SiteConfigurationMarketingRidesTimesInterface[];
 }

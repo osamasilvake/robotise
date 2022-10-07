@@ -3,7 +3,13 @@ import { makeStyles } from '@mui/styles';
 
 export const SiteConfigurationMarketingRidesStyle = makeStyles((theme: Theme) => ({
 	sBox: {
-		marginTop: theme.spacing(3)
+		marginTop: theme.spacing(3),
+		position: 'relative'
+	},
+	sActivate: {
+		position: 'absolute',
+		right: 0,
+		top: 0
 	},
 	sLocations: {
 		maxWidth: theme.typography.pxToRem(400)

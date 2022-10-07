@@ -16,6 +16,7 @@ export const SiteConfigurationMarketingRidesValidation = (
 	const regexIntegerAndComma = AppConfigService.AppOptions.regex.integerAndComma;
 
 	let errors: SiteConfigurationMarketingRidesFormInterface = {
+		activate: false,
 		locations: [],
 		times: []
 	};

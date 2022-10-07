@@ -1,5 +1,15 @@
-import { Box, Button, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
-import { FC } from 'react';
+import {
+	Box,
+	Button,
+	Card,
+	CardContent,
+	Checkbox,
+	FormControlLabel,
+	Grid,
+	Stack,
+	Typography
+} from '@mui/material';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
@@ -18,12 +28,14 @@ const SiteConfigurationMarketingRides: FC = () => {
 	const {
 		handleChangeInputs,
 		handleChangeInputsMultiple,
+		handleChangeCheckbox,
 		handleBlur,
 		handleSubmit,
 		values,
 		errors
 	} = useForm<SiteConfigurationMarketingRidesFormInterface>(
 		{
+			activate: false,
 			locations: [],
 			times: []
 		},
@@ -46,6 +58,21 @@ const SiteConfigurationMarketingRides: FC = () => {
 			<Card square elevation={1}>
 				<CardContent>
 					<form onSubmit={handleSubmit}>
+						{/* Activate */}
+						<Box className={classes.sActivate}>
+							<FormControlLabel
+								control={
+									<Checkbox
+										color="primary"
+										name="activate"
+										onChange={handleChangeCheckbox}
+									/>
+								}
+								label={t<string>(`${translation}.FORM.FIELDS.ACTIVATE.LABEL`)}
+								labelPlacement="start"
+							/>
+						</Box>
+
 						{/* Locations */}
 						<Typography variant="h6">{t(`${translation}.LOCATIONS`)}</Typography>
 						<Box className={classes.sLocations}>

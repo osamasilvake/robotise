@@ -1328,7 +1328,9 @@
 								"LABEL": "Minutes",
 								"PLACEHOLDER": "Enter Minutes",
 								"VALIDATIONS": {
-									"INVALID": "Only 0-59 are allowed with comma separated, ex:10,25,50"
+									"INVALID": "Only 0-59 are allowed with comma separated, ex:10,25,50",
+									"DUPLICATE": "Duplicate values found!",
+									"MAX_LIMIT_EXCEEDED": "Maximum 4 entries per hour are allowed!"
 								}
 							}
 						},

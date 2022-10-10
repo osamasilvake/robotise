@@ -3,10 +3,11 @@ import {
 	Button,
 	Card,
 	CardContent,
-	Checkbox,
+	FormControl,
 	FormControlLabel,
 	Grid,
 	Stack,
+	Switch,
 	Typography
 } from '@mui/material';
 import { FC } from 'react';
@@ -72,17 +73,15 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 					<form onSubmit={handleSubmit}>
 						{/* Activate */}
 						<Box className={classes.sActivate}>
-							<FormControlLabel
-								control={
-									<Checkbox
-										color="primary"
-										name="activate"
-										onChange={handleChangeCheckbox}
-									/>
-								}
-								label={t<string>(`${translation}.FORM.FIELDS.ACTIVATE.LABEL`)}
-								labelPlacement="start"
-							/>
+							<FormControl>
+								<FormControlLabel
+									control={
+										<Switch name="activate" onChange={handleChangeCheckbox} />
+									}
+									label={t<string>(`${translation}.FORM.FIELDS.ACTIVATE.LABEL`)}
+									labelPlacement="start"
+								/>
+							</FormControl>
 						</Box>
 
 						{/* Locations */}

@@ -8,7 +8,7 @@ export const SiteConfigurationMarketingRidesStyle = makeStyles((theme: Theme) =>
 	},
 	sActivate: {
 		position: 'absolute',
-		right: 0,
+		right: theme.spacing(1),
 		top: 0
 	},
 	sLocations: {

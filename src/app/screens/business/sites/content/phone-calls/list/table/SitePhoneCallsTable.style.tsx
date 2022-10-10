@@ -1,4 +1,4 @@
-import { Theme } from '@mui/material/styles';
+import { alpha, Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 import { AppConfigService } from '../../../../../../../services';
@@ -11,6 +11,9 @@ export const SitePhoneCallsTableStyle = makeStyles((theme: Theme) => ({
 	sTablePagination: {
 		opacity: 0.6,
 		pointerEvents: 'none'
+	},
+	sTableRowWarning: {
+		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)
 	},
 	sTableHistory: {
 		'&:not(:last-child)': {

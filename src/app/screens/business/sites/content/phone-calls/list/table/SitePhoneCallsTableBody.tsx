@@ -1,4 +1,5 @@
 import { TableBody, TableRow } from '@mui/material';
+import clsx from 'clsx';
 import { FC } from 'react';
 
 import {
@@ -15,10 +16,12 @@ import {
 	SitePhoneCallsTableColumnInterface
 } from './SitePhoneCallsTable.interface';
 import { columns } from './SitePhoneCallsTable.list';
+import { SitePhoneCallsTableStyle } from './SitePhoneCallsTable.style';
 import SitePhoneCallsTableBodyCell from './SitePhoneCallsTableBodyCell';
 
 const SitePhoneCallsTableBody: FC<SitePhoneCallsTableBodyInterface> = (props) => {
 	const { content, order, orderBy, page, rowsPerPage } = props;
+	const classes = SitePhoneCallsTableStyle();
 
 	/**
 	 * sort table data
@@ -76,7 +79,11 @@ const SitePhoneCallsTableBody: FC<SitePhoneCallsTableBodyInterface> = (props) =>
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 					.map((phoneCall: PCCDataInterface) => (
-						<TableRow key={String(phoneCall.createdAt)}>
+						<TableRow
+							key={String(phoneCall.createdAt)}
+							className={clsx({
+								[classes.sTableRowWarning]: phoneCall?.isDebug
+							})}>
 							{columns.map((column: SitePhoneCallsTableColumnInterface) => (
 								<SitePhoneCallsTableBodyCell
 									key={column.id}

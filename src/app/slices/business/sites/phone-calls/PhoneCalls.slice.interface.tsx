@@ -23,6 +23,7 @@ export interface PCCDataInterface {
 	status: string;
 	from: string;
 	callerCountry: string;
+	isDebug: boolean;
 	updatedAt: Date;
 	createdAt: Date;
 	history: PCCDataHistoryInterface[];

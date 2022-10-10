@@ -61,10 +61,10 @@ class LoggerService {
 		name: log.name,
 		message: log.message,
 		stacktrace: log.stack || '',
-		method: log.config.method || '',
+		method: log.config?.method || '',
 		status: log.response?.status || 0,
 		payload: JSON.stringify(log.response?.data),
-		url: log.config.url || ''
+		url: log.config?.url || ''
 	});
 }
 const instance = new LoggerService();

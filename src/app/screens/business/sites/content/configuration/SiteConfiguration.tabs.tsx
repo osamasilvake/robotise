@@ -1,5 +1,5 @@
 import { Box, Tab, Tabs } from '@mui/material';
-import { FC, lazy, Suspense, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -10,9 +10,13 @@ import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice'
 import { strRemoveSymbols } from '../../../../../utilities/methods/String';
 import { SiteParamsInterface } from '../../Site.interface';
 import sitesRoutes from '../../Sites.routes';
+import DialogSiteConfigurationConfirmation from './DialogSiteConfigurationConfirmation';
 import SiteConfigurationMarketingRides from './marketing-rides/SiteConfigurationMarketingRides';
 import SiteConfigurationSite from './site/SiteConfigurationSite';
-import { SiteConfigurationTabsTypeEnum } from './SiteConfiguration.enum';
+import {
+	SiteConfigurationConfirmationTypeEnum,
+	SiteConfigurationTabsTypeEnum
+} from './SiteConfiguration.enum';
 import { SiteConfigurationTabsInterface } from './SiteConfiguration.interface';
 
 const SiteConfigurationCloud = lazy(() => import('./cloud/SiteConfigurationCloud'));
@@ -25,9 +29,13 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 
 	const [value, setValue] = useState(0);
 	const [sectionName, setSectionName] = useState('');
+	const [confirm, setConfirm] = useState(SiteConfigurationConfirmationTypeEnum.CLOSE);
+	const [formDirty, setFormDirty] = useState(false);
+
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const location = useLocation();
 	const navigate = useNavigate();
+	const tab = useRef(0);
 
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
@@ -60,25 +68,43 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 	 * @param _event
 	 * @param value
 	 */
-	const handleTabChange = (_event: SyntheticEvent, value: number) => {
-		const all = [
-			{ sectionName: SiteConfigurationTabsTypeEnum.CLOUD },
-			{ sectionName: SiteConfigurationTabsTypeEnum.MARKETING_RIDES },
-			...sections
-		];
-		const updateSectionName = all[value]?.sectionName;
+	const handleTabChange = useCallback(
+		(value: number) => {
+			tab.current = value;
 
-		// set section name
-		setSectionName(updateSectionName);
+			// confirm before leaving the route
+			if (formDirty) {
+				setConfirm(SiteConfigurationConfirmationTypeEnum.OPEN);
+				return false;
+			}
 
-		// prepare link
-		const link = sitesRoutes[offset + 1].path
-			.replace(':configId', updateSectionName)
-			.replace(':siteId', cSiteId);
+			const all = [
+				{ sectionName: SiteConfigurationTabsTypeEnum.CLOUD },
+				{ sectionName: SiteConfigurationTabsTypeEnum.MARKETING_RIDES },
+				...sections
+			];
+			const updateSectionName = all[value]?.sectionName;
 
-		// navigate
-		navigate(link);
-	};
+			// set section name
+			setSectionName(updateSectionName);
+
+			// prepare link
+			const link = sitesRoutes[offset + 1].path
+				.replace(':configId', updateSectionName)
+				.replace(':siteId', cSiteId);
+
+			// navigate
+			navigate(link);
+		},
+		[cSiteId, formDirty, navigate, sections]
+	);
+
+	useEffect(() => {
+		if (confirm === SiteConfigurationConfirmationTypeEnum.CONFIRM) {
+			handleTabChange(tab.current);
+			setConfirm(SiteConfigurationConfirmationTypeEnum.CLOSE);
+		}
+	}, [confirm, handleTabChange]);
 
 	return value !== -1 && !problem ? (
 		<Box>
@@ -86,7 +112,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 			<Tabs
 				allowScrollButtonsMobile
 				value={value}
-				onChange={handleTabChange}
+				onChange={(_, val) => handleTabChange(val)}
 				variant="scrollable"
 				textColor="primary">
 				<Tab label={t(`${translation}.CONFIGURATION.CLOUD`)} />
@@ -113,7 +139,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 				{value === 1 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
-							<SiteConfigurationMarketingRides />
+							<SiteConfigurationMarketingRides setFormDirty={setFormDirty} />
 						</Suspense>
 					</ErrorBoundary>
 				)}
@@ -133,6 +159,15 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 								)
 						)}
 			</Box>
+
+			{/* Dialog: Test Call Confirmation */}
+			{confirm === SiteConfigurationConfirmationTypeEnum.OPEN && (
+				<DialogSiteConfigurationConfirmation
+					open={confirm}
+					setOpen={setConfirm}
+					setFormDirty={setFormDirty}
+				/>
+			)}
 		</Box>
 	) : null;
 };

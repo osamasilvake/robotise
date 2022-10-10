@@ -1,6 +1,10 @@
-import { ChangeEvent, FocusEvent } from 'react';
+import { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from 'react';
 
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
+
+export interface SiteConfigurationMarketingRidesInterface {
+	setFormDirty: Dispatch<SetStateAction<boolean>>;
+}
 
 export interface SiteConfigurationMarketingRidesFormInterface {
 	activate: boolean;

@@ -9,11 +9,13 @@ import { TargetInterface, UseFormRetInterface } from './UseForm.interface';
  * @param initState
  * @param formValidation
  * @param submitCallBack
+ * @param changeCallback
  */
 export const useForm = <UseFormEntity,>(
 	initState: UseFormEntity,
 	formValidation: (arg: UseFormEntity, arg2: UseFormEntity) => UseFormEntity,
-	submitCallBack: () => Promise<void>
+	submitCallBack: () => Promise<void>,
+	changeCallback?: (values: UseFormEntity) => void
 ): UseFormRetInterface<UseFormEntity> => {
 	const [values, setValues] = useState(initState);
 	const [errors, setErrors] = useState<UseFormEntity>();
@@ -109,6 +111,13 @@ export const useForm = <UseFormEntity,>(
 
 			return newState;
 		});
+
+		// change callback
+		changeCallback &&
+			changeCallback({
+				...values,
+				[name]: value
+			});
 	};
 
 	/**

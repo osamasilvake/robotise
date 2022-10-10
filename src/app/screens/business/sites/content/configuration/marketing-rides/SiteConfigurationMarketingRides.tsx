@@ -9,21 +9,30 @@ import {
 	Stack,
 	Typography
 } from '@mui/material';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { SiteConfigurationMarketingRidesFormInterface } from './SiteConfigurationMarketingRides.interface';
+import {
+	SiteConfigurationMarketingRidesFormInterface,
+	SiteConfigurationMarketingRidesInterface
+} from './SiteConfigurationMarketingRides.interface';
 import { SiteConfigurationMarketingRidesStyle } from './SiteConfigurationMarketingRides.style';
 import { SiteConfigurationMarketingRidesValidation } from './SiteConfigurationMarketingRides.validation';
 import SiteConfigurationMarketingRidesAutocomplete from './SiteConfigurationMarketingRidesAutocomplete';
 import SiteConfigurationMarketingRidesInput from './SiteConfigurationMarketingRidesInput';
 
-const SiteConfigurationMarketingRides: FC = () => {
+const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterface> = (props) => {
+	const { setFormDirty } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigurationMarketingRidesStyle();
 
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
+	const initial = {
+		activate: false,
+		locations: [],
+		times: []
+	};
 
 	const {
 		handleChangeInputs,
@@ -34,11 +43,7 @@ const SiteConfigurationMarketingRides: FC = () => {
 		values,
 		errors
 	} = useForm<SiteConfigurationMarketingRidesFormInterface>(
-		{
-			activate: false,
-			locations: [],
-			times: []
-		},
+		initial,
 		SiteConfigurationMarketingRidesValidation,
 		async () => {
 			const result = {
@@ -50,6 +55,13 @@ const SiteConfigurationMarketingRides: FC = () => {
 						value: v.value?.split(',')?.sort()?.join(',')
 					}))
 			};
+		},
+		(state) => {
+			const updated = { ...state, times: values.times?.filter((v) => v && v.value) };
+			const a = JSON.stringify(initial);
+			const b = JSON.stringify(updated);
+			const result = a.localeCompare(b);
+			setFormDirty(result !== 0);
 		}
 	);
 

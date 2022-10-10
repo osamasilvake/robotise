@@ -56,6 +56,7 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 						value: v.value?.split(',')?.sort()?.join(',')
 					}))
 			};
+			console.info(result);
 		},
 		(state) => {
 			const updated = { ...state, times: values.times?.filter((v) => v && v.value) };

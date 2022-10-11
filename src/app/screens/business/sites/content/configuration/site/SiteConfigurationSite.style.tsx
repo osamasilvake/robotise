@@ -37,5 +37,8 @@ export const SiteConfigurationSiteStyle = makeStyles((theme: Theme) => ({
 	},
 	sSubmitNote: {
 		marginTop: theme.spacing(1)
+	},
+	sDialogContent: {
+		overflow: 'visible'
 	}
 }));

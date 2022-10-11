@@ -60,7 +60,8 @@
 			"DELETE": "Delete",
 			"GENERATE": "Generate",
 			"PRINT": "Print",
-			"GO_BACK": "Go Back"
+			"GO_BACK": "Go Back",
+			"SYNC": "Sync"
 		}
 	},
 	"TOOLTIP": {
@@ -1358,6 +1359,14 @@
 							"UPDATE": "Update"
 						},
 						"NOTE": "Robot is offline!"
+					},
+					"SYNC_ROBOT": {
+						"TITLE": "Sync Configuration",
+						"TEXT": "Select robot(s) from the list to sync the configuration.",
+						"ROBOTS": {
+							"LABEL": "Select Robot(s)",
+							"PLACEHOLDER": "Select Robot(s)"
+						}
 					}
 				}
 			}

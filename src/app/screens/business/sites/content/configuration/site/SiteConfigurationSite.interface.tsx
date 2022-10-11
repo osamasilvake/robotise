@@ -1,5 +1,6 @@
-import { ChangeEvent, FocusEvent } from 'react';
+import { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from 'react';
 
+import { RTSContentDataInterface } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import {
 	SCCDataElementInterface,
 	SCContentDataInterface
@@ -54,4 +55,12 @@ export interface SiteConfigurationSiteAddDeleteItemInterface {
 	items: SCCDataElementInterface;
 	isDelete?: boolean;
 	isRoot?: boolean;
+}
+
+export interface DialogSiteConfigurationSyncRobotInterface {
+	open: SCCDataElementInterface | SCCDataElementInterface[] | null;
+	setOpen: Dispatch<SetStateAction<SCCDataElementInterface | SCCDataElementInterface[] | null>>;
+	section: SCContentDataInterface;
+	robotsList: RTSContentDataInterface[];
+	cSiteId: string;
 }

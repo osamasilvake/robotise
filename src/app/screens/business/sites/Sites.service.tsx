@@ -794,7 +794,7 @@ class SitesService {
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIGS.SINGLE;
 		return HttpClientService.patch(url.replace(':configId', configId), {
 			data: {
-				type: 'siteConfigs',
+				type: 'robotConfigs',
 				id: configId,
 				attributes: payload.request,
 				relationships: {

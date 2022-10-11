@@ -17,13 +17,13 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../slices';
+import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	SiteConfigurationFetch,
 	siteConfigurationSelector,
 	SiteConfigurationUpdate
 } from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice';
 import { SCCDataElementInterface } from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { isArray } from '../../../../../../utilities/methods/Array';
 import {
@@ -31,6 +31,7 @@ import {
 	strRemoveSymbols
 } from '../../../../../../utilities/methods/String';
 import { SiteParamsInterface } from '../../../Site.interface';
+import DialogSiteConfigurationSyncRobot from './DialogSiteConfigurationSyncRobot';
 import { SiteConfigurationSiteElementTypeEnum } from './SiteConfigurationSite.enum';
 import {
 	SiteConfigurationSiteAddDeleteItemInterface,
@@ -49,17 +50,23 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 	const classes = SiteConfigurationSiteStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
-	const sites = useSelector(sitesSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const siteConfiguration = useSelector(siteConfigurationSelector);
 
 	const [elements, setElements] = useState<SCCDataElementInterface | SCCDataElementInterface[]>(
 		section?.elements?.value as SCCDataElementInterface | SCCDataElementInterface[]
 	);
+	const [open, setOpen] = useState<SCCDataElementInterface | SCCDataElementInterface[] | null>(
+		null
+	);
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
-	const siteSingle = sites.content?.dataById[cSiteId];
 	const sectionName = (section?.sectionName || '').toUpperCase();
+	const robotsList = robotTwinsSummary?.content?.data?.filter((r) => r.siteId === cSiteId);
+	const isRobotsEmpty = robotsList && robotsList.length === 0;
+	const isOneRobot = robotsList && robotsList.length === 1;
+	const isMoreRobots = robotsList && robotsList.length > 1;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIGURATION';
 
 	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
@@ -81,26 +88,31 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 				isArray: isArray(elements)
 			});
 
-			// dispatch: update site configuration
-			dispatch(
-				SiteConfigurationUpdate(
-					cSiteId,
-					section?.id,
-					{
-						request: {
-							name: section.name,
-							configType: section.configType,
-							sectionName: section.sectionName,
-							preset: section.preset,
-							elements: { ...section?.elements, value: result }
+			if (isOneRobot) {
+				// dispatch: update site configuration
+				dispatch(
+					SiteConfigurationUpdate(
+						cSiteId,
+						section?.id,
+						{
+							request: {
+								name: section.name,
+								configType: section.configType,
+								sectionName: section.sectionName,
+								preset: section.preset,
+								elements: { ...section?.elements, value: result },
+								siteRobotsToSync: [robotsList[0].robotId]
+							}
+						},
+						() => {
+							// dispatch: fetch site configuration
+							dispatch(SiteConfigurationFetch(cSiteId, true));
 						}
-					},
-					() => {
-						// dispatch: fetch site configuration
-						dispatch(SiteConfigurationFetch(cSiteId, true));
-					}
-				)
-			);
+					)
+				);
+			} else {
+				setOpen(result);
+			}
 		});
 
 	/**
@@ -433,19 +445,32 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 						<Button
 							variant="outlined"
 							type="submit"
-							disabled={siteConfiguration.updating}
+							disabled={siteConfiguration.updating || !robotTwinsSummary?.content}
 							endIcon={siteConfiguration.updating && <CircularProgress size={20} />}>
 							{t(`${translation}.FORM.BUTTONS.UPDATE`)}
 						</Button>
-						<Typography
-							variant="body2"
-							color="textSecondary"
-							className={classes.sSubmitNote}>
-							{t(`${translation}.FORM.NOTE`)}
-						</Typography>
+						{isRobotsEmpty && (
+							<Typography
+								variant="body2"
+								color="textSecondary"
+								className={classes.sSubmitNote}>
+								{t(`${translation}.FORM.NOTE`)}
+							</Typography>
+						)}
 					</Grid>
 				</form>
 			</CardContent>
+
+			{/* Choose Robot to Sync */}
+			{!!open && isMoreRobots && (
+				<DialogSiteConfigurationSyncRobot
+					open={open}
+					setOpen={setOpen}
+					section={section}
+					robotsList={robotsList}
+					cSiteId={cSiteId}
+				/>
+			)}
 		</Card>
 	);
 };

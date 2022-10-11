@@ -34,6 +34,7 @@ export interface SCCDataElementInterface {
 	[key: string]:
 		| number
 		| string
+		| string[]
 		| boolean
 		| SCCDataElementInterface
 		| SCCDataElementInterface[]

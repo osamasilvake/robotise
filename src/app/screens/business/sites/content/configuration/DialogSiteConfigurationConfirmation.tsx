@@ -16,9 +16,9 @@ const DialogSiteConfigurationConfirmation: FC<DialogSiteConfigurationConfirmatio
 	props
 ) => {
 	const { open, setOpen, setFormDirty } = props;
-	const { t } = useTranslation(['DIALOG']);
+	const { t } = useTranslation(['SITES', 'DIALOG']);
 
-	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
+	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIGURATION.CONFIRMATION';
 
 	/**
 	 * confirm modal

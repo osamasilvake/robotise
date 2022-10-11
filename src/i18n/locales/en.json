@@ -1360,6 +1360,10 @@
 						},
 						"NOTE": "Robot is offline!"
 					},
+					"CONFIRMATION": {
+						"TITLE": "Discard Changes",
+						"TEXT": "You will lose your changes if you change route. Are you sure?"
+					},
 					"SYNC_ROBOT": {
 						"TITLE": "Sync Configuration",
 						"TEXT": "Select robot(s) from the list to sync the configuration.",

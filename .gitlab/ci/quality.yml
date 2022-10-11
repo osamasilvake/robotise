@@ -19,3 +19,14 @@ lint:
     - development
     - pre-production
     - production
+
+test:
+  stage: Quality
+  image: node:18.4.0-alpine
+  script:
+    - yarn test:ci
+  only:
+    - merge_requests
+    - development
+    - pre-production
+    - production

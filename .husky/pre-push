@@ -1,4 +1,4 @@
 #!/bin/sh
 # .husky/pre-push
 
-# yarn test:ci
+yarn test:ci

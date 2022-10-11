@@ -96,17 +96,20 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 				</Typography>
 			)}
 
-			{/* Map */}
+			{/* Map & Screenshot */}
 			{wifiHeatmap && name && (
 				<Grid container className={classes.sMap}>
+					{/* Map */}
 					<Grid item xs={6} id="wifi-map">
 						<SiteStatisticsWifiHeatmapCard wifiHeatmap={wifiHeatmap} name={name} />
 					</Grid>
+
+					{/* Screenshot */}
+					<Grid item xs={12}>
+						<SiteStatisticsWifiHeatmapScreenshot siteName={cSiteName} floor={floor} />
+					</Grid>
 				</Grid>
 			)}
-
-			{/* Download */}
-			<SiteStatisticsWifiHeatmapScreenshot siteName={cSiteName} floor={floor} />
 		</Box>
 	);
 };

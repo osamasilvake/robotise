@@ -355,18 +355,35 @@ class SitesService {
 	};
 
 	/**
-	 * fetch site phone calls
+	 * fetch site phone inbound calls
 	 * @param siteId
 	 * @param payload
 	 * @returns
 	 */
-	sitePhoneCallsFetch = (siteId: string, payload: SitePhoneCallsListPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS;
+	sitePhoneCallsInboundFetch = (siteId: string, payload: SitePhoneCallsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS.INBOUND;
 		return HttpClientService.get<SitePhoneCallsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId,
 				'page[number]': payload.page + 1,
-				'page[size]': payload.rowsPerPage
+				'page[size]': payload.rowsPerPage / 2
+			}
+		});
+	};
+
+	/**
+	 * fetch site phone outbound calls
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	sitePhoneCallsOutboundFetch = (siteId: string, payload: SitePhoneCallsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS.OUTBOUND;
+		return HttpClientService.get<SitePhoneCallsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage / 2
 			}
 		});
 	};

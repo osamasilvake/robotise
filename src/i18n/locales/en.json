@@ -943,6 +943,7 @@
 				"LIST": {
 					"TABLE": {
 						"COLUMNS": {
+							"TYPE": "Type",
 							"ROOM": "Room",
 							"STATUS": "Status",
 							"MODE": "Mode",
@@ -956,7 +957,13 @@
 								"confirmed": "Confirmed",
 								"orderAssigned": "Order Assigned",
 								"rejected": "Rejected",
-								"error": "Error"
+								"error": "Error",
+								"created": "Created",
+								"completed": "Completed",
+								"failed": "Failed",
+								"undefined": "Unknown",
+								"no-answer": "No Answer",
+								"busy": "Busy"
 							},
 							"HISTORY": {
 								"EVENT": {
@@ -964,7 +971,8 @@
 									"confirmed": "Confirmed",
 									"orderAssigned": "Order Assigned",
 									"rejected": "Rejected",
-									"error": "Error"
+									"error": "Error",
+									"statusUpdated": "Status"
 								}
 							}
 						}

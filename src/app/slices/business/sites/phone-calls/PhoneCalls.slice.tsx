@@ -7,6 +7,7 @@ import SitesService from '../../../../screens/business/sites/Sites.service';
 import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializePhoneCalls } from './PhoneCalls.slice.deserialize';
+import { PhoneCallsTypeEnum } from './PhoneCalls.slice.enum';
 import {
 	PCContentInterface,
 	PCCStateInterface,
@@ -91,10 +92,28 @@ export const PhoneCallsFetchList =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch site phone calls
-		return SitesService.sitePhoneCallsFetch(siteId, payload)
+		return Promise.all([
+			SitesService.sitePhoneCallsInboundFetch(siteId, payload),
+			SitesService.sitePhoneCallsOutboundFetch(siteId, payload)
+		])
 			.then(async (res) => {
 				// deserialize response
-				let result: PCContentInterface = await deserializePhoneCalls(res);
+				const result1: PCContentInterface = await deserializePhoneCalls(res[0]);
+				const result2: PCContentInterface = await deserializePhoneCalls(res[1]);
+
+				const typeInbound = PhoneCallsTypeEnum.INBOUND;
+				const typeOutbound = PhoneCallsTypeEnum.OUTBOUND;
+				let result: PCContentInterface = {
+					data: [
+						...(result1.data?.map((d) => ({ ...d, type: typeInbound })) || []),
+						...(result2.data?.map((d) => ({ ...d, type: typeOutbound })) || [])
+					],
+					meta: {
+						...result1.meta,
+						totalPages: result1.meta.totalPages + result2.meta.totalPages,
+						totalDocs: result1.meta.totalDocs + result2.meta.totalDocs
+					}
+				};
 
 				// set state
 				result = {

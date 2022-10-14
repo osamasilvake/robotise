@@ -1,4 +1,5 @@
 export enum SitePhoneCallsTableColumnsTypeEnum {
+	TYPE = 'type',
 	ROOM = 'room',
 	STATUS = 'status',
 	MODE = 'mode',

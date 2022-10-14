@@ -4,6 +4,12 @@ import { SitePhoneCallsTableColumnInterface } from './SitePhoneCallsTable.interf
 const translation = 'CONTENT.PHONE_CALLS.LIST.TABLE.COLUMNS';
 export const columns: SitePhoneCallsTableColumnInterface[] = [
 	{
+		id: SitePhoneCallsTableColumnsTypeEnum.TYPE,
+		label: `${translation}.TYPE`,
+		minWidth: 80,
+		align: 'left'
+	},
+	{
 		id: SitePhoneCallsTableColumnsTypeEnum.ROOM,
 		label: `${translation}.ROOM`,
 		minWidth: 80,
@@ -12,7 +18,7 @@ export const columns: SitePhoneCallsTableColumnInterface[] = [
 	{
 		id: SitePhoneCallsTableColumnsTypeEnum.STATUS,
 		label: `${translation}.STATUS`,
-		minWidth: 100,
+		minWidth: 120,
 		align: 'left'
 	},
 	{

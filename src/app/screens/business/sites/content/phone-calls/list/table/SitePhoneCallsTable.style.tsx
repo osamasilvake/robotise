@@ -15,6 +15,9 @@ export const SitePhoneCallsTableStyle = makeStyles((theme: Theme) => ({
 	sTableRowWarning: {
 		backgroundColor: alpha(AppConfigService.AppOptions.colors.c11, 0.15)
 	},
+	sLightRow: {
+		opacity: 0.3
+	},
 	sTableHistory: {
 		'&:not(:last-child)': {
 			marginBottom: theme.spacing(0.5)

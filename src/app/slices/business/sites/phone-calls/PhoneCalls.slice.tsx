@@ -7,12 +7,12 @@ import SitesService from '../../../../screens/business/sites/Sites.service';
 import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializePhoneCalls } from './PhoneCalls.slice.deserialize';
-import { PhoneCallsTypeEnum } from './PhoneCalls.slice.enum';
 import {
 	PCContentInterface,
 	PCCStateInterface,
 	SlicePhoneCallsInterface
 } from './PhoneCalls.slice.interface';
+import { combineTwoLists, fillUpDummyValues } from './PhoneCalls.slice.map';
 
 // initial state
 export const initialState: SlicePhoneCallsInterface = {
@@ -101,19 +101,11 @@ export const PhoneCallsFetchList =
 				const result1: PCContentInterface = await deserializePhoneCalls(res[0]);
 				const result2: PCContentInterface = await deserializePhoneCalls(res[1]);
 
-				const typeInbound = PhoneCallsTypeEnum.INBOUND;
-				const typeOutbound = PhoneCallsTypeEnum.OUTBOUND;
-				let result: PCContentInterface = {
-					data: [
-						...(result1.data?.map((d) => ({ ...d, type: typeInbound })) || []),
-						...(result2.data?.map((d) => ({ ...d, type: typeOutbound })) || [])
-					],
-					meta: {
-						...result1.meta,
-						totalPages: result1.meta.totalPages + result2.meta.totalPages,
-						totalDocs: result1.meta.totalDocs + result2.meta.totalDocs
-					}
-				};
+				// combine two lists
+				let result = combineTwoLists(result1, result2);
+
+				// fill dummies
+				result = fillUpDummyValues(result, payload.rowsPerPage);
 
 				// set state
 				result = {

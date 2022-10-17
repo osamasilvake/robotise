@@ -1,4 +1,5 @@
 export enum PhoneCallsTypeEnum {
 	INBOUND = 'Incoming',
-	OUTBOUND = 'Outgoing'
+	OUTBOUND = 'Outgoing',
+	DUMMY = 'Dummy'
 }

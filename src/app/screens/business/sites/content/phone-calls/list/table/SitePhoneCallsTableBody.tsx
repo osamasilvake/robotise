@@ -2,6 +2,7 @@ import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
 
+import { PhoneCallsTypeEnum } from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.enum';
 import {
 	PCCDataInterface,
 	PCContentInterface
@@ -77,11 +78,12 @@ const SitePhoneCallsTableBody: FC<SitePhoneCallsTableBodyInterface> = (props) =>
 				content.data &&
 				sortTableData(content)
 					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-					.map((phoneCall: PCCDataInterface) => (
+					.map((phoneCall: PCCDataInterface, index) => (
 						<TableRow
-							key={String(phoneCall.createdAt)}
+							key={index}
 							className={clsx({
-								[classes.sTableRowWarning]: phoneCall?.isDebug
+								[classes.sTableRowWarning]: phoneCall?.isDebug,
+								[classes.sLightRow]: phoneCall?.type === PhoneCallsTypeEnum.DUMMY
 							})}>
 							{columns.map((column: SitePhoneCallsTableColumnInterface) => (
 								<SitePhoneCallsTableBodyCell

@@ -962,7 +962,8 @@
 								"error": "Error",
 								"failed": "Failed",
 								"no-answer": "No Answer",
-								"undefined": "Unknown"
+								"undefined": "Unknown",
+								"dummy": "Dummy"
 							},
 							"HISTORY": {
 								"EVENT": {

@@ -23,7 +23,7 @@ const SiteConfigurationMarketingRidesInput: FC<SiteConfigurationMarketingRidesIn
 
 	useEffect(() => {
 		// return on same value
-		if (time?.value === debouncedValue?.value) return;
+		if (time?.minutes === debouncedValue?.minutes) return;
 
 		// handle change: inputs (multiple fields)
 		handleChangeInputsMultiple(
@@ -47,8 +47,8 @@ const SiteConfigurationMarketingRidesInput: FC<SiteConfigurationMarketingRidesIn
 				name="times"
 				label={label}
 				placeholder={placeholder}
-				value={time?.value || ''}
-				onChange={(e) => setTime({ id: index, value: e.target.value })}
+				value={time?.minutes || ''}
+				onChange={(e) => setTime({ hour: index, minutes: e.target.value })}
 				onBlur={handleBlur}
 				error={!!error}
 				helperText={error && t(error)}

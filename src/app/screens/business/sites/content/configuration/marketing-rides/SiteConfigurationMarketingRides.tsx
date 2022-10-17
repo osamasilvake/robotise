@@ -30,7 +30,7 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 	const initial = {
-		activate: false,
+		isActive: false,
 		locations: [],
 		times: []
 	};
@@ -53,13 +53,16 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 					?.filter((v) => v)
 					?.map((v) => ({
 						...v,
-						value: v.value?.split(',')?.sort()?.join(',')
+						minutes: v.minutes
+							?.split(/\s*,\s*/)
+							?.sort()
+							?.map(Number)
 					}))
 			};
 			console.info(result);
 		},
 		(state) => {
-			const updated = { ...state, times: values.times?.filter((v) => v && v.value) };
+			const updated = { ...state, times: values.times?.filter((v) => v && v.minutes) };
 			const a = JSON.stringify(initial);
 			const b = JSON.stringify(updated);
 			const result = a.localeCompare(b);
@@ -77,7 +80,7 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 							<FormControl>
 								<FormControlLabel
 									control={
-										<Switch name="activate" onChange={handleChangeCheckbox} />
+										<Switch name="isActive" onChange={handleChangeCheckbox} />
 									}
 									label={t<string>(`${translation}.FORM.FIELDS.ACTIVATE.LABEL`)}
 									labelPlacement="start"
@@ -114,7 +117,7 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 												times={values.times}
 												error={
 													errors && errors?.times
-														? errors.times[i]?.value
+														? errors.times[i]?.minutes
 														: null
 												}
 												handleBlur={handleBlur}
@@ -135,7 +138,7 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 											(values?.locations?.length || 0) === 0 ||
 											!!(
 												errors &&
-												errors?.times?.filter((e) => e.value).length
+												errors?.times?.filter((e) => e.minutes).length
 											)
 										}>
 										{t(`${translation}.FORM.BUTTONS.UPDATE`)}

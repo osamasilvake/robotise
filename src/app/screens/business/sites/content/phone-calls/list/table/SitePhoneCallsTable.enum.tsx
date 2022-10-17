@@ -2,7 +2,6 @@ export enum SitePhoneCallsTableColumnsTypeEnum {
 	TYPE = 'type',
 	ROOM = 'room',
 	STATUS = 'status',
-	MODE = 'mode',
 	FROM = 'from',
 	HISTORY = 'history',
 	UPDATED = 'updatedAt'
@@ -16,7 +15,12 @@ export enum SitePhoneCallsTableSortTypeEnum {
 export enum SitePhoneCallsTableColumnHistoryEventTypeEnum {
 	APPROVED = 'approved',
 	CONFIRMED = 'confirmed',
+	COMPLETED = 'completed',
 	ORDER_ASSIGNED = 'orderAssigned',
+	BUSY = 'busy',
 	REJECTED = 'rejected',
-	ERROR = 'error'
+	ERROR = 'error',
+	FAILED = 'failed',
+	NO_ANSWER = 'no-answer',
+	UNDEFINED = 'undefined'
 }

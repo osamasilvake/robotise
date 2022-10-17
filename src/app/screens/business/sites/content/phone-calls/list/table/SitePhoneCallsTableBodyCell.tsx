@@ -1,6 +1,7 @@
 import { Box, Icon, Link, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
@@ -19,6 +20,8 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 	const { t } = useTranslation(['SITES', 'GENERAL']);
 	const classes = SitePhoneCallsTableStyle();
 
+	const translation = 'CONTENT.PHONE_CALLS.LIST.TABLE.VALUES';
+
 	/**
 	 * set cell value
 	 * @param phoneCall
@@ -36,6 +39,7 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 		} else if (SitePhoneCallsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = phoneCall.history;
 			const historyMapped = mappedPhoneCall.history;
+
 			return (
 				<Box>
 					{history.map((item, index) => (
@@ -49,9 +53,29 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 								{t(historyMapped[index].event)}:
 							</Typography>
 							{item.details && (
-								<Typography variant="body2" className={classes.sHistoryDetails}>
-									{item.details}
-								</Typography>
+								<>
+									{item.event !== 'orderAssigned' && (
+										<Typography
+											variant="body2"
+											className={classes.sHistoryDetails}>
+											{item.details}
+										</Typography>
+									)}
+									{item.event === 'orderAssigned' && (
+										<Link
+											component={RouterLink}
+											variant="body2"
+											underline="hover"
+											to={AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_ORDERS.DETAIL.replace(
+												':orderId',
+												item.details
+											)}
+											target="_blank"
+											onClick={(e) => e.stopPropagation()}>
+											{t(`${translation}.HISTORY.ORDER_DETAIL`)}
+										</Link>
+									)}
+								</>
 							)}
 							<Typography variant="caption" color="textSecondary">
 								({dateFormat3(item.createdAt)})
@@ -74,8 +98,6 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 						{value}
 					</Link>
 				);
-			} else if (SitePhoneCallsTableColumnsTypeEnum.MODE === column.id) {
-				return t(`GENERAL:COMMON.MODE.${value}`);
 			}
 			return t(value);
 		}

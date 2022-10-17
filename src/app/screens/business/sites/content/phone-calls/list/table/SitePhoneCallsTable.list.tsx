@@ -22,12 +22,6 @@ export const columns: SitePhoneCallsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SitePhoneCallsTableColumnsTypeEnum.MODE,
-		label: `${translation}.MODE`,
-		minWidth: 120,
-		align: 'left'
-	},
-	{
 		id: SitePhoneCallsTableColumnsTypeEnum.FROM,
 		label: `${translation}.FROM`,
 		minWidth: 100,

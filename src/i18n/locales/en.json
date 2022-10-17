@@ -946,24 +946,23 @@
 							"TYPE": "Type",
 							"ROOM": "Room",
 							"STATUS": "Status",
-							"MODE": "Mode",
 							"FROM": "From",
 							"HISTORY": "History",
 							"UPDATED": "Updated"
 						},
 						"VALUES": {
 							"STATUS": {
+								"created": "Created",
+								"orderAssigned": "Order Assigned",
 								"approved": "Approved",
 								"confirmed": "Confirmed",
-								"orderAssigned": "Order Assigned",
+								"completed": "Completed",
+								"busy": "Busy",
 								"rejected": "Rejected",
 								"error": "Error",
-								"created": "Created",
-								"completed": "Completed",
 								"failed": "Failed",
-								"undefined": "Unknown",
 								"no-answer": "No Answer",
-								"busy": "Busy"
+								"undefined": "Unknown"
 							},
 							"HISTORY": {
 								"EVENT": {
@@ -973,7 +972,8 @@
 									"rejected": "Rejected",
 									"error": "Error",
 									"statusUpdated": "Status"
-								}
+								},
+								"ORDER_DETAIL": "Detail"
 							}
 						}
 					}

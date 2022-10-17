@@ -18,7 +18,6 @@ export interface PCContentInterface extends JsonAPIResponseInterface {
 export interface PCCDataInterface {
 	type: string;
 	room: string;
-	mode: string;
 	vendor: string;
 	workflow: string;
 	status: string;

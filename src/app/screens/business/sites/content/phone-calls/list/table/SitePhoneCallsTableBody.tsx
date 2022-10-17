@@ -35,7 +35,6 @@ const SitePhoneCallsTableBody: FC<SitePhoneCallsTableBodyInterface> = (props) =>
 				type = SitePhoneCallsTableSortTypeEnum.DATE;
 				break;
 			case SitePhoneCallsTableColumnsTypeEnum.ROOM:
-			case SitePhoneCallsTableColumnsTypeEnum.MODE:
 				type = SitePhoneCallsTableSortTypeEnum.STRING;
 				break;
 			default:

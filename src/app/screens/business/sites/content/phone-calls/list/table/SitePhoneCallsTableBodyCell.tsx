@@ -98,6 +98,12 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 						{value}
 					</Link>
 				);
+			} else if (SitePhoneCallsTableColumnsTypeEnum.TO === column.id) {
+				return (
+					<Link underline="hover" href={`tel:${value}`}>
+						{value}
+					</Link>
+				);
 			}
 			return t(value);
 		}

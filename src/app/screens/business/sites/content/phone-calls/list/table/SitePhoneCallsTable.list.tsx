@@ -4,6 +4,12 @@ import { SitePhoneCallsTableColumnInterface } from './SitePhoneCallsTable.interf
 const translation = 'CONTENT.PHONE_CALLS.LIST.TABLE.COLUMNS';
 export const columns: SitePhoneCallsTableColumnInterface[] = [
 	{
+		id: SitePhoneCallsTableColumnsTypeEnum.UPDATED,
+		label: `${translation}.UPDATED`,
+		minWidth: 180,
+		align: 'left'
+	},
+	{
 		id: SitePhoneCallsTableColumnsTypeEnum.TYPE,
 		label: `${translation}.TYPE`,
 		minWidth: 80,
@@ -28,16 +34,16 @@ export const columns: SitePhoneCallsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
-		id: SitePhoneCallsTableColumnsTypeEnum.HISTORY,
-		label: `${translation}.HISTORY`,
-		minWidth: 250,
-		align: 'left',
-		noSort: true
+		id: SitePhoneCallsTableColumnsTypeEnum.TO,
+		label: `${translation}.TO`,
+		minWidth: 100,
+		align: 'left'
 	},
 	{
-		id: SitePhoneCallsTableColumnsTypeEnum.UPDATED,
-		label: `${translation}.UPDATED`,
+		id: SitePhoneCallsTableColumnsTypeEnum.HISTORY,
+		label: `${translation}.HISTORY`,
 		minWidth: 180,
-		align: 'right'
+		align: 'left',
+		noSort: true
 	}
 ];

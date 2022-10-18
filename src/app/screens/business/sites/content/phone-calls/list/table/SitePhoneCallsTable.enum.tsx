@@ -3,6 +3,7 @@ export enum SitePhoneCallsTableColumnsTypeEnum {
 	ROOM = 'room',
 	STATUS = 'status',
 	FROM = 'from',
+	TO = 'to',
 	HISTORY = 'history',
 	UPDATED = 'updatedAt'
 }

@@ -46,6 +46,7 @@ export const fillUpDummyValues = (
 		room: '-',
 		status: 'dummy',
 		from: '-',
+		to: '-',
 		history: [],
 		createdAt: dateDayJs(result.data[result.data.length - 1]?.createdAt)
 			.subtract(1, 'second')

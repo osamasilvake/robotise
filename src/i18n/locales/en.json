@@ -947,12 +947,13 @@
 				"LIST": {
 					"TABLE": {
 						"COLUMNS": {
+							"UPDATED": "Updated",
 							"TYPE": "Type",
 							"ROOM": "Room",
 							"STATUS": "Status",
 							"FROM": "From",
-							"HISTORY": "History",
-							"UPDATED": "Updated"
+							"TO": "To",
+							"HISTORY": "History"
 						},
 						"VALUES": {
 							"STATUS": {

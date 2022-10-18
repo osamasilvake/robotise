@@ -22,6 +22,7 @@ export interface PCCDataInterface {
 	workflow: string;
 	status: string;
 	from: string;
+	to: string;
 	callerCountry: string;
 	isDebug: boolean;
 	updatedAt: Date;

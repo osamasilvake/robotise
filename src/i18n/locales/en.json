@@ -285,6 +285,10 @@
 						"SUCCESS": "Test orders cleaned successfully!",
 						"ERROR": "Unable to clean test orders!"
 					},
+					"MARKETING_RIDES": {
+						"SUCCESS": "Configuration has been updated successfully!",
+						"ERROR": "Unable to update configuration!"
+					},
 					"SITE_CONFIGURATION": {
 						"SUCCESS": "Configuration has been updated successfully!",
 						"ERROR": "Unable to update configuration!"

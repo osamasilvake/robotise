@@ -12,8 +12,13 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { AppDispatch } from '../../../../../../slices';
+import { SiteMarketingRidesUpdate } from '../../../../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { SiteParamsInterface } from '../../../Site.interface';
 import {
 	SiteConfigurationMarketingRidesFormInterface,
 	SiteConfigurationMarketingRidesInterface
@@ -28,12 +33,17 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigurationMarketingRidesStyle();
 
-	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
+	const dispatch = useDispatch<AppDispatch>();
+
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
+
+	const cSiteId = params.siteId;
 	const initial = {
 		isActive: false,
 		locations: [],
 		times: []
 	};
+	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 
 	const {
 		handleChangeInputs,
@@ -47,19 +57,12 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 		initial,
 		SiteConfigurationMarketingRidesValidation,
 		async () => {
-			const result = {
-				...values,
-				times: values?.times
-					?.filter((v) => v)
-					?.map((v) => ({
-						...v,
-						minutes: v.minutes
-							?.split(/\s*,\s*/)
-							?.sort()
-							?.map(Number)
-					}))
-			};
-			console.info(result);
+			// dispatch: update marketing rides
+			dispatch(
+				SiteMarketingRidesUpdate(cSiteId, values, () => {
+					console.log('TODO');
+				})
+			);
 		},
 		(state) => {
 			const updated = { ...state, times: values.times?.filter((v) => v && v.minutes) };

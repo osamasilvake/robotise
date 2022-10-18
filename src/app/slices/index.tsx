@@ -20,6 +20,7 @@ import purchases from './business/robots/purchases/Purchases.slice';
 import robotOperations from './business/robots/RobotOperations.slice';
 import robotTwins from './business/robots/RobotTwins.slice';
 import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
+import marketingRides from './business/sites/configuration/marketing-rides/MarketingRides.slice';
 import notifications from './business/sites/configuration/Notifications.slice';
 import servicePositions from './business/sites/configuration/ServicePositions.slice';
 import siteConfiguration from './business/sites/configuration/site-configuration/SiteConfiguration.slice';
@@ -60,6 +61,7 @@ const combinedReducer = combineReducers({
 	phoneCalls,
 	wifiHeatmap,
 	performance,
+	marketingRides,
 	siteConfiguration,
 
 	robotTwinsSummary,

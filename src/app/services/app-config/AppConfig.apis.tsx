@@ -59,6 +59,9 @@ const AppServices = (config: typeof AppConfigService) => {
 							ORDER_ORIGINS: `${config.envAppUrl}/order-origins`,
 							CUSTOMER_NOTIFICATION_TYPES: `${config.envAppUrl}/customer-notification-types`
 						},
+						MARKETING_RIDES: {
+							SINGLE: `${config.envAppUrl}/marketing-rides/:siteId`
+						},
 						SITE_CONFIGS: {
 							ALL: `${config.envAppUrl}/robot-configs`,
 							SINGLE: `${config.envAppUrl}/robot-configs/:configId`

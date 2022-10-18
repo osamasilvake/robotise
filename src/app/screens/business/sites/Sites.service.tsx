@@ -11,6 +11,7 @@ import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/c
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/cloud/service-positions/SiteConfigurationServicePositions.interface';
 import { SiteConfigFormInterface } from './content/configuration/cloud/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/cloud/site-robot-config/SiteRobotConfig.interface';
+import { SiteConfigurationMarketingRidesFormInterface } from './content/configuration/marketing-rides/SiteConfigurationMarketingRides.interface';
 import { SitePerformancePayloadInterface } from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
 import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
@@ -775,6 +776,38 @@ class SitesService {
 				attributes: {
 					dateTo: payload.dateTo,
 					timeTo: payload.timeTo
+				}
+			}
+		});
+	};
+
+	/**
+	 * update marketing rides
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteMarketingRidesUpdate = (
+		siteId: string,
+		payload: SiteConfigurationMarketingRidesFormInterface
+	) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.MARKETING_RIDES
+				.SINGLE;
+		return HttpClientService.patch(url.replace(':siteId', siteId), {
+			data: {
+				type: 'marketingRides',
+				attributes: {
+					...payload,
+					times: payload.times
+						?.filter((v) => v)
+						?.map((v) => ({
+							...v,
+							minutes: v.minutes
+								?.split(/\s*,\s*/)
+								?.sort()
+								?.map(Number)
+						}))
 				}
 			}
 		});

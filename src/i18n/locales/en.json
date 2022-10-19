@@ -1204,7 +1204,7 @@
 							},
 							"TIMEZONE": {
 								"LABEL": "Timezone",
-								"NOTE": "Select hotel specific timezone!"
+								"NOTE": "*Select hotel specific timezone!"
 							},
 							"ORDER_MODE": {
 								"LABEL": "Order Modes",

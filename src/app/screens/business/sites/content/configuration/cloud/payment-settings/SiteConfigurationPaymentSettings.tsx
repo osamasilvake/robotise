@@ -113,7 +113,7 @@ const SiteConfigurationPaymentSettings: FC<SiteConfigurationPaymentSettingsInter
 								</FormHelperText>
 							</FormControl>
 						</Grid>
-						<Grid item xs={12}>
+						<Grid item sm={12} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
 									required
@@ -135,7 +135,7 @@ const SiteConfigurationPaymentSettings: FC<SiteConfigurationPaymentSettingsInter
 								</FormHelperText>
 							</FormControl>
 						</Grid>
-						<Grid item xs={12}>
+						<Grid item sm={12} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
 									required

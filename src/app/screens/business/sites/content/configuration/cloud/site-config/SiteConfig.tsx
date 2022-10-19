@@ -337,41 +337,50 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								/>
 							</FormControl>
 						</Grid>
-						<Grid item sm={12} md={6}>
-							<FormControl fullWidth margin="normal">
-								<TextField
-									required
-									type="text"
-									id="buildingId"
-									name="buildingId"
-									label={t(`${translation}.FORM.FIELDS.BUILDING_ID.LABEL`)}
-									placeholder={t(
-										`${translation}.FORM.FIELDS.BUILDING_ID.PLACEHOLDER`
-									)}
-									value={values?.buildingId}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
-									error={!!errors?.buildingId}
-									helperText={errors?.buildingId && t(errors.buildingId)}
-								/>
-							</FormControl>
-						</Grid>
-						<Grid item sm={12} md={6}>
-							<FormControl fullWidth margin="normal">
-								<TextField
-									required
-									type="text"
-									id="vendor"
-									name="vendor"
-									label={t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
-									placeholder={t(`${translation}.FORM.FIELDS.VENDOR.PLACEHOLDER`)}
-									value={values?.vendor}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
-									error={!!errors?.vendor}
-									helperText={errors?.vendor && t(errors.vendor)}
-								/>
-							</FormControl>
+						<Grid item sm={12}>
+							<Typography variant="h6">{t(`${translation}.ELEVATORS`)}</Typography>
+							<Grid container spacing={1}>
+								<Grid item sm={12} md={6}>
+									<FormControl fullWidth margin="normal">
+										<TextField
+											required
+											type="text"
+											id="buildingId"
+											name="buildingId"
+											label={t(
+												`${translation}.FORM.FIELDS.BUILDING_ID.LABEL`
+											)}
+											placeholder={t(
+												`${translation}.FORM.FIELDS.BUILDING_ID.PLACEHOLDER`
+											)}
+											value={values?.buildingId}
+											onChange={handleChangeInput}
+											onBlur={handleBlur}
+											error={!!errors?.buildingId}
+											helperText={errors?.buildingId && t(errors.buildingId)}
+										/>
+									</FormControl>
+								</Grid>
+								<Grid item sm={12} md={6}>
+									<FormControl fullWidth margin="normal">
+										<TextField
+											required
+											type="text"
+											id="vendor"
+											name="vendor"
+											label={t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
+											placeholder={t(
+												`${translation}.FORM.FIELDS.VENDOR.PLACEHOLDER`
+											)}
+											value={values?.vendor}
+											onChange={handleChangeInput}
+											onBlur={handleBlur}
+											error={!!errors?.vendor}
+											helperText={errors?.vendor && t(errors.vendor)}
+										/>
+									</FormControl>
+								</Grid>
+							</Grid>
 						</Grid>
 						<Grid item xs={12}>
 							<FormControl>

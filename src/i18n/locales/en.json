@@ -1189,6 +1189,7 @@
 				"SITE_CONFIG": {
 					"TITLE": "Configure Site",
 					"EXCERPT": "Update Site detail.",
+					"ELEVATORS": "Elevators",
 					"FORM": {
 						"FIELDS": {
 							"TITLE": {

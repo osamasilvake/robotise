@@ -17,9 +17,7 @@ export const SiteConfigValidation = (
 		availableOrderModes: [],
 		orderOriginsEnabled: [],
 		customerNotificationTypesEnabled: [],
-		helpPage: '',
-		buildingId: '',
-		vendor: ''
+		helpPage: ''
 	};
 
 	// Title
@@ -58,22 +56,6 @@ export const SiteConfigValidation = (
 		// required
 		if (!values.helpPage) {
 			errors.helpPage = `${translation}.HELP_PAGE.VALIDATIONS.REQUIRED`;
-		}
-	}
-
-	// Building Id
-	if (touched.buildingId) {
-		// required
-		if (!values.buildingId) {
-			errors.buildingId = `${translation}.BUILDING_ID.VALIDATIONS.REQUIRED`;
-		}
-	}
-
-	// Vendor
-	if (touched.vendor) {
-		// required
-		if (!values.vendor) {
-			errors.vendor = `${translation}.VENDOR.VALIDATIONS.REQUIRED`;
 		}
 	}
 

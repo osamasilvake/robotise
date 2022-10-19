@@ -702,10 +702,13 @@ class SitesService {
 						showPerformanceDashboard: payload.showPerformanceDashboard,
 						isHidden: payload.isHidden
 					},
-					elevators: {
-						buildingId: payload.buildingId,
-						vendor: payload.vendor
-					}
+					elevators:
+						payload?.buildingId || payload?.vendor
+							? {
+									buildingId: payload?.buildingId || undefined,
+									vendor: payload?.vendor || undefined
+							  }
+							: undefined
 				}
 			}
 		});

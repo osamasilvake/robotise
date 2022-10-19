@@ -345,7 +345,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								<Grid item sm={12} md={6}>
 									<FormControl fullWidth margin="normal">
 										<TextField
-											required
 											type="text"
 											id="buildingId"
 											name="buildingId"
@@ -358,15 +357,12 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 											value={values?.buildingId}
 											onChange={handleChangeInput}
 											onBlur={handleBlur}
-											error={!!errors?.buildingId}
-											helperText={errors?.buildingId && t(errors.buildingId)}
 										/>
 									</FormControl>
 								</Grid>
 								<Grid item sm={12} md={6}>
 									<FormControl fullWidth margin="normal">
 										<TextField
-											required
 											type="text"
 											id="vendor"
 											name="vendor"
@@ -377,8 +373,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 											value={values?.vendor}
 											onChange={handleChangeInput}
 											onBlur={handleBlur}
-											error={!!errors?.vendor}
-											helperText={errors?.vendor && t(errors.vendor)}
 										/>
 									</FormControl>
 								</Grid>

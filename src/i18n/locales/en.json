@@ -1255,17 +1255,11 @@
 							},
 							"BUILDING_ID": {
 								"LABEL": "Building Id",
-								"PLACEHOLDER": "Enter Building Id",
-								"VALIDATIONS": {
-									"REQUIRED": "Building Id is required."
-								}
+								"PLACEHOLDER": "Enter Building Id"
 							},
 							"VENDOR": {
 								"LABEL": "Vendor",
-								"PLACEHOLDER": "Enter Vendor",
-								"VALIDATIONS": {
-									"REQUIRED": "Vendor is required."
-								}
+								"PLACEHOLDER": "Enter Vendor"
 							},
 							"CHECKBOXES": {
 								"EMERGENCY": {

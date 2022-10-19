@@ -698,13 +698,13 @@ class SitesService {
 						orderOriginsEnabled: payload.orderOriginsEnabled,
 						customerNotificationTypesEnabled: payload.customerNotificationTypesEnabled,
 						helpPage: payload.helpPage,
-						elevators: {
-							buildingId: payload.buildingId,
-							vendor: payload.vendor
-						},
 						showEmergencyWorkflow: payload.showEmergencyWorkflow,
 						showPerformanceDashboard: payload.showPerformanceDashboard,
 						isHidden: payload.isHidden
+					},
+					elevators: {
+						buildingId: payload.buildingId,
+						vendor: payload.vendor
 					}
 				}
 			}

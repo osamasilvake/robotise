@@ -82,8 +82,8 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			customerNotificationTypesEnabled:
 				siteSingle?.configs.customerNotificationTypesEnabled || [],
 			helpPage: siteSingle?.configs.helpPage || '',
-			buildingId: siteSingle?.configs.buildingId || '',
-			vendor: siteSingle?.configs.vendor || '',
+			buildingId: siteSingle?.elevators?.buildingId || '',
+			vendor: siteSingle?.elevators?.vendor || '',
 			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
 			showPerformanceDashboard: !!siteSingle?.configs.showPerformanceDashboard,
 			isHidden: !!siteSingle?.configs.isHidden

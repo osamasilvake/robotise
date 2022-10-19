@@ -40,8 +40,6 @@ export interface ISite {
 		orderOriginsEnabled: string[];
 		customerNotificationTypesEnabled: string[];
 		helpPage: string;
-		buildingId: string;
-		vendor: string;
 		showEmergencyWorkflow: boolean;
 		showPerformanceDashboard: boolean;
 		isHidden: boolean;

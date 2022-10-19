@@ -173,6 +173,9 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 									))}
 								</Select>
 							</FormControl>
+							<FormHelperText>
+								{t(`${translation}.FORM.FIELDS.TIMEZONE.NOTE`)}
+							</FormHelperText>
 						</Grid>
 						{orderModesList && (
 							<Grid item sm={12} md={6}>
@@ -209,7 +212,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										)}
 									/>
 								</FormControl>
-
 								<FormHelperText>
 									{t(`${translation}.FORM.FIELDS.ORDER_MODE.NOTE`)}
 									{values.availableOrderModes[0] && (

@@ -1203,7 +1203,8 @@
 								"LABEL": "Currency"
 							},
 							"TIMEZONE": {
-								"LABEL": "Timezone"
+								"LABEL": "Timezone",
+								"NOTE": "Select hotel specific timezone!"
 							},
 							"ORDER_MODE": {
 								"LABEL": "Order Modes",

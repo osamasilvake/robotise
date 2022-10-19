@@ -1230,7 +1230,7 @@
 								"VALIDATIONS": {
 									"REQUIRED": "Order origin is required."
 								},
-								"NOTE": "*Order origins {{value}} are defined by default and cannot be removed!"
+								"NOTE": "*{{value}} are defined by default!"
 							},
 							"CUSTOMER_NOTIFICATION_TYPES": {
 								"LABEL": "Customer Notification Types",
@@ -1249,6 +1249,20 @@
 								"PLACEHOLDER": "Enter Help Page Id",
 								"VALIDATIONS": {
 									"REQUIRED": "Help Page Id is required."
+								}
+							},
+							"BUILDING_ID": {
+								"LABEL": "Building Id",
+								"PLACEHOLDER": "Enter Building Id",
+								"VALIDATIONS": {
+									"REQUIRED": "Building Id is required."
+								}
+							},
+							"VENDOR": {
+								"LABEL": "Vendor",
+								"PLACEHOLDER": "Enter Vendor",
+								"VALIDATIONS": {
+									"REQUIRED": "Vendor is required."
 								}
 							},
 							"CHECKBOXES": {

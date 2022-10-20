@@ -299,7 +299,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							id={id}
 							label={key}
 							content={list}
-							initValue={!!(list?.value || list?.default)}
+							initValue={!!list?.value}
 							value={!!values[id]}
 							handleChangeCheckbox={handleChangeCheckbox}
 						/>

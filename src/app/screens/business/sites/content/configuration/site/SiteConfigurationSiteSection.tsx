@@ -311,7 +311,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							id={id}
 							label={key}
 							content={list}
-							initValue={!!(list?.value || list?.default)}
+							initValue={!!list?.value}
 							value={!!values[id]}
 							handleChangeCheckbox={handleChangeCheckbox}
 						/>

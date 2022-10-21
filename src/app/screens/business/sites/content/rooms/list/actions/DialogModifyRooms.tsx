@@ -66,7 +66,7 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 			.map((items: string[]) =>
 				items.length <= 1 ? items : `${items[0]}-${items[items.length - 1]}`
 			);
-		const joined = grouped.join(',');
+		const joined = grouped.join(', ');
 		return joined;
 	};
 
@@ -85,8 +85,8 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 				const a = values.whitelist as string;
 				const b = values.blocked as string;
 
-				const allowed = splitAdjacentRooms(a.split(','));
-				const blocked = splitAdjacentRooms(b.split(','));
+				const allowed = splitAdjacentRooms(a.split(',').map((e: string) => e.trim()));
+				const blocked = splitAdjacentRooms(b.split(',')).map((e: string) => e.trim());
 				const all = [...allowed, ...blocked]?.filter(Boolean);
 
 				// dispatch: update room state

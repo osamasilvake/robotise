@@ -966,6 +966,7 @@
 								"rejected": "Rejected",
 								"error": "Error",
 								"failed": "Failed",
+								"ringing": "Ringing",
 								"no-answer": "No Answer",
 								"undefined": "Unknown",
 								"dummy": "Dummy"

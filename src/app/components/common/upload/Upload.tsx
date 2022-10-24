@@ -44,7 +44,7 @@ const Upload: FC<UploadImageInterface> = (props) => {
 				<label htmlFor="button-file">
 					<Box display="none">
 						<input
-							accept="image/png"
+							accept="image/png, image/jpg, image/jpeg"
 							className="hidden"
 							id="button-file"
 							type="file"

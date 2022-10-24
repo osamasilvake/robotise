@@ -96,9 +96,9 @@
 		"IMAGE": {
 			"LABEL": "Upload",
 			"RULES": {
-				"RULE_1": "Supported Filetype: png",
-				"RULE_2": "Maximum Filesize: {{value}}KB",
-				"RULE_3": "Supported Resolution Upto: {{value}}"
+				"RULE_1": "Supported File Type: png, jpg",
+				"RULE_2": "Maximum File Size: {{value}} KB",
+				"RULE_3": "Maximum Resolution: {{value}}"
 			}
 		}
 	},
@@ -778,7 +778,7 @@
 								},
 								"SIZE": {
 									"LABEL": "Size",
-									"PLACEHOLDER": "Enter size"
+									"PLACEHOLDER": "Displayed Size"
 								}
 							}
 						},

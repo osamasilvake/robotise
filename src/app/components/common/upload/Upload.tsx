@@ -78,7 +78,7 @@ const Upload: FC<UploadImageInterface> = (props) => {
 						[classes.sImageInvalid]: imageError === 2
 					})}>
 					{t('IMAGE.RULES.RULE_3', {
-						value: `${maxWidth}x${maxHeight}`
+						value: `${maxWidth} x ${maxHeight}`
 					})}
 				</Typography>
 			</Box>

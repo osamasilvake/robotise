@@ -817,14 +817,14 @@
 							"FIELDS": {
 								"WHITELIST": {
 									"LABEL": "Whitelist",
-									"PLACEHOLDER": "Whitelisted rooms. Format: 101,102, 105-110",
+									"PLACEHOLDER": "Whitelisted rooms. Format: 101, 102, 105-110",
 									"VALIDATIONS": {
 										"INVALID": "Wrong format!"
 									}
 								},
 								"BLOCKED": {
 									"LABEL": "Blocked",
-									"PLACEHOLDER": "Blocked rooms. Format: 101,102, 105-110",
+									"PLACEHOLDER": "Blocked rooms. Format: 101, 102, 105-110",
 									"VALIDATIONS": {
 										"INVALID": "Wrong format!",
 										"SIMILAR": "Looks like Whitelist and Blocked rooms have a common room!"
@@ -894,7 +894,7 @@
 								},
 								"ROOMS_MAPPING": {
 									"LABEL": "Rooms Mapping",
-									"PLACEHOLDER": "Format: 501:932, 349:1412",
+									"PLACEHOLDER": "Format: [mapping:room] 501:932, 349:1412",
 									"VALIDATIONS": {
 										"INVALID": "Invalid format"
 									}

@@ -29,7 +29,7 @@ while true; do
             echo -e "Checking..."
             echo -e "-----------"
             echo -e "${GREY}"
-            ncu
+            yarn outdated
 
             echo -e "${NC}"
             echo -e

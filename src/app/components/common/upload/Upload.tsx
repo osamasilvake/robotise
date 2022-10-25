@@ -44,7 +44,7 @@ const Upload: FC<UploadImageInterface> = (props) => {
 				<label htmlFor="button-file">
 					<Box display="none">
 						<input
-							accept="image/png"
+							accept="image/png, image/jpg, image/jpeg"
 							className="hidden"
 							id="button-file"
 							type="file"
@@ -78,7 +78,7 @@ const Upload: FC<UploadImageInterface> = (props) => {
 						[classes.sImageInvalid]: imageError === 2
 					})}>
 					{t('IMAGE.RULES.RULE_3', {
-						value: `${maxWidth}x${maxHeight}`
+						value: `${maxWidth} x ${maxHeight}`
 					})}
 				</Typography>
 			</Box>

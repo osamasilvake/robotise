@@ -27,7 +27,9 @@ export const mapRobotTwins = (
 			...robotTwins.site,
 			title: site?.title,
 			acceptOrders: site?.acceptOrders,
-			elevator: site?.elevators
+			elevator: site?.elevators,
+			acceptOrdersLastModifiedAt: site?.acceptOrdersLastModifiedAt,
+			acceptOrdersLastModifiedOrigin: site?.acceptOrdersLastModifiedOrigin
 		}
 	};
 };

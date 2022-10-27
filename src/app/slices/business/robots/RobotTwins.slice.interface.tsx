@@ -39,6 +39,8 @@ export interface SRTContentSiteInterface {
 	id: string;
 	title?: string;
 	acceptOrders?: boolean;
+	acceptOrdersLastModifiedAt?: Date;
+	acceptOrdersLastModifiedOrigin?: string;
 	elevator?: {
 		vendor?: string;
 		buildingId?: string;

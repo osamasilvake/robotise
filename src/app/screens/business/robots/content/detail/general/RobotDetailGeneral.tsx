@@ -144,6 +144,33 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					{!robotTwins.site.title && AppConfigService.AppOptions.common.none}
 				</Box>
 			</Grid>
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Stack spacing={0.5} direction="row" alignItems="center">
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
+					</Typography>
+					{robotTwins?.site && robotTwins?.site?.acceptOrdersLastModifiedAt && (
+						<Tooltip
+							title={
+								<Box>
+									<Typography variant="caption">
+										{dateFormat1(robotTwins?.site?.acceptOrdersLastModifiedAt)}{' '}
+										({robotTwins?.site?.acceptOrdersLastModifiedOrigin})
+									</Typography>
+								</Box>
+							}>
+							<HelpOutline fontSize="small" />
+						</Tooltip>
+					)}
+				</Stack>
+				<Box>
+					<Status active={!!robotTwins.site.acceptOrders}>
+						{robotTwins.site.acceptOrders
+							? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
+							: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
+					</Status>
+				</Box>
+			</Grid>
 
 			{/* Mission */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>

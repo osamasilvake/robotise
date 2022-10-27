@@ -40,7 +40,15 @@ const ComponentsCustom: Components = {
 		styleOverrides: {
 			root: {
 				transition: 'none',
-				'&.active': {
+				'&:hover': {
+					'&.Mui-selected': {
+						backgroundColor: AppConfigService.AppOptions.colors.c9,
+						'& > svg, span': {
+							color: AppConfigService.AppOptions.colors.c7
+						}
+					}
+				},
+				'&.Mui-selected': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					'& > svg, span': {
 						color: AppConfigService.AppOptions.colors.c7

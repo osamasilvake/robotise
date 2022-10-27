@@ -65,6 +65,7 @@ const DrawerCustom: FC = () => {
 								key={pIdx}
 								component={NavLink}
 								to={item.path}
+								selected={item.path === location.pathname}
 								disabled={
 									!validateScope({
 										authScopeType: AuthScopeTypeEnum.READ,

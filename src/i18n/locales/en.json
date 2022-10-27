@@ -637,9 +637,9 @@
 								"error": "Error",
 								"canceled": "Canceled",
 								"canceled_timeout_during_interaction": "Canceled: Timeout during interaction",
-								"timeout:incomplete_interaction": "Timeout During Interaction",
+								"timeout_incomplete_interaction": "Timeout During Interaction",
 								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
-								"timeout:customer_not_present": "Timeout: Customer not present",
+								"timeout_customer_not_present": "Timeout: Customer not present",
 								"cancelRequest": "Cancellation request",
 								"restart_requested": "Restart Requested"
 							},

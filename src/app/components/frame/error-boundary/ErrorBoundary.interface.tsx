@@ -1,5 +1,5 @@
+import { TFunction } from 'i18next';
 import { ReactNode } from 'react';
-import { TFunction } from 'react-i18next';
 
 import { ErrorTypeEnum } from '../../common/error/Error.enum';
 

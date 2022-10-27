@@ -33,6 +33,10 @@ export const initialState: SliceSiteOperationsInterface = {
 		loading: false,
 		content: null
 	},
+	elevatorVendors: {
+		loading: false,
+		content: null
+	},
 	paymentSettings: {
 		loading: false
 	},
@@ -58,6 +62,8 @@ const dataSlice = createSlice({
 				state.orderOrigins.loading = true;
 			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = true;
+			} else if (module === SiteOperationsTypeEnum.ELEVATOR_VENDORS) {
+				state.elevatorVendors.loading = true;
 			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
 				state.paymentSettings.loading = true;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
@@ -78,6 +84,9 @@ const dataSlice = createSlice({
 			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = response;
+			} else if (module === SiteOperationsTypeEnum.ELEVATOR_VENDORS) {
+				state.elevatorVendors.loading = false;
+				state.elevatorVendors.content = response;
 			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
 				state.paymentSettings.loading = false;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
@@ -98,6 +107,9 @@ const dataSlice = createSlice({
 			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = null;
+			} else if (module === SiteOperationsTypeEnum.ELEVATOR_VENDORS) {
+				state.elevatorVendors.loading = false;
+				state.elevatorVendors.content = null;
 			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
 				state.paymentSettings.loading = false;
 			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
@@ -344,6 +356,50 @@ export const SiteCustomerNotificationTypesFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.CUSTOMER_NOTIFICATION_TYPES.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch elevator vendors
+ * @returns
+ */
+export const SiteElevatorVendorsFetch =
+	() => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const elevatorVendors = states.siteOperations.elevatorVendors;
+		const state = {
+			module: SiteOperationsTypeEnum.ELEVATOR_VENDORS
+		};
+
+		// return on busy
+		if (elevatorVendors && elevatorVendors.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return SitesService.siteElevatorVendors()
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeSiteOperations(res);
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'site-elevator-vendors-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.CONFIGURATION.ELEVATOR_VENDORS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

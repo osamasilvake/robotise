@@ -18,6 +18,10 @@ export interface SliceSiteOperationsInterface {
 		loading: boolean;
 		content: SCNContentInterface | null;
 	};
+	elevatorVendors: {
+		loading: boolean;
+		content: SEVContentInterface | null;
+	};
 	paymentSettings: {
 		loading: boolean;
 	};
@@ -40,4 +44,14 @@ export interface SCNContentInterface extends JsonAPIResponseInterface {
 
 export interface SCNContentDataInterface {
 	type: string;
+}
+
+export interface SEVContentInterface extends JsonAPIResponseInterface {
+	data: SEVContentDataInterface[];
+}
+
+export interface SEVContentDataInterface {
+	title: string;
+	code: string;
+	active: boolean;
 }

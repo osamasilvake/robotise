@@ -277,6 +277,9 @@
 					"CUSTOMER_NOTIFICATION_TYPES": {
 						"ERROR": "Unable to fetch customer notification types!"
 					},
+					"ELEVATOR_VENDORS": {
+						"ERROR": "Unable to fetch elevator vendors!"
+					},
 					"PAYMENT_SETTINGS": {
 						"SUCCESS": "Payment settings updated successfully!",
 						"ERROR": "Unable to update payment settings!"
@@ -1260,7 +1263,7 @@
 							},
 							"VENDOR": {
 								"LABEL": "Vendor",
-								"PLACEHOLDER": "Enter Vendor"
+								"PLACEHOLDER": "Select Vendor"
 							},
 							"CHECKBOXES": {
 								"EMERGENCY": {

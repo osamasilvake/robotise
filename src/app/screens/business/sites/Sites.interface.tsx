@@ -18,6 +18,7 @@ import { SPCDataInterface } from '../../../slices/business/sites/products/Produc
 import { SQRDataInterface } from '../../../slices/business/sites/rooms/qrCode/QRCodes.slice.interface';
 import {
 	SCNContentDataInterface,
+	SEVContentDataInterface,
 	SOOContentDataInterface
 } from '../../../slices/business/sites/SiteOperations.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
@@ -225,5 +226,13 @@ export interface SiteCustomerNotificationTypesAxiosGetInterface extends JsonAPIR
 		id: string;
 		type: string;
 		attributes: SCNContentDataInterface;
+	}[];
+}
+
+export interface SiteElevatorVendorsAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SEVContentDataInterface;
 	}[];
 }

@@ -21,6 +21,7 @@ import {
 } from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
 import {
 	SiteCustomerNotificationTypesFetch,
+	SiteElevatorVendorsFetch,
 	siteOperationsSelector,
 	SiteOrderOriginsFetch
 } from '../../../../../../slices/business/sites/SiteOperations.slice';
@@ -86,6 +87,13 @@ const SiteConfigurationCloud: FC = () => {
 		// dispatch: fetch customer notification types
 		dispatch(SiteCustomerNotificationTypesFetch());
 	}, [dispatch, siteOperations.customerNotificationTypes?.content]);
+
+	useEffect(() => {
+		if (siteOperations.elevatorVendors?.content !== null) return;
+
+		// dispatch: fetch elevator vendors
+		dispatch(SiteElevatorVendorsFetch());
+	}, [dispatch, siteOperations.elevatorVendors?.content]);
 
 	// loader
 	if (robotTwinsSummary.loader || notifications.loader || servicePositions.loader) {

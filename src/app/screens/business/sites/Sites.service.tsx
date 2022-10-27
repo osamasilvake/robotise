@@ -28,6 +28,7 @@ import {
 	SiteCreateAxiosPostRequestInterface,
 	SiteCreateAxiosPostResponseInterface,
 	SiteCustomerNotificationTypesAxiosGetInterface,
+	SiteElevatorVendorsAxiosGetInterface,
 	SiteMapsAxiosGetInterface,
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
@@ -734,6 +735,17 @@ class SitesService {
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
 				.CUSTOMER_NOTIFICATION_TYPES;
 		return HttpClientService.get<SiteCustomerNotificationTypesAxiosGetInterface>(url);
+	};
+
+	/**
+	 * fetch elevator vendors
+	 * @returns
+	 */
+	siteElevatorVendors = () => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
+				.ELEVATOR_VENDORS;
+		return HttpClientService.get<SiteElevatorVendorsAxiosGetInterface>(url);
 	};
 
 	/**

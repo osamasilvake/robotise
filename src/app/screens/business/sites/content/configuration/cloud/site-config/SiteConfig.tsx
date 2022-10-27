@@ -59,6 +59,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const customerNotificationTypes = siteOperations.customerNotificationTypes.content?.data?.map(
 		(c) => c.type
 	);
+	const elevatorVendors = siteOperations.elevatorVendors.content?.data || [];
 	const currencies = AppConfigService.AppOptions.common.currencies;
 	const timezones = AppConfigService.AppOptions.common.timezones;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
@@ -362,18 +363,22 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</Grid>
 								<Grid item sm={12} md={6}>
 									<FormControl fullWidth margin="normal">
-										<TextField
-											type="text"
+										<InputLabel id="label-vendor">
+											{t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
+										</InputLabel>
+										<Select
+											labelId="label-vendor"
 											id="vendor"
 											name="vendor"
 											label={t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
-											placeholder={t(
-												`${translation}.FORM.FIELDS.VENDOR.PLACEHOLDER`
-											)}
-											value={values?.vendor}
-											onChange={handleChangeInput}
-											onBlur={handleBlur}
-										/>
+											value={values.vendor}
+											onChange={handleChangeSelect}>
+											{elevatorVendors.map((elevator) => (
+												<MenuItem key={elevator.code} value={elevator.code}>
+													{elevator.title}
+												</MenuItem>
+											))}
+										</Select>
 									</FormControl>
 								</Grid>
 							</Grid>

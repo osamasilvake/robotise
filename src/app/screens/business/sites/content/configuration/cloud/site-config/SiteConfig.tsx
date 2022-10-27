@@ -361,26 +361,30 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										/>
 									</FormControl>
 								</Grid>
-								<Grid item sm={12} md={6}>
-									<FormControl fullWidth margin="normal">
-										<InputLabel id="label-vendor">
-											{t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
-										</InputLabel>
-										<Select
-											labelId="label-vendor"
-											id="vendor"
-											name="vendor"
-											label={t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
-											value={values.vendor}
-											onChange={handleChangeSelect}>
-											{elevatorVendors.map((elevator) => (
-												<MenuItem key={elevator.code} value={elevator.code}>
-													{elevator.title}
-												</MenuItem>
-											))}
-										</Select>
-									</FormControl>
-								</Grid>
+								{elevatorVendors?.length > 0 && (
+									<Grid item sm={12} md={6}>
+										<FormControl fullWidth margin="normal">
+											<InputLabel id="label-vendor">
+												{t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
+											</InputLabel>
+											<Select
+												labelId="label-vendor"
+												id="vendor"
+												name="vendor"
+												label={t(`${translation}.FORM.FIELDS.VENDOR.LABEL`)}
+												value={values.vendor}
+												onChange={handleChangeSelect}>
+												{elevatorVendors.map((elevator) => (
+													<MenuItem
+														key={elevator.code}
+														value={elevator.code}>
+														{elevator.title}
+													</MenuItem>
+												))}
+											</Select>
+										</FormControl>
+									</Grid>
+								)}
 							</Grid>
 						</Grid>
 						<Grid item xs={12}>

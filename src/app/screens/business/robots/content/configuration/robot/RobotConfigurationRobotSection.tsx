@@ -25,7 +25,6 @@ import {
 import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { isArray } from '../../../../../../utilities/methods/Array';
 import {
 	strCapitalLetterAndCamelCaseToDash,
 	strRemoveSymbols
@@ -78,7 +77,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 			const result = recursiveOutput({
 				initial: elements as RCCDataElementInterface,
 				update: changes,
-				isArray: isArray(elements)
+				isArray: Array.isArray(elements)
 			});
 
 			// dispatch: update robot configuration
@@ -360,7 +359,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				initial: elements as RCCDataElementInterface,
 				update: changes,
 				newItems: newList,
-				isArray: isArray(elements)
+				isArray: Array.isArray(elements)
 			}) as RCCDataElementInterface;
 
 			// set elements
@@ -394,7 +393,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							))}
 
 						{/* Add */}
-						{elements && isArray(elements) && (
+						{elements && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.ADD_MORE`)}
@@ -411,7 +410,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						)}
 
 						{/* Delete */}
-						{elements && isArray(elements) && elements?.length > 1 && (
+						{elements && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.DELETE`)}

@@ -40,7 +40,7 @@ export const fetchImageFromInput = (event: ChangeEvent<HTMLInputElement>) =>
 							resolve({
 								validate: false,
 								type: 2,
-								value: `${maxWidth}x${maxHeight}`
+								value: `${maxWidth} x ${maxHeight}`
 							});
 						}
 						resolve({

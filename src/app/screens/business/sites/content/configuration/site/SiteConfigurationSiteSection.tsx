@@ -25,7 +25,6 @@ import {
 } from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice';
 import { SCCDataElementInterface } from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { isArray } from '../../../../../../utilities/methods/Array';
 import {
 	strCapitalLetterAndCamelCaseToDash,
 	strRemoveSymbols
@@ -85,7 +84,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 			const result = recursiveOutput({
 				initial: elements as SCCDataElementInterface,
 				update: changes,
-				isArray: isArray(elements)
+				isArray: Array.isArray(elements)
 			});
 
 			if (isOneRobot) {
@@ -372,7 +371,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 				initial: elements as SCCDataElementInterface,
 				update: changes,
 				newItems: newList,
-				isArray: isArray(elements)
+				isArray: Array.isArray(elements)
 			}) as SCCDataElementInterface;
 
 			// set elements
@@ -406,7 +405,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							))}
 
 						{/* Add */}
-						{elements && isArray(elements) && (
+						{elements && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.ADD_MORE`)}
@@ -423,7 +422,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 						)}
 
 						{/* Delete */}
-						{elements && isArray(elements) && elements?.length > 1 && (
+						{elements && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.DELETE`)}

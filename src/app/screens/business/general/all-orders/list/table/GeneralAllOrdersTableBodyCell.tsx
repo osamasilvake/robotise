@@ -24,8 +24,8 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
-	const cSiteId = order.site.id;
-	const cRobotId = order.robot.id;
+	const cSiteId = order?.site?.id;
+	const cRobotId = order?.robot?.id;
 	const translation = 'CONTENT.ALL_ORDERS.LIST';
 
 	/**

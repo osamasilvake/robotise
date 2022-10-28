@@ -627,7 +627,7 @@
 							"STATUS": {
 								"created": "Created",
 								"pending": "Pending",
-								"in_progress_traveling": "Travelling",
+								"in_progress_traveling": "Traveling",
 								"in_progress_arrived": "Arrived",
 								"in_progress_customer_present": "Customer present",
 								"finishRequest": "Finish Requested",
@@ -640,7 +640,9 @@
 								"error": "Error",
 								"canceled": "Canceled",
 								"canceled_timeout_during_interaction": "Canceled: Timeout during interaction",
+								"timeout_incomplete_interaction": "Timeout During Interaction",
 								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
+								"timeout_customer_not_present": "Timeout: Customer not present",
 								"cancelRequest": "Cancellation request",
 								"restart_requested": "Restart Requested"
 							},
@@ -1983,7 +1985,7 @@
 							"STATUS": {
 								"created": "Created",
 								"pending": "Pending",
-								"in_progress_traveling": "Travelling",
+								"in_progress_traveling": "Traveling",
 								"in_progress_arrived": "Arrived",
 								"in_progress_customer_present": "Customer present",
 								"finishRequest": "Finish Requested",
@@ -1996,7 +1998,9 @@
 								"error": "Error",
 								"canceled": "Canceled",
 								"canceled_timeout_during_interaction": "Canceled: Timeout during interaction",
+								"timeout_incomplete_interaction": "Timeout During Interaction",
 								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
+								"timeout_customer_not_present": "Timeout: Customer not present",
 								"cancelRequest": "Cancellation request",
 								"restart_requested": "Restart Requested"
 							},

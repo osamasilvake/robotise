@@ -1019,6 +1019,7 @@
 								"no-answer": "No Answer",
 								"undefined": "Unknown",
 								"delivered": "Delivered",
+								"sent": "Sent",
 								"dummy": "Dummy"
 							},
 							"HISTORY": {

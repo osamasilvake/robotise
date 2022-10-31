@@ -4,7 +4,6 @@ import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Mes
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { SiteSMSListPayloadInterface } from '../../../../screens/business/sites/content/sms-list/SiteSMSList.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
-import { dateDayJs, dateSort } from '../../../../utilities/methods/Date';
 import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
 import { deserializeSMSList } from './SMSList.slice.deserialize';

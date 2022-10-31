@@ -32,6 +32,7 @@ import qrCodes from './business/sites/rooms/qrCode/QRCodes.slice';
 import rooms from './business/sites/rooms/Rooms.slice';
 import siteOperations from './business/sites/SiteOperations.slice';
 import sites from './business/sites/Sites.slice';
+import smsList from './business/sites/sms-list/SMSList.slice';
 import wifiHeatmap from './business/sites/statistics/WifiHeatmap.slice';
 import alertCodes from './information/alert-codes/AlertCodes.slice';
 import deepLink from './settings/deep-links/DeepLink.slice';
@@ -59,6 +60,7 @@ const combinedReducer = combineReducers({
 	servicePositions,
 	phoneConfigs,
 	phoneCalls,
+	smsList,
 	wifiHeatmap,
 	performance,
 	marketingRides,

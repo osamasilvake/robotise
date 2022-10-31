@@ -22,6 +22,7 @@ import { SiteProductCreateEditTypeEnum } from './content/products/list/table/Sit
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
 import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
 import { DialogGenerateQRCodeFormInterface } from './content/rooms/list/grid/qr-code/SiteRoomsQRCodeTemplate.interface';
+import { SiteSMSListPayloadInterface } from './content/sms-list/SiteSMSList.interface';
 import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
 import { DialogCreateSiteFormInterface } from './list/actions/SitesActions.interface';
 import {
@@ -48,6 +49,7 @@ import {
 	SiteRoomsAxiosPatchResponseInterface,
 	SitesAxiosGetInterface,
 	SiteServicePositionsAxiosGetInterface,
+	SiteSMSListAxiosGetInterface,
 	SiteWifiHeatmapAxiosGetInterface
 } from './Sites.interface';
 
@@ -382,6 +384,40 @@ class SitesService {
 	sitePhoneCallsOutboundFetch = (siteId: string, payload: SitePhoneCallsListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CALLS.OUTBOUND;
 		return HttpClientService.get<SitePhoneCallsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage / 2
+			}
+		});
+	};
+
+	/**
+	 * fetch site SMS inbound calls
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteSMSListInboundFetch = (siteId: string, payload: SiteSMSListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SMS_LIST.INBOUND;
+		return HttpClientService.get<SiteSMSListAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage / 2
+			}
+		});
+	};
+
+	/**
+	 * fetch site SMS outbound calls
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteSMSListOutboundFetch = (siteId: string, payload: SiteSMSListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SMS_LIST.OUTBOUND;
+		return HttpClientService.get<SiteSMSListAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId,
 				'page[number]': payload.page + 1,

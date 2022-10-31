@@ -22,6 +22,7 @@ import {
 	SOOContentDataInterface
 } from '../../../slices/business/sites/SiteOperations.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
+import { SLCDataInterface } from '../../../slices/business/sites/sms-list/SMSList.slice.interface';
 import {
 	SWCDataInterface,
 	SWCMapsDataInterface
@@ -142,6 +143,14 @@ export interface SitePhoneCallsAxiosGetInterface extends JsonAPIResponseInterfac
 		id: string;
 		type: string;
 		attributes: PCCDataAliasInterface;
+	}[];
+}
+
+export interface SiteSMSListAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SLCDataInterface;
 	}[];
 }
 

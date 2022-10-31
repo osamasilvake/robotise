@@ -37,6 +37,10 @@ const AppServices = (config: typeof AppConfigService) => {
 						INBOUND: `${config.envAppUrl}/inbound-calls`,
 						OUTBOUND: `${config.envAppUrl}/outbound-calls`
 					},
+					SMS_LIST: {
+						INBOUND: `${config.envAppUrl}/inbound-sms`,
+						OUTBOUND: `${config.envAppUrl}/outbound-sms`
+					},
 					STATISTICS: {
 						WIFI_HEATMAP: `${config.envAppUrl}/wifi-heatmap`,
 						MAPS: `${config.envAppUrl}/maps`

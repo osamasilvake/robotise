@@ -2,20 +2,21 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { SitePhoneCallsListPayloadInterface } from '../../../../screens/business/sites/content/phone-calls/list/SitePhoneCallsList.interface';
+import { SiteSMSListPayloadInterface } from '../../../../screens/business/sites/content/sms-list/SiteSMSList.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
+import { dateDayJs, dateSort } from '../../../../utilities/methods/Date';
 import { RootState } from '../../..';
 import { handleRefreshAndPagination } from '../../../Slices.map';
-import { deserializePhoneCalls } from './PhoneCalls.slice.deserialize';
+import { deserializeSMSList } from './SMSList.slice.deserialize';
 import {
-	PCContentInterface,
-	PCCStateInterface,
-	SlicePhoneCallsInterface
-} from './PhoneCalls.slice.interface';
-import { combineTwoLists, fillUpDummyValues } from './PhoneCalls.slice.map';
+	SLContentInterface,
+	SLCStateInterface,
+	SliceSMSListInterface
+} from './SMSList.slice.interface';
+import { combineTwoLists, fillUpDummyValues } from './SMSList.slice.map';
 
 // initial state
-export const initialState: SlicePhoneCallsInterface = {
+export const initialState: SliceSMSListInterface = {
 	init: false,
 	loader: false,
 	loading: false,
@@ -26,7 +27,7 @@ export const initialState: SlicePhoneCallsInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Phone Calls',
+	name: 'SMS List',
 	initialState,
 	reducers: {
 		loader: (state) => {
@@ -64,42 +65,42 @@ const dataSlice = createSlice({
 export const { loader, loading, success, failure, updating, updated, reset } = dataSlice.actions;
 
 // selector
-export const phoneCallsSelector = (state: RootState) => state['phoneCalls'];
+export const smsListSelector = (state: RootState) => state['smsList'];
 
 // reducer
 export default dataSlice.reducer;
 
 /**
- * fetch site phone calls
+ * fetch site SMS list
  * @param siteId
  * @param payload
  * @param refresh
  * @returns
  */
-export const PhoneCallsFetchList =
-	(siteId: string, payload: SitePhoneCallsListPayloadInterface, refresh = false) =>
+export const SMSListFetchList =
+	(siteId: string, payload: SiteSMSListPayloadInterface, refresh = false) =>
 	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const phoneCalls = states.phoneCalls;
+		const smsList = states.smsList;
 
 		// return on busy
-		if (phoneCalls && (phoneCalls.loader || phoneCalls.loading)) {
+		if (smsList && (smsList.loader || smsList.loading)) {
 			return;
 		}
 
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		// fetch site phone calls
+		// fetch site SMS list
 		return Promise.all([
-			SitesService.sitePhoneCallsInboundFetch(siteId, payload),
-			SitesService.sitePhoneCallsOutboundFetch(siteId, payload)
+			SitesService.siteSMSListInboundFetch(siteId, payload),
+			SitesService.siteSMSListOutboundFetch(siteId, payload)
 		])
 			.then(async (res) => {
 				// deserialize response
-				const result1: PCContentInterface = await deserializePhoneCalls(res[0]);
-				const result2: PCContentInterface = await deserializePhoneCalls(res[1]);
+				const result1: SLContentInterface = await deserializeSMSList(res[0]);
+				const result2: SLContentInterface = await deserializeSMSList(res[1]);
 
 				// combine two lists
 				let result = combineTwoLists(result1, result2);
@@ -120,9 +121,9 @@ export const PhoneCallsFetchList =
 				};
 
 				// handle refresh and pagination
-				if (phoneCalls && phoneCalls.content) {
+				if (smsList && smsList.content) {
 					result = handleRefreshAndPagination(
-						phoneCalls.content,
+						smsList.content,
 						result,
 						refresh,
 						payload.rowsPerPage
@@ -135,7 +136,7 @@ export const PhoneCallsFetchList =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'phone-calls-fetch-error',
+					id: 'sms-list-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -151,18 +152,18 @@ export const PhoneCallsFetchList =
  * @param state
  * @returns
  */
-export const PhoneCallsUpdateState =
-	(state: PCCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
+export const SMSListUpdateState =
+	(state: SLCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const phoneCalls = states.phoneCalls;
+		const smsList = states.smsList;
 
 		// dispatch: updating
 		dispatch(updating());
 
-		if (phoneCalls && phoneCalls.content) {
+		if (smsList && smsList.content) {
 			const result = {
-				...phoneCalls.content,
+				...smsList.content,
 				state
 			};
 

@@ -1,6 +1,6 @@
 import { dateDayJs } from '../../../../utilities/methods/Date';
-import { PhoneCallsTypeEnum } from './PhoneCalls.slice.enum';
-import { PCCDataInterface, PCContentInterface } from './PhoneCalls.slice.interface';
+import { SMSListTypeEnum } from './SMSList.slice.enum';
+import { SLCDataInterface, SLContentInterface } from './SMSList.slice.interface';
 
 /**
  * combine two lists
@@ -9,12 +9,12 @@ import { PCCDataInterface, PCContentInterface } from './PhoneCalls.slice.interfa
  * @returns
  */
 export const combineTwoLists = (
-	result1: PCContentInterface,
-	result2: PCContentInterface
-): PCContentInterface => {
-	const typeInbound = PhoneCallsTypeEnum.INBOUND;
-	const typeOutbound = PhoneCallsTypeEnum.OUTBOUND;
-	const result: PCContentInterface = {
+	result1: SLContentInterface,
+	result2: SLContentInterface
+): SLContentInterface => {
+	const typeInbound = SMSListTypeEnum.INBOUND;
+	const typeOutbound = SMSListTypeEnum.OUTBOUND;
+	const result: SLContentInterface = {
 		data: [
 			...(result1.data?.map((d) => ({ ...d, type: typeInbound })) || []),
 			...(result2.data?.map((d) => ({ ...d, type: typeOutbound })) || [])
@@ -35,14 +35,14 @@ export const combineTwoLists = (
  * @returns
  */
 export const fillUpDummyValues = (
-	result: PCContentInterface,
+	result: SLContentInterface,
 	rowsPerPage: number
-): PCContentInterface => {
+): SLContentInterface => {
 	let payload = result;
 
 	// fill dummies
-	const dummy: PCCDataInterface = {
-		type: PhoneCallsTypeEnum.DUMMY,
+	const dummy: SLCDataInterface = {
+		type: SMSListTypeEnum.DUMMY,
 		room: '-',
 		status: 'dummy',
 		from: '-',
@@ -52,7 +52,7 @@ export const fillUpDummyValues = (
 			.subtract(1, 'second')
 			.toISOString() as unknown as Date,
 		updatedAt: dateDayJs(result.data[result.data.length - 1]?.updatedAt)
-			.subtract(1, 'second')
+			.subtract(1, 'minute')
 			.toISOString() as unknown as Date,
 		isDebug: false,
 		callerCountry: '-',

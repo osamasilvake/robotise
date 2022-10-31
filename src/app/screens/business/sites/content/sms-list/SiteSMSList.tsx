@@ -10,58 +10,59 @@ import PageError from '../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../services';
 import { AppDispatch } from '../../../../../slices';
 import {
-	PhoneCallsFetchList,
-	phoneCallsSelector
-} from '../../../../../slices/business/sites/phone-calls/PhoneCalls.slice';
+	SMSListFetchList,
+	smsListSelector
+} from '../../../../../slices/business/sites/sms-list/SMSList.slice';
 import { SiteParamsInterface } from '../../Site.interface';
-import { SitePhoneCallsListPayloadInterface } from '../phone-calls/list/SitePhoneCallsList.interface';
+import { SiteSMSListPayloadInterface } from './SiteSMSList.interface';
 import { SiteSMSListStyle } from './SiteSMSList.style';
+import SiteSMSListTable from './table/SiteSMSListTable';
 
 const SiteSMSList: FC = () => {
 	const classes = SiteSMSListStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
-	const phoneCalls = useSelector(phoneCallsSelector);
+	const smsList = useSelector(smsListSelector);
 
-	const page = phoneCalls.content?.state?.page || 0;
+	const page = smsList.content?.state?.page || 0;
 	const rowsPerPage =
-		phoneCalls.content?.state?.rowsPerPage ||
+		smsList.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.business.sites.content.smsList.list.defaultPageSize;
 
 	const pageRef = useRef({
-		page: (phoneCalls.content?.meta?.page || 0) - 1,
+		page: (smsList.content?.meta?.page || 0) - 1,
 		rowsPerPage
 	});
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
-	const pSiteId = phoneCalls.content?.state?.pSiteId;
+	const pSiteId = smsList.content?.state?.pSiteId;
 	const cSiteId = params.siteId;
 
 	useEffect(() => {
-		const payload: SitePhoneCallsListPayloadInterface = {
+		const payload: SiteSMSListPayloadInterface = {
 			page,
 			rowsPerPage
 		};
 
 		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
-			// dispatch: fetch site phone calls
-			dispatch(PhoneCallsFetchList(cSiteId, payload));
+			// dispatch: fetch site SMS list
+			dispatch(SMSListFetchList(cSiteId, payload));
 
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.rowsPerPage = rowsPerPage;
 		} else {
-			const condition1 = phoneCalls.content === null;
-			const condition2 = !!(phoneCalls.content !== null && pSiteId && pSiteId !== cSiteId);
+			const condition1 = smsList.content === null;
+			const condition2 = !!(smsList.content !== null && pSiteId && pSiteId !== cSiteId);
 
 			const condition3 = pageRef.current.page !== -1; // page switch back and forth
 			const condition4 = page > pageRef.current.page; // detect next click
 
 			if (condition1 || condition2 || condition3) {
 				if (condition2 || condition4) {
-					// dispatch: fetch site phone calls
+					// dispatch: fetch site SMS list
 					dispatch(
-						PhoneCallsFetchList(cSiteId, {
+						SMSListFetchList(cSiteId, {
 							...payload,
 							page: condition2 ? 0 : page
 						})
@@ -72,14 +73,14 @@ const SiteSMSList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, phoneCalls.content, cSiteId, pSiteId, page, rowsPerPage]);
+	}, [dispatch, smsList.content, cSiteId, pSiteId, page, rowsPerPage]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (phoneCalls.content) {
-				// dispatch: fetch site phone calls
+			if (smsList.content) {
+				// dispatch: fetch site SMS list
 				dispatch(
-					PhoneCallsFetchList(
+					SMSListFetchList(
 						cSiteId,
 						{
 							page: 0,
@@ -94,29 +95,33 @@ const SiteSMSList: FC = () => {
 		// interval
 		const intervalId = window.setInterval(
 			executeServices,
-			AppConfigService.AppOptions.screens.business.sites.content.phoneCalls.list.refreshTime
+			AppConfigService.AppOptions.screens.business.sites.content.smsList.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, phoneCalls.content, cSiteId, page, rowsPerPage]);
+	}, [dispatch, smsList.content, cSiteId, page, rowsPerPage]);
 
 	// loader
-	if (phoneCalls.loader) {
+	if (smsList.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
 	// error
-	if (phoneCalls.errors) {
-		return <PageError message={phoneCalls.errors?.text} />;
+	if (smsList.errors) {
+		return <PageError message={smsList.errors?.text} />;
 	}
 
 	// init
-	if (!phoneCalls.init) return null;
+	if (!smsList.init) return null;
 
 	// empty
-	if (!phoneCalls.content?.data.length) {
+	if (!smsList.content?.data.length) {
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return <Box className={classes.sBox}>Coool</Box>;
+	return (
+		<Box className={classes.sBox}>
+			<SiteSMSListTable content={smsList.content} page={page} rowsPerPage={rowsPerPage} />
+		</Box>
+	);
 };
 export default SiteSMSList;

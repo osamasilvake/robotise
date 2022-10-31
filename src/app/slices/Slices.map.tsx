@@ -5,6 +5,7 @@ import { ECContentInterface } from './business/robots/elevator-calls/ElevatorCal
 import { SOContentInterface } from './business/robots/orders/Orders.slice.interface';
 import { SPContentInterface } from './business/robots/purchases/Purchases.slice.interface';
 import { PCContentInterface } from './business/sites/phone-calls/PhoneCalls.slice.interface';
+import { SLContentInterface } from './business/sites/sms-list/SMSList.slice.interface';
 import { SACContentInterface } from './information/alert-codes/AlertCodes.interface';
 import { SDLContentInterface } from './settings/deep-links/DeepLinks.interface';
 import { SMCContentInterface } from './settings/middleware-config/MiddlewareConfig.interface';
@@ -59,6 +60,7 @@ export type PaginationInput =
 	| SEContentInterface
 	| CLContentInterface
 	| PCContentInterface
+	| SLContentInterface
 	| SDLContentInterface
 	| ECContentInterface
 	| SMCContentInterface

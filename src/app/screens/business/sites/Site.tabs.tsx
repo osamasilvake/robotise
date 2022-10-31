@@ -12,6 +12,7 @@ import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import { SiteConfigurationTabsTypeEnum } from './content/configuration/SiteConfiguration.enum';
 import SitePerformance from './content/performance/SitePerformance';
+import SiteSMSList from './content/sms-list/SiteSMSList';
 import { SiteParamsInterface } from './Site.interface';
 import sitesRoutes from './Sites.routes';
 
@@ -97,6 +98,7 @@ const SiteTabs: FC = () => {
 				<Tab label={t(`${translation}.ROOMS`)} />
 				<Tab label={t(`${translation}.PHONE_CONFIGS`)} />
 				<Tab label={t(`${translation}.PHONE_CALLS`)} />
+				<Tab label={t(`${translation}.SMS_LIST`)} />
 				<Tab label={t(`${translation}.STATISTICS`)} />
 				<Tab label={t(`${translation}.PERFORMANCE`)} />
 				<Tab label={t(`${translation}.CONFIGURATION.MAIN`)} />
@@ -149,8 +151,17 @@ const SiteTabs: FC = () => {
 					</ErrorBoundary>
 				)}
 
-				{/* Statistics */}
+				{/* SMS List */}
 				{value === 5 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<SiteSMSList />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* Statistics */}
+				{value === 6 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SiteStatistics />
@@ -159,7 +170,7 @@ const SiteTabs: FC = () => {
 				)}
 
 				{/* Performance */}
-				{value === 6 && (
+				{value === 7 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SitePerformance />
@@ -168,7 +179,7 @@ const SiteTabs: FC = () => {
 				)}
 
 				{/* Configuration */}
-				{(value === 7 || value === 8) && (
+				{(value === 8 || value === 9) && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<SiteConfiguration />

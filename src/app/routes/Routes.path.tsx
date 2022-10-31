@@ -26,6 +26,7 @@ const appRoutes = {
 				ROOMS: '/sites/:siteId/rooms',
 				PHONE_CONFIGS: '/sites/:siteId/phone-configs',
 				PHONE_CALLS: '/sites/:siteId/phone-calls',
+				SMS_LIST: '/sites/:siteId/sms-list',
 				STATISTICS: '/sites/:siteId/statistics',
 				PERFORMANCE: '/sites/:siteId/performance',
 				CONFIGURATION: '/sites/:siteId/configuration'

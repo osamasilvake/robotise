@@ -154,6 +154,14 @@ const AppOptions = (config: typeof AppConfigService) => {
 								pageSizes: [5, 10, 15, 20, 50, 100]
 							}
 						},
+						smsList: {
+							list: {
+								refreshTime: 10000,
+								showPageSizes: true,
+								defaultPageSize: 50,
+								pageSizes: [5, 10, 15, 20, 50, 100]
+							}
+						},
 						statistics: {
 							wifiHeatmap: {
 								refreshTime: 20000

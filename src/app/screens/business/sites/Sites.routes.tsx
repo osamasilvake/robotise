@@ -40,6 +40,10 @@ const sitesRoutes: RoutesInterface[] = [
 		component: Site
 	},
 	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.SMS_LIST,
+		component: Site
+	},
+	{
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.PHONE_CALLS,
 		component: Site
 	},

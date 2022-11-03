@@ -130,21 +130,6 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 
 			{/* Accept Orders */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
-				<Typography variant="caption" color="textSecondary">
-					{t(`${translation}.ACCEPT_ORDERS.LABEL`)}
-				</Typography>
-				<Box>
-					{!!robotTwins.site.title && (
-						<Status active={!!robotTwins.site.acceptOrders}>
-							{robotTwins.site.acceptOrders
-								? t(`${translation}.ACCEPT_ORDERS.ACTIVE`)
-								: t(`${translation}.ACCEPT_ORDERS.INACTIVE`)}
-						</Status>
-					)}
-					{!robotTwins.site.title && AppConfigService.AppOptions.common.none}
-				</Box>
-			</Grid>
-			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Stack spacing={0.5} direction="row" alignItems="center">
 					<Typography variant="caption" color="textSecondary">
 						{t(`${translation}.ACCEPT_ORDERS.LABEL`)}

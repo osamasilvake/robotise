@@ -42,7 +42,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 	const problem = !!sites.errors?.id || !siteSingle?.id;
 
 	const translation = 'CONTENT.TABS';
-	const offset = 8;
+	const offset = 9;
 
 	useEffect(() => {
 		const skipLastSlashes = AppConfigService.AppOptions.regex.skipLastSlashes;

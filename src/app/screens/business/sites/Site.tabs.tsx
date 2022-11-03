@@ -89,7 +89,7 @@ const SiteTabs: FC = () => {
 			{/* Tabs */}
 			<Tabs
 				allowScrollButtonsMobile
-				value={value === 8 ? value - 1 : value}
+				value={value === 9 ? value - 1 : value}
 				onChange={handleTabChange}
 				variant="scrollable"
 				textColor="primary">

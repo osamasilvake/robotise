@@ -30,18 +30,16 @@ export const mapSMSItem = (smsItem: SLCDataInterface) => {
 export const mapStatus = (status: string) => {
 	const value = status && status.split('.').pop();
 	switch (value) {
-		case SiteSMSListTableColumnHistoryEventTypeEnum.APPROVED:
-			return StatusTypeEnum.SUCCESS_LIGHT;
+		case SiteSMSListTableColumnHistoryEventTypeEnum.DELIVERED:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.RECEIVED:
 		case SiteSMSListTableColumnHistoryEventTypeEnum.CONFIRMED:
-		case SiteSMSListTableColumnHistoryEventTypeEnum.COMPLETED:
 			return StatusTypeEnum.SUCCESS_DARK;
-		case SiteSMSListTableColumnHistoryEventTypeEnum.BUSY:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.SENT:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.RECEIVING:
 			return StatusTypeEnum.WARN;
-		case SiteSMSListTableColumnHistoryEventTypeEnum.REJECTED:
-		case SiteSMSListTableColumnHistoryEventTypeEnum.ERROR:
 		case SiteSMSListTableColumnHistoryEventTypeEnum.FAILED:
-		case SiteSMSListTableColumnHistoryEventTypeEnum.NO_ANSWER:
-		case SiteSMSListTableColumnHistoryEventTypeEnum.UNDEFINED:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.UNDELIVERED:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.REJECTED:
 			return StatusTypeEnum.ERROR;
 		default:
 			return StatusTypeEnum.INFO;
@@ -55,11 +53,8 @@ export const mapStatus = (status: string) => {
  */
 export const mapHistoryEventType = (event: string) => {
 	switch (event) {
-		case SiteSMSListTableColumnHistoryEventTypeEnum.APPROVED:
-			return {
-				color: StatusTypeTextEnum.SUCCESS_LIGHT,
-				icon: 'approval'
-			};
+		case SiteSMSListTableColumnHistoryEventTypeEnum.RECEIVED:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.DELIVERED:
 		case SiteSMSListTableColumnHistoryEventTypeEnum.CONFIRMED:
 			return {
 				color: StatusTypeTextEnum.SUCCESS_DARK,
@@ -70,8 +65,10 @@ export const mapHistoryEventType = (event: string) => {
 				color: StatusTypeTextEnum.SUCCESS_DARK,
 				icon: 'shopping_cart'
 			};
-		case SiteSMSListTableColumnHistoryEventTypeEnum.REJECTED:
-		case SiteSMSListTableColumnHistoryEventTypeEnum.ERROR:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.FAILED:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.UNDELIVERED:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.REJECTED_ACCEPT_ORDER_FALSE:
+		case SiteSMSListTableColumnHistoryEventTypeEnum.REJECTED_NOT_IN_WHITELIST:
 			return {
 				color: StatusTypeTextEnum.ERROR,
 				icon: 'cancel_outlined'

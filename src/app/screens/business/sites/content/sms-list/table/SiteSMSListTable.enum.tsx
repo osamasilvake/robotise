@@ -14,14 +14,15 @@ export enum SiteSMSListTableSortTypeEnum {
 }
 
 export enum SiteSMSListTableColumnHistoryEventTypeEnum {
-	APPROVED = 'approved',
-	CONFIRMED = 'confirmed',
-	COMPLETED = 'completed',
-	ORDER_ASSIGNED = 'orderAssigned',
-	BUSY = 'busy',
-	REJECTED = 'rejected',
-	ERROR = 'error',
+	SENT = 'sent',
+	RECEIVING = 'receiving',
 	FAILED = 'failed',
-	NO_ANSWER = 'no-answer',
-	UNDEFINED = 'undefined'
+	UNDELIVERED = 'undelivered',
+	REJECTED = 'rejected',
+	REJECTED_ACCEPT_ORDER_FALSE = 'accept_order_false',
+	REJECTED_NOT_IN_WHITELIST = 'room_is_not_in_whitelist',
+	DELIVERED = 'delivered',
+	RECEIVED = 'received',
+	CONFIRMED = 'confirmed',
+	ORDER_ASSIGNED = 'orderAssigned'
 }

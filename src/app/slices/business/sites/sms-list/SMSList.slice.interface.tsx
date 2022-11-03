@@ -33,7 +33,7 @@ export interface SLCDataInterface {
 export interface SLCDataHistoryInterface {
 	event: string;
 	createdAt: Date;
-	details?: string;
+	details: string;
 }
 
 export interface SLCStateInterface {

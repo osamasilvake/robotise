@@ -7,7 +7,10 @@ import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
 import { SLCDataInterface } from '../../../../../../slices/business/sites/sms-list/SMSList.slice.interface';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
-import { SiteSMSListTableColumnsTypeEnum } from './SiteSMSListTable.enum';
+import {
+	SiteSMSListTableColumnHistoryEventTypeEnum,
+	SiteSMSListTableColumnsTypeEnum
+} from './SiteSMSListTable.enum';
 import {
 	SiteSMSListTableBodyCellInterface,
 	SiteSMSListTableColumnInterface
@@ -42,9 +45,27 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 					{history.map((item, index) => (
 						<Stack key={index} spacing={0.5} direction="row">
 							<Icon
-								color={mapHistoryEventType(t(item.event)).color}
+								color={
+									mapHistoryEventType(
+										t(
+											item.event ===
+												SiteSMSListTableColumnHistoryEventTypeEnum.ORDER_ASSIGNED
+												? item.event
+												: item.details
+										)
+									).color
+								}
 								className={classes.sTableHistoryIcon}>
-								{mapHistoryEventType(t(item.event)).icon}
+								{
+									mapHistoryEventType(
+										t(
+											item.event ===
+												SiteSMSListTableColumnHistoryEventTypeEnum.ORDER_ASSIGNED
+												? item.event
+												: item.details
+										)
+									).icon
+								}
 							</Icon>
 							<Typography variant="body2" className={classes.sHistoryEvent}>
 								{t(historyMapped[index].event)}:

@@ -1,7 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { FC, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
@@ -39,11 +39,6 @@ const GenTabs: FC = () => {
 		// navigate
 		navigate(link);
 	};
-
-	// navigate to first tab
-	if (location.pathname === AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN) {
-		return <Navigate to={AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS.MAIN} />;
-	}
 
 	return value !== -1 ? (
 		<Box>

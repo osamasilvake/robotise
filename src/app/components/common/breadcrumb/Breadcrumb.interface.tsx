@@ -1,5 +1,6 @@
 export interface BreadcrumbInterface {
 	labels: string[] | undefined;
+	disableGeneralTab?: string;
 }
 
 export interface BreadcrumbLinksInterface {

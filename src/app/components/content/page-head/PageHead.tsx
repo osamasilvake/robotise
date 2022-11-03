@@ -8,7 +8,7 @@ import { PageHeadInterface } from './PageHead.interface';
 import { PageHeadStyle } from './PageHead.style';
 
 const PageHead: FC<PageHeadInterface> = (props) => {
-	const { title, description, onlyMeta, labels } = props;
+	const { title, description, onlyMeta, labels, disableGeneralTab } = props;
 	const { t } = useTranslation('META');
 	const classes = PageHeadStyle();
 
@@ -28,7 +28,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 					</Typography>
 
 					{/* Breadcrumb */}
-					<Breadcrumb labels={labels} />
+					<Breadcrumb labels={labels} disableGeneralTab={disableGeneralTab} />
 
 					{/* Divider */}
 					<Box className={classes.sDivider}>

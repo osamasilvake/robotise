@@ -7,7 +7,7 @@ const drawerBusinessList: DrawerListInterface[] = [
 		icon: 'apps',
 		label: 'BUSINESS.LIST.GENERAL',
 		hint: '📮  📦',
-		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.EMAILS.MAIN
 	},
 	{
 		icon: 'apartment',
@@ -41,7 +41,7 @@ const drawerSettingsList: DrawerListInterface[] = [
 	{
 		icon: 'settings',
 		label: 'SETTINGS.LIST.SETUP',
-		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.SETUP.MAIN
+		path: AppConfigService.AppRoutes.SCREENS.SETTINGS.SETUP.WIFI_CONFIG
 	}
 ];
 

@@ -3,4 +3,5 @@ export interface PageHeadInterface {
 	description?: string;
 	onlyMeta?: boolean;
 	labels?: string[];
+	disableGeneralTab?: string;
 }

@@ -8,7 +8,7 @@ import { BreadcrumbInterface } from './Breadcrumb.interface';
 import { breadcrumbs } from './Breadcrumb.map';
 
 const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
-	const { labels } = props;
+	const { labels, disableGeneralTab } = props;
 	const { t } = useTranslation('META');
 
 	const idx = useRef(-1);
@@ -36,12 +36,12 @@ const BreadcrumbCustom: FC<BreadcrumbInterface> = (props) => {
 				idx.current = index === 0 ? -1 : idx.current;
 				return item.show ? (
 					<Box key={item.text}>
-						{!item.isLast && item.link && (
+						{!item.isLast && item.link && item.link !== disableGeneralTab && (
 							<Link component={RouterLink} underline="hover" to={item.link}>
 								{replaceIdWithLabel(item.text)}
 							</Link>
 						)}
-						{item.isLast && (
+						{(item.isLast || (item.link && item.link === disableGeneralTab)) && (
 							<Typography color="textPrimary">
 								{replaceIdWithLabel(item.text)}
 							</Typography>

@@ -58,6 +58,7 @@ const Gen: FC = () => {
 				title="GENERAL.GEN.TITLE"
 				description="GENERAL.GEN.DESCRIPTION"
 				labels={breadcrumbLabels()}
+				disableGeneralTab={AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.MAIN}
 			/>
 
 			{/* Content */}

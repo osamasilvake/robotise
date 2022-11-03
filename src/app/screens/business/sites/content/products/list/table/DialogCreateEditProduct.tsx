@@ -162,6 +162,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						<Grid item xs={12} sm={4} md={4}>
 							<FormControl fullWidth>
 								<TextField
+									required
 									type="number"
 									id="length"
 									name="length"
@@ -193,6 +194,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 						<Grid item xs={12} sm={4} md={4}>
 							<FormControl fullWidth>
 								<TextField
+									required
 									type="number"
 									id="weight"
 									name="weight"
@@ -241,7 +243,9 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 							validateEmptyObjProperty({
 								image,
 								name: values.name,
-								price: values.price
+								price: values.price,
+								length: values.length,
+								weight: values.weight
 							})
 						}
 						endIcon={products.updating && <CircularProgress size={20} />}>

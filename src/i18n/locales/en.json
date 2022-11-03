@@ -770,7 +770,7 @@
 									"LABEL": "Length (mm)",
 									"PLACEHOLDER": "Enter length",
 									"VALIDATIONS": {
-										"INVALID": "Length/Weight both empty.",
+										"INVALID": "Length is empty!",
 										"MIN": "Min. length supported is {{min}} mm.",
 										"MAX": "Max. length supported is {{max}} mm."
 									}
@@ -779,7 +779,7 @@
 									"LABEL": "Weight (g)",
 									"PLACEHOLDER": "Enter weight",
 									"VALIDATIONS": {
-										"INVALID": "Length/Weight both empty."
+										"INVALID": "Weight is empty!"
 									}
 								},
 								"SIZE": {

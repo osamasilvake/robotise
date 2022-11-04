@@ -1,4 +1,7 @@
 import dayjs from 'dayjs';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+
+dayjs.extend(weekOfYear);
 
 /**
  * day JS
@@ -70,6 +73,15 @@ const dateFormat6 = (date: Date): string => {
  */
 const dateFormat7 = (date: Date): string => {
 	return dayjs(date).format('YYYY-MM');
+};
+
+/**
+ * format 8
+ * @param date
+ * @returns
+ */
+const dateFormat8 = (date: Date): string => {
+	return dayjs(date).format('DD MMM');
 };
 
 /**
@@ -151,6 +163,7 @@ export {
 	dateFormat5,
 	dateFormat6,
 	dateFormat7,
+	dateFormat8,
 	dateFromToDiff,
 	dateISOString,
 	dateMinsPriorToDate,

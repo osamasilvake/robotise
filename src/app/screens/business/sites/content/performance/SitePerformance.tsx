@@ -48,7 +48,7 @@ const SitePerformance: FC = () => {
 			dispatch(
 				PerformanceFetch(
 					{
-						lookup: { period: currentPeriod.period, unit: currentPeriod.id },
+						lookup: { period: currentPeriod.period, unit: currentPeriod.unit },
 						robot: cRobotId,
 						site: cSiteId,
 						excludeTotalPriceZero: true,

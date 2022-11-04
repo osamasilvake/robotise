@@ -1058,19 +1058,22 @@
 				"PERIOD": {
 					"LABEL": "Select Timeframe",
 					"DAY": "Last 7 Days",
-					"WEEK": "Last 8 Weeks",
+					"WEEK4": "Last 4 Weeks",
+					"WEEK8": "Last 8 Weeks",
 					"MONTH": "Last 12 Months"
 				},
 				"DEMOGRAPHY": {
 					"PURCHASES": {
 						"LABEL": "Total Purchases",
 						"TOOLTIP": "Total purchase revenue per period (day, week, month) in the selected timeframe",
+						"CURRENT_WEEK": "CW",
 						"DATE": "Date",
 						"REVENUE": "Revenue"
 					},
 					"ORDERS": {
 						"LABEL": "Total Orders",
 						"TOOLTIP": "Number of successful orders executed in each period (day, week, month) by order type",
+						"CURRENT_WEEK": "CW",
 						"DATE": "Date",
 						"MODES": {
 							"MINIBAR": "Minibar",

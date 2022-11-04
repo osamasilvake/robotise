@@ -41,6 +41,7 @@ const SitePerformanceDemographyPurchases: FC<SitePerformanceDemographyPurchasesI
 				<BarReChart
 					currentPeriod={currentPeriod}
 					data={chart}
+					cwLabel={t(`${translation}.DEMOGRAPHY.PURCHASES.CURRENT_WEEK`)}
 					axisX={t(`${translation}.DEMOGRAPHY.PURCHASES.DATE`)}
 					axisY={t(`${translation}.DEMOGRAPHY.PURCHASES.REVENUE`)}
 					currency={currency}

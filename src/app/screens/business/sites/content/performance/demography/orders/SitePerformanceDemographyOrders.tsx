@@ -37,6 +37,7 @@ const SitePerformanceDemographyOrders: FC<SitePerformanceDemographyOrdersInterfa
 				<StackedBarReChart
 					currentPeriod={currentPeriod}
 					data={chart}
+					cwLabel={t(`${translation}.DEMOGRAPHY.ORDERS.CURRENT_WEEK`)}
 					axisX={t(`${translation}.DEMOGRAPHY.ORDERS.DATE`)}
 					axisY1={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.MINIBAR`)}
 					axisY2={t(`${translation}.DEMOGRAPHY.ORDERS.MODES.ROOM_SERVICE`)}

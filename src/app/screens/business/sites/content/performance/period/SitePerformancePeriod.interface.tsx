@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SitePerformancePeriodTypeEnum } from './SitePerformancePeriod.enum';
+import {
+	SitePerformancePeriodTypeEnum,
+	SitePerformancePeriodUnitEnum
+} from './SitePerformancePeriod.enum';
 
 export interface SitePerformancePeriodInterface {
 	sitePerformancePeriod: SitePerformancePeriodListInterface[];
@@ -10,6 +13,7 @@ export interface SitePerformancePeriodInterface {
 
 export interface SitePerformancePeriodListInterface {
 	id: SitePerformancePeriodTypeEnum;
+	unit: SitePerformancePeriodUnitEnum;
 	label: string;
 	period: number;
 }

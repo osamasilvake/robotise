@@ -3,6 +3,7 @@ import { SitePerformancePeriodTypeEnum } from '../../../screens/business/sites/c
 export interface StackedBarChartInterface {
 	currentPeriod: SitePerformancePeriodTypeEnum;
 	data: StackedBarChartDataInterface[];
+	cwLabel: string;
 	axisX: string;
 	axisY1: string;
 	axisY2: string;

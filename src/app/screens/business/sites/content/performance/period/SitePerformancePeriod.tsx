@@ -18,7 +18,7 @@ const SitePerformancePeriod: FC<SitePerformancePeriodInterface> = (props) => {
 	 * handle period
 	 * @param id
 	 */
-	const handlePeriod = (id: string) => {
+	const handlePeriod = (id: number) => {
 		const period = sitePerformancePeriod.find((d) => d.id === id);
 		period && setCurrentPeriod(period);
 	};
@@ -38,7 +38,7 @@ const SitePerformancePeriod: FC<SitePerformancePeriodInterface> = (props) => {
 					name="period"
 					label={t(`${translation}.PERIOD.LABEL`)}
 					value={currentPeriod}
-					onChange={(event) => handlePeriod(event.target.value)}
+					onChange={(event) => handlePeriod(+event.target.value)}
 					disabled={!!performance?.loading}>
 					{sitePerformancePeriod.map((item) => (
 						<MenuItem key={item.id} value={item.id}>

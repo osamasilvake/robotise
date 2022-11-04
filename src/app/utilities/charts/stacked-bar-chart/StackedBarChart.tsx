@@ -15,7 +15,7 @@ import {
 import { SitePerformancePeriodTypeEnum } from '../../../screens/business/sites/content/performance/period/SitePerformancePeriod.enum';
 import { appSelector } from '../../../slices/app/App.slice';
 import { AppThemePaletteTypeEnum } from '../../../slices/app/App.slice.enum';
-import { dateFormat6, dateFormat7 } from '../../methods/Date';
+import { dateDayJs, dateFormat6, dateFormat7, dateFormat8 } from '../../methods/Date';
 import { StackedBarChartInterface } from './StackedBarChart.interface';
 import { StackedBarChartStyle } from './StackedBarChart.style';
 
@@ -23,6 +23,7 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 	const {
 		currentPeriod,
 		data,
+		cwLabel,
 		axisX,
 		axisY1,
 		axisY2,
@@ -36,6 +37,9 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 
 	const stackId = 'stacked';
 	const isDark = app.themePalette === AppThemePaletteTypeEnum.DARK;
+	const isWeek =
+		currentPeriod === SitePerformancePeriodTypeEnum.WEEK4 ||
+		currentPeriod === SitePerformancePeriodTypeEnum.WEEK8;
 	const month = currentPeriod === SitePerformancePeriodTypeEnum.MONTH;
 	const mapData = data.map((d) => ({
 		[axisX]: d.x,
@@ -59,14 +63,29 @@ const StackedBarReChart: FC<StackedBarChartInterface> = (props) => {
 					<YAxis style={isDark ? styles.sAxisLight : styles.sAxisDark} />
 					<XAxis
 						dataKey={axisX}
-						tickFormatter={(t) => (month ? dateFormat7(t) : t)}
+						tickFormatter={(t) => {
+							if (month) {
+								return dateFormat7(t);
+							} else {
+								return isWeek ? `${cwLabel} ${dateDayJs(t).week()}` : t;
+							}
+						}}
 						style={isDark ? styles.sAxisLight : styles.sAxisDark}
 					/>
 
 					{/* Tooltip */}
 					<Tooltip
 						cursor={false}
-						labelFormatter={(t) => `${axisX}: ${dateFormat6(t)}`}
+						labelFormatter={(t) => {
+							if (isWeek) {
+								const start = dateDayJs(t).startOf('week').toDate();
+								const end = dateDayJs(t).endOf('week').toDate();
+								const formatStart = dateFormat8(start);
+								const formatEnd = dateFormat8(end);
+								return `${axisX}: ${formatStart} - ${formatEnd}`;
+							}
+							return `${axisX}: ${dateFormat6(t)}`;
+						}}
 						labelStyle={styles.sTooltipLabel}
 					/>
 

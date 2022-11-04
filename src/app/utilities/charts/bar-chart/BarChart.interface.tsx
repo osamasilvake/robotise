@@ -3,6 +3,7 @@ import { SitePerformancePeriodTypeEnum } from '../../../screens/business/sites/c
 export interface BarChartInterface {
 	currentPeriod: SitePerformancePeriodTypeEnum;
 	data: BarChartDataInterface[];
+	cwLabel: string;
 	axisX: string;
 	axisY: string;
 	language: string;

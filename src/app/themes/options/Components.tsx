@@ -39,21 +39,7 @@ const ComponentsCustom: Components = {
 	MuiListItemButton: {
 		styleOverrides: {
 			root: {
-				transition: 'none',
-				'&:hover': {
-					'&.Mui-selected': {
-						backgroundColor: AppConfigService.AppOptions.colors.c9,
-						'& > svg, span': {
-							color: AppConfigService.AppOptions.colors.c7
-						}
-					}
-				},
-				'&.Mui-selected': {
-					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					'& > svg, span': {
-						color: AppConfigService.AppOptions.colors.c7
-					}
-				}
+				transition: 'none'
 			}
 		}
 	},

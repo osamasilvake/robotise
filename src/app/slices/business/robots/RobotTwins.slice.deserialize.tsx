@@ -36,6 +36,13 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 			const cameraTop = sCameras && sCameras[RobotDetailCameraTypeEnum.TOP];
 			const cameraTopMeta = cameraBase && mCameras[RobotDetailCameraTypeEnum.TOP];
 
+			// remote reset
+			const safetySystem = state.status.safetySystem;
+			const isRemoteSafety = safetySystem?.remoteResetPermitted !== undefined;
+			const estopResetPermitted = safetySystem?.estopResetPermitted;
+			const remoteResetPermitted = safetySystem?.remoteResetPermitted;
+			const remoteReset = isRemoteSafety ? { estopResetPermitted, remoteResetPermitted } : {};
+
 			try {
 				const result: SRTContentDataInterface = {
 					id: data.id,
@@ -145,8 +152,7 @@ export const deserializeRobotTwins = async <T,>(payload: T) => {
 							noStop2Trigger: state.status.safetySystem.noStop2Trigger,
 							stop0ResetRequired: state.status.safetySystem.stop0ResetRequired,
 							stop1ResetRequired: state.status.safetySystem.stop1ResetRequired,
-							estopResetPermitted: state.status.safetySystem.estopResetPermitted,
-							remoteResetPermitted: state.status.safetySystem.remoteResetPermitted
+							...remoteReset
 						},
 						updatedAt: meta.status.safetySystem.updatedAt
 					},

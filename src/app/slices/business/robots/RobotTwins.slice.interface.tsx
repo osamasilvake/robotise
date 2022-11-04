@@ -169,8 +169,8 @@ export interface SRTContentSafetySystemsInterface {
 		noStop2Trigger: boolean;
 		stop0ResetRequired: boolean;
 		stop1ResetRequired: boolean;
-		estopResetPermitted: boolean;
-		remoteResetPermitted: boolean;
+		estopResetPermitted?: boolean;
+		remoteResetPermitted?: boolean;
 	};
 	updatedAt: Date;
 }

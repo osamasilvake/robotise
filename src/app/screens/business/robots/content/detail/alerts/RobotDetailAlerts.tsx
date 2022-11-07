@@ -23,8 +23,10 @@ const RobotDetailAlerts: FC<RobotDetailAlertsInterface> = (props) => {
 						return { ...item, sortId: 1 };
 					case RobotDetailAlertsTypeEnum.WARNING:
 						return { ...item, sortId: 2 };
-					default:
+					case RobotDetailAlertsTypeEnum.INFO:
 						return { ...item, sortId: 3 };
+					default:
+						return { ...item, sortId: 4 };
 				}
 			})
 			.concat()

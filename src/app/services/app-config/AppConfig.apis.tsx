@@ -65,6 +65,7 @@ const AppServices = (config: typeof AppConfigService) => {
 							ELEVATOR_VENDORS: `${config.envAppUrl}/elevator-vendors`
 						},
 						MARKETING_RIDES: {
+							ALL: `${config.envAppUrl}/marketing-rides`,
 							SINGLE: `${config.envAppUrl}/marketing-rides/:siteId`
 						},
 						SITE_CONFIGS: {

@@ -289,8 +289,13 @@
 						"ERROR": "Unable to clean test orders!"
 					},
 					"MARKETING_RIDES": {
-						"SUCCESS": "Configuration has been updated successfully!",
-						"ERROR": "Unable to update configuration!"
+						"FETCH": {
+							"ERROR": "Unable to fetch marketing rides!"
+						},
+						"UPDATE": {
+							"SUCCESS": "Configuration has been updated successfully!",
+							"ERROR": "Unable to update configuration!"
+						}
 					},
 					"SITE_CONFIGURATION": {
 						"SUCCESS": "Configuration has been updated successfully!",

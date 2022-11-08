@@ -96,7 +96,7 @@ export const GeneralFetchOrderModes =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'general-order-modes-fetch-error',
+					id: 'operation-order-modes-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'GENERAL.ORDER_MODES.ERROR'
@@ -138,7 +138,7 @@ export const GeneralReportsGenerate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'general-operations-generate-reports-success',
+					id: 'operation-generate-reports-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'GENERAL.REPORTS.SUCCESS'
@@ -151,7 +151,7 @@ export const GeneralReportsGenerate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'general-operations-generate-reports-error',
+					id: 'operation-generate-reports-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'GENERAL.REPORTS.ERROR'

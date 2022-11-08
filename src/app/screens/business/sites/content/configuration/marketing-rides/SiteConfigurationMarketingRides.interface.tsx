@@ -6,6 +6,10 @@ export interface SiteConfigurationMarketingRidesInterface {
 	setFormDirty: Dispatch<SetStateAction<boolean>>;
 }
 
+export interface SiteConfigurationMarketingRidesContentInterface {
+	setFormDirty: Dispatch<SetStateAction<boolean>>;
+}
+
 export interface SiteConfigurationMarketingRidesFormInterface {
 	isActive: boolean;
 	locations: string[];

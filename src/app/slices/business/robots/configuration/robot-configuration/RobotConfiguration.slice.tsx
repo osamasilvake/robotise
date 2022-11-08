@@ -108,7 +108,7 @@ export const RobotConfigurationFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-configuration-fetch-error',
+					id: 'configuration-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -138,7 +138,7 @@ export const RobotConfigurationUpdate =
 			.then(async () => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-configuration-update-success',
+					id: 'configuration-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.SUCCESS'
@@ -157,7 +157,7 @@ export const RobotConfigurationUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-configuration-update-error',
+					id: 'configuration-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.ERROR'

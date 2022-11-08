@@ -155,7 +155,7 @@ export const SiteOrdersAccept =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-accept-orders-success',
+					id: 'operation-accept-orders-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.ACCEPT_ORDERS.SUCCESS'
@@ -168,7 +168,7 @@ export const SiteOrdersAccept =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-accept-orders-error',
+					id: 'operation-accept-orders-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR'
@@ -199,7 +199,7 @@ export const SiteRobotConfigUpdate =
 			.then(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-robot-config-success',
+					id: 'operation-robot-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS'
@@ -212,7 +212,7 @@ export const SiteRobotConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-robot-config-error',
+					id: 'operation-robot-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR'
@@ -251,7 +251,7 @@ export const SiteConfigUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-config-success',
+					id: 'operation-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.SITE_CONFIG.SUCCESS'
@@ -264,7 +264,7 @@ export const SiteConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-config-error',
+					id: 'operation-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SITE_CONFIG.ERROR'
@@ -308,7 +308,7 @@ export const SiteOrderOriginsFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-order-origins-error',
+					id: 'operation-order-origins-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.ORDER_ORIGINS.ERROR'
@@ -352,7 +352,7 @@ export const SiteCustomerNotificationTypesFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-customer-notification-types-error',
+					id: 'operation-customer-notification-types-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.CUSTOMER_NOTIFICATION_TYPES.ERROR'
@@ -396,7 +396,7 @@ export const SiteElevatorVendorsFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-elevator-vendors-error',
+					id: 'operation-elevator-vendors-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.ELEVATOR_VENDORS.ERROR'
@@ -439,7 +439,7 @@ export const SitePaymentSettingsUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-payment-settings-success',
+					id: 'operation-payment-settings-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.PAYMENT_SETTINGS.SUCCESS'
@@ -452,7 +452,7 @@ export const SitePaymentSettingsUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-payment-settings-error',
+					id: 'operation-payment-settings-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.PAYMENT_SETTINGS.ERROR'
@@ -487,7 +487,7 @@ export const SiteTestOrdersClean =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-clean-test-orders-success',
+					id: 'operation-clean-test-orders-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.CLEAN_TEST_ORDERS.SUCCESS'
@@ -500,7 +500,7 @@ export const SiteTestOrdersClean =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-clean-test-orders-success',
+					id: 'operation-clean-test-orders-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.CLEAN_TEST_ORDERS.ERROR'

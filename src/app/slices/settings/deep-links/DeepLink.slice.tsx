@@ -170,7 +170,7 @@ export const DeepLinkAuditLogsLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-audit-logs-error',
+					id: 'deep-link-audit-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.AUDIT_LOGS.ERROR'
@@ -212,7 +212,7 @@ export const DeepLinkBatteryLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-battery-error',
+					id: 'deep-link-battery-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.BATTERY.ERROR'
@@ -254,7 +254,7 @@ export const DeepLinkTemperatureLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-temperature-error',
+					id: 'deep-link-temperature-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.TEMPERATURE.ERROR'
@@ -296,7 +296,7 @@ export const DeepLinkDiagnosticsLogsLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-diagnostics-logs-error',
+					id: 'deep-link-diagnostics-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.DIAGNOSTICS_LOGS.ERROR'
@@ -338,7 +338,7 @@ export const DeepLinkCoolingUnitLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-cooling-unit-error',
+					id: 'deep-link-cooling-unit-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.COOLING_UNIT.ERROR'
@@ -380,7 +380,7 @@ export const DeepLinkItemTrackingLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-item-tracking-error',
+					id: 'deep-link-item-tracking-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.ITEM_TRACKING.ERROR'
@@ -422,7 +422,7 @@ export const DeepLinkElevatorLogsLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-elevator-logs-error',
+					id: 'deep-link-elevator-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.ELEVATOR_LOGS.ERROR'
@@ -464,7 +464,7 @@ export const DeepLinkAlertLogsLinkFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'deep-link-alert-logs-error',
+					id: 'deep-link-alert-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.ALERT_LOGS.ERROR'

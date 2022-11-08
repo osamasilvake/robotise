@@ -108,7 +108,7 @@ export const SiteConfigurationFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-configuration-fetch-error',
+					id: 'configuration-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'PAGE_ERROR.DESCRIPTION'
@@ -138,7 +138,7 @@ export const SiteConfigurationUpdate =
 			.then(async () => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-configuration-update-success',
+					id: 'configuration-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.SITE_CONFIGURATION.SUCCESS'
@@ -157,7 +157,7 @@ export const SiteConfigurationUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-configuration-update-error',
+					id: 'configuration-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SITE_CONFIGURATION.ERROR'

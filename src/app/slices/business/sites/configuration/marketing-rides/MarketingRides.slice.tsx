@@ -7,7 +7,11 @@ import SitesService from '../../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../../utilities/methods/Timeout';
 import { RootState } from '../../../..';
 import { triggerMessage } from '../../../../app/App.slice';
-import { SliceMarketingRidesInterface } from './MarketingRides.slice.interface';
+import { deserializeMarketingRides } from './MarketingRides.slice.deserialize';
+import {
+	SliceMarketingRidesInterface,
+	SMRContentInterface
+} from './MarketingRides.slice.interface';
 
 // initial state
 export const initialState: SliceMarketingRidesInterface = {
@@ -68,6 +72,56 @@ export const marketingRidesSelector = (state: RootState) => state['marketingRide
 export default dataSlice.reducer;
 
 /**
+ * fetch marketing rides
+ * @param siteId
+ * @param refresh
+ * @returns
+ */
+export const SiteMarketingRidesFetchList =
+	(siteId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const marketingRides = states.marketingRides;
+
+		// return on busy
+		if (marketingRides && (marketingRides.loader || marketingRides.loading)) {
+			return;
+		}
+
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
+
+		return SitesService.siteMarketingRidesFetch(siteId)
+			.then(async (res) => {
+				// deserialize response
+				const result: SMRContentInterface = await deserializeMarketingRides(res);
+
+				// dispatch: success
+				dispatch(
+					success({
+						...result,
+						state: {
+							pSiteId: siteId
+						}
+					})
+				);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'marketing-rides-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'PAGE_ERROR.DESCRIPTION'
+				};
+
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
+
+/**
  * update marketing rides
  * @param siteId
  * @param payload
@@ -85,10 +139,10 @@ export const SiteMarketingRidesUpdate =
 			.then(async () => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-marketing-rides-update-success',
+					id: 'marketing-rides-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'SITES.CONFIGURATION.MARKETING_RIDES.SUCCESS'
+					text: 'SITES.CONFIGURATION.MARKETING_RIDES.UPDATE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -104,10 +158,10 @@ export const SiteMarketingRidesUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'site-marketing-rides-update-error',
+					id: 'marketing-rides-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'SITES.CONFIGURATION.MARKETING_RIDES.ERROR'
+					text: 'SITES.CONFIGURATION.MARKETING_RIDES.UPDATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

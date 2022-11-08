@@ -1,4 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
+import { SMRContentInterface } from '../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice.interface';
 import {
 	SCCDataElementInterface,
 	SCContentInterface
@@ -832,6 +833,21 @@ class SitesService {
 					dateTo: payload.dateTo,
 					timeTo: payload.timeTo
 				}
+			}
+		});
+	};
+
+	/**
+	 * fetch marketing rides
+	 * @param siteId
+	 * @returns
+	 */
+	siteMarketingRidesFetch = (siteId: string) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.MARKETING_RIDES.ALL;
+		return HttpClientService.get<SMRContentInterface>(url, {
+			params: {
+				'filter[site]': siteId
 			}
 		});
 	};

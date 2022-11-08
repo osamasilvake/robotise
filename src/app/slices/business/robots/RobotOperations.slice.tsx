@@ -180,7 +180,7 @@ export const RobotNoteUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-note-success',
+					id: 'operation-note-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.DETAIL.NOTE.SUCCESS'
@@ -193,7 +193,7 @@ export const RobotNoteUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-note-error',
+					id: 'operation-note-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.DETAIL.NOTE.ERROR'
@@ -238,7 +238,7 @@ export const RobotMapFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-map-error',
+					id: 'operation-map-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.DETAIL.MAP.ERROR'
@@ -282,7 +282,7 @@ export const RobotControlCommandSend =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-command-control-success',
+					id: 'operation-command-control-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.DETAIL.COMMANDS.SUCCESS'
@@ -295,7 +295,7 @@ export const RobotControlCommandSend =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-command-control-error',
+					id: 'operation-command-control-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.DETAIL.COMMANDS.ERROR'
@@ -330,7 +330,7 @@ export const RobotRemoteSafetyResetCommandSend =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-remote-safety-reset-command-success',
+					id: 'operation-remote-safety-reset-command-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.DETAIL.REMOTE_SAFETY_RESET.SUCCESS'
@@ -343,7 +343,7 @@ export const RobotRemoteSafetyResetCommandSend =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-remote-safety-reset-command-error',
+					id: 'operation-remote-safety-reset-command-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.DETAIL.REMOTE_SAFETY_RESET.ERROR'
@@ -377,7 +377,7 @@ export const RobotCameraCommandRequest =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-${camera}-success`,
+					id: `operation-${camera}-success`,
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: `ROBOTS.DETAIL.CAMERAS.${camera}.SUCCESS`
@@ -390,7 +390,7 @@ export const RobotCameraCommandRequest =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: `robot-${camera}-error`,
+					id: `operation-${camera}-error`,
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.DETAIL.CAMERAS.${camera}.ERROR`
@@ -439,7 +439,7 @@ export const RobotElevatorTemplateFetch =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-elevator-template-success',
+					id: 'operation-elevator-template-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.SUCCESS'
@@ -449,7 +449,7 @@ export const RobotElevatorTemplateFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-elevator-template-error',
+					id: 'operation-elevator-template-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'
@@ -482,7 +482,7 @@ export const RobotSetEmergencyState =
 			.then(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-operations-emergency-state-success',
+					id: 'operation-emergency-state-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.CONFIGURATION.EMERGENCY_STATE.SUCCESS'
@@ -498,7 +498,7 @@ export const RobotSetEmergencyState =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-operations-emergency-state-error',
+					id: 'operation-emergency-state-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.CONFIGURATION.EMERGENCY_STATE.ERROR'
@@ -527,7 +527,7 @@ export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch)
 		.then(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: 'robot-sync-products-success',
+				id: 'operation-sync-products-success',
 				show: true,
 				severity: TriggerMessageTypeEnum.SUCCESS,
 				text: 'ROBOTS.CONFIGURATION.SYNC_PRODUCTS.SUCCESS'
@@ -540,7 +540,7 @@ export const RobotProductsSync = (robotId: string) => async (dispatch: Dispatch)
 		.catch(() => {
 			// dispatch: trigger message
 			const message: TriggerMessageInterface = {
-				id: 'robot-sync-products-error',
+				id: 'operation-sync-products-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
 				text: 'ROBOTS.CONFIGURATION.SYNC_PRODUCTS.ERROR'
@@ -579,7 +579,7 @@ export const RobotConfigUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-config-success',
+					id: 'operation-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIG.SUCCESS'
@@ -592,7 +592,7 @@ export const RobotConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-config-error',
+					id: 'operation-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR'
@@ -631,7 +631,7 @@ export const RobotSiteConfigUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-site-config-success',
+					id: 'operation-site-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.SUCCESS'
@@ -644,7 +644,7 @@ export const RobotSiteConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'robot-site-config-error',
+					id: 'operation-site-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.ERROR'

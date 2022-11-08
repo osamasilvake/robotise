@@ -19,5 +19,6 @@ export interface SiteConfigFormInterface {
 	vendor?: string;
 	showEmergencyWorkflow?: boolean;
 	showPerformanceDashboard?: boolean;
+	showMarketingRides?: boolean;
 	isHidden?: boolean;
 }

@@ -738,6 +738,7 @@ class SitesService {
 						helpPage: payload.helpPage,
 						showEmergencyWorkflow: payload.showEmergencyWorkflow,
 						showPerformanceDashboard: payload.showPerformanceDashboard,
+						showMarketingRides: payload?.showMarketingRides,
 						isHidden: payload.isHidden
 					},
 					elevators:

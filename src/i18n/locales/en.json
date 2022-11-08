@@ -1320,17 +1320,21 @@
 								"PLACEHOLDER": "Select Vendor"
 							},
 							"CHECKBOXES": {
-								"EMERGENCY": {
-									"LABEL": "Activate Emergency",
-									"NOTE": "*Show emergency feature on JEEVES app!"
+								"EMERGENCY_WORKFLOW": {
+									"LABEL": "Activate Emergency Workflow",
+									"NOTE": "*Show Emergency Workflow on JEEVES app!"
+								},
+								"PERFORMANCE_DASHBOARD": {
+									"LABEL": "Show Performance Dashboard",
+									"NOTE": "*Show Performance Dashboard on JEEVES app!"
+								},
+								"MARKETING_RIDES": {
+									"LABEL": "Show Marketing Rides",
+									"NOTE": "*Show Marketing Rides on JEEVES app!"
 								},
 								"HIDDEN": {
 									"LABEL": "Hide Site",
 									"NOTE": "*Whether to show site in the ROC sites list!"
-								},
-								"PERFORMANCE": {
-									"LABEL": "Show Performance Dashboard",
-									"NOTE": "*Show performance dashboard on JEEVES app!"
 								}
 							}
 						},

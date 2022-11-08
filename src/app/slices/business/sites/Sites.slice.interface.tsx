@@ -42,6 +42,7 @@ export interface ISite {
 		helpPage: string;
 		showEmergencyWorkflow: boolean;
 		showPerformanceDashboard: boolean;
+		showMarketingRides: boolean;
 		isHidden: boolean;
 	};
 	paymentConfigs: {

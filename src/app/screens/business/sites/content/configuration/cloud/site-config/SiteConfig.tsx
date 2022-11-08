@@ -87,6 +87,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			vendor: siteSingle?.elevators?.vendor || '',
 			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
 			showPerformanceDashboard: !!siteSingle?.configs.showPerformanceDashboard,
+			showMarketingRides: !!siteSingle?.configs.showMarketingRides,
 			isHidden: !!siteSingle?.configs.isHidden
 		},
 		SiteConfigValidation,
@@ -398,11 +399,13 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										/>
 									}
 									label={t<string>(
-										`${translation}.FORM.FIELDS.CHECKBOXES.EMERGENCY.LABEL`
+										`${translation}.FORM.FIELDS.CHECKBOXES.EMERGENCY_WORKFLOW.LABEL`
 									)}
 								/>
 								<FormHelperText>
-									{t(`${translation}.FORM.FIELDS.CHECKBOXES.EMERGENCY.NOTE`)}
+									{t(
+										`${translation}.FORM.FIELDS.CHECKBOXES.EMERGENCY_WORKFLOW.NOTE`
+									)}
 								</FormHelperText>
 							</FormControl>
 						</Grid>
@@ -417,11 +420,34 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										/>
 									}
 									label={t<string>(
-										`${translation}.FORM.FIELDS.CHECKBOXES.PERFORMANCE.LABEL`
+										`${translation}.FORM.FIELDS.CHECKBOXES.PERFORMANCE_DASHBOARD.LABEL`
 									)}
 								/>
 								<FormHelperText>
-									{t(`${translation}.FORM.FIELDS.CHECKBOXES.PERFORMANCE.NOTE`)}
+									{t(
+										`${translation}.FORM.FIELDS.CHECKBOXES.PERFORMANCE_DASHBOARD.NOTE`
+									)}
+								</FormHelperText>
+							</FormControl>
+						</Grid>
+						<Grid item xs={12}>
+							<FormControl>
+								<FormControlLabel
+									control={
+										<Switch
+											name="showMarketingRides"
+											checked={values.showMarketingRides}
+											onChange={handleChangeCheckbox}
+										/>
+									}
+									label={t<string>(
+										`${translation}.FORM.FIELDS.CHECKBOXES.MARKETING_RIDES.LABEL`
+									)}
+								/>
+								<FormHelperText>
+									{t(
+										`${translation}.FORM.FIELDS.CHECKBOXES.MARKETING_RIDES.NOTE`
+									)}
 								</FormHelperText>
 							</FormControl>
 						</Grid>

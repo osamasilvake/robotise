@@ -3,6 +3,7 @@ import {
 	Button,
 	Card,
 	CardContent,
+	CircularProgress,
 	FormControl,
 	FormControlLabel,
 	Grid,
@@ -12,16 +13,18 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '../../../../../../slices';
-import { SiteMarketingRidesUpdate } from '../../../../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice';
+import {
+	marketingRidesSelector,
+	SiteMarketingRidesUpdate
+} from '../../../../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
-import { SiteParamsInterface } from '../../../Site.interface';
 import {
 	SiteConfigurationMarketingRidesContentInterface,
-	SiteConfigurationMarketingRidesFormInterface
+	SiteConfigurationMarketingRidesFormInterface,
+	SiteConfigurationMarketingRidesTimesByIdInterface
 } from './SiteConfigurationMarketingRides.interface';
 import { SiteConfigurationMarketingRidesStyle } from './SiteConfigurationMarketingRides.style';
 import { SiteConfigurationMarketingRidesValidation } from './SiteConfigurationMarketingRides.validation';
@@ -36,14 +39,25 @@ const SiteConfigurationMarketingRidesContent: FC<
 	const classes = SiteConfigurationMarketingRidesStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
+	const marketingRides = useSelector(marketingRidesSelector);
+	const marketingRide = marketingRides?.content?.data[0];
+	const times = marketingRide?.times || [];
 
-	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
-
-	const cSiteId = params.siteId;
+	const mapTimes: SiteConfigurationMarketingRidesTimesByIdInterface = times?.reduce(
+		(acc, t) =>
+			t?.hour === undefined
+				? acc
+				: { ...acc, [t.hour]: { ...t, minutes: t.minutes?.join(',') } },
+		{}
+	);
 	const initial = {
-		isActive: false,
-		locations: [],
-		times: []
+		active: !!marketingRide?.active,
+		locations: marketingRide?.locations || [],
+		times:
+			[...Array(24)].map((_, m) => ({
+				hour: m,
+				minutes: mapTimes[m] ? mapTimes[m]?.minutes : ''
+			})) || []
 	};
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 
@@ -60,11 +74,7 @@ const SiteConfigurationMarketingRidesContent: FC<
 		SiteConfigurationMarketingRidesValidation,
 		async () => {
 			// dispatch: update marketing rides
-			dispatch(
-				SiteMarketingRidesUpdate(cSiteId, values, () => {
-					console.log('TODO');
-				})
-			);
+			marketingRide?.id && dispatch(SiteMarketingRidesUpdate(marketingRide?.id, values));
 		},
 		(state) => {
 			const updated = { ...state, times: values.times?.filter((v) => v && v.minutes) };
@@ -85,7 +95,11 @@ const SiteConfigurationMarketingRidesContent: FC<
 							<FormControl>
 								<FormControlLabel
 									control={
-										<Switch name="isActive" onChange={handleChangeCheckbox} />
+										<Switch
+											name="active"
+											checked={values.active}
+											onChange={handleChangeCheckbox}
+										/>
 									}
 									label={t<string>(`${translation}.FORM.FIELDS.ACTIVATE.LABEL`)}
 									labelPlacement="start"
@@ -140,10 +154,16 @@ const SiteConfigurationMarketingRidesContent: FC<
 										variant="outlined"
 										type="submit"
 										disabled={
+											marketingRides.updating ||
 											(values?.locations?.length || 0) === 0 ||
 											!!(
 												errors &&
 												errors?.times?.filter((e) => e.minutes).length
+											)
+										}
+										endIcon={
+											marketingRides.updating && (
+												<CircularProgress size={20} />
 											)
 										}>
 										{t(`${translation}.FORM.BUTTONS.UPDATE`)}

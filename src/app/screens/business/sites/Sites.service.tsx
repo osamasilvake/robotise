@@ -1,5 +1,5 @@
 import { AppConfigService, HttpClientService } from '../../../services';
-import { SMRContentInterface } from '../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice.interface';
+import { MRContentInterface } from '../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice.interface';
 import {
 	SCCDataElementInterface,
 	SCContentInterface
@@ -845,7 +845,7 @@ class SitesService {
 	siteMarketingRidesFetch = (siteId: string) => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.MARKETING_RIDES.ALL;
-		return HttpClientService.get<SMRContentInterface>(url, {
+		return HttpClientService.get<MRContentInterface>(url, {
 			params: {
 				'filter[site]': siteId
 			}
@@ -854,24 +854,25 @@ class SitesService {
 
 	/**
 	 * update marketing rides
-	 * @param siteId
+	 * @param marketingRideId
 	 * @param payload
 	 * @returns
 	 */
 	siteMarketingRidesUpdate = (
-		siteId: string,
+		marketingRideId: string,
 		payload: SiteConfigurationMarketingRidesFormInterface
 	) => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.MARKETING_RIDES
 				.SINGLE;
-		return HttpClientService.patch(url.replace(':siteId', siteId), {
+		return HttpClientService.patch(url.replace(':marketingRideId', marketingRideId), {
 			data: {
-				type: 'marketingRides',
+				type: 'marketing-rides',
 				attributes: {
 					...payload,
 					times: payload.times
 						?.filter((v) => v)
+						?.filter((v) => v.minutes)
 						?.map((v) => ({
 							...v,
 							minutes: v.minutes

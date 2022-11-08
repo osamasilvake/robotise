@@ -14,12 +14,12 @@ const SiteConfigurationMarketingRidesInput: FC<SiteConfigurationMarketingRidesIn
 	const { index, id, times, handleBlur, error, handleChangeInputsMultiple } = props;
 	const { t } = useTranslation('SITES');
 
+	const [time, setTime] = useState<SiteConfigurationMarketingRidesTimesInterface>(times[index]);
+	const debouncedValue = useDebounce(time, 200);
+
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 	const label = t(`${translation}.FORM.FIELDS.MINUTES.LABEL`);
 	const placeholder = t(`${translation}.FORM.FIELDS.MINUTES.PLACEHOLDER`);
-
-	const [time, setTime] = useState<SiteConfigurationMarketingRidesTimesInterface>(times[index]);
-	const debouncedValue = useDebounce(time, 200);
 
 	useEffect(() => {
 		// return on same value

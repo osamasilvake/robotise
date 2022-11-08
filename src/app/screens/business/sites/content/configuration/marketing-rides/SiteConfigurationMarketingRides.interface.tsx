@@ -11,7 +11,7 @@ export interface SiteConfigurationMarketingRidesContentInterface {
 }
 
 export interface SiteConfigurationMarketingRidesFormInterface {
-	isActive: boolean;
+	active: boolean;
 	locations: string[];
 	times: SiteConfigurationMarketingRidesTimesInterface[];
 }
@@ -19,6 +19,10 @@ export interface SiteConfigurationMarketingRidesFormInterface {
 export interface SiteConfigurationMarketingRidesTimesInterface {
 	hour: number;
 	minutes: string;
+}
+
+export interface SiteConfigurationMarketingRidesTimesByIdInterface {
+	[key: string]: SiteConfigurationMarketingRidesTimesInterface;
 }
 
 export interface SiteConfigurationMarketingRidesAutocompleteInterface {

@@ -24,11 +24,14 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
+	const pMarketingRidesSiteId = marketingRides.content?.state?.pSiteId;
 
 	useEffect(() => {
+		if (pMarketingRidesSiteId === cSiteId) return;
+
 		// dispatch: fetch marketing rides
 		dispatch(SiteMarketingRidesFetchList(cSiteId));
-	}, [dispatch, cSiteId]);
+	}, [dispatch, pMarketingRidesSiteId, cSiteId]);
 
 	// loader
 	if (marketingRides.loader) {

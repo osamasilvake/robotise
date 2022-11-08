@@ -8,10 +8,7 @@ import { timeout } from '../../../../../utilities/methods/Timeout';
 import { RootState } from '../../../..';
 import { triggerMessage } from '../../../../app/App.slice';
 import { deserializeMarketingRides } from './MarketingRides.slice.deserialize';
-import {
-	SliceMarketingRidesInterface,
-	SMRContentInterface
-} from './MarketingRides.slice.interface';
+import { MRContentInterface, SliceMarketingRidesInterface } from './MarketingRides.slice.interface';
 
 // initial state
 export const initialState: SliceMarketingRidesInterface = {
@@ -95,7 +92,7 @@ export const SiteMarketingRidesFetchList =
 		return SitesService.siteMarketingRidesFetch(siteId)
 			.then(async (res) => {
 				// deserialize response
-				const result: SMRContentInterface = await deserializeMarketingRides(res);
+				const result: MRContentInterface = await deserializeMarketingRides(res);
 
 				// dispatch: success
 				dispatch(
@@ -123,19 +120,23 @@ export const SiteMarketingRidesFetchList =
 
 /**
  * update marketing rides
- * @param siteId
+ * @param marketingRideId
  * @param payload
  * @param callback
  * @returns
  */
 export const SiteMarketingRidesUpdate =
-	(siteId: string, payload: SiteConfigurationMarketingRidesFormInterface, callback: () => void) =>
+	(
+		marketingRideId: string,
+		payload: SiteConfigurationMarketingRidesFormInterface,
+		callback?: () => void
+	) =>
 	async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
 
 		// update marketing rides
-		return SitesService.siteMarketingRidesUpdate(siteId, payload)
+		return SitesService.siteMarketingRidesUpdate(marketingRideId, payload)
 			.then(async () => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
@@ -153,7 +154,7 @@ export const SiteMarketingRidesUpdate =
 				await timeout(1000);
 
 				// callback
-				callback();
+				callback && callback();
 			})
 			.catch(() => {
 				// dispatch: trigger message

@@ -66,7 +66,7 @@ const AppServices = (config: typeof AppConfigService) => {
 						},
 						MARKETING_RIDES: {
 							ALL: `${config.envAppUrl}/marketing-rides`,
-							SINGLE: `${config.envAppUrl}/marketing-rides/:siteId`
+							SINGLE: `${config.envAppUrl}/marketing-rides/:marketingRideId`
 						},
 						SITE_CONFIGS: {
 							ALL: `${config.envAppUrl}/robot-configs`,

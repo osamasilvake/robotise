@@ -1971,7 +1971,8 @@
 					"ACTIONS": {
 						"FILTERS": {
 							"ACTIVE_ORDERS": "Active Orders only",
-							"DEBUG": "Include Test Orders"
+							"DEBUG": "Include Test Orders",
+							"MARKETING_RIDES": "Include Marketing Rides"
 						},
 						"CREATE": {
 							"LABEL": "Create",

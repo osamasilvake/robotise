@@ -35,6 +35,7 @@ export interface SOCStateInterface {
 	page?: number;
 	rowsPerPage?: number;
 	activeOrders?: boolean;
+	marketingRides?: boolean;
 	debug?: boolean;
 }
 

@@ -251,6 +251,7 @@ class RobotsService {
 				'filter[robot]': robotId,
 				'filter[active]': payload.activeOrders || undefined,
 				'filter[isDebug]': payload.debug ? undefined : false,
+				'filter[mode][nin]': payload.marketingRides ? undefined : 'marketing-ride',
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}

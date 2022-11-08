@@ -31,11 +31,13 @@ const RobotOrdersList: FC = () => {
 		AppConfigService.AppOptions.screens.business.robots.content.orders.list.defaultPageSize;
 	const activeOrders = !!orders.content?.state?.activeOrders;
 	const debug = !!orders.content?.state?.debug;
+	const marketingRides = !!orders.content?.state?.marketingRides;
 
 	const pageRef = useRef({
 		page: (orders.content?.meta?.page || 0) - 1,
 		rowsPerPage,
 		activeOrders,
+		marketingRides,
 		debug
 	});
 
@@ -48,6 +50,7 @@ const RobotOrdersList: FC = () => {
 			page,
 			rowsPerPage,
 			activeOrders,
+			marketingRides,
 			debug
 		};
 
@@ -65,6 +68,13 @@ const RobotOrdersList: FC = () => {
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.debug = debug;
+		} else if (pageRef.current.marketingRides !== marketingRides && page === 0) {
+			// dispatch: fetch robot orders
+			dispatch(OrdersFetchList(cRobotId, payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.marketingRides = marketingRides;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch robot orders
 			dispatch(OrdersFetchList(cRobotId, payload));
@@ -87,7 +97,8 @@ const RobotOrdersList: FC = () => {
 							...payload,
 							page: condition2 ? 0 : page,
 							activeOrders: condition2 ? false : activeOrders,
-							debug: condition2 ? false : debug
+							debug: condition2 ? false : debug,
+							marketingRides: condition2 ? false : marketingRides
 						})
 					);
 
@@ -95,10 +106,21 @@ const RobotOrdersList: FC = () => {
 					pageRef.current.page = condition2 ? 0 : page;
 					pageRef.current.activeOrders = condition2 ? false : activeOrders;
 					pageRef.current.debug = condition2 ? false : debug;
+					pageRef.current.marketingRides = condition2 ? false : marketingRides;
 				}
 			}
 		}
-	}, [dispatch, orders.content, pRobotId, cRobotId, rowsPerPage, page, activeOrders, debug]);
+	}, [
+		dispatch,
+		orders.content,
+		pRobotId,
+		cRobotId,
+		rowsPerPage,
+		page,
+		activeOrders,
+		debug,
+		marketingRides
+	]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -111,6 +133,7 @@ const RobotOrdersList: FC = () => {
 							page: 0,
 							rowsPerPage,
 							activeOrders,
+							marketingRides,
 							debug
 						},
 						true
@@ -125,7 +148,16 @@ const RobotOrdersList: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.orders.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, orders.content, cRobotId, page, rowsPerPage, activeOrders, debug]);
+	}, [
+		dispatch,
+		orders.content,
+		cRobotId,
+		page,
+		rowsPerPage,
+		activeOrders,
+		debug,
+		marketingRides
+	]);
 
 	// loader
 	if (orders.loader) {
@@ -137,7 +169,11 @@ const RobotOrdersList: FC = () => {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}
-				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
+				<RobotOrdersActions
+					activeOrders={activeOrders}
+					debug={debug}
+					marketingRides={marketingRides}
+				/>
 
 				{/* Error */}
 				<PageError message={orders.errors?.text} />
@@ -153,7 +189,11 @@ const RobotOrdersList: FC = () => {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}
-				<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
+				<RobotOrdersActions
+					activeOrders={activeOrders}
+					debug={debug}
+					marketingRides={marketingRides}
+				/>
 
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE" paddingTop />
@@ -164,7 +204,11 @@ const RobotOrdersList: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Actions */}
-			<RobotOrdersActions activeOrders={activeOrders} debug={debug} />
+			<RobotOrdersActions
+				activeOrders={activeOrders}
+				debug={debug}
+				marketingRides={marketingRides}
+			/>
 
 			{/* Table */}
 			<RobotOrdersTable content={orders.content} page={page} rowsPerPage={rowsPerPage} />

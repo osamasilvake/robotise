@@ -11,7 +11,7 @@ export interface UseFormRetInterface<UseFormEntity> {
 	) => void;
 	handleChangeCheckbox: (event: ChangeEvent<HTMLInputElement>) => void;
 	handleChangeSelect: (event: SelectChangeEvent) => void;
-	handleChangeAutoComplete: <T>(event: SyntheticEvent, option: T) => void;
+	handleChangeAutoComplete: <T>(event: SyntheticEvent | TargetInterface, option: T) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 	handleSubmit: (event: FormEvent<HTMLFormElement | EventTarget>) => Promise<void>;
 	values: UseFormEntity;

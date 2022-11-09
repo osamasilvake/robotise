@@ -84,7 +84,7 @@ export const useForm = <UseFormEntity,>(
 		name && value && setChangeEventValues(name, value);
 	};
 
-	const handleChangeAutoComplete = <T,>(event: SyntheticEvent, option: T) => {
+	const handleChangeAutoComplete = <T,>(event: SyntheticEvent | TargetInterface, option: T) => {
 		const id = (event.target as Element)?.id;
 		const name = id?.split('-')[0];
 		if (!name) return;

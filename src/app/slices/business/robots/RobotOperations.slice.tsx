@@ -3,7 +3,6 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
 import { RobotConfigFormInterface } from '../../../screens/business/robots/content/configuration/cloud/robot-config/RobotConfig.interface';
-import { RobotSiteConfigFormInterface } from '../../../screens/business/robots/content/configuration/cloud/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from '../../../screens/business/robots/content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -53,9 +52,6 @@ export const initialState: SliceRobotOperationsInterface = {
 	},
 	robotConfig: {
 		loading: false
-	},
-	robotSiteConfig: {
-		loading: false
 	}
 };
 
@@ -84,8 +80,6 @@ const dataSlice = createSlice({
 				state.syncProducts.loading = true;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = true;
-			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
-				state.robotSiteConfig.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -110,8 +104,6 @@ const dataSlice = createSlice({
 				state.syncProducts.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
-				state.robotSiteConfig.loading = false;
 			}
 		},
 		failure: (state, action) => {
@@ -136,8 +128,6 @@ const dataSlice = createSlice({
 				state.syncProducts.loading = false;
 			} else if (module === RobotOperationsTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === RobotOperationsTypeEnum.ROBOT_SITE_CONFIG) {
-				state.robotSiteConfig.loading = false;
 			}
 		},
 		reset: () => initialState
@@ -596,58 +586,6 @@ export const RobotConfigUpdate =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
- * update robot site config
- * @param robotId
- * @param payload
- * @param callback
- * @returns
- */
-export const RobotSiteConfigUpdate =
-	(robotId: string, payload: RobotSiteConfigFormInterface, callback: () => void) =>
-	async (dispatch: Dispatch) => {
-		const state = {
-			module: RobotOperationsTypeEnum.ROBOT_SITE_CONFIG
-		};
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		return RobotsService.robotSiteConfigUpdate(robotId, payload)
-			.then(async () => {
-				// callback
-				callback();
-
-				// wait
-				await timeout(1000);
-
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'operation-site-config-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.SUCCESS'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: success
-				dispatch(success(state));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'operation-site-config-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.CONFIGURATION.ROBOT_SITE_CONFIG.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

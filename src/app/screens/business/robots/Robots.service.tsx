@@ -6,7 +6,6 @@ import {
 import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
-import { RobotSiteConfigFormInterface } from './content/configuration/cloud/robot-site-config/RobotSiteConfig.interface';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -529,34 +528,6 @@ class RobotsService {
 						},
 						isHidden: payload.isHidden,
 						isOnlineCheckDisabled: payload.isOnlineCheckDisabled
-					}
-				}
-			}
-		});
-	};
-
-	/**
-	 * update robot site config
-	 * @param robotId
-	 * @param payload
-	 * @returns
-	 */
-	robotSiteConfigUpdate = (robotId: string, payload: RobotSiteConfigFormInterface) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.CONFIG.replace(
-				':robotId',
-				robotId
-			);
-		return HttpClientService.patch(url, {
-			data: {
-				type: 'robots',
-				id: robotId,
-				relationships: {
-					site: {
-						data: {
-							type: 'sites',
-							id: payload.siteId
-						}
 					}
 				}
 			}

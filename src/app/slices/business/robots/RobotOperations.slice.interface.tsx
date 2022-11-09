@@ -28,9 +28,6 @@ export interface SliceRobotOperationsInterface {
 	robotConfig: {
 		loading: boolean;
 	};
-	robotSiteConfig: {
-		loading: boolean;
-	};
 }
 
 export interface SROContentMapInterface {

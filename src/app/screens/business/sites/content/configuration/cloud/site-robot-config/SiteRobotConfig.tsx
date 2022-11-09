@@ -60,10 +60,10 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 		);
 
 	/**
-	 * un-assigned robot (autocomplete)
+	 * unassign robot (autocomplete)
 	 */
-	const unAssignedRobot = () => {
-		const value = { target: { id: `robot-option-${0}`, name: 'robot', value: noRobot } };
+	const unAssignRobot = () => {
+		const value = { target: { id: `robot-option-${0}`, name: 'robot', value: '' } };
 		handleChangeAutoComplete(value, noRobot);
 	};
 
@@ -122,10 +122,10 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 							<Button
 								variant="outlined"
 								type="button"
-								disabled={values.robot === null}
-								onClick={unAssignedRobot}
+								disabled={values?.robot === null || values?.robot?.robotId === '-'}
+								onClick={unAssignRobot}
 								sx={{ marginLeft: 1 }}>
-								{t(`${translation}.FORM.BUTTONS.UNASSIGNED`)}
+								{t(`${translation}.FORM.BUTTONS.UNASSIGN`)}
 							</Button>
 						</Grid>
 					</Grid>

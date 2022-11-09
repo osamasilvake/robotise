@@ -10,7 +10,7 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC } from 'react';
+import { FC, SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -36,7 +36,8 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const cSiteRobotId = sites.content?.dataById[cSiteId].robots[0]?.id || '';
 	const cRobot = robotTwinsSummary.content?.dataById[cSiteRobotId] || null;
-	const robotList = [{ siteId: '-', robotId: '-', robotTitle: 'No Robot' }].concat(
+	const noRobot = { siteId: '-', robotId: '-', robotTitle: 'No Robot' };
+	const robotList = [noRobot].concat(
 		robotTwinsSummary.content?.data.map((r) => ({
 			siteId: r.siteId,
 			robotId: r.robotId,
@@ -50,13 +51,21 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 
 	const { handleChangeAutoComplete, handleSubmit, values } =
 		useForm<SiteRobotConfigFormInterface>(
-			{ robot: isRobot ? cRobot : robotList[0] },
+			{ robot: isRobot ? cRobot : null },
 			() => ({ robot: null }),
 			async () => {
 				// dispatch: update site robot config
 				dispatch(SiteRobotConfigUpdate(cSiteId, values));
 			}
 		);
+
+	/**
+	 * un-assigned robot (autocomplete)
+	 */
+	const unAssignedRobot = () => {
+		const value = { target: { id: `robot-option-${0}`, name: 'robot', value: noRobot } };
+		handleChangeAutoComplete(value, noRobot);
+	};
 
 	return robotList?.length ? (
 		<Card square elevation={1} sx={{ overflow: 'visible' }}>
@@ -78,7 +87,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 									isOptionEqualToValue={(option, value) =>
 										option.robotId === value.robotId
 									}
-									value={values.robot}
+									value={values?.robot || robotList[0]}
 									onChange={handleChangeAutoComplete}
 									renderOption={(props, option) => (
 										<ListItem {...props} key={option.robotId}>
@@ -109,6 +118,14 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 									)
 								}>
 								{t(`${translation}.FORM.BUTTONS.UPDATE`)}
+							</Button>
+							<Button
+								variant="outlined"
+								type="button"
+								disabled={values.robot === null}
+								onClick={unAssignedRobot}
+								sx={{ marginLeft: 1 }}>
+								{t(`${translation}.FORM.BUTTONS.UNASSIGNED`)}
 							</Button>
 						</Grid>
 					</Grid>

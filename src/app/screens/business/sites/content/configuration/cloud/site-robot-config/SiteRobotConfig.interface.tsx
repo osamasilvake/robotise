@@ -1,4 +1,7 @@
-import { SliceRobotTwinsSummaryInterface } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
+import {
+	RTSContentDataInterface,
+	SliceRobotTwinsSummaryInterface
+} from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { SliceSiteOperationsInterface } from '../../../../../../../slices/business/sites/SiteOperations.slice.interface';
 import { SliceSitesInterface } from '../../../../../../../slices/business/sites/Sites.slice.interface';
 
@@ -9,5 +12,5 @@ export interface SiteRobotConfigInterface {
 }
 
 export interface SiteRobotConfigFormInterface {
-	robotId: string;
+	robot: RTSContentDataInterface | null | undefined;
 }

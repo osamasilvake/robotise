@@ -703,7 +703,7 @@ class SitesService {
 						data: [
 							{
 								type: 'robots',
-								id: payload.robotId
+								id: payload.robot?.robotId
 							}
 						]
 					}

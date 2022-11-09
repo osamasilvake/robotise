@@ -1236,8 +1236,7 @@
 					"FORM": {
 						"FIELDS": {
 							"SITE": {
-								"LABEL": "Robot to accept order",
-								"NOTE": "*Either Attached robot is hidden or No robot is assigned to the site!"
+								"LABEL": "Robot to accept order"
 							}
 						},
 						"BUTTONS": {

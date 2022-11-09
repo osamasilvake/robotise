@@ -82,9 +82,9 @@ const DialogSiteConfigurationSyncRobot: FC<DialogSiteConfigurationSyncRobotInter
 				<DialogContentText>{t(`${translation}.TEXT`)}</DialogContentText>
 				<FormControl fullWidth margin="normal">
 					<Autocomplete
-						size="small"
 						disablePortal
 						multiple
+						size="small"
 						id="locations"
 						options={robotsList?.map((r) => ({ id: r?.robotId, label: r?.robotTitle }))}
 						isOptionEqualToValue={(option, value) => option.id === value.id}

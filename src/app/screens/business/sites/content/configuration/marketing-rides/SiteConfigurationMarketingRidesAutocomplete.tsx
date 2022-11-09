@@ -50,13 +50,13 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 	return (
 		<FormControl fullWidth className={classes.sFormControl}>
 			<Autocomplete
-				size="small"
 				disablePortal
 				multiple
+				size="small"
 				id="locations"
 				options={options}
-				value={locations || []}
 				isOptionEqualToValue={(option, value) => option === value}
+				value={locations || []}
 				onChange={(_, values) => handleChangeInputs('locations', values)}
 				onBlur={handleBlur}
 				renderInput={(params) => (

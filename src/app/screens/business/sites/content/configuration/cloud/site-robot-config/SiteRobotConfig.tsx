@@ -1,14 +1,13 @@
 import {
+	Autocomplete,
 	Button,
 	Card,
 	CardContent,
 	CircularProgress,
 	FormControl,
-	FormHelperText,
 	Grid,
-	InputLabel,
-	MenuItem,
-	Select,
+	ListItem,
+	TextField,
 	Typography
 } from '@mui/material';
 import { FC } from 'react';
@@ -36,24 +35,27 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const cSiteRobot = sites.content?.dataById[cSiteId].robots[0];
-	const robotList = robotTwinsSummary.content?.data.filter((robot) => robot.siteId === cSiteId);
-	const attachedRobot = robotTwinsSummary.content?.dataById[cSiteRobot?.id || ''];
-	const isRobotInList = !!robotList?.find((r) => r.robotId === attachedRobot?.robotId);
+	const robotList = robotTwinsSummary.content?.data || [];
+	const cRobot = robotTwinsSummary.content?.dataById[cSiteRobot?.id || ''];
+	const isRobotInList = !!robotList?.filter(
+		(r) => r.siteId === cSiteId && r.robotId === cRobot?.robotId
+	);
 	const translation = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
 
-	const { handleChangeSelect, handleSubmit, values } = useForm<SiteRobotConfigFormInterface>(
-		{
-			robotId: (isRobotInList && attachedRobot?.robotId) || ''
-		},
-		() => ({ robotId: '' }),
-		async () => {
-			// dispatch: update site robot config
-			dispatch(SiteRobotConfigUpdate(cSiteId, values));
-		}
-	);
+	const { handleChangeAutoComplete, handleSubmit, values } =
+		useForm<SiteRobotConfigFormInterface>(
+			{
+				robot: isRobotInList ? cRobot : null
+			},
+			() => ({ robot: null }),
+			async () => {
+				// dispatch: update site robot config
+				dispatch(SiteRobotConfigUpdate(cSiteId, values));
+			}
+		);
 
-	return robotTwinsSummary.content?.data.length ? (
-		<Card square elevation={1}>
+	return robotList?.length ? (
+		<Card square elevation={1} sx={{ overflow: 'visible' }}>
 			<CardContent>
 				<Typography variant="h6">{t(`${translation}.TITLE`)}</Typography>
 				<Typography variant="body2" color="textSecondary" className={classes.sExcerpt}>
@@ -64,30 +66,29 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<FormControl error fullWidth>
-								<InputLabel id="label-robotId" error={!attachedRobot}>
-									{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
-								</InputLabel>
-								<Select
-									labelId="label-robotId"
-									id="robotId"
-									name="robotId"
-									label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
-									value={values.robotId}
-									onChange={handleChangeSelect}
-									error={!attachedRobot}>
-									{robotTwinsSummary.content?.data
-										.filter((robot) => robot.siteId === cSiteId)
-										.map((robot) => (
-											<MenuItem key={robot.robotId} value={robot.robotId}>
-												{robot.robotTitle}
-											</MenuItem>
-										))}
-								</Select>
-								{!attachedRobot && (
-									<FormHelperText>
-										{t(`${translation}.FORM.FIELDS.SITE.NOTE`)}
-									</FormHelperText>
-								)}
+								<Autocomplete
+									disablePortal
+									id="robot"
+									options={robotList}
+									getOptionLabel={(option) => option.robotTitle}
+									isOptionEqualToValue={(option, value) =>
+										option.robotId === value.robotId
+									}
+									value={values?.robot || null}
+									onChange={handleChangeAutoComplete}
+									renderOption={(props, option) => (
+										<ListItem {...props} key={option.robotId}>
+											{option.robotTitle}
+										</ListItem>
+									)}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
+										/>
+									)}
+									sx={{ minWidth: 180 }}
+								/>
 							</FormControl>
 						</Grid>
 
@@ -95,7 +96,9 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 							<Button
 								variant="outlined"
 								type="submit"
-								disabled={siteOperations.siteRobotConfig.loading || !values.robotId}
+								disabled={
+									siteOperations.siteRobotConfig.loading || !values.robot?.robotId
+								}
 								endIcon={
 									siteOperations.siteRobotConfig.loading && (
 										<CircularProgress size={20} />

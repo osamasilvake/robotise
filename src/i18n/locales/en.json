@@ -535,7 +535,8 @@
 			"MODE": {
 				"mini-bar": "Minibar",
 				"room-service": "Room Service",
-				"service-position": "Service Position"
+				"service-position": "Service Position",
+				"marketing-ride": "Marketing Ride"
 			}
 		},
 		"CONTENT": {

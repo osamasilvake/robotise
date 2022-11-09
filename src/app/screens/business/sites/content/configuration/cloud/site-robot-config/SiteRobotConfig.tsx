@@ -10,7 +10,7 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC, SyntheticEvent } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';

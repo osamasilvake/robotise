@@ -34,19 +34,23 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
-	const cSiteRobot = sites.content?.dataById[cSiteId].robots[0];
-	const robotList = robotTwinsSummary.content?.data || [];
-	const cRobot = robotTwinsSummary.content?.dataById[cSiteRobot?.id || ''];
-	const isRobotInList = !!robotList?.filter(
+	const cSiteRobotId = sites.content?.dataById[cSiteId].robots[0]?.id || '';
+	const cRobot = robotTwinsSummary.content?.dataById[cSiteRobotId] || null;
+	const robotList = [{ siteId: '-', robotId: '-', robotTitle: 'No Robot' }].concat(
+		robotTwinsSummary.content?.data.map((r) => ({
+			siteId: r.siteId,
+			robotId: r.robotId,
+			robotTitle: r.robotTitle
+		})) || []
+	);
+	const isRobot = !!robotList?.filter(
 		(r) => r.siteId === cSiteId && r.robotId === cRobot?.robotId
 	);
 	const translation = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
 
 	const { handleChangeAutoComplete, handleSubmit, values } =
 		useForm<SiteRobotConfigFormInterface>(
-			{
-				robot: isRobotInList ? cRobot : null
-			},
+			{ robot: isRobot ? cRobot : robotList[0] },
 			() => ({ robot: null }),
 			async () => {
 				// dispatch: update site robot config
@@ -74,7 +78,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 									isOptionEqualToValue={(option, value) =>
 										option.robotId === value.robotId
 									}
-									value={values?.robot || null}
+									value={values.robot}
 									onChange={handleChangeAutoComplete}
 									renderOption={(props, option) => (
 										<ListItem {...props} key={option.robotId}>

@@ -13,7 +13,7 @@ import {
 } from '../../../../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigurationMarketingRidesInterface } from './SiteConfigurationMarketingRides.interface';
-import SiteConfigurationMarketingRidesForm from './SiteConfigurationMarketingRidesContent';
+import SiteConfigurationMarketingRidesContent from './SiteConfigurationMarketingRidesContent';
 
 const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterface> = (props) => {
 	const { setFormDirty } = props;
@@ -51,6 +51,6 @@ const SiteConfigurationMarketingRides: FC<SiteConfigurationMarketingRidesInterfa
 		return <PageEmpty message="EMPTY.MESSAGE" />;
 	}
 
-	return <SiteConfigurationMarketingRidesForm setFormDirty={setFormDirty} />;
+	return <SiteConfigurationMarketingRidesContent setFormDirty={setFormDirty} />;
 };
 export default SiteConfigurationMarketingRides;

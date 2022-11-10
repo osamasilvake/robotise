@@ -1,5 +1,4 @@
 import { AppConfigService, HttpClientService } from '../../../services';
-import { MRContentInterface } from '../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice.interface';
 import {
 	SCCDataElementInterface,
 	SCContentInterface
@@ -32,6 +31,7 @@ import {
 	SiteCustomerNotificationTypesAxiosGetInterface,
 	SiteElevatorVendorsAxiosGetInterface,
 	SiteMapsAxiosGetInterface,
+	SiteMarketingRidesAxiosGetInterface,
 	SiteNotificationTypesAxiosGetInterface,
 	SiteNotificationUsersAxiosGetInterface,
 	SiteOrderOriginsAxiosGetInterface,
@@ -846,7 +846,7 @@ class SitesService {
 	siteMarketingRidesFetch = (siteId: string) => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.MARKETING_RIDES.ALL;
-		return HttpClientService.get<MRContentInterface>(url, {
+		return HttpClientService.get<SiteMarketingRidesAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId
 			}

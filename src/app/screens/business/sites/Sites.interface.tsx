@@ -1,3 +1,4 @@
+import { MRContentDataInterface } from '../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice.interface';
 import {
 	SNContentNotificationTypeInterface,
 	SNContentNotificationUsersInterface
@@ -196,6 +197,14 @@ export interface SitePerformanceTopProductsAxiosGetInterface {
 		type: string;
 		attributes: SPContentTopProductsInterface;
 	};
+}
+
+export interface SiteMarketingRidesAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: MRContentDataInterface;
+	}[];
 }
 
 export interface SiteNotificationTypesAxiosGetInterface {

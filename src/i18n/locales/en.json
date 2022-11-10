@@ -229,9 +229,6 @@
 						}
 					}
 				},
-				"PERFORMANCE": {
-					"ERROR": "Failed to fetch statistics!"
-				},
 				"CONFIGURATION": {
 					"ACCEPT_ORDERS": {
 						"SUCCESS": "Site Setting has been updated successfully!",

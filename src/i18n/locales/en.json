@@ -643,7 +643,8 @@
 								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
 								"timeout_customer_not_present": "Timeout: Customer not present",
 								"cancelRequest": "Cancellation request",
-								"restart_requested": "Restart Requested"
+								"restart_requested": "Restart Requested",
+								"undefined": "Unknown"
 							},
 							"ORIGIN": {
 								"phone": "Phone",
@@ -2050,7 +2051,8 @@
 								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
 								"timeout_customer_not_present": "Timeout: Customer not present",
 								"cancelRequest": "Cancellation request",
-								"restart_requested": "Restart Requested"
+								"restart_requested": "Restart Requested",
+								"undefined": "Unknown"
 							},
 							"ORIGIN": {
 								"phone": "Phone",

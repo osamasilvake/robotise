@@ -29,7 +29,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 				return (
 					<Status level={mapStatus(row.details)}>
 						{t(
-							`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id].replace(
+							`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id]?.replace(
 								':',
 								'_'
 							)}`

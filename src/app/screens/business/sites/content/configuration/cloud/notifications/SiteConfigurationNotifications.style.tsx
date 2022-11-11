@@ -5,12 +5,15 @@ export const SiteConfigurationNotificationsStyle = makeStyles((theme: Theme) => 
 	sCard: {
 		position: 'relative'
 	},
+	sHeadBlock: {
+		cursor: 'pointer'
+	},
 	sTitle: {
-		marginTop: theme.spacing(2),
-		paddingLeft: theme.spacing(2)
+		paddingLeft: theme.spacing(2),
+		paddingTop: theme.spacing(2)
 	},
 	sExcerpt: {
-		marginBottom: theme.spacing(2),
+		paddingBottom: theme.spacing(2),
 		paddingLeft: theme.spacing(2)
 	},
 	sCreate: {

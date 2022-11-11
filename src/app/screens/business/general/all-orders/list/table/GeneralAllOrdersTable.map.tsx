@@ -12,10 +12,7 @@ export const mapOrder = (order: SAODataInterface) => {
 	return {
 		...order,
 		status: `${translation}.LIST.TABLE.VALUES.STATUS.${order.status}`,
-		location:
-			order.location?.length <= 4
-				? order.location
-				: `${translation}.LIST.TABLE.VALUES.TARGET.RECEPTION`,
+		location: order.location,
 		origin: `${translation}.LIST.TABLE.VALUES.ORIGIN.${order.origin}`
 	};
 };

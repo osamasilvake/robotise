@@ -645,9 +645,6 @@
 								"cancelRequest": "Cancellation request",
 								"restart_requested": "Restart Requested"
 							},
-							"TARGET": {
-								"RECEPTION": "Reception"
-							},
 							"ORIGIN": {
 								"phone": "Phone",
 								"manualGUI": "JEEVES",
@@ -2054,9 +2051,6 @@
 								"timeout_customer_not_present": "Timeout: Customer not present",
 								"cancelRequest": "Cancellation request",
 								"restart_requested": "Restart Requested"
-							},
-							"TARGET": {
-								"RECEPTION": "Reception"
 							},
 							"ORIGIN": {
 								"phone": "Phone",

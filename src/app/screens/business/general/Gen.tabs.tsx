@@ -51,6 +51,7 @@ const GenTabs: FC = () => {
 				textColor="primary">
 				<Tab label={t(`${translation}.EMAILS`)} />
 				<Tab label={t(`${translation}.ALL_ORDERS`)} />
+				<Tab label={t(`${translation}.ALL_ELEVATOR_CALLS`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -66,6 +67,15 @@ const GenTabs: FC = () => {
 
 				{/* All Orders */}
 				{value === 1 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<GeneralAllOrdersList />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* All Elevator Calls */}
+				{value === 2 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<GeneralAllOrdersList />

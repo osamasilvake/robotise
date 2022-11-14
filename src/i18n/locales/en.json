@@ -535,7 +535,8 @@
 		"CONTENT": {
 			"TABS": {
 				"EMAILS": "EMAILS",
-				"ALL_ORDERS": "Orders"
+				"ALL_ORDERS": "Orders",
+				"ALL_ELEVATOR_CALLS": "Elevator Calls"
 			},
 			"EMAILS": {
 				"DETAIL": {

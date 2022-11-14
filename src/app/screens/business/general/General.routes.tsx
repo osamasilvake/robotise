@@ -31,6 +31,10 @@ const generalRoutes: RoutesInterface[] = [
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_ORDERS.MAIN,
 		component: General
 	},
+	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_ELEVATOR_CALLS,
+		component: General
+	},
 
 	/**
 	 * Details

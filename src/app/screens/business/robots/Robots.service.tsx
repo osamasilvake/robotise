@@ -428,7 +428,7 @@ class RobotsService {
 		robotId: string,
 		payload: RobotElevatorCallsListPayloadInterface
 	) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS.FETCH;
 		return HttpClientService.get<RobotElevatorCallsAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
@@ -445,7 +445,7 @@ class RobotsService {
 	 */
 	robotElevatorCallsTest = (siteId: string) => {
 		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS_TEST.replace(
+			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS.TEST.replace(
 				':siteId',
 				siteId
 			);
@@ -458,7 +458,7 @@ class RobotsService {
 	 * @returns
 	 */
 	robotElevatorTemplateFetch = (elevatorId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALL_TEMPLATE;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS.TEMPLATE;
 		return HttpClientService.get<SROContentElevatorTemplateInterface>(
 			url.replace(':elevatorId', elevatorId)
 		);

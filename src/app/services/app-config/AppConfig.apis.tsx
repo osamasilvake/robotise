@@ -96,9 +96,11 @@ const AppServices = (config: typeof AppConfigService) => {
 						SINGLE: `${config.envAppUrl}/order-reports/:purchaseId`
 					},
 					COMMANDS_LOGS: `${config.envAppUrl}/robot-commands`,
-					ELEVATOR_CALLS: `${config.envAppUrl}/elevator-calls`,
-					ELEVATOR_CALLS_TEST: `${config.envAppUrl}/test-elevator-calls/:siteId`,
-					ELEVATOR_CALL_TEMPLATE: `${config.envAppUrl}/elevator-calls/:elevatorId/request-support-template`,
+					ELEVATOR_CALLS: {
+						FETCH: `${config.envAppUrl}/elevator-calls`,
+						TEST: `${config.envAppUrl}/test-elevator-calls/:siteId`,
+						TEMPLATE: `${config.envAppUrl}/elevator-calls/:elevatorId/request-support-template`
+					},
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
 						CONFIG: `${config.envAppUrl}/robots/:robotId`,

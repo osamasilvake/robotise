@@ -17,7 +17,7 @@ const GeneralAllOrderPurchaseDetail: FC<GeneralAllOrderPurchaseDetailInterface> 
 	return order?.content?.orderReport ? (
 		<Box className={classes.sBox}>
 			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.ALL_ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TITLE')}
+				{t('COMMON.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TITLE')}
 			</Typography>
 			<Link
 				component={RouterLink}
@@ -27,7 +27,7 @@ const GeneralAllOrderPurchaseDetail: FC<GeneralAllOrderPurchaseDetailInterface> 
 					':robotId',
 					cRobotId
 				).replace(':purchaseId', order.content.orderReport.id)}>
-				{t('CONTENT.ALL_ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TEXT')}
+				{t('COMMON.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TEXT')}
 			</Link>
 		</Box>
 	) : null;

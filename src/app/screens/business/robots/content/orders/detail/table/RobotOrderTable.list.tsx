@@ -1,7 +1,7 @@
 import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 import { RobotOrderTableColumnInterface } from './RobotOrderTable.interface';
 
-const translation = 'CONTENT.ORDERS.DETAIL.TABLE.COLUMNS';
+const translation = 'COMMON.ORDERS.DETAIL.TABLE.COLUMNS';
 export const columns: RobotOrderTableColumnInterface[] = [
 	{
 		id: RobotOrderTableColumnsTypeEnum.DETAILS,

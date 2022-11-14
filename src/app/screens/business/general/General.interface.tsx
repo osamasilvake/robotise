@@ -1,3 +1,4 @@
+import { AECDataInterface } from '../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice.interface';
 import { SAODataInterface } from '../../../slices/business/general/all-orders/AllOrders.slice.interface';
 import { SECDataInterface } from '../../../slices/business/general/emails/Emails.slice.interface';
 import { SGOOrderModeContentDataInterface } from '../../../slices/business/general/GeneralOperations.slice.interface';
@@ -33,6 +34,14 @@ export interface GeneralAllOrderAxiosGetInterface {
 		type: string;
 		attributes: SAODataInterface;
 	};
+}
+
+export interface GeneralAllElevatorCallsAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: AECDataInterface;
+	}[];
 }
 
 export interface GeneralOrderModesAxiosGetInterface extends JsonAPIResponseInterface {

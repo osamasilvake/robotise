@@ -25,7 +25,7 @@ const GeneralAllOrdersSite: FC<GeneralAllOrdersSiteInterface> = (props) => {
 
 	const [sitesList, setSitesList] = useState<GeneralAllOrdersSiteComboBoxInterface[]>([]);
 
-	const translation = 'CONTENT.ALL_ORDERS.LIST.ACTIONS.FILTERS';
+	const translation = 'COMMON.ORDERS.LIST.ACTIONS.FILTERS';
 	const showHidden = !!sites.content?.state?.showHidden;
 
 	useEffect(() => {

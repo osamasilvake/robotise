@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
+import GeneralAllElevatorCallsList from './all-elevator-calls/list/GeneralAllElevatorCallsList';
 import GeneralAllOrdersList from './all-orders/list/GeneralAllOrdersList';
 import GeneralEmailsList from './emails/list/GeneralEmailsList';
 import generalRoutes from './General.routes';
@@ -78,7 +79,7 @@ const GenTabs: FC = () => {
 				{value === 2 && (
 					<ErrorBoundary>
 						<Suspense fallback={null}>
-							<GeneralAllOrdersList />
+							<GeneralAllElevatorCallsList />
 						</Suspense>
 					</ErrorBoundary>
 				)}

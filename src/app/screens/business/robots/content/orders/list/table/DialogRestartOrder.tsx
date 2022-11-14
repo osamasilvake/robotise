@@ -21,12 +21,12 @@ import { DialogRestartOrderInterface } from './RobotOrdersTable.interface';
 
 const DialogRestartOrder: FC<DialogRestartOrderInterface> = (props) => {
 	const { order, open, setOpen } = props;
-	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
+	const { t } = useTranslation(['GENERAL', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
 
-	const translation = 'CONTENT.ORDERS.LIST.ACTIONS.RESTART';
+	const translation = 'COMMON.ORDERS.LIST.ACTIONS.RESTART';
 
 	/**
 	 * restart order

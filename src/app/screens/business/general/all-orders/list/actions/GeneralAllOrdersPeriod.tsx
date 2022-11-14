@@ -9,7 +9,7 @@ const GeneralAllOrdersPeriod: FC<GeneralAllOrdersPeriodInterface> = (props) => {
 	const { currentPeriod, setCurrentPeriod } = props;
 	const { t } = useTranslation('GENERAL');
 
-	const translation = 'CONTENT.ALL_ORDERS.LIST.ACTIONS.FILTERS';
+	const translation = 'COMMON.ORDERS.LIST.ACTIONS.FILTERS';
 
 	/**
 	 * handle period

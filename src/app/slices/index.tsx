@@ -4,6 +4,7 @@ import { createLogger } from 'redux-logger';
 
 import app from './app/App.slice';
 import auth from './authentication/Auth.slice';
+import allElevatorCalls from './business/general/all-elevator-calls/AllElevatorCalls.slice';
 import allOrder from './business/general/all-orders/AllOrder.slice';
 import allOrders from './business/general/all-orders/AllOrders.slice';
 import email from './business/general/emails/Email.slice';
@@ -50,6 +51,7 @@ const combinedReducer = combineReducers({
 	email,
 	allOrders,
 	allOrder,
+	allElevatorCalls,
 
 	sites,
 	siteOperations,

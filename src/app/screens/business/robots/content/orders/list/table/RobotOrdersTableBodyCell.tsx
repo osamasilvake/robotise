@@ -23,7 +23,7 @@ import { RobotOrdersTableStyle } from './RobotOrdersTable.style';
 
 const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) => {
 	const { column, order } = props;
-	const { t } = useTranslation(['ROBOTS', 'GENERAL']);
+	const { t } = useTranslation('GENERAL');
 	const classes = RobotOrdersTableStyle();
 
 	const [openCancel, setOpenCancel] = useState(false);
@@ -32,7 +32,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
-	const translation = 'CONTENT.ORDERS.LIST';
+	const translation = 'COMMON.ORDERS.LIST';
 
 	/**
 	 * open cancel order dialog
@@ -139,7 +139,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 					</Stack>
 				);
 			} else if (RobotOrdersTableColumnsTypeEnum.MODE === column.id) {
-				return t(`GENERAL:COMMON.MODE.${value}`);
+				return t(`COMMON.MODE.${value}`);
 			}
 			return t(value);
 		}

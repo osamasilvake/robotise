@@ -1,10 +1,12 @@
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { AppConfigService, HttpClientService } from '../../../services';
 import { dateDaysPriorToToday } from '../../../utilities/methods/Date';
+import { GeneralAllElevatorCallsListPayloadInterface } from './all-elevator-calls/list/GeneralAllElevatorCallsList.interface';
 import { GeneralAllOrdersPeriodTypeEnum } from './all-orders/list/actions/GeneralAllOrdersActions.enum';
 import { GeneralAllOrdersListPayloadInterface } from './all-orders/list/GeneralAllOrdersList.interface';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
 import {
+	GeneralAllElevatorCallsAxiosGetInterface,
 	GeneralAllOrderAxiosGetInterface,
 	GeneralAllOrdersAxiosGetInterface,
 	GeneralEmailAxiosGetInterface,
@@ -50,7 +52,7 @@ class GeneralService {
 	 * @returns
 	 */
 	generalAllOrdersFetch = (payload: GeneralAllOrdersListPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ALL_ORDERS.FETCH;
 
 		const isPeriod24Hr = payload.period === GeneralAllOrdersPeriodTypeEnum.HR24;
 		const date = isPeriod24Hr ? dateDaysPriorToToday(1) : dateDaysPriorToToday(7);
@@ -73,11 +75,27 @@ class GeneralService {
 	 * @returns
 	 */
 	generalAllOrderFetch = (orderId: string) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.SINGLE.replace(
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ALL_ORDERS.SINGLE.replace(
 			':orderId',
 			orderId
 		);
 		return HttpClientService.get<GeneralAllOrderAxiosGetInterface>(url);
+	};
+
+	/**
+	 * fetch all elevator calls
+	 * @param payload
+	 * @returns
+	 */
+	generalAllElevatorCallsFetch = (payload: GeneralAllElevatorCallsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ALL_ELEVATOR_CALLS;
+		return HttpClientService.get<GeneralAllElevatorCallsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.siteId || undefined,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage
+			}
+		});
 	};
 
 	/**

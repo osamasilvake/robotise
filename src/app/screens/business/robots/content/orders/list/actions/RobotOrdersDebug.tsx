@@ -13,7 +13,7 @@ import { RobotOrdersDebugInterface } from './RobotOrdersActions.interface';
 
 const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 	const { debug } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 
 	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
@@ -36,7 +36,7 @@ const RobotOrdersDebug: FC<RobotOrdersDebugInterface> = (props) => {
 			control={
 				<Checkbox color="primary" name="debug" checked={debug} onChange={handleDebug} />
 			}
-			label={t<string>('CONTENT.ORDERS.LIST.ACTIONS.FILTERS.DEBUG')}
+			label={t<string>('COMMON.ORDERS.LIST.ACTIONS.FILTERS.DEBUG')}
 		/>
 	);
 };

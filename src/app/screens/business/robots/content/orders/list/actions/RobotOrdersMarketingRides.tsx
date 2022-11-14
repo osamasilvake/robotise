@@ -13,7 +13,7 @@ import { RobotOrdersMarketingRidesInterface } from './RobotOrdersActions.interfa
 
 const RobotOrdersMarketingRides: FC<RobotOrdersMarketingRidesInterface> = (props) => {
 	const { marketingRides } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 
 	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
@@ -41,7 +41,7 @@ const RobotOrdersMarketingRides: FC<RobotOrdersMarketingRidesInterface> = (props
 					onChange={handleMarketingRides}
 				/>
 			}
-			label={t<string>('CONTENT.ORDERS.LIST.ACTIONS.FILTERS.MARKETING_RIDES')}
+			label={t<string>('COMMON.ORDERS.LIST.ACTIONS.FILTERS.MARKETING_RIDES')}
 		/>
 	);
 };

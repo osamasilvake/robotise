@@ -10,7 +10,7 @@ export const CreateOrderValidation = (
 	values: DialogCreateOrderFormInterface,
 	touched: DialogCreateOrderFormInterface
 ): DialogCreateOrderFormInterface => {
-	const translation = 'ROBOTS:CONTENT.ORDERS.LIST.ACTIONS.CREATE';
+	const translation = 'GENERAL:COMMON.ORDERS.LIST.ACTIONS.CREATE';
 	const regexIntegersAndChars = AppConfigService.AppOptions.regex.integersAndChars;
 	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const errors: DialogCreateOrderFormInterface = {

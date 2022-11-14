@@ -96,6 +96,14 @@ const AppOptions = (config: typeof AppConfigService) => {
 			},
 			business: {
 				general: {
+					emails: {
+						list: {
+							refreshTime: 10000,
+							showPageSizes: true,
+							defaultPageSize: 50,
+							pageSizes: [5, 10, 15, 20, 50, 100]
+						}
+					},
 					allOrders: {
 						detail: {
 							refreshTime: 10000
@@ -107,7 +115,7 @@ const AppOptions = (config: typeof AppConfigService) => {
 							pageSizes: [5, 10, 15, 20, 50, 100]
 						}
 					},
-					emails: {
+					allElevatorCalls: {
 						list: {
 							refreshTime: 10000,
 							showPageSizes: true,

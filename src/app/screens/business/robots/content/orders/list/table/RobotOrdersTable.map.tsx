@@ -9,7 +9,7 @@ import { cancellableOrders } from './RobotOrdersTable.list';
  * @returns
  */
 export const mapOrder = (order: SOCDataInterface) => {
-	const translation = 'CONTENT.ORDERS';
+	const translation = 'COMMON.ORDERS';
 	return {
 		...order,
 		status: `${translation}.LIST.TABLE.VALUES.STATUS.${order.status}`,

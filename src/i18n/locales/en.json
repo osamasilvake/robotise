@@ -530,6 +530,174 @@
 				"room-service": "Room Service",
 				"service-position": "Service Position",
 				"marketing-ride": "Marketing Ride"
+			},
+			"ORDERS": {
+				"DETAIL": {
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"CREATED": "Created"
+						}
+					},
+					"PURCHASE_DETAIL": {
+						"LINK": {
+							"TITLE": "Purchase",
+							"TEXT": "Purchase details"
+						}
+					}
+				},
+				"LIST": {
+					"ACTIONS": {
+						"FILTERS": {
+							"ACTIVE_ORDERS": "Active Orders only",
+							"DEBUG": "Include Test Orders",
+							"MARKETING_RIDES": "Include Marketing Rides"
+						},
+						"CREATE": {
+							"LABEL": "Create",
+							"TITLE": "Create Order",
+							"TEXT": "Create a new order for JEEVES by providing a target location.",
+							"NOTIFICATION_TYPES": "Notify Customer Via:",
+							"FIELDS": {
+								"LOCATION": {
+									"LABEL": "Location",
+									"PLACEHOLDER": "Enter Location",
+									"VALIDATIONS": {
+										"REQUIRED": "Enter target location.",
+										"INVALID": "Location must be valid."
+									}
+								},
+								"SERVICE_POSITIONS": {
+									"LABEL": "Service Positions *"
+								},
+								"MODE": {
+									"LABEL": "MODE"
+								},
+								"DEBUG": {
+									"LABEL": "Test Order"
+								},
+								"CUSTOMER_NOTIFICATION_TYPES": {
+									"LABEL": "Customer Notification Types *",
+									"OPTIONS": {
+										"phone-room": "Phone Room",
+										"phone-customer": "Phone Customer",
+										"sms-customer": "SMS Customer"
+									}
+								},
+								"PHONE": {
+									"LABEL": "Phone Call No.",
+									"PLACEHOLDER": "Enter Phone No.",
+									"VALIDATIONS": {
+										"INVALID": "Phone No. must be valid."
+									}
+								}
+							}
+						},
+						"CANCEL": {
+							"LABEL": "abort",
+							"TITLE": "Cancel Order",
+							"TEXT": "Are you sure you want to cancel the order?",
+							"ERROR": {
+								"SITE": "Missing site ID in the order!"
+							}
+						},
+						"RESTART": {
+							"LABEL": "restart",
+							"TITLE": "Restart Order",
+							"TEXT": "Are you sure you want to restart the order?"
+						}
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"STATUS": "Status",
+							"TARGET": "Target 🎯",
+							"ROBOT": "Robot",
+							"MODE": "Mode",
+							"CREATED": "Created",
+							"ORIGIN": "Origin",
+							"PURCHASE_DETAILS": "Purchase"
+						},
+						"VALUES": {
+							"STATUS": {
+								"created": "Created",
+								"pending": "Pending",
+								"in_progress_traveling": "Traveling",
+								"in_progress_arrived": "Arrived",
+								"in_progress_customer_present": "Customer present",
+								"finishRequest": "Finish Requested",
+								"awaiting_cancelation": "Awaiting Cancellation",
+								"awaiting_finish": "Awaiting Finish",
+								"finished": "Finished",
+								"rejected": "Rejected",
+								"rejected_already_in_stack": "Rejected: Already in stack",
+								"rejected_unknown_location": "Rejected: Unknown location",
+								"error": "Error",
+								"canceled": "Canceled",
+								"canceled_timeout_during_interaction": "Canceled: Timeout during interaction",
+								"timeout_incomplete_interaction": "Timeout During Interaction",
+								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
+								"timeout_customer_not_present": "Timeout: Customer not present",
+								"cancelRequest": "Cancellation request",
+								"restart_requested": "Restart Requested",
+								"undefined": "Unknown"
+							},
+							"ORIGIN": {
+								"phone": "Phone",
+								"manualGUI": "JEEVES",
+								"api-hotel": "Hotel App",
+								"api-connect": "API Connect",
+								"rest": "ROC App",
+								"debug": "MM ROC Bots",
+								"sms_code": "SMS Code",
+								"customer-app": "Jeeves App"
+							},
+							"PURCHASE_DETAILS": "Purchase details"
+						}
+					}
+				}
+			},
+			"ELEVATOR_CALLS": {
+				"LIST": {
+					"ACTIONS": {
+						"TEST_CALL": {
+							"LABEL": "Test Call",
+							"TITLE": "Test Call",
+							"TEXT": "Are you sure, you want to execute the test call?"
+						}
+					},
+					"TABLE": {
+						"COLUMNS": {
+							"API_STATUS": "API Status",
+							"E2E_STATUS": "Status",
+							"CALL_TYPE": "Call Type",
+							"SRC_AREA_ID": "Source",
+							"DST_AREA_ID": "Destination",
+							"HISTORY": "History",
+							"CREATED": "Created",
+							"ELEVATOR_LOGS": "Elevator Logs"
+						},
+						"VALUES": {
+							"API_STATUS": {
+								"FAILED": "Communication between ROC Cloud and Elevator API was not completed successfully"
+							},
+							"STATUS": {
+								"FAILED": "Communication between ROC and Elevator API was unsuccessful, or robot did not enter/exit the car"
+							},
+							"HISTORY": {
+								"EVENT": {
+									"elevator.event.gotCallStatus": "Call Status",
+									"elevator.event.gotLiftId": "Elevator: Sending Lift",
+									"elevator.event.gotStatus": "Elevator",
+									"robot.event.enteredLift": "Robot: Entered Lift",
+									"robot.event.leftLift": "Robot: Left Lift",
+									"elevator.event.error": "Error"
+								}
+							},
+							"ELEVATOR_LOGS": "Elevator details",
+							"COPY_TEMPLATE": "Copy template"
+						}
+					}
+				}
 			}
 		},
 		"CONTENT": {
@@ -578,86 +746,6 @@
 								"low-rating-alert": "Low Rating Alert",
 								"robot-in-emergency-state": "Robot in Emergency State"
 							}
-						}
-					}
-				}
-			},
-			"ALL_ORDERS": {
-				"DETAIL": {
-					"TABLE": {
-						"COLUMNS": {
-							"STATUS": "Status",
-							"CREATED": "Created"
-						}
-					},
-					"PURCHASE_DETAIL": {
-						"LINK": {
-							"TITLE": "Purchase",
-							"TEXT": "Purchase details"
-						}
-					}
-				},
-				"LIST": {
-					"ACTIONS": {
-						"FILTERS": {
-							"SITE": {
-								"ALL_SITES": "All Sites",
-								"LABEL": "Sites"
-							},
-							"PERIOD": {
-								"LABEL": "Timeframe",
-								"24HR": "Last 24 Hrs",
-								"DAY": "Last 7 Days"
-							},
-							"INCLUDE_ALL_ORDERS": "Include All Orders"
-						}
-					},
-					"TABLE": {
-						"COLUMNS": {
-							"SITE_ROBOT": "Site & Robot",
-							"STATUS": "Status",
-							"TARGET": "Target 🎯",
-							"ROBOT": "Robot",
-							"MODE": "Mode",
-							"CREATED": "Created",
-							"ORIGIN": "Origin",
-							"PURCHASE_DETAILS": "Purchase"
-						},
-						"VALUES": {
-							"STATUS": {
-								"created": "Created",
-								"pending": "Pending",
-								"in_progress_traveling": "Traveling",
-								"in_progress_arrived": "Arrived",
-								"in_progress_customer_present": "Customer present",
-								"finishRequest": "Finish Requested",
-								"awaiting_cancelation": "Awaiting Cancellation",
-								"awaiting_finish": "Awaiting Finish",
-								"finished": "Finished",
-								"rejected": "Rejected",
-								"rejected_already_in_stack": "Rejected: Already in stack",
-								"rejected_unknown_location": "Rejected: Unknown location",
-								"error": "Error",
-								"canceled": "Canceled",
-								"canceled_timeout_during_interaction": "Canceled: Timeout during interaction",
-								"timeout_incomplete_interaction": "Timeout During Interaction",
-								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
-								"timeout_customer_not_present": "Timeout: Customer not present",
-								"cancelRequest": "Cancellation request",
-								"restart_requested": "Restart Requested",
-								"undefined": "Unknown"
-							},
-							"ORIGIN": {
-								"phone": "Phone",
-								"manualGUI": "JEEVES",
-								"api-hotel": "Hotel App",
-								"api-connect": "API Connect",
-								"rest": "ROC App",
-								"debug": "MM ROC Bots",
-								"sms_code": "SMS Code",
-								"customer-app": "Jeeves App"
-							},
-							"PURCHASE_DETAILS": "Purchase details"
 						}
 					}
 				}
@@ -1945,131 +2033,6 @@
 					}
 				}
 			},
-			"ORDERS": {
-				"DETAIL": {
-					"TABLE": {
-						"COLUMNS": {
-							"STATUS": "Status",
-							"CREATED": "Created"
-						}
-					},
-					"PURCHASE_DETAIL": {
-						"LINK": {
-							"TITLE": "Purchase",
-							"TEXT": "Purchase details"
-						}
-					}
-				},
-				"LIST": {
-					"ACTIONS": {
-						"FILTERS": {
-							"ACTIVE_ORDERS": "Active Orders only",
-							"DEBUG": "Include Test Orders",
-							"MARKETING_RIDES": "Include Marketing Rides"
-						},
-						"CREATE": {
-							"LABEL": "Create",
-							"TITLE": "Create Order",
-							"TEXT": "Create a new order for JEEVES by providing a target location.",
-							"NOTIFICATION_TYPES": "Notify Customer Via:",
-							"FIELDS": {
-								"LOCATION": {
-									"LABEL": "Location",
-									"PLACEHOLDER": "Enter Location",
-									"VALIDATIONS": {
-										"REQUIRED": "Enter target location.",
-										"INVALID": "Location must be valid."
-									}
-								},
-								"SERVICE_POSITIONS": {
-									"LABEL": "Service Positions *"
-								},
-								"MODE": {
-									"LABEL": "MODE"
-								},
-								"DEBUG": {
-									"LABEL": "Test Order"
-								},
-								"CUSTOMER_NOTIFICATION_TYPES": {
-									"LABEL": "Customer Notification Types *",
-									"OPTIONS": {
-										"phone-room": "Phone Room",
-										"phone-customer": "Phone Customer",
-										"sms-customer": "SMS Customer"
-									}
-								},
-								"PHONE": {
-									"LABEL": "Phone Call No.",
-									"PLACEHOLDER": "Enter Phone No.",
-									"VALIDATIONS": {
-										"INVALID": "Phone No. must be valid."
-									}
-								}
-							}
-						},
-						"CANCEL": {
-							"LABEL": "abort",
-							"TITLE": "Cancel Order",
-							"TEXT": "Are you sure you want to cancel the order?",
-							"ERROR": {
-								"SITE": "Missing site ID in the order!"
-							}
-						},
-						"RESTART": {
-							"LABEL": "restart",
-							"TITLE": "Restart Order",
-							"TEXT": "Are you sure you want to restart the order?"
-						}
-					},
-					"TABLE": {
-						"COLUMNS": {
-							"STATUS": "Status",
-							"TARGET": "Target 🎯",
-							"ROBOT": "Robot",
-							"MODE": "Mode",
-							"CREATED": "Created",
-							"ORIGIN": "Origin",
-							"PURCHASE_DETAILS": "Purchase"
-						},
-						"VALUES": {
-							"STATUS": {
-								"created": "Created",
-								"pending": "Pending",
-								"in_progress_traveling": "Traveling",
-								"in_progress_arrived": "Arrived",
-								"in_progress_customer_present": "Customer present",
-								"finishRequest": "Finish Requested",
-								"awaiting_cancelation": "Awaiting Cancellation",
-								"awaiting_finish": "Awaiting Finish",
-								"finished": "Finished",
-								"rejected": "Rejected",
-								"rejected_already_in_stack": "Rejected: Already in stack",
-								"rejected_unknown_location": "Rejected: Unknown location",
-								"error": "Error",
-								"canceled": "Canceled",
-								"canceled_timeout_during_interaction": "Canceled: Timeout during interaction",
-								"timeout_incomplete_interaction": "Timeout During Interaction",
-								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",
-								"timeout_customer_not_present": "Timeout: Customer not present",
-								"cancelRequest": "Cancellation request",
-								"restart_requested": "Restart Requested",
-								"undefined": "Unknown"
-							},
-							"ORIGIN": {
-								"phone": "Phone",
-								"manualGUI": "JEEVES",
-								"api-hotel": "Hotel App",
-								"api-connect": "API Connect",
-								"rest": "ROC App",
-								"debug": "MM ROC Bots",
-								"sms_code": "SMS Code",
-								"customer-app": "Jeeves App"
-							},
-							"PURCHASE_DETAILS": "Purchase details"
-						}
-					}
-				}
-			},
 			"PURCHASES": {
 				"DETAIL": {
 					"HEAD": {
@@ -2183,49 +2146,6 @@
 									"rejected": "Rejected"
 								}
 							}
-						}
-					}
-				}
-			},
-			"ELEVATOR_CALLS": {
-				"LIST": {
-					"ACTIONS": {
-						"TEST_CALL": {
-							"LABEL": "Test Call",
-							"TITLE": "Test Call",
-							"TEXT": "Are you sure, you want to execute the test call?"
-						}
-					},
-					"TABLE": {
-						"COLUMNS": {
-							"API_STATUS": "API Status",
-							"E2E_STATUS": "Status",
-							"CALL_TYPE": "Call Type",
-							"SRC_AREA_ID": "Source",
-							"DST_AREA_ID": "Destination",
-							"HISTORY": "History",
-							"CREATED": "Created",
-							"ELEVATOR_LOGS": "Elevator Logs"
-						},
-						"VALUES": {
-							"API_STATUS": {
-								"FAILED": "Communication between ROC Cloud and Elevator API was not completed successfully"
-							},
-							"STATUS": {
-								"FAILED": "Communication between ROC and Elevator API was unsuccessful, or robot did not enter/exit the car"
-							},
-							"HISTORY": {
-								"EVENT": {
-									"elevator.event.gotCallStatus": "Call Status",
-									"elevator.event.gotLiftId": "Elevator: Sending Lift",
-									"elevator.event.gotStatus": "Elevator",
-									"robot.event.enteredLift": "Robot: Entered Lift",
-									"robot.event.leftLift": "Robot: Left Lift",
-									"elevator.event.error": "Error"
-								}
-							},
-							"ELEVATOR_LOGS": "Elevator details",
-							"COPY_TEMPLATE": "Copy template"
 						}
 					}
 				}

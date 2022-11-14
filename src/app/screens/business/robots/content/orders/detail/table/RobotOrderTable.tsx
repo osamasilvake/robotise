@@ -15,7 +15,7 @@ import { columns } from './RobotOrderTable.list';
 
 const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 	const { order } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 
 	/**
 	 * set cell value
@@ -29,7 +29,7 @@ const RobotOrderTable: FC<RobotOrderTableInterface> = (props) => {
 				return (
 					<Status level={mapStatus(row.details)}>
 						{t(
-							`CONTENT.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id]?.replace(
+							`COMMON.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id]?.replace(
 								':',
 								'_'
 							)}`

@@ -1,7 +1,7 @@
 import { GeneralAllOrderTableColumnsTypeEnum } from './GeneralAllOrderTable.enum';
 import { GeneralAllOrderTableColumnInterface } from './GeneralAllOrderTable.interface';
 
-const translation = 'CONTENT.ALL_ORDERS.DETAIL.TABLE.COLUMNS';
+const translation = 'COMMON.ORDERS.DETAIL.TABLE.COLUMNS';
 export const columns: GeneralAllOrderTableColumnInterface[] = [
 	{
 		id: GeneralAllOrderTableColumnsTypeEnum.DETAILS,

@@ -2,13 +2,13 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
+import { GeneralAllElevatorCallsTableColumnsTypeEnum } from './GeneralAllElevatorCallsTable.enum';
 import {
-	RobotOrdersTableColumnInterface,
-	RobotOrdersTableHeadInterface
-} from './RobotOrdersTable.interface';
+	GeneralAllElevatorCallsTableColumnInterface,
+	GeneralAllElevatorCallsTableHeadInterface
+} from './GeneralAllElevatorCallsTable.interface';
 
-const RobotOrdersTableHead: FC<RobotOrdersTableHeadInterface> = (props) => {
+const GeneralAllElevatorCallsTableHead: FC<GeneralAllElevatorCallsTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;
 	const { t } = useTranslation('GENERAL');
 
@@ -18,14 +18,14 @@ const RobotOrdersTableHead: FC<RobotOrdersTableHeadInterface> = (props) => {
 	 * @returns
 	 */
 	const handleSortRequest =
-		(property: RobotOrdersTableColumnsTypeEnum) => (event: MouseEvent) => {
+		(property: GeneralAllElevatorCallsTableColumnsTypeEnum) => (event: MouseEvent) => {
 			onRequestSort(event, property);
 		};
 
 	return (
 		<TableHead>
 			<TableRow>
-				{columns.map((column: RobotOrdersTableColumnInterface) => (
+				{columns.map((column: GeneralAllElevatorCallsTableColumnInterface) => (
 					<TableCell
 						key={column.id}
 						align={column.align}
@@ -47,4 +47,4 @@ const RobotOrdersTableHead: FC<RobotOrdersTableHeadInterface> = (props) => {
 		</TableHead>
 	);
 };
-export default RobotOrdersTableHead;
+export default GeneralAllElevatorCallsTableHead;

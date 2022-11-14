@@ -13,7 +13,7 @@ import { RobotOrdersActiveOrdersInterface } from './RobotOrdersActions.interface
 
 const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) => {
 	const { activeOrders } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 
 	const dispatch = useDispatch<AppDispatch>();
 	const orders = useSelector(ordersSelector);
@@ -41,7 +41,7 @@ const RobotOrdersActiveOrders: FC<RobotOrdersActiveOrdersInterface> = (props) =>
 					onChange={handleActiveOrders}
 				/>
 			}
-			label={t<string>('CONTENT.ORDERS.LIST.ACTIONS.FILTERS.ACTIVE_ORDERS')}
+			label={t<string>('COMMON.ORDERS.LIST.ACTIONS.FILTERS.ACTIVE_ORDERS')}
 		/>
 	);
 };

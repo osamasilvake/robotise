@@ -26,7 +26,7 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 
 	const cSiteId = order?.site?.id;
 	const cRobotId = order?.robot?.id;
-	const translation = 'CONTENT.ALL_ORDERS.LIST';
+	const translation = 'COMMON.ORDERS.LIST';
 
 	/**
 	 * set cell value

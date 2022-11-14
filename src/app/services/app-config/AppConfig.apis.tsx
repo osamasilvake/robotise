@@ -19,6 +19,11 @@ const AppServices = (config: typeof AppConfigService) => {
 				GENERAL: {
 					EMAILS: `${config.envAppUrl}/emails`,
 					EMAIL: `${config.envAppUrl}/emails/:emailId`,
+					ALL_ORDERS: {
+						FETCH: `${config.envAppUrl}/orders`,
+						SINGLE: `${config.envAppUrl}/orders/:orderId`
+					},
+					ALL_ELEVATOR_CALLS: `${config.envAppUrl}/elevator-calls`,
 					ORDER_MODES: `${config.envAppUrl}/order-modes`,
 					REPORTS: config.envAppUrl
 				},

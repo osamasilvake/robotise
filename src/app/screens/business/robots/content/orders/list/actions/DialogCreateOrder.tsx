@@ -48,7 +48,7 @@ import { RobotOrdersActionsStyle } from './RobotOrdersActions.style';
 
 const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const { open, setOpen } = props;
-	const { t } = useTranslation(['ROBOTS', 'DIALOG', 'GENERAL']);
+	const { t } = useTranslation(['DIALOG', 'GENERAL']);
 	const classes = RobotOrdersActionsStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -69,7 +69,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const onlyPhoneRoom =
 		customerNotificationTypesEnabled?.length === 1 &&
 		customerNotificationTypesEnabled[0] === RobotOrderCustomNotificationTypeEnum.PHONE_ROOM;
-	const translation = 'CONTENT.ORDERS';
+	const translation = 'GENERAL:COMMON.ORDERS';
 	const fieldLocation = 'location';
 
 	const {

@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 import DialogCreateOrder from './DialogCreateOrder';
 
 const RobotOrdersCreate: FC = () => {
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 
 	const [createOrder, setCreateOrder] = useState(false);
 
-	const translation = 'CONTENT.ORDERS.LIST.ACTIONS.CREATE';
+	const translation = 'COMMON.ORDERS.LIST.ACTIONS.CREATE';
 
 	return (
 		<>

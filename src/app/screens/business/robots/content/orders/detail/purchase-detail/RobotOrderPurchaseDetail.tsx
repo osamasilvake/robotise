@@ -10,7 +10,7 @@ import { RobotOrderPurchaseDetailStyle } from './RobotOrderPurchaseDetail.style'
 
 const RobotOrderPurchaseDetail: FC<RobotOrderPurchaseDetailInterface> = (props) => {
 	const { order } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 	const classes = RobotOrderPurchaseDetailStyle();
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
@@ -20,7 +20,7 @@ const RobotOrderPurchaseDetail: FC<RobotOrderPurchaseDetailInterface> = (props) 
 	return order?.content?.orderReport ? (
 		<Box className={classes.sBox}>
 			<Typography variant="h6" color="textSecondary">
-				{t('CONTENT.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TITLE')}
+				{t('COMMON.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TITLE')}
 			</Typography>
 			<Link
 				component={RouterLink}
@@ -30,7 +30,7 @@ const RobotOrderPurchaseDetail: FC<RobotOrderPurchaseDetailInterface> = (props) 
 					':robotId',
 					cRobotId
 				).replace(':purchaseId', order.content.orderReport.id)}>
-				{t('CONTENT.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TEXT')}
+				{t('COMMON.ORDERS.DETAIL.PURCHASE_DETAIL.LINK.TEXT')}
 			</Link>
 		</Box>
 	) : null;

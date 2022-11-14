@@ -1,7 +1,7 @@
 import { GeneralAllOrdersTableColumnsTypeEnum } from './GeneralAllOrdersTable.enum';
 import { GeneralAllOrdersTableColumnInterface } from './GeneralAllOrdersTable.interface';
 
-const translation = 'CONTENT.ALL_ORDERS.LIST.TABLE.COLUMNS';
+const translation = 'COMMON.ORDERS.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllOrdersTableColumnInterface[] = [
 	{
 		id: GeneralAllOrdersTableColumnsTypeEnum.SITE_ROBOT,

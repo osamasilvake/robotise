@@ -8,7 +8,7 @@ import { GeneralAllOrdersTableColumnStatusTypeEnum } from './GeneralAllOrdersTab
  * @returns
  */
 export const mapOrder = (order: SAODataInterface) => {
-	const translation = 'CONTENT.ALL_ORDERS';
+	const translation = 'COMMON.ORDERS';
 	return {
 		...order,
 		status: `${translation}.LIST.TABLE.VALUES.STATUS.${order.status}`,

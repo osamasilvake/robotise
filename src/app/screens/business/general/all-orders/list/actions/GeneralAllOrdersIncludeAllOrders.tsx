@@ -41,7 +41,7 @@ const GeneralAllOrdersIncludeAllOrders: FC<GeneralAllOrdersIncludeAllOrdersInter
 					onChange={handleIncludeAllOrders}
 				/>
 			}
-			label={t<string>('CONTENT.ALL_ORDERS.LIST.ACTIONS.FILTERS.INCLUDE_ALL_ORDERS')}
+			label={t<string>('COMMON.ORDERS.LIST.ACTIONS.FILTERS.INCLUDE_ALL_ORDERS')}
 		/>
 	);
 };

@@ -14,7 +14,7 @@ import {
  * @returns
  */
 export const mapElevatorCall = (elevatorCall: ECCDataInterface) => {
-	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES';
+	const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.VALUES';
 	return {
 		...elevatorCall,
 		history: elevatorCall.history.map((item) => ({

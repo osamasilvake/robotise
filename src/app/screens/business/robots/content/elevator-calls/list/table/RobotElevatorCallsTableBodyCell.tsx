@@ -38,7 +38,7 @@ import { RobotElevatorCallsTableStyle } from './RobotElevatorCallsTable.style';
 
 const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterface> = (props) => {
 	const { index, column, elevatorCall } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 	const classes = RobotElevatorCallsTableStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -47,7 +47,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 
 	const [templateIndex, setTemplateIndex] = useState(-1);
 
-	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.VALUES';
+	const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.VALUES';
 
 	/**
 	 * copy template

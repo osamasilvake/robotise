@@ -9,14 +9,14 @@ import { timeout } from '../../../../../../utilities/methods/Timeout';
 import DialogTestCallConfirmation from './DialogTestCallConfirmation';
 
 const RobotElevatorCallsTest: FC = () => {
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 
 	const elevatorCalls = useSelector(elevatorCallsSelector);
 
 	const [open, setOpen] = useState(false);
 	const [halt, setHalt] = useState(false);
 
-	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
+	const translation = 'COMMON.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
 
 	useEffect(() => {
 		const timer = async () => await timeout(10000).then(() => setHalt(false));

@@ -549,6 +549,16 @@
 				"LIST": {
 					"ACTIONS": {
 						"FILTERS": {
+							"SITE": {
+								"ALL_SITES": "All Sites",
+								"LABEL": "Sites"
+							},
+							"PERIOD": {
+								"LABEL": "Timeframe",
+								"24HR": "Last 24 Hrs",
+								"DAY": "Last 7 Days"
+							},
+							"INCLUDE_ALL_ORDERS": "Include All Orders",
 							"ACTIVE_ORDERS": "Active Orders only",
 							"DEBUG": "Include Test Orders",
 							"MARKETING_RIDES": "Include Marketing Rides"
@@ -609,6 +619,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"SITE_ROBOT": "Site & Robot",
 							"STATUS": "Status",
 							"TARGET": "Target 🎯",
 							"ROBOT": "Robot",

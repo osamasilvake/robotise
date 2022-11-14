@@ -1,7 +1,7 @@
 import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
 import { RobotElevatorCallsTableColumnInterface } from './RobotElevatorCallsTable.interface';
 
-const translation = 'CONTENT.ELEVATOR_CALLS.LIST.TABLE.COLUMNS';
+const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.COLUMNS';
 export const columns: RobotElevatorCallsTableColumnInterface[] = [
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.API_STATUS,

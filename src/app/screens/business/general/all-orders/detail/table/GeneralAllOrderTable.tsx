@@ -32,7 +32,7 @@ const GeneralAllOrderTable: FC<GeneralAllOrderTableInterface> = (props) => {
 				return (
 					<Status level={mapStatus(row.details)}>
 						{t(
-							`COMMON.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id].replace(
+							`COMMON.ORDERS.LIST.TABLE.VALUES.STATUS.${row[column.id]?.replace(
 								':',
 								'_'
 							)}`

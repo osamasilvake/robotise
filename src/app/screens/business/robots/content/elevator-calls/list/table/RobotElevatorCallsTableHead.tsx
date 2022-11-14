@@ -10,7 +10,7 @@ import {
 
 const RobotElevatorCallsTableHead: FC<RobotElevatorCallsTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('GENERAL');
 
 	/**
 	 * handle sort request

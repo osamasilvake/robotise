@@ -25,7 +25,7 @@ import { DialogTestCallConfirmationInterface } from './RobotElevatorCallsActions
 
 const DialogTestCallConfirmation: FC<DialogTestCallConfirmationInterface> = (props) => {
 	const { open, setOpen, halt, setHalt } = props;
-	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
+	const { t } = useTranslation(['GENERAL', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
@@ -41,7 +41,7 @@ const DialogTestCallConfirmation: FC<DialogTestCallConfirmationInterface> = (pro
 		AppConfigService.AppOptions.screens.business.robots.content.elevatorCalls.list
 			.defaultPageSize;
 
-	const translation = 'CONTENT.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
+	const translation = 'COMMON.ELEVATOR_CALLS.LIST.ACTIONS.TEST_CALL';
 
 	/**
 	 * text call confirmation product

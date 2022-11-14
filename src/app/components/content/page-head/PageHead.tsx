@@ -16,7 +16,7 @@ const PageHead: FC<PageHeadInterface> = (props) => {
 		<Box>
 			{/* Meta */}
 			<Meta
-				title={t(title)}
+				title={title ? t(title) : ''}
 				description={(description && t(description)) || t('COMMON.DESCRIPTION')}
 			/>
 

@@ -12,6 +12,7 @@ import {
 	AllElevatorCallsFetchList,
 	allElevatorCallsSelector
 } from '../../../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice';
+import GeneralAllElevatorCallsActions from './actions/GeneralAllElevatorCallsActions';
 import { GeneralAllElevatorCallsListPayloadInterface } from './GeneralAllElevatorCallsList.interface';
 import { GeneralAllElevatorCallsListStyle } from './GeneralAllElevatorCallsList.style';
 import RobotElevatorCallsTable from './table/GeneralAllElevatorCallsTable';
@@ -41,7 +42,14 @@ const GeneralAllElevatorCallsList: FC = () => {
 			siteId
 		};
 
-		if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
+		if (pageRef.current.siteId !== siteId && page === 0) {
+			// dispatch: fetch all elevator calls
+			dispatch(AllElevatorCallsFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.siteId = siteId;
+		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch all elevator calls
 			dispatch(AllElevatorCallsFetchList(payload));
 
@@ -108,6 +116,9 @@ const GeneralAllElevatorCallsList: FC = () => {
 	if (!allElevatorCalls.content?.data.length) {
 		return (
 			<Box className={classes.sBox}>
+				{/* Actions */}
+				<GeneralAllElevatorCallsActions siteId={siteId} />
+
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE" />
 			</Box>
@@ -116,6 +127,9 @@ const GeneralAllElevatorCallsList: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Actions */}
+			<GeneralAllElevatorCallsActions siteId={siteId} />
+
 			{/* Table */}
 			<RobotElevatorCallsTable
 				content={allElevatorCalls.content}

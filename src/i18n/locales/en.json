@@ -670,6 +670,12 @@
 			"ELEVATOR_CALLS": {
 				"LIST": {
 					"ACTIONS": {
+						"FILTERS": {
+							"SITE": {
+								"ALL_SITES": "All Sites",
+								"LABEL": "Sites"
+							}
+						},
 						"TEST_CALL": {
 							"LABEL": "Test Call",
 							"TITLE": "Test Call",
@@ -678,6 +684,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"SITE_ROBOT": "Site & Robot",
 							"API_STATUS": "API Status",
 							"E2E_STATUS": "Status",
 							"CALL_TYPE": "Call Type",

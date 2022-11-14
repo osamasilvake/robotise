@@ -29,12 +29,23 @@ export interface AECDataInterface {
 	updatedAt: Date;
 	createdAt: Date;
 	history: AECDataHistoryInterface[];
+	site: AECDataSiteInterface;
+	robot: AECDataRobotInterface;
+	siteRobot: string;
 }
 
 export interface AECDataHistoryInterface {
 	event: string;
 	createdAt: Date;
 	details?: string;
+}
+
+export interface AECDataSiteInterface {
+	id: string;
+}
+
+export interface AECDataRobotInterface {
+	id: string;
 }
 
 export interface AECStateInterface {

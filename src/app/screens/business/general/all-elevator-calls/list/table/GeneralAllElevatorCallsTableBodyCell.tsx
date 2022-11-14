@@ -4,6 +4,7 @@ import {
 	Chip,
 	CircularProgress,
 	Icon,
+	Link,
 	Stack,
 	TableCell,
 	Tooltip,
@@ -12,6 +13,7 @@ import {
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../components/common/external-link/ExternalLink';
 import { ExternalLinkActionTypeEnum } from '../../../../../../components/common/external-link/ExternalLink.enum';
@@ -23,6 +25,8 @@ import {
 	RobotElevatorTemplateFetch,
 	robotOperationsSelector
 } from '../../../../../../slices/business/robots/RobotOperations.slice';
+import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { deepLinkSelector } from '../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
 import {
@@ -48,11 +52,15 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 	const classes = GeneralAllElevatorCallsTableStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
+	const sites = useSelector(sitesSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const robotOperations = useSelector(robotOperationsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
 	const [templateIndex, setTemplateIndex] = useState(-1);
 
+	const cSiteId = elevatorCall?.site?.id;
+	const cRobotId = elevatorCall?.robot?.id;
 	const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.VALUES';
 
 	/**
@@ -85,110 +93,152 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 		elevatorCall: AECDataInterface,
 		column: GeneralAllElevatorCallsTableColumnInterface
 	) => {
-		if (column.id === GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
+		const siteRobot = GeneralAllElevatorCallsTableColumnsTypeEnum.SITE_ROBOT === column.id;
+		if (siteRobot) {
+			const site = sites?.content?.dataById[cSiteId];
+			const robot = robotTwinsSummary?.content?.dataById[cRobotId];
+			if (!site || !robot) return null;
 			return (
-				<Stack direction="column" alignItems="center">
-					<ExternalLink
-						index={index}
-						text={t(`${translation}.ELEVATOR_LOGS`)}
-						payload={{
-							vendor: elevatorCall.vendor,
-							from: elevatorCall.createdAt,
-							to: elevatorCall.updatedAt
-						}}
-						actionType={ExternalLinkActionTypeEnum.ELEVATOR_LOGS}
-						showIcon={deepLink.elevatorLogs.loading}
-						disabled={deepLink.elevatorLogs.loading}
-					/>
-					<Chip
-						size="small"
-						label={t(`${translation}.COPY_TEMPLATE`)}
-						color="primary"
-						variant="outlined"
-						clickable
-						disabled={
-							index === templateIndex && robotOperations.elevatorTemplate.loading
-						}
-						icon={
-							index === templateIndex && robotOperations.elevatorTemplate.loading ? (
-								<CircularProgress size={18} />
-							) : (
-								<CopyAll />
-							)
-						}
-						onClick={() => copyTemplate(index)}
-						className={classes.sTableTemplateIcon}
-					/>
-				</Stack>
+				<>
+					<Box>
+						<Link
+							component={RouterLink}
+							variant="body1"
+							underline="hover"
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
+								':siteId',
+								site.id
+							)}
+							onClick={(e) => e.stopPropagation()}>
+							{site.title}
+						</Link>
+					</Box>
+					<Box>
+						<Link
+							component={RouterLink}
+							variant="body2"
+							underline="hover"
+							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.DETAIL.replace(
+								':robotId',
+								robot.robotId
+							)}
+							onClick={(e) => e.stopPropagation()}>
+							{robot.robotTitle}
+						</Link>
+					</Box>
+				</>
 			);
 		} else {
-			const mappedElevatorCall = mapElevatorCall(elevatorCall);
-			const value = mappedElevatorCall[column.id];
-			if (GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED === column.id) {
-				return dateFormat1(String(value));
-			} else if (GeneralAllElevatorCallsTableColumnsTypeEnum.HISTORY === column.id) {
-				const history = elevatorCall.history;
-				const historyMapped = mappedElevatorCall.history;
+			if (column.id === GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
 				return (
-					<Box>
-						{history.map((item, index) => (
-							<Stack
-								key={index}
-								spacing={0.5}
-								direction="row"
-								className={classes.sTableHistory}>
-								<Icon
-									color={mapHistoryEventType(t(item.event)).color}
-									className={classes.sTableHistoryIcon}>
-									{mapHistoryEventType(t(item.event)).icon}
-								</Icon>
-								<Typography variant="body2" className={classes.sHistoryEvent}>
-									{t(historyMapped[index].event)}
-									{!!item.details && `: ${item.details}`}
-								</Typography>
-								<Typography variant="caption" color="textSecondary">
-									({dateFormat3(item.createdAt)})
-								</Typography>
-							</Stack>
-						))}
-						{!history.length && AppConfigService.AppOptions.common.none}
-					</Box>
+					<Stack direction="column" alignItems="center">
+						<ExternalLink
+							index={index}
+							text={t(`${translation}.ELEVATOR_LOGS`)}
+							payload={{
+								vendor: elevatorCall.vendor,
+								from: elevatorCall.createdAt,
+								to: elevatorCall.updatedAt
+							}}
+							actionType={ExternalLinkActionTypeEnum.ELEVATOR_LOGS}
+							showIcon={deepLink.elevatorLogs.loading}
+							disabled={deepLink.elevatorLogs.loading}
+						/>
+						<Chip
+							size="small"
+							label={t(`${translation}.COPY_TEMPLATE`)}
+							color="primary"
+							variant="outlined"
+							clickable
+							disabled={
+								index === templateIndex && robotOperations.elevatorTemplate.loading
+							}
+							icon={
+								index === templateIndex &&
+								robotOperations.elevatorTemplate.loading ? (
+									<CircularProgress size={18} />
+								) : (
+									<CopyAll />
+								)
+							}
+							onClick={() => copyTemplate(index)}
+							className={classes.sTableTemplateIcon}
+						/>
+					</Stack>
 				);
-			} else if (typeof value === 'string') {
-				if (GeneralAllElevatorCallsTableColumnsTypeEnum.API_STATUS === column.id) {
+			} else {
+				const mappedElevatorCall = mapElevatorCall(elevatorCall);
+				const value = mappedElevatorCall[column.id];
+				if (GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED === column.id) {
+					return dateFormat1(String(value));
+				} else if (GeneralAllElevatorCallsTableColumnsTypeEnum.HISTORY === column.id) {
+					const history = elevatorCall.history;
+					const historyMapped = mappedElevatorCall.history;
 					return (
-						<Tooltip
-							title={
-								value === GeneralAllElevatorCallsTableColumnStatusTypeEnum.FAILED
-									? t(`${translation}.API_STATUS.FAILED`)
-									: ''
-							}>
-							<Box className={classes.sTableStatus}>
-								<Status level={mapStatus(value)} capitalize>
-									{t(value)}
-								</Status>
-							</Box>
-						</Tooltip>
+						<Box>
+							{history.map((item, index) => (
+								<Stack
+									key={index}
+									spacing={0.5}
+									direction="row"
+									className={classes.sTableHistory}>
+									<Icon
+										color={mapHistoryEventType(t(item.event)).color}
+										className={classes.sTableHistoryIcon}>
+										{mapHistoryEventType(t(item.event)).icon}
+									</Icon>
+									<Typography variant="body2" className={classes.sHistoryEvent}>
+										{t(historyMapped[index].event)}
+										{!!item.details && `: ${item.details}`}
+									</Typography>
+									<Typography variant="caption" color="textSecondary">
+										({dateFormat3(item.createdAt)})
+									</Typography>
+								</Stack>
+							))}
+							{!history.length && AppConfigService.AppOptions.common.none}
+						</Box>
 					);
-				} else if (GeneralAllElevatorCallsTableColumnsTypeEnum.E2E_STATUS === column.id) {
-					return (
-						<Tooltip
-							title={
-								value === GeneralAllElevatorCallsTableColumnStatusTypeEnum.FAILED
-									? t(`${translation}.STATUS.FAILED`)
-									: ''
-							}>
-							<Box className={classes.sTableStatus}>
-								<Status level={mapStatus(value)} capitalize>
-									{t(value)}
-								</Status>
-							</Box>
-						</Tooltip>
-					);
+				} else if (typeof value === 'string') {
+					if (GeneralAllElevatorCallsTableColumnsTypeEnum.API_STATUS === column.id) {
+						return (
+							<Tooltip
+								title={
+									value ===
+									GeneralAllElevatorCallsTableColumnStatusTypeEnum.FAILED
+										? t(`${translation}.API_STATUS.FAILED`)
+										: ''
+								}>
+								<Box className={classes.sTableStatus}>
+									<Status level={mapStatus(value)} capitalize>
+										{t(value)}
+									</Status>
+								</Box>
+							</Tooltip>
+						);
+					} else if (
+						GeneralAllElevatorCallsTableColumnsTypeEnum.E2E_STATUS === column.id
+					) {
+						return (
+							<Tooltip
+								title={
+									value ===
+									GeneralAllElevatorCallsTableColumnStatusTypeEnum.FAILED
+										? t(`${translation}.STATUS.FAILED`)
+										: ''
+								}>
+								<Box className={classes.sTableStatus}>
+									<Status level={mapStatus(value)} capitalize>
+										{t(value)}
+									</Status>
+								</Box>
+							</Tooltip>
+						);
+					}
+					return t(value);
 				}
-				return t(value);
+				return value;
 			}
-			return value;
 		}
 	};
 

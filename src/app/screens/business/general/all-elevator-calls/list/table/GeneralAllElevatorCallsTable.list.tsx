@@ -4,6 +4,12 @@ import { GeneralAllElevatorCallsTableColumnInterface } from './GeneralAllElevato
 const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllElevatorCallsTableColumnInterface[] = [
 	{
+		id: GeneralAllElevatorCallsTableColumnsTypeEnum.SITE_ROBOT,
+		label: `${translation}.SITE_ROBOT`,
+		minWidth: 200,
+		align: 'left'
+	},
+	{
 		id: GeneralAllElevatorCallsTableColumnsTypeEnum.API_STATUS,
 		label: `${translation}.API_STATUS`,
 		minWidth: 130,

@@ -14,6 +14,11 @@ import {
 export const deserializeElevatorCalls = async <T extends JsonAPIResponseInterface>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase',
+		sites: {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => ({
+				id: relationship.id
+			})
+		},
 		robots: {
 			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => ({
 				id: relationship.id

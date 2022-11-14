@@ -27,7 +27,7 @@ export interface SOCDataInterface {
 	history: SOCDataHistoryInterface[];
 	orderReport: SOCDataOrderReportInterface;
 	site: SOCDataSiteInterface;
-	robot: SOCRobotInterface;
+	robot: SOCDataRobotInterface;
 }
 
 export interface SOCStateInterface {
@@ -53,6 +53,6 @@ export interface SOCDataSiteInterface {
 	id: string;
 }
 
-export interface SOCRobotInterface {
+export interface SOCDataRobotInterface {
 	id: string;
 }

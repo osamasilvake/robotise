@@ -28,7 +28,7 @@ export interface SAODataInterface {
 	history: SAODataHistoryInterface[];
 	orderReport: SAODataOrderReportInterface;
 	site: SAODataSiteInterface;
-	robot: SAORobotInterface;
+	robot: SAODataRobotInterface;
 	siteRobot: string;
 }
 
@@ -54,6 +54,6 @@ export interface SAODataSiteInterface {
 	id: string;
 }
 
-export interface SAORobotInterface {
+export interface SAODataRobotInterface {
 	id: string;
 }

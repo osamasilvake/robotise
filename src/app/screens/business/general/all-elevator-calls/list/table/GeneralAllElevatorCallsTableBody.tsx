@@ -34,6 +34,7 @@ const GeneralAllElevatorCallsTableBody: FC<GeneralAllElevatorCallsTableBodyInter
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED:
 				type = GeneralAllElevatorCallsTableSortTypeEnum.DATE;
 				break;
+			case GeneralAllElevatorCallsTableColumnsTypeEnum.SITE_ROBOT:
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.API_STATUS:
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.E2E_STATUS:
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.CALL_TYPE:
@@ -59,7 +60,9 @@ const GeneralAllElevatorCallsTableBody: FC<GeneralAllElevatorCallsTableBodyInter
 		type: GeneralAllElevatorCallsTableSortTypeEnum
 	) => {
 		return (a: AECDataInterface, b: AECDataInterface) => {
-			if (key !== GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
+			const siteRobot = key !== GeneralAllElevatorCallsTableColumnsTypeEnum.SITE_ROBOT;
+			const logs = key !== GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS;
+			if (siteRobot && logs) {
 				const dateA = a[GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED];
 				const dateB = b[GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED];
 				switch (type) {

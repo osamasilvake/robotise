@@ -3,10 +3,11 @@ import { FC } from 'react';
 
 import { GeneralAllElevatorCallsActionsInterface } from './GeneralAllElevatorCallsActions.interface';
 import { GeneralAllElevatorCallsActionsStyle } from './GeneralAllElevatorCallsActions.style';
+import GeneralAllElevatorCallsIncludeAllCalls from './GeneralAllElevatorCallsIncludeAllCalls';
 import GeneralAllElevatorCallsSite from './GeneralAllElevatorCallsSite';
 
 const GeneralAllElevatorCallsActions: FC<GeneralAllElevatorCallsActionsInterface> = (props) => {
-	const { siteId } = props;
+	const { siteId, includeAllCalls } = props;
 	const classes = GeneralAllElevatorCallsActionsStyle();
 
 	return (
@@ -20,6 +21,9 @@ const GeneralAllElevatorCallsActions: FC<GeneralAllElevatorCallsActionsInterface
 					{/* Site */}
 					<GeneralAllElevatorCallsSite siteId={siteId} />
 				</Stack>
+
+				{/* Include All Calls */}
+				<GeneralAllElevatorCallsIncludeAllCalls includeAllCalls={includeAllCalls} />
 			</Stack>
 		</Paper>
 	);

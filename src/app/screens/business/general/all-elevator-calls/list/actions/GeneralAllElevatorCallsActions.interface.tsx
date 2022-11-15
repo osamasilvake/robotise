@@ -1,5 +1,6 @@
 export interface GeneralAllElevatorCallsActionsInterface {
 	siteId?: string;
+	includeAllCalls: boolean;
 }
 
 export interface GeneralAllElevatorCallsSiteInterface {
@@ -9,4 +10,8 @@ export interface GeneralAllElevatorCallsSiteInterface {
 export interface GeneralAllElevatorCallsSiteComboBoxInterface {
 	id: string;
 	label: string;
+}
+
+export interface GeneralAllElevatorCallsIncludeAllCallsInterface {
+	includeAllCalls: boolean;
 }

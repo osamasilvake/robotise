@@ -674,7 +674,8 @@
 							"SITE": {
 								"ALL_SITES": "All Sites",
 								"LABEL": "Sites"
-							}
+							},
+							"INCLUDE_ALL_CALLS": "Include All Calls"
 						},
 						"TEST_CALL": {
 							"LABEL": "Test Call",

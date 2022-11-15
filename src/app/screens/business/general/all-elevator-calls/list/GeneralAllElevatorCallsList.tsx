@@ -28,18 +28,21 @@ const GeneralAllElevatorCallsList: FC = () => {
 		allElevatorCalls.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.business.general.allElevatorCalls.list.defaultPageSize;
 	const siteId = allElevatorCalls.content?.state?.siteId;
+	const includeAllCalls = !!allElevatorCalls.content?.state?.includeAllCalls;
 
 	const pageRef = useRef({
 		page: (allElevatorCalls.content?.meta?.page || 0) - 1,
 		rowsPerPage,
-		siteId
+		siteId,
+		includeAllCalls
 	});
 
 	useEffect(() => {
 		const payload: GeneralAllElevatorCallsListPayloadInterface = {
 			page,
 			rowsPerPage,
-			siteId
+			siteId,
+			includeAllCalls
 		};
 
 		if (pageRef.current.siteId !== siteId && page === 0) {
@@ -49,6 +52,13 @@ const GeneralAllElevatorCallsList: FC = () => {
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.siteId = siteId;
+		} else if (pageRef.current.includeAllCalls !== includeAllCalls && page === 0) {
+			// dispatch: fetch all elevator calls
+			dispatch(AllElevatorCallsFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.includeAllCalls = includeAllCalls;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch all elevator calls
 			dispatch(AllElevatorCallsFetchList(payload));
@@ -72,7 +82,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, allElevatorCalls.content, page, rowsPerPage, siteId]);
+	}, [dispatch, allElevatorCalls.content, page, rowsPerPage, siteId, includeAllCalls]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -83,7 +93,8 @@ const GeneralAllElevatorCallsList: FC = () => {
 						{
 							page: 0,
 							rowsPerPage,
-							siteId
+							siteId,
+							includeAllCalls
 						},
 						true
 					)
@@ -97,7 +108,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allElevatorCalls.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allElevatorCalls.content, page, rowsPerPage, siteId]);
+	}, [dispatch, allElevatorCalls.content, page, rowsPerPage, siteId, includeAllCalls]);
 
 	// loader
 	if (allElevatorCalls.loader) {
@@ -117,7 +128,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}
-				<GeneralAllElevatorCallsActions siteId={siteId} />
+				<GeneralAllElevatorCallsActions siteId={siteId} includeAllCalls={includeAllCalls} />
 
 				{/* Empty */}
 				<PageEmpty message="EMPTY.MESSAGE" />
@@ -128,7 +139,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Actions */}
-			<GeneralAllElevatorCallsActions siteId={siteId} />
+			<GeneralAllElevatorCallsActions siteId={siteId} includeAllCalls={includeAllCalls} />
 
 			{/* Table */}
 			<RobotElevatorCallsTable

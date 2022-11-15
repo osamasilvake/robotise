@@ -36,7 +36,8 @@ const AppServices = (config: typeof AppConfigService) => {
 						FETCH: `${config.envAppUrl}/phone-dispatcher-configs`,
 						SINGLE: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId`,
 						AUDIO: `${config.envAppUrl}/phone-dispatcher-configs/:phoneConfigId/audio-messages`,
-						PHONE_NUMBERS: `${config.envAppUrl}/twilio-phone-numbers`
+						PHONE_NUMBERS: `${config.envAppUrl}/twilio-phone-numbers`,
+						TEST: `${config.envAppUrl}/test-outbound-call`
 					},
 					PHONE_CALLS: {
 						INBOUND: `${config.envAppUrl}/inbound-calls`,

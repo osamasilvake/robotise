@@ -14,7 +14,10 @@ import { SiteRobotConfigFormInterface } from './content/configuration/cloud/site
 import { SiteConfigurationMarketingRidesFormInterface } from './content/configuration/marketing-rides/SiteConfigurationMarketingRides.interface';
 import { SitePerformancePayloadInterface } from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
-import { DialogEditPhoneConfigFormInterface } from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
+import {
+	DialogEditPhoneConfigFormInterface,
+	DialogTestOutboundCallPhoneConfigFormInterface
+} from './content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
 import { SitePhoneConfigUploadAudioInterface } from './content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
 import { SitePhoneConfigsPhoneNumbersTypeEnum } from './content/phone-configs/detail/SitePhoneConfigsDetail.enum';
 import { SitePhoneConfigsSMSMessagesFormInterface } from './content/phone-configs/detail/sms-messages/SitePhoneConfigsSMSMessages.interface';
@@ -290,6 +293,36 @@ class SitesService {
 					callbackRetries: payload?.callbackRetries,
 					smsGateway: payload?.smsGateway,
 					smsMessages: payload?.smsMessages
+				}
+			}
+		});
+	};
+
+	/**
+	 * test phone config outbound call
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	sitePhoneConfigTestOutboundCall = (
+		siteId: string,
+		payload: DialogTestOutboundCallPhoneConfigFormInterface
+	) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.PHONE_CONFIGS.TEST;
+		return HttpClientService.post(url, {
+			data: {
+				type: 'outbound-calls',
+				attributes: {
+					location: payload.location,
+					prefix: payload.prefix
+				},
+				relationships: {
+					site: {
+						data: {
+							type: 'sites',
+							id: siteId
+						}
+					}
 				}
 			}
 		});

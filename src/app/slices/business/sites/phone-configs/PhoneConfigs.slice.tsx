@@ -2,7 +2,10 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { DialogEditPhoneConfigFormInterface } from '../../../../screens/business/sites/content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
+import {
+	DialogEditPhoneConfigFormInterface,
+	DialogTestOutboundCallPhoneConfigFormInterface
+} from '../../../../screens/business/sites/content/phone-configs/detail/actions/SitePhoneConfigsEdit.interface';
 import { SitePhoneConfigUploadAudioInterface } from '../../../../screens/business/sites/content/phone-configs/detail/audio-messages/SitePhoneConfigsAudioMessages.interface';
 import { SitePhoneConfigsPhoneNumbersTypeEnum } from '../../../../screens/business/sites/content/phone-configs/detail/SitePhoneConfigsDetail.enum';
 import { SitePhoneConfigsSMSMessagesFormInterface } from '../../../../screens/business/sites/content/phone-configs/detail/sms-messages/SitePhoneConfigsSMSMessages.interface';
@@ -287,6 +290,58 @@ export const PhoneConfigSmsMessagesEdit =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.PHONE_CONFIGS.EDIT.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: updateFailed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
+ * test phone config outbound call
+ * @param siteId
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const PhoneConfigTestOutboundCall =
+	(
+		siteId: string,
+		payload: DialogTestOutboundCallPhoneConfigFormInterface,
+		callback: () => void
+	) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return SitesService.sitePhoneConfigTestOutboundCall(siteId, payload)
+			.then(async () => {
+				// wait
+				await timeout(5000);
+
+				// callback
+				callback();
+
+				// dispatch: updated
+				dispatch(updated());
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-test-outbound-call-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.PHONE_CONFIGS.OUTBOUND_CALL.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'phone-config-test-outbound-call-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.PHONE_CONFIGS.OUTBOUND_CALL.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

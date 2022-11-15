@@ -61,7 +61,8 @@
 			"GENERATE": "Generate",
 			"PRINT": "Print",
 			"GO_BACK": "Go Back",
-			"SYNC": "Sync"
+			"SYNC": "Sync",
+			"TEST": "Test"
 		}
 	},
 	"TOOLTIP": {
@@ -210,6 +211,10 @@
 					"EDIT": {
 						"SUCCESS": "Phone config has been updated successfully!",
 						"ERROR": "Unable to edit a Phone config!"
+					},
+					"OUTBOUND_CALL": {
+						"SUCCESS": "Outbound Test Call has been performed successfully!",
+						"ERROR": "Unable to perform an Outbound Test Call!"
 					},
 					"PHONE_NUMBERS": {
 						"ERROR": "Unable to fetch phone numbers!"
@@ -985,6 +990,19 @@
 			"PHONE_CONFIGS": {
 				"DETAIL": {
 					"ACTIONS": {
+						"OUTBOUND_CALL": {
+							"LABEL": "Test Outbound Call",
+							"TITLE": "Test Outbound Call",
+							"EXCERPT": "Test outbound call to room.",
+							"FIELDS": {
+								"PREFIX": {
+									"LABEL": "Prefix"
+								},
+								"LOCATION": {
+									"LABEL": "Location"
+								}
+							}
+						},
 						"EDIT": {
 							"LABEL": "Edit",
 							"TITLE": "Edit Phone Config",

@@ -21,3 +21,13 @@ export interface DialogEditPhoneConfigFormInterface {
 export interface DialogEditPhoneConfigRoomsMappingInterface {
 	[key: string]: string;
 }
+
+export interface DialogTestOutboundCallPhoneConfigInterface {
+	open: boolean;
+	setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface DialogTestOutboundCallPhoneConfigFormInterface {
+	prefix: string;
+	location: string;
+}

@@ -352,7 +352,8 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 		if (!elements) return;
 
 		const { parentKey, items, isDelete, isRoot } = payload;
-		const values = (isRoot ? elements : items.value) as SCCDataElementInterface[];
+		const itemsObj = items as SCCDataElementInterface;
+		const values = (isRoot ? elements : itemsObj.value) as SCCDataElementInterface[];
 		const value = emptyItem(values[values.length - 1]);
 		const newList = isDelete ? [...values.slice(0, -1)] : [...values, value];
 
@@ -405,7 +406,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							))}
 
 						{/* Add */}
-						{elements && (
+						{elements && Array.isArray(elements) && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.ADD_MORE`)}
@@ -414,7 +415,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 								icon={<Add />}
 								onClick={() =>
 									onClickAddDelete({
-										items: elements as SCCDataElementInterface,
+										items: elements,
 										isRoot: true
 									})
 								}
@@ -422,7 +423,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 						)}
 
 						{/* Delete */}
-						{elements && (
+						{elements && Array.isArray(elements) && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.DELETE`)}
@@ -431,7 +432,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 								icon={<DeleteOutline />}
 								onClick={() =>
 									onClickAddDelete({
-										items: elements as SCCDataElementInterface,
+										items: elements,
 										isDelete: true,
 										isRoot: true
 									})

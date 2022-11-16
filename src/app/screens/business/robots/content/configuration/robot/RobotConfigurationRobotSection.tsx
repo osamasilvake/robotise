@@ -340,7 +340,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 		if (!elements) return;
 
 		const { parentKey, items, isDelete, isRoot } = payload;
-		const values = (isRoot ? elements : items.value) as RCCDataElementInterface[];
+		const itemsObj = items as RCCDataElementInterface;
+		const values = (isRoot ? elements : itemsObj.value) as RCCDataElementInterface[];
 		const value = emptyItem(values[values.length - 1]);
 		const newList = isDelete ? [...values.slice(0, -1)] : [...values, value];
 
@@ -393,7 +394,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							))}
 
 						{/* Add */}
-						{elements && (
+						{elements && Array.isArray(elements) && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.ADD_MORE`)}
@@ -402,7 +403,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								icon={<Add />}
 								onClick={() =>
 									onClickAddDelete({
-										items: elements as RCCDataElementInterface,
+										items: elements,
 										isRoot: true
 									})
 								}
@@ -410,7 +411,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						)}
 
 						{/* Delete */}
-						{elements && (
+						{elements && Array.isArray(elements) && (
 							<Chip
 								size="small"
 								label={t(`${translation}.FORM.DELETE`)}
@@ -419,7 +420,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								icon={<DeleteOutline />}
 								onClick={() =>
 									onClickAddDelete({
-										items: elements as RCCDataElementInterface,
+										items: elements,
 										isDelete: true,
 										isRoot: true
 									})

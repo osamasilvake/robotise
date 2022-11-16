@@ -52,7 +52,7 @@ export interface SiteConfigurationSiteFormBooleanInterface {
 
 export interface SiteConfigurationSiteAddDeleteItemInterface {
 	parentKey?: string;
-	items: SCCDataElementInterface;
+	items: SCCDataElementInterface | SCCDataElementInterface[];
 	isDelete?: boolean;
 	isRoot?: boolean;
 }

@@ -51,7 +51,7 @@ export interface RobotConfigurationRobotFormBooleanInterface {
 
 export interface RobotConfigurationRobotAddDeleteItemInterface {
 	parentKey?: string;
-	items: RCCDataElementInterface;
+	items: RCCDataElementInterface | RCCDataElementInterface[];
 	isDelete?: boolean;
 	isRoot?: boolean;
 }

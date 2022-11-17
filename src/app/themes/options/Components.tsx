@@ -1,3 +1,6 @@
+import { buttonClasses } from '@mui/material/Button';
+import { speedDialClasses } from '@mui/material/SpeedDial';
+import { speedDialActionClasses } from '@mui/material/SpeedDialAction';
 import { Components } from '@mui/material/styles';
 
 import { AppConfigService } from '../../services';
@@ -63,7 +66,7 @@ const ComponentsCustom: Components = {
 					color: AppConfigService.AppOptions.colors.c7,
 					cursor: 'default',
 					pointerEvents: 'none',
-					'&.Mui-disabled': {
+					[`&.${buttonClasses.disabled}`]: {
 						opacity: 0.7
 					}
 				}
@@ -74,6 +77,25 @@ const ComponentsCustom: Components = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					opacity: 0.9
+				}
+			}
+		}
+	},
+	MuiButtonBase: {
+		styleOverrides: {
+			root: {
+				[`&.${speedDialClasses.fab}`]: {
+					height: pxToRem(46),
+					width: pxToRem(46)
+				},
+				[`&.${speedDialActionClasses.fab}`]: {
+					backgroundColor: AppConfigService.AppOptions.colors.c9,
+					color: AppConfigService.AppOptions.colors.c7,
+					transition: 'none',
+					'&:hover': {
+						backgroundColor: AppConfigService.AppOptions.colors.c9,
+						opacity: 0.95
+					}
 				}
 			}
 		}

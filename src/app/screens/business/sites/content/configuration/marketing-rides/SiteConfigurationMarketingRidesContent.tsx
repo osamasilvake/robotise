@@ -14,13 +14,16 @@ import {
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../slices';
 import {
 	marketingRidesSelector,
+	SiteMarketingRidesFetchList,
 	SiteMarketingRidesUpdate
 } from '../../../../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { SiteParamsInterface } from '../../../Site.interface';
 import {
 	SiteConfigurationMarketingRidesContentInterface,
 	SiteConfigurationMarketingRidesFormInterface,
@@ -40,6 +43,10 @@ const SiteConfigurationMarketingRidesContent: FC<
 
 	const dispatch = useDispatch<AppDispatch>();
 	const marketingRides = useSelector(marketingRidesSelector);
+
+	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
+
+	const cSiteId = params.siteId;
 	const marketingRide = marketingRides?.content?.data[0];
 	const times = marketingRide?.times || [];
 
@@ -74,13 +81,24 @@ const SiteConfigurationMarketingRidesContent: FC<
 		SiteConfigurationMarketingRidesValidation,
 		async () => {
 			// dispatch: update marketing rides
-			marketingRide?.id && dispatch(SiteMarketingRidesUpdate(marketingRide?.id, values));
+			marketingRide?.id &&
+				dispatch(
+					SiteMarketingRidesUpdate(marketingRide?.id, values, () => {
+						// set form dirty
+						setFormDirty(false);
+
+						// dispatch: fetch marketing rides
+						dispatch(SiteMarketingRidesFetchList(cSiteId, true));
+					})
+				);
 		},
 		(state) => {
 			const updated = { ...state, times: values.times?.filter((v) => v && v.minutes) };
 			const a = JSON.stringify(initial);
 			const b = JSON.stringify(updated);
 			const result = a.localeCompare(b);
+
+			// set form dirty
 			setFormDirty(result !== 0);
 		}
 	);

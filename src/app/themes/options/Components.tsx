@@ -1,8 +1,7 @@
 import { buttonClasses } from '@mui/material/Button';
 import { speedDialClasses } from '@mui/material/SpeedDial';
 import { speedDialActionClasses } from '@mui/material/SpeedDialAction';
-import { alpha, Components } from '@mui/material/styles';
-import { switchClasses } from '@mui/material/Switch';
+import { Components } from '@mui/material/styles';
 
 import { AppConfigService } from '../../services';
 import { pxToRem } from '../../utilities/methods/Number';
@@ -97,28 +96,6 @@ const ComponentsCustom: Components = {
 						backgroundColor: AppConfigService.AppOptions.colors.c9,
 						opacity: 0.95
 					}
-				}
-			}
-		}
-	},
-	MuiSwitch: {
-		styleOverrides: {
-			switchBase: {
-				color: AppConfigService.AppOptions.colors.c9,
-				[`&.${switchClasses.checked}`]: {
-					color: AppConfigService.AppOptions.colors.c9,
-					[`+.${switchClasses.track}`]: {
-						backgroundColor: AppConfigService.AppOptions.colors.c9
-					},
-					[`&.${switchClasses.disabled}`]: {
-						color: alpha(AppConfigService.AppOptions.colors.c9, 0.5)
-					},
-					'&:hover': {
-						backgroundColor: 'transparent'
-					}
-				},
-				'&:hover': {
-					backgroundColor: 'transparent'
 				}
 			}
 		}

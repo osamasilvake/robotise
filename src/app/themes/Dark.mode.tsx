@@ -1,4 +1,6 @@
 import { ThemeOptions } from '@mui/material';
+import { tabClasses } from '@mui/material/Tab';
+import { tableRowClasses } from '@mui/material/TableRow';
 
 import { AppConfigService } from '../services';
 import { pxToRem } from '../utilities/methods/Number';
@@ -65,9 +67,11 @@ const Dark = (options: ThemeOptions): ThemeOptions => ({
 		MuiTableRow: {
 			styleOverrides: {
 				root: {
-					'&.MuiTableRow-hover:hover': {
-						backgroundColor: AppConfigService.AppOptions.colors.c2,
-						cursor: 'pointer'
+					[`&.${tableRowClasses.hover}`]: {
+						'&:hover': {
+							backgroundColor: AppConfigService.AppOptions.colors.c2,
+							cursor: 'pointer'
+						}
 					}
 				}
 			}
@@ -91,7 +95,7 @@ const Dark = (options: ThemeOptions): ThemeOptions => ({
 			styleOverrides: {
 				textColorPrimary: {
 					minWidth: pxToRem(135),
-					'&.Mui-selected': {
+					[`&.${tabClasses.selected}`]: {
 						backgroundColor: AppConfigService.AppOptions.colors.c1,
 						borderTop: `${pxToRem(1)} solid ${AppConfigService.AppOptions.colors.c9}`
 					}

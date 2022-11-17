@@ -1,4 +1,4 @@
-import { alpha, Components } from '@mui/material/styles';
+import { Components } from '@mui/material/styles';
 
 import { AppConfigService } from '../../services';
 import { pxToRem } from '../../utilities/methods/Number';
@@ -58,12 +58,6 @@ const ComponentsCustom: Components = {
 				transition: 'none'
 			},
 			outlined: {
-				border: `${pxToRem(1)} solid ${AppConfigService.AppOptions.colors.c9}`,
-				color: AppConfigService.AppOptions.colors.c9,
-				'&:hover': {
-					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					color: AppConfigService.AppOptions.colors.c7
-				},
 				'&.selected': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					color: AppConfigService.AppOptions.colors.c7,
@@ -71,12 +65,6 @@ const ComponentsCustom: Components = {
 					pointerEvents: 'none',
 					'&.Mui-disabled': {
 						opacity: 0.7
-					}
-				},
-				'&.MuiButton-outlinedError': {
-					'&:hover': {
-						backgroundColor: AppConfigService.AppOptions.colors.c12,
-						color: AppConfigService.AppOptions.colors.c7
 					}
 				}
 			},
@@ -86,47 +74,6 @@ const ComponentsCustom: Components = {
 				'&:hover': {
 					backgroundColor: AppConfigService.AppOptions.colors.c9,
 					opacity: 0.9
-				}
-			}
-		}
-	},
-	MuiButtonBase: {
-		styleOverrides: {
-			root: {
-				'&.MuiSpeedDial-fab': {
-					height: pxToRem(46),
-					width: pxToRem(46)
-				},
-				'&.MuiSpeedDialAction-fab': {
-					backgroundColor: AppConfigService.AppOptions.colors.c9,
-					color: AppConfigService.AppOptions.colors.c7,
-					transition: 'none',
-					'&:hover': {
-						backgroundColor: AppConfigService.AppOptions.colors.c9,
-						opacity: 0.95
-					}
-				}
-			}
-		}
-	},
-	MuiSwitch: {
-		styleOverrides: {
-			switchBase: {
-				color: AppConfigService.AppOptions.colors.c9,
-				'&.Mui-checked': {
-					color: AppConfigService.AppOptions.colors.c9,
-					'+.MuiSwitch-track': {
-						backgroundColor: AppConfigService.AppOptions.colors.c9
-					},
-					'&:hover': {
-						backgroundColor: 'transparent'
-					},
-					'&.Mui-disabled': {
-						color: alpha(AppConfigService.AppOptions.colors.c9, 0.5)
-					}
-				},
-				'&:hover': {
-					backgroundColor: 'transparent'
 				}
 			}
 		}

@@ -1,10 +1,11 @@
 import { Badge } from '@mui/material';
+import { badgeClasses } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 
 import { AppConfigService } from '../../services';
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({
-	'& .MuiBadge-badge': {
+	[`& .${badgeClasses.badge}`]: {
 		backgroundColor: AppConfigService.AppOptions.colors.c10v1,
 		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${theme.palette.background.paper}`,
 		color: AppConfigService.AppOptions.colors.c10v1,
@@ -20,12 +21,12 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
 			width: '100%'
 		}
 	},
-	'&.Mui-dot-red .MuiBadge-badge': {
+	[`&.Mui-dot-red .${badgeClasses.badge}`]: {
 		backgroundColor: AppConfigService.AppOptions.colors.c12,
 		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${AppConfigService.AppOptions.colors.c7}`,
 		color: AppConfigService.AppOptions.colors.c12
 	},
-	'&.Mui-dot-orange .MuiBadge-badge': {
+	[`&.Mui-dot-orange .${badgeClasses.badge}`]: {
 		backgroundColor: AppConfigService.AppOptions.colors.c14,
 		boxShadow: `0 0 0 ${theme.typography.pxToRem(2)} ${AppConfigService.AppOptions.colors.c7}`,
 		color: AppConfigService.AppOptions.colors.c14

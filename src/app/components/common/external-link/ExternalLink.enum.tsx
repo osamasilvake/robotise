@@ -6,10 +6,11 @@ export enum ExternalLinkTypeEnum {
 export enum ExternalLinkActionTypeEnum {
 	AUDIT_LOGS = 'audit_logs',
 	ALERT_LOGS = 'alert_logs',
-	ELEVATOR_LOGS = 'elevator_logs',
-	DIAGNOSTICS_LOGS = 'diagnostics_logs',
+	ALERT_DASHBOARD_LOGS = 'alert_dashboard_logs',
 	BATTERY = 'battery',
-	TEMPERATURE = 'temperature',
 	COOLING_UNIT = 'cooling_unit',
-	ITEM_TRACKING = 'item_tracking'
+	DIAGNOSTICS_LOGS = 'diagnostics_logs',
+	ELEVATOR_LOGS = 'elevator_logs',
+	ITEM_TRACKING = 'item_tracking',
+	TEMPERATURE = 'temperature'
 }

@@ -31,6 +31,10 @@ export interface SliceDeepLinkInterface {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
+	alertDashboardLogs: {
+		loading: boolean;
+		content: SDContentInterface | null;
+	};
 }
 
 export interface SDContentInterface {

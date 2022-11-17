@@ -80,44 +80,44 @@ class DeepLinksService {
 	};
 
 	/**
+	 * fetch alert logs link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkAlertLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ALERT_LOGS;
+		return HttpClientService.get<SDContentInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
+	 * fetch alert dashboard logs link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkAlertDashboardLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ALERT_DASHBOARD_LOGS;
+		return HttpClientService.get<SDContentInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * fetch battery link
 	 * @param payload
 	 * @returns
 	 */
 	deepLinkBatteryLinkFetch = (payload: ExternalLinkPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.BATTERY;
-		return HttpClientService.get<SDContentInterface>(url, {
-			params: {
-				robot: payload.robotId,
-				from: payload.from,
-				to: payload.to
-			}
-		});
-	};
-
-	/**
-	 * fetch temperature link
-	 * @param payload
-	 * @returns
-	 */
-	deepLinkTemperatureLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.TEMPERATURE;
-		return HttpClientService.get<SDContentInterface>(url, {
-			params: {
-				robot: payload.robotId,
-				from: payload.from,
-				to: payload.to
-			}
-		});
-	};
-
-	/**
-	 * fetch diagnostics logs link
-	 * @param payload
-	 * @returns
-	 */
-	deepLinkDiagnosticsLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.DIAGNOSTICS_LOGS;
 		return HttpClientService.get<SDContentInterface>(url, {
 			params: {
 				robot: payload.robotId,
@@ -144,12 +144,12 @@ class DeepLinksService {
 	};
 
 	/**
-	 * fetch item tracking link
+	 * fetch diagnostics logs link
 	 * @param payload
 	 * @returns
 	 */
-	deepLinkItemTrackingLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ITEM_TRACKING;
+	deepLinkDiagnosticsLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.DIAGNOSTICS_LOGS;
 		return HttpClientService.get<SDContentInterface>(url, {
 			params: {
 				robot: payload.robotId,
@@ -176,12 +176,28 @@ class DeepLinksService {
 	};
 
 	/**
-	 * fetch alert logs link
+	 * fetch item tracking link
 	 * @param payload
 	 * @returns
 	 */
-	deepLinkAlertLogsLinkFetch = (payload: ExternalLinkPayloadInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ALERT_LOGS;
+	deepLinkItemTrackingLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ITEM_TRACKING;
+		return HttpClientService.get<SDContentInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
+	 * fetch temperature link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkTemperatureLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.TEMPERATURE;
 		return HttpClientService.get<SDContentInterface>(url, {
 			params: {
 				robot: payload.robotId,

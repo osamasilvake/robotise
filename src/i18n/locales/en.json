@@ -394,26 +394,29 @@
 					"AUDIT_LOGS": {
 						"ERROR": "Failed to fetch audit logs link!"
 					},
+					"ALERT_LOGS": {
+						"ERROR": "Failed to fetch alert logs link!"
+					},
+					"ALERT_DASHBOARD_LOGS": {
+						"ERROR": "Failed to fetch alert logs link!"
+					},
 					"BATTERY": {
 						"ERROR": "Failed to fetch battery link!"
-					},
-					"TEMPERATURE": {
-						"ERROR": "Failed to fetch temperature link!"
-					},
-					"DIAGNOSTICS_LOGS": {
-						"ERROR": "Failed to fetch diagnostics logs link!"
 					},
 					"COOLING_UNIT": {
 						"ERROR": "Failed to fetch cooling unit link!"
 					},
-					"ITEM_TRACKING": {
-						"ERROR": "Failed to fetch item tracking link!"
+					"DIAGNOSTICS_LOGS": {
+						"ERROR": "Failed to fetch diagnostics logs link!"
 					},
 					"ELEVATOR_LOGS": {
 						"ERROR": "Failed to fetch elevator logs link!"
 					},
-					"ALERT_LOGS": {
-						"ERROR": "Failed to fetch alert logs link!"
+					"ITEM_TRACKING": {
+						"ERROR": "Failed to fetch item tracking link!"
+					},
+					"TEMPERATURE": {
+						"ERROR": "Failed to fetch temperature link!"
 					}
 				},
 				"CREATE": {
@@ -2034,24 +2037,28 @@
 						"LABEL": "Audit Logs",
 						"TEXT": "Link"
 					},
+					"ALERT_LOGS": {
+						"LABEL": "Alert Logs",
+						"TEXT": "Link"
+					},
+					"ALERT_DASHBOARD_LOGS": {
+						"LABEL": "Alert Dashboard Logs",
+						"TEXT": "Link"
+					},
 					"BATTERY": {
 						"LABEL": "Battery",
-						"TEXT": "Link"
-					},
-					"TEMPERATURE": {
-						"LABEL": "Temperature",
-						"TEXT": "Link"
-					},
-					"DIAGNOSTICS_LOGS": {
-						"LABEL": "Diagnostics Logs",
 						"TEXT": "Link"
 					},
 					"COOLING_UNIT": {
 						"LABEL": "Cooling Unit",
 						"TEXT": "Link"
 					},
-					"ALERT_LOGS": {
-						"LABEL": "Alert Logs",
+					"DIAGNOSTICS_LOGS": {
+						"LABEL": "Diagnostics Logs",
+						"TEXT": "Link"
+					},
+					"TEMPERATURE": {
+						"LABEL": "Temperature",
 						"TEXT": "Link"
 					}
 				}

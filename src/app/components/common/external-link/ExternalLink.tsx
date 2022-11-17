@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '../../../slices';
 import {
+	DeepLinkAlertDashboardLogsLinkFetch,
 	DeepLinkAlertLogsLinkFetch,
 	DeepLinkAuditLogsLinkFetch,
 	DeepLinkBatteryLinkFetch,
@@ -35,6 +36,7 @@ const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 	const actionsList = {
 		[ExternalLinkActionTypeEnum.AUDIT_LOGS]: DeepLinkAuditLogsLinkFetch,
 		[ExternalLinkActionTypeEnum.ALERT_LOGS]: DeepLinkAlertLogsLinkFetch,
+		[ExternalLinkActionTypeEnum.ALERT_DASHBOARD_LOGS]: DeepLinkAlertDashboardLogsLinkFetch,
 		[ExternalLinkActionTypeEnum.BATTERY]: DeepLinkBatteryLinkFetch,
 		[ExternalLinkActionTypeEnum.COOLING_UNIT]: DeepLinkCoolingUnitLinkFetch,
 		[ExternalLinkActionTypeEnum.DIAGNOSTICS_LOGS]: DeepLinkDiagnosticsLogsLinkFetch,

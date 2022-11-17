@@ -116,13 +116,14 @@ const AppServices = (config: typeof AppConfigService) => {
 				DEEP_LINKS: `${config.envAppUrl}/deeplinks`,
 				DEEP_LINK: {
 					AUDIT_LOGS: `${config.envAppUrl}/deeplinks-request/audit-logs-robot-site`,
+					ALERT_LOGS: `${config.envAppUrl}/deeplinks-request/robot-alerts-log`,
+					ALERT_DASHBOARD_LOGS: `${config.envAppUrl}/deeplinks-request/robot-alerts-dashboard`,
 					BATTERY: `${config.envAppUrl}/deeplinks-request/robot-battery-dashboard`,
-					TEMPERATURE: `${config.envAppUrl}/deeplinks-request/robot-temperature`,
-					DIAGNOSTICS_LOGS: `${config.envAppUrl}/deeplinks-request/robot-diagnostics-history`,
 					COOLING_UNIT: `${config.envAppUrl}/deeplinks-request/robot-cooling-unit`,
-					ITEM_TRACKING: `${config.envAppUrl}/deeplinks-request/item-tracking`,
+					DIAGNOSTICS_LOGS: `${config.envAppUrl}/deeplinks-request/robot-diagnostics-history`,
 					ELEVATOR_LOGS: `${config.envAppUrl}/deeplinks-request/elevator-microservice-logs`,
-					ALERT_LOGS: `${config.envAppUrl}/deeplinks-request/robot-alerts-log`
+					ITEM_TRACKING: `${config.envAppUrl}/deeplinks-request/item-tracking`,
+					TEMPERATURE: `${config.envAppUrl}/deeplinks-request/robot-temperature`
 				},
 				MIDDLEWARE_CONFIG: `${config.envAppUrl}/cmd-events`,
 				SETUP: {

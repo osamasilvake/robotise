@@ -53,6 +53,46 @@ const RobotDetailDataLogs: FC = () => {
 					</Box>
 				</Grid>
 
+				{/* Deep Link: Alert Logs */}
+				<Grid item xs={12} sm={6} md={4} lg={2}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.ALERT_LOGS.LABEL`)}
+					</Typography>
+					<Box className={classes.sContent}>
+						<ExternalLink
+							text={t(`${translation}.ALERT_LOGS.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-8h',
+								to: 'now'
+							}}
+							actionType={ExternalLinkActionTypeEnum.ALERT_LOGS}
+							showIcon={deepLink.alertLogs.loading}
+							disabled={deepLink.alertLogs.loading}
+						/>
+					</Box>
+				</Grid>
+
+				{/* Deep Link: Alert Dashboard Logs */}
+				<Grid item xs={12} sm={6} md={4} lg={2}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.ALERT_DASHBOARD_LOGS.LABEL`)}
+					</Typography>
+					<Box className={classes.sContent}>
+						<ExternalLink
+							text={t(`${translation}.ALERT_DASHBOARD_LOGS.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-7d',
+								to: 'now'
+							}}
+							actionType={ExternalLinkActionTypeEnum.ALERT_DASHBOARD_LOGS}
+							showIcon={deepLink.alertDashboardLogs.loading}
+							disabled={deepLink.alertDashboardLogs.loading}
+						/>
+					</Box>
+				</Grid>
+
 				{/* Deep Link: Battery */}
 				<Grid item xs={12} sm={6} md={4} lg={2}>
 					<Typography variant="caption" color="textSecondary">
@@ -69,46 +109,6 @@ const RobotDetailDataLogs: FC = () => {
 							actionType={ExternalLinkActionTypeEnum.BATTERY}
 							showIcon={deepLink.battery.loading}
 							disabled={deepLink.battery.loading}
-						/>
-					</Box>
-				</Grid>
-
-				{/* Deep Link: Temperature */}
-				<Grid item xs={12} sm={6} md={4} lg={2}>
-					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.TEMPERATURE.LABEL`)}
-					</Typography>
-					<Box className={classes.sContent}>
-						<ExternalLink
-							text={t(`${translation}.TEMPERATURE.TEXT`)}
-							payload={{
-								robotId: cRobotId,
-								from: 'now-6h',
-								to: 'now'
-							}}
-							actionType={ExternalLinkActionTypeEnum.TEMPERATURE}
-							showIcon={deepLink.temperature.loading}
-							disabled={deepLink.temperature.loading}
-						/>
-					</Box>
-				</Grid>
-
-				{/* Deep Link: Diagnostics Logs */}
-				<Grid item xs={12} sm={6} md={4} lg={2}>
-					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.DIAGNOSTICS_LOGS.LABEL`)}
-					</Typography>
-					<Box className={classes.sContent}>
-						<ExternalLink
-							text={t(`${translation}.DIAGNOSTICS_LOGS.TEXT`)}
-							payload={{
-								robotId: cRobotId,
-								from: 'now-1d',
-								to: 'now'
-							}}
-							actionType={ExternalLinkActionTypeEnum.DIAGNOSTICS_LOGS}
-							showIcon={deepLink.diagnosticsLogs.loading}
-							disabled={deepLink.diagnosticsLogs.loading}
 						/>
 					</Box>
 				</Grid>
@@ -133,22 +133,42 @@ const RobotDetailDataLogs: FC = () => {
 					</Box>
 				</Grid>
 
-				{/* Deep Link: Alert Logs */}
+				{/* Deep Link: Diagnostics Logs */}
 				<Grid item xs={12} sm={6} md={4} lg={2}>
 					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.ALERT_LOGS.LABEL`)}
+						{t(`${translation}.DIAGNOSTICS_LOGS.LABEL`)}
 					</Typography>
 					<Box className={classes.sContent}>
 						<ExternalLink
-							text={t(`${translation}.ALERT_LOGS.TEXT`)}
+							text={t(`${translation}.DIAGNOSTICS_LOGS.TEXT`)}
 							payload={{
 								robotId: cRobotId,
-								from: 'now-8h',
+								from: 'now-1d',
 								to: 'now'
 							}}
-							actionType={ExternalLinkActionTypeEnum.ALERT_LOGS}
-							showIcon={deepLink.alertLogs.loading}
-							disabled={deepLink.alertLogs.loading}
+							actionType={ExternalLinkActionTypeEnum.DIAGNOSTICS_LOGS}
+							showIcon={deepLink.diagnosticsLogs.loading}
+							disabled={deepLink.diagnosticsLogs.loading}
+						/>
+					</Box>
+				</Grid>
+
+				{/* Deep Link: Temperature */}
+				<Grid item xs={12} sm={6} md={4} lg={2}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.TEMPERATURE.LABEL`)}
+					</Typography>
+					<Box className={classes.sContent}>
+						<ExternalLink
+							text={t(`${translation}.TEMPERATURE.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-6h',
+								to: 'now'
+							}}
+							actionType={ExternalLinkActionTypeEnum.TEMPERATURE}
+							showIcon={deepLink.temperature.loading}
+							disabled={deepLink.temperature.loading}
 						/>
 					</Box>
 				</Grid>

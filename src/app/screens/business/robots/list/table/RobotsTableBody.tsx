@@ -55,7 +55,21 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 			default:
 				return content.data;
 		}
-		const result = content.data.concat().sort(sortByProperty(orderBy, type));
+
+		// cases:
+		// 1. alerts column
+		// 2. other columns
+		let result = [];
+		if (orderBy === RobotsTableColumnsTypeEnum.ALERTS) {
+			const result1 = content.data.filter((r) => r.robotIsRemoteSafetyResetRequired);
+			const result2 = content.data
+				.filter((r) => !r.robotIsRemoteSafetyResetRequired)
+				.concat()
+				.sort(sortByProperty(orderBy, type));
+			result = result2.concat(result1);
+		} else {
+			result = content.data.concat().sort(sortByProperty(orderBy, type));
+		}
 		return order === 'desc' ? result.reverse() : result;
 	};
 

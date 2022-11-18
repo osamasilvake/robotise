@@ -2,13 +2,13 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SitePhoneCallsTableColumnsTypeEnum } from './SitePhoneCallsTable.enum';
+import { GeneralAllPhoneCallsTableColumnsTypeEnum } from './GeneralAllPhoneCallsTable.enum';
 import {
-	SitePhoneCallsTableColumnInterface,
-	SitePhoneCallsTableHeadInterface
-} from './SitePhoneCallsTable.interface';
+	GeneralAllPhoneCallsTableColumnInterface,
+	GeneralAllPhoneCallsTableHeadInterface
+} from './GeneralAllPhoneCallsTable.interface';
 
-const SitePhoneCallsTableHead: FC<SitePhoneCallsTableHeadInterface> = (props) => {
+const GeneralAllPhoneCallsTableHead: FC<GeneralAllPhoneCallsTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;
 	const { t } = useTranslation('GENERAL');
 
@@ -18,14 +18,14 @@ const SitePhoneCallsTableHead: FC<SitePhoneCallsTableHeadInterface> = (props) =>
 	 * @returns
 	 */
 	const handleSortRequest =
-		(property: SitePhoneCallsTableColumnsTypeEnum) => (event: MouseEvent) => {
+		(property: GeneralAllPhoneCallsTableColumnsTypeEnum) => (event: MouseEvent) => {
 			onRequestSort(event, property);
 		};
 
 	return (
 		<TableHead>
 			<TableRow>
-				{columns.map((column: SitePhoneCallsTableColumnInterface) => (
+				{columns.map((column: GeneralAllPhoneCallsTableColumnInterface) => (
 					<TableCell
 						key={column.id}
 						align={column.align}
@@ -47,4 +47,4 @@ const SitePhoneCallsTableHead: FC<SitePhoneCallsTableHeadInterface> = (props) =>
 		</TableHead>
 	);
 };
-export default SitePhoneCallsTableHead;
+export default GeneralAllPhoneCallsTableHead;

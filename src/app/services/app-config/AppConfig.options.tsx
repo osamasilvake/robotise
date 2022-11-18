@@ -122,6 +122,14 @@ const AppOptions = (config: typeof AppConfigService) => {
 							defaultPageSize: 50,
 							pageSizes: [5, 10, 15, 20, 50, 100]
 						}
+					},
+					allPhoneCalls: {
+						list: {
+							refreshTime: 10000,
+							showPageSizes: true,
+							defaultPageSize: 50,
+							pageSizes: [5, 10, 15, 20, 50, 100]
+						}
 					}
 				},
 				sites: {

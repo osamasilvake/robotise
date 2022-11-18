@@ -1,5 +1,6 @@
 import { AECContentInterface } from './business/general/all-elevator-calls/AllElevatorCalls.slice.interface';
 import { SAOContentInterface } from './business/general/all-orders/AllOrders.slice.interface';
+import { APCContentInterface } from './business/general/all-phone-calls/AllPhoneCalls.slice.interface';
 import { SEContentInterface } from './business/general/emails/Emails.slice.interface';
 import { CLContentInterface } from './business/robots/commands-log/CommandsLog.slice.interface';
 import { ECContentInterface } from './business/robots/elevator-calls/ElevatorCalls.slice.interface';
@@ -66,4 +67,5 @@ export type PaginationInput =
 	| ECContentInterface
 	| SMCContentInterface
 	| SAOContentInterface
-	| AECContentInterface;
+	| AECContentInterface
+	| APCContentInterface;

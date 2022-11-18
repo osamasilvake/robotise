@@ -7,6 +7,7 @@ import auth from './authentication/Auth.slice';
 import allElevatorCalls from './business/general/all-elevator-calls/AllElevatorCalls.slice';
 import allOrder from './business/general/all-orders/AllOrder.slice';
 import allOrders from './business/general/all-orders/AllOrders.slice';
+import allPhoneCalls from './business/general/all-phone-calls/AllPhoneCalls.slice';
 import email from './business/general/emails/Email.slice';
 import emails from './business/general/emails/Emails.slice';
 import generalOperations from './business/general/GeneralOperations.slice';
@@ -52,6 +53,7 @@ const combinedReducer = combineReducers({
 	allOrders,
 	allOrder,
 	allElevatorCalls,
+	allPhoneCalls,
 
 	sites,
 	siteOperations,

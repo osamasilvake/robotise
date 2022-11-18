@@ -1,7 +1,7 @@
 import { SitePhoneCallsTableColumnsTypeEnum } from './SitePhoneCallsTable.enum';
 import { SitePhoneCallsTableColumnInterface } from './SitePhoneCallsTable.interface';
 
-const translation = 'CONTENT.PHONE_CALLS.LIST.TABLE.COLUMNS';
+const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.COLUMNS';
 export const columns: SitePhoneCallsTableColumnInterface[] = [
 	{
 		id: SitePhoneCallsTableColumnsTypeEnum.UPDATED,
@@ -24,7 +24,7 @@ export const columns: SitePhoneCallsTableColumnInterface[] = [
 	{
 		id: SitePhoneCallsTableColumnsTypeEnum.STATUS,
 		label: `${translation}.STATUS`,
-		minWidth: 120,
+		minWidth: 130,
 		align: 'left'
 	},
 	{

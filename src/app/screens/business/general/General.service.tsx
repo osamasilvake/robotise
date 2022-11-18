@@ -4,11 +4,13 @@ import { dateDaysPriorToToday } from '../../../utilities/methods/Date';
 import { GeneralAllElevatorCallsListPayloadInterface } from './all-elevator-calls/list/GeneralAllElevatorCallsList.interface';
 import { GeneralAllOrdersPeriodTypeEnum } from './all-orders/list/actions/GeneralAllOrdersActions.enum';
 import { GeneralAllOrdersListPayloadInterface } from './all-orders/list/GeneralAllOrdersList.interface';
+import { GeneralAllPhoneCallsListPayloadInterface } from './all-phone-calls/list/GeneralAllPhoneCallsList.interface';
 import { GeneralEmailsListPayloadInterface } from './emails/list/GeneralEmailsList.interface';
 import {
 	GeneralAllElevatorCallsAxiosGetInterface,
 	GeneralAllOrderAxiosGetInterface,
 	GeneralAllOrdersAxiosGetInterface,
+	GeneralAllPhoneCallsAxiosGetInterface,
 	GeneralEmailAxiosGetInterface,
 	GeneralEmailsAxiosGetInterface,
 	GeneralOrderModesAxiosGetInterface
@@ -96,6 +98,38 @@ class GeneralService {
 				'filter[e2eStatus]': payload.includeAllCalls ? undefined : 'failed',
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
+			}
+		});
+	};
+
+	/**
+	 * fetch all phone inbound calls
+	 * @param payload
+	 * @returns
+	 */
+	generalAllPhoneCallsInboundFetch = (payload: GeneralAllPhoneCallsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ALL_PHONE_CALLS.INBOUND;
+		return HttpClientService.get<GeneralAllPhoneCallsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.siteId || undefined,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage / 2
+			}
+		});
+	};
+
+	/**
+	 * fetch all phone outbound calls
+	 * @param payload
+	 * @returns
+	 */
+	generalAllPhoneCallsOutboundFetch = (payload: GeneralAllPhoneCallsListPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ALL_PHONE_CALLS.OUTBOUND;
+		return HttpClientService.get<GeneralAllPhoneCallsAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': payload.siteId || undefined,
+				'page[number]': payload.page + 1,
+				'page[size]': payload.rowsPerPage / 2
 			}
 		});
 	};

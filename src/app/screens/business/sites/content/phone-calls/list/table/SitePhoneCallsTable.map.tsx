@@ -11,7 +11,7 @@ import { SitePhoneCallsTableColumnHistoryEventTypeEnum } from './SitePhoneCallsT
  * @returns
  */
 export const mapPhoneCall = (phoneCall: PCCDataInterface) => {
-	const translation = 'CONTENT.PHONE_CALLS.LIST.TABLE.VALUES';
+	const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.VALUES';
 	return {
 		...phoneCall,
 		status: `${translation}.STATUS.${phoneCall.status}`,

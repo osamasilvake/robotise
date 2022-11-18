@@ -24,6 +24,10 @@ const AppServices = (config: typeof AppConfigService) => {
 						SINGLE: `${config.envAppUrl}/orders/:orderId`
 					},
 					ALL_ELEVATOR_CALLS: `${config.envAppUrl}/elevator-calls`,
+					ALL_PHONE_CALLS: {
+						INBOUND: `${config.envAppUrl}/inbound-calls`,
+						OUTBOUND: `${config.envAppUrl}/outbound-calls`
+					},
 					ORDER_MODES: `${config.envAppUrl}/order-modes`,
 					REPORTS: config.envAppUrl
 				},

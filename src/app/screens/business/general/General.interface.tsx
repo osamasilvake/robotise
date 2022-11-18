@@ -1,5 +1,6 @@
 import { AECDataInterface } from '../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice.interface';
 import { SAODataInterface } from '../../../slices/business/general/all-orders/AllOrders.slice.interface';
+import { APCDataInterface } from '../../../slices/business/general/all-phone-calls/AllPhoneCalls.slice.interface';
 import { SECDataInterface } from '../../../slices/business/general/emails/Emails.slice.interface';
 import { SGOOrderModeContentDataInterface } from '../../../slices/business/general/GeneralOperations.slice.interface';
 import { JsonAPIResponseInterface } from '../../../slices/JsonAPI.interface';
@@ -41,6 +42,14 @@ export interface GeneralAllElevatorCallsAxiosGetInterface extends JsonAPIRespons
 		id: string;
 		type: string;
 		attributes: AECDataInterface;
+	}[];
+}
+
+export interface GeneralAllPhoneCallsAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: APCDataInterface;
 	}[];
 }
 

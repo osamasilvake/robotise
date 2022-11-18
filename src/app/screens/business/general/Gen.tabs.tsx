@@ -1,14 +1,20 @@
 import { Box, Tab, Tabs } from '@mui/material';
-import { FC, Suspense, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, lazy, Suspense, SyntheticEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundary';
 import { AppConfigService } from '../../../services';
-import GeneralAllElevatorCallsList from './all-elevator-calls/list/GeneralAllElevatorCallsList';
-import GeneralAllOrdersList from './all-orders/list/GeneralAllOrdersList';
-import GeneralEmailsList from './emails/list/GeneralEmailsList';
 import generalRoutes from './General.routes';
+
+const GeneralEmailsList = lazy(() => import('./emails/list/GeneralEmailsList'));
+const GeneralAllPhoneCallsList = lazy(
+	() => import('./all-phone-calls/list/GeneralAllPhoneCallsList')
+);
+const GeneralAllOrdersList = lazy(() => import('./all-orders/list/GeneralAllOrdersList'));
+const GeneralAllElevatorCallsList = lazy(
+	() => import('./all-elevator-calls/list/GeneralAllElevatorCallsList')
+);
 
 const GenTabs: FC = () => {
 	const { t } = useTranslation('GENERAL');
@@ -53,6 +59,7 @@ const GenTabs: FC = () => {
 				<Tab label={t(`${translation}.EMAILS`)} />
 				<Tab label={t(`${translation}.ALL_ORDERS`)} />
 				<Tab label={t(`${translation}.ALL_ELEVATOR_CALLS`)} />
+				<Tab label={t(`${translation}.ALL_PHONE_CALLS`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -80,6 +87,15 @@ const GenTabs: FC = () => {
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<GeneralAllElevatorCallsList />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* All Phone Calls */}
+				{value === 3 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<GeneralAllPhoneCallsList />
 						</Suspense>
 					</ErrorBoundary>
 				)}

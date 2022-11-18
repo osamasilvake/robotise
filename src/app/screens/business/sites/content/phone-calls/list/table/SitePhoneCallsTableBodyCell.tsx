@@ -17,10 +17,10 @@ import { SitePhoneCallsTableStyle } from './SitePhoneCallsTable.style';
 
 const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (props) => {
 	const { column, phoneCall } = props;
-	const { t } = useTranslation(['SITES', 'GENERAL']);
+	const { t } = useTranslation('GENERAL');
 	const classes = SitePhoneCallsTableStyle();
 
-	const translation = 'CONTENT.PHONE_CALLS.LIST.TABLE.VALUES';
+	const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.VALUES';
 
 	/**
 	 * set cell value
@@ -93,10 +93,12 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 					</Status>
 				);
 			} else if (SitePhoneCallsTableColumnsTypeEnum.FROM === column.id) {
-				return (
+				return value ? (
 					<Link underline="hover" href={`tel:${value}`}>
 						{value}
 					</Link>
+				) : (
+					AppConfigService.AppOptions.common.none
 				);
 			} else if (SitePhoneCallsTableColumnsTypeEnum.TO === column.id) {
 				return (

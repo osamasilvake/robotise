@@ -11,11 +11,11 @@ import ErrorBoundary from '../../../components/frame/error-boundary/ErrorBoundar
 import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
 import { SiteConfigurationTabsTypeEnum } from './content/configuration/SiteConfiguration.enum';
-import SitePerformance from './content/performance/SitePerformance';
-import SiteSMSList from './content/sms-list/SiteSMSList';
 import { SiteParamsInterface } from './Site.interface';
 import sitesRoutes from './Sites.routes';
 
+const SitePerformance = lazy(() => import('./content/performance/SitePerformance'));
+const SiteSMSList = lazy(() => import('./content/sms-list/SiteSMSList'));
 const SiteDetail = lazy(() => import('./content/detail/SiteDetail'));
 const SiteProductsList = lazy(() => import('./content/products/list/SiteProductsList'));
 const SiteRoomsList = lazy(() => import('./content/rooms/list/SiteRoomsList'));

@@ -726,13 +726,58 @@
 						}
 					}
 				}
+			},
+			"PHONE_CALLS": {
+				"LIST": {
+					"TABLE": {
+						"COLUMNS": {
+							"UPDATED": "Updated",
+							"TYPE": "Type",
+							"ROOM": "Room",
+							"STATUS": "Status",
+							"FROM": "From",
+							"TO": "To",
+							"HISTORY": "History"
+						},
+						"VALUES": {
+							"STATUS": {
+								"created": "Created",
+								"orderAssigned": "Order Assigned",
+								"approved": "Approved",
+								"confirmed": "Confirmed",
+								"completed": "Completed",
+								"busy": "Busy",
+								"missing-from": "Missing From",
+								"rejected": "Rejected",
+								"error": "Error",
+								"failed": "Failed",
+								"ringing": "Ringing",
+								"no-answer": "No Answer",
+								"undefined": "Unknown",
+								"dummy": "Dummy"
+							},
+							"HISTORY": {
+								"EVENT": {
+									"approved": "Approved",
+									"confirmed": "Confirmed",
+									"orderAssigned": "Order Assigned",
+									"rejected": "Rejected",
+									"error": "Error",
+									"statusUpdated": "Status"
+								},
+								"ORDER_DETAIL": "Detail"
+							}
+						}
+					}
+				}
 			}
 		},
 		"CONTENT": {
 			"TABS": {
 				"EMAILS": "EMAILS",
 				"ALL_ORDERS": "Orders",
-				"ALL_ELEVATOR_CALLS": "Elevator Calls"
+				"ALL_ELEVATOR_CALLS": "Elevator Calls",
+				"ALL_PHONE_CALLS": "Phone Calls"
 			},
 			"EMAILS": {
 				"DETAIL": {
@@ -1071,49 +1116,6 @@
 						"FIELDS": {
 							"MESSAGE": {
 								"PLACEHOLDER": "Enter message"
-							}
-						}
-					}
-				}
-			},
-			"PHONE_CALLS": {
-				"LIST": {
-					"TABLE": {
-						"COLUMNS": {
-							"UPDATED": "Updated",
-							"TYPE": "Type",
-							"ROOM": "Room",
-							"STATUS": "Status",
-							"FROM": "From",
-							"TO": "To",
-							"HISTORY": "History"
-						},
-						"VALUES": {
-							"STATUS": {
-								"created": "Created",
-								"orderAssigned": "Order Assigned",
-								"approved": "Approved",
-								"confirmed": "Confirmed",
-								"completed": "Completed",
-								"busy": "Busy",
-								"rejected": "Rejected",
-								"error": "Error",
-								"failed": "Failed",
-								"ringing": "Ringing",
-								"no-answer": "No Answer",
-								"undefined": "Unknown",
-								"dummy": "Dummy"
-							},
-							"HISTORY": {
-								"EVENT": {
-									"approved": "Approved",
-									"confirmed": "Confirmed",
-									"orderAssigned": "Order Assigned",
-									"rejected": "Rejected",
-									"error": "Error",
-									"statusUpdated": "Status"
-								},
-								"ORDER_DETAIL": "Detail"
 							}
 						}
 					}

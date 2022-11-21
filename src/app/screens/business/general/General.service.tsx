@@ -112,6 +112,8 @@ class GeneralService {
 		return HttpClientService.get<GeneralAllPhoneCallsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.siteId || undefined,
+				'filter[status][in]': payload.includeAllCalls ? undefined : 'rejected,error',
+				'filter[status][nin]': payload.includeAllCalls ? undefined : 'completed',
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}
@@ -128,6 +130,8 @@ class GeneralService {
 		return HttpClientService.get<GeneralAllPhoneCallsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.siteId || undefined,
+				'filter[status][in]': payload.includeAllCalls ? undefined : 'rejected,error',
+				'filter[status][nin]': payload.includeAllCalls ? undefined : 'completed',
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}

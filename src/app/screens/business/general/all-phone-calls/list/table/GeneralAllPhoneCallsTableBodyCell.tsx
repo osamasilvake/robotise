@@ -46,7 +46,7 @@ const GeneralAllPhoneCallsTableBodyCell: FC<GeneralAllPhoneCallsTableBodyCellInt
 		if (siteRobot) {
 			const site = sites?.content?.dataById[cSiteId];
 			const robot = robotTwinsSummary?.content?.dataById[cRobotId];
-			if (!site || !robot) return null;
+			if (!site || !robot) return AppConfigService.AppOptions.common.none;
 			return (
 				<>
 					<Box>

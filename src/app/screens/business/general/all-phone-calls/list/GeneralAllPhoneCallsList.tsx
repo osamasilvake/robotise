@@ -28,18 +28,21 @@ const GeneralAllPhoneCallsList: FC = () => {
 		allPhoneCalls.content?.state?.rowsPerPage ||
 		AppConfigService.AppOptions.screens.business.general.allPhoneCalls.list.defaultPageSize;
 	const siteId = allPhoneCalls.content?.state?.siteId;
+	const includeAllCalls = !!allPhoneCalls.content?.state?.includeAllCalls;
 
 	const pageRef = useRef({
 		page: (allPhoneCalls.content?.meta?.page || 0) - 1,
 		rowsPerPage,
-		siteId
+		siteId,
+		includeAllCalls
 	});
 
 	useEffect(() => {
 		const payload: GeneralAllPhoneCallsListPayloadInterface = {
 			page,
 			rowsPerPage,
-			siteId
+			siteId,
+			includeAllCalls
 		};
 
 		if (pageRef.current.siteId !== siteId && page === 0) {
@@ -49,6 +52,13 @@ const GeneralAllPhoneCallsList: FC = () => {
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.siteId = siteId;
+		} else if (pageRef.current.includeAllCalls !== includeAllCalls && page === 0) {
+			// dispatch: fetch all phone calls
+			dispatch(AllPhoneCallsFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.includeAllCalls = includeAllCalls;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch all phone calls
 			dispatch(AllPhoneCallsFetchList(payload));
@@ -72,7 +82,7 @@ const GeneralAllPhoneCallsList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, allPhoneCalls.content, page, rowsPerPage, siteId]);
+	}, [dispatch, allPhoneCalls.content, page, rowsPerPage, siteId, includeAllCalls]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -83,7 +93,8 @@ const GeneralAllPhoneCallsList: FC = () => {
 						{
 							page: 0,
 							rowsPerPage,
-							siteId
+							siteId,
+							includeAllCalls
 						},
 						true
 					)
@@ -97,7 +108,7 @@ const GeneralAllPhoneCallsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allPhoneCalls.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allPhoneCalls.content, page, rowsPerPage, siteId]);
+	}, [dispatch, allPhoneCalls.content, page, rowsPerPage, siteId, includeAllCalls]);
 
 	// loader
 	if (allPhoneCalls.loader) {
@@ -120,7 +131,7 @@ const GeneralAllPhoneCallsList: FC = () => {
 	return (
 		<Box className={classes.sBox}>
 			{/* Actions */}
-			<GeneralAllPhoneCallsActions siteId={siteId} />
+			<GeneralAllPhoneCallsActions siteId={siteId} includeAllCalls={includeAllCalls} />
 
 			{/* Table */}
 			<GeneralAllPhoneCallsTable

@@ -1,5 +1,6 @@
 export interface GeneralAllPhoneCallsActionsInterface {
 	siteId?: string;
+	includeAllCalls: boolean;
 }
 
 export interface GeneralAllPhoneCallsSiteInterface {
@@ -9,4 +10,8 @@ export interface GeneralAllPhoneCallsSiteInterface {
 export interface GeneralAllPhoneCallsSiteComboBoxInterface {
 	id: string;
 	label: string;
+}
+
+export interface GeneralAllPhoneCallsIncludeAllCallsInterface {
+	includeAllCalls: boolean;
 }

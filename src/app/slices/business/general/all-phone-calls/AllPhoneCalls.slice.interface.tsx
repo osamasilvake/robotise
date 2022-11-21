@@ -43,7 +43,8 @@ export interface APCDataSiteInterface {
 }
 
 export interface APCStateInterface {
-	siteId?: string;
 	page?: number;
 	rowsPerPage?: number;
+	siteId?: string;
+	includeAllCalls?: boolean;
 }

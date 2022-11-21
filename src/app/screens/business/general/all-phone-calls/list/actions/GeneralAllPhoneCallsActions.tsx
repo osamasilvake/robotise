@@ -3,10 +3,11 @@ import { FC } from 'react';
 
 import { GeneralAllPhoneCallsActionsInterface } from './GeneralAllPhoneCallsActions.interface';
 import { GeneralAllPhoneCallsActionsStyle } from './GeneralAllPhoneCallsActions.style';
+import GeneralAllPhoneCallsIncludeAllCalls from './GeneralAllPhoneCallsIncludeAllCalls';
 import GeneralAllPhoneCallsSite from './GeneralAllPhoneCallsSite';
 
 const GeneralAllPhoneCallsActions: FC<GeneralAllPhoneCallsActionsInterface> = (props) => {
-	const { siteId } = props;
+	const { siteId, includeAllCalls } = props;
 	const classes = GeneralAllPhoneCallsActionsStyle();
 
 	return (
@@ -20,6 +21,9 @@ const GeneralAllPhoneCallsActions: FC<GeneralAllPhoneCallsActionsInterface> = (p
 					{/* Site */}
 					<GeneralAllPhoneCallsSite siteId={siteId} />
 				</Stack>
+
+				{/* Include All Calls */}
+				<GeneralAllPhoneCallsIncludeAllCalls includeAllCalls={includeAllCalls} />
 			</Stack>
 		</Paper>
 	);

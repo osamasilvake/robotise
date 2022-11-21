@@ -97,9 +97,9 @@
 		"IMAGE": {
 			"LABEL": "Upload",
 			"RULES": {
+				"INFO": "Image will resize to desired size",
 				"RULE_1": "Supported File Type: png, jpg",
-				"RULE_2": "Maximum File Size: {{value}} KB",
-				"RULE_3": "Maximum Resolution: {{value}}"
+				"RULE_2": "Maximum File Size: {{value}} KB"
 			}
 		}
 	},

@@ -82,8 +82,8 @@ const AppOptions = (config: typeof AppConfigService) => {
 			},
 			uploadImage: {
 				maxSize: 500,
-				maxHeight: 220,
-				maxWidth: 220
+				maxHeight: 400,
+				maxWidth: 400
 			},
 			readMore: {
 				min: 150

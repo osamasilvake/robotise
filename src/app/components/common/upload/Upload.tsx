@@ -14,8 +14,6 @@ const Upload: FC<UploadImageInterface> = (props) => {
 	const classes = UploadStyle();
 
 	const maxSize = AppConfigService.AppOptions.components.uploadImage.maxSize;
-	const maxHeight = AppConfigService.AppOptions.components.uploadImage.maxHeight;
-	const maxWidth = AppConfigService.AppOptions.components.uploadImage.maxWidth;
 
 	/**
 	 * handle image change
@@ -62,24 +60,16 @@ const Upload: FC<UploadImageInterface> = (props) => {
 				</label>
 			</Box>
 			<Box className={classes.sImageInfo}>
+				<Typography variant="body2" color="textSecondary">
+					{t('IMAGE.RULES.INFO')}
+				</Typography>
 				<Typography variant="body2">{t('IMAGE.RULES.RULE_1')}</Typography>
 				<Typography
 					variant="body2"
 					className={clsx({
 						[classes.sImageInvalid]: imageError === 1
 					})}>
-					{t('IMAGE.RULES.RULE_2', {
-						value: maxSize
-					})}
-				</Typography>
-				<Typography
-					variant="body2"
-					className={clsx({
-						[classes.sImageInvalid]: imageError === 2
-					})}>
-					{t('IMAGE.RULES.RULE_3', {
-						value: `${maxWidth} x ${maxHeight}`
-					})}
+					{t('IMAGE.RULES.RULE_2', { value: maxSize })}
 				</Typography>
 			</Box>
 		</Box>

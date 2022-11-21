@@ -12,6 +12,7 @@ import {
 	AllPhoneCallsFetchList,
 	allPhoneCallsSelector
 } from '../../../../../slices/business/general/all-phone-calls/AllPhoneCalls.slice';
+import GeneralAllPhoneCallsActions from './actions/GeneralAllPhoneCallsActions';
 import { GeneralAllPhoneCallsListPayloadInterface } from './GeneralAllPhoneCallsList.interface';
 import { GeneralAllPhoneCallsListStyle } from './GeneralAllPhoneCallsList.style';
 import GeneralAllPhoneCallsTable from './table/GeneralAllPhoneCallsTable';
@@ -118,6 +119,10 @@ const GeneralAllPhoneCallsList: FC = () => {
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Actions */}
+			<GeneralAllPhoneCallsActions siteId={siteId} />
+
+			{/* Table */}
 			<GeneralAllPhoneCallsTable
 				content={allPhoneCalls.content}
 				page={page}

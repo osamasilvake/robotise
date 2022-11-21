@@ -25,7 +25,7 @@ export const initialState: SliceAllElevatorCallsInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Elevator Calls',
+	name: 'All Elevator Calls',
 	initialState,
 	reducers: {
 		loader: (state) => {

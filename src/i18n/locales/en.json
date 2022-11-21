@@ -729,8 +729,17 @@
 			},
 			"PHONE_CALLS": {
 				"LIST": {
+					"ACTIONS": {
+						"FILTERS": {
+							"SITE": {
+								"ALL_SITES": "All Sites",
+								"LABEL": "Sites"
+							}
+						}
+					},
 					"TABLE": {
 						"COLUMNS": {
+							"SITE_ROBOT": "Site & Robot",
 							"UPDATED": "Updated",
 							"TYPE": "Type",
 							"ROOM": "Room",

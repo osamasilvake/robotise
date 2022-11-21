@@ -28,12 +28,18 @@ export interface APCDataInterface {
 	updatedAt: Date;
 	createdAt: Date;
 	history: APCDataHistoryInterface[];
+	site: APCDataSiteInterface;
+	siteRobot?: string;
 }
 
 export interface APCDataHistoryInterface {
 	event: string;
 	createdAt: Date;
 	details?: string;
+}
+
+export interface APCDataSiteInterface {
+	id: string;
 }
 
 export interface APCStateInterface {

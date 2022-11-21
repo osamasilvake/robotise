@@ -35,6 +35,7 @@ const GeneralAllPhoneCallsTableBody: FC<GeneralAllPhoneCallsTableBodyInterface> 
 			case GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED:
 				type = GeneralAllPhoneCallsTableSortTypeEnum.DATE;
 				break;
+			case GeneralAllPhoneCallsTableColumnsTypeEnum.SITE_ROBOT:
 			case GeneralAllPhoneCallsTableColumnsTypeEnum.ROOM:
 				type = GeneralAllPhoneCallsTableSortTypeEnum.STRING;
 				break;
@@ -56,19 +57,23 @@ const GeneralAllPhoneCallsTableBody: FC<GeneralAllPhoneCallsTableBodyInterface> 
 		type: GeneralAllPhoneCallsTableSortTypeEnum
 	) => {
 		return (a: APCDataInterface, b: APCDataInterface) => {
-			const dateA = a[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
-			const dateB = b[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
-			switch (type) {
-				case GeneralAllPhoneCallsTableSortTypeEnum.DATE:
-					return dateSort(dateA).diff(dateSort(dateB));
-				case GeneralAllPhoneCallsTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			const siteRobot = key !== GeneralAllPhoneCallsTableColumnsTypeEnum.SITE_ROBOT;
+			if (siteRobot) {
+				const dateA = a[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
+				const dateB = b[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
+				switch (type) {
+					case GeneralAllPhoneCallsTableSortTypeEnum.DATE:
+						return dateSort(dateA).diff(dateSort(dateB));
+					case GeneralAllPhoneCallsTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 

@@ -4,6 +4,12 @@ import { GeneralAllPhoneCallsTableColumnInterface } from './GeneralAllPhoneCalls
 const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllPhoneCallsTableColumnInterface[] = [
 	{
+		id: GeneralAllPhoneCallsTableColumnsTypeEnum.SITE_ROBOT,
+		label: `${translation}.SITE_ROBOT`,
+		minWidth: 200,
+		align: 'left'
+	},
+	{
 		id: GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED,
 		label: `${translation}.UPDATED`,
 		minWidth: 180,

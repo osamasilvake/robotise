@@ -57,7 +57,8 @@ export const fillUpDummyValues = (
 		isDebug: false,
 		callerCountry: '-',
 		workflow: '-',
-		vendor: '-'
+		vendor: '-',
+		site: { id: '' }
 	};
 
 	const totalActualList = result.data.length;

@@ -1,4 +1,5 @@
 export enum GeneralAllPhoneCallsTableColumnsTypeEnum {
+	SITE_ROBOT = 'siteRobot',
 	TYPE = 'type',
 	ROOM = 'room',
 	STATUS = 'status',

@@ -13,9 +13,6 @@ export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
 	sGridContainer: {
 		marginBottom: theme.spacing(3)
 	},
-	sCardContent: {
-		position: 'relative'
-	},
 	sActive: {
 		backgroundColor: AppConfigService.AppOptions.colors.c10v1,
 		color: AppConfigService.AppOptions.colors.c7

@@ -2415,8 +2415,8 @@
 					}
 				},
 				"DELETE": {
-					"TITLE": "Delete Deep Link",
-					"TEXT": "Are you sure you want to delete the deep link?"
+					"TITLE": "Delete Middleware Config",
+					"TEXT": "Are you sure you want to delete the config?"
 				}
 			},
 			"TABLE": {

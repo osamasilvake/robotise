@@ -16,7 +16,10 @@
 		<!-- Jeeves Title & Sub-title -->
 		<div class="qr-jeeves">
 			<img class="qr-logo" src="/assets/images/qr-template/jeeves.png" alt="logo" />
-			<p>...und die Minibar kommt zu Ihnen auf Zimmer #<span id="room-no"></span></p>
+			<p>
+				...und die Minibar kommt zu Ihnen auf Zimmer #
+				<span id="room-no"></span>
+			</p>
 		</div>
 
 		<div class="qr-container">
@@ -24,11 +27,6 @@
 				<div class="qr-left">
 					<div>
 						<canvas id="canvas" />
-						<img
-							id="icon"
-							class="qr-robot"
-							src="/assets/svg/logos/robotise-icon.svg"
-							alt="robot" />
 					</div>
 					<div class="qr-text">
 						<p>
@@ -36,8 +34,8 @@
 							Ihnen, wenn er angekommen ist.
 						</p>
 						<p>
-							Bitte behalten Sie Ihr Mobiltelefon bei sich und achten Sie auf Ihre Benachrichtigungen,
-							um die SMS zu empfangen.
+							Bitte behalten Sie Ihr Mobiltelefon bei sich und achten Sie auf Ihre
+							Benachrichtigungen, um die SMS zu empfangen.
 						</p>
 					</div>
 				</div>
@@ -57,8 +55,11 @@
 						<li>
 							<p class="frame">
 								Alternativ können Sie auch eine SMS mit dem Code
-								<span style="color:green" id="qr-code"></span> an die Nummer
-								<br> <span style="color:blue" id="sms-to"></span> schicken*.
+								<span style="color: green" id="qr-code"></span>
+								an die Nummer
+								<br />
+								<span style="color: blue" id="sms-to"></span>
+								schicken*.
 							</p>
 						</li>
 					</ul>
@@ -106,17 +107,6 @@
 			canvas.height = image.height;
 			const ctx = canvas.getContext('2d');
 			ctx.drawImage(image, 0, 0);
-
-			// Background color
-			const qrCodeWidth = 210;
-			const iconWidth = 40;
-			const center = (qrCodeWidth - iconWidth) / 2;
-			ctx.fillStyle = 'white';
-			ctx.fillRect(center, center, iconWidth, iconWidth);
-
-			// Logo
-			const logo = document.getElementById('icon');
-			ctx.drawImage(logo, center, center, iconWidth, iconWidth);
 		};
 		image.src = url;
 	};

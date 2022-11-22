@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>QR Code Template</title>
+		<link rel="stylesheet" href="qrCodeMinimal.css" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+	</head>
+	<body>
+		<div class="qr-container qr-row qr-m-auto">
+			<div class="qr-card qr-col-md-3 qr-m-3 qr-container-item">
+				<div class="qr-container-item-inner qr-card-body">
+					<!-- Hotel Name -->
+					<h5 class="qr-card-title qr-flex qr-justify-content-center">
+						<span id="hotel-name" class="qr-ml-1 qr-text-primary qr-text-center"></span>
+					</h5>
+
+					<!-- Line -->
+					<hr class="qr-hr qr-bg-primary" />
+
+					<!-- Room No -->
+					<h5 class="qr-card-title qr-flex qr-justify-content-center">
+						Room
+						<span id="room-no" class="qr-ml-1 qr-font-weight-bold"></span>
+					</h5>
+
+					<!-- QR Code -->
+					<div class="qr-my-2 qr-flex qr-justify-content-center">
+						<canvas id="canvas" />
+					</div>
+
+					<!-- Text -->
+					<p class="qr-card-text qr-text-center">
+						Alternatively, you can send an SMS* with the text
+						<span id="qr-code" class="qr-font-weight-bold qr-text-success"></span>
+						to the number
+						<br />
+						<span id="sms-to" class="qr-text-info"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	/**
+	 * add QR to canvas
+	 */
+	const addQRtoCanvas = (url) => {
+		let image = new Image();
+		image.onload = function () {
+			// QR Code
+			const canvas = document.getElementById('canvas');
+			canvas.width = image.width * 0.6;
+			canvas.height = image.height * 0.6;
+			const ctx = canvas.getContext('2d');
+			ctx.drawImage(
+				image,
+				0,
+				0,
+				image.width,
+				image.height,
+				0,
+				0,
+				canvas.width,
+				canvas.height
+			);
+		};
+		image.src = url;
+	};
+
+	window.addEventListener(
+		'message',
+		({ data }) => {
+			const { type, url, text, code, smsTo, room, siteTitle } = data;
+
+			document.getElementById('hotel-name').innerText = siteTitle;
+			document.getElementById('room-no').innerText = `#${room}`;
+			document.getElementById('qr-code').innerText = code;
+			document.getElementById('sms-to').innerText = smsTo;
+
+			// only allow qr-code iframe content
+			if (type !== 'qr-code') return;
+
+			// update qr code
+			addQRtoCanvas(url);
+
+			// open print
+			setTimeout(() => window.print(), 100);
+		},
+		false
+	);
+</script>

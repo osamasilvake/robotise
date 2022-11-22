@@ -1,4 +1,5 @@
 import {
+	Box,
 	Button,
 	CircularProgress,
 	Dialog,
@@ -35,20 +36,26 @@ import {
 import { formatPhoneNumber } from '../../../../../../../../utilities/methods/Number';
 import { timeout } from '../../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../../Site.interface';
-import SiteRoomsQRCodeTemplate from './SiteRoomsQRCodeTemplate';
+import { SiteRoomsGridStyle } from '../SiteRoomsGrid.style';
+import { QRCodeTemplateEnumType } from './SiteRoomsQRCode.enum';
 import {
 	DialogGenerateQRCodeFormInterface,
 	DialogGenerateQRCodeInterface
-} from './SiteRoomsQRCodeTemplate.interface';
+} from './SiteRoomsQRCode.interface';
+import SiteRoomsTemplateQRCode from './SiteRoomsTemplateQRCode';
 
 const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const { open, setOpen, roomState, siteSingle } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
+	const classes = SiteRoomsGridStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 	const qrCodes = useSelector(qrCodesSelector);
 
-	const [showIframe, setShowIframe] = useState(false);
+	const [currentState, setCurrentState] = useState({
+		status: false,
+		type: QRCodeTemplateEnumType.QR
+	});
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
@@ -58,7 +65,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	let smsTo = qrCodeSingle?.smsTo?.replace('+', '00') || '';
 	let smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
 	const smsToBeautified = formatPhoneNumber(qrCodeSingle?.smsTo || '');
-	const codeBeautified = `#${code}#`;
+	const codeBeautified = `jj${code}`;
 	const room = qrCodeSingle?.room || '';
 
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
@@ -107,24 +114,26 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 
 	/**
 	 * generate QR Code
+	 * @param type
+	 * @returns
 	 */
-	const handleGenerateQRCode = async () => {
-		// remove iframe
-		setShowIframe(false);
+	const handleGenerateQRCode = (type?: QRCodeTemplateEnumType) => async () => {
+		// set state
+		setCurrentState({ status: false, type: type || currentState.type });
 
 		// wait
 		await timeout(100);
 
-		// show iframe
-		setShowIframe(true);
+		// set state
+		setCurrentState({ status: true, type: type || currentState.type });
 	};
 
 	/**
 	 * delete QR code
 	 */
 	const handleDeleteQRCode = () => {
-		// remove iframe
-		setShowIframe(false);
+		// set state
+		setCurrentState({ status: false, type: currentState.type });
 
 		// dispatch: delete QR code
 		cSiteId &&
@@ -141,8 +150,8 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	 * close dialog
 	 */
 	const onCloseDialog = () => {
-		// remove iframe
-		setShowIframe(false);
+		// set state
+		setCurrentState({ status: false, type: currentState.type });
 
 		// close dialog
 		setOpen(false);
@@ -188,25 +197,35 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 						/>
 					</LocalizationProvider>
 				</FormControl>
+
+				{code && (
+					<Box className={classes.sButtons}>
+						<Button
+							variant="outlined"
+							fullWidth
+							onClick={handleGenerateQRCode(QRCodeTemplateEnumType.QR_IMAGE)}>
+							{t(`${translation}.FORM.BUTTONS.DOWNLOAD_QR_IMAGE`)}
+						</Button>
+						<Button
+							variant="outlined"
+							fullWidth
+							onClick={handleGenerateQRCode(QRCodeTemplateEnumType.QR)}
+							className={classes.sButtonGap}>
+							{t(`${translation}.FORM.BUTTONS.PRINT_MARKETING_QR`)}
+						</Button>
+						<Button
+							variant="outlined"
+							fullWidth
+							onClick={handleGenerateQRCode(QRCodeTemplateEnumType.QR_MINIMAL)}>
+							{t(`${translation}.FORM.BUTTONS.PRINT_MINIMAL_QR`)}
+						</Button>
+					</Box>
+				)}
 			</DialogContent>
 			<DialogActions>
 				<Button variant="outlined" onClick={onCloseDialog}>
 					{t('DIALOG:BUTTONS.GO_BACK')}
 				</Button>
-				{code && (
-					<>
-						<Button variant="outlined" onClick={handleGenerateQRCode}>
-							{t('DIALOG:BUTTONS.PRINT')}
-						</Button>
-						<Button
-							variant="outlined"
-							onClick={handleDeleteQRCode}
-							disabled={qrCodes.updating}
-							endIcon={qrCodes.updating && <CircularProgress size={20} />}>
-							{t('DIALOG:BUTTONS.DELETE')}
-						</Button>
-					</>
-				)}
 				{!code && (
 					<Button
 						type="submit"
@@ -217,18 +236,32 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 						{t('DIALOG:BUTTONS.CREATE')}
 					</Button>
 				)}
+				{code && (
+					<Button
+						color="error"
+						variant="outlined"
+						onClick={handleDeleteQRCode}
+						disabled={qrCodes.updating}
+						endIcon={qrCodes.updating && <CircularProgress size={20} />}>
+						{t('DIALOG:BUTTONS.DELETE')}
+					</Button>
+				)}
 			</DialogActions>
 
-			{/* QR Code Template */}
-			<SiteRoomsQRCodeTemplate
+			{/* Template: QR Code */}
+			<SiteRoomsTemplateQRCode
 				text={smsText}
 				code={codeBeautified}
 				room={room}
 				smsTo={smsToBeautified}
 				siteTitle={siteSingle.title}
 				iframeId="qr-code"
-				iframeUrl="/assets/templates/qr-code/qrCode.html"
-				showIframe={showIframe}
+				iframeUrl={
+					currentState.type === QRCodeTemplateEnumType.QR
+						? '/assets/templates/qr-code/qrCode.html'
+						: '/assets/templates/qr-code-minimal/qrCodeMinimal.html'
+				}
+				currentState={currentState}
 			/>
 		</Dialog>
 	);

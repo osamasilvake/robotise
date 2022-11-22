@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import { ISite } from '../../../../../../../../slices/business/sites/Sites.slice.interface';
+import { QRCodeTemplateEnumType } from './SiteRoomsQRCode.enum';
 
 export interface QRCodeTemplateInterface {
 	text: string;
@@ -10,7 +11,7 @@ export interface QRCodeTemplateInterface {
 	siteTitle: string;
 	iframeId: string;
 	iframeUrl: string;
-	showIframe: boolean;
+	currentState: { status: boolean; type: QRCodeTemplateEnumType };
 }
 
 export interface DialogGenerateQRCodeInterface {

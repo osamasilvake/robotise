@@ -43,5 +43,11 @@ export const SiteRoomsGridStyle = makeStyles((theme: Theme) => ({
 	},
 	sCheckboxLabel: {
 		marginRight: theme.spacing(0.5)
+	},
+	sButtons: {
+		marginTop: theme.spacing(1.5)
+	},
+	sButtonGap: {
+		margin: `${theme.spacing(1)} 0`
 	}
 }));

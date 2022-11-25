@@ -21,7 +21,6 @@ import { useParams } from 'react-router-dom';
 import { AppDispatch } from '../../../../../../../../slices';
 import {
 	QRCodeCreate,
-	QRCodeDelete,
 	QRCodesFetch,
 	qrCodesSelector
 } from '../../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
@@ -37,6 +36,7 @@ import { formatPhoneNumber } from '../../../../../../../../utilities/methods/Num
 import { timeout } from '../../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../../Site.interface';
 import { SiteRoomsGridStyle } from '../SiteRoomsGrid.style';
+import DialogDeleteConfirmation from './DialogDeleteConfirmation';
 import { QRCodeTemplateEnumType } from './SiteRoomsQRCode.enum';
 import {
 	DialogGenerateQRCodeFormInterface,
@@ -52,6 +52,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const dispatch = useDispatch<AppDispatch>();
 	const qrCodes = useSelector(qrCodesSelector);
 
+	const [deleteQR, setDeleteQR] = useState(false);
 	const [currentState, setCurrentState] = useState({
 		status: false,
 		type: QRCodeTemplateEnumType.QR
@@ -129,24 +130,6 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	};
 
 	/**
-	 * delete QR code
-	 */
-	const handleDeleteQRCode = () => {
-		// set state
-		setCurrentState({ status: false, type: currentState.type });
-
-		// dispatch: delete QR code
-		cSiteId &&
-			qrCodeSingle &&
-			dispatch(
-				QRCodeDelete(cSiteId, qrCodeSingle, () => {
-					// dispatch: fetch QR codes
-					cSiteId && dispatch(QRCodesFetch(cSiteId));
-				})
-			);
-	};
-
-	/**
 	 * close dialog
 	 */
 	const onCloseDialog = () => {
@@ -219,6 +202,14 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 							onClick={handleGenerateQRCode(QRCodeTemplateEnumType.QR_MINIMAL)}>
 							{t(`${translation}.FORM.BUTTONS.PRINT_MINIMAL_QR`)}
 						</Button>
+						<Button
+							fullWidth
+							color="error"
+							variant="outlined"
+							onClick={() => setDeleteQR(true)}
+							className={classes.sButtonGap}>
+							{t('DIALOG:BUTTONS.DELETE')}
+						</Button>
 					</Box>
 				)}
 			</DialogContent>
@@ -234,16 +225,6 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 						disabled={qrCodes.updating}
 						endIcon={qrCodes.updating && <CircularProgress size={20} />}>
 						{t('DIALOG:BUTTONS.CREATE')}
-					</Button>
-				)}
-				{code && (
-					<Button
-						color="error"
-						variant="outlined"
-						onClick={handleDeleteQRCode}
-						disabled={qrCodes.updating}
-						endIcon={qrCodes.updating && <CircularProgress size={20} />}>
-						{t('DIALOG:BUTTONS.DELETE')}
 					</Button>
 				)}
 			</DialogActions>
@@ -263,6 +244,18 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 				}
 				currentState={currentState}
 			/>
+
+			{/* Dialog: Accept Orders */}
+			{deleteQR && cSiteId && qrCodeSingle && (
+				<DialogDeleteConfirmation
+					open={deleteQR}
+					setOpen={setDeleteQR}
+					currentState={currentState}
+					setCurrentState={setCurrentState}
+					cSiteId={cSiteId}
+					qrCodeSingle={qrCodeSingle}
+				/>
+			)}
 		</Dialog>
 	);
 };

@@ -149,13 +149,17 @@ export const QRCodeCreate =
 				// callback
 				callback(result);
 			})
-			.catch(() => {
+			.catch((err) => {
+				const errMessage = err?.data?.attributes?.reason;
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'qr-codes-create-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'SITES.QR_CODES.CREATE.ERROR'
+					text:
+						`SITES.QR_CODES.CREATE.ERRORS.${errMessage}` ||
+						'SITES.QR_CODES.CREATE.ERRORS.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

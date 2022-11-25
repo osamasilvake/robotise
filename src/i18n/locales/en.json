@@ -200,7 +200,16 @@
 					},
 					"CREATE": {
 						"SUCCESS": "QR Code has been created successfully!",
-						"ERROR": "Unable to create a QR Code!"
+						"ERRORS": {
+							"site-not-found": "Site was not found!",
+							"qr-orders-disabled": "Site has SMS orders disabled. Please enable them in the site configurations!",
+							"room-not-found": "Room was not found!",
+							"room-not-whitelist": "Room is blacklisted!",
+							"phone-configs-not-found": "Phone configurations for site not found!",
+							"sms-gateway-not-found": "SMS Sender number not found. Please add it in phone configurations!",
+							"expiration-date-too-far-in-future": "The selected expiry date is too far in the future!",
+							"error": "Unable to create SMS code!"
+						}
 					},
 					"DELETE": {
 						"SUCCESS": "QR Code has been deleted successfully!",
@@ -1045,6 +1054,10 @@
 									"PRINT_MARKETING_QR": "Print Marketing QR PDF",
 									"PRINT_MINIMAL_QR": "Print Minimal QR PDF"
 								}
+							},
+							"CONFIRMATION": {
+								"TITLE": "Delete QR Code",
+								"TEXT": "Are you sure you want to delete the QR Code?"
 							}
 						}
 					}

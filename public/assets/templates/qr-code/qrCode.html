@@ -128,7 +128,10 @@
 			addQRtoCanvas(url);
 
 			// open print
-			setTimeout(() => window.print(), 100);
+			setTimeout(() => {
+				window.top.document.title = `QR_Room_${room}_Code_${code}`;
+				window.print();
+			}, 100);
 		},
 		false
 	);

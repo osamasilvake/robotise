@@ -5,23 +5,23 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
-import { SLCDataInterface } from '../../../../../../slices/business/sites/sms-list/SMSList.slice.interface';
+import { ASLDataInterface } from '../../../../../../slices/business/general/all-sms-list/AllSMSList.slice.interface';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
 import {
-	SiteSMSListTableColumnHistoryEventTypeEnum,
-	SiteSMSListTableColumnsTypeEnum
-} from './SiteSMSListTable.enum';
+	GeneralAllSMSListTableColumnHistoryEventTypeEnum,
+	GeneralAllSMSListTableColumnsTypeEnum
+} from './GeneralAllSMSListTable.enum';
 import {
-	SiteSMSListTableBodyCellInterface,
-	SiteSMSListTableColumnInterface
-} from './SiteSMSListTable.interface';
-import { mapHistoryEventType, mapSMSItem, mapStatus } from './SiteSMSListTable.map';
-import { SiteSMSListTableStyle } from './SiteSMSListTable.style';
+	GeneralAllSMSListTableBodyCellInterface,
+	GeneralAllSMSListTableColumnInterface
+} from './GeneralAllSMSListTable.interface';
+import { mapHistoryEventType, mapSMSItem, mapStatus } from './GeneralAllSMSListTable.map';
+import { GeneralAllSMSListTableStyle } from './GeneralAllSMSListTable.style';
 
-const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) => {
+const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface> = (props) => {
 	const { column, smsItem } = props;
 	const { t } = useTranslation('GENERAL');
-	const classes = SiteSMSListTableStyle();
+	const classes = GeneralAllSMSListTableStyle();
 
 	const translation = 'COMMON.SMS_LIST.LIST.TABLE.VALUES';
 
@@ -31,12 +31,15 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 	 * @param column
 	 * @returns
 	 */
-	const setCellValue = (smsItem: SLCDataInterface, column: SiteSMSListTableColumnInterface) => {
+	const setCellValue = (
+		smsItem: ASLDataInterface,
+		column: GeneralAllSMSListTableColumnInterface
+	) => {
 		const mappedSMSItem = mapSMSItem(smsItem);
 		const value = mappedSMSItem[column.id];
-		if (SiteSMSListTableColumnsTypeEnum.UPDATED === column.id) {
+		if (GeneralAllSMSListTableColumnsTypeEnum.UPDATED === column.id) {
 			return dateFormat1(String(value));
-		} else if (SiteSMSListTableColumnsTypeEnum.HISTORY === column.id) {
+		} else if (GeneralAllSMSListTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = smsItem.history;
 			const historyMapped = mappedSMSItem.history;
 
@@ -49,7 +52,7 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 									mapHistoryEventType(
 										t(
 											item.event ===
-												SiteSMSListTableColumnHistoryEventTypeEnum.ORDER_ASSIGNED
+												GeneralAllSMSListTableColumnHistoryEventTypeEnum.ORDER_ASSIGNED
 												? item.event
 												: item.details
 										)
@@ -60,7 +63,7 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 									mapHistoryEventType(
 										t(
 											item.event ===
-												SiteSMSListTableColumnHistoryEventTypeEnum.ORDER_ASSIGNED
+												GeneralAllSMSListTableColumnHistoryEventTypeEnum.ORDER_ASSIGNED
 												? item.event
 												: item.details
 										)
@@ -104,13 +107,13 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 				</Box>
 			);
 		} else if (typeof value === 'string') {
-			if (SiteSMSListTableColumnsTypeEnum.STATUS === column.id) {
+			if (GeneralAllSMSListTableColumnsTypeEnum.STATUS === column.id) {
 				return (
 					<Status level={mapStatus(value)} capitalize>
 						{t(value)}
 					</Status>
 				);
-			} else if (SiteSMSListTableColumnsTypeEnum.FROM === column.id) {
+			} else if (GeneralAllSMSListTableColumnsTypeEnum.FROM === column.id) {
 				return value ? (
 					<Link underline="hover" href={`tel:${value}`}>
 						{value}
@@ -118,7 +121,7 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 				) : (
 					AppConfigService.AppOptions.common.none
 				);
-			} else if (SiteSMSListTableColumnsTypeEnum.TO === column.id) {
+			} else if (GeneralAllSMSListTableColumnsTypeEnum.TO === column.id) {
 				return (
 					<Link underline="hover" href={`tel:${value}`}>
 						{value}
@@ -136,4 +139,4 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 		</TableCell>
 	);
 };
-export default SiteSMSListTableBodyCell;
+export default GeneralAllSMSListTableBodyCell;

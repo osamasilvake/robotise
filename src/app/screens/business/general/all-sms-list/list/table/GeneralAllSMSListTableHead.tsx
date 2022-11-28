@@ -2,13 +2,13 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SiteSMSListTableColumnsTypeEnum } from './SiteSMSListTable.enum';
+import { GeneralAllSMSListTableColumnsTypeEnum } from './GeneralAllSMSListTable.enum';
 import {
-	SiteSMSListTableColumnInterface,
-	SiteSMSListTableHeadInterface
-} from './SiteSMSListTable.interface';
+	GeneralAllSMSListTableColumnInterface,
+	GeneralAllSMSListTableHeadInterface
+} from './GeneralAllSMSListTable.interface';
 
-const SiteSMSListTableHead: FC<SiteSMSListTableHeadInterface> = (props) => {
+const GeneralAllSMSListTableHead: FC<GeneralAllSMSListTableHeadInterface> = (props) => {
 	const { columns, order, orderBy, onRequestSort } = props;
 	const { t } = useTranslation('GENERAL');
 
@@ -18,14 +18,14 @@ const SiteSMSListTableHead: FC<SiteSMSListTableHeadInterface> = (props) => {
 	 * @returns
 	 */
 	const handleSortRequest =
-		(property: SiteSMSListTableColumnsTypeEnum) => (event: MouseEvent) => {
+		(property: GeneralAllSMSListTableColumnsTypeEnum) => (event: MouseEvent) => {
 			onRequestSort(event, property);
 		};
 
 	return (
 		<TableHead>
 			<TableRow>
-				{columns.map((column: SiteSMSListTableColumnInterface) => (
+				{columns.map((column: GeneralAllSMSListTableColumnInterface) => (
 					<TableCell
 						key={column.id}
 						align={column.align}
@@ -47,4 +47,4 @@ const SiteSMSListTableHead: FC<SiteSMSListTableHeadInterface> = (props) => {
 		</TableHead>
 	);
 };
-export default SiteSMSListTableHead;
+export default GeneralAllSMSListTableHead;

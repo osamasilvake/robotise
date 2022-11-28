@@ -28,6 +28,10 @@ const AppServices = (config: typeof AppConfigService) => {
 						INBOUND: `${config.envAppUrl}/inbound-calls`,
 						OUTBOUND: `${config.envAppUrl}/outbound-calls`
 					},
+					ALL_SMS_LIST: {
+						INBOUND: `${config.envAppUrl}/inbound-sms`,
+						OUTBOUND: `${config.envAppUrl}/outbound-sms`
+					},
 					ORDER_MODES: `${config.envAppUrl}/order-modes`,
 					REPORTS: config.envAppUrl
 				},

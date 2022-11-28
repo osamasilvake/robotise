@@ -11,7 +11,7 @@ import { SiteSMSListTableColumnHistoryEventTypeEnum } from './SiteSMSListTable.e
  * @returns
  */
 export const mapSMSItem = (smsItem: SLCDataInterface) => {
-	const translation = 'CONTENT.SMS_LIST.LIST.TABLE.VALUES';
+	const translation = 'COMMON.SMS_LIST.LIST.TABLE.VALUES';
 	return {
 		...smsItem,
 		status: `${translation}.STATUS.${smsItem.status}`,

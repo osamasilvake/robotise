@@ -1,7 +1,7 @@
 import { SiteSMSListTableColumnsTypeEnum } from './SiteSMSListTable.enum';
 import { SiteSMSListTableColumnInterface } from './SiteSMSListTable.interface';
 
-const translation = 'CONTENT.SMS_LIST.LIST.TABLE.COLUMNS';
+const translation = 'COMMON.SMS_LIST.LIST.TABLE.COLUMNS';
 export const columns: SiteSMSListTableColumnInterface[] = [
 	{
 		id: SiteSMSListTableColumnsTypeEnum.UPDATED,

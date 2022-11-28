@@ -16,7 +16,8 @@ const appRoutes = {
 					DETAIL: '/general/orders/:orderId'
 				},
 				ALL_ELEVATOR_CALLS: '/general/elevator-calls',
-				ALL_PHONE_CALLS: '/general/phone-calls'
+				ALL_PHONE_CALLS: '/general/phone-calls',
+				ALL_SMS_LIST: '/general/sms-list'
 			},
 			SITES: {
 				MAIN: '/sites',

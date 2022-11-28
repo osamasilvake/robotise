@@ -12,6 +12,7 @@ const GeneralAllPhoneCallsList = lazy(
 	() => import('./all-phone-calls/list/GeneralAllPhoneCallsList')
 );
 const GeneralAllOrdersList = lazy(() => import('./all-orders/list/GeneralAllOrdersList'));
+const GeneralAllSMSList = lazy(() => import('./all-sms-list/list/GeneralAllSMSList'));
 const GeneralAllElevatorCallsList = lazy(
 	() => import('./all-elevator-calls/list/GeneralAllElevatorCallsList')
 );
@@ -60,6 +61,7 @@ const GenTabs: FC = () => {
 				<Tab label={t(`${translation}.ALL_ORDERS`)} />
 				<Tab label={t(`${translation}.ALL_ELEVATOR_CALLS`)} />
 				<Tab label={t(`${translation}.ALL_PHONE_CALLS`)} />
+				<Tab label={t(`${translation}.ALL_SMS_LIST`)} />
 			</Tabs>
 
 			{/* Tab Panel */}
@@ -96,6 +98,15 @@ const GenTabs: FC = () => {
 					<ErrorBoundary>
 						<Suspense fallback={null}>
 							<GeneralAllPhoneCallsList />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
+				{/* All SMS List */}
+				{value === 4 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<GeneralAllSMSList />
 						</Suspense>
 					</ErrorBoundary>
 				)}

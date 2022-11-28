@@ -39,6 +39,10 @@ const generalRoutes: RoutesInterface[] = [
 		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_PHONE_CALLS,
 		component: General
 	},
+	{
+		path: AppConfigService.AppRoutes.SCREENS.BUSINESS.GENERAL.ALL_SMS_LIST,
+		component: General
+	},
 
 	/**
 	 * Details

@@ -105,7 +105,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 								// generate QR code
 								code = res?.code;
 								smsTo = res?.smsTo?.replace('+', '00');
-								smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
+								smsText = t(`${translation}.SMS_TEXT`, { smsTo, code, robotName });
 								handleGenerateQRCode();
 							});
 					})

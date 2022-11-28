@@ -106,9 +106,9 @@ const GeneralAllPhoneCallsTable: FC<GeneralAllPhoneCallsTableInterface> = (props
 				component="div"
 				labelRowsPerPage={t('ROWS_PER_PAGE')}
 				rowsPerPageOptions={
-					AppConfigService.AppOptions.screens.business.sites.content.phoneCalls.list
+					AppConfigService.AppOptions.screens.business.general.allPhoneCalls.list
 						.showPageSizes
-						? AppConfigService.AppOptions.screens.business.sites.content.phoneCalls.list
+						? AppConfigService.AppOptions.screens.business.general.allPhoneCalls.list
 								.pageSizes
 						: []
 				}

@@ -35,7 +35,7 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
 	const cSiteRobotId = sites.content?.dataById[cSiteId].robots[0]?.id || '';
-	const cRobot = robotTwinsSummary.content?.dataById[cSiteRobotId] || null;
+	const robotSingle = robotTwinsSummary.content?.dataById[cSiteRobotId] || null;
 	const noRobot = { siteId: '-', robotId: '-', robotTitle: 'No Robot' };
 	const robotList = [noRobot].concat(
 		robotTwinsSummary.content?.data.map((r) => ({
@@ -45,13 +45,13 @@ const SiteRobotConfig: FC<SiteRobotConfigInterface> = (props) => {
 		})) || []
 	);
 	const isRobot = !!robotList?.filter(
-		(r) => r.siteId === cSiteId && r.robotId === cRobot?.robotId
+		(r) => r.siteId === cSiteId && r.robotId === robotSingle?.robotId
 	);
 	const translation = 'CONTENT.CONFIGURATION.SITE_ROBOT_CONFIG';
 
 	const { handleChangeAutoComplete, handleSubmit, values } =
 		useForm<SiteRobotConfigFormInterface>(
-			{ robot: isRobot ? cRobot : null },
+			{ robot: isRobot ? robotSingle : null },
 			() => ({ robot: null }),
 			async () => {
 				// dispatch: update site robot config

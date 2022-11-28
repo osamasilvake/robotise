@@ -7,7 +7,7 @@ import { SiteSMSListTableColumnHistoryEventTypeEnum } from './SiteSMSListTable.e
 
 /**
  * map SMS item
- * @param sms
+ * @param smsItem
  * @returns
  */
 export const mapSMSItem = (smsItem: SLCDataInterface) => {

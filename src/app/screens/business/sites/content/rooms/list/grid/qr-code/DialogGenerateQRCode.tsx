@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../../slices';
+import { robotTwinsSummarySelector } from '../../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	QRCodeCreate,
 	QRCodesFetch,
@@ -50,6 +51,7 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const classes = SiteRoomsGridStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const qrCodes = useSelector(qrCodesSelector);
 
 	const [deleteQR, setDeleteQR] = useState(false);
@@ -60,11 +62,16 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
+	const cSiteRobotId = siteSingle?.robots[0]?.id || '';
+	const robotSingle = robotTwinsSummary.content?.dataById[cSiteRobotId] || null;
 	const qrCodeSingle = qrCodes.content?.dataById[roomState.room];
+	const robotName = robotSingle?.robotCustomerName || '';
+
 	const translation = 'CONTENT.ROOMS.LIST.GRID.QR_CODE';
 	let code = qrCodeSingle?.code || '';
 	let smsTo = qrCodeSingle?.smsTo?.replace('+', '00') || '';
-	let smsText = t(`${translation}.SMS_TEXT`, { smsTo, code });
+	let smsText = t(`${translation}.SMS_TEXT`, { smsTo, code, robotName });
+
 	const smsToBeautified = formatPhoneNumber(qrCodeSingle?.smsTo || '');
 	const codeBeautified = `jj${code}`;
 	const room = qrCodeSingle?.room || '';

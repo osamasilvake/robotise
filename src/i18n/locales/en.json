@@ -1039,7 +1039,7 @@
 							"MANAGE": "Manage QR",
 							"TITLE": "QR Code",
 							"TEXT": "Manage QR code for room {{value}}.",
-							"SMS_TEXT": "smsto:{{smsTo}}:I want to order Jeeves with code jj{{code}}",
+							"SMS_TEXT": "smsto:{{smsTo}}:I want to order {{robotName}} with code jj{{code}}",
 							"FORM": {
 								"FIELDS": {
 									"DATE": {

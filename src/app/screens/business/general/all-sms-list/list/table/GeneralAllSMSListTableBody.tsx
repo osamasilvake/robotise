@@ -35,6 +35,7 @@ const GeneralAllSMSListTableBody: FC<GeneralAllSMSListTableBodyInterface> = (pro
 			case GeneralAllSMSListTableColumnsTypeEnum.UPDATED:
 				type = GeneralAllSMSListTableSortTypeEnum.DATE;
 				break;
+			case GeneralAllSMSListTableColumnsTypeEnum.SITE_ROBOT:
 			case GeneralAllSMSListTableColumnsTypeEnum.ROOM:
 				type = GeneralAllSMSListTableSortTypeEnum.STRING;
 				break;
@@ -56,19 +57,23 @@ const GeneralAllSMSListTableBody: FC<GeneralAllSMSListTableBodyInterface> = (pro
 		type: GeneralAllSMSListTableSortTypeEnum
 	) => {
 		return (a: ASLDataInterface, b: ASLDataInterface) => {
-			const dateA = a[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
-			const dateB = b[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
-			switch (type) {
-				case GeneralAllSMSListTableSortTypeEnum.DATE:
-					return dateSort(dateA).diff(dateSort(dateB));
-				case GeneralAllSMSListTableSortTypeEnum.STRING:
-				default:
-					return a[key] && b[key]
-						? String(a[key]).localeCompare(String(b[key]))
-						: a[key]
-						? 1
-						: -1;
+			const siteRobot = key !== GeneralAllSMSListTableColumnsTypeEnum.SITE_ROBOT;
+			if (siteRobot) {
+				const dateA = a[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
+				const dateB = b[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
+				switch (type) {
+					case GeneralAllSMSListTableSortTypeEnum.DATE:
+						return dateSort(dateA).diff(dateSort(dateB));
+					case GeneralAllSMSListTableSortTypeEnum.STRING:
+					default:
+						return a[key] && b[key]
+							? String(a[key]).localeCompare(String(b[key]))
+							: a[key]
+							? 1
+							: -1;
+				}
 			}
+			return 1;
 		};
 	};
 

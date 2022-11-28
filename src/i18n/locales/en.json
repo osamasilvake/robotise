@@ -802,6 +802,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"SITE_ROBOT": "Site & Robot",
 							"UPDATED": "Updated",
 							"TYPE": "Type",
 							"ROOM": "Room",

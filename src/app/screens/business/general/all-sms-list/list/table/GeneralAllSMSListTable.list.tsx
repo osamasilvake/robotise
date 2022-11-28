@@ -4,6 +4,12 @@ import { GeneralAllSMSListTableColumnInterface } from './GeneralAllSMSListTable.
 const translation = 'COMMON.SMS_LIST.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllSMSListTableColumnInterface[] = [
 	{
+		id: GeneralAllSMSListTableColumnsTypeEnum.SITE_ROBOT,
+		label: `${translation}.SITE_ROBOT`,
+		minWidth: 200,
+		align: 'left'
+	},
+	{
 		id: GeneralAllSMSListTableColumnsTypeEnum.UPDATED,
 		label: `${translation}.UPDATED`,
 		minWidth: 180,

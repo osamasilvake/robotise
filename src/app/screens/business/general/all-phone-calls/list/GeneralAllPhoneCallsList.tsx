@@ -125,7 +125,14 @@ const GeneralAllPhoneCallsList: FC = () => {
 
 	// empty
 	if (!allPhoneCalls.content?.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE" />;
+		return (
+			<Box className={classes.sBox}>
+				{/* Actions */}
+				<GeneralAllPhoneCallsActions siteId={siteId} includeAllCalls={includeAllCalls} />
+				{/* Empty */}
+				<PageEmpty message="EMPTY.MESSAGE" />;
+			</Box>
+		);
 	}
 
 	return (

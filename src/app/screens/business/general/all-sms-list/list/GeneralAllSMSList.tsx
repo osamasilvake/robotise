@@ -12,6 +12,7 @@ import {
 	AllSMSListFetchList,
 	allSMSListSelector
 } from '../../../../../slices/business/general/all-sms-list/AllSMSList.slice';
+import GeneralAllSMSListActions from './actions/GeneralAllSMSListActions';
 import { GeneralAllSMSListPayloadInterface } from './GeneralAllSMSList.interface';
 import { GeneralAllSMSListStyle } from './GeneralAllSMSList.style';
 import GeneralAllSMSListTable from './table/GeneralAllSMSListTable';
@@ -124,11 +125,22 @@ const GeneralAllSMSList: FC = () => {
 
 	// empty
 	if (!allSMSList.content?.data.length) {
-		return <PageEmpty message="EMPTY.MESSAGE" />;
+		return (
+			<Box className={classes.sBox}>
+				{/* Actions */}
+				<GeneralAllSMSListActions siteId={siteId} includeAllCalls={includeAllCalls} />
+				{/* Empty */}
+				<PageEmpty message="EMPTY.MESSAGE" />;
+			</Box>
+		);
 	}
 
 	return (
 		<Box className={classes.sBox}>
+			{/* Actions */}
+			<GeneralAllSMSListActions siteId={siteId} includeAllCalls={includeAllCalls} />
+
+			{/* Table */}
 			<GeneralAllSMSListTable
 				content={allSMSList.content}
 				page={page}

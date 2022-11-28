@@ -791,6 +791,15 @@
 			},
 			"SMS_LIST": {
 				"LIST": {
+					"ACTIONS": {
+						"FILTERS": {
+							"SITE": {
+								"ALL_SITES": "All Sites",
+								"LABEL": "Sites"
+							},
+							"INCLUDE_ALL_CALLS": "Include All Calls"
+						}
+					},
 					"TABLE": {
 						"COLUMNS": {
 							"UPDATED": "Updated",

@@ -393,7 +393,7 @@
 					},
 					"SYNC_CONFIGS": {
 						"SUCCESS": "Config has been synchronized successfully!",
-						"ERROR": "Unable to sync config!"
+						"ERROR": "Sync command to robot failed!"
 					},
 					"ROBOT_CONFIGURATION": {
 						"SUCCESS": "Configuration has been updated successfully!",

@@ -391,6 +391,10 @@
 						"SUCCESS": "Robot setting has been updated successfully!",
 						"ERROR": "Unable to configure robot!"
 					},
+					"SYNC_CONFIGS": {
+						"SUCCESS": "Config has been synchronized successfully!",
+						"ERROR": "Unable to sync config!"
+					},
 					"ROBOT_CONFIGURATION": {
 						"SUCCESS": "Configuration has been updated successfully!",
 						"ERROR": "Unable to update configuration!"
@@ -2236,12 +2240,6 @@
 				}
 			},
 			"CONFIGURATION": {
-				"SYNC_PRODUCTS": {
-					"TITLE": "Sync Products",
-					"EXCERPT": "Sync Products on the robot.",
-					"SYNC": "SYNC",
-					"NOTE": "Note: Sync is not possible when robot is offline!"
-				},
 				"EMERGENCY": {
 					"TITLE": "Emergency State",
 					"EXCERPT": "Update emergency status.",
@@ -2251,6 +2249,12 @@
 						"TEXT": "Are you sure you want to change the emergency mode?",
 						"NOTE": "Note*: Don't forget to take the robot into service again!"
 					}
+				},
+				"SYNC_PRODUCTS": {
+					"TITLE": "Sync Products",
+					"EXCERPT": "Sync Products on the robot.",
+					"SYNC": "SYNC",
+					"NOTE": "Note: Sync is not possible when robot is offline!"
 				},
 				"ROBOT_CONFIG": {
 					"TITLE": "Configure Robot",
@@ -2297,6 +2301,18 @@
 						"BUTTONS": {
 							"UPDATE": "Update"
 						}
+					}
+				},
+				"SYNC_CONFIGS": {
+					"TITLE": "Sync Configs",
+					"EXCERPT": "Sync all robot/site config sections in one-click.",
+					"BUTTONS": {
+						"SYNC_ROBOT": "Sync Robot Configs",
+						"SYNC_SITE": "Sync Site Configs"
+					},
+					"CONFIRMATION": {
+						"TITLE": "Sync Config",
+						"TEXT": "Are you sure you want to sync?"
 					}
 				},
 				"ROBOT_CONFIGURATION": {

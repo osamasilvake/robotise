@@ -113,6 +113,10 @@ const AppServices = (config: typeof AppConfigService) => {
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,
 						CONFIG: `${config.envAppUrl}/robots/:robotId`,
+						SYNC_CONFIGS: {
+							ROBOT: `${config.envAppUrl}/robot-configs/sync-all/:robotId/robot`,
+							SITE: `${config.envAppUrl}/robot-configs/sync-all/:robotId/site`
+						},
 						ROBOT_CONFIGS: {
 							ALL: `${config.envAppUrl}/robot-configs`,
 							SINGLE: `${config.envAppUrl}/robot-configs/:configId`

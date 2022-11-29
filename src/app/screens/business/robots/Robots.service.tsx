@@ -6,6 +6,7 @@ import {
 import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
+import { RobotConfigurationSyncConfigsTypeEnum } from './content/configuration/cloud/sync-configs/RobotConfigurationSyncConfigs.enum';
 import { RobotDetailCameraTypeEnum } from './content/detail/cameras/RobotDetailCameras.enum';
 import {
 	RobotDetailCommandsMuteSensorsTypeEnum,
@@ -532,6 +533,20 @@ class RobotsService {
 				}
 			}
 		});
+	};
+
+	/**
+	 * sync configs
+	 * @param robotId
+	 * @param type
+	 * @returns
+	 */
+	robotSyncConfigs = (robotId: string, type: RobotConfigurationSyncConfigsTypeEnum) => {
+		const { ROBOTS } = AppConfigService.AppServices.SCREENS.BUSINESS;
+		const { ROBOT, SITE } = ROBOTS.CONFIGURATION.SYNC_CONFIGS;
+		let url = type === RobotConfigurationSyncConfigsTypeEnum.SYNC_ROBOT ? ROBOT : SITE;
+		url = url.replace(':robotId', robotId);
+		return HttpClientService.post(url);
 	};
 
 	/**

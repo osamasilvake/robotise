@@ -309,8 +309,11 @@
 						}
 					},
 					"SITE_CONFIGURATION": {
-						"SUCCESS": "Configuration has been updated successfully!",
-						"ERROR": "Unable to update configuration!"
+						"CREATED": "Sync command was sent. Waiting for response!",
+						"SUCCESS": "Section was synced successfully!",
+						"FAILED": "Section could not be synced. Please check command logs!",
+						"UNKNOWN": "Unknown Status!",
+						"ERROR": "Sync to robot failed!"
 					}
 				}
 			},
@@ -396,8 +399,11 @@
 						"ERROR": "Sync command to robot failed!"
 					},
 					"ROBOT_CONFIGURATION": {
-						"SUCCESS": "Configuration has been updated successfully!",
-						"ERROR": "Unable to update configuration!"
+						"CREATED": "Sync command was sent. Waiting for response!",
+						"SUCCESS": "Section was synced successfully!",
+						"FAILED": "Section could not be synced. Please check command logs!",
+						"UNKNOWN": "Unknown Status!",
+						"ERROR": "Sync to robot failed!"
 					}
 				}
 			},

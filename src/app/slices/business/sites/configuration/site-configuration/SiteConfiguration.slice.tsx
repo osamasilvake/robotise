@@ -11,6 +11,7 @@ import {
 	SCCDataElementInterface,
 	SliceSiteConfigurationInterface
 } from './SiteConfiguration.slice.interface';
+import { handleTriggerMessage } from './SiteConfiguration.slice.map';
 
 // initial state
 export const initialState: SliceSiteConfigurationInterface = {
@@ -135,13 +136,20 @@ export const SiteConfigurationUpdate =
 
 		// update site configuration
 		return SitesService.siteConfigurationUpdate(siteId, configId, payload)
-			.then(async () => {
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeSiteConfiguration(res);
+
+				// prepare trigger message
+				const status = (result && result[0]?.status) as string;
+				const tRes = handleTriggerMessage(status);
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'configuration-update-success',
 					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'SITES.CONFIGURATION.SITE_CONFIGURATION.SUCCESS'
+					severity: tRes.severity,
+					text: tRes.text
 				};
 				dispatch(triggerMessage(message));
 

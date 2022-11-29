@@ -11,6 +11,7 @@ import {
 	RCCDataElementInterface,
 	SliceRobotConfigurationInterface
 } from './RobotConfiguration.slice.interface';
+import { handleTriggerMessage } from './RobotConfiguration.slice.map';
 
 // initial state
 export const initialState: SliceRobotConfigurationInterface = {
@@ -135,13 +136,20 @@ export const RobotConfigurationUpdate =
 
 		// update robot configuration
 		return RobotsService.robotConfigurationUpdate(robotId, configId, payload)
-			.then(async () => {
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserializeRobotConfiguration(res);
+
+				// prepare trigger message
+				const status = (result && result[0]?.status) as string;
+				const tRes = handleTriggerMessage(status);
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'configuration-update-success',
 					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.SUCCESS'
+					severity: tRes.severity,
+					text: tRes.text
 				};
 				dispatch(triggerMessage(message));
 

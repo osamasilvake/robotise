@@ -41,6 +41,7 @@ import { RobotConfigurationRobotStyle } from './RobotConfigurationRobot.style';
 import { RobotConfigurationRobotValidation } from './RobotConfigurationRobot.validation';
 import RobotConfigurationRobotSectionBoolean from './RobotConfigurationRobotSectionBoolean';
 import RobotConfigurationRobotSectionInput from './RobotConfigurationRobotSectionInput';
+import RobotConfigurationRobotSectionSelect from './RobotConfigurationRobotSectionSelect';
 
 const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface> = (props) => {
 	const { section } = props;
@@ -61,46 +62,53 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const sectionName = (section?.sectionName || '').toUpperCase();
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 
-	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
-		useForm<RCCDataElementInterface>({}, RobotConfigurationRobotValidation, async () => {
-			if (!elements) return;
-			if (!cRobotId) return;
-			if (!section?.id) return;
+	const {
+		handleChangeSelect,
+		handleChangeInput,
+		handleChangeCheckbox,
+		handleBlur,
+		handleSubmit,
+		values,
+		errors
+	} = useForm<RCCDataElementInterface>({}, RobotConfigurationRobotValidation, async () => {
+		if (!elements) return;
+		if (!cRobotId) return;
+		if (!section?.id) return;
 
-			// object to array of key/value pairs
-			const list = Object.entries(values).map(([key, value]) => ({ key, value }));
+		// object to array of key/value pairs
+		const list = Object.entries(values).map(([key, value]) => ({ key, value }));
 
-			// prepare fields changes
-			const changes = fieldsChanges(list);
+		// prepare fields changes
+		const changes = fieldsChanges(list);
 
-			// generate recursive output
-			const result = recursiveOutput({
-				initial: elements as RCCDataElementInterface,
-				update: changes,
-				isArray: Array.isArray(elements)
-			});
-
-			// dispatch: update robot configuration
-			dispatch(
-				RobotConfigurationUpdate(
-					cRobotId,
-					section?.id,
-					{
-						request: {
-							name: section.name,
-							configType: section.configType,
-							sectionName: section.sectionName,
-							preset: section.preset,
-							elements: { ...section?.elements, value: result }
-						}
-					},
-					() => {
-						// dispatch: fetch robot configuration
-						dispatch(RobotConfigurationFetch(cRobotId, true));
-					}
-				)
-			);
+		// generate recursive output
+		const result = recursiveOutput({
+			initial: elements as RCCDataElementInterface,
+			update: changes,
+			isArray: Array.isArray(elements)
 		});
+
+		// dispatch: update robot configuration
+		dispatch(
+			RobotConfigurationUpdate(
+				cRobotId,
+				section?.id,
+				{
+					request: {
+						name: section.name,
+						configType: section.configType,
+						sectionName: section.sectionName,
+						preset: section.preset,
+						elements: { ...section?.elements, value: result }
+					}
+				},
+				() => {
+					// dispatch: fetch robot configuration
+					dispatch(RobotConfigurationFetch(cRobotId, true));
+				}
+			)
+		);
+	});
 
 	/**
 	 * prepare fields changes
@@ -269,6 +277,20 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								</Fragment>
 							))}
 						</Grid>
+					</Grid>
+				);
+			case RobotConfigurationRobotElementTypeEnum.SELECT:
+				return (
+					<Grid item xs={12} sm={6} md={6}>
+						<RobotConfigurationRobotSectionSelect
+							id={id}
+							label={key}
+							content={list}
+							initValue={String(list?.value?.toString() || list?.default)}
+							value={String(values[id])}
+							handleChangeSelect={handleChangeSelect}
+							choices={list?.choices as string[]}
+						/>
 					</Grid>
 				);
 			case RobotConfigurationRobotElementTypeEnum.NUMBER:

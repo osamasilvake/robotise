@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { useDebounce } from '../../../../../../utilities/hooks/debounce/Debounce';
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
-import { RobotConfigurationRobotFormInputInterface } from './RobotConfigurationRobot.interface';
+import { RobotConfigurationRobotSectionInputInterface } from './RobotConfigurationRobot.interface';
 import { RobotConfigurationRobotStyle } from './RobotConfigurationRobot.style';
 
-const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputInterface> = (
+const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotSectionInputInterface> = (
 	props
 ) => {
 	const {
@@ -24,18 +24,17 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotFormInputIn
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigurationRobotStyle();
 
+	const touched = useRef(false);
+	const inputValue = !touched.current ? initValue : value;
+	const [elemValue, setElemValue] = useState(inputValue);
+	const debouncedValue = useDebounce(elemValue, 200);
+
 	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
 	const required = !!content?.required;
 	const type = content?.type as string;
 	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);
 	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, { value: labelTransform });
 	const notes = content?.notes;
-
-	const touched = useRef(false);
-	const inputValue = !touched.current ? initValue : value;
-	const [elemValue, setElemValue] = useState(inputValue);
-
-	const debouncedValue = useDebounce(elemValue, 200);
 
 	useEffect(() => {
 		// return on same value

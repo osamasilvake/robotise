@@ -42,6 +42,7 @@ import { SiteConfigurationSiteStyle } from './SiteConfigurationSite.style';
 import { SiteConfigurationSiteValidation } from './SiteConfigurationSite.validation';
 import SiteConfigurationSiteSectionBoolean from './SiteConfigurationSiteSectionBoolean';
 import SiteConfigurationSiteSectionInput from './SiteConfigurationSiteSectionInput';
+import SiteConfigurationSiteSectionSelect from './SiteConfigurationSiteSectionSelect';
 
 const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = (props) => {
 	const { section } = props;
@@ -68,51 +69,58 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 	const isMoreRobots = robotsList && robotsList.length > 1;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIGURATION';
 
-	const { handleChangeInput, handleChangeCheckbox, handleBlur, handleSubmit, values, errors } =
-		useForm<SCCDataElementInterface>({}, SiteConfigurationSiteValidation, async () => {
-			if (!elements) return;
-			if (!cSiteId) return;
-			if (!section?.id) return;
+	const {
+		handleChangeSelect,
+		handleChangeInput,
+		handleChangeCheckbox,
+		handleBlur,
+		handleSubmit,
+		values,
+		errors
+	} = useForm<SCCDataElementInterface>({}, SiteConfigurationSiteValidation, async () => {
+		if (!elements) return;
+		if (!cSiteId) return;
+		if (!section?.id) return;
 
-			// object to array of key/value pairs
-			const list = Object.entries(values).map(([key, value]) => ({ key, value }));
+		// object to array of key/value pairs
+		const list = Object.entries(values).map(([key, value]) => ({ key, value }));
 
-			// prepare fields changes
-			const changes = fieldsChanges(list);
+		// prepare fields changes
+		const changes = fieldsChanges(list);
 
-			// generate recursive output
-			const result = recursiveOutput({
-				initial: elements as SCCDataElementInterface,
-				update: changes,
-				isArray: Array.isArray(elements)
-			});
-
-			if (isOneRobot) {
-				// dispatch: update site configuration
-				dispatch(
-					SiteConfigurationUpdate(
-						cSiteId,
-						section?.id,
-						{
-							request: {
-								name: section.name,
-								configType: section.configType,
-								sectionName: section.sectionName,
-								preset: section.preset,
-								elements: { ...section?.elements, value: result },
-								siteRobotsToSync: [robotsList[0].robotId]
-							}
-						},
-						() => {
-							// dispatch: fetch site configuration
-							dispatch(SiteConfigurationFetch(cSiteId, true));
-						}
-					)
-				);
-			} else {
-				setOpen(result);
-			}
+		// generate recursive output
+		const result = recursiveOutput({
+			initial: elements as SCCDataElementInterface,
+			update: changes,
+			isArray: Array.isArray(elements)
 		});
+
+		if (isOneRobot) {
+			// dispatch: update site configuration
+			dispatch(
+				SiteConfigurationUpdate(
+					cSiteId,
+					section?.id,
+					{
+						request: {
+							name: section.name,
+							configType: section.configType,
+							sectionName: section.sectionName,
+							preset: section.preset,
+							elements: { ...section?.elements, value: result },
+							siteRobotsToSync: [robotsList[0].robotId]
+						}
+					},
+					() => {
+						// dispatch: fetch site configuration
+						dispatch(SiteConfigurationFetch(cSiteId, true));
+					}
+				)
+			);
+		} else {
+			setOpen(result);
+		}
+	});
 
 	/**
 	 * prepare fields changes
@@ -281,6 +289,20 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 								</Fragment>
 							))}
 						</Grid>
+					</Grid>
+				);
+			case SiteConfigurationSiteElementTypeEnum.SELECT:
+				return (
+					<Grid item xs={12} sm={6} md={6}>
+						<SiteConfigurationSiteSectionSelect
+							id={id}
+							label={key}
+							content={list}
+							initValue={String(list?.value?.toString() || list?.default)}
+							value={String(values[id])}
+							handleChangeSelect={handleChangeSelect}
+							choices={list?.choices as string[]}
+						/>
 					</Grid>
 				);
 			case SiteConfigurationSiteElementTypeEnum.NUMBER:

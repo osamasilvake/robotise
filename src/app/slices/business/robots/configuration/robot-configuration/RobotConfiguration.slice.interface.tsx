@@ -34,6 +34,7 @@ export interface RCCDataElementInterface {
 	[key: string]:
 		| number
 		| string
+		| string[]
 		| boolean
 		| RCCDataElementInterface
 		| RCCDataElementInterface[]

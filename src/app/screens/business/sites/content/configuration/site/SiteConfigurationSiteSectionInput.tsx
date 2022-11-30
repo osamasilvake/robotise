@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import { useDebounce } from '../../../../../../utilities/hooks/debounce/Debounce';
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
-import { SiteConfigurationSiteFormInputInterface } from './SiteConfigurationSite.interface';
+import { SiteConfigurationSiteSectionInputInterface } from './SiteConfigurationSite.interface';
 import { SiteConfigurationSiteStyle } from './SiteConfigurationSite.style';
 
-const SiteConfigurationSiteSectionInput: FC<SiteConfigurationSiteFormInputInterface> = (props) => {
+const SiteConfigurationSiteSectionInput: FC<SiteConfigurationSiteSectionInputInterface> = (
+	props
+) => {
 	const {
 		multiline,
 		id,
@@ -22,18 +24,17 @@ const SiteConfigurationSiteSectionInput: FC<SiteConfigurationSiteFormInputInterf
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigurationSiteStyle();
 
+	const touched = useRef(false);
+	const inputValue = !touched.current ? initValue : value;
+	const [elemValue, setElemValue] = useState(inputValue);
+	const debouncedValue = useDebounce(elemValue, 200);
+
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIGURATION';
 	const required = !!content?.required;
 	const type = content?.type as string;
 	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);
 	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, { value: labelTransform });
 	const notes = content?.notes;
-
-	const touched = useRef(false);
-	const inputValue = !touched.current ? initValue : value;
-	const [elemValue, setElemValue] = useState(inputValue);
-
-	const debouncedValue = useDebounce(elemValue, 200);
 
 	useEffect(() => {
 		// return on same value

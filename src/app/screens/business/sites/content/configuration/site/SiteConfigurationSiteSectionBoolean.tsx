@@ -2,15 +2,15 @@ import { Box, Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
 import { FC, useRef } from 'react';
 
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
-import { SiteConfigurationSiteFormBooleanInterface } from './SiteConfigurationSite.interface';
+import { SiteConfigurationSiteSectionBooleanInterface } from './SiteConfigurationSite.interface';
 
-const SiteConfigurationSiteSectionBoolean: FC<SiteConfigurationSiteFormBooleanInterface> = (
+const SiteConfigurationSiteSectionBoolean: FC<SiteConfigurationSiteSectionBooleanInterface> = (
 	props
 ) => {
 	const { id, label, content, handleChangeCheckbox, initValue, value } = props;
 
-	const notes = content?.notes;
 	const touched = useRef(false);
+	const notes = content?.notes;
 
 	return (
 		<Box>

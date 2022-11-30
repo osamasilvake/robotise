@@ -29,6 +29,9 @@ export const RobotConfigurationRobotStyle = makeStyles((theme: Theme) => ({
 		marginTop: theme.spacing(-1.5),
 		marginLeft: 0
 	},
+	sSelect: {
+		marginTop: theme.spacing(1)
+	},
 	sInput: {
 		marginTop: theme.spacing(1)
 	},

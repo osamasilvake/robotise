@@ -2,15 +2,15 @@ import { Box, Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
 import { FC, useRef } from 'react';
 
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
-import { RobotConfigurationRobotFormBooleanInterface } from './RobotConfigurationRobot.interface';
+import { RobotConfigurationRobotSectionBooleanInterface } from './RobotConfigurationRobot.interface';
 
-const RobotConfigurationRobotSectionBoolean: FC<RobotConfigurationRobotFormBooleanInterface> = (
+const RobotConfigurationRobotSectionBoolean: FC<RobotConfigurationRobotSectionBooleanInterface> = (
 	props
 ) => {
 	const { id, label, content, handleChangeCheckbox, initValue, value } = props;
 
-	const notes = content?.notes;
 	const touched = useRef(false);
+	const notes = content?.notes;
 
 	return (
 		<Box>

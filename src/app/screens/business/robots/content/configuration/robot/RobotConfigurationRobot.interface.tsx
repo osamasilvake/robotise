@@ -1,3 +1,4 @@
+import { SelectChangeEvent } from '@mui/material';
 import { ChangeEvent, FocusEvent } from 'react';
 
 import {
@@ -28,7 +29,17 @@ export interface RobotConfigurationRobotResultInterface {
 	isArray?: boolean;
 }
 
-export interface RobotConfigurationRobotFormInputInterface {
+export interface RobotConfigurationRobotSectionSelectInterface {
+	id: string;
+	label: string;
+	content: RCCDataElementInterface;
+	initValue: string;
+	value: string;
+	choices: string[];
+	handleChangeSelect: (event: SelectChangeEvent) => void;
+}
+
+export interface RobotConfigurationRobotSectionInputInterface {
 	multiline: boolean;
 	id: string;
 	label: string;
@@ -40,7 +51,7 @@ export interface RobotConfigurationRobotFormInputInterface {
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
-export interface RobotConfigurationRobotFormBooleanInterface {
+export interface RobotConfigurationRobotSectionBooleanInterface {
 	id: string;
 	label: string;
 	content: RCCDataElementInterface;

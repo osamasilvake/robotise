@@ -1,4 +1,5 @@
 export enum SiteConfigurationSiteElementTypeEnum {
+	SELECT = 'string:select',
 	NUMBER = 'number',
 	STRING = 'string',
 	MULTILINE_STRING = 'string:multiline',

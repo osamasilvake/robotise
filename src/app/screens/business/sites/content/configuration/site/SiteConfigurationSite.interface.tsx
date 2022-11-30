@@ -1,3 +1,4 @@
+import { SelectChangeEvent } from '@mui/material';
 import { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from 'react';
 
 import { RTSContentDataInterface } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
@@ -29,7 +30,17 @@ export interface SiteConfigurationSiteResultInterface {
 	isArray?: boolean;
 }
 
-export interface SiteConfigurationSiteFormInputInterface {
+export interface SiteConfigurationSiteSectionSelectInterface {
+	id: string;
+	label: string;
+	content: SCCDataElementInterface;
+	initValue: string;
+	value: string;
+	choices: string[];
+	handleChangeSelect: (event: SelectChangeEvent) => void;
+}
+
+export interface SiteConfigurationSiteSectionInputInterface {
 	multiline: boolean;
 	id: string;
 	label: string;
@@ -41,7 +52,7 @@ export interface SiteConfigurationSiteFormInputInterface {
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
-export interface SiteConfigurationSiteFormBooleanInterface {
+export interface SiteConfigurationSiteSectionBooleanInterface {
 	id: string;
 	label: string;
 	content: SCCDataElementInterface;

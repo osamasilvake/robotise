@@ -638,13 +638,16 @@ export const RobotSyncConfigs =
 				// callback
 				callback();
 			})
-			.catch(() => {
+			.catch((err) => {
+				const error = err && err[0]?.message;
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'operation-sync-configs-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.CONFIGURATION.SYNC_CONFIGS.ERROR'
+					text: error || 'ROBOTS.CONFIGURATION.SYNC_CONFIGS.ERROR',
+					dynamicText: !!error
 				};
 				dispatch(triggerMessage(message));
 

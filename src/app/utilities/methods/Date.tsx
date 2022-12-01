@@ -1,7 +1,9 @@
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 
 dayjs.extend(weekOfYear);
+dayjs.extend(utc);
 
 /**
  * day JS
@@ -152,6 +154,24 @@ const dateFromToDiff = (date1: Date | string, date2: Date | string): boolean => 
  */
 const dateSort = (date: Date): dayjs.Dayjs => dayjs(date);
 
+/**
+ * locale
+ * @param language
+ * @returns
+ */
+const dateLocale = (language: string) => {
+	return dayjs.locale(language);
+};
+
+/**
+ * utc
+ * @param utc
+ * @returns
+ */
+const dateUTC = (utc: number) => {
+	return dayjs.utc(utc);
+};
+
 export {
 	dateCurrentYear,
 	dateDayJs,
@@ -166,8 +186,10 @@ export {
 	dateFormat8,
 	dateFromToDiff,
 	dateISOString,
+	dateLocale,
 	dateMinsPriorToDate,
 	dateNow,
 	dateSort,
-	dateToday
+	dateToday,
+	dateUTC
 };

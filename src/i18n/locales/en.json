@@ -560,16 +560,30 @@
 			},
 			"ORDERS": {
 				"DETAIL": {
+					"HEAD": {
+						"FINAL_STATUS": {
+							"TITLE": "Final Status"
+						},
+						"ELAPSED_TIME": {
+							"TITLE": "Elapsed Time"
+						},
+						"PURCHASE_DETAIL": {
+							"TITLE": "Purchase",
+							"TEXT": "Purchase details"
+						}
+					},
 					"TABLE": {
 						"COLUMNS": {
 							"STATUS": "Status",
-							"CREATED": "Created"
-						}
-					},
-					"PURCHASE_DETAIL": {
-						"LINK": {
-							"TITLE": "Purchase",
-							"TEXT": "Purchase details"
+							"CREATED": "Created",
+							"ELAPSED_TIME": "Elapsed Time",
+							"AGGREGATED_TIME": "Aggregated Time"
+						},
+						"VALUES": {
+							"STATUS": {
+								"ON_ROC": "on ROC, sent to Robot",
+								"RECEIVED_BY_ROBOT": "received by Robot"
+							}
 						}
 					}
 				},

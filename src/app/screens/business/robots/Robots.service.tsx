@@ -546,7 +546,13 @@ class RobotsService {
 		const { ROBOT, SITE } = ROBOTS.CONFIGURATION.SYNC_CONFIGS;
 		let url = type === RobotConfigurationSyncConfigsTypeEnum.SYNC_ROBOT ? ROBOT : SITE;
 		url = url.replace(':robotId', robotId);
-		return HttpClientService.post(url);
+		return HttpClientService.post(
+			url,
+			{},
+			{
+				headers: AppConfigService.AppRequestHeaders.json
+			}
+		);
 	};
 
 	/**

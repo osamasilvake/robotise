@@ -1,9 +1,9 @@
 import 'dayjs/locale/de';
 
-import dayjs from 'dayjs';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+import { dateLocale } from '../app/utilities/methods/Date';
 import de from './locales/de.json';
 import en from './locales/en.json';
 
@@ -17,5 +17,5 @@ i18n.use(initReactI18next)
 	})
 	.then();
 
-// change daysJs locale on language change
-i18n.on('languageChanged', (language: string) => dayjs.locale(language));
+// change locale on language change
+i18n.on('languageChanged', (language: string) => dateLocale(language));

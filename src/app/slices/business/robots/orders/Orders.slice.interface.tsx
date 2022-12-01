@@ -43,6 +43,8 @@ export interface SOCDataHistoryInterface {
 	event: string;
 	details: string;
 	createdAt: Date;
+	elapsedTime?: string;
+	aggregatedTime?: string;
 }
 
 export interface SOCDataOrderReportInterface {

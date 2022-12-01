@@ -6,13 +6,25 @@ export const columns: RobotOrderTableColumnInterface[] = [
 	{
 		id: RobotOrderTableColumnsTypeEnum.DETAILS,
 		label: `${translation}.STATUS`,
-		width: 350,
+		minWidth: 350,
 		align: 'left'
 	},
 	{
 		id: RobotOrderTableColumnsTypeEnum.CREATED,
 		label: `${translation}.CREATED`,
-		minWidth: 170,
+		width: 200,
 		align: 'left'
+	},
+	{
+		id: RobotOrderTableColumnsTypeEnum.ELAPSED_TIME,
+		label: `${translation}.ELAPSED_TIME`,
+		width: 150,
+		align: 'right'
+	},
+	{
+		id: RobotOrderTableColumnsTypeEnum.AGGREGATED_TIME,
+		label: `${translation}.AGGREGATED_TIME`,
+		width: 180,
+		align: 'right'
 	}
 ];

@@ -561,6 +561,15 @@
 			"ORDERS": {
 				"DETAIL": {
 					"HEAD": {
+						"TEST_ORDER": {
+							"TITLE": "Test order"
+						},
+						"ORIGIN": {
+							"TITLE": "Origin"
+						},
+						"MODE": {
+							"TITLE": "Mode"
+						},
 						"FINAL_STATUS": {
 							"TITLE": "Final Status"
 						},

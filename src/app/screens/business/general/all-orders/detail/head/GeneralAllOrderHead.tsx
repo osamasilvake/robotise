@@ -1,9 +1,10 @@
-import { Box, Link, Stack, Typography } from '@mui/material';
+import { Box, Grid, Link, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
+import { StatusTypeEnum } from '../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../services';
 import { dateDayJs, dateUTC } from '../../../../../../utilities/methods/Date';
 import { mapStatus } from '../../list/table/GeneralAllOrdersTable.map';
@@ -24,66 +25,96 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 	const translation = 'COMMON.ORDERS.DETAIL.HEAD';
 
 	return (
-		<Stack
-			spacing={6}
-			direction="row"
-			alignItems="center"
-			justifyContent="space-between"
-			flexWrap="wrap"
-			className={classes.sBox}>
-			{/* Room */}
-			<Typography variant="h1" fontWeight={500}>
-				{order?.content?.location}
-			</Typography>
-
-			<Stack spacing={6} direction="row" alignItems="center" flexWrap="wrap">
-				{/* Final Status */}
-				<Box>
-					<Typography variant="body2">
-						{t(`${translation}.FINAL_STATUS.TITLE`)}
+		<Grid container spacing={2} className={classes.sBox}>
+			<Grid item xs={12} sm={4} md={5}>
+				<Box className={classes.sRoomWrapper}>
+					{/* Room */}
+					<Typography variant="h1" className={classes.sRoom}>
+						{order?.content?.location}
 					</Typography>
-					<Status level={mapStatus(order?.content?.status || '')}>
-						{t(
-							`COMMON.ORDERS.LIST.TABLE.VALUES.STATUS.${order?.content?.status?.replace(
-								':',
-								'_'
-							)}`
-						)}
-					</Status>
+
+					{/* Debug */}
+					{order?.content?.isDebug && (
+						<Box className={classes.sDebug}>
+							<Status small level={StatusTypeEnum.WARN}>
+								{t(`${translation}.TEST_ORDER.TITLE`)}
+							</Status>
+						</Box>
+					)}
 				</Box>
-
-				{/* Elapsed Time */}
-				{totalOrderTimeFormatted && (
-					<Box>
-						<Typography variant="body2">
-							{t(`${translation}.ELAPSED_TIME.TITLE`)}
-						</Typography>
+			</Grid>
+			<Grid item xs={12} sm={8} md={7}>
+				<Stack
+					spacing={0}
+					direction="row"
+					alignItems="center"
+					justifyContent="space-between"
+					flexWrap="wrap"
+					className={classes.sItems}>
+					{/* Origin */}
+					<Box className={classes.sItem}>
+						<Typography variant="body2">{t(`${translation}.ORIGIN.TITLE`)}</Typography>
 						<Typography variant="body2" color="textSecondary">
-							{totalOrderTimeFormatted}
+							{t(`COMMON.ORDERS.LIST.TABLE.VALUES.ORIGIN.${order?.content?.origin}`)}
 						</Typography>
 					</Box>
-				)}
 
-				{/* Purchase Detail */}
-				{order?.content?.orderReport && (
-					<Box>
-						<Typography variant="body2">
-							{t(`${translation}.PURCHASE_DETAIL.TITLE`)}
+					{/* Mode */}
+					<Box className={classes.sItem}>
+						<Typography variant="body2">{t(`${translation}.MODE.TITLE`)}</Typography>
+						<Typography variant="body2" color="textSecondary">
+							{t(`COMMON.MODE.${order?.content?.mode}`)}
 						</Typography>
-						<Link
-							component={RouterLink}
-							variant="body2"
-							underline="hover"
-							to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL.replace(
-								':robotId',
-								cRobotId
-							).replace(':purchaseId', order.content.orderReport.id)}>
-							{t(`${translation}.PURCHASE_DETAIL.TEXT`)}
-						</Link>
 					</Box>
-				)}
-			</Stack>
-		</Stack>
+
+					{/* Final Status */}
+					<Box className={classes.sItem}>
+						<Typography variant="body2">
+							{t(`${translation}.FINAL_STATUS.TITLE`)}
+						</Typography>
+						<Status level={mapStatus(order?.content?.status || '')}>
+							{t(
+								`COMMON.ORDERS.LIST.TABLE.VALUES.STATUS.${order?.content?.status?.replace(
+									':',
+									'_'
+								)}`
+							)}
+						</Status>
+					</Box>
+
+					{/* Elapsed Time */}
+					{totalOrderTimeFormatted && (
+						<Box className={classes.sItem}>
+							<Typography variant="body2">
+								{t(`${translation}.ELAPSED_TIME.TITLE`)}
+							</Typography>
+							<Typography variant="body2" color="textSecondary">
+								{totalOrderTimeFormatted}
+							</Typography>
+						</Box>
+					)}
+
+					{/* Purchase Detail */}
+					{order?.content?.orderReport && (
+						<Box className={classes.sItem}>
+							<Typography variant="body2">
+								{t(`${translation}.PURCHASE_DETAIL.TITLE`)}
+							</Typography>
+							<Link
+								component={RouterLink}
+								variant="body2"
+								underline="hover"
+								to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL.replace(
+									':robotId',
+									cRobotId
+								).replace(':purchaseId', order.content.orderReport.id)}>
+								{t(`${translation}.PURCHASE_DETAIL.TEXT`)}
+							</Link>
+						</Box>
+					)}
+				</Stack>
+			</Grid>
+		</Grid>
 	);
 };
 export default GeneralAllOrderHead;

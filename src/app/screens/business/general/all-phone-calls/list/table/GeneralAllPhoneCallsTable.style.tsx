@@ -23,9 +23,6 @@ export const GeneralAllPhoneCallsTableStyle = makeStyles((theme: Theme) => ({
 			marginBottom: theme.spacing(0.5)
 		}
 	},
-	sHistoryEvent: {
-		marginRight: theme.spacing(0.5)
-	},
 	sHistoryDetails: {
 		marginRight: theme.spacing(0.8)
 	},

@@ -1,10 +1,5 @@
-import { MouseEvent } from 'react';
-
 import { SliceOrderInterface } from '../../../../../../../slices/business/robots/orders/Order.slice.interface';
-import {
-	SOCDataHistoryInterface,
-	SOCDataInterface
-} from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
+import { SOCDataHistoryInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { RobotOrderTableColumnsTypeEnum } from './RobotOrderTable.enum';
 
 export interface RobotOrderTableInterface {

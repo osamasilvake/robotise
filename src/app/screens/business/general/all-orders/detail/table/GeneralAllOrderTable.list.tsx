@@ -6,13 +6,25 @@ export const columns: GeneralAllOrderTableColumnInterface[] = [
 	{
 		id: GeneralAllOrderTableColumnsTypeEnum.DETAILS,
 		label: `${translation}.STATUS`,
-		width: 350,
+		minWidth: 350,
 		align: 'left'
 	},
 	{
 		id: GeneralAllOrderTableColumnsTypeEnum.CREATED,
 		label: `${translation}.CREATED`,
-		minWidth: 170,
+		width: 200,
 		align: 'left'
+	},
+	{
+		id: GeneralAllOrderTableColumnsTypeEnum.ELAPSED_TIME,
+		label: `${translation}.ELAPSED_TIME`,
+		width: 150,
+		align: 'right'
+	},
+	{
+		id: GeneralAllOrderTableColumnsTypeEnum.AGGREGATED_TIME,
+		label: `${translation}.AGGREGATED_TIME`,
+		width: 180,
+		align: 'right'
 	}
 ];

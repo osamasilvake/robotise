@@ -14,7 +14,7 @@ import {
 	allOrderSelector
 } from '../../../../../slices/business/general/all-orders/AllOrder.slice';
 import { RobotParamsInterface } from '../../../robots/Robot.interface';
-import GeneralAllOrderPurchaseDetail from './purchase-detail/GeneralAllOrderPurchaseDetail';
+import GeneralAllOrderHead from './head/GeneralAllOrderHead';
 import GeneralAllOrderTable from './table/GeneralAllOrderTable';
 
 const GeneralAllOrderDetail: FC = () => {
@@ -63,11 +63,11 @@ const GeneralAllOrderDetail: FC = () => {
 
 	return allOrder ? (
 		<Box>
+			{/* Head */}
+			<GeneralAllOrderHead order={allOrder} />
+
 			{/* Table */}
 			<GeneralAllOrderTable order={allOrder} />
-
-			{/* Purchase Detail */}
-			<GeneralAllOrderPurchaseDetail order={allOrder} />
 		</Box>
 	) : null;
 };

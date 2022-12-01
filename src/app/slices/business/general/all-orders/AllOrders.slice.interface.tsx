@@ -44,6 +44,8 @@ export interface SAODataHistoryInterface {
 	event: string;
 	details: string;
 	createdAt: Date;
+	elapsedTime?: string;
+	aggregatedTime?: string;
 }
 
 export interface SAODataOrderReportInterface {

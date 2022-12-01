@@ -790,6 +790,7 @@
 								"completed": "Completed",
 								"busy": "Busy",
 								"missing-from": "Missing From",
+								"missing-from-number-in-phone-configs": "Missing From Number in phone configs",
 								"rejected": "Rejected",
 								"error": "Error",
 								"failed": "Failed",

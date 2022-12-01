@@ -32,6 +32,7 @@ export const mapStatus = (status: string) => {
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.COMPLETED:
 			return StatusTypeEnum.SUCCESS_DARK;
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.BUSY:
+		case SitePhoneCallsTableColumnHistoryEventTypeEnum.MISSING_FROM:
 			return StatusTypeEnum.WARN;
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.REJECTED:
 		case SitePhoneCallsTableColumnHistoryEventTypeEnum.ERROR:

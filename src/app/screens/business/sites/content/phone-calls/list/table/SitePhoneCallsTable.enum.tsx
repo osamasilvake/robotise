@@ -19,6 +19,7 @@ export enum SitePhoneCallsTableColumnHistoryEventTypeEnum {
 	COMPLETED = 'completed',
 	ORDER_ASSIGNED = 'orderAssigned',
 	BUSY = 'busy',
+	MISSING_FROM = 'missing-from',
 	REJECTED = 'rejected',
 	ERROR = 'error',
 	FAILED = 'failed',

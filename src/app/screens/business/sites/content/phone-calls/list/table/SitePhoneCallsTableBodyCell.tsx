@@ -38,7 +38,6 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 			return dateFormat1(String(value));
 		} else if (SitePhoneCallsTableColumnsTypeEnum.HISTORY === column.id) {
 			const history = phoneCall.history;
-			const historyMapped = mappedPhoneCall.history;
 
 			return (
 				<Box>
@@ -49,9 +48,6 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 								className={classes.sTableHistoryIcon}>
 								{mapHistoryEventType(t(item.event)).icon}
 							</Icon>
-							<Typography variant="body2" className={classes.sHistoryEvent}>
-								{t(historyMapped[index].event)}:
-							</Typography>
 							{item.details && (
 								<>
 									{item.event !== 'orderAssigned' && (

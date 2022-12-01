@@ -14,11 +14,7 @@ export const mapPhoneCall = (phoneCall: PCCDataInterface) => {
 	const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.VALUES';
 	return {
 		...phoneCall,
-		status: `${translation}.STATUS.${phoneCall.status}`,
-		history: phoneCall.history.map((item) => ({
-			...item,
-			event: `${translation}.HISTORY.EVENT.${item.event}`
-		}))
+		status: `${translation}.STATUS.${phoneCall.status}`
 	};
 };
 

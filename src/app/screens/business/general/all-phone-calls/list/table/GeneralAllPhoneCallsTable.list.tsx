@@ -48,7 +48,7 @@ export const columns: GeneralAllPhoneCallsTableColumnInterface[] = [
 	{
 		id: GeneralAllPhoneCallsTableColumnsTypeEnum.HISTORY,
 		label: `${translation}.HISTORY`,
-		minWidth: 180,
+		minWidth: 450,
 		align: 'left',
 		noSort: true
 	}

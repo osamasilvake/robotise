@@ -799,14 +799,6 @@
 								"dummy": "Dummy"
 							},
 							"HISTORY": {
-								"EVENT": {
-									"approved": "Approved",
-									"confirmed": "Confirmed",
-									"orderAssigned": "Order Assigned",
-									"rejected": "Rejected",
-									"error": "Error",
-									"statusUpdated": "Status"
-								},
 								"ORDER_DETAIL": "Detail"
 							}
 						}

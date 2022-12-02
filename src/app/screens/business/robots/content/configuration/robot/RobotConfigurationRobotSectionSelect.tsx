@@ -1,4 +1,12 @@
-import { Box, FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+	Box,
+	FormControl,
+	FormHelperText,
+	InputLabel,
+	MenuItem,
+	OutlinedInput,
+	Select
+} from '@mui/material';
 import { FC, useRef } from 'react';
 
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
@@ -21,22 +29,25 @@ const RobotConfigurationRobotSectionSelect: FC<RobotConfigurationRobotSectionSel
 	return (
 		<Box>
 			<FormControl fullWidth className={classes.sSelect}>
-				<InputLabel id={`label-${id}`}>{labelTransform}</InputLabel>
+				<InputLabel shrink id={`label-${id}`}>
+					{labelTransform}
+				</InputLabel>
 				<Select
+					displayEmpty
 					required={required}
 					labelId={`label-${id}`}
 					type={type}
 					id={id}
 					name={id}
-					label={labelTransform}
 					value={!touched.current ? initValue : value}
 					onChange={(e) => {
 						handleChangeSelect(e);
 						touched.current = true;
-					}}>
+					}}
+					input={<OutlinedInput notched label={labelTransform} />}>
 					{choices.map((choice) => (
 						<MenuItem key={choice} value={choice}>
-							{choice}
+							{choice === '' ? 'none' : choice}
 						</MenuItem>
 					))}
 				</Select>

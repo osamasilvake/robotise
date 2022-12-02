@@ -81,7 +81,7 @@ export const useForm = <UseFormEntity,>(
 		const { name, value } = event.target;
 
 		// set change event values
-		name && value && setChangeEventValues(name, value);
+		name && setChangeEventValues(name, value);
 	};
 
 	/**

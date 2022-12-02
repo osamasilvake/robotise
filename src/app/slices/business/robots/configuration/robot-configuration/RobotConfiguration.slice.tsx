@@ -162,13 +162,16 @@ export const RobotConfigurationUpdate =
 				// callback
 				callback();
 			})
-			.catch(() => {
+			.catch((err) => {
+				const errMessage = err && err?.data && err?.data?.attributes?.reason;
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'configuration-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.ERROR'
+					text: errMessage || 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.ERROR',
+					dynamicText: !!errMessage
 				};
 				dispatch(triggerMessage(message));
 

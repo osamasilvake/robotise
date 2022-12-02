@@ -11,14 +11,6 @@
 		<div class="qr-container qr-row qr-m-auto">
 			<div class="qr-card qr-col-md-3 qr-m-3 qr-container-item">
 				<div class="qr-container-item-inner qr-card-body">
-					<!-- Hotel Name -->
-					<h5 class="qr-card-title qr-flex qr-justify-content-center">
-						<span id="hotel-name" class="qr-ml-1 qr-text-primary qr-text-center"></span>
-					</h5>
-
-					<!-- Line -->
-					<hr class="qr-hr qr-bg-primary" />
-
 					<!-- Room No -->
 					<h5 class="qr-card-title qr-flex qr-justify-content-center">
 						Room
@@ -74,9 +66,8 @@
 	window.addEventListener(
 		'message',
 		({ data }) => {
-			const { type, url, text, code, smsTo, room, siteTitle } = data;
+			const { type, url, text, code, smsTo, room } = data;
 
-			document.getElementById('hotel-name').innerText = siteTitle;
 			document.getElementById('room-no').innerText = `#${room}`;
 			document.getElementById('qr-code').innerText = code;
 			document.getElementById('sms-to').innerText = smsTo;

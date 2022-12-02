@@ -573,8 +573,8 @@
 						"FINAL_STATUS": {
 							"TITLE": "Final Status"
 						},
-						"ELAPSED_TIME": {
-							"TITLE": "Elapsed Time"
+						"TOTAL_TIME": {
+							"TITLE": "Total Time"
 						},
 						"PURCHASE_DETAIL": {
 							"TITLE": "Purchase",

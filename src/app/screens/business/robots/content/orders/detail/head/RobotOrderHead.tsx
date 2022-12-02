@@ -85,11 +85,11 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 						</Status>
 					</Box>
 
-					{/* Elapsed Time */}
+					{/* Total Time */}
 					{totalOrderTimeFormatted && (
 						<Box className={classes.sItem}>
 							<Typography variant="body2">
-								{t(`${translation}.ELAPSED_TIME.TITLE`)}
+								{t(`${translation}.TOTAL_TIME.TITLE`)}
 							</Typography>
 							<Typography variant="body2" color="textSecondary">
 								{totalOrderTimeFormatted}

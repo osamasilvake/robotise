@@ -114,9 +114,6 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 										).icon
 									}
 								</Icon>
-								<Typography variant="body2" className={classes.sHistoryEvent}>
-									{t(historyMapped[index].event)}:
-								</Typography>
 								{item.details && (
 									<>
 										{item.event !== 'orderAssigned' && (

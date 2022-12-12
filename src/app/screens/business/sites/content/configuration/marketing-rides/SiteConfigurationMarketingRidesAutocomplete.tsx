@@ -56,7 +56,7 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 				id="locations"
 				options={options}
 				isOptionEqualToValue={(option, value) => option === value}
-				value={locations?.concat()?.sort((a, b) => a?.localeCompare(b))}
+				value={locations}
 				onChange={(_, values) => handleChangeInputs('locations', values)}
 				onBlur={handleBlur}
 				renderInput={(params) => (

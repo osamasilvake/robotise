@@ -165,7 +165,7 @@ class GeneralService {
 		return HttpClientService.get<GeneralAllSMSListAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.siteId || undefined,
-				'filter[status][nin]': payload.includeAllCalls ? undefined : 'completed',
+				'filter[status][nin]': payload.includeAllCalls ? undefined : 'delivered',
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}

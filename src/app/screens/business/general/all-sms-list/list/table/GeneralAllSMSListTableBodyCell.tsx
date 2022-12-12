@@ -85,8 +85,6 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 				return dateFormat1(String(value));
 			} else if (GeneralAllSMSListTableColumnsTypeEnum.HISTORY === column.id) {
 				const history = smsItem.history;
-				const historyMapped = mappedSMSItem.history;
-
 				return (
 					<Box>
 						{history.map((item, index) => (

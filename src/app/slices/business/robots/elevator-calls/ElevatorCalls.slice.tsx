@@ -167,6 +167,50 @@ export const ElevatorCallsUpdateState =
 	};
 
 /**
+ * test elevator call
+ * @param siteId
+ * @param callback
+ * @returns
+ */
+export const ElevatorCallsTest =
+	(siteId: string, callback: () => void) => async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		// test elevator call
+		return RobotsService.robotElevatorCallsTest(siteId)
+			.then(() => {
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-calls-text-fetch-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+
+				// callback
+				callback();
+			})
+			.catch((err: Error) => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-calls-text-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: err?.message || 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * fetch elevator calls template
  * @param elevatorId
  * @param callback
@@ -205,50 +249,6 @@ export const ElevatorCallsTemplateFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: update failed
-				dispatch(updateFailed());
-			});
-	};
-
-/**
- * test elevator call
- * @param siteId
- * @param callback
- * @returns
- */
-export const ElevatorCallsTest =
-	(siteId: string, callback: () => void) => async (dispatch: Dispatch) => {
-		// dispatch: updating
-		dispatch(updating());
-
-		// test elevator call
-		return RobotsService.robotElevatorCallsTest(siteId)
-			.then(() => {
-				// dispatch: updated
-				dispatch(updated(null));
-
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'elevator-calls-text-fetch-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.SUCCESS'
-				};
-				dispatch(triggerMessage(message));
-
-				// callback
-				callback();
-			})
-			.catch((err: Error) => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'elevator-calls-text-fetch-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: err?.message || 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

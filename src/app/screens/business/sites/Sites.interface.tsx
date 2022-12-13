@@ -2,8 +2,8 @@ import { MRContentDataInterface } from '../../../slices/business/sites/configura
 import {
 	SNContentNotificationTypeInterface,
 	SNContentNotificationUsersInterface
-} from '../../../slices/business/sites/configuration/Notifications.slice.interface';
-import { SSCDataInterface } from '../../../slices/business/sites/configuration/ServicePositions.slice.interface';
+} from '../../../slices/business/sites/configuration/notifications/Notifications.slice.interface';
+import { SSCDataInterface } from '../../../slices/business/sites/configuration/service-positions/ServicePositions.slice.interface';
 import {
 	SPContentInventoryInterface,
 	SPContentOrdersInterface,

@@ -31,7 +31,7 @@ import { robotTwinsSummarySelector } from '../../../../../../../slices/business/
 import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
-} from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+} from '../../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';

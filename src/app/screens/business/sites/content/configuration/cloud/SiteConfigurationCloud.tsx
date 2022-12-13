@@ -14,11 +14,11 @@ import { robotTwinsSummarySelector } from '../../../../../../slices/business/rob
 import {
 	notificationsSelector,
 	NotificationTypesAndUsersFetchList
-} from '../../../../../../slices/business/sites/configuration/Notifications.slice';
+} from '../../../../../../slices/business/sites/configuration/notifications/Notifications.slice';
 import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
-} from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+} from '../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
 import {
 	SiteCustomerNotificationTypesFetch,
 	SiteElevatorVendorsFetch,

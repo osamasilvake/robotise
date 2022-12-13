@@ -1,4 +1,4 @@
-import { JsonAPIResponseInterface } from '../../../JsonAPI.interface';
+import { JsonAPIResponseInterface } from '../../../../JsonAPI.interface';
 
 export interface SliceServicePositionsInterface {
 	loader: boolean;

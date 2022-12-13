@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import { AppDispatch } from '../../../../../../../slices';
-import { ServicePositionsFetchList } from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+import { ServicePositionsFetchList } from '../../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditServicePosition from './DialogCreateEditServicePosition';

@@ -8,7 +8,7 @@ import { AppDispatch } from '../../../../../../slices';
 import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
-} from '../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+} from '../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigurationMarketingRidesAutocompleteInterface } from './SiteConfigurationMarketingRides.interface';

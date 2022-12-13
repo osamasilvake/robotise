@@ -1,12 +1,12 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { DialogCreateEditNotificationFormInterface } from '../../../../screens/business/sites/content/configuration/cloud/notifications/SiteConfigurationNotifications.interface';
-import SitesService from '../../../../screens/business/sites/Sites.service';
-import { timeout } from '../../../../utilities/methods/Timeout';
-import { RootState } from '../../..';
-import { triggerMessage } from '../../../app/App.slice';
+import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
+import { DialogCreateEditNotificationFormInterface } from '../../../../../screens/business/sites/content/configuration/cloud/notifications/SiteConfigurationNotifications.interface';
+import SitesService from '../../../../../screens/business/sites/Sites.service';
+import { timeout } from '../../../../../utilities/methods/Timeout';
+import { RootState } from '../../../..';
+import { triggerMessage } from '../../../../app/App.slice';
 import { deserializeNotifications } from './Notifications.slice.deserialize';
 import {
 	SliceNotificationsInterface,

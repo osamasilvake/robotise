@@ -18,7 +18,7 @@ import {
 	ServicePositionCreateEdit,
 	ServicePositionsFetchList,
 	servicePositionsSelector
-} from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+} from '../../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { DialogCreateEditServicePositionValidation } from './DialogCreateEditServicePosition.validation';

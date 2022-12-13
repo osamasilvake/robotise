@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import {
 	SliceNotificationsInterface,
 	SNContentNotificationTypesDataInterface
-} from '../../../../../../../slices/business/sites/configuration/Notifications.slice.interface';
+} from '../../../../../../../slices/business/sites/configuration/notifications/Notifications.slice.interface';
 import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';
 
 export interface SiteConfigurationNotificationsInterface {

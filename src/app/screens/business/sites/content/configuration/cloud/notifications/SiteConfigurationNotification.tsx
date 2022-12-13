@@ -17,7 +17,7 @@ import { AppDispatch } from '../../../../../../../slices';
 import {
 	NotificationTypesAndUsersFetchList,
 	NotificationUpdate
-} from '../../../../../../../slices/business/sites/configuration/Notifications.slice';
+} from '../../../../../../../slices/business/sites/configuration/notifications/Notifications.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditNotification from './DialogCreateEditNotification';
 import { SiteConfigurationNotificationsCreateEditTypeEnum } from './SiteConfigurationNotifications.enum';

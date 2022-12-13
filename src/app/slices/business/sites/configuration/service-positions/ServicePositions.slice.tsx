@@ -1,13 +1,13 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { SiteConfigurationServicePositionsCreateEditTypeEnum } from '../../../../screens/business/sites/content/configuration/cloud/service-positions/SiteConfigurationServicePositions.enum';
-import { DialogCreateEditServicePositionFormInterface } from '../../../../screens/business/sites/content/configuration/cloud/service-positions/SiteConfigurationServicePositions.interface';
-import SitesService from '../../../../screens/business/sites/Sites.service';
-import { timeout } from '../../../../utilities/methods/Timeout';
-import { RootState } from '../../..';
-import { triggerMessage } from '../../../app/App.slice';
+import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
+import { SiteConfigurationServicePositionsCreateEditTypeEnum } from '../../../../../screens/business/sites/content/configuration/cloud/service-positions/SiteConfigurationServicePositions.enum';
+import { DialogCreateEditServicePositionFormInterface } from '../../../../../screens/business/sites/content/configuration/cloud/service-positions/SiteConfigurationServicePositions.interface';
+import SitesService from '../../../../../screens/business/sites/Sites.service';
+import { timeout } from '../../../../../utilities/methods/Timeout';
+import { RootState } from '../../../..';
+import { triggerMessage } from '../../../../app/App.slice';
 import { deserializeServicePositions } from './ServicePositions.slice.deserialize';
 import {
 	SliceServicePositionsInterface,

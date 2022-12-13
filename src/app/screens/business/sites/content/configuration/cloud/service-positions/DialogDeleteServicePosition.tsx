@@ -17,7 +17,7 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector,
 	SiteServicePositionDelete
-} from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice';
+} from '../../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { DialogDeleteServicePositionInterface } from './SiteConfigurationServicePositions.interface';
 

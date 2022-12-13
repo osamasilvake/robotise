@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import {
 	SliceServicePositionsInterface,
 	SSCDataInterface
-} from '../../../../../../../slices/business/sites/configuration/ServicePositions.slice.interface';
+} from '../../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice.interface';
 import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './SiteConfigurationServicePositions.enum';
 
 export interface SiteConfigurationServicePositionsInterface {

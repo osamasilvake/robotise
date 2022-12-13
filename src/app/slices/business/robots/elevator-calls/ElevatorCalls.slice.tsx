@@ -167,25 +167,25 @@ export const ElevatorCallsUpdateState =
 	};
 
 /**
- * test elevator call
+ * fetch elevator calls test
  * @param siteId
  * @param callback
  * @returns
  */
-export const ElevatorCallsTest =
+export const ElevatorCallsTestFetch =
 	(siteId: string, callback: () => void) => async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
 
-		// test elevator call
-		return RobotsService.robotElevatorCallsTest(siteId)
+		// call
+		return RobotsService.robotElevatorCallsTestFetch(siteId)
 			.then(() => {
 				// dispatch: updated
 				dispatch(updated(null));
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'elevator-calls-text-fetch-success',
+					id: 'elevator-calls-test-fetch-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.SUCCESS'
@@ -198,7 +198,7 @@ export const ElevatorCallsTest =
 			.catch((err: Error) => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'elevator-calls-text-fetch-error',
+					id: 'elevator-calls-test-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: err?.message || 'ROBOTS.ELEVATOR_CALLS.TEST_CALL.ERROR'
@@ -225,7 +225,8 @@ export const ElevatorCallsTemplateFetch =
 		// wait
 		await timeout(1000);
 
-		return RobotsService.robotElevatorTemplateFetch(elevatorId)
+		// call
+		return RobotsService.robotElevatorCallsTemplateFetch(elevatorId)
 			.then(async (res) => {
 				// dispatch: updated
 				dispatch(updated(null));
@@ -235,7 +236,7 @@ export const ElevatorCallsTemplateFetch =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'elevator-calls-template-success',
+					id: 'elevator-calls-template-fetch-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.SUCCESS'
@@ -245,7 +246,7 @@ export const ElevatorCallsTemplateFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'elevator-calls-template-error',
+					id: 'elevator-calls-template-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'

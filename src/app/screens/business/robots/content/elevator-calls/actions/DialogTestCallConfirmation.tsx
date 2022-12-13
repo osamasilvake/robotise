@@ -17,7 +17,7 @@ import { AppDispatch } from '../../../../../../slices';
 import {
 	ElevatorCallsFetchList,
 	elevatorCallsSelector,
-	ElevatorCallsTest
+	ElevatorCallsTestFetch
 } from '../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RobotParamsInterface } from '../../../Robot.interface';
@@ -55,12 +55,12 @@ const DialogTestCallConfirmation: FC<DialogTestCallConfirmationInterface> = (pro
 		// close dialog
 		!status && setOpen(false);
 
-		// dispatch: delete product
+		// dispatch: fetch elevator calls test
 		status &&
 			cSiteId &&
 			dispatch(
-				ElevatorCallsTest(cSiteId, async () => {
-					// callback
+				ElevatorCallsTestFetch(cSiteId, async () => {
+					// dispatch: fetch robot elevator calls
 					ElevatorCallsFetchList(cRobotId, { page, rowsPerPage }, true);
 
 					// set halt for the test call button

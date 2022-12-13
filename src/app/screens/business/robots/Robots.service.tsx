@@ -440,11 +440,11 @@ class RobotsService {
 	};
 
 	/**
-	 * test elevator call
+	 * fetch elevator calls test
 	 * @param siteId
 	 * @returns
 	 */
-	robotElevatorCallsTest = (siteId: string) => {
+	robotElevatorCallsTestFetch = (siteId: string) => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS.TEST.replace(
 				':siteId',
@@ -454,11 +454,11 @@ class RobotsService {
 	};
 
 	/**
-	 * fetch elevator template
+	 * fetch elevator calls template
 	 * @param elevatorId
 	 * @returns
 	 */
-	robotElevatorTemplateFetch = (elevatorId: string) => {
+	robotElevatorCallsTemplateFetch = (elevatorId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS.TEMPLATE;
 		return HttpClientService.get<RobotElevatorCallsTemplateAxiosGetInterface>(
 			url.replace(':elevatorId', elevatorId)

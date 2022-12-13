@@ -549,9 +549,7 @@ class RobotsService {
 		return HttpClientService.post(
 			url,
 			{},
-			{
-				headers: AppConfigService.AppRequestHeaders.json
-			}
+			{ headers: AppConfigService.AppRequestHeaders.json }
 		);
 	};
 

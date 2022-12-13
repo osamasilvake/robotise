@@ -44,12 +44,8 @@ class LoggerService {
 		];
 		HttpClientService.post(
 			AppConfigService.AppServices.COMMON.LOGS,
-			{
-				logs: request
-			},
-			{
-				headers: AppConfigService.AppRequestHeaders.json
-			}
+			{ logs: request },
+			{ headers: AppConfigService.AppRequestHeaders.json }
 		);
 	};
 

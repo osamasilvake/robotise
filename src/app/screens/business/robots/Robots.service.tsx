@@ -3,7 +3,6 @@ import {
 	RCCDataElementInterface,
 	RCContentInterface
 } from '../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
-import { SROContentElevatorTemplateInterface } from '../../../slices/business/robots/RobotOperations.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
 import { RobotConfigurationSyncConfigsTypeEnum } from './content/configuration/cloud/sync-configs/RobotConfigurationSyncConfigs.enum';
@@ -26,6 +25,7 @@ import {
 	RobotCreateAxiosPostRequestInterface,
 	RobotCreateAxiosPostResponseInterface,
 	RobotElevatorCallsAxiosGetInterface,
+	RobotElevatorCallsTemplateAxiosGetInterface,
 	RobotInventoryAxiosGetInterface,
 	RobotMapAxiosGetInterface,
 	RobotOrderAxiosGetInterface,
@@ -460,7 +460,7 @@ class RobotsService {
 	 */
 	robotElevatorTemplateFetch = (elevatorId: string) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS.TEMPLATE;
-		return HttpClientService.get<SROContentElevatorTemplateInterface>(
+		return HttpClientService.get<RobotElevatorCallsTemplateAxiosGetInterface>(
 			url.replace(':elevatorId', elevatorId)
 		);
 	};

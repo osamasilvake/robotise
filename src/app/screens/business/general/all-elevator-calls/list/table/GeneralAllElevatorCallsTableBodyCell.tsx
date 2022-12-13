@@ -22,9 +22,9 @@ import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
 import { AECDataInterface } from '../../../../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice.interface';
 import {
-	RobotElevatorTemplateFetch,
-	robotOperationsSelector
-} from '../../../../../../slices/business/robots/RobotOperations.slice';
+	elevatorCallsSelector,
+	ElevatorCallsTemplateFetch
+} from '../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { deepLinkSelector } from '../../../../../../slices/settings/deep-links/DeepLink.slice';
@@ -54,7 +54,7 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
-	const robotOperations = useSelector(robotOperationsSelector);
+	const elevatorCalls = useSelector(elevatorCallsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
 	const [templateIndex, setTemplateIndex] = useState(-1);
@@ -71,9 +71,9 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 		// set index
 		setTemplateIndex(index);
 
-		// dispatch: fetch elevator template
+		// dispatch: fetch elevator calls template
 		dispatch(
-			RobotElevatorTemplateFetch(elevatorCall.id, (res) => {
+			ElevatorCallsTemplateFetch(elevatorCall.id, (res) => {
 				// copy template
 				navigator.clipboard.writeText(res.data.attributes.template);
 
@@ -150,12 +150,9 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 							color="primary"
 							variant="outlined"
 							clickable
-							disabled={
-								index === templateIndex && robotOperations.elevatorTemplate.loading
-							}
+							disabled={index === templateIndex && elevatorCalls.updating}
 							icon={
-								index === templateIndex &&
-								robotOperations.elevatorTemplate.loading ? (
+								index === templateIndex && elevatorCalls.updating ? (
 									<CircularProgress size={18} />
 								) : (
 									<CopyAll />

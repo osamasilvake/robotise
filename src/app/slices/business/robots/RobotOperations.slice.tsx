@@ -18,10 +18,7 @@ import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
 import { deserializeMap } from './RobotOperations.slice.deserialize';
 import { RobotOperationsTypeEnum } from './RobotOperations.slice.enum';
-import {
-	SliceRobotOperationsInterface,
-	SROContentElevatorTemplateInterface
-} from './RobotOperations.slice.interface';
+import { SliceRobotOperationsInterface } from './RobotOperations.slice.interface';
 
 // initial state
 export const initialState: SliceRobotOperationsInterface = {
@@ -40,10 +37,6 @@ export const initialState: SliceRobotOperationsInterface = {
 	},
 	camera: {
 		loading: false
-	},
-	elevatorTemplate: {
-		loading: false,
-		content: null
 	},
 	emergencyState: {
 		loading: false
@@ -76,8 +69,6 @@ const dataSlice = createSlice({
 				state.remoteSafetyReset.loading = true;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = true;
-			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
-				state.elevatorTemplate.loading = true;
 			} else if (module === RobotOperationsTypeEnum.EMERGENCY_STATE) {
 				state.emergencyState.loading = true;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
@@ -101,9 +92,6 @@ const dataSlice = createSlice({
 				state.remoteSafetyReset.loading = false;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
-				state.elevatorTemplate.loading = false;
-				state.elevatorTemplate.content = response;
 			} else if (module === RobotOperationsTypeEnum.EMERGENCY_STATE) {
 				state.emergencyState.loading = false;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
@@ -127,9 +115,6 @@ const dataSlice = createSlice({
 				state.remoteSafetyReset.loading = false;
 			} else if (module === RobotOperationsTypeEnum.COMMAND_CAMERA) {
 				state.camera.loading = false;
-			} else if (module === RobotOperationsTypeEnum.ELEVATOR_TEMPLATE) {
-				state.elevatorTemplate.loading = false;
-				state.elevatorTemplate.content = null;
 			} else if (module === RobotOperationsTypeEnum.EMERGENCY_STATE) {
 				state.emergencyState.loading = false;
 			} else if (module === RobotOperationsTypeEnum.SYNC_PRODUCTS) {
@@ -394,65 +379,6 @@ export const RobotCameraCommandRequest =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: `ROBOTS.DETAIL.CAMERAS.${camera}.ERROR`
-				};
-				dispatch(triggerMessage(message));
-
-				// dispatch: failure
-				dispatch(failure(state));
-			});
-	};
-
-/**
- * fetch elevator template
- * @param elevatorId
- * @param callback
- * @returns
- */
-export const RobotElevatorTemplateFetch =
-	(elevatorId: string, callback: (data: SROContentElevatorTemplateInterface) => void) =>
-	async (dispatch: Dispatch, getState: () => RootState) => {
-		// states
-		const states = getState();
-		const elevatorTemplate = states.robotOperations.elevatorTemplate;
-		const state = {
-			module: RobotOperationsTypeEnum.ELEVATOR_TEMPLATE
-		};
-
-		// return on busy
-		if (elevatorTemplate && elevatorTemplate.loading) {
-			return;
-		}
-
-		// dispatch: loading
-		dispatch(loading(state));
-
-		// wait
-		await timeout(1000);
-
-		return RobotsService.robotElevatorTemplateFetch(elevatorId)
-			.then(async (res) => {
-				// dispatch: success
-				dispatch(success({ ...state, response: res }));
-
-				// callback
-				callback(res);
-
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'operation-elevator-template-success',
-					show: true,
-					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.SUCCESS'
-				};
-				dispatch(triggerMessage(message));
-			})
-			.catch(() => {
-				// dispatch: trigger message
-				const message: TriggerMessageInterface = {
-					id: 'operation-elevator-template-error',
-					show: true,
-					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

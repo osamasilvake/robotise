@@ -176,3 +176,12 @@ export interface RobotElevatorCallsAxiosGetInterface extends JsonAPIResponseInte
 		attributes: ECCDataInterface;
 	}[];
 }
+
+export interface RobotElevatorCallsTemplateAxiosGetInterface {
+	data: {
+		type: string;
+		attributes: {
+			template: string;
+		};
+	};
+}

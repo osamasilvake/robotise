@@ -18,11 +18,11 @@ import { ExternalLinkActionTypeEnum } from '../../../../../../../components/comm
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { AppDispatch } from '../../../../../../../slices';
-import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import {
-	RobotElevatorTemplateFetch,
-	robotOperationsSelector
-} from '../../../../../../../slices/business/robots/RobotOperations.slice';
+	elevatorCallsSelector,
+	ElevatorCallsTemplateFetch
+} from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
+import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import {
@@ -42,7 +42,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const classes = RobotElevatorCallsTableStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
-	const robotOperations = useSelector(robotOperationsSelector);
+	const elevatorCalls = useSelector(elevatorCallsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
 	const [templateIndex, setTemplateIndex] = useState(-1);
@@ -57,9 +57,9 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 		// set index
 		setTemplateIndex(index);
 
-		// dispatch: fetch elevator template
+		// dispatch: fetch elevator calls template
 		dispatch(
-			RobotElevatorTemplateFetch(elevatorCall.id, (res) => {
+			ElevatorCallsTemplateFetch(elevatorCall.id, (res) => {
 				// copy template
 				navigator.clipboard.writeText(res.data.attributes.template);
 
@@ -100,11 +100,9 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 						color="primary"
 						variant="outlined"
 						clickable
-						disabled={
-							index === templateIndex && robotOperations.elevatorTemplate.loading
-						}
+						disabled={index === templateIndex && elevatorCalls.updating}
 						icon={
-							index === templateIndex && robotOperations.elevatorTemplate.loading ? (
+							index === templateIndex && elevatorCalls.updating ? (
 								<CircularProgress size={18} />
 							) : (
 								<CopyAll />

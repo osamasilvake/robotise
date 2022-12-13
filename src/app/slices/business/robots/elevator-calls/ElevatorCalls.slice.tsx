@@ -3,7 +3,9 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { RobotElevatorCallsListPayloadInterface } from '../../../../screens/business/robots/content/elevator-calls/list/RobotElevatorCallsList.interface';
+import { RobotElevatorCallsTemplateAxiosGetInterface } from '../../../../screens/business/robots/Robots.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
+import { timeout } from '../../../../utilities/methods/Timeout';
 import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
 import { handleRefreshAndPagination } from '../../../Slices.map';
@@ -140,6 +142,78 @@ export const ElevatorCallsFetchList =
 	};
 
 /**
+ * update state
+ * @param state
+ * @returns
+ */
+export const ElevatorCallsUpdateState =
+	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const elevatorCalls = states.elevatorCalls;
+
+		// dispatch: updating
+		dispatch(updating());
+
+		if (elevatorCalls && elevatorCalls.content) {
+			const result = {
+				...elevatorCalls.content,
+				state
+			};
+
+			// dispatch: updated
+			dispatch(updated(result));
+		}
+	};
+
+/**
+ * fetch elevator calls template
+ * @param elevatorId
+ * @param callback
+ * @returns
+ */
+export const ElevatorCallsTemplateFetch =
+	(elevatorId: string, callback: (data: RobotElevatorCallsTemplateAxiosGetInterface) => void) =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		// wait
+		await timeout(1000);
+
+		return RobotsService.robotElevatorTemplateFetch(elevatorId)
+			.then(async (res) => {
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// callback
+				callback(res);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-calls-template-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-calls-template-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * test elevator call
  * @param siteId
  * @param callback
@@ -181,29 +255,4 @@ export const ElevatorCallsTest =
 				// dispatch: update failed
 				dispatch(updateFailed());
 			});
-	};
-
-/**
- * update state
- * @param state
- * @returns
- */
-export const ElevatorCallsUpdateState =
-	(state: ECCStateInterface) => async (dispatch: Dispatch, getState: () => RootState) => {
-		// states
-		const states = getState();
-		const elevatorCalls = states.elevatorCalls;
-
-		// dispatch: updating
-		dispatch(updating());
-
-		if (elevatorCalls && elevatorCalls.content) {
-			const result = {
-				...elevatorCalls.content,
-				state
-			};
-
-			// dispatch: updated
-			dispatch(updated(result));
-		}
 	};

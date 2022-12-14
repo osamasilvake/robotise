@@ -1,4 +1,4 @@
-import { CopyAll } from '@mui/icons-material';
+import { CopyAll, OpenInNew } from '@mui/icons-material';
 import {
 	Box,
 	Chip,
@@ -25,9 +25,11 @@ import {
 import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
 import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
+import DialogElevatorCallsManualTest from './DialogElevatorCallsManualTest';
 import {
 	RobotElevatorCallsTableColumnStatusTypeEnum,
-	RobotElevatorCallsTableColumnsTypeEnum
+	RobotElevatorCallsTableColumnsTypeEnum,
+	RobotElevatorCallsVendorTypeEnum
 } from './RobotElevatorCallsTable.enum';
 import {
 	RobotElevatorCallsTableBodyCellInterface,
@@ -46,8 +48,13 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const deepLink = useSelector(deepLinkSelector);
 
 	const [templateIndex, setTemplateIndex] = useState(-1);
+	const [manualEvents, setManualEvents] = useState(-1);
 
 	const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.VALUES';
+	const isManualTest =
+		elevatorCall?.vendor === RobotElevatorCallsVendorTypeEnum.MANUAL_TEST &&
+		elevatorCall.status !== RobotElevatorCallsTableColumnStatusTypeEnum.FAILED &&
+		elevatorCall.status !== RobotElevatorCallsTableColumnStatusTypeEnum.SUCCESS;
 
 	/**
 	 * copy template
@@ -82,18 +89,52 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 		if (column.id === RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
 			return (
 				<Stack direction="column" alignItems="center">
-					<ExternalLink
-						index={index}
-						text={t(`${translation}.ELEVATOR_LOGS`)}
-						payload={{
-							vendor: elevatorCall.vendor,
-							from: elevatorCall.createdAt,
-							to: elevatorCall.updatedAt
-						}}
-						actionType={ExternalLinkActionTypeEnum.ELEVATOR_LOGS}
-						showIcon={deepLink.elevatorLogs.loading}
-						disabled={deepLink.elevatorLogs.loading}
-					/>
+					{/* Manual Test */}
+					{isManualTest && (
+						<>
+							<Chip
+								size="small"
+								label={t(`${translation}.MANUAL_EVENTS.TITLE`)}
+								color="success"
+								variant="outlined"
+								clickable
+								disabled={index === templateIndex && elevatorCalls.updating}
+								icon={
+									index === templateIndex && elevatorCalls.updating ? (
+										<CircularProgress size={18} />
+									) : (
+										<OpenInNew />
+									)
+								}
+								onClick={() => setManualEvents(index)}
+							/>
+							{manualEvents === index && (
+								<DialogElevatorCallsManualTest
+									open={manualEvents}
+									setOpen={setManualEvents}
+									elevatorCall={elevatorCall}
+								/>
+							)}
+						</>
+					)}
+
+					{/* Elevator Details */}
+					<Box className={classes.sTableLogsChip}>
+						<ExternalLink
+							index={index}
+							text={t(`${translation}.ELEVATOR_LOGS`)}
+							payload={{
+								vendor: elevatorCall.vendor,
+								from: elevatorCall.createdAt,
+								to: elevatorCall.updatedAt
+							}}
+							actionType={ExternalLinkActionTypeEnum.ELEVATOR_LOGS}
+							showIcon={deepLink.elevatorLogs.loading}
+							disabled={deepLink.elevatorLogs.loading}
+						/>
+					</Box>
+
+					{/* Copy Template */}
 					<Chip
 						size="small"
 						label={t(`${translation}.COPY_TEMPLATE`)}
@@ -109,7 +150,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 							)
 						}
 						onClick={() => copyTemplate(index)}
-						className={classes.sTableTemplateIcon}
+						className={classes.sTableLogsChip}
 					/>
 				</Stack>
 			);

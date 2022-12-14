@@ -16,6 +16,7 @@ import { RobotDetailCommandsStateOptionInterface } from './content/detail/comman
 import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.interface';
 import { RobotDetailRemoteSafetyResetOptionsInterface } from './content/detail/remote-safety-reset/RobotDetailRemoteSafetyReset.interface';
 import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls/list/RobotElevatorCallsList.interface';
+import { RobotElevatorCallsManualTestTypeEnum } from './content/elevator-calls/list/table/RobotElevatorCallsTable.enum';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
 import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
@@ -462,6 +463,33 @@ class RobotsService {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ELEVATOR_CALLS.TEMPLATE;
 		return HttpClientService.get<RobotElevatorCallsTemplateAxiosGetInterface>(
 			url.replace(':elevatorId', elevatorId)
+		);
+	};
+
+	/**
+	 * test manual elevator call
+	 * @param callType
+	 * @param callId
+	 * @param liftId
+	 * @returns
+	 */
+	robotElevatorCallsManualTest = (
+		callType: RobotElevatorCallsManualTestTypeEnum,
+		callId: string,
+		liftId = ''
+	) => {
+		const robots = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS;
+		const { SEND_LIFT, ENTER_CAR, EXIT_CAR } = robots.ELEVATOR_CALLS.MANUAL_TEST;
+
+		const types = RobotElevatorCallsManualTestTypeEnum;
+		const urlSendLift = callType === types.SEND_LIFT;
+		const urlEnterCar = callType === types.ENTER_CAR;
+		const url = urlSendLift ? SEND_LIFT : urlEnterCar ? ENTER_CAR : EXIT_CAR;
+
+		return HttpClientService.patch<unknown, null>(
+			url.replace(':callId', callId).replace(':liftId', liftId),
+			{},
+			{ headers: AppConfigService.AppRequestHeaders.json }
 		);
 	};
 

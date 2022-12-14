@@ -379,6 +379,10 @@
 					"TEMPLATE": {
 						"SUCCESS": "Template copied to clipboard!",
 						"ERROR": "Unable to copy template!"
+					},
+					"MANUAL_CALL": {
+						"SUCCESS": "Manual call successful!",
+						"ERROR": "Unable to do manual call!"
 					}
 				},
 				"CONFIGURATION": {
@@ -760,6 +764,25 @@
 									"robot.event.enteredLift": "Robot: Entered Lift",
 									"robot.event.leftLift": "Robot: Left Lift",
 									"elevator.event.error": "Error"
+								}
+							},
+							"MANUAL_EVENTS": {
+								"TITLE": "Manual Events",
+								"SOURCE": "Source",
+								"DESTINATION": "Destination",
+								"CALL_TYPE": "Call Type",
+								"FORM": {
+									"FIELDS": {
+										"LIFT_ID": {
+											"LABEL": "Lift Id",
+											"PLACEHOLDER": "Enter Lift Id"
+										}
+									},
+									"BUTTONS": {
+										"SEND_LIFT": "Send Lift",
+										"ENTER_CAR": "Enter Car",
+										"EXIT_CAR": "Exit Car"
+									}
 								}
 							},
 							"ELEVATOR_LOGS": "Elevator details",

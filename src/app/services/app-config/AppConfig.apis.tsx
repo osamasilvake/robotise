@@ -108,7 +108,12 @@ const AppServices = (config: typeof AppConfigService) => {
 					ELEVATOR_CALLS: {
 						FETCH: `${config.envAppUrl}/elevator-calls`,
 						TEST: `${config.envAppUrl}/test-elevator-calls/:siteId`,
-						TEMPLATE: `${config.envAppUrl}/elevator-calls/:elevatorId/request-support-template`
+						TEMPLATE: `${config.envAppUrl}/elevator-calls/:elevatorId/request-support-template`,
+						MANUAL_TEST: {
+							SEND_LIFT: `${config.envAppUrl}/manual-elevator-call/:callId/liftId/:liftId`,
+							ENTER_CAR: `${config.envAppUrl}/manual-elevator-call/:callId/enterCar`,
+							EXIT_CAR: `${config.envAppUrl}/manual-elevator-call/:callId/exitCar`
+						}
 					},
 					CONFIGURATION: {
 						SYNC_PRODUCTS: `${config.envAppUrl}/robots/:robotId/sync-products`,

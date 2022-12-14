@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import {
 	ECCDataInterface,
@@ -49,3 +49,13 @@ export type RobotElevatorCallsTableHeadAlignment =
 	| 'center'
 	| 'right'
 	| 'justify';
+
+export interface DialogElevatorCallsManualTestInterface {
+	open: number;
+	setOpen: Dispatch<SetStateAction<number>>;
+	elevatorCall: ECCDataInterface;
+}
+
+export interface DialogElevatorCallsManualTestFormInterface {
+	liftId: string;
+}

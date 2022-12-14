@@ -30,8 +30,14 @@ export const RobotElevatorCallsTableStyle = makeStyles((theme: Theme) => ({
 		fontSize: theme.typography.pxToRem(20),
 		marginRight: theme.spacing(0.5)
 	},
-	sTableTemplateIcon: {
+	sTableLogsChip: {
 		letterSpacing: theme.spacing(0.07),
 		marginTop: theme.spacing(0.5)
+	},
+	sDialogBlock: {
+		marginBottom: theme.spacing(3)
+	},
+	sDialogBoldText: {
+		fontWeight: 500
 	}
 }));

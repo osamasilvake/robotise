@@ -3,6 +3,7 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
 import { RobotElevatorCallsListPayloadInterface } from '../../../../screens/business/robots/content/elevator-calls/list/RobotElevatorCallsList.interface';
+import { RobotElevatorCallsManualTestTypeEnum } from '../../../../screens/business/robots/content/elevator-calls/list/table/RobotElevatorCallsTable.enum';
 import { RobotElevatorCallsTemplateAxiosGetInterface } from '../../../../screens/business/robots/Robots.interface';
 import RobotsService from '../../../../screens/business/robots/Robots.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
@@ -250,6 +251,49 @@ export const ElevatorCallsTemplateFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'ROBOTS.ELEVATOR_CALLS.TEMPLATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
+ * test manual elevator calls
+ * @param callType
+ * @param callId
+ * @param liftId
+ * @returns
+ */
+export const ElevatorCallsManualTest =
+	(callType: RobotElevatorCallsManualTestTypeEnum, callId: string, liftId = '') =>
+	async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		// test elevator call
+		return RobotsService.robotElevatorCallsManualTest(callType, callId, liftId)
+			.then(() => {
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-manual-call-test-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'ROBOTS.ELEVATOR_CALLS.MANUAL_CALL.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch((err: Error) => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'elevator-manual-call-test-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: err?.message || 'ROBOTS.ELEVATOR_CALLS.MANUAL_CALL.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

@@ -22,5 +22,21 @@ export enum RobotElevatorCallsTableColumnStatusTypeEnum {
 }
 
 export enum RobotElevatorCallsTableColumnHistoryEventTypeEnum {
-	ERROR = 'elevator.event.error'
+	ERROR = 'elevator.event.error',
+	SEND_LIFT = 'elevator.event.gotCallStatus'
+}
+
+export enum RobotElevatorCallsTableColumnHistoryDetailsTypeEnum {
+	ENTER_CAR = 'enter_car',
+	EXIT_CAR = 'exit_car'
+}
+
+export enum RobotElevatorCallsVendorTypeEnum {
+	MANUAL_TEST = 'manual-test'
+}
+
+export enum RobotElevatorCallsManualTestTypeEnum {
+	SEND_LIFT = 'SEND_LIFT',
+	ENTER_CAR = 'ENTER_CAR',
+	EXIT_CAR = 'EXIT_CAR'
 }

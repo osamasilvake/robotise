@@ -64,6 +64,9 @@ class GeneralService {
 		return HttpClientService.get<GeneralAllOrdersAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.siteId || undefined,
+				'filter[site][nin]': payload.includeAllOrders
+					? undefined
+					: '51392f2f-dcd8-4be7-894d-fc47f3361a52,01994f33-d1e9-4e54-8a96-c5fef6c5fb14',
 				'filter[createdAt][gte]': date,
 				'filter[status][ne]': payload.includeAllOrders ? undefined : 'finished',
 				'filter[isDebug]': false,

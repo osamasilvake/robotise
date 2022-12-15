@@ -1,6 +1,5 @@
 import { DeleteOutline, Edit } from '@mui/icons-material';
 import { Avatar, Box, IconButton, TableCell } from '@mui/material';
-import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -23,12 +22,10 @@ import {
 	SiteProductsTableBodyCellInterface,
 	SiteProductsTableColumnInterface
 } from './SiteProductsTable.interface';
-import { SiteProductsTableStyle } from './SiteProductsTable.style';
 
 const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props) => {
 	const { column, product } = props;
 	const { t } = useTranslation('SITES');
-	const classes = SiteProductsTableStyle();
 
 	const sites = useSelector(sitesSelector);
 
@@ -108,16 +105,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 				return value;
 			} else if (typeof value === 'string') {
 				if (SiteProductsTableColumnsTypeEnum.IMAGE === column.id) {
-					return (
-						<Avatar
-							variant="square"
-							className={clsx({
-								[classes.sAvatarBackground]: product.price === 1
-							})}
-							src={value}
-							alt={product.name}
-						/>
-					);
+					return <Avatar variant="square" src={value} alt={product.name} />;
 				}
 				return t(value) || AppConfigService.AppOptions.common.none;
 			}

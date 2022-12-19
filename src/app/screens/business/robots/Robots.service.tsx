@@ -479,12 +479,20 @@ class RobotsService {
 		liftId = ''
 	) => {
 		const robots = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS;
-		const { SEND_LIFT, ENTER_CAR, EXIT_CAR } = robots.ELEVATOR_CALLS.MANUAL_TEST;
+		const { SEND_LIFT, ENTER_CAR, EXIT_CAR, FAIL_CALL } = robots.ELEVATOR_CALLS.MANUAL_TEST;
 
 		const types = RobotElevatorCallsManualTestTypeEnum;
 		const urlSendLift = callType === types.SEND_LIFT;
 		const urlEnterCar = callType === types.ENTER_CAR;
-		const url = urlSendLift ? SEND_LIFT : urlEnterCar ? ENTER_CAR : EXIT_CAR;
+		const urlExitCar = callType === types.EXIT_CAR;
+		let url = FAIL_CALL;
+		if (urlSendLift) {
+			url = SEND_LIFT;
+		} else if (urlEnterCar) {
+			url = ENTER_CAR;
+		} else if (urlExitCar) {
+			url = EXIT_CAR;
+		}
 
 		return HttpClientService.patch<unknown, null>(
 			url.replace(':callId', callId).replace(':liftId', liftId),

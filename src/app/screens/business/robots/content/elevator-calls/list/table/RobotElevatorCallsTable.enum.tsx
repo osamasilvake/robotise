@@ -38,5 +38,6 @@ export enum RobotElevatorCallsVendorTypeEnum {
 export enum RobotElevatorCallsManualTestTypeEnum {
 	SEND_LIFT = 'SEND_LIFT',
 	ENTER_CAR = 'ENTER_CAR',
-	EXIT_CAR = 'EXIT_CAR'
+	EXIT_CAR = 'EXIT_CAR',
+	FAIL_CALL = 'FAIL_CALL'
 }

@@ -117,7 +117,7 @@ const AppOptions = (config: typeof AppConfigService) => {
 					},
 					allElevatorCalls: {
 						list: {
-							refreshTime: 10000,
+							refreshTime: 5000,
 							showPageSizes: true,
 							defaultPageSize: 50,
 							pageSizes: [5, 10, 15, 20, 50, 100]

@@ -76,7 +76,15 @@ const DialogElevatorCallsManualTest: FC<DialogElevatorCallsManualTestInterface> 
 	 */
 	const onHandleCarAction = (type: RobotElevatorCallsManualTestTypeEnum) => {
 		// dispatch: test manual elevator calls
-		dispatch(ElevatorCallsManualTest(type, elevatorCall.id));
+		dispatch(
+			ElevatorCallsManualTest(type, elevatorCall.id, '', () => {
+				// type: Fail Call
+				if (type !== RobotElevatorCallsManualTestTypeEnum.FAIL_CALL) return;
+
+				// close
+				setOpen(-1);
+			})
+		);
 	};
 
 	return (
@@ -153,9 +161,10 @@ const DialogElevatorCallsManualTest: FC<DialogElevatorCallsManualTestInterface> 
 							<Grid item>
 								<Button
 									variant="outlined"
-									disabled={isEnterCar || elevatorCalls.updating}
+									disabled={!isSendLeft || isEnterCar || elevatorCalls.updating}
 									endIcon={
 										elevatorCalls.updating &&
+										isSendLeft &&
 										!isEnterCar && <CircularProgress size={20} />
 									}
 									onClick={() =>
@@ -169,9 +178,16 @@ const DialogElevatorCallsManualTest: FC<DialogElevatorCallsManualTestInterface> 
 							<Grid item>
 								<Button
 									variant="outlined"
-									disabled={isExitCar || elevatorCalls.updating}
+									disabled={
+										!isSendLeft ||
+										!isEnterCar ||
+										isExitCar ||
+										elevatorCalls.updating
+									}
 									endIcon={
 										elevatorCalls.updating &&
+										isSendLeft &&
+										isEnterCar &&
 										!isExitCar && <CircularProgress size={20} />
 									}
 									onClick={() =>
@@ -180,6 +196,19 @@ const DialogElevatorCallsManualTest: FC<DialogElevatorCallsManualTestInterface> 
 										)
 									}>
 									{t(`${translation}.FORM.BUTTONS.EXIT_CAR`)}
+								</Button>
+							</Grid>
+							<Grid item>
+								<Button
+									variant="outlined"
+									color="error"
+									disabled={elevatorCalls.updating}
+									onClick={() =>
+										onHandleCarAction(
+											RobotElevatorCallsManualTestTypeEnum.FAIL_CALL
+										)
+									}>
+									{t(`${translation}.FORM.BUTTONS.FAIL`)}
 								</Button>
 							</Grid>
 						</Grid>

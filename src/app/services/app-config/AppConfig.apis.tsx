@@ -112,7 +112,8 @@ const AppServices = (config: typeof AppConfigService) => {
 						MANUAL_TEST: {
 							SEND_LIFT: `${config.envAppUrl}/manual-elevator-call/:callId/liftId/:liftId`,
 							ENTER_CAR: `${config.envAppUrl}/manual-elevator-call/:callId/enterCar`,
-							EXIT_CAR: `${config.envAppUrl}/manual-elevator-call/:callId/exitCar`
+							EXIT_CAR: `${config.envAppUrl}/manual-elevator-call/:callId/exitCar`,
+							FAIL_CALL: `${config.envAppUrl}/manual-elevator-call/:callId/fail`
 						}
 					},
 					CONFIGURATION: {

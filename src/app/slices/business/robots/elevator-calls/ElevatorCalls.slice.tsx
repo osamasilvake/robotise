@@ -264,10 +264,16 @@ export const ElevatorCallsTemplateFetch =
  * @param callType
  * @param callId
  * @param liftId
+ * @param callback
  * @returns
  */
 export const ElevatorCallsManualTest =
-	(callType: RobotElevatorCallsManualTestTypeEnum, callId: string, liftId = '') =>
+	(
+		callType: RobotElevatorCallsManualTestTypeEnum,
+		callId: string,
+		liftId = '',
+		callback?: () => void
+	) =>
 	async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
@@ -286,6 +292,9 @@ export const ElevatorCallsManualTest =
 					text: 'ROBOTS.ELEVATOR_CALLS.MANUAL_CALL.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
+
+				// callback
+				callback && callback();
 			})
 			.catch((err: Error) => {
 				// dispatch: trigger message

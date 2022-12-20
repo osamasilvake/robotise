@@ -14,7 +14,7 @@ const RobotDetailState: FC<RobotDetailStateInterface> = (props) => {
 				const mappedResult = mapRobotStates(`${state.type}.${property}`, robotTwins);
 				return (
 					mappedResult && (
-						<Grid key={property} item xs={12} sm={6} md={4} lg={3}>
+						<Grid item xs={12} sm={6} md={4} lg={3} key={property}>
 							<RobotDetailStateCard title={state.title} item={mappedResult} />
 						</Grid>
 					)

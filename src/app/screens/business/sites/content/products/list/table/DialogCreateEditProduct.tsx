@@ -81,6 +81,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 								name: values.name.trim(),
 								length: values.length || null,
 								weight: values.weight || null,
+								price: +values.price,
 								image
 							},
 							type,

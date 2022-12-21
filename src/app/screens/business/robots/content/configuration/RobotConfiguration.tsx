@@ -11,7 +11,7 @@ import { AppDispatch } from '../../../../../slices';
 import {
 	RobotConfigurationFetch,
 	robotConfigurationSelector
-} from '../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice';
+} from '../../../../../slices/business/robots/configuration/robot/RobotConfiguration.slice';
 import { RobotParamsInterface } from '../../Robot.interface';
 import { RobotConfigurationStyle } from './RobotConfiguration.style';
 import RobotConfigurationTabs from './RobotConfiguration.tabs';

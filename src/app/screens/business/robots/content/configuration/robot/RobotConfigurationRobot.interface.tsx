@@ -4,7 +4,7 @@ import { ChangeEvent, FocusEvent } from 'react';
 import {
 	RCCDataElementInterface,
 	RCContentDataInterface
-} from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+} from '../../../../../../slices/business/robots/configuration/robot/RobotConfiguration.slice.interface';
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
 
 export interface RobotConfigurationRobotInterface {

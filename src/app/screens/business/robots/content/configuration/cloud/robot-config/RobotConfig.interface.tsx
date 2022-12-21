@@ -1,9 +1,9 @@
-import { SliceRobotOperationsInterface } from '../../../../../../../slices/business/robots/RobotOperations.slice.interface';
+import { SliceCloudConfigurationInterface } from '../../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice.interface';
 import { SliceRobotTwinsSummaryInterface } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 
 export interface RobotConfigInterface {
 	robotTwinsSummary: SliceRobotTwinsSummaryInterface;
-	robotOperations: SliceRobotOperationsInterface;
+	cloudConfiguration: SliceCloudConfigurationInterface;
 }
 
 export interface RobotConfigFormInterface {

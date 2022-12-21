@@ -13,13 +13,13 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
-import { RobotSetEmergencyState } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import { CloudConfigurationSetEmergencyState } from '../../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { DialogEmergencyInterface } from './RobotConfigurationEmergency.interface';
 import { RobotConfigurationEmergencyStyle } from './RobotConfigurationEmergency.style';
 
 const DialogEmergency: FC<DialogEmergencyInterface> = (props) => {
-	const { open, setOpen, robotTwinsSummary, robotOperations } = props;
+	const { open, setOpen, robotTwinsSummary, cloudConfiguration } = props;
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 	const classes = RobotConfigurationEmergencyStyle();
 
@@ -40,7 +40,7 @@ const DialogEmergency: FC<DialogEmergencyInterface> = (props) => {
 
 		// dispatch: set emergency state
 		dispatch(
-			RobotSetEmergencyState(cRobotId, !emergencyState, () => {
+			CloudConfigurationSetEmergencyState(cRobotId, !emergencyState, () => {
 				// close dialog
 				setOpen(false);
 			})
@@ -65,9 +65,9 @@ const DialogEmergency: FC<DialogEmergencyInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleEmergencyState}
-					disabled={robotOperations.emergencyState.loading}
+					disabled={cloudConfiguration.emergencyState.loading}
 					endIcon={
-						robotOperations.emergencyState.loading && <CircularProgress size={20} />
+						cloudConfiguration.emergencyState.loading && <CircularProgress size={20} />
 					}>
 					{t('DIALOG:BUTTONS.CONFIRM')}
 				</Button>

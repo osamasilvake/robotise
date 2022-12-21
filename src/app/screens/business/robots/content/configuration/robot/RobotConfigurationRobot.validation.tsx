@@ -1,4 +1,4 @@
-import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot/RobotConfiguration.slice.interface';
 
 /**
  * validation

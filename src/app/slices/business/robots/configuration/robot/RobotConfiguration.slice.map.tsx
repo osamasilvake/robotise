@@ -12,23 +12,23 @@ export const handleTriggerMessage = (status: string) => {
 		case RobotConfigurationTriggerMessageTypeEnum.PROGRESS:
 			return {
 				severity: TriggerMessageTypeEnum.WARNING,
-				text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.CREATED'
+				text: 'ROBOTS.CONFIGURATION.ROBOT.CREATED'
 			};
 		case RobotConfigurationTriggerMessageTypeEnum.SUCCEED:
 			return {
 				severity: TriggerMessageTypeEnum.SUCCESS,
-				text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.SUCCESS'
+				text: 'ROBOTS.CONFIGURATION.ROBOT.SUCCESS'
 			};
 		case RobotConfigurationTriggerMessageTypeEnum.REJECTED:
 		case RobotConfigurationTriggerMessageTypeEnum.FAILED:
 			return {
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.FAILED'
+				text: 'ROBOTS.CONFIGURATION.ROBOT.FAILED'
 			};
 		default:
 			return {
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.UNKNOWN'
+				text: 'ROBOTS.CONFIGURATION.ROBOT.UNKNOWN'
 			};
 	}
 };

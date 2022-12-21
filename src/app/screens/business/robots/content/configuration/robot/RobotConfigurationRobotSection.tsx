@@ -21,8 +21,8 @@ import {
 	RobotConfigurationFetch,
 	robotConfigurationSelector,
 	RobotConfigurationUpdate
-} from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice';
-import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+} from '../../../../../../slices/business/robots/configuration/robot/RobotConfiguration.slice';
+import { RCCDataElementInterface } from '../../../../../../slices/business/robots/configuration/robot/RobotConfiguration.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {

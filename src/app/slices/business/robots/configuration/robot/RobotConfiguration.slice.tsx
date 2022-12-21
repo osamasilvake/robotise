@@ -170,7 +170,7 @@ export const RobotConfigurationUpdate =
 					id: 'configuration-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: errMessage || 'ROBOTS.CONFIGURATION.ROBOT_CONFIGURATION.ERROR',
+					text: errMessage || 'ROBOTS.CONFIGURATION.ROBOT.ERROR',
 					dynamicText: !!errMessage
 				};
 				dispatch(triggerMessage(message));

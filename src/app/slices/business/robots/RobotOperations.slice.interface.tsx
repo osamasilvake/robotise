@@ -15,18 +15,6 @@ export interface SliceRobotOperationsInterface {
 	camera: {
 		loading: boolean;
 	};
-	emergencyState: {
-		loading: boolean;
-	};
-	syncProducts: {
-		loading: boolean;
-	};
-	robotConfig: {
-		loading: boolean;
-	};
-	syncConfigs: {
-		loading: boolean;
-	};
 }
 
 export interface SROContentMapInterface {

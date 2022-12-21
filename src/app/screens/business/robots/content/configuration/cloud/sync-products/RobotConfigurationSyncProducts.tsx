@@ -5,14 +5,14 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
-import { RobotProductsSync } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import { CloudConfigurationProductsSync } from '../../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice';
 import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { RobotConfigurationSyncProductsInterface } from './RobotConfigurationSyncProducts.interface';
 import { RobotConfigurationSyncProductsStyle } from './RobotConfigurationSyncProducts.style';
 
 const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface> = (props) => {
-	const { robotTwinsSummary, robotOperations } = props;
+	const { robotTwinsSummary, cloudConfiguration } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigurationSyncProductsStyle();
 
@@ -32,7 +32,7 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 	 */
 	const handleSyncProducts = () => {
 		// dispatch: sync products on the robot
-		cRobotId && dispatch(RobotProductsSync(cRobotId));
+		cRobotId && dispatch(CloudConfigurationProductsSync(cRobotId));
 	};
 
 	return (
@@ -47,9 +47,9 @@ const RobotConfigurationSyncProducts: FC<RobotConfigurationSyncProductsInterface
 					variant="outlined"
 					className={classes.sButton}
 					onClick={handleSyncProducts}
-					disabled={!robotIsReady || robotOperations.syncProducts.loading}
+					disabled={!robotIsReady || cloudConfiguration.syncProducts.loading}
 					endIcon={
-						robotOperations.syncProducts.loading && <CircularProgress size={20} />
+						cloudConfiguration.syncProducts.loading && <CircularProgress size={20} />
 					}>
 					{t(`${translation}.SYNC`)}
 				</Button>

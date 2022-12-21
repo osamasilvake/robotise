@@ -390,23 +390,25 @@
 					}
 				},
 				"CONFIGURATION": {
-					"EMERGENCY_STATE": {
-						"SUCCESS": "Emergency state has been updated successfully!",
-						"ERROR": "Unable to update emergency state!"
+					"CLOUD": {
+						"EMERGENCY_STATE": {
+							"SUCCESS": "Emergency state has been updated successfully!",
+							"ERROR": "Unable to update emergency state!"
+						},
+						"SYNC_PRODUCTS": {
+							"SUCCESS": "Products has been synchronized successfully!",
+							"ERROR": "Unable to sync products on the robot!"
+						},
+						"ROBOT_CONFIG": {
+							"SUCCESS": "Robot setting has been updated successfully!",
+							"ERROR": "Unable to configure robot!"
+						},
+						"SYNC_CONFIGS": {
+							"SUCCESS": "Config has been synchronized successfully!",
+							"ERROR": "Sync command to robot failed!"
+						}
 					},
-					"SYNC_PRODUCTS": {
-						"SUCCESS": "Products has been synchronized successfully!",
-						"ERROR": "Unable to sync products on the robot!"
-					},
-					"ROBOT_CONFIG": {
-						"SUCCESS": "Robot setting has been updated successfully!",
-						"ERROR": "Unable to configure robot!"
-					},
-					"SYNC_CONFIGS": {
-						"SUCCESS": "Config has been synchronized successfully!",
-						"ERROR": "Sync command to robot failed!"
-					},
-					"ROBOT_CONFIGURATION": {
+					"ROBOT": {
 						"CREATED": "Sync command was sent. Waiting for response!",
 						"SUCCESS": "Section was synced successfully!",
 						"FAILED": "Section could not be synced. Please check command logs!",

@@ -18,7 +18,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import { AppDispatch } from '../../../../../../../slices';
-import { RobotConfigUpdate } from '../../../../../../../slices/business/robots/RobotOperations.slice';
+import { CloudConfigurationConfigUpdate } from '../../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice';
 import { RobotTwinsFetch } from '../../../../../../../slices/business/robots/RobotTwins.slice';
 import { RobotTwinsSummaryFetchList } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
@@ -32,7 +32,7 @@ import { RobotConfigStyle } from './RobotConfig.style';
 import { RobotConfigValidation } from './RobotConfig.validation';
 
 const RobotConfig: FC<RobotConfigInterface> = (props) => {
-	const { robotTwinsSummary, robotOperations } = props;
+	const { robotTwinsSummary, cloudConfiguration } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigStyle();
 
@@ -62,22 +62,29 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 				if (robotTwinsSingle) {
 					// dispatch: update robot config
 					dispatch(
-						RobotConfigUpdate(cRobotId, removeEmptyObjProperties(values), () => {
-							if (!robotTwinsSummary.content?.state?.showHidden && values.isHidden) {
-								// prepare link
-								const link =
-									AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
+						CloudConfigurationConfigUpdate(
+							cRobotId,
+							removeEmptyObjProperties(values),
+							() => {
+								if (
+									!robotTwinsSummary.content?.state?.showHidden &&
+									values.isHidden
+								) {
+									// prepare link
+									const link =
+										AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.MAIN;
 
-								// navigate
-								navigate(link);
-							} else {
-								// dispatch: fetch robot twins summary
-								dispatch(RobotTwinsSummaryFetchList(true));
+									// navigate
+									navigate(link);
+								} else {
+									// dispatch: fetch robot twins summary
+									dispatch(RobotTwinsSummaryFetchList(true));
 
-								// dispatch: fetch robot twins of a robot
-								dispatch(RobotTwinsFetch(robotTwinsSingle.id, true));
+									// dispatch: fetch robot twins of a robot
+									dispatch(RobotTwinsFetch(robotTwinsSingle.id, true));
+								}
 							}
-						})
+						)
 					);
 				}
 			}
@@ -224,11 +231,11 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								variant="outlined"
 								type="submit"
 								disabled={
-									robotOperations.robotConfig.loading ||
+									cloudConfiguration.robotConfig.loading ||
 									(!!errors && !validateEmptyObj(errors))
 								}
 								endIcon={
-									robotOperations.robotConfig.loading && (
+									cloudConfiguration.robotConfig.loading && (
 										<CircularProgress size={20} />
 									)
 								}>

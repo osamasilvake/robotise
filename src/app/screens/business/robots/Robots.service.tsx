@@ -2,7 +2,7 @@ import { AppConfigService, HttpClientService } from '../../../services';
 import {
 	RCCDataElementInterface,
 	RCContentInterface
-} from '../../../slices/business/robots/configuration/robot-configuration/RobotConfiguration.slice.interface';
+} from '../../../slices/business/robots/configuration/robot/RobotConfiguration.slice.interface';
 import { RobotCommandsLogListPayloadInterface } from './content/commands-log/list/RobotCommandsLogList.interface';
 import { RobotConfigFormInterface } from './content/configuration/cloud/robot-config/RobotConfig.interface';
 import { RobotConfigurationSyncConfigsTypeEnum } from './content/configuration/cloud/sync-configs/RobotConfigurationSyncConfigs.enum';

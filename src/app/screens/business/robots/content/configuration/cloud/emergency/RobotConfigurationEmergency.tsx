@@ -10,7 +10,7 @@ import { RobotConfigurationEmergencyInterface } from './RobotConfigurationEmerge
 import { RobotConfigurationEmergencyStyle } from './RobotConfigurationEmergency.style';
 
 const RobotConfigurationEmergency: FC<RobotConfigurationEmergencyInterface> = (props) => {
-	const { robotTwinsSummary, robotOperations } = props;
+	const { robotTwinsSummary, cloudConfiguration } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigurationEmergencyStyle();
 
@@ -38,7 +38,7 @@ const RobotConfigurationEmergency: FC<RobotConfigurationEmergencyInterface> = (p
 
 				<Box className={classes.sBox}>
 					<FormControlLabel
-						disabled={robotOperations.emergencyState.loading}
+						disabled={cloudConfiguration.emergencyState.loading}
 						control={<Switch checked={emergencyState} onChange={() => setOpen(true)} />}
 						label={t<string>(`${translation}.ACTIVE`)}
 					/>
@@ -49,7 +49,7 @@ const RobotConfigurationEmergency: FC<RobotConfigurationEmergencyInterface> = (p
 					open={open}
 					setOpen={setOpen}
 					robotTwinsSummary={robotTwinsSummary}
-					robotOperations={robotOperations}
+					cloudConfiguration={cloudConfiguration}
 				/>
 			</CardContent>
 		</Card>

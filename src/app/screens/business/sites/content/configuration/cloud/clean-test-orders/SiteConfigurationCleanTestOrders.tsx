@@ -42,7 +42,7 @@ const SiteConfigurationCleanTestOrders: FC = () => {
 						className={classes.sButton}
 						onClick={() => setOpen(true)}
 						disabled={!!cleanedOnce}>
-						{t(`${translation}.BUTTONS.CLEAN`)}
+						{t(`${translation}.CLEAN`)}
 					</Button>
 
 					{!!cleanedOnce && (

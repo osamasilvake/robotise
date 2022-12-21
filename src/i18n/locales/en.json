@@ -1600,9 +1600,7 @@
 					"TITLE": "Clean Test Orders",
 					"EXCERPT": "Delete all orders for this site.",
 					"TEXT": "You are deleting all orders for this site. Select an upper date and time bound.",
-					"BUTTONS": {
-						"CLEAN": "Clean"
-					},
+					"CLEAN": "Clean",
 					"FORM": {
 						"FIELDS": {
 							"DATE_TO": {
@@ -1645,17 +1643,17 @@
 					"TITLE": "Site Configuration",
 					"EXCERPT": "Update Site detail.",
 					"FORM": {
-						"FIELD": {
+						"FIELDS": {
 							"PLACEHOLDER": "Enter {{value}}",
 							"VALIDATIONS": {
 								"REQUIRED": "Field is required."
 							}
 						},
-						"ADD_MORE": "Add More",
-						"DELETE": "Delete",
 						"BUTTONS": {
 							"UPDATE": "Update"
 						},
+						"ADD_MORE": "Add More",
+						"DELETE": "Delete",
 						"NOTE": "Robot is offline!"
 					},
 					"CONFIRMATION": {
@@ -2366,17 +2364,17 @@
 					"TITLE": "Robot Configuration",
 					"EXCERPT": "Update Robot detail.",
 					"FORM": {
-						"FIELD": {
+						"FIELDS": {
 							"PLACEHOLDER": "Enter {{value}}",
 							"VALIDATIONS": {
 								"REQUIRED": "Field is required."
 							}
 						},
-						"ADD_MORE": "Add More",
-						"DELETE": "Delete",
 						"BUTTONS": {
 							"UPDATE": "Update"
 						},
+						"ADD_MORE": "Add More",
+						"DELETE": "Delete",
 						"NOTE": "Robot is offline!"
 					}
 				}

@@ -120,8 +120,8 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 									type="text"
 									id="name"
 									name="name"
-									label={t(`${translation}.FIELDS.NAME.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.NAME.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.NAME.PLACEHOLDER`)}
 									value={values?.name}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -139,8 +139,8 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 									id="desc"
 									name="desc"
 									rows={3}
-									label={t(`${translation}.FIELDS.DESC.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.DESC.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.DESC.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.DESC.PLACEHOLDER`)}
 									value={values.desc}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -155,8 +155,8 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 									type="text"
 									id="key"
 									name="key"
-									label={t(`${translation}.FIELDS.KEY.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.KEY.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.KEY.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.KEY.PLACEHOLDER`)}
 									value={values?.key}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -173,8 +173,8 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 									type="text"
 									id="prop"
 									name="prop"
-									label={t(`${translation}.FIELDS.PROP.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.PROP.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.PROP.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.PROP.PLACEHOLDER`)}
 									value={values?.prop}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -187,13 +187,13 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 						<Grid item xs={12} sm={4}>
 							<FormControl fullWidth margin="normal">
 								<InputLabel id="label-direction">
-									{t(`${translation}.FIELDS.DIRECTION.LABEL`)}
+									{t(`${translation}.FORM.FIELDS.DIRECTION.LABEL`)}
 								</InputLabel>
 								<Select
 									labelId="label-direction"
 									id="direction"
 									name="direction"
-									label={t(`${translation}.FIELDS.DIRECTION.LABEL`)}
+									label={t(`${translation}.FORM.FIELDS.DIRECTION.LABEL`)}
 									value={values.direction}
 									onChange={handleChangeSelect}>
 									{MiddlewareConfigDirections.map((dir) => (
@@ -208,13 +208,13 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 						<Grid item xs={12} sm={4}>
 							<FormControl fullWidth margin="normal">
 								<InputLabel id="label-status">
-									{t(`${translation}.FIELDS.STATUS.LABEL`)}
+									{t(`${translation}.FORM.FIELDS.STATUS.LABEL`)}
 								</InputLabel>
 								<Select
 									labelId="label-status"
 									id="status"
 									name="status"
-									label={t(`${translation}.FIELDS.STATUS.LABEL`)}
+									label={t(`${translation}.FORM.FIELDS.STATUS.LABEL`)}
 									value={values.status}
 									onChange={handleChangeSelect}>
 									{MiddlewareConfigStatuses.map((st) => (
@@ -229,13 +229,13 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 						<Grid item xs={12} sm={4}>
 							<FormControl fullWidth margin="normal">
 								<InputLabel id="label-traceMode">
-									{t(`${translation}.FIELDS.TRACE_MODE.LABEL`)}
+									{t(`${translation}.FORM.FIELDS.TRACE_MODE.LABEL`)}
 								</InputLabel>
 								<Select
 									labelId="label-traceMode"
 									id="traceMode"
 									name="traceMode"
-									label={t(`${translation}.FIELDS.TRACE_MODE.LABEL`)}
+									label={t(`${translation}.FORM.FIELDS.TRACE_MODE.LABEL`)}
 									value={values.traceMode}
 									onChange={handleChangeSelect}>
 									{MiddlewareConfigTraceModes.map((trace) => (
@@ -257,7 +257,7 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 										onChange={handleChangeCheckbox}
 									/>
 								}
-								label={t<string>(`${translation}.FIELDS.DEBUG.LABEL`)}
+								label={t<string>(`${translation}.FORM.FIELDS.DEBUG.LABEL`)}
 							/>
 						</Grid>
 
@@ -271,7 +271,7 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 										onChange={handleChangeCheckbox}
 									/>
 								}
-								label={t<string>(`${translation}.FIELDS.AUDIT.LABEL`)}
+								label={t<string>(`${translation}.FORM.FIELDS.AUDIT.LABEL`)}
 							/>
 						</Grid>
 
@@ -285,7 +285,7 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 										onChange={handleChangeCheckbox}
 									/>
 								}
-								label={t<string>(`${translation}.FIELDS.STOP_PROPAGATE.LABEL`)}
+								label={t<string>(`${translation}.FORM.FIELDS.STOP_PROPAGATE.LABEL`)}
 							/>
 						</Grid>
 
@@ -299,7 +299,7 @@ const DialogCreateEditMiddlewareConfig: FC<DialogCreateEditMiddlewareConfigInter
 										onChange={handleChangeCheckbox}
 									/>
 								}
-								label={t<string>(`${translation}.FIELDS.SAVE_HISTORY.LABEL`)}
+								label={t<string>(`${translation}.FORM.FIELDS.SAVE_HISTORY.LABEL`)}
 							/>
 						</Grid>
 					</Grid>

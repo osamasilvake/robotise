@@ -9,7 +9,7 @@ export const CreateEditMiddlewareConfigValidation = (
 	values: DialogCreateEditMiddlewareConfigFormInterface,
 	touched: DialogCreateEditMiddlewareConfigFormInterface
 ): DialogCreateEditMiddlewareConfigFormInterface => {
-	const translation = 'MIDDLEWARE_CONFIG:LIST.ACTIONS.CREATE_EDIT.FIELDS';
+	const translation = 'MIDDLEWARE_CONFIG:LIST.ACTIONS.CREATE_EDIT.FORM.FIELDS';
 	const errors: DialogCreateEditMiddlewareConfigFormInterface = {
 		name: '',
 		desc: '',

@@ -2478,52 +2478,54 @@
 					"EDIT": {
 						"TITLE": "Edit Event"
 					},
-					"FIELDS": {
-						"NAME": {
-							"LABEL": "Name",
-							"PLACEHOLDER": "Enter name",
-							"VALIDATIONS": {
-								"REQUIRED": "Name is required."
+					"FORM": {
+						"FIELDS": {
+							"NAME": {
+								"LABEL": "Name",
+								"PLACEHOLDER": "Enter name",
+								"VALIDATIONS": {
+									"REQUIRED": "Name is required."
+								}
+							},
+							"DESC": {
+								"LABEL": "Description",
+								"PLACEHOLDER": "Enter Description"
+							},
+							"KEY": {
+								"LABEL": "Key",
+								"PLACEHOLDER": "Enter Key",
+								"VALIDATIONS": {
+									"REQUIRED": "Key is required."
+								}
+							},
+							"PROP": {
+								"LABEL": "Prop",
+								"PLACEHOLDER": "Enter Prop",
+								"VALIDATIONS": {
+									"REQUIRED": "Prop is required."
+								}
+							},
+							"DIRECTION": {
+								"LABEL": "Direction"
+							},
+							"STATUS": {
+								"LABEL": "Status"
+							},
+							"TRACE_MODE": {
+								"LABEL": "Trace Mode"
+							},
+							"DEBUG": {
+								"LABEL": "Debug"
+							},
+							"AUDIT": {
+								"LABEL": "Audit"
+							},
+							"STOP_PROPAGATE": {
+								"LABEL": "Stop Propagate"
+							},
+							"SAVE_HISTORY": {
+								"LABEL": "Save History"
 							}
-						},
-						"DESC": {
-							"LABEL": "Description",
-							"PLACEHOLDER": "Enter Description"
-						},
-						"KEY": {
-							"LABEL": "Key",
-							"PLACEHOLDER": "Enter Key",
-							"VALIDATIONS": {
-								"REQUIRED": "Key is required."
-							}
-						},
-						"PROP": {
-							"LABEL": "Prop",
-							"PLACEHOLDER": "Enter Prop",
-							"VALIDATIONS": {
-								"REQUIRED": "Prop is required."
-							}
-						},
-						"DIRECTION": {
-							"LABEL": "Direction"
-						},
-						"STATUS": {
-							"LABEL": "Status"
-						},
-						"TRACE_MODE": {
-							"LABEL": "Trace Mode"
-						},
-						"DEBUG": {
-							"LABEL": "Debug"
-						},
-						"AUDIT": {
-							"LABEL": "Audit"
-						},
-						"STOP_PROPAGATE": {
-							"LABEL": "Stop Propagate"
-						},
-						"SAVE_HISTORY": {
-							"LABEL": "Save History"
 						}
 					}
 				},

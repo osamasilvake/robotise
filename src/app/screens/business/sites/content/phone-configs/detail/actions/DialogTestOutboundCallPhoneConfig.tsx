@@ -86,13 +86,13 @@ const DialogTestOutboundCallPhoneConfig: FC<DialogTestOutboundCallPhoneConfigInt
 							<Grid item xs={12} sm={6} md={6}>
 								<FormControl fullWidth margin="normal">
 									<InputLabel id="label-prefix">
-										{t(`${translation}.FIELDS.PREFIX.LABEL`)}
+										{t(`${translation}.FORM.FIELDS.PREFIX.LABEL`)}
 									</InputLabel>
 									<Select
 										labelId="label-prefix"
 										id="prefix"
 										name="prefix"
-										label={t(`${translation}.FIELDS.PREFIX.LABEL`)}
+										label={t(`${translation}.FORM.FIELDS.PREFIX.LABEL`)}
 										value={values.prefix}
 										onChange={handleChangeSelect}>
 										{phoneConfig?.prefixes?.map((prefix) => (
@@ -106,13 +106,13 @@ const DialogTestOutboundCallPhoneConfig: FC<DialogTestOutboundCallPhoneConfigInt
 							<Grid item xs={12} sm={6} md={6}>
 								<FormControl fullWidth margin="normal">
 									<InputLabel id="label-location">
-										{t(`${translation}.FIELDS.LOCATION.LABEL`)}
+										{t(`${translation}.FORM.FIELDS.LOCATION.LABEL`)}
 									</InputLabel>
 									<Select
 										labelId="label-location"
 										id="location"
 										name="location"
-										label={t(`${translation}.FIELDS.LOCATION.LABEL`)}
+										label={t(`${translation}.FORM.FIELDS.LOCATION.LABEL`)}
 										value={values.location}
 										onChange={handleChangeSelect}>
 										{siteSingle?.rooms?.available?.map((location) => (

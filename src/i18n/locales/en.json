@@ -1188,12 +1188,14 @@
 							"LABEL": "Test Outbound Call",
 							"TITLE": "Test Outbound Call",
 							"EXCERPT": "Test outbound call to room.",
-							"FIELDS": {
-								"PREFIX": {
-									"LABEL": "Prefix"
-								},
-								"LOCATION": {
-									"LABEL": "Location"
+							"FORM": {
+								"FIELDS": {
+									"PREFIX": {
+										"LABEL": "Prefix"
+									},
+									"LOCATION": {
+										"LABEL": "Location"
+									}
 								}
 							}
 						},
@@ -1201,41 +1203,43 @@
 							"LABEL": "Edit",
 							"TITLE": "Edit Phone Config",
 							"EXCERPT": "Configure phone related detail.",
-							"FIELDS": {
-								"MODE": {
-									"LABEL": "Mode"
-								},
-								"PREFIXES": {
-									"LABEL": "Prefixes",
-									"PLACEHOLDER": "Format: +49221277208, +49221277209",
-									"VALIDATIONS": {
-										"INVALID": "Invalid format"
+							"FORM": {
+								"FIELDS": {
+									"MODE": {
+										"LABEL": "Mode"
+									},
+									"PREFIXES": {
+										"LABEL": "Prefixes",
+										"PLACEHOLDER": "Format: +49221277208, +49221277209",
+										"VALIDATIONS": {
+											"INVALID": "Invalid format"
+										}
+									},
+									"FROM": {
+										"LABEL": "From"
+									},
+									"ROOMS_MAPPING": {
+										"LABEL": "Rooms Mapping",
+										"PLACEHOLDER": "Format: [mapping:room] 501:932, 349:1412",
+										"VALIDATIONS": {
+											"INVALID": "Invalid format"
+										}
+									},
+									"OUTBOUND_PATTERN": {
+										"LABEL": "Outbound Pattern",
+										"PLACEHOLDER": "Example: sip:12345%room%@robotise.eu"
+									},
+									"CALLBACK_RETRIES": {
+										"LABEL": "Callback Retries",
+										"PLACEHOLDER": "Enter callback retries",
+										"VALIDATIONS": {
+											"REQUIRED": "Valid positive number is required.",
+											"LIMIT_EXCEEDED": "Max. callback retries allowed are 10."
+										}
+									},
+									"SMS_GATEWAY": {
+										"LABEL": "SMS Gateway"
 									}
-								},
-								"FROM": {
-									"LABEL": "From"
-								},
-								"ROOMS_MAPPING": {
-									"LABEL": "Rooms Mapping",
-									"PLACEHOLDER": "Format: [mapping:room] 501:932, 349:1412",
-									"VALIDATIONS": {
-										"INVALID": "Invalid format"
-									}
-								},
-								"OUTBOUND_PATTERN": {
-									"LABEL": "Outbound Pattern",
-									"PLACEHOLDER": "Example: sip:12345%room%@robotise.eu"
-								},
-								"CALLBACK_RETRIES": {
-									"LABEL": "Callback Retries",
-									"PLACEHOLDER": "Enter callback retries",
-									"VALIDATIONS": {
-										"REQUIRED": "Valid positive number is required.",
-										"LIMIT_EXCEEDED": "Max. callback retries allowed are 10."
-									}
-								},
-								"SMS_GATEWAY": {
-									"LABEL": "SMS Gateway"
 								}
 							}
 						}

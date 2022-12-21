@@ -10,7 +10,7 @@ export const EditPhoneConfigValidation = (
 	values: DialogEditPhoneConfigFormInterface,
 	touched: DialogEditPhoneConfigFormInterface
 ): DialogEditPhoneConfigFormInterface => {
-	const translation = 'SITES:CONTENT.PHONE_CONFIGS.DETAIL.ACTIONS.EDIT';
+	const translation = 'SITES:CONTENT.PHONE_CONFIGS.DETAIL.ACTIONS.EDIT.FORM.FIELDS';
 	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const regexPhoneCommaSeparated = AppConfigService.AppOptions.regex.phoneNumbersCommaSeparated;
 	const regexRoomsMapping = AppConfigService.AppOptions.regex.roomsMapping;
@@ -28,7 +28,7 @@ export const EditPhoneConfigValidation = (
 	if (touched.prefixes && values.prefixes) {
 		// invalid
 		if (values.prefixes && !regexPhoneCommaSeparated.test(values.prefixes)) {
-			errors.prefixes = `${translation}.FIELDS.PREFIXES.VALIDATIONS.INVALID`;
+			errors.prefixes = `${translation}.PREFIXES.VALIDATIONS.INVALID`;
 		}
 	}
 
@@ -36,7 +36,7 @@ export const EditPhoneConfigValidation = (
 	if (touched.roomsMapping && values.roomsMapping) {
 		// invalid
 		if (values.roomsMapping && !regexRoomsMapping.test(values.roomsMapping as string)) {
-			errors.roomsMapping = `${translation}.FIELDS.ROOMS_MAPPING.VALIDATIONS.INVALID`;
+			errors.roomsMapping = `${translation}.ROOMS_MAPPING.VALIDATIONS.INVALID`;
 		}
 	}
 
@@ -44,12 +44,12 @@ export const EditPhoneConfigValidation = (
 	if (touched.callbackRetries) {
 		// required
 		if (!regexInteger.test(values.callbackRetries) && +values.callbackRetries < 0) {
-			errors.callbackRetries = `${translation}.FIELDS.CALLBACK_RETRIES.VALIDATIONS.REQUIRED`;
+			errors.callbackRetries = `${translation}.CALLBACK_RETRIES.VALIDATIONS.REQUIRED`;
 		}
 
 		// limit exceeds
 		if (+values.callbackRetries > 10) {
-			errors.callbackRetries = `${translation}.FIELDS.CALLBACK_RETRIES.VALIDATIONS.LIMIT_EXCEEDED`;
+			errors.callbackRetries = `${translation}.CALLBACK_RETRIES.VALIDATIONS.LIMIT_EXCEEDED`;
 		}
 	}
 

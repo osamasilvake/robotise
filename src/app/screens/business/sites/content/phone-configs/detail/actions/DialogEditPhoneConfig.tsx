@@ -127,8 +127,8 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 								type="string"
 								id="prefixes"
 								name="prefixes"
-								label={t(`${translation}.FIELDS.PREFIXES.LABEL`)}
-								placeholder={t(`${translation}.FIELDS.PREFIXES.PLACEHOLDER`)}
+								label={t(`${translation}.FORM.FIELDS.PREFIXES.LABEL`)}
+								placeholder={t(`${translation}.FORM.FIELDS.PREFIXES.PLACEHOLDER`)}
 								value={values?.prefixes}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
@@ -140,13 +140,13 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 						{fromList && (
 							<FormControl fullWidth margin="normal">
 								<InputLabel id="label-from">
-									{t(`${translation}.FIELDS.FROM.LABEL`)}
+									{t(`${translation}.FORM.FIELDS.FROM.LABEL`)}
 								</InputLabel>
 								<Select
 									labelId="label-from"
 									id="from"
 									name="from"
-									label={t(`${translation}.FIELDS.FROM.LABEL`)}
+									label={t(`${translation}.FORM.FIELDS.FROM.LABEL`)}
 									value={values.from}
 									onChange={handleChangeSelect}>
 									{fromList?.map((from) => (
@@ -166,8 +166,10 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 								id="roomsMapping"
 								name="roomsMapping"
 								rows={3}
-								label={t(`${translation}.FIELDS.ROOMS_MAPPING.LABEL`)}
-								placeholder={t(`${translation}.FIELDS.ROOMS_MAPPING.PLACEHOLDER`)}
+								label={t(`${translation}.FORM.FIELDS.ROOMS_MAPPING.LABEL`)}
+								placeholder={t(
+									`${translation}.FORM.FIELDS.ROOMS_MAPPING.PLACEHOLDER`
+								)}
 								value={values?.roomsMapping}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
@@ -182,13 +184,13 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 							<Grid item xs={12} sm={6}>
 								<FormControl fullWidth margin="normal">
 									<InputLabel id="label-mode">
-										{t(`${translation}.FIELDS.MODE.LABEL`)}
+										{t(`${translation}.FORM.FIELDS.MODE.LABEL`)}
 									</InputLabel>
 									<Select
 										labelId="label-mode"
 										id="mode"
 										name="mode"
-										label={t(`${translation}.FIELDS.MODE.LABEL`)}
+										label={t(`${translation}.FORM.FIELDS.MODE.LABEL`)}
 										value={values.mode}
 										onChange={handleChangeSelect}>
 										{(orderModesList || [])?.map((m) => (
@@ -206,9 +208,11 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 										type="number"
 										id="callbackRetries"
 										name="callbackRetries"
-										label={t(`${translation}.FIELDS.CALLBACK_RETRIES.LABEL`)}
+										label={t(
+											`${translation}.FORM.FIELDS.CALLBACK_RETRIES.LABEL`
+										)}
 										placeholder={t(
-											`${translation}.FIELDS.CALLBACK_RETRIES.PLACEHOLDER`
+											`${translation}.FORM.FIELDS.CALLBACK_RETRIES.PLACEHOLDER`
 										)}
 										value={values.callbackRetries}
 										onChange={handleChangeInput}
@@ -228,13 +232,13 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 						{smsList && (
 							<FormControl fullWidth margin="normal">
 								<InputLabel id="label-smsGateway">
-									{t(`${translation}.FIELDS.SMS_GATEWAY.LABEL`)}
+									{t(`${translation}.FORM.FIELDS.SMS_GATEWAY.LABEL`)}
 								</InputLabel>
 								<Select
 									labelId="label-smsGateway"
 									id="smsGateway"
 									name="smsGateway"
-									label={t(`${translation}.FIELDS.SMS_GATEWAY.LABEL`)}
+									label={t(`${translation}.FORM.FIELDS.SMS_GATEWAY.LABEL`)}
 									value={values.smsGateway}
 									onChange={handleChangeSelect}>
 									{smsList?.map((from) => (
@@ -255,9 +259,9 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 								type="string"
 								id="outboundPattern"
 								name="outboundPattern"
-								label={t(`${translation}.FIELDS.OUTBOUND_PATTERN.LABEL`)}
+								label={t(`${translation}.FORM.FIELDS.OUTBOUND_PATTERN.LABEL`)}
 								placeholder={t(
-									`${translation}.FIELDS.OUTBOUND_PATTERN.PLACEHOLDER`
+									`${translation}.FORM.FIELDS.OUTBOUND_PATTERN.PLACEHOLDER`
 								)}
 								value={values?.outboundPattern}
 								onChange={handleChangeInput}

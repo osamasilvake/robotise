@@ -9,7 +9,7 @@ export const CreateSiteValidation = (
 	values: DialogCreateSiteFormInterface,
 	touched: DialogCreateSiteFormInterface
 ): DialogCreateSiteFormInterface => {
-	const translation = 'SITES:LIST.ACTIONS.CREATE';
+	const translation = 'SITES:LIST.ACTIONS.CREATE.FORM.FIELDS';
 	const errors: DialogCreateSiteFormInterface = {
 		title: '',
 		timezone: '',
@@ -20,7 +20,7 @@ export const CreateSiteValidation = (
 	if (touched.title) {
 		// required
 		if (!values.title) {
-			errors.title = `${translation}.FIELDS.TITLE.VALIDATIONS.REQUIRED`;
+			errors.title = `${translation}.TITLE.VALIDATIONS.REQUIRED`;
 		}
 	}
 

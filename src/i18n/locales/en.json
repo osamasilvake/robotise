@@ -966,19 +966,21 @@
 					"TITLE": "Create Site",
 					"TEXT": "Create a new site!",
 					"NOTE": "Note: New site is by default not accepting orders!",
-					"FIELDS": {
-						"TITLE": {
-							"LABEL": "Title",
-							"PLACEHOLDER": "Enter site name",
-							"VALIDATIONS": {
-								"REQUIRED": "Name is required."
+					"FORM": {
+						"FIELDS": {
+							"TITLE": {
+								"LABEL": "Title",
+								"PLACEHOLDER": "Enter site name",
+								"VALIDATIONS": {
+									"REQUIRED": "Name is required."
+								}
+							},
+							"CURRENCY": {
+								"LABEL": "Currency"
+							},
+							"TIMEZONE": {
+								"LABEL": "Timezone"
 							}
-						},
-						"CURRENCY": {
-							"LABEL": "Currency"
-						},
-						"TIMEZONE": {
-							"LABEL": "Timezone"
 						}
 					}
 				}

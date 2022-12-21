@@ -85,8 +85,8 @@ const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 							type="string"
 							id="title"
 							name="title"
-							label={t(`${translation}.FIELDS.TITLE.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.TITLE.PLACEHOLDER`)}
+							label={t(`${translation}.FORM.FIELDS.TITLE.LABEL`)}
+							placeholder={t(`${translation}.FORM.FIELDS.TITLE.PLACEHOLDER`)}
 							value={values?.title}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
@@ -96,13 +96,13 @@ const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 					</FormControl>
 					<FormControl fullWidth margin="normal">
 						<InputLabel id="label-currencyId">
-							{t(`${translation}.FIELDS.CURRENCY.LABEL`)}
+							{t(`${translation}.FORM.FIELDS.CURRENCY.LABEL`)}
 						</InputLabel>
 						<Select
 							labelId="label-currencyId"
 							id="currency"
 							name="currency"
-							label={t(`${translation}.FIELDS.CURRENCY.LABEL`)}
+							label={t(`${translation}.FORM.FIELDS.CURRENCY.LABEL`)}
 							value={values.currency}
 							onChange={handleChangeSelect}>
 							{currencies.map((currency) => (
@@ -114,13 +114,13 @@ const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 					</FormControl>
 					<FormControl fullWidth margin="normal">
 						<InputLabel id="label-timezoneId">
-							{t(`${translation}.FIELDS.TIMEZONE.LABEL`)}
+							{t(`${translation}.FORM.FIELDS.TIMEZONE.LABEL`)}
 						</InputLabel>
 						<Select
 							labelId="label-timezoneId"
 							id="timezone"
 							name="timezone"
-							label={t(`${translation}.FIELDS.TIMEZONE.LABEL`)}
+							label={t(`${translation}.FORM.FIELDS.TIMEZONE.LABEL`)}
 							value={values.timezone}
 							onChange={handleChangeSelect}>
 							{timezones.map((timezone) => (

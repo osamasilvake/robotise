@@ -1036,46 +1036,48 @@
 							"EDIT": {
 								"TITLE": "Edit Product"
 							},
-							"FIELDS": {
-								"IMAGE": {
-									"VALIDATIONS": {
-										"REQUIRED": "Name is required."
+							"FORM": {
+								"FIELDS": {
+									"IMAGE": {
+										"VALIDATIONS": {
+											"REQUIRED": "Name is required."
+										}
+									},
+									"NAME": {
+										"LABEL": "Name",
+										"PLACEHOLDER": "Enter name",
+										"VALIDATIONS": {
+											"REQUIRED": "Name is required."
+										}
+									},
+									"PRICE": {
+										"LABEL": "Price ({{value}})",
+										"PLACEHOLDER": "Enter price",
+										"VALIDATIONS": {
+											"REQUIRED": "Price is required.",
+											"INVALID": "Max 2 decimal points allowed."
+										}
+									},
+									"LENGTH": {
+										"LABEL": "Length (mm)",
+										"PLACEHOLDER": "Enter length",
+										"VALIDATIONS": {
+											"INVALID": "Length is empty!",
+											"MIN": "Min. length supported is {{min}} mm.",
+											"MAX": "Max. length supported is {{max}} mm."
+										}
+									},
+									"WEIGHT": {
+										"LABEL": "Weight (g)",
+										"PLACEHOLDER": "Enter weight",
+										"VALIDATIONS": {
+											"INVALID": "Weight is empty!"
+										}
+									},
+									"SIZE": {
+										"LABEL": "Size",
+										"PLACEHOLDER": "Displayed Size"
 									}
-								},
-								"NAME": {
-									"LABEL": "Name",
-									"PLACEHOLDER": "Enter name",
-									"VALIDATIONS": {
-										"REQUIRED": "Name is required."
-									}
-								},
-								"PRICE": {
-									"LABEL": "Price ({{value}})",
-									"PLACEHOLDER": "Enter price",
-									"VALIDATIONS": {
-										"REQUIRED": "Price is required.",
-										"INVALID": "Max 2 decimal points allowed."
-									}
-								},
-								"LENGTH": {
-									"LABEL": "Length (mm)",
-									"PLACEHOLDER": "Enter length",
-									"VALIDATIONS": {
-										"INVALID": "Length is empty!",
-										"MIN": "Min. length supported is {{min}} mm.",
-										"MAX": "Max. length supported is {{max}} mm."
-									}
-								},
-								"WEIGHT": {
-									"LABEL": "Weight (g)",
-									"PLACEHOLDER": "Enter weight",
-									"VALIDATIONS": {
-										"INVALID": "Weight is empty!"
-									}
-								},
-								"SIZE": {
-									"LABEL": "Size",
-									"PLACEHOLDER": "Displayed Size"
 								}
 							}
 						},

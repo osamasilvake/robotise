@@ -11,7 +11,7 @@ export const CreateEditProductValidation = (
 	values: DialogCreateEditProductFormInterface,
 	touched: DialogCreateEditProductFormInterface
 ): DialogCreateEditProductFormInterface => {
-	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FIELDS';
+	const translation = 'SITES:CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT.FORM.FIELDS';
 	const regexMaxTwoDecimalPoints = AppConfigService.AppOptions.regex.maxTwoDecimalPoints;
 	const lengthEnum = SiteProductCreateEditLengthValidationTypeEnum;
 	const errors: DialogCreateEditProductFormInterface = {

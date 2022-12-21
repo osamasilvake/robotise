@@ -127,8 +127,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									type="text"
 									id="name"
 									name="name"
-									label={t(`${translation}.FIELDS.NAME.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.NAME.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.NAME.PLACEHOLDER`)}
 									value={values?.name}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -142,10 +142,10 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									type="number"
 									id="price"
 									name="price"
-									label={t(`${translation}.FIELDS.PRICE.LABEL`, {
+									label={t(`${translation}.FORM.FIELDS.PRICE.LABEL`, {
 										value: currency
 									})}
-									placeholder={t(`${translation}.FIELDS.PRICE.PLACEHOLDER`)}
+									placeholder={t(`${translation}.FORM.FIELDS.PRICE.PLACEHOLDER`)}
 									value={values?.price}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -167,8 +167,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									type="number"
 									id="length"
 									name="length"
-									label={t(`${translation}.FIELDS.LENGTH.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.LENGTH.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.LENGTH.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.LENGTH.PLACEHOLDER`)}
 									value={values?.length}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -199,8 +199,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									type="number"
 									id="weight"
 									name="weight"
-									label={t(`${translation}.FIELDS.WEIGHT.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.WEIGHT.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.WEIGHT.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.WEIGHT.PLACEHOLDER`)}
 									value={values?.weight}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -221,8 +221,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									type="text"
 									id="volume"
 									name="volume"
-									label={t(`${translation}.FIELDS.SIZE.LABEL`)}
-									placeholder={t(`${translation}.FIELDS.SIZE.PLACEHOLDER`)}
+									label={t(`${translation}.FORM.FIELDS.SIZE.LABEL`)}
+									placeholder={t(`${translation}.FORM.FIELDS.SIZE.PLACEHOLDER`)}
 									value={values?.volume}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}

@@ -10,7 +10,7 @@ export const ModifyRoomsValidation = (
 	values: DialogModifyRoomsFormInterface,
 	touched: DialogModifyRoomsFormInterface
 ): DialogModifyRoomsFormInterface => {
-	const translation = 'SITES:CONTENT.ROOMS.LIST.ACTIONS.MODIFY';
+	const translation = 'SITES:CONTENT.ROOMS.LIST.ACTIONS.MODIFY.FORM.FIELDS';
 	const regexRooms = AppConfigService.AppOptions.regex.rooms;
 	const errors: DialogModifyRoomsFormInterface = {
 		whitelist: '',
@@ -21,7 +21,7 @@ export const ModifyRoomsValidation = (
 	if (touched.whitelist) {
 		// validate
 		if (values.whitelist && !regexRooms.test(values.whitelist as string)) {
-			errors.whitelist = `${translation}.FIELDS.WHITELIST.VALIDATIONS.INVALID`;
+			errors.whitelist = `${translation}.WHITELIST.VALIDATIONS.INVALID`;
 		}
 	}
 
@@ -29,7 +29,7 @@ export const ModifyRoomsValidation = (
 	if (touched.whitelist) {
 		// validate
 		if (values.blocked && !regexRooms.test(values.blocked as string)) {
-			errors.blocked = `${translation}.FIELDS.BLOCKED.VALIDATIONS.INVALID`;
+			errors.blocked = `${translation}.BLOCKED.VALIDATIONS.INVALID`;
 		}
 	}
 
@@ -43,7 +43,7 @@ export const ModifyRoomsValidation = (
 				.filter((w) => w && w.length >= 3)
 				.forEach((word) => {
 					if (str1 === word) {
-						errors.blocked = `${translation}.FIELDS.BLOCKED.VALIDATIONS.SIMILAR`;
+						errors.blocked = `${translation}.BLOCKED.VALIDATIONS.SIMILAR`;
 					}
 				});
 		}

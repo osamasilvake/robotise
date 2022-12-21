@@ -157,8 +157,8 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 							id="whitelist"
 							name="whitelist"
 							rows={4}
-							label={t(`${translation}.FIELDS.WHITELIST.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.WHITELIST.PLACEHOLDER`)}
+							label={t(`${translation}.FORM.FIELDS.WHITELIST.LABEL`)}
+							placeholder={t(`${translation}.FORM.FIELDS.WHITELIST.PLACEHOLDER`)}
 							value={values.whitelist}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
@@ -175,8 +175,8 @@ const DialogModifyRooms: FC<DialogModifyRoomsInterface> = (props) => {
 							id="blocked"
 							name="blocked"
 							rows={4}
-							label={t(`${translation}.FIELDS.BLOCKED.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.BLOCKED.PLACEHOLDER`)}
+							label={t(`${translation}.FORM.FIELDS.BLOCKED.LABEL`)}
+							placeholder={t(`${translation}.FORM.FIELDS.BLOCKED.PLACEHOLDER`)}
 							value={values.blocked}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}

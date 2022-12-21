@@ -10,7 +10,7 @@ export const DialogCreateEditNotificationValidation = (
 	values: DialogCreateEditNotificationFormInterface,
 	touched: DialogCreateEditNotificationFormInterface
 ): DialogCreateEditNotificationFormInterface => {
-	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.CREATE_EDIT.FIELDS';
+	const translation = 'SITES:CONTENT.CONFIGURATION.NOTIFICATIONS.CREATE_EDIT.FORM.FIELDS';
 	const regexEmail = AppConfigService.AppOptions.regex.email;
 	const errors: DialogCreateEditNotificationFormInterface = {
 		users: []

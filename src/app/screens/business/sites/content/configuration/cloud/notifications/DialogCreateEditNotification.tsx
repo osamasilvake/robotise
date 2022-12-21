@@ -137,13 +137,13 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 					<DialogContent>
 						<FormControl fullWidth margin="normal">
 							<InputLabel id="label-notifications">
-								{t(`${translation}.FIELDS.NOTIFICATION.LABEL`)}
+								{t(`${translation}.FORM.FIELDS.NOTIFICATION.LABEL`)}
 							</InputLabel>
 							<Select
 								labelId="label-notifications"
 								id="notifications"
 								name="notifications"
-								label={t(`${translation}.FIELDS.NOTIFICATION.LABEL`)}
+								label={t(`${translation}.FORM.FIELDS.NOTIFICATION.LABEL`)}
 								value={newNotification}
 								onChange={(event) => setNewNotification(event.target.value)}>
 								{notifications.content?.types.map((type) => (
@@ -173,7 +173,7 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 									onChange={handleChangeCheckbox}
 								/>
 							}
-							label={t<string>(`${translation}.FIELDS.ACTIVE.LABEL`)}
+							label={t<string>(`${translation}.FORM.FIELDS.ACTIVE.LABEL`)}
 						/>
 
 						<Box className={classes.sAddUser}>
@@ -183,8 +183,10 @@ const DialogCreateEditNotification: FC<DialogCreateEditNotificationInterface> = 
 										type="email"
 										id={`${fieldUsers}-${index}`}
 										name={fieldUsers}
-										label={t(`${translation}.FIELDS.EMAIL.LABEL`)}
-										placeholder={t(`${translation}.FIELDS.EMAIL.PLACEHOLDER`)}
+										label={t(`${translation}.FORM.FIELDS.EMAIL.LABEL`)}
+										placeholder={t(
+											`${translation}.FORM.FIELDS.EMAIL.PLACEHOLDER`
+										)}
 										value={user}
 										onChange={(e) =>
 											handleChangeInputsMultiple(index, e, values.users)

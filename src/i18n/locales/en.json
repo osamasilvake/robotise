@@ -1411,18 +1411,20 @@
 						"EDIT": {
 							"TITLE": "Edit Notification"
 						},
-						"FIELDS": {
-							"NOTIFICATION": {
-								"LABEL": "Notification"
-							},
-							"ACTIVE": {
-								"LABEL": "Active"
-							},
-							"EMAIL": {
-								"LABEL": "Email Address",
-								"PLACEHOLDER": "Enter your email Address",
-								"VALIDATIONS": {
-									"INVALID": "Enter the correct Email format!"
+						"FORM": {
+							"FIELDS": {
+								"NOTIFICATION": {
+									"LABEL": "Notification"
+								},
+								"ACTIVE": {
+									"LABEL": "Active"
+								},
+								"EMAIL": {
+									"LABEL": "Email Address",
+									"PLACEHOLDER": "Enter your email Address",
+									"VALIDATIONS": {
+										"INVALID": "Enter the correct Email format!"
+									}
 								}
 							}
 						},

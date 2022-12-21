@@ -101,8 +101,8 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 							type="text"
 							id="name"
 							name="name"
-							label={t(`${translation}.FIELDS.NAME.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
+							label={t(`${translation}.FORM.FIELDS.NAME.LABEL`)}
+							placeholder={t(`${translation}.FORM.FIELDS.NAME.PLACEHOLDER`)}
 							value={values?.name}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
@@ -116,8 +116,8 @@ const DialogCreateEditServicePosition: FC<DialogCreateEditServicePositionInterfa
 							type="text"
 							id="location"
 							name="location"
-							label={t(`${translation}.FIELDS.LOCATION.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.LOCATION.PLACEHOLDER`)}
+							label={t(`${translation}.FORM.FIELDS.LOCATION.LABEL`)}
+							placeholder={t(`${translation}.FORM.FIELDS.LOCATION.PLACEHOLDER`)}
 							value={values?.location}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}

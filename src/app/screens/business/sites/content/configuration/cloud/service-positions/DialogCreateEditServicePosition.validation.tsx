@@ -9,7 +9,7 @@ export const DialogCreateEditServicePositionValidation = (
 	values: DialogCreateEditServicePositionFormInterface,
 	touched: DialogCreateEditServicePositionFormInterface
 ): DialogCreateEditServicePositionFormInterface => {
-	const translation = 'SITES:CONTENT.CONFIGURATION.SERVICE_POSITIONS.CREATE_EDIT.FIELDS';
+	const translation = 'SITES:CONTENT.CONFIGURATION.SERVICE_POSITIONS.CREATE_EDIT.FORM.FIELDS';
 	const errors: DialogCreateEditServicePositionFormInterface = {
 		name: '',
 		location: ''

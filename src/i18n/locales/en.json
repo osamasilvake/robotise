@@ -1441,19 +1441,21 @@
 						"EDIT": {
 							"TITLE": "Edit Service Position"
 						},
-						"FIELDS": {
-							"NAME": {
-								"LABEL": "Name",
-								"PLACEHOLDER": "Enter name",
-								"VALIDATIONS": {
-									"REQUIRED": "Name is required."
-								}
-							},
-							"LOCATION": {
-								"LABEL": "Location",
-								"PLACEHOLDER": "Enter location",
-								"VALIDATIONS": {
-									"REQUIRED": "Location is required."
+						"FORM": {
+							"FIELDS": {
+								"NAME": {
+									"LABEL": "Name",
+									"PLACEHOLDER": "Enter name",
+									"VALIDATIONS": {
+										"REQUIRED": "Name is required."
+									}
+								},
+								"LOCATION": {
+									"LABEL": "Location",
+									"PLACEHOLDER": "Enter location",
+									"VALIDATIONS": {
+										"REQUIRED": "Location is required."
+									}
 								}
 							}
 						}

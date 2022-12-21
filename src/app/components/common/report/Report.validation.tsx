@@ -20,7 +20,7 @@ export const ReportValidation = (
 	if (touched.to && touched.from) {
 		// exceeds
 		if (dateFromToDiff(values.from, values.to)) {
-			errors.from = `FROM.VALIDATIONS.EXCEEDS`;
+			errors.from = 'FORM.FIELDS.FROM.VALIDATIONS.EXCEEDS';
 		}
 	}
 

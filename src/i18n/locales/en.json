@@ -108,16 +108,20 @@
 	},
 	"REPORT": {
 		"TITLE": "Generate Report",
-		"DOWNLOAD": "Download",
-		"FIELDS": {
-			"FROM": {
-				"LABEL": "From",
-				"VALIDATIONS": {
-					"EXCEEDS": "From date exceeds To date."
+		"FORM": {
+			"FIELDS": {
+				"FROM": {
+					"LABEL": "From",
+					"VALIDATIONS": {
+						"EXCEEDS": "From date exceeds To date."
+					}
+				},
+				"TO": {
+					"LABEL": "To"
 				}
 			},
-			"TO": {
-				"LABEL": "To"
+			"BUTTONS": {
+				"DOWNLOAD": "Download"
 			}
 		}
 	},

@@ -5,7 +5,7 @@ export interface ReportInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
 	filterId: string;
-	filterIdType: string;
+	filterType: string;
 	state: { loading: boolean };
 }
 

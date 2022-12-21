@@ -7,6 +7,7 @@ import {
 	DialogContent,
 	DialogTitle,
 	FormControl,
+	FormHelperText,
 	Grid,
 	Stack,
 	TextField,
@@ -27,13 +28,14 @@ import { ReportStyle } from './Report.style';
 import { ReportValidation } from './Report.validation';
 
 const Report: FC<ReportInterface> = (props) => {
-	const { id, open, setOpen, filterId, filterIdType, state } = props;
+	const { id, open, setOpen, filterId, filterType, state } = props;
 	const { t } = useTranslation(['REPORT', 'DIALOG']);
 	const classes = ReportStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
 
 	const [report, setReport] = useState('');
+
 	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
 		useForm<ReportFormInterface>(
 			{
@@ -45,7 +47,7 @@ const Report: FC<ReportInterface> = (props) => {
 			async () => {
 				// dispatch: generate reports
 				dispatch(
-					GeneralReportsGenerate(filterId, filterIdType, values, (report) =>
+					GeneralReportsGenerate(filterId, filterType, values, (report) =>
 						setReport(report)
 					)
 				);
@@ -59,28 +61,28 @@ const Report: FC<ReportInterface> = (props) => {
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6} md={6}>
-							<FormControl fullWidth margin="normal">
+							<FormControl error fullWidth margin="normal">
 								<TextField
-									type="date"
 									id="from"
 									name="from"
-									label={t('FIELDS.FROM.LABEL')}
+									label={t('FORM.FIELDS.FROM.LABEL')}
+									type="date"
 									value={values.from}
+									error={!!errors?.from}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
-									error={!!errors?.from}
-									helperText={errors?.from && t(`FIELDS.${errors.from}`)}
 									InputLabelProps={{ shrink: true }}
 								/>
+								{errors?.from && <FormHelperText>{t(errors.from)}</FormHelperText>}
 							</FormControl>
 						</Grid>
 						<Grid item xs={12} sm={6} md={6}>
 							<FormControl fullWidth margin="normal">
 								<TextField
-									type="date"
 									id="to"
 									name="to"
-									label={t('FIELDS.TO.LABEL')}
+									label={t('FORM.FIELDS.TO.LABEL')}
+									type="date"
 									value={values.to}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
@@ -98,7 +100,7 @@ const Report: FC<ReportInterface> = (props) => {
 							className={classes.sDownloadLink}>
 							<Stack spacing={0.5} direction="row" alignItems="center">
 								<CloudDownload className={classes.sDownloadIcon} />
-								<Typography>{t('DOWNLOAD')}</Typography>
+								<Typography>{t('FORM.BUTTONS.DOWNLOAD')}</Typography>
 							</Stack>
 						</CSVLink>
 					)}

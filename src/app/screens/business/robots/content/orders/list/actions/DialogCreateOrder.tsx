@@ -162,14 +162,14 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 					<FormControl fullWidth margin="normal">
 						<InputLabel id="label-mode">
-							{t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
+							{t(`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.MODE.LABEL`)}
 						</InputLabel>
 						<Select
 							required
 							labelId="label-mode"
 							id="mode"
 							name="mode"
-							label={t(`${translation}.LIST.ACTIONS.CREATE.FIELDS.MODE.LABEL`)}
+							label={t(`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.MODE.LABEL`)}
 							value={values.mode}
 							onChange={(e) => {
 								handleChangeInput({
@@ -196,10 +196,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								id={fieldLocation}
 								name={fieldLocation}
 								label={t(
-									`${translation}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.LABEL`
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.LOCATION.LABEL`
 								)}
 								placeholder={t(
-									`${translation}.LIST.ACTIONS.CREATE.FIELDS.LOCATION.PLACEHOLDER`
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.LOCATION.PLACEHOLDER`
 								)}
 								value={values.location}
 								onChange={handleChangeInput}
@@ -214,7 +214,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						<FormControl fullWidth margin="normal">
 							<InputLabel id="label-service-positions">
 								{t(
-									`${translation}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_POSITIONS.LABEL`
 								)}
 							</InputLabel>
 							<Select
@@ -223,7 +223,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								id={fieldLocation}
 								name={fieldLocation}
 								label={t(
-									`${translation}.LIST.ACTIONS.CREATE.FIELDS.SERVICE_POSITIONS.LABEL`
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_POSITIONS.LABEL`
 								)}
 								value={values.location}
 								onChange={handleChangeSelect}>
@@ -244,7 +244,9 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								onChange={handleChangeCheckbox}
 							/>
 						}
-						label={t<string>(`${translation}.LIST.ACTIONS.CREATE.FIELDS.DEBUG.LABEL`)}
+						label={t<string>(
+							`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.DEBUG.LABEL`
+						)}
 					/>
 
 					{/* Notification Types */}
@@ -257,7 +259,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 							<FormControl fullWidth margin="normal">
 								<InputLabel id="label-type">
 									{t(
-										`${translation}.LIST.ACTIONS.CREATE.FIELDS.CUSTOMER_NOTIFICATION_TYPES.LABEL`
+										`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.CUSTOMER_NOTIFICATION_TYPES.LABEL`
 									)}
 								</InputLabel>
 								<Select
@@ -265,14 +267,14 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 									id="type"
 									name="type"
 									label={t(
-										`${translation}.LIST.ACTIONS.CREATE.FIELDS.CUSTOMER_NOTIFICATION_TYPES.LABEL`
+										`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.CUSTOMER_NOTIFICATION_TYPES.LABEL`
 									)}
 									value={type}
 									onChange={handleChangeSelect}>
 									{customerNotificationTypesEnabled.map((n) => (
 										<MenuItem key={n} value={n}>
 											{t(
-												`${translation}.LIST.ACTIONS.CREATE.FIELDS.CUSTOMER_NOTIFICATION_TYPES.OPTIONS.${n}`
+												`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.CUSTOMER_NOTIFICATION_TYPES.OPTIONS.${n}`
 											)}
 										</MenuItem>
 									))}
@@ -287,10 +289,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 										id="phone"
 										name="phone"
 										label={t(
-											`${translation}.LIST.ACTIONS.CREATE.FIELDS.PHONE.LABEL`
+											`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.PHONE.LABEL`
 										)}
 										placeholder={t(
-											`${translation}.LIST.ACTIONS.CREATE.FIELDS.PHONE.PLACEHOLDER`
+											`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.PHONE.PLACEHOLDER`
 										)}
 										value={values.phone}
 										onChange={handleChangeInput}

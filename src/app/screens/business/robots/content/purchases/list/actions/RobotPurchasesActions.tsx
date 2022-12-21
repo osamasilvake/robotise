@@ -85,7 +85,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 					open={purchasesReport}
 					setOpen={setPurchasesReport}
 					filterId={cSiteId}
-					filterIdType="site"
+					filterType="site"
 					state={generalOperations.reports}
 				/>
 			)}
@@ -97,7 +97,7 @@ const RobotPurchasesActions: FC<RobotPurchasesActionsInterface> = (props) => {
 					open={productsReport}
 					setOpen={setProductsReport}
 					filterId={cSiteId}
-					filterIdType="site"
+					filterType="site"
 					state={generalOperations.reports}
 				/>
 			)}

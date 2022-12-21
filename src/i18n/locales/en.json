@@ -628,37 +628,39 @@
 							"TITLE": "Create Order",
 							"TEXT": "Create a new order for JEEVES by providing a target location.",
 							"NOTIFICATION_TYPES": "Notify Customer Via:",
-							"FIELDS": {
-								"LOCATION": {
-									"LABEL": "Location",
-									"PLACEHOLDER": "Enter Location",
-									"VALIDATIONS": {
-										"REQUIRED": "Enter target location.",
-										"INVALID": "Location must be valid."
-									}
-								},
-								"SERVICE_POSITIONS": {
-									"LABEL": "Service Positions *"
-								},
-								"MODE": {
-									"LABEL": "MODE"
-								},
-								"DEBUG": {
-									"LABEL": "Test Order"
-								},
-								"CUSTOMER_NOTIFICATION_TYPES": {
-									"LABEL": "Customer Notification Types *",
-									"OPTIONS": {
-										"phone-room": "Phone Room",
-										"phone-customer": "Phone Customer",
-										"sms-customer": "SMS Customer"
-									}
-								},
-								"PHONE": {
-									"LABEL": "Phone Call No.",
-									"PLACEHOLDER": "Enter Phone No.",
-									"VALIDATIONS": {
-										"INVALID": "Phone No. must be valid."
+							"FORM": {
+								"FIELDS": {
+									"LOCATION": {
+										"LABEL": "Location",
+										"PLACEHOLDER": "Enter Location",
+										"VALIDATIONS": {
+											"REQUIRED": "Enter target location.",
+											"INVALID": "Location must be valid."
+										}
+									},
+									"SERVICE_POSITIONS": {
+										"LABEL": "Service Positions *"
+									},
+									"MODE": {
+										"LABEL": "MODE"
+									},
+									"DEBUG": {
+										"LABEL": "Test Order"
+									},
+									"CUSTOMER_NOTIFICATION_TYPES": {
+										"LABEL": "Customer Notification Types *",
+										"OPTIONS": {
+											"phone-room": "Phone Room",
+											"phone-customer": "Phone Customer",
+											"sms-customer": "SMS Customer"
+										}
+									},
+									"PHONE": {
+										"LABEL": "Phone Call No.",
+										"PLACEHOLDER": "Enter Phone No.",
+										"VALIDATIONS": {
+											"INVALID": "Phone No. must be valid."
+										}
 									}
 								}
 							}

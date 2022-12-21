@@ -10,7 +10,7 @@ export const CreateOrderValidation = (
 	values: DialogCreateOrderFormInterface,
 	touched: DialogCreateOrderFormInterface
 ): DialogCreateOrderFormInterface => {
-	const translation = 'GENERAL:COMMON.ORDERS.LIST.ACTIONS.CREATE';
+	const translation = 'GENERAL:COMMON.ORDERS.LIST.ACTIONS.CREATE.FORM.FIELDS';
 	const regexIntegersAndChars = AppConfigService.AppOptions.regex.integersAndChars;
 	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const errors: DialogCreateOrderFormInterface = {
@@ -24,12 +24,12 @@ export const CreateOrderValidation = (
 	if (touched.location) {
 		// required
 		if (!values.location) {
-			errors.location = `${translation}.FIELDS.LOCATION.VALIDATIONS.REQUIRED`;
+			errors.location = `${translation}.LOCATION.VALIDATIONS.REQUIRED`;
 		}
 
 		// validate
 		if (values.location && !regexIntegersAndChars.test(values.location)) {
-			errors.location = `${translation}.FIELDS.LOCATION.VALIDATIONS.INVALID`;
+			errors.location = `${translation}.LOCATION.VALIDATIONS.INVALID`;
 		}
 	}
 
@@ -37,7 +37,7 @@ export const CreateOrderValidation = (
 	if (touched.phone && values.phone) {
 		// invalid
 		if (!regexInteger.test(values.phone)) {
-			errors.phone = `${translation}.FIELDS.PHONE.VALIDATIONS.INVALID`;
+			errors.phone = `${translation}.PHONE.VALIDATIONS.INVALID`;
 		}
 	}
 

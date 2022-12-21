@@ -16,6 +16,7 @@ export interface ExternalLinkPayloadInterface {
 	vendor?: string;
 	from: Date | string;
 	to: Date | string;
+	callId?: string;
 }
 
 export interface ExternalLinkCallbackResponseInterface {

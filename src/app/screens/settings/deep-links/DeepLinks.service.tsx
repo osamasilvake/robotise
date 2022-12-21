@@ -170,7 +170,8 @@ class DeepLinksService {
 			params: {
 				elevator_vendor: payload.vendor,
 				from: payload.from,
-				to: payload.to
+				to: payload.to,
+				call_id: payload.callId
 			}
 		});
 	};

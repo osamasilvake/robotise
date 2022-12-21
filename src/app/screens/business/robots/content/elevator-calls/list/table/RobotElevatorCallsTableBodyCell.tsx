@@ -126,7 +126,8 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 							payload={{
 								vendor: elevatorCall.vendor,
 								from: elevatorCall.createdAt,
-								to: elevatorCall.updatedAt
+								to: elevatorCall.updatedAt,
+								callId: elevatorCall.id
 							}}
 							actionType={ExternalLinkActionTypeEnum.ELEVATOR_LOGS}
 							showIcon={deepLink.elevatorLogs.loading}

@@ -84,13 +84,13 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 
 					<FormControl fullWidth margin="normal">
 						<InputLabel id="label-siteId">
-							{t(`${translation}.FIELDS.SITE.LABEL`)}
+							{t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 						</InputLabel>
 						<Select
 							labelId="label-siteId"
 							id="siteId"
 							name="siteId"
-							label={t(`${translation}.FIELDS.SITE.LABEL`)}
+							label={t(`${translation}.FORM.FIELDS.SITE.LABEL`)}
 							value={values.siteId}
 							onChange={handleChangeSelect}>
 							{sites.content?.data.map((site) => (
@@ -106,8 +106,8 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 							type="string"
 							id="name"
 							name="name"
-							label={t(`${translation}.FIELDS.NAME.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.NAME.PLACEHOLDER`)}
+							label={t(`${translation}.FORM.FIELDS.NAME.LABEL`)}
+							placeholder={t(`${translation}.FORM.FIELDS.NAME.PLACEHOLDER`)}
 							value={values?.name}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}
@@ -121,8 +121,8 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 							type="string"
 							id="customerName"
 							name="customerName"
-							label={t(`${translation}.FIELDS.CUSTOMER_NAME.LABEL`)}
-							placeholder={t(`${translation}.FIELDS.CUSTOMER_NAME.PLACEHOLDER`)}
+							label={t(`${translation}.FORM.FIELDS.CUSTOMER_NAME.LABEL`)}
+							placeholder={t(`${translation}.FORM.FIELDS.CUSTOMER_NAME.PLACEHOLDER`)}
 							value={values?.customerName}
 							onChange={handleChangeInput}
 							onBlur={handleBlur}

@@ -9,7 +9,7 @@ export const CreateRobotValidation = (
 	values: DialogCreateRobotFormInterface,
 	touched: DialogCreateRobotFormInterface
 ): DialogCreateRobotFormInterface => {
-	const translation = 'ROBOTS:LIST.ACTIONS.CREATE';
+	const translation = 'ROBOTS:LIST.ACTIONS.CREATE.FORM.FIELDS';
 	const errors: DialogCreateRobotFormInterface = {
 		siteId: '',
 		name: '',
@@ -20,7 +20,7 @@ export const CreateRobotValidation = (
 	if (touched.name) {
 		// required
 		if (!values.name) {
-			errors.name = `${translation}.FIELDS.NAME.VALIDATIONS.REQUIRED`;
+			errors.name = `${translation}.NAME.VALIDATIONS.REQUIRED`;
 		}
 	}
 
@@ -28,7 +28,7 @@ export const CreateRobotValidation = (
 	if (touched.customerName) {
 		// required
 		if (!values.customerName) {
-			errors.customerName = `${translation}.FIELDS.CUSTOMER_NAME.VALIDATIONS.REQUIRED`;
+			errors.customerName = `${translation}.CUSTOMER_NAME.VALIDATIONS.REQUIRED`;
 		}
 	}
 

@@ -1708,22 +1708,24 @@
 					"TITLE": "Create Robot",
 					"TEXT": "Create a new robot!",
 					"NOTE": "Note: New robot is by default hidden!",
-					"FIELDS": {
-						"SITE": {
-							"LABEL": "Site"
-						},
-						"NAME": {
-							"LABEL": "Name",
-							"PLACEHOLDER": "Enter robot name",
-							"VALIDATIONS": {
-								"REQUIRED": "Name is required."
-							}
-						},
-						"CUSTOMER_NAME": {
-							"LABEL": "Customer Name",
-							"PLACEHOLDER": "Enter customer robot name",
-							"VALIDATIONS": {
-								"REQUIRED": "Customer Name is required."
+					"FORM": {
+						"FIELDS": {
+							"SITE": {
+								"LABEL": "Site"
+							},
+							"NAME": {
+								"LABEL": "Name",
+								"PLACEHOLDER": "Enter robot name",
+								"VALIDATIONS": {
+									"REQUIRED": "Name is required."
+								}
+							},
+							"CUSTOMER_NAME": {
+								"LABEL": "Customer Name",
+								"PLACEHOLDER": "Enter customer robot name",
+								"VALIDATIONS": {
+									"REQUIRED": "Customer Name is required."
+								}
 							}
 						}
 					}

@@ -10,7 +10,7 @@ export const LoginValidation = (
 	values: AuthLoginFormInterface,
 	touched: AuthLoginFormInterface
 ): AuthLoginFormInterface => {
-	const translation = 'LOGIN.FIELDS';
+	const translation = 'LOGIN.FORM.FIELDS';
 	const regexEmail = AppConfigService.AppOptions.regex.email;
 	const errors: AuthLoginFormInterface = {
 		email: '',
@@ -32,7 +32,7 @@ export const LoginValidation = (
 
 	// Password
 	if (touched.password && !values.password) {
-		errors.password = 'LOGIN.FIELDS.PASSWORD.VALIDATIONS.REQUIRED';
+		errors.password = `${translation}.PASSWORD.VALIDATIONS.REQUIRED`;
 	}
 
 	return errors;

@@ -78,8 +78,8 @@ const Login: FC = () => {
 								type="email"
 								id="email"
 								name="email"
-								label={t('LOGIN.FIELDS.EMAIL.LABEL')}
-								placeholder={t('LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
+								label={t('LOGIN.FORM.FIELDS.EMAIL.LABEL')}
+								placeholder={t('LOGIN.FORM.FIELDS.EMAIL.PLACEHOLDER')}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								onFocus={() => (focus.current = true)}
@@ -95,8 +95,8 @@ const Login: FC = () => {
 								type={showPassword ? 'text' : 'password'}
 								id="password"
 								name="password"
-								label={t('LOGIN.FIELDS.PASSWORD.LABEL')}
-								placeholder={t('LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
+								label={t('LOGIN.FORM.FIELDS.PASSWORD.LABEL')}
+								placeholder={t('LOGIN.FORM.FIELDS.PASSWORD.PLACEHOLDER')}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
 								onFocus={() => (focus.current = true)}
@@ -127,7 +127,7 @@ const Login: FC = () => {
 									onChange={handleChangeCheckbox}
 								/>
 							}
-							label={t<string>('LOGIN.FIELDS.REMEMBER_ME.LABEL')}
+							label={t<string>('LOGIN.FORM.FIELDS.REMEMBER_ME.LABEL')}
 						/>
 
 						<Button
@@ -141,7 +141,7 @@ const Login: FC = () => {
 							}
 							endIcon={auth.loading && <CircularProgress size={20} />}
 							onClick={() => (focus.current = true)}>
-							{t('LOGIN.BUTTONS.SIGN_IN.LABEL')}
+							{t('LOGIN.FORM.BUTTONS.SIGN_IN.LABEL')}
 						</Button>
 
 						<Box className={classes.sForgetPassword}>

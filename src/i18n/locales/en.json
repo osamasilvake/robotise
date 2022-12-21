@@ -530,29 +530,31 @@
 	},
 	"AUTH": {
 		"LOGIN": {
-			"FIELDS": {
-				"EMAIL": {
-					"LABEL": "Email Address",
-					"PLACEHOLDER": "Enter your email Address",
-					"VALIDATIONS": {
-						"REQUIRED": "Enter the required email address!",
-						"INVALID": "Enter the correct Email format!"
+			"FORM": {
+				"FIELDS": {
+					"EMAIL": {
+						"LABEL": "Email Address",
+						"PLACEHOLDER": "Enter your email Address",
+						"VALIDATIONS": {
+							"REQUIRED": "Enter the required email address!",
+							"INVALID": "Enter the correct Email format!"
+						}
+					},
+					"PASSWORD": {
+						"LABEL": "Password",
+						"PLACEHOLDER": "Enter your password",
+						"VALIDATIONS": {
+							"REQUIRED": "Enter the required password!"
+						}
+					},
+					"REMEMBER_ME": {
+						"LABEL": "Remember Me"
 					}
 				},
-				"PASSWORD": {
-					"LABEL": "Password",
-					"PLACEHOLDER": "Enter your password",
-					"VALIDATIONS": {
-						"REQUIRED": "Enter the required password!"
+				"BUTTONS": {
+					"SIGN_IN": {
+						"LABEL": "Sign In"
 					}
-				},
-				"REMEMBER_ME": {
-					"LABEL": "Remember Me"
-				}
-			},
-			"BUTTONS": {
-				"SIGN_IN": {
-					"LABEL": "Sign In"
 				}
 			},
 			"FORGET_PASSWORD": "Forgot Your Password?"

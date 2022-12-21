@@ -83,7 +83,9 @@ const SitePhoneConfigsSMSMessages: FC<SitePhoneConfigsSMSMessagesInterface> = (p
 									name={message}
 									rows={2}
 									label={strCapitalLetterAndCamelCaseToDash(message)}
-									placeholder={t(`${translation}.FIELDS.MESSAGE.PLACEHOLDER`)}
+									placeholder={t(
+										`${translation}.FORM.FIELDS.MESSAGE.PLACEHOLDER`
+									)}
 									value={values[message]}
 									onChange={handleChangeInput}
 									onBlur={handleBlur}

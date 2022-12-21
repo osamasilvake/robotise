@@ -1262,9 +1262,11 @@
 					"SMS": {
 						"TITLE": "SMS Messages",
 						"EXCERPT": "Update mobile SMS messages.",
-						"FIELDS": {
-							"MESSAGE": {
-								"PLACEHOLDER": "Enter message"
+						"FORM": {
+							"FIELDS": {
+								"MESSAGE": {
+									"PLACEHOLDER": "Enter message"
+								}
 							}
 						}
 					}

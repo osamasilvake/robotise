@@ -9,7 +9,7 @@ export const CreateEditDeepLinkValidation = (
 	values: DialogCreateEditDeepLinkFormInterface,
 	touched: DialogCreateEditDeepLinkFormInterface
 ): DialogCreateEditDeepLinkFormInterface => {
-	const translation = 'DEEP_LINKS:LIST.ACTIONS.CREATE_EDIT.FIELDS';
+	const translation = 'DEEP_LINKS:LIST.ACTIONS.CREATE_EDIT.FORM.FIELDS';
 	const errors: DialogCreateEditDeepLinkFormInterface = {
 		name: '',
 		description: '',

@@ -2418,33 +2418,35 @@
 					"EDIT": {
 						"TITLE": "Edit Deep Link"
 					},
-					"FIELDS": {
-						"NAME": {
-							"LABEL": "Name",
-							"PLACEHOLDER": "Enter name",
-							"VALIDATIONS": {
-								"REQUIRED": "Name is required."
-							}
-						},
-						"DESCRIPTION": {
-							"LABEL": "Description",
-							"PLACEHOLDER": "Enter Description",
-							"VALIDATIONS": {
-								"REQUIRED": "Description is required."
-							}
-						},
-						"KEY": {
-							"LABEL": "Key",
-							"PLACEHOLDER": "Enter Key",
-							"VALIDATIONS": {
-								"REQUIRED": "Key is required."
-							}
-						},
-						"LINK": {
-							"LABEL": "Link",
-							"PLACEHOLDER": "Enter Link",
-							"VALIDATIONS": {
-								"REQUIRED": "Link is required."
+					"FORM": {
+						"FIELDS": {
+							"NAME": {
+								"LABEL": "Name",
+								"PLACEHOLDER": "Enter name",
+								"VALIDATIONS": {
+									"REQUIRED": "Name is required."
+								}
+							},
+							"DESCRIPTION": {
+								"LABEL": "Description",
+								"PLACEHOLDER": "Enter Description",
+								"VALIDATIONS": {
+									"REQUIRED": "Description is required."
+								}
+							},
+							"KEY": {
+								"LABEL": "Key",
+								"PLACEHOLDER": "Enter Key",
+								"VALIDATIONS": {
+									"REQUIRED": "Key is required."
+								}
+							},
+							"LINK": {
+								"LABEL": "Link",
+								"PLACEHOLDER": "Enter Link",
+								"VALIDATIONS": {
+									"REQUIRED": "Link is required."
+								}
 							}
 						}
 					}

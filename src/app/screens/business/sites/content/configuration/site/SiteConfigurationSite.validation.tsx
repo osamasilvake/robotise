@@ -1,4 +1,4 @@
-import { SCCDataElementInterface } from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
+import { SCCDataElementInterface } from '../../../../../../slices/business/sites/configuration/site/SiteConfiguration.slice.interface';
 
 /**
  * validation

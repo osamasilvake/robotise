@@ -2,7 +2,7 @@ import { AppConfigService, HttpClientService } from '../../../services';
 import {
 	SCCDataElementInterface,
 	SCContentInterface
-} from '../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
+} from '../../../slices/business/sites/configuration/site/SiteConfiguration.slice.interface';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCleanTestOrdersFormInterface } from './content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/cloud/notifications/SiteConfigurationNotifications.interface';

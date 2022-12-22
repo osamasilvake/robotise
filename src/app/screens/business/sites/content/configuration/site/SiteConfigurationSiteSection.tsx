@@ -22,8 +22,8 @@ import {
 	SiteConfigurationFetch,
 	siteConfigurationSelector,
 	SiteConfigurationUpdate
-} from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice';
-import { SCCDataElementInterface } from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
+} from '../../../../../../slices/business/sites/configuration/site/SiteConfiguration.slice';
+import { SCCDataElementInterface } from '../../../../../../slices/business/sites/configuration/site/SiteConfiguration.slice.interface';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import {
 	strCapitalLetterAndCamelCaseToDash,

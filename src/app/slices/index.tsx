@@ -27,7 +27,7 @@ import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
 import marketingRides from './business/sites/configuration/marketing-rides/MarketingRides.slice';
 import notifications from './business/sites/configuration/notifications/Notifications.slice';
 import servicePositions from './business/sites/configuration/service-positions/ServicePositions.slice';
-import siteConfiguration from './business/sites/configuration/site-configuration/SiteConfiguration.slice';
+import siteConfiguration from './business/sites/configuration/site/SiteConfiguration.slice';
 import performance from './business/sites/performance/Performance.slice';
 import phoneCalls from './business/sites/phone-calls/PhoneCalls.slice';
 import phoneConfigs from './business/sites/phone-configs/PhoneConfigs.slice';

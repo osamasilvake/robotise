@@ -20,7 +20,7 @@ import {
 	SiteConfigurationFetch,
 	siteConfigurationSelector,
 	SiteConfigurationUpdate
-} from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice';
+} from '../../../../../../slices/business/sites/configuration/site/SiteConfiguration.slice';
 import { DialogSiteConfigurationSyncRobotInterface } from './SiteConfigurationSite.interface';
 import { SiteConfigurationSiteStyle } from './SiteConfigurationSite.style';
 

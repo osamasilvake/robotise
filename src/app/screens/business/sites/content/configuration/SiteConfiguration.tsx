@@ -11,7 +11,7 @@ import { AppDispatch } from '../../../../../slices';
 import {
 	SiteConfigurationFetch,
 	siteConfigurationSelector
-} from '../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice';
+} from '../../../../../slices/business/sites/configuration/site/SiteConfiguration.slice';
 import { SiteParamsInterface } from '../../Site.interface';
 import { SiteConfigurationStyle } from './SiteConfiguration.style';
 import SiteConfigurationTabs from './SiteConfiguration.tabs';

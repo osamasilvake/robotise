@@ -5,7 +5,7 @@ import { RTSContentDataInterface } from '../../../../../../slices/business/robot
 import {
 	SCCDataElementInterface,
 	SCContentDataInterface
-} from '../../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
+} from '../../../../../../slices/business/sites/configuration/site/SiteConfiguration.slice.interface';
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
 
 export interface SiteConfigurationSiteInterface {

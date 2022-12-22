@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { SCContentDataInterface } from '../../../../../slices/business/sites/configuration/site-configuration/SiteConfiguration.slice.interface';
+import { SCContentDataInterface } from '../../../../../slices/business/sites/configuration/site/SiteConfiguration.slice.interface';
 
 export interface SiteConfigurationTabsInterface {
 	sections: SCContentDataInterface[];

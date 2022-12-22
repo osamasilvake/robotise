@@ -929,7 +929,8 @@ class SitesService {
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIGS.ALL;
 		return HttpClientService.get<SCContentInterface>(url, {
 			params: {
-				'filter[site]': siteId
+				'filter[site]': siteId,
+				'filter[visibleIn]': 'roc-app'
 			}
 		});
 	};

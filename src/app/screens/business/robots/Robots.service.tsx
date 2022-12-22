@@ -599,7 +599,8 @@ class RobotsService {
 			AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.CONFIGURATION.ROBOT_CONFIGS.ALL;
 		return HttpClientService.get<RCContentInterface>(url, {
 			params: {
-				'filter[robot]': robotId
+				'filter[robot]': robotId,
+				'filter[visibleIn]': 'roc-app'
 			}
 		});
 	};

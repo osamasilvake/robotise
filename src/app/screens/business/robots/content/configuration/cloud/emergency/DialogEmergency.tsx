@@ -13,13 +13,13 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
-import { CloudConfigurationSetEmergencyState } from '../../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice';
+import { CloudConfigurationSetEmergencyState } from '../../../../../../../slices/business/robots/configuration/cloud/RobotCloudConfiguration.slice';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { DialogEmergencyInterface } from './RobotConfigurationEmergency.interface';
 import { RobotConfigurationEmergencyStyle } from './RobotConfigurationEmergency.style';
 
 const DialogEmergency: FC<DialogEmergencyInterface> = (props) => {
-	const { open, setOpen, robotTwinsSummary, cloudConfiguration } = props;
+	const { open, setOpen, robotTwinsSummary, robotCloudConfiguration } = props;
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 	const classes = RobotConfigurationEmergencyStyle();
 
@@ -65,9 +65,11 @@ const DialogEmergency: FC<DialogEmergencyInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleEmergencyState}
-					disabled={cloudConfiguration.emergencyState.loading}
+					disabled={robotCloudConfiguration.emergencyState.loading}
 					endIcon={
-						cloudConfiguration.emergencyState.loading && <CircularProgress size={20} />
+						robotCloudConfiguration.emergencyState.loading && (
+							<CircularProgress size={20} />
+						)
 					}>
 					{t('DIALOG:BUTTONS.CONFIRM')}
 				</Button>

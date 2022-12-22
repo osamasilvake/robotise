@@ -18,7 +18,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
 import { AppDispatch } from '../../../../../../../slices';
-import { CloudConfigurationConfigUpdate } from '../../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice';
+import { CloudConfigurationConfigUpdate } from '../../../../../../../slices/business/robots/configuration/cloud/RobotCloudConfiguration.slice';
 import { RobotTwinsFetch } from '../../../../../../../slices/business/robots/RobotTwins.slice';
 import { RobotTwinsSummaryFetchList } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
@@ -32,7 +32,7 @@ import { RobotConfigStyle } from './RobotConfig.style';
 import { RobotConfigValidation } from './RobotConfig.validation';
 
 const RobotConfig: FC<RobotConfigInterface> = (props) => {
-	const { robotTwinsSummary, cloudConfiguration } = props;
+	const { robotTwinsSummary, robotCloudConfiguration } = props;
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotConfigStyle();
 
@@ -231,11 +231,11 @@ const RobotConfig: FC<RobotConfigInterface> = (props) => {
 								variant="outlined"
 								type="submit"
 								disabled={
-									cloudConfiguration.robotConfig.loading ||
+									robotCloudConfiguration.robotConfig.loading ||
 									(!!errors && !validateEmptyObj(errors))
 								}
 								endIcon={
-									cloudConfiguration.robotConfig.loading && (
+									robotCloudConfiguration.robotConfig.loading && (
 										<CircularProgress size={20} />
 									)
 								}>

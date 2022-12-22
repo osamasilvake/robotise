@@ -2,7 +2,7 @@ import { Box, Grid } from '@mui/material';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { cloudConfigurationSelector } from '../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice';
+import { robotCloudConfigurationSelector } from '../../../../../../slices/business/robots/configuration/cloud/RobotCloudConfiguration.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import RobotConfigurationEmergency from './emergency/RobotConfigurationEmergency';
 import RobotConfig from './robot-config/RobotConfig';
@@ -14,7 +14,7 @@ const RobotConfigurationCloud: FC = () => {
 	const classes = RobotConfigurationCloudStyle();
 
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
-	const cloudConfiguration = useSelector(cloudConfigurationSelector);
+	const robotCloudConfiguration = useSelector(robotCloudConfigurationSelector);
 
 	return (
 		<Box className={classes.sBox}>
@@ -23,7 +23,7 @@ const RobotConfigurationCloud: FC = () => {
 				<Grid item xs={12}>
 					<RobotConfigurationEmergency
 						robotTwinsSummary={robotTwinsSummary}
-						cloudConfiguration={cloudConfiguration}
+						robotCloudConfiguration={robotCloudConfiguration}
 					/>
 				</Grid>
 
@@ -31,7 +31,7 @@ const RobotConfigurationCloud: FC = () => {
 				<Grid item xs={12}>
 					<RobotConfigurationSyncProducts
 						robotTwinsSummary={robotTwinsSummary}
-						cloudConfiguration={cloudConfiguration}
+						robotCloudConfiguration={robotCloudConfiguration}
 					/>
 				</Grid>
 
@@ -39,7 +39,7 @@ const RobotConfigurationCloud: FC = () => {
 				<Grid item xs={12}>
 					<RobotConfig
 						robotTwinsSummary={robotTwinsSummary}
-						cloudConfiguration={cloudConfiguration}
+						robotCloudConfiguration={robotCloudConfiguration}
 					/>
 				</Grid>
 

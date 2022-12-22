@@ -1,4 +1,4 @@
-export interface SliceCloudConfigurationInterface {
+export interface SliceRobotCloudConfigurationInterface {
 	emergencyState: {
 		loading: boolean;
 	};

@@ -14,9 +14,9 @@ import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
 import {
-	cloudConfigurationSelector,
-	CloudConfigurationSyncConfigs
-} from '../../../../../../../slices/business/robots/configuration/cloud/CloudConfiguration.slice';
+	CloudConfigurationSyncConfigs,
+	robotCloudConfigurationSelector
+} from '../../../../../../../slices/business/robots/configuration/cloud/RobotCloudConfiguration.slice';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { DialogSyncConfirmationInterface } from './RobotConfigurationSyncConfigs.interface';
 
@@ -25,7 +25,7 @@ const DialogSyncConfirmation: FC<DialogSyncConfirmationInterface> = (props) => {
 	const { t } = useTranslation(['ROBOTS', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
-	const cloudConfiguration = useSelector(cloudConfigurationSelector);
+	const robotCloudConfiguration = useSelector(robotCloudConfigurationSelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 	const cRobotId = params.robotId;
@@ -57,9 +57,11 @@ const DialogSyncConfirmation: FC<DialogSyncConfirmationInterface> = (props) => {
 				<Button
 					variant="outlined"
 					onClick={handleConfirm}
-					disabled={cloudConfiguration.syncConfigs.loading}
+					disabled={robotCloudConfiguration.syncConfigs.loading}
 					endIcon={
-						cloudConfiguration.syncConfigs.loading && <CircularProgress size={20} />
+						robotCloudConfiguration.syncConfigs.loading && (
+							<CircularProgress size={20} />
+						)
 					}>
 					{t('DIALOG:BUTTONS.CONFIRM')}
 				</Button>

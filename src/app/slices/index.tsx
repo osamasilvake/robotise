@@ -13,7 +13,7 @@ import email from './business/general/emails/Email.slice';
 import emails from './business/general/emails/Emails.slice';
 import generalOperations from './business/general/GeneralOperations.slice';
 import commandsLog from './business/robots/commands-log/CommandsLog.slice';
-import cloudConfiguration from './business/robots/configuration/cloud/CloudConfiguration.slice';
+import robotCloudConfiguration from './business/robots/configuration/cloud/RobotCloudConfiguration.slice';
 import robotConfiguration from './business/robots/configuration/robot/RobotConfiguration.slice';
 import elevatorCalls from './business/robots/elevator-calls/ElevatorCalls.slice';
 import inventory from './business/robots/inventory/Inventory.slice';
@@ -83,7 +83,7 @@ const combinedReducer = combineReducers({
 	purchase,
 	commandsLog,
 	elevatorCalls,
-	cloudConfiguration,
+	robotCloudConfiguration,
 	robotConfiguration,
 
 	alertCodes,

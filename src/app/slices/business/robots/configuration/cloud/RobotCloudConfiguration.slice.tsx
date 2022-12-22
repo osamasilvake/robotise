@@ -8,11 +8,11 @@ import RobotsService from '../../../../../screens/business/robots/Robots.service
 import { timeout } from '../../../../../utilities/methods/Timeout';
 import { RootState } from '../../../..';
 import { triggerMessage } from '../../../../app/App.slice';
-import { CloudConfigurationTypeEnum } from './CloudConfiguration.slice.enum';
-import { SliceCloudConfigurationInterface } from './CloudConfiguration.slice.interface';
+import { RobotCloudConfigurationTypeEnum } from './RobotCloudConfiguration.slice.enum';
+import { SliceRobotCloudConfigurationInterface } from './RobotCloudConfiguration.slice.interface';
 
 // initial state
-export const initialState: SliceCloudConfigurationInterface = {
+export const initialState: SliceRobotCloudConfigurationInterface = {
 	emergencyState: {
 		loading: false
 	},
@@ -34,37 +34,37 @@ const dataSlice = createSlice({
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === CloudConfigurationTypeEnum.EMERGENCY_STATE) {
+			if (module === RobotCloudConfigurationTypeEnum.EMERGENCY_STATE) {
 				state.emergencyState.loading = true;
-			} else if (module === CloudConfigurationTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotCloudConfigurationTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = true;
-			} else if (module === CloudConfigurationTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotCloudConfigurationTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = true;
-			} else if (module === CloudConfigurationTypeEnum.SYNC_CONFIGS) {
+			} else if (module === RobotCloudConfigurationTypeEnum.SYNC_CONFIGS) {
 				state.syncConfigs.loading = true;
 			}
 		},
 		success: (state, action) => {
 			const { module } = action.payload;
-			if (module === CloudConfigurationTypeEnum.EMERGENCY_STATE) {
+			if (module === RobotCloudConfigurationTypeEnum.EMERGENCY_STATE) {
 				state.emergencyState.loading = false;
-			} else if (module === CloudConfigurationTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotCloudConfigurationTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-			} else if (module === CloudConfigurationTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotCloudConfigurationTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === CloudConfigurationTypeEnum.SYNC_CONFIGS) {
+			} else if (module === RobotCloudConfigurationTypeEnum.SYNC_CONFIGS) {
 				state.syncConfigs.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module } = action.payload;
-			if (module === CloudConfigurationTypeEnum.EMERGENCY_STATE) {
+			if (module === RobotCloudConfigurationTypeEnum.EMERGENCY_STATE) {
 				state.emergencyState.loading = false;
-			} else if (module === CloudConfigurationTypeEnum.SYNC_PRODUCTS) {
+			} else if (module === RobotCloudConfigurationTypeEnum.SYNC_PRODUCTS) {
 				state.syncProducts.loading = false;
-			} else if (module === CloudConfigurationTypeEnum.ROBOT_CONFIG) {
+			} else if (module === RobotCloudConfigurationTypeEnum.ROBOT_CONFIG) {
 				state.robotConfig.loading = false;
-			} else if (module === CloudConfigurationTypeEnum.SYNC_CONFIGS) {
+			} else if (module === RobotCloudConfigurationTypeEnum.SYNC_CONFIGS) {
 				state.syncConfigs.loading = false;
 			}
 		},
@@ -76,7 +76,8 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const cloudConfigurationSelector = (state: RootState) => state['cloudConfiguration'];
+export const robotCloudConfigurationSelector = (state: RootState) =>
+	state['robotCloudConfiguration'];
 
 // reducer
 export default dataSlice.reducer;
@@ -92,7 +93,7 @@ export const CloudConfigurationSetEmergencyState =
 	(robotId: string, isInEmergencyState: boolean, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: CloudConfigurationTypeEnum.EMERGENCY_STATE
+			module: RobotCloudConfigurationTypeEnum.EMERGENCY_STATE
 		};
 
 		// dispatch: loading
@@ -137,7 +138,7 @@ export const CloudConfigurationSetEmergencyState =
  */
 export const CloudConfigurationProductsSync = (robotId: string) => async (dispatch: Dispatch) => {
 	const state = {
-		module: CloudConfigurationTypeEnum.SYNC_PRODUCTS
+		module: RobotCloudConfigurationTypeEnum.SYNC_PRODUCTS
 	};
 
 	// dispatch: loading
@@ -183,7 +184,7 @@ export const CloudConfigurationConfigUpdate =
 	(robotId: string, payload: RobotConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: CloudConfigurationTypeEnum.ROBOT_CONFIG
+			module: RobotCloudConfigurationTypeEnum.ROBOT_CONFIG
 		};
 
 		// dispatch: loading
@@ -235,7 +236,7 @@ export const CloudConfigurationSyncConfigs =
 	(robotId: string, type: RobotConfigurationSyncConfigsTypeEnum, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: CloudConfigurationTypeEnum.SYNC_CONFIGS
+			module: RobotCloudConfigurationTypeEnum.SYNC_CONFIGS
 		};
 
 		// dispatch: loading

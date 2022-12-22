@@ -17,7 +17,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
-import { SitePaymentSettingsUpdate } from '../../../../../../../slices/business/sites/SiteOperations.slice';
+import { SitePaymentSettingsUpdate } from '../../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../../../../../utilities/methods/Object';
@@ -30,7 +30,7 @@ import { SiteConfigurationPaymentSettingsStyle } from './SiteConfigurationPaymen
 import { SiteConfigurationPaymentSettingsValidation } from './SiteConfigurationPaymentSettings.validation';
 
 const SiteConfigurationPaymentSettings: FC<SiteConfigurationPaymentSettingsInterface> = (props) => {
-	const { sites, siteOperations } = props;
+	const { sites, siteCloudConfiguration } = props;
 	const { t } = useTranslation(['SITES', 'GENERAL']);
 	const classes = SiteConfigurationPaymentSettingsStyle();
 
@@ -168,11 +168,11 @@ const SiteConfigurationPaymentSettings: FC<SiteConfigurationPaymentSettingsInter
 								variant="outlined"
 								type="submit"
 								disabled={
-									siteOperations.paymentSettings.loading ||
+									siteCloudConfiguration.paymentSettings.loading ||
 									(!!errors && !validateEmptyObj(errors))
 								}
 								endIcon={
-									siteOperations.paymentSettings.loading && (
+									siteCloudConfiguration.paymentSettings.loading && (
 										<CircularProgress size={20} />
 									)
 								}>

@@ -19,9 +19,9 @@ import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
 import {
-	siteOperationsSelector,
+	siteCloudConfigurationSelector,
 	SiteTestOrdersClean
-} from '../../../../../../../slices/business/sites/SiteOperations.slice';
+} from '../../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { dateDayJs, dateFormat3, dateToday } from '../../../../../../../utilities/methods/Date';
 import { SiteParamsInterface } from '../../../../Site.interface';
@@ -35,7 +35,7 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
-	const siteOperations = useSelector(siteOperationsSelector);
+	const siteCloudConfiguration = useSelector(siteCloudConfigurationSelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
@@ -102,16 +102,18 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 					<Button
 						variant="outlined"
 						onClick={() => setOpen(false)}
-						disabled={siteOperations.cleanTestOrders.loading}>
+						disabled={siteCloudConfiguration.cleanTestOrders.loading}>
 						{t('DIALOG:BUTTONS.CANCEL')}
 					</Button>
 					<Button
 						color="error"
 						type="submit"
 						variant="outlined"
-						disabled={siteOperations.cleanTestOrders.loading}
+						disabled={siteCloudConfiguration.cleanTestOrders.loading}
 						endIcon={
-							siteOperations.cleanTestOrders.loading && <CircularProgress size={20} />
+							siteCloudConfiguration.cleanTestOrders.loading && (
+								<CircularProgress size={20} />
+							)
 						}>
 						{t('DIALOG:BUTTONS.SUBMIT')}
 					</Button>

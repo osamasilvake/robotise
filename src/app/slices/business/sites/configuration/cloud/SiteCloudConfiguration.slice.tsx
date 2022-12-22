@@ -1,21 +1,21 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
-import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
-import { TriggerMessageInterface } from '../../../components/frame/message/Message.interface';
-import { DialogCleanTestOrdersFormInterface } from '../../../screens/business/sites/content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
-import { SiteConfigurationPaymentSettingsFormInterface } from '../../../screens/business/sites/content/configuration/cloud/payment-settings/SiteConfigurationPaymentSettings.interface';
-import { SiteConfigFormInterface } from '../../../screens/business/sites/content/configuration/cloud/site-config/SiteConfig.interface';
-import { SiteRobotConfigFormInterface } from '../../../screens/business/sites/content/configuration/cloud/site-robot-config/SiteRobotConfig.interface';
-import SitesService from '../../../screens/business/sites/Sites.service';
-import { timeout } from '../../../utilities/methods/Timeout';
-import { RootState } from '../..';
-import { triggerMessage } from '../../app/App.slice';
-import { deserializeSiteOperations } from './SiteOperations.slice.deserialize';
-import { SiteOperationsTypeEnum } from './SiteOperations.slice.enum';
-import { SliceSiteOperationsInterface } from './SiteOperations.slice.interface';
+import { TriggerMessageTypeEnum } from '../../../../../components/frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../../../../components/frame/message/Message.interface';
+import { DialogCleanTestOrdersFormInterface } from '../../../../../screens/business/sites/content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
+import { SiteConfigurationPaymentSettingsFormInterface } from '../../../../../screens/business/sites/content/configuration/cloud/payment-settings/SiteConfigurationPaymentSettings.interface';
+import { SiteConfigFormInterface } from '../../../../../screens/business/sites/content/configuration/cloud/site-config/SiteConfig.interface';
+import { SiteRobotConfigFormInterface } from '../../../../../screens/business/sites/content/configuration/cloud/site-robot-config/SiteRobotConfig.interface';
+import SitesService from '../../../../../screens/business/sites/Sites.service';
+import { timeout } from '../../../../../utilities/methods/Timeout';
+import { RootState } from '../../../..';
+import { triggerMessage } from '../../../../app/App.slice';
+import { deserializeSiteCloudConfiguration } from './SiteCloudConfiguration.slice.deserialize';
+import { SiteCloudConfigurationTypeEnum } from './SiteCloudConfiguration.slice.enum';
+import { SliceSiteCloudConfigurationInterface } from './SiteCloudConfiguration.slice.interface';
 
 // initial state
-export const initialState: SliceSiteOperationsInterface = {
+export const initialState: SliceSiteCloudConfigurationInterface = {
 	acceptOrders: {
 		loading: false
 	},
@@ -47,72 +47,72 @@ export const initialState: SliceSiteOperationsInterface = {
 
 // slice
 const dataSlice = createSlice({
-	name: 'Site Operations',
+	name: 'Site Cloud Configuration',
 	initialState,
 	reducers: {
 		loading: (state, action) => {
 			const { module } = action.payload;
-			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteCloudConfigurationTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = true;
-			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
+			} else if (module === SiteCloudConfigurationTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = true;
-			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
+			} else if (module === SiteCloudConfigurationTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = true;
-			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.ORDER_ORIGINS) {
 				state.orderOrigins.loading = true;
-			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
+			} else if (module === SiteCloudConfigurationTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = true;
-			} else if (module === SiteOperationsTypeEnum.ELEVATOR_VENDORS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.ELEVATOR_VENDORS) {
 				state.elevatorVendors.loading = true;
-			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.PAYMENT_SETTINGS) {
 				state.paymentSettings.loading = true;
-			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = true;
 			}
 		},
 		success: (state, action) => {
 			const { module, response } = action.payload;
-			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteCloudConfigurationTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
+			} else if (module === SiteCloudConfigurationTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
-			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
+			} else if (module === SiteCloudConfigurationTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = false;
-			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.ORDER_ORIGINS) {
 				state.orderOrigins.loading = false;
 				state.orderOrigins.content = response;
-			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
+			} else if (module === SiteCloudConfigurationTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = response;
-			} else if (module === SiteOperationsTypeEnum.ELEVATOR_VENDORS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.ELEVATOR_VENDORS) {
 				state.elevatorVendors.loading = false;
 				state.elevatorVendors.content = response;
-			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.PAYMENT_SETTINGS) {
 				state.paymentSettings.loading = false;
-			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
 		},
 		failure: (state, action) => {
 			const { module } = action.payload;
-			if (module === SiteOperationsTypeEnum.ACCEPT_ORDERS) {
+			if (module === SiteCloudConfigurationTypeEnum.ACCEPT_ORDERS) {
 				state.acceptOrders.loading = false;
-			} else if (module === SiteOperationsTypeEnum.SITE_ROBOT_CONFIG) {
+			} else if (module === SiteCloudConfigurationTypeEnum.SITE_ROBOT_CONFIG) {
 				state.siteRobotConfig.loading = false;
-			} else if (module === SiteOperationsTypeEnum.SITE_CONFIG) {
+			} else if (module === SiteCloudConfigurationTypeEnum.SITE_CONFIG) {
 				state.siteConfig.loading = false;
-			} else if (module === SiteOperationsTypeEnum.ORDER_ORIGINS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.ORDER_ORIGINS) {
 				state.orderOrigins.loading = false;
 				state.orderOrigins.content = null;
-			} else if (module === SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
+			} else if (module === SiteCloudConfigurationTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = null;
-			} else if (module === SiteOperationsTypeEnum.ELEVATOR_VENDORS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.ELEVATOR_VENDORS) {
 				state.elevatorVendors.loading = false;
 				state.elevatorVendors.content = null;
-			} else if (module === SiteOperationsTypeEnum.PAYMENT_SETTINGS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.PAYMENT_SETTINGS) {
 				state.paymentSettings.loading = false;
-			} else if (module === SiteOperationsTypeEnum.CLEAN_TEST_ORDERS) {
+			} else if (module === SiteCloudConfigurationTypeEnum.CLEAN_TEST_ORDERS) {
 				state.cleanTestOrders.loading = false;
 			}
 		},
@@ -124,7 +124,7 @@ const dataSlice = createSlice({
 export const { loading, success, failure, reset } = dataSlice.actions;
 
 // selector
-export const siteOperationsSelector = (state: RootState) => state['siteOperations'];
+export const siteCloudConfigurationSelector = (state: RootState) => state['siteCloudConfiguration'];
 
 // reducer
 export default dataSlice.reducer;
@@ -139,7 +139,7 @@ export default dataSlice.reducer;
 export const SiteOrdersAccept =
 	(siteId: string, acceptOrders: boolean, callback: () => void) => async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteOperationsTypeEnum.ACCEPT_ORDERS
+			module: SiteCloudConfigurationTypeEnum.ACCEPT_ORDERS
 		};
 
 		// dispatch: loading
@@ -155,7 +155,7 @@ export const SiteOrdersAccept =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-accept-orders-success',
+					id: 'configuration-accept-orders-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.ACCEPT_ORDERS.SUCCESS'
@@ -168,7 +168,7 @@ export const SiteOrdersAccept =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-accept-orders-error',
+					id: 'configuration-accept-orders-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.ACCEPT_ORDERS.ERROR'
@@ -189,7 +189,7 @@ export const SiteOrdersAccept =
 export const SiteRobotConfigUpdate =
 	(siteId: string, payload: SiteRobotConfigFormInterface) => async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteOperationsTypeEnum.SITE_ROBOT_CONFIG
+			module: SiteCloudConfigurationTypeEnum.SITE_ROBOT_CONFIG
 		};
 
 		// dispatch: loading
@@ -199,7 +199,7 @@ export const SiteRobotConfigUpdate =
 			.then(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-robot-config-success',
+					id: 'configuration-robot-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.SUCCESS'
@@ -212,7 +212,7 @@ export const SiteRobotConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-robot-config-error',
+					id: 'configuration-robot-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SITE_ROBOT_CONFIG.ERROR'
@@ -235,7 +235,7 @@ export const SiteConfigUpdate =
 	(siteId: string, payload: SiteConfigFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteOperationsTypeEnum.SITE_CONFIG
+			module: SiteCloudConfigurationTypeEnum.SITE_CONFIG
 		};
 
 		// dispatch: loading
@@ -251,7 +251,7 @@ export const SiteConfigUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-config-success',
+					id: 'configuration-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.SITE_CONFIG.SUCCESS'
@@ -264,7 +264,7 @@ export const SiteConfigUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-config-error',
+					id: 'configuration-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.SITE_CONFIG.ERROR'
@@ -284,9 +284,9 @@ export const SiteOrderOriginsFetch =
 	() => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const orderOrigins = states.siteOperations.orderOrigins;
+		const orderOrigins = states.siteCloudConfiguration.orderOrigins;
 		const state = {
-			module: SiteOperationsTypeEnum.ORDER_ORIGINS
+			module: SiteCloudConfigurationTypeEnum.ORDER_ORIGINS
 		};
 
 		// return on busy
@@ -300,7 +300,7 @@ export const SiteOrderOriginsFetch =
 		return SitesService.siteOrderOriginsFetch()
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializeSiteOperations(res);
+				const result = await deserializeSiteCloudConfiguration(res);
 
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
@@ -308,7 +308,7 @@ export const SiteOrderOriginsFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-order-origins-error',
+					id: 'configuration-order-origins-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.ORDER_ORIGINS.ERROR'
@@ -328,9 +328,9 @@ export const SiteCustomerNotificationTypesFetch =
 	() => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const customerNotificationTypes = states.siteOperations.customerNotificationTypes;
+		const customerNotificationTypes = states.siteCloudConfiguration.customerNotificationTypes;
 		const state = {
-			module: SiteOperationsTypeEnum.CUSTOMER_NOTIFICATION_TYPES
+			module: SiteCloudConfigurationTypeEnum.CUSTOMER_NOTIFICATION_TYPES
 		};
 
 		// return on busy
@@ -344,7 +344,7 @@ export const SiteCustomerNotificationTypesFetch =
 		return SitesService.siteCustomerNotificationTypesFetch()
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializeSiteOperations(res);
+				const result = await deserializeSiteCloudConfiguration(res);
 
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
@@ -352,7 +352,7 @@ export const SiteCustomerNotificationTypesFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-customer-notification-types-error',
+					id: 'configuration-customer-notification-types-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.CUSTOMER_NOTIFICATION_TYPES.ERROR'
@@ -372,9 +372,9 @@ export const SiteElevatorVendorsFetch =
 	() => async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const elevatorVendors = states.siteOperations.elevatorVendors;
+		const elevatorVendors = states.siteCloudConfiguration.elevatorVendors;
 		const state = {
-			module: SiteOperationsTypeEnum.ELEVATOR_VENDORS
+			module: SiteCloudConfigurationTypeEnum.ELEVATOR_VENDORS
 		};
 
 		// return on busy
@@ -388,7 +388,7 @@ export const SiteElevatorVendorsFetch =
 		return SitesService.siteElevatorVendors()
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializeSiteOperations(res);
+				const result = await deserializeSiteCloudConfiguration(res);
 
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
@@ -396,7 +396,7 @@ export const SiteElevatorVendorsFetch =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-elevator-vendors-error',
+					id: 'configuration-elevator-vendors-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.ELEVATOR_VENDORS.ERROR'
@@ -423,7 +423,7 @@ export const SitePaymentSettingsUpdate =
 	) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteOperationsTypeEnum.PAYMENT_SETTINGS
+			module: SiteCloudConfigurationTypeEnum.PAYMENT_SETTINGS
 		};
 
 		// dispatch: loading
@@ -439,7 +439,7 @@ export const SitePaymentSettingsUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-payment-settings-success',
+					id: 'configuration-payment-settings-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.PAYMENT_SETTINGS.SUCCESS'
@@ -452,7 +452,7 @@ export const SitePaymentSettingsUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-payment-settings-error',
+					id: 'configuration-payment-settings-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.PAYMENT_SETTINGS.ERROR'
@@ -474,7 +474,7 @@ export const SiteTestOrdersClean =
 	(siteId: string, payload: DialogCleanTestOrdersFormInterface, callback: () => void) =>
 	async (dispatch: Dispatch) => {
 		const state = {
-			module: SiteOperationsTypeEnum.CLEAN_TEST_ORDERS
+			module: SiteCloudConfigurationTypeEnum.CLEAN_TEST_ORDERS
 		};
 
 		// dispatch: loading
@@ -487,7 +487,7 @@ export const SiteTestOrdersClean =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-clean-test-orders-success',
+					id: 'configuration-clean-test-orders-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.CONFIGURATION.CLEAN_TEST_ORDERS.SUCCESS'
@@ -500,7 +500,7 @@ export const SiteTestOrdersClean =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'operation-clean-test-orders-success',
+					id: 'configuration-clean-test-orders-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.CONFIGURATION.CLEAN_TEST_ORDERS.ERROR'

@@ -12,6 +12,12 @@ import {
 } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
+	siteCloudConfigurationSelector,
+	SiteCustomerNotificationTypesFetch,
+	SiteElevatorVendorsFetch,
+	SiteOrderOriginsFetch
+} from '../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
+import {
 	notificationsSelector,
 	NotificationTypesAndUsersFetchList
 } from '../../../../../../slices/business/sites/configuration/notifications/Notifications.slice';
@@ -19,12 +25,6 @@ import {
 	ServicePositionsFetchList,
 	servicePositionsSelector
 } from '../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
-import {
-	SiteCustomerNotificationTypesFetch,
-	SiteElevatorVendorsFetch,
-	siteOperationsSelector,
-	SiteOrderOriginsFetch
-} from '../../../../../../slices/business/sites/SiteOperations.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
@@ -42,7 +42,7 @@ const SiteConfigurationCloud: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const generalOperations = useSelector(generalOperationsSelector);
 	const sites = useSelector(sitesSelector);
-	const siteOperations = useSelector(siteOperationsSelector);
+	const siteCloudConfiguration = useSelector(siteCloudConfigurationSelector);
 	const notifications = useSelector(notificationsSelector);
 	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
@@ -75,25 +75,25 @@ const SiteConfigurationCloud: FC = () => {
 	}, [dispatch, generalOperations.orderModes?.content]);
 
 	useEffect(() => {
-		if (siteOperations.orderOrigins?.content !== null) return;
+		if (siteCloudConfiguration.orderOrigins?.content !== null) return;
 
 		// dispatch: fetch order origins
 		dispatch(SiteOrderOriginsFetch());
-	}, [dispatch, siteOperations.orderOrigins?.content]);
+	}, [dispatch, siteCloudConfiguration.orderOrigins?.content]);
 
 	useEffect(() => {
-		if (siteOperations.customerNotificationTypes?.content !== null) return;
+		if (siteCloudConfiguration.customerNotificationTypes?.content !== null) return;
 
 		// dispatch: fetch customer notification types
 		dispatch(SiteCustomerNotificationTypesFetch());
-	}, [dispatch, siteOperations.customerNotificationTypes?.content]);
+	}, [dispatch, siteCloudConfiguration.customerNotificationTypes?.content]);
 
 	useEffect(() => {
-		if (siteOperations.elevatorVendors?.content !== null) return;
+		if (siteCloudConfiguration.elevatorVendors?.content !== null) return;
 
 		// dispatch: fetch elevator vendors
 		dispatch(SiteElevatorVendorsFetch());
-	}, [dispatch, siteOperations.elevatorVendors?.content]);
+	}, [dispatch, siteCloudConfiguration.elevatorVendors?.content]);
 
 	// loader
 	if (robotTwinsSummary.loader || notifications.loader || servicePositions.loader) {
@@ -105,7 +105,10 @@ const SiteConfigurationCloud: FC = () => {
 			<Grid container spacing={1}>
 				{/* Accept Orders */}
 				<Grid item xs={12}>
-					<SiteConfigurationAcceptOrders sites={sites} siteOperations={siteOperations} />
+					<SiteConfigurationAcceptOrders
+						sites={sites}
+						siteCloudConfiguration={siteCloudConfiguration}
+					/>
 				</Grid>
 
 				{/* Notifications */}
@@ -127,7 +130,7 @@ const SiteConfigurationCloud: FC = () => {
 					<Grid item xs={12}>
 						<SiteRobotConfig
 							sites={sites}
-							siteOperations={siteOperations}
+							siteCloudConfiguration={siteCloudConfiguration}
 							robotTwinsSummary={robotTwinsSummary}
 						/>
 					</Grid>
@@ -135,14 +138,14 @@ const SiteConfigurationCloud: FC = () => {
 
 				{/* Site Config */}
 				<Grid item xs={12}>
-					<SiteConfig sites={sites} siteOperations={siteOperations} />
+					<SiteConfig sites={sites} siteCloudConfiguration={siteCloudConfiguration} />
 				</Grid>
 
 				{/* Payment Settings */}
 				<Grid item xs={12}>
 					<SiteConfigurationPaymentSettings
 						sites={sites}
-						siteOperations={siteOperations}
+						siteCloudConfiguration={siteCloudConfiguration}
 					/>
 				</Grid>
 

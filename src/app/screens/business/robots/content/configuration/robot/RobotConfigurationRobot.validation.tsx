@@ -7,7 +7,7 @@ import { RCCDataElementInterface } from '../../../../../../slices/business/robot
 export const RobotConfigurationRobotValidation = (
 	values: RCCDataElementInterface
 ): RCCDataElementInterface => {
-	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION.FORM.FIELDS.VALIDATIONS';
+	const translation = 'CONTENT.CONFIGURATION.ROBOT.FORM.FIELDS.VALIDATIONS';
 
 	const errors: RCCDataElementInterface = Object.entries(values)?.reduce(
 		(acc, [k, v]) => (v ? acc : { ...acc, [k]: `${translation}.REQUIRED` }),

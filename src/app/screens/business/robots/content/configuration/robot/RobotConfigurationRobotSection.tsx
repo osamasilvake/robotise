@@ -60,7 +60,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const cRobotId = params.robotId;
 	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
 	const sectionName = (section?.sectionName || '').toUpperCase();
-	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
+	const translation = 'CONTENT.CONFIGURATION.ROBOT';
 
 	const {
 		handleChangeSelect,

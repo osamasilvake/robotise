@@ -29,7 +29,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotSectionInpu
 	const [elemValue, setElemValue] = useState(inputValue);
 	const debouncedValue = useDebounce(elemValue, 200);
 
-	const translation = 'CONTENT.CONFIGURATION.ROBOT_CONFIGURATION';
+	const translation = 'CONTENT.CONFIGURATION.ROBOT';
 	const required = !!content?.required;
 	const type = content?.type as string;
 	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);

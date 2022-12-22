@@ -105,7 +105,7 @@ export const CloudConfigurationSetEmergencyState =
 					id: 'configuration-emergency-state-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.CONFIGURATION.CLOUD.EMERGENCY_STATE.SUCCESS'
+					text: 'ROBOTS.CONFIGURATION.EMERGENCY_STATE.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -121,7 +121,7 @@ export const CloudConfigurationSetEmergencyState =
 					id: 'configuration-emergency-state-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.CONFIGURATION.CLOUD.EMERGENCY_STATE.ERROR'
+					text: 'ROBOTS.CONFIGURATION.EMERGENCY_STATE.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -150,7 +150,7 @@ export const CloudConfigurationProductsSync = (robotId: string) => async (dispat
 				id: 'configuration-sync-products-success',
 				show: true,
 				severity: TriggerMessageTypeEnum.SUCCESS,
-				text: 'ROBOTS.CONFIGURATION.CLOUD.SYNC_PRODUCTS.SUCCESS'
+				text: 'ROBOTS.CONFIGURATION.SYNC_PRODUCTS.SUCCESS'
 			};
 			dispatch(triggerMessage(message));
 
@@ -163,7 +163,7 @@ export const CloudConfigurationProductsSync = (robotId: string) => async (dispat
 				id: 'configuration-sync-products-error',
 				show: true,
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'ROBOTS.CONFIGURATION.CLOUD.SYNC_PRODUCTS.ERROR'
+				text: 'ROBOTS.CONFIGURATION.SYNC_PRODUCTS.ERROR'
 			};
 			dispatch(triggerMessage(message));
 
@@ -202,7 +202,7 @@ export const CloudConfigurationConfigUpdate =
 					id: 'configuration-config-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.CONFIGURATION.CLOUD.ROBOT_CONFIG.SUCCESS'
+					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIG.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -215,7 +215,7 @@ export const CloudConfigurationConfigUpdate =
 					id: 'configuration-config-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'ROBOTS.CONFIGURATION.CLOUD.ROBOT_CONFIG.ERROR'
+					text: 'ROBOTS.CONFIGURATION.ROBOT_CONFIG.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -248,7 +248,7 @@ export const CloudConfigurationSyncConfigs =
 					id: 'configuration-sync-configs-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
-					text: 'ROBOTS.CONFIGURATION.CLOUD.SYNC_CONFIGS.SUCCESS'
+					text: 'ROBOTS.CONFIGURATION.SYNC_CONFIGS.SUCCESS'
 				};
 				dispatch(triggerMessage(message));
 
@@ -266,7 +266,7 @@ export const CloudConfigurationSyncConfigs =
 					id: 'configuration-sync-configs-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: errMessage || 'ROBOTS.CONFIGURATION.CLOUD.SYNC_CONFIGS.ERROR',
+					text: errMessage || 'ROBOTS.CONFIGURATION.SYNC_CONFIGS.ERROR',
 					dynamicText: !!errMessage
 				};
 				dispatch(triggerMessage(message));

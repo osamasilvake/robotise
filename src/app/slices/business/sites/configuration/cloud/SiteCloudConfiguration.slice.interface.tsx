@@ -1,6 +1,6 @@
-import { JsonAPIResponseInterface } from '../../JsonAPI.interface';
+import { JsonAPIResponseInterface } from '../../../../JsonAPI.interface';
 
-export interface SliceSiteOperationsInterface {
+export interface SliceSiteCloudConfigurationInterface {
 	acceptOrders: {
 		loading: boolean;
 	};

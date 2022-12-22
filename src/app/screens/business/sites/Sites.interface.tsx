@@ -1,3 +1,8 @@
+import {
+	SCNContentDataInterface,
+	SEVContentDataInterface,
+	SOOContentDataInterface
+} from '../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice.interface';
 import { MRContentDataInterface } from '../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice.interface';
 import {
 	SNContentNotificationTypeInterface,
@@ -17,11 +22,6 @@ import {
 } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
 import { SPCDataInterface } from '../../../slices/business/sites/products/Products.slice.interface';
 import { SQRDataInterface } from '../../../slices/business/sites/rooms/qrCode/QRCodes.slice.interface';
-import {
-	SCNContentDataInterface,
-	SEVContentDataInterface,
-	SOOContentDataInterface
-} from '../../../slices/business/sites/SiteOperations.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
 import { SLCDataInterface } from '../../../slices/business/sites/sms-list/SMSList.slice.interface';
 import {

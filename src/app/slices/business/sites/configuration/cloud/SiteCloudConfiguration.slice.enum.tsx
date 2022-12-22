@@ -1,4 +1,4 @@
-export enum SiteOperationsTypeEnum {
+export enum SiteCloudConfigurationTypeEnum {
 	ACCEPT_ORDERS,
 	SITE_ROBOT_CONFIG,
 	SITE_CONFIG,

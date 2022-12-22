@@ -13,14 +13,14 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
-import { SiteOrdersAccept } from '../../../../../../../slices/business/sites/SiteOperations.slice';
+import { SiteOrdersAccept } from '../../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { SiteConfigurationAcceptOrdersInterface } from './SiteConfigurationAcceptOrders.interface';
 import { SiteConfigurationAcceptOrdersStyle } from './SiteConfigurationAcceptOrders.style';
 
 const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> = (props) => {
-	const { sites, siteOperations } = props;
+	const { sites, siteCloudConfiguration } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigurationAcceptOrdersStyle();
 
@@ -51,7 +51,7 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 	return (
 		<Card square elevation={1}>
 			<CardContent className={classes.sContent}>
-				{siteOperations.acceptOrders.loading && (
+				{siteCloudConfiguration.acceptOrders.loading && (
 					<Box className={classes.sLoader}>
 						<CircularProgress size={20} />
 					</Box>
@@ -66,7 +66,7 @@ const SiteConfigurationAcceptOrders: FC<SiteConfigurationAcceptOrdersInterface> 
 
 				<Box className={classes.sBox}>
 					<FormControlLabel
-						disabled={siteOperations.acceptOrders.loading}
+						disabled={siteCloudConfiguration.acceptOrders.loading}
 						control={
 							<Switch
 								name="acceptOrders"

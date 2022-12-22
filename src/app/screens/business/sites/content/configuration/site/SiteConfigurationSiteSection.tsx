@@ -67,7 +67,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 	const isRobotsEmpty = robotsList && robotsList.length === 0;
 	const isOneRobot = robotsList && robotsList.length === 1;
 	const isMoreRobots = robotsList && robotsList.length > 1;
-	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIGURATION';
+	const translation = 'CONTENT.CONFIGURATION.SITE';
 
 	const {
 		handleChangeSelect,

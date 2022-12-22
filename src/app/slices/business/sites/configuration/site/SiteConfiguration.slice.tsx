@@ -170,7 +170,7 @@ export const SiteConfigurationUpdate =
 					id: 'configuration-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: errMessage || 'SITES.CONFIGURATION.SITE_CONFIGURATION.ERROR',
+					text: errMessage || 'SITES.CONFIGURATION.SITE.ERROR',
 					dynamicText: !!errMessage
 				};
 				dispatch(triggerMessage(message));

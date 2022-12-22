@@ -34,7 +34,7 @@ const DialogSiteConfigurationSyncRobot: FC<DialogSiteConfigurationSyncRobotInter
 
 	const [selectedRobots, setSelectedRobots] = useState<{ id: string; label: string }[]>([]);
 
-	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIGURATION.SYNC_ROBOT';
+	const translation = 'CONTENT.CONFIGURATION.SITE.SYNC_ROBOT';
 	const label = t(`${translation}.ROBOTS.LABEL`);
 	const placeholder = t(`${translation}.ROBOTS.PLACEHOLDER`);
 

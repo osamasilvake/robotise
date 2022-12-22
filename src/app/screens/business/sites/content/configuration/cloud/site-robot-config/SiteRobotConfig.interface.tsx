@@ -1,10 +1,10 @@
 import { SliceRobotTwinsSummaryInterface } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
-import { SliceSiteOperationsInterface } from '../../../../../../../slices/business/sites/SiteOperations.slice.interface';
+import { SliceSiteCloudConfigurationInterface } from '../../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice.interface';
 import { SliceSitesInterface } from '../../../../../../../slices/business/sites/Sites.slice.interface';
 
 export interface SiteRobotConfigInterface {
 	sites: SliceSitesInterface;
-	siteOperations: SliceSiteOperationsInterface;
+	siteCloudConfiguration: SliceSiteCloudConfigurationInterface;
 	robotTwinsSummary: SliceRobotTwinsSummaryInterface;
 }
 

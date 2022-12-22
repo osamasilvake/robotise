@@ -312,7 +312,7 @@
 							"ERROR": "Unable to update configuration!"
 						}
 					},
-					"SITE_CONFIGURATION": {
+					"SITE": {
 						"CREATED": "Sync command was sent. Waiting for response!",
 						"SUCCESS": "Section was synced successfully!",
 						"FAILED": "Section could not be synced. Please check command logs!",
@@ -390,23 +390,21 @@
 					}
 				},
 				"CONFIGURATION": {
-					"CLOUD": {
-						"EMERGENCY_STATE": {
-							"SUCCESS": "Emergency state has been updated successfully!",
-							"ERROR": "Unable to update emergency state!"
-						},
-						"SYNC_PRODUCTS": {
-							"SUCCESS": "Products has been synchronized successfully!",
-							"ERROR": "Unable to sync products on the robot!"
-						},
-						"ROBOT_CONFIG": {
-							"SUCCESS": "Robot setting has been updated successfully!",
-							"ERROR": "Unable to configure robot!"
-						},
-						"SYNC_CONFIGS": {
-							"SUCCESS": "Config has been synchronized successfully!",
-							"ERROR": "Sync command to robot failed!"
-						}
+					"EMERGENCY_STATE": {
+						"SUCCESS": "Emergency state has been updated successfully!",
+						"ERROR": "Unable to update emergency state!"
+					},
+					"SYNC_PRODUCTS": {
+						"SUCCESS": "Products has been synchronized successfully!",
+						"ERROR": "Unable to sync products on the robot!"
+					},
+					"ROBOT_CONFIG": {
+						"SUCCESS": "Robot setting has been updated successfully!",
+						"ERROR": "Unable to configure robot!"
+					},
+					"SYNC_CONFIGS": {
+						"SUCCESS": "Config has been synchronized successfully!",
+						"ERROR": "Sync command to robot failed!"
 					},
 					"ROBOT": {
 						"CREATED": "Sync command was sent. Waiting for response!",
@@ -1665,7 +1663,7 @@
 						}
 					}
 				},
-				"SITE_CONFIGURATION": {
+				"SITE": {
 					"TITLE": "Site Configuration",
 					"EXCERPT": "Update Site detail.",
 					"FORM": {
@@ -2388,7 +2386,7 @@
 						"TEXT": "Are you sure you want to sync?"
 					}
 				},
-				"ROBOT_CONFIGURATION": {
+				"ROBOT": {
 					"TITLE": "Robot Configuration",
 					"EXCERPT": "Update Robot detail.",
 					"FORM": {

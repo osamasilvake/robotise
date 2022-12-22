@@ -23,7 +23,7 @@ import { useParams } from 'react-router-dom';
 import { AppConfigService } from '../../../../../../../services';
 import { AppDispatch } from '../../../../../../../slices';
 import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
-import { SiteConfigUpdate } from '../../../../../../../slices/business/sites/SiteOperations.slice';
+import { SiteConfigUpdate } from '../../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../../../../../utilities/methods/Object';
@@ -34,7 +34,7 @@ import { SiteConfigStyle } from './SiteConfig.style';
 import { SiteConfigValidation } from './SiteConfig.validation';
 
 const SiteConfig: FC<SiteConfigInterface> = (props) => {
-	const { sites, siteOperations } = props;
+	const { sites, siteCloudConfiguration } = props;
 	const { t } = useTranslation(['SITES', 'GENERAL']);
 	const classes = SiteConfigStyle();
 
@@ -46,7 +46,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const siteSingle = sites.content?.dataById[cSiteId];
 	const orderModesList = generalOperations.orderModes.content?.data?.map((m) => m.mode);
-	const orderOriginsList = siteOperations.orderOrigins.content?.data
+	const orderOriginsList = siteCloudConfiguration.orderOrigins.content?.data
 		?.filter(
 			(o) =>
 				o.origin !== SiteConfigOrderOriginsTypeEnum.DEBUG &&
@@ -56,10 +56,9 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 				o.origin !== SiteConfigOrderOriginsTypeEnum.MANUAL_GUI
 		)
 		.map((o) => o.origin);
-	const customerNotificationTypes = siteOperations.customerNotificationTypes.content?.data?.map(
-		(c) => c.type
-	);
-	const elevatorVendors = siteOperations.elevatorVendors.content?.data || [];
+	const customerNotificationTypes =
+		siteCloudConfiguration.customerNotificationTypes.content?.data?.map((c) => c.type);
+	const elevatorVendors = siteCloudConfiguration.elevatorVendors.content?.data || [];
 	const currencies = AppConfigService.AppOptions.common.currencies;
 	const timezones = AppConfigService.AppOptions.common.timezones;
 	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIG';
@@ -475,11 +474,11 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								variant="outlined"
 								type="submit"
 								disabled={
-									siteOperations.siteConfig.loading ||
+									siteCloudConfiguration.siteConfig.loading ||
 									(!!errors && !validateEmptyObj(errors))
 								}
 								endIcon={
-									siteOperations.siteConfig.loading && (
+									siteCloudConfiguration.siteConfig.loading && (
 										<CircularProgress size={20} />
 									)
 								}>

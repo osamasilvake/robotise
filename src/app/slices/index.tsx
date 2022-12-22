@@ -24,6 +24,7 @@ import purchases from './business/robots/purchases/Purchases.slice';
 import robotOperations from './business/robots/RobotOperations.slice';
 import robotTwins from './business/robots/RobotTwins.slice';
 import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
+import siteCloudConfiguration from './business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import marketingRides from './business/sites/configuration/marketing-rides/MarketingRides.slice';
 import notifications from './business/sites/configuration/notifications/Notifications.slice';
 import servicePositions from './business/sites/configuration/service-positions/ServicePositions.slice';
@@ -34,7 +35,6 @@ import phoneConfigs from './business/sites/phone-configs/PhoneConfigs.slice';
 import products from './business/sites/products/Products.slice';
 import qrCodes from './business/sites/rooms/qrCode/QRCodes.slice';
 import rooms from './business/sites/rooms/Rooms.slice';
-import siteOperations from './business/sites/SiteOperations.slice';
 import sites from './business/sites/Sites.slice';
 import smsList from './business/sites/sms-list/SMSList.slice';
 import wifiHeatmap from './business/sites/statistics/WifiHeatmap.slice';
@@ -59,7 +59,6 @@ const combinedReducer = combineReducers({
 	allSMSList,
 
 	sites,
-	siteOperations,
 	products,
 	rooms,
 	qrCodes,
@@ -71,6 +70,7 @@ const combinedReducer = combineReducers({
 	wifiHeatmap,
 	performance,
 	marketingRides,
+	siteCloudConfiguration,
 	siteConfiguration,
 
 	robotTwinsSummary,

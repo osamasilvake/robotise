@@ -29,7 +29,7 @@ const SiteConfigurationSiteSectionInput: FC<SiteConfigurationSiteSectionInputInt
 	const [elemValue, setElemValue] = useState(inputValue);
 	const debouncedValue = useDebounce(elemValue, 200);
 
-	const translation = 'CONTENT.CONFIGURATION.SITE_CONFIGURATION';
+	const translation = 'CONTENT.CONFIGURATION.SITE';
 	const required = !!content?.required;
 	const type = content?.type as string;
 	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);

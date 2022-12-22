@@ -12,23 +12,23 @@ export const handleTriggerMessage = (status: string) => {
 		case SiteConfigurationTriggerMessageTypeEnum.PROGRESS:
 			return {
 				severity: TriggerMessageTypeEnum.WARNING,
-				text: 'SITES.CONFIGURATION.SITE_CONFIGURATION.CREATED'
+				text: 'SITES.CONFIGURATION.SITE.CREATED'
 			};
 		case SiteConfigurationTriggerMessageTypeEnum.SUCCEED:
 			return {
 				severity: TriggerMessageTypeEnum.SUCCESS,
-				text: 'SITES.CONFIGURATION.SITE_CONFIGURATION.SUCCESS'
+				text: 'SITES.CONFIGURATION.SITE.SUCCESS'
 			};
 		case SiteConfigurationTriggerMessageTypeEnum.REJECTED:
 		case SiteConfigurationTriggerMessageTypeEnum.FAILED:
 			return {
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'SITES.CONFIGURATION.SITE_CONFIGURATION.FAILED'
+				text: 'SITES.CONFIGURATION.SITE.FAILED'
 			};
 		default:
 			return {
 				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'SITES.CONFIGURATION.SITE_CONFIGURATION.UNKNOWN'
+				text: 'SITES.CONFIGURATION.SITE.UNKNOWN'
 			};
 	}
 };

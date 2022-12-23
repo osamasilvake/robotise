@@ -31,11 +31,12 @@ const RobotDetailLocationCardPlannedPath: FC<RobotDetailLocationCardPlannedPathI
 				className={classes.sCardPlannedPath}>
 				<marker
 					id="flag"
+					viewBox="0 0 50 50"
 					refX="5"
-					refY="20"
+					refY="21"
 					markerUnits="strokeWidth"
-					markerWidth="8"
-					markerHeight="8">
+					markerWidth="15"
+					markerHeight="20">
 					<path
 						d="m14.303 6-3-2H6V2H4v20h2v-8h4.697l3 2H20V6z"
 						style={{ fill: AppConfigService.AppOptions.colors.c12 }}

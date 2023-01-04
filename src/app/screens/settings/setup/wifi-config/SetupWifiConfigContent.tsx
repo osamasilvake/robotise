@@ -90,10 +90,11 @@ const SetupWifiConfigContent: FC = () => {
 		};
 
 		// psk
-		const psk = values.authentication === SetupWifiConfigAuthenticationTypeEnum.PSK &&
-			values.pskPassword && {
-				psk: values.pskPassword
-			};
+		const psk =
+			values.authentication === SetupWifiConfigAuthenticationTypeEnum.PSK &&
+			values.pskPassword
+				? values.pskPassword?.replace(/['"]+/g, '')
+				: undefined;
 
 		// mac
 		const mac = values.authentication === SetupWifiConfigAuthenticationTypeEnum.OPEN &&
@@ -108,7 +109,7 @@ const SetupWifiConfigContent: FC = () => {
 				ssid: values.ssid,
 				country: values.country?.id,
 				auth: values.authentication,
-				...psk,
+				psk: psk ? YAML.parse(psk) : undefined,
 				...mac,
 				hidden: +!!values.hiddenNetwork,
 				...ipConfiguration

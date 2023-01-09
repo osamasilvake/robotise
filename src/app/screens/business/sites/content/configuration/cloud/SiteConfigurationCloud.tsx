@@ -15,6 +15,7 @@ import {
 	siteCloudConfigurationSelector,
 	SiteCustomerNotificationTypesFetch,
 	SiteElevatorVendorsFetch,
+	SiteHelpPagesFetch,
 	SiteOrderOriginsFetch
 } from '../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import {
@@ -87,6 +88,13 @@ const SiteConfigurationCloud: FC = () => {
 		// dispatch: fetch customer notification types
 		dispatch(SiteCustomerNotificationTypesFetch());
 	}, [dispatch, siteCloudConfiguration.customerNotificationTypes?.content]);
+
+	useEffect(() => {
+		if (siteCloudConfiguration.helpPages?.content !== null) return;
+
+		// dispatch: fetch help pages
+		dispatch(SiteHelpPagesFetch());
+	}, [dispatch, siteCloudConfiguration.helpPages?.content]);
 
 	useEffect(() => {
 		if (siteCloudConfiguration.elevatorVendors?.content !== null) return;

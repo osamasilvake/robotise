@@ -58,6 +58,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 		.map((o) => o.origin);
 	const customerNotificationTypes =
 		siteCloudConfiguration.customerNotificationTypes.content?.data?.map((c) => c.type);
+	const helpPages = siteCloudConfiguration.helpPages.content?.data || [];
 	const elevatorVendors = siteCloudConfiguration.elevatorVendors.content?.data || [];
 	const currencies = AppConfigService.AppOptions.common.currencies;
 	const timezones = AppConfigService.AppOptions.common.timezones;
@@ -321,25 +322,28 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormControl>
 							</Grid>
 						)}
-						<Grid item sm={12} md={6}>
-							<FormControl fullWidth margin="normal">
-								<TextField
-									required
-									type="text"
-									id="helpPage"
-									name="helpPage"
-									label={t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
-									placeholder={t(
-										`${translation}.FORM.FIELDS.HELP_PAGE.PLACEHOLDER`
-									)}
-									value={values?.helpPage}
-									onChange={handleChangeInput}
-									onBlur={handleBlur}
-									error={!!errors?.helpPage}
-									helperText={errors?.helpPage && t(errors.helpPage)}
-								/>
-							</FormControl>
-						</Grid>
+						{helpPages?.length > 0 && (
+							<Grid item sm={12} md={6}>
+								<FormControl fullWidth margin="normal">
+									<InputLabel id="label-helpPage">
+										{t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
+									</InputLabel>
+									<Select
+										labelId="label-helpPage"
+										id="helpPage"
+										name="helpPage"
+										label={t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
+										value={values.helpPage}
+										onChange={handleChangeSelect}>
+										{helpPages.map((helpPage) => (
+											<MenuItem key={helpPage.id} value={helpPage.id}>
+												{helpPage.title}
+											</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							</Grid>
+						)}
 						<Grid item sm={12}>
 							<Typography variant="h6">{t(`${translation}.ELEVATORS`)}</Typography>
 							<Grid container spacing={1}>

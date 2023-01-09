@@ -1,6 +1,7 @@
 import {
 	SCNContentDataInterface,
 	SEVContentDataInterface,
+	SHPContentDataInterface,
 	SOOContentDataInterface
 } from '../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice.interface';
 import { MRContentDataInterface } from '../../../slices/business/sites/configuration/marketing-rides/MarketingRides.slice.interface';
@@ -244,6 +245,14 @@ export interface SiteCustomerNotificationTypesAxiosGetInterface extends JsonAPIR
 		id: string;
 		type: string;
 		attributes: SCNContentDataInterface;
+	}[];
+}
+
+export interface SiteHelpPagesAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SHPContentDataInterface;
 	}[];
 }
 

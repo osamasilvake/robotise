@@ -33,6 +33,10 @@ export const initialState: SliceSiteCloudConfigurationInterface = {
 		loading: false,
 		content: null
 	},
+	helpPages: {
+		loading: false,
+		content: null
+	},
 	elevatorVendors: {
 		loading: false,
 		content: null
@@ -62,6 +66,8 @@ const dataSlice = createSlice({
 				state.orderOrigins.loading = true;
 			} else if (module === SiteCloudConfigurationTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = true;
+			} else if (module === SiteCloudConfigurationTypeEnum.HELP_PAGES) {
+				state.helpPages.loading = true;
 			} else if (module === SiteCloudConfigurationTypeEnum.ELEVATOR_VENDORS) {
 				state.elevatorVendors.loading = true;
 			} else if (module === SiteCloudConfigurationTypeEnum.PAYMENT_SETTINGS) {
@@ -84,6 +90,9 @@ const dataSlice = createSlice({
 			} else if (module === SiteCloudConfigurationTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = response;
+			} else if (module === SiteCloudConfigurationTypeEnum.HELP_PAGES) {
+				state.helpPages.loading = false;
+				state.helpPages.content = response;
 			} else if (module === SiteCloudConfigurationTypeEnum.ELEVATOR_VENDORS) {
 				state.elevatorVendors.loading = false;
 				state.elevatorVendors.content = response;
@@ -107,6 +116,9 @@ const dataSlice = createSlice({
 			} else if (module === SiteCloudConfigurationTypeEnum.CUSTOMER_NOTIFICATION_TYPES) {
 				state.customerNotificationTypes.loading = false;
 				state.customerNotificationTypes.content = null;
+			} else if (module === SiteCloudConfigurationTypeEnum.HELP_PAGES) {
+				state.helpPages.loading = false;
+				state.helpPages.content = null;
 			} else if (module === SiteCloudConfigurationTypeEnum.ELEVATOR_VENDORS) {
 				state.elevatorVendors.loading = false;
 				state.elevatorVendors.content = null;
@@ -365,6 +377,49 @@ export const SiteCustomerNotificationTypesFetch =
 	};
 
 /**
+ * fetch help pages
+ * @returns
+ */
+export const SiteHelpPagesFetch = () => async (dispatch: Dispatch, getState: () => RootState) => {
+	// states
+	const states = getState();
+	const helpPages = states.siteCloudConfiguration.helpPages;
+	const state = {
+		module: SiteCloudConfigurationTypeEnum.HELP_PAGES
+	};
+
+	// return on busy
+	if (helpPages && helpPages.loading) {
+		return;
+	}
+
+	// dispatch: loading
+	dispatch(loading(state));
+
+	return SitesService.siteHelpPagesFetch()
+		.then(async (res) => {
+			// deserialize response
+			const result = await deserializeSiteCloudConfiguration(res);
+
+			// dispatch: success
+			dispatch(success({ ...state, response: result }));
+		})
+		.catch(() => {
+			// dispatch: trigger message
+			const message: TriggerMessageInterface = {
+				id: 'configuration-help-pages-error',
+				show: true,
+				severity: TriggerMessageTypeEnum.ERROR,
+				text: 'SITES.CONFIGURATION.HELP_PAGES.ERROR'
+			};
+			dispatch(triggerMessage(message));
+
+			// dispatch: failure
+			dispatch(failure(state));
+		});
+};
+
+/**
  * fetch elevator vendors
  * @returns
  */
@@ -385,7 +440,7 @@ export const SiteElevatorVendorsFetch =
 		// dispatch: loading
 		dispatch(loading(state));
 
-		return SitesService.siteElevatorVendors()
+		return SitesService.siteElevatorVendorsFetch()
 			.then(async (res) => {
 				// deserialize response
 				const result = await deserializeSiteCloudConfiguration(res);

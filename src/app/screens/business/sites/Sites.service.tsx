@@ -33,6 +33,7 @@ import {
 	SiteCreateAxiosPostResponseInterface,
 	SiteCustomerNotificationTypesAxiosGetInterface,
 	SiteElevatorVendorsAxiosGetInterface,
+	SiteHelpPagesAxiosGetInterface,
 	SiteMapsAxiosGetInterface,
 	SiteMarketingRidesAxiosGetInterface,
 	SiteNotificationTypesAxiosGetInterface,
@@ -809,10 +810,21 @@ class SitesService {
 	};
 
 	/**
+	 * fetch help pages
+	 * @returns
+	 */
+	siteHelpPagesFetch = () => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
+				.HELP_PAGES;
+		return HttpClientService.get<SiteHelpPagesAxiosGetInterface>(url);
+	};
+
+	/**
 	 * fetch elevator vendors
 	 * @returns
 	 */
-	siteElevatorVendors = () => {
+	siteElevatorVendorsFetch = () => {
 		const url =
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SITE_CONFIG
 				.ELEVATOR_VENDORS;

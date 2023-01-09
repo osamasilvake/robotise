@@ -76,6 +76,7 @@ const AppServices = (config: typeof AppConfigService) => {
 						SITE_CONFIG: {
 							ORDER_ORIGINS: `${config.envAppUrl}/order-origins`,
 							CUSTOMER_NOTIFICATION_TYPES: `${config.envAppUrl}/customer-notification-types`,
+							HELP_PAGES: `${config.envAppUrl}/help-pages`,
 							ELEVATOR_VENDORS: `${config.envAppUrl}/elevator-vendors`
 						},
 						MARKETING_RIDES: {

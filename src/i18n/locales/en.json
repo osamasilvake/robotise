@@ -291,6 +291,9 @@
 					"CUSTOMER_NOTIFICATION_TYPES": {
 						"ERROR": "Unable to fetch customer notification types!"
 					},
+					"HELP_PAGES": {
+						"ERROR": "Unable to fetch help pages!"
+					},
 					"ELEVATOR_VENDORS": {
 						"ERROR": "Unable to fetch elevator vendors!"
 					},
@@ -1540,19 +1543,14 @@
 								}
 							},
 							"HELP_PAGE": {
-								"LABEL": "Help Page Id",
-								"PLACEHOLDER": "Enter Help Page Id",
-								"VALIDATIONS": {
-									"REQUIRED": "Help Page Id is required."
-								}
+								"LABEL": "Help Page"
 							},
 							"BUILDING_ID": {
 								"LABEL": "Building Id",
 								"PLACEHOLDER": "Enter Building Id"
 							},
 							"VENDOR": {
-								"LABEL": "Vendor",
-								"PLACEHOLDER": "Select Vendor"
+								"LABEL": "Vendor"
 							},
 							"CHECKBOXES": {
 								"EMERGENCY_WORKFLOW": {

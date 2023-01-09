@@ -2,9 +2,7 @@ import axios from 'axios';
 
 import { AppConfigService, HttpClientService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import { AuthJWTInterface } from '../../slices/authentication/Auth.slice.interface';
 import { dateNow } from '../../utilities/methods/Date';
-import { jwtDecode } from '../../utilities/methods/Decode';
 import { serializeObj } from '../../utilities/methods/Object';
 import { AuthAxiosPostResponseInterface, AuthLoginFormInterface } from './Auth.interface';
 
@@ -31,12 +29,11 @@ class AuthService {
 
 	/**
 	 * validate token
-	 * @param accessToken
+	 * @param expIn
 	 */
-	authTokenValid = (accessToken: string) => {
-		const decoded: AuthJWTInterface = jwtDecode(accessToken);
+	authTokenValid = (expIn: number) => {
 		const now = dateNow();
-		const exp = decoded.exp * 1000;
+		const exp = expIn;
 		return now < exp;
 	};
 
@@ -93,6 +90,13 @@ class AuthService {
 	};
 
 	/**
+	 * get access token expiry
+	 */
+	getAccessTokenExpiry = () => {
+		return StorageService.get(AppConfigService.StorageItems.JWTAccessTokenExpiry);
+	};
+
+	/**
 	 * remove access token
 	 */
 	removeAccessToken = () => {
@@ -102,6 +106,7 @@ class AuthService {
 		// remove from storage
 		if (this.getAccessToken()) {
 			StorageService.remove(AppConfigService.StorageItems.JWTAccessToken);
+			StorageService.remove(AppConfigService.StorageItems.JWTAccessTokenExpiry);
 		}
 	};
 

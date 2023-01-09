@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { DurationUnitType } from 'dayjs/plugin/duration';
 import utc from 'dayjs/plugin/utc';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 
@@ -172,7 +173,18 @@ const dateUTC = (utc: number) => {
 	return dayjs.utc(utc);
 };
 
+/**
+ * add to date
+ * @param val
+ * @param unit
+ * @returns
+ */
+const dateAdd = (val: number, unit: DurationUnitType) => {
+	return dayjs().add(val, unit);
+};
+
 export {
+	dateAdd,
 	dateCurrentYear,
 	dateDayJs,
 	dateDaysPriorToToday,

@@ -66,8 +66,11 @@ describe('[SLICE] Authentication', () => {
 		store
 			.dispatch(AuthLogin(request))
 			.then(() => {
+				// update expires in
+				const user = { ...mapUserDetail(accessToken), expires_in: NaN };
+
 				// assert
-				const expectedActions = [loading(), success(mapUserDetail(accessToken))];
+				const expectedActions = [loading(), success(user)];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();
@@ -120,27 +123,6 @@ describe('[SLICE] Authentication', () => {
 		expect(store.getActions()).toEqual(expectedActions);
 	});
 
-	it('[AuthRefreshToken] Creates failure and triggerMessage actions on expired access token', () => {
-		const store = mockStore(initialState);
-		const message: TriggerMessageInterface = {
-			id: 'auth-token-expired-error',
-			show: true,
-			severity: TriggerMessageTypeEnum.ERROR,
-			text: 'AUTH.TOKEN_EXPIRED'
-		};
-
-		// act
-		AuthService.setAccessToken(
-			'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzS1MwcnY5ZVEyWDA2Qnh6elVUUERkUGVXbjNSMV9kVEJlNUxxbFlkV3ZVIn0.eyJleHAiOjE2MTYxMDU3NDAsImlhdCI6MTYxNjEwNTQ0MCwianRpIjoiZjg5OTQ1MzAtYzcyOC00NzgyLWJkYTktYjE3YzEyYjE3MWE0IiwiaXNzIjoiaHR0cDovL2F1dGgucm9ib3Rpc2UuZXUvcmVhbG1zL3JvYy1zdGFnaW5nIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjMzZWY2NDMzLWY0MWUtNDE1Ny1hODhmLTI5OTI1ZTYzMTllYiIsInR5cCI6IkJlYXJlciIsImF6cCI6InJvYy1vcHMtYXBwIiwic2Vzc2lvbl9zdGF0ZSI6ImQ3ZTlmY2VjLTViNGEtNGI0Zi1iZjAwLTk2ZDk1Yjg3ZmJlYiIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJyb2Nfb3AiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3JkZXJzOnJlYWQgcm9ib3RzOndyaXRlIHJvYm90czpyZWFkIGVtYWlsIG9yZGVyczp3cml0ZSBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInVzZXJfaWQiOiIzM2VmNjQzMy1mNDFlLTQxNTctYTg4Zi0yOTkyNWU2MzE5ZWIiLCJuYW1lIjoiSW1yYW4gS2hhbiIsInByZWZlcnJlZF91c2VybmFtZSI6ImltcmFuLmtoYW5Acm9ib3Rpc2UuZXUiLCJnaXZlbl9uYW1lIjoiSW1yYW4iLCJmYW1pbHlfbmFtZSI6IktoYW4iLCJlbWFpbCI6ImltcmFuLmtoYW5Acm9ib3Rpc2UuZXUifQ.YnKBAV_wwDi_-rJOqiE0tAMxMb5GS0W6McTfFlFkBktn3Oym_ogS17PtLZBznol17ZZzfDpuQCxjGjgAAkzVDqX5gallzm3QGe8ftLVaBQ-Gn3Ab2Ohm9vRuKmshsyMJPCb3hskG73KAHU4JZvDie9CpkIiH1vpNJt6XxIXE-YTTc2C8oPWLxWrPNKbB9rKOC49a6WevijGhqGR8kChMHXj3tPoOkRVaNz3xrH8ze4QkBPzyJxWoAq6By_RufwuXb9I0K3gLDNKF0Ts8V3-JUTGiVgift4WERavqI8fMjLRQrEicWVvR2vZ2gu4vOLupekPlYOMySgbtMAIZDS0eGQ',
-			StorageTypeEnum.PERSISTENT
-		);
-		store.dispatch(AuthRefreshToken(1));
-
-		// assert
-		const expectedActions = [triggerMessage(message), failure(), terminate()];
-		expect(store.getActions()).toEqual(expectedActions);
-	});
-
 	it('[AuthRefreshToken] Create success action on refresh token', () => {
 		const store = mockStore(initialState);
 
@@ -155,8 +137,11 @@ describe('[SLICE] Authentication', () => {
 		store
 			.dispatch(AuthRefreshToken(1))
 			.then(() => {
+				// update expires in
+				const user = { ...mapUserDetail(accessToken), expires_in: NaN };
+
 				// assert
-				const expectedActions = [success(mapUserDetail(accessToken))];
+				const expectedActions = [success(user)];
 				expect(store.getActions()).toEqual(expectedActions);
 			})
 			.catch();

@@ -41,6 +41,7 @@ class AppConfigService extends EnvService {
 	get StorageItems() {
 		return {
 			JWTAccessToken: 'roc_access_token',
+			JWTAccessTokenExpiry: 'roc_access_token_expiry',
 			ThemePalette: 'roc_theme_palette',
 			ChangeLanguage: 'roc_change_language',
 			DrawerState: 'roc_drawer_state',

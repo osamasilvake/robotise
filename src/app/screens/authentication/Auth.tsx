@@ -24,7 +24,7 @@ const Auth: FC<AuthInterface> = (props) => {
 		 */
 		const actions = () => {
 			// dispatch: requests a new token before it expires
-			auth?.user && dispatch(AuthRefreshToken(auth.user.exp));
+			auth?.user && dispatch(AuthRefreshToken(auth.user.expires_in));
 		};
 
 		// init

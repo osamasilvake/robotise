@@ -14,6 +14,7 @@ export interface AuthJWTInterface {
 	session_state: string;
 	iat: number;
 	exp: number;
+	expires_in: number;
 	user_id: string;
 	iss: string;
 	typ: string;
@@ -29,6 +30,7 @@ export interface AuthUserInterface {
 	session_state: string;
 	iat: number;
 	exp: number;
+	expires_in: number;
 	iss: string;
 	typ: string;
 	azp: string;

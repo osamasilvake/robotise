@@ -154,7 +154,6 @@
 	"FRAME": {
 		"MESSAGE": {
 			"AUTH": {
-				"TOKEN_EXPIRED": "Token Expired!",
 				"TOKEN_EMPTY": "No Token Found!",
 				"UNKNOWN": "Unknown"
 			},

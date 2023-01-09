@@ -6,17 +6,21 @@ import { AuthLoginFormInterface } from '../../screens/authentication/Auth.interf
 import AuthService from '../../screens/authentication/Auth.service';
 import { AppConfigService, StorageService } from '../../services';
 import { StorageTypeEnum } from '../../services/storage/Storage.enum';
-import { dateNow } from '../../utilities/methods/Date';
+import { dateAdd } from '../../utilities/methods/Date';
 import { RootState } from '..';
 import { triggerMessage } from '../app/App.slice';
 import { AuthUserInterface, SliceAuthInterface } from './Auth.slice.interface';
 import { mapUserDetail } from './Auth.slice.map';
 
 // storage items
-const user = AuthService.getAccessToken() ? mapUserDetail(AuthService.getAccessToken()) : null;
-if (user) {
+const token = AuthService.getAccessToken();
+let user = null;
+if (token) {
+	// set user
+	user = { ...mapUserDetail(token), expires_in: AuthService.getAccessTokenExpiry() };
+
 	// set authorization to headers
-	AuthService.setAuthorizationToHeaders(AuthService.getAccessToken());
+	AuthService.setAuthorizationToHeaders(token);
 }
 
 // initial state
@@ -81,11 +85,21 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 				payload.rememberMe ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
 			);
 
+			// expires in: (minutes - 30 secs)
+			const expiresIn = dateAdd(res.expires_in - 30, 's').valueOf();
+
+			// set token expiry
+			StorageService.put(
+				AppConfigService.StorageItems.JWTAccessTokenExpiry,
+				expiresIn,
+				payload.rememberMe ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
+			);
+
 			// parse and map user info from access token
 			const user: AuthUserInterface = mapUserDetail(res.access_token);
 
 			// dispatch: success
-			dispatch(success(user));
+			dispatch(success({ ...user, expires_in: expiresIn }));
 		})
 		.catch((err) => {
 			const errMessage = err && (err.error_description || err.message);
@@ -107,79 +121,67 @@ export const AuthLogin = (payload: AuthLoginFormInterface) => async (dispatch: D
 
 /**
  * requests a new token before it expires
- * @param expDate
+ * @param expIn
  */
-export const AuthRefreshToken = (expDate: number) => async (dispatch: Dispatch) => {
+export const AuthRefreshToken = (expIn: number) => async (dispatch: Dispatch) => {
 	const accessToken = AuthService.getAccessToken();
 	if (accessToken) {
-		if (AuthService.authTokenValid(accessToken)) {
-			const expiresInMs = expDate * 1000 - dateNow();
-			if (
-				expiresInMs <
-				AppConfigService.AppOptions.screens.authentication.validateBeforeExpiry
-			) {
-				return AuthService.authRequestNewToken()
-					.then((res) => {
-						// local-storage
-						const isLocal = StorageService.get(
-							AppConfigService.StorageItems.JWTAccessToken,
-							StorageTypeEnum.PERSISTENT
-						);
+		// return on valid
+		if (AuthService.authTokenValid(expIn)) return;
 
-						// set token
-						AuthService.setAccessToken(
-							res.access_token,
-							isLocal ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
-						);
+		// request new token
+		return AuthService.authRequestNewToken()
+			.then((res) => {
+				// local-storage
+				const isLocal = StorageService.get(
+					AppConfigService.StorageItems.JWTAccessToken,
+					StorageTypeEnum.PERSISTENT
+				);
 
-						// parse and map user info from access token
-						const user: AuthUserInterface = mapUserDetail(res.access_token);
+				// set token
+				AuthService.setAccessToken(
+					res.access_token,
+					isLocal ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
+				);
 
-						// dispatch: success
-						dispatch(success(user));
-					})
-					.catch((err) => {
-						const errMessage = err && err.error_description;
+				// expires in: (minutes - 30 secs)
+				const expiresIn = dateAdd(res.expires_in - 30, 's').valueOf();
 
-						// dispatch: trigger message
-						const message: TriggerMessageInterface = {
-							id: 'auto-token-refresh-error',
-							show: true,
-							severity: TriggerMessageTypeEnum.ERROR,
-							text: errMessage,
-							dynamicText: !!errMessage
-						};
-						dispatch(triggerMessage(message));
+				// set token expiry
+				StorageService.put(
+					AppConfigService.StorageItems.JWTAccessTokenExpiry,
+					expiresIn,
+					isLocal ? StorageTypeEnum.PERSISTENT : StorageTypeEnum.SESSION
+				);
 
-						// dispatch: failure
-						dispatch(failure());
+				// parse and map user info from access token
+				const user: AuthUserInterface = mapUserDetail(res.access_token);
 
-						// clear authentication
-						AuthService.authLogout();
+				// dispatch: success
+				dispatch(success({ ...user, expires_in: expiresIn }));
+			})
+			.catch((err) => {
+				const errMessage = err && err.error_description;
 
-						// dispatch: terminate
-						dispatch(terminate());
-					});
-			}
-		} else {
-			// dispatch: trigger message
-			const message: TriggerMessageInterface = {
-				id: 'auth-token-expired-error',
-				show: true,
-				severity: TriggerMessageTypeEnum.ERROR,
-				text: 'AUTH.TOKEN_EXPIRED'
-			};
-			dispatch(triggerMessage(message));
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'auto-token-refresh-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: errMessage,
+					dynamicText: !!errMessage
+				};
+				dispatch(triggerMessage(message));
 
-			// dispatch: failure
-			dispatch(failure());
+				// dispatch: failure
+				dispatch(failure());
 
-			// clear authentication
-			AuthService.authLogout();
+				// clear authentication
+				AuthService.authLogout();
 
-			// dispatch: terminate
-			dispatch(terminate());
-		}
+				// dispatch: terminate
+				dispatch(terminate());
+			});
 	} else {
 		// dispatch: trigger message
 		const message: TriggerMessageInterface = {

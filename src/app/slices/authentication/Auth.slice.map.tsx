@@ -18,6 +18,7 @@ export const mapUserDetail = (accessToken: string): AuthUserInterface => {
 		},
 		iat: decoded.iat,
 		exp: decoded.exp,
+		expires_in: decoded.expires_in,
 		iss: decoded.iss,
 		typ: decoded.typ,
 		azp: decoded.azp,

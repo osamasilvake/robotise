@@ -1543,7 +1543,8 @@
 								}
 							},
 							"HELP_PAGE": {
-								"LABEL": "Help Page"
+								"LABEL": "Help Page",
+								"NOTE": "To add new help pages, please navigate to"
 							},
 							"BUILDING_ID": {
 								"LABEL": "Building Id",

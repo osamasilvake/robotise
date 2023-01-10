@@ -9,6 +9,7 @@ import {
 	FormHelperText,
 	Grid,
 	InputLabel,
+	Link,
 	MenuItem,
 	Select,
 	Switch,
@@ -270,7 +271,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										)}
 									/>
 								</FormControl>
-
 								<FormHelperText>
 									{t(`${translation}.FORM.FIELDS.ORDER_ORIGINS.NOTE`, {
 										value: 'DEBUG, REST, API_HOTEL, CUSTOMER_APP, MANUAL_GUI'
@@ -342,6 +342,16 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 										))}
 									</Select>
 								</FormControl>
+								<FormHelperText>
+									{t(`${translation}.FORM.FIELDS.HELP_PAGE.NOTE`)}{' '}
+									<Link
+										variant="body2"
+										underline="hover"
+										href={AppConfigService.envWikiUrl}
+										target="_blank">
+										{AppConfigService.envWikiUrl}
+									</Link>
+								</FormHelperText>
 							</Grid>
 						)}
 						<Grid item sm={12}>

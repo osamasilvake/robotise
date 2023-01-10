@@ -87,6 +87,13 @@ class EnvService {
 	}
 
 	/**
+	 * wiki url
+	 */
+	get envWikiUrl() {
+		return process.env.REACT_APP_WIKI_URL || '';
+	}
+
+	/**
 	 * reset password url
 	 */
 	get envResetPasswordUrl() {

@@ -159,7 +159,8 @@ export const QRCodeCreate =
 					severity: TriggerMessageTypeEnum.ERROR,
 					text:
 						`SITES.QR_CODES.CREATE.ERRORS.${errMessage}` ||
-						'SITES.QR_CODES.CREATE.ERRORS.ERROR'
+						'SITES.QR_CODES.CREATE.ERRORS.ERROR',
+					dynamicText: !!errMessage
 				};
 				dispatch(triggerMessage(message));
 

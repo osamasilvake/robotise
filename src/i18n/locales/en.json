@@ -1636,6 +1636,7 @@
 				},
 				"MARKETING_RIDES": {
 					"LOCATIONS": "Locations",
+					"WEEKDAYS": "Weekdays",
 					"TIMES": "Times",
 					"FORM": {
 						"FIELDS": {

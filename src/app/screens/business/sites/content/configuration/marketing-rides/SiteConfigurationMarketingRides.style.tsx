@@ -12,6 +12,7 @@ export const SiteConfigurationMarketingRidesStyle = makeStyles((theme: Theme) =>
 		top: 0
 	},
 	sLocations: {
+		marginBottom: theme.spacing(2),
 		maxWidth: theme.typography.pxToRem(400)
 	},
 	sTimes: {

@@ -20,6 +20,7 @@ export interface MRContentDataInterface {
 	active: boolean;
 	createdAt: Date;
 	locations: string[];
+	weekdays: string[];
 	times: {
 		hour: number;
 		minutes: number[];

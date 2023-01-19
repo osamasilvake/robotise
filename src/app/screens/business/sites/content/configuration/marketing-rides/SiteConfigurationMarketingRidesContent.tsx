@@ -32,6 +32,7 @@ import {
 import { SiteConfigurationMarketingRidesStyle } from './SiteConfigurationMarketingRides.style';
 import { SiteConfigurationMarketingRidesValidation } from './SiteConfigurationMarketingRides.validation';
 import SiteConfigurationMarketingRidesAutocomplete from './SiteConfigurationMarketingRidesAutocomplete';
+import SiteConfigurationMarketingRidesCheckbox from './SiteConfigurationMarketingRidesCheckbox';
 import SiteConfigurationMarketingRidesInput from './SiteConfigurationMarketingRidesInput';
 
 const SiteConfigurationMarketingRidesContent: FC<
@@ -60,6 +61,7 @@ const SiteConfigurationMarketingRidesContent: FC<
 	const initial = {
 		active: !!marketingRide?.active,
 		locations: marketingRide?.locations || [],
+		weekdays: marketingRide?.weekdays || [],
 		times:
 			[...Array(24)].map((_, m) => ({
 				hour: m,
@@ -133,6 +135,15 @@ const SiteConfigurationMarketingRidesContent: FC<
 								handleChangeInputs={handleChangeInputs}
 								handleBlur={handleBlur}
 								errors={errors?.locations || []}
+							/>
+						</Box>
+
+						{/* Weekdays */}
+						<Typography variant="h6">{t(`${translation}.WEEKDAYS`)}</Typography>
+						<Box>
+							<SiteConfigurationMarketingRidesCheckbox
+								weekdays={values.weekdays}
+								handleChangeInputs={handleChangeInputs}
 							/>
 						</Box>
 

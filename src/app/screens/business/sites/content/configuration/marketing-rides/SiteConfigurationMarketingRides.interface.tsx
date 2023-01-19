@@ -13,6 +13,7 @@ export interface SiteConfigurationMarketingRidesContentInterface {
 export interface SiteConfigurationMarketingRidesFormInterface {
 	active: boolean;
 	locations: string[];
+	weekdays: string[];
 	times: SiteConfigurationMarketingRidesTimesInterface[];
 }
 
@@ -30,6 +31,11 @@ export interface SiteConfigurationMarketingRidesAutocompleteInterface {
 	handleChangeInputs: (id: string, values: string[]) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 	errors: string[];
+}
+
+export interface SiteConfigurationMarketingRidesCheckboxInterface {
+	weekdays: string[];
+	handleChangeInputs: (id: string, values: string[]) => void;
 }
 
 export interface SiteConfigurationMarketingRidesInputInterface {

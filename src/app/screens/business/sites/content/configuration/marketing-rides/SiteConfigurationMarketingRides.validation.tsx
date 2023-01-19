@@ -18,6 +18,7 @@ export const SiteConfigurationMarketingRidesValidation = (
 	let errors: SiteConfigurationMarketingRidesFormInterface = {
 		active: false,
 		locations: [],
+		weekdays: [],
 		times: []
 	};
 

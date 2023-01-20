@@ -708,6 +708,7 @@
 								"rejected_unknown_location": "Rejected: Unknown location",
 								"error": "Error",
 								"canceled": "Canceled",
+								"in_progress_phone_answered": "Phone Answered",
 								"canceled_timeout_during_interaction": "Canceled: Timeout during interaction",
 								"timeout_incomplete_interaction": "Timeout During Interaction",
 								"canceled_timeout_customer_not_present": "Canceled: Timeout - Customer not present",

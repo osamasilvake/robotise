@@ -40,6 +40,7 @@ export const mapStatus = (status: string) => {
 		case GeneralAllOrdersTableColumnStatusTypeEnum.CUSTOMER_PRESENT:
 		case GeneralAllOrdersTableColumnStatusTypeEnum.FINISH_REQUESTED:
 		case GeneralAllOrdersTableColumnStatusTypeEnum.AWAITING_FINISH:
+		case GeneralAllOrdersTableColumnStatusTypeEnum.PHONE_ANSWERED:
 			return StatusTypeEnum.SUCCESS_LIGHT;
 		case GeneralAllOrdersTableColumnStatusTypeEnum.FINISHED:
 			return StatusTypeEnum.SUCCESS_DARK;

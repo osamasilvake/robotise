@@ -1569,6 +1569,10 @@
 									"LABEL": "Show Marketing Rides",
 									"NOTE": "*Show Marketing Rides on JEEVES app!"
 								},
+								"COLD_CALLS": {
+									"LABEL": "Show Cold Calls",
+									"NOTE": "*Show Cold Calls on JEEVES app!"
+								},
 								"HIDDEN": {
 									"LABEL": "Hide Site",
 									"NOTE": "*Whether to show site in the ROC sites list!"

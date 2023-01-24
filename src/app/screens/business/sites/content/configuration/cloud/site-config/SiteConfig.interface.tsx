@@ -20,5 +20,6 @@ export interface SiteConfigFormInterface {
 	showEmergencyWorkflow?: boolean;
 	showPerformanceDashboard?: boolean;
 	showMarketingRides?: boolean;
+	showColdCalls?: boolean;
 	isHidden?: boolean;
 }

@@ -43,6 +43,7 @@ export interface ISite {
 		showEmergencyWorkflow: boolean;
 		showPerformanceDashboard: boolean;
 		showMarketingRides: boolean;
+		showColdCalls: boolean;
 		isHidden: boolean;
 	};
 	paymentConfigs: {

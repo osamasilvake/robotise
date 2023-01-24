@@ -568,7 +568,8 @@
 				"mini-bar": "Minibar",
 				"room-service": "Room Service",
 				"service-position": "Service Position",
-				"marketing-ride": "Marketing Ride"
+				"marketing-ride": "Marketing Ride",
+				"cold-call": "Cold Call"
 			},
 			"ORDERS": {
 				"DETAIL": {

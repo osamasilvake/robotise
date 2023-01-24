@@ -247,12 +247,22 @@ class RobotsService {
 	 */
 	robotOrdersFetch = (robotId: string, payload: RobotOrdersListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
+
+		let mode = undefined;
+		if (!payload.marketingRides && !payload.coldCalls) {
+			mode = 'marketing-ride,cold-call';
+		} else if (!payload.marketingRides) {
+			mode = 'marketing-ride';
+		} else if (!payload.coldCalls) {
+			mode = 'cold-call';
+		}
+
 		return HttpClientService.get<RobotOrdersAxiosGetInterface>(url, {
 			params: {
 				'filter[robot]': robotId,
 				'filter[active]': payload.activeOrders || undefined,
 				'filter[isDebug]': payload.debug ? undefined : false,
-				'filter[mode][nin]': payload.marketingRides ? undefined : 'marketing-ride',
+				'filter[mode][nin]': mode,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}

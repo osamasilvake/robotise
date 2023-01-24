@@ -32,13 +32,15 @@ const RobotOrdersList: FC = () => {
 	const activeOrders = !!orders.content?.state?.activeOrders;
 	const debug = !!orders.content?.state?.debug;
 	const marketingRides = !!orders.content?.state?.marketingRides;
+	const coldCalls = !!orders.content?.state?.coldCalls;
 
 	const pageRef = useRef({
 		page: (orders.content?.meta?.page || 0) - 1,
 		rowsPerPage,
 		activeOrders,
+		debug,
 		marketingRides,
-		debug
+		coldCalls
 	});
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
@@ -50,8 +52,9 @@ const RobotOrdersList: FC = () => {
 			page,
 			rowsPerPage,
 			activeOrders,
+			debug,
 			marketingRides,
-			debug
+			coldCalls
 		};
 
 		if (pageRef.current.activeOrders !== activeOrders && page === 0) {
@@ -75,6 +78,13 @@ const RobotOrdersList: FC = () => {
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.marketingRides = marketingRides;
+		} else if (pageRef.current.coldCalls !== coldCalls && page === 0) {
+			// dispatch: fetch robot orders
+			dispatch(OrdersFetchList(cRobotId, payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.coldCalls = coldCalls;
 		} else if (pageRef.current.rowsPerPage !== rowsPerPage && page === 0) {
 			// dispatch: fetch robot orders
 			dispatch(OrdersFetchList(cRobotId, payload));
@@ -98,7 +108,8 @@ const RobotOrdersList: FC = () => {
 							page: condition2 ? 0 : page,
 							activeOrders: condition2 ? false : activeOrders,
 							debug: condition2 ? false : debug,
-							marketingRides: condition2 ? false : marketingRides
+							marketingRides: condition2 ? false : marketingRides,
+							coldCalls: condition2 ? false : coldCalls
 						})
 					);
 
@@ -107,6 +118,7 @@ const RobotOrdersList: FC = () => {
 					pageRef.current.activeOrders = condition2 ? false : activeOrders;
 					pageRef.current.debug = condition2 ? false : debug;
 					pageRef.current.marketingRides = condition2 ? false : marketingRides;
+					pageRef.current.coldCalls = condition2 ? false : coldCalls;
 				}
 			}
 		}
@@ -119,7 +131,8 @@ const RobotOrdersList: FC = () => {
 		page,
 		activeOrders,
 		debug,
-		marketingRides
+		marketingRides,
+		coldCalls
 	]);
 
 	useEffect(() => {
@@ -134,6 +147,7 @@ const RobotOrdersList: FC = () => {
 							rowsPerPage,
 							activeOrders,
 							marketingRides,
+							coldCalls,
 							debug
 						},
 						true
@@ -156,7 +170,8 @@ const RobotOrdersList: FC = () => {
 		rowsPerPage,
 		activeOrders,
 		debug,
-		marketingRides
+		marketingRides,
+		coldCalls
 	]);
 
 	// loader
@@ -173,6 +188,7 @@ const RobotOrdersList: FC = () => {
 					activeOrders={activeOrders}
 					debug={debug}
 					marketingRides={marketingRides}
+					coldCalls={coldCalls}
 				/>
 
 				{/* Error */}
@@ -193,6 +209,7 @@ const RobotOrdersList: FC = () => {
 					activeOrders={activeOrders}
 					debug={debug}
 					marketingRides={marketingRides}
+					coldCalls={coldCalls}
 				/>
 
 				{/* Empty */}
@@ -208,6 +225,7 @@ const RobotOrdersList: FC = () => {
 				activeOrders={activeOrders}
 				debug={debug}
 				marketingRides={marketingRides}
+				coldCalls={coldCalls}
 			/>
 
 			{/* Table */}

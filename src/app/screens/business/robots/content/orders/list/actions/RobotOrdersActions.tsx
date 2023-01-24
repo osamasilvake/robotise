@@ -4,12 +4,13 @@ import { FC } from 'react';
 import { RobotOrdersActionsInterface } from './RobotOrdersActions.interface';
 import { RobotOrdersActionsStyle } from './RobotOrdersActions.style';
 import RobotOrdersActiveOrders from './RobotOrdersActiveOrders';
+import RobotOrdersColdCalls from './RobotOrdersColdCalls';
 import RobotOrdersCreate from './RobotOrdersCreate';
 import RobotOrdersDebug from './RobotOrdersDebug';
 import RobotOrdersMarketingRides from './RobotOrdersMarketingRides';
 
 const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
-	const { activeOrders, debug, marketingRides } = props;
+	const { activeOrders, debug, marketingRides, coldCalls } = props;
 	const classes = RobotOrdersActionsStyle();
 
 	return (
@@ -24,6 +25,9 @@ const RobotOrdersActions: FC<RobotOrdersActionsInterface> = (props) => {
 
 					{/* Marketing Rides */}
 					<RobotOrdersMarketingRides marketingRides={marketingRides} />
+
+					{/* Cold Calls */}
+					<RobotOrdersColdCalls coldCalls={coldCalls} />
 				</Box>
 
 				{/* Create Order */}

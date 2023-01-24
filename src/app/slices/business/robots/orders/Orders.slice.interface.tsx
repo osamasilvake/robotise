@@ -35,8 +35,9 @@ export interface SOCStateInterface {
 	page?: number;
 	rowsPerPage?: number;
 	activeOrders?: boolean;
-	marketingRides?: boolean;
 	debug?: boolean;
+	marketingRides?: boolean;
+	coldCalls?: boolean;
 }
 
 export interface SOCDataHistoryInterface {

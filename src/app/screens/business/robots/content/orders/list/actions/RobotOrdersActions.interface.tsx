@@ -6,6 +6,7 @@ export interface RobotOrdersActionsInterface {
 	activeOrders: boolean;
 	debug: boolean;
 	marketingRides: boolean;
+	coldCalls: boolean;
 }
 
 export interface RobotOrdersActiveOrdersInterface {
@@ -18,6 +19,10 @@ export interface RobotOrdersDebugInterface {
 
 export interface RobotOrdersMarketingRidesInterface {
 	marketingRides: boolean;
+}
+
+export interface RobotOrdersColdCallsInterface {
+	coldCalls: boolean;
 }
 
 export interface DialogCreateOrderInterface {

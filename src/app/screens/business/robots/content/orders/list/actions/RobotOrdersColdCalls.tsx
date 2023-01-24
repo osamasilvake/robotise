@@ -41,7 +41,7 @@ const RobotOrdersColdCalls: FC<RobotOrdersColdCallsInterface> = (props) => {
 					onChange={handleColdCalls}
 				/>
 			}
-			label={t<string>('COMMON.ORDERS.LIST.ACTIONS.FILTERS.COLD_CALL')}
+			label={t<string>('COMMON.ORDERS.LIST.ACTIONS.FILTERS.COLD_CALLS')}
 		/>
 	);
 };

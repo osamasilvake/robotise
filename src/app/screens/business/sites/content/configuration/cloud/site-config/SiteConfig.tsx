@@ -89,7 +89,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 			showEmergencyWorkflow: !!siteSingle?.configs.showEmergencyWorkflow,
 			showPerformanceDashboard: !!siteSingle?.configs.showPerformanceDashboard,
 			showMarketingRides: !!siteSingle?.configs.showMarketingRides,
-			showColdCalls: !!siteSingle?.configs.showColdCalls,
+			// showColdCalls: !!siteSingle?.configs.showColdCalls,
 			isHidden: !!siteSingle?.configs.isHidden
 		},
 		SiteConfigValidation,
@@ -462,25 +462,6 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 									{t(
 										`${translation}.FORM.FIELDS.CHECKBOXES.MARKETING_RIDES.NOTE`
 									)}
-								</FormHelperText>
-							</FormControl>
-						</Grid>
-						<Grid item xs={12}>
-							<FormControl>
-								<FormControlLabel
-									control={
-										<Switch
-											name="showColdCalls"
-											checked={values.showColdCalls}
-											onChange={handleChangeCheckbox}
-										/>
-									}
-									label={t<string>(
-										`${translation}.FORM.FIELDS.CHECKBOXES.COLD_CALLS.LABEL`
-									)}
-								/>
-								<FormHelperText>
-									{t(`${translation}.FORM.FIELDS.CHECKBOXES.COLD_CALLS.NOTE`)}
 								</FormHelperText>
 							</FormControl>
 						</Grid>

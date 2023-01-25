@@ -11,7 +11,7 @@ dayjs.extend(utc);
  * @param date
  * @returns
  */
-const dateDayJs = (date?: Date) => {
+const dateDayJs = (date?: Date | string) => {
 	return date ? dayjs(date) : dayjs();
 };
 
@@ -184,12 +184,32 @@ const dateAdd = (val: number, unit: DurationUnitType) => {
 };
 
 /**
+ * date is before another date
+ * @param date1
+ * @param date2
+ * @returns
+ */
+const dateIsBefore = (date1: Date | string, date2: Date | string) => {
+	return dayjs(date1).isBefore(dayjs(date2));
+};
+
+/**
+ * date is same with another date
+ * @param date1
+ * @param date2
+ * @returns
+ */
+const dateIsSame = (date1: Date | string, date2: Date | string) => {
+	return dayjs(date1).isSame(dayjs(date2));
+};
+
+/**
  * date is after another date
  * @param date1
  * @param date2
  * @returns
  */
-const dateIsAfter = (date1: string, date2: string) => {
+const dateIsAfter = (date1: Date | string, date2: Date | string) => {
 	return dayjs(date1).isAfter(dayjs(date2));
 };
 
@@ -208,7 +228,9 @@ export {
 	dateFormat8,
 	dateFromToDiff,
 	dateIsAfter,
+	dateIsBefore,
 	dateISOString,
+	dateIsSame,
 	dateLocale,
 	dateMinsPriorToDate,
 	dateNow,

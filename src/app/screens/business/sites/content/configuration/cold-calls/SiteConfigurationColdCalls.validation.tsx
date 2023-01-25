@@ -1,5 +1,10 @@
 import { AppConfigService } from '../../../../../../services';
-import { dateIsAfter } from '../../../../../../utilities/methods/Date';
+import {
+	dateDayJs,
+	dateIsAfter,
+	dateIsBefore,
+	dateIsSame
+} from '../../../../../../utilities/methods/Date';
 import { SiteConfigurationColdCallsFormInterface } from './SiteConfigurationColdCalls.interface';
 
 /**
@@ -19,14 +24,19 @@ export const SiteConfigurationColdCallsValidation = (
 		days: []
 	};
 
+	const dateStart = dateDayJs(`2000-01-01 ${values.startTimeLocal}`).toDate();
+	const dateEnd = dateDayJs(`2000-01-01 ${values.endTimeLocal}`).toDate();
+
 	// Start Time
 	if (touched.startTimeLocal) {
 		if (!values.startTimeLocal) {
 			errors.startTimeLocal = `${translation}.START_TIME.VALIDATIONS.REQUIRED`;
 		} else if (!regexTime.test(values.startTimeLocal)) {
 			errors.startTimeLocal = `${translation}.START_TIME.VALIDATIONS.INVALID`;
-		} else if (dateIsAfter(values.startTimeLocal, values.endTimeLocal)) {
-			errors.startTimeLocal = `${translation}.END_TIME.VALIDATIONS.NOT_ALLOWED`;
+		} else if (dateIsAfter(dateStart, dateEnd)) {
+			errors.startTimeLocal = `${translation}.START_TIME.VALIDATIONS.AFTER_TIME`;
+		} else if (dateIsSame(dateStart, dateEnd)) {
+			errors.startTimeLocal = `${translation}.START_TIME.VALIDATIONS.SAME_TIME`;
 		}
 	}
 
@@ -36,6 +46,10 @@ export const SiteConfigurationColdCallsValidation = (
 			errors.endTimeLocal = `${translation}.END_TIME.VALIDATIONS.REQUIRED`;
 		} else if (!regexTime.test(values.endTimeLocal)) {
 			errors.endTimeLocal = `${translation}.END_TIME.VALIDATIONS.INVALID`;
+		} else if (dateIsBefore(dateEnd, dateStart)) {
+			errors.endTimeLocal = `${translation}.END_TIME.VALIDATIONS.BEFORE_TIME`;
+		} else if (dateIsSame(dateStart, dateEnd)) {
+			errors.endTimeLocal = `${translation}.END_TIME.VALIDATIONS.SAME_TIME`;
 		}
 	}
 

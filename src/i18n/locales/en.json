@@ -1693,7 +1693,8 @@
 								"VALIDATIONS": {
 									"REQUIRED": "Field is required!",
 									"INVALID": "Invalid Time!",
-									"NOT_ALLOWED": "Time Exceed End Time!"
+									"AFTER_TIME": "Start Time Exceeds End Time!",
+									"SAME_TIME": "Start Time is equal to End Time!"
 								}
 							},
 							"END_TIME": {
@@ -1701,7 +1702,9 @@
 								"PLACEHOLDER": "Enter End Time",
 								"VALIDATIONS": {
 									"REQUIRED": "Field is required!",
-									"INVALID": "Invalid Time!"
+									"INVALID": "Invalid Time!",
+									"BEFORE_TIME": "End Time is Before Start Time!",
+									"SAME_TIME": "End Time is equal to Start Time!"
 								}
 							}
 						},

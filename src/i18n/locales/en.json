@@ -727,7 +727,8 @@
 								"rest": "ROC App",
 								"debug": "MM ROC Bots",
 								"sms_code": "SMS Code",
-								"customer-app": "Jeeves App"
+								"customer-app": "Jeeves App",
+								"cold-calls-manager": "Cold Calls Manager"
 							},
 							"PURCHASE_DETAILS": "Purchase details"
 						}
@@ -1518,15 +1519,16 @@
 								"PLACEHOLDER": "Select Origin",
 								"OPTIONS": {
 									"phone": "Phone",
-									"qrcode-sms": "QR-Code SMS",
+									"manualGUI": "Manual GUI",
 									"api-hotel": "API Hotel",
 									"api-connect": "API Connect",
-									"manualGUI": "Manual GUI",
-									"debug": "Debug",
-									"test": "Test",
 									"rest": "Rest",
+									"debug": "Debug",
+									"sms_code": "SMS Code",
 									"customer-app": "Customer App",
-									"sms_code": "SMS Code"
+									"cold-calls-manager": "Cold Calls Manager",
+									"qrcode-sms": "QR-Code SMS",
+									"test": "Test"
 								},
 								"VALIDATIONS": {
 									"REQUIRED": "Order origin is required."

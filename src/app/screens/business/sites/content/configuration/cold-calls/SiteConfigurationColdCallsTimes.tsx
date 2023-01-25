@@ -10,8 +10,6 @@ const SiteConfigurationColdCallsTimes: FC<SiteConfigurationColdCallsTimesInterfa
 
 	const translation = 'CONTENT.CONFIGURATION.COLD_CALLS';
 
-	console.log(errors);
-
 	return (
 		<Box>
 			<Grid container spacing={2}>

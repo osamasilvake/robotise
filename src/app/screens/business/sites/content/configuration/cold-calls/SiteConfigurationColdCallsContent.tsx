@@ -22,6 +22,7 @@ import {
 } from '../../../../../../slices/business/sites/configuration/cold-calls/ColdCalls.slice';
 import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
+import { validateEmptyObj } from '../../../../../../utilities/methods/Object';
 import { timeout } from '../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigurationColdCallsFormInterface } from './SiteConfigurationColdCalls.interface';
@@ -135,7 +136,12 @@ const SiteConfigurationColdCallsContent: FC = () => {
 								disabled={
 									coldCalls.updating ||
 									!values.startTimeLocal ||
-									!values.endTimeLocal
+									!values.endTimeLocal ||
+									(errors &&
+										!validateEmptyObj({
+											startTimeLocal: errors.startTimeLocal,
+											endTimeLocal: errors.endTimeLocal
+										}))
 								}
 								endIcon={coldCalls.updating && <CircularProgress size={20} />}>
 								{t(`${translation}.FORM.BUTTONS.UPDATE`)}

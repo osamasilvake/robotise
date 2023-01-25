@@ -10,6 +10,7 @@ import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice'
 import { strRemoveSymbols } from '../../../../../utilities/methods/String';
 import { SiteParamsInterface } from '../../Site.interface';
 import sitesRoutes from '../../Sites.routes';
+import SiteConfigurationColdCalls from './cold-calls/SiteConfigurationColdCalls';
 import DialogSiteConfigurationConfirmation from './DialogSiteConfigurationConfirmation';
 import SiteConfigurationMarketingRides from './marketing-rides/SiteConfigurationMarketingRides';
 import SiteConfigurationSite from './site/SiteConfigurationSite';
@@ -53,6 +54,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 		const all = [
 			{ sectionName: SiteConfigurationTabsTypeEnum.CLOUD },
 			{ sectionName: SiteConfigurationTabsTypeEnum.MARKETING_RIDES },
+			{ sectionName: SiteConfigurationTabsTypeEnum.COLD_CALLS },
 			...sections
 		];
 		const index = all?.findIndex((s) => s.sectionName === pathSection);
@@ -81,6 +83,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 			const all = [
 				{ sectionName: SiteConfigurationTabsTypeEnum.CLOUD },
 				{ sectionName: SiteConfigurationTabsTypeEnum.MARKETING_RIDES },
+				{ sectionName: SiteConfigurationTabsTypeEnum.COLD_CALLS },
 				...sections
 			];
 			const updateSectionName = all[value]?.sectionName;
@@ -117,6 +120,7 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 				textColor="primary">
 				<Tab label={t(`${translation}.CONFIGURATION.CLOUD`)} />
 				<Tab label={t(`${translation}.CONFIGURATION.MARKETING_RIDES`)} />
+				<Tab label={t(`${translation}.CONFIGURATION.COLD_CALLS`)} />
 				{sections
 					?.filter((s) => !!s?.sectionName)
 					?.map((section) => (
@@ -144,8 +148,17 @@ const SiteConfigurationTabs: FC<SiteConfigurationTabsInterface> = (props) => {
 					</ErrorBoundary>
 				)}
 
+				{/* Cold Calls */}
+				{value === 2 && (
+					<ErrorBoundary>
+						<Suspense fallback={null}>
+							<SiteConfigurationColdCalls />
+						</Suspense>
+					</ErrorBoundary>
+				)}
+
 				{/* Site */}
-				{value >= 2 &&
+				{value >= 3 &&
 					sections
 						?.filter((s) => !!s?.sectionName)
 						?.map(

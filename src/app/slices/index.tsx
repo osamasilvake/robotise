@@ -25,6 +25,7 @@ import robotOperations from './business/robots/RobotOperations.slice';
 import robotTwins from './business/robots/RobotTwins.slice';
 import robotTwinsSummary from './business/robots/RobotTwinsSummary.slice';
 import siteCloudConfiguration from './business/sites/configuration/cloud/SiteCloudConfiguration.slice';
+import coldCalls from './business/sites/configuration/cold-calls/ColdCalls.slice';
 import marketingRides from './business/sites/configuration/marketing-rides/MarketingRides.slice';
 import notifications from './business/sites/configuration/notifications/Notifications.slice';
 import servicePositions from './business/sites/configuration/service-positions/ServicePositions.slice';
@@ -70,6 +71,7 @@ const combinedReducer = combineReducers({
 	wifiHeatmap,
 	performance,
 	marketingRides,
+	coldCalls,
 	siteCloudConfiguration,
 	siteConfiguration,
 

@@ -11,6 +11,7 @@ import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/c
 import { DialogCreateEditServicePositionFormInterface } from './content/configuration/cloud/service-positions/SiteConfigurationServicePositions.interface';
 import { SiteConfigFormInterface } from './content/configuration/cloud/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/cloud/site-robot-config/SiteRobotConfig.interface';
+import { SiteConfigurationColdCallsFormInterface } from './content/configuration/cold-calls/SiteConfigurationColdCalls.interface';
 import { SiteConfigurationMarketingRidesFormInterface } from './content/configuration/marketing-rides/SiteConfigurationMarketingRides.interface';
 import { SitePerformancePayloadInterface } from './content/performance/SitePerformance.interface';
 import { SitePhoneCallsListPayloadInterface } from './content/phone-calls/list/SitePhoneCallsList.interface';
@@ -926,6 +927,35 @@ class SitesService {
 								?.sort()
 								?.map(Number)
 						}))
+				}
+			}
+		});
+	};
+
+	/**
+	 * update cold calls
+	 * @param siteId
+	 * @param payload
+	 * @returns
+	 */
+	siteColdCallsUpdate = (siteId: string, payload: SiteConfigurationColdCallsFormInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
+			':siteId',
+			siteId
+		);
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'sites',
+				id: siteId,
+				attributes: {
+					coldCallsConfigs: {
+						schedule: {
+							startTimeLocal: payload.startTimeLocal,
+							endTimeLocal: payload.endTimeLocal,
+							days: payload.days
+						},
+						enabled: payload.enabled
+					}
 				}
 			}
 		});

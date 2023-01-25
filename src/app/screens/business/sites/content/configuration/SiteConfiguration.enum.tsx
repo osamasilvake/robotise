@@ -1,6 +1,7 @@
 export enum SiteConfigurationTabsTypeEnum {
 	CLOUD = 'cloud',
-	MARKETING_RIDES = 'marketing-rides'
+	MARKETING_RIDES = 'marketing-rides',
+	COLD_CALLS = 'cold-calls'
 }
 
 export enum SiteConfigurationConfirmationTypeEnum {

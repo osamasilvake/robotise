@@ -72,6 +72,14 @@ export interface ISite {
 		buildingId?: string;
 		deviceId?: string;
 	};
+	coldCallsConfigs?: {
+		enabled: boolean;
+		schedule: {
+			startTimeLocal: string;
+			endTimeLocal: string;
+			days: string[];
+		};
+	};
 	robots: {
 		id: string;
 	}[];

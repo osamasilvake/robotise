@@ -314,6 +314,12 @@
 							"ERROR": "Unable to update configuration!"
 						}
 					},
+					"COLD_CALLS": {
+						"UPDATE": {
+							"SUCCESS": "Configuration has been updated successfully!",
+							"ERROR": "Unable to update configuration!"
+						}
+					},
 					"SITE": {
 						"CREATED": "Sync command was sent. Waiting for response!",
 						"SUCCESS": "Section was synced successfully!",
@@ -1014,7 +1020,8 @@
 				"CONFIGURATION": {
 					"MAIN": "Configuration",
 					"CLOUD": "Cloud",
-					"MARKETING_RIDES": "Marketing Rides"
+					"MARKETING_RIDES": "Marketing Rides",
+					"COLD_CALLS": "Cold Calls"
 				}
 			},
 			"DETAIL": {
@@ -1663,6 +1670,38 @@
 									"INVALID": "Only 0-59 are allowed with comma separated, ex:10,25,50",
 									"DUPLICATE": "Duplicate values found!",
 									"MAX_LIMIT_EXCEEDED": "Maximum 4 entries per hour are allowed!"
+								}
+							}
+						},
+						"BUTTONS": {
+							"UPDATE": "Update"
+						}
+					}
+				},
+				"COLD_CALLS": {
+					"LOCATIONS": "Locations",
+					"WEEKDAYS": "Weekdays",
+					"TIMES": "Times",
+					"FORM": {
+						"FIELDS": {
+							"ENABLED": {
+								"LABEL": "Activate"
+							},
+							"START_TIME": {
+								"LABEL": "Start Time Local",
+								"PLACEHOLDER": "Enter Start Time",
+								"VALIDATIONS": {
+									"REQUIRED": "Field is required!",
+									"INVALID": "Invalid Time!",
+									"NOT_ALLOWED": "Time Exceed End Time!"
+								}
+							},
+							"END_TIME": {
+								"LABEL": "End Time Local",
+								"PLACEHOLDER": "Enter End Time",
+								"VALIDATIONS": {
+									"REQUIRED": "Field is required!",
+									"INVALID": "Invalid Time!"
 								}
 							}
 						},

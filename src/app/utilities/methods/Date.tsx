@@ -183,6 +183,16 @@ const dateAdd = (val: number, unit: DurationUnitType) => {
 	return dayjs().add(val, unit);
 };
 
+/**
+ * date is after another date
+ * @param date1
+ * @param date2
+ * @returns
+ */
+const dateIsAfter = (date1: string, date2: string) => {
+	return dayjs(date1).isAfter(dayjs(date2));
+};
+
 export {
 	dateAdd,
 	dateCurrentYear,
@@ -197,6 +207,7 @@ export {
 	dateFormat7,
 	dateFormat8,
 	dateFromToDiff,
+	dateIsAfter,
 	dateISOString,
 	dateLocale,
 	dateMinsPriorToDate,

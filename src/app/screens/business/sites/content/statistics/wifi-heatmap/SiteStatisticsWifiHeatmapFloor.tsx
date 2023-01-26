@@ -22,7 +22,7 @@ const SiteStatisticsWifiHeatmapFloor: FC<SiteStatisticsWifiHeatmapFloorInterface
 	 */
 	const handleFloor = (event: SelectChangeEvent) => {
 		const floor = event.target.value;
-		const name = wifiHeatmap.content?.maps?.data?.find((f) => f.floor === floor)?.name;
+		const name = wifiHeatmap.content?.maps?.data?.find((f) => f.floorName === floor)?.name;
 
 		// set floor
 		setFloor(floor);
@@ -50,8 +50,8 @@ const SiteStatisticsWifiHeatmapFloor: FC<SiteStatisticsWifiHeatmapFloorInterface
 				value={floor}
 				onChange={handleFloor}>
 				{wifiHeatmap.content?.maps?.data.map((map) => (
-					<MenuItem key={map.name} value={map.floor}>
-						{map.floor}
+					<MenuItem key={map.name} value={map.floorName}>
+						{map.floorName}
 					</MenuItem>
 				))}
 			</Select>

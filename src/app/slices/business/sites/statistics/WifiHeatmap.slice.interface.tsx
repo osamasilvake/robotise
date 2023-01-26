@@ -25,7 +25,7 @@ export interface SWCMapsInterface {
 }
 
 export interface SWCMapsDataInterface {
-	floor: string;
+	floorName: string;
 	imagePath: string;
 	name: string;
 	origin: number[];

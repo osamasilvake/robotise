@@ -774,6 +774,7 @@ class SitesService {
 						showEmergencyWorkflow: payload.showEmergencyWorkflow,
 						showPerformanceDashboard: payload.showPerformanceDashboard,
 						showMarketingRides: payload?.showMarketingRides,
+						showColdCalls: payload?.showColdCalls,
 						isHidden: payload.isHidden
 					},
 					elevators:

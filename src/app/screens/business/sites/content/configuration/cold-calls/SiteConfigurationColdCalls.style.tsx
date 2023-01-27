@@ -18,6 +18,9 @@ export const SiteConfigurationColdCallsStyle = makeStyles((theme: Theme) => ({
 	sTimes: {
 		marginTop: theme.spacing(2)
 	},
+	sUpdate: {
+		marginTop: theme.spacing(2)
+	},
 	sFormControl: {
 		marginTop: theme.spacing(1)
 	}

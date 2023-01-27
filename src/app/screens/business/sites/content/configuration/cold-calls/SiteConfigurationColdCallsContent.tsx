@@ -146,7 +146,7 @@ const SiteConfigurationColdCallsContent: FC = () => {
 						</Box>
 
 						{/* Update */}
-						<Box textAlign="right">
+						<Box textAlign="right" className={classes.sUpdate}>
 							<Button
 								variant="outlined"
 								type="submit"

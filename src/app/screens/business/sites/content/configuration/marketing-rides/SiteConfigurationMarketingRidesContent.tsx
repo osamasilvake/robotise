@@ -177,7 +177,7 @@ const SiteConfigurationMarketingRidesContent: FC<
 									</Box>
 								))}
 							</Box>
-							<Box>
+							<Box className={classes.sUpdate}>
 								<Grid item sm={12} textAlign="right">
 									<Button
 										variant="outlined"

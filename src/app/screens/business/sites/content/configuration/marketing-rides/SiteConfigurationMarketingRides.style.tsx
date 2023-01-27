@@ -39,6 +39,9 @@ export const SiteConfigurationMarketingRidesStyle = makeStyles((theme: Theme) =>
 	sTimeLabel: {
 		width: theme.typography.pxToRem(80)
 	},
+	sUpdate: {
+		marginTop: theme.spacing(2)
+	},
 	sFormControl: {
 		marginTop: theme.spacing(1)
 	}

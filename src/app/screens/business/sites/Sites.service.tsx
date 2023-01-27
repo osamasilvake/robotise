@@ -933,6 +933,50 @@ class SitesService {
 	};
 
 	/**
+	 * fetch cold calls locations
+	 * @param siteId
+	 * @returns
+	 */
+	siteColdCallsLocationsFetch = (siteId: string) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.COLD_CALLS.LOCATIONS;
+		return HttpClientService.get<SiteMarketingRidesAxiosGetInterface>(url, {
+			params: {
+				'filter[site]': siteId
+			}
+		});
+	};
+
+	/**
+	 * update cold calls locations
+	 * @param siteId
+	 * @param coldCallId
+	 * @param payload
+	 * @returns
+	 */
+	siteColdCallsLocationsUpdate = (siteId: string, coldCallId: string, locations: string[]) => {
+		const url =
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.COLD_CALLS.LOCATIONS;
+
+		const payload = {
+			data: {
+				type: 'cold-calls',
+				id: siteId,
+				attributes: {
+					locations: locations?.map((l) => ({ location: l }))
+				},
+				relationships: {
+					site: { data: { type: 'sites', id: siteId } }
+				}
+			}
+		};
+
+		return coldCallId
+			? HttpClientService.patch(`${url}/${coldCallId}`, payload)
+			: HttpClientService.post(url, payload);
+	};
+
+	/**
 	 * update cold calls
 	 * @param siteId
 	 * @param payload

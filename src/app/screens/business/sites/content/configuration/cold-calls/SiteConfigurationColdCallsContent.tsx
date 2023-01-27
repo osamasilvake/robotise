@@ -9,7 +9,7 @@ import {
 	Switch,
 	Typography
 } from '@mui/material';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -17,10 +17,11 @@ import { useParams } from 'react-router-dom';
 import { AppDispatch } from '../../../../../../slices';
 import {
 	coldCallsSelector,
-	SiteColdCallsFetchList,
+	SiteColdCallsLocationsFetchList,
+	SiteColdCallsLocationsUpdate,
 	SiteColdCallsUpdate
 } from '../../../../../../slices/business/sites/configuration/cold-calls/ColdCalls.slice';
-import { SitesFetchList } from '../../../../../../slices/business/sites/Sites.slice';
+import { SitesFetchList, sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../../../../utilities/methods/Object';
 import { timeout } from '../../../../../../utilities/methods/Timeout';
@@ -28,6 +29,7 @@ import { SiteParamsInterface } from '../../../Site.interface';
 import { SiteConfigurationColdCallsFormInterface } from './SiteConfigurationColdCalls.interface';
 import { SiteConfigurationColdCallsStyle } from './SiteConfigurationColdCalls.style';
 import { SiteConfigurationColdCallsValidation } from './SiteConfigurationColdCalls.validation';
+import SiteConfigurationColdCallsAutocomplete from './SiteConfigurationColdCallsAutocomplete';
 import SiteConfigurationColdCallsCheckbox from './SiteConfigurationColdCallsCheckbox';
 import SiteConfigurationColdCallsTimes from './SiteConfigurationColdCallsTimes';
 
@@ -36,19 +38,24 @@ const SiteConfigurationColdCallsContent: FC = () => {
 	const classes = SiteConfigurationColdCallsStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
+	const sites = useSelector(sitesSelector);
 	const coldCalls = useSelector(coldCallsSelector);
+
+	const locations = coldCalls.content?.data[0]?.locations || [];
+	const [updateLocations, setUpdateLocations] = useState(locations?.map((l) => l.location));
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
-	const coldCall = coldCalls.content?.data;
-
+	const cSiteId = params.siteId;
+	const siteSingle = sites.content?.dataById[cSiteId];
+	const coldCall = siteSingle?.coldCallsConfigs;
+	const coldCallId = coldCalls.content?.data[0]?.id || '';
 	const initial = {
 		enabled: !!coldCall?.enabled,
 		startTimeLocal: coldCall?.schedule?.startTimeLocal || '',
 		endTimeLocal: coldCall?.schedule?.endTimeLocal || '',
 		days: coldCall?.schedule?.days || []
 	};
-	const cSiteId = params.siteId;
 	const translation = 'CONTENT.CONFIGURATION.COLD_CALLS';
 
 	const {
@@ -63,6 +70,9 @@ const SiteConfigurationColdCallsContent: FC = () => {
 		initial,
 		SiteConfigurationColdCallsValidation,
 		async () => {
+			// dispatch: update cold calls locations
+			cSiteId && dispatch(SiteColdCallsLocationsUpdate(cSiteId, coldCallId, updateLocations));
+
 			// dispatch: update cold calls
 			cSiteId &&
 				dispatch(
@@ -73,8 +83,8 @@ const SiteConfigurationColdCallsContent: FC = () => {
 						// wait
 						await timeout(500);
 
-						// dispatch: fetch cold calls
-						dispatch(SiteColdCallsFetchList(cSiteId));
+						// dispatch: fetch cold calls locations
+						dispatch(SiteColdCallsLocationsFetchList(cSiteId, true));
 					})
 				);
 		}
@@ -104,7 +114,13 @@ const SiteConfigurationColdCallsContent: FC = () => {
 
 						{/* Locations */}
 						<Typography variant="h6">{t(`${translation}.LOCATIONS`)}</Typography>
-						<Box className={classes.sLocations}>---</Box>
+						<Box className={classes.sLocations}>
+							<SiteConfigurationColdCallsAutocomplete
+								updateLocations={updateLocations}
+								setUpdateLocations={setUpdateLocations}
+								handleBlur={handleBlur}
+							/>
+						</Box>
 
 						{/* Weekdays */}
 						<Typography variant="h6">{t(`${translation}.WEEKDAYS`)}</Typography>

@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent } from 'react';
+import { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from 'react';
 
 import { TargetInterface } from '../../../../../../utilities/hooks/form/UseForm.interface';
 
@@ -10,10 +10,9 @@ export interface SiteConfigurationColdCallsFormInterface {
 }
 
 export interface SiteConfigurationColdCallsAutocompleteInterface {
-	locations: string[];
-	handleChangeInputs: (id: string, values: string[]) => void;
+	updateLocations: string[];
+	setUpdateLocations: Dispatch<SetStateAction<string[]>>;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
-	errors: string[];
 }
 
 export interface SiteConfigurationColdCallsCheckboxInterface {

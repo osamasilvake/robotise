@@ -11,17 +11,21 @@ export interface SliceColdCallsInterface {
 }
 
 export interface CCContentInterface extends JsonAPIResponseInterface {
-	data: CCContentDataInterface;
+	data: CCContentDataInterface[];
 	state?: CCContentStateInterface;
 }
 
 export interface CCContentDataInterface {
-	enabled: boolean;
-	schedule: {
-		startTimeLocal: string;
-		endTimeLocal: string;
-		days: string[];
-	};
+	id: string;
+	locations: CCContentDataLocationsInterface[];
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export interface CCContentDataLocationsInterface {
+	location: string;
+	priority: number;
+	lastExecuted: string;
 }
 
 export interface CCContentStateInterface {

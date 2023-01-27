@@ -83,6 +83,9 @@ const AppServices = (config: typeof AppConfigService) => {
 							ALL: `${config.envAppUrl}/marketing-rides`,
 							SINGLE: `${config.envAppUrl}/marketing-rides/:marketingRideId`
 						},
+						COLD_CALLS: {
+							LOCATIONS: `${config.envAppUrl}/cold-calls`
+						},
 						SITE_CONFIGS: {
 							ALL: `${config.envAppUrl}/robot-configs`,
 							SINGLE: `${config.envAppUrl}/robot-configs/:configId`

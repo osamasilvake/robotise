@@ -9,7 +9,7 @@ import PageError from '../../../../../../components/content/page-error/PageError
 import { AppDispatch } from '../../../../../../slices';
 import {
 	coldCallsSelector,
-	SiteColdCallsFetchList
+	SiteColdCallsLocationsFetchList
 } from '../../../../../../slices/business/sites/configuration/cold-calls/ColdCalls.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteConfigurationColdCallsContent from './SiteConfigurationColdCallsContent';
@@ -26,8 +26,8 @@ const SiteConfigurationColdCalls: FC = () => {
 	useEffect(() => {
 		if (pColdCallsSiteId === cSiteId) return;
 
-		// dispatch: fetch cold calls
-		dispatch(SiteColdCallsFetchList(cSiteId));
+		// dispatch: fetch cold calls locations
+		dispatch(SiteColdCallsLocationsFetchList(cSiteId));
 	}, [dispatch, pColdCallsSiteId, cSiteId]);
 
 	// loader

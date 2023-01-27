@@ -7,7 +7,8 @@ import SitesService from '../../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../../utilities/methods/Timeout';
 import { RootState } from '../../../..';
 import { triggerMessage } from '../../../../app/App.slice';
-import { SliceColdCallsInterface } from './ColdCalls.slice.interface';
+import { deserializeColdCalls } from './ColdCalls.slice.deserialize';
+import { CCContentInterface, SliceColdCallsInterface } from './ColdCalls.slice.interface';
 
 // initial state
 export const initialState: SliceColdCallsInterface = {
@@ -68,29 +69,77 @@ export const coldCallsSelector = (state: RootState) => state['coldCalls'];
 export default dataSlice.reducer;
 
 /**
- * fetch cold calls
+ * fetch cold calls locations
  * @param siteId
+ * @param refresh
  * @returns
  */
-export const SiteColdCallsFetchList =
-	(siteId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+export const SiteColdCallsLocationsFetchList =
+	(siteId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => RootState) => {
 		// states
 		const states = getState();
-		const sites = states.sites;
+		const coldCalls = states.coldCalls;
 
-		// cold calls
-		const site = sites.content?.dataById[siteId];
-		const coldCalls = site?.coldCallsConfigs;
+		// return on busy
+		if (coldCalls && (coldCalls.loader || coldCalls.loading)) {
+			return;
+		}
 
-		// dispatch: success
-		dispatch(
-			success({
-				data: coldCalls,
-				state: {
-					pSiteId: siteId
-				}
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
+
+		return SitesService.siteColdCallsLocationsFetch(siteId)
+			.then(async (res) => {
+				// deserialize response
+				const result: CCContentInterface = await deserializeColdCalls(res);
+
+				// dispatch: success
+				dispatch(
+					success({
+						...result,
+						state: {
+							pSiteId: siteId
+						}
+					})
+				);
 			})
-		);
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'cold-calls-locations-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'PAGE_ERROR.DESCRIPTION'
+				};
+
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
+
+/**
+ * update cold calls locations
+ * @param siteId
+ * @param coldCallId
+ * @param locations
+ * @returns
+ */
+export const SiteColdCallsLocationsUpdate =
+	(siteId: string, coldCallId: string, locations: string[]) => async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		// update cold calls
+		return SitesService.siteColdCallsLocationsUpdate(siteId, coldCallId, locations)
+			.then(async () => {
+				// dispatch: updated
+				dispatch(updated());
+			})
+			.catch(() => {
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
 	};
 
 /**

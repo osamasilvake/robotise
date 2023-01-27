@@ -12,11 +12,11 @@ export const SiteConfigurationMarketingRidesStyle = makeStyles((theme: Theme) =>
 		top: 0
 	},
 	sLocations: {
-		marginBottom: theme.spacing(2),
+		marginBottom: theme.spacing(3),
 		maxWidth: theme.typography.pxToRem(400)
 	},
 	sTimes: {
-		marginTop: theme.spacing(2)
+		marginTop: theme.spacing(3)
 	},
 	sTimesList: {
 		columnCount: 4,
@@ -40,7 +40,7 @@ export const SiteConfigurationMarketingRidesStyle = makeStyles((theme: Theme) =>
 		width: theme.typography.pxToRem(80)
 	},
 	sUpdate: {
-		marginTop: theme.spacing(2)
+		marginTop: theme.spacing(3)
 	},
 	sFormControl: {
 		marginTop: theme.spacing(1)

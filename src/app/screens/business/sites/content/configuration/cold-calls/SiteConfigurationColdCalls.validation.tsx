@@ -10,6 +10,8 @@ import { SiteConfigurationColdCallsFormInterface } from './SiteConfigurationCold
 /**
  * validation
  * @param values
+ * @param touched
+ * @returns
  */
 export const SiteConfigurationColdCallsValidation = (
 	values: SiteConfigurationColdCallsFormInterface,

@@ -7,6 +7,7 @@ import {
 /**
  * validation
  * @param values
+ * @returns
  */
 export const SiteConfigurationMarketingRidesValidation = (
 	values: SiteConfigurationMarketingRidesFormInterface

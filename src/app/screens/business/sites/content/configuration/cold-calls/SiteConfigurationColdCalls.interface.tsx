@@ -25,5 +25,6 @@ export interface SiteConfigurationColdCallsTimesInterface {
 	startTimeLocal: string;
 	endTimeLocal: string;
 	handleChangeInput: (event: ChangeEvent<HTMLInputElement> | TargetInterface) => void;
+	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
 	errors?: SiteConfigurationColdCallsFormInterface;
 }

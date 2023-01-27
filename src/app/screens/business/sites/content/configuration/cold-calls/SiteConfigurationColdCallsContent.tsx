@@ -52,6 +52,7 @@ const SiteConfigurationColdCallsContent: FC = () => {
 	const translation = 'CONTENT.CONFIGURATION.COLD_CALLS';
 
 	const {
+		handleBlur,
 		handleChangeInput,
 		handleChangeInputs,
 		handleChangeCheckbox,
@@ -62,7 +63,6 @@ const SiteConfigurationColdCallsContent: FC = () => {
 		initial,
 		SiteConfigurationColdCallsValidation,
 		async () => {
-			console.log(values);
 			// dispatch: update cold calls
 			cSiteId &&
 				dispatch(
@@ -122,6 +122,7 @@ const SiteConfigurationColdCallsContent: FC = () => {
 						<Box>
 							<SiteConfigurationColdCallsTimes
 								handleChangeInput={handleChangeInput}
+								handleBlur={handleBlur}
 								startTimeLocal={values.startTimeLocal}
 								endTimeLocal={values.endTimeLocal}
 								errors={errors}

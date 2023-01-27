@@ -1687,6 +1687,10 @@
 							"ENABLED": {
 								"LABEL": "Activate"
 							},
+							"LOCATIONS": {
+								"LABEL": "Locations",
+								"PLACEHOLDER": "Select Locations"
+							},
 							"START_TIME": {
 								"LABEL": "Start Time Local",
 								"PLACEHOLDER": "Enter Start Time",

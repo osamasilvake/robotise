@@ -23,7 +23,7 @@ const SiteConfigurationColdCallsAutocomplete: FC<
 	const siteSingle = sites.content?.dataById[cSiteId];
 	const whitelist = siteSingle?.rooms?.whitelist || [];
 
-	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
+	const translation = 'CONTENT.CONFIGURATION.COLD_CALLS';
 	const label = t(`${translation}.FORM.FIELDS.LOCATIONS.LABEL`);
 	const placeholder = t(`${translation}.FORM.FIELDS.LOCATIONS.PLACEHOLDER`);
 

@@ -576,7 +576,7 @@
 				"service-position": "Service Position",
 				"marketing-ride": "Marketing Ride",
 				"cold-call": "Cold Call",
-				"kiosk-call": "Kiosk"
+				"kiosk": "Kiosk"
 			},
 			"ORDERS": {
 				"DETAIL": {

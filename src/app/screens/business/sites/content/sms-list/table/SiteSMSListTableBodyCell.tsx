@@ -68,17 +68,10 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 								}
 							</Icon>
 							<Typography variant="body2" className={classes.sHistoryEvent}>
-								{t(historyMapped[index].event)}:
+								{t(historyMapped[index].event)}
 							</Typography>
 							{item.details && (
 								<>
-									{item.event !== 'orderAssigned' && (
-										<Typography
-											variant="body2"
-											className={classes.sHistoryDetails}>
-											{item.details}
-										</Typography>
-									)}
 									{item.event === 'orderAssigned' && (
 										<Link
 											component={RouterLink}

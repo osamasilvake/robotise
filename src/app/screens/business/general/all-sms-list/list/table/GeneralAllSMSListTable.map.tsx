@@ -14,11 +14,7 @@ export const mapSMSItem = (smsItem: ASLDataInterface) => {
 	const translation = 'COMMON.SMS_LIST.LIST.TABLE.VALUES';
 	return {
 		...smsItem,
-		status: `${translation}.STATUS.${smsItem.status}`,
-		history: smsItem.history.map((item) => ({
-			...item,
-			event: `${translation}.HISTORY.EVENT.${item.event}`
-		}))
+		status: `${translation}.STATUS.${smsItem.status}`
 	};
 };
 

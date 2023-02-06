@@ -900,14 +900,6 @@
 								"dummy": "Dummy"
 							},
 							"HISTORY": {
-								"EVENT": {
-									"approved": "Approved",
-									"confirmed": "Confirmed",
-									"orderAssigned": "Order Assigned",
-									"rejected": "Rejected",
-									"error": "Error",
-									"statusUpdated": "Status"
-								},
 								"ORDER_DETAIL": "Detail"
 							}
 						}
@@ -953,7 +945,8 @@
 									"created": "Created",
 									"processed": "Processed",
 									"delivered": "Delivered",
-									"bounce": "Bounce"
+									"bounce": "Bounce",
+									"deferred": "Deferred"
 								}
 							},
 							"NOTIFICATION_CODE": {
@@ -961,7 +954,8 @@
 								"new-purchase": "New Purchase",
 								"order-no-person-interaction": "Order no person Interaction",
 								"low-rating-alert": "Low Rating Alert",
-								"robot-in-emergency-state": "Robot in Emergency State"
+								"robot-in-emergency-state": "Robot in Emergency State",
+								"low-inventory": "Low Inventory"
 							}
 						}
 					}

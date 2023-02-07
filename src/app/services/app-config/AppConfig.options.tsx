@@ -302,7 +302,6 @@ const AppOptions = (config: typeof AppConfigService) => {
 			integerAndComma: new RegExp(/^(\d+(,\d+)*)?$/),
 			integersAndChars: new RegExp(/^[A-Za-z0-9]*$/),
 			skipLastSlashes: new RegExp(/\/+$/),
-			rooms: new RegExp(/\b[0-9]+([-,]+[0-9]*)?\b$/),
 			roomsMapping: new RegExp(/^\S([0-9a-zA-Z]{1,8}[:][0-9a-zA-Z]{1,8}(,?)(\s{0,1}))+$/),
 			phoneNumbersCommaSeparated: new RegExp(/^\+\d{8,14}(,\s{0,1}\+\d{8,14})*$/),
 			phoneNumberBeautifier: new RegExp(/^(.{3})(\d{4})(\d{4})(\d{1,3})$/),

@@ -1118,30 +1118,6 @@
 						"INACTIVE": {
 							"LABEL": "Inactive rooms only"
 						},
-						"MODIFY": {
-							"LABEL": "Modify Rooms",
-							"TITLE": "Modify Rooms",
-							"TEXT": "Modify Rooms configuration.",
-							"FORM": {
-								"FIELDS": {
-									"WHITELIST": {
-										"LABEL": "Whitelist",
-										"PLACEHOLDER": "Whitelisted rooms. Format: 101, 102, 105-110",
-										"VALIDATIONS": {
-											"INVALID": "Wrong format!"
-										}
-									},
-									"BLOCKED": {
-										"LABEL": "Blocked",
-										"PLACEHOLDER": "Blocked rooms. Format: 101, 102, 105-110",
-										"VALIDATIONS": {
-											"INVALID": "Wrong format!",
-											"SIMILAR": "Looks like Whitelist and Blocked rooms have a common room!"
-										}
-									}
-								}
-							}
-						},
 						"SEARCH": {
 							"LABEL": "Search room",
 							"PLACEHOLDER": "Search room"

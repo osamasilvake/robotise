@@ -5,7 +5,6 @@ import { SiteRoomsActionsInterface } from './SiteRoomsActions.interface';
 import { SiteRoomsActionsStyle } from './SiteRoomsActions.style';
 import SiteRoomsActiveRooms from './SiteRoomsActiveRooms';
 import SiteRoomsInactiveRooms from './SiteRoomsInactiveRooms';
-import SiteRoomsModifyRooms from './SiteRoomsModifyRooms';
 import SiteRoomsSearchRooms from './SiteRoomsSearchRooms';
 
 const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
@@ -33,9 +32,6 @@ const SiteRoomsActions: FC<SiteRoomsActionsInterface> = (props) => {
 					alignItems="center"
 					justifyContent="space-between"
 					flexWrap="wrap">
-					{/* Modify Rooms */}
-					<SiteRoomsModifyRooms />
-
 					{/* Search Rooms */}
 					<SiteRoomsSearchRooms
 						active={active}

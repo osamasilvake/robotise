@@ -22,6 +22,12 @@ export const columns: RobotElevatorCallsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: RobotElevatorCallsTableColumnsTypeEnum.VENDOR,
+		label: `${translation}.VENDOR`,
+		minWidth: 120,
+		align: 'left'
+	},
+	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.SRC_AREA_ID,
 		label: `${translation}.SRC_AREA_ID`,
 		minWidth: 110,

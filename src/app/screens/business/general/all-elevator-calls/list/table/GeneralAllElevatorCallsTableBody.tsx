@@ -38,6 +38,7 @@ const GeneralAllElevatorCallsTableBody: FC<GeneralAllElevatorCallsTableBodyInter
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.API_STATUS:
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.E2E_STATUS:
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.CALL_TYPE:
+			case GeneralAllElevatorCallsTableColumnsTypeEnum.VENDOR:
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.SRC_AREA_ID:
 			case GeneralAllElevatorCallsTableColumnsTypeEnum.DST_AREA_ID:
 				type = GeneralAllElevatorCallsTableSortTypeEnum.STRING;

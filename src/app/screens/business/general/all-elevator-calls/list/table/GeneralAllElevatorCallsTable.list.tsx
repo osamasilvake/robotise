@@ -28,6 +28,12 @@ export const columns: GeneralAllElevatorCallsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: GeneralAllElevatorCallsTableColumnsTypeEnum.VENDOR,
+		label: `${translation}.VENDOR`,
+		minWidth: 120,
+		align: 'left'
+	},
+	{
 		id: GeneralAllElevatorCallsTableColumnsTypeEnum.SRC_AREA_ID,
 		label: `${translation}.SRC_AREA_ID`,
 		minWidth: 110,

@@ -9,12 +9,6 @@ export const mapPhoneConfig = (phoneConfig: PCCDataInterface) => ({
 	...phoneConfig,
 	prefixes: phoneConfig.prefixes.join(', '),
 	disableRoomsCallback: phoneConfig.disableRoomsCallback.join(', '),
-	roomsMapping:
-		phoneConfig.roomsMapping &&
-		Object.entries(phoneConfig.roomsMapping).map(([key, value]) => ({
-			key,
-			value
-		})),
 	messages:
 		phoneConfig.messages &&
 		Object.entries(phoneConfig.messages).map(([key, value]) => ({

@@ -1203,13 +1203,6 @@
 									"FROM": {
 										"LABEL": "From"
 									},
-									"ROOMS_MAPPING": {
-										"LABEL": "Rooms Mapping",
-										"PLACEHOLDER": "Format: [mapping:room] 501:932, 349:1412",
-										"VALIDATIONS": {
-											"INVALID": "Invalid format"
-										}
-									},
 									"OUTBOUND_PATTERN": {
 										"LABEL": "Outbound Pattern",
 										"PLACEHOLDER": "Example: sip:12345%room%@robotise.eu"
@@ -1233,7 +1226,6 @@
 						"MODE": "Mode",
 						"PREFIXES": "Prefixes",
 						"FROM": "From",
-						"ROOMS_MAPPING": "Rooms Mapping",
 						"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback",
 						"CALLBACK_RETRIES": "Callback Retries",
 						"SMS_GATEWAY": "SMS Gateway",

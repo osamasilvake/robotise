@@ -290,7 +290,6 @@ class SitesService {
 						? prefixes?.split(',').map((e: string) => e.trim())
 						: [],
 					from: payload?.from,
-					roomsMapping: payload?.roomsMapping,
 					sip: { outboundPattern: payload?.outboundPattern || '' },
 					callbackRetries: payload?.callbackRetries,
 					smsGateway: payload?.smsGateway,

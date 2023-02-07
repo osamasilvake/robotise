@@ -30,13 +30,8 @@ export interface PCCDataInterface {
 	callbackRetries: number;
 	smsGateway: string;
 	sip: { outboundPattern: string };
-	roomsMapping: PCCDataRoomsMappingInterface;
 	messages: PCCDataMessagesInterface;
 	smsMessages: PCCDataMessagesInterface;
-}
-
-export interface PCCDataRoomsMappingInterface {
-	[key: number]: string;
 }
 
 export interface PCCDataMessagesInterface {

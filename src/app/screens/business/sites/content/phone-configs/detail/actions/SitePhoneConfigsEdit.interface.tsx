@@ -11,15 +11,10 @@ export interface DialogEditPhoneConfigFormInterface {
 	mode: string;
 	prefixes: string;
 	from: string;
-	roomsMapping: string | DialogEditPhoneConfigRoomsMappingInterface;
 	outboundPattern: string;
 	callbackRetries: string;
 	smsGateway: string;
 	smsMessages?: PCCDataMessagesInterface;
-}
-
-export interface DialogEditPhoneConfigRoomsMappingInterface {
-	[key: string]: string;
 }
 
 export interface DialogTestOutboundCallPhoneConfigInterface {

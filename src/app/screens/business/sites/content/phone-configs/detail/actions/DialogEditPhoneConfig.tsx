@@ -54,9 +54,6 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 	const cSiteId = params.siteId;
 	const orderModesList = generalOperations.orderModes.content?.data?.map((m) => m.mode);
 	const phoneConfig = phoneConfigs.content?.data[0];
-	const roomsMapping = Object.entries(phoneConfig?.roomsMapping || {})
-		.map(([key, value]) => `${key}:${value}`)
-		.join(', ');
 	const phoneNumbers = phoneConfigs?.content?.phoneNumbers;
 	const fromList = phoneNumbers && phoneNumbers[SitePhoneConfigsPhoneNumbersTypeEnum.VOICE];
 	const smsList = phoneNumbers && phoneNumbers[SitePhoneConfigsPhoneNumbersTypeEnum.SMS];
@@ -68,7 +65,6 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 				mode: phoneConfig?.mode || SiteEditConfigModeTypeEnum.MINI_BAR,
 				prefixes: phoneConfig?.prefixes?.join(', ') || '',
 				from: phoneConfig?.from || '',
-				roomsMapping: roomsMapping || '',
 				outboundPattern: phoneConfig?.sip?.outboundPattern || '',
 				callbackRetries: String(phoneConfig?.callbackRetries) || '0',
 				smsGateway: phoneConfig?.smsGateway || '',
@@ -76,29 +72,16 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 			},
 			EditPhoneConfigValidation,
 			async () => {
-				// rooms mapping
-				const splitRoomsMapping = String(values.roomsMapping || '')
-					.split(',')
-					.map((e: string) => e.trim());
-				const mappingsOutput = splitRoomsMapping.reduce(
-					(obj, item) => Object.assign(obj, { [item.split(':')[0]]: item.split(':')[1] }),
-					{}
-				);
-
 				// dispatch: edit phone config
 				phoneConfig?.id &&
 					dispatch(
-						PhoneConfigEdit(
-							phoneConfig.id,
-							{ ...values, roomsMapping: mappingsOutput },
-							() => {
-								// dispatch: fetch site phone configs
-								dispatch(PhoneConfigsFetch(cSiteId, true));
+						PhoneConfigEdit(phoneConfig.id, values, () => {
+							// dispatch: fetch site phone configs
+							dispatch(PhoneConfigsFetch(cSiteId, true));
 
-								// close dialog
-								setOpen(false);
-							}
-						)
+							// close dialog
+							setOpen(false);
+						})
 					);
 			}
 		);
@@ -158,27 +141,6 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 								</Select>
 							</FormControl>
 						)}
-
-						<FormControl fullWidth margin="normal">
-							<TextField
-								multiline
-								type="string"
-								id="roomsMapping"
-								name="roomsMapping"
-								rows={3}
-								label={t(`${translation}.FORM.FIELDS.ROOMS_MAPPING.LABEL`)}
-								placeholder={t(
-									`${translation}.FORM.FIELDS.ROOMS_MAPPING.PLACEHOLDER`
-								)}
-								value={values?.roomsMapping}
-								onChange={handleChangeInput}
-								onBlur={handleBlur}
-								error={!!errors?.roomsMapping}
-								helperText={
-									errors?.roomsMapping && t(errors.roomsMapping as string)
-								}
-							/>
-						</FormControl>
 
 						<Grid container spacing={1}>
 							<Grid item xs={12} sm={6}>

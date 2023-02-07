@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import ReadMore from '../../../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../../../services';
 import { SitePhoneConfigsGeneralInterface } from './SitePhoneConfigsGeneral.interface';
 import { mapPhoneConfig } from './SitePhoneConfigsGeneral.map';
@@ -13,8 +12,6 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 
 	const item = content?.data && mapPhoneConfig(content.data[0]);
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.GENERAL';
-
-	const roomsMapping = item?.roomsMapping?.map((ob) => `${ob.key}:${ob.value}`).join(' ') || '';
 
 	return item ? (
 		<Grid container spacing={1}>
@@ -49,20 +46,6 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				</Typography>
 				<Box>{item.callbackRetries || 0}</Box>
 			</Grid>
-
-			{/* Rooms Mapping */}
-			{item.roomsMapping && (
-				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.ROOMS_MAPPING`)}
-					</Typography>
-					{item.roomsMapping.length > 12 ? (
-						<ReadMore text={roomsMapping} />
-					) : (
-						<Typography>{roomsMapping}</Typography>
-					)}
-				</Grid>
-			)}
 
 			{/* Disable Rooms Callback */}
 			{item.disableRoomsCallback && (

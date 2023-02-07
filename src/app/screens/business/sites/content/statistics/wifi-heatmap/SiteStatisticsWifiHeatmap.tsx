@@ -27,7 +27,7 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 
 	const [period, setPeriod] = useState(SiteStatisticsWifiHeatmapPeriodsTypeEnum.LAST_WEEK);
 	const [floor, setFloor] = useState(wifiHeatmap.content?.maps?.state?.floor);
-	const [name, setName] = useState(wifiHeatmap.content?.maps?.state?.name);
+	const [mapId, setMapId] = useState(wifiHeatmap.content?.maps?.state?.mapId);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const pWifiHeatmapSiteId = wifiHeatmap.content?.maps?.state?.pSiteId;
@@ -37,18 +37,18 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 
 	useEffect(() => {
 		const condition1 = pWifiHeatmapSiteId && pWifiHeatmapSiteId === cSiteId;
-		const condition2 = floor && name;
+		const condition2 = floor && mapId;
 		if (condition1 && condition2) {
 			// dispatch: fetch wifi heatmap
-			dispatch(WifiHeatmapFetch(cSiteId, { floor, name, period }, true));
+			dispatch(WifiHeatmapFetch(cSiteId, { floor, mapId, period }, true));
 		}
-	}, [dispatch, pWifiHeatmapSiteId, cSiteId, floor, name, period]);
+	}, [dispatch, pWifiHeatmapSiteId, cSiteId, floor, mapId, period]);
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (wifiHeatmap.content && floor && name) {
+			if (wifiHeatmap.content && floor && mapId) {
 				// dispatch: fetch wifi heatmap
-				dispatch(WifiHeatmapFetch(cSiteId, { floor, name, period }, true));
+				dispatch(WifiHeatmapFetch(cSiteId, { floor, mapId, period }, true));
 			}
 		};
 
@@ -59,7 +59,7 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 				.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, wifiHeatmap.content, cSiteId, floor, name, period]);
+	}, [dispatch, wifiHeatmap.content, cSiteId, floor, mapId, period]);
 
 	return (
 		<Box>
@@ -83,7 +83,7 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 							wifiHeatmap={wifiHeatmap}
 							floor={floor}
 							setFloor={setFloor}
-							setName={setName}
+							setMapId={setMapId}
 						/>
 					</Grid>
 				</Grid>
@@ -97,11 +97,11 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 			)}
 
 			{/* Map & Screenshot */}
-			{wifiHeatmap && name && (
+			{wifiHeatmap && mapId && (
 				<Grid container className={classes.sMap}>
 					{/* Map */}
 					<Grid item xs={6} id="wifi-map">
-						<SiteStatisticsWifiHeatmapCard wifiHeatmap={wifiHeatmap} name={name} />
+						<SiteStatisticsWifiHeatmapCard wifiHeatmap={wifiHeatmap} mapId={mapId} />
 					</Grid>
 
 					{/* Screenshot */}

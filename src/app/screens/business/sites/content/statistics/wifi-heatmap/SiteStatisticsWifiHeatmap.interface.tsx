@@ -16,12 +16,12 @@ export interface SiteStatisticsWifiHeatmapFloorInterface {
 	wifiHeatmap: SliceWifiHeatmapInterface;
 	floor: string;
 	setFloor: Dispatch<SetStateAction<string | undefined>>;
-	setName: Dispatch<SetStateAction<string | undefined>>;
+	setMapId: Dispatch<SetStateAction<string | undefined>>;
 }
 
 export interface SiteStatisticsWifiHeatmapCardInterface {
 	wifiHeatmap: SliceWifiHeatmapInterface;
-	name: string;
+	mapId: string;
 }
 
 export interface SiteStatisticsWifiHeatmapRatioInterface {

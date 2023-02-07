@@ -15,7 +15,7 @@ import SiteStatisticsWifiHeatmapCardLegend from './SiteStatisticsWifiHeatmapCard
 import SiteStatisticsWifiHeatmapCardPoints from './SiteStatisticsWifiHeatmapCardPoints';
 
 const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> = (props) => {
-	const { wifiHeatmap, name } = props;
+	const { wifiHeatmap, mapId } = props;
 	const classes = SiteStatisticsWifiHeatmapStyle();
 	const cardClasses = CardStyle();
 
@@ -28,7 +28,7 @@ const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> 
 	const [points, setPoints] = useState<SiteStatisticsWifiHeatmapCoordinatesInterface[] | null>();
 
 	useEffect(() => {
-		const map = wifiHeatmap.content?.maps?.data?.find((m) => m.name === name);
+		const map = wifiHeatmap.content?.maps?.data?.find((m) => m.id === mapId);
 		const origin = map?.origin;
 		const resolution = map?.resolution;
 		if (origin && resolution && ratio) {
@@ -50,7 +50,7 @@ const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> 
 				setPoints([]);
 			}
 		}
-	}, [wifiHeatmap.content, name, ratio]);
+	}, [wifiHeatmap.content, mapId, ratio]);
 
 	/**
 	 * on image load
@@ -65,10 +65,10 @@ const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> 
 		});
 	}, []);
 
-	return name ? (
+	return mapId ? (
 		<Card square elevation={1} className={classes.cCard}>
 			<CardContent className={cardClasses.sCardContent0}>
-				<Picture src={robotLocationImageUrl(name)} alt={name} onLoad={onLoad} fullWidth />
+				<Picture src={robotLocationImageUrl(mapId)} alt={mapId} onLoad={onLoad} fullWidth />
 
 				{/* Legend */}
 				<SiteStatisticsWifiHeatmapCardLegend />

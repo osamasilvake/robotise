@@ -1,5 +1,5 @@
 export interface SiteWifiHeatmapPayloadInterface {
 	floor: string;
-	name: string;
+	mapId: string;
 	period: string;
 }

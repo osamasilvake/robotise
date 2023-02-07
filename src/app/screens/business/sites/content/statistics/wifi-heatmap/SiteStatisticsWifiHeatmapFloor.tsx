@@ -9,7 +9,7 @@ import { SWCMapsStateInterface } from '../../../../../../slices/business/sites/s
 import { SiteStatisticsWifiHeatmapFloorInterface } from './SiteStatisticsWifiHeatmap.interface';
 
 const SiteStatisticsWifiHeatmapFloor: FC<SiteStatisticsWifiHeatmapFloorInterface> = (props) => {
-	const { wifiHeatmap, floor, setFloor, setName } = props;
+	const { wifiHeatmap, floor, setFloor, setMapId } = props;
 	const { t } = useTranslation('SITES');
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -22,19 +22,19 @@ const SiteStatisticsWifiHeatmapFloor: FC<SiteStatisticsWifiHeatmapFloorInterface
 	 */
 	const handleFloor = (event: SelectChangeEvent) => {
 		const floor = event.target.value;
-		const name = wifiHeatmap.content?.maps?.data?.find((f) => f.floorName === floor)?.name;
+		const mapId = wifiHeatmap.content?.maps?.data?.find((f) => f.floorName === floor)?.id;
 
 		// set floor
 		setFloor(floor);
 
-		// set name
-		setName(name);
+		// set mapId
+		setMapId(mapId);
 
 		// dispatch: update state
 		const state: SWCMapsStateInterface = {
 			...wifiHeatmap.content?.maps?.state,
 			floor,
-			name
+			mapId
 		};
 		dispatch(WifiHeatmapState(state));
 	};

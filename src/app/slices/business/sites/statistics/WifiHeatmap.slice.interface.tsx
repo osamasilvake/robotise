@@ -25,6 +25,7 @@ export interface SWCMapsInterface {
 }
 
 export interface SWCMapsDataInterface {
+	id: string;
 	floorName: string;
 	imagePath: string;
 	name: string;
@@ -37,5 +38,5 @@ export interface SWCMapsDataInterface {
 export interface SWCMapsStateInterface {
 	pSiteId?: string;
 	floor?: string;
-	name?: string;
+	mapId?: string;
 }

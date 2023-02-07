@@ -37,6 +37,7 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 			case RobotElevatorCallsTableColumnsTypeEnum.API_STATUS:
 			case RobotElevatorCallsTableColumnsTypeEnum.E2E_STATUS:
 			case RobotElevatorCallsTableColumnsTypeEnum.CALL_TYPE:
+			case RobotElevatorCallsTableColumnsTypeEnum.VENDOR:
 			case RobotElevatorCallsTableColumnsTypeEnum.SRC_AREA_ID:
 			case RobotElevatorCallsTableColumnsTypeEnum.DST_AREA_ID:
 				type = RobotElevatorCallsTableSortTypeEnum.STRING;

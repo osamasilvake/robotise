@@ -764,6 +764,7 @@
 							"API_STATUS": "API Status",
 							"E2E_STATUS": "Status",
 							"CALL_TYPE": "Call Type",
+							"VENDOR": "vendor",
 							"SRC_AREA_ID": "Source",
 							"DST_AREA_ID": "Destination",
 							"HISTORY": "History",

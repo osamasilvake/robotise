@@ -46,13 +46,13 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 		RobotDetailLocationCardHumanIconCoordsInterface[]
 	>([]);
 
-	const robotTwinsMapName = robotTwins.location?.value.mapName || '';
+	const robotTwinsMapId = robotTwins.location?.value.mapId || '';
 	const robotMapUpdatedAt = robotOperations.map.content?.updatedAt;
 
 	useEffect(() => {
 		// dispatch: fetch robot map
-		dispatch(RobotMapFetch(robotTwinsMapName));
-	}, [dispatch, robotTwinsMapName]);
+		dispatch(RobotMapFetch(robotTwinsMapId));
+	}, [dispatch, robotTwinsMapId]);
 
 	useEffect(() => {
 		const origin = robotOperations.map.content?.origin;
@@ -128,14 +128,14 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 				<CardContent className={cardClasses.sCardContent0}>
 					<Box className={clsx({ [classes.sCardGridLines]: grid })}>
 						<Picture
-							src={robotLocationImageUrl(robotTwinsMapName, robotMapUpdatedAt)}
-							alt={robotTwinsMapName}
+							src={robotLocationImageUrl(robotTwinsMapId, robotMapUpdatedAt)}
+							alt={robotTwinsMapId}
 							onLoad={onLoad}
 							fullWidth
 						/>
 					</Box>
 
-					{robotTwinsMapName && (
+					{robotTwinsMapId && (
 						<>
 							{/* Planned Path */}
 							{plannedPath &&

@@ -55,7 +55,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 		const type = SitePerformanceDemographyTopProductsTableColumnsTypeEnum;
 		const price = topProduct[type.REVENUE];
 		const quantity = topProduct[type.QUANTITY];
-		const isDeleted = !!product?.isDeleted;
+		const deleted = !!product?.deleted;
 
 		switch (column.id) {
 			case SitePerformanceDemographyTopProductsTableColumnsTypeEnum.IMAGE:
@@ -66,7 +66,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 							className={clsx(classes.sImage, {
 								[classes.sImageBackground]: price === 1
 							})}
-							classes={{ img: isDeleted ? classes.sImageGrey : '' }}
+							classes={{ img: deleted ? classes.sImageGrey : '' }}
 							src={
 								(product && product[column.id]) ||
 								AppConfigService.AppImageURLs.logo.iconOff
@@ -75,7 +75,7 @@ const SitePerformanceDemographyTopProductsTable: FC<
 								(product && product.name) || AppConfigService.AppImageURLs.logo.name
 							}
 						/>
-						{isDeleted && (
+						{deleted && (
 							<Tooltip
 								title={t(
 									`${translation}.DEMOGRAPHY.TOP_PRODUCTS.TABLE.VALUES.DELETED`

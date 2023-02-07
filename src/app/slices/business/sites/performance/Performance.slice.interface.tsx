@@ -123,7 +123,7 @@ export interface SPContentTopProductsBucketDataInterface {
 	weight: number;
 	volume: string;
 	price: number;
-	isDeleted: boolean;
+	deleted: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 }

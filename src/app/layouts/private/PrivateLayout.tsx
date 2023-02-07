@@ -11,6 +11,7 @@ import { AppConfigService } from '../../services';
 import { AppDispatch } from '../../slices';
 import { appSelector } from '../../slices/app/App.slice';
 import { RobotTwinsSummaryFetchList } from '../../slices/business/robots/RobotTwinsSummary.slice';
+import { SiteElevatorVendorsFetch } from '../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { SitesFetchList } from '../../slices/business/sites/Sites.slice';
 import { PrivateLayoutStyle } from './PrivateLayout.style';
 
@@ -49,6 +50,11 @@ const PrivateLayout: FC<LayoutPageInterface> = (props) => {
 				AppConfigService.AppOptions.screens.business.robots.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
+	}, [dispatch]);
+
+	useEffect(() => {
+		// dispatch: fetch elevator vendors
+		dispatch(SiteElevatorVendorsFetch());
 	}, [dispatch]);
 
 	return (

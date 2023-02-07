@@ -67,10 +67,15 @@ export interface SHPContentDataInterface {
 
 export interface SEVContentInterface extends JsonAPIResponseInterface {
 	data: SEVContentDataInterface[];
+	dataById: SEVContentDataByIdInterface;
 }
 
 export interface SEVContentDataInterface {
 	title: string;
 	code: string;
 	active: boolean;
+}
+
+export interface SEVContentDataByIdInterface {
+	[key: string]: SEVContentDataInterface;
 }

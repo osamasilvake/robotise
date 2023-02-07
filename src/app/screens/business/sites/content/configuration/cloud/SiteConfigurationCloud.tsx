@@ -14,7 +14,6 @@ import { robotTwinsSummarySelector } from '../../../../../../slices/business/rob
 import {
 	siteCloudConfigurationSelector,
 	SiteCustomerNotificationTypesFetch,
-	SiteElevatorVendorsFetch,
 	SiteHelpPagesFetch,
 	SiteOrderOriginsFetch
 } from '../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
@@ -95,13 +94,6 @@ const SiteConfigurationCloud: FC = () => {
 		// dispatch: fetch help pages
 		dispatch(SiteHelpPagesFetch());
 	}, [dispatch, siteCloudConfiguration.helpPages?.content]);
-
-	useEffect(() => {
-		if (siteCloudConfiguration.elevatorVendors?.content !== null) return;
-
-		// dispatch: fetch elevator vendors
-		dispatch(SiteElevatorVendorsFetch());
-	}, [dispatch, siteCloudConfiguration.elevatorVendors?.content]);
 
 	// loader
 	if (robotTwinsSummary.loader || notifications.loader || servicePositions.loader) {

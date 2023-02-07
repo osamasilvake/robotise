@@ -26,6 +26,7 @@ import {
 	ElevatorCallsTemplateFetch
 } from '../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { siteCloudConfigurationSelector } from '../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { deepLinkSelector } from '../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
@@ -56,11 +57,14 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const elevatorCalls = useSelector(elevatorCallsSelector);
 	const deepLink = useSelector(deepLinkSelector);
+	const siteCloudConfiguration = useSelector(siteCloudConfigurationSelector);
 
 	const [templateIndex, setTemplateIndex] = useState(-1);
 
 	const cSiteId = elevatorCall?.site?.id;
 	const cRobotId = elevatorCall?.robot?.id;
+	const elevatorVendors = siteCloudConfiguration.elevatorVendors.content;
+	const vendorName = elevatorVendors?.dataById?.[elevatorCall?.vendor];
 	const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.VALUES';
 
 	/**
@@ -232,6 +236,8 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 								</Box>
 							</Tooltip>
 						);
+					} else if (GeneralAllElevatorCallsTableColumnsTypeEnum.VENDOR === column.id) {
+						return vendorName?.title || '';
 					}
 					return t(value);
 				}

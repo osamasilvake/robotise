@@ -23,6 +23,7 @@ import {
 	ElevatorCallsTemplateFetch
 } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice';
 import { ECCDataInterface } from '../../../../../../../slices/business/robots/elevator-calls/ElevatorCalls.slice.interface';
+import { siteCloudConfigurationSelector } from '../../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import DialogElevatorCallsManualTest from './DialogElevatorCallsManualTest';
@@ -46,15 +47,18 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	const dispatch = useDispatch<AppDispatch>();
 	const elevatorCalls = useSelector(elevatorCallsSelector);
 	const deepLink = useSelector(deepLinkSelector);
+	const siteCloudConfiguration = useSelector(siteCloudConfigurationSelector);
 
 	const [templateIndex, setTemplateIndex] = useState(-1);
 	const [manualEvents, setManualEvents] = useState(-1);
 
-	const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.VALUES';
+	const elevatorVendors = siteCloudConfiguration.elevatorVendors.content;
+	const vendorName = elevatorVendors?.dataById?.[elevatorCall?.vendor];
 	const isManualTest =
 		elevatorCall?.vendor === RobotElevatorCallsVendorTypeEnum.MANUAL_TEST &&
 		elevatorCall.status !== RobotElevatorCallsTableColumnStatusTypeEnum.FAILED &&
 		elevatorCall.status !== RobotElevatorCallsTableColumnStatusTypeEnum.SUCCESS;
+	const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.VALUES';
 
 	/**
 	 * copy template
@@ -219,6 +223,8 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 							</Box>
 						</Tooltip>
 					);
+				} else if (RobotElevatorCallsTableColumnsTypeEnum.VENDOR === column.id) {
+					return vendorName?.title || '';
 				}
 				return t(value);
 			}

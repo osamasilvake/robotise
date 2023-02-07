@@ -4,6 +4,10 @@ import {
 	DeserializerExtendedOptionsInterface,
 	JsonAPIResponseInterface
 } from '../../../../JsonAPI.interface';
+import {
+	SEVContentDataByIdInterface,
+	SEVContentDataInterface
+} from './SiteCloudConfiguration.slice.interface';
 
 /**
  * deserialize site cloud configuration
@@ -18,5 +22,13 @@ export const deserializeSiteCloudConfiguration = async <T extends JsonAPIRespons
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);
-	return { data, meta: payload.meta };
+	const dataById = data.reduce(
+		(acc: SEVContentDataByIdInterface, item: SEVContentDataInterface) => {
+			acc[item.code] = item;
+			return acc;
+		},
+		{}
+	);
+
+	return { data, dataById, meta: payload.meta };
 };

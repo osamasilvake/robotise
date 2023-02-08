@@ -28,7 +28,6 @@ import siteCloudConfiguration from './business/sites/configuration/cloud/SiteClo
 import coldCalls from './business/sites/configuration/cold-calls/ColdCalls.slice';
 import marketingRides from './business/sites/configuration/marketing-rides/MarketingRides.slice';
 import notifications from './business/sites/configuration/notifications/Notifications.slice';
-import servicePositions from './business/sites/configuration/service-positions/ServicePositions.slice';
 import siteConfiguration from './business/sites/configuration/site/SiteConfiguration.slice';
 import performance from './business/sites/performance/Performance.slice';
 import phoneCalls from './business/sites/phone-calls/PhoneCalls.slice';
@@ -64,7 +63,6 @@ const combinedReducer = combineReducers({
 	rooms,
 	qrCodes,
 	notifications,
-	servicePositions,
 	phoneConfigs,
 	phoneCalls,
 	smsList,

@@ -1,16 +1,10 @@
 import { Autocomplete, FormControl, TextField } from '@mui/material';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { AppDispatch } from '../../../../../../slices';
-import {
-	ServicePositionsFetchList,
-	servicePositionsSelector
-} from '../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { RoomsTypeEnum } from '../../../../../../slices/business/sites/rooms/Rooms.slice.enum';
 import { SiteConfigurationMarketingRidesAutocompleteInterface } from './SiteConfigurationMarketingRides.interface';
 import { SiteConfigurationMarketingRidesStyle } from './SiteConfigurationMarketingRides.style';
 
@@ -21,31 +15,15 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigurationMarketingRidesStyle();
 
-	const dispatch = useDispatch<AppDispatch>();
-	const sites = useSelector(sitesSelector);
-	const servicePositions = useSelector(servicePositionsSelector);
+	const rooms = useSelector(roomsSelector);
 
-	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
-
-	const cSiteId = params.siteId;
-	const siteSingle = sites.content?.dataById[cSiteId];
-
-	const whitelist = siteSingle?.rooms?.whitelist || [];
-	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
+	const roomsGroupBy = rooms.content?.groupByType;
+	const allRooms = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+	const options = allRooms?.map((r) => r.name);
 
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 	const label = t(`${translation}.FORM.FIELDS.LOCATIONS.LABEL`);
 	const placeholder = t(`${translation}.FORM.FIELDS.LOCATIONS.PLACEHOLDER`);
-
-	const serviceLocations = servicePositions?.content?.data?.map((s) => s.location) || [];
-	const options = whitelist.concat(serviceLocations);
-
-	useEffect(() => {
-		if (pServicePositionSiteId === cSiteId) return;
-
-		// dispatch: fetch service positions
-		dispatch(ServicePositionsFetchList(cSiteId));
-	}, [dispatch, pServicePositionSiteId, cSiteId]);
 
 	return (
 		<FormControl fullWidth className={classes.sFormControl}>

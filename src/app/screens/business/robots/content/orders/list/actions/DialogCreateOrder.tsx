@@ -15,7 +15,7 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC, MouseEvent, useEffect } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -28,10 +28,8 @@ import {
 } from '../../../../../../../slices/business/robots/orders/Orders.slice';
 import { SOCStateInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import {
-	ServicePositionsFetchList,
-	servicePositionsSelector
-} from '../../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
+import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { RoomsTypeEnum } from '../../../../../../../slices/business/sites/rooms/Rooms.slice.enum';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -53,7 +51,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
-	const servicePositions = useSelector(servicePositionsSelector);
+	const rooms = useSelector(roomsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const orders = useSelector(ordersSelector);
 
@@ -61,7 +59,10 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const cRobotId = params.robotId;
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
-	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
+
+	const roomsGroupBy = rooms.content?.groupByType;
+	const servicePositions = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+
 	const configs = cSiteId && sites.content?.dataById[cSiteId]?.configs;
 	const orderModes = configs && configs.availableOrderModes;
 	const defaultOrderMode = configs && configs.defaultOrderMode;
@@ -69,6 +70,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const onlyPhoneRoom =
 		customerNotificationTypesEnabled?.length === 1 &&
 		customerNotificationTypesEnabled[0] === RobotOrderCustomNotificationTypeEnum.PHONE_ROOM;
+
 	const translation = 'GENERAL:COMMON.ORDERS';
 	const fieldLocation = 'location';
 
@@ -127,17 +129,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const type = values.type || types0;
 	const phoneCustomer = type === RobotOrderCustomNotificationTypeEnum.PHONE_CUSTOMER;
 	const smsCustomer = type === RobotOrderCustomNotificationTypeEnum.SMS_CUSTOMER;
-
-	useEffect(() => {
-		// validate mode: service-position
-		const exist = (orderModes || []).some((m) => m === RobotOrderModeTypeEnum.SERVICE_POSITION);
-		if (!exist) return;
-
-		if (pServicePositionSiteId === cSiteId) return;
-
-		// dispatch: fetch service positions
-		cSiteId && dispatch(ServicePositionsFetchList(cSiteId));
-	}, [dispatch, pServicePositionSiteId, cSiteId, orderModes]);
 
 	/**
 	 * close dialog
@@ -227,8 +218,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								)}
 								value={values.location}
 								onChange={handleChangeSelect}>
-								{servicePositions.content?.data.map((position) => (
-									<MenuItem key={position.id} value={position.location}>
+								{servicePositions.map((position) => (
+									<MenuItem key={position.id} value={position.id}>
 										{position.name}
 									</MenuItem>
 								))}

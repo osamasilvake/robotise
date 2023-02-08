@@ -12,6 +12,7 @@ import { purchaseSelector } from '../../../slices/business/robots/purchases/Purc
 import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import RobotOrderDetail from './content/orders/detail/RobotOrderDetail';
 import RobotPurchaseDetail from './content/purchases/detail/RobotPurchaseDetail';
+import RobotCommon from './Robot.common';
 import { RobotParamsInterface } from './Robot.interface';
 import RobotTabs from './Robot.tabs';
 
@@ -53,7 +54,11 @@ const Robot: FC = () => {
 		} else if (params.purchaseId) {
 			return <RobotPurchaseDetail />;
 		}
-		return <RobotTabs />;
+		return (
+			<RobotCommon>
+				<RobotTabs />
+			</RobotCommon>
+		);
 	};
 
 	return (

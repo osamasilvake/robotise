@@ -21,17 +21,12 @@ import {
 	notificationsSelector,
 	NotificationTypesAndUsersFetchList
 } from '../../../../../../slices/business/sites/configuration/notifications/Notifications.slice';
-import {
-	ServicePositionsFetchList,
-	servicePositionsSelector
-} from '../../../../../../slices/business/sites/configuration/service-positions/ServicePositions.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { SiteParamsInterface } from '../../../Site.interface';
 import SiteConfigurationAcceptOrders from './accept-orders/SiteConfigurationAcceptOrders';
 import SiteConfigurationCleanTestOrders from './clean-test-orders/SiteConfigurationCleanTestOrders';
 import SiteConfigurationNotifications from './notifications/SiteConfigurationNotifications';
 import SiteConfigurationPaymentSettings from './payment-settings/SiteConfigurationPaymentSettings';
-import SiteConfigurationServicePositions from './service-positions/SiteConfigurationServicePositions';
 import SiteConfig from './site-config/SiteConfig';
 import SiteRobotConfig from './site-robot-config/SiteRobotConfig';
 import { SiteConfigurationCloudStyle } from './SiteConfigurationCloud.style';
@@ -44,14 +39,12 @@ const SiteConfigurationCloud: FC = () => {
 	const sites = useSelector(sitesSelector);
 	const siteCloudConfiguration = useSelector(siteCloudConfigurationSelector);
 	const notifications = useSelector(notificationsSelector);
-	const servicePositions = useSelector(servicePositionsSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 
 	const cSiteId = params.siteId;
 	const pNotificationSiteId = notifications.content?.site.id;
-	const pServicePositionSiteId = servicePositions.content?.state?.pSiteId;
 
 	useEffect(() => {
 		if (pNotificationSiteId === cSiteId) return;
@@ -59,13 +52,6 @@ const SiteConfigurationCloud: FC = () => {
 		// dispatch: fetch site notification types and users
 		dispatch(NotificationTypesAndUsersFetchList(cSiteId));
 	}, [dispatch, pNotificationSiteId, cSiteId]);
-
-	useEffect(() => {
-		if (pServicePositionSiteId === cSiteId) return;
-
-		// dispatch: fetch service positions
-		dispatch(ServicePositionsFetchList(cSiteId));
-	}, [dispatch, pServicePositionSiteId, cSiteId]);
 
 	useEffect(() => {
 		if (generalOperations.orderModes?.content !== null) return;
@@ -96,7 +82,7 @@ const SiteConfigurationCloud: FC = () => {
 	}, [dispatch, siteCloudConfiguration.helpPages?.content]);
 
 	// loader
-	if (robotTwinsSummary.loader || notifications.loader || servicePositions.loader) {
+	if (robotTwinsSummary.loader || notifications.loader) {
 		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
 	}
 
@@ -115,13 +101,6 @@ const SiteConfigurationCloud: FC = () => {
 				{!!notifications.content && (
 					<Grid item xs={12} md={12}>
 						<SiteConfigurationNotifications notifications={notifications} />
-					</Grid>
-				)}
-
-				{/* Service Positions */}
-				{!!servicePositions.content && (
-					<Grid item xs={12} md={12}>
-						<SiteConfigurationServicePositions servicePositions={servicePositions} />
 					</Grid>
 				)}
 

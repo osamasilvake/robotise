@@ -8,8 +8,6 @@ import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCleanTestOrdersFormInterface } from './content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/cloud/notifications/SiteConfigurationNotifications.interface';
 import { SiteConfigurationPaymentSettingsFormInterface } from './content/configuration/cloud/payment-settings/SiteConfigurationPaymentSettings.interface';
-import { SiteConfigurationServicePositionsCreateEditTypeEnum } from './content/configuration/cloud/service-positions/SiteConfigurationServicePositions.enum';
-import { DialogCreateEditServicePositionFormInterface } from './content/configuration/cloud/service-positions/SiteConfigurationServicePositions.interface';
 import { SiteConfigFormInterface } from './content/configuration/cloud/site-config/SiteConfig.interface';
 import { SiteRobotConfigFormInterface } from './content/configuration/cloud/site-robot-config/SiteRobotConfig.interface';
 import { SiteConfigurationColdCallsFormInterface } from './content/configuration/cold-calls/SiteConfigurationColdCalls.interface';
@@ -52,7 +50,6 @@ import {
 	SiteQRCodeCreateAxiosPostResponseInterface,
 	SiteQRCodesAxiosGetInterface,
 	SitesAxiosGetInterface,
-	SiteServicePositionsAxiosGetInterface,
 	SiteSMSListAxiosGetInterface,
 	SiteWifiHeatmapAxiosGetInterface
 } from './Sites.interface';
@@ -681,71 +678,6 @@ class SitesService {
 		return payload.siteId
 			? HttpClientService.post(url, request)
 			: HttpClientService.patch(url, request);
-	};
-
-	/**
-	 * fetch service positions
-	 * @param siteId
-	 * @returns
-	 */
-	siteServicePositionsFetch = (siteId: string) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SERVICE_POSITIONS.replace(
-				':siteId',
-				siteId
-			);
-		return HttpClientService.get<SiteServicePositionsAxiosGetInterface>(url, {
-			params: {
-				'filter[site]': siteId
-			}
-		});
-	};
-
-	/**
-	 * create/edit service position
-	 * @param siteId
-	 * @param payload
-	 * @param type
-	 * @returns
-	 */
-	siteServicePositionCreateEdit = (
-		siteId: string,
-		payload: DialogCreateEditServicePositionFormInterface,
-		type: SiteConfigurationServicePositionsCreateEditTypeEnum
-	) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SERVICE_POSITIONS;
-		const request = {
-			data: {
-				attributes: {
-					name: payload.name,
-					location: payload.location
-				},
-				relationships: {
-					site: {
-						data: {
-							type: 'sites',
-							id: siteId
-						}
-					}
-				}
-			}
-		};
-
-		return type === SiteConfigurationServicePositionsCreateEditTypeEnum.CREATE
-			? HttpClientService.post(url, request)
-			: HttpClientService.patch(`${url}/${payload.id}`, request);
-	};
-
-	/**
-	 * delete service position
-	 * @param servicePositionId
-	 * @returns
-	 */
-	siteServicePositionDelete = (servicePositionId: string) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.SERVICE_POSITIONS;
-		return HttpClientService.delete(`${url}/${servicePositionId}`);
 	};
 
 	/**

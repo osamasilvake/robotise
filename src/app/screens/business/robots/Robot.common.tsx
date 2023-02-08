@@ -4,21 +4,25 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../slices';
+import { robotTwinsSummarySelector } from '../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	RoomsLocationsFetch,
 	roomsSelector
 } from '../../../slices/business/sites/rooms/Rooms.slice';
-import { SiteCommonInterface, SiteParamsInterface } from './Site.interface';
+import { RobotCommonInterface, RobotParamsInterface } from './Robot.interface';
 
-const SiteCommon: FC<SiteCommonInterface> = (props) => {
+const RobotCommon: FC<RobotCommonInterface> = (props) => {
 	const { children } = props;
 
 	const dispatch = useDispatch<AppDispatch>();
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const rooms = useSelector(roomsSelector);
 
-	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
-	const cSiteId = params.siteId;
+	const cRobotId = params.robotId;
+	const robotSingle = robotTwinsSummary.content?.dataById[cRobotId];
+	const cSiteId = robotSingle?.siteId;
 	const pRoomsSiteId = rooms.content?.state?.pSiteId;
 
 	useEffect(() => {
@@ -33,4 +37,4 @@ const SiteCommon: FC<SiteCommonInterface> = (props) => {
 
 	return <>{children}</>;
 };
-export default SiteCommon;
+export default RobotCommon;

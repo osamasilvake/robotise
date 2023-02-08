@@ -80,11 +80,6 @@
 		"NOTIFICATION": {
 			"ADD": "Add Notification",
 			"EDIT": "Edit Notification"
-		},
-		"SERVICE_POSITIONS": {
-			"ADD": "Add Service Position",
-			"EDIT": "Edit Service Position",
-			"DELETE": "Delete Service Position"
 		}
 	},
 	"BREADCRUMB": {
@@ -258,23 +253,6 @@
 						"UPDATE": {
 							"SUCCESS": "Notification has been updated successfully!",
 							"ERROR": "Unable to update notification!"
-						}
-					},
-					"SERVICE_POSITIONS": {
-						"FETCH": {
-							"ERROR": "Unable to fetch service positions!"
-						},
-						"CREATE": {
-							"SUCCESS": "Service position has been created successfully!",
-							"ERROR": "Unable to create service position!"
-						},
-						"EDIT": {
-							"SUCCESS": "Service position has been updated successfully!",
-							"ERROR": "Unable to update service position!"
-						},
-						"DELETE": {
-							"SUCCESS": "Service position has been deleted successfully!",
-							"ERROR": "Unable to delete service position!"
 						}
 					},
 					"SITE_ROBOT_CONFIG": {
@@ -1406,40 +1384,6 @@
 							}
 						},
 						"ADD_USER": "Add user"
-					}
-				},
-				"SERVICE_POSITIONS": {
-					"TITLE": "Service Positions",
-					"EXCERPT": "Configure site specific service positions.",
-					"CREATE_EDIT": {
-						"CREATE": {
-							"TITLE": "Create Service Position"
-						},
-						"EDIT": {
-							"TITLE": "Edit Service Position"
-						},
-						"FORM": {
-							"FIELDS": {
-								"NAME": {
-									"LABEL": "Name",
-									"PLACEHOLDER": "Enter name",
-									"VALIDATIONS": {
-										"REQUIRED": "Name is required."
-									}
-								},
-								"LOCATION": {
-									"LABEL": "Location",
-									"PLACEHOLDER": "Enter location",
-									"VALIDATIONS": {
-										"REQUIRED": "Location is required."
-									}
-								}
-							}
-						}
-					},
-					"DELETE": {
-						"TITLE": "Delete Service Position",
-						"TEXT": "Are you sure you want to delete the service position?"
 					}
 				},
 				"SITE_ROBOT_CONFIG": {

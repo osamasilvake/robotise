@@ -9,7 +9,6 @@ import {
 	SNContentNotificationTypeInterface,
 	SNContentNotificationUsersInterface
 } from '../../../slices/business/sites/configuration/notifications/Notifications.slice.interface';
-import { SSCDataInterface } from '../../../slices/business/sites/configuration/service-positions/ServicePositions.slice.interface';
 import {
 	SPContentInventoryInterface,
 	SPContentOrdersInterface,
@@ -200,14 +199,6 @@ export interface SiteNotificationUsersAxiosGetInterface {
 		id: string;
 		type: string;
 		attributes: SNContentNotificationUsersInterface;
-	}[];
-}
-
-export interface SiteServicePositionsAxiosGetInterface extends JsonAPIResponseInterface {
-	data: {
-		id: string;
-		type: string;
-		attributes: SSCDataInterface;
 	}[];
 }
 

@@ -15,7 +15,6 @@ export interface SiteRoomsGridFloorInterface {
 	siteSingle: ISite;
 	floor: string;
 	result: SiteRoomsGridGroupAccInterface;
-	allRooms: SRContentDataInterface[];
 }
 
 export interface SiteRoomsGridGroupAccInterface {
@@ -39,5 +38,4 @@ export interface DialogToggleFloorStateInterface {
 		rooms: SiteRoomsGridGroupAccInterface;
 	};
 	siteSingle: ISite;
-	allRooms: SRContentDataInterface[];
 }

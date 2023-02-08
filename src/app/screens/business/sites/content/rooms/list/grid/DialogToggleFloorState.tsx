@@ -20,7 +20,7 @@ import { SiteRoomsGridBlockUnblockFloorTypeEnum } from './SiteRoomsGrid.enum';
 import { DialogToggleFloorStateInterface } from './SiteRoomsGrid.interface';
 
 const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
-	const { open, setOpen, floorState, allRooms, siteSingle } = props;
+	const { open, setOpen, floorState, siteSingle } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -38,7 +38,7 @@ const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
 
 		const isBlocked = floorState.type === SiteRoomsGridBlockUnblockFloorTypeEnum.BLOCK;
 		const floorRooms = floorState?.rooms[floorState?.floor];
-		const floorId = floorRooms[0]?.floor?.id || floorRooms[1]?.floor?.id;
+		const floorId = floorRooms[0]?.floor?.id;
 
 		// dispatch: update locations
 		dispatch(

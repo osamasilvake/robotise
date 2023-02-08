@@ -9,7 +9,7 @@ import { SiteRoomsGridFloorInterface } from './SiteRoomsGrid.interface';
 import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
 
 const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
-	const { siteSingle, allRooms, floor, result } = props;
+	const { siteSingle, floor, result } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteRoomsGridStyle();
 
@@ -78,7 +78,6 @@ const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
 					setOpen={setConfirmFloorState}
 					floorState={floorState}
 					siteSingle={siteSingle}
-					allRooms={allRooms}
 				/>
 			)}
 		</>

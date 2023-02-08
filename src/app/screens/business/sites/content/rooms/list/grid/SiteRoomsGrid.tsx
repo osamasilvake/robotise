@@ -101,12 +101,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 			{Object.keys(result).map((key, idx) => (
 				<Box key={key}>
 					{/* Floor */}
-					<SiteRoomsGridFloor
-						siteSingle={siteSingle}
-						allRooms={allRooms}
-						floor={key}
-						result={result}
-					/>
+					<SiteRoomsGridFloor siteSingle={siteSingle} floor={key} result={result} />
 
 					{/* Grid */}
 					{result[key] && result[key].length && (

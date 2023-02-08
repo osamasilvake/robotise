@@ -9,6 +9,7 @@ import ExternalLink from '../../../../../../../components/common/external-link/E
 import { ExternalLinkActionTypeEnum } from '../../../../../../../components/common/external-link/ExternalLink.enum';
 import { AppConfigService } from '../../../../../../../services';
 import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
+import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1, dateMinsPriorToDate } from '../../../../../../../utilities/methods/Date';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
@@ -26,11 +27,14 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
 
+	const rooms = useSelector(roomsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
+	const roomsDataBy = rooms.content?.dataById;
+	const locationName = roomsDataBy?.[purchase.location]?.name;
 	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
 
 	/**
@@ -63,7 +67,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 			if (RobotPurchasesTableColumnsTypeEnum.TARGET === column.id) {
 				return (
 					<>
-						{value || AppConfigService.AppOptions.common.none}
+						{locationName || value || AppConfigService.AppOptions.common.none}
 						{!purchase.isBilled && (
 							<Box component="span" className={classes.sTarget}>
 								<Chip size="small" label={t(`${translation}.TARGET.UN_BILLED`)} />

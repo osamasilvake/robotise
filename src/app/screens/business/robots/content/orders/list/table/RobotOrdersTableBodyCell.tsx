@@ -1,11 +1,13 @@
 import { Box, Chip, Link, Stack, TableCell } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
+import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { dateDayJs, dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import DialogCancelOrder from './DialogCancelOrder';
@@ -25,6 +27,10 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const { column, order } = props;
 	const { t } = useTranslation('GENERAL');
 	const classes = RobotOrdersTableStyle();
+
+	const rooms = useSelector(roomsSelector);
+	const roomsDataBy = rooms.content?.dataById;
+	const locationName = roomsDataBy?.[order.location]?.name;
 
 	const [openCancel, setOpenCancel] = useState(false);
 	const [openRestart, setOpenRestart] = useState(false);
@@ -140,6 +146,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 				);
 			} else if (RobotOrdersTableColumnsTypeEnum.MODE === column.id) {
 				return t(`COMMON.MODE.${value}`);
+			} else if (RobotOrdersTableColumnsTypeEnum.TARGET === column.id) {
+				return locationName || value;
 			}
 			return t(value);
 		}

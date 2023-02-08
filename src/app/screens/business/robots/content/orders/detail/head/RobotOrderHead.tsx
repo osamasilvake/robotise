@@ -1,11 +1,13 @@
 import { Box, Grid, Link, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
+import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { dateDayJs, dateUTC } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { mapStatus } from '../../list/table/RobotOrdersTable.map';
@@ -17,9 +19,15 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 	const { t } = useTranslation('GENERAL');
 	const classes = RobotOrderHeadStyle();
 
+	const rooms = useSelector(roomsSelector);
+
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
+
+	const roomsDataBy = rooms.content?.dataById;
+	const location = order?.content?.location || '';
+	const locationName = roomsDataBy?.[location]?.name;
 	const history = order?.content?.history;
 	const startDate = history && history[0]?.createdAt;
 	const endDate = history && history[history?.length - 1]?.createdAt;
@@ -33,7 +41,7 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 				<Box className={classes.sRoomWrapper}>
 					{/* Room */}
 					<Typography variant="h1" className={classes.sRoom}>
-						{order?.content?.location}
+						{locationName || location}
 					</Typography>
 
 					{/* Debug */}

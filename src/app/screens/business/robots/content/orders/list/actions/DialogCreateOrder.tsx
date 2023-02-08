@@ -72,7 +72,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		customerNotificationTypesEnabled[0] === RobotOrderCustomNotificationTypeEnum.PHONE_ROOM;
 
 	const translation = 'GENERAL:COMMON.ORDERS';
-	const fieldLocation = 'location';
+	const fieldLocation = 'locationId';
 
 	const {
 		handleChangeInput,
@@ -85,7 +85,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	} = useForm<DialogCreateOrderFormInterface>(
 		{
 			isDebug: false,
-			location: '',
+			locationId: '',
 			mode: defaultOrderMode || RobotOrderModeTypeEnum.MINI_BAR,
 			type: '',
 			phone: ''
@@ -98,7 +98,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 			const phoneRoom = values.type === RobotOrderCustomNotificationTypeEnum.PHONE_ROOM;
 			const payload = {
 				isDebug: values.isDebug,
-				location: values.location,
+				locationId: values.locationId,
 				mode: values.mode,
 				customerNotification: {
 					phoneNumber: phoneRoom ? '' : values.phone,
@@ -141,6 +141,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		// close dialog
 		setOpen(false);
 	};
+
+	console.log(values.locationId);
 
 	return (
 		<Dialog open={open} onClose={closeDialog}>
@@ -192,11 +194,11 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								placeholder={t(
 									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.LOCATION.PLACEHOLDER`
 								)}
-								value={values.location}
+								value={values.locationId}
 								onChange={handleChangeInput}
 								onBlur={handleBlur}
-								error={!!errors?.location}
-								helperText={errors?.location && t(errors.location)}
+								error={!!errors?.locationId}
+								helperText={errors?.locationId && t(errors.locationId)}
 							/>
 						</FormControl>
 					)}
@@ -216,7 +218,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								label={t(
 									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_POSITIONS.LABEL`
 								)}
-								value={values.location}
+								value={values.locationId}
 								onChange={handleChangeSelect}>
 								{servicePositions.map((position) => (
 									<MenuItem key={position.id} value={position.id}>
@@ -305,8 +307,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 						type="submit"
 						disabled={
 							orders.updating ||
-							!values.location ||
-							!!errors?.location ||
+							!values.locationId ||
+							!!errors?.locationId ||
 							!!errors?.phone
 						}
 						endIcon={orders.updating && <CircularProgress size={20} />}>

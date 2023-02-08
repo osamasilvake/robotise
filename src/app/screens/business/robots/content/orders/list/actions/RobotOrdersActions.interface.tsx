@@ -32,7 +32,7 @@ export interface DialogCreateOrderInterface {
 
 export interface DialogCreateOrderFormInterface {
 	isDebug: boolean;
-	location: string;
+	locationId: string;
 	mode: string | RobotOrderModeTypeEnum;
 	type?: string;
 	phone?: string;

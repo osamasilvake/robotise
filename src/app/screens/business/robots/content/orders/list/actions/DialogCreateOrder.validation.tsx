@@ -15,21 +15,21 @@ export const CreateOrderValidation = (
 	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const errors: DialogCreateOrderFormInterface = {
 		isDebug: false,
-		location: '',
+		locationId: '',
 		mode: '',
 		phone: ''
 	};
 
 	// Location
-	if (touched.location) {
+	if (touched.locationId) {
 		// required
-		if (!values.location) {
-			errors.location = `${translation}.LOCATION.VALIDATIONS.REQUIRED`;
+		if (!values.locationId) {
+			errors.locationId = `${translation}.LOCATION.VALIDATIONS.REQUIRED`;
 		}
 
 		// validate
-		if (values.location && !regexIntegersAndChars.test(values.location)) {
-			errors.location = `${translation}.LOCATION.VALIDATIONS.INVALID`;
+		if (values.locationId && !regexIntegersAndChars.test(values.locationId)) {
+			errors.locationId = `${translation}.LOCATION.VALIDATIONS.INVALID`;
 		}
 	}
 

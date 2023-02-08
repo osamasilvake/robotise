@@ -18,8 +18,8 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 	const rooms = useSelector(roomsSelector);
 
 	const roomsGroupBy = rooms.content?.groupByType;
-	const allRooms = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
-	const options = allRooms?.map((r) => r.name);
+	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+	const options = rLocations?.map((r) => r.name);
 
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 	const label = t(`${translation}.FORM.FIELDS.LOCATIONS.LABEL`);

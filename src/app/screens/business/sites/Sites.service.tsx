@@ -176,6 +176,29 @@ class SitesService {
 	};
 
 	/**
+	 * update locations
+	 * @param floorId
+	 * @param isBlocked
+	 * @returns
+	 */
+	siteRoomLocationsUpdate = (floorId: string, isBlocked: boolean) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.LOCATIONS.ALL;
+		return HttpClientService.patch(url, {
+			data: {
+				type: 'locations',
+				attributes: {
+					metadata: {
+						blocked: isBlocked
+					}
+				},
+				relationships: {
+					floor: { data: { type: 'floors', id: floorId } }
+				}
+			}
+		});
+	};
+
+	/**
 	 * update location
 	 * @param locationId
 	 * @param payload

@@ -130,6 +130,56 @@ export const RoomsLocationsFetch =
 	};
 
 /**
+ * update locations
+ * @param floorId
+ * @param isBlocked
+ * @param callback
+ * @returns
+ */
+export const RoomLocationsUpdate =
+	(floorId: string, isBlocked: boolean, callback: () => void) => async (dispatch: Dispatch) => {
+		// dispatch: updating
+		dispatch(updating());
+
+		return SitesService.siteRoomLocationsUpdate(floorId, isBlocked)
+			.then(async () => {
+				// wait
+				await timeout(1000);
+
+				// dispatch: updated
+				dispatch(updated(null));
+
+				// callback
+				callback();
+
+				// wait
+				await timeout(1000);
+
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'rooms-locations-update-success',
+					show: true,
+					severity: TriggerMessageTypeEnum.SUCCESS,
+					text: 'SITES.ROOMS.UPDATE.SUCCESS'
+				};
+				dispatch(triggerMessage(message));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'rooms-locations-update-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'SITES.ROOMS.UPDATE.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: update failed
+				dispatch(updateFailed());
+			});
+	};
+
+/**
  * update location
  * @param location
  * @param callback
@@ -156,7 +206,7 @@ export const RoomLocationUpdate =
 
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'rooms-update-success',
+					id: 'rooms-location-update-success',
 					show: true,
 					severity: TriggerMessageTypeEnum.SUCCESS,
 					text: 'SITES.ROOMS.UPDATE.SUCCESS'
@@ -166,7 +216,7 @@ export const RoomLocationUpdate =
 			.catch(() => {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
-					id: 'rooms-update-error',
+					id: 'rooms-location-update-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'SITES.ROOMS.UPDATE.ERROR'

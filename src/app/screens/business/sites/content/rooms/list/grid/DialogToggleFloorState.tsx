@@ -12,10 +12,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '../../../../../../../slices';
 import {
-	RoomLocationUpdate,
+	RoomLocationsUpdate,
 	RoomsLocationsFetch,
 	roomsSelector
 } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { SiteRoomsGridBlockUnblockFloorTypeEnum } from './SiteRoomsGrid.enum';
 import { DialogToggleFloorStateInterface } from './SiteRoomsGrid.interface';
 
 const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
@@ -35,13 +36,13 @@ const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
 		// return on empty
 		if (!siteSingle?.id) return;
 
-		console.log(allRooms, floorState);
+		const isBlocked = floorState.type === SiteRoomsGridBlockUnblockFloorTypeEnum.BLOCK;
+		const floorRooms = floorState?.rooms[floorState?.floor];
+		const floorId = floorRooms[0]?.floor?.id || floorRooms[1]?.floor?.id;
 
-		const location: any = {};
-
-		// dispatch: update location
+		// dispatch: update locations
 		dispatch(
-			RoomLocationUpdate(location, () => {
+			RoomLocationsUpdate(floorId, isBlocked, () => {
 				// dispatch: fetch locations
 				siteSingle?.id && dispatch(RoomsLocationsFetch(siteSingle?.id));
 

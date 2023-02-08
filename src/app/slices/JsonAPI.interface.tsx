@@ -9,6 +9,7 @@ export interface DeserializerExtendedOptionsInterface extends DeserializerOption
 	users?: DeserializeRelationshipInterface;
 	activity?: DeserializeRelationshipInterface;
 	notificationTypes?: DeserializeRelationshipInterface;
+	floors?: DeserializeRelationshipInterface;
 }
 
 export interface DeserializeRelationshipInterface {

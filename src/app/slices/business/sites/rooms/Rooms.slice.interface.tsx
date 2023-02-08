@@ -29,6 +29,8 @@ export interface SRContentDataInterface {
 		position: { x: number; y: number; theta: number };
 		door: { handleSide: string };
 	};
+	floorName: string;
+	floor: { id: string };
 }
 
 export interface SRContentDataByIdInterface {

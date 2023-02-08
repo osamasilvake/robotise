@@ -1,6 +1,7 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
 import {
+	DeserializeRelationshipPropertiesInterface,
 	DeserializerExtendedOptionsInterface,
 	JsonAPIResponseInterface
 } from '../../../JsonAPI.interface';
@@ -13,7 +14,12 @@ import { SRContentDataByIdInterface, SRContentDataInterface } from './Rooms.slic
  */
 export const deserializeRooms = async <T extends JsonAPIResponseInterface>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
-		keyForAttribute: 'camelCase'
+		keyForAttribute: 'camelCase',
+		floors: {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => ({
+				id: relationship.id
+			})
+		}
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);

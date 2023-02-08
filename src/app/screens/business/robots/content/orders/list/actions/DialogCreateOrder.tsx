@@ -61,7 +61,8 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 
 	const roomsGroupBy = rooms.content?.groupByType;
-	const servicePositions = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+	const sLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.SERVICE)?.values || [];
 
 	const configs = cSiteId && sites.content?.dataById[cSiteId]?.configs;
 	const orderModes = configs && configs.availableOrderModes;
@@ -142,8 +143,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		setOpen(false);
 	};
 
-	console.log(values.locationId);
-
 	return (
 		<Dialog open={open} onClose={closeDialog}>
 			<form onSubmit={handleSubmit}>
@@ -183,46 +182,50 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 					{values.mode !== RobotOrderModeTypeEnum.SERVICE_POSITION && (
 						<FormControl fullWidth margin="normal">
-							<TextField
+							<InputLabel id="label-room-locations">
+								{t(
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.ROOM_LOCATIONS.LABEL`
+								)}
+							</InputLabel>
+							<Select
 								required
-								type="string"
+								labelId="label-room-locations"
 								id={fieldLocation}
 								name={fieldLocation}
 								label={t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.LOCATION.LABEL`
-								)}
-								placeholder={t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.LOCATION.PLACEHOLDER`
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.ROOM_LOCATIONS.LABEL`
 								)}
 								value={values.locationId}
-								onChange={handleChangeInput}
-								onBlur={handleBlur}
-								error={!!errors?.locationId}
-								helperText={errors?.locationId && t(errors.locationId)}
-							/>
+								onChange={handleChangeSelect}>
+								{rLocations.map((location) => (
+									<MenuItem key={location.id} value={location.id}>
+										{location.name}
+									</MenuItem>
+								))}
+							</Select>
 						</FormControl>
 					)}
 
 					{values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION && (
 						<FormControl fullWidth margin="normal">
-							<InputLabel id="label-service-positions">
+							<InputLabel id="label-service-locations">
 								{t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_POSITIONS.LABEL`
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_LOCATIONS.LABEL`
 								)}
 							</InputLabel>
 							<Select
 								required
-								labelId="label-service-positions"
+								labelId="label-service-locations"
 								id={fieldLocation}
 								name={fieldLocation}
 								label={t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_POSITIONS.LABEL`
+									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_LOCATIONS.LABEL`
 								)}
 								value={values.locationId}
 								onChange={handleChangeSelect}>
-								{servicePositions.map((position) => (
-									<MenuItem key={position.id} value={position.id}>
-										{position.name}
+								{sLocations.map((location) => (
+									<MenuItem key={location.id} value={location.id}>
+										{location.name}
 									</MenuItem>
 								))}
 							</Select>

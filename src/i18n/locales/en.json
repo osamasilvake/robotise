@@ -619,16 +619,11 @@
 							"NOTIFICATION_TYPES": "Notify Customer Via:",
 							"FORM": {
 								"FIELDS": {
-									"LOCATION": {
-										"LABEL": "Location",
-										"PLACEHOLDER": "Enter Location",
-										"VALIDATIONS": {
-											"REQUIRED": "Enter target location.",
-											"INVALID": "Location must be valid."
-										}
+									"ROOM_LOCATIONS": {
+										"LABEL": "Room Location *"
 									},
-									"SERVICE_POSITIONS": {
-										"LABEL": "Service Positions *"
+									"SERVICE_LOCATIONS": {
+										"LABEL": "Service Locations *"
 									},
 									"MODE": {
 										"LABEL": "MODE"

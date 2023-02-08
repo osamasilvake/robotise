@@ -11,7 +11,6 @@ export const CreateOrderValidation = (
 	touched: DialogCreateOrderFormInterface
 ): DialogCreateOrderFormInterface => {
 	const translation = 'GENERAL:COMMON.ORDERS.LIST.ACTIONS.CREATE.FORM.FIELDS';
-	const regexIntegersAndChars = AppConfigService.AppOptions.regex.integersAndChars;
 	const regexInteger = AppConfigService.AppOptions.regex.integer;
 	const errors: DialogCreateOrderFormInterface = {
 		isDebug: false,
@@ -19,19 +18,6 @@ export const CreateOrderValidation = (
 		mode: '',
 		phone: ''
 	};
-
-	// Location
-	if (touched.locationId) {
-		// required
-		if (!values.locationId) {
-			errors.locationId = `${translation}.LOCATION.VALIDATIONS.REQUIRED`;
-		}
-
-		// validate
-		if (values.locationId && !regexIntegersAndChars.test(values.locationId)) {
-			errors.locationId = `${translation}.LOCATION.VALIDATIONS.INVALID`;
-		}
-	}
 
 	// Phone
 	if (touched.phone && values.phone) {

@@ -1,3 +1,4 @@
 export enum RoomsTypeEnum {
-	ROOM = 'room'
+	ROOM = 'room',
+	SERVICE = 'service-position'
 }

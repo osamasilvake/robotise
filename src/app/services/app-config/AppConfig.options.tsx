@@ -194,9 +194,6 @@ const AppOptions = (config: typeof AppConfigService) => {
 						configuration: {
 							notifications: {
 								refreshTime: 20000
-							},
-							servicePositions: {
-								refreshTime: 20000
 							}
 						}
 					}
@@ -300,7 +297,6 @@ const AppOptions = (config: typeof AppConfigService) => {
 			maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
 			integer: new RegExp(/^\+?([0-9]\d*)$/),
 			integerAndComma: new RegExp(/^(\d+(,\d+)*)?$/),
-			integersAndChars: new RegExp(/^[A-Za-z0-9]*$/),
 			skipLastSlashes: new RegExp(/\/+$/),
 			phoneNumbersCommaSeparated: new RegExp(/^\+\d{8,14}(,\s{0,1}\+\d{8,14})*$/),
 			phoneNumberBeautifier: new RegExp(/^(.{3})(\d{4})(\d{4})(\d{1,3})$/),

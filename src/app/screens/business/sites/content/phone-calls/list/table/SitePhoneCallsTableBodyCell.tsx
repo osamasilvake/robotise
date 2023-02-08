@@ -1,11 +1,13 @@
 import { Box, Icon, Link, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { PCCDataInterface } from '../../../../../../../slices/business/sites/phone-calls/PhoneCalls.slice.interface';
+import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../../utilities/methods/Date';
 import { SitePhoneCallsTableColumnsTypeEnum } from './SitePhoneCallsTable.enum';
 import {
@@ -20,6 +22,10 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 	const { t } = useTranslation('GENERAL');
 	const classes = SitePhoneCallsTableStyle();
 
+	const rooms = useSelector(roomsSelector);
+
+	const roomsDataBy = rooms.content?.dataById;
+	const locationName = roomsDataBy?.[phoneCall.room]?.name;
 	const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.VALUES';
 
 	/**
@@ -102,6 +108,8 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 						{value}
 					</Link>
 				);
+			} else if (SitePhoneCallsTableColumnsTypeEnum.ROOM === column.id) {
+				return locationName || value;
 			}
 			return t(value);
 		}

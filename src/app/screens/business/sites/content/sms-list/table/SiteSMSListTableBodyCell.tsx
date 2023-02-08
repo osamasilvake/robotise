@@ -1,10 +1,12 @@
 import { Box, Icon, Link, Stack, TableCell, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
+import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { SLCDataInterface } from '../../../../../../slices/business/sites/sms-list/SMSList.slice.interface';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
 import {
@@ -23,6 +25,10 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 	const { t } = useTranslation('GENERAL');
 	const classes = SiteSMSListTableStyle();
 
+	const rooms = useSelector(roomsSelector);
+
+	const roomsDataBy = rooms.content?.dataById;
+	const locationName = roomsDataBy?.[smsItem.room]?.name;
 	const translation = 'COMMON.SMS_LIST.LIST.TABLE.VALUES';
 
 	/**
@@ -119,6 +125,8 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 				);
 			}
 			return t(value);
+		} else if (SiteSMSListTableColumnsTypeEnum.ROOM === column.id) {
+			return locationName || value;
 		}
 		return value || AppConfigService.AppOptions.common.none;
 	};

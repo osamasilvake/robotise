@@ -23,7 +23,8 @@ import {
 	phoneConfigsSelector,
 	PhoneConfigTestOutboundCall
 } from '../../../../../../../slices/business/sites/phone-configs/PhoneConfigs.slice';
-import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
+import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { RoomsTypeEnum } from '../../../../../../../slices/business/sites/rooms/Rooms.slice.enum';
 import { useForm } from '../../../../../../../utilities/hooks/form/UseForm';
 import { validateEmptyObj } from '../../../../../../../utilities/methods/Object';
 import { SiteParamsInterface } from '../../../../Site.interface';
@@ -39,13 +40,14 @@ const DialogTestOutboundCallPhoneConfig: FC<DialogTestOutboundCallPhoneConfigInt
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
-	const sites = useSelector(sitesSelector);
+	const rooms = useSelector(roomsSelector);
 	const phoneConfigs = useSelector(phoneConfigsSelector);
 
 	const navigate = useNavigate();
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 	const cSiteId = params.siteId;
-	const siteSingle = sites.content?.dataById[cSiteId];
+	const roomsGroupBy = rooms.content?.groupByType;
+	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
 	const phoneConfig = phoneConfigs.content?.data[0];
 	const translation = 'CONTENT.PHONE_CONFIGS.DETAIL.ACTIONS.OUTBOUND_CALL';
 
@@ -115,9 +117,9 @@ const DialogTestOutboundCallPhoneConfig: FC<DialogTestOutboundCallPhoneConfigInt
 										label={t(`${translation}.FORM.FIELDS.LOCATION.LABEL`)}
 										value={values.location}
 										onChange={handleChangeSelect}>
-										{siteSingle?.rooms?.available?.map((location) => (
-											<MenuItem key={location} value={location}>
-												{location}
+										{rLocations.map((location) => (
+											<MenuItem key={location.id} value={location.id}>
+												{location.name}
 											</MenuItem>
 										))}
 									</Select>

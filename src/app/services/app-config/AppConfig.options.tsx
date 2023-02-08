@@ -298,7 +298,7 @@ const AppOptions = (config: typeof AppConfigService) => {
 		regex: {
 			email: new RegExp(/\S+@\S+\.\S+/),
 			maxTwoDecimalPoints: new RegExp(/^\d+(\.\d{1,2})?$/),
-			integer: new RegExp(/^\+?([1-9]\d*)$/),
+			integer: new RegExp(/^\+?([0-9]\d*)$/),
 			integerAndComma: new RegExp(/^(\d+(,\d+)*)?$/),
 			integersAndChars: new RegExp(/^[A-Za-z0-9]*$/),
 			skipLastSlashes: new RegExp(/\/+$/),

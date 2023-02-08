@@ -11,7 +11,7 @@ import {
 	Switch,
 	Typography
 } from '@mui/material';
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -82,17 +82,8 @@ const SiteConfigurationMarketingRidesContent: FC<
 		initial,
 		SiteConfigurationMarketingRidesValidation,
 		async () => {
-			// dispatch: update marketing rides
-			marketingRide?.id &&
-				dispatch(
-					SiteMarketingRidesUpdate(marketingRide?.id, values, () => {
-						// set form dirty
-						setFormDirty(false);
-
-						// dispatch: fetch marketing rides
-						dispatch(SiteMarketingRidesFetchList(cSiteId, true));
-					})
-				);
+			// update settings
+			onUpdateSettings();
 		},
 		(state) => {
 			const updated = { ...state, times: values.times?.filter((v) => v && v.minutes) };
@@ -104,6 +95,37 @@ const SiteConfigurationMarketingRidesContent: FC<
 			setFormDirty(result !== 0);
 		}
 	);
+
+	/**
+	 * update settings
+	 */
+	const onUpdateSettings = (active = values.active) => {
+		// dispatch: update marketing rides
+		marketingRide?.id &&
+			dispatch(
+				SiteMarketingRidesUpdate(marketingRide?.id, { ...values, active }, () => {
+					// set form dirty
+					setFormDirty(false);
+
+					// dispatch: fetch marketing rides
+					dispatch(SiteMarketingRidesFetchList(cSiteId, true));
+				})
+			);
+	};
+
+	/**
+	 * on change active
+	 * @param event
+	 */
+	const onChangeActive = async (event: ChangeEvent<HTMLInputElement>) => {
+		const { checked } = event.target;
+
+		// update status
+		handleChangeCheckbox(event);
+
+		// update settings
+		onUpdateSettings(checked);
+	};
 
 	return (
 		<Box className={classes.sBox}>
@@ -118,7 +140,7 @@ const SiteConfigurationMarketingRidesContent: FC<
 										<Switch
 											name="active"
 											checked={values.active}
-											onChange={handleChangeCheckbox}
+											onChange={onChangeActive}
 										/>
 									}
 									label={t<string>(`${translation}.FORM.FIELDS.ACTIVATE.LABEL`)}

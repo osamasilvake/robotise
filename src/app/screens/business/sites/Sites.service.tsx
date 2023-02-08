@@ -3,6 +3,7 @@ import {
 	SCCDataElementInterface,
 	SCContentInterface
 } from '../../../slices/business/sites/configuration/site/SiteConfiguration.slice.interface';
+import { SRContentDataInterface } from '../../../slices/business/sites/rooms/Rooms.slice.interface';
 import { removeEmptyObjProperties } from '../../../utilities/methods/Object';
 import { DialogCleanTestOrdersFormInterface } from './content/configuration/cloud/clean-test-orders/SiteConfigurationCleanTestOrders.interface';
 import { DialogCreateEditNotificationFormInterface } from './content/configuration/cloud/notifications/SiteConfigurationNotifications.interface';
@@ -24,7 +25,6 @@ import { SitePhoneConfigsPhoneNumbersTypeEnum } from './content/phone-configs/de
 import { SitePhoneConfigsSMSMessagesFormInterface } from './content/phone-configs/detail/sms-messages/SitePhoneConfigsSMSMessages.interface';
 import { SiteProductCreateEditTypeEnum } from './content/products/list/table/SiteProductsTable.enum';
 import { DialogCreateEditProductFormInterface } from './content/products/list/table/SiteProductsTable.interface';
-import { DialogModifyRoomsFormInterface } from './content/rooms/list/actions/SiteRoomsActions.interface';
 import { DialogGenerateQRCodeFormInterface } from './content/rooms/list/grid/qr-code/SiteRoomsQRCode.interface';
 import { SiteSMSListPayloadInterface } from './content/sms-list/SiteSMSList.interface';
 import { SiteWifiHeatmapPayloadInterface } from './content/statistics/SiteStatistics.interface';
@@ -51,8 +51,6 @@ import {
 	SiteQRCodeCreateAxiosPostRequestInterface,
 	SiteQRCodeCreateAxiosPostResponseInterface,
 	SiteQRCodesAxiosGetInterface,
-	SiteRoomsAxiosPatchRequestInterface,
-	SiteRoomsAxiosPatchResponseInterface,
 	SitesAxiosGetInterface,
 	SiteServicePositionsAxiosGetInterface,
 	SiteSMSListAxiosGetInterface,
@@ -162,28 +160,39 @@ class SitesService {
 	};
 
 	/**
-	 * update room state
+	 * fetch locations
 	 * @param siteId
+	 * @returns
+	 */
+	sitesRoomsLocations = (siteId: string) => {
+		return HttpClientService.get<SitesAxiosGetInterface>(
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.LOCATIONS.ALL,
+			{
+				params: {
+					'filter[site]': siteId
+				}
+			}
+		);
+	};
+
+	/**
+	 * update location
+	 * @param locationId
 	 * @param payload
 	 * @returns
 	 */
-	siteRoomStateUpdate = (siteId: string, payload: DialogModifyRoomsFormInterface) => {
-		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.SINGLE.replace(
-			':siteId',
-			siteId
+	siteRoomLocationUpdate = (location: SRContentDataInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.LOCATIONS.SINGLE.replace(
+			':locationId',
+			location.id
 		);
-		return HttpClientService.patch<
-			SiteRoomsAxiosPatchRequestInterface,
-			SiteRoomsAxiosPatchResponseInterface
-		>(url, {
+		return HttpClientService.patch(url, {
 			data: {
-				type: 'sites',
-				id: siteId,
+				type: 'locations',
+				id: location.id,
 				attributes: {
-					rooms: {
-						whitelist: payload.whitelist as string[],
-						available: payload.available || undefined
-					}
+					name: location.name,
+					metadata: location.metadata
 				}
 			}
 		});

@@ -18,6 +18,9 @@ import { useSelector } from 'react-redux';
 import PageEmpty from '../../../../../../../components/content/page-empty/PageEmpty';
 import { AppConfigService } from '../../../../../../../services';
 import { qrCodesSelector } from '../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
+import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { RoomsTypeEnum } from '../../../../../../../slices/business/sites/rooms/Rooms.slice.enum';
+import { SRContentDataInterface } from '../../../../../../../slices/business/sites/rooms/Rooms.slice.interface';
 import { CardStyle } from '../../../../../../../utilities/styles/Card.style';
 import { SiteConfigOrderOriginsTypeEnum } from '../../../configuration/cloud/site-config/SiteConfig.enum';
 import DialogToggleRoomState from './DialogToggleRoomState';
@@ -33,14 +36,15 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const cardClasses = CardStyle();
 
 	const qrCodes = useSelector(qrCodesSelector);
+	const rooms = useSelector(roomsSelector);
 
+	const [allRooms, setAllRooms] = useState<SRContentDataInterface[]>([]);
 	const [result, setResult] = useState<SiteRoomsGridGroupAccInterface | null>(null);
 	const [qrCode, setQRCode] = useState(false);
 	const [confirmRoomState, setConfirmRoomState] = useState(false);
-	const [roomState, setRoomState] = useState({ room: '', checked: false });
+	const [roomState, setRoomState] = useState({ id: '', room: '', checked: false });
 
-	const allRooms = siteSingle.rooms.available;
-	const allWhitelist = siteSingle.rooms.whitelist;
+	const roomsGroupBy = rooms.content?.groupByType;
 	const orderOriginsEnabled = siteSingle?.configs?.orderOriginsEnabled;
 	const isSMSCode = orderOriginsEnabled.includes(SiteConfigOrderOriginsTypeEnum.SMS_CODE);
 	const qrCodesDataById = qrCodes.content?.dataById;
@@ -48,7 +52,10 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const translation = 'CONTENT.ROOMS.LIST.GRID';
 
 	useEffect(() => {
-		const allBlacklist = allRooms?.filter((r) => !allWhitelist?.includes(r));
+		const allRooms = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+		const allWhitelist = (allRooms || [])?.filter((f) => !!f.metadata && !f.metadata?.blocked);
+		const allBlacklist = (allRooms || [])?.filter((f) => !!f.metadata && f.metadata?.blocked);
+		setAllRooms(allRooms);
 
 		// set rooms
 		let rooms = allRooms;
@@ -63,34 +70,43 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 		}
 
 		// search room
-		rooms = searchText ? rooms.filter((r) => r.indexOf(searchText) > -1) : rooms;
+		rooms = searchText ? rooms.filter((r) => r.name.indexOf(searchText) > -1) : rooms;
 
 		// sort rooms
-		const sortedRooms = rooms?.concat().sort((a, b) => (a > b ? 1 : b > a ? -1 : 0));
+		const sortedRooms = rooms
+			?.concat()
+			.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
 		// group rooms by floor
 		const groupedRooms =
 			sortedRooms &&
-			sortedRooms.reduce((acc: SiteRoomsGridGroupAccInterface, val) => {
-				const letters = val.length > 3 ? val.substring(0, val.length - 2) : val.charAt(0);
+			sortedRooms.reduce((acc: SiteRoomsGridGroupAccInterface, room) => {
+				const { name } = room;
+				const letters =
+					name.length > 3 ? name.substring(0, name.length - 2) : name.charAt(0);
 				if (!acc[letters]) {
-					acc[letters] = [val];
+					acc[letters] = [room];
 				} else {
-					acc[letters].push(val);
+					acc[letters].push(room);
 				}
 				return acc;
 			}, {});
 
 		// set result
 		groupedRooms && setResult(groupedRooms);
-	}, [allRooms, allWhitelist, active, inactive, searchText]);
+	}, [roomsGroupBy, active, inactive, searchText]);
 
 	return result ? (
 		<>
 			{Object.keys(result).map((key, idx) => (
 				<Box key={key}>
 					{/* Floor */}
-					<SiteRoomsGridFloor siteSingle={siteSingle} floor={key} result={result} />
+					<SiteRoomsGridFloor
+						siteSingle={siteSingle}
+						allRooms={allRooms}
+						floor={key}
+						result={result}
+					/>
 
 					{/* Grid */}
 					{result[key] && result[key].length && (
@@ -107,10 +123,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 											className={clsx(
 												cardClasses.sCardContent1,
 												classes.sActive,
-												{
-													[classes.sInactive]:
-														!allWhitelist?.includes(room)
-												}
+												{ [classes.sInactive]: !!room.metadata?.blocked }
 											)}>
 											<Stack
 												direction="row"
@@ -124,13 +137,15 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														</Typography>
 														{isSMSCode &&
 															qrCodesDataById &&
-															qrCodesDataById[room] && (
+															qrCodesDataById[room.name] && (
 																<QrCode2
 																	className={classes.sQRCodeIcon}
 																/>
 															)}
 													</Stack>
-													<Typography variant="h4">{room}</Typography>
+													<Typography variant="h4">
+														{room.name}
+													</Typography>
 												</Box>
 
 												{/* Info */}
@@ -139,13 +154,13 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														className={clsx({
 															[classes.sQRChip]:
 																!isSMSCode ||
-																!allWhitelist?.includes(room)
+																!!room.metadata?.blocked
 														})}>
 														<Chip
 															size="small"
 															label={t(
 																qrCodesDataById &&
-																	qrCodesDataById[room]
+																	qrCodesDataById[room.name]
 																	? `${translation}.QR_CODE.MANAGE`
 																	: `${translation}.QR_CODE.CREATE`
 															)}
@@ -154,7 +169,8 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 															onClick={() => {
 																setQRCode(true);
 																setRoomState({
-																	room,
+																	id: room.id,
+																	room: room.name,
 																	checked: false
 																});
 															}}
@@ -166,13 +182,12 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 														control={
 															<Checkbox
 																name="room"
-																checked={
-																	!allWhitelist?.includes(room)
-																}
+																checked={!!room.metadata?.blocked}
 																onChange={(e) => {
 																	setConfirmRoomState(true);
 																	setRoomState({
-																		room,
+																		id: room.id,
+																		room: room.name,
 																		checked: e.target.checked
 																	});
 																}}
@@ -212,7 +227,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 					setOpen={setConfirmRoomState}
 					checkedState={roomState}
 					siteSingle={siteSingle}
-					allWhitelist={allWhitelist}
+					allRooms={allRooms}
 				/>
 			)}
 

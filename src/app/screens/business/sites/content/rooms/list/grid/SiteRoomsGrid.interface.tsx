@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
+import { SRContentDataInterface } from '../../../../../../../slices/business/sites/rooms/Rooms.slice.interface';
 import { ISite } from '../../../../../../../slices/business/sites/Sites.slice.interface';
 import { SiteRoomsGridBlockUnblockFloorTypeEnum } from './SiteRoomsGrid.enum';
 
@@ -13,19 +14,20 @@ export interface SiteRoomsGridInterface {
 export interface SiteRoomsGridFloorInterface {
 	siteSingle: ISite;
 	floor: string;
-	result: SiteRoomsGridGroupAccInterface | null;
+	result: SiteRoomsGridGroupAccInterface;
+	allRooms: SRContentDataInterface[];
 }
 
 export interface SiteRoomsGridGroupAccInterface {
-	[id: string]: string[];
+	[id: string]: SRContentDataInterface[];
 }
 
 export interface DialogToggleRoomStateInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
-	checkedState: { room: string; checked: boolean };
+	checkedState: { id: string; room: string; checked: boolean };
 	siteSingle: ISite;
-	allWhitelist: string[];
+	allRooms: SRContentDataInterface[];
 }
 
 export interface DialogToggleFloorStateInterface {
@@ -34,8 +36,8 @@ export interface DialogToggleFloorStateInterface {
 	floorState: {
 		type: SiteRoomsGridBlockUnblockFloorTypeEnum;
 		floor: string;
-		rooms: string[];
+		rooms: SiteRoomsGridGroupAccInterface;
 	};
 	siteSingle: ISite;
-	allWhitelist: string[];
+	allRooms: SRContentDataInterface[];
 }

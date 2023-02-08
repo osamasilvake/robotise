@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import PageHead from '../../../components/content/page-head/PageHead';
 import { AppConfigService } from '../../../services';
 import { sitesSelector } from '../../../slices/business/sites/Sites.slice';
+import SiteCommon from './Site.common';
 import { SiteParamsInterface } from './Site.interface';
 import SiteTabs from './Site.tabs';
 
@@ -28,7 +29,9 @@ const Site: FC = () => {
 			/>
 
 			{/* Content */}
-			<SiteTabs />
+			<SiteCommon>
+				<SiteTabs />
+			</SiteCommon>
 		</Paper>
 	);
 };

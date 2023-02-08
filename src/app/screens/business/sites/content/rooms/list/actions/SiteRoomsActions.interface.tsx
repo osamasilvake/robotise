@@ -17,9 +17,3 @@ export interface SiteRoomsSearchRoomsInterface {
 	inactive: boolean;
 	searchText: string;
 }
-
-export interface DialogModifyRoomsFormInterface {
-	whitelist: string | string[];
-	blocked?: string | string[];
-	available?: string[];
-}

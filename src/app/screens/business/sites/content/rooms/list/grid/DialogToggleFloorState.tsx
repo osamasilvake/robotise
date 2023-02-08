@@ -12,15 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '../../../../../../../slices';
 import {
-	roomsSelector,
-	RoomsUpdate
+	RoomLocationUpdate,
+	RoomsLocationsFetch,
+	roomsSelector
 } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
-import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
-import { SiteRoomsGridBlockUnblockFloorTypeEnum } from './SiteRoomsGrid.enum';
 import { DialogToggleFloorStateInterface } from './SiteRoomsGrid.interface';
 
 const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
-	const { open, setOpen, floorState, siteSingle, allWhitelist } = props;
+	const { open, setOpen, floorState, allRooms, siteSingle } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -36,16 +35,15 @@ const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
 		// return on empty
 		if (!siteSingle?.id) return;
 
-		const whitelist =
-			floorState.type === SiteRoomsGridBlockUnblockFloorTypeEnum.BLOCK
-				? allWhitelist.filter((r) => !floorState.rooms?.includes(r))
-				: [...allWhitelist, ...floorState.rooms];
+		console.log(allRooms, floorState);
 
-		// dispatch: update rooms state
+		const location: any = {};
+
+		// dispatch: update location
 		dispatch(
-			RoomsUpdate(siteSingle.id, { whitelist }, () => {
-				// dispatch: fetch sites
-				dispatch(SitesFetchList(true));
+			RoomLocationUpdate(location, () => {
+				// dispatch: fetch locations
+				siteSingle?.id && dispatch(RoomsLocationsFetch(siteSingle?.id));
 
 				// close dialog
 				setOpen(false);

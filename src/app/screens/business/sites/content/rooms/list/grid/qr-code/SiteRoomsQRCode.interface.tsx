@@ -18,7 +18,7 @@ export interface QRCodeTemplateInterface {
 export interface DialogGenerateQRCodeInterface {
 	open: boolean;
 	setOpen: Dispatch<SetStateAction<boolean>>;
-	roomState: { room: string };
+	roomState: { id: string; room: string };
 	siteSingle: ISite;
 }
 

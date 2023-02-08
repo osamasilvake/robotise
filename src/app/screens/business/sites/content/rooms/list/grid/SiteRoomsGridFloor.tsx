@@ -9,7 +9,7 @@ import { SiteRoomsGridFloorInterface } from './SiteRoomsGrid.interface';
 import { SiteRoomsGridStyle } from './SiteRoomsGrid.style';
 
 const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
-	const { siteSingle, floor, result } = props;
+	const { siteSingle, allRooms, floor, result } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteRoomsGridStyle();
 
@@ -17,9 +17,8 @@ const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
 	const [floorState, setFloorState] = useState({
 		type: SiteRoomsGridBlockUnblockFloorTypeEnum.BLOCK,
 		floor: '',
-		rooms: ['']
+		rooms: result
 	});
-	const allWhitelist = siteSingle.rooms.whitelist;
 
 	const translation = 'CONTENT.ROOMS.LIST.GRID';
 
@@ -34,7 +33,7 @@ const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
 		setFloorState({
 			type,
 			floor: floor,
-			rooms: result[+floor]
+			rooms: result
 		});
 	};
 
@@ -79,7 +78,7 @@ const SiteRoomsGridFloor: FC<SiteRoomsGridFloorInterface> = (props) => {
 					setOpen={setConfirmFloorState}
 					floorState={floorState}
 					siteSingle={siteSingle}
-					allWhitelist={allWhitelist}
+					allRooms={allRooms}
 				/>
 			)}
 		</>

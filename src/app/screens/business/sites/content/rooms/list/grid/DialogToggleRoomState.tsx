@@ -12,14 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '../../../../../../../slices';
 import {
-	roomsSelector,
-	RoomsUpdate
+	RoomLocationUpdate,
+	RoomsLocationsFetch,
+	roomsSelector
 } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
-import { SitesFetchList } from '../../../../../../../slices/business/sites/Sites.slice';
 import { DialogToggleRoomStateInterface } from './SiteRoomsGrid.interface';
 
 const DialogToggleRoomState: FC<DialogToggleRoomStateInterface> = (props) => {
-	const { open, setOpen, checkedState, siteSingle, allWhitelist } = props;
+	const { open, setOpen, checkedState, allRooms, siteSingle } = props;
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
@@ -32,18 +32,19 @@ const DialogToggleRoomState: FC<DialogToggleRoomStateInterface> = (props) => {
 	 * @returns
 	 */
 	const handleRoomState = () => {
-		// return on empty
-		if (!siteSingle?.id) return;
+		// location
+		const location = allRooms.find((r) => r.id === checkedState.id);
+		if (!location) return;
 
-		const whitelist = checkedState.checked
-			? allWhitelist.filter((r) => r !== checkedState.room)
-			: [...allWhitelist, checkedState.room];
+		// update
+		const loc = structuredClone(location);
+		loc.metadata.blocked = !!checkedState.checked;
 
-		// dispatch: update room state
+		// dispatch: update location
 		dispatch(
-			RoomsUpdate(siteSingle.id, { whitelist }, () => {
-				// dispatch: fetch sites
-				dispatch(SitesFetchList(true));
+			RoomLocationUpdate(loc, () => {
+				// dispatch: fetch locations
+				siteSingle?.id && dispatch(RoomsLocationsFetch(siteSingle?.id));
 
 				// close dialog
 				setOpen(false);

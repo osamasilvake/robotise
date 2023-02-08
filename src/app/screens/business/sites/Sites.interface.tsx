@@ -69,27 +69,6 @@ export interface SiteProductsAxiosGetInterface extends JsonAPIResponseInterface 
 	}[];
 }
 
-export interface SiteRoomsAxiosPatchRequestInterface {
-	data: {
-		type: string;
-		id: string;
-		attributes: {
-			rooms: {
-				whitelist: string[];
-				available?: string[];
-			};
-		};
-	};
-}
-
-export interface SiteRoomsAxiosPatchResponseInterface {
-	data: {
-		id: string;
-		type: string;
-		attributes: ISite;
-	};
-}
-
 export interface SiteQRCodesAxiosGetInterface extends JsonAPIResponseInterface {
 	data: {
 		id: string;

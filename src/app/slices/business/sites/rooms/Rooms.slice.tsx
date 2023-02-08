@@ -2,17 +2,26 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { TriggerMessageTypeEnum } from '../../../../components/frame/message/Message.enum';
 import { TriggerMessageInterface } from '../../../../components/frame/message/Message.interface';
-import { DialogModifyRoomsFormInterface } from '../../../../screens/business/sites/content/rooms/list/actions/SiteRoomsActions.interface';
 import SitesService from '../../../../screens/business/sites/Sites.service';
 import { timeout } from '../../../../utilities/methods/Timeout';
 import { RootState } from '../../..';
 import { triggerMessage } from '../../../app/App.slice';
-import { SliceRoomsInterface, SRCStateInterface } from './Rooms.slice.interface';
+import { deserializeRooms } from './Rooms.slice.deserialize';
+import {
+	SliceRoomsInterface,
+	SRContentDataInterface,
+	SRContentInterface,
+	SRCStateInterface
+} from './Rooms.slice.interface';
 
 // initial state
 export const initialState: SliceRoomsInterface = {
+	init: false,
+	loader: false,
+	loading: false,
 	updating: false,
-	content: null
+	content: null,
+	errors: null
 };
 
 // slice
@@ -20,6 +29,26 @@ const dataSlice = createSlice({
 	name: 'Rooms',
 	initialState,
 	reducers: {
+		loader: (state) => {
+			state.loader = true;
+		},
+		loading: (state) => {
+			state.loading = true;
+		},
+		success: (state, action) => {
+			state.init = true;
+			state.loader = false;
+			state.loading = false;
+			state.content = action.payload;
+			state.errors = null;
+		},
+		failure: (state, action) => {
+			state.init = true;
+			state.loader = false;
+			state.loading = false;
+			state.content = null;
+			state.errors = action.payload;
+		},
 		updating: (state) => {
 			state.updating = true;
 		},
@@ -37,7 +66,8 @@ const dataSlice = createSlice({
 });
 
 // actions
-export const { updating, updated, updateFailed, reset } = dataSlice.actions;
+export const { loader, loading, success, failure, updating, updated, updateFailed, reset } =
+	dataSlice.actions;
 
 // selector
 export const roomsSelector = (state: RootState) => state['rooms'];
@@ -46,19 +76,71 @@ export const roomsSelector = (state: RootState) => state['rooms'];
 export default dataSlice.reducer;
 
 /**
- * update room
+ * fetch room locations
  * @param siteId
- * @param payload
+ * @param refresh
+ * @returns
+ */
+export const RoomsLocationsFetch =
+	(siteId: string, refresh = false) =>
+	async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const rooms = states.rooms;
+		const state = rooms.content?.state;
+
+		// return on busy
+		if (rooms && (rooms.loader || rooms.loading)) {
+			return;
+		}
+
+		// dispatch: loader/loading
+		dispatch(!refresh ? loader() : loading());
+
+		// fetch locations
+		return SitesService.sitesRoomsLocations(siteId)
+			.then(async (res) => {
+				// deserialize response
+				let result: SRContentInterface = await deserializeRooms(res);
+
+				// set state
+				result = {
+					...result,
+					state: {
+						...state,
+						pSiteId: siteId
+					}
+				};
+
+				// dispatch: success
+				dispatch(success(result));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'rooms-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'PAGE_ERROR.DESCRIPTION'
+				};
+
+				// dispatch: failure
+				dispatch(failure(message));
+			});
+	};
+
+/**
+ * update location
+ * @param location
  * @param callback
  * @returns
  */
-export const RoomsUpdate =
-	(siteId: string, payload: DialogModifyRoomsFormInterface, callback: () => void) =>
-	async (dispatch: Dispatch) => {
+export const RoomLocationUpdate =
+	(location: SRContentDataInterface, callback: () => void) => async (dispatch: Dispatch) => {
 		// dispatch: updating
 		dispatch(updating());
 
-		return SitesService.siteRoomStateUpdate(siteId, payload)
+		return SitesService.siteRoomLocationUpdate(location)
 			.then(async () => {
 				// wait
 				await timeout(1000);

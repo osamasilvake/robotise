@@ -2,10 +2,9 @@ import { Autocomplete, FormControl, TextField } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
-import { SiteParamsInterface } from '../../../Site.interface';
+import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { RoomsTypeEnum } from '../../../../../../slices/business/sites/rooms/Rooms.slice.enum';
 import { SiteConfigurationColdCallsAutocompleteInterface } from './SiteConfigurationColdCalls.interface';
 import { SiteConfigurationColdCallsStyle } from './SiteConfigurationColdCalls.style';
 
@@ -16,12 +15,11 @@ const SiteConfigurationColdCallsAutocomplete: FC<
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigurationColdCallsStyle();
 
-	const sites = useSelector(sitesSelector);
-	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
+	const rooms = useSelector(roomsSelector);
 
-	const cSiteId = params.siteId;
-	const siteSingle = sites.content?.dataById[cSiteId];
-	const whitelist = siteSingle?.rooms?.whitelist || [];
+	const roomsGroupBy = rooms.content?.groupByType;
+	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+	const options = rLocations?.map((r) => r.name);
 
 	const translation = 'CONTENT.CONFIGURATION.COLD_CALLS';
 	const label = t(`${translation}.FORM.FIELDS.LOCATIONS.LABEL`);
@@ -35,7 +33,7 @@ const SiteConfigurationColdCallsAutocomplete: FC<
 				size="small"
 				id="locations"
 				value={updateLocations}
-				options={whitelist}
+				options={options}
 				getOptionLabel={(option) => option}
 				isOptionEqualToValue={(option, value) => option === value}
 				onChange={(_, values) => setUpdateLocations(values)}

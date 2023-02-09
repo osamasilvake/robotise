@@ -897,7 +897,8 @@
 								"delivered": "Delivered",
 								"received": "Received",
 								"confirmed": "Confirmed",
-								"dummy": "Dummy"
+								"dummy": "Dummy",
+								"error": "Error"
 							},
 							"HISTORY": {
 								"ORDER_DETAIL": "Detail"

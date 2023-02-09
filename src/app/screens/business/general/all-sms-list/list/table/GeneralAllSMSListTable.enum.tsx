@@ -25,5 +25,6 @@ export enum GeneralAllSMSListTableColumnHistoryEventTypeEnum {
 	DELIVERED = 'delivered',
 	RECEIVED = 'received',
 	CONFIRMED = 'confirmed',
-	ORDER_ASSIGNED = 'orderAssigned'
+	ORDER_ASSIGNED = 'orderAssigned',
+	ERROR = 'error'
 }

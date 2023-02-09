@@ -1,7 +1,9 @@
 export enum RobotOrderModeTypeEnum {
 	MINI_BAR = 'mini-bar',
 	ROOM_SERVICE = 'room-service',
-	SERVICE_POSITION = 'service-position'
+	SERVICE_POSITION = 'service-position',
+	MARKETING_RIDE = 'marketing-ride',
+	COLD_CALL = 'cold-call'
 }
 
 export enum RobotOrderCustomNotificationTypeEnum {

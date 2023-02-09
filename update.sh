@@ -42,8 +42,8 @@ while true; do
             echo -e "${GREY}"
             ncu -u
             sudo rm -R node_modules
-            yarn && yarn cache clean
             sudo rm yarn.lock
+            yarn && yarn cache clean
 
             echo -e "${NC}"
             echo -e

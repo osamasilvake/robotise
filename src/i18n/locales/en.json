@@ -189,7 +189,7 @@
 				"ROOMS": {
 					"UPDATE": {
 						"SUCCESS": "Changes has been updated successfully!",
-						"ERROR": "Unable to update room(s) state!"
+						"ERROR": "Unable to update state!"
 					}
 				},
 				"QR_CODES": {
@@ -623,7 +623,7 @@
 										"LABEL": "Room Location *"
 									},
 									"SERVICE_LOCATIONS": {
-										"LABEL": "Service Locations *"
+										"LABEL": "Service Location *"
 									},
 									"MODE": {
 										"LABEL": "MODE"

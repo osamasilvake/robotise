@@ -49,6 +49,7 @@ import {
 	SiteQRCodeCreateAxiosPostRequestInterface,
 	SiteQRCodeCreateAxiosPostResponseInterface,
 	SiteQRCodesAxiosGetInterface,
+	SiteRoomsAxiosGetInterface,
 	SitesAxiosGetInterface,
 	SiteSMSListAxiosGetInterface,
 	SiteWifiHeatmapAxiosGetInterface
@@ -159,7 +160,7 @@ class SitesService {
 	 * @returns
 	 */
 	sitesRoomsLocations = (siteId: string) => {
-		return HttpClientService.get<SitesAxiosGetInterface>(
+		return HttpClientService.get<SiteRoomsAxiosGetInterface>(
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.LOCATIONS.ALL,
 			{
 				params: {

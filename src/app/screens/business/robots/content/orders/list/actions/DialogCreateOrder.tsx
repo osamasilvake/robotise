@@ -57,13 +57,12 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
-	const cRobotId = params.robotId;
-	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
-
 	const roomsGroupBy = rooms.content?.groupByType;
 	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
 	const sLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.SERVICE)?.values || [];
 
+	const cRobotId = params.robotId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const configs = cSiteId && sites.content?.dataById[cSiteId]?.configs;
 	const orderModes = configs && configs.availableOrderModes;
 	const defaultOrderMode = configs && configs.defaultOrderMode;
@@ -71,7 +70,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const onlyPhoneRoom =
 		customerNotificationTypesEnabled?.length === 1 &&
 		customerNotificationTypesEnabled[0] === RobotOrderCustomNotificationTypeEnum.PHONE_ROOM;
-
 	const translation = 'GENERAL:COMMON.ORDERS';
 	const fieldLocation = 'locationId';
 

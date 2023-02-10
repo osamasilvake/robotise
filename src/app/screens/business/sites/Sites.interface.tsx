@@ -22,6 +22,7 @@ import {
 } from '../../../slices/business/sites/phone-configs/PhoneConfigs.slice.interface';
 import { SPCDataInterface } from '../../../slices/business/sites/products/Products.slice.interface';
 import { SQRDataInterface } from '../../../slices/business/sites/rooms/qrCode/QRCodes.slice.interface';
+import { SRContentDataInterface } from '../../../slices/business/sites/rooms/Rooms.slice.interface';
 import { ISite } from '../../../slices/business/sites/Sites.slice.interface';
 import { SLCDataInterface } from '../../../slices/business/sites/sms-list/SMSList.slice.interface';
 import {
@@ -64,6 +65,14 @@ export interface SiteProductsAxiosGetInterface extends JsonAPIResponseInterface 
 		id: string;
 		type: string;
 		attributes: SPCDataInterface;
+	}[];
+}
+
+export interface SiteRoomsAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SRContentDataInterface;
 	}[];
 }
 

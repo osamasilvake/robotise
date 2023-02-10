@@ -35,8 +35,8 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const classes = SiteRoomsGridStyle();
 	const cardClasses = CardStyle();
 
-	const qrCodes = useSelector(qrCodesSelector);
 	const rooms = useSelector(roomsSelector);
+	const qrCodes = useSelector(qrCodesSelector);
 
 	const [allRooms, setAllRooms] = useState<SRContentDataInterface[]>([]);
 	const [result, setResult] = useState<SiteRoomsGridGroupAccInterface | null>(null);

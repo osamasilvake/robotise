@@ -24,7 +24,6 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
-
 	const roomsDataBy = rooms.content?.dataById;
 	const location = order?.content?.location || '';
 	const locationName = roomsDataBy?.[location]?.name;

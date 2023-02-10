@@ -29,8 +29,6 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const classes = RobotOrdersTableStyle();
 
 	const rooms = useSelector(roomsSelector);
-	const roomsDataBy = rooms.content?.dataById;
-	const locationName = roomsDataBy?.[order.location]?.name;
 
 	const [openCancel, setOpenCancel] = useState(false);
 	const [openRestart, setOpenRestart] = useState(false);
@@ -38,6 +36,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
+	const roomsDataBy = rooms.content?.dataById;
+	const locationName = roomsDataBy?.[order.location]?.name;
 	const translation = 'COMMON.ORDERS.LIST';
 
 	/**

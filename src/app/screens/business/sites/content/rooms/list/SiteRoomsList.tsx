@@ -3,7 +3,10 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import Loader from '../../../../../../components/common/loader/Loader';
+import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
 import PageEmpty from '../../../../../../components/content/page-empty/PageEmpty';
+import PageError from '../../../../../../components/content/page-error/PageError';
 import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
 import {
@@ -76,6 +79,19 @@ const SiteRoomsList: FC = () => {
 		);
 		return () => window.clearInterval(intervalId);
 	}, [dispatch, qrCodes.content, cSiteId]);
+
+	// loader
+	if (rooms.loader) {
+		return <Loader loader={LoaderTypeEnum.PAGE_LOADER} spinnerText="LOADING" />;
+	}
+
+	// error
+	if (rooms.errors) {
+		return <PageError message={rooms.errors?.text} />;
+	}
+
+	// init
+	if (!rooms.init) return null;
 
 	// empty
 	if (!siteSingle || !rooms?.content?.data?.length) {

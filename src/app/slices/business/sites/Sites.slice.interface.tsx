@@ -52,10 +52,6 @@ export interface ISite {
 		liveMode: boolean;
 		defaultPreAuthorizedAmount: number;
 	};
-	rooms: {
-		available: string[];
-		whitelist: string[];
-	};
 	serviceTime: {
 		startTimeLocal: string;
 		endTimeLocal: string;

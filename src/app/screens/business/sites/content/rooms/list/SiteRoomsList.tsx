@@ -78,7 +78,7 @@ const SiteRoomsList: FC = () => {
 	}, [dispatch, qrCodes.content, cSiteId]);
 
 	// empty
-	if (!siteSingle?.rooms.available) {
+	if (!siteSingle || !rooms?.content?.data?.length) {
 		return (
 			<Box className={classes.sBox}>
 				{/* Actions */}

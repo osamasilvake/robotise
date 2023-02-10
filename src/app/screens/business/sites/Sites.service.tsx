@@ -82,9 +82,6 @@ class SitesService {
 					title: payload.title,
 					timezone: payload.timezone,
 					currency: payload.currency,
-					rooms: {
-						whitelist: null
-					},
 					acceptOrders: false
 				},
 				relationships: {}

@@ -45,7 +45,6 @@ export interface SiteCreateAxiosPostRequestInterface {
 			title: string;
 			timezone: string;
 			currency: string;
-			rooms: { whitelist: null };
 			acceptOrders: boolean;
 		};
 		relationships: object;

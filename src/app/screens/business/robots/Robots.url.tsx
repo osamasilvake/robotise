@@ -2,14 +2,14 @@ import { AppConfigService } from '../../../services';
 
 /**
  * robot location image
- * @param mapId
+ * @param imagePath
  * @param date
  * @returns
  */
-export const robotLocationImageUrl = (mapId: string, date?: Date) => {
-	const url = `${AppConfigService.envBaseURL}/${AppConfigService.envApiVersion}`;
+export const robotLocationImageUrl = (imagePath: string, date?: Date) => {
+	const url = AppConfigService.envBaseURL;
 	const datePart = date ? `?t=${date}` : '';
-	return `${url}/storage/maps/${mapId}.jpg${datePart}`;
+	return `${url}/${imagePath}${datePart}`;
 };
 
 /**

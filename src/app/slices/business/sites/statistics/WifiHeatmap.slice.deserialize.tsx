@@ -1,6 +1,9 @@
 import JSONAPIDeserializer from 'jsonapi-serializer';
 
-import { DeserializerExtendedOptionsInterface } from '../../../JsonAPI.interface';
+import {
+	DeserializeRelationshipPropertiesInterface,
+	DeserializerExtendedOptionsInterface
+} from '../../../JsonAPI.interface';
 
 /**
  * deserialize wifi heatmap
@@ -9,7 +12,12 @@ import { DeserializerExtendedOptionsInterface } from '../../../JsonAPI.interface
  */
 export const deserializeWifiHeatmap = async <T,>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
-		keyForAttribute: 'camelCase'
+		keyForAttribute: 'camelCase',
+		floors: {
+			valueForRelationship: (relationship: DeserializeRelationshipPropertiesInterface) => ({
+				id: relationship.id
+			})
+		}
 	};
 	const deserializer = new JSONAPIDeserializer.Deserializer(options);
 	const data = await deserializer.deserialize(payload);

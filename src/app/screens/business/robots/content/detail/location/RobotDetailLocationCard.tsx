@@ -48,6 +48,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 
 	const robotTwinsMapId = robotTwins.location?.value.mapId || '';
 	const robotMapUpdatedAt = robotOperations.map.content?.updatedAt;
+	const robotMapName = robotOperations?.map?.content?.name || '';
+	const robotImagePath = robotOperations?.map?.content?.imagePath || '';
 
 	useEffect(() => {
 		// dispatch: fetch robot map
@@ -128,8 +130,8 @@ const RobotDetailLocationCard: FC<RobotDetailLocationCardInterface> = (props) =>
 				<CardContent className={cardClasses.sCardContent0}>
 					<Box className={clsx({ [classes.sCardGridLines]: grid })}>
 						<Picture
-							src={robotLocationImageUrl(robotTwinsMapId, robotMapUpdatedAt)}
-							alt={robotTwinsMapId}
+							src={robotLocationImageUrl(robotImagePath, robotMapUpdatedAt)}
+							alt={robotMapName}
 							onLoad={onLoad}
 							fullWidth
 						/>

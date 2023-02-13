@@ -26,9 +26,11 @@ const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> 
 		cy: 0
 	});
 	const [points, setPoints] = useState<SiteStatisticsWifiHeatmapCoordinatesInterface[] | null>();
+	const map = wifiHeatmap.content?.maps?.data?.find((m) => m.id === mapId);
+	const mapName = map?.name || '';
+	const mapImagePath = map?.imagePath || '';
 
 	useEffect(() => {
-		const map = wifiHeatmap.content?.maps?.data?.find((m) => m.id === mapId);
 		const origin = map?.origin;
 		const resolution = map?.resolution;
 		if (origin && resolution && ratio) {
@@ -50,7 +52,7 @@ const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> 
 				setPoints([]);
 			}
 		}
-	}, [wifiHeatmap.content, mapId, ratio]);
+	}, [wifiHeatmap.content, map, mapId, ratio]);
 
 	/**
 	 * on image load
@@ -68,7 +70,12 @@ const SiteStatisticsWifiHeatmapCard: FC<SiteStatisticsWifiHeatmapCardInterface> 
 	return mapId ? (
 		<Card square elevation={1} className={classes.cCard}>
 			<CardContent className={cardClasses.sCardContent0}>
-				<Picture src={robotLocationImageUrl(mapId)} alt={mapId} onLoad={onLoad} fullWidth />
+				<Picture
+					src={robotLocationImageUrl(mapImagePath)}
+					alt={mapName}
+					onLoad={onLoad}
+					fullWidth
+				/>
 
 				{/* Legend */}
 				<SiteStatisticsWifiHeatmapCardLegend />

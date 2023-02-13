@@ -14,8 +14,9 @@ export interface SiteStatisticsWifiHeatmapPeriodInterface {
 
 export interface SiteStatisticsWifiHeatmapFloorInterface {
 	wifiHeatmap: SliceWifiHeatmapInterface;
-	floor: string;
 	setFloor: Dispatch<SetStateAction<string | undefined>>;
+	floorId: string;
+	setFloorId: Dispatch<SetStateAction<string | undefined>>;
 	setMapId: Dispatch<SetStateAction<string | undefined>>;
 }
 

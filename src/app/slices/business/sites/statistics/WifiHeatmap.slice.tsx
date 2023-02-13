@@ -99,7 +99,8 @@ export const WifiMapsFetch =
 						state: {
 							pSiteId: siteId,
 							floor: sorted && sorted[0]?.floorName,
-							name: sorted && sorted[0]?.name
+							floorId: sorted && sorted[0]?.floor?.id,
+							mapId: sorted && sorted[0]?.id
 						}
 					}
 				};

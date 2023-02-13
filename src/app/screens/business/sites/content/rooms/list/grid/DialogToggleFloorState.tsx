@@ -44,7 +44,7 @@ const DialogToggleFloorState: FC<DialogToggleFloorStateInterface> = (props) => {
 		dispatch(
 			RoomLocationsUpdate(floorId, isBlocked, () => {
 				// dispatch: fetch locations
-				siteSingle?.id && dispatch(RoomsLocationsFetch(siteSingle?.id));
+				siteSingle?.id && dispatch(RoomsLocationsFetch(siteSingle?.id, true));
 
 				// close dialog
 				setOpen(false);

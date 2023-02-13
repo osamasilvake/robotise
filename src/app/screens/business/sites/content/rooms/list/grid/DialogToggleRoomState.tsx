@@ -44,7 +44,7 @@ const DialogToggleRoomState: FC<DialogToggleRoomStateInterface> = (props) => {
 		dispatch(
 			RoomLocationUpdate(loc, () => {
 				// dispatch: fetch locations
-				siteSingle?.id && dispatch(RoomsLocationsFetch(siteSingle?.id));
+				siteSingle?.id && dispatch(RoomsLocationsFetch(siteSingle?.id, true));
 
 				// close dialog
 				setOpen(false);

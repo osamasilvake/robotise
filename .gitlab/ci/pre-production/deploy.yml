@@ -1,6 +1,6 @@
 pre-prod:deploy:
   stage: Deploy
-  image: "google/cloud-sdk:latest"
+  image: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/google/cloud-sdk:latest"
   script:
     # Install HELM
     - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash

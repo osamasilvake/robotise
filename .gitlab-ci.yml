@@ -1,7 +1,7 @@
-image: docker:19-git
+image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:20-git
 
 services:
-  - docker:19-dind
+  - docker:20-dind
 
 stages:
   - Initialize

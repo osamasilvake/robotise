@@ -47,16 +47,6 @@ const SitePhoneConfigsGeneral: FC<SitePhoneConfigsGeneralInterface> = (props) =>
 				<Box>{item.callbackRetries || 0}</Box>
 			</Grid>
 
-			{/* Disable Rooms Callback */}
-			{item.disableRoomsCallback && (
-				<Grid item xs={12} sm={6} md={4} lg={3}>
-					<Typography variant="caption" color="textSecondary">
-						{t(`${translation}.DISABLE_ROOMS_CALLBACK`)}
-					</Typography>
-					<Typography>{item.disableRoomsCallback}</Typography>
-				</Grid>
-			)}
-
 			{/* SMS Gateway */}
 			<Grid item xs={12} sm={6} md={4} lg={3}>
 				<Typography variant="caption" color="textSecondary">

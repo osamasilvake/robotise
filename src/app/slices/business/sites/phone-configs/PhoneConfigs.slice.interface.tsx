@@ -26,7 +26,6 @@ export interface PCCDataInterface {
 	technician: string;
 	mode: string;
 	workflow: string;
-	disableRoomsCallback: string[];
 	callbackRetries: number;
 	smsGateway: string;
 	sip: { outboundPattern: string };

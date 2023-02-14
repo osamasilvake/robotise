@@ -8,7 +8,6 @@ import { PCCDataInterface } from '../../../../../../../slices/business/sites/pho
 export const mapPhoneConfig = (phoneConfig: PCCDataInterface) => ({
 	...phoneConfig,
 	prefixes: phoneConfig.prefixes.join(', '),
-	disableRoomsCallback: phoneConfig.disableRoomsCallback?.join(', '),
 	messages:
 		phoneConfig.messages &&
 		Object.entries(phoneConfig.messages).map(([key, value]) => ({

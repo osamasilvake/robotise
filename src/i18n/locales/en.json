@@ -1200,7 +1200,6 @@
 						"MODE": "Mode",
 						"PREFIXES": "Prefixes",
 						"FROM": "From",
-						"DISABLE_ROOMS_CALLBACK": "Disable Rooms Callback",
 						"CALLBACK_RETRIES": "Callback Retries",
 						"SMS_GATEWAY": "SMS Gateway",
 						"SIP_CONFIG": {

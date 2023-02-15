@@ -345,7 +345,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 					result[prop] = emptyItem(item[prop] as RCCDataElementInterface);
 				} else {
 					if (prop === 'default' || prop === 'value') {
-						result[prop] = '';
+						result[prop] = item['default'];
 					}
 				}
 			}

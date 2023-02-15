@@ -357,7 +357,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 					result[prop] = emptyItem(item[prop] as SCCDataElementInterface);
 				} else {
 					if (prop === 'default' || prop === 'value') {
-						result[prop] = '';
+						result[prop] = item['default'];
 					}
 				}
 			}

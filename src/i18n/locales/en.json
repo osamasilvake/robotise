@@ -1100,6 +1100,7 @@
 					"GRID": {
 						"BLOCKED": "Blocked",
 						"FLOOR": "Floor",
+						"FLOOR_EMPTY": "No rooms found!",
 						"ROOM": "Room",
 						"BLOCK": "Block Floor",
 						"UNBLOCK": "Unblock Floor",

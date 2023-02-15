@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../slices';
+import { FloorsFetch } from '../../../slices/business/sites/floors/Floors.slice';
 import {
 	RoomsLocationsFetch,
 	roomsSelector
@@ -26,6 +27,9 @@ const SiteCommon: FC<SiteCommonInterface> = (props) => {
 		const condition2 = !!(rooms.content !== null && pRoomsSiteId && pRoomsSiteId !== cSiteId);
 
 		if (condition1 || condition2) {
+			// dispatch: fetch floors
+			cSiteId && dispatch(FloorsFetch(cSiteId));
+
 			// dispatch: fetch locations
 			cSiteId && dispatch(RoomsLocationsFetch(cSiteId));
 		}

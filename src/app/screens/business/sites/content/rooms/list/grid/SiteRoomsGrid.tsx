@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 
 import PageEmpty from '../../../../../../../components/content/page-empty/PageEmpty';
 import { AppConfigService } from '../../../../../../../services';
+import { floorsSelector } from '../../../../../../../slices/business/sites/floors/Floors.slice';
 import { qrCodesSelector } from '../../../../../../../slices/business/sites/rooms/qrCode/QRCodes.slice';
 import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { RoomsTypeEnum } from '../../../../../../../slices/business/sites/rooms/Rooms.slice.enum';
@@ -35,6 +36,7 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 	const classes = SiteRoomsGridStyle();
 	const cardClasses = CardStyle();
 
+	const floors = useSelector(floorsSelector);
 	const rooms = useSelector(roomsSelector);
 	const qrCodes = useSelector(qrCodesSelector);
 
@@ -72,29 +74,19 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 		// search room
 		rooms = searchText ? rooms.filter((r) => r.name.indexOf(searchText) > -1) : rooms;
 
-		// sort rooms
-		const sortedRooms = rooms
-			?.concat()
-			.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
-
-		// group rooms by floor
-		const groupedRooms =
-			sortedRooms &&
-			sortedRooms.reduce((acc: SiteRoomsGridGroupAccInterface, room) => {
-				const { name } = room;
-				const letters =
-					name.length > 3 ? name.substring(0, name.length - 2) : name.charAt(0);
-				if (!acc[letters]) {
-					acc[letters] = [room];
-				} else {
-					acc[letters].push(room);
-				}
+		// combine floors and rooms
+		const combineFloorsAndRooms = floors.content?.data?.reduce(
+			(acc: SiteRoomsGridGroupAccInterface, floor) => {
+				const list = rooms?.filter((r) => r.floor.id === floor.id);
+				acc[floor.name] = list || [];
 				return acc;
-			}, {});
+			},
+			{}
+		);
 
 		// set result
-		groupedRooms && setResult(groupedRooms);
-	}, [roomsGroupBy, active, inactive, searchText]);
+		combineFloorsAndRooms && setResult(combineFloorsAndRooms);
+	}, [floors, roomsGroupBy, active, inactive, searchText]);
 
 	return result ? (
 		<>
@@ -103,8 +95,8 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 					{/* Floor */}
 					<SiteRoomsGridFloor siteSingle={siteSingle} floor={key} result={result} />
 
-					{/* Grid */}
-					{result[key] && result[key].length && (
+					{/* Floor with rooms */}
+					{result[key] && result[key].length > 0 && (
 						<Grid
 							container
 							spacing={1}
@@ -203,6 +195,13 @@ const SiteRoomsGrid: FC<SiteRoomsGridInterface> = (props) => {
 								</Grid>
 							))}
 						</Grid>
+					)}
+
+					{/* Empty Floor */}
+					{result[key] && result[key].length <= 0 && (
+						<Typography variant="body1" className={classes.sEmptyFloor}>
+							{t(`${translation}.FLOOR_EMPTY`)}
+						</Typography>
 					)}
 				</Box>
 			))}

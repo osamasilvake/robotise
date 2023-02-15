@@ -155,11 +155,27 @@ class SitesService {
 	};
 
 	/**
+	 * fetch floors
+	 * @param siteId
+	 * @returns
+	 */
+	sitesFloorsFetch = (siteId: string) => {
+		return HttpClientService.get<SiteRoomsAxiosGetInterface>(
+			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.FLOORS.ALL,
+			{
+				params: {
+					'filter[site]': siteId
+				}
+			}
+		);
+	};
+
+	/**
 	 * fetch locations
 	 * @param siteId
 	 * @returns
 	 */
-	sitesRoomsLocations = (siteId: string) => {
+	sitesRoomsLocationsFetch = (siteId: string) => {
 		return HttpClientService.get<SiteRoomsAxiosGetInterface>(
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.LOCATIONS.ALL,
 			{

@@ -98,7 +98,7 @@ export const RoomsLocationsFetch =
 		dispatch(!refresh ? loader() : loading());
 
 		// fetch locations
-		return SitesService.sitesRoomsLocations(siteId)
+		return SitesService.sitesRoomsLocationsFetch(siteId)
 			.then(async (res) => {
 				// deserialize response
 				let result: SRContentInterface = await deserializeRooms(res);

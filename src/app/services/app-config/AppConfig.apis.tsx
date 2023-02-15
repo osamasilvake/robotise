@@ -39,6 +39,9 @@ const AppServices = (config: typeof AppConfigService) => {
 					ALL: `${config.envAppUrl}/sites`,
 					SINGLE: `${config.envAppUrl}/sites/:siteId`,
 					PRODUCTS: `${config.envAppUrl}/products`,
+					FLOORS: {
+						ALL: `${config.envAppUrl}/floors`
+					},
 					LOCATIONS: {
 						ALL: `${config.envAppUrl}/locations`,
 						SINGLE: `${config.envAppUrl}/locations/:locationId`

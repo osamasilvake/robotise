@@ -17,6 +17,7 @@ import { NoteFormInterface } from './content/detail/general/RobotDetailGeneral.i
 import { RobotDetailRemoteSafetyResetOptionsInterface } from './content/detail/remote-safety-reset/RobotDetailRemoteSafetyReset.interface';
 import { RobotElevatorCallsListPayloadInterface } from './content/elevator-calls/list/RobotElevatorCallsList.interface';
 import { RobotElevatorCallsManualTestTypeEnum } from './content/elevator-calls/list/table/RobotElevatorCallsTable.enum';
+import { RobotOrderModeTypeEnum } from './content/orders/list/actions/RobotOrdersActions.enum';
 import { DialogCreateOrderFormInterface } from './content/orders/list/actions/RobotOrdersActions.interface';
 import { RobotOrdersListPayloadInterface } from './content/orders/list/RobotOrdersList.interface';
 import { RobotPurchasesListPayloadInterface } from './content/purchases/list/RobotPurchasesList.interface';
@@ -247,14 +248,16 @@ class RobotsService {
 	 */
 	robotOrdersFetch = (robotId: string, payload: RobotOrdersListPayloadInterface) => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.ROBOTS.ORDERS.FETCH;
+		const marketingRide = RobotOrderModeTypeEnum.MARKETING_RIDE;
+		const coldCall = RobotOrderModeTypeEnum.COLD_CALL;
 
 		let mode = undefined;
 		if (!payload.marketingRides && !payload.coldCalls) {
-			mode = 'marketing-ride,cold-call';
+			mode = `${marketingRide},${coldCall}`;
 		} else if (!payload.marketingRides) {
-			mode = 'marketing-ride';
+			mode = marketingRide;
 		} else if (!payload.coldCalls) {
-			mode = 'cold-call';
+			mode = coldCall;
 		}
 
 		return HttpClientService.get<RobotOrdersAxiosGetInterface>(url, {

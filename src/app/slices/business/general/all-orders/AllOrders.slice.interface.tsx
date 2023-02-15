@@ -19,6 +19,7 @@ export interface SAOContentInterface extends JsonAPIResponseInterface {
 export interface SAODataInterface {
 	id: string;
 	location: string;
+	locationName: string;
 	mode: string;
 	status: string;
 	origin: string;

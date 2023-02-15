@@ -85,6 +85,7 @@ class GeneralService {
 				'filter[status][ne]': status,
 				'filter[mode][nin]': mode,
 				'filter[isDebug]': false,
+				'filter[withLocationName]': true,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage
 			}
@@ -138,6 +139,7 @@ class GeneralService {
 			params: {
 				'filter[site]': payload.siteId || undefined,
 				'filter[status][in]': payload.includeAllCalls ? undefined : `${rejected},${error}`,
+				'filter[withLocationName]': true,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}
@@ -157,6 +159,7 @@ class GeneralService {
 			params: {
 				'filter[site]': payload.siteId || undefined,
 				'filter[status][nin]': payload.includeAllCalls ? undefined : completed,
+				'filter[withLocationName]': true,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}
@@ -177,6 +180,7 @@ class GeneralService {
 			params: {
 				'filter[site]': payload.siteId || undefined,
 				'filter[status][in]': payload.includeAllCalls ? undefined : `${rejected},${error}`,
+				'filter[withLocationName]': true,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}
@@ -196,6 +200,7 @@ class GeneralService {
 			params: {
 				'filter[site]': payload.siteId || undefined,
 				'filter[status][nin]': payload.includeAllCalls ? undefined : delivered,
+				'filter[withLocationName]': true,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}

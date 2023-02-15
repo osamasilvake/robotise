@@ -148,6 +148,8 @@ const GeneralAllPhoneCallsTableBodyCell: FC<GeneralAllPhoneCallsTableBodyCellInt
 							{value}
 						</Link>
 					);
+				} else if (GeneralAllPhoneCallsTableColumnsTypeEnum.ROOM === column.id) {
+					return mappedPhoneCall?.locationName || value;
 				}
 				return t(value);
 			}

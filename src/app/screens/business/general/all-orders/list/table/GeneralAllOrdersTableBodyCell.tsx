@@ -108,6 +108,8 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 					);
 				} else if (GeneralAllOrdersTableColumnsTypeEnum.MODE === column.id) {
 					return t(`COMMON.MODE.${value}`);
+				} else if (GeneralAllOrdersTableColumnsTypeEnum.TARGET === column.id) {
+					return mappedOrder?.locationName || value;
 				}
 				return t(value);
 			}

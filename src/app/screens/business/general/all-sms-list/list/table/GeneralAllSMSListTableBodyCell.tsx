@@ -166,6 +166,8 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 							{value}
 						</Link>
 					);
+				} else if (GeneralAllSMSListTableColumnsTypeEnum.ROOM === column.id) {
+					return mappedSMSItem?.locationName || value;
 				}
 				return t(value);
 			}

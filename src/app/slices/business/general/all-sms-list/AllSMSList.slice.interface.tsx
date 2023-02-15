@@ -18,6 +18,7 @@ export interface ASLContentInterface extends JsonAPIResponseInterface {
 export interface ASLDataInterface {
 	type: string;
 	room: string;
+	locationName: string;
 	vendor: string;
 	workflow: string;
 	status: string;

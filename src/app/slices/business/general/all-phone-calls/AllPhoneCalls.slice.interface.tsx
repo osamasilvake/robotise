@@ -18,6 +18,7 @@ export interface APCContentInterface extends JsonAPIResponseInterface {
 export interface APCDataInterface {
 	type: string;
 	room: string;
+	locationName: string;
 	vendor: string;
 	workflow: string;
 	status: string;

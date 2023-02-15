@@ -1,6 +1,6 @@
 prettier:
   stage: Quality
-  image: node:18.4.0-alpine
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:18.4.0-alpine
   script:
     - yarn pretty:check
   only:
@@ -22,7 +22,7 @@ lint:
 
 test:
   stage: Quality
-  image: node:18.4.0-alpine
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:18.4.0-alpine
   script:
     - yarn test:ci
   only:

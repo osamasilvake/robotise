@@ -1,6 +1,6 @@
 install:
   stage: Initialize
-  image: node:18.4.0-alpine
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:18.4.0-alpine
   script:
     - yarn install
   artifacts:

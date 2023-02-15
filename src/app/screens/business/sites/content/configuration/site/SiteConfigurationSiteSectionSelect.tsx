@@ -26,6 +26,8 @@ const SiteConfigurationSiteSectionSelect: FC<SiteConfigurationSiteSectionSelectI
 	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);
 	const notes = content?.notes;
 
+	const uChoices = Object.values(choices);
+
 	return (
 		<Box>
 			<FormControl fullWidth className={classes.sSelect}>
@@ -45,7 +47,7 @@ const SiteConfigurationSiteSectionSelect: FC<SiteConfigurationSiteSectionSelectI
 						touched.current = true;
 					}}
 					input={<OutlinedInput notched label={labelTransform} />}>
-					{choices.map((choice) => (
+					{uChoices?.map((choice) => (
 						<MenuItem key={choice} value={choice}>
 							{choice === '' ? 'none' : choice}
 						</MenuItem>

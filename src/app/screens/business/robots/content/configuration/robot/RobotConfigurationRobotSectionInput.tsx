@@ -33,7 +33,7 @@ const RobotConfigurationRobotSectionInput: FC<RobotConfigurationRobotSectionInpu
 	const required = !!content?.required;
 	const type = content?.type as string;
 	const labelTransform = strCapitalLetterAndCamelCaseToDash(label);
-	const placeholder = t(`${translation}.FORM.FIELD.PLACEHOLDER`, { value: labelTransform });
+	const placeholder = t(`${translation}.FORM.FIELDS.PLACEHOLDER`, { value: labelTransform });
 	const notes = content?.notes;
 
 	useEffect(() => {

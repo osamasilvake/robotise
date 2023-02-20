@@ -1,5 +1,6 @@
 import { Add, DeleteOutline } from '@mui/icons-material';
 import {
+	Box,
 	Button,
 	Card,
 	CardContent,
@@ -9,7 +10,6 @@ import {
 	Stack,
 	Typography
 } from '@mui/material';
-import clsx from 'clsx';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -210,32 +210,31 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 	const recursiveElements = (
 		payload: SiteConfigurationSiteRenderElementsInterface
 	): ReactElement | null => {
-		const { parentKey, key, list, index } = payload;
+		const { parentKey, key, list } = payload;
 		const id = parentKey ? `${parentKey}-${key}` : key;
 		const type = list.type.toString();
 
 		switch (type) {
 			case SiteConfigurationSiteElementTypeEnum.ARRAY:
 				return (
-					<Grid container spacing={2} className={classes.sIntentElement}>
+					<Box>
 						<Typography
 							variant="body2"
 							color="textSecondary"
-							className={classes.sRecursiveTitle}>
+							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
-						{Object.entries(list?.value)?.map(([k, v], idx) => (
+						{Object.entries(list?.value)?.map(([k, v]) => (
 							<Fragment key={k}>
 								{recursiveElements({
 									parentKey: id, // keep parent keys
 									key: k,
-									list: v,
-									index: idx
+									list: v
 								})}
 							</Fragment>
 						))}
 						<Stack
-							spacing={0.5}
+							spacing={1}
 							direction="row"
 							alignItems="center"
 							className={classes.sAction}>
@@ -264,36 +263,33 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 								/>
 							)}
 						</Stack>
-					</Grid>
+					</Box>
 				);
 			case SiteConfigurationSiteElementTypeEnum.OBJECT:
 				return (
-					<Grid
-						container
-						className={clsx({ [classes.sIntentElement]: index !== undefined })}>
+					<Box className={classes.sBlock}>
 						<Typography
 							variant="body2"
 							color="textSecondary"
-							className={classes.sRecursiveTitleInner}>
+							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
-						<Grid container spacing={2} className={classes.sIntentElementInner}>
-							{Object.entries(list?.value)?.map(([k, v], idx) => (
+						<Box className={classes.sPaddingLeft}>
+							{Object.entries(list?.value)?.map(([k, v]) => (
 								<Fragment key={k}>
 									{recursiveElements({
 										parentKey: id, // keep parent keys
 										key: k,
-										list: v,
-										index: idx
+										list: v
 									})}
 								</Fragment>
 							))}
-						</Grid>
-					</Grid>
+						</Box>
+					</Box>
 				);
 			case SiteConfigurationSiteElementTypeEnum.SELECT:
 				return (
-					<Grid item xs={12} sm={6} md={6}>
+					<Box className={classes.sBlock}>
 						<SiteConfigurationSiteSectionSelect
 							id={id}
 							label={key}
@@ -303,13 +299,13 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							handleChangeSelect={handleChangeSelect}
 							choices={list?.choices as string[]}
 						/>
-					</Grid>
+					</Box>
 				);
 			case SiteConfigurationSiteElementTypeEnum.NUMBER:
 			case SiteConfigurationSiteElementTypeEnum.STRING:
 			case SiteConfigurationSiteElementTypeEnum.MULTILINE_STRING:
 				return (
-					<Grid item xs={12} sm={6} md={6}>
+					<Box className={classes.sBlock}>
 						<SiteConfigurationSiteSectionInput
 							multiline={
 								type === SiteConfigurationSiteElementTypeEnum.MULTILINE_STRING
@@ -323,11 +319,11 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							handleChangeInput={handleChangeInput}
 							handleBlur={handleBlur}
 						/>
-					</Grid>
+					</Box>
 				);
 			case SiteConfigurationSiteElementTypeEnum.BOOLEAN:
 				return (
-					<Grid item xs={12}>
+					<Box className={classes.sBlock}>
 						<SiteConfigurationSiteSectionBoolean
 							id={id}
 							label={key}
@@ -336,7 +332,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							value={!!values[id]}
 							handleChangeCheckbox={handleChangeCheckbox}
 						/>
-					</Grid>
+					</Box>
 				);
 			default:
 				return null;
@@ -415,7 +411,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 
 				{/* Elements */}
 				<form onSubmit={handleSubmit}>
-					<Grid container spacing={2}>
+					<Box>
 						{/* Elements Root */}
 						{elements &&
 							Object.entries(elements)?.map(([key, value]) => (
@@ -427,41 +423,47 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 								</Fragment>
 							))}
 
-						{/* Add */}
-						{elements && Array.isArray(elements) && (
-							<Chip
-								size="small"
-								label={t(`${translation}.FORM.ADD_MORE`)}
-								color="primary"
-								variant="outlined"
-								icon={<Add />}
-								onClick={() =>
-									onClickAddDelete({
-										items: elements,
-										isRoot: true
-									})
-								}
-							/>
-						)}
+						<Stack
+							spacing={1}
+							direction="row"
+							alignItems="center"
+							className={classes.sAction}>
+							{/* Add */}
+							{elements && Array.isArray(elements) && (
+								<Chip
+									size="small"
+									label={t(`${translation}.FORM.ADD_MORE`)}
+									color="primary"
+									variant="outlined"
+									icon={<Add />}
+									onClick={() =>
+										onClickAddDelete({
+											items: elements,
+											isRoot: true
+										})
+									}
+								/>
+							)}
 
-						{/* Delete */}
-						{elements && Array.isArray(elements) && (
-							<Chip
-								size="small"
-								label={t(`${translation}.FORM.DELETE`)}
-								color="error"
-								variant="outlined"
-								icon={<DeleteOutline />}
-								onClick={() =>
-									onClickAddDelete({
-										items: elements,
-										isDelete: true,
-										isRoot: true
-									})
-								}
-							/>
-						)}
-					</Grid>
+							{/* Delete */}
+							{elements && Array.isArray(elements) && (
+								<Chip
+									size="small"
+									label={t(`${translation}.FORM.DELETE`)}
+									color="error"
+									variant="outlined"
+									icon={<DeleteOutline />}
+									onClick={() =>
+										onClickAddDelete({
+											items: elements,
+											isDelete: true,
+											isRoot: true
+										})
+									}
+								/>
+							)}
+						</Stack>
+					</Box>
 
 					<Grid item xs={12} className={classes.sSubmit}>
 						<Button

@@ -46,7 +46,7 @@ const SiteConfigurationSiteSectionInput: FC<SiteConfigurationSiteSectionInputInt
 
 	return (
 		<Box>
-			<FormControl fullWidth className={classes.sInput}>
+			<FormControl fullWidth className={classes.sInput} margin="normal">
 				<TextField
 					required={required}
 					multiline={multiline}

@@ -30,7 +30,7 @@ const SiteConfigurationSiteSectionSelect: FC<SiteConfigurationSiteSectionSelectI
 
 	return (
 		<Box>
-			<FormControl fullWidth className={classes.sSelect}>
+			<FormControl fullWidth className={classes.sSelect} margin="normal">
 				<InputLabel shrink id={`label-${id}`}>
 					{labelTransform}
 				</InputLabel>

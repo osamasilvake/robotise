@@ -20,7 +20,6 @@ export interface SiteConfigurationSiteRenderElementsInterface {
 	parentKey?: string;
 	key: string;
 	list: SCCDataElementInterface;
-	index?: number;
 }
 
 export interface SiteConfigurationSiteResultInterface {

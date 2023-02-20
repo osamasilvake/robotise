@@ -8,26 +8,18 @@ export const SiteConfigurationSiteStyle = makeStyles((theme: Theme) => ({
 	sExcerpt: {
 		marginBottom: theme.spacing(1.5)
 	},
-	sRecursiveTitle: {
-		fontWeight: 500,
-		marginTop: theme.spacing(2)
-	},
-	sIntentElement: {
-		marginLeft: theme.spacing(2),
-		marginTop: 0
-	},
 	sAction: {
-		marginLeft: theme.spacing(4),
-		marginTop: theme.spacing(2)
+		margin: `${theme.spacing(1)} 0 ${theme.spacing(2)}`
 	},
-	sRecursiveTitleInner: {
-		fontWeight: 500,
-		marginTop: theme.spacing(2),
+	sBlock: {
+		width: '100%'
+	},
+	sPaddingLeft: {
 		paddingLeft: theme.spacing(2)
 	},
-	sIntentElementInner: {
-		marginTop: theme.spacing(-1.5),
-		marginLeft: 0
+	sTitle: {
+		fontWeight: 500,
+		marginTop: theme.spacing(0.5)
 	},
 	sSelect: {
 		marginTop: theme.spacing(1)

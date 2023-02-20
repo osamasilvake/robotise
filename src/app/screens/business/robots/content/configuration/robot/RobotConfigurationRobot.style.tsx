@@ -15,7 +15,7 @@ export const RobotConfigurationRobotStyle = makeStyles((theme: Theme) => ({
 		width: '100%'
 	},
 	sPaddingLeft: {
-		paddingLeft: theme.spacing(2)
+		paddingLeft: theme.spacing(1)
 	},
 	sTitle: {
 		fontWeight: 500,

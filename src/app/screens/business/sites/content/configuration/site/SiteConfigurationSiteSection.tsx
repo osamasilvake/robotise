@@ -217,22 +217,24 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 		switch (type) {
 			case SiteConfigurationSiteElementTypeEnum.ARRAY:
 				return (
-					<Box>
+					<Box className={classes.sBlock}>
 						<Typography
 							variant="body2"
 							color="textSecondary"
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
-						{Object.entries(list?.value)?.map(([k, v]) => (
-							<Fragment key={k}>
-								{recursiveElements({
-									parentKey: id, // keep parent keys
-									key: k,
-									list: v
-								})}
-							</Fragment>
-						))}
+						<Grid container spacing={1}>
+							{Object.entries(list?.value)?.map(([k, v]) => (
+								<Fragment key={k}>
+									{recursiveElements({
+										parentKey: id, // keep parent keys
+										key: k,
+										list: v
+									})}
+								</Fragment>
+							))}
+						</Grid>
 						<Stack
 							spacing={1}
 							direction="row"
@@ -275,15 +277,17 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						<Box className={classes.sPaddingLeft}>
-							{Object.entries(list?.value)?.map(([k, v]) => (
-								<Fragment key={k}>
-									{recursiveElements({
-										parentKey: id, // keep parent keys
-										key: k,
-										list: v
-									})}
-								</Fragment>
-							))}
+							<Grid container spacing={1}>
+								{Object.entries(list?.value)?.map(([k, v]) => (
+									<Fragment key={k}>
+										{recursiveElements({
+											parentKey: id, // keep parent keys
+											key: k,
+											list: v
+										})}
+									</Fragment>
+								))}
+							</Grid>
 						</Box>
 					</Box>
 				);
@@ -305,7 +309,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 			case SiteConfigurationSiteElementTypeEnum.STRING:
 			case SiteConfigurationSiteElementTypeEnum.MULTILINE_STRING:
 				return (
-					<Box className={classes.sBlock}>
+					<Grid item xs={12} sm={6} md={6}>
 						<SiteConfigurationSiteSectionInput
 							multiline={
 								type === SiteConfigurationSiteElementTypeEnum.MULTILINE_STRING
@@ -319,7 +323,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							handleChangeInput={handleChangeInput}
 							handleBlur={handleBlur}
 						/>
-					</Box>
+					</Grid>
 				);
 			case SiteConfigurationSiteElementTypeEnum.BOOLEAN:
 				return (
@@ -411,7 +415,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 
 				{/* Elements */}
 				<form onSubmit={handleSubmit}>
-					<Box>
+					<Grid container spacing={1} sx={{ paddingLeft: 1 }}>
 						{/* Elements Root */}
 						{elements &&
 							Object.entries(elements)?.map(([key, value]) => (
@@ -463,7 +467,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 								/>
 							)}
 						</Stack>
-					</Box>
+					</Grid>
 
 					<Grid item xs={12} className={classes.sSubmit}>
 						<Button

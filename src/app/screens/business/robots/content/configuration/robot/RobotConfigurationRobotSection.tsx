@@ -205,22 +205,24 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 		switch (type) {
 			case RobotConfigurationRobotElementTypeEnum.ARRAY:
 				return (
-					<Box>
+					<Box className={classes.sBlock}>
 						<Typography
 							variant="body2"
 							color="textSecondary"
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
-						{Object.entries(list?.value)?.map(([k, v]) => (
-							<Fragment key={k}>
-								{recursiveElements({
-									parentKey: id, // keep parent keys
-									key: k,
-									list: v
-								})}
-							</Fragment>
-						))}
+						<Grid container spacing={1}>
+							{Object.entries(list?.value)?.map(([k, v]) => (
+								<Fragment key={k}>
+									{recursiveElements({
+										parentKey: id, // keep parent keys
+										key: k,
+										list: v
+									})}
+								</Fragment>
+							))}
+						</Grid>
 						<Stack
 							spacing={1}
 							direction="row"
@@ -263,15 +265,17 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						<Box className={classes.sPaddingLeft}>
-							{Object.entries(list?.value)?.map(([k, v]) => (
-								<Fragment key={k}>
-									{recursiveElements({
-										parentKey: id, // keep parent keys
-										key: k,
-										list: v
-									})}
-								</Fragment>
-							))}
+							<Grid container spacing={1}>
+								{Object.entries(list?.value)?.map(([k, v]) => (
+									<Fragment key={k}>
+										{recursiveElements({
+											parentKey: id, // keep parent keys
+											key: k,
+											list: v
+										})}
+									</Fragment>
+								))}
+							</Grid>
 						</Box>
 					</Box>
 				);
@@ -293,7 +297,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 			case RobotConfigurationRobotElementTypeEnum.STRING:
 			case RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING:
 				return (
-					<Box className={classes.sBlock}>
+					<Grid item xs={12} sm={6} md={6}>
 						<RobotConfigurationRobotSectionInput
 							multiline={
 								type === RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING
@@ -307,7 +311,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							handleChangeInput={handleChangeInput}
 							handleBlur={handleBlur}
 						/>
-					</Box>
+					</Grid>
 				);
 			case RobotConfigurationRobotElementTypeEnum.BOOLEAN:
 				return (
@@ -399,7 +403,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 				{/* Elements */}
 				<form onSubmit={handleSubmit}>
-					<Box>
+					<Grid container spacing={1} sx={{ paddingLeft: 1 }}>
 						{/* Elements Root */}
 						{elements &&
 							Object.entries(elements)?.map(([key, value]) => (
@@ -451,7 +455,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								/>
 							)}
 						</Stack>
-					</Box>
+					</Grid>
 
 					<Grid item xs={12} className={classes.sSubmit}>
 						<Button

@@ -1,6 +1,7 @@
 import { TableBody, TableRow } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../services';
@@ -8,6 +9,7 @@ import {
 	RTSContentDataInterface,
 	RTSContentInterface
 } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
+import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
 import { dateSort } from '../../../../../utilities/methods/Date';
 import { RobotsTableColumnsTypeEnum, RobotsTableSortTypeEnum } from './RobotsTable.enum';
 import { RobotsTableBodyInterface, RobotsTableColumnInterface } from './RobotsTable.interface';
@@ -19,10 +21,13 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	const { content, order, orderBy, siteId } = props;
 	const classes = RobotsListStyle();
 
+	const sites = useSelector(sitesSelector);
+
 	const navigate = useNavigate();
 
 	const showHidden = !!content?.state?.showHidden;
 	const showSimulation = !!content?.state?.showSimulation;
+	const searchText = content?.state?.searchText || '';
 
 	/**
 	 * sort table data
@@ -116,10 +121,21 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 * @returns
 	 */
 	const filterRobots = () => {
-		const list = (content && content.data && sortTableData(content)) || [];
-		if (siteId) {
-			return list.filter((r) => r.siteId === siteId);
+		let list = (content && content.data && sortTableData(content)) || [];
+		if (searchText) {
+			list = list?.filter((r) => {
+				const siteId = r.siteId?.toLowerCase() || '';
+				const robotId = r.robotId?.toLowerCase() || '';
+				const robotTitle = r.robotTitle?.toLowerCase() || '';
+				const siteTitle = sites.content?.dataById?.[siteId]?.title?.toLowerCase() || '';
+				const cond1 = robotId.indexOf(searchText) !== -1;
+				const cond2 = robotTitle.indexOf(searchText) !== -1;
+				const cond3 = siteTitle.indexOf(searchText) !== -1;
+				return cond1 || cond2 || cond3;
+			});
 		}
+
+		if (siteId) return list.filter((r) => r.siteId === siteId);
 		return list
 			.filter((r) => showHidden || (!showHidden && !r.robotHidden))
 			.filter((r) => showSimulation || (!showSimulation && !r.robotIsSimulator));

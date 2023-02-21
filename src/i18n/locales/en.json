@@ -1659,7 +1659,11 @@
 			"ACTIONS": {
 				"FILTERS": {
 					"HIDDEN": "Include hidden robots",
-					"SIMULATION": "Include simulation robots"
+					"SIMULATION": "Include simulation robots",
+					"SEARCH": {
+						"LABEL": "Search Robot",
+						"PLACEHOLDER": "Enter robot name"
+					}
 				},
 				"CREATE": {
 					"LABEL": "Create",

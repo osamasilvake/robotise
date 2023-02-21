@@ -38,10 +38,7 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 
 	return (
 		<Box>
-			<TableContainer
-				className={clsx({
-					[classes.sTableMaxHeight]: !hideTableScroll
-				})}>
+			<TableContainer className={clsx({ [classes.sTableMaxHeight]: !hideTableScroll })}>
 				<Table stickyHeader>
 					{/* Head */}
 					<RobotsTableHead

@@ -54,6 +54,7 @@ export interface RTSContentAlertsInterface {
 export interface RTSContentStateInterface {
 	showHidden?: boolean;
 	showSimulation?: boolean;
+	searchText?: string;
 }
 
 export interface IRobotTwinSummaryInterface {

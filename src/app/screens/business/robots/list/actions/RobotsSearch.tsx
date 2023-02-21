@@ -16,6 +16,8 @@ const RobotsSearch: FC = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
+	const searchText = robotTwinsSummary.content?.state?.searchText;
+
 	/**
 	 * search robot
 	 * @param event
@@ -41,6 +43,7 @@ const RobotsSearch: FC = () => {
 				name="robot"
 				label={t('LIST.ACTIONS.FILTERS.SEARCH.LABEL')}
 				placeholder={t('LIST.ACTIONS.FILTERS.SEARCH.PLACEHOLDER')}
+				value={searchText}
 				onChange={handleSearch}
 			/>
 		</Box>

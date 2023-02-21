@@ -14,8 +14,17 @@ const RobotsActions: FC<RobotsActionsInterface> = (props) => {
 
 	return (
 		<Paper elevation={0} square className={classes.sActions}>
-			<Stack spacing={0.5} direction="row" alignItems="center" justifyContent="space-between">
-				<Stack direction="row" alignItems="center" justifyContent="space-between">
+			<Stack
+				spacing={0.5}
+				direction="row"
+				alignItems="center"
+				justifyContent="space-between"
+				flexWrap="wrap">
+				<Stack
+					direction="row"
+					alignItems="center"
+					justifyContent="space-between"
+					flexWrap="wrap">
 					{/* Hidden */}
 					<RobotsHidden />
 

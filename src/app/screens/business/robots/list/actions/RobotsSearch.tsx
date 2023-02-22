@@ -28,7 +28,7 @@ const RobotsSearch: FC = () => {
 		// dispatch: update state
 		const state: RTSContentStateInterface = {
 			...robotTwinsSummary.content?.state,
-			searchText: value?.toLowerCase()?.trim()
+			searchText: value?.toLowerCase()
 		};
 		dispatch(RobotTwinsSummaryUpdateState(state));
 	};

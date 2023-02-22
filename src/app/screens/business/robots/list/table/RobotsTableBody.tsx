@@ -124,13 +124,14 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		let list = (content && content.data && sortTableData(content)) || [];
 		if (searchText) {
 			list = list?.filter((r) => {
+				const search = searchText?.trim();
 				const siteId = r.siteId?.toLowerCase() || '';
 				const robotId = r.robotId?.toLowerCase() || '';
 				const robotTitle = r.robotTitle?.toLowerCase() || '';
 				const siteTitle = sites.content?.dataById?.[siteId]?.title?.toLowerCase() || '';
-				const cond1 = robotId.indexOf(searchText) !== -1;
-				const cond2 = robotTitle.indexOf(searchText) !== -1;
-				const cond3 = siteTitle.indexOf(searchText) !== -1;
+				const cond1 = robotId.indexOf(search) !== -1;
+				const cond2 = robotTitle.indexOf(search) !== -1;
+				const cond3 = siteTitle.indexOf(search) !== -1;
 				return cond1 || cond2 || cond3;
 			});
 		}

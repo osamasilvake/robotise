@@ -102,7 +102,9 @@ class GeneralService {
 			':orderId',
 			orderId
 		);
-		return HttpClientService.get<GeneralAllOrderAxiosGetInterface>(url);
+		return HttpClientService.get<GeneralAllOrderAxiosGetInterface>(url, {
+			params: { 'filter[withLocationName]': true }
+		});
 	};
 
 	/**

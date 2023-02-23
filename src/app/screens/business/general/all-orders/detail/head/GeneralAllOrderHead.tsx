@@ -1,11 +1,13 @@
 import { Box, Grid, Link, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../services';
+import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { dateDayJs, dateUTC } from '../../../../../../utilities/methods/Date';
 import { mapStatus } from '../../list/table/GeneralAllOrdersTable.map';
 import { GeneralAllOrderHeadInterface } from './GeneralAllOrderHead.interface';
@@ -15,6 +17,12 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 	const { order } = props;
 	const { t } = useTranslation('GENERAL');
 	const classes = GeneralAllOrderHeadStyle();
+
+	const rooms = useSelector(roomsSelector);
+
+	const roomsDataBy = rooms.content?.dataById;
+	const location = order?.content?.location || '';
+	const locationName = roomsDataBy?.[location]?.name;
 
 	const cRobotId = order?.content?.robot.id || '';
 	const history = order?.content?.history;
@@ -30,7 +38,7 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 				<Box className={classes.sRoomWrapper}>
 					{/* Room */}
 					<Typography variant="h1" className={classes.sRoom}>
-						{order?.content?.location}
+						{locationName || location}
 					</Typography>
 
 					{/* Debug */}

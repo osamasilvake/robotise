@@ -7,7 +7,9 @@ import { Link as RouterLink, useParams } from 'react-router-dom';
 import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
+import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { dateDayJs, dateUTC } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
 import { mapStatus } from '../../list/table/RobotOrdersTable.map';
@@ -19,11 +21,18 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 	const { t } = useTranslation('GENERAL');
 	const classes = RobotOrderHeadStyle();
 
+	const sites = useSelector(sitesSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const rooms = useSelector(roomsSelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId || '';
+	const siteSingle = sites.content?.dataById?.[cSiteId];
+	const siteId = siteSingle?.id || '';
+	const siteTitle = siteSingle?.title || '';
+
 	const roomsDataBy = rooms.content?.dataById;
 	const location = order?.content?.location || '';
 	const locationName = roomsDataBy?.[location]?.name;
@@ -40,11 +49,23 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 				<Box className={classes.sRoomWrapper}>
 					{/* Room */}
 					<Typography variant="h1" className={classes.sRoom}>
-						{locationName || location}
+						{locationName || location || AppConfigService.AppOptions.common.none}
 					</Typography>
 
+					{/* Site */}
+					<Link
+						component={RouterLink}
+						variant="body1"
+						underline="hover"
+						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
+							':siteId',
+							siteId
+						)}>
+						{siteTitle}
+					</Link>
+
 					{/* Debug */}
-					{order?.content?.isDebug && (
+					{!order?.content?.isDebug && (
 						<Box className={classes.sDebug}>
 							<Status small level={StatusTypeEnum.WARN}>
 								{t(`${translation}.TEST_ORDER.TITLE`)}

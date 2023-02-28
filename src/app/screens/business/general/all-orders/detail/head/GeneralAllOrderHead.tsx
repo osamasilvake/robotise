@@ -7,7 +7,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import Status from '../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../services';
+import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
+import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { dateDayJs, dateUTC } from '../../../../../../utilities/methods/Date';
 import { mapStatus } from '../../list/table/GeneralAllOrdersTable.map';
 import { GeneralAllOrderHeadInterface } from './GeneralAllOrderHead.interface';
@@ -18,6 +20,8 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 	const { t } = useTranslation('GENERAL');
 	const classes = GeneralAllOrderHeadStyle();
 
+	const sites = useSelector(sitesSelector);
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const rooms = useSelector(roomsSelector);
 
 	const roomsDataBy = rooms.content?.dataById;
@@ -25,6 +29,11 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 	const locationName = roomsDataBy?.[location]?.name;
 
 	const cRobotId = order?.content?.robot.id || '';
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId || '';
+	const siteSingle = sites.content?.dataById?.[cSiteId];
+	const siteId = siteSingle?.id || '';
+	const siteTitle = siteSingle?.title || '';
+
 	const history = order?.content?.history;
 	const startDate = history && history[0]?.createdAt;
 	const endDate = history && history[history?.length - 1]?.createdAt;
@@ -38,8 +47,20 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 				<Box className={classes.sRoomWrapper}>
 					{/* Room */}
 					<Typography variant="h1" className={classes.sRoom}>
-						{locationName || location}
+						{locationName || location || AppConfigService.AppOptions.common.none}
 					</Typography>
+
+					{/* Site */}
+					<Link
+						component={RouterLink}
+						variant="body1"
+						underline="hover"
+						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.SITES.DETAIL.replace(
+							':siteId',
+							siteId
+						)}>
+						{siteTitle}
+					</Link>
 
 					{/* Debug */}
 					{order?.content?.isDebug && (

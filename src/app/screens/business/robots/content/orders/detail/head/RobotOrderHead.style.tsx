@@ -3,19 +3,19 @@ import { makeStyles } from '@mui/styles';
 
 export const RobotOrderHeadStyle = makeStyles((theme: Theme) => ({
 	sBox: {
-		marginBottom: theme.spacing(2.5)
+		marginBottom: theme.spacing(1.5)
 	},
 	sRoomWrapper: {
+		marginLeft: theme.spacing(2),
 		position: 'relative'
 	},
 	sRoom: {
-		fontWeight: 500,
-		marginLeft: theme.spacing(2)
+		fontWeight: 500
 	},
 	sDebug: {
 		position: 'absolute',
 		left: 0,
-		marginLeft: theme.spacing(10),
+		marginLeft: theme.spacing(8),
 		top: -10
 	},
 	sItems: {

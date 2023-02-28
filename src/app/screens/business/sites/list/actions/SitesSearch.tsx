@@ -4,33 +4,29 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch } from '../../../../../slices';
-import {
-	robotTwinsSummarySelector,
-	RobotTwinsSummaryUpdateState
-} from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { RTSContentStateInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
+import { sitesSelector, SitesUpdateState } from '../../../../../slices/business/sites/Sites.slice';
+import { SSCStateInterface } from '../../../../../slices/business/sites/Sites.slice.interface';
 
 const RobotsSearch: FC = () => {
-	const { t } = useTranslation('ROBOTS');
+	const { t } = useTranslation('SITES');
 
 	const dispatch = useDispatch<AppDispatch>();
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+	const sites = useSelector(sitesSelector);
 
-	const searchText = robotTwinsSummary.content?.state?.searchText;
+	const searchText = sites.content?.state?.searchText;
 
 	/**
-	 * search robots
-	 * @param event
+	 * search sites
 	 */
 	const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
 
 		// dispatch: update state
-		const state: RTSContentStateInterface = {
-			...robotTwinsSummary.content?.state,
+		const state: SSCStateInterface = {
+			...sites.content?.state,
 			searchText: value
 		};
-		dispatch(RobotTwinsSummaryUpdateState(state));
+		dispatch(SitesUpdateState(state));
 	};
 
 	return (

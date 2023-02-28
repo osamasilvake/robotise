@@ -22,6 +22,7 @@ export interface SSCDataByIdInterface {
 
 export interface SSCStateInterface {
 	showHidden?: boolean;
+	searchText?: string;
 }
 
 export interface ISite {

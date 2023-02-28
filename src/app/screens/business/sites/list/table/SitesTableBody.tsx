@@ -23,6 +23,7 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	const navigate = useNavigate();
 
 	const showHidden = !!sites.content?.state?.showHidden;
+	const searchText = sites.content?.state?.searchText || '';
 
 	/**
 	 * sort table data
@@ -77,6 +78,26 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	};
 
 	/**
+	 * filter sites
+	 * @returns
+	 */
+	const filterSites = () => {
+		let list = (content && content.data && sortTableData(content)) || [];
+		if (searchText) {
+			list = list?.filter((r) => {
+				const search = searchText?.toLowerCase()?.trim();
+				const siteId = r.id?.toLowerCase() || '';
+				const siteTitle = r.title?.toLowerCase() || '';
+				const cond1 = siteId.indexOf(search) !== -1;
+				const cond2 = siteTitle.indexOf(search) !== -1;
+				return cond1 || cond2;
+			});
+		}
+
+		return list.filter((r) => showHidden || (!showHidden && !r.configs.isHidden));
+	};
+
+	/**
 	 * handle show site detail
 	 * @param site
 	 * @returns
@@ -92,21 +113,13 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 
 	return (
 		<TableBody>
-			{content &&
-				content.data &&
-				sortTableData(content)
-					.filter((r) => showHidden || (!showHidden && !r.configs.isHidden))
-					.map((site: ISite) => (
-						<TableRow
-							hover
-							key={site.id}
-							tabIndex={-1}
-							onClick={handleShowSiteDetail(site)}>
-							{columns.map((column: SitesTableColumnInterface) => (
-								<SitesTableBodyCell key={column.id} column={column} site={site} />
-							))}
-						</TableRow>
+			{filterSites().map((site: ISite) => (
+				<TableRow hover key={site.id} tabIndex={-1} onClick={handleShowSiteDetail(site)}>
+					{columns.map((column: SitesTableColumnInterface) => (
+						<SitesTableBodyCell key={column.id} column={column} site={site} />
 					))}
+				</TableRow>
+			))}
 		</TableBody>
 	);
 };

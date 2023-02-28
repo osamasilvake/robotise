@@ -941,7 +941,11 @@
 		"LIST": {
 			"ACTIONS": {
 				"FILTERS": {
-					"HIDDEN": "Include hidden sites"
+					"HIDDEN": "Include hidden sites",
+					"SEARCH": {
+						"LABEL": "Search Site",
+						"PLACEHOLDER": "Enter site name"
+					}
 				},
 				"CREATE": {
 					"LABEL": "Create",

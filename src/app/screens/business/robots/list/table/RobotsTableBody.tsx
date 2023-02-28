@@ -124,7 +124,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 		let list = (content && content.data && sortTableData(content)) || [];
 		if (searchText) {
 			list = list?.filter((r) => {
-				const search = searchText?.trim();
+				const search = searchText?.toLowerCase()?.trim();
 				const siteId = r.siteId?.toLowerCase() || '';
 				const robotId = r.robotId?.toLowerCase() || '';
 				const robotTitle = r.robotTitle?.toLowerCase() || '';

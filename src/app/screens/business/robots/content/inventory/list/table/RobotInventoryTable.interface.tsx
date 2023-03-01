@@ -12,6 +12,7 @@ export interface RobotInventoryTableColumnInterface {
 	minWidth?: number;
 	width?: number;
 	align?: RobotInventoryTableHeadAlignment;
+	padding?: string;
 }
 
 export type RobotInventoryTableHeadAlignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

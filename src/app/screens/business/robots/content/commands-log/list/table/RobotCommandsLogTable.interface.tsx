@@ -39,6 +39,7 @@ export interface RobotCommandsLogTableColumnInterface {
 	width?: number;
 	align?: RobotCommandsLogTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type RobotCommandsLogTableHeadOrder = 'asc' | 'desc';

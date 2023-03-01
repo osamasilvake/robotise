@@ -53,6 +53,9 @@ const RobotCommandsLogTableBody: FC<RobotCommandsLogTableBodyInterface> = (props
 		type: RobotCommandsLogTableSortTypeEnum
 	) => {
 		return (a: CLCDataInterface, b: CLCDataInterface) => {
+			const cond1 = key === RobotCommandsLogTableColumnsTypeEnum.ID;
+			if (cond1) return 1;
+
 			const dateA = a[RobotCommandsLogTableColumnsTypeEnum.CREATED];
 			const dateB = b[RobotCommandsLogTableColumnsTypeEnum.CREATED];
 			switch (type) {

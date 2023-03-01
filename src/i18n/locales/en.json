@@ -2155,6 +2155,7 @@
 					"TITLE": "Drawer",
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"IMAGE": "Image",
 							"NAME": "Name",
 							"SIZE": "Size",
@@ -2249,6 +2250,7 @@
 				"LIST": {
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"COMMAND": "Command",
 							"STATUS": "Status",
 							"HISTORY": "History",

@@ -1,21 +1,26 @@
+import { Description } from '@mui/icons-material';
 import {
 	Avatar,
+	Box,
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
-	TableRow
+	TableRow,
+	Tooltip
 } from '@mui/material';
 import clsx from 'clsx';
 import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
+import { GeneralCopyToClipboard } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { SICDrawerLaneInterface } from '../../../../../../../slices/business/robots/inventory/Inventory.slice.interface';
 import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { productsSelector } from '../../../../../../../slices/business/sites/products/Products.slice';
@@ -36,6 +41,7 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotInventoryTableStyle();
 
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 	const products = useSelector(productsSelector);
@@ -81,6 +87,14 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 				return product
 					? `${currencyFormat(product[column.id], i18next.language, currency)}`
 					: none;
+			case RobotInventoryTableColumnsTypeEnum.ID:
+				return (
+					<Box onClick={(e) => dispatch(GeneralCopyToClipboard(lane.productId, e))}>
+						<Tooltip title={lane.productId}>
+							<Description color="action" fontSize="small" />
+						</Tooltip>
+					</Box>
+				);
 			default:
 				return product ? product[column.id] || none : none;
 		}
@@ -100,7 +114,8 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 								align={column.align}
 								style={{
 									minWidth: column.minWidth,
-									width: column.width
+									width: column.width,
+									padding: column?.padding
 								}}>
 								{t(column.label)}
 							</TableCell>
@@ -112,7 +127,10 @@ const RobotInventoryTable: FC<RobotInventoryTableInterface> = (props) => {
 					{drawer.lanes.map((lane) => (
 						<TableRow key={lane.index}>
 							{columns.map((column: RobotInventoryTableColumnInterface) => (
-								<TableCell key={column.id} align={column.align}>
+								<TableCell
+									key={column.id}
+									align={column.align}
+									style={{ padding: column?.padding }}>
 									{setCellValue(lane, column)}
 								</TableCell>
 							))}

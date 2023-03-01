@@ -1,4 +1,5 @@
 export enum RobotInventoryTableColumnsTypeEnum {
+	ID = 'ID',
 	IMAGE = 'image',
 	NAME = 'name',
 	SIZE = 'volume',

@@ -58,7 +58,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 			) : (
 				AppConfigService.AppOptions.common.none
 			);
-		} else if (column.id === RobotsTableColumnsTypeEnum.ROBOT_ID) {
+		} else if (column.id === RobotsTableColumnsTypeEnum.ID) {
 			return (
 				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(robot.robotId, e))}>
 					<Tooltip title={robot.robotId}>

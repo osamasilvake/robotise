@@ -5,7 +5,7 @@ import { SitesTableColumnInterface } from './SitesTable.interface';
 const translation = 'LIST.TABLE.COLUMNS';
 export const columns: SitesTableColumnInterface[] = [
 	{
-		id: SitesTableColumnsTypeEnum.SITE_ID,
+		id: SitesTableColumnsTypeEnum.ID,
 		label: `${translation}.ID`,
 		width: 20,
 		align: 'right',

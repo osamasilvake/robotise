@@ -5,7 +5,7 @@ import { RobotsTableColumnInterface } from './RobotsTable.interface';
 const translation = 'LIST.TABLE.COLUMNS';
 export const columns: RobotsTableColumnInterface[] = [
 	{
-		id: RobotsTableColumnsTypeEnum.ROBOT_ID,
+		id: RobotsTableColumnsTypeEnum.ID,
 		label: `${translation}.ID`,
 		width: 20,
 		align: 'right',

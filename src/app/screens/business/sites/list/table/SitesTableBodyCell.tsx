@@ -25,7 +25,7 @@ const SitesTableBodyCell: FC<SitesTableBodyCellInterface> = (props) => {
 	 * @returns
 	 */
 	const setCellValue = (site: ISite, column: SitesTableColumnInterface) => {
-		if (column.id === SitesTableColumnsTypeEnum.SITE_ID) {
+		if (column.id === SitesTableColumnsTypeEnum.ID) {
 			return (
 				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(site.id, e))}>
 					<Tooltip title={site.id}>

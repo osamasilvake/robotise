@@ -59,6 +59,9 @@ const SitesTableBody: FC<SitesTableBodyInterface> = (props) => {
 	 */
 	const sortByProperty = (key: SitesTableColumnsTypeEnum, type: SitesTableSortTypeEnum) => {
 		return (a: ISite, b: ISite) => {
+			const cond1 = key === SitesTableColumnsTypeEnum.SITE_ID;
+			if (cond1) return 1;
+
 			const dateA = a[SitesTableColumnsTypeEnum.UPDATED];
 			const dateB = b[SitesTableColumnsTypeEnum.UPDATED];
 			switch (type) {

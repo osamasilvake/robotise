@@ -34,6 +34,8 @@ export interface SitesTableColumnInterface {
 	minWidth?: number;
 	width?: number;
 	align?: SitesTableHeadAlignment;
+	noSort?: boolean;
+	padding?: string;
 }
 
 export type SitesTableHeadOrder = 'asc' | 'desc';

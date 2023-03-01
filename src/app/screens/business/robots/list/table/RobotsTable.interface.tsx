@@ -38,6 +38,7 @@ export interface RobotsTableColumnInterface {
 	width?: number;
 	align?: RobotsTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type RobotsTableHeadOrder = 'asc' | 'desc';

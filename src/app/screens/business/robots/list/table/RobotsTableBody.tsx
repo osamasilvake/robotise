@@ -86,33 +86,34 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 */
 	const sortByProperty = (key: RobotsTableColumnsTypeEnum, type: RobotsTableSortTypeEnum) => {
 		return (a: RTSContentDataInterface, b: RTSContentDataInterface) => {
-			if (key !== RobotsTableColumnsTypeEnum.ACCEPT_ORDER) {
-				const dateA = a[RobotsTableColumnsTypeEnum.UPDATED];
-				const dateB = b[RobotsTableColumnsTypeEnum.UPDATED];
-				switch (type) {
-					case RobotsTableSortTypeEnum.OBJECT_ALERT:
-						if (a.robotAlerts.danger || b.robotAlerts.danger) {
-							return a.robotAlerts.danger - b.robotAlerts.danger;
-						}
-						return a.robotAlerts.warning - b.robotAlerts.warning;
-					case RobotsTableSortTypeEnum.OBJECT_MISSION:
-						return a?.robotMission?.status?.localeCompare(b?.robotMission?.status);
-					case RobotsTableSortTypeEnum.NUMBER:
-						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
-					case RobotsTableSortTypeEnum.DATE:
-						return dateSort(dateA).diff(dateSort(dateB));
-					case RobotsTableSortTypeEnum.BOOLEAN:
-						return a[key] ? -1 : 1;
-					case RobotsTableSortTypeEnum.STRING:
-					default:
-						return a[key] && b[key]
-							? String(a[key]).localeCompare(String(b[key]))
-							: a[key]
-							? 1
-							: -1;
-				}
+			const cond1 = key === RobotsTableColumnsTypeEnum.ACCEPT_ORDER;
+			const cond2 = key === RobotsTableColumnsTypeEnum.ROBOT_ID;
+			if (cond1 || cond2) return 1;
+
+			const dateA = a[RobotsTableColumnsTypeEnum.UPDATED];
+			const dateB = b[RobotsTableColumnsTypeEnum.UPDATED];
+			switch (type) {
+				case RobotsTableSortTypeEnum.OBJECT_ALERT:
+					if (a.robotAlerts.danger || b.robotAlerts.danger) {
+						return a.robotAlerts.danger - b.robotAlerts.danger;
+					}
+					return a.robotAlerts.warning - b.robotAlerts.warning;
+				case RobotsTableSortTypeEnum.OBJECT_MISSION:
+					return a?.robotMission?.status?.localeCompare(b?.robotMission?.status);
+				case RobotsTableSortTypeEnum.NUMBER:
+					return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
+				case RobotsTableSortTypeEnum.DATE:
+					return dateSort(dateA).diff(dateSort(dateB));
+				case RobotsTableSortTypeEnum.BOOLEAN:
+					return a[key] ? -1 : 1;
+				case RobotsTableSortTypeEnum.STRING:
+				default:
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
-			return 1;
 		};
 	};
 

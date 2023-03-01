@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../utilities/methods/Number';
 import { SitesTableColumnsTypeEnum } from './SitesTable.enum';
 import { SitesTableColumnInterface } from './SitesTable.interface';
 
 const translation = 'LIST.TABLE.COLUMNS';
 export const columns: SitesTableColumnInterface[] = [
+	{
+		id: SitesTableColumnsTypeEnum.SITE_ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: SitesTableColumnsTypeEnum.SITE_TITLE,
 		label: `${translation}.NAME`,

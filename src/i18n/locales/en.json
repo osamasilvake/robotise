@@ -973,6 +973,7 @@
 			},
 			"TABLE": {
 				"COLUMNS": {
+					"ID": "",
 					"NAME": "Name",
 					"TIMEZONE": "Timezone",
 					"CURRENCY": "Currency",
@@ -1699,6 +1700,7 @@
 			},
 			"TABLE": {
 				"COLUMNS": {
+					"ID": "",
 					"NAME": "Name",
 					"ACTIVE": "Active",
 					"ACCEPT_ORDERS": "Orders",

@@ -1,4 +1,5 @@
 export enum SitesTableColumnsTypeEnum {
+	SITE_ID = 'robotID',
 	SITE_TITLE = 'title',
 	TIMEZONE = 'timezone',
 	CURRENCY = 'currency',

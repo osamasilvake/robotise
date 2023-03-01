@@ -1,12 +1,22 @@
-import { ChatOutlined, Check, Close, HelpOutline, VisibilityOff } from '@mui/icons-material';
+import {
+	ChatOutlined,
+	Check,
+	Close,
+	Description,
+	HelpOutline,
+	VisibilityOff
+} from '@mui/icons-material';
 import { Box, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import ReadMore from '../../../../../components/common/read-more/ReadMore';
 import { AppConfigService } from '../../../../../services';
+import { AppDispatch } from '../../../../../slices';
+import { GeneralCopyToClipboard } from '../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { RTSContentDataInterface } from '../../../../../slices/business/robots/RobotTwinsSummary.slice.interface';
 import { sitesSelector } from '../../../../../slices/business/sites/Sites.slice';
@@ -21,6 +31,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	const { column, robot } = props;
 	const classes = RobotsListStyle();
 
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
@@ -46,6 +57,14 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 				</Box>
 			) : (
 				AppConfigService.AppOptions.common.none
+			);
+		} else if (column.id === RobotsTableColumnsTypeEnum.ROBOT_ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(robot.robotId, e))}>
+					<Tooltip title={robot.robotId}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
 			);
 		} else {
 			const value = robot[column.id];
@@ -144,7 +163,7 @@ const RobotsTableBodyCell: FC<RobotsTableBodyCellInterface> = (props) => {
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(robot, column)}</>
 		</TableCell>
 	);

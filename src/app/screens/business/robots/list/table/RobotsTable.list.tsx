@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../utilities/methods/Number';
 import { RobotsTableColumnsTypeEnum } from './RobotsTable.enum';
 import { RobotsTableColumnInterface } from './RobotsTable.interface';
 
 const translation = 'LIST.TABLE.COLUMNS';
 export const columns: RobotsTableColumnInterface[] = [
+	{
+		id: RobotsTableColumnsTypeEnum.ROBOT_ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: RobotsTableColumnsTypeEnum.ROBOT_TITLE,
 		label: `${translation}.NAME`,

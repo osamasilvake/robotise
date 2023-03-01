@@ -1,4 +1,5 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import { MouseEvent } from 'react';
 
 import { ReportFormInterface } from '../../../components/common/report/Report.interface';
 import { TriggerMessageTypeEnum } from '../../../components/frame/message/Message.enum';
@@ -161,4 +162,30 @@ export const GeneralReportsGenerate =
 				// dispatch: failure
 				dispatch(failure(state));
 			});
+	};
+
+/**
+ * copy to clipboard
+ * @param event
+ * @param value
+ * @returns
+ */
+export const GeneralCopyToClipboard =
+	(value: string, event?: MouseEvent<HTMLDivElement>) => async (dispatch: Dispatch) => {
+		// stop propagation
+		event?.stopPropagation();
+
+		// copy message
+		navigator.clipboard.writeText(value);
+
+		// dispatch: trigger message
+		const message: TriggerMessageInterface = {
+			id: 'row-id-copy',
+			show: true,
+			severity: TriggerMessageTypeEnum.SUCCESS,
+			text: 'GENERAL.COMMON.COPY_TO_CLIPBOARD'
+		};
+		dispatch(triggerMessage(message));
+
+		return false;
 	};

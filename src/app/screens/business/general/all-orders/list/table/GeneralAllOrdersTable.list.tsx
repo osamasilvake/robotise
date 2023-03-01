@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../utilities/methods/Number';
 import { GeneralAllOrdersTableColumnsTypeEnum } from './GeneralAllOrdersTable.enum';
 import { GeneralAllOrdersTableColumnInterface } from './GeneralAllOrdersTable.interface';
 
 const translation = 'COMMON.ORDERS.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllOrdersTableColumnInterface[] = [
+	{
+		id: GeneralAllOrdersTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: GeneralAllOrdersTableColumnsTypeEnum.SITE_ROBOT,
 		label: `${translation}.SITE_ROBOT`,

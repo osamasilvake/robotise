@@ -66,6 +66,9 @@ const RobotOrdersTableBody: FC<RobotOrdersTableBodyInterface> = (props) => {
 		type: RobotOrdersTableSortTypeEnum
 	) => {
 		return (a: SOCDataInterface, b: SOCDataInterface) => {
+			const cond1 = key === RobotOrdersTableColumnsTypeEnum.ID;
+			if (cond1) return 1;
+
 			const dateA = a[RobotOrdersTableColumnsTypeEnum.CREATED];
 			const dateB = b[RobotOrdersTableColumnsTypeEnum.CREATED];
 			switch (type) {

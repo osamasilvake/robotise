@@ -1,4 +1,5 @@
 export enum SiteProductsTableColumnsTypeEnum {
+	ID = 'ID',
 	IMAGE = 'image',
 	NAME = 'name',
 	PRICE = 'price',

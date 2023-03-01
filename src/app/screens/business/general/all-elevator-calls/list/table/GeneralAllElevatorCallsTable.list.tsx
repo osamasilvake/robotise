@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../utilities/methods/Number';
 import { GeneralAllElevatorCallsTableColumnsTypeEnum } from './GeneralAllElevatorCallsTable.enum';
 import { GeneralAllElevatorCallsTableColumnInterface } from './GeneralAllElevatorCallsTable.interface';
 
 const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllElevatorCallsTableColumnInterface[] = [
+	{
+		id: GeneralAllElevatorCallsTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: GeneralAllElevatorCallsTableColumnsTypeEnum.SITE_ROBOT,
 		label: `${translation}.SITE_ROBOT`,

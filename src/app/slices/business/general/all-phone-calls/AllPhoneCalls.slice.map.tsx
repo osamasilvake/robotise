@@ -42,6 +42,7 @@ export const fillUpDummyValues = (
 
 	// fill dummies
 	const dummy: APCDataInterface = {
+		id: '',
 		type: AllPhoneCallsTypeEnum.DUMMY,
 		room: '-',
 		locationName: '',

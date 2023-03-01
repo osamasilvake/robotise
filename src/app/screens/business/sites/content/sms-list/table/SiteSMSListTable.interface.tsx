@@ -39,6 +39,7 @@ export interface SiteSMSListTableColumnInterface {
 	width?: number;
 	align?: SiteSMSListTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type SiteSMSListTableHeadOrder = 'asc' | 'desc';

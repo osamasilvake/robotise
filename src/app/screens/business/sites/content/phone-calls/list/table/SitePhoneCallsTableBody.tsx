@@ -56,6 +56,9 @@ const SitePhoneCallsTableBody: FC<SitePhoneCallsTableBodyInterface> = (props) =>
 		type: SitePhoneCallsTableSortTypeEnum
 	) => {
 		return (a: PCCDataInterface, b: PCCDataInterface) => {
+			const cond1 = key === SitePhoneCallsTableColumnsTypeEnum.ID;
+			if (cond1) return 1;
+
 			const dateA = a[SitePhoneCallsTableColumnsTypeEnum.UPDATED];
 			const dateB = b[SitePhoneCallsTableColumnsTypeEnum.UPDATED];
 			switch (type) {

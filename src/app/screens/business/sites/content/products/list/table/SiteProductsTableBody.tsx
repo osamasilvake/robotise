@@ -58,24 +58,25 @@ const SiteProductsTableBody: FC<SiteProductsTableBodyInterface> = (props) => {
 		type: SiteProductsTableSortTypeEnum
 	) => {
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
-			if (key !== SiteProductsTableColumnsTypeEnum.ACTIONS) {
-				const dateA = a[SiteProductsTableColumnsTypeEnum.UPDATED];
-				const dateB = b[SiteProductsTableColumnsTypeEnum.UPDATED];
-				switch (type) {
-					case SiteProductsTableSortTypeEnum.NUMBER:
-						return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
-					case SiteProductsTableSortTypeEnum.DATE:
-						return dateSort(dateA).diff(dateSort(dateB));
-					case SiteProductsTableSortTypeEnum.STRING:
-					default:
-						return a[key] && b[key]
-							? String(a[key]).localeCompare(String(b[key]))
-							: a[key]
-							? 1
-							: -1;
-				}
+			const cond1 = key === SiteProductsTableColumnsTypeEnum.ID;
+			const cond2 = key === SiteProductsTableColumnsTypeEnum.ACTIONS;
+			if (cond1 || cond2) return 1;
+
+			const dateA = a[SiteProductsTableColumnsTypeEnum.UPDATED];
+			const dateB = b[SiteProductsTableColumnsTypeEnum.UPDATED];
+			switch (type) {
+				case SiteProductsTableSortTypeEnum.NUMBER:
+					return a[key] && b[key] ? +a[key] - +b[key] : a[key] ? 1 : -1;
+				case SiteProductsTableSortTypeEnum.DATE:
+					return dateSort(dateA).diff(dateSort(dateB));
+				case SiteProductsTableSortTypeEnum.STRING:
+				default:
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
-			return 1;
 		};
 	};
 

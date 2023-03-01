@@ -40,6 +40,7 @@ export interface RobotElevatorCallsTableColumnInterface {
 	width?: number;
 	align?: RobotElevatorCallsTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type RobotElevatorCallsTableHeadOrder = 'asc' | 'desc';

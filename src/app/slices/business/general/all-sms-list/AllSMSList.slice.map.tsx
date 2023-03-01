@@ -42,6 +42,7 @@ export const fillUpDummyValues = (
 
 	// fill dummies
 	const dummy: ASLDataInterface = {
+		id: '',
 		type: AllSMSListTypeEnum.DUMMY,
 		room: '-',
 		locationName: '-',

@@ -42,6 +42,7 @@ export const fillUpDummyValues = (
 
 	// fill dummies
 	const dummy: PCCDataInterface = {
+		id: '',
 		type: PhoneCallsTypeEnum.DUMMY,
 		room: '-',
 		status: 'dummy',

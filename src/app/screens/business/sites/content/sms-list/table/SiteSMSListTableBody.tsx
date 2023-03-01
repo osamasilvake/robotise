@@ -56,6 +56,9 @@ const SiteSMSListTableBody: FC<SiteSMSListTableBodyInterface> = (props) => {
 		type: SiteSMSListTableSortTypeEnum
 	) => {
 		return (a: SLCDataInterface, b: SLCDataInterface) => {
+			const cond1 = key === SiteSMSListTableColumnsTypeEnum.ID;
+			if (cond1) return 1;
+
 			const dateA = a[SiteSMSListTableColumnsTypeEnum.UPDATED];
 			const dateB = b[SiteSMSListTableColumnsTypeEnum.UPDATED];
 			switch (type) {

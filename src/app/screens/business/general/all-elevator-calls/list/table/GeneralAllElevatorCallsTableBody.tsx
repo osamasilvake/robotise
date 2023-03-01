@@ -61,24 +61,24 @@ const GeneralAllElevatorCallsTableBody: FC<GeneralAllElevatorCallsTableBodyInter
 		type: GeneralAllElevatorCallsTableSortTypeEnum
 	) => {
 		return (a: AECDataInterface, b: AECDataInterface) => {
-			const siteRobot = key !== GeneralAllElevatorCallsTableColumnsTypeEnum.SITE_ROBOT;
-			const logs = key !== GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS;
-			if (siteRobot && logs) {
-				const dateA = a[GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED];
-				const dateB = b[GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED];
-				switch (type) {
-					case GeneralAllElevatorCallsTableSortTypeEnum.DATE:
-						return dateSort(dateA).diff(dateSort(dateB));
-					case GeneralAllElevatorCallsTableSortTypeEnum.STRING:
-					default:
-						return a[key] && b[key]
-							? String(a[key]).localeCompare(String(b[key]))
-							: a[key]
-							? 1
-							: -1;
-				}
+			const cond1 = key === GeneralAllElevatorCallsTableColumnsTypeEnum.ID;
+			const cond2 = key === GeneralAllElevatorCallsTableColumnsTypeEnum.SITE_ROBOT;
+			const cond3 = key === GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS;
+			if (cond1 || cond2 || cond3) return 1;
+
+			const dateA = a[GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED];
+			const dateB = b[GeneralAllElevatorCallsTableColumnsTypeEnum.CREATED];
+			switch (type) {
+				case GeneralAllElevatorCallsTableSortTypeEnum.DATE:
+					return dateSort(dateA).diff(dateSort(dateB));
+				case GeneralAllElevatorCallsTableSortTypeEnum.STRING:
+				default:
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
-			return 1;
 		};
 	};
 

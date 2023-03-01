@@ -43,6 +43,7 @@ export interface GeneralAllElevatorCallsTableColumnInterface {
 	width?: number;
 	align?: GeneralAllElevatorCallsTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type GeneralAllElevatorCallsTableHeadOrder = 'asc' | 'desc';

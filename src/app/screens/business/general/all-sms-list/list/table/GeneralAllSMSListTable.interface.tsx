@@ -39,6 +39,7 @@ export interface GeneralAllSMSListTableColumnInterface {
 	width?: number;
 	align?: GeneralAllSMSListTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type GeneralAllSMSListTableHeadOrder = 'asc' | 'desc';

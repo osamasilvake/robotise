@@ -60,6 +60,7 @@ export interface SiteProductsTableColumnInterface {
 	width?: number;
 	align?: SiteProductsTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type SiteProductsTableHeadOrder = 'asc' | 'desc';

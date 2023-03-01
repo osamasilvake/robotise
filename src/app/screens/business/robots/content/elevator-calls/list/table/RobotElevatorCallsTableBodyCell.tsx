@@ -1,4 +1,4 @@
-import { CopyAll, OpenInNew } from '@mui/icons-material';
+import { CopyAll, Description, OpenInNew } from '@mui/icons-material';
 import {
 	Box,
 	Chip,
@@ -18,6 +18,7 @@ import { ExternalLinkActionTypeEnum } from '../../../../../../../components/comm
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
 import { AppDispatch } from '../../../../../../../slices';
+import { GeneralCopyToClipboard } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import {
 	elevatorCallsSelector,
 	ElevatorCallsTemplateFetch
@@ -159,6 +160,14 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 					/>
 				</Stack>
 			);
+		} else if (column.id === RobotElevatorCallsTableColumnsTypeEnum.ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(elevatorCall.id, e))}>
+					<Tooltip title={elevatorCall.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
+			);
 		} else {
 			const mappedElevatorCall = mapElevatorCall(elevatorCall);
 			const value = mappedElevatorCall[column.id];
@@ -233,7 +242,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(elevatorCall, column)}</>
 		</TableCell>
 	);

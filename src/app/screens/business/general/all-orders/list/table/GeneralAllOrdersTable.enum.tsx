@@ -1,4 +1,5 @@
 export enum GeneralAllOrdersTableColumnsTypeEnum {
+	ID = 'ID',
 	SITE_ROBOT = 'siteRobot',
 	STATUS = 'status',
 	TARGET = 'location',

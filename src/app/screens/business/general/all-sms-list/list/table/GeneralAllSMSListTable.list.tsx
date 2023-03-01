@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../utilities/methods/Number';
 import { GeneralAllSMSListTableColumnsTypeEnum } from './GeneralAllSMSListTable.enum';
 import { GeneralAllSMSListTableColumnInterface } from './GeneralAllSMSListTable.interface';
 
 const translation = 'COMMON.SMS_LIST.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllSMSListTableColumnInterface[] = [
+	{
+		id: GeneralAllSMSListTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: GeneralAllSMSListTableColumnsTypeEnum.SITE_ROBOT,
 		label: `${translation}.SITE_ROBOT`,

@@ -1,4 +1,5 @@
 export enum GeneralAllElevatorCallsTableColumnsTypeEnum {
+	ID = 'ID',
 	SITE_ROBOT = 'siteRobot',
 	API_STATUS = 'status',
 	E2E_STATUS = 'e2eStatus',

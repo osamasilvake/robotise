@@ -16,6 +16,7 @@ export interface SLContentInterface extends JsonAPIResponseInterface {
 }
 
 export interface SLCDataInterface {
+	id: string;
 	type: string;
 	room: string;
 	vendor: string;

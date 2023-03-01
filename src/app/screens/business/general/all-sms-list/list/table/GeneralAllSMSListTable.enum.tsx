@@ -1,4 +1,5 @@
 export enum GeneralAllSMSListTableColumnsTypeEnum {
+	ID = 'ID',
 	SITE_ROBOT = 'siteRobot',
 	TYPE = 'type',
 	ROOM = 'room',

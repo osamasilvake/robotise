@@ -1,4 +1,4 @@
-import { CopyAll } from '@mui/icons-material';
+import { CopyAll, Description } from '@mui/icons-material';
 import {
 	Box,
 	Chip,
@@ -21,6 +21,7 @@ import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
 import { AECDataInterface } from '../../../../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice.interface';
+import { GeneralCopyToClipboard } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import {
 	elevatorCallsSelector,
 	ElevatorCallsTemplateFetch
@@ -131,6 +132,14 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 						</Link>
 					</Box>
 				</>
+			);
+		} else if (column.id === GeneralAllElevatorCallsTableColumnsTypeEnum.ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(elevatorCall.id, e))}>
+					<Tooltip title={elevatorCall.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
 			);
 		} else {
 			if (column.id === GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
@@ -247,7 +256,7 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(elevatorCall, column)}</>
 		</TableCell>
 	);

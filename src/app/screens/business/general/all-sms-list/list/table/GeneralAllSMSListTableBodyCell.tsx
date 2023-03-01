@@ -1,12 +1,15 @@
-import { Box, Icon, Link, Stack, TableCell, Typography } from '@mui/material';
+import { Description } from '@mui/icons-material';
+import { Box, Icon, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import { ASLDataInterface } from '../../../../../../slices/business/general/all-sms-list/AllSMSList.slice.interface';
+import { GeneralCopyToClipboard } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
@@ -26,6 +29,7 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 	const { t } = useTranslation('GENERAL');
 	const classes = GeneralAllSMSListTableStyle();
 
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
@@ -77,6 +81,14 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 						</Link>
 					</Box>
 				</>
+			);
+		} else if (column.id === GeneralAllSMSListTableColumnsTypeEnum.ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(smsItem.id, e))}>
+					<Tooltip title={smsItem.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
 			);
 		} else {
 			const mappedSMSItem = mapSMSItem(smsItem);
@@ -176,7 +188,7 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(smsItem, column)}</>
 		</TableCell>
 	);

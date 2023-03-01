@@ -1,12 +1,16 @@
-import { Box, Link, Stack, TableCell } from '@mui/material';
+import { Description } from '@mui/icons-material';
+import { Box, Link, Stack, TableCell, Tooltip } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import { SAODataInterface } from '../../../../../../slices/business/general/all-orders/AllOrders.slice.interface';
+import { GeneralCopyToClipboard } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { dateFormat1 } from '../../../../../../utilities/methods/Date';
@@ -21,6 +25,7 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 	const { column, order } = props;
 	const { t } = useTranslation('GENERAL');
 
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
@@ -73,6 +78,14 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 					</Box>
 				</>
 			);
+		} else if (column.id === GeneralAllOrdersTableColumnsTypeEnum.ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(order.id, e))}>
+					<Tooltip title={order.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
+			);
 		} else {
 			const mappedOrder = mapOrder(order);
 			const value = mappedOrder[column.id];
@@ -118,7 +131,7 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(order, column)}</>
 		</TableCell>
 	);

@@ -1,13 +1,16 @@
-import { Box, Chip, Link, TableCell } from '@mui/material';
+import { Description } from '@mui/icons-material';
+import { Box, Chip, Link, TableCell, Tooltip } from '@mui/material';
 import i18next from 'i18next';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import ExternalLink from '../../../../../../../components/common/external-link/ExternalLink';
 import { ExternalLinkActionTypeEnum } from '../../../../../../../components/common/external-link/ExternalLink.enum';
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
+import { GeneralCopyToClipboard } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { SPCDataInterface } from '../../../../../../../slices/business/robots/purchases/Purchases.slice.interface';
 import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { deepLinkSelector } from '../../../../../../../slices/settings/deep-links/DeepLink.slice';
@@ -27,6 +30,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	const { t } = useTranslation('ROBOTS');
 	const classes = RobotPurchasesTableStyle();
 
+	const dispatch = useDispatch<AppDispatch>();
 	const rooms = useSelector(roomsSelector);
 	const deepLink = useSelector(deepLinkSelector);
 
@@ -61,6 +65,14 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 					showIcon={deepLink.itemTracking.loading}
 					disabled={deepLink.itemTracking.loading}
 				/>
+			);
+		} else if (column.id === RobotPurchasesTableColumnsTypeEnum.ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(purchase.id, e))}>
+					<Tooltip title={purchase.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
 			);
 		} else {
 			const value = purchase[column.id];
@@ -107,7 +119,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(purchase, column)}</>
 		</TableCell>
 	);

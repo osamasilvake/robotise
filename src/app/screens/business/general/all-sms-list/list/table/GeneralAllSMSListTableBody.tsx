@@ -57,23 +57,23 @@ const GeneralAllSMSListTableBody: FC<GeneralAllSMSListTableBodyInterface> = (pro
 		type: GeneralAllSMSListTableSortTypeEnum
 	) => {
 		return (a: ASLDataInterface, b: ASLDataInterface) => {
-			const siteRobot = key !== GeneralAllSMSListTableColumnsTypeEnum.SITE_ROBOT;
-			if (siteRobot) {
-				const dateA = a[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
-				const dateB = b[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
-				switch (type) {
-					case GeneralAllSMSListTableSortTypeEnum.DATE:
-						return dateSort(dateA).diff(dateSort(dateB));
-					case GeneralAllSMSListTableSortTypeEnum.STRING:
-					default:
-						return a[key] && b[key]
-							? String(a[key]).localeCompare(String(b[key]))
-							: a[key]
-							? 1
-							: -1;
-				}
+			const cond1 = key === GeneralAllSMSListTableColumnsTypeEnum.ID;
+			const cond2 = key === GeneralAllSMSListTableColumnsTypeEnum.SITE_ROBOT;
+			if (cond1 || cond2) return 1;
+
+			const dateA = a[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
+			const dateB = b[GeneralAllSMSListTableColumnsTypeEnum.UPDATED];
+			switch (type) {
+				case GeneralAllSMSListTableSortTypeEnum.DATE:
+					return dateSort(dateA).diff(dateSort(dateB));
+				case GeneralAllSMSListTableSortTypeEnum.STRING:
+				default:
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
-			return 1;
 		};
 	};
 

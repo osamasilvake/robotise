@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../../utilities/methods/Number';
 import { RobotOrdersTableColumnsTypeEnum } from './RobotOrdersTable.enum';
 import { RobotOrdersTableColumnInterface } from './RobotOrdersTable.interface';
 
 const translation = 'COMMON.ORDERS.LIST.TABLE.COLUMNS';
 export const columns: RobotOrdersTableColumnInterface[] = [
+	{
+		id: RobotOrdersTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: RobotOrdersTableColumnsTypeEnum.STATUS,
 		label: `${translation}.STATUS`,

@@ -1,4 +1,5 @@
 export enum SiteSMSListTableColumnsTypeEnum {
+	ID = 'ID',
 	TYPE = 'type',
 	ROOM = 'room',
 	STATUS = 'status',

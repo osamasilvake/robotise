@@ -51,6 +51,7 @@ export interface GeneralAllOrdersTableColumnInterface {
 	width?: number;
 	align?: GeneralAllOrdersTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type GeneralAllOrdersTableHeadOrder = 'asc' | 'desc';

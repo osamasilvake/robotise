@@ -60,22 +60,23 @@ const RobotElevatorCallsTableBody: FC<RobotElevatorCallsTableBodyInterface> = (p
 		type: RobotElevatorCallsTableSortTypeEnum
 	) => {
 		return (a: ECCDataInterface, b: ECCDataInterface) => {
-			if (key !== RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
-				const dateA = a[RobotElevatorCallsTableColumnsTypeEnum.CREATED];
-				const dateB = b[RobotElevatorCallsTableColumnsTypeEnum.CREATED];
-				switch (type) {
-					case RobotElevatorCallsTableSortTypeEnum.DATE:
-						return dateSort(dateA).diff(dateSort(dateB));
-					case RobotElevatorCallsTableSortTypeEnum.STRING:
-					default:
-						return a[key] && b[key]
-							? String(a[key]).localeCompare(String(b[key]))
-							: a[key]
-							? 1
-							: -1;
-				}
+			const cond1 = key === RobotElevatorCallsTableColumnsTypeEnum.ID;
+			const cond2 = key === RobotElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS;
+			if (cond1 || cond2) return 1;
+
+			const dateA = a[RobotElevatorCallsTableColumnsTypeEnum.CREATED];
+			const dateB = b[RobotElevatorCallsTableColumnsTypeEnum.CREATED];
+			switch (type) {
+				case RobotElevatorCallsTableSortTypeEnum.DATE:
+					return dateSort(dateA).diff(dateSort(dateB));
+				case RobotElevatorCallsTableSortTypeEnum.STRING:
+				default:
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
-			return 1;
 		};
 	};
 

@@ -1,12 +1,14 @@
-import { DeleteOutline, Edit } from '@mui/icons-material';
-import { Avatar, Box, IconButton, TableCell } from '@mui/material';
+import { DeleteOutline, Description, Edit } from '@mui/icons-material';
+import { Avatar, Box, IconButton, TableCell, Tooltip } from '@mui/material';
 import i18next from 'i18next';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
+import { GeneralCopyToClipboard } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { SPCDataInterface } from '../../../../../../../slices/business/sites/products/Products.slice.interface';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
@@ -27,6 +29,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	const { column, product } = props;
 	const { t } = useTranslation('SITES');
 
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 
 	const [openCreateEdit, setOpenCreateEdit] = useState(false);
@@ -94,6 +97,14 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 					)}
 				</Box>
 			);
+		} else if (column.id === SiteProductsTableColumnsTypeEnum.ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(product.id, e))}>
+					<Tooltip title={product.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
+			);
 		} else {
 			const value = product[column.id];
 			if (SiteProductsTableColumnsTypeEnum.UPDATED === column.id) {
@@ -114,7 +125,7 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(product, column)}</>
 		</TableCell>
 	);

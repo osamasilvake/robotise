@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../../utilities/methods/Number';
 import { RobotElevatorCallsTableColumnsTypeEnum } from './RobotElevatorCallsTable.enum';
 import { RobotElevatorCallsTableColumnInterface } from './RobotElevatorCallsTable.interface';
 
 const translation = 'COMMON.ELEVATOR_CALLS.LIST.TABLE.COLUMNS';
 export const columns: RobotElevatorCallsTableColumnInterface[] = [
+	{
+		id: RobotElevatorCallsTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: RobotElevatorCallsTableColumnsTypeEnum.API_STATUS,
 		label: `${translation}.API_STATUS`,

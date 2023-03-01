@@ -42,6 +42,7 @@ export const fillUpDummyValues = (
 
 	// fill dummies
 	const dummy: SLCDataInterface = {
+		id: '',
 		type: SMSListTypeEnum.DUMMY,
 		room: '-',
 		status: 'dummy',

@@ -1,4 +1,5 @@
 export enum RobotPurchasesTableColumnsTypeEnum {
+	ID = 'ID',
 	TARGET = 'location',
 	CREATED = 'createdAt',
 	TOTAL_PRICE = 'totalPrice',

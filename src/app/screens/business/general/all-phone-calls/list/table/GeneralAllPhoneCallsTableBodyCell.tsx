@@ -1,12 +1,15 @@
-import { Box, Icon, Link, Stack, TableCell, Typography } from '@mui/material';
+import { Description } from '@mui/icons-material';
+import { Box, Icon, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
+import { AppDispatch } from '../../../../../../slices';
 import { APCDataInterface } from '../../../../../../slices/business/general/all-phone-calls/AllPhoneCalls.slice.interface';
+import { GeneralCopyToClipboard } from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
@@ -25,6 +28,7 @@ const GeneralAllPhoneCallsTableBodyCell: FC<GeneralAllPhoneCallsTableBodyCellInt
 	const { t } = useTranslation('GENERAL');
 	const classes = GeneralAllPhoneCallsTableStyle();
 
+	const dispatch = useDispatch<AppDispatch>();
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
@@ -76,6 +80,14 @@ const GeneralAllPhoneCallsTableBodyCell: FC<GeneralAllPhoneCallsTableBodyCellInt
 						</Link>
 					</Box>
 				</>
+			);
+		} else if (column.id === GeneralAllPhoneCallsTableColumnsTypeEnum.ID) {
+			return (
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(phoneCall.id, e))}>
+					<Tooltip title={phoneCall.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
 			);
 		} else {
 			const mappedPhoneCall = mapPhoneCall(phoneCall);
@@ -158,7 +170,7 @@ const GeneralAllPhoneCallsTableBodyCell: FC<GeneralAllPhoneCallsTableBodyCellInt
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(phoneCall, column)}</>
 		</TableCell>
 	);

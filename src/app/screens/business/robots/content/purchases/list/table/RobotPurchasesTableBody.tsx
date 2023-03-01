@@ -67,6 +67,9 @@ const RobotPurchasesTableBody: FC<RobotPurchasesTableBodyInterface> = (props) =>
 		type: RobotPurchasesTableSortTypeEnum
 	) => {
 		return (a: SPCDataInterface, b: SPCDataInterface) => {
+			const cond1 = key === RobotPurchasesTableColumnsTypeEnum.ID;
+			if (cond1) return 1;
+
 			if (key !== RobotPurchasesTableColumnsTypeEnum.ITEM_TRACKING) {
 				const dateA = a[RobotPurchasesTableColumnsTypeEnum.CREATED];
 				const dateB = b[RobotPurchasesTableColumnsTypeEnum.CREATED];

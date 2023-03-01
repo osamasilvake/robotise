@@ -57,23 +57,23 @@ const GeneralAllPhoneCallsTableBody: FC<GeneralAllPhoneCallsTableBodyInterface> 
 		type: GeneralAllPhoneCallsTableSortTypeEnum
 	) => {
 		return (a: APCDataInterface, b: APCDataInterface) => {
-			const siteRobot = key !== GeneralAllPhoneCallsTableColumnsTypeEnum.SITE_ROBOT;
-			if (siteRobot) {
-				const dateA = a[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
-				const dateB = b[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
-				switch (type) {
-					case GeneralAllPhoneCallsTableSortTypeEnum.DATE:
-						return dateSort(dateA).diff(dateSort(dateB));
-					case GeneralAllPhoneCallsTableSortTypeEnum.STRING:
-					default:
-						return a[key] && b[key]
-							? String(a[key]).localeCompare(String(b[key]))
-							: a[key]
-							? 1
-							: -1;
-				}
+			const cond1 = key === GeneralAllPhoneCallsTableColumnsTypeEnum.ID;
+			const cond2 = key === GeneralAllPhoneCallsTableColumnsTypeEnum.SITE_ROBOT;
+			if (cond1 || cond2) return 1;
+
+			const dateA = a[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
+			const dateB = b[GeneralAllPhoneCallsTableColumnsTypeEnum.UPDATED];
+			switch (type) {
+				case GeneralAllPhoneCallsTableSortTypeEnum.DATE:
+					return dateSort(dateA).diff(dateSort(dateB));
+				case GeneralAllPhoneCallsTableSortTypeEnum.STRING:
+				default:
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
-			return 1;
 		};
 	};
 

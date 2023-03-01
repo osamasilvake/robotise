@@ -1,4 +1,5 @@
 export enum RobotOrdersTableColumnsTypeEnum {
+	ID = 'ID',
 	STATUS = 'status',
 	TARGET = 'location',
 	MODE = 'mode',

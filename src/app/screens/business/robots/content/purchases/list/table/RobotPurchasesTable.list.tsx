@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../../utilities/methods/Number';
 import { RobotPurchasesTableColumnsTypeEnum } from './RobotPurchasesTable.enum';
 import { RobotPurchasesTableColumnInterface } from './RobotPurchasesTable.interface';
 
 const translation = 'CONTENT.PURCHASES.LIST.TABLE.COLUMNS';
 export const columns: RobotPurchasesTableColumnInterface[] = [
+	{
+		id: RobotPurchasesTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: RobotPurchasesTableColumnsTypeEnum.TARGET,
 		label: `${translation}.TARGET`,

@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../utilities/methods/Number';
 import { SiteSMSListTableColumnsTypeEnum } from './SiteSMSListTable.enum';
 import { SiteSMSListTableColumnInterface } from './SiteSMSListTable.interface';
 
 const translation = 'COMMON.SMS_LIST.LIST.TABLE.COLUMNS';
 export const columns: SiteSMSListTableColumnInterface[] = [
+	{
+		id: SiteSMSListTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: SiteSMSListTableColumnsTypeEnum.UPDATED,
 		label: `${translation}.UPDATED`,

@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../../utilities/methods/Number';
 import { SiteProductsTableColumnsTypeEnum } from './SiteProductsTable.enum';
 import { SiteProductsTableColumnInterface } from './SiteProductsTable.interface';
 
 const translation = 'CONTENT.PRODUCTS.LIST.TABLE.COLUMNS';
 export const columns: SiteProductsTableColumnInterface[] = [
+	{
+		id: SiteProductsTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.IMAGE,
 		label: `${translation}.IMAGE`,

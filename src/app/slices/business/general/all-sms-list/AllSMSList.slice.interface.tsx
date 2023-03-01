@@ -16,6 +16,7 @@ export interface ASLContentInterface extends JsonAPIResponseInterface {
 }
 
 export interface ASLDataInterface {
+	id: string;
 	type: string;
 	room: string;
 	locationName: string;

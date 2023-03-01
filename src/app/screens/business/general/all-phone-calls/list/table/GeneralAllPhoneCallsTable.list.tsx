@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../utilities/methods/Number';
 import { GeneralAllPhoneCallsTableColumnsTypeEnum } from './GeneralAllPhoneCallsTable.enum';
 import { GeneralAllPhoneCallsTableColumnInterface } from './GeneralAllPhoneCallsTable.interface';
 
 const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.COLUMNS';
 export const columns: GeneralAllPhoneCallsTableColumnInterface[] = [
+	{
+		id: GeneralAllPhoneCallsTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: GeneralAllPhoneCallsTableColumnsTypeEnum.SITE_ROBOT,
 		label: `${translation}.SITE_ROBOT`,

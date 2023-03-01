@@ -86,8 +86,8 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 */
 	const sortByProperty = (key: RobotsTableColumnsTypeEnum, type: RobotsTableSortTypeEnum) => {
 		return (a: RTSContentDataInterface, b: RTSContentDataInterface) => {
-			const cond1 = key === RobotsTableColumnsTypeEnum.ACCEPT_ORDER;
-			const cond2 = key === RobotsTableColumnsTypeEnum.ID;
+			const cond1 = key === RobotsTableColumnsTypeEnum.ID;
+			const cond2 = key === RobotsTableColumnsTypeEnum.ACCEPT_ORDER;
 			if (cond1 || cond2) return 1;
 
 			const dateA = a[RobotsTableColumnsTypeEnum.UPDATED];

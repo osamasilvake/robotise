@@ -48,6 +48,7 @@ export interface RobotPurchasesTableColumnInterface {
 	width?: number;
 	align?: RobotPurchasesTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type RobotPurchasesTableHeadOrder = 'asc' | 'desc';

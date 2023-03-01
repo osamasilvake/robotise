@@ -16,6 +16,7 @@ export interface PCContentInterface extends JsonAPIResponseInterface {
 }
 
 export interface PCCDataInterface {
+	id: string;
 	type: string;
 	room: string;
 	vendor: string;

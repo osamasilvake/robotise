@@ -39,6 +39,7 @@ export interface GeneralAllPhoneCallsTableColumnInterface {
 	width?: number;
 	align?: GeneralAllPhoneCallsTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type GeneralAllPhoneCallsTableHeadOrder = 'asc' | 'desc';

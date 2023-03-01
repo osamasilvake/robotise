@@ -665,6 +665,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"SITE_ROBOT": "Site & Robot",
 							"STATUS": "Status",
 							"TARGET": "Target 🎯",
@@ -733,6 +734,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"SITE_ROBOT": "Site & Robot",
 							"API_STATUS": "API Status",
 							"E2E_STATUS": "Status",
@@ -800,6 +802,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"SITE_ROBOT": "Site & Robot",
 							"UPDATED": "Updated",
 							"TYPE": "Type",
@@ -847,6 +850,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"SITE_ROBOT": "Site & Robot",
 							"UPDATED": "Updated",
 							"TYPE": "Type",
@@ -1076,6 +1080,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"IMAGE": "Image",
 							"NAME": "Name",
 							"PRICE": "Price",
@@ -2211,6 +2216,7 @@
 					},
 					"TABLE": {
 						"COLUMNS": {
+							"ID": "",
 							"TARGET": "Target 🎯",
 							"CREATED": "Created",
 							"TOTAL_PRICE": "Total Price",

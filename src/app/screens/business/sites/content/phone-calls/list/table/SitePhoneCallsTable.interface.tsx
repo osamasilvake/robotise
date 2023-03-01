@@ -39,6 +39,7 @@ export interface SitePhoneCallsTableColumnInterface {
 	width?: number;
 	align?: SitePhoneCallsTableHeadAlignment;
 	noSort?: boolean;
+	padding?: string;
 }
 
 export type SitePhoneCallsTableHeadOrder = 'asc' | 'desc';

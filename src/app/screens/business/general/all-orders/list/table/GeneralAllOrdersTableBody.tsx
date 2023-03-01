@@ -63,23 +63,23 @@ const GeneralAllOrdersTableBody: FC<GeneralAllOrdersTableBodyInterface> = (props
 		type: GeneralAllOrdersTableSortTypeEnum
 	) => {
 		return (a: SAODataInterface, b: SAODataInterface) => {
-			const siteRobot = key === GeneralAllOrdersTableColumnsTypeEnum.SITE_ROBOT;
-			if (!siteRobot) {
-				const dateA = a[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
-				const dateB = b[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
-				switch (type) {
-					case GeneralAllOrdersTableSortTypeEnum.DATE:
-						return dateSort(dateA).diff(dateSort(dateB));
-					case GeneralAllOrdersTableSortTypeEnum.STRING:
-					default:
-						return a[key] && b[key]
-							? String(a[key]).localeCompare(String(b[key]))
-							: a[key]
-							? 1
-							: -1;
-				}
+			const cond1 = key === GeneralAllOrdersTableColumnsTypeEnum.ID;
+			const cond2 = key === GeneralAllOrdersTableColumnsTypeEnum.SITE_ROBOT;
+			if (cond1 || cond2) return 1;
+
+			const dateA = a[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
+			const dateB = b[GeneralAllOrdersTableColumnsTypeEnum.CREATED];
+			switch (type) {
+				case GeneralAllOrdersTableSortTypeEnum.DATE:
+					return dateSort(dateA).diff(dateSort(dateB));
+				case GeneralAllOrdersTableSortTypeEnum.STRING:
+				default:
+					return a[key] && b[key]
+						? String(a[key]).localeCompare(String(b[key]))
+						: a[key]
+						? 1
+						: -1;
 			}
-			return 1;
 		};
 	};
 

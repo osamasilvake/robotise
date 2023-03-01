@@ -1,8 +1,17 @@
+import { pxToRem } from '../../../../../../../utilities/methods/Number';
 import { SitePhoneCallsTableColumnsTypeEnum } from './SitePhoneCallsTable.enum';
 import { SitePhoneCallsTableColumnInterface } from './SitePhoneCallsTable.interface';
 
 const translation = 'COMMON.PHONE_CALLS.LIST.TABLE.COLUMNS';
 export const columns: SitePhoneCallsTableColumnInterface[] = [
+	{
+		id: SitePhoneCallsTableColumnsTypeEnum.ID,
+		label: `${translation}.ID`,
+		width: 20,
+		align: 'right',
+		noSort: true,
+		padding: `0 ${pxToRem(5)}`
+	},
 	{
 		id: SitePhoneCallsTableColumnsTypeEnum.UPDATED,
 		label: `${translation}.UPDATED`,

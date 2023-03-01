@@ -31,7 +31,8 @@ const SitePhoneCallsTableHead: FC<SitePhoneCallsTableHeadInterface> = (props) =>
 						align={column.align}
 						style={{
 							minWidth: column.minWidth,
-							width: column.width
+							width: column.width,
+							padding: column?.padding
 						}}
 						sortDirection={orderBy === column.id ? order : false}>
 						<TableSortLabel

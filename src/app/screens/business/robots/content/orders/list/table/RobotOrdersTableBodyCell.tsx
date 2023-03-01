@@ -1,11 +1,15 @@
-import { Box, Chip, Link, Stack, TableCell } from '@mui/material';
+import { Description } from '@mui/icons-material';
+import { Box, Chip, Link, Stack, TableCell, Tooltip } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Status from '../../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../../services';
+import { AppDispatch } from '../../../../../../../slices';
+import { GeneralCopyToClipboard } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import { SOCDataInterface } from '../../../../../../../slices/business/robots/orders/Orders.slice.interface';
 import { roomsSelector } from '../../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { dateDayJs, dateFormat1 } from '../../../../../../../utilities/methods/Date';
@@ -28,6 +32,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	const { t } = useTranslation('GENERAL');
 	const classes = RobotOrdersTableStyle();
 
+	const dispatch = useDispatch<AppDispatch>();
 	const rooms = useSelector(roomsSelector);
 
 	const [openCancel, setOpenCancel] = useState(false);
@@ -71,91 +76,104 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 	 * @returns
 	 */
 	const setCellValue = (order: SOCDataInterface, column: RobotOrdersTableColumnInterface) => {
-		const mappedOrder = mapOrder(order);
-		const value = mappedOrder[column.id];
-		if (RobotOrdersTableColumnsTypeEnum.CREATED === column.id) {
-			return dateFormat1(String(value));
-		} else if (
-			RobotOrdersTableColumnsTypeEnum.PURCHASE_DETAILS === column.id &&
-			order.orderReport?.id
-		) {
+		if (column.id === RobotOrdersTableColumnsTypeEnum.ID) {
 			return (
-				<Link
-					component={RouterLink}
-					variant="body2"
-					underline="hover"
-					to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL.replace(
-						':robotId',
-						cRobotId
-					).replace(':purchaseId', order.orderReport.id)}
-					onClick={(e) => e.stopPropagation()}>
-					{t(`${translation}.TABLE.VALUES.PURCHASE_DETAILS`)}
-				</Link>
+				<Box onClick={(e) => dispatch(GeneralCopyToClipboard(order.id, e))}>
+					<Tooltip title={order.id}>
+						<Description color="action" fontSize="small" />
+					</Tooltip>
+				</Box>
 			);
-		} else if (typeof value === 'string') {
-			if (RobotOrdersTableColumnsTypeEnum.STATUS === column.id) {
-				const notFinished = order.status !== RobotOrdersTableColumnStatusTypeEnum.FINISHED;
-				const yesterday = dateDayJs().subtract(1, 'd');
-				const notBefore24hrs = dateDayJs(order.createdAt).isAfter(yesterday);
+		} else {
+			const mappedOrder = mapOrder(order);
+			const value = mappedOrder[column.id];
+			if (RobotOrdersTableColumnsTypeEnum.CREATED === column.id) {
+				return dateFormat1(String(value));
+			} else if (
+				RobotOrdersTableColumnsTypeEnum.PURCHASE_DETAILS === column.id &&
+				order.orderReport?.id
+			) {
 				return (
-					<Stack spacing={0.5} direction="row" alignItems="center">
-						<Box>
-							<Status level={mapStatus(value)}>{t(value.replace(':', '_'))}</Status>
-						</Box>
-						{isOrderCancellable(value) && (
-							<Box>
-								<Chip
-									size="small"
-									label={t(`${translation}.ACTIONS.CANCEL.LABEL`)}
-									variant="outlined"
-									color="error"
-									onDelete={openCancelOrderDialog}
-									onClick={openCancelOrderDialog}
-									className={classes.sCancelOrder}
-								/>
-								{openCancel && (
-									<DialogCancelOrder
-										order={order}
-										open={openCancel}
-										setOpen={setOpenCancel}
-									/>
-								)}
-							</Box>
-						)}
-						{notFinished && notBefore24hrs && (
-							<Box>
-								<Chip
-									size="small"
-									label={t(`${translation}.ACTIONS.RESTART.LABEL`)}
-									variant="outlined"
-									color="primary"
-									onDelete={openRestartOrderDialog}
-									onClick={openRestartOrderDialog}
-									className={classes.sRestartOrder}
-								/>
-								{openRestart && (
-									<DialogRestartOrder
-										order={order}
-										open={openRestart}
-										setOpen={setOpenRestart}
-									/>
-								)}
-							</Box>
-						)}
-					</Stack>
+					<Link
+						component={RouterLink}
+						variant="body2"
+						underline="hover"
+						to={AppConfigService.AppRoutes.SCREENS.BUSINESS.ROBOTS.PURCHASES.DETAIL.replace(
+							':robotId',
+							cRobotId
+						).replace(':purchaseId', order.orderReport.id)}
+						onClick={(e) => e.stopPropagation()}>
+						{t(`${translation}.TABLE.VALUES.PURCHASE_DETAILS`)}
+					</Link>
 				);
-			} else if (RobotOrdersTableColumnsTypeEnum.MODE === column.id) {
-				return t(`COMMON.MODE.${value}`);
-			} else if (RobotOrdersTableColumnsTypeEnum.TARGET === column.id) {
-				return locationName || value;
+			} else if (typeof value === 'string') {
+				if (RobotOrdersTableColumnsTypeEnum.STATUS === column.id) {
+					const notFinished =
+						order.status !== RobotOrdersTableColumnStatusTypeEnum.FINISHED;
+					const yesterday = dateDayJs().subtract(1, 'd');
+					const notBefore24hrs = dateDayJs(order.createdAt).isAfter(yesterday);
+					return (
+						<Stack spacing={0.5} direction="row" alignItems="center">
+							<Box>
+								<Status level={mapStatus(value)}>
+									{t(value.replace(':', '_'))}
+								</Status>
+							</Box>
+							{isOrderCancellable(value) && (
+								<Box>
+									<Chip
+										size="small"
+										label={t(`${translation}.ACTIONS.CANCEL.LABEL`)}
+										variant="outlined"
+										color="error"
+										onDelete={openCancelOrderDialog}
+										onClick={openCancelOrderDialog}
+										className={classes.sCancelOrder}
+									/>
+									{openCancel && (
+										<DialogCancelOrder
+											order={order}
+											open={openCancel}
+											setOpen={setOpenCancel}
+										/>
+									)}
+								</Box>
+							)}
+							{notFinished && notBefore24hrs && (
+								<Box>
+									<Chip
+										size="small"
+										label={t(`${translation}.ACTIONS.RESTART.LABEL`)}
+										variant="outlined"
+										color="primary"
+										onDelete={openRestartOrderDialog}
+										onClick={openRestartOrderDialog}
+										className={classes.sRestartOrder}
+									/>
+									{openRestart && (
+										<DialogRestartOrder
+											order={order}
+											open={openRestart}
+											setOpen={setOpenRestart}
+										/>
+									)}
+								</Box>
+							)}
+						</Stack>
+					);
+				} else if (RobotOrdersTableColumnsTypeEnum.MODE === column.id) {
+					return t(`COMMON.MODE.${value}`);
+				} else if (RobotOrdersTableColumnsTypeEnum.TARGET === column.id) {
+					return locationName || value;
+				}
+				return t(value);
 			}
-			return t(value);
+			return value || AppConfigService.AppOptions.common.none;
 		}
-		return value || AppConfigService.AppOptions.common.none;
 	};
 
 	return (
-		<TableCell key={column.id} align={column.align}>
+		<TableCell key={column.id} align={column.align} style={{ padding: column?.padding }}>
 			<>{setCellValue(order, column)}</>
 		</TableCell>
 	);

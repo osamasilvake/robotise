@@ -1,6 +1,7 @@
 import { Box, Checkbox, FormControlLabel, FormHelperText } from '@mui/material';
 import { FC, useRef } from 'react';
 
+import { pxToRem } from '../../../../../../utilities/methods/Number';
 import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
 import { SiteConfigurationSiteSectionBooleanInterface } from './SiteConfigurationSite.interface';
 
@@ -29,7 +30,7 @@ const SiteConfigurationSiteSectionBoolean: FC<SiteConfigurationSiteSectionBoolea
 				label={strCapitalLetterAndCamelCaseToDash(label)}
 			/>
 			{notes && (
-				<FormHelperText>
+				<FormHelperText sx={{ margin: `${pxToRem(-4)} 0 ${pxToRem(2)}` }}>
 					<>{notes}</>
 				</FormHelperText>
 			)}

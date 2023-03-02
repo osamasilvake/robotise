@@ -212,7 +212,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
-						<Grid container spacing={1}>
+						<Grid container spacing={0}>
 							{Object.entries(list?.value)?.map(([k, v]) => (
 								<Fragment key={k}>
 									{recursiveElements({
@@ -264,24 +264,22 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
-						<Box className={classes.sPaddingLeft}>
-							<Grid container spacing={1}>
-								{Object.entries(list?.value)?.map(([k, v]) => (
-									<Fragment key={k}>
-										{recursiveElements({
-											parentKey: id, // keep parent keys
-											key: k,
-											list: v
-										})}
-									</Fragment>
-								))}
-							</Grid>
-						</Box>
+						<Grid container spacing={0}>
+							{Object.entries(list?.value)?.map(([k, v]) => (
+								<Fragment key={k}>
+									{recursiveElements({
+										parentKey: id, // keep parent keys
+										key: k,
+										list: v
+									})}
+								</Fragment>
+							))}
+						</Grid>
 					</Box>
 				);
 			case RobotConfigurationRobotElementTypeEnum.SELECT:
 				return (
-					<Box className={classes.sBlock}>
+					<Grid item xs={12} sm={6} md={6}>
 						<RobotConfigurationRobotSectionSelect
 							id={id}
 							label={key}
@@ -291,7 +289,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							handleChangeSelect={handleChangeSelect}
 							choices={list?.choices as string[]}
 						/>
-					</Box>
+					</Grid>
 				);
 			case RobotConfigurationRobotElementTypeEnum.NUMBER:
 			case RobotConfigurationRobotElementTypeEnum.STRING:
@@ -403,7 +401,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 
 				{/* Elements */}
 				<form onSubmit={handleSubmit}>
-					<Grid container spacing={1} sx={{ paddingLeft: 1 }}>
+					<Grid container spacing={0}>
 						{/* Elements Root */}
 						{elements &&
 							Object.entries(elements)?.map(([key, value]) => (

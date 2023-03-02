@@ -14,24 +14,21 @@ export const SiteConfigurationSiteStyle = makeStyles((theme: Theme) => ({
 	sBlock: {
 		width: '100%'
 	},
-	sPaddingLeft: {
-		paddingLeft: theme.spacing(1)
-	},
 	sTitle: {
 		fontWeight: 500,
 		marginTop: theme.spacing(0.5)
 	},
 	sSelect: {
-		marginTop: theme.spacing(1)
+		marginTop: theme.spacing(1.25)
 	},
 	sInput: {
-		marginTop: theme.spacing(1)
+		marginTop: theme.spacing(1.25)
 	},
 	sSubmit: {
-		marginTop: theme.spacing(1)
+		marginTop: theme.spacing(1.25)
 	},
 	sSubmitNote: {
-		marginTop: theme.spacing(1)
+		marginTop: theme.spacing(1.25)
 	},
 	sDialogContent: {
 		overflow: 'visible'

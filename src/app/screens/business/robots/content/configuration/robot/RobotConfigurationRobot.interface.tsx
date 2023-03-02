@@ -19,6 +19,7 @@ export interface RobotConfigurationRobotRenderElementsInterface {
 	parentKey?: string;
 	key: string;
 	list: RCCDataElementInterface;
+	level: number;
 	index?: number;
 }
 

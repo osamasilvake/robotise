@@ -10,6 +10,7 @@ import {
 	Stack,
 	Typography
 } from '@mui/material';
+import { Variant } from '@mui/material/styles/createTypography';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -198,16 +199,18 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const recursiveElements = (
 		payload: RobotConfigurationRobotRenderElementsInterface
 	): ReactElement | null => {
-		const { parentKey, key, list, index } = payload;
+		const { parentKey, key, list, level, index } = payload;
 		const id = parentKey ? `${parentKey}-${key}` : key;
 		const type = list.type.toString();
+		const heading = level + 4;
+		const variant = heading > 6 ? 'body2' : `h${heading}`;
 
 		switch (type) {
 			case RobotConfigurationRobotElementTypeEnum.ARRAY:
 				return (
 					<Box className={classes.sBlock}>
 						<Typography
-							variant="body2"
+							variant={`${variant}` as Variant}
 							color="textSecondary"
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
@@ -218,7 +221,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 									{recursiveElements({
 										parentKey: id, // keep parent keys
 										key: k,
-										list: v
+										list: v,
+										level: level + 1
 									})}
 								</Fragment>
 							))}
@@ -259,7 +263,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				return (
 					<Box className={classes.sBlock}>
 						<Typography
-							variant="body2"
+							variant={`${variant}` as Variant}
 							color="textSecondary"
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
@@ -271,6 +275,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 										parentKey: id, // keep parent keys
 										key: k,
 										list: v,
+										level: level + 1,
 										index: i
 									})}
 								</Fragment>
@@ -303,7 +308,6 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 			case RobotConfigurationRobotElementTypeEnum.NUMBER:
 			case RobotConfigurationRobotElementTypeEnum.STRING:
 			case RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING:
-				console.log(index);
 				return (
 					<Grid
 						item
@@ -426,7 +430,8 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 								<Fragment key={key}>
 									{recursiveElements({
 										key,
-										list: value as RCCDataElementInterface
+										list: value as RCCDataElementInterface,
+										level: 1
 									})}
 								</Fragment>
 							))}

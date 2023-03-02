@@ -10,6 +10,7 @@ import {
 	Stack,
 	Typography
 } from '@mui/material';
+import { Variant } from '@mui/material/styles/createTypography';
 import { FC, Fragment, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -210,28 +211,30 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 	const recursiveElements = (
 		payload: SiteConfigurationSiteRenderElementsInterface
 	): ReactElement | null => {
-		const { parentKey, key, list, index } = payload;
+		const { parentKey, key, list, level, index } = payload;
 		const id = parentKey ? `${parentKey}-${key}` : key;
 		const type = list.type.toString();
+		const heading = level + 4;
+		const variant = heading > 6 ? 'body2' : `h${heading}`;
 
 		switch (type) {
 			case SiteConfigurationSiteElementTypeEnum.ARRAY:
 				return (
 					<Box className={classes.sBlock}>
 						<Typography
-							variant="body2"
+							variant={`${variant}` as Variant}
 							color="textSecondary"
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						<Grid container spacing={0}>
-							{Object.entries(list?.value)?.map(([k, v], i) => (
+							{Object.entries(list?.value)?.map(([k, v]) => (
 								<Fragment key={k}>
 									{recursiveElements({
 										parentKey: id, // keep parent keys
 										key: k,
 										list: v,
-										index: i
+										level: level + 1
 									})}
 								</Fragment>
 							))}
@@ -272,18 +275,20 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 				return (
 					<Box className={classes.sBlock}>
 						<Typography
-							variant="body2"
+							variant={`${variant}` as Variant}
 							color="textSecondary"
 							className={classes.sTitle}>
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						<Grid container spacing={0}>
-							{Object.entries(list?.value)?.map(([k, v]) => (
+							{Object.entries(list?.value)?.map(([k, v], i) => (
 								<Fragment key={k}>
 									{recursiveElements({
 										parentKey: id, // keep parent keys
 										key: k,
-										list: v
+										list: v,
+										level: level + 1,
+										index: i
 									})}
 								</Fragment>
 							))}
@@ -437,7 +442,8 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 								<Fragment key={key}>
 									{recursiveElements({
 										key,
-										list: value as SCCDataElementInterface
+										list: value as SCCDataElementInterface,
+										level: 1
 									})}
 								</Fragment>
 							))}

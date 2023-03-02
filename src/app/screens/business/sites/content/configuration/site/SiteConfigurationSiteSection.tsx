@@ -210,7 +210,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 	const recursiveElements = (
 		payload: SiteConfigurationSiteRenderElementsInterface
 	): ReactElement | null => {
-		const { parentKey, key, list } = payload;
+		const { parentKey, key, list, index } = payload;
 		const id = parentKey ? `${parentKey}-${key}` : key;
 		const type = list.type.toString();
 
@@ -225,12 +225,13 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						<Grid container spacing={0}>
-							{Object.entries(list?.value)?.map(([k, v]) => (
+							{Object.entries(list?.value)?.map(([k, v], i) => (
 								<Fragment key={k}>
 									{recursiveElements({
 										parentKey: id, // keep parent keys
 										key: k,
-										list: v
+										list: v,
+										index: i
 									})}
 								</Fragment>
 							))}
@@ -291,7 +292,15 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 				);
 			case SiteConfigurationSiteElementTypeEnum.SELECT:
 				return (
-					<Grid item xs={12} sm={6} md={6}>
+					<Grid
+						item
+						xs={12}
+						sm={6}
+						md={6}
+						sx={{
+							pr: +(index || 0) % 2 === 0 ? 0.5 : 0,
+							pl: +(index || 0) % 2 !== 0 ? 0.5 : 0
+						}}>
 						<SiteConfigurationSiteSectionSelect
 							id={id}
 							label={key}
@@ -307,7 +316,15 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 			case SiteConfigurationSiteElementTypeEnum.STRING:
 			case SiteConfigurationSiteElementTypeEnum.MULTILINE_STRING:
 				return (
-					<Grid item xs={12} sm={6} md={6}>
+					<Grid
+						item
+						xs={12}
+						sm={6}
+						md={6}
+						sx={{
+							pr: +(index || 0) % 2 === 0 ? 0.5 : 0,
+							pl: +(index || 0) % 2 !== 0 ? 0.5 : 0
+						}}>
 						<SiteConfigurationSiteSectionInput
 							multiline={
 								type === SiteConfigurationSiteElementTypeEnum.MULTILINE_STRING

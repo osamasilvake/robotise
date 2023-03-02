@@ -198,7 +198,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 	const recursiveElements = (
 		payload: RobotConfigurationRobotRenderElementsInterface
 	): ReactElement | null => {
-		const { parentKey, key, list } = payload;
+		const { parentKey, key, list, index } = payload;
 		const id = parentKey ? `${parentKey}-${key}` : key;
 		const type = list.type.toString();
 
@@ -265,12 +265,13 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							{strCapitalLetterAndCamelCaseToDash(key)}
 						</Typography>
 						<Grid container spacing={0}>
-							{Object.entries(list?.value)?.map(([k, v]) => (
+							{Object.entries(list?.value)?.map(([k, v], i) => (
 								<Fragment key={k}>
 									{recursiveElements({
 										parentKey: id, // keep parent keys
 										key: k,
-										list: v
+										list: v,
+										index: i
 									})}
 								</Fragment>
 							))}
@@ -279,7 +280,15 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 				);
 			case RobotConfigurationRobotElementTypeEnum.SELECT:
 				return (
-					<Grid item xs={12} sm={6} md={6}>
+					<Grid
+						item
+						xs={12}
+						sm={6}
+						md={6}
+						sx={{
+							pr: +(index || 0) % 2 === 0 ? 0.5 : 0,
+							pl: +(index || 0) % 2 !== 0 ? 0.5 : 0
+						}}>
 						<RobotConfigurationRobotSectionSelect
 							id={id}
 							label={key}
@@ -294,8 +303,17 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 			case RobotConfigurationRobotElementTypeEnum.NUMBER:
 			case RobotConfigurationRobotElementTypeEnum.STRING:
 			case RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING:
+				console.log(index);
 				return (
-					<Grid item xs={12} sm={6} md={6}>
+					<Grid
+						item
+						xs={12}
+						sm={6}
+						md={6}
+						sx={{
+							pr: +(index || 0) % 2 === 0 ? 0.5 : 0,
+							pl: +(index || 0) % 2 !== 0 ? 0.5 : 0
+						}}>
 						<RobotConfigurationRobotSectionInput
 							multiline={
 								type === RobotConfigurationRobotElementTypeEnum.MULTILINE_STRING

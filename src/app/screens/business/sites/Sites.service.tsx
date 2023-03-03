@@ -945,7 +945,7 @@ class SitesService {
 				type: 'cold-calls',
 				id: siteId,
 				attributes: {
-					locations: locations?.map((l) => ({ location: l }))
+					locations: locations?.map((l) => ({ locationId: l }))
 				},
 				relationships: {
 					site: { data: { type: 'sites', id: siteId } }

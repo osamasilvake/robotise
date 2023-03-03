@@ -908,7 +908,12 @@ class SitesService {
 						}))
 				},
 				relationships: {
-					locations
+					locations: {
+						data: locations.map((l) => ({
+							type: 'locations',
+							id: l
+						}))
+					}
 				}
 			}
 		});

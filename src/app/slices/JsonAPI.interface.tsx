@@ -10,12 +10,17 @@ export interface DeserializerExtendedOptionsInterface extends DeserializerOption
 	activity?: DeserializeRelationshipInterface;
 	notificationTypes?: DeserializeRelationshipInterface;
 	floors?: DeserializeRelationshipInterface;
+	locations?: DeserializeRelationshipSingleInterface;
 }
 
 export interface DeserializeRelationshipInterface {
 	valueForRelationship(
 		arg: DeserializeRelationshipPropertiesInterface
 	): DeserializeRelationshipPropertiesInterface;
+}
+
+export interface DeserializeRelationshipSingleInterface {
+	valueForRelationship(arg: DeserializeRelationshipPropertiesInterface): string | number;
 }
 
 export interface DeserializeRelationshipPropertiesInterface {

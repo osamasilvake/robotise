@@ -887,14 +887,15 @@ class SitesService {
 		marketingRideId: string,
 		payload: SiteConfigurationMarketingRidesFormInterface
 	) => {
-		const url =
-			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION.MARKETING_RIDES
-				.SINGLE;
+		const configuration = AppConfigService.AppServices.SCREENS.BUSINESS.SITES.CONFIGURATION;
+		const url = configuration.MARKETING_RIDES.SINGLE;
+		const { locations, ...rest } = payload;
+
 		return HttpClientService.patch(url.replace(':marketingRideId', marketingRideId), {
 			data: {
 				type: 'marketing-rides',
 				attributes: {
-					...payload,
+					...rest,
 					times: payload.times
 						?.filter((v) => v)
 						?.filter((v) => v.minutes)
@@ -906,6 +907,9 @@ class SitesService {
 								?.map(Number)
 						}))
 				}
+			},
+			relationships: {
+				locations
 			}
 		});
 	};

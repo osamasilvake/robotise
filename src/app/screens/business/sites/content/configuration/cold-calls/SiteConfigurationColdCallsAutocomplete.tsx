@@ -19,7 +19,8 @@ const SiteConfigurationColdCallsAutocomplete: FC<
 
 	const roomsGroupBy = rooms.content?.groupByType;
 	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
-	const options = rLocations?.map((r) => r.name);
+	const options = rLocations?.map((r) => ({ id: r.id, name: r.name }));
+	const currentOptions = updateLocations.map((l) => options.find((o) => o?.id === l));
 
 	const translation = 'CONTENT.CONFIGURATION.COLD_CALLS';
 	const label = t(`${translation}.FORM.FIELDS.LOCATIONS.LABEL`);
@@ -32,11 +33,11 @@ const SiteConfigurationColdCallsAutocomplete: FC<
 				multiple
 				size="small"
 				id="locations"
-				value={updateLocations}
 				options={options}
-				getOptionLabel={(option) => option}
-				isOptionEqualToValue={(option, value) => option === value}
-				onChange={(_, values) => setUpdateLocations(values)}
+				getOptionLabel={(option) => option?.name || ''}
+				isOptionEqualToValue={(option, value) => option?.id === value?.id}
+				value={currentOptions}
+				onChange={(_, values) => setUpdateLocations(values?.map((v) => v?.id || ''))}
 				onBlur={handleBlur}
 				renderInput={(params) => (
 					<TextField {...params} label={label} placeholder={placeholder} />

@@ -1,4 +1,4 @@
-import { Autocomplete, FormControl, TextField } from '@mui/material';
+import { Autocomplete, FormControl, ListItem, TextField } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -19,7 +19,8 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 
 	const roomsGroupBy = rooms.content?.groupByType;
 	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
-	const options = rLocations?.map((r) => r.name);
+	const options = rLocations?.map((r) => ({ id: r.id, name: r.name }));
+	const currentOptions = locations.map((l) => options.find((o) => o?.id === l));
 
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';
 	const label = t(`${translation}.FORM.FIELDS.LOCATIONS.LABEL`);
@@ -33,10 +34,21 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 				size="small"
 				id="locations"
 				options={options}
-				isOptionEqualToValue={(option, value) => option === value}
-				value={locations}
-				onChange={(_, values) => handleChangeInputs('locations', values)}
+				getOptionLabel={(option) => option?.name || ''}
+				isOptionEqualToValue={(option, value) => option?.id === value?.id}
+				value={currentOptions}
+				onChange={(_, values) =>
+					handleChangeInputs(
+						'locations',
+						values?.map((v) => v?.id || '')
+					)
+				}
 				onBlur={handleBlur}
+				renderOption={(props, option) => (
+					<ListItem {...props} key={option?.id}>
+						{option?.name}
+					</ListItem>
+				)}
 				renderInput={(params) => (
 					<TextField
 						{...params}

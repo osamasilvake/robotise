@@ -42,7 +42,7 @@ const SiteConfigurationColdCallsContent: FC = () => {
 	const coldCalls = useSelector(coldCallsSelector);
 
 	const locations = coldCalls.content?.data[0]?.locations || [];
-	const [updateLocations, setUpdateLocations] = useState(locations?.map((l) => l.location));
+	const [updateLocations, setUpdateLocations] = useState(locations?.map((l) => l.locationId));
 
 	const params = useParams<keyof SiteParamsInterface>() as SiteParamsInterface;
 

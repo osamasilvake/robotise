@@ -23,7 +23,7 @@ export interface CCContentDataInterface {
 }
 
 export interface CCContentDataLocationsInterface {
-	location: string;
+	locationId: string;
 	priority: number;
 	lastExecuted: string;
 }

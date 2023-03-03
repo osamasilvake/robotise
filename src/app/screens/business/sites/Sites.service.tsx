@@ -906,10 +906,10 @@ class SitesService {
 								?.sort()
 								?.map(Number)
 						}))
+				},
+				relationships: {
+					locations
 				}
-			},
-			relationships: {
-				locations
 			}
 		});
 	};

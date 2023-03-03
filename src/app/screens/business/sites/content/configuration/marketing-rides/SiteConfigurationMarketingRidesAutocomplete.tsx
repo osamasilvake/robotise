@@ -1,4 +1,4 @@
-import { Autocomplete, FormControl, ListItem, TextField } from '@mui/material';
+import { Autocomplete, FormControl, TextField } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import { SiteConfigurationMarketingRidesStyle } from './SiteConfigurationMarketi
 const SiteConfigurationMarketingRidesAutocomplete: FC<
 	SiteConfigurationMarketingRidesAutocompleteInterface
 > = (props) => {
-	const { locations, handleChangeInputs, handleBlur, errors } = props;
+	const { locations, handleChangeInputs, handleBlur } = props;
 	const { t } = useTranslation('SITES');
 	const classes = SiteConfigurationMarketingRidesStyle();
 
@@ -44,19 +44,8 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 					)
 				}
 				onBlur={handleBlur}
-				renderOption={(props, option) => (
-					<ListItem {...props} key={option?.id}>
-						{option?.name}
-					</ListItem>
-				)}
 				renderInput={(params) => (
-					<TextField
-						{...params}
-						label={label}
-						placeholder={placeholder}
-						error={!!errors[0]}
-						helperText={errors[0] && t(errors[0])}
-					/>
+					<TextField {...params} label={label} placeholder={placeholder} />
 				)}
 			/>
 		</FormControl>

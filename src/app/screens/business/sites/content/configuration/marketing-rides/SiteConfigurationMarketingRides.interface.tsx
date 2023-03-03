@@ -30,7 +30,6 @@ export interface SiteConfigurationMarketingRidesAutocompleteInterface {
 	locations: string[];
 	handleChangeInputs: (id: string, values: string[]) => void;
 	handleBlur: (event: FocusEvent<HTMLInputElement>) => void;
-	errors: string[];
 }
 
 export interface SiteConfigurationMarketingRidesCheckboxInterface {

@@ -156,7 +156,6 @@ const SiteConfigurationMarketingRidesContent: FC<
 								locations={values.locations}
 								handleChangeInputs={handleChangeInputs}
 								handleBlur={handleBlur}
-								errors={errors?.locations || []}
 							/>
 						</Box>
 

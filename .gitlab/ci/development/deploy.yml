@@ -1,19 +1,19 @@
 dev:deploy:
-    stage: Deploy
-    image: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/google/cloud-sdk:latest"
-    script:
-        # Install HELM
-        - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+  stage: Deploy
+  image: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/google/cloud-sdk:latest"
+  script:
+    # Install HELM
+    - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-        # Auth with service account
-        - gcloud auth activate-service-account --key-file="$GCP_GKE_SERVICE_ACCOUNT_KEY"
-        - gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone $GKE_CLUSTER_ZONE --project $GCP_PROJECT
+    # Auth with service account
+    - gcloud auth activate-service-account --key-file="$GCP_GKE_SERVICE_ACCOUNT_KEY"
+    - gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone $GKE_CLUSTER_ZONE --project $GCP_PROJECT
 
-        # Deploy with HELM
-        - helm repo add $HELM_REPO_NAME "https://$HELM_BASIC_AUTH@$HELM_REPO_DOMAIN"
-        - helm repo update
-        - helm upgrade --namespace=development $HELM_RELEASE_NAME_DEV $HELM_REPO_NAME/$HELM_CHART_NAME --reuse-values --set-string=image.tag="$DEV_IMAGE_SHA"
-    environment:
-        name: development
-    only:
-        - development
+    # Deploy with HELM
+    - helm repo add $HELM_REPO_NAME "https://$HELM_BASIC_AUTH@$HELM_REPO_DOMAIN"
+    - helm repo update
+    - helm upgrade --namespace=development $HELM_RELEASE_NAME_DEV $HELM_REPO_NAME/$HELM_CHART_NAME --reuse-values --set-string=image.tag="$DEV_IMAGE_SHA"
+  environment:
+    name: development
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "development" && $CI_PIPELINE_SOURCE == "push"'

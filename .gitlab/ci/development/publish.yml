@@ -1,14 +1,14 @@
 dev:publish:
-    stage: Publish
-    script:
-        # publish to GCP container registry
-        - docker load -i images/release.tar
-        - cat $GCP_CR_SERVICE_ACCOUNT_KEY | docker login -u _json_key --password-stdin "https://$GCP_CONTAINER_REGISTRY_HOSTNAME"
-        - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$DEV_IMAGE_SHA"
-        - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:dev-latest"
-        - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$DEV_IMAGE_SHA"
-        - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:dev-latest"
-    environment:
-        name: development
-    only:
-        - development
+  stage: Publish
+  script:
+    # publish to GCP container registry
+    - docker load -i images/release.tar
+    - cat $GCP_CR_SERVICE_ACCOUNT_KEY | docker login -u _json_key --password-stdin "https://$GCP_CONTAINER_REGISTRY_HOSTNAME"
+    - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$DEV_IMAGE_SHA"
+    - docker tag release "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:dev-latest"
+    - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:$DEV_IMAGE_SHA"
+    - docker push "$GCP_CONTAINER_REGISTRY_HOSTNAME/$GCP_PROJECT/$DOCKER_PROJECT_NAME:dev-latest"
+  environment:
+    name: development
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "development" && $CI_PIPELINE_SOURCE == "push"'

@@ -18,5 +18,5 @@ dev:build:
     expire_in: 30 minutes
   environment:
     name: development
-  only:
-    - development
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "development" && $CI_PIPELINE_SOURCE == "push"'

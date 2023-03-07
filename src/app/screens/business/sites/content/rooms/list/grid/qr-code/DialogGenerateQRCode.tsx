@@ -10,8 +10,8 @@ import {
 	FormControl,
 	TextField
 } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -172,8 +172,9 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 				<FormControl fullWidth margin="normal">
 					<LocalizationProvider dateAdapter={AdapterDayjs}>
 						<TimePicker
+							ampm={false}
 							label={t(`${translation}.FORM.FIELDS.TIME.LABEL`)}
-							value={time}
+							value={dateDayJs(time)}
 							onChange={(e) => {
 								handleChangeInput({
 									target: {
@@ -183,7 +184,6 @@ const DialogGenerateQRCode: FC<DialogGenerateQRCodeInterface> = (props) => {
 								});
 							}}
 							disabled={!!code}
-							renderInput={(params) => <TextField {...params} />}
 						/>
 					</LocalizationProvider>
 				</FormControl>

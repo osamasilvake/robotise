@@ -57,7 +57,7 @@ const dateFormat4 = (date: Date): string => {
  * @returns
  */
 const dateFormat5 = (date: Date): string => {
-	return dayjs(date).format('YYYY-MM-DD hh:mm:ss');
+	return dayjs(date).format('YYYY-MM-DD hh:mm:ss A');
 };
 
 /**

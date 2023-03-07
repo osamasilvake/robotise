@@ -83,8 +83,9 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 					<FormControl fullWidth margin="normal">
 						<LocalizationProvider dateAdapter={AdapterDayjs}>
 							<TimePicker
+								ampm={false}
 								label={t(`${translation}.FORM.FIELDS.TIME_TO.LABEL`)}
-								value={values.timeTo}
+								value={dateDayJs(values.timeTo)}
 								onChange={(e) => {
 									handleChangeInput({
 										target: {
@@ -93,7 +94,6 @@ const DialogCleanTestOrders: FC<DialogCleanTestOrdersInterface> = (props) => {
 										}
 									});
 								}}
-								renderInput={(params) => <TextField {...params} />}
 							/>
 						</LocalizationProvider>
 					</FormControl>

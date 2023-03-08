@@ -554,6 +554,8 @@
 				"service-position": "Service Position",
 				"marketing-ride": "Marketing Ride",
 				"cold-call": "Cold Call",
+				"cold-waiting": "Cold Call - Waiting",
+				"cold-doing": "Cold Call - Doing",
 				"kiosk": "Kiosk"
 			},
 			"ORDERS": {

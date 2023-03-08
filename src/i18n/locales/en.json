@@ -1413,6 +1413,7 @@
 					"TITLE": "Configure Site",
 					"EXCERPT": "Update Site detail.",
 					"ELEVATORS": "Elevators",
+					"JEEVES": "JEEVES App Configuration",
 					"FORM": {
 						"FIELDS": {
 							"TITLE": {
@@ -1430,7 +1431,7 @@
 								"NOTE": "*Select hotel specific timezone!"
 							},
 							"ORDER_MODE": {
-								"LABEL": "Order Modes",
+								"LABEL": "Order Modes for JEEVES app",
 								"PLACEHOLDER": "Select Mode",
 								"VALIDATIONS": {
 									"REQUIRED": "Order mode is required."
@@ -1471,7 +1472,7 @@
 								}
 							},
 							"HELP_PAGE": {
-								"LABEL": "Help Page",
+								"LABEL": "Help Page for JEEVES app",
 								"NOTE": "To add new help pages, please navigate to"
 							},
 							"BUILDING_ID": {

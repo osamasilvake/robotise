@@ -181,49 +181,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								{t(`${translation}.FORM.FIELDS.TIMEZONE.NOTE`)}
 							</FormHelperText>
 						</Grid>
-						{orderModesList && (
-							<Grid item sm={12} md={6}>
-								<FormControl fullWidth margin="normal">
-									<Autocomplete
-										disablePortal
-										multiple
-										id="availableOrderModes"
-										options={orderModesList}
-										getOptionLabel={(option) =>
-											t(`GENERAL:COMMON.MODE.${option}`)
-										}
-										isOptionEqualToValue={(option, value) => option === value}
-										value={values.availableOrderModes || []}
-										onChange={(_, values) =>
-											handleChangeInputs('availableOrderModes', values)
-										}
-										onBlur={handleBlur}
-										renderInput={(params) => (
-											<TextField
-												{...params}
-												label={t(
-													`${translation}.FORM.FIELDS.ORDER_MODE.LABEL`
-												)}
-												placeholder={t(
-													`${translation}.FORM.FIELDS.ORDER_MODE.PLACEHOLDER`
-												)}
-												error={!!errors?.availableOrderModes[0]}
-												helperText={
-													errors?.availableOrderModes[0] &&
-													t(errors.availableOrderModes[0])
-												}
-											/>
-										)}
-									/>
-								</FormControl>
-								<FormHelperText>
-									{t(`${translation}.FORM.FIELDS.ORDER_MODE.NOTE`)}
-									{values.availableOrderModes[0] && (
-										<>: ({values.availableOrderModes[0]})</>
-									)}
-								</FormHelperText>
-							</Grid>
-						)}
+
 						{orderOriginsList && (
 							<Grid item sm={12} md={6}>
 								<FormControl fullWidth margin="normal">
@@ -279,8 +237,9 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormHelperText>
 							</Grid>
 						)}
+
 						{customerNotificationTypes && (
-							<Grid item sm={12} md={6}>
+							<Grid item sm={12}>
 								<FormControl fullWidth margin="normal">
 									<Autocomplete
 										disablePortal
@@ -323,38 +282,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormControl>
 							</Grid>
 						)}
-						{helpPages?.length > 0 && (
-							<Grid item sm={12} md={6}>
-								<FormControl fullWidth margin="normal">
-									<InputLabel id="label-helpPage">
-										{t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
-									</InputLabel>
-									<Select
-										labelId="label-helpPage"
-										id="helpPage"
-										name="helpPage"
-										label={t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
-										value={values.helpPage}
-										onChange={handleChangeSelect}>
-										{helpPages.map((helpPage) => (
-											<MenuItem key={helpPage.id} value={helpPage.id}>
-												{helpPage.title}
-											</MenuItem>
-										))}
-									</Select>
-								</FormControl>
-								<FormHelperText>
-									{t(`${translation}.FORM.FIELDS.HELP_PAGE.NOTE`)}{' '}
-									<Link
-										variant="body2"
-										underline="hover"
-										href={AppConfigService.envWikiUrl}
-										target="_blank">
-										{AppConfigService.envWikiUrl}
-									</Link>
-								</FormHelperText>
-							</Grid>
-						)}
+
 						<Grid item sm={12}>
 							<Typography variant="h6">{t(`${translation}.ELEVATORS`)}</Typography>
 							<Grid container spacing={1}>
@@ -402,6 +330,101 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								)}
 							</Grid>
 						</Grid>
+
+						<Grid item sm={12}>
+							<Grid container spacing={1} rowSpacing={0.1}>
+								<Grid item sm={12}>
+									<Typography variant="h6">
+										{t(`${translation}.JEEVES`)}
+									</Typography>
+								</Grid>
+
+								{orderModesList && (
+									<Grid item sm={12} md={6}>
+										<FormControl fullWidth margin="normal">
+											<Autocomplete
+												disablePortal
+												multiple
+												id="availableOrderModes"
+												options={orderModesList}
+												getOptionLabel={(option) =>
+													t(`GENERAL:COMMON.MODE.${option}`)
+												}
+												isOptionEqualToValue={(option, value) =>
+													option === value
+												}
+												value={values.availableOrderModes || []}
+												onChange={(_, values) =>
+													handleChangeInputs(
+														'availableOrderModes',
+														values
+													)
+												}
+												onBlur={handleBlur}
+												renderInput={(params) => (
+													<TextField
+														{...params}
+														label={t(
+															`${translation}.FORM.FIELDS.ORDER_MODE.LABEL`
+														)}
+														placeholder={t(
+															`${translation}.FORM.FIELDS.ORDER_MODE.PLACEHOLDER`
+														)}
+														error={!!errors?.availableOrderModes[0]}
+														helperText={
+															errors?.availableOrderModes[0] &&
+															t(errors.availableOrderModes[0])
+														}
+													/>
+												)}
+											/>
+										</FormControl>
+										<FormHelperText>
+											{t(`${translation}.FORM.FIELDS.ORDER_MODE.NOTE`)}
+											{values.availableOrderModes[0] && (
+												<>: ({values.availableOrderModes[0]})</>
+											)}
+										</FormHelperText>
+									</Grid>
+								)}
+
+								{helpPages?.length > 0 && (
+									<Grid item sm={12} md={6}>
+										<FormControl fullWidth margin="normal">
+											<InputLabel id="label-helpPage">
+												{t(`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`)}
+											</InputLabel>
+											<Select
+												labelId="label-helpPage"
+												id="helpPage"
+												name="helpPage"
+												label={t(
+													`${translation}.FORM.FIELDS.HELP_PAGE.LABEL`
+												)}
+												value={values.helpPage}
+												onChange={handleChangeSelect}>
+												{helpPages.map((helpPage) => (
+													<MenuItem key={helpPage.id} value={helpPage.id}>
+														{helpPage.title}
+													</MenuItem>
+												))}
+											</Select>
+										</FormControl>
+										<FormHelperText>
+											{t(`${translation}.FORM.FIELDS.HELP_PAGE.NOTE`)}{' '}
+											<Link
+												variant="body2"
+												underline="hover"
+												href={AppConfigService.envWikiUrl}
+												target="_blank">
+												{AppConfigService.envWikiUrl}
+											</Link>
+										</FormHelperText>
+									</Grid>
+								)}
+							</Grid>
+						</Grid>
+
 						<Grid item xs={12}>
 							<FormControl>
 								<FormControlLabel
@@ -503,6 +526,7 @@ const SiteConfig: FC<SiteConfigInterface> = (props) => {
 								</FormHelperText>
 							</FormControl>
 						</Grid>
+
 						<Grid item xs={12} className={classes.sSubmit}>
 							<Button
 								variant="outlined"

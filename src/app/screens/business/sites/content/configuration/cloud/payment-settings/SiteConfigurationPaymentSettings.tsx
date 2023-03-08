@@ -117,7 +117,7 @@ const SiteConfigurationPaymentSettings: FC<SiteConfigurationPaymentSettingsInter
 							<FormControl fullWidth margin="normal">
 								<TextField
 									required
-									type="string"
+									type="text"
 									id="accountId"
 									name="accountId"
 									label={t(`${translation}.FORM.FIELDS.ACCOUNT_ID.LABEL`)}

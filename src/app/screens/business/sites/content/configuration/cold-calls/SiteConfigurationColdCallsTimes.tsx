@@ -17,7 +17,7 @@ const SiteConfigurationColdCallsTimes: FC<SiteConfigurationColdCallsTimesInterfa
 					<FormControl fullWidth margin="normal">
 						<TextField
 							required
-							type="string"
+							type="text"
 							id="startTimeLocal"
 							name="startTimeLocal"
 							label={t(`${translation}.FORM.FIELDS.START_TIME.LABEL`)}
@@ -34,7 +34,7 @@ const SiteConfigurationColdCallsTimes: FC<SiteConfigurationColdCallsTimesInterfa
 					<FormControl fullWidth margin="normal">
 						<TextField
 							required
-							type="string"
+							type="text"
 							id="endTimeLocal"
 							name="endTimeLocal"
 							label={t(`${translation}.FORM.FIELDS.END_TIME.LABEL`)}

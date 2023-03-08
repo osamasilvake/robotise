@@ -13,4 +13,5 @@ export interface DialogCreateRobotFormInterface {
 	siteId: string;
 	name: string;
 	customerName: string;
+	ceInventoryId: string;
 }

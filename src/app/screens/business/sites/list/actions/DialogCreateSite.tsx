@@ -82,7 +82,7 @@ const DialogCreateSite: FC<DialogCreateSiteInterface> = (props) => {
 					<FormControl fullWidth margin="normal">
 						<TextField
 							required
-							type="string"
+							type="text"
 							id="title"
 							name="title"
 							label={t(`${translation}.FORM.FIELDS.TITLE.LABEL`)}

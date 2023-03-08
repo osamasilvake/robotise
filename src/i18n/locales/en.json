@@ -1701,6 +1701,13 @@
 								"VALIDATIONS": {
 									"REQUIRED": "Customer Name is required."
 								}
+							},
+							"CE_INVENTORY_ID": {
+								"LABEL": "CE Inventory ID",
+								"PLACEHOLDER": "Enter CE Inventory ID",
+								"VALIDATIONS": {
+									"REQUIRED": "CE Inventory ID is required."
+								}
 							}
 						}
 					}

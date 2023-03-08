@@ -69,6 +69,7 @@ class RobotsService {
 					name: payload.name,
 					customerName: payload.customerName,
 					configs: {
+						ceInventoryId: payload.ceInventoryId,
 						isOnlineCheckDisabled: true,
 						isHidden: true
 					}

@@ -107,7 +107,7 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 
 						<FormControl fullWidth margin="normal">
 							<TextField
-								type="string"
+								type="text"
 								id="prefixes"
 								name="prefixes"
 								label={t(`${translation}.FORM.FIELDS.PREFIXES.LABEL`)}
@@ -218,7 +218,7 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 
 						<FormControl fullWidth>
 							<TextField
-								type="string"
+								type="text"
 								id="outboundPattern"
 								name="outboundPattern"
 								label={t(`${translation}.FORM.FIELDS.OUTBOUND_PATTERN.LABEL`)}

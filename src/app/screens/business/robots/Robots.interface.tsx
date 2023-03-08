@@ -24,6 +24,7 @@ export interface RobotCreateAxiosPostRequestInterface {
 			name: string;
 			customerName: string;
 			configs: {
+				ceInventoryId: string;
 				isOnlineCheckDisabled: boolean;
 				isHidden: boolean;
 			};

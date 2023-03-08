@@ -46,7 +46,8 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 			{
 				siteId: sites?.content?.data[0].id || '',
 				name: '',
-				customerName: ''
+				customerName: '',
+				ceInventoryId: ''
 			},
 			CreateRobotValidation,
 			async () => {
@@ -103,7 +104,7 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 					<FormControl fullWidth margin="normal">
 						<TextField
 							required
-							type="string"
+							type="text"
 							id="name"
 							name="name"
 							label={t(`${translation}.FORM.FIELDS.NAME.LABEL`)}
@@ -118,7 +119,7 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 					<FormControl fullWidth margin="normal">
 						<TextField
 							required
-							type="string"
+							type="text"
 							id="customerName"
 							name="customerName"
 							label={t(`${translation}.FORM.FIELDS.CUSTOMER_NAME.LABEL`)}
@@ -128,6 +129,24 @@ const DialogCreateRobot: FC<DialogCreateRobotInterface> = (props) => {
 							onBlur={handleBlur}
 							error={!!errors?.customerName}
 							helperText={errors?.customerName && t(errors.customerName)}
+						/>
+					</FormControl>
+
+					<FormControl fullWidth margin="normal">
+						<TextField
+							required
+							type="text"
+							id="ceInventoryId"
+							name="ceInventoryId"
+							label={t(`${translation}.FORM.FIELDS.CE_INVENTORY_ID.LABEL`)}
+							placeholder={t(
+								`${translation}.FORM.FIELDS.CE_INVENTORY_ID.PLACEHOLDER`
+							)}
+							value={values?.ceInventoryId}
+							onChange={handleChangeInput}
+							onBlur={handleBlur}
+							error={!!errors?.ceInventoryId}
+							helperText={errors?.ceInventoryId && t(errors.ceInventoryId)}
 						/>
 					</FormControl>
 

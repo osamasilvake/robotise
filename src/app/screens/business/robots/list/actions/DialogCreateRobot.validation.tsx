@@ -13,7 +13,8 @@ export const CreateRobotValidation = (
 	const errors: DialogCreateRobotFormInterface = {
 		siteId: '',
 		name: '',
-		customerName: ''
+		customerName: '',
+		ceInventoryId: ''
 	};
 
 	// Name
@@ -29,6 +30,14 @@ export const CreateRobotValidation = (
 		// required
 		if (!values.customerName) {
 			errors.customerName = `${translation}.CUSTOMER_NAME.VALIDATIONS.REQUIRED`;
+		}
+	}
+
+	// CE Inventory Id
+	if (touched.ceInventoryId) {
+		// required
+		if (!values.ceInventoryId) {
+			errors.ceInventoryId = `${translation}.CE_INVENTORY_ID.VALIDATIONS.REQUIRED`;
 		}
 	}
 

@@ -296,7 +296,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 								<FormControl fullWidth margin="normal">
 									<TextField
 										required
-										type="string"
+										type="text"
 										id="phone"
 										name="phone"
 										label={t(

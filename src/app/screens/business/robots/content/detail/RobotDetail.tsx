@@ -50,10 +50,8 @@ const RobotDetail: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (robotTwinId) {
-				// dispatch: fetch robot twins of a robot
-				dispatch(RobotTwinsFetch(robotTwinId, true));
-			}
+			// dispatch: fetch robot twins of a robot
+			robotTwinId && dispatch(RobotTwinsFetch(robotTwinId, true));
 		};
 
 		// interval

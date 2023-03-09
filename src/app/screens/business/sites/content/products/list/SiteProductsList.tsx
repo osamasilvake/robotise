@@ -40,10 +40,8 @@ const SiteProductsList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (products.content) {
-				// dispatch: fetch site products
-				cSiteId && dispatch(ProductsFetchList(cSiteId, true));
-			}
+			// dispatch: fetch site products
+			cSiteId && dispatch(ProductsFetchList(cSiteId, true));
 		};
 
 		// interval
@@ -52,7 +50,7 @@ const SiteProductsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.sites.content.products.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, products.content, cSiteId]);
+	}, [dispatch, cSiteId]);
 
 	// loader
 	if (products.loader) {

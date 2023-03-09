@@ -137,23 +137,21 @@ const RobotOrdersList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (orders.content) {
-				// dispatch: fetch robot orders
-				dispatch(
-					OrdersFetchList(
-						cRobotId,
-						{
-							page: 0,
-							rowsPerPage,
-							activeOrders,
-							marketingRides,
-							coldCalls,
-							debug
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch robot orders
+			dispatch(
+				OrdersFetchList(
+					cRobotId,
+					{
+						page: 0,
+						rowsPerPage,
+						activeOrders,
+						marketingRides,
+						coldCalls,
+						debug
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -162,17 +160,7 @@ const RobotOrdersList: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.orders.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [
-		dispatch,
-		orders.content,
-		cRobotId,
-		page,
-		rowsPerPage,
-		activeOrders,
-		debug,
-		marketingRides,
-		coldCalls
-	]);
+	}, [dispatch, cRobotId, page, rowsPerPage, activeOrders, debug, marketingRides, coldCalls]);
 
 	// loader
 	if (orders.loader) {

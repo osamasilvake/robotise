@@ -44,10 +44,8 @@ const SiteConfigurationNotifications: FC<SiteConfigurationNotificationsInterface
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (cSiteId) {
-				// dispatch: fetch site notification types and users
-				dispatch(NotificationTypesAndUsersFetchList(cSiteId, true));
-			}
+			// dispatch: fetch site notification types and users
+			cSiteId && dispatch(NotificationTypesAndUsersFetchList(cSiteId, true));
 		};
 
 		// interval

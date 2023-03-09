@@ -58,10 +58,8 @@ const RobotInventoryList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (inventory.content && cRobotId) {
-				// dispatch: fetch robot inventory
-				dispatch(InventoryFetchList(cRobotId, true));
-			}
+			// dispatch: fetch robot inventory
+			cRobotId && dispatch(InventoryFetchList(cRobotId, true));
 		};
 
 		// interval
@@ -70,7 +68,7 @@ const RobotInventoryList: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.inventory.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, inventory.content, cRobotId]);
+	}, [dispatch, cRobotId]);
 
 	// loader
 	if (products.loader || inventory.loader) {

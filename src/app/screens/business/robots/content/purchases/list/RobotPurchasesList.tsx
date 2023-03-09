@@ -102,21 +102,19 @@ const RobotPurchasesList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (purchases.content) {
-				// dispatch: fetch robot purchases
-				dispatch(
-					PurchasesFetchList(
-						cRobotId,
-						{
-							page: 0,
-							rowsPerPage,
-							billed,
-							debug
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch robot purchases
+			dispatch(
+				PurchasesFetchList(
+					cRobotId,
+					{
+						page: 0,
+						rowsPerPage,
+						billed,
+						debug
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -125,7 +123,7 @@ const RobotPurchasesList: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.purchases.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, purchases.content, cRobotId, page, rowsPerPage, billed, debug]);
+	}, [dispatch, cRobotId, page, rowsPerPage, billed, debug]);
 
 	// loader
 	if (purchases.loader) {

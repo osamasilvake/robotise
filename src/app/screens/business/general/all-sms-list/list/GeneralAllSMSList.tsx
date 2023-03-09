@@ -86,20 +86,18 @@ const GeneralAllSMSList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (allSMSList.content) {
-				// dispatch: fetch all SMS list
-				dispatch(
-					AllSMSListFetchList(
-						{
-							page: 0,
-							rowsPerPage,
-							siteId,
-							includeAllCalls
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch all SMS list
+			dispatch(
+				AllSMSListFetchList(
+					{
+						page: 0,
+						rowsPerPage,
+						siteId,
+						includeAllCalls
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -108,7 +106,7 @@ const GeneralAllSMSList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allSMSList.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allSMSList.content, page, rowsPerPage, siteId, includeAllCalls]);
+	}, [dispatch, page, rowsPerPage, siteId, includeAllCalls]);
 
 	// loader
 	if (allSMSList.loader) {

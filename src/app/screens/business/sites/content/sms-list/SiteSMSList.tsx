@@ -77,19 +77,17 @@ const SiteSMSList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (smsList.content) {
-				// dispatch: fetch site SMS list
-				dispatch(
-					SMSListFetchList(
-						cSiteId,
-						{
-							page: 0,
-							rowsPerPage
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch site SMS list
+			dispatch(
+				SMSListFetchList(
+					cSiteId,
+					{
+						page: 0,
+						rowsPerPage
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -98,7 +96,7 @@ const SiteSMSList: FC = () => {
 			AppConfigService.AppOptions.screens.business.sites.content.smsList.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, smsList.content, cSiteId, page, rowsPerPage]);
+	}, [dispatch, cSiteId, page, rowsPerPage]);
 
 	// loader
 	if (smsList.loader) {

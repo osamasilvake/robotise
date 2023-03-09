@@ -86,20 +86,18 @@ const GeneralAllPhoneCallsList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (allPhoneCalls.content) {
-				// dispatch: fetch all phone calls
-				dispatch(
-					AllPhoneCallsFetchList(
-						{
-							page: 0,
-							rowsPerPage,
-							siteId,
-							includeAllCalls
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch all phone calls
+			dispatch(
+				AllPhoneCallsFetchList(
+					{
+						page: 0,
+						rowsPerPage,
+						siteId,
+						includeAllCalls
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -108,7 +106,7 @@ const GeneralAllPhoneCallsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allPhoneCalls.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allPhoneCalls.content, page, rowsPerPage, siteId, includeAllCalls]);
+	}, [dispatch, page, rowsPerPage, siteId, includeAllCalls]);
 
 	// loader
 	if (allPhoneCalls.loader) {

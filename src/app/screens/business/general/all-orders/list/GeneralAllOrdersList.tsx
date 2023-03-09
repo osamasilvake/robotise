@@ -102,21 +102,19 @@ const GeneralAllOrdersList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (allOrders.content) {
-				// dispatch: fetch all orders
-				dispatch(
-					AllOrdersFetchList(
-						{
-							page: 0,
-							rowsPerPage,
-							siteId,
-							period,
-							includeAllOrders
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch all orders
+			dispatch(
+				AllOrdersFetchList(
+					{
+						page: 0,
+						rowsPerPage,
+						siteId,
+						period,
+						includeAllOrders
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -125,7 +123,7 @@ const GeneralAllOrdersList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allOrders.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allOrders.content, page, rowsPerPage, siteId, period, includeAllOrders]);
+	}, [dispatch, page, rowsPerPage, siteId, period, includeAllOrders]);
 
 	// loader
 	if (allOrders.loader) {

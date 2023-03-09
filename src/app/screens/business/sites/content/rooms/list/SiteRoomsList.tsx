@@ -66,10 +66,8 @@ const SiteRoomsList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (qrCodes.content) {
-				// dispatch: fetch QR codes
-				cSiteId && dispatch(QRCodesFetch(cSiteId));
-			}
+			// dispatch: fetch QR codes
+			cSiteId && dispatch(QRCodesFetch(cSiteId));
 		};
 
 		// interval
@@ -78,7 +76,7 @@ const SiteRoomsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.sites.content.qrCodes.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, qrCodes.content, cSiteId]);
+	}, [dispatch, cSiteId]);
 
 	// loader
 	if (rooms.loader) {

@@ -67,18 +67,16 @@ const MiddlewareConfigList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (middlewareConfig.content) {
-				// dispatch: fetch middleware config
-				dispatch(
-					MiddlewareConfigFetchList(
-						{
-							page: 0,
-							rowsPerPage
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch middleware config
+			dispatch(
+				MiddlewareConfigFetchList(
+					{
+						page: 0,
+						rowsPerPage
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -87,7 +85,7 @@ const MiddlewareConfigList: FC = () => {
 			AppConfigService.AppOptions.screens.settings.middlewareConfig.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, middlewareConfig.content, page, rowsPerPage]);
+	}, [dispatch, page, rowsPerPage]);
 
 	// loader
 	if (middlewareConfig.loader) {

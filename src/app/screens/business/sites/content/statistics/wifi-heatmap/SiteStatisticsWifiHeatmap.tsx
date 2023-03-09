@@ -47,7 +47,7 @@ const SiteStatisticsWifiHeatmap: FC<SiteStatisticsWifiHeatmapInterface> = (props
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (wifiHeatmap.content && floor && floorId && mapId) {
+			if (floor && floorId && mapId) {
 				// dispatch: fetch wifi heatmap
 				dispatch(WifiHeatmapFetch(cSiteId, { floor, floorId, mapId, period }, true));
 			}

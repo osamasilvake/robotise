@@ -67,18 +67,16 @@ const DeepLinksList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (deepLinks.content) {
-				// dispatch: fetch deep links
-				dispatch(
-					DeepLinksFetchList(
-						{
-							page: 0,
-							rowsPerPage
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch deep links
+			dispatch(
+				DeepLinksFetchList(
+					{
+						page: 0,
+						rowsPerPage
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -87,7 +85,7 @@ const DeepLinksList: FC = () => {
 			AppConfigService.AppOptions.screens.settings.deepLinks.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, deepLinks.content, page, rowsPerPage]);
+	}, [dispatch, page, rowsPerPage]);
 
 	// loader
 	if (deepLinks.loader) {

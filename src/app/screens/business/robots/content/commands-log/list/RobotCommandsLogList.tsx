@@ -82,19 +82,17 @@ const RobotCommandsLogList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (commandsLog.content) {
-				// dispatch: fetch robot commands log
-				dispatch(
-					CommandsLogFetchList(
-						cRobotId,
-						{
-							page: 0,
-							rowsPerPage
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch robot commands log
+			dispatch(
+				CommandsLogFetchList(
+					cRobotId,
+					{
+						page: 0,
+						rowsPerPage
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -103,7 +101,7 @@ const RobotCommandsLogList: FC = () => {
 			AppConfigService.AppOptions.screens.business.robots.content.commandsLog.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, commandsLog.content, cRobotId, page, rowsPerPage]);
+	}, [dispatch, cRobotId, page, rowsPerPage]);
 
 	// loader
 	if (commandsLog.loader) {

@@ -86,20 +86,18 @@ const GeneralEmailsList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (emails.content) {
-				// dispatch: fetch emails
-				dispatch(
-					EmailsFetchList(
-						{
-							page: 0,
-							rowsPerPage,
-							siteId,
-							delivered
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch emails
+			dispatch(
+				EmailsFetchList(
+					{
+						page: 0,
+						rowsPerPage,
+						siteId,
+						delivered
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -108,7 +106,7 @@ const GeneralEmailsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.emails.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, emails.content, page, rowsPerPage, siteId, delivered]);
+	}, [dispatch, page, rowsPerPage, siteId, delivered]);
 
 	// loader
 	if (emails.loader) {

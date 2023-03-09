@@ -77,19 +77,17 @@ const SitePhoneCallsList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (phoneCalls.content) {
-				// dispatch: fetch site phone calls
-				dispatch(
-					PhoneCallsFetchList(
-						cSiteId,
-						{
-							page: 0,
-							rowsPerPage
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch site phone calls
+			dispatch(
+				PhoneCallsFetchList(
+					cSiteId,
+					{
+						page: 0,
+						rowsPerPage
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -98,7 +96,7 @@ const SitePhoneCallsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.sites.content.phoneCalls.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, phoneCalls.content, cSiteId, page, rowsPerPage]);
+	}, [dispatch, cSiteId, page, rowsPerPage]);
 
 	// loader
 	if (phoneCalls.loader) {

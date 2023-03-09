@@ -86,20 +86,18 @@ const GeneralAllElevatorCallsList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (allElevatorCalls.content) {
-				// dispatch: fetch all elevator calls
-				dispatch(
-					AllElevatorCallsFetchList(
-						{
-							page: 0,
-							rowsPerPage,
-							siteId,
-							includeAllCalls
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch all elevator calls
+			dispatch(
+				AllElevatorCallsFetchList(
+					{
+						page: 0,
+						rowsPerPage,
+						siteId,
+						includeAllCalls
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -108,7 +106,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allElevatorCalls.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, allElevatorCalls.content, page, rowsPerPage, siteId, includeAllCalls]);
+	}, [dispatch, page, rowsPerPage, siteId, includeAllCalls]);
 
 	// loader
 	if (allElevatorCalls.loader) {

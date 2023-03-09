@@ -7,7 +7,7 @@ class InterceptorService {
 		axios.interceptors.response.use(
 			(response) => response,
 			(err: AxiosError) => {
-				return new Promise((_resolve, reject) => {
+				return new Promise((resolve, reject) => {
 					const response = err.response;
 					const data = response?.data;
 					const config = response?.config;
@@ -23,6 +23,9 @@ class InterceptorService {
 						// log error on console
 						// send logs to server
 						LoggerService.sendLogs(err);
+
+						// resolve
+						resolve(data);
 					}
 
 					// reject

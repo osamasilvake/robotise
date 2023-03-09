@@ -43,10 +43,8 @@ const SitePhoneConfigsDetail: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (phoneConfigs.content) {
-				// dispatch: fetch site phone configs
-				dispatch(PhoneConfigsFetch(cSiteId, true));
-			}
+			// dispatch: fetch site phone configs
+			dispatch(PhoneConfigsFetch(cSiteId, true));
 		};
 
 		// interval
@@ -55,7 +53,7 @@ const SitePhoneConfigsDetail: FC = () => {
 			AppConfigService.AppOptions.screens.business.sites.content.phoneConfigs.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, phoneConfigs.content, cSiteId]);
+	}, [dispatch, cSiteId]);
 
 	useEffect(() => {
 		const condition1 = phoneConfigs.content === null;

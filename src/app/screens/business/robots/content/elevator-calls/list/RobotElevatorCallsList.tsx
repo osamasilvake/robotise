@@ -83,19 +83,17 @@ const RobotElevatorCallsList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (elevatorCalls.content) {
-				// dispatch: fetch robot elevator calls
-				dispatch(
-					ElevatorCallsFetchList(
-						cRobotId,
-						{
-							page: 0,
-							rowsPerPage
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch robot elevator calls
+			dispatch(
+				ElevatorCallsFetchList(
+					cRobotId,
+					{
+						page: 0,
+						rowsPerPage
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -105,7 +103,7 @@ const RobotElevatorCallsList: FC = () => {
 				.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, elevatorCalls.content, cRobotId, page, rowsPerPage]);
+	}, [dispatch, cRobotId, page, rowsPerPage]);
 
 	// loader
 	if (elevatorCalls.loader) {

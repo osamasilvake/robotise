@@ -60,18 +60,16 @@ const AlertCodesList: FC = () => {
 
 	useEffect(() => {
 		const executeServices = () => {
-			if (alertCodes.content) {
-				// dispatch: fetch alert codes
-				dispatch(
-					AlertCodesFetchList(
-						{
-							page: 0,
-							rowsPerPage
-						},
-						true
-					)
-				);
-			}
+			// dispatch: fetch alert codes
+			dispatch(
+				AlertCodesFetchList(
+					{
+						page: 0,
+						rowsPerPage
+					},
+					true
+				)
+			);
 		};
 
 		// interval
@@ -80,7 +78,7 @@ const AlertCodesList: FC = () => {
 			AppConfigService.AppOptions.screens.information.alertCodes.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, alertCodes.content, page, rowsPerPage]);
+	}, [dispatch, page, rowsPerPage]);
 
 	// loader
 	if (alertCodes.loader) {

@@ -427,6 +427,9 @@
 					"ITEM_TRACKING": {
 						"ERROR": "Failed to fetch item tracking link!"
 					},
+					"SCRAPPER": {
+						"ERROR": "Failed to fetch scrapper link!"
+					},
 					"TEMPERATURE": {
 						"ERROR": "Failed to fetch temperature link!"
 					}
@@ -2152,6 +2155,10 @@
 					},
 					"DIAGNOSTICS_LOGS": {
 						"LABEL": "Diagnostics Logs",
+						"TEXT": "Link"
+					},
+					"SCRAPPER": {
+						"LABEL": "Robot-twin Scrapper",
 						"TEXT": "Link"
 					},
 					"TEMPERATURE": {

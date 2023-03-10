@@ -153,6 +153,26 @@ const RobotDetailDataLogs: FC = () => {
 					</Box>
 				</Grid>
 
+				{/* Deep Link: Scrapper */}
+				<Grid item xs={12} sm={6} md={4} lg={2}>
+					<Typography variant="caption" color="textSecondary">
+						{t(`${translation}.SCRAPPER.LABEL`)}
+					</Typography>
+					<Box className={classes.sContent}>
+						<ExternalLink
+							text={t(`${translation}.SCRAPPER.TEXT`)}
+							payload={{
+								robotId: cRobotId,
+								from: 'now-6h',
+								to: 'now'
+							}}
+							actionType={ExternalLinkActionTypeEnum.SCRAPPER}
+							showIcon={deepLink.scrapper.loading}
+							disabled={deepLink.scrapper.loading}
+						/>
+					</Box>
+				</Grid>
+
 				{/* Deep Link: Temperature */}
 				<Grid item xs={12} sm={6} md={4} lg={2}>
 					<Typography variant="caption" color="textSecondary">

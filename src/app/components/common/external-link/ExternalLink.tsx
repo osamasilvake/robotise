@@ -13,6 +13,7 @@ import {
 	DeepLinkDiagnosticsLogsLinkFetch,
 	DeepLinkElevatorLogsLinkFetch,
 	DeepLinkItemTrackingLinkFetch,
+	DeepLinkScrapperLinkFetch,
 	DeepLinkTemperatureLinkFetch
 } from '../../../slices/settings/deep-links/DeepLink.slice';
 import { ExternalLinkActionTypeEnum, ExternalLinkTypeEnum } from './ExternalLink.enum';
@@ -42,6 +43,7 @@ const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 		[ExternalLinkActionTypeEnum.DIAGNOSTICS_LOGS]: DeepLinkDiagnosticsLogsLinkFetch,
 		[ExternalLinkActionTypeEnum.ELEVATOR_LOGS]: DeepLinkElevatorLogsLinkFetch,
 		[ExternalLinkActionTypeEnum.ITEM_TRACKING]: DeepLinkItemTrackingLinkFetch,
+		[ExternalLinkActionTypeEnum.SCRAPPER]: DeepLinkScrapperLinkFetch,
 		[ExternalLinkActionTypeEnum.TEMPERATURE]: DeepLinkTemperatureLinkFetch
 	};
 

@@ -1,4 +1,12 @@
 export interface SliceDeepLinkInterface {
+	alertLogs: {
+		loading: boolean;
+		content: SDContentInterface | null;
+	};
+	alertDashboardLogs: {
+		loading: boolean;
+		content: SDContentInterface | null;
+	};
 	auditLogs: {
 		loading: boolean;
 		content: SDContentInterface | null;
@@ -7,7 +15,7 @@ export interface SliceDeepLinkInterface {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
-	temperature: {
+	coolingUnit: {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
@@ -15,7 +23,7 @@ export interface SliceDeepLinkInterface {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
-	coolingUnit: {
+	elevatorLogs: {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
@@ -23,15 +31,11 @@ export interface SliceDeepLinkInterface {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
-	elevatorLogs: {
+	scrapper: {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
-	alertLogs: {
-		loading: boolean;
-		content: SDContentInterface | null;
-	};
-	alertDashboardLogs: {
+	temperature: {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};

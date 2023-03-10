@@ -193,6 +193,22 @@ class DeepLinksService {
 	};
 
 	/**
+	 * fetch scrapper link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkScrapperLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.SCRAPPER;
+		return HttpClientService.get<SDContentInterface>(url, {
+			params: {
+				robot: payload.robotId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * fetch temperature link
 	 * @param payload
 	 * @returns

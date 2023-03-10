@@ -12,5 +12,6 @@ export enum ExternalLinkActionTypeEnum {
 	DIAGNOSTICS_LOGS = 'diagnostics_logs',
 	ELEVATOR_LOGS = 'elevator_logs',
 	ITEM_TRACKING = 'item_tracking',
+	SCRAPPER = 'scrapper',
 	TEMPERATURE = 'temperature'
 }

@@ -12,6 +12,14 @@ import { DeepLinkTypeEnum } from './DeepLink.slice.enum';
 
 // initial state
 export const initialState: SliceDeepLinkInterface = {
+	alertLogs: {
+		loading: false,
+		content: null
+	},
+	alertDashboardLogs: {
+		loading: false,
+		content: null
+	},
 	auditLogs: {
 		loading: false,
 		content: null
@@ -20,7 +28,7 @@ export const initialState: SliceDeepLinkInterface = {
 		loading: false,
 		content: null
 	},
-	temperature: {
+	coolingUnit: {
 		loading: false,
 		content: null
 	},
@@ -28,7 +36,7 @@ export const initialState: SliceDeepLinkInterface = {
 		loading: false,
 		content: null
 	},
-	coolingUnit: {
+	elevatorLogs: {
 		loading: false,
 		content: null
 	},
@@ -36,15 +44,11 @@ export const initialState: SliceDeepLinkInterface = {
 		loading: false,
 		content: null
 	},
-	elevatorLogs: {
+	scrapper: {
 		loading: false,
 		content: null
 	},
-	alertLogs: {
-		loading: false,
-		content: null
-	},
-	alertDashboardLogs: {
+	temperature: {
 		loading: false,
 		content: null
 	}
@@ -73,6 +77,8 @@ const dataSlice = createSlice({
 				state.elevatorLogs.loading = true;
 			} else if (module === DeepLinkTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = true;
+			} else if (module === DeepLinkTypeEnum.SCRAPPER) {
+				state.scrapper.loading = true;
 			} else if (module === DeepLinkTypeEnum.TEMPERATURE) {
 				state.temperature.loading = true;
 			}
@@ -103,6 +109,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = response;
+			} else if (module === DeepLinkTypeEnum.SCRAPPER) {
+				state.scrapper.loading = false;
+				state.scrapper.content = response;
 			} else if (module === DeepLinkTypeEnum.TEMPERATURE) {
 				state.temperature.loading = false;
 				state.temperature.content = response;
@@ -134,6 +143,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.ITEM_TRACKING) {
 				state.itemTracking.loading = false;
 				state.itemTracking.content = null;
+			} else if (module === DeepLinkTypeEnum.SCRAPPER) {
+				state.scrapper.loading = false;
+				state.scrapper.content = null;
 			} else if (module === DeepLinkTypeEnum.TEMPERATURE) {
 				state.temperature.loading = false;
 				state.temperature.content = null;
@@ -480,6 +492,48 @@ export const DeepLinkItemTrackingLinkFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.ITEM_TRACKING.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch scrapper link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const DeepLinkScrapperLinkFetch =
+	(payload: ExternalLinkPayloadInterface, callback: (data: SDContentInterface) => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: DeepLinkTypeEnum.SCRAPPER
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return DeepLinksService.deepLinkScrapperLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'deep-link-scrapper-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'DEEP_LINKS.FETCH.SCRAPPER.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

@@ -106,6 +106,8 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 						{t(`${translation}.TABLE.VALUES.PURCHASE_DETAILS`)}
 					</Link>
 				);
+			} else if (RobotOrdersTableColumnsTypeEnum.TARGET === column.id) {
+				return locationName || value;
 			} else if (typeof value === 'string') {
 				if (RobotOrdersTableColumnsTypeEnum.STATUS === column.id) {
 					const notFinished =
@@ -163,8 +165,6 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 					);
 				} else if (RobotOrdersTableColumnsTypeEnum.MODE === column.id) {
 					return t(`COMMON.MODE.${value}`);
-				} else if (RobotOrdersTableColumnsTypeEnum.TARGET === column.id) {
-					return locationName || value;
 				}
 				return t(value);
 			}

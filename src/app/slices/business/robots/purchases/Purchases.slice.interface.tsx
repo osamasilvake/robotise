@@ -22,6 +22,7 @@ export interface SPCDataInterface {
 	isBilled: boolean;
 	isDebug: boolean;
 	location: string;
+	locationId: string;
 	totalPrice: string;
 	createdAt: Date;
 	updatedAt: Date;

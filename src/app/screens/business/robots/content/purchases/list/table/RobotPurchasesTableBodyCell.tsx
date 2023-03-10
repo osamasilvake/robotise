@@ -38,7 +38,7 @@ const RobotPurchasesTableBodyCell: FC<RobotPurchasesTableBodyCellInterface> = (p
 
 	const cRobotId = params.robotId;
 	const roomsDataBy = rooms.content?.dataById;
-	const locationName = roomsDataBy?.[purchase.location]?.name;
+	const locationName = roomsDataBy?.[purchase.locationId]?.name;
 	const translation = 'CONTENT.PURCHASES.LIST.TABLE.VALUES';
 
 	/**

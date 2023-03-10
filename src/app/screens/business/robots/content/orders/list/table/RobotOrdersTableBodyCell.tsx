@@ -42,7 +42,7 @@ const RobotOrdersTableBodyCell: FC<RobotOrdersTableBodyCellInterface> = (props) 
 
 	const cRobotId = params.robotId;
 	const roomsDataBy = rooms.content?.dataById;
-	const locationName = roomsDataBy?.[order.location]?.name;
+	const locationName = roomsDataBy?.[order.locationId]?.name;
 	const translation = 'COMMON.ORDERS.LIST';
 
 	/**

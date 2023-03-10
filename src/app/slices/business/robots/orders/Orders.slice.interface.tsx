@@ -18,6 +18,7 @@ export interface SOContentInterface extends JsonAPIResponseInterface {
 export interface SOCDataInterface {
 	id: string;
 	location: string;
+	locationId: string;
 	mode: string;
 	status: string;
 	origin: string;

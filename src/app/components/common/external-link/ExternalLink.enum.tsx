@@ -10,6 +10,7 @@ export enum ExternalLinkActionTypeEnum {
 	BATTERY = 'battery',
 	COOLING_UNIT = 'cooling_unit',
 	DIAGNOSTICS_LOGS = 'diagnostics_logs',
+	ELEVATOR_DASHBOARD = 'elevator_dashboard',
 	ELEVATOR_LOGS = 'elevator_logs',
 	ITEM_TRACKING = 'item_tracking',
 	SCRAPPER = 'scrapper',

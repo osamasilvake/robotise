@@ -123,7 +123,7 @@ const RobotElevatorCallsTableBodyCell: FC<RobotElevatorCallsTableBodyCellInterfa
 						</>
 					)}
 
-					{/* Elevator Details */}
+					{/* Deep Link: Elevator Logs */}
 					<Box className={classes.sTableLogsChip}>
 						<ExternalLink
 							index={index}

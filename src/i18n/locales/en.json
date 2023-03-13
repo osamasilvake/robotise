@@ -421,6 +421,9 @@
 					"DIAGNOSTICS_LOGS": {
 						"ERROR": "Failed to fetch diagnostics logs link!"
 					},
+					"ELEVATOR_DASHBOARD": {
+						"ERROR": "Failed to fetch elevator dashboard link!"
+					},
 					"ELEVATOR_LOGS": {
 						"ERROR": "Failed to fetch elevator logs link!"
 					},
@@ -735,6 +738,9 @@
 							"LABEL": "Test Call",
 							"TITLE": "Test Call",
 							"TEXT": "Are you sure, you want to execute the test call?"
+						},
+						"ELEVATOR_DASHBOARD": {
+							"LABEL": "Elevator Dashboard"
 						}
 					},
 					"TABLE": {

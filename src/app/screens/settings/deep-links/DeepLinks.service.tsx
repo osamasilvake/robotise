@@ -160,6 +160,22 @@ class DeepLinksService {
 	};
 
 	/**
+	 * fetch elevator dashboard link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkElevatorDashboardLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ELEVATOR_DASHBOARD;
+		return HttpClientService.get<SDContentInterface>(url, {
+			params: {
+				siteId: payload.siteId,
+				from: payload.from,
+				to: payload.to
+			}
+		});
+	};
+
+	/**
 	 * fetch elevator logs link
 	 * @param payload
 	 * @returns

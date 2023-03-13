@@ -65,6 +65,7 @@ const RobotPurchaseHead: FC<RobotPurchaseHeadInterface> = (props) => {
 						</Box>
 					)}
 
+					{/* Deep Link: Item Tracking */}
 					<Box>
 						{purchase && purchase.content && (
 							<ExternalLink

@@ -145,6 +145,7 @@ const GeneralAllElevatorCallsTableBodyCell: FC<GeneralAllElevatorCallsTableBodyC
 			if (column.id === GeneralAllElevatorCallsTableColumnsTypeEnum.ELEVATOR_LOGS) {
 				return (
 					<Stack direction="column" alignItems="center">
+						{/* Deep Link: Elevator Logs */}
 						<ExternalLink
 							index={index}
 							text={t(`${translation}.ELEVATOR_LOGS`)}

@@ -3,6 +3,7 @@ import { FC } from 'react';
 
 import { RobotElevatorCallsActionsStyle } from './RobotElevatorCallsActions.style';
 import RobotElevatorCallsTest from './RobotElevatorCallsTest';
+import RobotElevatorElevatorDashboard from './RobotElevatorElevatorDashboard';
 
 const RobotElevatorCallsActions: FC = () => {
 	const classes = RobotElevatorCallsActionsStyle();
@@ -11,10 +12,17 @@ const RobotElevatorCallsActions: FC = () => {
 		<Paper elevation={0} square className={classes.sActions}>
 			<Stack spacing={0.5} direction="row" alignItems="center" justifyContent="space-between">
 				<Box />
-				<Box>
+				<Stack
+					spacing={0.5}
+					direction="row"
+					alignItems="center"
+					justifyContent="space-between">
+					{/* Elevator Dashboard */}
+					<RobotElevatorElevatorDashboard />
+
 					{/* Test Elevator Calls */}
 					<RobotElevatorCallsTest />
-				</Box>
+				</Stack>
 			</Stack>
 		</Paper>
 	);

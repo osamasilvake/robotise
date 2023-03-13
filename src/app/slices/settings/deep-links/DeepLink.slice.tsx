@@ -36,6 +36,10 @@ export const initialState: SliceDeepLinkInterface = {
 		loading: false,
 		content: null
 	},
+	elevatorDashboard: {
+		loading: false,
+		content: null
+	},
 	elevatorLogs: {
 		loading: false,
 		content: null
@@ -73,6 +77,8 @@ const dataSlice = createSlice({
 				state.coolingUnit.loading = true;
 			} else if (module === DeepLinkTypeEnum.DIAGNOSTICS_LOGS) {
 				state.diagnosticsLogs.loading = true;
+			} else if (module === DeepLinkTypeEnum.ELEVATOR_DASHBOARD) {
+				state.elevatorDashboard.loading = true;
 			} else if (module === DeepLinkTypeEnum.ELEVATOR_LOGS) {
 				state.elevatorLogs.loading = true;
 			} else if (module === DeepLinkTypeEnum.ITEM_TRACKING) {
@@ -103,6 +109,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.DIAGNOSTICS_LOGS) {
 				state.diagnosticsLogs.loading = false;
 				state.diagnosticsLogs.content = response;
+			} else if (module === DeepLinkTypeEnum.ELEVATOR_DASHBOARD) {
+				state.elevatorDashboard.loading = false;
+				state.elevatorDashboard.content = response;
 			} else if (module === DeepLinkTypeEnum.ELEVATOR_LOGS) {
 				state.elevatorLogs.loading = false;
 				state.elevatorLogs.content = response;
@@ -137,6 +146,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.DIAGNOSTICS_LOGS) {
 				state.diagnosticsLogs.loading = false;
 				state.diagnosticsLogs.content = null;
+			} else if (module === DeepLinkTypeEnum.ELEVATOR_DASHBOARD) {
+				state.elevatorDashboard.loading = false;
+				state.elevatorDashboard.content = null;
 			} else if (module === DeepLinkTypeEnum.ELEVATOR_LOGS) {
 				state.elevatorLogs.loading = false;
 				state.elevatorLogs.content = null;
@@ -408,6 +420,48 @@ export const DeepLinkDiagnosticsLogsLinkFetch =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'DEEP_LINKS.FETCH.DIAGNOSTICS_LOGS.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch elevator dashboard link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const DeepLinkElevatorDashboardLinkFetch =
+	(payload: ExternalLinkPayloadInterface, callback: (data: SDContentInterface) => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: DeepLinkTypeEnum.ELEVATOR_DASHBOARD
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return DeepLinksService.deepLinkElevatorDashboardLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'deep-link-elevator-dashboard-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'DEEP_LINKS.FETCH.ELEVATOR_DASHBOARD.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

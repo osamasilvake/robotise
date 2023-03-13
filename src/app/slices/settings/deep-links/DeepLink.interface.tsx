@@ -23,6 +23,10 @@ export interface SliceDeepLinkInterface {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
+	elevatorDashboard: {
+		loading: boolean;
+		content: SDContentInterface | null;
+	};
 	elevatorLogs: {
 		loading: boolean;
 		content: SDContentInterface | null;

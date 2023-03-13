@@ -149,6 +149,7 @@ const AppServices = (config: typeof AppConfigService) => {
 					BATTERY: `${config.envAppUrl}/deeplinks-request/robot-battery-dashboard`,
 					COOLING_UNIT: `${config.envAppUrl}/deeplinks-request/robot-cooling-unit`,
 					DIAGNOSTICS_LOGS: `${config.envAppUrl}/deeplinks-request/robot-diagnostics-history`,
+					ELEVATOR_DASHBOARD: `${config.envAppUrl}/deeplinks-request/elevator-dashboard`,
 					ELEVATOR_LOGS: `${config.envAppUrl}/deeplinks-request/elevator-microservice-logs`,
 					ITEM_TRACKING: `${config.envAppUrl}/deeplinks-request/item-tracking`,
 					SCRAPPER: `${config.envAppUrl}/deeplinks-request/robot-twin-scraped`,

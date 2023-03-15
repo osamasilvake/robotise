@@ -5,9 +5,10 @@ import { GeneralAllElevatorCallsActionsInterface } from './GeneralAllElevatorCal
 import { GeneralAllElevatorCallsActionsStyle } from './GeneralAllElevatorCallsActions.style';
 import GeneralAllElevatorCallsIncludeAllCalls from './GeneralAllElevatorCallsIncludeAllCalls';
 import GeneralAllElevatorCallsSite from './GeneralAllElevatorCallsSite';
+import GeneralAllElevatorCallType from './GeneralAllElevatorCallType';
 
 const GeneralAllElevatorCallsActions: FC<GeneralAllElevatorCallsActionsInterface> = (props) => {
-	const { siteId, includeAllCalls } = props;
+	const { siteId, callType, includeAllCalls } = props;
 	const classes = GeneralAllElevatorCallsActionsStyle();
 
 	return (
@@ -20,6 +21,9 @@ const GeneralAllElevatorCallsActions: FC<GeneralAllElevatorCallsActionsInterface
 					justifyContent="space-between">
 					{/* Site */}
 					<GeneralAllElevatorCallsSite siteId={siteId} />
+
+					{/* Call Type */}
+					<GeneralAllElevatorCallType callType={callType} />
 				</Stack>
 
 				{/* Include All Calls */}

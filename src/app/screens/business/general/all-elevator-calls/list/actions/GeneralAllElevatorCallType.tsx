@@ -1,5 +1,5 @@
 import { Autocomplete, Box, ListItem, TextField } from '@mui/material';
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,37 +9,28 @@ import {
 	AllElevatorCallsUpdateState
 } from '../../../../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice';
 import { AECStateInterface } from '../../../../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice.interface';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
+import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../utilities/methods/String';
+import { GeneralAllElevatorCallsCallTypeEnum } from './GeneralAllElevatorCallsActions.enum';
 import {
 	GeneralAllElevatorCallsAutocompleteInterface,
-	GeneralAllElevatorCallsSiteInterface
+	GeneralAllElevatorCallsCallTypeInterface
 } from './GeneralAllElevatorCallsActions.interface';
 
-const GeneralAllElevatorCallsSite: FC<GeneralAllElevatorCallsSiteInterface> = (props) => {
-	const { siteId } = props;
+const GeneralAllElevatorCallType: FC<GeneralAllElevatorCallsCallTypeInterface> = (props) => {
+	const { callType } = props;
 	const { t } = useTranslation('GENERAL');
 
 	const dispatch = useDispatch<AppDispatch>();
-	const sites = useSelector(sitesSelector);
 	const allElevatorCalls = useSelector(allElevatorCallsSelector);
 
-	const [sitesList, setSitesList] = useState<GeneralAllElevatorCallsAutocompleteInterface[]>([]);
-
 	const translation = 'COMMON.ELEVATOR_CALLS.LIST.ACTIONS.FILTERS';
-	const showHidden = !!sites.content?.state?.showHidden;
-
-	useEffect(() => {
-		sites.content &&
-			setSitesList([
-				{ id: '', label: t(`${translation}.SITE.ALL_SITES`) },
-				...sites.content.data
-					.filter((r) => !showHidden || (showHidden && !r.configs.isHidden))
-					.map((site) => ({
-						id: site.id,
-						label: site.title
-					}))
-			]);
-	}, [sites.content, t, showHidden]);
+	const callTypes = [
+		{ id: '', label: t(`${translation}.CALL_TYPE.ALL_TYPES`) },
+		...Object.values(GeneralAllElevatorCallsCallTypeEnum).map((item) => ({
+			id: item,
+			label: strCapitalLetterAndCamelCaseToDash(item)
+		}))
+	];
 
 	/**
 	 * handle site
@@ -54,19 +45,19 @@ const GeneralAllElevatorCallsSite: FC<GeneralAllElevatorCallsSiteInterface> = (p
 		const state: AECStateInterface = {
 			...allElevatorCalls.content?.state,
 			page: 0,
-			siteId: option?.id
+			callType: option?.id
 		};
 		dispatch(AllElevatorCallsUpdateState(state));
 	};
 
-	return sitesList.length ? (
+	return callTypes.length ? (
 		<Box>
 			<Autocomplete
 				disablePortal
 				size="small"
 				id="sites"
-				options={sitesList}
-				value={sitesList.find((site) => site.id === siteId) || sitesList[0]}
+				options={callTypes}
+				value={callTypes.find((t) => t.id === callType) || callTypes[0]}
 				onChange={handleSite}
 				renderOption={(props, option) => (
 					<ListItem {...props} key={option.id}>
@@ -74,11 +65,11 @@ const GeneralAllElevatorCallsSite: FC<GeneralAllElevatorCallsSiteInterface> = (p
 					</ListItem>
 				)}
 				renderInput={(params) => (
-					<TextField {...params} label={t(`${translation}.SITE.LABEL`)} />
+					<TextField {...params} label={t(`${translation}.CALL_TYPE.LABEL`)} />
 				)}
 				sx={{ minWidth: 180 }}
 			/>
 		</Box>
 	) : null;
 };
-export default GeneralAllElevatorCallsSite;
+export default GeneralAllElevatorCallType;

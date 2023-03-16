@@ -279,7 +279,7 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 						</Grid>
 					</Grid>
 				);
-			case RobotConfigurationRobotElementTypeEnum.SELECT:
+			case RobotConfigurationRobotElementTypeEnum.STRING_SELECT:
 				return (
 					<Grid item xs={12} sm={6} md={6}>
 						<RobotConfigurationRobotSectionSelect
@@ -288,6 +288,20 @@ const RobotConfigurationRobotSection: FC<RobotConfigurationRobotSectionInterface
 							content={list}
 							initValue={String(list?.value?.toString() || list?.default)}
 							value={String(values[id])}
+							handleChangeSelect={handleChangeSelect}
+							choices={list?.choices as string[]}
+						/>
+					</Grid>
+				);
+			case RobotConfigurationRobotElementTypeEnum.SELECT:
+				return (
+					<Grid item xs={12} sm={6} md={6}>
+						<RobotConfigurationRobotSectionSelect
+							id={id}
+							label={key}
+							content={list}
+							initValue={list?.value || list?.default}
+							value={values[id]}
 							handleChangeSelect={handleChangeSelect}
 							choices={list?.choices as string[]}
 						/>

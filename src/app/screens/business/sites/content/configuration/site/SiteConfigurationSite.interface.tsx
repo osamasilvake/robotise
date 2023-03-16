@@ -34,8 +34,8 @@ export interface SiteConfigurationSiteSectionSelectInterface {
 	id: string;
 	label: string;
 	content: SCCDataElementInterface;
-	initValue: string;
-	value: string;
+	initValue: any;
+	value: any;
 	choices: string[];
 	handleChangeSelect: (event: SelectChangeEvent) => void;
 }

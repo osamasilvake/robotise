@@ -33,8 +33,8 @@ export interface RobotConfigurationRobotSectionSelectInterface {
 	id: string;
 	label: string;
 	content: RCCDataElementInterface;
-	initValue: string;
-	value: string;
+	initValue: any;
+	value: any;
 	choices: string[];
 	handleChangeSelect: (event: SelectChangeEvent) => void;
 }

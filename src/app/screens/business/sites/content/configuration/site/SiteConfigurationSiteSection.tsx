@@ -291,7 +291,7 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 						</Grid>
 					</Grid>
 				);
-			case SiteConfigurationSiteElementTypeEnum.SELECT:
+			case SiteConfigurationSiteElementTypeEnum.STRING_SELECT:
 				return (
 					<Grid item xs={12} sm={6} md={6}>
 						<SiteConfigurationSiteSectionSelect
@@ -300,6 +300,20 @@ const SiteConfigurationSiteSection: FC<SiteConfigurationSiteSectionInterface> = 
 							content={list}
 							initValue={String(list?.value?.toString() || list?.default)}
 							value={String(values[id])}
+							handleChangeSelect={handleChangeSelect}
+							choices={list?.choices as string[]}
+						/>
+					</Grid>
+				);
+			case SiteConfigurationSiteElementTypeEnum.SELECT:
+				return (
+					<Grid item xs={12} sm={6} md={6}>
+						<SiteConfigurationSiteSectionSelect
+							id={id}
+							label={key}
+							content={list}
+							initValue={list?.value || list?.default}
+							value={values[id]}
 							handleChangeSelect={handleChangeSelect}
 							choices={list?.choices as string[]}
 						/>

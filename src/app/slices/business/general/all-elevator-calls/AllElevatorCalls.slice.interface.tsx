@@ -53,5 +53,6 @@ export interface AECStateInterface {
 	rowsPerPage?: number;
 	siteId?: string;
 	callType?: string;
+	vendor?: string;
 	includeAllCalls?: boolean;
 }

@@ -29,6 +29,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 		AppConfigService.AppOptions.screens.business.general.allElevatorCalls.list.defaultPageSize;
 	const siteId = allElevatorCalls.content?.state?.siteId;
 	const callType = allElevatorCalls.content?.state?.callType;
+	const vendor = allElevatorCalls.content?.state?.vendor;
 	const includeAllCalls = !!allElevatorCalls.content?.state?.includeAllCalls;
 
 	const pageRef = useRef({
@@ -36,6 +37,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 		rowsPerPage,
 		siteId,
 		callType,
+		vendor,
 		includeAllCalls
 	});
 
@@ -45,6 +47,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 			rowsPerPage,
 			siteId,
 			callType,
+			vendor,
 			includeAllCalls
 		};
 
@@ -62,6 +65,13 @@ const GeneralAllElevatorCallsList: FC = () => {
 			// update ref
 			pageRef.current.page = page;
 			pageRef.current.callType = callType;
+		} else if (pageRef.current.vendor !== vendor && page === 0) {
+			// dispatch: fetch all elevator calls
+			dispatch(AllElevatorCallsFetchList(payload));
+
+			// update ref
+			pageRef.current.page = page;
+			pageRef.current.vendor = vendor;
 		} else if (pageRef.current.includeAllCalls !== includeAllCalls && page === 0) {
 			// dispatch: fetch all elevator calls
 			dispatch(AllElevatorCallsFetchList(payload));
@@ -92,7 +102,16 @@ const GeneralAllElevatorCallsList: FC = () => {
 				}
 			}
 		}
-	}, [dispatch, allElevatorCalls.content, page, rowsPerPage, siteId, callType, includeAllCalls]);
+	}, [
+		dispatch,
+		allElevatorCalls.content,
+		page,
+		rowsPerPage,
+		siteId,
+		callType,
+		vendor,
+		includeAllCalls
+	]);
 
 	useEffect(() => {
 		const executeServices = () => {
@@ -104,6 +123,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 						rowsPerPage,
 						siteId,
 						callType,
+						vendor,
 						includeAllCalls
 					},
 					true
@@ -117,7 +137,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 			AppConfigService.AppOptions.screens.business.general.allElevatorCalls.list.refreshTime
 		);
 		return () => window.clearInterval(intervalId);
-	}, [dispatch, page, rowsPerPage, siteId, callType, includeAllCalls]);
+	}, [dispatch, page, rowsPerPage, siteId, callType, vendor, includeAllCalls]);
 
 	// loader
 	if (allElevatorCalls.loader) {
@@ -140,6 +160,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 				<GeneralAllElevatorCallsActions
 					siteId={siteId}
 					callType={callType}
+					vendor={vendor}
 					includeAllCalls={includeAllCalls}
 				/>
 
@@ -155,6 +176,7 @@ const GeneralAllElevatorCallsList: FC = () => {
 			<GeneralAllElevatorCallsActions
 				siteId={siteId}
 				callType={callType}
+				vendor={vendor}
 				includeAllCalls={includeAllCalls}
 			/>
 

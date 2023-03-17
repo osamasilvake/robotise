@@ -1,6 +1,7 @@
 export interface GeneralAllElevatorCallsActionsInterface {
 	siteId?: string;
 	callType?: string;
+	vendor?: string;
 	includeAllCalls: boolean;
 }
 
@@ -10,6 +11,10 @@ export interface GeneralAllElevatorCallsSiteInterface {
 
 export interface GeneralAllElevatorCallsCallTypeInterface {
 	callType?: string;
+}
+
+export interface GeneralAllElevatorCallsVendorInterface {
+	vendor?: string;
 }
 
 export interface GeneralAllElevatorCallsIncludeAllCallsInterface {

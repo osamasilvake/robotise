@@ -6,9 +6,10 @@ import { GeneralAllElevatorCallsActionsStyle } from './GeneralAllElevatorCallsAc
 import GeneralAllElevatorCallsIncludeAllCalls from './GeneralAllElevatorCallsIncludeAllCalls';
 import GeneralAllElevatorCallsSite from './GeneralAllElevatorCallsSite';
 import GeneralAllElevatorCallType from './GeneralAllElevatorCallType';
+import GeneralAllElevatorVendor from './GeneralAllElevatorVendor';
 
 const GeneralAllElevatorCallsActions: FC<GeneralAllElevatorCallsActionsInterface> = (props) => {
-	const { siteId, callType, includeAllCalls } = props;
+	const { siteId, callType, vendor, includeAllCalls } = props;
 	const classes = GeneralAllElevatorCallsActionsStyle();
 
 	return (
@@ -24,6 +25,9 @@ const GeneralAllElevatorCallsActions: FC<GeneralAllElevatorCallsActionsInterface
 
 					{/* Call Type */}
 					<GeneralAllElevatorCallType callType={callType} />
+
+					{/* Vendor */}
+					<GeneralAllElevatorVendor vendor={vendor} />
 				</Stack>
 
 				{/* Include All Calls */}

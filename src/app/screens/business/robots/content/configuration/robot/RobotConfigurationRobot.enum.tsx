@@ -1,5 +1,6 @@
 export enum RobotConfigurationRobotElementTypeEnum {
-	SELECT = 'string:select',
+	SELECT = 'select',
+	STRING_SELECT = 'string:select',
 	NUMBER = 'number',
 	STRING = 'string',
 	MULTILINE_STRING = 'string:multiline',

@@ -119,6 +119,8 @@ class GeneralService {
 		return HttpClientService.get<GeneralAllElevatorCallsAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': payload.siteId || undefined,
+				'filter[callType]': payload.callType || undefined,
+				'filter[vendor]': payload.vendor || undefined,
 				'filter[isDebug]': payload.includeAllCalls ? undefined : false,
 				'filter[e2eStatus]': payload.includeAllCalls ? undefined : failed,
 				'page[number]': payload.page + 1,

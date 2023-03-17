@@ -732,6 +732,14 @@
 								"ALL_SITES": "All Sites",
 								"LABEL": "Sites"
 							},
+							"CALL_TYPE": {
+								"ALL_TYPES": "All Types",
+								"LABEL": "Call Types"
+							},
+							"VENDOR": {
+								"ALL_TYPES": "All Vendors",
+								"LABEL": "Vendors"
+							},
 							"INCLUDE_ALL_CALLS": "Include All Calls"
 						},
 						"TEST_CALL": {

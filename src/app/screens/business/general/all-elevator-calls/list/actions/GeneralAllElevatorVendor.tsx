@@ -1,5 +1,5 @@
 import { Autocomplete, Box, ListItem, TextField } from '@mui/material';
-import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { FC, SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,44 +9,33 @@ import {
 	AllElevatorCallsUpdateState
 } from '../../../../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice';
 import { AECStateInterface } from '../../../../../../slices/business/general/all-elevator-calls/AllElevatorCalls.slice.interface';
-import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
+import { siteCloudConfigurationSelector } from '../../../../../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import {
 	GeneralAllElevatorCallsAutocompleteInterface,
-	GeneralAllElevatorCallsSiteInterface
+	GeneralAllElevatorCallsVendorInterface
 } from './GeneralAllElevatorCallsActions.interface';
 
-const GeneralAllElevatorCallsSite: FC<GeneralAllElevatorCallsSiteInterface> = (props) => {
-	const { siteId } = props;
+const GeneralAllElevatorVendor: FC<GeneralAllElevatorCallsVendorInterface> = (props) => {
+	const { vendor } = props;
 	const { t } = useTranslation('GENERAL');
 
 	const dispatch = useDispatch<AppDispatch>();
-	const sites = useSelector(sitesSelector);
 	const allElevatorCalls = useSelector(allElevatorCallsSelector);
-
-	const [sitesList, setSitesList] = useState<GeneralAllElevatorCallsAutocompleteInterface[]>([]);
+	const siteCloudConfiguration = useSelector(siteCloudConfigurationSelector);
 
 	const translation = 'COMMON.ELEVATOR_CALLS.LIST.ACTIONS.FILTERS';
-	const showHidden = !!sites.content?.state?.showHidden;
-
-	useEffect(() => {
-		sites.content &&
-			setSitesList([
-				{ id: '', label: t(`${translation}.SITE.ALL_SITES`) },
-				...sites.content.data
-					.filter((r) => !showHidden || (showHidden && !r.configs.isHidden))
-					.map((site) => ({
-						id: site.id,
-						label: site.title
-					}))
-			]);
-	}, [sites.content, t, showHidden]);
+	const elevatorVendors = siteCloudConfiguration.elevatorVendors.content?.data || [];
+	const vendors = [
+		{ id: '', label: t(`${translation}.VENDOR.ALL_TYPES`) },
+		...elevatorVendors.map((item) => ({ id: item.code, label: item.title }))
+	];
 
 	/**
-	 * handle site
+	 * handle vendor
 	 * @param _event
 	 * @param option
 	 */
-	const handleSite = (
+	const handleVendor = (
 		_event: SyntheticEvent,
 		option: GeneralAllElevatorCallsAutocompleteInterface | null
 	) => {
@@ -54,31 +43,31 @@ const GeneralAllElevatorCallsSite: FC<GeneralAllElevatorCallsSiteInterface> = (p
 		const state: AECStateInterface = {
 			...allElevatorCalls.content?.state,
 			page: 0,
-			siteId: option?.id
+			vendor: option?.id
 		};
 		dispatch(AllElevatorCallsUpdateState(state));
 	};
 
-	return sitesList.length ? (
+	return vendors.length ? (
 		<Box>
 			<Autocomplete
 				disablePortal
 				size="small"
-				id="sites"
-				options={sitesList}
-				value={sitesList.find((site) => site.id === siteId) || sitesList[0]}
-				onChange={handleSite}
+				id="vendors"
+				options={vendors}
+				value={vendors.find((t) => t.id === vendor) || vendors[0]}
+				onChange={handleVendor}
 				renderOption={(props, option) => (
 					<ListItem {...props} key={option.id}>
 						{option.label}
 					</ListItem>
 				)}
 				renderInput={(params) => (
-					<TextField {...params} label={t(`${translation}.SITE.LABEL`)} />
+					<TextField {...params} label={t(`${translation}.VENDOR.LABEL`)} />
 				)}
 				sx={{ minWidth: 180 }}
 			/>
 		</Box>
 	) : null;
 };
-export default GeneralAllElevatorCallsSite;
+export default GeneralAllElevatorVendor;

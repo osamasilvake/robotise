@@ -2,13 +2,19 @@ import { Edit, HelpOutline } from '@mui/icons-material';
 import { Box, Grid, IconButton, Link, Stack, Tooltip, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
+import ExternalLink from '../../../../../../components/common/external-link/ExternalLink';
+import { ExternalLinkActionTypeEnum } from '../../../../../../components/common/external-link/ExternalLink.enum';
 import ReadMore from '../../../../../../components/common/read-more/ReadMore';
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
+import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
+import { deepLinkSelector } from '../../../../../../slices/settings/deep-links/DeepLink.slice';
 import { dateFormat1 } from '../../../../../../utilities/methods/Date';
 import { strRemoveSymbols } from '../../../../../../utilities/methods/String';
+import { RobotParamsInterface } from '../../../Robot.interface';
 import { RobotDetailControlModeTypeEnum } from '../commands/RobotDetailCommands.enum';
 import DialogNote from './DialogNote';
 import { RobotDetailGeneralInterface } from './RobotDetailGeneral.interface';
@@ -19,10 +25,17 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 	const { t } = useTranslation(['ROBOTS', 'TOOLTIP']);
 	const classes = RobotDetailGeneralStyle();
 
+	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+	const deepLink = useSelector(deepLinkSelector);
+
 	const [open, setOpen] = useState(false);
+
+	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const emergencyState = !!robotTwins?.emergencyState?.properties.isInEmergencyState;
 	const openDrawer = robotTwins.drawerStates?.properties.drawers?.find((f) => f.isOpen);
+	const cRobotId = params.robotId;
+	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId;
 	const translation = 'CONTENT.DETAIL.GENERAL';
 
 	return (
@@ -206,6 +219,23 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 					</Box>
 				</Grid>
 			)}
+
+			{/* Wiki Page */}
+			<Grid item xs={12} sm={6} md={4} lg={3}>
+				<Typography variant="caption" color="textSecondary">
+					{t(`${translation}.WIKI_PAGE.LABEL`)}
+				</Typography>
+				<Box>
+					{/* Deep Link: Wiki Page */}
+					<ExternalLink
+						text={t(`${translation}.WIKI_PAGE.LINK`)}
+						payload={{ siteId: cSiteId }}
+						actionType={ExternalLinkActionTypeEnum.WIKI_PAGE}
+						showIcon={deepLink.wikiPage.loading}
+						disabled={deepLink.wikiPage.loading}
+					/>
+				</Box>
+			</Grid>
 
 			{/* Note */}
 			<Grid item xs={12} sm={6} md={4} lg={6} className={classes.sNoteGrid}>

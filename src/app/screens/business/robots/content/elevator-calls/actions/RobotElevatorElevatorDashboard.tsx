@@ -13,8 +13,8 @@ import { RobotParamsInterface } from '../../../Robot.interface';
 const RobotElevatorElevatorDashboard: FC = () => {
 	const { t } = useTranslation('GENERAL');
 
-	const deepLink = useSelector(deepLinkSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
+	const deepLink = useSelector(deepLinkSelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 

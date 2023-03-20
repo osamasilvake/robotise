@@ -43,10 +43,15 @@ export interface SliceDeepLinkInterface {
 		loading: boolean;
 		content: SDContentInterface | null;
 	};
+	wikiPage: {
+		loading: boolean;
+		content: SDContentInterface | null;
+	};
 }
 
 export interface SDContentInterface {
 	data: {
 		dlink: string;
+		link?: string;
 	};
 }

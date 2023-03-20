@@ -55,6 +55,10 @@ export const initialState: SliceDeepLinkInterface = {
 	temperature: {
 		loading: false,
 		content: null
+	},
+	wikiPage: {
+		loading: false,
+		content: null
 	}
 };
 
@@ -87,6 +91,8 @@ const dataSlice = createSlice({
 				state.scrapper.loading = true;
 			} else if (module === DeepLinkTypeEnum.TEMPERATURE) {
 				state.temperature.loading = true;
+			} else if (module === DeepLinkTypeEnum.WIKI_PAGE) {
+				state.wikiPage.loading = true;
 			}
 		},
 		success: (state, action) => {
@@ -124,6 +130,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.TEMPERATURE) {
 				state.temperature.loading = false;
 				state.temperature.content = response;
+			} else if (module === DeepLinkTypeEnum.WIKI_PAGE) {
+				state.wikiPage.loading = false;
+				state.wikiPage.content = response;
 			}
 		},
 		failure: (state, action) => {
@@ -161,6 +170,9 @@ const dataSlice = createSlice({
 			} else if (module === DeepLinkTypeEnum.TEMPERATURE) {
 				state.temperature.loading = false;
 				state.temperature.content = null;
+			} else if (module === DeepLinkTypeEnum.WIKI_PAGE) {
+				state.wikiPage.loading = false;
+				state.wikiPage.content = null;
 			}
 		},
 		reset: () => initialState
@@ -209,7 +221,7 @@ export const DeepLinkAuditLogsLinkFetch =
 					id: 'deep-link-audit-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.AUDIT_LOGS.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -251,7 +263,7 @@ export const DeepLinkAlertLogsLinkFetch =
 					id: 'deep-link-alert-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.ALERT_LOGS.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -293,7 +305,7 @@ export const DeepLinkAlertDashboardLogsLinkFetch =
 					id: 'deep-link-alert-dashboard-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.ALERT_DASHBOARD_LOGS.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -335,7 +347,7 @@ export const DeepLinkBatteryLinkFetch =
 					id: 'deep-link-battery-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.BATTERY.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -377,7 +389,7 @@ export const DeepLinkCoolingUnitLinkFetch =
 					id: 'deep-link-cooling-unit-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.COOLING_UNIT.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -419,7 +431,7 @@ export const DeepLinkDiagnosticsLogsLinkFetch =
 					id: 'deep-link-diagnostics-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.DIAGNOSTICS_LOGS.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -461,7 +473,7 @@ export const DeepLinkElevatorDashboardLinkFetch =
 					id: 'deep-link-elevator-dashboard-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.ELEVATOR_DASHBOARD.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -503,7 +515,7 @@ export const DeepLinkElevatorLogsLinkFetch =
 					id: 'deep-link-elevator-logs-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.ELEVATOR_LOGS.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -545,7 +557,7 @@ export const DeepLinkItemTrackingLinkFetch =
 					id: 'deep-link-item-tracking-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.ITEM_TRACKING.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -587,7 +599,7 @@ export const DeepLinkScrapperLinkFetch =
 					id: 'deep-link-scrapper-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.SCRAPPER.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 
@@ -629,7 +641,49 @@ export const DeepLinkTemperatureLinkFetch =
 					id: 'deep-link-temperature-fetch-error',
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
-					text: 'DEEP_LINKS.FETCH.TEMPERATURE.ERROR'
+					text: 'DEEP_LINKS.FETCH.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch wiki page link
+ * @param payload
+ * @param callback
+ * @returns
+ */
+export const DeepLinkWikiPageLinkFetch =
+	(payload: ExternalLinkPayloadInterface, callback: (data: SDContentInterface) => void) =>
+	async (dispatch: Dispatch) => {
+		const state = {
+			module: DeepLinkTypeEnum.WIKI_PAGE
+		};
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		// wait
+		await timeout(1000);
+
+		return DeepLinksService.deepLinkWikiPageLinkFetch(payload)
+			.then(async (res) => {
+				// dispatch: success
+				dispatch(success({ ...state, response: res }));
+
+				// callback
+				callback(res);
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'deep-link-wiki-page-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'DEEP_LINKS.FETCH.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

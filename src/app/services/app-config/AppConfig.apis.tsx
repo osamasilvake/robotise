@@ -153,7 +153,8 @@ const AppServices = (config: typeof AppConfigService) => {
 					ELEVATOR_LOGS: `${config.envAppUrl}/deeplinks-request/elevator-microservice-logs`,
 					ITEM_TRACKING: `${config.envAppUrl}/deeplinks-request/item-tracking`,
 					SCRAPPER: `${config.envAppUrl}/deeplinks-request/robot-twin-scraped`,
-					TEMPERATURE: `${config.envAppUrl}/deeplinks-request/robot-temperature`
+					TEMPERATURE: `${config.envAppUrl}/deeplinks-request/robot-temperature`,
+					WIKI_PAGE: `${config.envAppUrl}/site-pages/:siteId`
 				},
 				MIDDLEWARE_CONFIG: `${config.envAppUrl}/cmd-events`,
 				SETUP: {

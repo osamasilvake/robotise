@@ -239,6 +239,17 @@ class DeepLinksService {
 			}
 		});
 	};
+
+	/**
+	 * fetch wiki page link
+	 * @param payload
+	 * @returns
+	 */
+	deepLinkWikiPageLinkFetch = (payload: ExternalLinkPayloadInterface) => {
+		let url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.WIKI_PAGE;
+		url = url.replace(':siteId', payload.siteId || '');
+		return HttpClientService.get<SDContentInterface>(url);
+	};
 }
 const instance = new DeepLinksService();
 export default instance;

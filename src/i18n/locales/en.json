@@ -403,39 +403,7 @@
 			},
 			"DEEP_LINKS": {
 				"FETCH": {
-					"AUDIT_LOGS": {
-						"ERROR": "Failed to fetch audit logs link!"
-					},
-					"ALERT_LOGS": {
-						"ERROR": "Failed to fetch alert logs link!"
-					},
-					"ALERT_DASHBOARD_LOGS": {
-						"ERROR": "Failed to fetch alert logs link!"
-					},
-					"BATTERY": {
-						"ERROR": "Failed to fetch battery link!"
-					},
-					"COOLING_UNIT": {
-						"ERROR": "Failed to fetch cooling unit link!"
-					},
-					"DIAGNOSTICS_LOGS": {
-						"ERROR": "Failed to fetch diagnostics logs link!"
-					},
-					"ELEVATOR_DASHBOARD": {
-						"ERROR": "Failed to fetch elevator dashboard link!"
-					},
-					"ELEVATOR_LOGS": {
-						"ERROR": "Failed to fetch elevator logs link!"
-					},
-					"ITEM_TRACKING": {
-						"ERROR": "Failed to fetch item tracking link!"
-					},
-					"SCRAPPER": {
-						"ERROR": "Failed to fetch scrapper link!"
-					},
-					"TEMPERATURE": {
-						"ERROR": "Failed to fetch temperature link!"
-					}
+					"ERROR": "Failed to fetch link!"
 				},
 				"CREATE": {
 					"SUCCESS": "Deep link has been created successfully!",
@@ -1783,6 +1751,15 @@
 					"IP_ADDRESS": "IP Address",
 					"CE_INVENTORY_ID": "CE Inventory ID",
 					"USERNAME": "CA Username",
+					"DRAWER_STATES": {
+						"LABEL": "Drawer State",
+						"OPENED": "Drawer {{value}} is opened",
+						"CLOSED": "All drawers are closed"
+					},
+					"WIKI_PAGE": {
+						"LABEL": "Wiki Page",
+						"LINK": "Visit"
+					},
 					"NOTE": {
 						"LABEL": "Note",
 						"TITLE": "Note",
@@ -1792,11 +1769,6 @@
 							"LABEL": "Note",
 							"PLACEHOLDER": "Enter Note Description"
 						}
-					},
-					"DRAWER_STATES": {
-						"LABEL": "Drawer State",
-						"OPENED": "Drawer {{value}} is opened",
-						"CLOSED": "All drawers are closed"
 					}
 				},
 				"LOCATION": {

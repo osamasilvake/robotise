@@ -14,8 +14,8 @@ export interface ExternalLinkPayloadInterface {
 	siteId?: string;
 	robotId?: string;
 	vendor?: string;
-	from: Date | string;
-	to: Date | string;
+	from?: Date | string;
+	to?: Date | string;
 	callId?: string;
 }
 

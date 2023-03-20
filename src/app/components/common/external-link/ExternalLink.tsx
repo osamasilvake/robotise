@@ -15,7 +15,8 @@ import {
 	DeepLinkElevatorLogsLinkFetch,
 	DeepLinkItemTrackingLinkFetch,
 	DeepLinkScrapperLinkFetch,
-	DeepLinkTemperatureLinkFetch
+	DeepLinkTemperatureLinkFetch,
+	DeepLinkWikiPageLinkFetch
 } from '../../../slices/settings/deep-links/DeepLink.slice';
 import { ExternalLinkActionTypeEnum, ExternalLinkTypeEnum } from './ExternalLink.enum';
 import { ExternalLinkInterface } from './ExternalLink.interface';
@@ -46,7 +47,8 @@ const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 		[ExternalLinkActionTypeEnum.ELEVATOR_LOGS]: DeepLinkElevatorLogsLinkFetch,
 		[ExternalLinkActionTypeEnum.ITEM_TRACKING]: DeepLinkItemTrackingLinkFetch,
 		[ExternalLinkActionTypeEnum.SCRAPPER]: DeepLinkScrapperLinkFetch,
-		[ExternalLinkActionTypeEnum.TEMPERATURE]: DeepLinkTemperatureLinkFetch
+		[ExternalLinkActionTypeEnum.TEMPERATURE]: DeepLinkTemperatureLinkFetch,
+		[ExternalLinkActionTypeEnum.WIKI_PAGE]: DeepLinkWikiPageLinkFetch
 	};
 
 	/**
@@ -64,7 +66,7 @@ const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 		// dispatch: fetch link
 		dispatch(
 			actionsList[actionType](payload, (res) => {
-				res.data && window.open(res.data.dlink);
+				res.data && window.open(res.data?.dlink || res.data?.link);
 
 				// reset tracking index
 				setTrackingIndex(-1);

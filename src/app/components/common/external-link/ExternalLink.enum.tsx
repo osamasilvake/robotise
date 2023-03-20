@@ -14,5 +14,6 @@ export enum ExternalLinkActionTypeEnum {
 	ELEVATOR_LOGS = 'elevator_logs',
 	ITEM_TRACKING = 'item_tracking',
 	SCRAPPER = 'scrapper',
-	TEMPERATURE = 'temperature'
+	TEMPERATURE = 'temperature',
+	WIKI_PAGE = 'wiki_page'
 }

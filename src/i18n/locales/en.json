@@ -155,7 +155,8 @@
 			"GENERAL": {
 				"COMMON": {
 					"COPY_TO_CLIPBOARD": "Message copied to clipboard!",
-					"ROBOT_NOT_ASSIGNED_TO_SITE": "Robot is not assigned to a Site!"
+					"ROBOT_NOT_ASSIGNED_TO_SITE": "Robot is not assigned to a Site!",
+					"EXTERNAL_LINK_ERROR": "Unable to fetch link!"
 				},
 				"ORDER_MODES": {
 					"ERROR": "Unable to fetch order modes!"

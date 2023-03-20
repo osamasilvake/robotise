@@ -4,6 +4,7 @@ import { FC, MouseEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '../../../slices';
+import { AppTriggerMessage } from '../../../slices/app/App.slice';
 import {
 	DeepLinkAlertDashboardLogsLinkFetch,
 	DeepLinkAlertLogsLinkFetch,
@@ -18,6 +19,8 @@ import {
 	DeepLinkTemperatureLinkFetch,
 	DeepLinkWikiPageLinkFetch
 } from '../../../slices/settings/deep-links/DeepLink.slice';
+import { TriggerMessageTypeEnum } from '../../frame/message/Message.enum';
+import { TriggerMessageInterface } from '../../frame/message/Message.interface';
 import { ExternalLinkActionTypeEnum, ExternalLinkTypeEnum } from './ExternalLink.enum';
 import { ExternalLinkInterface } from './ExternalLink.interface';
 
@@ -66,7 +69,19 @@ const ExternalLink: FC<ExternalLinkInterface> = (props) => {
 		// dispatch: fetch link
 		dispatch(
 			actionsList[actionType](payload, (res) => {
-				res.data && window.open(res.data?.dlink || res.data?.link);
+				const link = res.data?.dlink || res.data?.link;
+				link && window.open(link);
+
+				if (!link) {
+					// dispatch: trigger message
+					const message: TriggerMessageInterface = {
+						id: 'external-link',
+						show: true,
+						severity: TriggerMessageTypeEnum.ERROR,
+						text: 'GENERAL.COMMON.EXTERNAL_LINK_ERROR'
+					};
+					dispatch(AppTriggerMessage(message));
+				}
 
 				// reset tracking index
 				setTrackingIndex(-1);

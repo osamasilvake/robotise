@@ -238,7 +238,7 @@ const RobotDetailGeneral: FC<RobotDetailGeneralInterface> = (props) => {
 			</Grid>
 
 			{/* Note */}
-			<Grid item xs={12} sm={6} md={4} lg={6} className={classes.sNoteGrid}>
+			<Grid item xs={12} sm={6} md={8} lg={9} className={classes.sNoteGrid}>
 				<Typography variant="caption" color="textSecondary">
 					{t(`${translation}.NOTE.LABEL`)}
 					<Tooltip

@@ -43,7 +43,7 @@ const AppServices = (config: typeof AppConfigService) => {
 						ALL: `${config.envAppUrl}/floors`
 					},
 					LOCATIONS: {
-						ALL: `${config.envAppUrl}/locations`,
+						ALL: `${config.envAppUrl}/locations?page[size]=500`,
 						SINGLE: `${config.envAppUrl}/locations/:locationId`
 					},
 					QR_CODES: `${config.envAppUrl}/room-qr-codes`,

@@ -23,9 +23,6 @@ class InterceptorService {
 						// log error on console
 						// send logs to server
 						LoggerService.sendLogs(err);
-
-						// resolve
-						resolve(data);
 					}
 
 					// reject

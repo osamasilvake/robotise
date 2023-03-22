@@ -12,7 +12,7 @@ import RobotsTableBody from './RobotsTableBody';
 import RobotsTableHead from './RobotsTableHead';
 
 const RobotsTable: FC<RobotsTableInterface> = (props) => {
-	const { content, hideTableScroll, siteId } = props;
+	const { content, hideTableScroll, hideSearch, siteId } = props;
 	const { t } = useTranslation('COMMON');
 	const classes = RobotsListStyle();
 
@@ -54,6 +54,7 @@ const RobotsTable: FC<RobotsTableInterface> = (props) => {
 						orderBy={orderBy}
 						content={content}
 						siteId={siteId}
+						hideSearch={hideSearch}
 					/>
 				</Table>
 			</TableContainer>

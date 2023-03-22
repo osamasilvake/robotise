@@ -1,6 +1,7 @@
 export interface RobotsInterface {
 	hideCreateBtn?: boolean;
 	hideTableScroll?: boolean;
+	hideSearch?: boolean;
 	siteId?: string;
 }
 

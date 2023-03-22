@@ -18,7 +18,7 @@ import { RobotsListStyle } from './RobotsTable.style';
 import RobotsTableBodyCell from './RobotsTableBodyCell';
 
 const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
-	const { content, order, orderBy, siteId } = props;
+	const { content, order, orderBy, siteId, hideSearch } = props;
 	const classes = RobotsListStyle();
 
 	const sites = useSelector(sitesSelector);
@@ -123,7 +123,7 @@ const RobotsTableBody: FC<RobotsTableBodyInterface> = (props) => {
 	 */
 	const filterRobots = () => {
 		let list = (content && content.data && sortTableData(content)) || [];
-		if (searchText) {
+		if (!hideSearch && searchText) {
 			list = list?.filter((r) => {
 				const search = searchText?.toLowerCase()?.trim();
 				const siteId = r.siteId?.toLowerCase() || '';

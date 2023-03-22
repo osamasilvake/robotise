@@ -9,7 +9,7 @@ import RobotsSearch from './RobotsSearch';
 import RobotsSimulation from './RobotsSimulation';
 
 const RobotsActions: FC<RobotsActionsInterface> = (props) => {
-	const { hideCreateBtn } = props;
+	const { hideCreateBtn, hideSearch } = props;
 	const classes = RobotsActionsStyle();
 
 	return (
@@ -32,7 +32,7 @@ const RobotsActions: FC<RobotsActionsInterface> = (props) => {
 					<RobotsSimulation />
 
 					{/* Search */}
-					<RobotsSearch />
+					{!hideSearch && <RobotsSearch />}
 				</Stack>
 
 				{/* Create Robot */}

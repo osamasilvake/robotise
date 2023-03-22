@@ -31,7 +31,7 @@ const SiteDetail: FC = () => {
 
 			{/* Robots List */}
 			<Box className={classes.sList}>
-				<RobotsList hideCreateBtn hideTableScroll siteId={cSiteId} />
+				<RobotsList hideCreateBtn hideTableScroll hideSearch siteId={cSiteId} />
 			</Box>
 		</Box>
 	) : null;

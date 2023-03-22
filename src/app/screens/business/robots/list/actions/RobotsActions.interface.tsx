@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 export interface RobotsActionsInterface {
 	hideCreateBtn?: boolean;
+	hideSearch?: boolean;
 }
 
 export interface DialogCreateRobotInterface {

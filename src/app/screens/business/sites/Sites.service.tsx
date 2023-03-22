@@ -182,7 +182,8 @@ class SitesService {
 			{
 				params: {
 					'filter[site]': siteId,
-					'page[number]': pageNum
+					'page[number]': pageNum,
+					'page[size]': 200
 				}
 			}
 		);

@@ -1,4 +1,5 @@
 import {
+	Autocomplete,
 	Box,
 	Button,
 	Checkbox,
@@ -82,6 +83,7 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 		handleChangeInput,
 		handleChangeCheckbox,
 		handleChangeSelect,
+		handleChangeAutoComplete,
 		handleBlur,
 		handleSubmit,
 		values,
@@ -197,53 +199,53 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 
 					{values.mode !== RobotOrderModeTypeEnum.SERVICE_POSITION && (
 						<FormControl fullWidth margin="normal">
-							<InputLabel id="label-room-locations">
-								{t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.ROOM_LOCATIONS.LABEL`
-								)}
-							</InputLabel>
-							<Select
-								required
-								labelId="label-room-locations"
+							<Autocomplete
+								disablePortal
 								id={fieldLocation}
-								name={fieldLocation}
-								label={t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.ROOM_LOCATIONS.LABEL`
+								options={rLocations}
+								getOptionLabel={(option) => option.name}
+								isOptionEqualToValue={(option, value) => option.id === value.id}
+								onChange={(e, v) => handleChangeAutoComplete(e, v?.id)}
+								renderInput={(params) => (
+									<TextField
+										{...params}
+										label={t(
+											`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.ROOM_LOCATIONS.LABEL`
+										)}
+									/>
 								)}
-								value={values.locationId}
-								onChange={handleChangeSelect}>
-								{rLocations.map((location) => (
-									<MenuItem key={location.id} value={location.id}>
-										{location.name}
-									</MenuItem>
-								))}
-							</Select>
+								sx={{ minWidth: 180 }}
+							/>
 						</FormControl>
 					)}
 
 					{values.mode === RobotOrderModeTypeEnum.SERVICE_POSITION && (
 						<FormControl fullWidth margin="normal">
-							<InputLabel id="label-service-locations">
-								{t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_LOCATIONS.LABEL`
-								)}
-							</InputLabel>
-							<Select
-								required
-								labelId="label-service-locations"
+							<Autocomplete
+								disablePortal
 								id={fieldLocation}
-								name={fieldLocation}
-								label={t(
-									`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_LOCATIONS.LABEL`
+								options={sLocations}
+								getOptionLabel={(option) => option.name}
+								isOptionEqualToValue={(option, value) => option.id === value.id}
+								onChange={(e, v) => {
+									handleChangeInput({
+										target: {
+											name: fieldLocation,
+											value: ''
+										}
+									});
+									handleChangeAutoComplete(e, v?.id);
+								}}
+								renderInput={(params) => (
+									<TextField
+										{...params}
+										label={t(
+											`${translation}.LIST.ACTIONS.CREATE.FORM.FIELDS.SERVICE_LOCATIONS.LABEL`
+										)}
+									/>
 								)}
-								value={values.locationId}
-								onChange={handleChangeSelect}>
-								{sLocations.map((location) => (
-									<MenuItem key={location.id} value={location.id}>
-										{location.name}
-									</MenuItem>
-								))}
-							</Select>
+								sx={{ minWidth: 180 }}
+							/>
 						</FormControl>
 					)}
 

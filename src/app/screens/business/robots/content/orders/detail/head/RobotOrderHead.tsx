@@ -31,6 +31,7 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 	const siteId = siteSingle?.id || '';
 	const siteTitle = siteSingle?.title || '';
 
+	const location = order?.content?.location || '';
 	const locationName = order?.content?.locationName || '';
 	const history = order?.content?.history;
 	const startDate = history && history[0]?.createdAt;
@@ -45,7 +46,7 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 				<Box className={classes.sRoomWrapper}>
 					{/* Room */}
 					<Typography variant="h1" className={classes.sRoom}>
-						{locationName || AppConfigService.AppOptions.common.none}
+						{locationName || location || AppConfigService.AppOptions.common.none}
 					</Typography>
 
 					{/* Site */}

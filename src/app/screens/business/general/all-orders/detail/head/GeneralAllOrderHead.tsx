@@ -22,6 +22,7 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
+	const location = order?.content?.location || '';
 	const locationName = order?.content?.locationName || '';
 
 	const cRobotId = order?.content?.robot.id || '';
@@ -43,7 +44,7 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 				<Box className={classes.sRoomWrapper}>
 					{/* Room */}
 					<Typography variant="h1" className={classes.sRoom}>
-						{locationName || AppConfigService.AppOptions.common.none}
+						{locationName || location || AppConfigService.AppOptions.common.none}
 					</Typography>
 
 					{/* Site */}

@@ -97,25 +97,40 @@ export const RoomsLocationsFetch =
 		// dispatch: loader/loading
 		dispatch(!refresh ? loader() : loading());
 
-		// fetch locations
-		return SitesService.sitesRoomsLocationsFetch(siteId)
-			.then(async (res) => {
-				// deserialize response
-				let result: SRContentInterface = await deserializeRooms(res);
+		let isResult = true;
+		let pageNum = 1;
+		let data: {
+			id: string;
+			type: string;
+			attributes: SRContentDataInterface;
+		}[] = [];
+		do {
+			try {
+				const res = await SitesService.sitesRoomsLocationsFetch(siteId, pageNum);
+				data = data.concat(res.data);
+				isResult = !!res?.data?.length;
+				pageNum += 1;
 
-				// set state
-				result = {
-					...result,
-					state: {
-						...state,
-						pSiteId: siteId
-					}
-				};
+				if (!res?.data?.length) {
+					// final response
+					const resFinal = { ...res, data };
 
-				// dispatch: success
-				dispatch(success(result));
-			})
-			.catch(() => {
+					// deserialize response
+					let result: SRContentInterface = await deserializeRooms(resFinal);
+
+					// set state
+					result = {
+						...result,
+						state: {
+							...state,
+							pSiteId: siteId
+						}
+					};
+
+					// dispatch: success
+					dispatch(success(result));
+				}
+			} catch (e) {
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'rooms-fetch-error',
@@ -126,7 +141,8 @@ export const RoomsLocationsFetch =
 
 				// dispatch: failure
 				dispatch(failure(message));
-			});
+			}
+		} while (isResult);
 	};
 
 /**

@@ -173,14 +173,16 @@ class SitesService {
 	/**
 	 * fetch locations
 	 * @param siteId
+	 * @param pageNum
 	 * @returns
 	 */
-	sitesRoomsLocationsFetch = (siteId: string) => {
+	sitesRoomsLocationsFetch = (siteId: string, pageNum: number) => {
 		return HttpClientService.get<SiteRoomsAxiosGetInterface>(
 			AppConfigService.AppServices.SCREENS.BUSINESS.SITES.LOCATIONS.ALL,
 			{
 				params: {
-					'filter[site]': siteId
+					'filter[site]': siteId,
+					'page[number]': pageNum
 				}
 			}
 		);

@@ -131,6 +131,8 @@ export const RoomsLocationsFetch =
 					dispatch(success(result));
 				}
 			} catch (e) {
+				isResult = false;
+
 				// dispatch: trigger message
 				const message: TriggerMessageInterface = {
 					id: 'rooms-fetch-error',

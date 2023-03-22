@@ -364,7 +364,9 @@ class RobotsService {
 			':orderId',
 			orderId
 		);
-		return HttpClientService.get<RobotOrderAxiosGetInterface>(url);
+		return HttpClientService.get<RobotOrderAxiosGetInterface>(url, {
+			params: { 'filter[withLocationName]': true }
+		});
 	};
 
 	/**

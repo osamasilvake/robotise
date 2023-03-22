@@ -19,6 +19,7 @@ export interface SOCDataInterface {
 	id: string;
 	location: string;
 	locationId: string;
+	locationName: string;
 	mode: string;
 	status: string;
 	origin: string;

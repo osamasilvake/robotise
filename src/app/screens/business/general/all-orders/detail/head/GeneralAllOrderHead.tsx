@@ -8,7 +8,6 @@ import Status from '../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../services';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
-import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { dateDayJs, dateUTC } from '../../../../../../utilities/methods/Date';
 import { mapStatus } from '../../list/table/GeneralAllOrdersTable.map';
@@ -22,11 +21,8 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 
 	const sites = useSelector(sitesSelector);
 	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
-	const rooms = useSelector(roomsSelector);
 
-	const roomsDataBy = rooms.content?.dataById;
-	const location = order?.content?.location || '';
-	const locationName = roomsDataBy?.[location]?.name;
+	const locationName = order?.content?.locationName || '';
 
 	const cRobotId = order?.content?.robot.id || '';
 	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId || '';
@@ -47,7 +43,7 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 				<Box className={classes.sRoomWrapper}>
 					{/* Room */}
 					<Typography variant="h1" className={classes.sRoom}>
-						{locationName || location || AppConfigService.AppOptions.common.none}
+						{locationName || AppConfigService.AppOptions.common.none}
 					</Typography>
 
 					{/* Site */}

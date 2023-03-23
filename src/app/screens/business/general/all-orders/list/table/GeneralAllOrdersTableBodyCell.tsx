@@ -108,6 +108,10 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 						{t(`${translation}.TABLE.VALUES.PURCHASE_DETAILS`)}
 					</Link>
 				);
+			} else if (GeneralAllOrdersTableColumnsTypeEnum.TARGET === column.id) {
+				return (
+					mappedOrder?.locationName || value || AppConfigService.AppOptions.common.none
+				);
 			} else if (typeof value === 'string') {
 				if (GeneralAllOrdersTableColumnsTypeEnum.STATUS === column.id) {
 					return (
@@ -121,8 +125,6 @@ const GeneralAllOrdersTableBodyCell: FC<GeneralAllOrdersTableBodyCellInterface> 
 					);
 				} else if (GeneralAllOrdersTableColumnsTypeEnum.MODE === column.id) {
 					return t(`COMMON.MODE.${value}`);
-				} else if (GeneralAllOrdersTableColumnsTypeEnum.TARGET === column.id) {
-					return mappedOrder?.locationName || value;
 				}
 				return t(value);
 			}

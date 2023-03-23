@@ -157,6 +157,10 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 						{!history.length && AppConfigService.AppOptions.common.none}
 					</Box>
 				);
+			} else if (GeneralAllSMSListTableColumnsTypeEnum.ROOM === column.id) {
+				return (
+					mappedSMSItem?.locationName || value || AppConfigService.AppOptions.common.none
+				);
 			} else if (typeof value === 'string') {
 				if (GeneralAllSMSListTableColumnsTypeEnum.STATUS === column.id) {
 					return (
@@ -178,8 +182,6 @@ const GeneralAllSMSListTableBodyCell: FC<GeneralAllSMSListTableBodyCellInterface
 							{value}
 						</Link>
 					);
-				} else if (GeneralAllSMSListTableColumnsTypeEnum.ROOM === column.id) {
-					return mappedSMSItem?.locationName || value;
 				}
 				return t(value);
 			}

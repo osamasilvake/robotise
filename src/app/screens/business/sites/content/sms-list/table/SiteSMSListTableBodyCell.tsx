@@ -115,6 +115,8 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 						{!history.length && AppConfigService.AppOptions.common.none}
 					</Box>
 				);
+			} else if (SiteSMSListTableColumnsTypeEnum.ROOM === column.id) {
+				return locationName || value || AppConfigService.AppOptions.common.none;
 			} else if (typeof value === 'string') {
 				if (SiteSMSListTableColumnsTypeEnum.STATUS === column.id) {
 					return (
@@ -138,8 +140,6 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 					);
 				}
 				return t(value);
-			} else if (SiteSMSListTableColumnsTypeEnum.ROOM === column.id) {
-				return locationName || value;
 			}
 			return value || AppConfigService.AppOptions.common.none;
 		}

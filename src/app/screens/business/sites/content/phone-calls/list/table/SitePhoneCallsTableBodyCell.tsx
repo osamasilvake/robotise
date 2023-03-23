@@ -100,6 +100,8 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 						{!history.length && AppConfigService.AppOptions.common.none}
 					</Box>
 				);
+			} else if (SitePhoneCallsTableColumnsTypeEnum.ROOM === column.id) {
+				return locationName || value || AppConfigService.AppOptions.common.none;
 			} else if (typeof value === 'string') {
 				if (SitePhoneCallsTableColumnsTypeEnum.STATUS === column.id) {
 					return (
@@ -121,8 +123,6 @@ const SitePhoneCallsTableBodyCell: FC<SitePhoneCallsTableBodyCellInterface> = (p
 							{value}
 						</Link>
 					);
-				} else if (SitePhoneCallsTableColumnsTypeEnum.ROOM === column.id) {
-					return locationName || value;
 				}
 				return t(value);
 			}

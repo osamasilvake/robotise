@@ -816,7 +816,8 @@
 								"ringing": "Ringing",
 								"no-answer": "No Answer",
 								"undefined": "Unknown",
-								"dummy": "Dummy"
+								"dummy": "Dummy",
+								"in-progress": "In Progress"
 							},
 							"HISTORY": {
 								"ORDER_DETAIL": "Detail"
@@ -863,7 +864,8 @@
 								"received": "Received",
 								"confirmed": "Confirmed",
 								"dummy": "Dummy",
-								"error": "Error"
+								"error": "Error",
+								"read": "Read"
 							},
 							"HISTORY": {
 								"ORDER_DETAIL": "Detail"

@@ -139,6 +139,12 @@ const GeneralAllPhoneCallsTableBodyCell: FC<GeneralAllPhoneCallsTableBodyCellInt
 						{!history.length && AppConfigService.AppOptions.common.none}
 					</Box>
 				);
+			} else if (GeneralAllPhoneCallsTableColumnsTypeEnum.ROOM === column.id) {
+				return (
+					mappedPhoneCall?.locationName ||
+					value ||
+					AppConfigService.AppOptions.common.none
+				);
 			} else if (typeof value === 'string') {
 				if (GeneralAllPhoneCallsTableColumnsTypeEnum.STATUS === column.id) {
 					return (
@@ -160,8 +166,6 @@ const GeneralAllPhoneCallsTableBodyCell: FC<GeneralAllPhoneCallsTableBodyCellInt
 							{value}
 						</Link>
 					);
-				} else if (GeneralAllPhoneCallsTableColumnsTypeEnum.ROOM === column.id) {
-					return mappedPhoneCall?.locationName || value;
 				}
 				return t(value);
 			}

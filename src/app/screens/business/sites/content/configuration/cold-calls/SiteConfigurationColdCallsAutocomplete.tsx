@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
-import { RoomsTypeEnum } from '../../../../../../slices/business/sites/rooms/Rooms.slice.enum';
 import { SiteConfigurationColdCallsAutocompleteInterface } from './SiteConfigurationColdCalls.interface';
 import { SiteConfigurationColdCallsStyle } from './SiteConfigurationColdCalls.style';
 
@@ -18,7 +17,7 @@ const SiteConfigurationColdCallsAutocomplete: FC<
 	const rooms = useSelector(roomsSelector);
 
 	const roomsGroupBy = rooms.content?.groupByType;
-	const rLocations = roomsGroupBy?.find((r) => r.key === RoomsTypeEnum.ROOM)?.values || [];
+	const rLocations = roomsGroupBy?.find((r) => r.key)?.values || [];
 	const options = rLocations?.map((r) => ({ id: r.id, name: r.name }));
 	const currentOptions = updateLocations.map((l) => options.find((o) => o?.id === l));
 

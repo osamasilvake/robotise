@@ -2,14 +2,13 @@ import { Description } from '@mui/icons-material';
 import { Box, Icon, Link, Stack, TableCell, Tooltip, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Status from '../../../../../../components/common/status/Status';
 import { AppConfigService } from '../../../../../../services';
 import { AppDispatch } from '../../../../../../slices';
 import { GeneralCopyToClipboard } from '../../../../../../slices/business/general/GeneralOperations.slice';
-import { roomsSelector } from '../../../../../../slices/business/sites/rooms/Rooms.slice';
 import { SLCDataInterface } from '../../../../../../slices/business/sites/sms-list/SMSList.slice.interface';
 import { dateFormat1, dateFormat3 } from '../../../../../../utilities/methods/Date';
 import {
@@ -29,10 +28,8 @@ const SiteSMSListTableBodyCell: FC<SiteSMSListTableBodyCellInterface> = (props) 
 	const classes = SiteSMSListTableStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
-	const rooms = useSelector(roomsSelector);
 
-	const roomsDataBy = rooms.content?.dataById;
-	const locationName = roomsDataBy?.[smsItem.room]?.name;
+	const locationName = smsItem?.locationName;
 	const translation = 'COMMON.SMS_LIST.LIST.TABLE.VALUES';
 
 	/**

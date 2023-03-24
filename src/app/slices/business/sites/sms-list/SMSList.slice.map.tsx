@@ -45,6 +45,7 @@ export const fillUpDummyValues = (
 		id: '',
 		type: SMSListTypeEnum.DUMMY,
 		room: '-',
+		locationName: '',
 		status: 'dummy',
 		from: '-',
 		to: '-',

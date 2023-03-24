@@ -19,6 +19,7 @@ export interface SLCDataInterface {
 	id: string;
 	type: string;
 	room: string;
+	locationName: string;
 	vendor: string;
 	workflow: string;
 	status: string;

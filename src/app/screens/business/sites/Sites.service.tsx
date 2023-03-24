@@ -486,6 +486,7 @@ class SitesService {
 		return HttpClientService.get<SiteSMSListAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId,
+				'filter[withLocationName]': true,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}
@@ -503,6 +504,7 @@ class SitesService {
 		return HttpClientService.get<SiteSMSListAxiosGetInterface>(url, {
 			params: {
 				'filter[site]': siteId,
+				'filter[withLocationName]': true,
 				'page[number]': payload.page + 1,
 				'page[size]': payload.rowsPerPage / 2
 			}

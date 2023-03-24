@@ -16,9 +16,8 @@ const SiteConfigurationMarketingRidesAutocomplete: FC<
 
 	const rooms = useSelector(roomsSelector);
 
-	const roomsGroupBy = rooms.content?.groupByType;
-	const rLocations = roomsGroupBy?.find((r) => r.key)?.values || [];
-	const options = rLocations?.map((r) => ({ id: r.id, name: r.name }));
+	const allRooms = rooms.content?.data || [];
+	const options = allRooms.map((r) => ({ id: r.id, name: r.name }));
 	const currentOptions = locations.map((l) => options.find((o) => o?.id === l));
 
 	const translation = 'CONTENT.CONFIGURATION.MARKETING_RIDES';

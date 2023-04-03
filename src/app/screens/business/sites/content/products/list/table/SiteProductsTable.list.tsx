@@ -26,6 +26,12 @@ export const columns: SiteProductsTableColumnInterface[] = [
 		align: 'left'
 	},
 	{
+		id: SiteProductsTableColumnsTypeEnum.CATEGORY,
+		label: `${translation}.CATEGORY`,
+		minWidth: 200,
+		align: 'left'
+	},
+	{
 		id: SiteProductsTableColumnsTypeEnum.PRICE,
 		label: `${translation}.PRICE`,
 		minWidth: 110,

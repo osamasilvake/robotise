@@ -13,6 +13,7 @@ import { SPCDataInterface } from '../../../../../../../slices/business/sites/pro
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { dateFormat1 } from '../../../../../../../utilities/methods/Date';
 import { currencyFormat } from '../../../../../../../utilities/methods/Number';
+import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../../utilities/methods/String';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import DialogCreateEditProduct from './DialogCreateEditProduct';
 import DialogDeleteProduct from './DialogDeleteProduct';
@@ -117,6 +118,8 @@ const SiteProductsTableBodyCell: FC<SiteProductsTableBodyCellInterface> = (props
 			} else if (typeof value === 'string') {
 				if (SiteProductsTableColumnsTypeEnum.IMAGE === column.id) {
 					return <Avatar variant="square" src={value} alt={product.name} />;
+				} else if (SiteProductsTableColumnsTypeEnum.CATEGORY === column.id) {
+					return strCapitalLetterAndCamelCaseToDash(value);
 				}
 				return t(value) || AppConfigService.AppOptions.common.none;
 			}

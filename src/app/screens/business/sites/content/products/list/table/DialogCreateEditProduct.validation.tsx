@@ -20,7 +20,8 @@ export const CreateEditProductValidation = (
 		price: '',
 		length: '',
 		weight: '',
-		volume: ''
+		volume: '',
+		category: ''
 	};
 
 	// Name

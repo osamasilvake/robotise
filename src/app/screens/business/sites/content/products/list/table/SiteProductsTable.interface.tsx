@@ -45,6 +45,7 @@ export interface DialogCreateEditProductFormInterface {
 	length: number | string | null;
 	weight: number | string | null;
 	volume: string;
+	category: string;
 }
 
 export interface DialogDeleteProductInterface {

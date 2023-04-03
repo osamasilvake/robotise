@@ -2,6 +2,7 @@ export enum SiteProductsTableColumnsTypeEnum {
 	ID = 'ID',
 	IMAGE = 'image',
 	NAME = 'name',
+	CATEGORY = 'category',
 	PRICE = 'price',
 	LENGTH = 'length',
 	SIZE = 'volume',

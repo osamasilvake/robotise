@@ -7,6 +7,9 @@ import {
 	DialogTitle,
 	FormControl,
 	Grid,
+	InputLabel,
+	MenuItem,
+	Select,
 	TextField
 } from '@mui/material';
 import { FC, useState } from 'react';
@@ -17,6 +20,7 @@ import { useParams } from 'react-router-dom';
 import Upload from '../../../../../../../components/common/upload/Upload';
 import { AppConfigService } from '../../../../../../../services';
 import { AppDispatch } from '../../../../../../../slices';
+import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import {
 	ProductCreateEdit,
 	ProductsFetchList,
@@ -28,6 +32,7 @@ import {
 	validateEmptyObj,
 	validateEmptyObjProperty
 } from '../../../../../../../utilities/methods/Object';
+import { strCapitalLetterAndCamelCaseToDash } from '../../../../../../../utilities/methods/String';
 import { timeout } from '../../../../../../../utilities/methods/Timeout';
 import { SiteParamsInterface } from '../../../../Site.interface';
 import { CreateEditProductValidation } from './DialogCreateEditProduct.validation';
@@ -45,6 +50,7 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const { t } = useTranslation(['SITES', 'DIALOG']);
 
 	const dispatch = useDispatch<AppDispatch>();
+	const generalOperations = useSelector(generalOperationsSelector);
 	const sites = useSelector(sitesSelector);
 	const products = useSelector(productsSelector);
 
@@ -57,8 +63,9 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 	const currency = sites.content?.dataById[cSiteId]?.currency || defaultCurrency;
 	const translation = 'CONTENT.PRODUCTS.LIST.ACTIONS.CREATE_EDIT';
 	const lengthEnum = SiteProductCreateEditLengthValidationTypeEnum;
+	const productCategories = generalOperations.productCategories.content?.data?.map((m) => m.name);
 
-	const { handleChangeInput, handleBlur, handleSubmit, values, errors } =
+	const { handleChangeInput, handleChangeSelect, handleBlur, handleSubmit, values, errors } =
 		useForm<DialogCreateEditProductFormInterface>(
 			{
 				image: product?.image || '',
@@ -66,7 +73,8 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 				price: product?.price || '',
 				length: product?.length || '',
 				weight: product?.weight || '',
-				volume: product?.volume || ''
+				volume: product?.volume || '',
+				category: product?.category || ''
 			},
 			CreateEditProductValidation,
 			async () => {
@@ -227,6 +235,28 @@ const DialogCreateEditProduct: FC<DialogCreateEditProductInterface> = (props) =>
 									onChange={handleChangeInput}
 									onBlur={handleBlur}
 								/>
+							</FormControl>
+						</Grid>
+
+						<Grid item xs={12} sm={4} md={4}>
+							<FormControl fullWidth margin="normal">
+								<InputLabel id="label-category">
+									{t(`${translation}.FORM.FIELDS.CATEGORY.LABEL`)}
+								</InputLabel>
+								<Select
+									required
+									labelId="label-category"
+									id="category"
+									name="category"
+									label={t(`${translation}.FORM.FIELDS.CATEGORY.LABEL`)}
+									value={values.category}
+									onChange={handleChangeSelect}>
+									{(productCategories || [])?.map((m) => (
+										<MenuItem key={m} value={m}>
+											{strCapitalLetterAndCamelCaseToDash(m)}
+										</MenuItem>
+									))}
+								</Select>
 							</FormControl>
 						</Grid>
 					</Grid>

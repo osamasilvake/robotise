@@ -14,16 +14,13 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
-import {
-	GeneralFetchOrderModes,
-	generalOperationsSelector
-} from '../../../../../../../slices/business/general/GeneralOperations.slice';
+import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import {
 	PhoneConfigEdit,
 	PhoneConfigsFetch,
@@ -85,14 +82,6 @@ const DialogEditPhoneConfig: FC<DialogEditPhoneConfigInterface> = (props) => {
 					);
 			}
 		);
-
-	useEffect(() => {
-		// return if content
-		if (generalOperations.orderModes.content !== null) return;
-
-		// dispatch: fetch order modes
-		dispatch(GeneralFetchOrderModes());
-	}, [dispatch, generalOperations.orderModes.content]);
 
 	// wait for order modes content to load
 	if (!generalOperations.orderModes.content) return null;

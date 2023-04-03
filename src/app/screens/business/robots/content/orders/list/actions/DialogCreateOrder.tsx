@@ -16,16 +16,13 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { FC, MouseEvent, useEffect } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { AppDispatch } from '../../../../../../../slices';
-import {
-	GeneralFetchOrderModes,
-	generalOperationsSelector
-} from '../../../../../../../slices/business/general/GeneralOperations.slice';
+import { generalOperationsSelector } from '../../../../../../../slices/business/general/GeneralOperations.slice';
 import {
 	OrderCreate,
 	ordersSelector,
@@ -135,14 +132,6 @@ const DialogCreateOrder: FC<DialogCreateOrderInterface> = (props) => {
 	const type = values.type || types0;
 	const phoneCustomer = type === RobotOrderCustomNotificationTypeEnum.PHONE_CUSTOMER;
 	const smsCustomer = type === RobotOrderCustomNotificationTypeEnum.SMS_CUSTOMER;
-
-	useEffect(() => {
-		// return if content
-		if (generalOperations.orderModes.content !== null) return;
-
-		// dispatch: fetch order modes
-		dispatch(GeneralFetchOrderModes());
-	}, [dispatch, generalOperations.orderModes.content]);
 
 	/**
 	 * close dialog

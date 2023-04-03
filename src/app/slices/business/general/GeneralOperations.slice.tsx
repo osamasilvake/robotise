@@ -7,13 +7,17 @@ import { TriggerMessageInterface } from '../../../components/frame/message/Messa
 import GeneralService from '../../../screens/business/general/General.service';
 import { RootState } from '../..';
 import { triggerMessage } from '../../app/App.slice';
-import { deserializeOrderModes } from './GeneralOperations.slice.deserialize';
+import { deserialize } from './GeneralOperations.slice.deserialize';
 import { GeneralOperationsTypeEnum } from './GeneralOperations.slice.enum';
 import { SliceGeneralOperationsInterface } from './GeneralOperations.slice.interface';
 
 // initial state
 export const initialState: SliceGeneralOperationsInterface = {
 	orderModes: {
+		loading: false,
+		content: null
+	},
+	productCategories: {
 		loading: false,
 		content: null
 	},
@@ -31,6 +35,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === GeneralOperationsTypeEnum.ORDER_MODES) {
 				state.orderModes.loading = true;
+			} else if (module === GeneralOperationsTypeEnum.PRODUCT_CATEGORIES) {
+				state.productCategories.loading = true;
 			} else if (module === GeneralOperationsTypeEnum.REPORTS) {
 				state.reports.loading = true;
 			}
@@ -40,6 +46,9 @@ const dataSlice = createSlice({
 			if (module === GeneralOperationsTypeEnum.ORDER_MODES) {
 				state.orderModes.loading = false;
 				response && (state.orderModes.content = response);
+			} else if (module === GeneralOperationsTypeEnum.PRODUCT_CATEGORIES) {
+				state.productCategories.loading = false;
+				response && (state.productCategories.content = response);
 			} else if (module === GeneralOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -48,6 +57,8 @@ const dataSlice = createSlice({
 			const { module } = action.payload;
 			if (module === GeneralOperationsTypeEnum.ORDER_MODES) {
 				state.orderModes.loading = false;
+			} else if (module === GeneralOperationsTypeEnum.PRODUCT_CATEGORIES) {
+				state.productCategories.loading = false;
 			} else if (module === GeneralOperationsTypeEnum.REPORTS) {
 				state.reports.loading = false;
 			}
@@ -89,7 +100,7 @@ export const GeneralFetchOrderModes =
 		return GeneralService.generalOrderModesFetch()
 			.then(async (res) => {
 				// deserialize response
-				const result = await deserializeOrderModes(res);
+				const result = await deserialize(res);
 
 				// dispatch: success
 				dispatch(success({ ...state, response: result }));
@@ -101,6 +112,50 @@ export const GeneralFetchOrderModes =
 					show: true,
 					severity: TriggerMessageTypeEnum.ERROR,
 					text: 'GENERAL.ORDER_MODES.ERROR'
+				};
+				dispatch(triggerMessage(message));
+
+				// dispatch: failure
+				dispatch(failure(state));
+			});
+	};
+
+/**
+ * fetch product categories
+ * @returns
+ */
+export const GeneralFetchProductCategories =
+	() => async (dispatch: Dispatch, getState: () => RootState) => {
+		// states
+		const states = getState();
+		const productCategories = states.generalOperations.productCategories;
+		const state = {
+			module: GeneralOperationsTypeEnum.PRODUCT_CATEGORIES
+		};
+
+		// return on busy
+		if (productCategories && productCategories.loading) {
+			return;
+		}
+
+		// dispatch: loading
+		dispatch(loading(state));
+
+		return GeneralService.generalProductCategoriesFetch()
+			.then(async (res) => {
+				// deserialize response
+				const result = await deserialize(res);
+
+				// dispatch: success
+				dispatch(success({ ...state, response: result }));
+			})
+			.catch(() => {
+				// dispatch: trigger message
+				const message: TriggerMessageInterface = {
+					id: 'operation-product-categories-fetch-error',
+					show: true,
+					severity: TriggerMessageTypeEnum.ERROR,
+					text: 'GENERAL.PRODUCT_CATEGORIES.ERROR'
 				};
 				dispatch(triggerMessage(message));
 

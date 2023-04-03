@@ -21,7 +21,8 @@ import {
 	GeneralAllSMSListAxiosGetInterface,
 	GeneralEmailAxiosGetInterface,
 	GeneralEmailsAxiosGetInterface,
-	GeneralOrderModesAxiosGetInterface
+	GeneralOrderModesAxiosGetInterface,
+	GeneralProductCategoriesAxiosGetInterface
 } from './General.interface';
 
 class GeneralService {
@@ -218,6 +219,15 @@ class GeneralService {
 	generalOrderModesFetch = () => {
 		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.ORDER_MODES;
 		return HttpClientService.get<GeneralOrderModesAxiosGetInterface>(url);
+	};
+
+	/**
+	 * fetch product categories
+	 * @returns
+	 */
+	generalProductCategoriesFetch = () => {
+		const url = AppConfigService.AppServices.SCREENS.BUSINESS.GENERAL.PRODUCT_CATEGORIES;
+		return HttpClientService.get<GeneralProductCategoriesAxiosGetInterface>(url);
 	};
 
 	/**

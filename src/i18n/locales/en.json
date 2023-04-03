@@ -161,6 +161,9 @@
 				"ORDER_MODES": {
 					"ERROR": "Unable to fetch order modes!"
 				},
+				"PRODUCT_CATEGORIES": {
+					"ERROR": "Unable to fetch product categories!"
+				},
 				"REPORTS": {
 					"SUCCESS": "Report has been generated successfully!",
 					"ERROR": "Unable to generate Report!"

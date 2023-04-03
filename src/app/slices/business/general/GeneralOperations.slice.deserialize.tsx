@@ -6,11 +6,11 @@ import {
 } from '../../JsonAPI.interface';
 
 /**
- * deserialize order modes
+ * deserialize
  * @param payload
  * @returns
  */
-export const deserializeOrderModes = async <T extends JsonAPIResponseInterface>(payload: T) => {
+export const deserialize = async <T extends JsonAPIResponseInterface>(payload: T) => {
 	const options: DeserializerExtendedOptionsInterface = {
 		keyForAttribute: 'camelCase'
 	};

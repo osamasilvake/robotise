@@ -5,6 +5,10 @@ export interface SliceGeneralOperationsInterface {
 		loading: boolean;
 		content: SGOOrderModesContentInterface | null;
 	};
+	productCategories: {
+		loading: boolean;
+		content: SGOProductCategoriesContentInterface | null;
+	};
 	reports: {
 		loading: boolean;
 	};
@@ -22,4 +26,12 @@ export interface SGOOrderModeContentDataInterface {
 
 export interface SGOOrderModeContentDataByIdInterface {
 	[id: string]: string;
+}
+
+export interface SGOProductCategoriesContentInterface {
+	data: SGOProductCategoriesContentDataInterface[];
+}
+
+export interface SGOProductCategoriesContentDataInterface {
+	name: string;
 }

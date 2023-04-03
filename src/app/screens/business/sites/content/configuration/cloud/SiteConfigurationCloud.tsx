@@ -6,10 +6,6 @@ import { useParams } from 'react-router-dom';
 import Loader from '../../../../../../components/common/loader/Loader';
 import { LoaderTypeEnum } from '../../../../../../components/common/loader/Loader.enum';
 import { AppDispatch } from '../../../../../../slices';
-import {
-	GeneralFetchOrderModes,
-	generalOperationsSelector
-} from '../../../../../../slices/business/general/GeneralOperations.slice';
 import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import {
 	siteCloudConfigurationSelector,
@@ -35,7 +31,6 @@ const SiteConfigurationCloud: FC = () => {
 	const classes = SiteConfigurationCloudStyle();
 
 	const dispatch = useDispatch<AppDispatch>();
-	const generalOperations = useSelector(generalOperationsSelector);
 	const sites = useSelector(sitesSelector);
 	const siteCloudConfiguration = useSelector(siteCloudConfigurationSelector);
 	const notifications = useSelector(notificationsSelector);
@@ -52,13 +47,6 @@ const SiteConfigurationCloud: FC = () => {
 		// dispatch: fetch site notification types and users
 		dispatch(NotificationTypesAndUsersFetchList(cSiteId));
 	}, [dispatch, pNotificationSiteId, cSiteId]);
-
-	useEffect(() => {
-		if (generalOperations.orderModes?.content !== null) return;
-
-		// dispatch: fetch order modes
-		dispatch(GeneralFetchOrderModes());
-	}, [dispatch, generalOperations.orderModes?.content]);
 
 	useEffect(() => {
 		if (siteCloudConfiguration.orderOrigins?.content !== null) return;

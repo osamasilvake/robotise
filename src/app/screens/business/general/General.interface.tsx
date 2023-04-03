@@ -3,7 +3,10 @@ import { SAODataInterface } from '../../../slices/business/general/all-orders/Al
 import { APCDataInterface } from '../../../slices/business/general/all-phone-calls/AllPhoneCalls.slice.interface';
 import { ASLDataInterface } from '../../../slices/business/general/all-sms-list/AllSMSList.slice.interface';
 import { SECDataInterface } from '../../../slices/business/general/emails/Emails.slice.interface';
-import { SGOOrderModeContentDataInterface } from '../../../slices/business/general/GeneralOperations.slice.interface';
+import {
+	SGOOrderModeContentDataInterface,
+	SGOProductCategoriesContentDataInterface
+} from '../../../slices/business/general/GeneralOperations.slice.interface';
 import { JsonAPIResponseInterface } from '../../../slices/JsonAPI.interface';
 
 export interface GeneralEmailsAxiosGetInterface extends JsonAPIResponseInterface {
@@ -67,5 +70,13 @@ export interface GeneralOrderModesAxiosGetInterface extends JsonAPIResponseInter
 		id: string;
 		type: string;
 		attributes: SGOOrderModeContentDataInterface;
+	}[];
+}
+
+export interface GeneralProductCategoriesAxiosGetInterface extends JsonAPIResponseInterface {
+	data: {
+		id: string;
+		type: string;
+		attributes: SGOProductCategoriesContentDataInterface;
 	}[];
 }

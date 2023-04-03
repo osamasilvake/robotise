@@ -10,6 +10,10 @@ import { LayoutPageInterface } from '../../routes/Routes.interface';
 import { AppConfigService } from '../../services';
 import { AppDispatch } from '../../slices';
 import { appSelector } from '../../slices/app/App.slice';
+import {
+	GeneralFetchOrderModes,
+	GeneralFetchProductCategories
+} from '../../slices/business/general/GeneralOperations.slice';
 import { RobotTwinsSummaryFetchList } from '../../slices/business/robots/RobotTwinsSummary.slice';
 import { SiteElevatorVendorsFetch } from '../../slices/business/sites/configuration/cloud/SiteCloudConfiguration.slice';
 import { SitesFetchList } from '../../slices/business/sites/Sites.slice';
@@ -53,6 +57,12 @@ const PrivateLayout: FC<LayoutPageInterface> = (props) => {
 	}, [dispatch]);
 
 	useEffect(() => {
+		// dispatch: fetch order modes
+		dispatch(GeneralFetchOrderModes());
+
+		// dispatch: fetch product categories
+		dispatch(GeneralFetchProductCategories());
+
 		// dispatch: fetch elevator vendors
 		dispatch(SiteElevatorVendorsFetch());
 	}, [dispatch]);

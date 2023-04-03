@@ -33,6 +33,7 @@ const AppServices = (config: typeof AppConfigService) => {
 						OUTBOUND: `${config.envAppUrl}/outbound-sms`
 					},
 					ORDER_MODES: `${config.envAppUrl}/order-modes`,
+					PRODUCT_CATEGORIES: `${config.envAppUrl}/product-categories`,
 					REPORTS: config.envAppUrl
 				},
 				SITES: {

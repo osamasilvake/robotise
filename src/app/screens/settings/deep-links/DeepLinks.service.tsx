@@ -168,7 +168,7 @@ class DeepLinksService {
 		const url = AppConfigService.AppServices.SCREENS.SETTINGS.DEEP_LINK.ELEVATOR_DASHBOARD;
 		return HttpClientService.get<SDContentInterface>(url, {
 			params: {
-				siteId: payload.siteId,
+				site: payload.siteId,
 				from: payload.from,
 				to: payload.to
 			}

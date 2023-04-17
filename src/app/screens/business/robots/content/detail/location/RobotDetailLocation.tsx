@@ -1,5 +1,5 @@
 import { OpenInNew } from '@mui/icons-material';
-import { Box, Grid, IconButton, Link, Stack, Typography } from '@mui/material';
+import { Box, Grid, Link, Stack, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

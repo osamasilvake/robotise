@@ -59,6 +59,13 @@ class EnvService {
 	}
 
 	/**
+	 * ROC tools url
+	 */
+	get envRocToolsUrl() {
+		return process.env.REACT_APP_ROC_TOOLS_URL || '';
+	}
+
+	/**
 	 * app name
 	 */
 	get envAppName() {

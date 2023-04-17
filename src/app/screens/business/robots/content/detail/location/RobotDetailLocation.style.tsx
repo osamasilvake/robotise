@@ -10,6 +10,11 @@ export const RobotDetailLocationStyle = makeStyles((theme: Theme) => ({
 	sTitle: {
 		marginBottom: theme.spacing(1)
 	},
+	sLinkIcon: {
+		fontSize: theme.typography.pxToRem(13),
+		marginLeft: theme.typography.pxToRem(4),
+		verticalAlign: 'middle'
+	},
 	sCard: {
 		marginTop: theme.spacing(1),
 		position: 'relative'

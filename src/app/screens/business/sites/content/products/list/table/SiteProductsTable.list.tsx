@@ -28,7 +28,7 @@ export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.CATEGORY,
 		label: `${translation}.CATEGORY`,
-		minWidth: 200,
+		minWidth: 90,
 		align: 'left'
 	},
 	{
@@ -40,31 +40,31 @@ export const columns: SiteProductsTableColumnInterface[] = [
 	{
 		id: SiteProductsTableColumnsTypeEnum.LENGTH,
 		label: `${translation}.LENGTH`,
-		minWidth: 145,
+		minWidth: 90,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.WEIGHT,
 		label: `${translation}.WEIGHT`,
-		minWidth: 125,
+		minWidth: 90,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.SIZE,
 		label: `${translation}.SIZE`,
-		minWidth: 100,
+		minWidth: 90,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.UPDATED,
 		label: `${translation}.UPDATED`,
-		minWidth: 200,
+		minWidth: 180,
 		align: 'left'
 	},
 	{
 		id: SiteProductsTableColumnsTypeEnum.ACTIONS,
 		label: `${translation}.ACTIONS`,
-		minWidth: 145,
+		minWidth: 105,
 		align: 'right',
 		noSort: true
 	}

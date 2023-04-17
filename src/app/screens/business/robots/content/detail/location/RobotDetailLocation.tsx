@@ -1,7 +1,9 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { OpenInNew } from '@mui/icons-material';
+import { Box, Grid, Link, Stack, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { AppConfigService } from '../../../../../../services';
 import { dateFormat2 } from '../../../../../../utilities/methods/Date';
 import { RobotDetailLocationInterface } from './RobotDetailLocation.interface';
 import { RobotDetailLocationStyle } from './RobotDetailLocation.style';
@@ -17,13 +19,33 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 	const [plannedPath, setPlannedPath] = useState(false);
 
 	const translation = 'CONTENT.DETAIL.LOCATION';
+	const siteId = robotTwins?.site?.id;
+
+	/**
+	 * open map editor on ROC Tools
+	 * @returns
+	 */
+	const openMapEditor = () => {
+		const url = AppConfigService.envRocToolsUrl.replace(':siteId', siteId);
+		return `${url}`;
+	};
 
 	return robotTwins.location ? (
 		<Box className={classes.sContainer}>
-			{/* Title */}
-			<Typography variant="h6" color="textSecondary" className={classes.sTitle}>
-				{t(`${translation}.TITLE`)}
-			</Typography>
+			<Stack spacing={1} direction="row" alignItems="center" className={classes.sTitle}>
+				{/* Title */}
+				<Typography variant="h6" color="textSecondary">
+					{t(`${translation}.TITLE`)}
+				</Typography>
+
+				{/* Map Editor */}
+				{siteId && (
+					<Link underline="hover" target="_blank" fontSize={13} href={openMapEditor()}>
+						Map Editor
+						<OpenInNew fontSize="small" className={classes.sLinkIcon} />
+					</Link>
+				)}
+			</Stack>
 
 			{/* Floor */}
 			{robotTwins.location.value.floor && (

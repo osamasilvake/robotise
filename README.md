@@ -31,6 +31,7 @@ environment:
 --build-arg REACT_APP_AUTH_BASE_URL \
 --build-arg REACT_APP_AUTH_REALM \
 --build-arg REACT_APP_API_BASE_URL \
---build-arg REACT_APP_API_VERSION
+--build-arg REACT_APP_API_VERSION \
+--build-arg REACT_APP_ROC_TOOLS_URL \
 ```
 * Set Dockerfile with ARG (arguments): `docker/Dockerfile`

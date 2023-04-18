@@ -518,9 +518,10 @@ export interface IAlertRulesConditionInterface {
 }
 
 export interface ILocationInterface {
+	floorId: string;
+	floor: string;
 	mapId: string;
 	mapName: string;
-	floor: string;
 	x: number;
 	y: number;
 	yaw: number;

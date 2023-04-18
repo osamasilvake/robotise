@@ -26,7 +26,10 @@ const RobotDetailLocation: FC<RobotDetailLocationInterface> = (props) => {
 	 * @returns
 	 */
 	const openMapEditor = () => {
-		const url = AppConfigService.envRocToolsUrl.replace(':siteId', siteId);
+		const floorId = robotTwins?.location?.value?.floorId;
+		const mapId = robotTwins?.location?.value?.mapId;
+		let url = AppConfigService.envRocToolsUrl.replace(':siteId', siteId);
+		url = `${url}?floorId=${floorId}&mapId=${mapId}`;
 		return `${url}`;
 	};
 

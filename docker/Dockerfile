@@ -19,15 +19,15 @@ ARG REACT_APP_ROC_TOOLS_URL
 # delete node_modules
 # install serve globally
 RUN yarn && yarn cache clean \
-	&& yarn build \
-	REACT_APP_AUTH_BASE_URL=${REACT_APP_AUTH_BASE_URL} \
-	REACT_APP_AUTH_REALM=${REACT_APP_AUTH_REALM} \
-	REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL} \
-	REACT_APP_API_VERSION=${REACT_APP_API_VERSION} \
-	REACT_APP_ROC_TOOLS_URL=${REACT_APP_ROC_TOOLS_URL} \
-	&& rm -rf node_modules/ \
-	&& rm -rf src/ \
-	&& yarn global add serve
+  && yarn build \
+  REACT_APP_AUTH_BASE_URL=${REACT_APP_AUTH_BASE_URL} \
+  REACT_APP_AUTH_REALM=${REACT_APP_AUTH_REALM} \
+  REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL} \
+  REACT_APP_API_VERSION=${REACT_APP_API_VERSION} \
+  REACT_APP_ROC_TOOLS_URL=${REACT_APP_ROC_TOOLS_URL} \
+  && rm -rf node_modules/ \
+  && rm -rf src/ \
+  && yarn global add serve
 
 # expose port
 EXPOSE 3000

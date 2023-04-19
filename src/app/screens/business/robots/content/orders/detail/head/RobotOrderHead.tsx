@@ -7,7 +7,6 @@ import { Link as RouterLink, useParams } from 'react-router-dom';
 import Status from '../../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../../services';
-import { robotTwinsSummarySelector } from '../../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../../slices/business/sites/Sites.slice';
 import { dateDayJs, dateUTC } from '../../../../../../../utilities/methods/Date';
 import { RobotParamsInterface } from '../../../../Robot.interface';
@@ -21,12 +20,11 @@ const RobotOrderHead: FC<RobotOrderHeadInterface> = (props) => {
 	const classes = RobotOrderHeadStyle();
 
 	const sites = useSelector(sitesSelector);
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const params = useParams<keyof RobotParamsInterface>() as RobotParamsInterface;
 
 	const cRobotId = params.robotId;
-	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId || '';
+	const cSiteId = order?.content?.site?.id || '';
 	const siteSingle = sites.content?.dataById?.[cSiteId];
 	const siteId = siteSingle?.id || '';
 	const siteTitle = siteSingle?.title || '';

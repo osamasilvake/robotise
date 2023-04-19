@@ -7,7 +7,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import Status from '../../../../../../components/common/status/Status';
 import { StatusTypeEnum } from '../../../../../../components/common/status/Status.enum';
 import { AppConfigService } from '../../../../../../services';
-import { robotTwinsSummarySelector } from '../../../../../../slices/business/robots/RobotTwinsSummary.slice';
 import { sitesSelector } from '../../../../../../slices/business/sites/Sites.slice';
 import { dateDayJs, dateUTC } from '../../../../../../utilities/methods/Date';
 import { mapStatus } from '../../list/table/GeneralAllOrdersTable.map';
@@ -20,13 +19,12 @@ const GeneralAllOrderHead: FC<GeneralAllOrderHeadInterface> = (props) => {
 	const classes = GeneralAllOrderHeadStyle();
 
 	const sites = useSelector(sitesSelector);
-	const robotTwinsSummary = useSelector(robotTwinsSummarySelector);
 
 	const location = order?.content?.location || '';
 	const locationName = order?.content?.locationName || '';
 
 	const cRobotId = order?.content?.robot.id || '';
-	const cSiteId = robotTwinsSummary.content?.dataById[cRobotId]?.siteId || '';
+	const cSiteId = order?.content?.site?.id || '';
 	const siteSingle = sites.content?.dataById?.[cSiteId];
 	const siteId = siteSingle?.id || '';
 	const siteTitle = siteSingle?.title || '';

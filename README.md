@@ -1,5 +1,4 @@
 ## Roc
-[Link to Wiki Documentation](https://gitlab.robotise.eu/robotise/roc/frontend/roc/-/wikis/home)
 
 
 ## Releasing
